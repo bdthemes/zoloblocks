@@ -46,6 +46,59 @@ const attributes = {
     },
     particleOptions: {
         type: 'object',
+        default: {
+            number: {
+                type: 'number',
+                default: 80,
+            },
+            DensityArea: {
+                type: 'number',
+                default: 800,
+            },
+            Color: {
+                type: 'string',
+                default: '#fff',
+            },
+            shape: {
+                type: 'string',
+                default: 'circle',
+            },
+            //sroke width
+            stroke: {
+                type: 'number',
+                default: 0,
+            },
+            //size
+            size: {
+                type: 'number',
+                default: 3,
+            },
+            //speed
+            speed: {
+                type: 'number',
+                default: 6,
+            },
+            //link distance
+            distance: {
+                type: 'number',
+                default: 150,
+            },
+            //link color
+            linkColor: {
+                type: 'string',
+                default: '#000',
+            },
+            //move speed
+            moveSpeed: {
+                type: 'number',
+                default: 6,
+            },
+            //directon
+            direction: {
+                type: 'string',
+                default: 'none',
+            },
+        },
     },
     // block attributes
     variationStatus: {

@@ -32,32 +32,30 @@ export default function RenderView({ attributes, clientId, className, setAttribu
 
     const particlesRef = useRef(null);
 
+    const shape = particleOptions.shape.map((item) => item.value);
+    console.log('shape', shape);
+
     useEffect(() => {
         const options = {
             particles: {
                 number: {
-                    value: 380,
+                    value: particleOptions?.number,
                     density: {
                         enable: true,
-                        value_area: 800,
+                        value_area: particleOptions?.DensityArea,
                     },
                 },
                 color: {
-                    value: '#000000',
+                    value: '#ff0000',
                 },
                 shape: {
-                    type: 'circle',
+                    type: [...shape],
                     stroke: {
-                        width: 0,
+                        width: particleOptions?.stroke || 0,
                         color: '#000000',
                     },
                     polygon: {
                         nb_sides: 5,
-                    },
-                    image: {
-                        src: 'img/github.svg',
-                        width: 100,
-                        height: 100,
                     },
                 },
                 opacity: {
@@ -71,26 +69,26 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     },
                 },
                 size: {
-                    value: 3,
+                    value: particleOptions?.size || 3,
                     random: true,
                     anim: {
                         enable: false,
-                        speed: 40,
+                        speed: particleOptions?.speed || 6,
                         size_min: 0.1,
                         sync: false,
                     },
                 },
                 line_linked: {
                     enable: true,
-                    distance: 150,
+                    distance: particleOptions?.distance || 150,
                     color: '#000000',
                     opacity: 0.4,
                     width: 1,
                 },
                 move: {
                     enable: true,
-                    speed: 6,
-                    direction: 'none',
+                    speed: particleOptions?.moveSpeed || 6,
+                    direction: particleOptions?.direction || 'none',
                     random: false,
                     straight: false,
                     out_mode: 'out',
@@ -155,7 +153,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
             const particlesId = particles.getAttribute('data-id');
             particlesJS(particlesId, options);
         }
-    }, [resMode, enableParticlesAnimation]);
+    }, [resMode, enableParticlesAnimation, particleOptions, uniqueId]);
 
     return (
         <div {...blockProps} ref={particlesRef}>
