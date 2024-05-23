@@ -80,7 +80,6 @@ export default function Style({ props }) {
         splitTextActive,
     } = attributes;
 
-    console.log(attributes);
 
     //title style generate
     const {
@@ -457,7 +456,6 @@ export default function Style({ props }) {
   }
 `;
 
-    console.log('splitTextActive', uniqueId);
     // Title styles css in strings
     const titleStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
@@ -479,15 +477,15 @@ export default function Style({ props }) {
       ${
           splitTextActive
               ? ` .zolo-frontend .${uniqueId} .zolo-ah-style-3 .zolo-ah-title .zolo-ah-main-title > div,
-              .zolo-editor .${uniqueId}.zolo-ah-style-3 .zolo-ah-title,
-              .zolo-editor .${uniqueId}.zolo-trigger-animation .zolo-ah-style-3  .zolo-ah-title > span  div{
+              .zolo-editor .${uniqueId} .zolo-ah-style-3 .zolo-ah-title .zolo-ah-main-title,
+              .zolo-editor .${uniqueId} .zolo-ah-style-3  .zolo-ah-title .zolo-ah-main-title div{
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-position: center;
         background-size: contain;
         background-image: url(${presetBg ? presetBg.url : ''});}`
               : `
-        .${uniqueId} .zolo-ah-title {
+        .${uniqueId} .zolo-ah-style-3 .zolo-ah-title {
           background-image: url(${presetBg ? presetBg.url : ''});
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
