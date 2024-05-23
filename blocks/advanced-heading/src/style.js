@@ -1,404 +1,397 @@
 /**
  * WordPress dependencies
  */
-import { useEffect } from "@wordpress/element";
-import { __ } from "@wordpress/i18n";
-import { applyFilters } from "@wordpress/hooks";
+import { useEffect } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
 const {
-  generateBackgroundControlStyles,
-  generateBorderStyle,
-  generateBoxShadowStyles,
-  generateDimensionStyle,
-  generateTypographyStyles,
-  generateResRangeStyle,
-  generateResAlignmentStyle,
-  generateTextShadowStyles,
-  generateTextStrokeStyles,
-  GlobalStyleHanlder,
+    generateBackgroundControlStyles,
+    generateBorderStyle,
+    generateBoxShadowStyles,
+    generateDimensionStyle,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    generateResAlignmentStyle,
+    generateTextShadowStyles,
+    generateTextStrokeStyles,
+    GlobalStyleHanlder,
 } = window.zoloModule;
 
 //block constants
 import {
-  SEPARATOR_HEIGHT,
-  SEPARATOR_SPACING,
-  SEPARATOR_WIDTH,
-  SUBTITLE_MARGIN,
-  SUBTITLE_PADDING,
-  SUBTITE_BORDER,
-  SUBTITLE_BORDER_RADIUS,
-  SUBTITLE_TEXT_SHADOW,
-  SUBTITLE_TEXT_STROKE,
-  TITLE_ALIGN,
-  TITLE_BORDER,
-  TITLE_BORDER_RADIUS,
-  TITLE_MARGIN,
-  TITLE_PADDING,
-  TITLE_SHADOW,
-  TITLE_TEXT_SHADOW,
-  TITLE_TEXT_STROKE,
-  TPT_BORDER,
-  TPT_BORDER_RADIUS,
-  TPT_MARGIN,
-  TPT_PADDING,
-  TPT_SHADOW,
-  TPT_TEXT_SHADOW,
-  TPT_TEXT_STROKE,
-  WRAPPER_BG,
-  WRAPPER_BORDER,
-  WRAPPER_MARGIN,
-  WRAPPER_PADDING,
-  WRAPPER_SHADOW,
-  TPH_X_OFFSET,
-  TPH_Y_OFFSET,
-} from "./constants";
-import {
-  SUBTITLE_TYPOGRAPHY,
-  TITLE_TYPOGRAPHY,
-  TRANSPARENT_TYPOGRAPHY,
-} from "./constants/typoPrefixConstant";
+    SEPARATOR_HEIGHT,
+    SEPARATOR_SPACING,
+    SEPARATOR_WIDTH,
+    SUBTITLE_MARGIN,
+    SUBTITLE_PADDING,
+    SUBTITE_BORDER,
+    SUBTITLE_BORDER_RADIUS,
+    SUBTITLE_TEXT_SHADOW,
+    SUBTITLE_TEXT_STROKE,
+    TITLE_ALIGN,
+    TITLE_BORDER,
+    TITLE_BORDER_RADIUS,
+    TITLE_MARGIN,
+    TITLE_PADDING,
+    TITLE_SHADOW,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
+    TPT_BORDER,
+    TPT_BORDER_RADIUS,
+    TPT_MARGIN,
+    TPT_PADDING,
+    TPT_SHADOW,
+    TPT_TEXT_SHADOW,
+    TPT_TEXT_STROKE,
+    WRAPPER_BG,
+    WRAPPER_BORDER,
+    WRAPPER_MARGIN,
+    WRAPPER_PADDING,
+    WRAPPER_SHADOW,
+    TPH_X_OFFSET,
+    TPH_Y_OFFSET,
+} from './constants';
+import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
-  const { attributes, setAttributes, name } = props;
-  const {
-    uniqueId,
+    const { attributes, setAttributes, name } = props;
+    const {
+        uniqueId,
 
-    //settings
-    transparentTitleRotate,
-    transparentTitleHide,
+        //settings
+        transparentTitleRotate,
+        transparentTitleHide,
 
-    //style
-    titleColor,
-    titleHoverColor,
-    titleBgColor,
-    subTitleColor,
-    subTitleBgColor,
-    tptColor,
-    tptBgColor,
-    tptOpacity,
-    separatorColor,
-    presetBg,
-    splitTextActive
-  } = attributes;
+        //style
+        titleColor,
+        titleHoverColor,
+        titleBgColor,
+        subTitleColor,
+        subTitleBgColor,
+        tptColor,
+        tptBgColor,
+        tptOpacity,
+        separatorColor,
+        presetBg,
+        splitTextActive,
+    } = attributes;
 
-  console.log(attributes);
+    console.log(attributes);
 
+    //title style generate
+    const {
+        desktopAlignStyle: titleDeskAlign,
+        tabAlignStyle: titleTabAlign,
+        mobAlignStyle: titleMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: TITLE_ALIGN,
+        property: 'text-align',
+        attributes,
+    });
 
-  //title style generate
-  const {
-    desktopAlignStyle: titleDeskAlign,
-    tabAlignStyle: titleTabAlign,
-    mobAlignStyle: titleMobAlign,
-  } = generateResAlignmentStyle({
-    controlName: TITLE_ALIGN,
-    property: "text-align",
-    attributes,
-  });
+    const {
+        typoStylesDesktop: titleTypoDesktop,
+        typoStylesTab: titleTypoTab,
+        typoStylesMobile: titleTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: titleMarginDesktop,
+        dimensionStylesTab: titleMarginTab,
+        dimensionStylesMobile: titleMarginMobile,
+    } = generateDimensionStyle({
+        controlName: TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: titleTypoDesktop,
-    typoStylesTab: titleTypoTab,
-    typoStylesMobile: titleTypoMobile,
-  } = generateTypographyStyles({
-    prefixConstant: TITLE_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: titleMarginDesktop,
-    dimensionStylesTab: titleMarginTab,
-    dimensionStylesMobile: titleMarginMobile,
-  } = generateDimensionStyle({
-    controlName: TITLE_MARGIN,
-    styleFor: "margin",
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: titlePaddingDesktop,
+        dimensionStylesTab: titlePaddingTab,
+        dimensionStylesMobile: titlePaddingMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: titlePaddingDesktop,
-    dimensionStylesTab: titlePaddingTab,
-    dimensionStylesMobile: titlePaddingMob,
-  } = generateDimensionStyle({
-    controlName: TITLE_PADDING,
-    styleFor: "padding",
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: titleBorderRadiusDesktop,
+        dimensionStylesTab: titleBorderRadiusTab,
+        dimensionStylesMobile: titleBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: titleBorderRadiusDesktop,
-    dimensionStylesTab: titleBorderRadiusTab,
-    dimensionStylesMobile: titleBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: TITLE_BORDER_RADIUS,
-    styleFor: "border-radius",
-    attributes,
-  });
+    const { boxShadowStyle: titleShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: TITLE_SHADOW,
+    });
 
-  const { boxShadowStyle: titleShadow } = generateBoxShadowStyles({
-    attributes,
-    controlName: TITLE_SHADOW,
-  });
+    const {
+        desktopBorderStyle: titleBorderDesktop,
+        tabBorderStyle: titleBorderTab,
+        mobBorderStyle: titleBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: TITLE_BORDER,
+    });
+    const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: TITLE_TEXT_SHADOW,
+    });
 
-  const {
-    desktopBorderStyle: titleBorderDesktop,
-    tabBorderStyle: titleBorderTab,
-    mobBorderStyle: titleBorderMob,
-  } = generateBorderStyle({
-    attributes,
-    controlName: TITLE_BORDER,
-  });
-  const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
-    attributes,
-    controlName: TITLE_TEXT_SHADOW,
-  });
+    const {
+        desktopTextStrokeStyle: titleTextStrokeStyle,
+        tabTextStrokeStyle: tabTitleTextStrokeStyle,
+        mobTextStrokeStyle: mobTitleTextStrokeStyle,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: TITLE_TEXT_STROKE,
+    });
 
-  const {
-    desktopTextStrokeStyle: titleTextStrokeStyle,
-    tabTextStrokeStyle: tabTitleTextStrokeStyle,
-    mobTextStrokeStyle: mobTitleTextStrokeStyle,
-  } = generateTextStrokeStyles({
-    attributes,
-    controlName: TITLE_TEXT_STROKE,
-  });
+    //separator style generate
+    const {
+        desktopRangeStyle: separatorWidthDesktop,
+        tabRangeStyle: separatorWidthTab,
+        mobRangeStyle: separatorWidthMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_WIDTH,
+        property: 'width',
+        attributes,
+    });
 
-  //separator style generate
-  const {
-    desktopRangeStyle: separatorWidthDesktop,
-    tabRangeStyle: separatorWidthTab,
-    mobRangeStyle: separatorWidthMob,
-  } = generateResRangeStyle({
-    controlName: SEPARATOR_WIDTH,
-    property: "width",
-    attributes,
-  });
+    const {
+        desktopRangeStyle: separatorHeightDesktop,
+        tabRangeStyle: separatorHeightTab,
+        mobRangeStyle: separatorHeightMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_HEIGHT,
+        property: 'border-width',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: separatorSpacingDesktop,
+        tabRangeStyle: separatorSpacingTab,
+        mobRangeStyle: separatorSpacingMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_SPACING,
+        property: 'margin-top',
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: separatorHeightDesktop,
-    tabRangeStyle: separatorHeightTab,
-    mobRangeStyle: separatorHeightMob,
-  } = generateResRangeStyle({
-    controlName: SEPARATOR_HEIGHT,
-    property: "border-width",
-    attributes,
-  });
-  const {
-    desktopRangeStyle: separatorSpacingDesktop,
-    tabRangeStyle: separatorSpacingTab,
-    mobRangeStyle: separatorSpacingMob,
-  } = generateResRangeStyle({
-    controlName: SEPARATOR_SPACING,
-    property: "margin-top",
-    attributes,
-  });
+    //subtitle style generate
+    const {
+        typoStylesDesktop: subTitleTypoDesktop,
+        typoStylesTab: subTitleTypoTab,
+        typoStylesMobile: subTitleTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: SUBTITLE_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: subTitleMarginDesktop,
+        dimensionStylesTab: subTitleMarginTab,
+        dimensionStylesMobile: subTitleMarginMobile,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: subTitlePaddingDesktop,
+        dimensionStylesTab: subTitlePaddingTab,
+        dimensionStylesMobile: subTitlePaddingMobile,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: stBorderDesktop,
+        tabBorderStyle: stBorderTab,
+        mobBorderStyle: stBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: SUBTITE_BORDER,
+    });
+    const {
+        dimensionStylesDesktop: stBorderRadiusDesktop,
+        dimensionStylesTab: stBorderRadiusTab,
+        dimensionStylesMobile: stBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const { textShadowStyle: subTitleTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: SUBTITLE_TEXT_SHADOW,
+    });
 
-  //subtitle style generate
-  const {
-    typoStylesDesktop: subTitleTypoDesktop,
-    typoStylesTab: subTitleTypoTab,
-    typoStylesMobile: subTitleTypoMobile,
-  } = generateTypographyStyles({
-    prefixConstant: SUBTITLE_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: subTitleMarginDesktop,
-    dimensionStylesTab: subTitleMarginTab,
-    dimensionStylesMobile: subTitleMarginMobile,
-  } = generateDimensionStyle({
-    controlName: SUBTITLE_MARGIN,
-    styleFor: "margin",
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: subTitlePaddingDesktop,
-    dimensionStylesTab: subTitlePaddingTab,
-    dimensionStylesMobile: subTitlePaddingMobile,
-  } = generateDimensionStyle({
-    controlName: SUBTITLE_PADDING,
-    styleFor: "padding",
-    attributes,
-  });
-  const {
-    desktopBorderStyle: stBorderDesktop,
-    tabBorderStyle: stBorderTab,
-    mobBorderStyle: stBorderMob,
-  } = generateBorderStyle({
-    attributes,
-    controlName: SUBTITE_BORDER,
-  });
-  const {
-    dimensionStylesDesktop: stBorderRadiusDesktop,
-    dimensionStylesTab: stBorderRadiusTab,
-    dimensionStylesMobile: stBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: SUBTITLE_BORDER_RADIUS,
-    styleFor: "border-radius",
-    attributes,
-  });
-  const { textShadowStyle: subTitleTextShadowStyle } = generateTextShadowStyles(
-    {
-      attributes,
-      controlName: SUBTITLE_TEXT_SHADOW,
-    },
-  );
+    const {
+        desktopTextStrokeStyle: subTitleTextStrokeStyle,
+        tabTextStrokeStyle: tabSubTitleTextStrokeStyle,
+        mobTextStrokeStyle: mobSubTitleTextStrokeStyle,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: SUBTITLE_TEXT_STROKE,
+    });
 
-  const {
-    desktopTextStrokeStyle: subTitleTextStrokeStyle,
-    tabTextStrokeStyle: tabSubTitleTextStrokeStyle,
-    mobTextStrokeStyle: mobSubTitleTextStrokeStyle,
-  } = generateTextStrokeStyles({
-    attributes,
-    controlName: SUBTITLE_TEXT_STROKE,
-  });
+    //transparent style generate
+    const {
+        typoStylesDesktop: transparentTypoDesktop,
+        typoStylesTab: transparentTypoTab,
+        typoStylesMobile: transparentTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: TRANSPARENT_TYPOGRAPHY,
+        attributes,
+    });
 
-  //transparent style generate
-  const {
-    typoStylesDesktop: transparentTypoDesktop,
-    typoStylesTab: transparentTypoTab,
-    typoStylesMobile: transparentTypoMobile,
-  } = generateTypographyStyles({
-    prefixConstant: TRANSPARENT_TYPOGRAPHY,
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: tptMarginDesktop,
+        dimensionStylesTab: tptMarginTab,
+        dimensionStylesMobile: tptMarginMob,
+    } = generateDimensionStyle({
+        controlName: TPT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: tptMarginDesktop,
-    dimensionStylesTab: tptMarginTab,
-    dimensionStylesMobile: tptMarginMob,
-  } = generateDimensionStyle({
-    controlName: TPT_MARGIN,
-    styleFor: "margin",
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: tptPaddingDesktop,
+        dimensionStylesTab: tptPaddingTab,
+        dimensionStylesMobile: tptPaddingMob,
+    } = generateDimensionStyle({
+        controlName: TPT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: tptPaddingDesktop,
-    dimensionStylesTab: tptPaddingTab,
-    dimensionStylesMobile: tptPaddingMob,
-  } = generateDimensionStyle({
-    controlName: TPT_PADDING,
-    styleFor: "padding",
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: tptBorderRadiusDesktop,
+        dimensionStylesTab: tptBorderRadiusTab,
+        dimensionStylesMobile: tptBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: TPT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: tptBorderRadiusDesktop,
-    dimensionStylesTab: tptBorderRadiusTab,
-    dimensionStylesMobile: tptBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: TPT_BORDER_RADIUS,
-    styleFor: "border-radius",
-    attributes,
-  });
+    const { boxShadowStyle: tptShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: TPT_SHADOW,
+    });
 
-  const { boxShadowStyle: tptShadow } = generateBoxShadowStyles({
-    attributes,
-    controlName: TPT_SHADOW,
-  });
+    const {
+        desktopBorderStyle: tptBorderDesktop,
+        tabBorderStyle: tptBorderTab,
+        mobBorderStyle: tptBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: TPT_BORDER,
+    });
 
-  const {
-    desktopBorderStyle: tptBorderDesktop,
-    tabBorderStyle: tptBorderTab,
-    mobBorderStyle: tptBorderMob,
-  } = generateBorderStyle({
-    attributes,
-    controlName: TPT_BORDER,
-  });
+    const { textShadowStyle: tptTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: TPT_TEXT_SHADOW,
+    });
 
-  const { textShadowStyle: tptTextShadowStyle } = generateTextShadowStyles({
-    attributes,
-    controlName: TPT_TEXT_SHADOW,
-  });
+    const {
+        desktopTextStrokeStyle: tptTextStrokeStyle,
+        tabTextStrokeStyle: tabtptTextStrokeStyle,
+        mobTextStrokeStyle: mobtptTextStrokeStyle,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: TPT_TEXT_STROKE,
+    });
 
-  const {
-    desktopTextStrokeStyle: tptTextStrokeStyle,
-    tabTextStrokeStyle: tabtptTextStrokeStyle,
-    mobTextStrokeStyle: mobtptTextStrokeStyle,
-  } = generateTextStrokeStyles({
-    attributes,
-    controlName: TPT_TEXT_STROKE,
-  });
+    //wrapper style generate
+    const {
+        dimensionStylesDesktop: wrapperMarginDesktop,
+        dimensionStylesTab: wrapperMarginTab,
+        dimensionStylesMobile: wrapperMarginMobile,
+    } = generateDimensionStyle({
+        controlName: WRAPPER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: wrapperPaddingDesktop,
+        dimensionStylesTab: wrapperPaddingTab,
+        dimensionStylesMobile: wrapperPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: WRAPPER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
+        hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
+        backgroundStylesTab: wrapperBackgroundStylesTab,
+        hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
+        backgroundStylesMobile: wrapperBackgroundStylesMobile,
+        hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
+        overlayStylesDesktop: wrapperOverlayStylesDesktop,
+        hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
+        overlayStylesTab: wrapperOverlayStylesTab,
+        hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
+        overlayStylesMobile: wrapperOverlayStylesMobile,
+        hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
+    } = generateBackgroundControlStyles({
+        attributes,
+        controlName: WRAPPER_BG,
+    });
 
-  //wrapper style generate
-  const {
-    dimensionStylesDesktop: wrapperMarginDesktop,
-    dimensionStylesTab: wrapperMarginTab,
-    dimensionStylesMobile: wrapperMarginMobile,
-  } = generateDimensionStyle({
-    controlName: WRAPPER_MARGIN,
-    styleFor: "margin",
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: wrapperPaddingDesktop,
-    dimensionStylesTab: wrapperPaddingTab,
-    dimensionStylesMobile: wrapperPaddingMobile,
-  } = generateDimensionStyle({
-    controlName: WRAPPER_PADDING,
-    styleFor: "padding",
-    attributes,
-  });
-  const {
-    backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
-    hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
-    backgroundStylesTab: wrapperBackgroundStylesTab,
-    hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
-    backgroundStylesMobile: wrapperBackgroundStylesMobile,
-    hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
-    overlayStylesDesktop: wrapperOverlayStylesDesktop,
-    hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
-    overlayStylesTab: wrapperOverlayStylesTab,
-    hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
-    overlayStylesMobile: wrapperOverlayStylesMobile,
-    hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
-  } = generateBackgroundControlStyles({
-    attributes,
-    controlName: WRAPPER_BG,
-  });
+    const {
+        boxShadowStyle: wrapperShadow,
+        hoverBoxShadowstyle: wrapperHoverShadow,
+        transitionStyle: wrapperShadowTransition,
+    } = generateBoxShadowStyles({
+        attributes,
+        controlName: WRAPPER_SHADOW,
+    });
 
-  const {
-    boxShadowStyle: wrapperShadow,
-    hoverBoxShadowstyle: wrapperHoverShadow,
-    transitionStyle: wrapperShadowTransition,
-  } = generateBoxShadowStyles({
-    attributes,
-    controlName: WRAPPER_SHADOW,
-  });
+    const {
+        desktopBorderStyle: wrapperBorderDesktop,
+        tabBorderStyle: wrapperBorderTab,
+        mobBorderStyle: wrapperBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: WRAPPER_BORDER,
+    });
 
-  const {
-    desktopBorderStyle: wrapperBorderDesktop,
-    tabBorderStyle: wrapperBorderTab,
-    mobBorderStyle: wrapperBorderMob,
-  } = generateBorderStyle({
-    attributes,
-    controlName: WRAPPER_BORDER,
-  });
+    // Offset
+    const {
+        desktopRangeStyle: xOffsetDesk,
+        tabRangeStyle: xOffsetTab,
+        mobRangeStyle: xOffsetMob,
+    } = generateResRangeStyle({
+        controlName: TPH_X_OFFSET,
+        property: '--zb-advanced-heading-pos-x',
+        attributes,
+    });
 
-  // Offset
-  const {
-    desktopRangeStyle: xOffsetDesk,
-    tabRangeStyle: xOffsetTab,
-    mobRangeStyle: xOffsetMob,
-  } = generateResRangeStyle({
-    controlName: TPH_X_OFFSET,
-    property: "--zb-advanced-heading-pos-x",
-    attributes,
-  });
+    const {
+        desktopRangeStyle: yOffsetDesk,
+        tabRangeStyle: yOffsetTab,
+        mobRangeStyle: yOffsetMob,
+    } = generateResRangeStyle({
+        controlName: TPH_Y_OFFSET,
+        property: '--zb-advanced-heading-pos-y',
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: yOffsetDesk,
-    tabRangeStyle: yOffsetTab,
-    mobRangeStyle: yOffsetMob,
-  } = generateResRangeStyle({
-    controlName: TPH_Y_OFFSET,
-    property: "--zb-advanced-heading-pos-y",
-    attributes,
-  });
-
-  //css style
-  const wrapperStylesDesktop = `
+    //css style
+    const wrapperStylesDesktop = `
   .zolo-block-wrapper.${uniqueId}{
     ${wrapperMarginDesktop}
     ${wrapperPaddingDesktop}
@@ -423,7 +416,7 @@ export default function Style({ props }) {
   }
 `;
 
-  const wrapperStylesTab = `
+    const wrapperStylesTab = `
   .zolo-block-wrapper.${uniqueId}{
     ${wrapperMarginTab}
     ${wrapperPaddingTab}
@@ -443,7 +436,7 @@ export default function Style({ props }) {
     ${wrapperHoverOverlayStylesTab}
   }
 `;
-  const wrapperStylesMobile = `
+    const wrapperStylesMobile = `
   .zolo-block-wrapper.${uniqueId}{
     ${wrapperMarginMobile}
     ${wrapperPaddingMobile}
@@ -464,11 +457,11 @@ export default function Style({ props }) {
   }
 `;
 
-console.log('splitTextActive', attributes.splitTextActive);
-  // Title styles css in strings
-  const titleStylesDesktop = `
+    console.log('splitTextActive', uniqueId);
+    // Title styles css in strings
+    const titleStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-      ${titleBgColor ? `background-color: ${titleBgColor};` : ""}
+      ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
       ${titleMarginDesktop}
       ${titlePaddingDesktop}
       ${titleBorderDesktop}
@@ -480,40 +473,46 @@ console.log('splitTextActive', attributes.splitTextActive);
 
     .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title, .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
       ${titleTypoDesktop}
-      ${titleColor ? `color: ${titleColor};` : ""}
+      ${titleColor ? `color: ${titleColor};` : ''}
     }
 
-      ${splitTextActive ? ` .zolo-block-wrapper.${uniqueId}.zolo-ah-style-3 .zolo-ah-title .zolo-ah-main-title > div  {
+      ${
+          splitTextActive
+              ? ` .zolo-frontend .${uniqueId} .zolo-ah-style-3 .zolo-ah-title .zolo-ah-main-title > div,
+              .zolo-editor .${uniqueId}.zolo-ah-style-3 .zolo-ah-title,
+              .zolo-editor .${uniqueId}.zolo-trigger-animation .zolo-ah-style-3  .zolo-ah-title > span  div{
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-position: center;
         background-size: contain;
-        background-image: url(${presetBg ? presetBg.url : ""});}`: `
-        .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-          background-image: url(${presetBg ? presetBg.url : ""});
+        background-image: url(${presetBg ? presetBg.url : ''});}`
+              : `
+        .${uniqueId} .zolo-ah-title {
+          background-image: url(${presetBg ? presetBg.url : ''});
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-position: center;
           background-size: contain;
         }
-        `}
+        `
+      }
 
     .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link {
-      ${titleColor ? `color: ${titleColor};` : ""}
+      ${titleColor ? `color: ${titleColor};` : ''}
     }
 
     .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link:hover {
-      ${titleHoverColor ? `color: ${titleHoverColor};` : ""}
+      ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
     }
 
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
       -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: ${titleColor || "rgba(6, 6, 7, 0.919)"};
+      -webkit-text-stroke-color: ${titleColor || 'rgba(6, 6, 7, 0.919)'};
     }
 
   `;
 
-  const titleStylesTab = `
+    const titleStylesTab = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
     ${titleMarginTab}
     ${titlePaddingTab}
@@ -526,7 +525,7 @@ console.log('splitTextActive', attributes.splitTextActive);
   }
 `;
 
-  const titleStylesMobile = `
+    const titleStylesMobile = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
     ${titleMarginMobile}
     ${titlePaddingMob}
@@ -539,11 +538,11 @@ console.log('splitTextActive', attributes.splitTextActive);
   }
 `;
 
-  // separator styles css in strings
-  const separatorStylesDesktop = `
+    // separator styles css in strings
+    const separatorStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       border-style: none none solid;
-      ${separatorColor ? `border-color: ${separatorColor};` : ""}
+      ${separatorColor ? `border-color: ${separatorColor};` : ''}
       ${separatorHeightDesktop}
       ${separatorSpacingDesktop}
        ${separatorWidthDesktop}
@@ -553,7 +552,7 @@ console.log('splitTextActive', attributes.splitTextActive);
     }
 `;
 
-  const separatorStylesTab = `
+    const separatorStylesTab = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightTab}
       ${separatorWidthTab}
@@ -565,7 +564,7 @@ console.log('splitTextActive', attributes.splitTextActive);
         }
 `;
 
-  const separatorStylesMobile = `
+    const separatorStylesMobile = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightMob}
       ${separatorSpacingMob}
@@ -576,11 +575,11 @@ console.log('splitTextActive', attributes.splitTextActive);
     }
 `;
 
-  // Subtitle styles css in strings
-  const subtitleStylesDesktop = `
+    // Subtitle styles css in strings
+    const subtitleStylesDesktop = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
-    ${subTitleColor ? `color: ${subTitleColor};` : ""}
-    ${subTitleBgColor ? `background-color: ${subTitleBgColor};` : ""}
+    ${subTitleColor ? `color: ${subTitleColor};` : ''}
+    ${subTitleBgColor ? `background-color: ${subTitleBgColor};` : ''}
     ${subTitleTypoDesktop}
     ${subTitleMarginDesktop}
     ${subTitleTextShadowStyle}
@@ -590,7 +589,7 @@ console.log('splitTextActive', attributes.splitTextActive);
     ${subTitlePaddingDesktop}
   }
 `;
-  const subtitleStylesTab = `
+    const subtitleStylesTab = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
     ${subTitleTypoTab}
     ${subTitleMarginTab}
@@ -600,7 +599,7 @@ console.log('splitTextActive', attributes.splitTextActive);
     ${subTitlePaddingTab}
   }
 `;
-  const subtitleStylesMobile = `
+    const subtitleStylesMobile = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
     ${subTitleTypoMobile}
     ${subTitleMarginMobile}
@@ -611,12 +610,12 @@ console.log('splitTextActive', attributes.splitTextActive);
   }
 `;
 
-  //transparent styles css
-  const transparentStylesDesktop = `
+    //transparent styles css
+    const transparentStylesDesktop = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
-    ${tptColor ? `color: ${tptColor};` : ""}
-    ${tptBgColor ? `background-color: ${tptBgColor};` : ""}
-    ${tptOpacity ? `opacity: ${tptOpacity};` : ""}
+    ${tptColor ? `color: ${tptColor};` : ''}
+    ${tptBgColor ? `background-color: ${tptBgColor};` : ''}
+    ${tptOpacity ? `opacity: ${tptOpacity};` : ''}
     ${transparentTypoDesktop}
     ${tptMarginDesktop}
     ${tptPaddingDesktop}
@@ -632,13 +631,13 @@ console.log('splitTextActive', attributes.splitTextActive);
   }
   .zolo-block-wrapper.${uniqueId}.zolo-ah-style-2 .zolo-transparent-heading {
     -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: ${tptColor || "rgba(6, 6, 7, 0.22)"};
+    -webkit-text-stroke-color: ${tptColor || 'rgba(6, 6, 7, 0.22)'};
   }
 `;
 
-  const transparentStylesTab = `
+    const transparentStylesTab = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${transparentTitleHide === "tab-mob" && `display:none`}
+    ${transparentTitleHide === 'tab-mob' && `display:none`}
   }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
     ${transparentTypoTab}
@@ -651,9 +650,9 @@ console.log('splitTextActive', attributes.splitTextActive);
   }
 `;
 
-  const transparentStylesMobile = `
+    const transparentStylesMobile = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${(transparentTitleHide === "tab-mob" || transparentTitleHide === "mob") && `display:none`}
+    ${(transparentTitleHide === 'tab-mob' || transparentTitleHide === 'mob') && `display:none`}
   }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
     ${transparentTypoMobile}
@@ -665,7 +664,7 @@ console.log('splitTextActive', attributes.splitTextActive);
   }
 `;
 
-  const desktopAllStyle = `
+    const desktopAllStyle = `
       ${wrapperStylesDesktop}
       ${titleStylesDesktop}
       ${subtitleStylesDesktop}
@@ -673,7 +672,7 @@ console.log('splitTextActive', attributes.splitTextActive);
       ${separatorStylesDesktop}
     `;
 
-  const tabletAllStyle = `
+    const tabletAllStyle = `
       ${wrapperStylesTab}
       ${titleStylesTab}
       ${subtitleStylesTab}
@@ -681,7 +680,7 @@ console.log('splitTextActive', attributes.splitTextActive);
       ${separatorStylesTab}
     `;
 
-  const mobileAllStyle = `
+    const mobileAllStyle = `
       ${wrapperStylesMobile}
       ${titleStylesMobile}
       ${subtitleStylesMobile}
@@ -689,27 +688,15 @@ console.log('splitTextActive', attributes.splitTextActive);
       ${separatorStylesMobile}
     `;
 
-  return (
-    <>
-      <GlobalStyleHanlder
-        attributes={attributes}
-        setAttributes={setAttributes}
-        desktopAllStyle={applyFilters(
-          "zolo.advancedHeading.desktopAllStyle",
-          desktopAllStyle,
-          props,
-        )}
-        tabAllStyle={applyFilters(
-          "zolo.advancedHeading.tabletAllStyle",
-          tabletAllStyle,
-          props,
-        )}
-        mobileAllStyle={applyFilters(
-          "zolo.advancedHeading.mobileAllStyle",
-          mobileAllStyle,
-          props,
-        )}
-      />
-    </>
-  );
+    return (
+        <>
+            <GlobalStyleHanlder
+                attributes={attributes}
+                setAttributes={setAttributes}
+                desktopAllStyle={applyFilters('zolo.advancedHeading.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.advancedHeading.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.advancedHeading.mobileAllStyle', mobileAllStyle, props)}
+            />
+        </>
+    );
 }

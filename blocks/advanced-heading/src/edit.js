@@ -31,8 +31,6 @@ const Edit = (props) => {
         transparentTag,
         transparentTitleText,
         transparentTitleRotateOrigin,
-        splitTextActive,
-        presetBg
     } = attributes;
 
     //block wrapper class
@@ -49,28 +47,6 @@ const Edit = (props) => {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            add inline style to the block
-            <style>
-                {`
-                                            ${
-                                                splitTextActive
-                                                    ? ` .zolo-block-wrapper.${uniqueId}.zolo-ah-style-3 .zolo-ah-title .zolo-ah-main-title > div > div  {
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                            background-position: center;
-                            background-size: contain;
-                        }`
-                                                    : `
-                            .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-                              -webkit-background-clip: text;
-                              -webkit-text-fill-color: transparent;
-                              background-position: center;
-                              background-size: contain;
-                            }
-                    `
-                                            }
-                    `}
-            </style>
             <div {...blockProps}>
                 <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
                     {showTransparentTitle && (
