@@ -13,10 +13,7 @@ class Zolo_Mailchimp {
     use SingletonTrait;
 
     public function __construct() {
-        // render form block
-
-        // add_filter('render_block', [$this, 'render_zolo_form'], 10, 2);
-        // hanlde ajax form submission
+        // hanlde ajax form newsletter subscription
         add_action('wp_ajax_zolo_subscribe_newsletter', [$this, 'subscription']);
         add_action('wp_ajax_nopriv_zolo_subscribe_newsletter', [$this, 'subscription']);
     }
@@ -52,8 +49,6 @@ class Zolo_Mailchimp {
             'provider'        => '',
             'mailchimpApiKey' => get_option('zolo_mailchimp_api_key', false),
             'mailchimpListID' => get_option('zolo_mailchimp_audience_id', false),
-            // 'mailchimpApiKey' => 'b977124615e8f40b3a13e9f5cd3ff591-us17',
-            // 'mailchimpListID' => 'dba21cf7e6',
             'textSuccess'     => __('Thank you for subscribing!', 'zoloblocks'),
             'textSubscribed'  => __('You are already subscribed with us!', 'zoloblocks'),
         ]);
