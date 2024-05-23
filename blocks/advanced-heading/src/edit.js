@@ -31,6 +31,8 @@ const Edit = (props) => {
         transparentTag,
         transparentTitleText,
         transparentTitleRotateOrigin,
+        splitTextActive,
+        presetBg
     } = attributes;
 
     //block wrapper class
