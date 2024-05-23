@@ -80,4 +80,32 @@
             }
         }
     }
+
+    .style-3 {
+        .zolo-counter-item {
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+
+        }
+        .zolo-counter-count {
+            margin: 0;
+            position: relative;
+            font-size: 85px;
+            color: rgba(176, 177, 178, 0.2);
+        }
+
+        .zolo-counter-title {
+            font-size: 22px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            color: #000;
+        }
+    }
 }

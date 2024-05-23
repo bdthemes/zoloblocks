@@ -60,6 +60,7 @@ import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixCons
 import { NORMAL_HTML_TAG, ICON_BOX_OPTIONS, DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
 
+
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
@@ -91,6 +92,27 @@ function Inspector(props) {
         objAttributes,
     };
 
+    /**
+     * Preset
+     */
+        const changePremade = (selected) => {
+            setAttributes({ preset: selected });
+            switch (selected) {
+                case '':
+                    setAttributes({
+                        hideIcon: true,
+                    });
+                    break;
+                case 'style-3':
+                    setAttributes({
+                        hideIcon: false,
+                    });
+                    break;
+                default:
+                    return false;
+            }
+        };
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -103,11 +125,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Preset', 'zoloblocks')}
                                 options={applyFilters('zolo.counter.preset', PRESETS)}
-                                onChange={(preset) => {
-                                    setAttributes({
-                                        preset,
-                                    });
-                                }}
+                                onChange={(selected) => changePremade(selected)}
                                 value={preset}
                             />
                             {
@@ -130,6 +148,7 @@ function Inspector(props) {
                                 checked={hideIcon}
                                 onChange={() => setAttributes({ hideIcon: !hideIcon })}
                             />
+
                             <ToggleControl
                                 label={__('Show counter number', 'zoloblocks')}
                                 checked={hideCounter}
@@ -147,7 +166,7 @@ function Inspector(props) {
                                 checked={hideTitle}
                                 onChange={() => setAttributes({ hideTitle: !hideTitle })}
                             />
-                            {preset === '' && (
+                            {(preset === '' || preset === 'style-3' )&& (
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={CONTENT_ALIGN}
@@ -155,6 +174,7 @@ function Inspector(props) {
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
                             )}
+
                             {preset === 'style-1' && (
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
