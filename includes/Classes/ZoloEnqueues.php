@@ -41,7 +41,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          */
         public function __construct() {
             // only for editor
-            add_action('enqueue_block_assets', [$this, 'editor_assets_loader']);
+            // add_action('enqueue_block_assets', [$this, 'editor_assets_loader'], 1);
+
+            // block editor assets
+            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader'], 1);
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
@@ -72,71 +75,17 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
-            //Register vendor bundle
-            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-bundle/index.asset.php';
-            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
-                'dependencies' => [],
-                'version'      => ZOLO_VERSION
-            ];
-
-            $version = $script_dependecy['version'];
-
-            // Enqueue vendor bundle Scripts
-            wp_register_script(
-                'zolo-block-editor-dependency',
-                trailingslashit(ZOLO_ADMIN_URL) . 'vendor-bundle/index.js',
-                $script_dependecy['dependencies'],
-                $version,
-                true
-            );
-
-            // wp localize script
-            wp_localize_script('zolo-block-editor-dependency', 'zoloSettings', [
-                'ajaxurl'      => admin_url('admin-ajax.php'),
-                'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
-                'googleAPIKey' => get_option('zolo_google_api_key'),
-                'maskShapes' => [
-                    'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',
-                    'abstract-brush-1' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-1.svg',
-                    'abstract-brush-2' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-2.svg',
-                    'aesthetic-blob'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/aesthetic-blob.svg',
-                    'amorphous-blob'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/amorphous-blob.svg',
-                    'brush'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/brush.svg',
-                    'comment'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/comment.svg',
-                    'container'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/container.svg',
-                    'hand-drawn-blob'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/hand-drawn-blob.svg',
-                    'hexagon'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/hexagon.svg',
-                    'hexagon-blob'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/hexagon-blob.svg',
-                    'irregular-blob'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/irregular-blob.svg',
-                    'minimal-round'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/minimal-round.svg',
-                    'octagon'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/octagon.svg',
-                    'organic-blob'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/organic-blob.svg',
-                    'oval-blob'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/oval-blob.svg',
-                    'pattern'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/pattern.svg',
-                    'popup-1'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/popup-1.svg',
-                    'popup-2'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/popup-2.svg',
-                    'popup-3'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/popup-3.svg',
-                    'round-brush'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/round-brush.svg',
-                    'round-design'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/round-design.svg',
-                    'squar-abstract'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/squar-abstract.svg',
-                    'squar-pattern'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/squar-pattern.svg',
-                    'testimonial'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/testimonial.svg',
-                    'triangle-blob'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/triangle-blob.svg'
-                ]
-            ]);
-
-            // assets for both editor and frontend
-            wp_enqueue_style(
-                'zolo-block-common-style',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
-                [],
-                ZOLO_VERSION
-            );
-
             // override css
             if (is_admin()) {
                 return;
             }
+
+            /**
+             * Vendor files for frontend 
+             */
+
+             // counter up 
+
 
             // form validation
             if (has_block('zolo/form')) {
@@ -237,9 +186,66 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
-            if (!is_admin()) {
-                return;
-            }
+
+            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-editor-bundle/index.asset.php';
+            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
+                'dependencies' => [],
+                'version'      => ZOLO_VERSION
+            ];
+
+            $version = $script_dependecy['version'];
+
+            // Enqueue vendor bundle Scripts
+            wp_register_script(
+                'zolo-block-editor-dependency',
+                trailingslashit(ZOLO_ADMIN_URL) . 'vendor-editor-bundle/index.js',
+                $script_dependecy['dependencies'],
+                $version,
+                false
+            );
+
+            // wp localize script
+            wp_localize_script('zolo-block-editor-dependency', 'zoloSettings', [
+                'ajaxurl'      => admin_url('admin-ajax.php'),
+                'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
+                'googleAPIKey' => get_option('zolo_google_api_key'),
+                'maskShapes' => [
+                    'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',
+                    'abstract-brush-1' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-1.svg',
+                    'abstract-brush-2' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-2.svg',
+                    'aesthetic-blob'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/aesthetic-blob.svg',
+                    'amorphous-blob'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/amorphous-blob.svg',
+                    'brush'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/brush.svg',
+                    'comment'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/comment.svg',
+                    'container'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/container.svg',
+                    'hand-drawn-blob'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/hand-drawn-blob.svg',
+                    'hexagon'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/hexagon.svg',
+                    'hexagon-blob'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/hexagon-blob.svg',
+                    'irregular-blob'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/irregular-blob.svg',
+                    'minimal-round'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/minimal-round.svg',
+                    'octagon'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/octagon.svg',
+                    'organic-blob'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/organic-blob.svg',
+                    'oval-blob'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/oval-blob.svg',
+                    'pattern'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/pattern.svg',
+                    'popup-1'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/popup-1.svg',
+                    'popup-2'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/popup-2.svg',
+                    'popup-3'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/popup-3.svg',
+                    'round-brush'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/round-brush.svg',
+                    'round-design'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/round-design.svg',
+                    'squar-abstract'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/squar-abstract.svg',
+                    'squar-pattern'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/squar-pattern.svg',
+                    'testimonial'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/testimonial.svg',
+                    'triangle-blob'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/triangle-blob.svg'
+                ]
+            ]);
+
+            // assets for both editor and frontend
+            wp_enqueue_style(
+                'zolo-block-common-style',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
+                [],
+                ZOLO_VERSION
+            );
 
             // override css
             wp_enqueue_style(
@@ -282,9 +288,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/module/index.js',
                 $script_dependecy['dependencies'],
                 $version,
-                true
+                false
             );
 
+            // blocks 
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
@@ -305,6 +312,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'zolo-swiper-editor-script'
                 ]
             );
+
+            // var_dump($script_dependecy);
+
+            // wp_die();
 
             // Enqueue Scripts
             wp_enqueue_script(

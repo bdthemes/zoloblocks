@@ -1,5 +1,4 @@
 <?php
-
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostGrid.php';
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostList.php';
 

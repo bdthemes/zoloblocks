@@ -1,0 +1,121 @@
+
+.wp-block-zolo-advanced-heading {
+    --zolo-subtitle-color: #262729;
+    --zolo-subtitle-margin: 0 0 8px;
+    --zolo-main-title-color: #202224;
+    --zolo-ah-title-color: #202224;
+    --zolo-ah-title-margin: 0;
+    --zolo-separator-border-width: 3px;
+    --zolo-separator-width: 80px;
+    --zolo-transparent-heading-margin: 0;
+
+    box-sizing: border-box;
+    position: relative;
+
+    .zolo-ah-subtitle {
+        margin: var(--zolo-subtitle-margin);
+        font-size: 16px;
+        color: var(--zolo-subtitle-color);
+        font-weight: 500;
+        text-transform: capitalize;
+        // border: 1px solid rgba(194, 194, 194, 0.612);
+        // padding: 10px 12px;
+        display: inline-block;
+        // border-radius: 6px;
+    }
+
+    .zolo-transparent-heading-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        // color: rgba(156, 156, 156);
+    }
+    
+    
+    .zolo-ah-title {
+        margin: var(--zolo-ah-title-margin);
+        position: relative;
+    }
+    
+    .zolo-ah-main-title,
+    .zolo-ah-title {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+        font-weight: 700;
+        text-transform: capitalize;
+        z-index: 1;
+        display: block;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    
+    .zolo-ah-main-title {
+        color: var(--zolo-main-title-color);
+    }
+    .zolo-ah-title {
+        color: var(--zolo-ah-title-color);
+    }
+    
+    .zolo-transparent-heading {
+        margin: var(--zolo-transparent-heading-margin);
+        font-size: clamp(2.25rem, 7vw, 4.375rem);
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+    
+    .zolo-ah-separator {
+        border-color: var(--zoloblocks-brand-color);
+        border-width: var(--zolo-separator-border-width);
+        width: var(--zolo-separator-width);
+    }
+    
+}
+.zolo-block-wrapper {
+    position: relative;
+}
+
+
+.zolo-ah-style-3 .zolo-ah-title {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: center;
+    background-size: contain;
+}
+
+.zolo-separator-wrapper {
+    display: inline-flex;
+}
+
+.zolo-transform-origin-top-left {
+    transform-origin: 0 0;
+}
+
+.zolo-transform-origin-top-center {
+    transform-origin: 50% 0;
+}
+
+.zolo-transform-origin-top-right {
+    transform-origin: 100% 0;
+}
+
+.zolo-transform-origin-center-left {
+    transform-origin: 0 50%;
+}
+
+.zolo-transform-origin-center-right {
+    transform-origin: 100% 50%;
+}
+
+.zolo-transform-origin-bottom-left {
+    transform-origin: 0 100%;
+}
+
+.zolo-transform-origin-bottom-center {
+    transform-origin: 50% 100%;
+}
+
+.zolo-transform-origin-bottom-right {
+    transform-origin: 100% 100%;
+}
