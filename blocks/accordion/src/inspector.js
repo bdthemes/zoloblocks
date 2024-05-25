@@ -54,6 +54,7 @@ import {
     AAC_HEADER_BG,
     AAC_BODY_BG,
     AICONTAINER_BG,
+    PRESETS
 } from './constants';
 
 import { HEADING } from '../../../src/global/constants';
@@ -73,6 +74,7 @@ function Inspector(props) {
         atitleColor,
         initialOpen,
         allowMultiple,
+        preset
     } = attributes;
 
     const requiredProps = {
@@ -91,6 +93,18 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+
+                            <SelectControl
+                                label={__('Preset', 'zoloblocks')}
+                                value={preset}
+                                options={PRESETS}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        preset: value,
+                                    });
+                                }}
+                            />
+
                             <InputControl
                                 label={__('Initial open item', 'zoloblocks')}
                                 value={initialOpen}
