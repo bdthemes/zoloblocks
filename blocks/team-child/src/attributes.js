@@ -8,6 +8,7 @@ const {
     generateBoxShadowAttributies,
     generateTypographyAttributes,
     generateNormalBGAttributes,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
@@ -54,6 +55,8 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    SEPARATOR_TEAM_SIZE,
+    SEPARATOR_SPACING_TEAM
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -139,6 +142,11 @@ const attributes = {
     ...generateDimensionAttributes(DPL_MARGIN),
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    ...generateResRangeAttributies(SEPARATOR_TEAM_SIZE, {}),
+    ...generateGapAttributes(SEPARATOR_SPACING_TEAM, {
+        defaultRange: 30,
+        defaultUnit: 'px',
+    }),
     //Block Specific Attributes
     memberPhoto: {
         type: 'object',
@@ -254,6 +262,9 @@ const attributes = {
         type: 'string',
     },
     detailPageIconHoverColor: {
+        type: 'string',
+    },
+    separatorTeamColor: {
         type: 'string',
     },
 };

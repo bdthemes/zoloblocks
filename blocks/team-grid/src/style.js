@@ -70,6 +70,8 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
     ITEM_OVERLAY,
+    SEPARATOR_TEAM_SIZE,
+    SEPARATOR_SPACING_TEAM
 } from './constants';
 
 import {
@@ -92,6 +94,7 @@ const Style = ({ props }) => {
         iconHoverBorderColor,
         detailPageIconColor,
         detailPageIconHoverColor,
+        separatorTeamColor,
     } = attributes;
 
     // Grid Columns
@@ -327,6 +330,35 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: TEAM_SHORT_BIO_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: separatorWidthTeamDeskSize,
+        tabRangeStyle: separatorWidthTeamTabSize,
+        mobRangeStyle: separatorWidthTeamMobSize,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_TEAM_SIZE,
+        property: ' width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: separatorHeightTeamDeskSize,
+        tabRangeStyle: separatorHeightTeamTabSize,
+        mobRangeStyle: separatorHeightTeamMobSize,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_TEAM_SIZE,
+        property: ' height',
+        attributes,
+    });
+
+    const {
+        gapStylesDesktop: deskSeparatorSpacingTeam,
+        gapStylesTab: tabSeparatorSpacingTeam,
+        gapStylesMobile: mobSeparatorSpacingTeam,
+    } = generateGapStyle({
+        controlName: SEPARATOR_SPACING_TEAM,
         attributes,
     });
 
@@ -708,6 +740,17 @@ const Style = ({ props }) => {
 			${designationTypoDesk}
 			${designationDeskMargin}
 		}
+
+        .wp-block-zolo-team-grid.${uniqueId} .style-4 .zolo-nameDg-separator {
+            ${separatorTeamColor ? `background-color: ${separatorTeamColor};` : ''};
+            ${separatorWidthTeamDeskSize};
+            ${separatorHeightTeamDeskSize}
+		}
+
+        .wp-block-zolo-team-grid.${uniqueId} .style-4 .zolo-name-desi-wrap {
+            ${deskSeparatorSpacingTeam}
+		}
+
 		.wp-block-zolo-team-grid.${uniqueId} .zolo-desc {
 			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
 			${shortBioTypoDesk}
@@ -844,6 +887,15 @@ const Style = ({ props }) => {
             ${designationTabMargin}
         }
 
+        .wp-block-zolo-team-grid.${uniqueId} .style-4 .zolo-nameDg-separator {
+            ${separatorWidthTeamTabSize};
+            ${separatorHeightTeamTabSize}
+		}
+
+        .wp-block-zolo-team-grid.${uniqueId} .style-4 .zolo-name-desi-wrap {
+            ${tabSeparatorSpacingTeam}
+		}
+
         .${uniqueId}.wp-block-zolo-team-grid .zolo-desc {
             ${shortBioTypoTab}
             ${shortBioTabMargin}
@@ -967,6 +1019,17 @@ const Style = ({ props }) => {
             ${designationTypoMob}
             ${designationMobMargin}
         }
+
+
+        .wp-block-zolo-team-grid.${uniqueId} .style-4 .zolo-nameDg-separator {
+            ${separatorWidthTeamMobSize};
+            ${separatorHeightTeamMobSize}
+		}
+
+        .wp-block-zolo-team-grid.${uniqueId} .style-4 .zolo-name-desi-wrap {
+            ${mobSeparatorSpacingTeam}
+		}
+
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-desc {
             ${shortBioTypoMob}

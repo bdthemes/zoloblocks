@@ -126,14 +126,17 @@ export default function Edit(props) {
                     </div>
                     <div className="zolo-info-wrap">
                         <div className="zolo-content">
-                            <RichText
-                                className={`zolo-name`}
-                                value={memberName}
-                                onChange={(name) => setAttributes({ memberName: name })}
-                                placeholder={__('Name...', 'zoloblocks')}
-                                allowedFormats={['core/bold', 'core/italic']}
-                            />
-                            {showDesignation && (
+
+                           {preset !== 'style-4' && (
+                                <RichText
+                                    className={`zolo-name`}
+                                    value={memberName}
+                                    onChange={(name) => setAttributes({ memberName: name })}
+                                    placeholder={__('Name...', 'zoloblocks')}
+                                    allowedFormats={['core/bold', 'core/italic']}
+                                />
+                            )}
+                            {showDesignation && preset !== 'style-4' && (
                                 <RichText
                                     className="zolo-designation"
                                     value={memberDesignation}
@@ -146,6 +149,34 @@ export default function Edit(props) {
                                     allowedFormats={['core/bold', 'core/italic']}
                                 />
                             )}
+
+                             {preset === 'style-4' && (
+                                <div className="zolo-name-desi-wrap">
+                                    <RichText
+                                    className={`zolo-name`}
+                                    value={memberName}
+                                    onChange={(name) => setAttributes({ memberName: name })}
+                                    placeholder={__('Name...', 'zoloblocks')}
+                                    allowedFormats={['core/bold', 'core/italic']}
+                                    />
+                                    {showDesignation && <span className='zolo-nameDg-separator'></span>}
+                                    {showDesignation && (
+                                         <RichText
+                                            className="zolo-designation"
+                                            value={memberDesignation}
+                                            onChange={(designation) =>
+                                                setAttributes({
+                                                    memberDesignation: designation,
+                                                })
+                                            }
+                                            placeholder={__('Designation...', 'zoloblocks')}
+                                            allowedFormats={['core/bold', 'core/italic']}
+                                        />
+                                    )}
+                                </div>
+                            
+                             )}
+
                             {showShortBio && (
                                 <RichText
                                     className="zolo-desc"
@@ -159,6 +190,9 @@ export default function Edit(props) {
                                     allowedFormats={['core/bold', 'core/italic']}
                                 />
                             )}
+
+                            
+
                         </div>
 
                         <div className="zolo-social-and-link-wrap">
@@ -180,7 +214,7 @@ export default function Edit(props) {
                                         })}
                                 </div>
                             )}
-                            {addDetailPageLink && (
+                            {addDetailPageLink && preset !=='style-4' &&(
                                 <div className="zolo-link-btn">
                                     <a className='zolo-external-link'
                                         href={memberDetailPageLink && memberDetailPageLink.url}

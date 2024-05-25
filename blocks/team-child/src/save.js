@@ -43,14 +43,32 @@ const Save = ({ attributes }) => {
                 </div>
                 <div className="zolo-info-wrap">
                     <div className="zolo-content">
-                        <div className="zolo-name">
-                            <RichText.Content value={memberName} />
-                        </div>
-                        {showDesignation && (
+
+                        {preset !== 'style-4' && (
+                            <div className="zolo-name">
+                                <RichText.Content value={memberName} />
+                            </div>
+                        )}
+                        {showDesignation && preset !== 'style-4' &&(
                             <div className="zolo-designation">
                                 <RichText.Content value={memberDesignation} />
                             </div>
                         )}
+
+                        {preset === 'style-4' && (
+                            <div className="zolo-name-desi-wrap">
+                                <div className="zolo-name">
+                                    <RichText.Content value={memberName} />
+                                </div>
+                                <span className='zolo-nameDg-separator'></span>
+                                {showDesignation && (
+                                    <div className="zolo-designation">
+                                        <RichText.Content value={memberDesignation} />
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                         {showShortBio && (
                             <div className="zolo-desc">
                                 <RichText.Content value={memberShortBio} />
@@ -78,7 +96,7 @@ const Save = ({ attributes }) => {
                             </div>
                         )}
 
-                        {addDetailPageLink && (
+                        {addDetailPageLink && preset !== 'style-4' &&(
                             <div className="zolo-link-btn">
                                 <a className='zolo-external-link'
                                     href={memberDetailPageLink && memberDetailPageLink.url}
