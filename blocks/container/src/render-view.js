@@ -104,12 +104,12 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 detect_on: 'canvas',
                 events: {
                     onhover: {
-                        enable: true,
-                        mode: 'grab',
+                        enable: particleOptions?.onHover || false,
+                        mode: particleOptions?.onHoverMode || 'grab',
                     },
                     onclick: {
-                        enable: true,
-                        mode: 'push',
+                        enable: particleOptions?.onClick || false,
+                        mode: particleOptions?.onClickMode || 'push',
                     },
                     resize: true,
                 },

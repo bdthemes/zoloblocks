@@ -143,7 +143,6 @@ function Inspector(props) {
                                                     { label: 'Star', value: 'star' },
                                                 ]}
                                             /> */}
-
                                             <Select2
                                                 defaultValue={particleOptions.shape}
                                                 isMulti
@@ -226,6 +225,49 @@ function Inspector(props) {
                                                     { label: 'Bottom Left', value: 'bottom-left' },
                                                     { label: 'Left', value: 'left' },
                                                     { label: 'Top Left', value: 'top-left' },
+                                                ]}
+                                            />
+                                            <ToggleControl
+                                                label={__('On Hover', 'zoloblocks')}
+                                                checked={particleOptions.onHover}
+                                                onChange={() => {
+                                                    setAttributes({
+                                                        particleOptions: { ...particleOptions, onHover: !particleOptions.onHover },
+                                                    });
+                                                }}
+                                            />
+
+                                            <SelectControl
+                                                label={__('On Hover Mode', 'zoloblocks')}
+                                                value={particleOptions?.oNhoverMode}
+                                                onChange={(value) => {
+                                                    setAttributes({ particleOptions: { ...particleOptions, oNhoverMode: value } });
+                                                }}
+                                                options={[
+                                                    { label: 'Repulse', value: 'repulse' },
+                                                    { label: 'Bubble', value: 'bubble' },
+                                                    { label: 'Grab', value: 'grab' },
+                                                ]}
+                                            />
+                                            <ToggleControl
+                                                label={__('On Click', 'zoloblocks')}
+                                                checked={particleOptions.onClick}
+                                                onChange={() => {
+                                                    setAttributes({
+                                                        particleOptions: { ...particleOptions, onClick: !particleOptions.onClick },
+                                                    });
+                                                }}
+                                            />
+                                            <SelectControl
+                                                label={__('On Click Mode', 'zoloblocks')}
+                                                value={particleOptions?.onClickMode}
+                                                onChange={(value) => {
+                                                    setAttributes({ particleOptions: { ...particleOptions, onClickMode: value } });
+                                                }}
+                                                options={[
+                                                    { label: 'Repulse', value: 'repulse' },
+                                                    { label: 'Bubble', value: 'bubble' },
+                                                    { label: 'Grab', value: 'grab' },
                                                 ]}
                                             />
                                         </>

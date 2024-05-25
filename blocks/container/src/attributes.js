@@ -98,6 +98,23 @@ const attributes = {
                 type: 'string',
                 default: 'none',
             },
+            // properties onhover
+            onHover: {
+                type: 'boolean',
+                default: false,
+            },
+            oNhoverMode: {
+                type: 'string',
+                default: 'grab',
+            },
+            onClick: {
+                type: 'boolean',
+                default: false,
+            },
+            onClickMode: {
+                type: 'string',
+                default: 'push',
+            },
         },
     },
     // block attributes
