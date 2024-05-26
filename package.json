@@ -37,6 +37,7 @@
         "classnames": "^2.5.1",
         "gsap": "^3.12.5",
         "lodash": "^4.17.21",
+        "papaparse": "^5.4.1",
         "prop-types": "^15.8.1",
         "rc-switch": "^4.1.0",
         "react-apexcharts": "^1.4.1",

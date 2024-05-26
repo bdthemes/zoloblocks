@@ -54,6 +54,7 @@ export default function Edit(props) {
     pieChartLabels
   } = attributes;
 
+
   // chart options
   const getChartOptions = (
     showTitle,
@@ -148,6 +149,7 @@ export default function Edit(props) {
           },
         },
       },
+      labels: barChartData.options.labels,
     };
   };
 
@@ -182,23 +184,24 @@ export default function Edit(props) {
     };
 
     const newPieChartData = {
-      ...pieChartData,
-      options: getChartOptions(
-        showTitle,
-        showSubTitle,
-        showLegend,
-        showTooltip,
-        showGrid,
-        showGridY,
-        showGridX,
-        titleObject,
-        subTitleObject,
-        legendObject,
-        tooltipObject,
-        gridObject,
-        uid,
-      ),
-      series: pieChartData.series,
+        ...pieChartData,
+        options: getChartOptions(
+            showTitle,
+            showSubTitle,
+            showLegend,
+            showTooltip,
+            showGrid,
+            showGridY,
+            showGridX,
+            titleObject,
+            subTitleObject,
+            legendObject,
+            tooltipObject,
+            gridObject,
+            uid
+        ),
+        series: pieChartData.series,
+        labels: pieChartData.labels,
     };
     setAttributes({
       barChartData: newChartOptions,
