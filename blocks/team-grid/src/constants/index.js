@@ -12,7 +12,7 @@ export const PRESETS = [
     { label: __('Style 2', 'zoloblocks'), value: 'default' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 4 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
-    { label: __('Style 5', 'zoloblocks'), value: 'style-4'},
+    { label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-4', disabled: true },
 ];
 
 // item

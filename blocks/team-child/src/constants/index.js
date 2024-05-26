@@ -69,6 +69,8 @@ export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
 export const DPL_PADDING = 'DPLPadding';
 export const DPL_MARGIN = 'DPLMargin';
 export const DPL_ICON_SIZE = 'DPLIconSize';
+export const SEPARATOR_TEAM_SIZE = 'SeparatorTeamSizew';
+export const SEPARATOR_SPACING_TEAM = 'SeparatorSpacingTeam';
 
 // container
 export const TEAM_MEMBER_CONTAINER_PADDING = 'MemberContainerPadding';
