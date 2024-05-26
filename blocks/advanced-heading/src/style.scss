@@ -12,6 +12,10 @@
     box-sizing: border-box;
     position: relative;
 
+    img {
+        vertical-align: middle;
+    }
+
     .zolo-ah-subtitle {
         margin: var(--zolo-subtitle-margin);
         font-size: 16px;
