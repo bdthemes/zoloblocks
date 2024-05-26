@@ -1,5 +1,5 @@
 .zb-gradient-control-wrap {
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
     .zb-gradient-head {
         margin-bottom: 10px;
     }
@@ -97,7 +97,16 @@
         }
     }
 
-
+    textarea {
+        border: 1px solid #ddd;
+        outline: none;
+        box-shadow: none;
+        border-radius: 6px;
+        &:focus {
+            border-color: blue;
+            box-shadow: none;
+        }
+    }
 }
 
 .components-popover .components-input-control__container .components-input-control__backdrop,
