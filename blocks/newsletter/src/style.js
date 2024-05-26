@@ -400,7 +400,7 @@ export default function Style({ props }) {
         ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ''}
 
       }
-      .${uniqueId} .zolo-form-input:focus + .zolo-form-label {
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-input:focus + .zolo-form-label {
         ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ''}
         ${labelHoverDeskBGStyle}
 
