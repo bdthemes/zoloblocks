@@ -59,14 +59,22 @@ const Save = ({ attributes }) => {
 
                     <div class="zolo-counter-inner-content">
                         <div class="zolo-counter-count">
-                            {hideCounter && (
+                            {hideCounter && preset !== 'style-3' && (
                                 <>
                                     <span className="animated-counter" data-count={counterNumber}></span>
                                     {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
                                 </>
                             )}
+
+                            {hideCounter && preset === 'style-3' && (
+                                <>
+                                    <span className="animated-counter" data-count={counterNumber}></span>
+                                    {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                    {hideTitle && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
+                                </>
+                            )}
                         </div>
-                        {hideTitle && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
+                        {hideTitle && preset !== 'style-3' && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
                     </div>
                 </div>
             </div>
