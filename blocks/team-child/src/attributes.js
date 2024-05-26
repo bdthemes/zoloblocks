@@ -144,7 +144,7 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateResRangeAttributies(SEPARATOR_TEAM_SIZE, {}),
     ...generateGapAttributes(SEPARATOR_SPACING_TEAM, {
-        defaultRange: 30,
+        // defaultRange: 30,
         defaultUnit: 'px',
     }),
     //Block Specific Attributes
