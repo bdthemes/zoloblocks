@@ -4,7 +4,6 @@
 import { __ } from '@wordpress/i18n';
 import { Dashicon } from '@wordpress/components';
 
-
 // Block Prefix
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
@@ -12,6 +11,64 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
+];
+
+// animation types
+export const ANIMATION_TYPES = [
+    {
+        label: __('Select Animation', 'zoloblocks'),
+        value: '',
+    },
+    {
+        label: __('Style 1', 'zoloblocks'),
+        value: 'style-1',
+    },
+    {
+        label: __('Style 2', 'zoloblocks'),
+        value: 'style-2',
+    },
+    {
+        label: __('Style 3', 'zoloblocks'),
+        value: 'style-3',
+    },
+];
+
+export const ANIMATION_POSITIONS_ONE = [
+    {
+        label: __('Top Left', 'zoloblocks'),
+        value: 'top-left',
+    },
+    {
+        label: __('Top Right', 'zoloblocks'),
+        value: 'top-right',
+    },
+    {
+        label: __('Bottom Left', 'zoloblocks'),
+        value: 'bottom-left',
+    },
+    {
+        label: __('Bottom Right', 'zoloblocks'),
+        value: 'bottom-right',
+    },
+];
+
+export const ANIMATION_POSITIONS_TWO = [
+    {
+        label: __('Top', 'zoloblocks'),
+        value: 'top',
+    },
+    {
+        label: __('Bottom', 'zoloblocks'),
+        value: 'bottom',
+    },
+    {
+        label: __('Left', 'zoloblocks'),
+        value: 'left',
+    },
+    {
+        label: __('Right', 'zoloblocks'),
+        value: 'right',
+    },
 ];
 
 export const PRESETS_ALIGNMENT = [
@@ -100,7 +157,6 @@ export const ICON_IMAGE_SIZE = 'iconImageSize';
 export const IMAGE_BORDER = 'imageBorder';
 export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';
 
-
 // item
 export const ITEM_BG = 'itemBg';
 export const ITEM_HOVER_BG = 'itemHoverBg';
@@ -110,7 +166,6 @@ export const ITEM_PADDING = 'itemPadding';
 export const ITEM_MARGIN = 'itemMargin';
 export const ITEM_BOX_SHADOW = 'itemBoxShadow';
 export const ITEM_HBOX_SHADOW = 'itemHoverShadow';
-
 
 // ribbon style
 export const RIBBON_MARGIN = 'ribbonMargin';
@@ -129,3 +184,10 @@ export const RIBBON_POSITIONS = [
 //     { label: __(<Dashicon icon={'editor-alignright'} />), value: 'right' },
 //     { label: __(<Dashicon icon={'editor-justify'} />), value: 'justify' },
 // ];
+
+//animation
+
+export const ICON_ANIMATION_BG = 'iconAnimationBg';
+export const ICON_ANIMATION_SIZE = 'iconAnimationSize';
+export const ICON_ANIMATION_RADIUS = 'iconAnimationRadius';
+export const ICON_ANIMATION_THICKNESS = 'iconAnimationThickness';
