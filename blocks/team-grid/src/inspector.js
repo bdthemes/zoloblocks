@@ -60,6 +60,8 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
     ITEM_OVERLAY,
+    SEPARATOR_TEAM_SIZE,
+    SEPARATOR_SPACING_TEAM,
 } from './constants';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -98,6 +100,7 @@ function Inspector(props) {
         iconHoverBorderColor,
         detailPageIconColor,
         detailPageIconHoverColor,
+        separatorTeamColor,
     } = attributes;
 
     const requiredProps = {
@@ -142,6 +145,13 @@ function Inspector(props) {
                     showDesignation: true,
                 });
                 break;
+            case 'style-4':
+                setAttributes({
+                    showShortBio: true,
+                    showSocialProfiles: true,
+                    showDesignation: true,
+                });
+                break;
             default:
                 return false;
         }
@@ -162,15 +172,17 @@ function Inspector(props) {
                                 options={applyFilters('zolo.teamGrid.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                            <ToggleControl
-                                label={__('Add Detail Page Link', 'zoloblocks')}
-                                checked={addDetailPageLink}
-                                onChange={() =>
-                                    setAttributes({
-                                        addDetailPageLink: !addDetailPageLink,
-                                    })
-                                }
-                            />
+                            {preset !== 'style-4' && (
+                                <ToggleControl
+                                    label={__('Add Detail Page Link', 'zoloblocks')}
+                                    checked={addDetailPageLink}
+                                    onChange={() =>
+                                        setAttributes({
+                                            addDetailPageLink: !addDetailPageLink,
+                                        })
+                                    }
+                                />
+                            )}
                             <ToggleControl
                                 label={__('Show Short Bio', 'zoloblocks')}
                                 checked={showShortBio}
@@ -198,12 +210,14 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={TEXT_ALIGN_OPTIONS}
-                            />
+                            {preset !== 'style-4' && (
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zoloblocks')}
+                                    controlName={CONTENT_ALIGNMENT}
+                                    requiredProps={requiredProps}
+                                    alignOptions={TEXT_ALIGN_OPTIONS}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
                             <ResCounterControl
@@ -356,6 +370,35 @@ function Inspector(props) {
                                     controlName={TEAM_DESIGNATION_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+
+                                {/* Separator test  */}
+                                {preset === 'style-4' && (
+                                    <ColorControl
+                                        label={__('Separator Color', 'zoloblocks')}
+                                        color={separatorTeamColor}
+                                        onChange={(color) =>
+                                            setAttributes({
+                                                separatorTeamColor: color,
+                                            })
+                                        }
+                                    />
+                                )}
+
+                                {preset === 'style-4' && (
+                                    <ResRangeControl
+                                        label={__('Separator Size', 'zoloblocks')}
+                                        controlName={SEPARATOR_TEAM_SIZE}
+                                        requiredProps={requiredProps}
+                                    />
+                                )}
+                                {preset === 'style-4' && (
+                                    <ResGapControl
+                                        label={__('Separator Gap', 'zoloblocks')}
+                                        controlName={SEPARATOR_SPACING_TEAM}
+                                        requiredProps={requiredProps}
+                                        max={200}
+                                    />
+                                )}
                             </ZoloPanelBody>
                         )}
                         {showShortBio && (
@@ -506,7 +549,7 @@ function Inspector(props) {
                                 </ZoloPanelBody>
                             </>
                         )}
-                        {addDetailPageLink && (
+                        {addDetailPageLink && preset !== 'style-4' && (
                             <ZoloPanelBody title={__('Details Page Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}

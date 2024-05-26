@@ -54,9 +54,11 @@ import {
     AAC_HEADER_BG,
     AAC_BODY_BG,
     AICONTAINER_BG,
+    PRESETS,
 } from './constants';
 
 import { HEADING } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -73,6 +75,7 @@ function Inspector(props) {
         atitleColor,
         initialOpen,
         allowMultiple,
+        preset,
     } = attributes;
 
     const requiredProps = {
@@ -91,6 +94,17 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <SelectControl
+                                label={__('Preset', 'zoloblocks')}
+                                value={preset}
+                                options={applyFilters('zolo.accordion.presets', PRESETS)}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        preset: value,
+                                    });
+                                }}
+                            />
+
                             <InputControl
                                 label={__('Initial open item', 'zoloblocks')}
                                 value={initialOpen}
@@ -174,10 +188,26 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
-                            <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
+
+                            <TabPanelControl
+                                options={[
+                                    { label: __('Normal', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Active', 'zoloblocks'), value: 'active' },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
+                                        <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AAC_HEADER_BG} noMainBGImg={true} />
+                                    </>
+                                }
+                            />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Head', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Accordion Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Title Typography', 'zoloblocks')}
                                 typoPrefixConstant={TITLE_TYPO}
@@ -207,6 +237,11 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <TabPanelControl
+                                options={[
+                                    { label: __('Normal', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Hover', 'zoloblocks'), value: 'hover' },
+                                    { label: __('Active', 'zoloblocks'), value: 'active' },
+                                ]}
                                 normalComponents={
                                     <>
                                         <ColorControl
@@ -235,6 +270,19 @@ function Inspector(props) {
                                         <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
                                     </>
                                 }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Title Color', 'zoloblocks')}
+                                            color={atitleColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    atitleColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Accordion Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -257,6 +305,11 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <TabPanelControl
+                                options={[
+                                    { label: __('Normal', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Hover', 'zoloblocks'), value: 'hover' },
+                                    { label: __('Active', 'zoloblocks'), value: 'active' },
+                                ]}
                                 normalComponents={
                                     <>
                                         <ColorControl
@@ -285,9 +338,23 @@ function Inspector(props) {
                                         <NormalBGControl requiredProps={requiredProps} controlName={ICONTAINER_HBG} noMainBGImg={true} />
                                     </>
                                 }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={aiconColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    aiconColor: value,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AICONTAINER_BG} noMainBGImg={true} />
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Body', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Accordion Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={AC_BODY_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
@@ -307,40 +374,22 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={AC_BODY_BG} noMainBGImg={true} />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Active Accordion', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Title Color', 'zoloblocks')}
-                                color={atitleColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        atitleColor: value,
-                                    })
+                            <TabPanelControl
+                                options={[
+                                    { label: __('Normal', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Active', 'zoloblocks'), value: 'active' },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AC_BODY_BG} noMainBGImg={true} />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AAC_BODY_BG} noMainBGImg={true} />
+                                    </>
                                 }
                             />
-                            <CardDivider />
-                            <BaseControl label={__('Accordion Icon', 'zoloblocks')}>
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={aiconColor}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            aiconColor: value,
-                                        })
-                                    }
-                                />
-                                <NormalBGControl requiredProps={requiredProps} controlName={AICONTAINER_BG} noMainBGImg={true} />
-                            </BaseControl>
-
-                            <CardDivider />
-                            <BaseControl label={__('Accordion Head', 'zoloblocks')}>
-                                <NormalBGControl requiredProps={requiredProps} controlName={AAC_HEADER_BG} noMainBGImg={true} />
-                            </BaseControl>
-                            <CardDivider />
-                            <BaseControl label={__('Accordion Body', 'zoloblocks')}>
-                                <NormalBGControl requiredProps={requiredProps} controlName={AAC_BODY_BG} noMainBGImg={true} />
-                            </BaseControl>
                         </ZoloPanelBody>
                     </>
                 }

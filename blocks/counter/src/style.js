@@ -20,6 +20,7 @@ const {
 
 import {
     CONTENT_ALIGN,
+    CONTENT_V_ALIGN,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -58,6 +59,16 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: CONTENT_ALIGN,
         property: 'text-align',
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: contentAlignvDesk,
+        tabAlignStyle: contentAlignvTab,
+        mobAlignStyle: contentAlignvMob,
+    } = generateResAlignmentStyle({
+        controlName: CONTENT_V_ALIGN,
+        property: 'align-items',
         attributes,
     });
 
@@ -282,23 +293,26 @@ const Style = ({ props }) => {
     /**
      * All Style Combination
      */
-    const desktopAllStyle = `	
-        .${uniqueId} .zolo-counter-item {
+    const desktopAllStyle = `
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-item {
             ${contentAlignDesk}
-            ${containerDeskBGStyle}            
+            ${containerDeskBGStyle}
 			${containerBorderDeskStyle}
 			${containerDeskBorderRadius}
 			${containerBoxShadow}
 			${containerMarginDesk}
 			${containerPaddingDesk}
         }
+        .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
+            ${contentAlignvDesk}
+        }
 
-        .${uniqueId} .zolo-counter-count{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-count{
             color: ${textColor ? textColor : ''};
             ${counterMarginDesk}
             ${counterTextStrokeStyleDesk}
         }
-        
+
         .${uniqueId} .zolo-counter-sub-text {
             ${suffixColor ? `color: ${suffixColor}; ` : ''}
             ${counterGapDesk}
@@ -309,8 +323,8 @@ const Style = ({ props }) => {
 			${counterTextShadowStyle}
 			color: ${descColor ? descColor : ''};
 		}
-       
-        .${uniqueId} .zolo-counter-title{
+
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-title{
             color: ${titleTextColor ? titleTextColor : ''};
             ${titleTypoDesktop}
             ${titleMarginDesktop}
@@ -321,7 +335,7 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-counter-icon svg {
             ${iconSize}
             ${iconHSize}
-			${iconColor ? `fill: ${iconColor}` : ''};	
+			${iconColor ? `fill: ${iconColor}` : ''};
 		}
 
         .${uniqueId} .zolo-counter-icon .zolo__display-icon, .${uniqueId} .zolo-counter-icon img {
@@ -338,8 +352,8 @@ const Style = ({ props }) => {
         }
   	`;
 
-    const tabletAllStyle = `	
-        .${uniqueId} .zolo-counter-item {   
+    const tabletAllStyle = `
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-item {
             ${contentAlignTab}
             ${containerTabBGStyle}
             ${containerBorderTabStyle}
@@ -347,8 +361,10 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerPaddingTab}
         }
-        
-        .${uniqueId} .zolo-counter-count{
+        .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
+            ${contentAlignvTab}
+        }
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-count{
             ${counterMarginTab}
             ${counterTextStrokeStyleTab}
         }
@@ -361,7 +377,7 @@ const Style = ({ props }) => {
             ${counterTypoTab}
         }
 
-        .${uniqueId} .zolo-counter-title{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-title{
             ${titleTypoTab}
             ${titleMarginTab}
             ${tabTitleTextStrokeStyle}
@@ -387,7 +403,7 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
-        .${uniqueId} .zolo-counter-item {
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-item {
             ${contentAlignMob}
             ${containerMobBGStyle}
             ${containerBorderMobStyle}
@@ -395,13 +411,15 @@ const Style = ({ props }) => {
             ${containerMarginMob}
             ${containerPaddingMob}
         }
-
-        .${uniqueId} .zolo-counter-count{
+        .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
+            ${contentAlignvMob}
+        }
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-count{
             ${counterMarginMob}
             ${counterTextStrokeStyleMob}
         }
 
-        .${uniqueId} .zolo-counter-sub-text {
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-sub-text {
             ${counterGapMob}
         }
 
@@ -409,7 +427,7 @@ const Style = ({ props }) => {
             ${counterTypoMobile}
         }
 
-        .${uniqueId} .zolo-counter-title{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-title{
             ${titleTypoMobile}
             ${titleMarginMob}
             ${mobTitleTextStrokeStyle}

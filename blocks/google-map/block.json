@@ -4,7 +4,7 @@
     "name": "zolo/google-map",
     "category": "zoloblocks",
     "keywords": ["google", "map", "google map"],
-    "description": "Embed a Google Map",
+    "description": "Show your live business location with Maps",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

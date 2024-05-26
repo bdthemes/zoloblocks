@@ -29,6 +29,7 @@ import '../blocks/google-map/src';
 import '../blocks/image-gallery/src';
 import '../blocks/image-compare/src';
 import '../blocks/list/src';
+import "../blocks/newsletter/src";
 import '../blocks/post-carousel/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';

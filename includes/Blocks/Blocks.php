@@ -64,6 +64,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => ['zolo-form-frontend', 'zolo-block-editor-dependency']
     ],
+    'newsletter' => [
+        'name'             => 'newsletter',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/newsletter/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-newsletter-frontend', 'zolo-block-editor-dependency'],
+    ],
     'post-carousel' => [
         'name'             => 'post-carousel',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-carousel/block.json',

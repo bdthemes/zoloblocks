@@ -10,7 +10,6 @@
     grid-gap: var(--zolo-item-gap);
     box-sizing: border-box;
     // overflow: hidden;
-
     a {
         text-decoration: none !important;
     }
@@ -137,7 +136,7 @@
                 .zb-brand-title-link {
                     transform: translateY(0);
                     opacity: 1;
-                    
+
                 }
                 .zb-brand-title {
                     transition-delay: .2s;

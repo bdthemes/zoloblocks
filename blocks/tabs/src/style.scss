@@ -190,6 +190,30 @@
         transform: translateX(-50%);
     }
 
+    // vertical preset style
+
+    .vpreset-2 {
+        .zolo-tab_head-item{
+            &.active {
+                .zolo-tab_desc {
+                    height: auto;
+                    visibility: visible;
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            } 
+        }
+
+        .zolo-tab_desc {
+            height: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            opacity: 0;
+            overflow: hidden;
+            transition: height .3s ease, visibility .3s ease, transform .3s ease, opacity .3s ease;
+        }
+    }
+
     @media (min-width: 768px) {
         .zolo-tab_header-wrap {
             flex-direction: row;

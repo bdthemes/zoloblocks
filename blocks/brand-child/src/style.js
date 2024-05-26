@@ -20,6 +20,7 @@ const {
 import {
     CONTAINER_HEIGHT,
     CONTAINER_BG,
+    CONTAINER_H_BG,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
@@ -130,6 +131,16 @@ const Style = ({ props }) => {
         backgroundStylesMobile: containerMobBGStyle,
     } = generateNormalBGControlStyles({
         controlName: CONTAINER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: containerDeskBGHStyle,
+        backgroundStylesTab: containerTabBGHStyle,
+        backgroundStylesMobile: containerMobBGHStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_H_BG,
         attributes,
         noMainBGImg: false,
     });
@@ -290,6 +301,9 @@ const Style = ({ props }) => {
             ${containerPaddingDesk}
             ${containerMarginDesk}
             ${containerDeskBGStyle}
+		}
+		.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-content{
+            ${containerDeskBGHStyle}
 		}
 		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}

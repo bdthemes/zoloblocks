@@ -1,3 +1,39 @@
+## 1.0.4 [May 18, 2024]
+
+### Added
+- Hover background control added to Brand Grid block
+
+### Fixed
+- Box Sizing item issue fixed to Charts block
+- Box Shadow hover issue fixed to Advanced Image block
+- Border hover color issue fixed to Advanced Image block
+- Alignment issue fixed to Advanced Search block
+- Overflow issue fixed to Brand Grid block
+- Vertical Alignment issue fixed to Business hours block
+- Content Vertical Alignment issue fixed to Counter block
+
+### Tweak
+
+- Max Width control has been removed from image panel within Advanced Image block
+- Margin control has been removed from container panel within Advanced Image block
+- Margin control has been removed from container panel within Brand Grid block
+
+### Improved
+
+- Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+- Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+- Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+- Title tag control shifted from style tab to basic tab in Advanced Icon Box
+- Default design improved in Counter block
+- Default design improved in Charts block
+
+
+## 1.0.3 [May 08, 2024]
+
+### Added
+
+- Newsletter block added
+
 ## 1.0.2 [May 06, 2024]
 
 ### Added

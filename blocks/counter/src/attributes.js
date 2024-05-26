@@ -2,6 +2,7 @@ const { generateResAlignmentAttributies, generateResRangeAttributies, generateBo
 
 import {
     CONTENT_ALIGN,
+    CONTENT_V_ALIGN,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
@@ -52,6 +53,7 @@ const attributes = {
     },
     // content
     ...generateResAlignmentAttributies(CONTENT_ALIGN),
+    ...generateResAlignmentAttributies(CONTENT_V_ALIGN),
     // Item
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateDimensionAttributes(CONTAINER_PADDING),
@@ -95,10 +97,12 @@ const attributes = {
         type: 'string',
         default: 'full',
     },
+
     hideIcon: {
         type: 'boolean',
         default: true,
     },
+
     hideCounter: {
         type: 'boolean',
         default: true,

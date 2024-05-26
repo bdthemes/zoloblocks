@@ -3,11 +3,8 @@
     "title": "Post Carousel",
     "name": "zolo/post-carousel",
     "category": "zoloblocks",
-    "keywords": [
-        "post",
-        "post carousel"
-    ],
-    "description": "post carousel view",
+    "keywords": ["post", "post carousel"],
+    "description": "Showcase posts in this dynamic carousel slider block",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {
@@ -19,10 +16,7 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": [
-            "wide",
-            "full"
-        ]
+        "align": ["wide", "full"]
     },
     "editorScript": "zolo-block-editor-script"
 }

@@ -24,6 +24,7 @@ const {
     ZoloIconPicker,
     ZoloPanelBody,
     ImageSizes,
+    ResGapControl
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -71,6 +72,8 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
     ICONS_MARGIN,
+    SEPARATOR_TEAM_SIZE,
+    SEPARATOR_SPACING_TEAM,
 } from './constants';
 
 import {
@@ -96,6 +99,7 @@ function Inspector(props) {
         memberShortBio,
         nameColor,
         designationColor,
+        separatorTeamColor,
         shortBioColor,
         separatorColor,
         iconColor,
@@ -216,7 +220,7 @@ function Inspector(props) {
                                     placeholder={__('Short Bio..', 'zoloblocks')}
                                 />
                             )}
-                            {addDetailPageLink && (
+                            {addDetailPageLink && preset !=='style-4' &&(
                                 <LinkControl
                                     label={__('Detail Page Link', 'zoloblocks')}
                                     value={memberDetailPageLink}
@@ -233,7 +237,7 @@ function Inspector(props) {
                                 <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                             </ZoloPanelBody>
                         )}
-                        {addDetailPageLink && (
+                        {addDetailPageLink && preset !=='style-4' &&(
                             <ZoloPanelBody title={__('Details Page Icon', 'zoloblocks')} panelProps={props}>
                                 <ZoloIconPicker
                                     label={__('Select Icon', 'zoloblocks')}
@@ -368,6 +372,34 @@ function Inspector(props) {
                                     controlName={TEAM_DESIGNATION_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+
+                                {/*  Add Separator */}
+
+                                {preset === 'style-4' && (
+                                    <ColorControl
+                                        label={__('Separator Color', 'zoloblocks')}
+                                        color={separatorTeamColor}
+                                        onChange={(color) =>
+                                            setAttributes({
+                                                separatorTeamColor: color,
+                                            })
+                                        }
+                                    />
+                                )}
+
+                                {preset === 'style-4' && (
+                                    <ResRangeControl
+                                        label={__('Separator Size', 'zoloblocks')}
+                                        controlName={SEPARATOR_TEAM_SIZE}
+                                        requiredProps={requiredProps}
+                                    />
+                                )}
+
+                                { preset === 'style-4' && (
+                                    <ResGapControl label={__('Separator Gap', 'zoloblocks')} controlName={SEPARATOR_SPACING_TEAM} requiredProps={requiredProps} max={200} />
+                                )}
+
+
                             </ZoloPanelBody>
                         )}
                         {showShortBio && (
@@ -516,7 +548,7 @@ function Inspector(props) {
                                 </ZoloPanelBody>
                             </>
                         )}
-                        {addDetailPageLink && (
+                        {addDetailPageLink && preset !=='style-4' &&(
                             <ZoloPanelBody title={__('Details Page Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}

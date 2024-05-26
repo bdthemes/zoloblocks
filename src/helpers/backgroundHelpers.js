@@ -892,7 +892,6 @@ export const generateBackgroundControlStyles = ({
         // background overlay attributes end
     } = attributes;
 
-    console.log('customGradient', gradientColor);
 
     const backgroundStylesDesktop = `
   ${
