@@ -59,9 +59,9 @@ const attributes = {
                 type: 'string',
                 default: '#fff',
             },
-            shape: {
-                type: 'string',
-                default: 'circle',
+            shapes: {
+                type: 'array',
+                default: [],
             },
             //sroke width
             stroke: {

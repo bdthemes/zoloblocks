@@ -19,6 +19,7 @@ const {
     ResGapControl,
     PopoverControl,
     ColorControl,
+    ColorControlAlt,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -118,14 +119,12 @@ function Inspector(props) {
                                                 min={0}
                                                 max={2000}
                                             />
-                                            <ColorControl
+                                            <ColorControlAlt
                                                 label={__('Color', 'zoloblocks')}
-                                                color={particleOptions.Color}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        particleOptions: { ...particleOptions, Color: value },
-                                                    })
-                                                }
+                                                color={particleOptions?.Color}
+                                                onChange={(value) => {
+                                                    setAttributes({ particleOptions: { ...particleOptions, Color: value } });
+                                                }}
                                             />
                                             {/* <SelectControl
                                                 label={__('Shape', 'zoloblocks')}
@@ -144,23 +143,24 @@ function Inspector(props) {
                                                 ]}
                                             /> */}
                                             <Select2
-                                                defaultValue={particleOptions.shape}
+                                                defaultValue={[{ value: 'circle', label: 'Circle' }]}
                                                 isMulti
-                                                isSearchable={true}
+                                                isSearchable={false}
                                                 closeMenuOnSelect={false}
                                                 name="value"
                                                 options={[
                                                     { value: 'circle', label: 'Circle' },
-                                                    { value: 'criangle', label: 'Triangle' },
-                                                    { value: 'edge', label: 'Triangle' },
+                                                    { value: 'triangle', label: 'Triangle' },
+                                                    { value: 'edge', label: 'Edge' },
                                                     { value: 'polygon', label: 'Polygon' },
                                                     { value: 'star', label: 'Star' },
                                                 ]}
                                                 onChange={(value) => {
                                                     setAttributes({
-                                                        particleOptions: { ...particleOptions, shape: value },
+                                                        particleOptions: { ...particleOptions, shapes: value },
                                                     });
                                                 }}
+                                                value={particleOptions?.shapes}
                                             />
                                             <RangeControl
                                                 label={__('Stroke Width', 'zoloblocks')}
