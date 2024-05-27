@@ -44,6 +44,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    optionPreset: {
+        type: 'string',
+        default: 'one',
+    },
     particleOptions: {
         type: 'object',
         default: {
@@ -60,8 +64,8 @@ const attributes = {
                 default: '#fff',
             },
             shape: {
-                type: 'string',
-                default: 'circle',
+                type: 'array',
+                default: ['circle', 'triangle'],
             },
             //sroke width
             stroke: {

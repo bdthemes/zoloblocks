@@ -2,6 +2,7 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import classnames from 'classnames';
 import { useEffect, useRef } from '@wordpress/element';
+
 const { classArrayToStr } = window.zoloModule;
 
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
@@ -14,6 +15,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         parentClasses,
         enableParticlesAnimation,
         particleOptions,
+        optionPreset,
     } = attributes;
 
     const { getBlockOrder } = select('core/block-editor');
@@ -32,9 +34,6 @@ export default function RenderView({ attributes, clientId, className, setAttribu
 
     const particlesRef = useRef(null);
 
-    const shape = particleOptions.shape.map((item) => item.value);
-    console.log('shape', shape);
-
     useEffect(() => {
         const options = {
             particles: {
@@ -49,7 +48,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     value: '#ff0000',
                 },
                 shape: {
-                    type: [...shape],
+                    type: 'circle',
                     stroke: {
                         width: particleOptions?.stroke || 0,
                         color: '#000000',
