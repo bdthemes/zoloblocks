@@ -35,6 +35,10 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     const particlesRef = useRef(null);
 
     useEffect(() => {
+        const shapes = particleOptions?.shapes && particleOptions?.shapes.length > 0 && particleOptions?.shapes.map((item) => item.value);
+
+        console.log('shapes', shapes);
+
         const options = {
             particles: {
                 number: {
@@ -45,10 +49,14 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     },
                 },
                 color: {
-                    value: '#ff0000',
+                    value: particleOptions?.Color,
                 },
                 shape: {
+<<<<<<< HEAD
                     type: 'circle',
+=======
+                    type: [...shapes],
+>>>>>>> ef9e41d00a27149fd7bbdec910fad8b65f229b7a
                     stroke: {
                         width: particleOptions?.stroke || 0,
                         color: '#000000',
@@ -152,7 +160,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
             const particlesId = particles.getAttribute('data-id');
             particlesJS(particlesId, options);
         }
-    }, [resMode, enableParticlesAnimation, particleOptions, uniqueId]);
+    }, [resMode, enableParticlesAnimation, particleOptions]);
 
     return (
         <div {...blockProps} ref={particlesRef}>

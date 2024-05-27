@@ -18,7 +18,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, name } = props;
-    const { variationStatus } = attributes;
+    const { variationStatus, particleOptions } = attributes;
 
     const { variations, defaultVariation, getBlockParents, parentBlocks } = useSelect((select) => {
         const coreBlocks = select('core/blocks');
@@ -44,6 +44,16 @@ export default function Edit(props) {
         // Compare with attribute and attributeToUpdate and update only if there is a change.
         if (attributesToUpdate.isBlockRootParent !== attributes.isBlockRootParent) {
             setAttributes(attributesToUpdate);
+        }
+
+        // check particleOptions shapes
+        if (particleOptions?.shapes.length === 0) {
+            setAttributes({
+                particleOptions: {
+                    ...particleOptions,
+                    shapes: [{ value: 'circle', label: 'Circle' }],
+                },
+            });
         }
     }, []);
 

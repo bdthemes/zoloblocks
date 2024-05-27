@@ -63,9 +63,15 @@ const attributes = {
                 type: 'string',
                 default: '#fff',
             },
+<<<<<<< HEAD
             shape: {
                 type: 'array',
                 default: ['circle', 'triangle'],
+=======
+            shapes: {
+                type: 'array',
+                default: [],
+>>>>>>> ef9e41d00a27149fd7bbdec910fad8b65f229b7a
             },
             //sroke width
             stroke: {
