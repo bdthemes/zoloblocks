@@ -52,11 +52,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     value: particleOptions?.Color,
                 },
                 shape: {
-<<<<<<< HEAD
-                    type: 'circle',
-=======
                     type: [...shapes],
->>>>>>> ef9e41d00a27149fd7bbdec910fad8b65f229b7a
                     stroke: {
                         width: particleOptions?.stroke || 0,
                         color: '#000000',
