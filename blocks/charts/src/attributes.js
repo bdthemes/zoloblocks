@@ -261,6 +261,10 @@ const attributes = {
         type: 'number',
         default: 12,
     },
+    fileUrl: {
+        type: 'string',
+        default: '',
+    },
 };
 
 export default attributes;

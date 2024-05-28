@@ -74,6 +74,7 @@
         align-items: center;
         justify-content: space-between;
         gap: var(--zolo-trigger-gap);
+        outline: none;
     }
     .zolo-accordion-head-title {
         --zolo-head-title-color: #111;

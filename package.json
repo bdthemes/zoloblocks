@@ -34,6 +34,7 @@
         "apexcharts": "^3.41.0",
         "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
+        "papaparse": "^5.4.1",
         "prop-types": "^15.8.1",
         "react-apexcharts": "^1.4.1",
         "react-compare-slider": "^3.0.1",
