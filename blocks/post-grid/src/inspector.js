@@ -41,7 +41,9 @@ import {
     PAG_PADDING,
     PAG_ALIGN,
     META_SPACE,
+    META_ARROW_SPACE,
     CONTENT_PADDING,
+    META_BOX_WRAP_PADDING,
 } from './constants';
 
 import {
@@ -97,6 +99,7 @@ function Inspector(props) {
         titleHoverColor,
         excerptColor,
         metaColor,
+        metaArrowColor,
         catBgColor,
         catColor,
         catBgHoverColor,
@@ -168,9 +171,9 @@ function Inspector(props) {
             case 'style-5':
                 setAttributes({
                     showExcerpt: true,
-                    showReadMore: true,
-                    showThumbnail: false,
-                    zolo_gridColumnsRange: 1,
+                    showReadMore: false,
+                    showThumbnail: true,
+                    zolo_gridColumnsRange: 3,
                 });
                 break;
             default:
@@ -435,7 +438,7 @@ function Inspector(props) {
                   panelProps={props}
                 >
                   <ResRangeControl
-                    label={__("Content Height", "zoloblocks")}
+                    label={__("Height", "zoloblocks")}
                     controlName={THUMBNAIL_HEIGHT}
                     requiredProps={requiredProps}
                     min={0}
@@ -444,7 +447,7 @@ function Inspector(props) {
                   />
                   {showThumbnail && (
                     <SelectControl
-                      label={__("Thumbnail Size", "zoloblocks")}
+                      label={__("Thumbnail Resolution", "zoloblocks")}
                       value={postQuery?.postThumbnail}
                       options={THUMBNAIL_SIZE}
                       onChange={(postThumbnail) =>
@@ -482,6 +485,13 @@ function Inspector(props) {
                     requiredProps={requiredProps}
                     enableTransition={false}
                   />
+
+                  <ResDimensionsControl
+                    label={__("Padding", "zoloblocks")}
+                    controlName={CONTENT_PADDING}
+                    requiredProps={requiredProps}
+                  />
+
                 </ZoloPanelBody>
               )}
 
@@ -591,6 +601,36 @@ function Inspector(props) {
                     controlName={META_MARGIN}
                     requiredProps={requiredProps}
                   />
+
+                  { preset === 'style-5' && (
+                      <ResDimensionsControl
+                        label={__("Meta Wrap Padding", "zoloblocks")}
+                        controlName={META_BOX_WRAP_PADDING}
+                        requiredProps={requiredProps}
+                      />
+                  )}
+
+                 { preset === 'style-5' && (
+                  <ColorControl
+                    label={__("Arrow Color", "zoloblocks")}
+                    color={metaArrowColor}
+                    onChange={(metaArrowColor) => setAttributes({ metaArrowColor })}
+                  />  
+                  )}
+
+                  {preset === 'style-5' && (
+                        <ResRangeControl
+                        label={__("Arrow Spacing", "zoloblocks")}
+                        controlName={META_ARROW_SPACE}
+                        requiredProps={requiredProps}
+                        min={0}
+                        max={100}
+                        step={1}
+                      />
+                  )}
+
+      
+
                 </ZoloPanelBody>
               )}
 
