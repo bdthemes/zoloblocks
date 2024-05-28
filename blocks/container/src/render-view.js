@@ -35,9 +35,9 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     const particlesRef = useRef(null);
 
     useEffect(() => {
-        const shapes = particleOptions?.shapes && particleOptions?.shapes.length > 0 && particleOptions?.shapes.map((item) => item.value);
-
-        console.log('shapes', shapes);
+        const shapes = (particleOptions?.shapes &&
+            particleOptions?.shapes.length > 0 &&
+            particleOptions?.shapes.map((item) => item.value)) || ['circle'];
 
         const options = {
             particles: {
@@ -52,7 +52,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     value: particleOptions?.Color,
                 },
                 shape: {
-                    type: [...shapes],
+                    type: shapes,
                     stroke: {
                         width: particleOptions?.stroke || 0,
                         color: '#000000',
