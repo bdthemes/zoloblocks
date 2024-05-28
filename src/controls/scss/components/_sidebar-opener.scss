@@ -1,8 +1,5 @@
 .zolo-block {
     position: relative;
-
-
-
     .zolo-blocks-toolbar {
         position: absolute !important;
         top: -29px;
@@ -38,12 +35,31 @@
                 background: rgba(209, 209, 209, 0.173);
             }
         }
-        
+    }
 
+    .block-editor-inner-blocks {
+        .zolo-block {
+            &:not(.wp-block-zolo-container) {
+                .zolo-blocks-toolbar {
+                    right: 0;
+                    left: unset;
+                    border-radius: 0;
+                    border-bottom-left-radius: 6px;
+                    background-color: #4e62ed;
+                    margin: -1px;
+                    button {
+                        border-radius: 0;
+                        border-bottom-left-radius: 6px;
+                        svg {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .zolo-container-inner-blocks-wrap {
-
         .zolo-blocks-toolbar {
             left: 0;
             transform: unset;
@@ -68,33 +84,14 @@
             }
         }
         .zolo-remove-block,
-        .zolo-insert-before{
+        .zolo-insert-before {
             display: none;
         }
-    } 
-
-    &:not(.wp-block-zolo-container) {
-        .zolo-blocks-toolbar {
-            right: 0;
-            left: unset;
-            border-radius: 0;
-            border-bottom-left-radius: 6px;
-            background-color: #4e62ed;
-            margin: -1px;
-            button {
-                border-radius: 0;
-                border-bottom-left-radius: 6px;
-                svg {
-                    color: #fff;
-                }
-            }
-        }
     }
-    
 
     &:hover,
-    &:focus{
-        .zolo-blocks-toolbar  {
+    &:focus {
+        .zolo-blocks-toolbar {
             opacity: 1;
             visibility: visible;
         }

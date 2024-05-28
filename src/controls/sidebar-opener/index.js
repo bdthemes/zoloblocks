@@ -7,7 +7,7 @@ const SidebarOpener = ({ className = '', clientId = null }) => {
             <button
                 className="zolo-insert-before"
                 onClick={() => {
-                    dispatch('core/block-editor').insertBeforeBlock(clientId);
+                    dispatch('core/block-editor').insertAfterBlock(clientId);
                 }}
             >
                 <svg viewBox="0 0 24 24" width={20} height={20} color={'#ffffff'} fill={'none'}>
