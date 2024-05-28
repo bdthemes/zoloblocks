@@ -14,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -111,7 +111,7 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, uniqueId, preset, 'zolo-accordion-wrap',  classArrayToStr(parentClasses)),
+        className: classnames(className, uniqueId, preset, 'zolo-accordion-wrap', classArrayToStr(parentClasses)),
     });
 
     return (
@@ -124,6 +124,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener />
                 {!delayedInit ? (
                     <>
                         <div {...innerBlocksProps} ref={acContainerRef} />

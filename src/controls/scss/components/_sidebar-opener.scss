@@ -1,0 +1,30 @@
+.zolo-block {
+    position: relative;
+
+    .zolo-open-sidebar-settings {
+        position: absolute !important;
+        top: 5px;
+        right: 5px;
+        width: 30px !important;
+        height: 20px !important;
+        border-radius: 2px;
+        display: inline-flex;
+        border: none;
+        background: #4e62ed;
+        color: #fff;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        line-height: 30px;
+        z-index: 9;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &:hover {
+        .zolo-open-sidebar-settings {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

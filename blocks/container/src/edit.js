@@ -60,6 +60,7 @@ export default function Edit(props) {
                     attributes,
                     clientId,
                     className,
+                    setAttributes,
                 }}
             />
         </>
