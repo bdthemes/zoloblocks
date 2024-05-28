@@ -10,7 +10,7 @@ import apiFetch from '@wordpress/api-fetch';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -18,7 +18,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, formId, uniqueId, parentClasses, preset, btnLabel, showBtnIcon, icon, iconPosition } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -70,6 +70,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1" id={formId}>
                     <InnerBlocks
                         allowedBlocks={(['zolo/text-field'], ['zolo/email'], ['zolo/textarea'])}

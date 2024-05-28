@@ -7,13 +7,13 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import './style.scss';
 
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 // import style
 import Style from './style';
 
 const Edit = (props) => {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         preset,
         preview,
@@ -62,9 +62,7 @@ const Edit = (props) => {
 
     //block wrapper class
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses),
-            preset !== '' && preset
-        ),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), preset !== '' && preset),
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');
@@ -81,6 +79,7 @@ const Edit = (props) => {
             <Style props={props} />
 
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
                     <div className="zolo-item">
                         <div className="zolo-head-content">

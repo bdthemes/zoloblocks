@@ -8,13 +8,13 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, clientId, isSelected } = props;
     const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link } = attributes;
 
     const blockProps = useBlockProps({
@@ -31,6 +31,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>
                     <a
                         className={classnames('zolo-button', `${iconPosition}`)}

@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -19,7 +19,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, parentClasses, preset, businessList } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -29,12 +29,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return (
-          <img
-            src={zoloParams.blocksPreview.businessHour}
-            alt={__("List Links Preview", "zoloblocks")}
-          />
-        );
+        return <img src={zoloParams.blocksPreview.businessHour} alt={__('List Links Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -43,6 +38,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls></BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 {businessList &&
                     businessList.map((profile, index) => {
                         return (

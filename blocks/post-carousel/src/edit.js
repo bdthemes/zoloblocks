@@ -8,14 +8,14 @@ import Inspector from './inspector';
 import RenderView from './render-view';
 import './editor.scss';
 
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 // Constants
 import { COLUMNS, COLUMNS_GAP } from './constants';
 import Style from './styles';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     // Slider Ref
     const postCarouselRef = useRef(null);
 
@@ -228,13 +228,8 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <style>{`
-                [data-type="zolo/post-carousel"] {
-                    border: 2px dashed #ccc;
-                    padding: 15px;
-                }
-            `}</style>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className="swiper" ref={postCarouselRef}>
                     <div className="swiper-wrapper">
                         <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />

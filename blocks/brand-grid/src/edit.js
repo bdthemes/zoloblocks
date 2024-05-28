@@ -8,7 +8,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -59,6 +59,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <InnerBlocks
                     allowedBlocks={['zolo/brand-child']}
                     template={[
@@ -70,9 +71,9 @@ export default function Edit(props) {
                                 brandPhoto: {
                                     url: zoloPlaceholders.zbBrand,
                                 },
-                            }
-                         ],
-                         [
+                            },
+                        ],
+                        [
                             'zolo/brand-child',
                             {
                                 brandTitle: 'Element Pack',
@@ -80,9 +81,9 @@ export default function Edit(props) {
                                 brandPhoto: {
                                     url: zoloPlaceholders.epBrand,
                                 },
-                            }
-                         ],
-                         [
+                            },
+                        ],
+                        [
                             'zolo/brand-child',
                             {
                                 brandTitle: 'Prime Slider',
@@ -90,9 +91,9 @@ export default function Edit(props) {
                                 brandPhoto: {
                                     url: zoloPlaceholders.psBrand,
                                 },
-                            }
-                         ],
-                         [
+                            },
+                        ],
+                        [
                             'zolo/brand-child',
                             {
                                 brandTitle: 'Post kit Pro',
@@ -100,8 +101,8 @@ export default function Edit(props) {
                                 brandPhoto: {
                                     url: zoloPlaceholders.upkBrand,
                                 },
-                            }
-                         ],
+                            },
+                        ],
                     ]}
                     renderAppender={false}
                 />

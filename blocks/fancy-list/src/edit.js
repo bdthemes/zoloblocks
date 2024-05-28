@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { softMinifyCssStrings, DisplayIcon, classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 
@@ -25,13 +25,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        preview,
-        uniqueId,
-        preset,
-        parentClasses,
-        fancyDirection,
-    } = attributes;
+    const { preview, uniqueId, preset, parentClasses, fancyDirection } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), fancyDirection),
@@ -96,6 +90,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls></BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div {...innerBlocksProps} />
                 <button className="zolo-appender-btn" label={__('Add List Item', 'zoloblocks')} onClick={() => appendBlock()}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

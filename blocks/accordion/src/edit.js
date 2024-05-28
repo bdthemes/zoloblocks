@@ -124,7 +124,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <SidebarOpener />
+                <SidebarOpener clientId={clientId} />
                 {!delayedInit ? (
                     <>
                         <div {...innerBlocksProps} ref={acContainerRef} />

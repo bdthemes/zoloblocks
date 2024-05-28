@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -20,7 +20,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const {
         preview,
         uniqueId,
@@ -96,6 +96,7 @@ export default function Edit(props) {
             </BlockControls>
 
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className="zb-profile-item">
                     <div className="zb-profile-header-content">
                         {showBadge && (

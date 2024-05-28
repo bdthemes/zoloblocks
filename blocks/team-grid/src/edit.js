@@ -10,7 +10,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, generateGapStyle, generateResCounterStyle } = window.zoloModule;
+const { classArrayToStr, generateGapStyle, generateResCounterStyle, SidebarOpener } = window.zoloModule;
 
 import { GRID_COLUMNS, GRID_GAP } from './constants';
 
@@ -98,6 +98,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <InnerBlocks
                     allowedBlocks={['zolo/team-child']}
                     template={[

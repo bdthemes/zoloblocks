@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -18,7 +18,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, preset, parentClasses, socialText, socialProfiles, socialColor, layout } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -38,6 +38,7 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 {socialProfiles &&
                     socialProfiles.map((profile, index) => {
                         let socialName = Object.keys(profile.icon)[0];
