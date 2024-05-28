@@ -1,13 +1,14 @@
 .zolo-block {
     position: relative;
 
-    .zolo-open-sidebar-settings {
+
+
+    .zolo-blocks-toolbar {
         position: absolute !important;
-        top: -25px;
+        top: -29px;
         left: 50%;
         transform: translateX(-50%);
-        width: 40px !important;
-        height: 26px !important;
+        width: 94px !important;
         display: inline-flex;
         border: none;
         background: #4e62ed;
@@ -21,47 +22,89 @@
         border-start-end-radius: 5px;
         border-end-start-radius: 0;
         border-end-end-radius: 0;
-        svg {
-            path {
-                fill: #fff;
+
+        button {
+            padding: 7px 8px;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            svg {
+                width: 15px;
+                height: 15px;
+                display: block;
+            }
+            &:hover,
+            &:focus {
+                background: rgba(209, 209, 209, 0.173);
             }
         }
+        
+
     }
 
-    .zolo-container-inner-blocks-wrap .zolo-open-sidebar-settings {
-        left: 0;
-        transform: unset;
-        top: 0;
-        width: auto !important;
-        height: auto !important;
-        padding: 0px;
-        border-radius: 0;
-        border-bottom-right-radius: 3px;
-        background-color: #d0d0d4;
-        &:focus {
-            outline: 1px solid #6565fa;
-        }
-        svg {
-            width: 20px;
-            height: 20px;
-            display: block;
-            path {
-                fill: #000;
+    .zolo-container-inner-blocks-wrap {
+
+        .zolo-blocks-toolbar {
+            left: 0;
+            transform: unset;
+            top: 0;
+            width: auto !important;
+            height: auto !important;
+            padding: 0px;
+            border-radius: 0px;
+            border-bottom-right-radius: 6px;
+            background-color: #d0d0d4;
+            button {
+                padding: 2px 4px;
+                border-bottom-right-radius: 6px;
+                svg {
+                    color: #000;
+                }
+                &:hover,
+                &:focus {
+                    background: transparent;
+                    outline: 1px solid #6565fa;
+                }
             }
         }
-    }
+        .zolo-remove-block,
+        .zolo-insert-before{
+            display: none;
+        }
+    } 
 
-    &:not(:has([data-type^="zolo/"])) {
-        /* Your styles here */
-        background-color: lightblue;
-        border: 10px solid #4e62ed;
+    &:not(.wp-block-zolo-container) {
+        .zolo-blocks-toolbar {
+            right: 0;
+            left: unset;
+            border-radius: 0;
+            border-bottom-left-radius: 6px;
+            background-color: #4e62ed;
+            margin: -1px;
+            button {
+                border-radius: 0;
+                border-bottom-left-radius: 6px;
+                svg {
+                    color: #fff;
+                }
+            }
+        }
     }
     
 
-    &:hover {
-        .zolo-open-sidebar-settings {
+    &:hover,
+    &:focus{
+        .zolo-blocks-toolbar  {
             opacity: 1;
             visibility: visible;
+        }
+        &.zolo-root-container {
+            box-shadow: 0 0 0 2px #4e62ed;
+        }
+        &:not(.wp-block-zolo-container) {
+            &.block-editor-block-list__block {
+                box-shadow: 0 0 0 1px #ddddde;
+            }
         }
     }
 }
