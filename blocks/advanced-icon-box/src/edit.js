@@ -99,7 +99,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
-                <SidebarOpener />
+                <SidebarOpener clientId={props.clientId} />
                 <div
                     className={classNames(
                         'zolo-block-item',
