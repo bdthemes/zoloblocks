@@ -14,6 +14,7 @@ import BoxShadowControl from '../../controls/boxshadow-control';
 import RangeResetControl from '../../controls/range-reset-control';
 import CustomCSSControl from '../../controls/customcss-control';
 import OverflowControl from '../../controls/overflow-control';
+import PositionControl from '../../controls/position-control';
 import PopoverControl from '../../controls/popover-control';
 import ZoloPanelBody from '../../controls/zolo-panelbody';
 import TabPanelControl from '../../controls/tabpanel-control';
@@ -64,6 +65,7 @@ export const AdvancedOptions = (props) => {
         globalConfig,
         zoloId,
         overflow,
+        position,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -131,6 +133,13 @@ export const AdvancedOptions = (props) => {
                     value={overflow}
                     onChange={(v) => {
                         setAttributes({ overflow: v });
+                    }}
+                />
+                <PositionControl
+                    label={__('Position', 'zoloblocks')}
+                    value={position}
+                    onChange={(v) => {
+                        setAttributes({ position: v });
                     }}
                 />
 

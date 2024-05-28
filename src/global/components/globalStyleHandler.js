@@ -19,6 +19,7 @@ export const GlobalStyleHanlder = (props) => {
         uniqueId,
         zIndex,
         overflow,
+        position,
         zoloStyles,
         globalConfig,
         customCss,
@@ -506,6 +507,7 @@ export const GlobalStyleHanlder = (props) => {
         ${bgDeskStyle ? bgDeskStyle : ''}
         ${zIndex ? `z-index: ${zIndex};` : ''}
         ${overflow ? `overflow: ${overflow};` : ''}
+        ${position ? `position: ${position};` : ''}
         ${transformStylesDesktop}
       }
       .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {

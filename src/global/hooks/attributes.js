@@ -101,6 +101,9 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
+            position: {
+                type: 'string',
+            },
             transformAnimationActive: {
                 type: 'boolean',
                 default: false,

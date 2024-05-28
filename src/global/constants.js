@@ -1116,6 +1116,13 @@ export const OVERFLOWS = [
     { label: __('Scroll', 'zoloblocks'), value: 'scroll' },
     { label: __('Clip', 'zoloblocks'), value: 'clip' },
 ];
+export const CONTENT_POSITIONS = [
+    { label: __('Static', 'zoloblocks'), value: 'static' },
+    { label: __('Relative', 'zoloblocks'), value: 'relative' },
+    { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
+    { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
+    { label: __('Sticky', 'zoloblocks'), value: 'sticky' },
+]
 
 export const OBJECT_FITS = [
     { label: __('None', 'zoloblocks'), value: 'none' },
