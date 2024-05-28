@@ -20,8 +20,19 @@ import ZoloPanelBody from '../../controls/zolo-panelbody';
 import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
+import IconicBtnGroup from '../../controls/iconic-btn-group';
+import SimpleRangeControl from '../../controls/simple-range-control';
 import { applyFilters } from '@wordpress/hooks';
-import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL, TRANSLATE_ICON, ROTATE_ICON, SCALE_ICON, SKEW_ICON, FLIP_ICON } from '../constants';
+import {
+    DEFAULT_ALIGNS,
+    DEFAULT_ALIGNS_VERTICAL,
+    TRANSLATE_ICON,
+    ROTATE_ICON,
+    SCALE_ICON,
+    SKEW_ICON,
+    FLIP_ICON,
+    ICON_HPOSITIONS,
+} from '../constants';
 import { zoloArraysMergeIfUniqueValue } from '../../helpers/helper';
 // value check
 const hasValCheck = (att, attributes) => {
@@ -66,7 +77,15 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
+        horizontalOrientation,
+        verticalOrientation,
+        positionLeft,
+        positionRight,
+        positionTop,
+        positionBottom,
     } = attributes;
+
+    console.log('attributes', position);
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -137,11 +156,141 @@ export const AdvancedOptions = (props) => {
                 />
                 <PositionControl
                     label={__('Position', 'zoloblocks')}
-                    value={position}
-                    onChange={(v) => {
-                        setAttributes({ position: v });
+                    value={position.positionValue || 'relative'}
+                    onChange={(value) => {
+                        setAttributes({ position: { ...position, positionValue: value } });
                     }}
                 />
+                {(position.positionValue === 'absolute' || position.positionValue === 'fixed') && (
+                    <>
+                        <IconicBtnGroup
+                            label={__('Horizontal Orientation', 'zoloblocks')}
+                            value={position.horizontalOrientation.direction}
+                            onChange={(direction) => {
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        horizontalOrientation: {
+                                            ...position.horizontalOrientation,
+                                            direction,
+                                        },
+                                    },
+                                });
+                            }}
+                            options={ICON_HPOSITIONS}
+                        />
+                        <SimpleRangeControl
+                            label={__('Offset', 'zoloblocks-pro')}
+                            value={position.horizontalOrientation.offset}
+                            onChange={(offset) => {
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        horizontalOrientation: {
+                                            ...position.horizontalOrientation,
+                                            offset,
+                                        },
+                                    },
+                                });
+                            }}
+                            onUnitChange={(unit) => {
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        horizontalOrientation: {
+                                            ...position.horizontalOrientation,
+                                            unit,
+                                        },
+                                    },
+                                });
+                            }}
+                            unit={position?.horizontalOrientation?.unit}
+                            onReset={() => {
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        horizontalOrientation: {
+                                            ...position.horizontalOrientation,
+                                            offset: 0,
+                                        },
+                                    },
+                                });
+                            }}
+                            min={-100}
+                            max={100}
+                            noUnits={false}
+                        />
+                        <IconicBtnGroup
+                            label={__('Vertical Orientation', 'zoloblocks-pro')}
+                            value={verticalOrientation}
+                            onChange={(value) => {
+                                setAttributes({ verticalOrientation: value });
+                                if (value === 'top') {
+                                    setAttributes({ positionTop: true, positionBottom: false });
+                                } else if (value === 'bottom') {
+                                    setAttributes({ positionTop: false, positionBottom: true });
+                                } else {
+                                    setAttributes({ positionTop: false, positionBottom: false });
+                                }
+                            }}
+                            options={ICON_HPOSITIONS}
+                        />
+                        {/*
+                        <IconicBtnGroup
+                            label={__('Horizontal Orientation', 'zoloblocks-pro')}
+                            value={position.horizontalOrientation.}
+                            onChange={(value) => {
+                                setAttributes({ horizontalOrientation: value });
+                                if (value === 'left') {
+                                    setAttributes({ positionLeft: true, positionRight: false });
+                                } else if (value === 'right') {
+                                    setAttributes({ positionLeft: false, positionRight: true });
+                                } else {
+                                    setAttributes({ positionLeft: false, positionRight: false });
+                                }
+                            }}
+                            options={ICON_HPOSITIONS}
+                        />
+                    <SimpleRangeControl
+                            label={__('Offset', 'zoloblocks-pro')}
+                            onChange={(value) => {
+                                setAttributes({
+                                    positionOffset: value,
+                                });
+                            }}
+                            value={positionOffset}
+                            onUnitChange={(unit) => {
+                                setAttributes({
+                                    positionOffsetUnit: unit,
+                                });
+                            }}
+                            unit={entranceAnimation?.translateX?.unit}
+                            onReset={() => {
+                                setAttributes({
+
+                                });
+                            }}
+                            min={-100}
+                            max={100}
+                            noUnits={false}
+                        />
+                        <IconicBtnGroup
+                            label={__('Vertical Orientation', 'zoloblocks-pro')}
+                            value={verticalOrientation}
+                            onChange={(value) => {
+                                setAttributes({ verticalOrientation: value });
+                                if (value === 'top') {
+                                    setAttributes({ positionTop: true, positionBottom: false });
+                                } else if (value === 'bottom') {
+                                    setAttributes({ positionTop: false, positionBottom: true });
+                                } else {
+                                    setAttributes({ positionTop: false, positionBottom: false });
+                                }
+                            }}
+                            options={ICON_HPOSITIONS}
+                        /> */}
+                    </>
+                )}
 
                 <div className="zolo-inline-control-wrapper">
                     <TextControl

@@ -13,12 +13,6 @@ const PositionControl = ({ label = '', value, onChange }) => {
                 onChange={(v) => onChange(v)}
                 value={value}
             />
-            {/* <IconicBtnGroup
-                label={label || __('Content Overflow', 'zoloblocks')}
-                value={value}
-                onChange={(v) => onChange(v)}
-                options={CONTENT_POSITIONS}
-            /> */}
         </div>
     );
 };
