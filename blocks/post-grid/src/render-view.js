@@ -76,7 +76,8 @@ function RenderView({ attributes, postResults }) {
                 return (
                     <div className="zolo-post-item">
                         <div className="zolo-post-image">
-                            {showThumbnail && (
+
+                            {showThumbnail && preset !== 'style-5' &&(
                                 <>
                                     {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                     {!post.thumbnail && (
@@ -87,14 +88,40 @@ function RenderView({ attributes, postResults }) {
                                 </>
                             )}
 
-                            {showMeta && preset == 'style-5' && dateRTimeHtml}
+                            {preset === 'style-5' && (
+                                <div className="zolo-post-img-category">
+                                    {showThumbnail && (
+                                            <>
+                                                {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
+                                                {!post.thumbnail && (
+                                                    <a href={post.permalink}>
+                                                        <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
+                                                    </a>
+                                                )}
+                                            </>
+                                        )}
+                                    {showCategory && categoriesHtml}
+                                </div>
+                            )}
 
-                            {showAuthor && authorInfoHtml}
+                            
+                            {showMeta && preset !== 'style-5' && dateRTimeHtml}
+
+                            {showAuthor && preset !== 'style-5' && authorInfoHtml}
+
+                            {preset === 'style-5' && (
+                                <div className="zolo-post-meta-wrap">
+                                    {showMeta && preset == 'style-5' && dateRTimeHtml}
+                                    {showAuthor && authorInfoHtml}
+                                </div>
+                            )}
+
+
                         </div>
 
                         <div className="zolo-post-content">
                             <div className="zolo-post-inner-content">
-                                {showCategory && categoriesHtml}
+                                {showCategory && preset !== 'style-5' && categoriesHtml}
                                 {showTitle && (
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
                                         <a href={post.permalink}>

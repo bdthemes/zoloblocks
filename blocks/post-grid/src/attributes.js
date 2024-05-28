@@ -40,7 +40,9 @@ import {
     PAG_ALIGN,
     PAG_PADDING,
     META_SPACE,
+    META_ARROW_SPACE,
     CONTENT_PADDING,
+    META_BOX_WRAP_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -180,6 +182,9 @@ const attributes = {
     metaColor: {
         type: 'string',
     },
+    metaArrowColor: {
+        type: 'string',
+    },
     showPagination: {
         type: 'boolean',
         default: false,
@@ -283,8 +288,14 @@ const attributes = {
     // post meta
     ...generateResRangeAttributies(META_SPACE),
 
+    // post meta arrow space
+    ...generateResRangeAttributies(META_ARROW_SPACE),
+
     // content
     ...generateDimensionAttributes(CONTENT_PADDING),
+
+    // meta box wrap
+    ...generateDimensionAttributes(META_BOX_WRAP_PADDING),
 };
 
 export default attributes;

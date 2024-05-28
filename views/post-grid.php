@@ -31,8 +31,20 @@ $wrapperId = $settings['zoloId'] ?? '';
         $html .= '<div class="zolo-post-item">';
         $html .= '<div class="zolo-post-image">';
         // thumbnail ->meta[date]->author
-        $html .= require __DIR__ . '/post-partials/thumbnail.php';
+        
+        if (!empty($settings['preset']) && $settings['preset'] !== 'style-5') {
+            $html .= require __DIR__ . '/post-partials/thumbnail.php';
+        }
+
+        if (!empty($settings['preset']) && $settings['preset'] === 'style-5') {
+            $html .= '<div class="zolo-post-img-category">';
+            $html .= require __DIR__ . '/post-partials/thumbnail.php';
+            $html .= require __DIR__ . '/post-partials/meta/categories.php';
+            $html .= '</div>';
+        }
+
         if (!empty($settings['preset'] === 'style-5') && ($settings['showMeta'] === true)) {
+            $html .= '<div class="zolo-post-meta-wrap">';
             $html .= '<div class="zolo-post-dateTime">';
             $html .= require __DIR__ . '/post-partials/meta/date.php';
             if (!empty($settings['showReadingTime'])) {
@@ -40,14 +52,21 @@ $wrapperId = $settings['zoloId'] ?? '';
                 $html .= require __DIR__ . '/post-partials/meta/reading-time.php';
             }
             $html .= '</div>';
+
+            $html .= require __DIR__ . '/post-partials/meta/author.php';
+            $html .= '</div>';
         }
-        $html .= require __DIR__ . '/post-partials/meta/author.php';
+        if (!empty($settings['preset']) && $settings['preset'] !== 'style-5') {
+            $html .= require __DIR__ . '/post-partials/meta/author.php';
+        }
 
         $html .= '</div>';
 
         $html .= '<div class="zolo-post-content">';
         $html .= '<div class="zolo-post-inner-content">';
-        $html .= require __DIR__ . '/post-partials/meta/categories.php';
+        if (!empty($settings['preset']) && $settings['preset'] !== 'style-5') {
+            $html .= require __DIR__ . '/post-partials/meta/categories.php';
+        }
         $html .= require __DIR__ . '/post-partials/title.php';
         $html .= require __DIR__ . '/post-partials/content.php';
         if (!empty($settings['preset'] !== 'style-5') && ($settings['showMeta'] === true)) {
