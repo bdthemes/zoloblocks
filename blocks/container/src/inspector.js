@@ -238,6 +238,7 @@ function Inspector(props) {
                                                                 { label: __('Top Left'), value: 'top-left' },
                                                             ]}
                                                         />
+
                                                         <ToggleControl
                                                             label={__('On Hover', 'zoloblocks')}
                                                             checked={particleOptions.onHover}
@@ -250,136 +251,12 @@ function Inspector(props) {
                                                                 });
                                                             }}
                                                         />
-                                                        <RangeControl
-                                                            label={__('Number', 'zoloblocks')}
-                                                            value={particleOptions.number}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, number: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={200}
-                                                        />
-                                                        <RangeControl
-                                                            label={__('Density Area', 'zoloblocks')}
-                                                            value={particleOptions.DensityArea}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, DensityArea: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={2000}
-                                                        />
-                                                        <ColorControlAlt
-                                                            label={__('Color', 'zoloblocks')}
-                                                            color={particleOptions?.Color}
-                                                            onChange={(value) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, Color: value } });
-                                                            }}
-                                                        />
-
-                                                        <Select2
-                                                            defaultValue={[{ value: 'circle', label: 'Circle' }]}
-                                                            isMulti
-                                                            isSearchable={false}
-                                                            closeMenuOnSelect={false}
-                                                            name="value"
-                                                            options={[
-                                                                { value: 'circle', label: __('Circle') },
-                                                                { value: 'triangle', label: __('Triangle') },
-                                                                { value: 'edge', label: __('Edge') },
-                                                                { value: 'polygon', label: __('Polygon') },
-                                                                { value: 'star', label: __('Star') },
-                                                            ]}
-                                                            onChange={(value) => {
-                                                                setAttributes({
-                                                                    particleOptions: { ...particleOptions, shapes: value },
-                                                                });
-                                                            }}
-                                                            value={particleOptions?.shapes}
-                                                        />
-                                                        <RangeControl
-                                                            label={__('Stroke Width', 'zoloblocks')}
-                                                            value={particleOptions.stroke}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, stroke: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={20}
-                                                        />
-                                                        <RangeControl
-                                                            label={__('Size', 'zoloblocks')}
-                                                            value={particleOptions.size}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, size: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={20}
-                                                        />
-                                                        <RangeControl
-                                                            label={__('Speed', 'zoloblocks')}
-                                                            value={particleOptions.speed}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, speed: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={10}
-                                                        />
-                                                        <RangeControl
-                                                            label={__('Distance', 'zoloblocks')}
-                                                            value={particleOptions.distance}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, distance: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={200}
-                                                        />
-                                                        <RangeControl
-                                                            label={__('Move Speed', 'zoloblocks')}
-                                                            value={particleOptions.moveSpeed}
-                                                            onChange={(v) => {
-                                                                setAttributes({ particleOptions: { ...particleOptions, moveSpeed: v } });
-                                                            }}
-                                                            min={0}
-                                                            max={10}
-                                                        />
-                                                        <SelectControl
-                                                            label={__('Direction', 'zoloblocks')}
-                                                            value={particleOptions?.direction}
-                                                            onChange={(value) => {
-                                                                setAttributes({
-                                                                    particleOptions: { ...particleOptions, direction: value },
-                                                                });
-                                                            }}
-                                                            options={[
-                                                                { label: __('None'), value: 'none' },
-                                                                { label: __('Top'), value: 'top' },
-                                                                { label: __('Top Right'), value: 'top-right' },
-                                                                { label: __('Right'), value: 'right' },
-                                                                { label: __('Bottom Right'), value: 'bottom-right' },
-                                                                { label: __('Bottom'), value: 'bottom' },
-                                                                { label: __('Bottom Left'), value: 'bottom-left' },
-                                                                { label: __('Left'), value: 'left' },
-                                                                { label: __('Top Left'), value: 'top-left' },
-                                                            ]}
-                                                        />
-                                                        <ToggleControl
-                                                            label={__('On Hover', 'zoloblocks')}
-                                                            checked={particleOptions.onHover}
-                                                            onChange={() => {
-                                                                setAttributes({
-                                                                    particleOptions: {
-                                                                        ...particleOptions,
-                                                                        onHover: !particleOptions.onHover,
-                                                                    },
-                                                                });
-                                                            }}
-                                                        />
-
                                                         <SelectControl
                                                             label={__('On Hover Mode', 'zoloblocks')}
-                                                            value={particleOptions?.oNhoverMode}
+                                                            value={particleOptions?.onHoverMode}
                                                             onChange={(value) => {
                                                                 setAttributes({
-                                                                    particleOptions: { ...particleOptions, oNhoverMode: value },
+                                                                    particleOptions: { ...particleOptions, onHoverMode: value },
                                                                 });
                                                             }}
                                                             options={[

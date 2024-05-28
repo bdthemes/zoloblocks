@@ -49,7 +49,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     },
                 },
                 color: {
-                    value: particleOptions?.Color,
+                    value: particleOptions?.Color || '#ff0000',
                 },
                 shape: {
                     type: shapes,
