@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { dispatch } from '@wordpress/data';
 
-const SidebarOpener = ({ className = '', icon = null, clientId = null }) => {
+const SidebarOpener = ({ className = '', clientId = null }) => {
     return (
         <div className={classNames('zolo-blocks-toolbar', className)}>
             <button
@@ -23,17 +23,11 @@ const SidebarOpener = ({ className = '', icon = null, clientId = null }) => {
                     }
                 }}
             >
-                {icon ? (
-                    <>{icon}</>
-                ) : (
-                    <>
-                        <svg viewBox="0 0 24 24" width={24} height={24} color={'#ffffff'} fill={'none'}>
-                            <rect x="18" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                            <rect x="10.5" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                            <rect x="3" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                        </svg>
-                    </>
-                )}
+                <svg viewBox="0 0 24 24" width={24} height={24} color={'#ffffff'} fill={'none'}>
+                    <rect x="18" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                    <rect x="10.5" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                    <rect x="3" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
             </button>
             <button
                 className="zolo-remove-block"
