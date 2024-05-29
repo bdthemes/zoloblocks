@@ -1,3 +1,17 @@
+## 1.0.5 [May 29, 2024]
+
+### Fixed
+- Source type input data loading issue fixed in Charts block
+- vertical align issue fixed in Advanced heading block
+- focus color issue fixed in Newsletter block
+- preset 4 responsive issue fixed in Newsletter block
+
+### Improved
+- Block editing experience improved, you will be able to select, delete, and insert block easily.
+- Assets loading improved and cleanup
+- Charts block improved
+- Dashboard changelog improved
+
 ## 1.0.4 [May 18, 2024]
 
 ### Added

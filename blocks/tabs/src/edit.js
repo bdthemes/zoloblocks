@@ -15,7 +15,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, StarRating, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { handleUniqueId, StarRating, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -133,6 +133,7 @@ const Edit = (props) => {
                 `}
             </style>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div
                     className={classnames(
                         'zolo-tabs zolo-indicator-position-bottom',

@@ -23,7 +23,6 @@ const {
     IconicBtnGroup,
     AdvancedOptions,
     ZoloPanelBody,
-    labelTextHoverColor,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -96,6 +95,7 @@ function Inspector(props) {
         successTextColor,
         errorTextColor,
         subscribedTextColor,
+        labelTextHoverColor,
     } = attributes;
 
     const requiredProps = {

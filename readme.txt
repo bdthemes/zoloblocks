@@ -2,10 +2,10 @@
 Contributors: bdthemes, selimmw
 Donate link: http://bdthemes.com/
 Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
-Requires at least: 6.0
+Requires at least: 6.5
 Tested up to: 6.5.3
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,43 +57,49 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 
 == Check Out All Feature Names And Patterns Below-==
 
-- [**Accordion**](https://demo.zoloblocks.com/accordion/) - *Accordion Block offers a versatile and user-friendly way to create interactive accordion-style content within the Gutenberg editor.*
+- [**Accordion**](https://demo.zoloblocks.com/accordion/) - *Create interactive accordion-style content within the Gutenberg editor for FAQs, product features, or any content requiring a structured layout. Comes with lots of customizations.*
 - [**Advanced Button**](https://demo.zoloblocks.com/advanced-button/) - *Whether product purchases, sign-ups, or prompting downloads, the Advanced Button block provides flexibility in styling for more user engagement. Just what you need for your site.*
 - [**Advanced Heading**](https://demo.zoloblocks.com/advanced-heading/) - *A powerful tool to make your headlines stand out. With this block, you can create captivating headings that grab attention and enhance readability on your WordPress site.*
-- [**Advanced Icon Box**](https://demo.zoloblocks.com/advanced-icon-box/) - *Advanced Iconbox Gutenberg Block, your solution for adding stylish and informative icon boxes to your WordPress site.*
+- [**Advanced Icon Box**](https://demo.zoloblocks.com/advanced-icon-box/) - *Your solution for adding stylish and informative icon boxes to your WordPress site. Can effortlessly showcase key features, services, or benefits in a better visual presentation.*
 - [**Advanced Image**](https://demo.zoloblocks.com/advanced-image/) - *Takes your images to the next level on your WordPress website. With this, you have full control over every aspect of your images, allowing for stunning visual storytelling.*
 - [**Brand Grid**](https://demo.zoloblocks.com/brand-grid/) - *Showcase brands, logos, or partners on your WordPress website effortlessly. Create visually stunning grids that highlight your brand affiliations or featured partners anytime now.*
-- [**Business Hours**](https://demo.zoloblocks.com/business-hours/) - *Business Hours Block, showcase your opening hours in a clear and visually appealing format, ensuring that visitors can easily find when you're available.*
-- [**Call to action**](https://demo.zoloblocks.com/call-to-action/) - *With call to action block, you can easily craft attention-grabbing messages that prompt visitors to take desired actions, such as signing up, making a purchase, or contacting you.*
+- [**Business Hours**](https://demo.zoloblocks.com/business-hours/) - *Display your opening hours on your WordPress website with this simplistic block feature. You can effortlessly showcase and customize your business hours for a spectacular view.*
+- [**Call to action**](https://demo.zoloblocks.com/call-to-action/) - *Craft attention-grabbing messages that prompt visitors to take desired actions, such as signing up, making purchases, or contacting you. Offers the flexibility and design options.*
 - [**Charts**](https://demo.zoloblocks.com/charts/) - *Now create informative and engaging charts such as bar, line, pie, or area in WordPress easily. Customize the appearance with options for colors, labels, and professional styling.*
-- [**Countdown**](https://demo.zoloblocks.com/countdown/) - *Countdown Block is a handy feature to build excitement and anticipation on your WordPress website. Set the specific date and time for your countdown, and customize its appearance with various options for colors, fonts, and styles.*
-- [**Counter**](https://demo.zoloblocks.com/counter/) - *Introducing the ZoloBlocks Counter Gutenberg Block – a user-friendly tool for showcasing numerical data in a clear and engaging manner on your WordPress website.*
+- [**Countdown**](https://demo.zoloblocks.com/countdown/) - *Build excitement and anticipation among the audience with a personalized countdown. Set the specific date and time for your countdown, and customize colors, fonts, and      styles.*
+- [**Counter**](https://demo.zoloblocks.com/counter/) - *With this block, you can easily present statistics, milestones, or any other numerical information in a visually engaging format that is easy for visitors to understand.
+*
 - [**Fancy list**](https://demo.zoloblocks.com/fancy-list/) - *Create lists in a visually stunning grid format on your WordPress website. Customize each list item with icons, colors, and text, and rearrange it within a responsive grid layout.*
-- [**Flip Box**](https://demo.zoloblocks.com/flip-box/) - *With Flip block, you can captivate your audience by creating captivating flip box elements that reveal unique content on hover or click.*
-- [**Form**](https://demo.zoloblocks.com/form/) - *Enhance your WordPress website's functionality with our dynamic Gutenberg block designed for creating customizable forms*
-- [**Google Map**](https://demo.zoloblocks.com/google-map/) - *The ultimate solution for seamlessly integrating interactive maps into your WordPress website*
-- [**Image Compare**](https://demo.zoloblocks.com/image-compare/) - *With Image Compare, effortlessly engage your audience by visually highlighting changes, transformations, or enhancements in a captivating and intuitive manner.*
-- [**Image Gallery**](https://demo.zoloblocks.com/image-galley/) - *Image Gallery- Ultimate solution for creating stunning and customizable image galleries on your WordPress website.*
-- [**List**](https://demo.zoloblocks.com/list/) - *List Block is a versatile block to organize and present information in a clear and concise format on your WordPress website.*
-- [**Post Carousel**](https://demo.zoloblocks.com/post-carousel/) - *The perfect block for dynamically showcasing your WordPress posts in a captivating carousel format.*
-- [**Post Grid**](https://demo.zoloblocks.com/post-grid/) - *With ZoloBlocks Post Grid, effortlessly create stunning post grids that dynamically showcase your content.*
+- [**Flip Box**](https://demo.zoloblocks.com/flip-box/) - *Captivate your audience by creating interactive flip boxes that reveal unique content on hover or click. Allows you to present two distinct pieces of content in a single space.*
+- [**Form**](https://demo.zoloblocks.com/form/) - *Our dynamic Gutenberg form builder block helps you build engaging contact forms, surveys, or any other type of interactive form to gather valuable information from your audience.*
+- [**Google Map**](https://demo.zoloblocks.com/google-map/) - *Interactive maps for your WordPress website. You can effortlessly embed customized Google Maps directly into your content, allowing visitors to explore locations with ease.*
+- [**Image Compare**](https://demo.zoloblocks.com/image-compare/) - *Create interactive image comparisons that allow users to slide back and forth between two images to see changes over time. Makes content presentation several times more engaging.*
+- [**Image Gallery**](https://demo.zoloblocks.com/image-galley/) - *Create stunning and customizable image galleries on your WordPress website. Showcase your photos, artwork, or product images in an elegant, engaging, and personalized layout.*
+- [**List**](https://demo.zoloblocks.com/list/) - *Organize and present information in a concise list format with this block. You can effortlessly create lists that communicate key points, features, or steps to your audience.*
+- [**Post Carousel**](https://demo.zoloblocks.com/post-carousel/) - *The perfect tool for dynamically showcasing your WordPress posts in a captivating carousel format. Create stunning carousels to engage your audience very easily and effectively.*
+- [**Post Grid**](https://demo.zoloblocks.com/post-grid/) - *Whether you're a blogger, business owner, or content creator, ZoloBlocks offers dynamic post grids with many customization options, allowing you tailor your grid to perfection.*
 - [**Post list**](https://demo.zoloblocks.com/post-list/) - *Seamlessly organize and display your posts in a sleek and captivating list format. Empowers you to effortlessly curate your content for maximum impact on any landing pages.*
-- [**Pricing Table**](https://demo.zoloblocks.com/pricing-table/) - *You can effortlessly showcase your product or service pricing plans in a clear and engaging format.*
-- [**Profile Card**](https://demo.zoloblocks.com/profile-card/) - *Profile Card Gutenberg Block – a sleek and dynamic way to introduce team members or individual profiles on your WordPress website.*
-- [**Progress bar**](https://demo.zoloblocks.com/progress-bar/) - *With Progress bar block, you can effortlessly create sleek and customizable progress bars that engage visitors and convey information with clarity.*
+- [**Pricing Table**](https://demo.zoloblocks.com/pricing-table/) - *Showcase your product or service pricing plans in WordPress as well as customize each pricing tier with price, features, button text, and styling to match your brand's aesthetics.*
+- [**Profile Card**](https://demo.zoloblocks.com/profile-card/) - *Introduce team members or individual profiles on your WordPress website for building a team page, highlighting key contributors, or showcasing individual profiles with style.*
+- [**Progress bar**](https://demo.zoloblocks.com/progress-bar/) - *Visually represent service progress info on your WordPress website. Create sleek and customizable progress bars that engage visitors and convey information with clarity.*
 - [**Review**](https://demo.zoloblocks.com/review/) - *Review block you can highlight customer feedback or endorsements in a visually appealing and impactful way.*
 - [**Review Carousel**](https://demo.zoloblocks.com/review-carousel/) - *With Review Carousel, you can create an engaging carousel that cycles through glowing testimonials to build brand trust. Can display name, photo, rating, and feedback easily.*
-- [**Review Grid**](https://demo.zoloblocks.com/review-grid/) - *An innovative way to showcase multiple reviews or testimonials in a visually captivating grid format on your WordPress website.*
-- [**Slider**](https://demo.zoloblocks.com/slider/) - *Introducing ZoloBlock Slider – a versatile and dynamic tool to showcase content in a visually stunning and interactive way on your WordPress website.*
+- [**Review Grid**](https://demo.zoloblocks.com/review-grid/) - *Now display multiple reviews or testimonials on your WordPress website. Allows you to customize the grid layout, spacing, and styling to match your site's design seamlessly.*
+- [**Slider**](https://demo.zoloblocks.com/slider/) - *A very stunning and interactive slider block with the ability to add any block within each slide. You can tailor your slider to meet your specific needs and design preferences. *
 - [**Social Links**](https://demo.zoloblocks.com/social-links/) - *Effortlessly connect your audience to your social media presence. With this block, easily showcase icons for your favorite platforms like Facebook, Twitter, Instagram, and more.*
-- [**Social Share**](https://demo.zoloblocks.com/demo/social-share/) - *Empower your visitors to effortlessly share your content across their social networks. Increase visibility and drive traffic back to your website with our user-friendly Social Share block.*
-- [**Star Rating**](https://demo.zoloblocks.com/star-rating/) - *A quick and easy way to display fixed ratings on your WordPress website. You can effortlessly showcase predefined star ratings for products, services, or any content you want to rate.*
-- [**Tab**](https://demo.zoloblocks.com/tab/) - *Now add any content you want to include—text, pictures, videos, or other blocks to each tab item. Create tabbed sections that allow users to easily navigate between content.*
-- [**Team grid**](https://demo.zoloblocks.com/team-grid/) - *The perfect solution for showcasing your team members in a visually appealing grid format on your WordPress website.*
+- [**Social Share**](https://demo.zoloblocks.com/demo/social-share/) - *Empower your visitors to share your content across their social networks. Increase visibility and drive traffic back to your website with our user-friendly Social Share block.*
+- [**Star Rating**](https://demo.zoloblocks.com/star-rating/) - *Display static star ratings on your WordPress website. With this block, you can effortlessly show customized star ratings for products, services, or any content you want to rate.*
+- [**Tabs**](https://demo.zoloblocks.com/tab/) - *Now add any content you want to include—text, pictures, videos, or other blocks to each tab item. Create tabbed sections that allow users to easily navigate between content.*
+- [**Team grid**](https://demo.zoloblocks.com/team-grid/) - *The perfect solution for showcasing your team members in grids and highlighting the expertise and talent within your team, fostering trust and connection with your audience.*
 - [**Advanced Search**](https://demo.zoloblocks.com/advanced-search/) - *Want a advanced search feature so you must need advanced search block.*
 
+== Pro Features and Blocks ==
 
-Don’t worry, more features coming up ….
+- [**Data Tables**](https://demo.zoloblocks.com/data-table/) - *Enhance your data presentation with our versatile Data Tables block for Gutenberg. Craft clear and structured data tables effortlessly, ideal for comparisons, analytics, or product specifications.*
+
+- [**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot/) - *Get creative with new advanced interactive image hotspots. With Image Hotspot Block, effortlessly engage your audience by highlighting specific info areas of images with informative tooltips.*
+
+Still not happy? Don’t worry, more features coming very soon ….
 
 == Check out our other Addons 👑 ==
 
@@ -201,6 +207,23 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
+= 1.0.5 - 29-05-2024 =
+
+= Fixed =
+
+* Source type input data loading issue fixed
+* Box Sizing item issue fixed to Charts block
+* vertical align issue fixed in Advanced heading block
+* focus color issue fixed in Newsletter block
+* preset 4 responsive issue fixed in Newsletter block
+
+= Improved =
+
+* Block editing experience improved, you will be able to select, delete, and insert block easily.
+* Assets loading improved and cleanup
+* Charts block improved
+* Dashboard changelog improved
+
 = 1.0.4 - 18-05-2024 =
 
 = Added =
@@ -230,11 +253,37 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 * Title tag control shifted from style tab to basic tab in Advanced Icon Box
 * Default design improved in Counter block
 
-= 1.0.3 - 08-05-2024 =
+= 1.0.4 - 18-05-2024 =
 
 = Added =
 
-* Newsletter block added
+* Hover background control added to Brand Grid block
+
+= Fixed
+
+* Box Sizing item issue fixed to Charts block
+* Box Shadow hover issue fixed to Advanced Image block
+* Border hover color issue fixed to Advanced Image block
+* Alignment issue fixed to Advanced Search block
+* Overflow issue fixed to Brand Grid block
+* Vertical Alignment issue fixed to Business hours block
+* Content Vertical Alignment issue fixed to Counter block
+
+= Tweak
+
+* Max Width control has been removed from image panel within Advanced Image block
+* Margin control has been removed from container panel within Advanced Image block
+* Margin control has been removed from container panel within Brand Grid block
+
+= Improved
+
+* Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+* Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+* Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+* Title tag control shifted from style tab to basic tab in Advanced Icon Box
+* Default design improved in Counter block
+* Default design improved in Charts block
+
 
 = 1.0.2 - 06-05-2024 =
 

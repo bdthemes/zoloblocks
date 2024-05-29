@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -21,7 +21,7 @@ import Style from './style';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, parentClasses, beforeImage, afterImage, comparisonOptions } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -77,6 +77,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={classnames(`zolo-image-wrap ${!beforeImage || !afterImage ? 'placeholder' : ''}`)}>
                     <div className="zolo-image-left">
                         {!beforeImage && (

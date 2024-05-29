@@ -13,7 +13,7 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import Inspector from './inspector';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 // editor
 import './editor.scss';
@@ -163,11 +163,6 @@ export default function Edit(props) {
                 [data-type="zolo/slide"] {
                     height: 100%;
                 }
-                [data-type="zolo/slider"] {
-                    border: 2px dashed #ccc;
-                    padding: 10px;
-                }
-
             `}
             </style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -177,6 +172,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className="swiper" ref={swiperRef}>
                     <div {...innerBlocksProps} />
                 </div>

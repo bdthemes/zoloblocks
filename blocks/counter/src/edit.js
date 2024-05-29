@@ -9,7 +9,7 @@ import CountUp from 'react-countup';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -17,7 +17,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         preview,
         uniqueId,
@@ -93,6 +93,7 @@ export default function Edit(props) {
             </BlockControls>
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
                     <div class="zolo-counter-item">
                         {hideIcon && (
@@ -115,7 +116,6 @@ export default function Edit(props) {
                         )}
 
                         <div class="zolo-counter-inner-content">
-
                             {preset !== 'style-3' && (
                                 <div class="zolo-counter-count">
                                     {hideCounter && (

@@ -15,7 +15,7 @@ import Style from './style';
 import classNames from 'classnames';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         uniqueId,
         preview,
@@ -99,7 +99,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
-                <SidebarOpener />
+                <SidebarOpener clientId={clientId} />
                 <div
                     className={classNames(
                         'zolo-block-item',

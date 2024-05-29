@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import { zoloArraysMergeIfUniqueValue } from '../../../src/helpers/helper';
 
@@ -22,7 +22,7 @@ import Style from './style';
 import { socialMediaInfo } from './constants';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, preset, parentClasses, socialText, socialMedia, socialColor, layout } = attributes;
     const socialMediaInfoFiltered = zoloArraysMergeIfUniqueValue(socialMedia, socialMediaInfo, 'value');
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -42,8 +42,8 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
-                {
-                    socialMediaInfoFiltered &&
+                <SidebarOpener clientId={clientId} />
+                {socialMediaInfoFiltered &&
                     socialMediaInfoFiltered.map((brand, index) => {
                         let socialName = Object.keys(brand.icon)[0];
                         const tags = brand.tags && brand.tags.join(',');
@@ -66,9 +66,7 @@ export default function Edit(props) {
                                 {socialText !== 'iconOnly' && <span className="zolo-social-text">{socialLabel}</span>}
                             </div>
                         );
-                    }
-                    )
-                }
+                    })}
             </div>
         </>
     );

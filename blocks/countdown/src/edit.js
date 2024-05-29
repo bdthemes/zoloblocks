@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, SidebarOpener } = window.zoloModule;
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 
@@ -60,6 +60,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div
                     className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`} ${layout == 'flex' ? 'flex' : 'grid'}`}
                 >

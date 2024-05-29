@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { StarRating, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { StarRating, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -20,7 +20,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const {
         preview,
         uniqueId,
@@ -88,6 +88,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className="zolo-item">
                     {showPhoto && (
                         <div className="zolo-image-quote-wrap">
