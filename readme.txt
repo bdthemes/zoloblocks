@@ -207,7 +207,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.0.5 - 28-05-2024 =
+= 1.0.5 - 29-05-2024 =
 
 = Fixed =
 
