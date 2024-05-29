@@ -211,8 +211,9 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 = Fixed =
 
-* Source type input data loading issue fixed
-* Box Sizing item issue fixed to Charts block
+* flex issue fixed in Editor for Container block
+* spacing issue fixed for preset 3 in Advanced Icon box
+* Source type input data loading issue fixed in Charts block
 * vertical align issue fixed in Advanced heading block
 * focus color issue fixed in Newsletter block
 * preset 4 responsive issue fixed in Newsletter block

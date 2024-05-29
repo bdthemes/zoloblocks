@@ -167,11 +167,6 @@
                 height: auto;
                 vertical-align: middle;
             }
-        }
-        .zolo-block-body-content {
-            --zolo-content-padding: 30px;
-            padding: var(--zolo-content-padding);
-        }
 
          .zolo__display-icon {
             margin: auto;
@@ -180,9 +175,14 @@
                 fill: #fff;
             }
         }
+        }
+        .zolo-block-body-content {
+            --zolo-content-padding: 30px;
+            padding: var(--zolo-content-padding);
+        }
     }
 
-    // pro animation css here 
+    // pro animation css here
 
     &.animation-style-1,
     &.animation-style-2,
@@ -208,7 +208,7 @@
 
     // pro animation style-1 css here
 
-    &.animation-style-1 {  
+    &.animation-style-1 {
          --zolo-animation-size: 128px;
          --zolo-animation-spacing: -75px;
         .zolo-block-item {
