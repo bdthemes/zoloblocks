@@ -1,8 +1,7 @@
-## 1.0.5 [May 28, 2024]
+## 1.0.5 [May 29, 2024]
 
 ### Fixed
-- Source type input data loading issue fixed
-- Box Sizing item issue fixed to Charts block
+- Source type input data loading issue fixed in Charts block
 - vertical align issue fixed in Advanced heading block
 - focus color issue fixed in Newsletter block
 - preset 4 responsive issue fixed in Newsletter block
