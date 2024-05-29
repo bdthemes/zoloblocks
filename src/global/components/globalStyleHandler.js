@@ -411,6 +411,11 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+    const positionProps = `
+        ${position ? `position: ${position.value};` : ''}
+        ${position?.verticalOrientation.offset != undefined ? `${position.verticalOrientation.direction}: ${position.verticalOrientation.offset}${position.verticalOrientation.unit};` : ''}
+        ${position?.horizontalOrientation.offset != undefined ? `${position.horizontalOrientation.direction}: ${position.horizontalOrientation.offset}${position.horizontalOrientation.unit};` : ''}
+    `;
     // transform styles
     const transformStylesDesktop = `
             ${translateXStylesDesktop}
@@ -507,8 +512,8 @@ export const GlobalStyleHanlder = (props) => {
         ${bgDeskStyle ? bgDeskStyle : ''}
         ${zIndex ? `z-index: ${zIndex};` : ''}
         ${overflow ? `overflow: ${overflow};` : ''}
-        ${position ? `position: ${position};` : ''}
         ${transformStylesDesktop}
+        ${positionProps}
       }
       .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
             ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}

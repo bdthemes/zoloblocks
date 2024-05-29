@@ -114,15 +114,15 @@ function addAttributes(settings) {
             position: {
                 type: 'object',
                 default: {
-                    positionValue: 'relative',
+                    value: 'relative',
                     horizontalOrientation: {
                         direction: 'left',
-                        value: 0,
+                        offset: undefined,
                         unit: 'px',
                     },
                     verticalOrientation: {
                         direction: 'top',
-                        value: 0,
+                        offset: undefined,
                         unit: 'px',
                     },
                 },
