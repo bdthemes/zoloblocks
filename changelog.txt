@@ -1,6 +1,8 @@
 ## 1.0.5 [May 29, 2024]
 
 ### Fixed
+- flex issue fixed in Editor for Container block
+- spacing issue fixed for preset 3 in Advanced Icon box
 - Source type input data loading issue fixed in Charts block
 - vertical align issue fixed in Advanced heading block
 - focus color issue fixed in Newsletter block

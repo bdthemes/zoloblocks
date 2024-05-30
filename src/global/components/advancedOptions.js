@@ -181,47 +181,30 @@ export const AdvancedOptions = (props) => {
                                 }}
                                 options={ICON_HPOSITIONS}
                             />
-                            <SimpleRangeControl
-                                label={__('Offset', 'zoloblocks')}
-                                value={position.horizontalOrientation.offset}
-                                onChange={(offset) => {
-                                    setAttributes({
-                                        position: {
-                                            ...position,
-                                            horizontalOrientation: {
-                                                ...position.horizontalOrientation,
-                                                offset,
-                                            },
-                                        },
-                                    });
-                                }}
-                                onUnitChange={(unit) => {
-                                    setAttributes({
-                                        position: {
-                                            ...position,
-                                            horizontalOrientation: {
-                                                ...position.horizontalOrientation,
-                                                unit,
-                                            },
-                                        },
-                                    });
-                                }}
-                                unit={position?.horizontalOrientation?.unit}
-                                onReset={() => {
-                                    setAttributes({
-                                        position: {
-                                            ...position,
-                                            horizontalOrientation: {
-                                                ...position.horizontalOrientation,
-                                                offset: undefined,
-                                            },
-                                        },
-                                    });
-                                }}
-                                min={-100}
-                                max={100}
-                                noUnits={false}
-                            />
+                            {position.horizontalOrientation.direction === 'left' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionLeft'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
+                            {position.horizontalOrientation.direction === 'right' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionRight'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
                             <IconicBtnGroup
                                 label={__('Vertical Orientation', 'zoloblocks')}
                                 value={position.verticalOrientation.direction}
@@ -238,47 +221,30 @@ export const AdvancedOptions = (props) => {
                                 }}
                                 options={VPOSITIONS}
                             />
-                            <SimpleRangeControl
-                                label={__('Offset', 'zoloblocks')}
-                                value={position.verticalOrientation.offset}
-                                onChange={(offset) => {
-                                    setAttributes({
-                                        position: {
-                                            ...position,
-                                            verticalOrientation: {
-                                                ...position.verticalOrientation,
-                                                offset,
-                                            },
-                                        },
-                                    });
-                                }}
-                                onUnitChange={(unit) => {
-                                    setAttributes({
-                                        position: {
-                                            ...position,
-                                            verticalOrientation: {
-                                                ...position.verticalOrientation,
-                                                unit,
-                                            },
-                                        },
-                                    });
-                                }}
-                                unit={position?.verticalOrientation?.unit}
-                                onReset={() => {
-                                    setAttributes({
-                                        position: {
-                                            ...position,
-                                            verticalOrientation: {
-                                                ...position.verticalOrientation,
-                                                offset: undefined,
-                                            },
-                                        },
-                                    });
-                                }}
-                                min={-100}
-                                max={100}
-                                noUnits={false}
-                            />
+                            {position.verticalOrientation.direction === 'top' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionTop'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
+                            {position.verticalOrientation.direction === 'bottom' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionBottom'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
                         </>
                     )}
                 </PopoverControl>

@@ -236,6 +236,20 @@ function addAttributes(settings) {
                 defaultUnit: 'ms',
             }),
 
+            //Position
+            ...generateResRangeAttributies('positionLeft', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('positionRight', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('positionTop', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('positionBottom', {
+                defaultUnit: 'px',
+            }),
+
             ...generateResAlignmentAttributies('transformOriginXHover'),
             ...generateResAlignmentAttributies('transformOriginYHover'),
 

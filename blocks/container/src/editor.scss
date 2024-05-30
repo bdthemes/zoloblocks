@@ -63,6 +63,8 @@
 // block editor style
 
 .block-editor-block-list__block.wp-block-zolo-container {
+    display: flex;
+
     &.zolo-container-has-children::before {
         border: 0;
     }
