@@ -19,6 +19,7 @@ export const GlobalStyleHanlder = (props) => {
         uniqueId,
         zIndex,
         overflow,
+        position,
         zoloStyles,
         globalConfig,
         customCss,
@@ -410,6 +411,65 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: positionLeftDesktop,
+        tabRangeStyle: positionLeftTab,
+        mobRangeStyle: positionLeftMob,
+    } = generateResRangeStyle({
+        controlName: 'positionLeft',
+        property: 'left',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: positionRightDesktop,
+        tabRangeStyle: positionRightTab,
+        mobRangeStyle: positionRightMob,
+    } = generateResRangeStyle({
+        controlName: 'positionRight',
+        property: 'right',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: positionTopDesktop,
+        tabRangeStyle: positionTopTab,
+        mobRangeStyle: positionTopMob,
+    } = generateResRangeStyle({
+        controlName: 'positionTop',
+        property: 'top',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: positionBottomDesktop,
+        tabRangeStyle: positionBottomTab,
+        mobRangeStyle: positionBottomMob,
+    } = generateResRangeStyle({
+        controlName: 'positionBottom',
+        property: 'bottom',
+        attributes,
+    });
+
+
+    const positionDesktop = `
+        ${position ? `position: ${position.value};` : ''}
+        ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
+        ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
+        ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
+        ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
+    `;
+    const positionTab = `
+        ${position ? `position: ${position.value};` : ''}
+        ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
+        ${position?.horizontalOrientation.direction === 'right' ? `${positionRightTab}` : ''}
+        ${position?.verticalOrientation.direction === 'top' ? `${positionTopTab}` : ''}
+        ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomTab}` : ''}
+    `;
+    const positionMob = `
+        ${position ? `position: ${position.value};` : ''}
+        ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftMob}` : ''}
+        ${position?.horizontalOrientation.direction === 'right' ? `${positionRightMob}` : ''}
+        ${position?.verticalOrientation.direction === 'top' ? `${positionTopMob}` : ''}
+        ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomMob}` : ''}
+    `;
     // transform styles
     const transformStylesDesktop = `
             ${translateXStylesDesktop}
@@ -507,6 +567,7 @@ export const GlobalStyleHanlder = (props) => {
         ${zIndex ? `z-index: ${zIndex};` : ''}
         ${overflow ? `overflow: ${overflow};` : ''}
         ${transformStylesDesktop}
+        ${positionDesktop}
       }
       .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
             ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
@@ -540,6 +601,7 @@ export const GlobalStyleHanlder = (props) => {
           ${paddingStylesTab ? paddingStylesTab : ''}
           ${bgTabStyle ? bgTabStyle : ''}
           ${transformStylesTab}
+        ${positionTab}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
@@ -564,7 +626,7 @@ export const GlobalStyleHanlder = (props) => {
           ${paddingStylesMobile ? paddingStylesMobile : ''}
           ${bgMobStyle ? bgMobStyle : ''}
           ${transformStylesMob}
-
+        ${positionMob}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
