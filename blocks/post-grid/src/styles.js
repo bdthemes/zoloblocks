@@ -705,8 +705,7 @@ function Style({ props }) {
         ${avatarBorderRadiusDesk}
       }
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name,
-      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name{
         ${nameTypoDesk}
       }
 
@@ -718,7 +717,8 @@ function Style({ props }) {
         ${nameColor ? `color:${nameColor} !important;` : ''}
       }
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name a:hover{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name a:hover,
+      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name a{
         ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
       }
 
