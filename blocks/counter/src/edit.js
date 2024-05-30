@@ -9,7 +9,7 @@ import CountUp from 'react-countup';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -17,7 +17,7 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         preview,
         uniqueId,
@@ -93,6 +93,7 @@ export default function Edit(props) {
             </BlockControls>
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
                     <div class="zolo-counter-item">
                         {hideIcon && (
@@ -115,18 +116,46 @@ export default function Edit(props) {
                         )}
 
                         <div class="zolo-counter-inner-content">
-                            <div class="zolo-counter-count">
-                                {hideCounter && (
-                                    <>
-                                        <span className="animated-counter">
-                                            <CountUp end={counterNumber} duration={3.2} />
-                                        </span>
-                                        {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
-                                    </>
-                                )}
-                            </div>
+                            {preset !== 'style-3' && (
+                                <div class="zolo-counter-count">
+                                    {hideCounter && (
+                                        <>
+                                            <span className="animated-counter">
+                                                <CountUp end={counterNumber} duration={3.2} />
+                                            </span>
+                                            {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                        </>
+                                    )}
+                                </div>
+                            )}
 
-                            {hideTitle && (
+                            {preset === 'style-3' && (
+                                <div class="zolo-counter-count">
+                                    {hideCounter && (
+                                        <>
+                                            <span className="animated-counter">
+                                                <CountUp end={counterNumber} duration={3.2} />
+                                            </span>
+                                            {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                        </>
+                                    )}
+
+                                    {hideTitle && (
+                                        <RichText
+                                            className={`zolo-counter-title`}
+                                            tagName={titleTag}
+                                            value={titleText}
+                                            onChange={(text) =>
+                                                setAttributes({
+                                                    titleText: text,
+                                                })
+                                            }
+                                        />
+                                    )}
+                                </div>
+                            )}
+
+                            {hideTitle && preset !== 'style-3' && (
                                 <RichText
                                     className={`zolo-counter-title`}
                                     tagName={titleTag}

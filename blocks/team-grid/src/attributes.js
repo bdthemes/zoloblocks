@@ -61,6 +61,8 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
     ITEM_OVERLAY,
+    SEPARATOR_TEAM_SIZE,
+    SEPARATOR_SPACING_TEAM
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -176,6 +178,11 @@ const attributes = {
     ...generateDimensionAttributes(DPL_MARGIN),
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    ...generateResRangeAttributies(SEPARATOR_TEAM_SIZE, {}),
+    ...generateGapAttributes(SEPARATOR_SPACING_TEAM, {
+        // defaultRange: 0,
+        defaultUnit: 'px',
+    }),
     nameColor: {
         type: 'string',
     },
@@ -210,6 +217,10 @@ const attributes = {
     detailPageIconHoverColor: {
         type: 'string',
     },
+    separatorTeamColor: {
+        type: 'string',
+    },
+
 };
 
 export default attributes;

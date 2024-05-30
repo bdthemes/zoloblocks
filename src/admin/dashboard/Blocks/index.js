@@ -118,8 +118,6 @@ const Blocks = () => {
         [blockStatus]
     );
 
-    console.log('blockStates', blockStates);
-
     return (
         <>
             {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}

@@ -294,7 +294,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .zolo-counter-item {
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-item {
             ${contentAlignDesk}
             ${containerDeskBGStyle}
 			${containerBorderDeskStyle}
@@ -307,7 +307,7 @@ const Style = ({ props }) => {
             ${contentAlignvDesk}
         }
 
-        .${uniqueId} .zolo-counter-count{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-count{
             color: ${textColor ? textColor : ''};
             ${counterMarginDesk}
             ${counterTextStrokeStyleDesk}
@@ -324,7 +324,7 @@ const Style = ({ props }) => {
 			color: ${descColor ? descColor : ''};
 		}
 
-        .${uniqueId} .zolo-counter-title{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-title{
             color: ${titleTextColor ? titleTextColor : ''};
             ${titleTypoDesktop}
             ${titleMarginDesktop}
@@ -353,7 +353,7 @@ const Style = ({ props }) => {
   	`;
 
     const tabletAllStyle = `
-        .${uniqueId} .zolo-counter-item {
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-item {
             ${contentAlignTab}
             ${containerTabBGStyle}
             ${containerBorderTabStyle}
@@ -364,7 +364,7 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
             ${contentAlignvTab}
         }
-        .${uniqueId} .zolo-counter-count{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-count{
             ${counterMarginTab}
             ${counterTextStrokeStyleTab}
         }
@@ -377,7 +377,7 @@ const Style = ({ props }) => {
             ${counterTypoTab}
         }
 
-        .${uniqueId} .zolo-counter-title{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-title{
             ${titleTypoTab}
             ${titleMarginTab}
             ${tabTitleTextStrokeStyle}
@@ -403,7 +403,7 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
-        .${uniqueId} .zolo-counter-item {
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-item {
             ${contentAlignMob}
             ${containerMobBGStyle}
             ${containerBorderMobStyle}
@@ -414,12 +414,12 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
             ${contentAlignvMob}
         }
-        .${uniqueId} .zolo-counter-count{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-count{
             ${counterMarginMob}
             ${counterTextStrokeStyleMob}
         }
 
-        .${uniqueId} .zolo-counter-sub-text {
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-sub-text {
             ${counterGapMob}
         }
 
@@ -427,7 +427,7 @@ const Style = ({ props }) => {
             ${counterTypoMobile}
         }
 
-        .${uniqueId} .zolo-counter-title{
+        .${uniqueId}.wp-block-zolo-counter .zolo-counter-title{
             ${titleTypoMobile}
             ${titleMarginMob}
             ${mobTitleTextStrokeStyle}

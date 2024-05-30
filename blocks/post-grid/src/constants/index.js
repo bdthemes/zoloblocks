@@ -8,7 +8,7 @@ export const PRESETS = [
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
     { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
-    // { label: __('Style 5', 'zoloblocks'), value: 'style-5' },
+    { label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-5', disabled: true },
 ];
 export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
@@ -31,6 +31,7 @@ export const THUMBNAIL_MARGIN = 'thumbMargin';
 export const TITLE_MARGIN = 'titleMargin';
 export const EXCERPT_MARGIN = 'excerptMargin';
 export const META_MARGIN = 'metaMargin';
+export const META_BOX_WRAP_PADDING = 'metaBoxWrapPadding';
 
 export const CAT_GAP = 'catGap';
 export const CAT_BORDER = 'catBorder';
@@ -58,6 +59,9 @@ export const PAG_ALIGN = 'pagAlign';
 
 // post meta
 export const META_SPACE = 'metaSpace';
+
+// post meta arrow space
+export const META_ARROW_SPACE = 'metaArrowSpace';
 
 // content wrapper
 export const CONTENT_PADDING = 'contentPadding';

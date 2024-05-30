@@ -8,13 +8,14 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
+import classNames from 'classnames';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         uniqueId,
         preview,
@@ -41,12 +42,24 @@ export default function Edit(props) {
         ribbonTitle,
         ribbonPosition,
         iconBoxDirection,
+
+        // animation
+        animationType,
+        animationPositionOne,
+        animationPositionTwo,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset, iconBoxDirection),
+        className: classnames(
+            uniqueId,
+            classArrayToStr(parentClasses),
+            'zolo-block-advanced-icon-box',
+            preset,
+            `${preset === 'style-2' ? iconBoxDirection : ''}`,
+            `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
+        ),
     });
 
     // preview image
@@ -86,7 +99,14 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
-                <div className="zolo-block-item">
+                <SidebarOpener clientId={clientId} />
+                <div
+                    className={classNames(
+                        'zolo-block-item',
+                        `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-1' ? `animation-${animationPositionOne}` : ''}`,
+                        `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
+                    )}
+                >
                     {showRibbon && ribbonTitle && (
                         <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
                             <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />

@@ -37,7 +37,7 @@
         cursor: pointer;
         border-radius: var(--zolo-tab-head-item-border-radius);
         box-sizing: border-box;
-        transition: all 0.3s ease-out;
+        transition: all 0.25s cubic-bezier(0.23, 0.96, 0.59, 1.01);
         &:focus-visible {
             outline: none;
         }
@@ -210,7 +210,7 @@
             transform: translateY(-10px);
             opacity: 0;
             overflow: hidden;
-            transition: height .3s ease, visibility .3s ease, transform .3s ease, opacity .3s ease;
+            transition: height .25s ease, visibility .25s ease, transform .25s ease, opacity .25s ease;
         }
     }
 

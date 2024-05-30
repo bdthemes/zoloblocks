@@ -1,7 +1,8 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import classnames from 'classnames';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
+import { Resizable } from 're-resizable';
 
 export default function RenderView({ attributes, clientId, className }) {
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses } = attributes;
@@ -21,14 +22,17 @@ export default function RenderView({ attributes, clientId, className }) {
     });
 
     return (
-        <div {...blockProps}>
-            {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
-                <div className="zolo-container-inner-blocks-wrap">
+        <>
+            <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
+                {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
+                    <div className="zolo-container-inner-blocks-wrap">
+                        <InnerBlocks renderAppender={hasChildBlocks ? undefined : InnerBlocks.ButtonBlockAppender} />
+                    </div>
+                ) : (
                     <InnerBlocks renderAppender={hasChildBlocks ? undefined : InnerBlocks.ButtonBlockAppender} />
-                </div>
-            ) : (
-                <InnerBlocks renderAppender={hasChildBlocks ? undefined : InnerBlocks.ButtonBlockAppender} />
-            )}
-        </div>
+                )}
+            </div>
+        </>
     );
 }

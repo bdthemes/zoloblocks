@@ -9,7 +9,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: var(--zolo-item-gap);
     box-sizing: border-box;
-
+    // overflow: hidden;
     a {
         text-decoration: none !important;
     }

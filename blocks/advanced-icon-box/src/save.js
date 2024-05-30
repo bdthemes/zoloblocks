@@ -32,10 +32,18 @@ const Save = ({ attributes }) => {
         ribbonTitle,
         ribbonPosition,
         iconBoxDirection,
+
+        // animation 
+        animationType,
+        animationPositionOne,
+        animationPositionTwo
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset, iconBoxDirection),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset, `${
+            preset === 'style-2' ? iconBoxDirection : ''
+        }`,  `${(preset === 'style-1' || preset === 'style-2' ) && animationType ? `animation-${animationType}` : ''
+        }`),
     });
 
     return (
@@ -53,7 +61,9 @@ const Save = ({ attributes }) => {
             })}
          >
 
-            <div className="zolo-block-item">
+            <div className={
+                    classnames( 'zolo-block-item', `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-1' ? `animation-${animationPositionOne}` : ''}`, `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`)
+                }>
                 {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
                 {showMainIcon && (
                     <div className={`zolo-block-icon-wrap`}>

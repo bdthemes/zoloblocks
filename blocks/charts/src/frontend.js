@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     xaxis: { lines: { show: showGrid ? showGridY : false } },
                     yaxis: { lines: { show: showGrid ? showGridX : false } },
                 },
+                labels: barChartData.options.labels,
             };
             const newChartOptions = {
                 ...commonOptions,

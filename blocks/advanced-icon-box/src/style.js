@@ -3,7 +3,6 @@
  */
 import { __ } from '@wordpress/i18n';
 
-
 /**
  * Internal depencencies
  */
@@ -21,47 +20,52 @@ const {
 } = window.zoloModule;
 
 import {
-  ICON_BOX_ALIGNMENT,
-  TITLE_MARGIN,
-  TITLE_TEXT_SHADOW,
-  TITLE_TEXT_STROKE,
-  DESCRIPTION_MARGIN,
-  ICON_BORDER,
-  ICON_BORDER_RADIUS,
-  ICON_SIZE,
-  ICON_PADDING,
-  ICON_MARGIN,
-  BUTTON_BG_COLOR,
-  BUTTON_BG_HOVER_COLOR,
-  BUTTON_ICON_SIZE,
-  BUTTON_BORDER,
-  ICON_BOX_SHADOW,
-  ICON_HOVER_BOX_SHADOW,
-  BUTTON_BOX_SHADOW,
-  BUTTON_HOVER_BOX_SHADOW,
-  ICON_TEXT_SPACING,
-  BUTTON_BORDER_RADIUS,
-  BUTTON_MARGIN,
-  BUTTON_PADDING,
-  ICON_IMAGE_SIZE,
-  IMAGE_BORDER,
-  CONTENT_ALIGNMENT,
-  ICON_IMAGE_BORDER_RADIUS,
-  ITEM_BG,
-  ITEM_HOVER_BG,
-  ITEM_BORDER,
-  ITEM_BRADIUS,
-  ITEM_PADDING,
-  ITEM_MARGIN,
-  ITEM_BOX_SHADOW,
-  ITEM_HBOX_SHADOW,
-  RIBBON_MARGIN,
-  RIBBON_PADDING,
-  RIBBON_BORDER,
-  RIBBON_RADIUS,
-  RIBBON_BG,
-  ICON_WRAPPER_BG_COLOR,
-} from "./constants";
+    ICON_BOX_ALIGNMENT,
+    TITLE_MARGIN,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
+    DESCRIPTION_MARGIN,
+    ICON_BORDER,
+    ICON_BORDER_RADIUS,
+    ICON_SIZE,
+    ICON_PADDING,
+    ICON_MARGIN,
+    BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
+    BUTTON_ICON_SIZE,
+    BUTTON_BORDER,
+    ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
+    BUTTON_BOX_SHADOW,
+    BUTTON_HOVER_BOX_SHADOW,
+    ICON_TEXT_SPACING,
+    BUTTON_BORDER_RADIUS,
+    BUTTON_MARGIN,
+    BUTTON_PADDING,
+    ICON_IMAGE_SIZE,
+    IMAGE_BORDER,
+    CONTENT_ALIGNMENT,
+    ICON_IMAGE_BORDER_RADIUS,
+    ITEM_BG,
+    ITEM_HOVER_BG,
+    ITEM_BORDER,
+    ITEM_BRADIUS,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BOX_SHADOW,
+    ITEM_HBOX_SHADOW,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_RADIUS,
+    RIBBON_BG,
+    ICON_WRAPPER_BG_COLOR,
+    //Animating Icon
+    ICON_ANIMATION_BG,
+    ICON_ANIMATION_SIZE,
+    ICON_ANIMATION_RADIUS,
+    ICON_ANIMATION_THICKNESS,
+} from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
@@ -71,6 +75,7 @@ export default function Style({ props }) {
     const {
         preset,
         uniqueId,
+        animationType,
         itemHBorderColor,
         textColor,
         textHoverColor,
@@ -165,8 +170,6 @@ export default function Style({ props }) {
         attributes,
         noMainBGImg: false,
     });
-
-
 
     // content
     const {
@@ -530,6 +533,57 @@ export default function Style({ props }) {
         styleFor: 'border-radius',
         attributes,
     });
+    //animation
+    const {
+        backgroundStylesDesktop: animationBgDeskStyle,
+        backgroundStylesTab: animationBgTabStyle,
+        backgroundStylesMobile: animationBgMobStyle,
+    } = generateNormalBGControlStyles({
+        controlName: ICON_ANIMATION_BG,
+        attributes,
+    });
+    const {
+        desktopRangeStyle: animationWidthDesk,
+        tabRangeStyle: animationWidthTab,
+        mobRangeStyle: animationWidthMob,
+    } = generateResRangeStyle({
+        controlName: ICON_ANIMATION_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    //height
+    const {
+        desktopRangeStyle: animationHeightDesk,
+        tabRangeStyle: animationHeightTab,
+        mobRangeStyle: animationHeightMob,
+    } = generateResRangeStyle({
+        controlName: ICON_ANIMATION_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    // generate animation border radius
+    const {
+        dimensionStylesDesktop: animationBorderRadiusDesk,
+        dimensionStylesTab: animationBorderRadiusTab,
+        dimensionStylesMobile: animationBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: ICON_ANIMATION_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    //Thickness
+    const {
+        desktopRangeStyle: animationThickDesk,
+        tabRangeStyle: animationThickTab,
+        mobRangeStyle: animationThickMob,
+    } = generateResRangeStyle({
+        controlName: ICON_ANIMATION_THICKNESS,
+        property: 'width',
+        attributes,
+    });
 
     /**
      * All Style Combination
@@ -538,7 +592,7 @@ export default function Style({ props }) {
     	.zolo-block-advanced-icon-box.${uniqueId}{
       --zolo-ribbon-xposition: ${ribbonXPosition}px;
       --zolo-ribbon-yposition: ${ribbonYPosition}px;
-      ${ribbonRotate != "" && typeof ribbonRotate == "number" ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ""}
+      ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
 		}
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item {
@@ -546,7 +600,7 @@ export default function Style({ props }) {
             ${itemBorderDesk}
             ${itemRadiusDesk}
             ${itemBoxShadow}
-           ${preset !== "style-3" ? itemPaddingDesk : ""}
+           ${preset !== 'style-3' ? itemPaddingDesk : ''}
             ${itemMarginDesk}
         }
         .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-icon-wrap{
@@ -554,20 +608,20 @@ export default function Style({ props }) {
         }
 
         .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
-           ${preset === "style-3" ? itemPaddingDesk : ""}
+           ${preset === 'style-3' ? itemPaddingDesk : ''}
         }
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover {
             ${itemHBoxShadow}
             ${itemHBgDesk}
-            ${itemHBorderColor ? `border-color: ${itemHBorderColor};` : ""}
+            ${itemHBorderColor ? `border-color: ${itemHBorderColor};` : ''}
         }
 
         .${uniqueId}{
             ${iconAlignmentDesktop}
         }
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap{
-			align-items: ${iconAlignment ? iconAlignment : "flex-start"};
+			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
 		}
 
 		.wp-block-zolo-advanced-icon-box.${uniqueId} .zolo-block-item{
@@ -578,14 +632,14 @@ export default function Style({ props }) {
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
-			${titleMarginDesktop ? titleMarginDesktop : ""}
-            ${textColor ? `color: ${textColor};` : ""}
+			${titleMarginDesktop ? titleMarginDesktop : ''}
+            ${textColor ? `color: ${textColor};` : ''}
 		}
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
-            ${descColor ? `color: ${descColor};` : ""}
+            ${descColor ? `color: ${descColor};` : ''}
 		}
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
@@ -593,7 +647,7 @@ export default function Style({ props }) {
         }
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
-            ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ""}
+            ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
@@ -602,7 +656,7 @@ export default function Style({ props }) {
         }
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap svg {
-            --zoloblocks-brand-color: ${iconColor ? iconColor : ""};
+            --zoloblocks-brand-color: ${iconColor ? iconColor : ''};
 		}
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
@@ -619,7 +673,7 @@ export default function Style({ props }) {
 			${buttonPaddingDesktop}
 			${buttonMarginDesktop}
 			${buttonBoxShadow}
-            color: ${btnColor ? btnColor : ""};
+            color: ${btnColor ? btnColor : ''};
 			${btnTypoDesktop}
             flex-direction: ${iconPosition};
 		}
@@ -627,39 +681,39 @@ export default function Style({ props }) {
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSize}
             ${buttonIconHSize}
-            ${btnColor ? `fill: ${btnColor};` : ""}
+            ${btnColor ? `fill: ${btnColor};` : ''}
 		}
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
                 ${buttonBGHoverDeskStyle}
-                ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ""}
+                ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
                 ${buttonHoverBoxShadow}
-                ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ""}
-                ${btnHoverColor ? `color: ${btnHoverColor}; ` : ""}
+                ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
+                ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
             }
             .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button svg{
-                ${btnHoverColor ? `fill: ${btnHoverColor};` : ""}
+                ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
             }
             .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon {
-                ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ""}
+                ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
 
                 ${iconHoverBoxShadow}
-                ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ""}
+                ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
             }
             .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon svg{
-                ${iconHoverColor ? `fill: ${iconHoverColor};` : ""}
+                ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
             }
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
-            ${textHoverColor ? `color: ${textHoverColor};` : ""}
+            ${textHoverColor ? `color: ${textHoverColor};` : ''}
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-desc{
-            ${descHoverColor ? `color: ${descHoverColor};` : ""}
+            ${descHoverColor ? `color: ${descHoverColor};` : ''}
         }
         .${uniqueId} .zolo-ribbon-btn{
-        ${ribbonColor ? `color: ${ribbonColor};` : ""}
+        ${ribbonColor ? `color: ${ribbonColor};` : ''}
         ${ribbonBgDesktop}
         ${ribbonPaddingDesktop}
         ${ribbonMarginDesktop}
@@ -669,6 +723,20 @@ export default function Style({ props }) {
         -webkit-transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
         transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
       }
+
+      .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
+         ${animationBgDeskStyle}
+         ${animationBorderRadiusDesk}
+      }
+      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-1 .zolo-block-item:before {
+          ${animationType === 'style-1' && animationWidthDesk}
+          ${animationType === 'style-1' && animationHeightDesk}
+      }
+      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-2 .zolo-block-item::before{
+
+        ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickDesk.replace('width', '')};`}
+        
+      }
   	`;
 
     const tabletAllStyle = `
@@ -676,12 +744,12 @@ export default function Style({ props }) {
             ${itemBgTab}
             ${itemBorderTab}
             ${itemRadiusTab}
-           ${preset !== "style-3" ? itemPaddingTab : ""}
+           ${preset !== 'style-3' ? itemPaddingTab : ''}
             ${itemMarginTab}
         }
 
          .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
-           ${preset === "style-3" ? itemPaddingTab : ""}
+           ${preset === 'style-3' ? itemPaddingTab : ''}
         }
 
         .${uniqueId}.zolo-block-advanced-icon-box:hover {
@@ -753,6 +821,22 @@ export default function Style({ props }) {
             ${ribbonBorderTab}
             ${ribbonTabRadius}
         }
+
+      
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
+         ${animationBgTabStyle}
+         ${animationBorderRadiusTab}
+      }
+      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-1 .zolo-block-item:before {
+          ${animationType === 'style-1' && animationWidthTab}
+          ${animationType === 'style-1' && animationHeightTab}
+      }
+      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-2 .zolo-block-item::before{
+
+        ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickTab.replace('width', '')};`}
+        
+      }
 	`;
 
     const mobileAllStyle = `
@@ -760,12 +844,12 @@ export default function Style({ props }) {
             ${itemBgMob}
             ${itemBorderMob}
             ${itemRadiusMob}
-            ${preset !== "style-3" ? itemPaddingMob : ""}
+            ${preset !== 'style-3' ? itemPaddingMob : ''}
             ${itemMarginMob}
         }
 
          .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
-           ${preset === "style-3" ? itemPaddingMob : ""}
+           ${preset === 'style-3' ? itemPaddingMob : ''}
         }
 
         .${uniqueId}.zolo-block-advanced-icon-box:hover {
@@ -836,6 +920,20 @@ export default function Style({ props }) {
         ${ribbonMarginMobile}
         ${ribbonBorderMob}
         ${ribbonMobRadius}
+      }
+
+      .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
+         ${animationBgMobStyle}
+         ${animationBorderRadiusMob}
+      }
+      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-1 .zolo-block-item:before {
+          ${animationType === 'style-1' && animationWidthMob}
+          ${animationType === 'style-1' && animationHeightMob}
+      }
+      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-2 .zolo-block-item::before{
+
+        ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickMob.replace('width', '')};`}
+        
       }
   	`;
 

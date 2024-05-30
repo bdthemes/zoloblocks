@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 import Inspector from './inspector';
 
 // import style
@@ -64,6 +64,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls></BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div {...innerBlocksProps} />
                 <button className="zolo-appender-btn" label={__('Add New Progress Bar', 'zoloblocks')} onClick={() => appendBlock()}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

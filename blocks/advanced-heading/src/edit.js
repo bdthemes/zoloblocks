@@ -8,10 +8,10 @@ import Inspector from './inspector';
 import Style from './style';
 import './style.scss';
 
-const { DynamicTag, classArrayToStr } = window.zoloModule;
+const { DynamicTag, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 const Edit = (props) => {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         uniqueId,
         preview,
@@ -48,6 +48,7 @@ const Edit = (props) => {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
                     {showTransparentTitle && (
                         <div className="zolo-transparent-heading-wrap">

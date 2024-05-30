@@ -8,13 +8,13 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const {
         preview,
         uniqueId,
@@ -54,6 +54,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={`zolo-call-out ${preset} ${reversePosition ? 'reserve-position' : ''}`}>
                     <div className="zolo-call-out__content">
                         {showTitle && (

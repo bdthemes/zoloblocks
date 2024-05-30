@@ -10,6 +10,7 @@ const ZoloPanelBody = ({
     firstOpen = false,
     isPro = false,
     isNew = false,
+    isDisabled = false,
 }) => {
     const { attributes, setAttributes } = panelProps;
     const { selectedPanel, selectedStylePanel, selectedExtraPanel } = attributes;
@@ -39,8 +40,10 @@ const ZoloPanelBody = ({
             className={classNames(
                 `${isPro ? 'zolo-pro-panel' : ''}`,
                 `${isNew ? 'zolo-new-panel' : ''}`,
-                `${isNew && isPro ? 'zolo-new-pro-panel' : ''}`
+                `${isNew && isPro ? 'zolo-new-pro-panel' : ''}`,
+                `${isDisabled ? 'zolo-disabled-panel' : ''}`
             )}
+            buttonProps={isDisabled ? { disabled: true } : {}}
         >
             {children}
         </PanelBody>

@@ -14,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, DynamicTag, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, DynamicTag, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -97,16 +97,29 @@ export default function Edit(props) {
                             }}
                             allowedTypes={['image']}
                             value={photo && photo.id}
-                            render={({ open }) => <ToolbarButton className="components-toolbar__control" label={__('Edit Image', 'zoloblocks')} icon="edit" onClick={open} />}
+                            render={({ open }) => (
+                                <ToolbarButton
+                                    className="components-toolbar__control"
+                                    label={__('Edit Image', 'zoloblocks')}
+                                    icon="edit"
+                                    onClick={open}
+                                />
+                            )}
                         />
                     </ToolbarGroup>
                 </BlockControls>
             )}
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 {photo ? (
                     <DynamicTag
                         tagName={link && link.url ? 'a' : 'div'}
-                        className={classnames('zolo-image-block-wrap', `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`, `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`, hoverEffect)}
+                        className={classnames(
+                            'zolo-image-block-wrap',
+                            `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`,
+                            `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
+                            hoverEffect
+                        )}
                         {...(link &&
                             link.url && {
                                 href: link.url,
@@ -119,7 +132,11 @@ export default function Edit(props) {
                     >
                         <div className="zolo-image-block-inner">
                             <div className="zolo-img-wrap">
-                                <img className="zolo-img" src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url} alt={imgAlt} />
+                                <img
+                                    className="zolo-img"
+                                    src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                    alt={imgAlt}
+                                />
                             </div>
                             {layout === 'overlay' && (
                                 <div className="zolo-content-wrap">
@@ -164,7 +181,15 @@ export default function Edit(props) {
                                     </div>
                                 </div>
                             )}
-                            {layout === 'normal' && showCaption && <RichText tagName="figcaption" value={caption || photo?.caption} onChange={(value) => setAttributes({ caption: value })} placeholder={__('Write Caption...', 'zoloblocks')} className="zolo-caption" />}
+                            {layout === 'normal' && showCaption && (
+                                <RichText
+                                    tagName="figcaption"
+                                    value={caption || photo?.caption}
+                                    onChange={(value) => setAttributes({ caption: value })}
+                                    placeholder={__('Write Caption...', 'zoloblocks')}
+                                    className="zolo-caption"
+                                />
+                            )}
                         </div>
                     </DynamicTag>
                 ) : (
@@ -193,7 +218,15 @@ export default function Edit(props) {
                             multiple={false}
                             labels={{ title: __('Image', 'zoloblocks') }}
                             icon={
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="zolo-image-icon" aria-hidden="true" focusable="false">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    class="zolo-image-icon"
+                                    aria-hidden="true"
+                                    focusable="false"
+                                >
                                     <path
                                         d="M3 17L7.41995 12.58C8.26284 11.7372 9.65125 11.8141 10.3959 12.7449L11.789 14.4863C12.4639 15.3298 13.6866 15.4851 14.5508 14.8369L15.6123 14.0408C16.4086 13.4436 17.5228 13.5228 18.2265 14.2265L21 17M17 8C17 8.55228 16.5523 9 16 9C15.4477 9 15 8.55228 15 8C15 7.44772 15.4477 7 16 7C16.5523 7 17 7.44772 17 8ZM5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21Z"
                                         fill="none"

@@ -8,12 +8,12 @@ import Inspector from './inspector';
 import RenderView from './render-view';
 import './style.scss';
 
-const { Pagination, classArrayToStr } = window.zoloModule;
+const { Pagination, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Style from './styles';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, parentClasses, postQuery, preset, page } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -97,6 +97,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
             </div>
             {postQuery?.showPagination && pageTotal > 1 && (

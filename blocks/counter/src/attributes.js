@@ -97,10 +97,12 @@ const attributes = {
         type: 'string',
         default: 'full',
     },
+
     hideIcon: {
         type: 'boolean',
         default: true,
     },
+
     hideCounter: {
         type: 'boolean',
         default: true,

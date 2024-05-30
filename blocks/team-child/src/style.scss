@@ -391,10 +391,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.49);
             margin: 20px;
             border-radius: 10px;
             padding: 30px;
+            backdrop-filter: blur(15px);
         }
         .zolo-link-btn {
             position: absolute;
@@ -415,11 +416,16 @@
         }
 
         .zolo-social-link {
+            --zolo-social-border-color: #747475;
             transform: translateY(20px);
             opacity: 0;
             transition:
                 transform 0.3s ease,
                 opacity 0.3s ease;
+                border-color: var(--zolo-social-border-color);
+                &:hover {
+                    border-color: var(--zoloblocks-brand-color-hover);
+                }
             &:nth-child(1) {
                 transition-delay: 0.1s;
             }
@@ -441,6 +447,89 @@
             &:nth-child(7) {
                 transition-delay: 0.7s;
             }
+        }
+    }
+
+    // pro preset Behind The Scene style 4 & fornt style 5
+
+    &.style-4 {
+        .zolo-item {
+            --zolo-item-padding: 25px;
+            background-color: var(--zoloblocks-item-bg-color);
+            border-width: var(--zolo-item-border-width);
+            border-style: var(--zolo-item-border-style);
+            border-color: var(--zoloblocks-item-border-color);
+            padding: var(--zolo-item-padding);
+            border-radius: var(--zolo-item-border-radius);
+            box-sizing: border-box;
+        }
+        .zolo-image-wrap {
+            margin: var(--zolo-img-margin);
+        }
+        img {
+            width: 60px;
+        }
+
+        .zolo-social-and-link-wrap {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .zolo-social-share {
+            --zolo-social-wrap-margin: 25px;
+            margin: var(--zolo-social-wrap-margin);
+            width: auto;
+        }
+
+        .zolo-social-link {
+            padding: 0;
+            border: 0;
+            background-color: transparent;
+
+        }
+
+        .zolo-name-desi-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            line-height: 1;
+        }
+
+        .zolo-nameDg-separator {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background-color: #6a6c6f;
+            margin-top: 2px;
+        }
+        
+        .zolo-name {
+            font-size: 20px;
+        }
+        
+        .zolo-designation {
+            font-size: 13px;
+            margin: 2px 0 0 0;
+        }
+
+        .zolo-desc {
+            --zolo-desc-margin: 6px 0 0 0;
+            margin: var(--zolo-desc-margin);
+        }
+
+        .zolo-social-link {
+            svg {
+                --zolo-social-icon-size: 18px;
+                height: var(--zolo-social-icon-size);
+                width: var(--zolo-social-icon-size);
+            }
+            &:hover {
+                svg {
+                    fill: blue;
+                }
+            }   
         }
     }
 }

@@ -10,7 +10,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 // import style
 import Style from './style';
@@ -18,7 +18,7 @@ import Inspector from './inspector';
 import { useEffect } from 'react';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, clientId } = props;
     const { preview, uniqueId, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon, imageSize } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -63,6 +63,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId}`}>
                     {advancedGallery ? (
                         advancedGallery &&

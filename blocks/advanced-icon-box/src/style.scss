@@ -55,6 +55,8 @@
     .zolo-block-icon-wrap {
         margin: var(--zolo-icon-margin);
         display: inline-block;
+        z-index: 1;
+        position: relative;
         img {
             width: var(--zolo-icon-img-width);
             height: auto;
@@ -137,6 +139,7 @@
         font-size: 12px;
         padding: var(--zolo-ribbon-btn-padding);
         border-radius: var(--zolo-ribbon-btn-border-radius);
+        z-index: 1;
         &.zolo-ribbon-btn.top__right {
             right: 0;
         }
@@ -164,17 +167,145 @@
                 height: auto;
                 vertical-align: middle;
             }
-        }
-        .zolo-block-body-content {
-            --zolo-content-padding: 30px;
-            padding: var(--zolo-content-padding);
-        }
 
          .zolo__display-icon {
             margin: auto;
             padding: 100px;
             svg {
                 fill: #fff;
+            }
+        }
+        }
+        .zolo-block-body-content {
+            --zolo-content-padding: 30px;
+            padding: var(--zolo-content-padding);
+        }
+    }
+
+    // pro animation css here
+
+    &.animation-style-1,
+    &.animation-style-2,
+    &.animation-style-3 {
+        .zolo-block-item {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                background-color: #d6f2fd;
+                z-index: 1;
+                transition: .3s cubic-bezier(.24,.74,.58,1);
+            }
+        }
+        .zolo__display-icon,
+        .zolo-block-title,
+        .zolo-block-desc,
+        .zolo-box-button,
+        .zolo-ribbon-btn {
+            transition: all 0.3s ease;
+        }
+    }
+
+    // pro animation style-1 css here
+
+    &.animation-style-1 {
+         --zolo-animation-size: 128px;
+         --zolo-animation-spacing: -75px;
+        .zolo-block-item {
+            overflow: hidden;
+            &:hover {
+                &::before {
+                    transform: scale(20);
+                }
+            }
+            &::before {
+                height: var(--zolo-animation-size);
+                width: var(--zolo-animation-size);
+                border-radius: 50%;
+                transition: all .5s ease;
+            }
+            &.animation-top-right::before {
+                top: var(--zolo-animation-spacing);
+                right: var(--zolo-animation-spacing);
+            }
+            &.animation-top-left::before {
+                top: var(--zolo-animation-spacing);
+                left: var(--zolo-animation-spacing);
+            }
+            &.animation-bottom-right::before {
+                bottom: var(--zolo-animation-spacing);
+                right: var(--zolo-animation-spacing);
+            }
+            &.animation-bottom-left::before {
+                bottom: var(--zolo-animation-spacing);
+                left: var(--zolo-animation-spacing);
+            }
+        }
+    }
+
+    // pro animation style-2 css here
+
+    &.animation-style-2 {
+        --zolo-animation-thickness: 8px;
+        .zolo-block-item {
+            &:hover {
+                &::before {
+                    width: 100%;
+                }
+            }
+            &::before {
+                height: 100%;
+                width: var(--zolo-animation-thickness);
+                border-radius: var(--zolo-item-border-radius);
+            }
+            &.animation-left::before {
+                top: 0;
+                left: 0;
+            }
+            &.animation-right::before {
+                top: 0;
+                right: 0;
+            }
+
+            &.animation-top::before {
+                top: 0;
+            }
+
+            &.animation-bottom::before {
+                bottom: 0;
+            }
+
+            &.animation-top::before,
+            &.animation-bottom::before {
+                left: 0;
+                width: 100%;
+                height: var(--zolo-animation-thickness);
+            }
+
+            &.animation-top:hover::before,
+            &.animation-bottom:hover::before {
+                height: 100%;
+            }
+        }
+    }
+
+    // pro animation style-3 css here
+    &.animation-style-3 {
+        .zolo-block-item {
+            &:hover {
+                &::before {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            &::before {
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: var(--zolo-item-border-radius);
+                transform: scale(.8);
+                opacity: 0;
             }
         }
     }

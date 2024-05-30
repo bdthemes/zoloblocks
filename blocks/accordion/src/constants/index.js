@@ -6,6 +6,11 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'slide';
 
+export const PRESETS = [
+    { label: __('Preset 1', 'zoloblocks'), value: '' },
+    { label: __('Preset 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
+];
+
 // accordion container
 export const AC_CONTAINER_BORDER = 'accBorder';
 export const AC_CONTAINER_BORDER_RADIUS = 'accBorderRadius';

@@ -1,14 +1,27 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl, FormFileUpload, Button, TextareaControl, CardDivider } from '@wordpress/components';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { ToggleControl, TextControl, RangeControl, SelectControl, Button, TextareaControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import Papa from 'papaparse';
 
 /**
  * Internal depencencies
  */
-const { ResRangeControl, SimpleRangeControl, ColorControl, HeaderTabs, IconicBtnGroup, AdvancedOptions, ZoloPanelBody, NormalBGControl, BoxShadowControl, BorderControl, ResDimensionsControl } = window.zoloModule;
+const {
+    ResRangeControl,
+    SimpleRangeControl,
+    ColorControl,
+    HeaderTabs,
+    IconicBtnGroup,
+    AdvancedOptions,
+    ZoloPanelBody,
+    NormalBGControl,
+    BoxShadowControl,
+    BorderControl,
+    ResDimensionsControl,
+} = window.zoloModule;
 
 import objAttributes from './attributes';
 
@@ -51,7 +64,11 @@ function Inspector(props) {
         showPanel,
         showReset,
         showDropshadow,
+        fileUrl,
+        barChartData,
+        pieChartData,
     } = attributes;
+
 
     const requiredProps = {
         attributes,
@@ -60,14 +77,48 @@ function Inspector(props) {
         objAttributes,
     };
 
-    // handle CSV Upload from FormFileUpload Component and pass on result to DataPareser
-    const handleCSVupload = (e) => {
-        const CSVreader = new FileReader();
-        CSVreader.onload = () => {
-            parseCSVData(CSVreader.result);
-        };
-        CSVreader.readAsText(e.target.files[0]);
-        setAttributes({ uploadStatus: !uploadStatus });
+    /**
+     * On Select File
+     */
+    const onSelectFile = (file) => {
+        const csvFile = file.url;
+
+        Papa.parse(csvFile, {
+            header: true,
+            download: true,
+            complete: (result) => {
+                const { data } = result;
+                const headers = Object.keys(data[0]);
+
+                const labels = data.map((row) => row[headers[0]]);
+
+                const series = headers.slice(1).map((header) => ({
+                    name: header,
+                    data: data.map((row) => row[header]),
+                }));
+
+                const pieSeries = headers
+                    .slice(1)
+                    .flatMap((header) => data.map((row) => Number(row[header])))
+                    .filter((value) => !isNaN(value));
+
+                setAttributes({
+                    barChartData: {
+                        options: { labels },
+                        series,
+                    },
+                    pieChartData: {
+                        series: pieSeries,
+                        labels,
+                    },
+                    pieChartLength: pieSeries.length,
+                    barChartLength: series.length,
+                    pieChartLabels: labels,
+                    fileUrl: csvFile,
+                    uploadStatus: !uploadStatus,
+                });
+            },
+        });
     };
 
     // handle CSV Input from TextareaControl Component and pass on result to DataPareser
@@ -126,23 +177,41 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl label={__('Source Type', 'zoloblocks')} value={sourceType} options={SOURCE_TYPES} onChange={(v) => setAttributes({ sourceType: v })} />
+                            <SelectControl
+                                label={__('Source Type', 'zoloblocks')}
+                                value={sourceType}
+                                options={SOURCE_TYPES}
+                                onChange={(v) => setAttributes({ sourceType: v })}
+                            />
                             {sourceType === 'upload' && (
-                                <FormFileUpload
-                                    accept=".csv"
-                                    onChange={handleCSVupload}
-                                    render={({ openFileDialog }) => (
-                                        <div>
-                                            <Button style={{ marginBottom: '10px' }} className="zolo-action-button" variant="primary" onClick={openFileDialog}>
-                                                Upload CSV File
-                                            </Button>
-                                        </div>
+                                <MediaUpload
+                                    onSelect={onSelectFile}
+                                    type="file"
+                                    value={fileUrl}
+                                    render={({ open }) => (
+                                        <Button
+                                            style={{ marginBottom: '10px' }}
+                                            className="zolo-action-button"
+                                            variant="primary"
+                                            onClick={open}
+                                        >
+                                            {fileUrl ? __('Change CSV File', 'zoloblocks-pro') : __('Select CSV File', 'zoloblocks-pro')}
+                                        </Button>
                                     )}
+                                    allowedTypes={['text/csv']}
                                 />
                             )}
                             {sourceType == 'input' && (
                                 <TextareaControl
-                                    label={__('Enter chart data as CSV format')}
+                                    label={__('Enter chart data separated by commas', 'zoloblocks')}
+                                    placeholder={__(
+                                        `Label, Value
+Team A, 10
+Team B, 15
+Team C, 20,
+Team D, 5`,
+                                        'zoloblocks'
+                                    )}
                                     value={chartInputData}
                                     rows={10}
                                     onChange={(value) => {
@@ -522,15 +591,38 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('Charts', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={CHART_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl label={__('Border Radius', 'zoloblocks')} controlName={CHART_BORDER_RADIUS} requiredProps={requiredProps} forBorderRadius={true} />
-                            <ResDimensionsControl label={__('Padding', 'zoloblocks')} controlName={CHART_PADDING} requiredProps={requiredProps} forBorderRadius={false} />
-                            <ResDimensionsControl label={__('Margin', 'zoloblocks')} controlName={CHART_MARGIN} requiredProps={requiredProps} forBorderRadius={false} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={CHART_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CHART_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={CHART_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
                             <NormalBGControl requiredProps={requiredProps} controlName={CHART_BG_COLOR} noMainBGImg={false} />
                             <BoxShadowControl controlName={CHART_BOX_SHADOW} requiredProps={requiredProps} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Colors', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>
-                            <ColorControl label={__('xAxis Color', 'zoloblocks')} color={xAxisColor} onChange={(color) => setAttributes({ xAxisColor: color })} />
-                            <ColorControl label={__('yAxis Color', 'zoloblocks')} color={yAxisColor} onChange={(color) => setAttributes({ yAxisColor: color })} />
+                            <ColorControl
+                                label={__('xAxis Color', 'zoloblocks')}
+                                color={xAxisColor}
+                                onChange={(color) => setAttributes({ xAxisColor: color })}
+                            />
+                            <ColorControl
+                                label={__('yAxis Color', 'zoloblocks')}
+                                color={yAxisColor}
+                                onChange={(color) => setAttributes({ yAxisColor: color })}
+                            />
                             <CardDivider />
                             {chartType === 'pie' || chartType === 'donut'
                                 ? Array.from({ length: pieChartLength }, (_, index) => index).map((i) => (
@@ -677,7 +769,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} block="zolo/charts" />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/charts"
+                        />
                     </>
                 }
             />

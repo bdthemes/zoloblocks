@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import { CAROUSEL_COLUMNS, CAROUSEL_GAP } from './constants';
 
@@ -203,13 +203,8 @@ export default function Edit(props) {
                     />
                 </ToolbarGroup>
             </BlockControls>
-            <div
-                {...blockProps}
-                style={{
-                    border: '2px dashed #ddd',
-                    padding: '20px',
-                }}
-            >
+            <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className="swiper" ref={reviewCarouselRef}>
                     <div {...innerBlocksProps} />
                 </div>

@@ -12,6 +12,7 @@ export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
+    { label: __('Preset 4', 'zoloblocks'), value: 'style-4' },
 ];
 
 // photo bg
@@ -68,6 +69,8 @@ export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
 export const DPL_PADDING = 'DPLPadding';
 export const DPL_MARGIN = 'DPLMargin';
 export const DPL_ICON_SIZE = 'DPLIconSize';
+export const SEPARATOR_TEAM_SIZE = 'SeparatorTeamSizew';
+export const SEPARATOR_SPACING_TEAM = 'SeparatorSpacingTeam';
 
 // container
 export const TEAM_MEMBER_CONTAINER_PADDING = 'MemberContainerPadding';

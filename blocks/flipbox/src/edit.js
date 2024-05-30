@@ -10,7 +10,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -18,7 +18,7 @@ import Inspector from './inspector';
 import Style from './style.js';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
     const {
         preview,
         uniqueId,
@@ -67,6 +67,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} flipboxRef={flipboxRef} />}
             <Style props={props} />
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <div className={`zolo-flip-box_wrap zolo-flip-box_animation_style-${flipEffect}`}>
                     <div ref={flipboxRef} className={`zolo-flip-box_item zolo-flip-box_hover`}>
                         <div className="zolo-flip-box_inner-item">

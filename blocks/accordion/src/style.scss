@@ -17,6 +17,27 @@
     transition: all 0.2s ease;
 }
 
+.wp-block-zolo-accordion {
+    &.style-2 {
+        .wp-block-zolo-accordion-child {
+            border: 0;
+            border-bottom: 1px solid rgba(170, 170, 170, 0.27);
+            border-radius: 0;
+            margin: 0;
+        }
+    
+        .ac-trigger {
+            padding: 20px 0;
+            background-color: transparent;
+        }
+        .zolo-accordion-inner {
+            padding: 0 0 20px;
+        }
+    }
+}
+
+
+
 .zolo-accordion-item {
     box-sizing: border-box;
     &.js-enabled {
@@ -53,6 +74,7 @@
         align-items: center;
         justify-content: space-between;
         gap: var(--zolo-trigger-gap);
+        outline: none;
     }
     .zolo-accordion-head-title {
         --zolo-head-title-color: #111;

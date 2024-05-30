@@ -11,7 +11,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, generateGapStyle, generateResCounterStyle } = window.zoloModule;
+const { classArrayToStr, generateGapStyle, generateResCounterStyle, SidebarOpener } = window.zoloModule;
 
 import { GRID_COLUMNS, GRID_GAP } from './constants';
 
@@ -101,6 +101,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                <SidebarOpener clientId={clientId} />
                 <InnerBlocks
                     allowedBlocks={['zolo/review-child']}
                     template={[
@@ -109,7 +110,8 @@ export default function Edit(props) {
                             {
                                 memberName: 'John Doe',
                                 memberDesignation: 'Web Designer',
-                                testimonialMessage: '"Simple Yet Powerful": Zolo Blocks is a game-changer for WordPress users. With its intuitive interface and comprehensive block library, creating stunning layouts has never been easier.',
+                                testimonialMessage:
+                                    '"Simple Yet Powerful": Zolo Blocks is a game-changer for WordPress users. With its intuitive interface and comprehensive block library, creating stunning layouts has never been easier.',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },
@@ -120,7 +122,8 @@ export default function Edit(props) {
                             {
                                 memberName: 'Joanna T. Logan',
                                 memberDesignation: 'Frontend Developer',
-                                testimonialMessage: '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted flexibility.',
+                                testimonialMessage:
+                                    '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted flexibility.',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },
@@ -131,7 +134,8 @@ export default function Edit(props) {
                             {
                                 memberName: 'Ruben S. McLain',
                                 memberDesignation: 'UX Designer',
-                                testimonialMessage: '"Versatile and Responsive": Zolo Blocks offers a wide range of blocks that adapt seamlessly to any screen size. Whether you are designing for desktop or mobile, this plugin ensures',
+                                testimonialMessage:
+                                    '"Versatile and Responsive": Zolo Blocks offers a wide range of blocks that adapt seamlessly to any screen size. Whether you are designing for desktop or mobile, this plugin ensures',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },

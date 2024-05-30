@@ -11,7 +11,7 @@ import { RawHTML } from '@wordpress/element';
  */
 import classnames from 'classnames';
 
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -19,8 +19,20 @@ import Inspector from './inspector';
 import Style from './style';
 import { cloneDeep } from 'lodash';
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, layout, parentClasses, listProfiles, iconToggle, titleToggle, DscToggle, linkHoverIcon, globalIcon } = attributes;
+    const { attributes, setAttributes, className, isSelected, clientId } = props;
+    const {
+        preview,
+        uniqueId,
+        preset,
+        layout,
+        parentClasses,
+        listProfiles,
+        iconToggle,
+        titleToggle,
+        DscToggle,
+        linkHoverIcon,
+        globalIcon,
+    } = attributes;
 
     const deepCloneProfiles = cloneDeep(listProfiles);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -55,12 +67,13 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
+            <BlockControls>
+                <ToolbarGroup>
+                    <ToolbarButton onClick={handleButtonClick} icon="insert" />
+                </ToolbarGroup>
+            </BlockControls>
             <div {...blockProps}>
-                <BlockControls>
-                    <ToolbarGroup>
-                        <ToolbarButton onClick={handleButtonClick} icon="insert" />
-                    </ToolbarGroup>
-                </BlockControls>
+                <SidebarOpener clientId={clientId} />
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
                         return (
@@ -85,7 +98,15 @@ export default function Edit(props) {
                                     <div className="zolo-list-item">
                                         {preset === 'zolo-list-style-4' ? (
                                             <div className="zolo-list-icon-and-content-wrap">
-                                                {iconToggle && preset !== 'zolo-list-style-1' && <div className="zolo-list-icon">{profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}</div>}
+                                                {iconToggle && preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-icon">
+                                                        {profile.icon ? (
+                                                            <DisplayZoloIcon icon={profile.icon} />
+                                                        ) : (
+                                                            <DisplayZoloIcon icon={globalIcon} />
+                                                        )}
+                                                    </div>
+                                                )}
                                                 {preset !== 'zolo-list-style-1' && (
                                                     <div className="zolo-list-content">
                                                         {titleToggle && (
@@ -117,7 +138,15 @@ export default function Edit(props) {
                                             </div>
                                         ) : (
                                             <>
-                                                {iconToggle && preset !== 'zolo-list-style-1' && <div className="zolo-list-icon">{profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}</div>}
+                                                {iconToggle && preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-icon">
+                                                        {profile.icon ? (
+                                                            <DisplayZoloIcon icon={profile.icon} />
+                                                        ) : (
+                                                            <DisplayZoloIcon icon={globalIcon} />
+                                                        )}
+                                                    </div>
+                                                )}
                                                 {preset !== 'zolo-list-style-1' && (
                                                     <div className="zolo-list-content">
                                                         {titleToggle && (
