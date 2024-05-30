@@ -1,16 +1,21 @@
 .zolo-container-variation-picker {
-    border: 2px dashed #e0e0e0;
-    box-shadow: none !important;
-    padding: 20px;
+    // border: 2px dashed #e0e0e0;
+    // box-shadow: none !important;
+    // padding: 20px;
 
     .components-placeholder {
         box-shadow: none !important;
+        padding: 40px;
+        border: 1px solid #2567ff;
     }
 
     .components-placeholder__label {
         align-items: center;
         justify-content: center !important;
         width: 100%;
+        svg path {
+            fill: #2567ff;
+        }
     }
 
     legend.components-placeholder__instructions {
@@ -28,18 +33,19 @@
     }
 
     button.components-button.block-editor-block-variation-picker__variation.is-secondary.has-icon {
-        background: #f9f9f9;
-        border: 1px solid #d4d4d4 !important;
-        padding: 5px 20px !important;
+        background: #ffffff;
+        border: 1px solid #2567ff !important;
+        padding: 10px 20px !important;
     }
 
     .block-editor-block-variation-picker__variation path {
-        fill: #d4d4d4 !important;
+        fill: #2567ff !important;
     }
 
     .block-editor-block-variation-picker.has-many-variations .components-placeholder__fieldset {
         width: 100% !important;
         max-width: 100% !important;
+        margin-top: 15px;
     }
 
     .block-editor-block-variation-picker__variations.block-editor-block-variation-picker__variations {
@@ -62,6 +68,12 @@
 
 // block editor style
 
+.zolo-root-container.zolo-container-has-children {
+    .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks {
+        border: 0 !important;
+    }
+}
+
 .block-editor-block-list__block.wp-block-zolo-container {
     display: flex;
 
@@ -69,14 +81,17 @@
         border: 0;
     }
 
-    &::before {
-        content: '';
-        position: absolute;
+    .block-editor-inner-blocks {
         border: 1px dashed #d5dadf;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+    }
+
+    .block-list-appender.wp-block {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &.alignfull.zolo-root-container {
