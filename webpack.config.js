@@ -10,15 +10,7 @@ const plugins = defaultConfig.plugins.filter(
 const blocksFolder = path.resolve(__dirname, 'blocks');
 let frontendEntries = getFrontend(blocksFolder);
 
-const vendorLibraries = [
-    '@vis.gl/react-google-maps',
-    'apexcharts',
-    'react-apexcharts',
-    'react-countup',
-    'react-compare-slider',
-    'uuid',
-    'webfontloader',
-];
+const vendorLibraries = ['@vis.gl/react-google-maps', 'apexcharts', 'react-countup', 'react-compare-slider', 'uuid', 'webfontloader'];
 
 const editorVendorLibraries = [
     '@codemirror/lang-css',
@@ -72,6 +64,19 @@ module.exports = {
                     },
                     filename: 'vendor-bundle/index.js',
                 },
+                // vendor: {
+                //     // Create separate bundle for each vendor library
+                //     test: (module) => {
+                //         return module.context && vendorLibraries.some((library) => module.context.includes(library));
+                //     },
+                //     name: (module) => {
+                //         const libName = vendorLibraries.find((library) => module.context.includes(library));
+                //         return libName ? `${libName.replace(/[^a-zA-Z0-9]/g, '-')}` : 'vendor-separate';
+                //     },
+                //     chunks: 'all',
+                //     enforce: true,
+                //     filename: 'vendor-bundle/[name]/index.js',
+                // },
                 editorVendor: {
                     name: 'vendor-editor-bundle',
                     chunks: 'all',

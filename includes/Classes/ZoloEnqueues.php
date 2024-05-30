@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zolo Blocks Enqueues.
  *
@@ -9,7 +8,7 @@
 use Zolo\Helpers\ZoloHelpers;
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
@@ -40,9 +39,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * Constructor
          */
         public function __construct() {
-            // only for editor
-            // add_action('enqueue_block_assets', [$this, 'editor_assets_loader'], 1);
-
             // block editor assets
             add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader'], 1);
 
@@ -75,17 +71,29 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
+
+            // vendor bundle
+            wp_enqueue_script(
+                'zolo-block-vendor-dependency',
+                trailingslashit(ZOLO_ADMIN_URL) . 'vendor-bundle/index.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
+
+            // style dist for all blocks 
+            wp_enqueue_style(
+                'zolo-block-common-style',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
+                [],
+                ZOLO_VERSION
+            );
+
+
             // override css
             if (is_admin()) {
                 return;
             }
-
-            /**
-             * Vendor files for frontend 
-             */
-
-             // counter up 
-
 
             // form validation
             if (has_block('zolo/form')) {
@@ -106,16 +114,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION,
                 true
             );
-
-            // magnific popup animations
-            if (has_block('zolo/image-gallery')) {
-                wp_enqueue_style(
-                    'zolo-maginific-popup-animations',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/mpa-animations.css',
-                    [],
-                    ZOLO_VERSION
-                );
-            }
 
             // popup
             if (has_block('zolo/image-gallery')) {
@@ -171,10 +169,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
 
-            // if (has_block('zolo/charts')) {
-            //     wp_enqueue_script('zolo-charts-lib-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/apexcharts/apexcharts.min.js', [], ZOLO_VERSION, true);
-            // }
-
             // load gsap from cdn
             wp_enqueue_script('zolo-transform-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', [], ZOLO_VERSION, true);
         }
@@ -186,21 +180,33 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
+             // dist for all blocks 
+             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
+             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
+                 'dependencies' => [],
+                 'version'      => ZOLO_VERSION
+             ];
+ 
+             wp_enqueue_script(
+                 'zolo-block-editor-script',
+                 trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/index.js',
+                 $script_dependecy['dependencies'],
+                $script_dependecy['version'],
+                 true
+             );
 
+            // editor vendor bundle
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-editor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
 
-            $version = $script_dependecy['version'];
-
-            // Enqueue vendor bundle Scripts
-            wp_register_script(
+            wp_enqueue_script(
                 'zolo-block-editor-dependency',
                 trailingslashit(ZOLO_ADMIN_URL) . 'vendor-editor-bundle/index.js',
                 $script_dependecy['dependencies'],
-                $version,
+                $script_dependecy['version'],
                 false
             );
 
@@ -239,15 +245,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ]
             ]);
 
-            // assets for both editor and frontend
-            wp_enqueue_style(
-                'zolo-block-common-style',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
-                [],
-                ZOLO_VERSION
-            );
-
-            // override css
+            // editor override css
             wp_enqueue_style(
                 'zolo-block-editor-override-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/editor-override.css',
@@ -256,7 +254,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'all'
             );
 
-            // Swiper Scripts and Styles
+            // swiper only for editor 
             wp_enqueue_style(
                 'zolo-swiper-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -273,7 +271,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 false
             );
 
-            //Register Modules
+            // Register Modules 
             $modules_dep_path = ZOLO_DIR_PATH . 'build/module/index.asset.php';
             $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [
                 'dependencies' => [],
@@ -283,50 +281,30 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             $version = $script_dependecy['version'];
 
             // Enqueue Modules Scripts
-            wp_register_script(
+            wp_enqueue_script(
                 'zolo-block-modules',
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/module/index.js',
-                $script_dependecy['dependencies'],
-                $version,
-                false
-            );
-
-            // blocks 
-            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
-            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
-                'dependencies' => [],
-                'version'      => ZOLO_VERSION
-            ];
-
-            $version = $script_dependecy['version'];
-
-            $script_dependecy = array_merge(
-                $script_dependecy['dependencies'],
                 [
                     'wp-blocks',
                     'wp-i18n',
                     'wp-element',
                     'wp-components',
+                    'wp-editor', 
+                    'wp-data',
+                    'wp-api-fetch',
+                    'wp-compose',
+                    'wp-hooks',
+                    'wp-html-entities',
+                    'wp-keycodes',
                     'zolo-block-editor-dependency',
-                    'zolo-block-modules',
-                    'zolo-swiper-editor-script'
-                ]
-            );
-
-            // var_dump($script_dependecy);
-
-            // wp_die();
-
-            // Enqueue Scripts
-            wp_enqueue_script(
-                'zolo-block-editor-script',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/index.js',
-                $script_dependecy,
+                    'zolo-swiper-editor-script',
+                    'zolo-block-vendor-dependency'
+                ],
                 $version,
-                true
+                false
             );
-
-            // Controls Editor style.
+         
+            // Enqueue Modules Styles
             wp_enqueue_style(
                 'zolo-block-control-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/module/style.css',
@@ -426,6 +404,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'upkBrand'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/upk-brand.svg',
             ]);
         }
+
     }
 }
 
