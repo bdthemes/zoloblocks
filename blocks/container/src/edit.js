@@ -47,14 +47,14 @@ export default function Edit(props) {
         }
 
         // check particleOptions shapes
-        if (particleOptions?.shapes.length === 0) {
-            setAttributes({
-                particleOptions: {
-                    ...particleOptions,
-                    shapes: [{ value: 'circle', label: 'Circle' }],
-                },
-            });
-        }
+        // if (particleOptions?.shapes.length === 0) {
+        //     setAttributes({
+        //         particleOptions: {
+        //             ...particleOptions,
+        //             shapes: [{ value: 'circle', label: 'Circle' }],
+        //         },
+        //     });
+        // }
     }, []);
 
     if (!variationStatus && 0 === getBlockParents?.length) {

@@ -40,84 +40,48 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    //particle attr
     enableParticlesAnimation: {
         type: 'boolean',
         default: false,
     },
-    optionPreset: {
+    toggleCustomOption: {
+        type: 'boolean',
+        default: false,
+    },
+    optPreset: {
         type: 'string',
-        default: 'one',
+        default: 'optionOne',
+    },
+    //particle color
+    colorItem: {
+        type: 'array',
+        default: [
+            {
+                id: 1,
+                color: '',
+            },
+        ],
     },
     particleOptions: {
         type: 'object',
         default: {
-            number: {
-                type: 'number',
-                default: 80,
-            },
-            DensityArea: {
-                type: 'number',
-                default: 800,
-            },
-            Color: {
+            color: {
                 type: 'string',
-                default: '#fff',
             },
+
             shapes: {
                 type: 'array',
                 default: [],
             },
-            //sroke width
-            stroke: {
-                type: 'number',
-                default: 0,
-            },
-            //size
-            size: {
-                type: 'number',
-                default: 3,
-            },
-            //speed
-            speed: {
-                type: 'number',
-                default: 6,
-            },
-            //link distance
-            distance: {
-                type: 'number',
-                default: 150,
-            },
-            //link color
-            linkColor: {
-                type: 'string',
-                default: '#000',
-            },
-            //move speed
-            moveSpeed: {
-                type: 'number',
-                default: 6,
-            },
-            //directon
+
             direction: {
                 type: 'string',
-                default: 'none',
             },
-            // properties onhover
-            onHover: {
-                type: 'boolean',
-                default: false,
-            },
-            oNhoverMode: {
+
+            customOptions: {
                 type: 'string',
-                default: 'grab',
-            },
-            onClick: {
-                type: 'boolean',
-                default: false,
-            },
-            onClickMode: {
-                type: 'string',
-                default: 'push',
+                default: '',
             },
         },
     },

@@ -11,7 +11,10 @@ const Save = ({ attributes }) => {
         parentClasses,
         zoloId,
         enableParticlesAnimation,
+        toggleCustomOption,
         particleOptions,
+        optPreset,
+        colorItem,
     } = attributes;
 
     return (
@@ -34,6 +37,9 @@ const Save = ({ attributes }) => {
                     data-id={`zolo-particles-${uniqueId}`}
                     id={`zolo-particles-${uniqueId}`}
                     data-options={JSON.stringify(particleOptions)}
+                    data-optpreset={optPreset}
+                    data-coloritem={JSON.stringify(colorItem)}
+                    data-togglcustomoption={toggleCustomOption}
                 ></div>
             )}
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (

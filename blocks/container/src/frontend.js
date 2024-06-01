@@ -1,3 +1,5 @@
+import options from './options';
+
 document.addEventListener('DOMContentLoaded', function () {
     const zoloParticleContainers = document.querySelectorAll('.zolo-particles');
 
@@ -5,118 +7,136 @@ document.addEventListener('DOMContentLoaded', function () {
         zoloParticleContainers.forEach((container) => {
             const id = container.dataset?.id;
 
-            console.log('id', id);
-
             const particleOptions = container.dataset.options ? JSON.parse(container.dataset.options) : {};
-            const shape = particleOptions.shape.map((item) => item.value);
-            const options = {
+            const toggleCustomOption = container.dataset.togglcustomoption;
+            const optPreset = container.dataset.optpreset;
+            const colorItem = container.dataset.coloritem && JSON.parse(container.dataset.coloritem);
+            const color = colorItem && colorItem.length > 0 && colorItem.map((item) => item.color);
+
+            const shapes =
+                particleOptions?.shapes && particleOptions?.shapes.length > 0 && particleOptions?.shapes.map((item) => item.value);
+            const customOptions = particleOptions?.customOptions;
+            const optionData = toggleCustomOption && customOptions ? createObject(customOptions) : optionsMain;
+            function createObject(customOptions) {
+                if (!customOptions) {
+                    return false;
+                }
+                try {
+                    let obj = JSON.parse(customOptions);
+                    return obj;
+                } catch (error) {
+                    if (error) return false;
+                }
+            }
+            const direction = particleOptions.direction;
+            const optionsMain = {
                 particles: {
                     number: {
-                        value: particleOptions?.number,
+                        value: options[optPreset].particles.number?.value || '',
                         density: {
-                            enable: true,
-                            value_area: particleOptions?.DensityArea,
+                            enable: options[optPreset].particles.number.density?.enable || '',
+                            value_area: options[optPreset].particles.number.density?.value_area || '',
                         },
                     },
                     color: {
-                        value: '#ff0000',
+                        value: !color[0] == '' ? color : options[optPreset].particles.color?.value || '',
                     },
                     shape: {
-                        type: [...shape],
+                        type: shapes || options[optPreset].particles.shape?.type || '',
                         stroke: {
-                            width: particleOptions?.stroke || 0,
-                            color: '#000000',
+                            width: options[optPreset].particles.shape.stroke?.width || '',
+                            color: options[optPreset].particles.shape.stroke?.color || '',
                         },
                         polygon: {
-                            nb_sides: 5,
+                            nb_sides: options[optPreset].particles.shape.polygon?.nb_sides || '',
                         },
                     },
                     opacity: {
-                        value: 0.5,
-                        random: false,
+                        value: options[optPreset].particles.opacity?.value || '',
+                        random: options[optPreset].particles.opacity?.random || '',
                         anim: {
-                            enable: false,
-                            speed: 1,
-                            opacity_min: 0.1,
-                            sync: false,
+                            enable: options[optPreset].particles.opacity.anim?.enable || '',
+                            speed: options[optPreset].particles.opacity.anim?.speed || '',
+                            opacity_min: options[optPreset].particles.opacity.anim?.opacity_min || '',
+                            sync: options[optPreset].particles.opacity.anim?.sync || '',
                         },
                     },
                     size: {
-                        value: particleOptions?.size || 3,
-                        random: true,
+                        value: options[optPreset].particles.size?.value || '',
+                        random: options[optPreset].particles.size?.random || '',
                         anim: {
-                            enable: false,
-                            speed: particleOptions?.speed || 6,
-                            size_min: 0.1,
-                            sync: false,
+                            enable: options[optPreset].particles.size.anim?.enable || '',
+                            speed: options[optPreset].particles.size.anim?.speed || '',
+                            size_min: options[optPreset].particles.size.anim?.size_min || '',
+                            sync: options[optPreset].particles.size.anim?.sync || '',
                         },
                     },
                     line_linked: {
-                        enable: true,
-                        distance: particleOptions?.distance || 150,
-                        color: '#000000',
-                        opacity: 0.4,
-                        width: 1,
+                        enable: options[optPreset].particles.line_linked?.enable || '',
+                        distance: options[optPreset].particles.line_linked?.distance || '',
+                        color: options[optPreset].particles.line_linked?.color || '',
+                        opacity: options[optPreset].particles.line_linked?.opacity || '',
+                        width: options[optPreset].particles.line_linked?.width || '',
                     },
                     move: {
-                        enable: true,
-                        speed: particleOptions?.moveSpeed || 6,
-                        direction: particleOptions?.direction || 'none',
-                        random: false,
-                        straight: false,
-                        out_mode: 'out',
-                        bounce: false,
+                        enable: options[optPreset].particles.move?.enable,
+                        speed: options[optPreset].particles.move?.speed || '',
+                        direction: direction && direction,
+                        random: options[optPreset].particles.move?.random || '',
+                        straight: options[optPreset].particles.move?.straight || '',
+                        out_mode: options[optPreset].particles.move?.out_mode || '',
+                        bounce: options[optPreset].particles.move?.bounce || '',
                         attract: {
-                            enable: false,
-                            rotateX: 600,
-                            rotateY: 1200,
+                            enable: options[optPreset].particles.move.attract?.enable || '',
+                            rotateX: options[optPreset].particles.move.attract?.rotateX || '',
+                            rotateY: options[optPreset].particles.move.attract?.rotateY || '',
                         },
                     },
                 },
                 interactivity: {
-                    detect_on: 'canvas',
+                    detect_on: options[optPreset].interactivity?.detect_on || '',
                     events: {
                         onhover: {
-                            enable: particleOptions?.onHover || false,
-                            mode: particleOptions?.onHoverMode || 'grab',
+                            enable: options[optPreset].interactivity?.events.onhover?.enable || '',
+                            mode: options[optPreset].interactivity?.events.onhover?.mode || '',
                         },
                         onclick: {
-                            enable: particleOptions?.onClick || false,
-                            mode: particleOptions?.onClickMode || 'push',
+                            enable: options[optPreset].interactivity?.events.onclick?.enable || '',
+                            mode: options[optPreset].interactivity?.events.onclick?.mode || '',
                         },
-                        resize: true,
+                        resize: options[optPreset].interactivity?.events?.resize || '',
                     },
                     modes: {
                         grab: {
-                            distance: 140,
+                            distance: options[optPreset].interactivity?.modes.grab?.distance || '',
                             line_linked: {
-                                opacity: 1,
+                                opacity: options[optPreset].interactivity?.modes.grab.line_linked?.opacity || '',
                             },
                         },
                         bubble: {
-                            distance: 400,
-                            size: 40,
-                            duration: 2,
-                            opacity: 8,
-                            speed: 3,
+                            distance: options[optPreset].interactivity?.modes.bubble?.distance || '',
+                            size: options[optPreset].interactivity?.modes.bubble?.size || '',
+                            duration: options[optPreset].interactivity?.modes.bubble?.duration || '',
+                            opacity: options[optPreset].interactivity?.modes.bubble?.opacity || '',
+                            speed: options[optPreset].interactivity?.modes.bubble?.speed || '',
                         },
                         repulse: {
-                            distance: 200,
-                            duration: 0.4,
+                            distance: options[optPreset].interactivity?.modes.repulse?.distance || '',
+                            duration: options[optPreset].interactivity?.modes.repulse?.duration || '',
                         },
                         push: {
-                            particles_nb: 4,
+                            particles_nb: options[optPreset].interactivity?.modes.push?.particles_nb || '',
                         },
                         remove: {
-                            particles_nb: 2,
+                            particles_nb: options[optPreset].interactivity?.modes.remove?.particles_nb || '',
                         },
                     },
                 },
-                retina_detect: true,
+                retina_detect: options[optPreset]?.retina_detect || '',
             };
 
             if (id) {
-                particlesJS(id, options);
+                particlesJS(id, optionData);
             }
         });
     }
