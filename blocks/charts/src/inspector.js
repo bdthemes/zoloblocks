@@ -228,6 +228,7 @@ Team D, 5`,
                                 onChange={(v) => {
                                     setAttributes({ chartType: v });
                                 }}
+                                help={ chartType === 'line' ? __('You may need to save and refresh the page to see the changes.', 'zoloblocks'): ''}
                             />
                             <SimpleRangeControl
                                 label={__('Height', 'zoloblocks')}
