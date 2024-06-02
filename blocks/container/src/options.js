@@ -1,3 +1,5 @@
+//import data from './data.json'; particaloptions
+
 const optionOne = {
     particles: {
         number: {

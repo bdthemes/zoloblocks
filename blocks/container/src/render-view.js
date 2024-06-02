@@ -98,13 +98,15 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                         sync: options[optPreset].particles.size.anim?.sync || '',
                     },
                 },
+
                 line_linked: {
-                    enable: options[optPreset].particles.line_linked?.enable || false,
-                    distance: options[optPreset].particles.line_linked?.distance || '',
-                    color: options[optPreset].particles.line_linked?.color || '',
-                    opacity: options[optPreset].particles.line_linked?.opacity || '',
-                    width: options[optPreset].particles.line_linked?.width || '',
+                    enable: options[optPreset]?.particles?.line_linked?.enable || false,
+                    distance: options[optPreset]?.particles?.line_linked?.distance || '',
+                    color: options[optPreset]?.particles?.line_linked?.color || '',
+                    opacity: options[optPreset]?.particles?.line_linked?.opacity || '',
+                    width: options[optPreset]?.particles?.line_linked?.width || '',
                 },
+
                 move: {
                     enable: options[optPreset].particles.move?.enable || false,
                     speed: options[optPreset].particles.move?.speed || '',
@@ -120,6 +122,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     },
                 },
             },
+
             interactivity: {
                 detect_on: options[optPreset].interactivity?.detect_on || 'canvas',
                 events: {
@@ -159,6 +162,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     },
                 },
             },
+
             retina_detect: options[optPreset]?.retina_detect || false,
         };
 
