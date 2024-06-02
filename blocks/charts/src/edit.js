@@ -252,7 +252,6 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
-    console.table(barChartData);
     const renderOptions = () => {
         if (chartType === 'pie' || chartType === 'donut') {
             const newOptions = {
