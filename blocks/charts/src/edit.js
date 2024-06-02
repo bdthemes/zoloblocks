@@ -115,9 +115,10 @@ export default function Edit(props) {
                 yaxis: { lines: { show: showGrid ? showGridX : false } },
             },
             chart: {
-                id: `chart-${uid}`,
+                id: `chart-${uniqueId}`,
                 background: 'transparent',
                 height: 320,
+                type: chartType,
                 toolbar: {
                     show: showToolbar,
                     tools: {
@@ -251,6 +252,7 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
+    console.table(barChartData);
     const renderOptions = () => {
         if (chartType === 'pie' || chartType === 'donut') {
             const newOptions = {
@@ -259,7 +261,11 @@ export default function Edit(props) {
             };
             return newOptions;
         } else {
-            return barChartData.options;
+            const newOptions = {
+                ...barChartData.options,
+                labels: barChartData.options.labels,
+            };
+            return newOptions;
         }
     };
 

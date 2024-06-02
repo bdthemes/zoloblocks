@@ -1,7 +1,7 @@
 const barChartAttributes = {
     options: {
         chart: {
-            id: 'apexchart-example',
+            type: 'line',
             toolbar: {
                 show: false,
                 tools: {
@@ -15,8 +15,6 @@ const barChartAttributes = {
                 },
             },
             width: 380,
-        },
-        xaxis: {
         },
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     },
@@ -34,6 +32,7 @@ const barChartAttributes = {
             data: [45, 55, 60, 70, 240, 255, 130, 65, 75, 85, 106, 140],
         },
     ],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 };
 
 export default barChartAttributes;

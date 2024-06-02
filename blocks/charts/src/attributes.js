@@ -48,7 +48,7 @@ const attributes = {
     ...generateBoxShadowAttributies(CHART_BOX_SHADOW),
     chartType: {
         type: 'string',
-        default: 'bar',
+        default: 'line',
     },
     sourceType: {
         type: 'string',
