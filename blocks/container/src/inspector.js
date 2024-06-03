@@ -10,17 +10,8 @@ import Sortable from './sortable';
 /**
  * Internal depencencies
  */
-const {
-    ResRangeControl,
-    HeaderTabs,
-    IconicBtnGroup,
-    ResAlignmentControl,
-    AdvancedOptions,
-    ZoloPanelBody,
-    ResGapControl,
-    PopoverControl,
-    ColorControlAlt,
-} = window.zoloModule;
+const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions, ZoloPanelBody, ResGapControl, PopoverControl } =
+    window.zoloModule;
 
 import objAttributes from './attributes';
 import {
@@ -88,30 +79,34 @@ function Inspector(props) {
     const onChangeHandler = (select) => {
         setAttributes({ optPreset: select });
         switch (select) {
-            case 'optionOne':
+            case 'hover_bubble':
                 setAttributes({
                     particleOptions: { ...particleOptions, direction: 'none' },
                 });
 
                 break;
-            case 'optionTwo':
+            case 'dust_wind':
                 setAttributes({
                     particleOptions: { ...particleOptions, direction: 'right' },
                 });
 
                 break;
-            case 'optionThree':
+            case 'flying_bubble':
                 setAttributes({
                     particleOptions: { ...particleOptions, direction: 'top-right' },
                 });
 
                 break;
-            case 'optionFour':
+            case 'snow_fall':
                 setAttributes({
                     particleOptions: { ...particleOptions, direction: 'bottom' },
                 });
 
                 break;
+            case 'flying_shape':
+                setAttributes({
+                    particleOptions: { ...particleOptions, direction: 'top' },
+                });
         }
     };
 
@@ -144,6 +139,7 @@ function Inspector(props) {
                                                             { label: __('Dust Wind'), value: 'dust_wind' },
                                                             { label: __('Flying Bubble'), value: 'flying_bubble' },
                                                             { label: __('Snow Fall'), value: 'snow_fall' },
+                                                            { label: __('Flying Shape'), value: 'flying_shape' },
                                                         ]}
                                                         onChange={(preset) => onChangeHandler(preset)}
                                                     />
@@ -204,7 +200,6 @@ function Inspector(props) {
                                             {toggleCustomOption && (
                                                 <TextareaControl
                                                     label={__('Custom Options', 'zoloblocks')}
-                                                    placeholder={__('Custom option', 'zoloblocks')}
                                                     onChange={(v) =>
                                                         setAttributes({
                                                             particleOptions: {
@@ -213,7 +208,18 @@ function Inspector(props) {
                                                             },
                                                         })
                                                     }
-                                                    value={particleOptions.customOptions}
+                                                    value={particleOptions.customOptions.length > 0 ? particleOptions.customOptions : ''}
+                                                    help={
+                                                        <div className="zolo_particle_help">
+                                                            <a
+                                                                href="https://vincentgarreau.com/particles.js/"
+                                                                target="_blank"
+                                                                rel="noreferrer noopener"
+                                                            >
+                                                                {__('Genarate particle', 'zoloblocks')}
+                                                            </a>
+                                                        </div>
+                                                    }
                                                 />
                                             )}
                                         </>

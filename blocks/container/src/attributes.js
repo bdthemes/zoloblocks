@@ -81,7 +81,7 @@ const attributes = {
 
             customOptions: {
                 type: 'string',
-                default: '',
+                default: 'particlesJS',
             },
         },
     },

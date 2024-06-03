@@ -21,7 +21,7 @@ const Sortable = ({ colorItem, setAttributes }) => {
                                 ...colorItem,
                                 {
                                     id: colorItem.length + 1,
-                                    color: '#ff0000',
+                                    color: '#808080',
                                 },
                             ],
                         })

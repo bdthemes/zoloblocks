@@ -9,6 +9,19 @@ export const optionOne = {
                 value_area: 1650,
             },
         },
+        color: {
+            value: '#ff0000',
+        },
+        shape: {
+            type: 'circle',
+            stroke: {
+                width: 0,
+                color: '#000000',
+            },
+            polygon: {
+                nb_sides: 5,
+            },
+        },
         opacity: {
             value: 0,
             random: false,
@@ -90,22 +103,10 @@ export const optionOne = {
             },
         },
     },
-    move: {
-        enable: true,
-        speed: 6,
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false,
-        attract: {
-            enable: false,
-            rotateX: 600,
-            rotateY: 1200,
-        },
-    },
+    retina_detect: true,
 };
 
-const optionTwo = {
+export const optionTwo = {
     particles: {
         number: { value: 14, density: 1 },
         color: { value: ['#e9ecef', '#dee2e6', '#ced4da', '#adb5bd', '#6c757d', '#495057', '#343a40'] },
@@ -121,7 +122,7 @@ const optionTwo = {
     retina_detect: true,
 };
 
-const optionThree = {
+export const optionThree = {
     particles: {
         number: {
             value: 15,
@@ -153,7 +154,7 @@ const optionThree = {
     retina_detect: false,
 };
 
-const optionFour = {
+export const optionFour = {
     particles: {
         number: {
             value: 66,
@@ -259,9 +260,53 @@ const optionFour = {
     retina_detect: true,
 };
 
-const options = {
-    optionOne,
-    optionTwo,
-    optionThree,
-    optionFour,
+export const optionFive = {
+    particles: {
+        number: {
+            value: 60,
+            density: { enable: true, value_area: 1000 },
+        },
+        color: {
+            value: [
+                '#ff7fbf',
+                '#ff7fff',
+                '#bf7fff',
+                '#ff7f7f',
+                '#7f7fff',
+                '#7fbfff',
+                '#7fffff',
+                '#7fffbf',
+                '#7fff7f',
+                '#bfff7f',
+                '#ffff7f',
+                '#ffbf7f',
+            ],
+        },
+        shape: {
+            type: 'edge',
+        },
+        opacity: {
+            value: 0.5,
+            random: true,
+            anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false },
+        },
+        size: { value: 50, random: true },
+        move: {
+            enable: true,
+            speed: 4,
+            direction: 'top',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+        },
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: { onclick: { enable: true, mode: 'push' }, resize: true },
+        modes: {
+            grab: { distance: 300, line_linked: { opacity: 1 } },
+            bubble: { distance: 100, size: 7.5, duration: 2, opacity: 8, speed: 3 },
+            repulse: { distance: 1 },
+        },
+    },
 };

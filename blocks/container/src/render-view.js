@@ -2,8 +2,8 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import classnames from 'classnames';
 import { useEffect, useRef } from '@wordpress/element';
-// import options from './options';
-import { optionOne } from './options';
+
+import { optionOne, optionTwo, optionThree, optionFour, optionFive } from './options';
 
 const { classArrayToStr } = window.zoloModule;
 
@@ -38,12 +38,8 @@ export default function RenderView({ attributes, clientId, className, setAttribu
 
     const particlesRef = useRef(null);
 
-    // console.log(optPreset);
-
     useEffect(() => {
         const shapes = particleOptions?.shapes && particleOptions?.shapes.length > 0 && particleOptions?.shapes.map((item) => item.value);
-
-        console.log('shapes: ', shapes);
 
         const customOptions = particleOptions?.customOptions;
         const color = colorItem && colorItem.length > 0 && colorItem.map((item) => item.color);
@@ -67,32 +63,105 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 particles: {
                     ...optionOne?.particles,
                     color: {
-                        value: color && color.length > 0 && color[0] !== '' ? color : '#000000',
+                        value: color && color.length > 0 && color[0] !== '' ? color : optionOne?.particles.color?.value,
+                    },
+                    shape: {
+                        type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
+                    },
+                    ...(optPreset === 'hover_bubble' && {
+                        move: {
+                            ...optionOne?.move,
+                            direction: direction || 'none',
+                        },
+                    }),
+                },
+            }),
+            ...(optPreset === 'hover_bubble' && { interactivity: optionOne?.interactivity }),
+
+            // dust_wind
+            ...(optPreset === 'dust_wind' && {
+                particles: {
+                    ...optionTwo?.particles,
+                    color: {
+                        value: color && color.length > 0 && color[0] !== '' ? color : optionTwo?.particles.color?.value || '#000000',
                     },
                     shape: {
                         type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                     },
                 },
-            }),
-            ...(optPreset === 'hover_bubble' && { interactivity: optionOne?.interactivity }),
-            ...(optPreset === 'hover_bubble' && {
-                move: {
-                    ...optionOne?.move,
+
+                ...(optPreset === 'dust_wind' && {
+                    move: optionTwo?.move,
                     direction: direction || 'none',
-                },
+                }),
             }),
+            //Flying Bubble
+            ...(optPreset === 'flying_bubble' && {
+                particles: {
+                    ...optionThree?.particles,
+                    color: {
+                        value: color && color.length > 0 && color[0] !== '' ? color : optionThree?.particles.color?.value || '#000000',
+                    },
+                    shape: {
+                        type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
+                    },
+
+                    move: {
+                        ...optionThree?.move,
+                        direction: direction || 'none',
+                    },
+                },
+                //interactivity
+                ...(optPreset === 'flying_bubble' && { interactivity: optionThree?.interactivity }),
+            }),
+            //snow fall
+            ...(optPreset === 'snow_fall' && {
+                particles: {
+                    ...optionFour?.particles,
+                    color: {
+                        value: color && color.length > 0 && color[0] !== '' ? color : optionFour?.particles.color?.value || '#000000',
+                    },
+                    shape: {
+                        type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
+                    },
+                    move: {
+                        ...optionFour?.move,
+                        direction: direction || 'none',
+                    },
+                },
+                //interactivity
+                ...(optPreset === 'snow_fall' && { interactivity: optionFour?.interactivity }),
+            }),
+
+            // flying shape
+            ...(optPreset === 'flying_shape' && {
+                particles: {
+                    ...optionFive?.particles,
+                    color: {
+                        value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
+                    },
+                    shape: {
+                        type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
+                    },
+                    move: {
+                        ...optionFive?.move,
+                        direction: direction || 'none',
+                    },
+                },
+                //interactivity
+                ...(optPreset === 'flying_shape' && { interactivity: optionFive?.interactivity }),
+            }),
+
             retina_detect: true,
         };
-
-        console.log('mainOptions: ', mainOptions);
 
         // add default options
         if (particleOptions === null || particleOptions === undefined) {
             setAttributes({
-                particleOptions: toggleCustomOption && customOptions ? createObject(customOptions) : mainOptions,
+                particleOptions: toggleCustomOption && customOptions ? createObject(customOptions) : !toggleCustomOption && mainOptions,
             });
         }
-        const optionData = toggleCustomOption && customOptions ? createObject(customOptions) : mainOptions;
+        const optionData = toggleCustomOption && customOptions ? createObject(customOptions) : !toggleCustomOption && mainOptions;
 
         const deviceType = select('core/editor').getDeviceType();
 
