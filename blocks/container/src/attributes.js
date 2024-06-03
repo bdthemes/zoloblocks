@@ -51,7 +51,7 @@ const attributes = {
     },
     optPreset: {
         type: 'string',
-        default: 'optionOne',
+        default: 'hover_bubble',
     },
     //particle color
     colorItem: {

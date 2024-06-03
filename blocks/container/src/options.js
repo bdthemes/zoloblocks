@@ -1,25 +1,12 @@
 //import data from './data.json'; particaloptions
 
-const optionOne = {
+export const optionOne = {
     particles: {
         number: {
             value: 15,
             density: {
                 enable: true,
                 value_area: 1650,
-            },
-        },
-        color: {
-            value: '#ff0000',
-        },
-        shape: {
-            type: 'circle',
-            stroke: {
-                width: 0,
-                color: '#000000',
-            },
-            polygon: {
-                nb_sides: 5,
             },
         },
         opacity: {
@@ -103,7 +90,19 @@ const optionOne = {
             },
         },
     },
-    retina_detect: true,
+    move: {
+        enable: true,
+        speed: 6,
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200,
+        },
+    },
 };
 
 const optionTwo = {
@@ -266,5 +265,3 @@ const options = {
     optionThree,
     optionFour,
 };
-
-export default options;

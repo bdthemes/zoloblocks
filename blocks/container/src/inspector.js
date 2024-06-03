@@ -140,15 +140,14 @@ function Inspector(props) {
                                                         label={__('Presets', 'zoloblocks')}
                                                         value={optPreset}
                                                         options={[
-                                                            { label: __('Hover Bubble'), value: 'optionOne' },
-                                                            { label: __('Dust Wind'), value: 'optionTwo' },
-                                                            { label: __('Flying Bubble'), value: 'optionThree' },
-                                                            { label: __('Snowfall'), value: 'optionFour' },
+                                                            { label: __('Hover Bubble'), value: 'hover_bubble' },
+                                                            { label: __('Dust Wind'), value: 'dust_wind' },
+                                                            { label: __('Flying Bubble'), value: 'flying_bubble' },
+                                                            { label: __('Snow Fall'), value: 'snow_fall' },
                                                         ]}
                                                         onChange={(preset) => onChangeHandler(preset)}
                                                     />
                                                     <Select2
-                                                        // defaultValue={[{ value: 'circle', label: 'Circle' }]}
                                                         isMulti
                                                         isSearchable={false}
                                                         closeMenuOnSelect={true}
