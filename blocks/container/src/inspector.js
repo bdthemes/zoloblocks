@@ -135,11 +135,11 @@ function Inspector(props) {
                                                         label={__('Presets', 'zoloblocks')}
                                                         value={optPreset}
                                                         options={[
-                                                            { label: __('Hover Bubble'), value: 'hover_bubble' },
                                                             { label: __('Dust Wind'), value: 'dust_wind' },
                                                             { label: __('Flying Bubble'), value: 'flying_bubble' },
                                                             { label: __('Snow Fall'), value: 'snow_fall' },
                                                             { label: __('Flying Shape'), value: 'flying_shape' },
+                                                            { label: __('Hover Bubble'), value: 'hover_bubble' },
                                                         ]}
                                                         onChange={(preset) => onChangeHandler(preset)}
                                                     />
