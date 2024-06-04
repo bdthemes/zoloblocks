@@ -17,6 +17,7 @@ class PostGrid extends PostBlock {
         'showReadMore'     => false,
         'readMoreBtnText'  => 'Read More',
         'showReadmoreIcon' => false,
+        'authorPrefix'     => '',
     ];
 
     public function get_default_attributes() {

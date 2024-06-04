@@ -131,6 +131,7 @@ function Inspector(props) {
         fauthorHoverColor,
         fcountColor,
         fcountBGColor,
+        authorPrefix,
     } = attributes;
 
     const requiredProps = {
@@ -295,6 +296,15 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
+                            {
+                                showMeta && (
+                                    <TextControl
+                                        label={__('Author Prefix', 'zoloblocks')}
+                                        value={authorPrefix}
+                                        onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                    />
+                                )
+                            }
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props}>
                             <QueryControl attributes={attributes} setAttributes={setAttributes} />

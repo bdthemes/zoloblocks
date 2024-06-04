@@ -144,6 +144,7 @@ function Inspector(props) {
         prevNavIcon,
         nextNavIcon,
         coverFlowEffect,
+        authorPrefix,
     } = attributes;
 
     const requiredProps = {
@@ -308,6 +309,15 @@ function Inspector(props) {
                                         onChange={(value) => setAttributes({ metaSeparator: value })}
                                     />
                                 )}
+                                {
+                                    showAuthor && (
+                                        <TextControl
+                                            label={__('Author Prefix', 'zoloblocks')}
+                                            value={authorPrefix}
+                                            onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                        />
+                                    )
+                                }
                             </ZoloPanelBody>
                         )}
                         {showReadMore && (

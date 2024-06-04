@@ -106,6 +106,9 @@ const attributes = {
     postQuery: {
         type: 'object',
     },
+    authorPrefix: {
+        type: 'string',
+    },
     ...generateResRangeAttributies(COLUMNS_GAP),
     showThumbnail: {
         type: 'boolean',

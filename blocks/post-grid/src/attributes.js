@@ -93,6 +93,9 @@ const attributes = {
     postQuery: {
         type: 'object',
     },
+    authorPrefix: {
+        type: 'string',
+    },
     ...generateResCounterAttributies(GRID_COLUMNS, {
         deskRange: 3,
         tabRange: 2,
