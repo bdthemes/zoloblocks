@@ -412,6 +412,7 @@
             position: unset;
             background: transparent;
             padding: 0;
+            flex-wrap: unset;
         }
         .zolo-post-meta-wrap {
             display: flex;
@@ -419,6 +420,7 @@
             justify-content: space-between;
             padding: 20px;
             position: relative;
+            gap: 10px;
             &::before {
                 content: "";
                 position: absolute;
@@ -440,6 +442,7 @@
 
         .zolo-post-author-name {
             flex-direction: row;
+            flex-wrap: wrap;
         }
         .zolo-post-meta-box img {
             --zolo-meta-box-img-size : 35px;
