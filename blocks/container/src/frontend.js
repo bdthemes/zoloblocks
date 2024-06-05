@@ -1,4 +1,4 @@
-import { optionOne, optionTwo, optionThree, optionFour, optionFive } from './options';
+import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
 
 document.addEventListener('DOMContentLoaded', function () {
     const zoloParticleContainers = document.querySelectorAll('.zolo-particles');
@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         color: {
                             value: color && color.length > 0 && color[0] !== '' ? color : '#000000',
                         },
+                        size: {
+                            ...optionSix?.shapeSize,
+                            value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionOne?.particles.size?.value,
+                        },
                         shape: {
                             type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                         },
@@ -59,6 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         color: {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionTwo?.particles.color?.value || '#000000',
                         },
+                        size: {
+                            ...optionSix?.shapeSize,
+                            value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionTwo?.particles.size?.value,
+                        },
                         shape: {
                             type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                         },
@@ -75,6 +83,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         ...optionThree?.particles,
                         color: {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionThree?.particles.color?.value || '#000000',
+                        },
+                        size: {
+                            ...optionSix?.shapeSize,
+                            value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionThree?.particles.size?.value,
                         },
                         shape: {
                             type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
@@ -95,6 +107,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         color: {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionFour?.particles.color?.value || '#000000',
                         },
+                        size: {
+                            ...optionSix?.shapeSize,
+                            value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionFour?.particles.size?.value,
+                        },
                         shape: {
                             type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                         },
@@ -114,6 +130,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         color: {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
                         },
+                        size: {
+                            ...optionSix?.shapeSize,
+                            value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionFive?.particles.size?.value,
+                        },
                         shape: {
                             type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
                         },
@@ -124,6 +144,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     //interactivity
                     ...(optPreset === 'flying_shape' && { interactivity: optionFive?.interactivity }),
+                }),
+                // polygon Move
+                ...(optPreset === 'polygonal_move' && {
+                    particles: {
+                        ...optionSix?.particles,
+                        color: {
+                            value: color && color.length > 0 && color[0] !== '' ? color : optionSix?.particles.color?.value || '#000000',
+                        },
+                        size: {
+                            ...optionSix?.shapeSize,
+                            value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionSix?.particles.size?.value,
+                        },
+                        shape: {
+                            type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : optionSix?.particles.shape?.type,
+                        },
+                        ...optionSix?.opacity,
+                        move: {
+                            ...optionSix?.move,
+                            direction: direction || 'none',
+                        },
+                    }, // Add a comma here
                 }),
 
                 retina_detect: true,

@@ -3,7 +3,7 @@ import { select } from '@wordpress/data';
 import classnames from 'classnames';
 import { useEffect, useRef } from '@wordpress/element';
 
-import { optionOne, optionTwo, optionThree, optionFour, optionFive } from './options';
+import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
 
 const { classArrayToStr } = window.zoloModule;
 
@@ -65,6 +65,11 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     color: {
                         value: color && color.length > 0 && color[0] !== '' ? color : optionOne?.particles.color?.value,
                     },
+                    size: {
+                        ...optionSix?.size,
+                        value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionOne?.particles.size?.value,
+                    },
+
                     shape: {
                         type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                     },
@@ -85,6 +90,10 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     color: {
                         value: color && color.length > 0 && color[0] !== '' ? color : optionTwo?.particles.color?.value || '#000000',
                     },
+                    size: {
+                        ...optionSix?.size,
+                        value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionTwo?.particles.size?.value,
+                    },
                     shape: {
                         type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                     },
@@ -101,6 +110,10 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     ...optionThree?.particles,
                     color: {
                         value: color && color.length > 0 && color[0] !== '' ? color : optionThree?.particles.color?.value || '#000000',
+                    },
+                    size: {
+                        ...optionSix?.size,
+                        value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionThree?.particles.size?.value,
                     },
                     shape: {
                         type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
@@ -121,6 +134,10 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     color: {
                         value: color && color.length > 0 && color[0] !== '' ? color : optionFour?.particles.color?.value || '#000000',
                     },
+                    size: {
+                        ...optionSix?.size,
+                        value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionFour?.particles.size?.value,
+                    },
                     shape: {
                         type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                     },
@@ -140,6 +157,10 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     color: {
                         value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
                     },
+                    size: {
+                        ...optionSix?.shapeSize,
+                        value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionFive?.particles.size?.value,
+                    },
                     shape: {
                         type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
                     },
@@ -150,6 +171,28 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 },
                 //interactivity
                 ...(optPreset === 'flying_shape' && { interactivity: optionFive?.interactivity }),
+            }),
+            // polygon Move
+            ...(optPreset === 'polygonal_move' && {
+                particles: {
+                    ...optionSix?.particles,
+                    color: {
+                        value: color && color.length > 0 && color[0] !== '' ? color : optionSix?.particles.color?.value || '#000000',
+                    },
+                    size: {
+                        ...optionSix?.size,
+                        value: particleOptions?.shapeSize ? particleOptions?.shapeSize : optionSix?.particles.size?.value,
+                    },
+
+                    shape: {
+                        type: shapes != false && shapes.length > 0 && shapes[0] !== '' ? shapes : optionSix?.particles.shape?.type,
+                    },
+                    ...optionSix?.opacity,
+                    move: {
+                        ...optionSix?.move,
+                        direction: direction || 'none',
+                    },
+                },
             }),
 
             retina_detect: true,

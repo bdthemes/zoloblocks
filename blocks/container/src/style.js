@@ -121,6 +121,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
+      
         .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
             ${contentDeskWidth}

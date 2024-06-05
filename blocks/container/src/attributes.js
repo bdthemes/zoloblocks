@@ -51,7 +51,7 @@ const attributes = {
     },
     optPreset: {
         type: 'string',
-        default: 'hover_bubble',
+        default: 'dust_wind',
     },
     //particle color
     colorItem: {
@@ -74,6 +74,9 @@ const attributes = {
                 type: 'array',
                 default: [],
             },
+            shapeSize: {
+                type: 'number',
+            },
 
             direction: {
                 type: 'string',
@@ -81,7 +84,7 @@ const attributes = {
 
             customOptions: {
                 type: 'string',
-                default: 'particlesJS',
+                default: '',
             },
         },
     },
