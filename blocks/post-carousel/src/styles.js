@@ -52,6 +52,8 @@ import {
     APAG_BORDER,
     APAG_BORDER_RADIUS,
     APAG_BG,
+    META_ARROW_SPACE,
+    META_BOX_WRAP_PADDING,
 } from './constants';
 
 import {
@@ -77,6 +79,7 @@ const {
 function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         uniqueId,
         titleColor,
         titleHoverColor,
@@ -98,6 +101,7 @@ function Style({ props }) {
         navColor,
         navHoverColor,
         navHoverBorderColor,
+        metaArrowColor,
     } = attributes;
 
     const {
@@ -675,6 +679,30 @@ function Style({ props }) {
         styleFor: 'padding',
         attributes,
     });
+
+    // post meta arrow space
+    const {
+        desktopRangeStyle: metaArrowSpaceDesk,
+        tabRangeStyle: metaArrowSpaceTab,
+        mobRangeStyle: metaArrowSpaceMob,
+    } = generateResRangeStyle({
+        controlName: META_ARROW_SPACE,
+        property: 'left',
+        attributes,
+    });
+  
+    // post meta content wrapper
+
+    const {
+    dimensionStylesDesktop: metaBoxWrapPaddingDesk,
+    dimensionStylesTab: metaBoxWrapPaddingTab,
+    dimensionStylesMobile: metaBoxWrapPaddingMob,
+    } = generateDimensionStyle({
+        controlName: META_BOX_WRAP_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     //carousel end
     /**
      * All Style Combination
@@ -703,9 +731,52 @@ function Style({ props }) {
         ${columnDeskBGStyle}
       }
 
-      .${uniqueId}.zolo-post-carousel .zolo-post-image{
-        ${thumbnailHeightDesk}
-      }
+      ${
+        preset === 'style-4'
+            ? `
+         .${uniqueId}.zolo-post-carousel .zolo-post-image .wp-post-image{
+          ${thumbnailHeightDesk}
+          ${thumbBorderRadiusDesk}
+        }
+
+      `
+            : ''
+    }
+
+    ${
+        preset !== 'style-4'
+            ? `
+         .${uniqueId}.zolo-post-carousel .zolo-post-image {
+          ${thumbnailHeightDesk}
+          ${thumbBorderRadiusDesk}
+        }
+
+      `
+            : ''
+    }
+
+    ${
+        preset === 'style-4'
+            ? `
+        .${uniqueId}.zolo-post-carousel .zolo-post-meta-wrap::before{
+          ${metaArrowColor ? `border-top-color:${metaArrowColor};` : ''}
+          ${metaArrowSpaceDesk}
+        }
+      `
+            : ''
+    }
+
+    ${
+        preset === 'style-4'
+            ? `
+        .${uniqueId}.zolo-post-carousel.zolo-post-style-4 .zolo-post-meta-wrap {
+          ${metaBoxWrapPaddingDesk}
+        }
+
+      `
+            : ''
+    }
+
 
       .${uniqueId}.zolo-post-carousel .zolo-post-title{
         ${titleMarginDesk}
@@ -732,7 +803,6 @@ function Style({ props }) {
 
         ${thumbBgDesk}
         ${thumbBorderDesk}
-        ${thumbBorderRadiusDesk}
         ${thumbBoxShadow}
       }
 
@@ -901,10 +971,46 @@ function Style({ props }) {
         ${contentPaddingTab}
       }
 
-    .${uniqueId}.zolo-post-carousel .zolo-post-image{
-      ${thumbnailHeightTab}
+    ${
+        preset === 'style-4' ? `
+          .${uniqueId}.zolo-post-carousel .zolo-post-image .wp-post-image{
+            ${thumbnailHeightTab}
+            ${thumbBorderRadiusTab}
+          }
+  
+        ` : ''
+      }
+  
+      ${
+        preset !== 'style-4' ? `
+          .${uniqueId}.zolo-post-carousel .zolo-post-image {
+            ${thumbnailHeightTab}
+            ${thumbBorderRadiusTab}
+          }
+  
+        ` : ''
+      }
+
+      ${
+        preset === 'style-4'
+            ? `
+        .${uniqueId}.zolo-post-carousel .zolo-post-meta-wrap::before{
+          ${metaArrowSpaceTab}
+        }
+      `
+            : ''
     }
 
+    ${
+        preset === 'style-4'
+            ? `
+        .${uniqueId}.zolo-post-carousel.zolo-post-style-4 .zolo-post-meta-wrap {
+          ${metaBoxWrapPaddingTab}
+        }
+
+      `
+            : ''
+    }
 
     .${uniqueId}.zolo-post-carousel .zolo-post-title{
       ${titleMarginTab}
@@ -920,7 +1026,6 @@ function Style({ props }) {
       ${thumbMarginTab}
       ${thumbBgTab}
       ${thumbBorderTab}
-      ${thumbBorderRadiusTab}
     }
 
     .${uniqueId}.zolo-post-carousel .zolo-post-dateTime{
@@ -1024,9 +1129,46 @@ function Style({ props }) {
         ${contentPaddingMob}
       }
 
-      .${uniqueId}.zolo-post-carousel .zolo-post-image{
-        ${thumbnailHeightMob}
+      ${
+        preset === 'style-4' ? `
+          .${uniqueId}.zolo-post-carousel .zolo-post-image .wp-post-image{
+            ${thumbnailHeightMob}
+            ${thumbBorderRadiusMob}
+          }
+  
+        ` : ''
       }
+  
+      ${
+        preset !== 'style-4' ? `
+          .${uniqueId}.zolo-post-carousel .zolo-post-image {
+            ${thumbnailHeightMob}
+            ${thumbBorderRadiusMob}
+          }
+  
+        ` : ''
+      }
+
+      ${
+        preset === 'style-4'
+            ? `
+        .${uniqueId}.zolo-post-carousel .zolo-post-meta-wrap::before{
+          ${metaArrowSpaceMob}
+        }
+      `
+            : ''
+    }
+
+    ${
+        preset === 'style-4'
+            ? `
+        .${uniqueId}.zolo-post-carousel.zolo-post-style-4 .zolo-post-meta-wrap {
+          ${metaBoxWrapPaddingMob}
+        }
+
+      `
+            : ''
+    }
 
 
       .${uniqueId}.zolo-post-carousel .zolo-post-title{
@@ -1043,7 +1185,6 @@ function Style({ props }) {
         ${thumbMarginMob}
         ${thumbBgMob}
         ${thumbBorderMob}
-        ${thumbBorderRadiusMob}
       }
 
       .${uniqueId}.zolo-post-carousel .zolo-post-dateTime{
