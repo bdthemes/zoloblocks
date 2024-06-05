@@ -96,6 +96,26 @@ export const AdvancedOptions = (props) => {
         });
     };
 
+    const displayPanels = (
+        <>
+            <ToggleControl
+                label={__('Hide on Desktop', 'zoloblocks')}
+                checked={responsiveness?.hideDesktop || false}
+                onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
+            />
+            <ToggleControl
+                label={__('Hide on Tablet', 'zoloblocks')}
+                checked={responsiveness?.hideTab || false}
+                onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
+            />
+            <ToggleControl
+                label={__('Hide on Mobile', 'zoloblocks')}
+                checked={responsiveness?.hideMobile || false}
+                onChange={() => handleResponsiveness('hideMobile', !responsiveness.hideMobile, 'zolo-hide-mobile')}
+            />
+        </>
+    );
+
     const panels = (
         <>
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
@@ -196,21 +216,7 @@ export const AdvancedOptions = (props) => {
             {globalConfig?.responsiveControls && (
                 <>
                     <ZoloPanelBody title={__('Responsive Control', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                        <ToggleControl
-                            label={__('Hide on Desktop', 'zoloblocks')}
-                            checked={responsiveness?.hideDesktop || false}
-                            onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
-                        />
-                        <ToggleControl
-                            label={__('Hide on Tablet', 'zoloblocks')}
-                            checked={responsiveness?.hideTab || false}
-                            onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
-                        />
-                        <ToggleControl
-                            label={__('Hide on Mobile', 'zoloblocks')}
-                            checked={responsiveness?.hideMobile || false}
-                            onChange={() => handleResponsiveness('hideMobile', !responsiveness.hideMobile, 'zolo-hide-mobile')}
-                        />
+                        {applyFilters('zolo.blocks.displayConditions', displayPanels, panelProps)}
                     </ZoloPanelBody>
                 </>
             )}
