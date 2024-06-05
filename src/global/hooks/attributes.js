@@ -17,7 +17,17 @@ import WebFont from 'webfontloader';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, generateResAlignmentAttributies, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateNormalBGAttributes, generateBoxShadowAttributies, generateTypographyAttributes, generateBackgroundAttributes } = window.zoloModule;
+const {
+    handleUniqueId,
+    generateResAlignmentAttributies,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateBackgroundAttributes,
+} = window.zoloModule;
 
 /**
  * Internal Dependencies
@@ -100,6 +110,22 @@ function addAttributes(settings) {
             },
             overflow: {
                 type: 'string',
+            },
+            position: {
+                type: 'object',
+                default: {
+                    value: 'relative',
+                    horizontalOrientation: {
+                        direction: 'left',
+                        offset: undefined,
+                        unit: 'px',
+                    },
+                    verticalOrientation: {
+                        direction: 'top',
+                        offset: undefined,
+                        unit: 'px',
+                    },
+                },
             },
             transformAnimationActive: {
                 type: 'boolean',
@@ -210,20 +236,40 @@ function addAttributes(settings) {
                 defaultUnit: 'ms',
             }),
 
+            //Position
+            ...generateResRangeAttributies('positionLeft', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('positionRight', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('positionTop', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('positionBottom', {
+                defaultUnit: 'px',
+            }),
+
             ...generateResAlignmentAttributies('transformOriginXHover'),
             ...generateResAlignmentAttributies('transformOriginYHover'),
 
-            ...(settings.attributes.globalConfig?.default?.margin && generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
+            ...(settings.attributes.globalConfig?.default?.margin &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 
-            ...(settings.attributes.globalConfig?.default?.padding && generateDimensionAttributes(settings.attributes.globalConfig.default.padding?.prefix || 'mainPadding')),
+            ...(settings.attributes.globalConfig?.default?.padding &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.padding?.prefix || 'mainPadding')),
 
-            ...(settings.attributes.globalConfig?.default?.background && generateBackgroundAttributes(settings.attributes.globalConfig.default.background?.prefix || 'mainBg')),
+            ...(settings.attributes.globalConfig?.default?.background &&
+                generateBackgroundAttributes(settings.attributes.globalConfig.default.background?.prefix || 'mainBg')),
 
-            ...(settings.attributes.globalConfig?.default?.border && generateBorderAttributies(settings.attributes.globalConfig.default.border?.prefix || 'mainBorder')),
+            ...(settings.attributes.globalConfig?.default?.border &&
+                generateBorderAttributies(settings.attributes.globalConfig.default.border?.prefix || 'mainBorder')),
 
-            ...(settings.attributes.globalConfig?.default?.borderRadius && generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadius?.prefix || 'mainBorderRadius')),
+            ...(settings.attributes.globalConfig?.default?.borderRadius &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadius?.prefix || 'mainBorderRadius')),
 
-            ...(settings.attributes.globalConfig?.default?.boxShadow && generateBoxShadowAttributies(settings.attributes.globalConfig.default.boxShadow?.prefix || 'mainBoxShadow')),
+            ...(settings.attributes.globalConfig?.default?.boxShadow &&
+                generateBoxShadowAttributies(settings.attributes.globalConfig.default.boxShadow?.prefix || 'mainBoxShadow')),
         };
     }
     return settings;
@@ -291,7 +337,10 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
             let googleFontFamily = [];
             for (var key in attributes) {
                 if (/^(\w+)FontFamily/.test(key) && attributes[key]) {
-                    googleFontFamily.push(attributes[key] + ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic');
+                    googleFontFamily.push(
+                        attributes[key] +
+                            ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+                    );
                 }
             }
             if (googleFontFamily.length > 0) {

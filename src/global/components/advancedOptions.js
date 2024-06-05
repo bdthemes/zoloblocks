@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, TextControl, FormTokenField } from '@wordpress/components';
+import { ToggleControl, TextControl,SelectControl, FormTokenField } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -19,8 +19,21 @@ import ZoloPanelBody from '../../controls/zolo-panelbody';
 import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
+import IconicBtnGroup from '../../controls/iconic-btn-group';
+import SimpleRangeControl from '../../controls/simple-range-control';
 import { applyFilters } from '@wordpress/hooks';
-import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL, TRANSLATE_ICON, ROTATE_ICON, SCALE_ICON, SKEW_ICON, FLIP_ICON } from '../constants';
+import {
+    DEFAULT_ALIGNS,
+    DEFAULT_ALIGNS_VERTICAL,
+    TRANSLATE_ICON,
+    ROTATE_ICON,
+    SCALE_ICON,
+    SKEW_ICON,
+    FLIP_ICON,
+    ICON_HPOSITIONS,
+    VPOSITIONS,
+    CONTENT_POSITIONS,
+} from '../constants';
 import { zoloArraysMergeIfUniqueValue } from '../../helpers/helper';
 // value check
 const hasValCheck = (att, attributes) => {
@@ -64,7 +77,16 @@ export const AdvancedOptions = (props) => {
         globalConfig,
         zoloId,
         overflow,
+        position,
+        horizontalOrientation,
+        verticalOrientation,
+        positionLeft,
+        positionRight,
+        positionTop,
+        positionBottom,
     } = attributes;
+
+    console.log('attributes', position);
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -146,6 +168,106 @@ export const AdvancedOptions = (props) => {
                     step={1}
                     help={__('Set the z-index for the section', 'zoloblocks')}
                 />
+
+                <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
+                    <SelectControl
+                        label={__('Position', 'zoloblocks')}
+                        options={CONTENT_POSITIONS}
+                        onChange={(v) =>
+                            setAttributes({
+                                position: {
+                                    ...position,
+                                    value: v,
+                                },
+                            })
+                        }
+                        value={position.value}
+                    />
+                    {(position.value === 'absolute' || position.value === 'fixed') && (
+                        <>
+                            <IconicBtnGroup
+                                label={__('Horizontal Orientation', 'zoloblocks')}
+                                value={position.horizontalOrientation.direction}
+                                onChange={(direction) => {
+                                    setAttributes({
+                                        position: {
+                                            ...position,
+                                            horizontalOrientation: {
+                                                ...position.horizontalOrientation,
+                                                direction,
+                                            },
+                                        },
+                                    });
+                                }}
+                                options={ICON_HPOSITIONS}
+                            />
+                            {position.horizontalOrientation.direction === 'left' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionLeft'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
+                            {position.horizontalOrientation.direction === 'right' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionRight'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
+                            <IconicBtnGroup
+                                label={__('Vertical Orientation', 'zoloblocks')}
+                                value={position.verticalOrientation.direction}
+                                onChange={(direction) => {
+                                    setAttributes({
+                                        position: {
+                                            ...position,
+                                            verticalOrientation: {
+                                                ...position.verticalOrientation,
+                                                direction,
+                                            },
+                                        },
+                                    });
+                                }}
+                                options={VPOSITIONS}
+                            />
+                            {position.verticalOrientation.direction === 'top' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionTop'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
+                            {position.verticalOrientation.direction === 'bottom' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionBottom'}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
+                        </>
+                    )}
+                </PopoverControl>
                 <OverflowControl
                     label={__('Overflow', 'zoloblocks')}
                     value={overflow}
@@ -153,7 +275,6 @@ export const AdvancedOptions = (props) => {
                         setAttributes({ overflow: v });
                     }}
                 />
-
                 <div className="zolo-inline-control-wrapper">
                     <TextControl
                         label={__('CSS ID', 'zoloblocks')}

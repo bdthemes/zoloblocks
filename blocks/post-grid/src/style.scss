@@ -433,11 +433,11 @@
                 z-index: 1
             }
         }
-        
+
         .zolo-post-dateTime {
             margin: 0;
         }
-        
+
         .zolo-post-author-name {
             flex-direction: row;
         }
@@ -457,7 +457,7 @@
                     color: var(--zoloblocks-brand-color-hover);
                 }
             }
-        } 
+        }
         .zolo-post-title {
             margin: 0;
         }
@@ -477,9 +477,8 @@
             a {
                 color: #0f0f0f;
                 background-color: #ffffff80;
-                backdrop-filter: blur(15px);
                 font-weight: 400;
-                
+
                 &:hover {
                     color: #fff;
                     background-color: var(--zoloblocks-brand-color-hover);

@@ -15,9 +15,9 @@ export const STAR_MARGIN = "starMargin";
 export const SUB_TITLE_ALIGNMENT = "subTitleAlignment";
 
 export const CHART_TYPES = [
-  { label: __("Line", "zoloblocks"), value: "line" },
-  { label: __("Area", "zoloblocks"), value: "area" },
   { label: __("Bar", "zoloblocks"), value: "bar" },
+  { label: __("Area", "zoloblocks"), value: "area" },
+  { label: __("Line", "zoloblocks"), value: "line" },
   { label: __("Pie", "zoloblocks"), value: "pie" },
   { label: __("Donut", "zoloblocks"), value: "donut" },
   // { label: __("Radial Bar", "zoloblocks"), value: "radialBar" },

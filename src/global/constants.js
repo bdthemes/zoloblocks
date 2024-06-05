@@ -986,9 +986,20 @@ export const ICON_HPOSITIONS = [
         label: 'Left',
         value: 'left',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x={11} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
-                <rect x={3} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2V22" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect
+                    x="7"
+                    y="8"
+                    width="12"
+                    height="8"
+                    rx="1"
+                    fill="none"
+                    stroke="#4D4D4D"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1"
+                ></rect>
             </svg>
         ),
     },
@@ -997,8 +1008,39 @@ export const ICON_HPOSITIONS = [
         value: 'right',
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x={3} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
-                <rect x={18} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+// horizontal position
+export const VPOSITIONS = [
+    {
+        label: __('Top', 'zoloblocks'),
+        value: 'top',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 4L2 4" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                    d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+            </svg>
+        ),
+    },
+    {
+        label: __('Bottom', 'zoloblocks'),
+        value: 'bottom',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 20L2 20" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                    d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
             </svg>
         ),
     },
@@ -1116,6 +1158,13 @@ export const OVERFLOWS = [
     { label: __('Scroll', 'zoloblocks'), value: 'scroll' },
     { label: __('Clip', 'zoloblocks'), value: 'clip' },
 ];
+export const CONTENT_POSITIONS = [
+    // { label: __('Static', 'zoloblocks'), value: 'static' },
+    { label: __('Relative', 'zoloblocks'), value: 'relative' },
+    { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
+    { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
+    // { label: __('Sticky', 'zoloblocks'), value: 'sticky' },
+]
 
 export const OBJECT_FITS = [
     { label: __('None', 'zoloblocks'), value: 'none' },
