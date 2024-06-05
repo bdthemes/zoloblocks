@@ -391,13 +391,13 @@ export default function Style({ props }) {
 			${buttonAlignmentDesktop}
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover{
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
 			${hoverBoxShadowStyle}
 			${hoverDeskBGStyle}
 			border-color: ${borderHoverColor ? borderHoverColor : ''};
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button {
 			${gap}
             ${btnDeskAlign}
 			${borderStyles}
@@ -407,19 +407,19 @@ export default function Style({ props }) {
             ${normalBoxShadowStyle}
 		}
 
-        .zolo-advanced-button.${uniqueId} .zolo-button:hover{
+        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
 			${hoverDeskBGStyle}
 		}
-		.zolo-advanced-button.${uniqueId} .zolo-button-content {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoDesktop}
 			color: ${textColor ? textColor : ''};
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover .zolo-button-content {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover .zolo-button-content {
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
 
-        .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
+        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
 			${iconBorderDesktop}
 			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
@@ -427,41 +427,41 @@ export default function Style({ props }) {
             background: ${iconBg ? iconBg : ''};
         }
 
-        .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon svg {
+        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon svg {
 			${iconHeight}
 			${iconWidth}
         }
 
-		.zolo-advanced-button.${uniqueId} .zolo-button svg {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button svg {
 			fill: ${iconColor ? iconColor : ''};
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover .zolo__display-icon {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover .zolo__display-icon {
 			${iconHoverBoxShadow}
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
 		}
 
 
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover svg {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover svg {
 			fill: ${iconHoverColor ? iconHoverColor : ''};
 		}
 
 		${
             preset === 'button-1'
-                ? `.zolo-advanced-button.${uniqueId}.button-1 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-1 .zolo-button:before {
 				${ptBGDesk}
 			}`
                 : ''
         }
 		${
             preset === 'button-2'
-                ? `.zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before, .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before, .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
 				${ptDeskBorderRadius}
-			} .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before {
+			} .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before {
 				${pthBGDesk}
 			}
-            .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
+            .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
 				${ptDeskBorder}
 			}
             `
@@ -469,7 +469,7 @@ export default function Style({ props }) {
         }
 		${
             preset === 'button-3'
-                ? `.zolo-advanced-button.${uniqueId}.button-3 .zolo-button:before{
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-3 .zolo-button:before{
                 ${pfthBGDesk}
 			}   
             `
@@ -477,13 +477,13 @@ export default function Style({ props }) {
         }
 		${
             preset === 'button-4'
-                ? `.zolo-advanced-button.${uniqueId}.button-4 .zolo-button{
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-4 .zolo-button{
 					${
                         presetFourStyles && (presetFourStyles.shadowColor || pfDeskShadowWidth)
                             ? `box-shadow: ${pfDeskShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
                             : ''
                     }
-				} .zolo-advanced-button.${uniqueId}.button-4 .zolo-button:after {
+				} .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-4 .zolo-button:after {
 					${presetFourStyles && presetFourStyles.colorOne ? `background: ${presetFourStyles.colorOne};` : ''}
 					${presetFourStyles && presetFourStyles.textShadowColor ? `text-shadow: -3px -3px 0px ${presetFourStyles.textShadowColor};` : ''}
 					${presetFourStyles && presetFourStyles.textColor ? `color: ${presetFourStyles.textColor};` : ''}
@@ -492,7 +492,7 @@ export default function Style({ props }) {
         }
 		${
             preset === 'button-5'
-                ? `.zolo-advanced-button.${uniqueId}.button-5 .zolo-button:after {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-5 .zolo-button:after {
 				${pfvDeskBorder}
 				${pfvDeskBorderRadius}
 			}`
@@ -503,7 +503,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSixStyle
-                            ? `.zolo-advanced-button.${uniqueId}.button-6 .zolo-button{
+                            ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-6 .zolo-button{
 								box-shadow: ${presetSixStyle} 15px 28px 25px -18px;
 					}`
                             : ''
@@ -516,7 +516,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSevenStyles
-                            ? `.zolo-advanced-button.${uniqueId}.button-7 .zolo-button:after {
+                            ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-7 .zolo-button:after {
                             background-color: ${presetSevenStyles && presetSevenStyles.bgColor};
                             ${psDeskBorder}
                             ${psDeskBorderRadius}
@@ -529,7 +529,7 @@ export default function Style({ props }) {
 
        	${
             preset === 'button-8'
-                ? `.zolo-advanced-button.${uniqueId}.button-8 .zolo-button:after, .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:after, .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
                     ${pseDeskBorder}
                     ${pseDeskBorderRadius}
                 }
@@ -538,7 +538,7 @@ export default function Style({ props }) {
         }
         ${
             preset === 'button-8'
-                ? `.zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
                 ${pseDeskBGStyle}
                     
                 }
@@ -551,7 +551,7 @@ export default function Style({ props }) {
 			${buttonAlignmentTab}
 		}
 
-        .zolo-advanced-button.${uniqueId} .zolo-button {
+        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button {
 			${gapTab}
             ${btnTabAlign}
             ${borderStylesTab}
@@ -560,29 +560,29 @@ export default function Style({ props }) {
             ${normalTabBGStyle}
 		}
      
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover{
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
 			${hoverTabBGStyle}
 		}
 
-        .zolo-advanced-button.${uniqueId} .zolo-button-content {
+        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoTab}
 		}
 
 
-		.zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
 			${iconBorderTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon svg {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon svg {
 			${iconHeightTab}
 			${iconWidthTab}
 		}
 
 		${
             preset === 'button-1'
-                ? `.zolo-advanced-button.${uniqueId}.button-1 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-1 .zolo-button:before {
 				${ptBGTab}
 			}`
                 : ''
@@ -590,12 +590,12 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-2'
-                ? `.zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before, .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before, .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
 				${ptTabBorderRadius}
-			} .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before {
+			} .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before {
 				${pthBGTab}
 			}
-            .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
+            .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
 				${ptTabBorder}
 			}
             `
@@ -604,7 +604,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-3'
-                ? `.zolo-advanced-button.${uniqueId}.button-3 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-3 .zolo-button:before {
 				${pfthBGTab}
 			}`
                 : ''
@@ -612,7 +612,7 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-4'
-                ? `.zolo-advanced-button.${uniqueId}.button-4 .zolo-button{
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-4 .zolo-button{
 					${
                         presetFourStyles && (presetFourStyles.shadowColor || pfTabShadowWidth)
                             ? `box-shadow: ${pfTabShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
@@ -624,7 +624,7 @@ export default function Style({ props }) {
         
 		${
             preset === 'button-5'
-                ? `.zolo-advanced-button.${uniqueId}.button-5 .zolo-button:after {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-5 .zolo-button:after {
 				${pfvTabBorder}
 				${pfvTabBorderRadius}
 			}`
@@ -636,7 +636,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSevenStyles
-                            ? `.zolo-advanced-button.${uniqueId}.button-7 .zolo-button:after {
+                            ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-7 .zolo-button:after {
                             ${psTabBorder}
                             ${psTabBorderRadius}
 					}`
@@ -648,7 +648,7 @@ export default function Style({ props }) {
 
      	${
             preset === 'button-8'
-                ? `.zolo-advanced-button.${uniqueId}.button-8 .zolo-button:after, .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:after, .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
                    ${pseTabBorder}
                   ${pseTabBorderRadius}
                 }
@@ -657,7 +657,7 @@ export default function Style({ props }) {
         }
          ${
              preset === 'button-8'
-                 ? `.zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
+                 ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
                 ${pseTabBGStyle}
                     
                 }
@@ -670,7 +670,7 @@ export default function Style({ props }) {
 			${buttonAlignmentMob}
 		}
 
-        .zolo-advanced-button.${uniqueId} .zolo-button {
+        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button {
 			${gapMob}
             ${btnMobAlign}
             ${borderStylesMob}
@@ -679,28 +679,28 @@ export default function Style({ props }) {
 			${paddingMob}
 		}
         
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover{
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
 			${hoverMobBGStyle}
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button-content {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoMob}
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
 			${iconBorderMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon svg {
+		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon svg {
 			${iconHeightMob}
 			${iconWidthMob}
 		}
 
 		${
             preset === 'button-1'
-                ? `.zolo-advanced-button.${uniqueId}.button-1 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-1 .zolo-button:before {
 				${ptBGMob}
 			}`
                 : ''
@@ -708,12 +708,12 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-2'
-                ? `.zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before, .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before, .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
 				${ptMobBorderRadius}
-			} .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before {
+			} .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:before {
 				${pthBGMob}
 			}
-            .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
+            .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-2 .zolo-button:after {
 				${ptMobBorder}
 			}
             `
@@ -722,7 +722,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-3'
-                ? `.zolo-advanced-button.${uniqueId}.button-3 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-3 .zolo-button:before {
 				${pfthBGMob}
 			}`
                 : ''
@@ -730,7 +730,7 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-4'
-                ? `.zolo-advanced-button.${uniqueId}.button-4 .zolo-button{
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-4 .zolo-button{
 					${
                         presetFourStyles && (presetFourStyles.shadowColor || pfMobShadowWidth)
                             ? `box-shadow: ${pfMobShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
@@ -742,7 +742,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-5'
-                ? `.zolo-advanced-button.${uniqueId}.button-5 .zolo-button:after {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-5 .zolo-button:after {
 				${pfvMobBorder}
 				${pfvMobBorderRadius}
 			}`
@@ -754,7 +754,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSevenStyles
-                            ? `.zolo-advanced-button.${uniqueId}.button-7 .zolo-button:after {
+                            ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-7 .zolo-button:after {
                             ${psMobBorder}
                             ${psMobBorderRadius}
 					}`
@@ -766,7 +766,7 @@ export default function Style({ props }) {
 
     	${
             preset === 'button-8'
-                ? `.zolo-advanced-button.${uniqueId}.button-8 .zolo-button:after, .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:after, .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
                   ${pseMobBorder}
                      ${pseMobBorderRadius}
                 }
@@ -775,7 +775,7 @@ export default function Style({ props }) {
         }
         ${
             preset === 'button-8'
-                ? `.zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-8 .zolo-button:before {
                 ${pseMobBGStyle}
                     
                 }
