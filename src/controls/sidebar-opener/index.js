@@ -1,19 +1,9 @@
 import classNames from 'classnames';
 import { dispatch } from '@wordpress/data';
 
-const SidebarOpener = ({ className = '', clientId = null }) => {
+const SidebarOpener = ({clientId = null }) => {
     return (
-        <div className={classNames('zolo-blocks-toolbar', className)}>
-            <button
-                className="zolo-insert-before"
-                onClick={() => {
-                    dispatch('core/block-editor').insertAfterBlock(clientId);
-                }}
-            >
-                <svg viewBox="0 0 24 24" width={20} height={20} color={'#ffffff'} fill={'none'}>
-                    <path d="M12 4V20M20 12H4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
+        <div className={classNames('zolo-blocks-toolbar general-block')}>
             <button
                 className="zolo-open-sidebar-settings"
                 onClick={() => {
@@ -23,26 +13,27 @@ const SidebarOpener = ({ className = '', clientId = null }) => {
                     }
                 }}
             >
-                <svg viewBox="0 0 24 24" width={24} height={24} color={'#ffffff'} fill={'none'}>
-                    <rect x="18" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                    <rect x="10.5" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                    <rect x="3" y="10.5" width="3" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-            </button>
-            <button
-                className="zolo-remove-block"
-                onClick={() => {
-                    dispatch('core/block-editor').removeBlocks(clientId);
-                }}
-            >
-                <svg viewBox="0 0 24 24" width={20} height={20} color={'#ffffff'} fill={'none'}>
-                    <path
-                        d="M19.0005 4.99988L5.00045 18.9999M5.00045 4.99988L19.0005 18.9999"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                >
+                <path
+                    d="M5 20L19 20"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M14.6158 4.57792C14.9876 4.20789 15.4918 4 16.0176 4C16.2779 4 16.5357 4.05104 16.7762 4.1502C17.0168 4.24936 17.2353 4.3947 17.4194 4.57792C17.6035 4.76115 18.7495 5.97401 18.8491 6.21341C18.9487 6.4528 19 6.70938 19 6.9685C19 7.22762 18.9487 7.4842 18.8491 7.7236C18.7495 7.96299 18.6035 8.18051 18.4194 8.36374L9.73803 17H5L6.5 12.5L14.6158 4.57792Z"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
                 </svg>
             </button>
         </div>
