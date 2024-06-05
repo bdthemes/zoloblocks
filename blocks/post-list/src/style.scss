@@ -138,6 +138,12 @@
 		width: 100%;
 	}
 
+	.zolo-post-author-name {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
 	.zolo-post-title {
 		font-size: clamp(0.938rem, 1.5vw, 1.2rem);
 		margin: var(--zolo-title-margin);

@@ -7,6 +7,7 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
+    { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
 ];
 export const CAROUSEL_EFFECTS = [
     { label: __('Slide', 'zoloblocks'), value: 'slide' },
@@ -84,3 +85,7 @@ export const APAG_HEIGHT = 'apagHeight';
 export const APAG_BORDER = 'apagBorder';
 export const APAG_BORDER_RADIUS = 'apagBorderRadius';
 export const APAG_BG = 'apagBg';
+
+// post meta arrow space
+export const META_ARROW_SPACE = 'metaArrowSpace';
+export const META_BOX_WRAP_PADDING = 'metaBoxWrapPadding';

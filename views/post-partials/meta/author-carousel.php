@@ -11,8 +11,8 @@ $authorLink = sprintf(
 );
 
 $avatar = $result->avatar;
-// $default_prefix = $settings['preset'] === 'style-5' ? 'By' : 'Posted By';
-$author_prefix = !empty($settings['authorPrefix']) ? $settings['authorPrefix'] : 'Posted By';
+$default_prefix = $settings['preset'] === 'style-4' ? 'By' : 'Posted By';
+$author_prefix = !empty($settings['authorPrefix']) ? $settings['authorPrefix'] : $default_prefix;
 
 if (!empty($settings['showAuthor'])) {
     $author .= sprintf(

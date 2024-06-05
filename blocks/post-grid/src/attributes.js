@@ -40,8 +40,8 @@ import {
     PAG_ALIGN,
     PAG_PADDING,
     META_SPACE,
-    META_ARROW_SPACE,
     CONTENT_PADDING,
+    META_ARROW_SPACE,
     META_BOX_WRAP_PADDING,
 } from './constants';
 
@@ -92,6 +92,9 @@ const attributes = {
     },
     postQuery: {
         type: 'object',
+    },
+    authorPrefix: {
+        type: 'string',
     },
     ...generateResCounterAttributies(GRID_COLUMNS, {
         deskRange: 3,
@@ -288,11 +291,11 @@ const attributes = {
     // post meta
     ...generateResRangeAttributies(META_SPACE),
 
-    // post meta arrow space
-    ...generateResRangeAttributies(META_ARROW_SPACE),
-
     // content
     ...generateDimensionAttributes(CONTENT_PADDING),
+
+    // post meta arrow space
+    ...generateResRangeAttributies(META_ARROW_SPACE),
 
     // meta box wrap
     ...generateDimensionAttributes(META_BOX_WRAP_PADDING),

@@ -59,6 +59,8 @@ import {
     APAG_BG,
     APAG_BORDER,
     APAG_BORDER_RADIUS,
+    META_BOX_WRAP_PADDING,
+    META_ARROW_SPACE,
 } from './constants';
 
 import {
@@ -111,6 +113,7 @@ function Inspector(props) {
         titleHoverColor,
         excerptColor,
         metaColor,
+        metaArrowColor,
         catBgColor,
         catColor,
         catBgHoverColor,
@@ -144,6 +147,7 @@ function Inspector(props) {
         prevNavIcon,
         nextNavIcon,
         coverFlowEffect,
+        authorPrefix,
     } = attributes;
 
     const requiredProps = {
@@ -198,6 +202,14 @@ function Inspector(props) {
             case 'style-3':
                 setAttributes({
                     showExcerpt: false,
+                    showReadMore: false,
+                    showThumbnail: true,
+                    zolo_gridColumnsRange: 3,
+                });
+                break;
+            case 'style-4':
+                setAttributes({
+                    showExcerpt: true,
                     showReadMore: false,
                     showThumbnail: true,
                     zolo_gridColumnsRange: 3,
@@ -308,6 +320,15 @@ function Inspector(props) {
                                         onChange={(value) => setAttributes({ metaSeparator: value })}
                                     />
                                 )}
+                                {
+                                    showAuthor && (
+                                        <TextControl
+                                            label={__('Author Prefix', 'zoloblocks')}
+                                            value={authorPrefix}
+                                            onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                        />
+                                    )
+                                }
                             </ZoloPanelBody>
                         )}
                         {showReadMore && (
@@ -548,7 +569,7 @@ function Inspector(props) {
                         {showThumbnail && (
                             <ZoloPanelBody title={__('Thumbnail', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
-                                    label={__('Content Height', 'zoloblocks')}
+                                    label={__('Height', 'zoloblocks')}
                                     controlName={THUMBNAIL_HEIGHT}
                                     requiredProps={requiredProps}
                                     min={0}
@@ -557,7 +578,7 @@ function Inspector(props) {
                                 />
                                 {showThumbnail && (
                                     <SelectControl
-                                        label={__('Thumbnail Size', 'zoloblocks')}
+                                        label={__('Thumbnail Resolution', 'zoloblocks')}
                                         value={postQuery?.postThumbnail}
                                         options={THUMBNAIL_SIZE}
                                         onChange={(postThumbnail) =>
@@ -688,6 +709,34 @@ function Inspector(props) {
                                     controlName={META_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+
+                                {preset === 'style-4' && (
+                                    <ResDimensionsControl
+                                        label={__('Meta Wrap Padding', 'zoloblocks')}
+                                        controlName={META_BOX_WRAP_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                )}
+
+                                {preset === 'style-4' && (
+                                    <ColorControl
+                                        label={__('Arrow Color', 'zoloblocks')}
+                                        color={metaArrowColor}
+                                        onChange={(metaArrowColor) => setAttributes({ metaArrowColor })}
+                                    />
+                                )}
+
+                                {preset === 'style-4' && (
+                                    <ResRangeControl
+                                        label={__('Arrow Spacing', 'zoloblocks')}
+                                        controlName={META_ARROW_SPACE}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                )}
+
                             </ZoloPanelBody>
                         )}
 

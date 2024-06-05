@@ -21,7 +21,10 @@ function RenderView({ attributes, postResults }) {
         showMeta,
         showReadingTime,
         metaSeparator,
+        authorPrefix
     } = attributes;
+
+    const defaultAuthorPrefix = preset === 'style-5' ? __('By', 'zoloblocks') : __('Posted By', 'zoloblocks'); 
 
     return [
         postResults.length > 0 &&
@@ -43,7 +46,11 @@ function RenderView({ attributes, postResults }) {
                 const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                 const author = (
                         <div className="zolo-post-author-name">
-                            <span>{__('Posted by', 'zoloblocks')}</span>
+                            <span>
+                                {
+                                    authorPrefix || defaultAuthorPrefix
+                                }
+                            </span>
                             <a href="#" className='zolo-post-author-link' dangerouslySetInnerHTML={{ __html: post.author }}></a>
                         </div>
 

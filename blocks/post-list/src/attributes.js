@@ -93,6 +93,9 @@ const attributes = {
     postQuery: {
         type: 'object',
     },
+    authorPrefix: {
+        type: 'string',
+    },
     showfeatureimg: {
         type: 'boolean',
         default: true,
