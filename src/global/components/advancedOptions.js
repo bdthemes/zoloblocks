@@ -199,7 +199,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionLeft'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -211,7 +211,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionRight'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -239,7 +239,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionTop'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -251,7 +251,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionBottom'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
