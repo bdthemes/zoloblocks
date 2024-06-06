@@ -56,6 +56,8 @@ import {
     APAG_BG,
     APAG_BORDER,
     APAG_BORDER_RADIUS,
+    META_ARROW_SPACE,
+    META_BOX_WRAP_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -105,6 +107,9 @@ const attributes = {
     },
     postQuery: {
         type: 'object',
+    },
+    authorPrefix: {
+        type: 'string',
     },
     ...generateResRangeAttributies(COLUMNS_GAP),
     showThumbnail: {
@@ -182,6 +187,9 @@ const attributes = {
         default: true,
     },
     metaColor: {
+        type: 'string',
+    },
+    metaArrowColor: {
         type: 'string',
     },
     // post meta
@@ -289,6 +297,12 @@ const attributes = {
     ...generateBorderAttributies(APAG_BORDER),
     ...generateDimensionAttributes(APAG_BORDER_RADIUS),
     ...generateNormalBGAttributes(APAG_BG),
+
+    // post meta arrow space
+    ...generateResRangeAttributies(META_ARROW_SPACE),
+
+    // meta box wrap
+    ...generateDimensionAttributes(META_BOX_WRAP_PADDING),
     // swiper options
     slideItems: {
         type: 'number',

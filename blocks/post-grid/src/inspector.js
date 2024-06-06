@@ -122,6 +122,7 @@ function Inspector(props) {
         apagBgColor,
         pagSeparatorColor,
         metaSeparator,
+        authorPrefix,
         // post meta
         showReadingTime,
     } = attributes;
@@ -290,6 +291,15 @@ function Inspector(props) {
                                     onChange={(value) => setAttributes({ metaSeparator: value })}
                                 />
                             )}
+                            {
+                                showAuthor && (
+                                    <TextControl
+                                        label={__('Author Prefix', 'zoloblocks')}
+                                        value={authorPrefix}
+                                        onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                    />
+                                )
+                            }
                         </ZoloPanelBody>
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zoloblocks')} panelProps={props}>

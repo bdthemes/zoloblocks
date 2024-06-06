@@ -13,13 +13,15 @@ function RenderView({ attributes, postResults }) {
         excerptWords,
         excerptindicator,
         showCategory,
+        
         showMeta,
         showCount,
         showReadingTime,
         metaSeparator,
+        authorPrefix,
     } = attributes;
 
-
+    const defaultAuthorPrefix =  __('Posted By', 'zoloblocks'); 
     return [
         postResults.length > 0 &&
             postResults.map((post, index) => {
@@ -39,7 +41,11 @@ function RenderView({ attributes, postResults }) {
 
                  const author = (
                      <div className="zolo-post-author-name">
-                         <span>{__('Posted by', 'zoloblocks')}</span>
+                         <span>
+                            {
+                                authorPrefix || defaultAuthorPrefix
+                            }
+                        </span>
                          <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
                      </div>
                  );

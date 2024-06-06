@@ -5,3 +5,4 @@ export const CAT_TYPOGRAPHY = 'catTypo';
 export const READMORE_TYPOGRAPHY = 'readMoreTypo';
 export const NAME_TYPOGRAPHY = 'nameTypo';
 export const PAG_TYPOGRAPHY = 'pagTypo';
+

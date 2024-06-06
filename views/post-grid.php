@@ -53,11 +53,11 @@ $wrapperId = $settings['zoloId'] ?? '';
             }
             $html .= '</div>';
 
-            $html .= require __DIR__ . '/post-partials/meta/author.php';
+            $html .= require __DIR__ . '/post-partials/meta/author-grid.php';
             $html .= '</div>';
         }
         if (!empty($settings['preset']) && $settings['preset'] !== 'style-5') {
-            $html .= require __DIR__ . '/post-partials/meta/author.php';
+            $html .= require __DIR__ . '/post-partials/meta/author-grid.php';
         }
 
         $html .= '</div>';

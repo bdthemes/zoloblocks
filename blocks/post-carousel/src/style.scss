@@ -208,9 +208,7 @@
 
     &.zolo-post-style-1 .zolo-post-author-name,
     &.zolo-post-style-2 .zolo-post-author-name,
-    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name,
-    &.zolo-post-style-4 .zolo-post-author-name,
-    &.zolo-post-style-5 .zolo-post-author-name {
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name {
         color: var(--zolo-author-name-color);
     }
 
@@ -220,14 +218,11 @@
 
     &.zolo-post-style-1 .zolo-post-item:hover .wp-post-image,
     &.zolo-post-style-2 .zolo-post-item:hover .wp-post-image,
-    &.zolo-post-style-3 .zolo-post-item:hover .wp-post-image,
-    &.zolo-post-style-4 .zolo-post-item:hover .wp-post-image {
+    &.zolo-post-style-3 .zolo-post-item:hover .wp-post-image {
         transform: scale(103.5%);
     }
 
-    &.zolo-post-style-1 .zolo-post-dateTime,
-    &.zolo-post-style-4 .zolo-post-dateTime,
-    &.zolo-post-style-5 .zolo-post-secount-dateTime {
+    &.zolo-post-style-1 .zolo-post-dateTime {
         color: var(--zolo-dateTime-color);
     }
 
@@ -386,6 +381,143 @@
         }
     }
 
+    // style 4 css here start
+    &.zolo-post-style-4 {
+        .zolo-post-item {
+            background-color: #fff;
+            box-shadow: rgba(149, 157, 165, 0.184) 0px 8px 24px;
+            border-radius: var(--zolo-item-border-radius);
+            &:hover {
+                .zolo-post-category {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        }
+        .zolo-post-image {
+            border-radius: 0;
+            height: auto;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .zolo-post-meta-box {
+            position: unset;
+            background: transparent;
+            padding: 0;
+            flex-wrap: unset;
+        }
+        .zolo-post-meta-wrap {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            padding: 20px;
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 30px;
+                top: 100%;
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-top: 8px solid #fff;
+                clear: both;
+                z-index: 1
+            }
+        }
+
+        .zolo-post-dateTime {
+            margin: 0;
+        }
+
+        .zolo-post-author-name {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .zolo-post-meta-box img {
+            --zolo-meta-box-img-size : 35px;
+            width: var(--zolo-meta-box-img-size);
+            height: var(--zolo-meta-box-img-size);
+        }
+        .zolo-post-content {
+            padding: 35px;
+        }
+        .zolo-post-author-name {
+            gap: 5px;
+            a {
+                color: #201d1d;
+                &:hover {
+                    color: var(--zoloblocks-brand-color-hover);
+                }
+            }
+        }
+        .zolo-post-title {
+            margin: 0;
+        }
+
+        .zolo-post-img-category {
+            position: relative;
+        }
+
+        .zolo-post-category {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 20px;
+            transform: translateX(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            a {
+                color: #0f0f0f;
+                background-color: #ffffff80;
+                font-weight: 400;
+
+                &:hover {
+                    color: #fff;
+                    background-color: var(--zoloblocks-brand-color-hover);
+                }
+            }
+        }
+
+        .zolo-post-link-btn  {
+            a {
+                padding: 0;
+                font-weight: 500;
+                position: relative;
+                &::before {
+                    position: absolute;
+                    bottom: -6px;
+                    left: 0;
+                    width: 12px;
+                    height: 2px;
+                    content: '';
+                    background-color: currentColor;
+                    transition: width .3s ease;
+                }
+                .zolo__display-icon {
+                    opacity: 0;
+                    transform: translateX(-10px);
+                    transition: all .3s ease;
+                }
+                &:hover {
+                    .zolo__display-icon {
+                        opacity: 1;
+                        transform: translateX(0);
+                        fill: var(--zoloblocks-brand-color-hover);
+                    }
+                    &::before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // style 4 css here end
+
+
     .swiper-pagination-bullet {
         margin: 0 !important;
     }
@@ -409,6 +541,7 @@
             &.swiper-pagination-bullet-active {
                 transform: scale(1.3);
                 background-color: var(--zoloblocks-brand-color);
+                outline: none;
             }
         }
     }

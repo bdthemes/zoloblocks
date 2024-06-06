@@ -1,6 +1,28 @@
+## 1.0.6 [June 06, 2024]
+
+### Added
+
+- position feature has been added to the extra tab for every block
+
+### Fixed
+
+- rerendering issue fixed in charts block
+- preset 3 hover color issue fixed in post grid block
+- preset 3 hover color issue fixed in post carousel block
+- preset 5 title issue fixed in counter block
+- default style overwriting issue fixed in pricing table block
+- default style overwriting issue fixed in advanced button block
+
+### Improved
+
+- CSS compression override issue fixed for WP-Optimize plugin
+- typography control font-size increased 72 to 136 in counter block
+- author prefix text control added to post grid, post carousel and post list block
+
 ## 1.0.5 [May 29, 2024]
 
 ### Fixed
+
 - flex issue fixed in Editor for Container block
 - spacing issue fixed for preset 3 in Advanced Icon box
 - Source type input data loading issue fixed in Charts block
@@ -9,6 +31,7 @@
 - preset 4 responsive issue fixed in Newsletter block
 
 ### Improved
+
 - Block editing experience improved, you will be able to select, delete, and insert block easily.
 - Assets loading improved and cleanup
 - Charts block improved
@@ -17,9 +40,11 @@
 ## 1.0.4 [May 18, 2024]
 
 ### Added
+
 - Hover background control added to Brand Grid block
 
 ### Fixed
+
 - Box Sizing item issue fixed to Charts block
 - Box Shadow hover issue fixed to Advanced Image block
 - Border hover color issue fixed to Advanced Image block

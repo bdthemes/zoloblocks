@@ -529,7 +529,7 @@ function Style({ props }) {
         attributes,
     });
 
-    // post content wrapper
+    // post meta content wrapper
 
     const {
       dimensionStylesDesktop: metaBoxWrapPaddingDesk,

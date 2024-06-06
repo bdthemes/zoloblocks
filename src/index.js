@@ -1,7 +1,7 @@
 //Import common-styles
 import './common-styles.scss';
 
-//Import Global Hooks
+// Import Global Hooks
 import './global/hooks';
 // Import Blocks
 import '../blocks/container/src';
@@ -29,7 +29,7 @@ import '../blocks/google-map/src';
 import '../blocks/image-gallery/src';
 import '../blocks/image-compare/src';
 import '../blocks/list/src';
-import "../blocks/newsletter/src";
+import '../blocks/newsletter/src';
 import '../blocks/post-carousel/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
@@ -65,4 +65,3 @@ import './unregister';
 
 // form editor script
 import './form';
-import { applyFilters } from '@wordpress/hooks';

@@ -20,7 +20,6 @@ import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 import IconicBtnGroup from '../../controls/iconic-btn-group';
-import SimpleRangeControl from '../../controls/simple-range-control';
 import { applyFilters } from '@wordpress/hooks';
 import {
     DEFAULT_ALIGNS,
@@ -34,7 +33,6 @@ import {
     VPOSITIONS,
     CONTENT_POSITIONS,
 } from '../constants';
-import { zoloArraysMergeIfUniqueValue } from '../../helpers/helper';
 // value check
 const hasValCheck = (att, attributes) => {
     const { [`zolo_${att}Range`]: deskAtt, [`zolo_TAB${att}Range`]: tabAtt, [`zolo_MOB${att}Range`]: mobAtt } = attributes;
@@ -78,15 +76,8 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
-        horizontalOrientation,
-        verticalOrientation,
-        positionLeft,
-        positionRight,
-        positionTop,
-        positionBottom,
     } = attributes;
 
-    console.log('attributes', position);
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -208,7 +199,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionLeft'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -220,7 +211,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionRight'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -248,7 +239,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionTop'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -260,7 +251,7 @@ export const AdvancedOptions = (props) => {
                                         controlName={'positionBottom'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={500}
                                         noUnits={false}
                                     />
                                 </>
@@ -336,7 +327,7 @@ export const AdvancedOptions = (props) => {
 
             {globalConfig?.responsiveControls && (
                 <>
-                    <ZoloPanelBody title={__('Responsive Control', 'zoloblocks')} panelProps={props} extraPanel={true}>
+                    <ZoloPanelBody title={__('Visibility Control', 'zoloblocks')} panelProps={props} extraPanel={true}>
                         {applyFilters('zolo.blocks.displayConditions', displayPanels, panelProps)}
                     </ZoloPanelBody>
                 </>
