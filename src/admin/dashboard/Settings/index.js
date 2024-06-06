@@ -5,12 +5,13 @@ import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
 import { ToggleControl } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
-const {zoloBlocks} = window;
+const { zoloBlocks } = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);
     const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
     const [smoothScroller, setSmoothScroller] = useState(false);
+    const [blockExport, setBlockExport] = useState(false);
 
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
@@ -23,6 +24,7 @@ const Settings = () => {
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
             setSmoothScroller(response.zolo_smooth_scroller);
+            setBlockExport(response.zolo_enable_block_export);
         } catch (error) {
             handleFetchError(error);
         }
@@ -38,6 +40,7 @@ const Settings = () => {
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
             setSmoothScroller(response.zolo_smooth_scroller);
+            setBlockExport(response.zolo_enable_block_export);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -64,6 +67,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_smooth_scroller: value },
+        });
+    };
+
+    const updateBlockExport = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_enable_block_export: value },
         });
     };
 
@@ -139,6 +150,21 @@ const Settings = () => {
                                         checked={supportSVG}
                                         onChange={() => {
                                             updateSVG(!supportSVG);
+                                            setNotice(true);
+                                        }}
+                                    />
+                                </SettingBox>
+                                <SettingBox
+                                    title={__('Enable Block Export', 'zoloblocks')}
+                                    description={__(
+                                        'Enable the Block Export option to export your custom blocks in JSON format.',
+                                        'zoloblocks'
+                                    )}
+                                >
+                                    <ToggleControl
+                                        checked={blockExport}
+                                        onChange={() => {
+                                            updateBlockExport(!blockExport);
                                             setNotice(true);
                                         }}
                                     />

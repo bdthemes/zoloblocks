@@ -103,6 +103,8 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
+
+        // smooth scroller
         register_setting(
             'zolo_blocks_settings_group',
             'zolo_smooth_scroller',
@@ -191,6 +193,22 @@ class Zolo_Settings {
                 'show_in_rest'     => [
                     'schema' => [
                         'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+
+        // block export addon
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_enable_block_export',
+            [
+                'type'             => 'boolean',
+                'default'          => false,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
                     ],
                 ],
                 'sanitize_callback' => NULL,

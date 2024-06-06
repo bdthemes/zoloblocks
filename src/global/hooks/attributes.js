@@ -45,8 +45,8 @@ function addAttributes(settings) {
         return settings;
     }
     if (settings.category && settings.category == 'zoloblocks') {
-        if (settings.name === 'zolo/advanced-button') {
-        }
+        // if (settings.name === 'zolo/advanced-button') {
+        // }
         settings.attributes = {
             ...settings.attributes,
             uniqueId: {

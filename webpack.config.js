@@ -15,6 +15,7 @@ let allEntries = {
     ['build/dist']: './src/index.js',
     ['build/admin']: './src/admin/index.js',
     ['build/animation']: './src/animation/index.js',
+    ['build/extensions/block-export']: './src/extensions/block-export/index.js',
     ['build/module']: {
         import: path.resolve(__dirname, 'src/module-export.js'),
         library: {

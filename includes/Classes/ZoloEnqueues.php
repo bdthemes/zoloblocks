@@ -337,6 +337,23 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
+            // block export extension 
+            $enable_block_export = get_option('zolo_enable_block_export'); 
+            if( $enable_block_export === '1' ) {
+                $dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/block-export/index.asset.php';
+                if( file_exists($dep_file) ) {
+                    $script_dependecy = include $dep_file;
+                    wp_enqueue_script(
+                        'zolo-block-export-editor-script',
+                        trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/block-export/index.js',
+                        $script_dependecy['dependencies'],
+                        ZOLO_VERSION,
+                        true
+                    );
+                }
+               
+            }
+
             //get editor type
             global $pagenow;
 
