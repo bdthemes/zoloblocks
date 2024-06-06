@@ -114,7 +114,7 @@ function addAttributes(settings) {
             position: {
                 type: 'object',
                 default: {
-                    value: 'relative',
+                    value: '',
                     horizontalOrientation: {
                         direction: 'left',
                         offset: undefined,

@@ -450,21 +450,22 @@ export const GlobalStyleHanlder = (props) => {
 
 
     const positionDesktop = `
-        ${position ? `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
+        ${position.value == 'fixed' ? `width: auto !important`: ''}
     `;
     const positionTab = `
-        ${position ? `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightTab}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopTab}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomTab}` : ''}
     `;
     const positionMob = `
-        ${position ? `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftMob}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightMob}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopMob}` : ''}
