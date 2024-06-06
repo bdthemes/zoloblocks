@@ -5,7 +5,7 @@ Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
 Requires at least: 6.5
 Tested up to: 6.5.3
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,8 +67,7 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 - [**Call to action**](https://demo.zoloblocks.com/call-to-action/) - *Craft attention-grabbing messages that prompt visitors to take desired actions, such as signing up, making purchases, or contacting you. Offers the flexibility and design options.*
 - [**Charts**](https://demo.zoloblocks.com/charts/) - *Now create informative and engaging charts such as bar, line, pie, or area in WordPress easily. Customize the appearance with options for colors, labels, and professional styling.*
 - [**Countdown**](https://demo.zoloblocks.com/countdown/) - *Build excitement and anticipation among the audience with a personalized countdown. Set the specific date and time for your countdown, and customize colors, fonts, and      styles.*
-- [**Counter**](https://demo.zoloblocks.com/counter/) - *With this block, you can easily present statistics, milestones, or any other numerical information in a visually engaging format that is easy for visitors to understand.
-*
+- [**Counter**](https://demo.zoloblocks.com/counter/) - *With this block, you can easily present statistics, milestones, or any other numerical information in a visually engaging format that is easy for visitors to understand.*
 - [**Fancy list**](https://demo.zoloblocks.com/fancy-list/) - *Create lists in a visually stunning grid format on your WordPress website. Customize each list item with icons, colors, and text, and rearrange it within a responsive grid layout.*
 - [**Flip Box**](https://demo.zoloblocks.com/flip-box/) - *Captivate your audience by creating interactive flip boxes that reveal unique content on hover or click. Allows you to present two distinct pieces of content in a single space.*
 - [**Form**](https://demo.zoloblocks.com/form/) - *Our dynamic Gutenberg form builder block helps you build engaging contact forms, surveys, or any other type of interactive form to gather valuable information from your audience.*
@@ -93,7 +92,7 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 - [**Team grid**](https://demo.zoloblocks.com/team-grid/) - *The perfect solution for showcasing your team members in grids and highlighting the expertise and talent within your team, fostering trust and connection with your audience.*
 - [**Advanced Search**](https://demo.zoloblocks.com/advanced-search/) - *Want a advanced search feature so you must need advanced search block.*
 
-== Pro Features and Blocks ==
+== Pro Features and Blocks 👑 ==
 
 - [**Data Tables**](https://demo.zoloblocks.com/data-table/) - *Enhance your data presentation with our versatile Data Tables block for Gutenberg. Craft clear and structured data tables effortlessly, ideal for comparisons, analytics, or product specifications.*
 
@@ -101,7 +100,9 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 
 Still not happy? Don’t worry, more features coming very soon ….
 
-== Check out our other Addons 👑 ==
+== Check out our other Addons 🧩 ==
+
+* **[Element Pack Lite](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - *Element Pack Lite Build responsive website from scratch with an all-rounder package for Elementor.*
 
 * **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - *The revolutionary slider builder addon with next-gen superb interface.*
 
@@ -206,6 +207,27 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.0.6 - 06-06-2024 =
+
+= Added =
+
+* position feature has been added to the extra tab for every block
+
+= Fixed =
+
+* rerendering issue fixed in charts block
+* preset 3 hover color issue fixed in post grid block
+* preset 3 hover color issue fixed in post carousel block
+* preset 5 title issue fixed in counter block
+* default style overwriting issue fixed in pricing table block
+* default style overwriting issue fixed in advanced button block
+
+= Improved =
+
+* CSS compression override issue fixed for WP-Optimize plugin
+* typography control font-size increased 72 to 136 in counter block
+* author prefix text control added to post grid, post carousel and post list block
 
 = 1.0.5 - 29-05-2024 =
 
