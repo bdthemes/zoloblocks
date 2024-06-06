@@ -4,18 +4,33 @@ const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 const plugins = defaultConfig.plugins.filter(
-    (plugin) => plugin.constructor.name != 'MiniCssExtractPlugin' && plugin.constructor.name != 'CleanWebpackPlugin'
+    (plugin) => plugin.constructor.name !== 'MiniCssExtractPlugin' && plugin.constructor.name !== 'CleanWebpackPlugin'
 );
 
-const blocksFolder = __dirname + '/blocks';
+const blocksFolder = path.resolve(__dirname, 'blocks');
 let frontendEntries = getFrontend(blocksFolder);
+
+const vendorLibraries = ['@vis.gl/react-google-maps', 'apexcharts', 'react-countup', 'react-compare-slider', 'uuid', 'webfontloader'];
+
+const editorVendorLibraries = [
+    '@codemirror/lang-css',
+    '@dnd-kit/core',
+    '@dnd-kit/sortable',
+    '@dnd-kit/utilities',
+    '@uiw/react-codemirror',
+    'bezier-easing-editor',
+    'classnames',
+    'react-google-autocomplete',
+    'react-select',
+    'react-multi-select-component',
+];
 
 let allEntries = {
     ...frontendEntries,
-    ['build/dist']: './src/index.js',
-    ['build/admin']: './src/admin/index.js',
-    ['build/animation']: './src/animation/index.js',
-    ['build/module']: {
+    'build/dist': './src/index.js',
+    'build/admin': './src/admin/index.js',
+    'build/animation': './src/animation/index.js',
+    'build/module': {
         import: path.resolve(__dirname, 'src/module-export.js'),
         library: {
             name: 'zoloModule',
@@ -40,10 +55,36 @@ module.exports = {
     optimization: {
         splitChunks: {
             cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
+                vendor: {
                     name: 'vendor-bundle',
                     chunks: 'all',
+                    enforce: true,
+                    test: (module) => {
+                        return module.context && vendorLibraries.some((library) => module.context.includes(library));
+                    },
+                    filename: 'vendor-bundle/index.js',
+                },
+                // vendor: {
+                //     // Create separate bundle for each vendor library
+                //     test: (module) => {
+                //         return module.context && vendorLibraries.some((library) => module.context.includes(library));
+                //     },
+                //     name: (module) => {
+                //         const libName = vendorLibraries.find((library) => module.context.includes(library));
+                //         return libName ? `${libName.replace(/[^a-zA-Z0-9]/g, '-')}` : 'vendor-separate';
+                //     },
+                //     chunks: 'all',
+                //     enforce: true,
+                //     filename: 'vendor-bundle/[name]/index.js',
+                // },
+                editorVendor: {
+                    name: 'vendor-editor-bundle',
+                    chunks: 'all',
+                    enforce: true,
+                    test: (module) => {
+                        return module.context && editorVendorLibraries.some((library) => module.context.includes(library));
+                    },
+                    filename: 'vendor-editor-bundle/index.js',
                 },
             },
         },
