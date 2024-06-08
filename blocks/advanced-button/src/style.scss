@@ -523,7 +523,7 @@
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
-            transform: translateX(15px);
+            transform: translateX(10px);
             transition:
                 transform 0.3s ease,
                 opacity 0.3s ease;
@@ -556,7 +556,7 @@
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
-            transform: translateX(-15px);
+            transform: translateX(-10px);
             transition:
                 transform 0.3s ease,
                 opacity 0.3s ease;
