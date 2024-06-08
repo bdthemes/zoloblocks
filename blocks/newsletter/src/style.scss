@@ -86,6 +86,9 @@
       cursor: pointer;
       color: var(--newslatter-btn-color);
       transition: all .3s ease;
+      .zolo-form-btn-text {
+        text-wrap: nowrap !important;
+      }
     }
 
     .zolo__display-icon svg {
