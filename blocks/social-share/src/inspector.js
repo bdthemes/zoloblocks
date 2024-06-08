@@ -236,6 +236,16 @@ function Inspector(props) {
                                     step={1}
                                 />
                             )}
+                            {preset === 'preset-1' && socialText === 'iconOnly' && (
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zoloblocks')}
+                                    controlName={BUTTON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            )}
                             {socialText === 'iconText' && (
                                 <ResRangeControl
                                     label={__('Gap', 'zoloblocks')}

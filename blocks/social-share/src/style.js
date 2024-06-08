@@ -44,6 +44,7 @@ const Style = ({ props }) => {
         uniqueId,
         socialBgColor,
         socialColor,
+        socialText,
         socialBgHoverColor,
         socialTextColor,
         socialTextHoverColor,
@@ -224,6 +225,14 @@ const Style = ({ props }) => {
 		}
          ${
              preset !== 'preset-1'
+                 ? `.${uniqueId}.wp-block-zolo-social-share .zolo-social-item svg{
+           ${buttonSize}
+            ${buttonHSize}
+        }`
+                 : ' '
+         }
+         ${
+             preset === 'preset-1' && socialText === 'iconOnly'
                  ? `.${uniqueId}.wp-block-zolo-social-share .zolo-social-item svg{
            ${buttonSize}
             ${buttonHSize}
