@@ -16,6 +16,7 @@ const {
     generateTypographyStyles,
     generateGapStyle,
     GlobalStyleHanlder,
+    generateResAlignmentStyle,
 } = window.zoloModule;
 
 import {
@@ -31,6 +32,7 @@ import {
     BTN_HOVER_SHADOW,
     PT_ICON_WIDTH,
     PT_ICON_HEIGHT,
+    BLOCK_ALIGNMENT,
 } from './constants';
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -42,6 +44,7 @@ const Style = ({ props }) => {
         uniqueId,
         socialBgColor,
         socialColor,
+        socialText,
         socialBgHoverColor,
         socialTextColor,
         socialTextHoverColor,
@@ -72,7 +75,6 @@ const Style = ({ props }) => {
         property: 'height',
         attributes,
     });
-
 
     const {
         desktopBorderStyle: borderStyles,
@@ -190,11 +192,24 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // alignment
+    const {
+        desktopAlignStyle: blockAlignmentDesktop,
+        tabAlignStyle: blockAlignmentTab,
+        mobAlignStyle: blockAlignmentMob,
+    } = generateResAlignmentStyle({
+        controlName: BLOCK_ALIGNMENT,
+        property: 'justify-content',
+        attributes,
+    });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
+		.${uniqueId}.wp-block-zolo-social-share.flex {
+        ${blockAlignmentDesktop}
+        }
 		.${uniqueId}.wp-block-zolo-social-share {
 			${blockDeskMargin}
 			${colGapDeskstyle}
@@ -210,6 +225,14 @@ const Style = ({ props }) => {
 		}
          ${
              preset !== 'preset-1'
+                 ? `.${uniqueId}.wp-block-zolo-social-share .zolo-social-item svg{
+           ${buttonSize}
+            ${buttonHSize}
+        }`
+                 : ' '
+         }
+         ${
+             preset === 'preset-1' && socialText === 'iconOnly'
                  ? `.${uniqueId}.wp-block-zolo-social-share .zolo-social-item svg{
            ${buttonSize}
             ${buttonHSize}
@@ -271,6 +294,10 @@ const Style = ({ props }) => {
          }
   	`;
     const tabletAllStyle = `
+
+		.${uniqueId}.wp-block-zolo-social-share.flex {
+        ${blockAlignmentTab}
+        }
 		.${uniqueId}.wp-block-zolo-social-share{
 			${blockTabMargin}
 			${colGapTabStyle}
@@ -301,6 +328,9 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
+    .${uniqueId}.wp-block-zolo-social-share.flex {
+        ${blockAlignmentMob}
+        }
 		.${uniqueId}.wp-block-zolo-social-share{
 			${blockMobMargin}
 			${colGapMobStyle}

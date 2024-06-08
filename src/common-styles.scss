@@ -199,3 +199,144 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 }
+
+
+// sidebar opener styles
+
+.zolo-block {
+    position: relative;
+    .zolo-blocks-toolbar {
+        position: absolute !important;
+        display: inline-flex;
+        border: none;
+        background: #4e62ed;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        z-index: 9;
+        opacity: 0;
+        visibility: hidden;
+        button {
+            padding: 5px;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            svg {
+                display: block;
+                width: 15px;
+                height: 15px;
+            }
+            &:hover,
+            &:focus {
+                background: rgba(209, 209, 209, 0.173);
+            }
+        }
+
+        &.container {
+            top: -31px;
+            left: 50%;
+            width: 109px !important;
+            transform: translateX(-50%);
+            border-start-start-radius: 5px;
+            border-start-end-radius: 5px;
+            border-end-start-radius: 0;
+            border-end-end-radius: 0;
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+            button {
+                padding: 5px 8px;
+            }
+        }
+
+        &.general-block {
+            top: 0;
+            right: 0 !important;
+            border-radius: 0;
+            border-bottom-left-radius: 6px;
+            background-color: #837e7e;
+            button {
+                border-radius: 0;
+                border-bottom-left-radius: 6px;
+            }
+        }
+    }
+
+    .zolo-container-inner-blocks-wrap {
+        .zolo-blocks-toolbar {
+            &.container {
+                transform: unset;
+                top: 0;
+                left: 0;
+                right: unset !important;
+                width: auto !important;
+                height: auto !important;
+                padding: 0px;
+                border-radius: 0px;
+                border-bottom-right-radius: 6px;
+                background-color: #837e7e;
+                button {
+                    padding: 5px;
+                    border-bottom-right-radius: 6px;
+                    svg {
+                        width: 15px;
+                        height: 15px;
+                        path{
+                            fill: #fff;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        &.general-block {
+            top: 0 !important;
+            right: 0 !important;
+            left: unset !important;
+            border-radius: 0;
+            border-bottom-left-radius: 6px !important;
+            background-color: #837e7e !important;
+            button {
+                border-radius: 0;
+                border-bottom-left-radius: 6px;
+            }
+        }
+        .zolo-remove-block,
+        .zolo-insert-before {
+            display: none;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        .zolo-blocks-toolbar {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.block-editor-block-list__layout .block-editor-block-list__block.is-highlighted:after, 
+.block-editor-block-list__layout .block-editor-block-list__block.is-highlighted~.is-multi-selected:after, 
+.block-editor-block-list__layout .block-editor-block-list__block:not([contenteditable=true]):after, 
+.block-editor-block-list__layout.is-navigate-mode .block-editor-block-list__block.is-selected:after {
+    box-shadow: none !important;
+}
+
+
+.zolo-root-container:hover,
+.zolo-root-container.is-selected:focus {
+    box-shadow: 0 0 0 1px #4e62ed !important;
+}
+
+.block-editor-inner-blocks .zolo-block:hover,
+.block-editor-inner-blocks .zolo-block.is-selected:focus {
+    box-shadow: 0 0 0 1px #837e7e;
+}
+
+.block-editor-block-list__block.zolo-block:hover,
+.block-editor-block-list__block.zolo-block.is-selected:focus {
+    box-shadow: 0 0 0 1px #837e7e;
+}

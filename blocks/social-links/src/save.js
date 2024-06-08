@@ -1,19 +1,19 @@
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import classnames from 'classnames';
 
 import { useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, socialProfiles, socialColor, socialText, layout, zoloId } = attributes;
+    const { uniqueId,parentClasses, preset, socialProfiles, socialColor, socialText, layout, zoloId } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(`${preset} ${uniqueId} ${layout}`),
+                className: classnames(`${preset} ${uniqueId} ${layout}`, classArrayToStr(parentClasses)),
             })}
             {...(zoloId && {
                 id: zoloId,

@@ -15,6 +15,7 @@ const {
     AdvancedOptions,
     ResGapControl,
     ZoloPanelBody,
+    ResAlignmentControl,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -42,9 +43,10 @@ import {
     BTN_HOVER_SHADOW,
     PT_ICON_HEIGHT,
     PT_ICON_WIDTH,
+    BLOCK_ALIGNMENT,
 } from './constants';
 
-import { ICON_STATUS } from '../../../src/global/constants';
+import { ICON_STATUS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
@@ -173,6 +175,16 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 max={200}
                             />
+                            {layout === 'flex' && (
+                                <>
+                                    <ResAlignmentControl
+                                        label={__('Alignment', 'zoloblocks')}
+                                        controlName={BLOCK_ALIGNMENT}
+                                        requiredProps={requiredProps}
+                                        alignOptions={FLEX_ALIGN_OPTIONS}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Social Profiles', 'zoloblocks')} panelProps={props}>
                             <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
@@ -215,6 +227,16 @@ function Inspector(props) {
                                 </>
                             )}
                             {preset !== 'preset-1' && (
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zoloblocks')}
+                                    controlName={BUTTON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            )}
+                            {preset === 'preset-1' && socialText === 'iconOnly' && (
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}
                                     controlName={BUTTON_SIZE}

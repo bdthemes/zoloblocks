@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useState } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
@@ -61,6 +61,7 @@ import {
     PT_BG,
     PTH_BG,
     PFTH_BG,
+    ICON_ANIMATIONS,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -83,11 +84,10 @@ function Inspector(props) {
         textHoverColor,
         borderHoverColor,
         preset,
-        presetTwoStyles,
-        presetThreeStyles,
         presetFourStyles,
         presetSixStyle,
         presetSevenStyles,
+        iconAnimation,
     } = attributes;
 
     const requiredProps = {
@@ -96,10 +96,14 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-    const [value, setValue] = useState([0.25, 0.1, 0.25, 1]);
+
+    // on presets change comment
+    const onPresetChange = (selected) => {
+        setAttributes({ preset: selected });
+    };
+
     return (
         <InspectorControls key="controls">
-            {/* {applyFilters('zoloblocks.advanced-button.presets', PRESETS)} */}
             <HeaderTabs
                 block="zolo/advanced-button"
                 attributes={attributes}
@@ -111,11 +115,7 @@ function Inspector(props) {
                                 label={__('Styles', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.advancedButton.presets', PRESETS)}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        preset: value,
-                                    })
-                                }
+                                onChange={(value) => onPresetChange(value)}
                             />
                             <ResAlignmentControl
                                 label={__('Button Alignment', 'zoloblocks')}
@@ -148,6 +148,7 @@ function Inspector(props) {
                                 }
                                 options={ICON_STATUS}
                             />
+
                             {iconType !== 'none' && (
                                 <Fragment>
                                     <ZoloIconPicker
@@ -159,22 +160,55 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
-
                                     {iconType !== 'iconOnly' && (
-                                        <IconicBtnGroup
-                                            label={__('Position', 'zoloblocks')}
-                                            value={iconPosition}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    iconPosition: value,
-                                                })
-                                            }
-                                            options={ICON_POSITIONS}
-                                        />
+                                        <>
+                                            {(iconAnimation === '' ||
+                                                iconAnimation === null ||
+                                                iconAnimation === undefined ||
+                                                iconAnimation === 'undefined' ||
+                                                (iconAnimation !== '' &&
+                                                    iconAnimation !== null &&
+                                                    iconAnimation !== undefined &&
+                                                    iconAnimation !== 'undefined' &&
+                                                    (preset === 'button-1' || preset === 'button-3'))) && (
+                                                <>
+                                                    <IconicBtnGroup
+                                                        label={__('Icon Position', 'zoloblocks')}
+                                                        value={iconPosition}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconPosition: value,
+                                                            })
+                                                        }
+                                                        options={ICON_POSITIONS}
+                                                    />
+                                                </>
+                                            )}
+                                        </>
                                     )}
                                 </Fragment>
                             )}
                         </ZoloPanelBody>
+                        {iconType === 'iconText' && preset !== 'button-1' && preset !== 'button-3' && (
+                            <>
+                                {applyFilters(
+                                    'zolo.advancedButton.animationPanel',
+                                    <ZoloPanelBody
+                                        title={__('Icon Animation', 'zoloblocks')}
+                                        panelProps={props}
+                                        isPro={true}
+                                        isDisabled={true}
+                                    >
+                                        <SelectControl
+                                            label={__('Icon Animation', 'zoloblocks')}
+                                            value={iconAnimation}
+                                            options={ICON_ANIMATIONS}
+                                            onChange={(value) => setAttributes({ iconAnimation: value })}
+                                        />
+                                    </ZoloPanelBody>
+                                )}
+                            </>
+                        )}
                     </>
                 }
                 styleTab={

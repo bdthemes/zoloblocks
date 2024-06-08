@@ -208,11 +208,12 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.0.6 - 06-06-2024 =
+= 1.0.6 - 08-06-2024 =
 
 = Added =
 
 * position feature has been added to the extra tab for every block
+* alignment options has been added to the Social Share and Social Links block
 
 = Fixed =
 
@@ -222,6 +223,9 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 * preset 5 title issue fixed in counter block
 * default style overwriting issue fixed in pricing table block
 * default style overwriting issue fixed in advanced button block
+* global style not working issue fixed in Social Share and Social Links block
+* separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
+* icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
 
 = Improved =
 

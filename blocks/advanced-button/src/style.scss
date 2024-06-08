@@ -87,7 +87,9 @@
                 background: #000;
                 transform-origin: 50% 100%;
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-                transition: clip-path 0.2s, -webkit-clip-path 0.2s;
+                transition:
+                    clip-path 0.2s,
+                    -webkit-clip-path 0.2s;
                 transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
             }
             &:hover {
@@ -97,7 +99,9 @@
                 }
                 .zolo-button-content,
                 .zolo__display-icon {
-                    animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s;
+                    animation:
+                        MoveUpInitial 0.2s forwards,
+                        MoveUpEnd 0.2s forwards 0.2s;
                 }
             }
             .zolo-button-content,
@@ -112,16 +116,16 @@
 	*/
     &.button-2 {
         .zolo-button {
-          background-color: unset;
+            background-color: unset;
             &::after {
                 border: 1px solid var(--zoloblocks-brand-color);
-                transition: transform 0.3s cubic-bezier(0.2,1,0.7,1);
+                transition: transform 0.3s cubic-bezier(0.2, 1, 0.7, 1);
                 border-radius: 0px;
                 transform: scale3d(0.85, 0.65, 1);
             }
             &::before {
                 background-color: var(--zoloblocks-brand-color);
-                transition: transform 0.3s cubic-bezier(0.2,1,0.7,1);
+                transition: transform 0.3s cubic-bezier(0.2, 1, 0.7, 1);
             }
 
             &::before,
@@ -140,7 +144,7 @@
                     transform: scale3d(0.9, 0.8, 1);
                 }
                 &::after {
-                    transform: scale3d(1,1,1);
+                    transform: scale3d(1, 1, 1);
                 }
             }
         }
@@ -166,12 +170,14 @@
 
             &:hover {
                 &::before {
-                    transform: scale3d(0,1,1);
+                    transform: scale3d(0, 1, 1);
                     transform-origin: 0% 50%;
                 }
                 .zolo-button-content,
                 .zolo__display-icon {
-                    animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s;
+                    animation:
+                        MoveUpInitial 0.2s forwards,
+                        MoveUpEnd 0.2s forwards 0.2s;
                 }
             }
             .zolo-button-content,
@@ -260,6 +266,9 @@
                 box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
                 transform: translate3d(0, 2px, 0);
             }
+            svg {
+                fill: rgba(63, 69, 78, 1);
+            }
         }
 
         .zolo-button-content {
@@ -306,38 +315,38 @@
     &.button-8 {
         --button-8-color: #000;
         .zolo-button {
-                position: relative;
-                &::before,
-                &::after {
-                  content: "";
-                  width: 100%;
-                  height: 100%;
-                  position: absolute;
-                  z-index: -1;
-                  border: 2px solid var(--button-8-color);
-                  transition: all .25s ease-out;
-                  border-radius: var(--zoloblocks-button-border-radius);
-                  pointer-events: none;
-                }
+            position: relative;
+            &::before,
+            &::after {
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                z-index: -1;
+                border: 2px solid var(--button-8-color);
+                transition: all 0.25s ease-out;
+                border-radius: var(--zoloblocks-button-border-radius);
+                pointer-events: none;
+            }
+            &::before {
+                background-color: var(--button-8-color);
+                top: -6px;
+                left: -6px;
+            }
+            &::after {
+                bottom: -6px;
+                right: -6px;
+            }
+            &:hover {
                 &::before {
-                  background-color: var(--button-8-color);
-                  top: -6px;
-                  left: -6px;
-                }
-                &::after {
-                  bottom: -6px;
-                  right: -6px;
-                }
-                &:hover {
-                  &::before {
                     top: 6px;
                     left: 6px;
-                  }
-                  &::after {
+                }
+                &::after {
                     bottom: 6px;
                     right: 6px;
-                  }
                 }
+            }
         }
     }
 
@@ -347,6 +356,7 @@
         justify-content: center;
         text-align: center;
         text-decoration: none;
+        outline: none;
         &.top {
             flex-direction: column-reverse;
         }
@@ -380,6 +390,176 @@
             display: block;
             fill: #fff;
             box-sizing: content-box;
+        }
+    }
+
+    // pro preset style 9
+    &.icon-animation-1 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
+                }
+                .zolo-button-content {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+        }
+        .zolo__display-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate(-50%, -30px);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 10
+    &.icon-animation-2 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
+                }
+                .zolo-button-content {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+            }
+        }
+        .zolo__display-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate(-50%, 30px);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 11
+    &.icon-animation-3 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
+                }
+                .zolo-button-content {
+                    opacity: 0;
+                    transform: translateX(20px);
+                }
+            }
+        }
+        .zolo__display-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate(-30px, -50%);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 12
+    &.icon-animation-4 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .zolo-button-content {
+                    transform: translateX(0);
+                }
+            }
+        }
+        .zolo__display-icon {
+            opacity: 0;
+            overflow: hidden;
+            transform: translateX(-10px);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transform: translateX(15px);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 13
+    &.icon-animation-5 {
+        .zolo-button {
+            position: relative;
+            flex-direction: row-reverse;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .zolo-button-content {
+                    transform: translateX(0);
+                }
+            }
+        }
+        .zolo__display-icon {
+            opacity: 0;
+            overflow: hidden;
+            transform: translateX(10px);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transform: translateX(-15px);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
         }
     }
 }
@@ -443,15 +623,15 @@
 }
 @keyframes MoveUpInitial {
     100% {
-        transform: translate3d(0,-105%,0);
+        transform: translate3d(0, -105%, 0);
     }
 }
 @keyframes MoveUpEnd {
     0% {
-        transform: translate3d(0,100%,0);
+        transform: translate3d(0, 100%, 0);
     }
-    
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
