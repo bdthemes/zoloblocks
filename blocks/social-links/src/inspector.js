@@ -46,7 +46,7 @@ import {
     BLOCK_ALIGNMENT,
 } from './constants';
 
-import { ICON_STATUS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { ICON_STATUS, FLEX_HORIZONTAL_OPTIONS } from '../../../src/global/constants';
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
@@ -181,7 +181,7 @@ function Inspector(props) {
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={BLOCK_ALIGNMENT}
                                         requiredProps={requiredProps}
-                                        alignOptions={FLEX_ALIGN_OPTIONS}
+                                        alignOptions={FLEX_HORIZONTAL_OPTIONS}
                                     />
                                 </>
                             )}
