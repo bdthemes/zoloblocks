@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function tabify(tab) {
         const tabList = tab.querySelector('.tab__list');
         const activeIndex = parseInt(tab.dataset.activeindex, 10) || 0;
+        let isInitialSetup = true; // Flag to track if initial setup is complete
 
         if (tabList) {
             const tabItems = [...tabList.children];
@@ -11,10 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const tabContentItems = [...tabContent.children];
             let tabIndex = activeIndex;
 
-            // tabIndex = tabItems.findIndex((item) => [...item.classList].indexOf('active') > -1);
-            // tabIndex > -1 ? (tabIndex = tabIndex) : (tabIndex = 0);
-
-            function setTab(index) {
+            function setTab(index, focus = false) {
                 tabItems.forEach((x) => {
                     x.classList.remove('active');
                     x.setAttribute('aria-selected', 'false');
@@ -28,21 +26,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 tabItems[index].setAttribute('aria-selected', 'true');
                 tabContentItems[index].classList.add('active');
                 tabContentItems[index].setAttribute('aria-hidden', 'false');
-                tabItems[index].focus();
+
+                if (!isInitialSetup && focus) {
+                    tabItems[index].focus();
+                }
             }
 
             function focusNextTab() {
                 tabIndex = (tabIndex + 1) % tabItems.length;
-                setTab(tabIndex);
+                setTab(tabIndex, true);
             }
 
             function focusPreviousTab() {
                 tabIndex = (tabIndex - 1 + tabItems.length) % tabItems.length;
-                setTab(tabIndex);
+                setTab(tabIndex, true);
             }
 
             tabItems.forEach((x, index) => {
-                x.addEventListener('click', () => setTab(index));
+                x.addEventListener('click', () => setTab(index, true));
                 x.addEventListener('keydown', (e) => {
                     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                         focusNextTab();
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             setTab(tabIndex);
+            isInitialSetup = false; // Initial setup complete
             tab.querySelectorAll('.zolo-tabs').forEach((tabContent) => tabify(tabContent));
         }
     }
