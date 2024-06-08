@@ -64,6 +64,7 @@ export const ICON_TEXT_SPACING = 'iconTextSpacing';
 
 // Block Margin
 export const BLOCK_MARGIN = 'blockMargin';
+export const BLOCK_ALIGNMENT = 'blockAlignment';
 
 // preset 3 icon
 export const PT_ICON_WIDTH = 'ptIconWidth';
