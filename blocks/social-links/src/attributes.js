@@ -6,6 +6,7 @@ const {
     generateBoxShadowAttributies,
     generateTypographyAttributes,
     generateGapAttributes,
+    generateResAlignmentAttributies,
 } = window.zoloModule;
 
 import {
@@ -21,6 +22,7 @@ import {
     BLOCK_MARGIN,
     PT_ICON_WIDTH,
     PT_ICON_HEIGHT,
+    BLOCK_ALIGNMENT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -79,6 +81,8 @@ const attributes = {
     // preset 3 icon
     ...generateResRangeAttributies(PT_ICON_WIDTH),
     ...generateResRangeAttributies(PT_ICON_HEIGHT),
+    ...generateResAlignmentAttributies(BLOCK_ALIGNMENT),
+
     //Block specific Attributes
     preset: {
         type: 'string',
