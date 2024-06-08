@@ -1,7 +1,7 @@
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import classnames from 'classnames';
 import { socialMediaInfo } from './constants';
@@ -10,13 +10,13 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { zoloArraysMergeIfUniqueValue } from '../../../src/helpers/helper';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, socialMedia, socialColor, socialText, layout } = attributes;
+    const { uniqueId, parentClasses, preset, socialMedia, socialColor, socialText, layout } = attributes;
 
     const socialMediaInfoFiltered = zoloArraysMergeIfUniqueValue(socialMedia, socialMediaInfo, 'value');
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(`${preset} ${uniqueId} ${layout}`),
+                className: classnames(`${preset} ${uniqueId} ${layout}`, classArrayToStr(parentClasses)),
             })}
         >
             {socialMediaInfoFiltered &&
