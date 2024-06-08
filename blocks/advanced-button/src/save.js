@@ -7,7 +7,7 @@ import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses, zoloId } = attributes;
+    const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses, zoloId, iconAnimation } = attributes;
 
     return (
         <div
@@ -18,9 +18,16 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>
+            <div className={
+                    classnames('zolo-block-wrapper','zolo-advanced-button', uniqueId, preset, `${
+                        iconAnimation !== '' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''
+                    }`)}>
                 <a
-                    className={`zolo-button ${iconPosition}`}
+                    className={classnames('zolo-button', `${ ((
+                        iconAnimation === '' || iconAnimation === null || iconAnimation === undefined 
+                    ) || (
+                        iconAnimation !== '' && (preset === 'button-1' || preset === 'button-3')
+                    )) ? iconPosition : ''}`)}
                     href={link && link.url}
                     rel={link && link.openInNewTab && 'noreferrer noopener'}
                     target={link && link.openInNewTab && '_blank'}

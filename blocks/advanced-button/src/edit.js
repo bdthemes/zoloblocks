@@ -15,7 +15,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
-    const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link } = attributes;
+    const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link, iconAnimation } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -32,9 +32,16 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
-                <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>
+                <div className={
+                    classnames('zolo-block-wrapper','zolo-advanced-button', uniqueId, preset, `${
+                        iconAnimation !== '' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''
+                    }`)}>
                     <a
-                        className={classnames('zolo-button', `${iconPosition}`)}
+                        className={classnames('zolo-button', `${ ((
+                            iconAnimation === '' || iconAnimation === null || iconAnimation === undefined 
+                        ) || (
+                            iconAnimation !== '' && (preset === 'button-1' || preset === 'button-3')
+                        )) ? iconPosition : ''}`)}
                         href={link && link.url}
                         rel={link && link.openInNewTab && 'noreferrer noopener'}
                         target={link && link.openInNewTab && '_blank'}

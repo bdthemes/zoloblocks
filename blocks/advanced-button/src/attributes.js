@@ -199,6 +199,9 @@ const attributes = {
     borderHoverColor: {
         type: 'string',
     },
+    iconAnimation: {
+        type: 'string',
+    }
 };
 
 export default attributes;
