@@ -79,6 +79,9 @@
   color: var(--search-btn-color);
   text-transform: uppercase;
   transition: all .3s ease;
+  .zolo-form-btn-text {
+    text-wrap: nowrap !important;
+  }
 }
 
 
