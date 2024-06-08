@@ -21,6 +21,9 @@ jobs:
             - name: Build
               run: npm run build
 
+            - name: Remove all .map files
+              run: find . -name "*.map" -type f -delete
+
             - name: Create zoloblocks directory and move files
               run: |
                   mkdir -p zoloblocks &&
@@ -30,7 +33,7 @@ jobs:
               uses: thedoctor0/zip-release@0.7.6
               with:
                   filename: 'zoloblocks.zip'
-                  exclusions: '/*src/* /*node_modules/* /*.distignore /*.gitignore /*.github/* /*.git/* /*.editorconfig /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.lock /*webpack.config.js '
+                  exclusions: '/*src/* /*node_modules/* /*.distignore /*.gitignore /*.github/* /*.git/* /*.editorconfig /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.lock /*webpack.config.js /*index.js.LICENSE.txt'
             - name: Display release
               run: ls -a
 
