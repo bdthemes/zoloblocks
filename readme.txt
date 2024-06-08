@@ -218,12 +218,14 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 = Fixed =
 
 * rerendering issue fixed in charts block
+* preset 5 title issue fixed in counter block
+* tab auto scrolling issue fixed in Tabs block
 * preset 3 hover color issue fixed in post grid block
 * preset 3 hover color issue fixed in post carousel block
-* preset 5 title issue fixed in counter block
 * default style overwriting issue fixed in pricing table block
 * default style overwriting issue fixed in advanced button block
 * global style not working issue fixed in Social Share and Social Links block
+* button text multiline issue fixed in Advanced Search block & Newsletter block
 * separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
 * icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
 
