@@ -188,12 +188,12 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         [`${controlName}bgImageURL`]: null,
                                                                     })
                                                                 }
-                                                                onEditImage={(url, id) =>
+                                                                onEditImage={({ id, url }) => {
                                                                     setAttributes({
                                                                         [`${controlName}bgImageURL`]: url,
                                                                         [`${controlName}bgImageID`]: id,
-                                                                    })
-                                                                }
+                                                                    });
+                                                                }}
                                                             />
 
                                                             {resMode === 'Desktop' && (

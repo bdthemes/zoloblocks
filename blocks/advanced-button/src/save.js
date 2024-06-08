@@ -23,8 +23,8 @@ const Save = ({ attributes }) => {
                     'zolo-block-wrapper',
                     'zolo-advanced-button',
                     uniqueId,
-                    preset,
-                    `${iconAnimation !== '' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''}`
+                    `${preset !== '' && preset !== undefined && preset !== null && preset !== 'undefined' ? preset : ''}`,
+                    `${iconAnimation !== '' && iconAnimation !== undefined && iconAnimation !== 'undefined' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''}`
                 )}
             >
                 <a

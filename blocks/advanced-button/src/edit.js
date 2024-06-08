@@ -26,6 +26,8 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zoloblocks')} />;
     }
 
+    console.log('iconAnimation', iconAnimation, typeof iconAnimation);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -37,8 +39,8 @@ export default function Edit(props) {
                         'zolo-block-wrapper',
                         'zolo-advanced-button',
                         uniqueId,
-                        preset,
-                        `${iconAnimation !== '' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''}`
+                        `${preset !== '' && preset !== undefined && preset !== null && preset !== 'undefined' ? preset : ''}`,
+                        `${iconAnimation !== '' && iconAnimation !== undefined && iconAnimation !== 'undefined' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''}`
                     )}
                 >
                     <a
