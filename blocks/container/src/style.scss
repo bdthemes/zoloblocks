@@ -9,6 +9,7 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
 
 .wp-block-zolo-container .block-editor-block-list__layout > * {
     width: 100%;
+
 }
 
 // block style
@@ -16,6 +17,10 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     box-sizing: border-box;
     figure {
         margin: 0;
+    }
+    // .block-editor-block-list__layout
+    .block-editor-block-list__layout {
+       position: unset;
     }
 }
 
@@ -27,7 +32,7 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     &.alignfull.zolo-root-container {
         .zolo-container-inner-blocks-wrap {
             display: flex;
-            position: relative;
+            // position: relative;
             box-sizing: border-box;
             margin-left: auto !important;
             margin-right: auto !important;
