@@ -16,7 +16,7 @@ export const PRESETS = [
     { label: __('Style 6', 'zoloblocks'), value: 'button-5' },
     { label: __('Style 7', 'zoloblocks'), value: 'button-6' },
     { label: __('Style 8', 'zoloblocks'), value: 'button-7' },
-    { label: __('Style 9', 'zoloblocks'), value: 'button-8' },
+    { label: __('Style 9', 'zoloblocks'), value: 'button-8' }
 ];
 
 /**
@@ -71,3 +71,32 @@ export const PS_BORDER_RADIUS = 'presetSRadius';
 export const PSE_BORDER = 'pseBorder';
 export const PSE_BRADIUS = 'pseBradius';
 export const PSE_BG = 'pseBG';
+
+
+// Icon Animations 
+export const ICON_ANIMATIONS = [
+    {
+        label: __('Select Animation', 'zoloblocks'),
+        value: ''
+    },
+    {
+        label: __('Animation 1', 'zoloblocks'),
+        value: 'icon-animation-1'
+    },
+    {
+        label: __('Animation 2', 'zoloblocks'),
+        value: 'icon-animation-2'
+    },
+    {
+        label: __('Animation 3', 'zoloblocks'),
+        value: 'icon-animation-3'
+    },
+    {
+        label: __('Animation 4', 'zoloblocks'),
+        value: 'icon-animation-4'
+    },
+    {
+        label: __('Animation 5', 'zoloblocks'),
+        value: 'icon-animation-5'
+    },
+];

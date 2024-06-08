@@ -260,6 +260,9 @@
                 box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
                 transform: translate3d(0, 2px, 0);
             }
+            svg {
+                fill: rgba(63, 69, 78, 1);
+            }
         }
 
         .zolo-button-content {
@@ -341,12 +344,14 @@
         }
     }
 
+
     .zolo-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         text-decoration: none;
+        outline: none;
         &.top {
             flex-direction: column-reverse;
         }
@@ -380,6 +385,156 @@
             display: block;
             fill: #fff;
             box-sizing: content-box;
+        }
+    }
+
+    // pro preset style 9
+    &.icon-animation-1 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
+                }
+                .zolo-button-content {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+        }
+        .zolo__display-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate(-50%, -30px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 10
+    &.icon-animation-2 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
+                }
+                .zolo-button-content {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+            }
+        }
+        .zolo__display-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate(-50%, 30px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 11
+    &.icon-animation-3 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%);
+                }
+                .zolo-button-content {
+                    opacity: 0;
+                    transform: translateX(20px);
+                }
+            }
+        }
+        .zolo__display-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate(-30px, -50%);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 12
+    &.icon-animation-4 {
+        .zolo-button {
+            position: relative;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .zolo-button-content {
+                    transform: translateX(0);
+                }
+            }
+        }
+        .zolo__display-icon {
+            opacity: 0;
+            overflow: hidden;
+            transform: translateX(-10px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transform: translateX(15px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    }
+
+    // pro preset style 13
+    &.icon-animation-5 {
+        .zolo-button {
+            position: relative;
+            flex-direction: row-reverse;
+            &:hover {
+                .zolo__display-icon {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .zolo-button-content {
+                    transform: translateX(0);
+                }
+            }
+        }
+        .zolo__display-icon {
+            opacity: 0;
+            overflow: hidden;
+            transform: translateX(10px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .zolo-button-content {
+            opacity: 1;
+            overflow: hidden;
+            transform: translateX(-15px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
     }
 }
