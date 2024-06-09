@@ -7,10 +7,10 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-image-gallery';
 
 // Presets
-// export const PRESETS = [
-//     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
-//     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
-// ];
+export const PRESETS = [
+    { label: __('Style 1', 'zoloblocks'), value: '' },
+    { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
+];
 
 // Grid
 export const COLUMN_COUNT = 'columnCount';
@@ -44,6 +44,17 @@ export const HEADING_MARGIN = 'headingMargin';
 export const HEADING_PADDING = 'headingPadding';
 export const HEADING_BORDER_RADIUS = 'headingBorderRadius';
 export const HEADING_BOX_SHADOW = 'headingBoxShadow';
+
+// Title
+export const TITLE_MARGIN = 'TitleMargin';
+
+// Content
+export const CONTENT_BORDER = 'contentBorder';
+export const CONTENT_BACKGROUND = 'contentBackground';
+export const CONTENT_MARGIN = 'contentMargin';
+export const CONTENT_PADDING = 'contentPadding';
+export const CONTENT_BORDER_RADIUS = 'contentBorderRadius';
+export const CONTENT_BOX_SHADOW = 'contentBoxShadow';
 
 // Zoom Icon
 export const ZOOM_ICON_PADDING = 'zoomIconPadding';

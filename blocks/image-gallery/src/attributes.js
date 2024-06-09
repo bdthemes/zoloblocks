@@ -37,6 +37,13 @@ import {
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    TITLE_MARGIN,
+    CONTENT_BORDER,
+    CONTENT_BACKGROUND,
+    CONTENT_MARGIN,
+    CONTENT_PADDING,
+    CONTENT_BORDER_RADIUS,
+    CONTENT_BOX_SHADOW,
     ZOOM_ICON_PADDING,
     ZOOM_ICON_BORDER_RADIUS,
     ZOOM_ICON_BORDER,
@@ -74,6 +81,10 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    preset: {
+        type: 'string',
+        default: '',
+    },
     headingColor: {
         type: 'string',
     },
@@ -109,6 +120,17 @@ const attributes = {
     ...generateDimensionAttributes(HEADING_PADDING),
     ...generateDimensionAttributes(HEADING_BORDER_RADIUS),
     ...generateBoxShadowAttributies(HEADING_BOX_SHADOW),
+
+    // Sub Title
+    ...generateDimensionAttributes(TITLE_MARGIN),
+
+     // Content
+     ...generateBorderAttributies(CONTENT_BORDER),
+     ...generateNormalBGAttributes(CONTENT_BACKGROUND),
+     ...generateDimensionAttributes(CONTENT_MARGIN),
+     ...generateDimensionAttributes(CONTENT_PADDING),
+     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
+     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
 
     // Zoom Icon
     ...generateDimensionAttributes(ZOOM_ICON_PADDING),
@@ -175,6 +197,10 @@ const attributes = {
         ],
     },
     showCaption: {
+        type: 'boolean',
+        default: true,
+    },
+    showTitle: {
         type: 'boolean',
         default: true,
     },
