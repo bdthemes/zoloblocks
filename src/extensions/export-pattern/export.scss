@@ -1,0 +1,31 @@
+.zolo-export-block-modal {
+    .components-base-control__label {
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 13px;
+        text-transform: capitalize;
+    }
+
+    .components-text-control__input {
+        padding: 10px !important;
+        height: 40px;
+        border: 1px solid #dddddd;
+        margin-bottom: 16px;
+    }
+
+    .components-base-control__help {
+        font-style: italic;
+        color: #4d4d4d;
+    }
+
+    .zolo-export-pattern-btn {
+        background: #2804ff;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+}

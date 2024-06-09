@@ -12,6 +12,7 @@ const Settings = () => {
     const [supportSVG, setSupportSVG] = useState(false);
     const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
+    const [blockImport, setBlockImport] = useState(false);
 
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
@@ -25,6 +26,7 @@ const Settings = () => {
             setSupportSVG(response.zolo_support_svg);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
+            setBlockImport(response.zolo_enable_block_import);
         } catch (error) {
             handleFetchError(error);
         }
@@ -41,6 +43,7 @@ const Settings = () => {
             setSupportSVG(response.zolo_support_svg);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
+            setBlockImport(response.zolo_enable_block_import);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -75,6 +78,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_enable_block_export: value },
+        });
+    };
+
+    const updateBlockImport = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_enable_block_import: value },
         });
     };
 
@@ -155,21 +166,6 @@ const Settings = () => {
                                     />
                                 </SettingBox>
                                 <SettingBox
-                                    title={__('Enable Block Export', 'zoloblocks')}
-                                    description={__(
-                                        'Enable the Block Export option to export your custom blocks in JSON format.',
-                                        'zoloblocks'
-                                    )}
-                                >
-                                    <ToggleControl
-                                        checked={blockExport}
-                                        onChange={() => {
-                                            updateBlockExport(!blockExport);
-                                            setNotice(true);
-                                        }}
-                                    />
-                                </SettingBox>
-                                <SettingBox
                                     title={__('Enable Smooth Scroller', 'zoloblocks')}
                                     description={__(
                                         'The Smooth Scroller feature enhances user experience by providing seamless, visually pleasing content navigation through animated transitions, ensuring a polished and user-friendly interface.',
@@ -191,6 +187,33 @@ const Settings = () => {
                                             </div>
                                         </>
                                     )}
+                                </SettingBox>
+                                <SettingBox
+                                    title={__('Enable Pattern Export', 'zoloblocks')}
+                                    description={__(
+                                        'Enable the Pattern Export option to export your block(s) pattern in JSON format.',
+                                        'zoloblocks'
+                                    )}
+                                >
+                                    <ToggleControl
+                                        checked={blockExport}
+                                        onChange={() => {
+                                            updateBlockExport(!blockExport);
+                                            setNotice(true);
+                                        }}
+                                    />
+                                </SettingBox>
+                                <SettingBox
+                                    title={__('Enable Pattern Import', 'zoloblocks')}
+                                    description={__('Enable the Pattern Import option to import your block(s) pattern.', 'zoloblocks')}
+                                >
+                                    <ToggleControl
+                                        checked={blockImport}
+                                        onChange={() => {
+                                            updateBlockImport(!blockImport);
+                                            setNotice(true);
+                                        }}
+                                    />
                                 </SettingBox>
                             </div>
                         </div>
