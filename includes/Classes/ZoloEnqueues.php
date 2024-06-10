@@ -359,6 +359,21 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     wp_enqueue_style( 'zolo-import-pattern-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/import-pattern/style.css', [], ZOLO_VERSION );
                 } 
             }
+
+            // template library 
+            $tl_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/template-library/index.asset.php';
+            if( file_exists($tl_dep_file) ) {
+                $script_dependecy = include $tl_dep_file;
+                wp_enqueue_script(
+                    'zolo-template-library-editor-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/index.js',
+                    $script_dependecy['dependencies'],
+                    ZOLO_VERSION,
+                    true
+                );
+                wp_enqueue_style( 'zolo-template-library-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/style.css', [], ZOLO_VERSION );
+            }
+
             //get editor type
             global $pagenow;
 
