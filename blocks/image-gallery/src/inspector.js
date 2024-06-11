@@ -4,6 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -29,6 +30,7 @@ const {
 
 import objAttributes from './attributes';
 import {
+    PRESETS,
     COLUMN_GAP,
     COLUMN_COUNT,
     IMAGE_BORDER,
@@ -39,12 +41,23 @@ import {
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
     IMAGE_HEIGHT,
+
     HEADING_BORDER,
     HEADING_BACKGROUND,
     HEADING_MARGIN,
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+
+    TITLE_MARGIN,
+
+    CONTENT_BORDER,
+    CONTENT_BACKGROUND,
+    CONTENT_MARGIN,
+    CONTENT_PADDING,
+    CONTENT_BORDER_RADIUS,
+    CONTENT_BOX_SHADOW,
+
     ZOOM_ICON_PADDING,
     ZOOM_ICON_BORDER_RADIUS,
     ZOOM_ICON_BORDER,
@@ -58,15 +71,19 @@ import {
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
       resMode,
+      preset,
       advancedGallery,
       showCaption,
+      showTitle,
       showLightbox,
       headingColor,
+      TitleColor,
       zoomIconColor,
       zoomIconHoverBorderColor,
       zoomIconHoverColor,
@@ -99,6 +116,16 @@ function Inspector(props) {
                 panelProps={props}
                 firstOpen={true}
               >
+                <SelectControl
+                  label={__("Preset", "zoloblocks")}
+                  value={preset}
+                  options={applyFilters("zolo.imageGallery.presets", PRESETS)}
+                  onChange={(v) => {
+                    setAttributes({
+                      preset: v,
+                    });
+                  }}
+                />
                 <ToggleControl
                   label={__("Show photo caption", "zoloblocks")}
                   checked={showCaption}
@@ -108,6 +135,20 @@ function Inspector(props) {
                     })
                   }
                 />
+
+                { preset === 'style-2' && (
+                      <ToggleControl
+                      label={__("Show Sub Title", "zoloblocks")}
+                      checked={showTitle}
+                      onChange={() =>
+                        setAttributes({
+                          showTitle: !showTitle,
+                        })
+                      }
+                      help={__('Alt text will be used as subtitle', 'zoloblocks')}
+                    />
+                )}
+
                 <ToggleControl
                   label={__("Enable photo lightbox", "zoloblocks")}
                   checked={showLightbox}
@@ -130,6 +171,7 @@ function Inspector(props) {
                   </label>
                   <div className="zolo-gallery-items">
                     <div className="replace-btn-wrapper">
+                     
                       <MediaUpload
                         onSelect={(media) => {
                           setAttributes({
@@ -313,6 +355,53 @@ function Inspector(props) {
                   }
                 />
               </ZoloPanelBody>
+
+              {/* style 2 content wrap start */}
+              {preset === 'style-2' && (
+                <ZoloPanelBody
+                  title={__("Content", "zoloblocks")}
+                  stylePanel={true}
+                  panelProps={props}
+                >
+                  <>
+                    <BorderControl
+                      label={__("Border", "zoloblocks")}
+                      controlName={CONTENT_BORDER}
+                      requiredProps={requiredProps}
+                    />
+                    <ResDimensionsControl
+                      label={__("Border Radius", "zoloblocks")}
+                      controlName={CONTENT_BORDER_RADIUS}
+                      requiredProps={requiredProps}
+                      forBorderRadius={true}
+                    />
+                    <BoxShadowControl
+                      controlName={CONTENT_BOX_SHADOW}
+                      requiredProps={requiredProps}
+                      enableTransition={false}
+                    />
+                    <ResDimensionsControl
+                      label={__("Margin", "zoloblocks")}
+                      controlName={CONTENT_MARGIN}
+                      requiredProps={requiredProps}
+                      forBorderRadius={false}
+                    />
+                    <ResDimensionsControl
+                      label={__("Padding", "zoloblocks")}
+                      controlName={CONTENT_PADDING}
+                      requiredProps={requiredProps}
+                      forBorderRadius={false}
+                    />
+                    <NormalBGControl
+                      requiredProps={requiredProps}
+                      controlName={CONTENT_BACKGROUND}
+                      noMainBGImg={false}
+                    />
+                  </>
+                </ZoloPanelBody>
+               )} 
+              {/* style 2 content wrap end */}
+
               {showCaption && (
                 <ZoloPanelBody
                   title={__("Caption", "zoloblocks")}
@@ -335,42 +424,83 @@ function Inspector(props) {
                         })
                       }
                     />
-                    <BorderControl
-                      label={__("Border", "zoloblocks")}
-                      controlName={HEADING_BORDER}
-                      requiredProps={requiredProps}
-                    />
-                    <ResDimensionsControl
-                      label={__("Border Radius", "zoloblocks")}
-                      controlName={HEADING_BORDER_RADIUS}
-                      requiredProps={requiredProps}
-                      forBorderRadius={true}
-                    />
-                    <BoxShadowControl
-                      controlName={HEADING_BOX_SHADOW}
-                      requiredProps={requiredProps}
-                      enableTransition={false}
-                    />
+                    { preset !== 'style-2' && (
+                      <>
+                          <BorderControl 
+                            label={__("Border", "zoloblocks")}
+                            controlName={HEADING_BORDER}
+                            requiredProps={requiredProps}
+                          />
+                           <ResDimensionsControl
+                            label={__("Border Radius", "zoloblocks")}
+                            controlName={HEADING_BORDER_RADIUS}
+                            requiredProps={requiredProps}
+                            forBorderRadius={true}
+                          />
+                          <BoxShadowControl
+                            controlName={HEADING_BOX_SHADOW}
+                            requiredProps={requiredProps}
+                            enableTransition={false}
+                          />
+                          <ResDimensionsControl
+                            label={__("Padding", "zoloblocks")}
+                            controlName={HEADING_PADDING}
+                            requiredProps={requiredProps}
+                            forBorderRadius={false}
+                          />
+                          <NormalBGControl
+                            requiredProps={requiredProps}
+                            controlName={HEADING_BACKGROUND}
+                            noMainBGImg={false}
+                          />
+                        </>
+                    )}
+
                     <ResDimensionsControl
                       label={__("Margin", "zoloblocks")}
                       controlName={HEADING_MARGIN}
                       requiredProps={requiredProps}
                       forBorderRadius={false}
                     />
-                    <ResDimensionsControl
-                      label={__("Padding", "zoloblocks")}
-                      controlName={HEADING_PADDING}
-                      requiredProps={requiredProps}
-                      forBorderRadius={false}
-                    />
-                    <NormalBGControl
-                      requiredProps={requiredProps}
-                      controlName={HEADING_BACKGROUND}
-                      noMainBGImg={false}
-                    />
                   </>
                 </ZoloPanelBody>
               )}
+
+              {showTitle && preset === 'style-2' && (
+                    <ZoloPanelBody
+                      title={__("Sub Title", "zoloblocks")}
+                      stylePanel={true}
+                      panelProps={props}
+                    >
+                      <>
+                        <TypographyDropdown
+                          label={__("Typography", "zoloblocks")}
+                          typoPrefixConstant={TITLE_TYPOGRAPHY}
+                          requiredProps={requiredProps}
+                          max={36}
+                        />
+                        <ColorControl
+                          label={__("Color", "zoloblocks")}
+                          color={TitleColor}
+                          onChange={(value) =>
+                            setAttributes({
+                              TitleColor: value,
+                            })
+                          }
+                        />
+
+                        <ResDimensionsControl
+                          label={__("Margin", "zoloblocks")}
+                          controlName={TITLE_MARGIN}
+                          requiredProps={requiredProps}
+                          forBorderRadius={false}
+                        />
+                      </>
+                    </ZoloPanelBody>
+              )}
+
+
+
               {showLightbox && (
                 <ZoloPanelBody
                   title={__("Lightbox Icon", "zoloblocks")}
