@@ -1,10 +1,10 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { render, useState, useEffect } from '@wordpress/element';
+import { render, useState, useEffect, useRef } from '@wordpress/element';
 import { subscribe } from '@wordpress/data';
-import { Button, Modal } from '@wordpress/components';
+import { Button, Modal, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
 import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 /**
  * Template Library Style
@@ -35,10 +35,13 @@ const TABS = [
  */
 function ZoloBlocksTemplateLibraryButton() {
     const [isOpen, setIsOpen] = useState(false);
+    const [pullDemos, setPullDemos] = useState(false);
     const [activeTab, setActiveTab] = useState('patterns');
+    const [searchText, setSearchText] = useState('');
 
     const [loading, setLoading] = useState(false);
-    const [number, setNumber] = useState(4);
+    const [allTemplates, setAllTemplates] = useState([]);
+    const [number, setNumber] = useState(8);
     const [templates, setTemplates] = useState([]);
 
     const LibraryButton = () => (
@@ -77,16 +80,30 @@ function ZoloBlocksTemplateLibraryButton() {
      * Fetch Templates
      */
     useEffect(() => {
-        axios
-            .get(`https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=${number}`)
-            .then((response) => {
+        const fetchTemplates = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
                 const { data } = response;
-                setTemplates(data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [number]);
+                setAllTemplates(data);
+                localStorage.setItem('zoloblocks_templates', JSON.stringify(data));
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                setLoading(false);
+            }
+        };
+        fetchTemplates();
+    }, [pullDemos]);
+
+    // manage templates
+    useEffect(() => {
+        // get templates from local storage
+        const templates = JSON.parse(localStorage.getItem('zoloblocks_templates'));
+        if (templates) {
+            setTemplates(templates.slice(0, number));
+        }
+    }, [allTemplates, number]);
 
     return (
         <div className="zolo-demos-modal-wrapper">
@@ -111,6 +128,9 @@ function ZoloBlocksTemplateLibraryButton() {
                             </svg>
                             <div className="logo-text">{__('ZoloBlocks Template Library', 'zoloblocks')}</div>
                         </div>
+                        <div className="pull-new-demos">
+                            <button onClick={() => setPullDemos(!pullDemos)}>{__('Pull New Demos', 'zoloblocks')}</button>
+                        </div>
                         <div className="tabs-area">
                             {TABS &&
                                 TABS.map((tab) => (
@@ -125,7 +145,11 @@ function ZoloBlocksTemplateLibraryButton() {
                         </div>
                         <div className="search-close-area">
                             <div className="search">
-                                <input type="text" placeholder={__('Search', 'zoloblocks')} />
+                                <input
+                                    type="text"
+                                    placeholder={__('Search', 'zoloblocks')}
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                />
                             </div>
                             <div className="close-btn">
                                 <button onClick={() => setIsOpen(false)}>
@@ -149,49 +173,71 @@ function ZoloBlocksTemplateLibraryButton() {
                             <button className="single-category">Buttons</button>
                         </div>
                         <div className="demos-container">
-                            <div className="zolo-demos-wrapper">
-                                {templates && templates.length > 0 ? (
-                                    templates.map((template) => {
-                                        return (
-                                            <div className="single-demo">
-                                                <div className="demo-preview">
-                                                    <img src={template.demo_preview} alt={template.title} />
-                                                    {template?.pro === '1' && (
-                                                        <div className="image-overlay-content">
-                                                            <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                <div className="demo-footer">
-                                                    <div className="footer-left">
-                                                        <h2 className="demo-title">{template.title}</h2>
-                                                        <a href={template?.demo_link} target="_blank">
-                                                            {__('View Demo', 'zoloblocks')}
-                                                        </a>
-                                                    </div>
-                                                    <div className="footer-right">
-                                                        <button className="import-btn">{__('Import', 'zoloblocks')}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        );
-                                    })
-                                ) : (
-                                    <div className="single-demo">
-                                        <h2>{__('No Templates Found', 'zoloblocks')}</h2>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="load-more-btn-wrapper">
-                                <button
-                                    className="load-more-btn"
-                                    onClick={() => {
-                                        setNumber(number + 4);
-                                    }}
+                            {loading && (
+                                <div className="zolo-spinner">
+                                    <Spinner />
+                                </div>
+                            )}
+
+                            <div className="zolo-demos-body-container">
+                                <InfiniteScroll
+                                    dataLength={allTemplates?.length}
+                                    next={() => setNumber(number + 4)}
+                                    hasMore={allTemplates && allTemplates.length > number ? true : false}
+                                    loader={<h4>Loading...</h4>}
+                                    endMessage={
+                                        <p style={{ textAlign: 'center' }}>
+                                            <b>Yay! You have seen it all</b>
+                                        </p>
+                                    }
                                 >
-                                    {__('Load More', 'zoloblocks')}
-                                </button>
+                                    <div className="zolo-demos-wrapper">
+                                        {templates && templates.length > 0 ? (
+                                            templates.map((template) => {
+                                                return (
+                                                    <div className="single-demo">
+                                                        <div className="demo-preview">
+                                                            <img src={template.demo_preview} alt={template.title} />
+                                                            {template?.pro === '1' && (
+                                                                <div className="image-overlay-content">
+                                                                    <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                        <div className="demo-footer">
+                                                            <div className="footer-left">
+                                                                <h2 className="demo-title">{template.title}</h2>
+                                                                <a href={template?.demo_link} target="_blank">
+                                                                    {__('View Demo', 'zoloblocks')}
+                                                                </a>
+                                                            </div>
+                                                            <div className="footer-right">
+                                                                <button className="import-btn">{__('Import', 'zoloblocks')}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })
+                                        ) : (
+                                            <div className="single-demo">
+                                                <h2>{__('No Templates Found', 'zoloblocks')}</h2>
+                                            </div>
+                                        )}
+                                    </div>
+                                </InfiniteScroll>
                             </div>
+                            {/* {allTemplates?.length > number && (
+                                <div className="load-more-btn-wrapper">
+                                    <button
+                                        className="load-more-btn"
+                                        onClick={() => {
+                                            setNumber(number + 4);
+                                        }}
+                                    >
+                                        {__('Load More', 'zoloblocks')}
+                                    </button>
+                                </div>
+                            )} */}
                         </div>
                     </div>
                 </Modal>

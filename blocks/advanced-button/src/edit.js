@@ -26,8 +26,6 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zoloblocks')} />;
     }
 
-    console.log('iconAnimation', iconAnimation, typeof iconAnimation);
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
