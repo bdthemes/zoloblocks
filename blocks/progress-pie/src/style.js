@@ -12,9 +12,6 @@ const {
     generateTypographyStyles,
     generateResRangeStyle,
     GlobalStyleHanlder,
-    generateNormalBGControlStyles,
-    generateDimensionStyle,
-    generateBorderStyle,
 } = window.zoloModule;
 
 import { PROGRESS_BAR_SIZE,PROGRESS_ALIGN} from './constants';
@@ -27,7 +24,8 @@ const Style = ({ props }) => {
         progressSize,
         progressBarColor,
         numberColor,
-        titleColor
+        titleColor,
+        progressFillSize
     } = attributes;
 
      const {
@@ -66,131 +64,8 @@ const Style = ({ props }) => {
             attributes,
         });
 
-    // styles
-    // const {
-    //     desktopAlignStyle: itemsVDeskAlign,
-    //     tabAlignStyle: itemsVTabAlign,
-    //     mobAlignStyle: itemsVMobAlign,
-    // } = generateResAlignmentStyle({
-    //     controlName: ITEMS_ALIGN,
-    //     property: 'justify-content',
-    //     attributes,
-    // });
-    // const {
-    //     desktopAlignStyle: ratingVDeskAlign,
-    //     tabAlignStyle: ratingVTabAlign,
-    //     mobAlignStyle: ratingVMobAlign,
-    // } = generateResAlignmentStyle({
-    //     controlName: ITEMS_ALIGN,
-    //     property: 'align-items',
-    //     attributes,
-    // });
-
-    // const {
-    //     desktopAlignStyle: textDeskAlign,
-    //     tabAlignStyle: textTabAlign,
-    //     mobAlignStyle: textMobAlign,
-    // } = generateResAlignmentStyle({
-    //     controlName: ITEMS_ALIGN,
-    //     property: '',
-    //     attributes,
-    // });
-
-
-    // const {
-    //     desktopRangeStyle: deskGap,
-    //     tabRangeStyle: tabGap,
-    //     mobRangeStyle: mobGap,
-    // } = generateResRangeStyle({
-    //     controlName: TITLE_GAP,
-    //     property: 'gap',
-    //     attributes,
-    // });
-
-    // const {
-    //     typoStylesDesktop: titleDeskTypo,
-    //     typoStylesTab: titleTabTypo,
-    //     typoStylesMobile: titleMobTypo,
-    // } = generateTypographyStyles({
-    //     prefixConstant: TITLE_TYPO,
-    //     attributes,
-    // });
-
-    // // Star Rating Style
-    // const {
-    //     desktopRangeStyle: deskSize,
-    //     tabRangeStyle: tabSize,
-    //     mobRangeStyle: mobSize,
-    // } = generateResRangeStyle({
-    //     controlName: STAR_SIZE,
-    //     property: 'width',
-    //     attributes,
-    // });
-    // const {
-    //     desktopRangeStyle: deskHeight,
-    //     tabRangeStyle: tabHeight,
-    //     mobRangeStyle: mobHeight,
-    // } = generateResRangeStyle({
-    //     controlName: STAR_SIZE,
-    //     property: 'height',
-    //     attributes,
-    // });
-    // // ICON / IMAGE
-    // const {
-    //     desktopRangeStyle: deskIconWidth,
-    //     tabRangeStyle: tabIconWidth,
-    //     mobRangeStyle: mobIconWidth,
-    // } = generateResRangeStyle({
-    //     controlName: ICON_SIZE,
-    //     property: 'width',
-    //     attributes,
-    // });
-    // const {
-    //     desktopRangeStyle: deskIconHeight,
-    //     tabRangeStyle: tabIconHeight,
-    //     mobRangeStyle: mobIconHeight,
-    // } = generateResRangeStyle({
-    //     controlName: ICON_SIZE,
-    //     property: 'height',
-    //     attributes,
-    // });
-
-    // const {
-    //     desktopBorderStyle: iconBorderStylesDesk,
-    //     tabBorderStyle: iconBorderStylesTab,
-    //     mobBorderStyle: iconBorderStylesMob,
-    // } = generateBorderStyle({
-    //     controlName: ICON_BORDER,
-    //     attributes,
-    // });
-    // const {
-    //     dimensionStylesDesktop: iconrRadiusDesktop,
-    //     dimensionStylesTab: iconrRadiusTab,
-    //     dimensionStylesMobile: iconrRadiusMobile,
-    // } = generateDimensionStyle({
-    //     controlName: ICON_BORDER_RADIUS,
-    //     styleFor: 'border-radius',
-    //     attributes,
-    // });
-    // const {
-    //     dimensionStylesDesktop: iconPaddingDesktop,
-    //     dimensionStylesTab: iconPaddingTab,
-    //     dimensionStylesMobile: iconPaddingMobile,
-    // } = generateDimensionStyle({
-    //     controlName: ICON_PADDING,
-    //     styleFor: 'padding',
-    //     attributes,
-    // });
-
-    // const {
-    //     backgroundStylesDesktop: iconBgDesktop,
-    //     backgroundStylesTab: iconBgTab,
-    //     backgroundStylesMobile: iconBgMobile,
-    // } = generateNormalBGControlStyles({
-    //     controlName: ICON_BG,
-    //     attributes,
-    //     noMainBGImg: true,
-    // });
+  
+  
     /**
      
      * All Style Combination
@@ -204,6 +79,9 @@ const Style = ({ props }) => {
             ${progressBarColor ? `stroke:${progressBarColor}` : ''};
               
         }
+         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
+                ${progressFillSize ? `stroke-width:${progressFillSize}` : ""}
+         }
         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${deskProgressWidth}
         }   

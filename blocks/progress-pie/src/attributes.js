@@ -3,11 +3,8 @@
  */
 const {
     generateResRangeAttributies,
-    generateDimensionAttributes,
-    generateNormalBGAttributes,
     generateTypographyAttributes,
     generateResAlignmentAttributies,
-    generateBorderAttributies,
 } = window.zoloModule;
 
 import {
@@ -42,17 +39,7 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    // // Generators
-    // ...generateResAlignmentAttributies(ITEMS_ALIGN),
-    // ...generateResRangeAttributies(STAR_SIZE),
-    // ...generateResRangeAttributies(TITLE_GAP),
-    // 
-    // // Icon
-    // ...generateResRangeAttributies(ICON_SIZE),
-    // ...generateBorderAttributies(ICON_BORDER),
-    // ...generateDimensionAttributes(ICON_BORDER_RADIUS),
-    // ...generateDimensionAttributes(ICON_PADDING),
-    // ...generateNormalBGAttributes(ICON_BG),
+
     //progress bar 
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -61,7 +48,7 @@ const attributes = {
     ...generateResRangeAttributies(PROGRESS_BAR_SIZE,{
         defaultRange:500
     }),
-    ...generateResAlignmentAttributies(PROGRESS_ALIGN),
+    ...generateResAlignmentAttributies(PROGRESS_ALIGN,{defaultAlign:'center'}),
 
     //attr
     progressValue:{
@@ -96,7 +83,7 @@ const attributes = {
         default:'#e5e5e5'
     },
     progressFillSize:{
-        type:'string',
+        type:'number',
         default:3
     },
     //number title

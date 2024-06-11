@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl, Button, BaseControl, CardDivider } from '@wordpress/components';
+import { InspectorControls, } from '@wordpress/block-editor';
+import { ToggleControl, TextControl, RangeControl, } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -15,16 +15,8 @@ const {
     TypographyDropdown,
     HeaderTabs,
     TabPanelControl,
-    IconicBtnGroup,
     AdvancedOptions,
     ZoloPanelBody,
-    ZoloIconPicker,
-    ImageAvatar,
-    ImageSizes,
-    ObjectFitControl,
-    ResDimensionsControl,
-    BorderControl,
-    NormalBGControl,
     SimpleRangeControl 
 } = window.zoloModule;
 
@@ -33,7 +25,7 @@ import objAttributes from './attributes';
 import { NUMBER_TYPO,
     TITLE_TYPO} from './constants/typoPrefixConstant';
 import { PROGRESS_BAR_SIZE,CIRCLE_OPTION,PROGRESS_ALIGN } from './constants';
-import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS ,DEFAULT_ALIGNS} from '../../../src/global/constants';
+import { DEFAULT_ALIGNS} from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -68,21 +60,33 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                              <ToggleControl
-                                  label={__('Enable Title','zoloblocks')}
-                                  checked={toggleLabel}
-                                  onChange={ () => setAttributes({toggleLabel:!toggleLabel}) }
-                              />
-                         
-                               <ResRangeControl
-                                    label={__('Progress Size', 'zoloblocks')}
-                                    controlName={PROGRESS_BAR_SIZE}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
-                        </ZoloPanelBody>
+                        <RangeControl
+                                label={__('Progress Percent','zoloblocks')}
+                                value={progressValue}
+                                onChange={ (v) => setAttributes({progressValue:v})}
+                                min={0}
+                                max={100}
+                            /> 
+                        <RangeControl
+                            label={__('Progress Duration (s)','zoloblocks')}
+                            value={progressDuration}
+                            onChange={ (v) => setAttributes({progressDuration:v})}
+                            min={0}
+                            max={20}
+                            /> 
+                            <SimpleRangeControl label={__('Progress percent Size','zoloblocks')}
+                             onChange={(v)=>setAttributes({progressSize:v})} value={progressSize} 
+                              onReset={()=>setAttributes({progressSize:''})}  min={1} max={10} step={1} 
+                              noUnits={true} 
+                              /> 
+                             <SimpleRangeControl label={__('Progress Fill Size','zoloblocks')} onChange={(v)=>setAttributes({progressFillSize:v})} value={progressFillSize}  onReset={()=>setAttributes({progressFillSize:''})}  min={1} max={10} step={1} noUnits={true} />  
+                        <ToggleControl
+                            label={__('Enable Title','zoloblocks')}
+                            checked={toggleLabel}
+                            onChange={ () => setAttributes({toggleLabel:!toggleLabel}) }
+                        />
+
+                    </ZoloPanelBody>
                         {toggleLabel && ( 
                             <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                                    <TextControl
@@ -106,33 +110,23 @@ function Inspector(props) {
                         requiredProps={requiredProps}
                         alignOptions={DEFAULT_ALIGNS}
                     />
-                    <RangeControl
-                        label={__('Progress Percent','zoloblocks')}
-                        value={progressValue}
-                        onChange={ (v) => setAttributes({progressValue:v})}
-                        min={0}
-                        max={100}
-                        /> 
-                       <RangeControl
-                        label={__('Progress Duratin','zoloblocks')}
-                        value={progressDuration}
-                        onChange={ (v) => setAttributes({progressDuration:v})}
-                        min={0}
-                        max={20}
-                        /> 
-                        <SimpleRangeControl label={__('Size','zoloblocks')} onChange={(v)=>setAttributes({progressSize:v})} value={progressSize}  onReset={()=>setAttributes({progressSize:''})}  min={1} max={10} step={1} noUnits={true} /> 
+                         <ResRangeControl
+                            label={__('Progress Size', 'zoloblocks')}
+                            controlName={PROGRESS_BAR_SIZE}
+                            requiredProps={requiredProps}
+                            min={0}
+                            max={500}
+                            step={1}
+                        />
                         <ColorControl
-                            label={__('Color', 'zoloblocks')}
+                            label={__('Progress percent Color', 'zoloblocks')}
                              color={progressBarColor}
                              onChange={(color) =>
                              setAttributes({progressBarColor: color,})
                              }
                         />
-                    </ZoloPanelBody>
-                    <ZoloPanelBody title={__('Progress Fill', 'zoloblocks')} stylePanel={true} panelProps={props}>  
-                    <SimpleRangeControl label={__('Size','zoloblocks')} onChange={(v)=>setAttributes({progressFillSize:v})} value={progressFillSize}  onReset={()=>setAttributes({progressFillSize:''})}  min={1} max={10} step={1} noUnits={true} /> 
-                    <ColorControl
-                            label={__('Color', 'zoloblocks')}
+                         <ColorControl
+                            label={__('Progress Fill Color', 'zoloblocks')}
                              color={progressFillColor}
                              onChange={(color) =>
                              setAttributes({progressFillColor: color,})
@@ -171,8 +165,10 @@ function Inspector(props) {
 
                                     </>
                                 }
+                                
                                 hoverComponents={
-                                    <>
+                                 <>
+                                    {toggleLabel &&  (<>
                                        <TypographyDropdown
                                             label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={TITLE_TYPO}
@@ -189,8 +185,9 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-
-                                    </>
+                                    </>)}
+                                </>
+                               
                                 }
                             />
                     </ZoloPanelBody>

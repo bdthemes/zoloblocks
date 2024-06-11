@@ -9,7 +9,6 @@ const Save = ({ attributes }) => {
         progressTitle ,
         toggleLabel,
         progressFillColor,
-        progressFillSize,
         circleColor
     } = attributes;
 
@@ -28,7 +27,6 @@ const Save = ({ attributes }) => {
             data-progressTitle={progressTitle}
             data-toggleLabel={toggleLabel}
             data-progressFillColor={progressFillColor}
-            data-progressFillSize={progressFillSize}
             data-circleColor={circleColor}
         >
              
