@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (form.querySelector('#zolo-newsletter-name-field')) {
                     fname = form.querySelector('#zolo-newsletter-name-field').value;
                 }
-                const newsletterMsg = form.querySelector('.zolo-newslatter-form').dataset.settings;
+                const newsletterMsg = form.querySelector('.zolo-newsletter-form').dataset.settings;
 
                 const data = new FormData();
                 data.append('email', email);

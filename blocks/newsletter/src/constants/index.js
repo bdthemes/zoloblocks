@@ -4,13 +4,13 @@
 import { __ } from "@wordpress/i18n";
 
 // Block Prefix
-export const BLOCK_PREFIX = "advanced-search";
+export const BLOCK_PREFIX = "newsletter";
 // Presets
 export const PRESETS = [
-  { label: __("Preset 1", "zoloblocks"), value: "zolo-newslatter-1" },
-  { label: __("Preset 2", "zoloblocks"), value: "zolo-newslatter-2" },
-  { label: __("Preset 3", "zoloblocks"), value: "zolo-newslatter-3" },
-  { label: __("Preset 4", "zoloblocks"), value: "zolo-newslatter-4" },
+  { label: __("Preset 1", "zoloblocks"), value: "zolo-newsletter-1" },
+  { label: __("Preset 2", "zoloblocks"), value: "zolo-newsletter-2" },
+  { label: __("Preset 3", "zoloblocks"), value: "zolo-newsletter-3" },
+  { label: __("Preset 4", "zoloblocks"), value: "zolo-newsletter-4" },
 ];
 export const BUTTON_TYPES = [
   { label: __("Text", "zoloblocks"), value: "text" },
@@ -50,7 +50,7 @@ export const BUTTON_LAYOUT_TYPES = [
         />
       </svg>
     ),
-    value: "zolo-search-button-style-1",
+    value: "zolo-newsletter-button-style-1",
   },
   {
     label: __("Style 2", "zoloblocks"),
@@ -122,13 +122,14 @@ export const ICON_SIZE = "iconSize";
 export const BUTTON_SIZE = "buttonSize";
 export const FOCUS_BORDER_WIDTH = "focusBorderWidth";
 
-// search label
+// newsletter label
 
 export const LABEL_BORDER = 'labelBorder'
 export const LABEL_BORDER_RADIUS = 'labelBorderRadius'
 export const LABEL_PADDING = 'labelPadding'
 export const LABEL_BG = 'labelBg'
 export const LABEL_SPACING = 'labelSpacing'
+export const LABEL_BOTTOM_SPACING = 'labelBottomSpacing'
 export const LABEL_HOVER_BG_COLOR = 'labelHoverBgColor'
 
 /**

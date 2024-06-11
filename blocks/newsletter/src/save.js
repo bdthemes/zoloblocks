@@ -47,7 +47,7 @@ const Save = ({ attributes }) => {
                 settings: ``
             })}
         >
-            <form className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`} data-settings={JSON.stringify(newsletterMsg)}>
+            <form className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}`} data-settings={JSON.stringify(newsletterMsg)}>
                 {showNameField && (
                     <div className="zolo-form-control" role="tablist">
                         <input

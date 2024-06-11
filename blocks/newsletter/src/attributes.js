@@ -34,6 +34,7 @@ SUBSCRIBED_MSG_BG,
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
   LABEL_SPACING,
+  LABEL_BOTTOM_SPACING,
   LABEL_BG,
   INPUT_BORDER,
   INPUT_BORDER_RADIUS,
@@ -107,6 +108,7 @@ const attributes = {
     ...generateResRangeAttributies(BUTTON_SIZE),
     ...generateResRangeAttributies(BUTTON_SPACING),
     ...generateResRangeAttributies(LABEL_SPACING),
+    ...generateResRangeAttributies(LABEL_BOTTOM_SPACING),
     ...generateResRangeAttributies(FOCUS_BORDER_WIDTH),
 
     // presets
@@ -117,7 +119,7 @@ const attributes = {
     //Block specific Attributes
     preset: {
         type: 'string',
-        default: 'zolo-newslatter-1',
+        default: 'zolo-newsletter-1',
     },
     namePlaceholder: {
         type: 'string',
@@ -214,7 +216,7 @@ const attributes = {
     },
     btnLayoutType: {
         type: 'string',
-        default: 'zolo-search-button-style-1',
+        default: 'zolo-newsletter-button-style-1',
     },
     labelBorderHoverColor: {
         type: 'string',
