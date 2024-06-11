@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     {comparisonOptions?.beforeLabel}
                                 </div>
                             )}
-                            <ReactCompareSliderImage src={beforeImage && beforeImage?.url} alt={beforeImage?.title} />
+                            <ReactCompareSliderImage src={beforeImage && beforeImage?.url} alt={beforeImage?.alt} />
                         </div>
                     }
                     itemTwo={
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     {comparisonOptions?.afterLabel}
                                 </div>
                             )}
-                            <ReactCompareSliderImage src={afterImage && afterImage?.url} alt={afterImage?.title} />
+                            <ReactCompareSliderImage src={afterImage && afterImage?.url} alt={afterImage?.alt} />
                         </div>
                     }
                 />,
