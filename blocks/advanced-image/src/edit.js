@@ -204,6 +204,7 @@ export default function Edit(props) {
                                         alt: media.alt,
                                         caption: media.caption,
                                     },
+                                    imgAlt: media.alt,
                                 });
                             }}
                             accept="image/*"
