@@ -38,7 +38,7 @@ function ZoloBlocksTemplateLibraryButton() {
     const [activeTab, setActiveTab] = useState('patterns');
 
     const [loading, setLoading] = useState(false);
-    const [number, setNumber] = useState(4);
+    const [number, setNumber] = useState(12);
     const [templates, setTemplates] = useState([]);
 
     const LibraryButton = () => (
@@ -109,7 +109,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                     fill="#2667FF"
                                 />
                             </svg>
-                            <div className="logo-text">{__('ZoloBlocks Template Library', 'zoloblocks')}</div>
+                            <div className="logo-text">{__('Template Library', 'zoloblocks')}</div>
                         </div>
                         <div className="tabs-area">
                             {TABS &&
@@ -126,6 +126,13 @@ function ZoloBlocksTemplateLibraryButton() {
                         <div className="search-close-area">
                             <div className="search">
                                 <input type="text" placeholder={__('Search', 'zoloblocks')} />
+                            </div>
+                            <div className="sync-btn">
+                                <button>
+                                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+                                    </svg>
+                                </button>
                             </div>
                             <div className="close-btn">
                                 <button onClick={() => setIsOpen(false)}>
@@ -144,9 +151,40 @@ function ZoloBlocksTemplateLibraryButton() {
                     </div>
                     <div className="zolo-dm-body">
                         <div className="categories">
-                            <button className="single-category">All</button>
-                            <button className="single-category">Hero</button>
-                            <button className="single-category">Buttons</button>
+                            <div className='demo-made-button'>
+                                <button className='demo-made-btn made-zoloblocks-btn'>Made by ZoloBlocks</button>
+                                <button className='demo-made-btn made-ai-btn' title='upcoming'>ai</button>
+                            </div>
+                            <h2 className='category-title'>{__('Categories', 'zoloblocks')}</h2>
+                           <div className='category-list'>
+                            <button className="single-category active">
+                                <span className='single-category-text'>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"/>
+                                    </svg>
+                                    All
+                                </span>
+                                <span className='single-category-count'>50</span>
+                            </button>
+                            <button className="single-category">
+                                <span className='single-category-text'>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"/>
+                                    </svg>
+                                    Advanced Button
+                                </span>
+                                <span className='single-category-count'>12</span>
+                            </button>
+                            <button className="single-category">
+                                <span className='single-category-text'>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"/>
+                                    </svg>
+                                    Advanced Icon Box
+                                </span>
+                                <span className='single-category-count'>12</span>
+                            </button>
+                            </div>
                         </div>
                         <div className="demos-container">
                             <div className="zolo-demos-wrapper">
@@ -161,18 +199,57 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
                                                         </div>
                                                     )}
+
+                                                    <div className="demo-actions-btn-wrap">
+                                                        <a className='demo-btn view-btn' href={template?.demo_link} target="_blank" title='View Demo'>
+                                                            {__('View Demo', 'zoloblocks')}
+                                                            <svg
+                                                                aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width={24}
+                                                                height={24}
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                >
+                                                                <path
+                                                                    stroke="currentColor"
+                                                                    strokeWidth={2}
+                                                                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                                                                />
+                                                                <path
+                                                                    stroke="currentColor"
+                                                                    strokeWidth={2}
+                                                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                                                />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+
                                                 </div>
                                                 <div className="demo-footer">
                                                     <div className="footer-left">
                                                         <h2 className="demo-title">{template.title}</h2>
-                                                        <a href={template?.demo_link} target="_blank">
-                                                            {__('View Demo', 'zoloblocks')}
-                                                        </a>
                                                     </div>
-                                                    <div className="footer-right">
-                                                        <button className="import-btn">{__('Import', 'zoloblocks')}</button>
-                                                    </div>
+                                                    <button title='Import' className="import-btn">{__('Import', 'zoloblocks')}
+                                                            <svg
+                                                                aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width={24}
+                                                                height={24}
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                >
+                                                                <path
+                                                                    stroke="currentColor"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth={2}
+                                                                    d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
+                                                                />
+                                                            </svg>
+                                                    </button>
                                                 </div>
+                                                <span className='demo-badge pro-badge'>pro</span>
                                             </div>
                                         );
                                     })
