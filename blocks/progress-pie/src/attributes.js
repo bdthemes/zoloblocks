@@ -45,9 +45,7 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     //progress bar size
-    ...generateResRangeAttributies(PROGRESS_BAR_SIZE,{
-        defaultRange:500
-    }),
+    ...generateResRangeAttributies(PROGRESS_BAR_SIZE),
     ...generateResAlignmentAttributies(PROGRESS_ALIGN,{defaultAlign:'center'}),
 
     //attr
@@ -74,6 +72,21 @@ const attributes = {
         default:3
     },
     progressBarColor:{
+        type:'string'
+    },
+    //progress test
+    toggleProgressColor:{
+        type:'boolean',
+        default:false
+    },
+    progressRound:{
+        type:'boolean',
+        default:false
+    },
+    progressTopColor:{
+        type:'string'
+    },
+    progressBottomColor:{
         type:'string'
     },
 

@@ -25,7 +25,9 @@ const Style = ({ props }) => {
         progressBarColor,
         numberColor,
         titleColor,
-        progressFillSize
+        progressFillSize,
+        toggleProgressColor,
+        progressRound
     } = attributes;
 
      const {
@@ -34,7 +36,7 @@ const Style = ({ props }) => {
         mobRangeStyle: mobProgressWidth,
     } = generateResRangeStyle({
         controlName: PROGRESS_BAR_SIZE,
-        property: 'width',
+        property: 'max-width',
         attributes,
     });
     const { 
@@ -70,14 +72,15 @@ const Style = ({ props }) => {
      
      * All Style Combination
      */
+    // 
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-progress-pie {
             ${progressDeskAlignStyle}
          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-progress {
             ${progressSize ? `stroke-width:${progressSize}` : ''};
-            ${progressBarColor ? `stroke:${progressBarColor}` : ''};
-              
+            ${!toggleProgressColor && progressBarColor ? `stroke:${progressBarColor}` : ''};  
+            ${progressRound ? 'stroke-linecap:round' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
                 ${progressFillSize ? `stroke-width:${progressFillSize}` : ""}

@@ -3,13 +3,18 @@ import classnames from 'classnames';
 const { classArrayToStr,} = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId,
+    const { 
+        uniqueId, 
+        parentClasses, 
+        zoloId,
         progressValue,
         progressDuration,
         progressTitle ,
         toggleLabel,
         progressFillColor,
-        circleColor
+        circleColor,
+        progressTopColor,
+        progressBottomColor,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -28,6 +33,9 @@ const Save = ({ attributes }) => {
             data-toggleLabel={toggleLabel}
             data-progressFillColor={progressFillColor}
             data-circleColor={circleColor}
+            //test
+            data-progressTopColor={progressTopColor}
+            data-progressBottomColor={progressBottomColor}
         >
              
         </div>

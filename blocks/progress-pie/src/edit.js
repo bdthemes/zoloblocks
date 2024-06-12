@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, } from '@wordpress/block-editor';
 import { useEffect,useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -39,8 +39,9 @@ export default function Edit(props) {
         progressTitle,
         toggleLabel,
         progressFillColor,
-        progressFillSize,
-        circleColor
+        circleColor,
+        progressTopColor,
+        progressBottomColor,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -60,6 +61,7 @@ export default function Edit(props) {
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zoloblocks')} />;
+
     }
 
     const progress = useRef(null)
@@ -71,13 +73,13 @@ export default function Edit(props) {
         startAnim();
         function startAnim() {
             setTimeout(function() {
-                //progressPie.style.transition = "stroke-dasharray 0.8s ease-in-out, stroke-dashoffset 0.8s ease-in-out";
+                // progressPie.style.transition = "stroke-dasharray 0.8s ease-in-out, stroke-dashoffset 0.8s ease-in-out";
                 progressPie.style.strokeDasharray = progressVal + " " + (100 - progressVal);
             }, 20);
         }
         return ()=>clearTimeout();
     },[progressValue])
-
+   
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -87,17 +89,17 @@ export default function Edit(props) {
             {({ countUpRef }) => (
                 
                 <>
-                    <svg className="progress-pie" width="300" height="100%" viewBox="0 0 42 42">
+                    <svg className="progress-pie"  width="100%" height="100%" viewBox="0 0 42 42">
                     {/*  optional background if need  */}
-                    <circle className="donut-hole" cx="21" cy="21" r="15.91549430918954" fill={circleColor ? circleColor : "#f5f5f5"} ></circle>
+                     <circle className="donut-hole"  cx="21" cy="21" r="15.91549430918954"    stroke-width="3" fill={circleColor ? circleColor : "#f5f5f5"} ></circle>    
                     <circle className="progress-pie-fill" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke={progressFillColor ? progressFillColor :'#e5e5e5'}  stroke-dasharray="100 0" stroke-dashoffset="25"></circle>
-                    <circle id="progress1" className="progress-pie-progress" ref={progress} cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="url(#gradient)" stroke-width="3" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
-
+                    <circle id="progress1" className="progress-pie-progress"  ref={progress} cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="url(#gradient)" stroke-width="3" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+                    
                     {/* optional for gradient color  */}
                     <defs>
                         <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#00bc9b" />
-                        <stop offset="100%" stop-color="#5eaefd" />
+                        <stop offset="0%" stop-color={progressTopColor ? progressTopColor : "#00bc9b" } />
+                        <stop offset="100%" stop-color={progressBottomColor ? progressBottomColor : "#5eaefd" } />
                         </linearGradient>
                     </defs>
                     
