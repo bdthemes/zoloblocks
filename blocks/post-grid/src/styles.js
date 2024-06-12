@@ -74,6 +74,7 @@ function Style({ props }) {
         titleHoverColor,
         excerptColor,
         metaColor,
+        metaHColor,
         metaArrowColor,
         catBgColor,
         catColor,
@@ -643,7 +644,7 @@ function Style({ props }) {
         ${metaColor ? `color:${metaColor};` : ''}
       }
       .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item:hover .zolo-post-dateTime{
-        ${metaColor ? `color:${metaColor};` : ''}
+        ${metaHColor ? `color:${metaHColor};` : ''}
       }
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-category{

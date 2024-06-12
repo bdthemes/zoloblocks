@@ -14,6 +14,7 @@ tags*
 yarn.lock
 
 vendor-bundle/
+vendor-editor-bundle/
 dist/
 modules/
 build/

@@ -85,6 +85,7 @@ function Style({ props }) {
         titleHoverColor,
         excerptColor,
         metaColor,
+        metaHColor,
         catBgColor,
         catColor,
         catBgHoverColor,
@@ -690,7 +691,7 @@ function Style({ props }) {
         property: 'left',
         attributes,
     });
-  
+
     // post meta content wrapper
 
     const {
@@ -813,7 +814,7 @@ function Style({ props }) {
       }
 
       .${uniqueId}.zolo-post-carousel.zolo-post-style-3 .zolo-post-item:hover .zolo-post-dateTime{
-        ${metaColor ? `color:${metaColor};` : ''}
+        ${metaHColor ? `color:${metaHColor};` : ''}
       }
 
       .${uniqueId}.zolo-post-carousel .zolo-post-category{
@@ -977,17 +978,17 @@ function Style({ props }) {
             ${thumbnailHeightTab}
             ${thumbBorderRadiusTab}
           }
-  
+
         ` : ''
       }
-  
+
       ${
         preset !== 'style-4' ? `
           .${uniqueId}.zolo-post-carousel .zolo-post-image {
             ${thumbnailHeightTab}
             ${thumbBorderRadiusTab}
           }
-  
+
         ` : ''
       }
 
@@ -1135,17 +1136,17 @@ function Style({ props }) {
             ${thumbnailHeightMob}
             ${thumbBorderRadiusMob}
           }
-  
+
         ` : ''
       }
-  
+
       ${
         preset !== 'style-4' ? `
           .${uniqueId}.zolo-post-carousel .zolo-post-image {
             ${thumbnailHeightMob}
             ${thumbBorderRadiusMob}
           }
-  
+
         ` : ''
       }
 
