@@ -19,17 +19,21 @@ import { useEffect } from 'react';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected, clientId } = props;
-    const { preview, uniqueId, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon, imageSize } = attributes;
+    const { preview, preset, uniqueId, parentClasses, showCaption, showTitle, showLightbox, advancedGallery, lightboxIcon, imageSize } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${
+            preset && preset !== '' ? preset : ''
+        }`),
     });
 
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.imageGallery} alt={__('Gallery Preview', 'zoloblocks')} />;
     }
+
+    // console.log( 'gallery: ', advancedGallery);
 
     return (
         <>
@@ -76,14 +80,30 @@ export default function Edit(props) {
                                             alt={image.alt}
                                         />
                                     </div>
-                                    {showLightbox && (
+                                    {showLightbox && preset !== 'style-2' && (
                                         <a href="#" className="zolo-icon-wrap">
                                             <span className="zolo-icon">
                                                 <DisplayZoloIcon icon={lightboxIcon} />
                                             </span>
                                         </a>
                                     )}
-                                    {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                    {showCaption &&  preset !== 'style-2' && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                    
+                                    {preset === 'style-2' && (
+                                      <div className='zolo-inner-item'>
+                                          <div className='zolo-content-wrap'>
+                                             {showTitle && ( <h4 className='zolo-subTitle'>{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>)}  
+                                             {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                          </div>
+                                          {showLightbox && (
+                                            <a href="#" className="zolo-icon-wrap">
+                                                <span className="zolo-icon">
+                                                    <DisplayZoloIcon icon={lightboxIcon} />
+                                                </span>
+                                            </a>
+                                          )}
+                                      </div>
+                                    )}
                                 </div>
                             );
                         })

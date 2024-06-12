@@ -1,35 +1,35 @@
 .wp-block-zolo-newsletter {
-  .zolo-newslatter-form {
+  .zolo-newsletter-form {
 
-    --newslatter-wrap-padding: 40px;
-    --newslatter-wrap-radius: 0.5rem;
-    --newslatter-title-margin: 0 0 30px;
-    --newslatter-title-color: #0e0e0f;
-    --newslatter-form-label-gap: 10px;
-    --newslatter-form-label-color: #48484b;
+    --newsletter-wrap-padding: 40px;
+    --newsletter-wrap-radius: 0.5rem;
+    --newsletter-title-margin: 0 0 30px;
+    --newsletter-title-color: #0e0e0f;
+    --newsletter-form-label-gap: 10px;
+    --newsletter-form-label-color: #48484b;
     --newsletter-input-padding: 14px 15px;
     --newsletter-input-border-width: 1px;
     --newsletter-input-border-color: #e7e7e7;
-    --newslatter-input-border-style: solid;
+    --newsletter-input-border-style: solid;
     --newsletter-input-radius: 6px;
     --newsletter-input-color: #5e5e60;
-    --newslatter-input-focus-color: #1c64f2;
-    --newslatter-btn-padding: 16px 20px;
-    --newslatter-btn-radius: 6px;
-    --newslatter-btn-color: #fff;
-    --newslatter-form-item-gap: 25px;
-    --newslatter-btn-icon-gap: 8px;
+    --newsletter-input-focus-color: #1c64f2;
+    --newsletter-btn-padding: 16px 20px;
+    --newsletter-btn-radius: 6px;
+    --newsletter-btn-color: #fff;
+    --newsletter-form-item-gap: 25px;
+    --newsletter-btn-icon-gap: 8px;
 
     display: flex;
     flex-direction: column;
-    gap: var(--newslatter-form-item-gap);
+    gap: var(--newsletter-form-item-gap);
     position: relative;
   }
 
-    .zolo-newslatter-title {
-      margin: var(--newslatter-title-margin);
+    .zolo-newsletter-title {
+      margin: var(--newsletter-title-margin);
       font-size: 24px;
-      color: var(--newslatter-title-color);
+      color: var(--newsletter-title-color);
       text-transform: capitalize;
     }
 
@@ -37,14 +37,14 @@
       display: flex;
       justify-content: center;
       flex-direction: column-reverse;
-      gap: var(--newslatter-form-label-gap);
+      gap: var(--newsletter-form-label-gap);
       width: 100%;
       position: relative;
     }
 
     .zolo-form-label {
       font-size: 14px;
-      color: var(--newslatter-form-label-color);
+      color: var(--newsletter-form-label-color);
       text-transform: capitalize;
       font-weight: 500;
 
@@ -54,7 +54,7 @@
       padding: var(--newsletter-input-padding);
       border-width: var(--newsletter-input-border-width);
       border-color: var(--newsletter-input-border-color);
-      border-style: var(--newslatter-input-border-style);
+      border-style: var(--newsletter-input-border-style);
       border-radius: var(--newsletter-input-radius);
       outline: none;
       font-size: 15px;
@@ -69,7 +69,7 @@
         border-color: transparent;
         outline-style: solid;
         outline-width: 1px;
-        outline-color: var(--newslatter-input-focus-color);
+        outline-color: var(--newsletter-input-focus-color);
         box-shadow: none;
     }
 
@@ -77,14 +77,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--newslatter-btn-icon-gap);
-      padding: var(--newslatter-btn-padding);
+      gap: var(--newsletter-btn-icon-gap);
+      padding: var(--newsletter-btn-padding);
       border: 0;
-      border-radius: var(--newslatter-btn-radius);
+      border-radius: var(--newsletter-btn-radius);
       font-size: 14px;
       background-color: #3f8efc;
       cursor: pointer;
-      color: var(--newslatter-btn-color);
+      color: var(--newsletter-btn-color);
       transition: all .3s ease;
       .zolo-form-btn-text {
         text-wrap: nowrap !important;
@@ -113,39 +113,39 @@
     }
 
 
-    /* Newslatter form style 2,3 */
+    /* newsletter form style 2,3 */
 
-    .zolo-newslatter-2 .zolo-form-label,
-    .zolo-newslatter-3 .zolo-form-label,
-    .zolo-newslatter-4 .zolo-form-label,
-    .zolo-newslatter-5 .zolo-form-label {
+    .zolo-newsletter-2 .zolo-form-label,
+    .zolo-newsletter-3 .zolo-form-label,
+    .zolo-newsletter-4 .zolo-form-label,
+    .zolo-newsletter-5 .zolo-form-label {
       position: absolute;
       transform: translateY(-50%);
       border-radius: 6px;
       left: 9px;
       padding: 0 6px;
     }
-    .zolo-newslatter-2,
-    .zolo-newslatter-3,
-    .zolo-newslatter-4 {
+    .zolo-newsletter-2,
+    .zolo-newsletter-3,
+    .zolo-newsletter-4 {
       .zolo-form-input::placeholder {
         color: transparent;
       }
     }
 
 
-    /* Newslatter form style 2 */
+    /* newsletter form style 2 */
 
-    .zolo-newslatter-2 .zolo-form-label {
+    .zolo-newsletter-2 .zolo-form-label {
       top: 0;
       background-color: #fff;
     }
 
-    /* Newslatter form style 3 */
+    /* newsletter form style 3 */
 
-    .zolo-newslatter-3 .zolo-form-label,
-    .zolo-newslatter-4 .zolo-form-label,
-    .zolo-newslatter-5 .zolo-form-label {
+    .zolo-newsletter-3 .zolo-form-label,
+    .zolo-newsletter-4 .zolo-form-label,
+    .zolo-newsletter-5 .zolo-form-label {
       top: 50%;
       cursor: text;
       pointer-events: none;
@@ -155,29 +155,29 @@
     }
 
 
-    .zolo-newslatter-3 .zolo-form-input:focus + .zolo-form-label,
-    .zolo-newslatter-4 .zolo-form-input:focus + .zolo-form-label,
-    .zolo-newslatter-5 .zolo-form-input:focus + .zolo-form-label {
+    .zolo-newsletter-3 .zolo-form-input:focus + .zolo-form-label,
+    .zolo-newsletter-4 .zolo-form-input:focus + .zolo-form-label,
+    .zolo-newsletter-5 .zolo-form-input:focus + .zolo-form-label {
       font-weight: 500;
       top: 0;
       background-color: #fff;
     }
 
-    /* Newslatter form style 4 */
+    /* newsletter form style 4 */
 
 
-    .zolo-newslatter-4 {
-      --newslatter-form-item-gap: 10px;
+    .zolo-newsletter-4 {
+      --newsletter-form-item-gap: 10px;
       flex-direction: column;
-      gap: var(--newslatter-form-item-gap);
+      gap: var(--newsletter-form-item-gap);
     }
 
-    .zolo-newslatter-4 .zolo-form-input {
+    .zolo-newsletter-4 .zolo-form-input {
       --newsletter-input-padding: 15px 15px;
       padding: var(--newsletter-input-padding);
     }
 
-    /* Newslatter form style 5 */
+    /* newsletter form style 5 */
 
     .zolo-newsletter-button-style-2 .zolo-form-submit-btn {
       position: absolute;
@@ -187,8 +187,8 @@
     }
 
     .zolo-newsletter-button-style-2 .zolo-form-btn {
-      --newslatter-btn-padding: 10px 12px;
-      padding: var(--newslatter-btn-padding);
+      --newsletter-btn-padding: 10px 12px;
+      padding: var(--newsletter-btn-padding);
       margin: 6px;
     }
 
@@ -241,7 +241,7 @@
 
 @media (min-width: 768px) {
   .wp-block-zolo-newsletter {
-      .zolo-newslatter-4 {
+      .zolo-newsletter-4 {
         flex-direction: row;
       }
   }

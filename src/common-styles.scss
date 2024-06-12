@@ -303,9 +303,44 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 
+
+
+    // &.wp-block-zolo-list {
+    //     &:hover,
+    //     &:focus {
+    //         .zolo-blocks-toolbar {
+    //             opacity: 1;
+    //             visibility: visible;
+    //         }
+    //     }
+    // }
+
+}
+
+.zolo-block div[class*=wp-block-zolo] {
     &:hover,
     &:focus {
-        .zolo-blocks-toolbar {
+        .general-block {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.zolo-block div[class*=wp-block-zolo] {
+    &:hover,
+    &:focus {
+        .container {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.zolo-block.wp-block-zolo-container {
+    &:hover,
+    &:focus {
+        > div {
             opacity: 1;
             visibility: visible;
         }
