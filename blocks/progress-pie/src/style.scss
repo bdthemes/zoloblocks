@@ -15,7 +15,7 @@
     
     .progress-pie-text {
       /*font: 16px/1.4em "Montserrat", Arial, sans-serif;*/
-      fill: #000;
+      // fill: #000;
       -moz-transform: translateY(0.25em);
       -ms-transform: translateY(0.25em);
       -webkit-transform: translateY(0.25em);
@@ -24,6 +24,7 @@
     
     .progress-pie-number {
       font-size: 0.5em;
+      font-weight: 900;
       line-height: 1;
       text-anchor: middle;
       -moz-transform: translateY(-0.25em);

@@ -27,7 +27,8 @@ const Style = ({ props }) => {
         titleColor,
         progressFillSize,
         toggleProgressColor,
-        progressRound
+        progressRound,
+        circleColor
     } = attributes;
 
      const {
@@ -83,7 +84,7 @@ const Style = ({ props }) => {
             ${progressRound ? 'stroke-linecap:round' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
-                ${progressFillSize ? `stroke-width:${progressFillSize}` : ""}
+                ${progressFillSize ? `stroke-width:${progressFillSize}` : "stroke-width:3"}
          }
         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${deskProgressWidth}
@@ -96,6 +97,9 @@ const Style = ({ props }) => {
             ${DesktopTittleTypo}
             ${titleColor ? `fill:${titleColor}` : ''}
        }
+        .${uniqueId}.wp-block-zolo-progress-pie  .progress-donut-hole{
+                ${circleColor ? `fill:${circleColor}` : 'fill:transparent' }
+         }
 
     `;
 
