@@ -1,4 +1,3 @@
-
 .zolo-editor {
     .edit-post-header__center {
         flex-grow: unset !important;
@@ -12,14 +11,14 @@
     color: #2667ff;
     font-weight: 700;
     font-size: 13px;
-    transition: .3s;
+    transition: 0.3s;
     outline: none;
     svg {
         width: 20px;
         height: 20px;
-       path {
-        fill: #2667ff;
-       }
+        path {
+            fill: #2667ff;
+        }
     }
     &:hover {
         color: #2667ff;
@@ -116,7 +115,7 @@
     }
 
     .close-btn,
-    .sync-btn{
+    .sync-btn {
         button {
             padding: 0;
             margin: 0;
@@ -136,7 +135,7 @@
             }
         }
     }
-    
+
     .sync-btn {
         button {
             &:hover svg {
@@ -144,7 +143,7 @@
             }
         }
     }
-    
+
     .single-tab {
         background: none;
         border: none;
@@ -210,50 +209,96 @@
         border-bottom: 1px solid #f4f4f4;
         .demo-made-btn {
             font-size: 14px;
-            padding: 12px 15px;
+            padding: 14px 15px;
             background-color: transparent;
             cursor: pointer;
             font-weight: 600;
             text-transform: capitalize;
             border: 0;
             border-radius: 6px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
             &.made-zoloblocks-btn {
                 color: #fff;
                 background-color: #2667ff;
-                width: 100%;
             }
             &.made-ai-btn {
                 color: #333;
                 background-color: #f4f4f4;
-                width: 40%;
+                position: relative;
+                span {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 10px;
+                    color: #000;
+                    background: #fff;
+                    padding: 2px;
+                    border-bottom-left-radius: 6px;
+                }
+                svg {
+                    width: 20px;
+                    height: 20px;
+                    display: block;
+                }
+            }
+        }
+    }
+    .demo-title-proFree-wrap {
+        padding: 20px;
+        border-bottom: 1px solid #f4f4f4;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: space-between;
+        .category-title {
+            margin: 0;
+            font-size: 16px;
+        }
+        .demo-proFree-btn {
+            display: flex;
+            align-items: center;
+            button {
+                border: 0;
+                padding: 8px 14px;
+                cursor: pointer;
+                font-size: 12px;
+                text-transform: capitalize;
+                font-weight: 600;
+            }
+            .demo-pro-btn {
+                color: #f00;
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+            }
+            .demo-free-btn {
+                color: #2567ff;
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
             }
         }
     }
 
-    .category-title {
-        margin: 0;
-        padding: 20px;
-        font-size: 18px;
-        border-bottom: 1px solid #f4f4f4;
-    }
-
     .category-list {
-        height: 90vh;
+        height: 80vh;
         overflow-y: auto;
-        padding-bottom: 30px;
+        margin-bottom: 30px;
         &::-webkit-scrollbar {
             width: 5px;
-          }
-          
+        }
+
         /* Track */
         &::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+            background: #f1f1f1;
             border-radius: 6px;
         }
-        
+
         /* Handle */
         &::-webkit-scrollbar-thumb {
-            background: #d7d7d7; 
+            background: #d7d7d7;
             border-radius: 6px;
         }
     }
@@ -267,7 +312,7 @@
         background: none;
         border: none;
         text-align: left;
-        padding: 16px 20px;
+        padding: 10px 20px;
         border-bottom: 1px solid #f4f4f4;
         cursor: pointer;
         font-size: 14px;
@@ -285,6 +330,12 @@
             background-color: transparent;
         }
         &.active {
+            color: #2567ff;
+            background-color: #efefef;
+            .single-category-count {
+                background-color: #2567ff;
+                color: #fff;
+            }
             &::before {
                 background-color: #2567ff;
             }
@@ -304,21 +355,38 @@
     }
 
     .single-category-count {
-        padding: 8px;
-        font-size: 11px;
+        padding: 6px;
+        font-size: 10px;
         background-color: #f2f2f2;
         font-weight: 600;
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
     .demos-container {
         width: 100%;
         box-sizing: border-box;
-        // margin-left: var(--zolo-template-library-sidebar-width);
+        min-height: 100vh;
+
+        .zolo-templates {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            h2 {
+                margin: 0;
+                font-size: 40px;
+            }
+            p {
+                margin: 0;
+                font-size: 16px;
+            }
+        }
     }
 
     .zolo-demos-wrapper {
-        width: 100%; 
+        width: 100%;
         padding: 30px;
         box-sizing: border-box;
         clear: both;
@@ -355,12 +423,24 @@
                 color: #000;
             }
         }
+
+        &.no-found-item {
+            background: transparent !important;
+            border: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: visible !important;
+            h2 {
+                margin: 0;
+                font-size: 22px;
+            }
+        }
     }
 
-    
     .demo-preview {
         border-bottom: 1px solid #f4f4f4;
         position: relative;
+        overflow: hidden;
         &::before {
             content: '';
             position: absolute;
@@ -409,6 +489,9 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
 
         .demo-btn {
             border: 0;
@@ -419,11 +502,16 @@
             cursor: pointer;
             display: flex;
             align-items: center;
+            justify-content: center;
             font-weight: 500;
             gap: 5px;
             transform: translateY(10px);
             opacity: 0;
-            transition: color .3s, background .3s, transform .3s, opacity .3s;
+            transition:
+                color 0.2s,
+                background 0.2s,
+                transform 0.3s,
+                opacity 0.3s;
             z-index: 1;
             position: relative;
             text-decoration: none;
@@ -436,11 +524,22 @@
                 display: block;
             }
         }
+
+        .import-btn {
+            transition-delay: 0.2s;
+        }
+        .view-btn {
+            background-color: #37373c;
+            transition-delay: 0.1s;
+            &:hover {
+                background-color: #000;
+            }
+        }
     }
 
     .demo-footer {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding: 20px;
     }
@@ -450,36 +549,7 @@
         font-size: 16px;
         font-weight: 500;
         color: #44444a;
-        transition: color .3s;
-    }
-    .import-btn {
-        background-color: transparent;
-        border: 1px solid #2667ff;
-        padding: 10px 12px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        cursor: pointer;
-        border-radius: 6px;
-        color: #2667ff;
-        font-weight: 600;
-        transition: color .3s, background-color .3s;
-        svg {
-            width: 14px;
-            height: 14px;
-            display: block;
-        }
-        &:hover {
-            color: #fff;
-            background-color: #2567ff;
-        }
-        &:focus {
-            color: #fff;
-            border-color: #799ff9;
-            outline: 1px solid #799ff9;
-            background-color: #2567ff;
-        }
+        transition: color 0.3s;
     }
 
     .demo-badge {
@@ -503,17 +573,20 @@
             background-color: #2c67ff;
         }
     }
-    
+
     .load-more-btn-wrapper {
         padding: 50px;
         text-align: center;
         .load-more-btn {
-            background: #2405ff;
+            background: #2c67ff;
             color: #fff;
             padding: 15px 30px;
             border-radius: 2px;
             border: none;
             cursor: pointer;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
         }
     }
 }
@@ -573,7 +646,7 @@
                 input {
                     min-width: 320px;
                 }
-            } 
+            }
         }
     }
 }
@@ -581,7 +654,7 @@
 @media (min-width: 1440px) {
     .components-modal__frame {
         &.zolo-demos-modal {
-            --zolo-template-library-sidebar-width: 300px;
+            --zolo-template-library-sidebar-width: 320px;
             .zolo-demos-wrapper {
                 column-count: 4;
             }
@@ -598,5 +671,3 @@
         }
     }
 }
-
-
