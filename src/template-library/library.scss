@@ -262,6 +262,7 @@
         .demo-proFree-btn {
             display: flex;
             align-items: center;
+            gap: 7px;
             button {
                 border: 0;
                 padding: 8px 14px;
@@ -269,16 +270,16 @@
                 font-size: 12px;
                 text-transform: capitalize;
                 font-weight: 600;
+                border-radius: 6px;
+                &:focus {
+                    outline: 2px solid #ddd;
+                }
             }
             .demo-pro-btn {
                 color: #f00;
-                border-top-right-radius: 6px;
-                border-bottom-right-radius: 6px;
             }
             .demo-free-btn {
                 color: #2567ff;
-                border-top-left-radius: 6px;
-                border-bottom-left-radius: 6px;
             }
         }
         
@@ -526,13 +527,14 @@
         }
 
         .import-btn{
-            transition-delay: .1s;
+            transition-delay: .2s;
         }
         .view-btn{
-            background-color: #37373c;
-            transition-delay: .2s;
+            color: #000;
+            background-color: #f1f1f1;
+            transition-delay: .1s;
             &:hover {
-                background-color: #000;
+                background-color: #fff;
             }
         }
     }
