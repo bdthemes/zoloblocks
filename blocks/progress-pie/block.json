@@ -4,7 +4,7 @@
     "name": "zolo/progress-pie",
     "category": "zoloblocks",
     "keywords": ["progress", "progess pie"],
-    "description": "Creates customizable progres-pie for any type of content",
+    "description": "Display animated progress pie for quick stats",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

@@ -59,7 +59,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.progresspie} alt={__('Progress Preview', 'zoloblocks')} />;
 
     }
 
