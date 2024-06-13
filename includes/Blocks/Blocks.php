@@ -216,6 +216,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+      'progress-pie' => [
+        'name'             => 'progress-pie',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/progress-pie/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-progress-pie-frontend']
+    ],
     'google-map' => [
         'name'             => 'google-map',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/google-map/block.json',

@@ -185,6 +185,9 @@ const attributes = {
     metaColor: {
         type: 'string',
     },
+    metaHColor: {
+        type: 'string',
+    },
     metaArrowColor: {
         type: 'string',
     },

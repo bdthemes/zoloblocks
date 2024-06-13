@@ -4,7 +4,7 @@ import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 
-const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {}, noteText = '' }) => {
+const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {}, noteText="" }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const {
         [`${prefix}${controlName}Range`]: desktopRange = defaults.deskRange || 3,
