@@ -97,7 +97,7 @@ export default function Edit(props) {
                                 labels={{ title: 'Before Image' }}
                             />
                         )}
-                        {beforeImage && !afterImage && <img src={beforeImage?.url} alt={beforeImage?.title} width="400" height="300" />}
+                        {beforeImage && !afterImage && <img src={beforeImage?.url} alt={beforeImage?.alt} width="400" height="300" />}
                     </div>
                     <div className="zolo-image-right">
                         {!afterImage && (
@@ -117,7 +117,7 @@ export default function Edit(props) {
                                 labels={{ title: 'After Image' }}
                             />
                         )}
-                        {afterImage && !beforeImage && <img src={afterImage?.url} alt={afterImage?.title} width="400" height="300" />}
+                        {afterImage && !beforeImage && <img src={afterImage?.url} alt={afterImage?.alt} width="400" height="300" />}
                     </div>
                 </div>
 
@@ -141,7 +141,7 @@ export default function Edit(props) {
                                         {comparisonOptions?.beforeLabel}
                                     </div>
                                 )}
-                                <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />
+                                <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.alt} />
                             </div>
                         }
                         itemTwo={
@@ -157,7 +157,7 @@ export default function Edit(props) {
                                         {comparisonOptions?.afterLabel}
                                     </div>
                                 )}
-                                <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />
+                                <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.alt} />
                             </div>
                         }
                     />

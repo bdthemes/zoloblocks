@@ -107,8 +107,7 @@ const ZoloExportBlock = ({ clientId }) => {
 };
 registerPlugin('zolo-export-block', {
     render: () => {
-        const selectedBlock = select('core/block-editor').getSelectedBlock();
-        const selectedBlockClientId = selectedBlock?.clientId;
+        const selectedBlockClientId = select('core/block-editor').getSelectedBlockClientId();
 
         if (!selectedBlockClientId) {
             return (

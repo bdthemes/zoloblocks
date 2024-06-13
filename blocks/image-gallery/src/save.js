@@ -5,10 +5,12 @@ import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
     const {
+        preset,
         uniqueId,
         parentClasses,
         advancedGallery,
         showCaption,
+        showTitle,
         showLightbox,
         lightboxIcon,
         entranceAnimation,
@@ -19,7 +21,9 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${
+            preset && preset !== '' ? preset : ''
+        }`),
     });
     return (
         <div
@@ -61,14 +65,32 @@ const Save = ({ attributes }) => {
                                         loading="lazy"
                                     />
                                 </div>
-                                {showLightbox && (
+                                {showLightbox && preset !== 'style-2' && (
                                     <div className="zolo-icon-wrap">
                                         <span className="zolo-icon">
                                             <DisplayZoloIcon icon={lightboxIcon} />
                                         </span>
                                     </div>
                                 )}
-                                {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                {showCaption && preset !== 'style-2' && image.caption && <div className="zolo-title">{image.caption}</div>}
+
+                                {preset === 'style-2' && (
+                                      <div className='zolo-inner-item'>
+                                          <div className='zolo-content-wrap'>
+                                            {showTitle && (
+                                                <h4 className='zolo-subTitle'>design</h4>
+                                            )}
+                                            {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                          </div>
+                                          {showLightbox && (
+                                            <div className="zolo-icon-wrap">
+                                                <span className="zolo-icon">
+                                                    <DisplayZoloIcon icon={lightboxIcon} />
+                                                </span>
+                                            </div>
+                                           )}
+                                      </div>
+                                    )}
                             </DynamicTag>
                         );
                     })}

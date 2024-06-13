@@ -44,6 +44,12 @@ import {
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    CONTENT_BORDER,
+    CONTENT_BACKGROUND,
+    CONTENT_MARGIN,
+    CONTENT_PADDING,
+    CONTENT_BORDER_RADIUS,
+    CONTENT_BOX_SHADOW,
     ZOOM_ICON_PADDING,
     ZOOM_ICON_BORDER_RADIUS,
     ZOOM_ICON_BORDER,
@@ -53,9 +59,11 @@ import {
     ZOOM_ICON_BG_HOVER_COLOR,
     OVERLAY_BG_COLOR,
     ZOOM_ICON_SIZE,
+    TITLE_MARGIN,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
@@ -64,6 +72,7 @@ export default function Style({ props }) {
     const {
       uniqueId,
       headingColor,
+      TitleColor,
       zoomIconColor,
       zoomIconHoverColor,
       zoomIconHoverBorderColor,
@@ -310,6 +319,82 @@ export default function Style({ props }) {
         controlName: HEADING_BOX_SHADOW,
     });
 
+    // Title Heading
+
+    const {
+        dimensionStylesDesktop: TitleMarginDesk,
+        dimensionStylesTab: TitleMarginTab,
+        dimensionStylesMobile: TitleMarginMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: TitleTypoDesk,
+        typoStylesTab: TitleTypoTab,
+        typoStylesMobile: TitleTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPOGRAPHY,
+        attributes,
+    });
+
+    // content styles
+    const {
+        desktopBorderStyle: contentBorderDesk,
+        tabBorderStyle: contentBorderTab,
+        mobBorderStyle: contentBorderMob,
+    } = generateBorderStyle({
+        controlName: CONTENT_BORDER,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: contentDeskBGStyle,
+        backgroundStylesTab: contentTabBGStyle,
+        backgroundStylesMobile: contentMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTENT_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: contentMarginDesk,
+        dimensionStylesTab: contentMarginTab,
+        dimensionStylesMobile: contentMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: contentPaddingDesk,
+        dimensionStylesTab: contentPaddingTab,
+        dimensionStylesMobile: contentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: contentBorderRadiusDesk,
+        dimensionStylesTab: contentBorderRadiusTab,
+        dimensionStylesMobile: contentBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: contentBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTENT_BOX_SHADOW,
+    });
+
     const {
         backgroundStylesDesktop: zoomIconDeskBGStyle,
         backgroundStylesTab: zoomIconTabBGStyle,
@@ -423,7 +508,7 @@ export default function Style({ props }) {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 			${deskGridGap}
 		}
-		.${uniqueId} .zolo-image-wrap {
+		.wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap {
 			${imageDeskBGStyle}
 			${imageBorderDesk}
 			${imageBorderRadiusDesk}
@@ -431,18 +516,18 @@ export default function Style({ props }) {
 			${imagePaddingDesk}
             ${imageHeightDesk}
 		}
-		.${uniqueId} .zolo-image-wrap:hover {
+		.wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
 			${imageHoverBoxShadow}
             ${imageHoverBorderColor ? `border-color: ${imageHoverBorderColor};` : ''}
 		}
 
-        .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+        .wp-block-zolo-image-gallery .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
             ${overlayDeskBGStyle}
             ${backdropFilterBlur ? `backdrop-filter: blur(${backdropFilterBlur}px);` : ''}
         }
 
-		.${uniqueId} .zolo-title {
+		.wp-block-zolo-image-gallery .${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
 			${headingMarginDesk}
@@ -453,7 +538,22 @@ export default function Style({ props }) {
 			${headingTypoDesk}
 		}
 
-        .${uniqueId} .zolo-item .zolo-icon {
+        .wp-block-zolo-image-gallery .${uniqueId} .zolo-subTitle {
+			color: ${TitleColor ? TitleColor : ''};
+			${TitleMarginDesk}
+			${TitleTypoDesk}
+		}
+
+        .wp-block-zolo-image-gallery .${uniqueId} .zolo-inner-item {
+			${contentDeskBGStyle}
+			${contentMarginDesk}
+			${contentPaddingDesk}
+			${contentBorderDesk}
+			${contentBorderRadiusDesk}
+			${contentBoxShadow}
+		}
+
+       .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon {
             ${zoomIconPaddingDesk}
             ${zoomIconBorderDesk}
             ${zoomIconBorderRadiusDesk}
@@ -461,17 +561,17 @@ export default function Style({ props }) {
             ${zoomIconDeskBGStyle}
         }
 
-        .${uniqueId} .zolo-item .zolo-icon svg {
+       .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon svg {
             ${zoomIconSizeDesk}
             ${zoomIconHSizeDesk}
             fill: ${zoomIconColor ? zoomIconColor : ''};
         }
 
-        .${uniqueId} .zolo-item .zolo-icon:hover svg {
+       .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon:hover svg {
             fill: ${zoomIconHoverColor ? zoomIconHoverColor : ''};
         }
 
-        .${uniqueId}  .zolo-item .zolo-icon:hover {
+       .wp-block-zolo-image-gallery .${uniqueId}  .zolo-item .zolo-icon:hover {
             border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
             ${zoomIconHoverBoxShadow}
             ${zoomIconBgHoverDesk}
@@ -494,20 +594,20 @@ export default function Style({ props }) {
 		grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
 		${tabGridGap}
 	}
-	.${uniqueId} .zolo-image-wrap {
+	.wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap {
 		${imageTabBGStyle}
 		${imageBorderTab}
 		${imageBorderRadiusTab}
 		${imagePaddingTab}
         ${imageHeightTab}
 	}
-	.${uniqueId} .zolo-image-wrap:hover {
+	.wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverTabBGStyle}
 	}
-    .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+    .wp-block-zolo-image-gallery .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
         ${overlayTabBGStyle}
     }
-	.${uniqueId} .zolo-title {
+	.wp-block-zolo-image-gallery .${uniqueId} .zolo-title {
 		${headingTabBGStyle}
 		${headingMarginTab}
 		${headingPaddingTab}
@@ -515,17 +615,31 @@ export default function Style({ props }) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
-    .${uniqueId} .zolo-item .zolo-icon {
+
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-subTitle {
+        ${TitleMarginTab}
+        ${TitleTypoTab}
+    }
+
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-inner-item {
+		${contentTabBGStyle}
+		${contentMarginTab}
+		${contentPaddingTab}
+		${contentBorderTab}
+		${contentBorderRadiusTab}
+	}
+
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon {
         ${zoomIconPaddingTab}
         ${zoomIconBorderTab}
         ${zoomIconBorderRadiusTab}
         ${zoomIconTabBGStyle}
     }
-    .${uniqueId} .zolo-item .zolo-icon svg{
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon svg{
         ${zoomIconSizeTab}
         ${zoomIconHSizeTab}
     }
-    .${uniqueId} .zolo-item .zolo-icon:hover svg{
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon:hover svg{
         ${zoomIconBgHoverTab}
     }
 	`;
@@ -546,20 +660,20 @@ export default function Style({ props }) {
 		grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		${mobGridGap}
 	}
-	.${uniqueId} .zolo-image-wrap {
+	.wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap {
 		${imageMobBGStyle}
 		${imageBorderMob}
 		${imageBorderRadiusMob}
 		${imagePaddingMob}
         ${imageHeightMob}
 	}
-	.${uniqueId} .zolo-image-wrap:hover {
+	.wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverMobBGStyle}
 	}
-    .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+    .wp-block-zolo-image-gallery .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
         ${overlayMobBGStyle}
     }
-	.${uniqueId} .zolo-title {
+	.wp-block-zolo-image-gallery .${uniqueId} .zolo-title {
 		${headingMobBGStyle}
 		${headingMarginMob}
 		${headingPaddingMob}
@@ -568,17 +682,30 @@ export default function Style({ props }) {
 		${headingTypoMob}
 	}
 
-    .${uniqueId} .zolo-item .zolo-icon {
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-subTitle {
+        ${TitleMarginMob}
+        ${TitleTypoMob}
+    }
+
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-inner-item {
+		${contentMobBGStyle}
+		${contentMarginMob}
+		${contentPaddingMob}
+		${contentBorderMob}
+		${contentBorderRadiusMob}
+	}
+
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon {
         ${zoomIconPaddingMob}
         ${zoomIconBorderMob}
         ${zoomIconBorderRadiusMob}
         ${zoomIconMobBGStyle}
     }
-    .${uniqueId} .zolo-item .zolo-icon svg{
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon svg{
         ${zoomIconSizeMob}
         ${zoomIconHSizeMob}
     }
-    .${uniqueId} .zolo-item .zolo-icon:hover svg{
+    .wp-block-zolo-image-gallery .${uniqueId} .zolo-item .zolo-icon:hover svg{
         ${zoomIconBgHoverMob}
     }
   	`;

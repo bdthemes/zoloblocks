@@ -16,6 +16,8 @@ import classNames from 'classnames';
  * Internal dependencies
  */
 import PreLoader from './preloader';
+import Templates from './templates';
+import Pages from './pages';
 
 /**
  * Constants
@@ -41,12 +43,15 @@ const TABS = [
 function ZoloBlocksTemplateLibraryButton() {
     const [isOpen, setIsOpen] = useState(false);
     const [pullDemos, setPullDemos] = useState(false);
+    const [activeCat, setActiveCat] = useState('all');
+    const [categories, setCategories] = useState([]);
     const [activeTab, setActiveTab] = useState('patterns');
     const [searchText, setSearchText] = useState('');
 
     const [loading, setLoading] = useState(false);
     const [allTemplates, setAllTemplates] = useState([]);
     const [number, setNumber] = useState(20);
+    const [total, setTotal] = useState(0);
     const [templates, setTemplates] = useState([]);
 
     const LibraryButton = () => (
@@ -71,7 +76,6 @@ function ZoloBlocksTemplateLibraryButton() {
         render(<LibraryButton />, libraryButton);
     };
 
-    // watch for the toolbar to be visible and the template library button to be missing
     subscribe(() => {
         const toolbar = document.querySelector('.edit-post-header__toolbar');
         const libraryButton = document.querySelector('.zoloblocks-template-library-button');
@@ -107,8 +111,81 @@ function ZoloBlocksTemplateLibraryButton() {
         const templates = JSON.parse(localStorage.getItem('zoloblocks_templates'));
         if (templates) {
             setTemplates(templates.slice(0, number));
+            setTotal(templates.length);
+            // find unique categories
+            const allCategories = templates.map((template) => template.categories);
+            const uniqueCategories = [...new Set(allCategories.flat())];
+
+            // sort the categories alphabetically
+            const sortedCategories = uniqueCategories.sort((a, b) => a.localeCompare(b));
+
+            // create an array of objects with label and value and add all to the beginning
+            const categories = sortedCategories.map((category) => ({ label: category, value: category }));
+            categories.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+            setCategories(categories);
         }
     }, [allTemplates, number]);
+
+    // filter templates based on category
+    useEffect(() => {
+        // filter templates based on category
+        const filteredTemplates = allTemplates.filter((template) => {
+            if (activeCat === 'all') {
+                return true;
+            } else {
+                return template.categories.includes(activeCat);
+            }
+        });
+        setTemplates(filteredTemplates.slice(0, number));
+        setTotal(filteredTemplates.length);
+    }, [activeCat]); // eslint-disable-line
+
+    // filter templates based on search text
+    useEffect(() => {
+        // filter templates based on search text
+        const filteredTemplates = allTemplates.filter((template) => {
+            return template.title.toLowerCase().includes(searchText.toLowerCase());
+        });
+        setTemplates(filteredTemplates.slice(0, number));
+        setTotal(filteredTemplates.length);
+    }, [searchText]); // eslint-disable-line
+
+    const handleImportTemplate = (jsonFile) => {
+        jQuery.ajax({
+            url: zoloParams?.ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'zolo_demo_import',
+                json_file_url: jsonFile,
+            },
+            success: function (response) {
+                if (response.success) {
+                    const { data } = response;
+                    if (data) {
+                        const { content } = data;
+
+                        console.log('data:', data);
+
+                        const blocks = wp.blocks.parse(content);
+
+                        const selectedBlock = wp.data.select('core/block-editor').getSelectedBlock();
+
+                        if (selectedBlock && selectedBlock.name === 'core/paragraph') {
+                            wp.data.dispatch('core/block-editor').replaceBlocks(selectedBlock.clientId, blocks);
+                        } else {
+                            wp.data.dispatch('core/block-editor').insertBlocks(blocks, 0);
+                        }
+                        setIsOpen(false);
+                    }
+                } else {
+                    console.log('Error:', response.data);
+                }
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            },
+        });
+    };
 
     return (
         <div className="zolo-demos-modal-wrapper">
@@ -147,13 +224,20 @@ function ZoloBlocksTemplateLibraryButton() {
                         </div>
                         <div className="search-close-area">
                             <div className="search">
-                                <input type="text" placeholder={__('Search', 'zoloblocks')} />
+                                <input
+                                    type="search"
+                                    placeholder={__('Search', 'zoloblocks')}
+                                    value={searchText}
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                />
                             </div>
                             <div className="sync-btn">
                                 <button
                                     className="sync-button"
                                     onClick={() => {
                                         setPullDemos(!pullDemos);
+                                        setActiveCat('all');
+                                        setSearchText('');
                                     }}
                                 >
                                     <svg
@@ -200,173 +284,139 @@ function ZoloBlocksTemplateLibraryButton() {
                             </div>
                             <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                             <div className="category-list">
-                                <button className="single-category active">
-                                    <span className="single-category-text">
-                                        <svg
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
+                                {categories &&
+                                    categories.length > 0 &&
+                                    categories.map((category) => (
+                                        <button
+                                            key={category.value}
+                                            className={classNames('single-category', { active: activeCat === category.value })}
+                                            onClick={() => setActiveCat(category.value)}
                                         >
-                                            <path
-                                                stroke="currentColor"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
-                                            />
-                                        </svg>
-                                        All
-                                    </span>
-                                    <span className="single-category-count">50</span>
-                                </button>
-                                <button className="single-category">
-                                    <span className="single-category-text">
-                                        <svg
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke="currentColor"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
-                                            />
-                                        </svg>
-                                        Advanced Button
-                                    </span>
-                                    <span className="single-category-count">12</span>
-                                </button>
-                                <button className="single-category">
-                                    <span className="single-category-text">
-                                        <svg
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke="currentColor"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
-                                            />
-                                        </svg>
-                                        Advanced Icon Box
-                                    </span>
-                                    <span className="single-category-count">12</span>
-                                </button>
+                                            <span className="single-category-text">{category.label}</span>
+                                            <span className="single-category-count">
+                                                {allTemplates &&
+                                                    (category.value === 'all'
+                                                        ? allTemplates.length
+                                                        : allTemplates.filter((template) => template.categories.includes(category.label))
+                                                              .length)}
+                                            </span>
+                                        </button>
+                                    ))}
                             </div>
                         </div>
                         <div className="demos-container">
+                            {activeTab === 'patterns' && (
+                                <>
+                                    <div className="zolo-demos-wrapper">
+                                        {templates && templates.length > 0 ? (
+                                            templates.map((template) => {
+                                                return (
+                                                    <div className="single-demo">
+                                                        <div className="demo-preview">
+                                                            <img src={template.demo_preview} alt={template.title} />
+                                                            {template?.pro === '1' && (
+                                                                <div className="image-overlay-content">
+                                                                    <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
+                                                                </div>
+                                                            )}
+
+                                                            <div className="demo-actions-btn-wrap">
+                                                                <a
+                                                                    className="demo-btn view-btn"
+                                                                    href={template?.demo_link}
+                                                                    target="_blank"
+                                                                    title="View Demo"
+                                                                >
+                                                                    {__('View Demo', 'zoloblocks')}
+                                                                    <svg
+                                                                        aria-hidden="true"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        width={24}
+                                                                        height={24}
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <path
+                                                                            stroke="currentColor"
+                                                                            strokeWidth={2}
+                                                                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                                                                        />
+                                                                        <path
+                                                                            stroke="currentColor"
+                                                                            strokeWidth={2}
+                                                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                                                        />
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div className="demo-footer">
+                                                            <div className="footer-left">
+                                                                <h2 className="demo-title">{template.title}</h2>
+                                                            </div>
+                                                            <Tooltip text={__('Import Demo', 'zoloblocks')}>
+                                                                <button
+                                                                    className="import-btn"
+                                                                    onClick={() => handleImportTemplate(template?.json_file)}
+                                                                >
+                                                                    {__('Import', 'zoloblocks')}
+                                                                    <svg
+                                                                        aria-hidden="true"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        width={24}
+                                                                        height={24}
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <path
+                                                                            stroke="currentColor"
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={2}
+                                                                            d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
+                                                                        />
+                                                                    </svg>
+                                                                </button>
+                                                            </Tooltip>
+                                                        </div>
+                                                        <span
+                                                            className={classNames(
+                                                                'demo-badge',
+                                                                `${template?.pro === '1' ? 'pro' : 'free'}-badge`
+                                                            )}
+                                                        >
+                                                            {template?.pro === '1' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            })
+                                        ) : (
+                                            <div className="single-demo">
+                                                <h2>{__('No Templates Found', 'zoloblocks')}</h2>
+                                            </div>
+                                        )}
+                                    </div>
+                                    {total > number && (
+                                        <div className="load-more-btn-wrapper">
+                                            <button
+                                                className="load-more-btn"
+                                                onClick={() => {
+                                                    setNumber(number + 5);
+                                                }}
+                                            >
+                                                {__('Load More', 'zoloblocks')}
+                                            </button>
+                                        </div>
+                                    )}
+                                </>
+                            )}
+                            {activeTab === 'templates' && <Templates />}
+                            {activeTab === 'pages' && <Pages />}
                             {loading && (
                                 <div className="zolo-spinner">
                                     <PreLoader />
                                 </div>
                             )}
-                            <div className="zolo-demos-wrapper">
-                                {templates && templates.length > 0 ? (
-                                    templates.map((template) => {
-                                        return (
-                                            <div className="single-demo">
-                                                <div className="demo-preview">
-                                                    <img src={template.demo_preview} alt={template.title} />
-                                                    {template?.pro === '1' && (
-                                                        <div className="image-overlay-content">
-                                                            <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
-                                                        </div>
-                                                    )}
-
-                                                    <div className="demo-actions-btn-wrap">
-                                                        <a
-                                                            className="demo-btn view-btn"
-                                                            href={template?.demo_link}
-                                                            target="_blank"
-                                                            title="View Demo"
-                                                        >
-                                                            {__('View Demo', 'zoloblocks')}
-                                                            <svg
-                                                                aria-hidden="true"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={24}
-                                                                height={24}
-                                                                fill="none"
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path
-                                                                    stroke="currentColor"
-                                                                    strokeWidth={2}
-                                                                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                                                                />
-                                                                <path
-                                                                    stroke="currentColor"
-                                                                    strokeWidth={2}
-                                                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                                                />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div className="demo-footer">
-                                                    <div className="footer-left">
-                                                        <h2 className="demo-title">{template.title}</h2>
-                                                    </div>
-                                                    <Tooltip text={__('Import Demo', 'zoloblocks')}>
-                                                        <button className="import-btn">
-                                                            {__('Import', 'zoloblocks')}
-                                                            <svg
-                                                                aria-hidden="true"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={24}
-                                                                height={24}
-                                                                fill="none"
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path
-                                                                    stroke="currentColor"
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth={2}
-                                                                    d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
-                                                                />
-                                                            </svg>
-                                                        </button>
-                                                    </Tooltip>
-                                                </div>
-                                                <span
-                                                    className={classNames('demo-badge', `${template?.pro === '1' ? 'pro' : 'free'}-badge`)}
-                                                >
-                                                    {template?.pro === '1' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
-                                                </span>
-                                            </div>
-                                        );
-                                    })
-                                ) : (
-                                    <div className="single-demo">
-                                        <h2>{__('No Templates Found', 'zoloblocks')}</h2>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="load-more-btn-wrapper">
-                                <button
-                                    className="load-more-btn"
-                                    onClick={() => {
-                                        setNumber(number + 4);
-                                    }}
-                                >
-                                    {__('Load More', 'zoloblocks')}
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </Modal>
