@@ -1,3 +1,13 @@
+## 1.0.7 [June 13, 2024]
+
+### Added
+
+- progress pie block added
+
+### Fixed
+
+- extra panel styling options not working issue fixed in the Social Share and Social Links block
+
 ## 1.0.6 [June 08, 2024]
 
 ### Added

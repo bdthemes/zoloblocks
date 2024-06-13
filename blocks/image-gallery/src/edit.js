@@ -33,7 +33,6 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.imageGallery} alt={__('Gallery Preview', 'zoloblocks')} />;
     }
 
-    // console.log( 'gallery: ', advancedGallery);
 
     return (
         <>
@@ -88,11 +87,11 @@ export default function Edit(props) {
                                         </a>
                                     )}
                                     {showCaption &&  preset !== 'style-2' && image.caption && <div className="zolo-title">{image.caption}</div>}
-                                    
+
                                     {preset === 'style-2' && (
                                       <div className='zolo-inner-item'>
                                           <div className='zolo-content-wrap'>
-                                             {showTitle && ( <h4 className='zolo-subTitle'>{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>)}  
+                                             {showTitle && ( <h4 className='zolo-subTitle'>{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>)}
                                              {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
                                           </div>
                                           {showLightbox && (
