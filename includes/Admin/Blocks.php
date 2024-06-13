@@ -134,6 +134,11 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_progress_pie',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_review_carousel',
             'categories' => ['review', 'slider'],
             'status'     => true,
