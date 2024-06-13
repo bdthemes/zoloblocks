@@ -208,6 +208,24 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
+= 1.0.7 - 13-06-2024 =
+
+= Added =
+
+* progress pie block added
+* template library feature added
+* buttom spacing control added in Newsletter block
+
+= Fixed =
+
+* extra panel styling options not working issue fixed in the Social Share and Social Links block
+* container border issue fixed
+* alt text missing issue fixed in advanced image block
+
+### Improved
+
+* Default style improved in Advanced Search block
+
 = 1.0.6 - 08-06-2024 =
 
 = Added =
