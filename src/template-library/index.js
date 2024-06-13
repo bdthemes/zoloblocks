@@ -199,7 +199,7 @@ function ZoloBlocksTemplateLibraryButton() {
                     <div className="zolo-dm-body">
                         <div className="categories">
                             <div className="demo-made-button">
-                                <button className="demo-made-btn made-zoloblocks-btn">hand craft</button>
+                                <button className="demo-made-btn made-zoloblocks-btn">{__('hand craft', 'zoloblocks')}</button>
                                 <button className="demo-made-btn made-ai-btn" title="upcoming">
                                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
                                         <path
@@ -216,14 +216,16 @@ function ZoloBlocksTemplateLibraryButton() {
                                         />
                                     </svg>
                                     ai
-                                    <span>upcoming</span>
+                                    <span>{__('upcoming', 'zoloblocks')}</span>
                                 </button>
                             </div>
                             <div className="demo-title-proFree-wrap">
                                 <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                                 <div className="demo-proFree-btn">
-                                    <button className="demo-free-btn">free</button>
-                                    <button className="demo-pro-btn">pro</button>
+                                    <button className="demo-free-btn">{__('free', 'zoloblocks')}</button>
+                                    <Tooltip text={__('Coming Soon', 'zoloblocks')} placement="top">
+                                        <button className="demo-pro-btn">{__('pro', 'zoloblocks')}</button>
+                                    </Tooltip>
                                 </div>
                             </div>
 
@@ -283,32 +285,34 @@ function ZoloBlocksTemplateLibraryButton() {
                                         />
                                     </div>
                                     <div className="sync-btn">
-                                        <button
-                                            className="sync-button"
-                                            onClick={() => {
-                                                setPullDemos(!pullDemos);
-                                                setActiveCat('all');
-                                                setSearchText('');
-                                            }}
-                                        >
-                                            <svg
-                                                className="w-6 h-6 text-gray-800 dark:text-white"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
+                                        <Tooltip text={__('Sync Demos', 'zoloblocks')} placement="top">
+                                            <button
+                                                className="sync-button"
+                                                onClick={() => {
+                                                    setPullDemos(!pullDemos);
+                                                    setActiveCat('all');
+                                                    setSearchText('');
+                                                }}
                                             >
-                                                <path
-                                                    stroke="currentColor"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"
-                                                />
-                                            </svg>
-                                        </button>
+                                                <svg
+                                                    className="w-6 h-6 text-gray-800 dark:text-white"
+                                                    aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke="currentColor"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </Tooltip>
                                     </div>
                                     <div className="close-btn">
                                         <button onClick={() => setIsOpen(false)}>
@@ -342,34 +346,36 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             )}
 
                                                             <div className="demo-actions-btn-wrap">
-                                                                <a
-                                                                    className="demo-btn view-btn"
-                                                                    href={template?.demo_link}
-                                                                    target="_blank"
-                                                                    title="View Demo"
-                                                                >
-                                                                    {__('View Demo', 'zoloblocks')}
-                                                                    <svg
-                                                                        aria-hidden="true"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        width={24}
-                                                                        height={24}
-                                                                        fill="none"
-                                                                        viewBox="0 0 24 24"
+                                                                <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
+                                                                    <a
+                                                                        className="demo-btn view-btn"
+                                                                        href={template?.demo_link}
+                                                                        target="_blank"
                                                                     >
-                                                                        <path
-                                                                            stroke="currentColor"
-                                                                            strokeWidth={2}
-                                                                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                                                                        />
-                                                                        <path
-                                                                            stroke="currentColor"
-                                                                            strokeWidth={2}
-                                                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                                                        />
-                                                                    </svg>
-                                                                </a>
-                                                                <Tooltip text={__('Import Demo', 'zoloblocks')}>
+                                                                        {__('Demo', 'zoloblocks')}
+                                                                        <svg
+                                                                            aria-hidden="true"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width={24}
+                                                                            height={24}
+                                                                            fill="none"
+                                                                            viewBox="0 0 24 24"
+                                                                        >
+                                                                            <path
+                                                                                stroke="currentColor"
+                                                                                strokeWidth={2}
+                                                                                d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                                                                            />
+                                                                            <path
+                                                                                stroke="currentColor"
+                                                                                strokeWidth={2}
+                                                                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                                                            />
+                                                                        </svg>
+                                                                    </a>
+                                                                </Tooltip>
+
+                                                                <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                                     <button
                                                                         className="demo-btn import-btn"
                                                                         onClick={() => handleImportTemplate(template?.json_file)}
