@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, } from '@wordpress/block-editor';
+import { useBlockProps,} from '@wordpress/block-editor';
 import { useEffect,useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -39,7 +39,6 @@ export default function Edit(props) {
         progressTitle,
         toggleLabel,
         progressFillColor,
-        circleColor,
         progressTopColor,
         progressBottomColor,
     } = attributes;
@@ -73,7 +72,6 @@ export default function Edit(props) {
         startAnim();
         function startAnim() {
             setTimeout(function() {
-                // progressPie.style.transition = "stroke-dasharray 0.8s ease-in-out, stroke-dashoffset 0.8s ease-in-out";
                 progressPie.style.strokeDasharray = progressVal + " " + (100 - progressVal);
             }, 20);
         }
@@ -105,9 +103,8 @@ export default function Edit(props) {
                     
                     {/* Progress number and text  */}
                         <g className="progress-pie-text">
-                            <text x="50%" y="50%"  className="progress-pie-number" ref={countUpRef}>{progressValue && progressValue}
-                            </text>
-                            <text x="50%" y="50%"  className="progress-pie-label">{toggleLabel && progressTitle && progressTitle}</text>
+                            <text x="50%" y="50%"  className="progress-pie-number" ref={countUpRef}>{progressValue && progressValue}</text>
+                            {toggleLabel && <text x="50%" y="50%"  className="progress-pie-label">{progressTitle && progressTitle}</text>}
                         </g>
                     </svg>
                 </>

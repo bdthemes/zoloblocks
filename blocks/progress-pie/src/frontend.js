@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const progressDuration  =Number(item.dataset.progressduration);
       const circleColor =item.dataset.circlecolor;
       const progressFillColor =item.dataset.progressfillcolor;
-      const toggleLabel = item.dataset.togglelabel =='true' ? true :'false';
+      const toggleLabel = item.dataset.togglelabel==='true' ? true : false;
       const progressTitle =item.dataset.progresstitle;
       const progressTopColor =item.dataset.progresstopcolor;
       const progressBottomColor=item.dataset.progressbottomcolor;
@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const CountupComponent=({      
       progressValue,
       progressDuration,
-      circleColor,
       progressFillColor,
       toggleLabel,
       progressTitle,
@@ -35,13 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
             startAnim();
             function startAnim() {
                 setTimeout(function() {
-                    //progressPie.style.transition = "stroke-dasharray 0.8s ease-in-out, stroke-dashoffset 0.8s ease-in-out";
                     progressPie.style.strokeDasharray = progressVal + " " + (100 - progressVal);
                 }, 20);
             }
             return ()=>clearTimeout();
         },[progressValue])
-       
+       console.log(typeof toggleLabel)
+       console.log(toggleLabel)
       return (  
         <CountUp start={0} end={progressValue} delay={0} duration={progressDuration ? progressDuration : 3} suffix="%">
             {({ countUpRef }) => (
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   {/* Progress number and text  */}
                       <g className="progress-pie-text">
                         <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>{progressValue &&  progressValue}</text>
-                        <text x="50%" y="50%" className="progress-pie-label">{toggleLabel && progressTitle}</text> 
+                        {toggleLabel && <text x="50%" y="50%"  className="progress-pie-label">{progressTitle && progressTitle}</text>} 
                       </g>
                   </svg> 
               </>

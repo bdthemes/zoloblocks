@@ -89,7 +89,7 @@ function Inspector(props) {
                             /> 
                             <SimpleRangeControl label={__('Progress percent Size','zoloblocks')}
                              onChange={(v)=>setAttributes({progressSize:v})} value={progressSize} 
-                              onReset={()=>setAttributes({progressSize:''})}  min={0.1} max={10} step={0.1} 
+                              onReset={()=>setAttributes({progressSize:''})}  min={1} max={100} step={1} 
                               noUnits={true} 
                               /> 
                              <SimpleRangeControl 
@@ -97,7 +97,7 @@ function Inspector(props) {
                                 onChange={(v)=>setAttributes({progressFillSize:v})} 
                                 value={progressFillSize} 
                                 onReset={()=>setAttributes({progressFillSize:''})}  
-                                min={0.1} max={10} step={0.1} 
+                                min={1} max={100} step={1} 
                                 noUnits={true} />  
                         <ToggleControl
                             label={__('Enable Title','zoloblocks')}
