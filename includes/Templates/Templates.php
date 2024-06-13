@@ -36,32 +36,44 @@ class Zolo_Templates {
                     wp_send_json_error('Invalid JSON data');
                 } else {
 
-                    // find all src attributes values from the content
-                    $img_srcs = [];
-                    preg_match_all('/<img[^>]+src=[\'"]([^\'"]+)[\'"][^>]*>/i', $content, $matches);
+                    // Define separate patterns
+                    $img_pattern = '/<img[^>]+src=[\'"]([^\'"]+)[\'"][^>]*>/i';
+                    $bg_pattern = '/background-image\s*:\s*url\((["\']?)([^"\')]+)\1\)/i';
 
-                    if (!empty($matches[1])) {
-                        $img_srcs = $matches[1];
+                    // Find matches for img src
+                    preg_match_all($img_pattern, $content, $img_matches);
+                    $img_srcs = $img_matches[1];
 
-                        // download images and replace src attributes with local path
-                        foreach ($img_srcs as $img_src) {
-                            $img_src = str_replace(['http:', 'https:'], '', $img_src);
-                            $img_src = ABSPATH . str_replace(site_url(), '', $img_src);
-                            $img_src = str_replace('//', '/', $img_src);
+                    // Find matches for background-image
+                    preg_match_all($bg_pattern, $content, $bg_matches);
+                    $bg_srcs = $bg_matches[2];
 
-                            $img_name = basename($img_src);
-                            $img_content = wp_remote_retrieve_body(wp_remote_get($img_src));
+                    // remove \\u0022 from all $bg_srcs
+                    if(!empty($bg_srcs)){
+                        $bg_srcs = array_map(function ($src) {
+                            return str_replace('\\u0022', '', $src);
+                        }, $bg_srcs); 
+                    }
 
-                            if ($img_content) {
-                                $upload_dir = wp_upload_dir();
-                                $img_path = $upload_dir['path'] . '/' . $img_name;
-                                $img_url = $upload_dir['url'] . '/' . $img_name;
+                    // Combine all matches, filter out empty ones
+                    $all_img_srcs = array_filter(array_merge($img_srcs, $bg_srcs));
 
-                                file_put_contents($img_path, $img_content);
-                                $content = str_replace($img_src, $img_url, $content);
+                    if (!empty($all_img_srcs)) {
+                        foreach ($all_img_srcs as $img_src) {
+                            $response = wp_remote_get($img_src);
+                            if (!is_wp_error($response)) {
+                                $body = wp_remote_retrieve_body($response);
+                                $filename = basename($img_src);
+
+                                // Use WordPress functions to handle file uploads
+                                $upload = wp_upload_bits($filename, null, $body);
+                                if (!$upload['error'] && file_exists($upload['file'])) {
+                                    // Replace the image URL in the content
+                                    $content = str_replace($img_src, $upload['url'], $content);
+                                }
                             }
-                        } 
-                    } 
+                        }
+                    }
 
                     // Process your JSON data here
                     wp_send_json_success([
@@ -69,6 +81,7 @@ class Zolo_Templates {
                         'message' => __('Pattern imported successfully!', 'zoloblocks'),
                         'content' => $content,
                         'img_srcs' => $img_srcs,
+                        'bg_srcs'  => $bg_srcs,
                     ]);
                 }
             }

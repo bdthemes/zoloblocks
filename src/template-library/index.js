@@ -162,14 +162,11 @@ function ZoloBlocksTemplateLibraryButton() {
                 if (response.success) {
                     const { data } = response;
                     if (data) {
+                        console.log(data);
+
                         const { content } = data;
-
-                        console.log('data:', data);
-
                         const blocks = wp.blocks.parse(content);
-
                         const selectedBlock = wp.data.select('core/block-editor').getSelectedBlock();
-
                         if (selectedBlock && selectedBlock.name === 'core/paragraph') {
                             wp.data.dispatch('core/block-editor').replaceBlocks(selectedBlock.clientId, blocks);
                         } else {
@@ -401,7 +398,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                             <button
                                                 className="load-more-btn"
                                                 onClick={() => {
-                                                    setNumber(number + 5);
+                                                    setNumber(number + 20);
                                                 }}
                                             >
                                                 {__('Load More', 'zoloblocks')}
