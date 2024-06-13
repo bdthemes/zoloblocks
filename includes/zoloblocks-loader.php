@@ -57,6 +57,9 @@ class ZoloBlocks_Loader {
         //mailchimp
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Mailchimp/Mailchimp.php';
 
+        //templates
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Templates/Templates.php';
+
         if (is_admin()) {
             // zolo blocks settings
             $zoloSupportSVG = get_option('zolo_support_svg', false);
