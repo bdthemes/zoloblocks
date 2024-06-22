@@ -404,3 +404,7 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 }
+
+.is-sidebar-opened .interface-interface-skeleton__sidebar {
+    overflow: scroll !important;
+}
