@@ -59,11 +59,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-    useEffect(()=>{
-        !toggleProgressColor && setAttributes({progressTopColor: ''})
-        !toggleProgressColor &&  setAttributes({progressBottomColor: ''})
-        toggleProgressColor &&  setAttributes({progressBarColor: ''})
-    },[progressTopColor,toggleProgressColor,progressBottomColor,])
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -155,7 +151,7 @@ function Inspector(props) {
                                 }
                                 />)} 
                             
-                                {/* test */}
+                                
                                 {toggleProgressColor && (
                                     <>
                                     
