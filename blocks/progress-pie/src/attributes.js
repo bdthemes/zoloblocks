@@ -71,9 +71,7 @@ const attributes = {
         type:'number',
         default:3
     },
-    progressBarColor:{
-        type:'string'
-    },
+
     //progress test
     toggleProgressColor:{
         type:'boolean',
@@ -84,7 +82,8 @@ const attributes = {
         default:false
     },
     progressTopColor:{
-        type:'string'
+        type:'string',
+        default:'#00bc9b'
     },
     progressBottomColor:{
         type:'string'

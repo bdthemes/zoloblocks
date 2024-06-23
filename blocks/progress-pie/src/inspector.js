@@ -39,7 +39,6 @@ function Inspector(props) {
         toggleLabel,
         progressSize,
         progressDuration,
-        progressBarColor,
         progressRound,
         //test 
         toggleProgressColor,
@@ -143,13 +142,18 @@ function Inspector(props) {
                         <PopoverControl label={__('Progress Percent Color')} children={
                         <>
                             {!toggleProgressColor && ( 
+                               
                                 <ColorControl
-                                    label={__('Progress percent Color', 'zoloblocks')}
-                                    color={progressBarColor}
-                                    onChange={(color) =>
-                                    setAttributes({progressBarColor: color})
-                                }
-                                />)} 
+                                label={__('Progress percent Color', 'zoloblocks')}
+                                color={progressTopColor}
+                                onChange={(color) =>{
+                                setAttributes({progressTopColor: color})
+                            }
+                            }
+                          />
+                                )
+
+                                } 
                             
                                 
                                 {toggleProgressColor && (

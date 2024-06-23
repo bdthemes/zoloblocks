@@ -22,7 +22,7 @@ const Style = ({ props }) => {
     const { 
         uniqueId,
         progressSize,
-        progressBarColor,
+        progressTopColor,
         numberColor,
         titleColor,
         progressFillSize,
@@ -80,7 +80,7 @@ const Style = ({ props }) => {
          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-progress {
             ${progressSize ? `stroke-width:${progressSize/10}` : ''};
-            ${!toggleProgressColor && progressBarColor ? `stroke:${progressBarColor}` : ''};  
+            ${!toggleProgressColor && progressTopColor ? `stroke:${progressTopColor}` : ''};  
             ${progressRound ? 'stroke-linecap:round' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
