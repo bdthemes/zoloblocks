@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const progressTitle =item.dataset.progresstitle;
       const progressTopColor =item.dataset.progresstopcolor;
       const progressBottomColor=item.dataset.progressbottomcolor;
+      const progPiePrefixPostfix =JSON.parse(item.dataset.propieprefixpostfix);
+      const proPieperpostToggle =item.dataset.propieperposttoggle==='true' ? true : false;
   
     const CountupComponent=({      
       progressValue,
@@ -43,7 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
        console.log(typeof toggleLabel)
        console.log(toggleLabel)
       return (  
-        <CountUp start={0} end={progressValue} delay={0} duration={progressDuration ? progressDuration : 3} suffix="%">
+        <CountUp start={0}
+         end={progressValue} 
+         delay={0} 
+         duration={progressDuration ? progressDuration : 3} 
+          prefix={proPieperpostToggle && typeof progPiePrefixPostfix.Prefix === 'string' && isNaN(Number(progPiePrefixPostfix.Prefix)) ? progPiePrefixPostfix.Prefix : ''}
+          suffix={proPieperpostToggle && typeof progPiePrefixPostfix.Postfix === 'string' && isNaN(Number(progPiePrefixPostfix.Postfix)) ? progPiePrefixPostfix.Postfix: ''}
+        >
             {({ countUpRef }) => (
               <>
                   <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">

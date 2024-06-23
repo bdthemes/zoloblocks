@@ -88,6 +88,17 @@ const attributes = {
     progressBottomColor:{
         type:'string'
     },
+    progPiePrefixPostfix:{
+        type:'object',
+        default:{
+            Prefix:'$',
+            Postfix:'%'
+        }
+    },
+    proPieperpostToggle:{
+        type:'boolean',
+        default:true
+    },
 
     //progress fill
     progressFillColor:{

@@ -24,6 +24,7 @@ import Inspector from './inspector';
 // import style
 import Style from './style';
 
+
 /**
  * Edit Function
  */
@@ -41,6 +42,10 @@ export default function Edit(props) {
         progressFillColor,
         progressTopColor,
         progressBottomColor,
+        progPiePrefixPostfix,
+        progPiPrefixToggle,
+        progPiPostfixToggle,
+        proPieperpostToggle
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -83,7 +88,12 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-            <CountUp start={0} end={progressValue} delay={0}  duration={progressDuration ? progressDuration : 3} suffix="%">
+            <CountUp start={0} 
+            end={progressValue} delay={0}  
+            duration={progressDuration ? progressDuration : 3} 
+            prefix={proPieperpostToggle && typeof progPiePrefixPostfix.Prefix === 'string' && isNaN(Number(progPiePrefixPostfix.Prefix)) ? progPiePrefixPostfix.Prefix : ''}
+            suffix={proPieperpostToggle && typeof progPiePrefixPostfix.Postfix === 'string' && isNaN(Number(progPiePrefixPostfix.Postfix)) ? progPiePrefixPostfix.Postfix: ''}
+            > 
             {({ countUpRef }) => (
                 
                 <>

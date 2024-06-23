@@ -15,6 +15,8 @@ const Save = ({ attributes }) => {
         circleColor,
         progressTopColor,
         progressBottomColor,
+        progPiePrefixPostfix,
+        proPieperpostToggle
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -34,9 +36,10 @@ const Save = ({ attributes }) => {
             data-progressFillColor={progressFillColor}
             data-circleColor={circleColor}
             data-uniqueid={uniqueId}
-            //test
             data-progressTopColor={progressTopColor}
             data-progressBottomColor={progressBottomColor}
+            data-propieprefixpostfix={JSON.stringify(progPiePrefixPostfix)}
+            data-propieperposttoggle={proPieperpostToggle}
         >
              
         </div>
