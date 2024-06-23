@@ -289,4 +289,10 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'textpath' => [
+        'name'             => 'textpath',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/text-path/block.json',
+        'frontend-styles'  => false,
+        'frontend-scripts' => false
+    ],
 ]);
