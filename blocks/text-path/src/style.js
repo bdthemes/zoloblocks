@@ -18,13 +18,11 @@ const {
 } = window.zoloModule;
 
 import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
-import {
-  
-} from './constants';
+import {TEXTPATH_ALIGN} from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, } = attributes;
+    const { uniqueId, textPathShow} = attributes;
 
     // label
     // const {
@@ -143,12 +141,26 @@ const Style = ({ props }) => {
     //     attributes,
     // });
 
+    const {
+        desktopAlignStyle: textPathDeskAlignStyle,
+        tabAlignStyle: textPathTabAlignStyle,
+        mobAlignStyle:textPathMobAlignStyle,
+    } = generateResAlignmentStyle({
+        controlName: TEXTPATH_ALIGN,
+        property: 'text-align',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-      
-  
+        .${uniqueId}.wp-block-zolo-textpath {
+          ${textPathDeskAlignStyle}
+        }
+        .${uniqueId}.wp-block-zolo-textpath .zolo-path{
+            ${textPathShow && 'stroke:red'};
+        }
     `;
 
     const tabletAllStyle = `

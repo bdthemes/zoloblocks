@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl, SelectControl } from '@wordpress/components';
+import { TextControl, SelectControl,ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 
@@ -20,14 +20,15 @@ const {
     ResDimensionsControl,
     NormalBGControl,
     ZoloPanelBody,
+    LinkControl,
+    ResAlignmentControl
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 
 import { } from './constants/typoPrefixConstant';
-import {
-
-} from './constants';
+import {TEXTPATH_ALIGN} from './constants';
+import { DEFAULT_ALIGNS} from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -35,7 +36,9 @@ function Inspector(props) {
         resMode,
         showLabel,
         textpathContent,
-    textPathType
+        textPathType,
+        pathlink,
+        textPathShow
     } = attributes;
 
     const requiredProps = {
@@ -60,20 +63,33 @@ function Inspector(props) {
                                 onChange={ (v) => setAttributes({textpathContent:v})}
                             />
                           
-                                <SelectControl
-                                    label={__('Path Type','zoloblocks')}
-                                    value={textPathType}
-                                    options={ [
-                                        { label: __('wave'), value: 'M 0 50  C 100 0, 300 0, 400 50 S 700 100, 800 50V 100 H 0 Z'},
-                                        {label:__('Circle'),value:'M10,90 Q90,90 90,45 Q90,10 50,10 Q10,10 10,40 Q10,70 45,70 Q70,70 75,50'},
-                                        {label:__('Line'),value:'M 10,30 L 90,30'},
+                            <SelectControl
+                                label={__('Path Type','zoloblocks')}
+                                value={textPathType}
+                                options={ [
+                                    {label:__('Circle'),value:'M10,90 Q90,90 90,45 Q90,10 50,10 Q10,10 10,40 Q10,70 45,70 Q70,70 75,50'},
+                                    {label:__('Line'),value:'M50,50 Q250,100 400,50'},
                                         
-                                        
-                                       
-                                    ] }
-                                    onChange={ (v) => setAttributes({textPathType:v}) }
-                                />
-                       
+                                ] }
+                             onChange={ (v) => setAttributes({textPathType:v}) }
+                            />
+                          <LinkControl
+                            label={__('URL', 'zoloblocks')}
+                            value={pathlink}
+                            onChange={(value) => setAttributes({ pathlink: value })}
+                            />
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zoloblocks')}
+                                controlName={TEXTPATH_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
+                           />
+                             <ToggleControl
+                                label={__('Show Path','zoloblocks')}
+                                checked={ textPathShow}
+                                 onChange={ () => setAttributes({textPathShow:!textPathShow}) }
+                              />
+                          
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                            

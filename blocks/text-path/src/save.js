@@ -4,8 +4,14 @@ import { __ } from '@wordpress/i18n';
 const { classArrayToStr, } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses,  zoloId,textpathContent ,textPathType} =
-        attributes;
+    const {
+         uniqueId, 
+         parentClasses, 
+          zoloId,
+          textpathContent,
+          textPathType,
+          pathlink
+        } =attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), ),
@@ -18,20 +24,37 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+           
+                {/* style={{ width: '100%', height: 'auto' }} */}
+             <svg   xmlns="http://www.w3.org/2000/svg" >
                 {/* to hide the path, it is usually wrapped in a <defs> element */}
                 {/* <defs> */}
                 <path
-                    id="MyPath"
+                    className='zolo-path'
+                    id={`MyPath-${uniqueId}`}
                     fill="none"
-                    stroke="red"
+                    // stroke="red"
                     d={textPathType && textPathType}
                 />
                 {/* </defs> */}
-                <text>
-                    <textPath href="#MyPath">{textpathContent && textpathContent}</textPath>
+                <text >
+                    <textPath href={`#MyPath-${uniqueId}`}>
+                    {textpathContent && (
+                        <a
+                            className='zolo-textpath'
+                            href={pathlink && pathlink.url}
+                            rel={pathlink && pathlink.openInNewTab && 'noreferrer noopener'}
+                            target={pathlink && pathlink.openInNewTab && '_blank'}  
+                            title={textpathContent}                          
+                        >
+                            {textpathContent && textpathContent}
+                        </a>
+                    )}  
+                    
+                     </textPath>
                 </text>
             </svg>
+            
         </div>
     );
 };
