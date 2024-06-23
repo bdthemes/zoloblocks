@@ -202,33 +202,36 @@
     }
 
     .demo-made-button {
-        padding: 20px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid #f4f4f4;
         .demo-made-btn {
             font-size: 14px;
-            padding: 14px 15px;
+            padding: 24px 16px;
             background-color: transparent;
             cursor: pointer;
             font-weight: 600;
             text-transform: capitalize;
             border: 0;
-            border-radius: 6px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            border-top-width: 2px;
+            border-top-style: solid;
             &.made-zoloblocks-btn {
-                color: #fff;
-                background-color: #2667ff;
+                color: #2567ff;
+                background-color: #fff;
+                border-top-color: #2567ff;
             }
             &.made-ai-btn {
                 color: #333;
                 background-color: #f4f4f4;
                 position: relative;
+                border: 1px solid #ececec;
+                border-right: 0;
+                border-top: 0;
+                border-bottom-left-radius: 10px;
                 span {
                     position: absolute;
                     top: 0;
