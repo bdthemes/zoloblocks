@@ -751,14 +751,14 @@ const Style = ({ props }) => {
          ${
             preset === 'style-4'
                 ? `
-                .${uniqueId}.style-4 .zolo-meta-content {
+                .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content {
                     ${rcDeskBorderStyle}
                     ${rcDeskBorderRadius}
                     ${rcBoxShadow}
                     ${rcDeskBGStyle}
                     ${rcDeskPadding}
                 }
-                .${uniqueId}.style-4 .zolo-info-wrap:before {
+                .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-info-wrap:before {
                     --zolo-style-4-meta-content-bg-color: ${presetFiveArrowColor};
                 }
 
@@ -864,7 +864,7 @@ const Style = ({ props }) => {
         ${
             preset === 'style-4'
                 ? `
-                .${uniqueId}.style-4 .zolo-meta-content {
+                .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content {
                     ${rcTabBorderStyle}
                     ${rcTabBorderRadius}
                     ${rcTabBGStyle}
@@ -972,7 +972,7 @@ const Style = ({ props }) => {
         ${
             preset === 'style-4'
                 ? `
-                .${uniqueId}.style-4 .zolo-meta-content {
+                .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content {
                     ${rcMobBorderStyle}
                     ${rcMobBorderRadius}
                     ${rcMobBGStyle}
