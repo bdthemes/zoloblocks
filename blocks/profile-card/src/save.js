@@ -159,11 +159,6 @@ const Save = ({ attributes }) => {
                     {preset === 'style-1' && (
                         <>
                          <div className='zb-profile-inner-content'>
-                            {showBio && (
-                                <div className="zb-profile-card-bio">
-                                    <RichText.Content value={bio} />
-                                </div>
-                            )}
                             {showStatus && (
                                 <div className="zb-profile-status">
                                     {statusItems &&
@@ -186,7 +181,11 @@ const Save = ({ attributes }) => {
                                         })}
                                 </div>
                             )}
-
+                            {showBio && (
+                                <div className="zb-profile-card-bio">
+                                    <RichText.Content value={bio} />
+                                </div>
+                            )}
                             <div className="zb-profile-socail-and-fllow">
                                 {showFollowButton && (
                                     <a

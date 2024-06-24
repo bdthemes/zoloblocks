@@ -246,6 +246,15 @@
                         transform: scale(1.1);
                     }
                 }
+                .zb-profile-email,
+                .zb-profile-name,
+                .zb-profile-username {
+                    transform: translateY(0);
+                }
+                .zb-profile-email {
+                    opacity: 1;
+                    margin-top: 3px;
+                }
             }
 
         }
@@ -299,7 +308,7 @@
             padding: 30px;
         }
         .zb-profile-card-bio {
-            margin: 0 0 15px;
+            margin: 0 0 30px;
         }
         .zb-profile-status {
             justify-content: space-between;
@@ -321,10 +330,38 @@
             color: #f8f8f8;
             margin: 0 0 10px;
             line-height: 1;
+            font-size: 24px;
         }
         .zb-profile-email, 
         .zb-profile-username {
             color: #d6d6d6;
+        }
+
+        .zb-profile-email, 
+        .zb-profile-username, 
+        .zb-profile-card-bio {
+            font-size: 14px;
+        }
+
+        .zb-profile-email,
+        .zb-profile-name,
+        .zb-profile-username {
+            transform: translateY(20px);
+            transition: transform 0.3s ease, opacity 0.3s ease; 
+        }
+        .zb-profile-email {
+            opacity: 0;
+        }
+
+        .zb-profile-status-count {
+            font-size: 20px;
+        }
+        .zb-profile-fllow-btn {
+            color: #fff;
+            background-color: var(--zoloblocks-brand-color);
+            &:hover {
+                background-color:#2478ed;
+            }
         }
     }
 }

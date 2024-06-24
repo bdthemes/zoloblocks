@@ -279,15 +279,6 @@ export default function Edit(props) {
                       {preset === 'style-1' && (
                         <>
                            <div className='zb-profile-inner-content'>
-                               {showBio && (
-                                    <div className="zb-profile-card-bio">
-                                        <RichText
-                                            value={bio}
-                                            onChange={(content) => setAttributes({ bio: content })}
-                                            placeholder={__('Bio', 'zoloblocks')}
-                                        />
-                                    </div>
-                                )}
                                 {deepCloneStatusItems && showStatus && (
                                     <div className="zb-profile-status">
                                         {deepCloneStatusItems &&
@@ -326,6 +317,15 @@ export default function Edit(props) {
                                                     </div>
                                                 );
                                             })}
+                                    </div>
+                                )}
+                                {showBio && (
+                                    <div className="zb-profile-card-bio">
+                                        <RichText
+                                            value={bio}
+                                            onChange={(content) => setAttributes({ bio: content })}
+                                            placeholder={__('Bio', 'zoloblocks')}
+                                        />
                                     </div>
                                 )}
                                 <div className="zb-profile-socail-and-fllow">
