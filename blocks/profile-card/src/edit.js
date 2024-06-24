@@ -98,13 +98,22 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
                 <div className="zb-profile-item">
-                    <div className="zb-profile-header-content">
-                        {showBadge && (
-                            <div className="zb-profile-badge">
-                                <span>{badgeText}</span>
-                            </div>
-                        )}
-                    </div>
+                    {preset !== 'style-1' && ( 
+                        <div className="zb-profile-header-content">
+                            {showBadge && (
+                                <div className="zb-profile-badge">
+                                    <span>{badgeText}</span>
+                                </div>
+                            )}
+                        </div>
+                     )}
+
+                    {showBadge && preset === 'style-1' && (
+                        <div className="zb-profile-badge">
+                            <span>{badgeText}</span>
+                        </div>
+                    )}
+
                     <div className="zb-profile-bottom-content">
                         <div className="zb-profile-meta-wrap">
                             {showPhoto && (
@@ -179,89 +188,183 @@ export default function Edit(props) {
                                 )}
                             </div>
                         </div>
-                        {showBio && (
-                            <div className="zb-profile-card-bio">
-                                <RichText
-                                    value={bio}
-                                    onChange={(content) => setAttributes({ bio: content })}
-                                    placeholder={__('Bio', 'zoloblocks')}
-                                />
-                            </div>
-                        )}
-                        {deepCloneStatusItems && showStatus && (
-                            <div className="zb-profile-status">
-                                {deepCloneStatusItems &&
-                                    deepCloneStatusItems.length > 0 &&
-                                    deepCloneStatusItems.map((item, index) => {
-                                        return (
-                                            <div className="zb-profile-status-item" key={index}>
-                                                <RichText
-                                                    tagName="span"
-                                                    className="zb-profile-status-count"
-                                                    value={item && item.number}
-                                                    onChange={(content) => {
-                                                        let newStatusItems = [...deepCloneStatusItems];
-                                                        newStatusItems[index].number = content;
-                                                        setAttributes({
-                                                            statusItems: newStatusItems,
-                                                        });
-                                                    }}
-                                                    placeholder={__('Number', 'zoloblocks')}
-                                                    allowedFormats={['core/bold', 'core/italic']}
-                                                />
-                                                <RichText
-                                                    tagName="span"
-                                                    className="zb-profile-status-text"
-                                                    value={item && item.label}
-                                                    onChange={(content) => {
-                                                        let newStatusItems = [...deepCloneStatusItems];
-                                                        newStatusItems[index].label = content;
-                                                        setAttributes({
-                                                            statusItems: newStatusItems,
-                                                        });
-                                                    }}
-                                                    placeholder={__('Label', 'zoloblocks')}
-                                                    allowedFormats={['core/bold', 'core/italic']}
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                            </div>
-                        )}
 
-                        <div className="zb-profile-socail-and-fllow">
-                            {showFollowButton && (
-                                <RichText
-                                    tagName="span"
-                                    className="zb-profile-fllow-btn"
-                                    value={followButtonText}
-                                    onChange={(content) =>
-                                        setAttributes({
-                                            followButtonText: content,
-                                        })
-                                    }
-                                    placeholder={__('Follow', 'zoloblocks')}
-                                />
+                      {preset !== 'style-1' && (
+                        <>
+                            {showBio && (
+                                <div className="zb-profile-card-bio">
+                                    <RichText
+                                        value={bio}
+                                        onChange={(content) => setAttributes({ bio: content })}
+                                        placeholder={__('Bio', 'zoloblocks')}
+                                    />
+                                </div>
                             )}
-                            {showSocialProfiles && (
-                                <div className="zb-profile-socail-share">
-                                    {socialProfiles &&
-                                        socialProfiles.map((profile, index) => {
+                            {deepCloneStatusItems && showStatus && (
+                                <div className="zb-profile-status">
+                                    {deepCloneStatusItems &&
+                                        deepCloneStatusItems.length > 0 &&
+                                        deepCloneStatusItems.map((item, index) => {
                                             return (
-                                                <a
-                                                    href={profile.link && profile.link.url}
-                                                    key={index}
-                                                    rel={profile.link.openInNewTab && 'noopener noreferer'}
-                                                    target={profile.link.openInNewTab && '_blank'}
-                                                    title={profile.title}
-                                                >
-                                                    <DisplayZoloIcon icon={profile.icon} />
-                                                </a>
+                                                <div className="zb-profile-status-item" key={index}>
+                                                    <RichText
+                                                        tagName="span"
+                                                        className="zb-profile-status-count"
+                                                        value={item && item.number}
+                                                        onChange={(content) => {
+                                                            let newStatusItems = [...deepCloneStatusItems];
+                                                            newStatusItems[index].number = content;
+                                                            setAttributes({
+                                                                statusItems: newStatusItems,
+                                                            });
+                                                        }}
+                                                        placeholder={__('Number', 'zoloblocks')}
+                                                        allowedFormats={['core/bold', 'core/italic']}
+                                                    />
+                                                    <RichText
+                                                        tagName="span"
+                                                        className="zb-profile-status-text"
+                                                        value={item && item.label}
+                                                        onChange={(content) => {
+                                                            let newStatusItems = [...deepCloneStatusItems];
+                                                            newStatusItems[index].label = content;
+                                                            setAttributes({
+                                                                statusItems: newStatusItems,
+                                                            });
+                                                        }}
+                                                        placeholder={__('Label', 'zoloblocks')}
+                                                        allowedFormats={['core/bold', 'core/italic']}
+                                                    />
+                                                </div>
                                             );
                                         })}
                                 </div>
                             )}
-                        </div>
+                            <div className="zb-profile-socail-and-fllow">
+                                {showFollowButton && (
+                                    <RichText
+                                        tagName="span"
+                                        className="zb-profile-fllow-btn"
+                                        value={followButtonText}
+                                        onChange={(content) =>
+                                            setAttributes({
+                                                followButtonText: content,
+                                            })
+                                        }
+                                        placeholder={__('Follow', 'zoloblocks')}
+                                    />
+                                )}
+                                {showSocialProfiles && (
+                                    <div className="zb-profile-socail-share">
+                                        {socialProfiles &&
+                                            socialProfiles.map((profile, index) => {
+                                                return (
+                                                    <a
+                                                        href={profile.link && profile.link.url}
+                                                        key={index}
+                                                        rel={profile.link.openInNewTab && 'noopener noreferer'}
+                                                        target={profile.link.openInNewTab && '_blank'}
+                                                        title={profile.title}
+                                                    >
+                                                        <DisplayZoloIcon icon={profile.icon} />
+                                                    </a>
+                                                );
+                                            })}
+                                    </div>
+                                )}
+                            </div>
+                         </>
+                      )}
+
+                      {preset === 'style-1' && (
+                        <>
+                           <div className='zb-profile-inner-content'>
+                               {showBio && (
+                                    <div className="zb-profile-card-bio">
+                                        <RichText
+                                            value={bio}
+                                            onChange={(content) => setAttributes({ bio: content })}
+                                            placeholder={__('Bio', 'zoloblocks')}
+                                        />
+                                    </div>
+                                )}
+                                {deepCloneStatusItems && showStatus && (
+                                    <div className="zb-profile-status">
+                                        {deepCloneStatusItems &&
+                                            deepCloneStatusItems.length > 0 &&
+                                            deepCloneStatusItems.map((item, index) => {
+                                                return (
+                                                    <div className="zb-profile-status-item" key={index}>
+                                                        <RichText
+                                                            tagName="span"
+                                                            className="zb-profile-status-count"
+                                                            value={item && item.number}
+                                                            onChange={(content) => {
+                                                                let newStatusItems = [...deepCloneStatusItems];
+                                                                newStatusItems[index].number = content;
+                                                                setAttributes({
+                                                                    statusItems: newStatusItems,
+                                                                });
+                                                            }}
+                                                            placeholder={__('Number', 'zoloblocks')}
+                                                            allowedFormats={['core/bold', 'core/italic']}
+                                                        />
+                                                        <RichText
+                                                            tagName="span"
+                                                            className="zb-profile-status-text"
+                                                            value={item && item.label}
+                                                            onChange={(content) => {
+                                                                let newStatusItems = [...deepCloneStatusItems];
+                                                                newStatusItems[index].label = content;
+                                                                setAttributes({
+                                                                    statusItems: newStatusItems,
+                                                                });
+                                                            }}
+                                                            placeholder={__('Label', 'zoloblocks')}
+                                                            allowedFormats={['core/bold', 'core/italic']}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                    </div>
+                                )}
+                                <div className="zb-profile-socail-and-fllow">
+                                    {showFollowButton && (
+                                        <RichText
+                                            tagName="span"
+                                            className="zb-profile-fllow-btn"
+                                            value={followButtonText}
+                                            onChange={(content) =>
+                                                setAttributes({
+                                                    followButtonText: content,
+                                                })
+                                            }
+                                            placeholder={__('Follow', 'zoloblocks')}
+                                        />
+                                    )}
+                                    {showSocialProfiles && (
+                                        <div className="zb-profile-socail-share">
+                                            {socialProfiles &&
+                                                socialProfiles.map((profile, index) => {
+                                                    return (
+                                                        <a
+                                                            href={profile.link && profile.link.url}
+                                                            key={index}
+                                                            rel={profile.link.openInNewTab && 'noopener noreferer'}
+                                                            target={profile.link.openInNewTab && '_blank'}
+                                                            title={profile.title}
+                                                        >
+                                                            <DisplayZoloIcon icon={profile.icon} />
+                                                        </a>
+                                                    );
+                                                })}
+                                        </div>
+                                    )}
+                                </div>
+                           </div>
+      
+                         </>
+                      )}
                     </div>
                 </div>
             </div>
