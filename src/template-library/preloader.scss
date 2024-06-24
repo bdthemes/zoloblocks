@@ -1,5 +1,5 @@
 .zolo-preloader {
-    --uib-size: 35px;
+    --uib-size: 45px;
     --uib-color: black;
     --uib-speed: 1s;
     --uib-stroke: 3.5px;
@@ -8,6 +8,11 @@
     justify-content: space-between;
     width: var(--uib-size);
     height: calc(var(--uib-size) * 0.9);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     .bar {
         width: var(--uib-stroke);

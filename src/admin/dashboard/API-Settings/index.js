@@ -31,13 +31,21 @@ const ApiSettings = () => {
         fetchSettings({
             path: '/wp/v2/settings',
             method: 'GET',
-        }).then(({ zolo_google_api_key, zolo_recaptcha_site_key, zolo_recaptcha_secret_key, zolo_mailchimp_api_key, zolo_mailchimp_audience_id }) => {
-            setGoogleAPIKey(zolo_google_api_key);
-            setSiteKey(zolo_recaptcha_site_key);
-            setSecretKey(zolo_recaptcha_secret_key);
-            setMailchimpKey(zolo_mailchimp_api_key);
-            setAudienceID(zolo_mailchimp_audience_id);
-        });
+        }).then(
+            ({
+                zolo_google_api_key,
+                zolo_recaptcha_site_key,
+                zolo_recaptcha_secret_key,
+                zolo_mailchimp_api_key,
+                zolo_mailchimp_audience_id,
+            }) => {
+                setGoogleAPIKey(zolo_google_api_key);
+                setSiteKey(zolo_recaptcha_site_key);
+                setSecretKey(zolo_recaptcha_secret_key);
+                setMailchimpKey(zolo_mailchimp_api_key);
+                setAudienceID(zolo_mailchimp_audience_id);
+            }
+        );
     }, []);
 
     // update api key
@@ -149,7 +157,11 @@ const ApiSettings = () => {
                         onChangeMailchimpAudienceID(audienceID);
                     }}
                 >
-                    <TextControl label={__('Mailchimp Key', 'zoloblocks')} onChange={(value) => setMailchimpKey(value)} value={mailchimpKey} />
+                    <TextControl
+                        label={__('Mailchimp Key', 'zoloblocks')}
+                        onChange={(value) => setMailchimpKey(value)}
+                        value={mailchimpKey}
+                    />
                     <TextControl label={__('Audience ID', 'zoloblocks')} onChange={(value) => setAudienceID(value)} value={audienceID} />
                 </SettingPanel>
             </div>

@@ -86,8 +86,8 @@
     }
 
     .logo-text {
-        font-size: 20px;
-        font-weight: 500;
+        font-size: 18px;
+        font-weight: 600;
     }
 
     .search-close-area {
@@ -202,33 +202,36 @@
     }
 
     .demo-made-button {
-        padding: 20px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid #f4f4f4;
         .demo-made-btn {
             font-size: 14px;
-            padding: 14px 15px;
+            padding: 24px 16px;
             background-color: transparent;
             cursor: pointer;
             font-weight: 600;
             text-transform: capitalize;
             border: 0;
-            border-radius: 6px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            border-top-width: 2px;
+            border-top-style: solid;
             &.made-zoloblocks-btn {
-                color: #fff;
-                background-color: #2667ff;
+                color: #2567ff;
+                background-color: #fff;
+                border-top-color: #2567ff;
             }
             &.made-ai-btn {
                 color: #333;
                 background-color: #f4f4f4;
                 position: relative;
+                border: 1px solid #ececec;
+                border-right: 0;
+                border-top: 0;
+                border-bottom-left-radius: 10px;
                 span {
                     position: absolute;
                     top: 0;
@@ -266,19 +269,24 @@
                 border: 0;
                 padding: 8px 14px;
                 cursor: pointer;
-                font-size: 12px;
-                text-transform: capitalize;
+                font-size: 11px;
+                text-transform: uppercase;
                 font-weight: 600;
                 border-radius: 6px;
-                &:focus {
-                    outline: 2px solid #ddd;
-                }
             }
             .demo-pro-btn {
                 color: #f00;
+                background-color: rgba(255, 0, 0, 0.08);
+                &:focus {
+                    outline: 2px solid rgba(255, 0, 0, 0.349);
+                }
             }
             .demo-free-btn {
                 color: #2567ff;
+                background-color: rgba(37, 103, 255, 0.12);
+                &:focus {
+                    outline: 2px solid rgba(37, 103, 255, 0.561);
+                }
             }
         }
     }
@@ -589,6 +597,71 @@
             border-radius: 6px;
             font-size: 14px;
             font-weight: 600;
+        }
+    }
+
+    // favorite icon
+    .fav-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: none;
+        border: none;
+        padding: 0;
+        z-index: 9;
+        cursor: pointer;
+        svg {
+            width: 24px;
+            height: auto;
+            fill: #e60023;
+        }
+    }
+
+    // tags
+    .secondary-header-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 25px;
+        gap: 20px;
+        .tags-wrap {
+            display: flex;
+            gap: 8px;
+            .single-tag {
+                height: 36px;
+                background: #fff;
+                border: 1px solid #e0e0e0;
+                padding: 0 15px;
+                cursor: pointer;
+                &.active {
+                    background: #2b67ff;
+                    color: #fff;
+                    border-color: #2b67ff;
+                }
+            }
+        }
+        .clear-tag {
+            background: none;
+            border: none;
+            cursor: pointer;
+            svg {
+                width: 20px;
+                fill: #cdcdcd;
+            }
+            &.active {
+                svg {
+                    fill: #2b67ff;
+                }
+            }
+        }
+        .components-select-control__input {
+            width: 220px !important;
+            height: 36px !important;
+            padding: 0 12px !important;
+        }
+
+        .components-input-control__backdrop {
+            border-color: #e0e0e0 !important;
         }
     }
 }
