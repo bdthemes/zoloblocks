@@ -285,13 +285,13 @@ const Style = ({ props }) => {
 
     //  All Style Combination
     const desktopAllStyle = `
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon {
              ${deskiconpadding} 
              ${iconNoramlBGStyle}
              ${DesktopIconBorder}
              ${deskiconRadius}
         }
-         .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child {
+         .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child {
             ${itemDeskBg}
 			${itemBorderDeskStyle}
 			${itemDeskBorderRadius}
@@ -299,22 +299,22 @@ const Style = ({ props }) => {
 			${itemDeskMargin}
 			${itemBoxShadow}
 		}
-         .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
+         .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
             ${itemDeskBgHover}
             
 		}
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${DeskIconWidth}
             ${DeskIconHeight}
              ${iconColor ? `fill:${iconColor};` : ''}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
             ${deskGap}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${deskImageWidth}
             ${deskImageHeight}
             ${DesktopimageBorder}
@@ -322,50 +322,50 @@ const Style = ({ props }) => {
             ${deskImagepadding}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${mediaTextColor ? `color:${mediaTextColor};` : ''}
             ${mediaTextBgColor ? `background-color:${mediaTextBgColor};` : ''}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${deskMediaTypo}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
             ${desktitletypo}
             ${titleDeskSpacing}
             ${titleColor ? `color:${titleColor};` : ''}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
             ${deskdesctypo}
             ${descDeskSpacing}
             ${dscColor ? `color:${dscColor};` : ''}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-title {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-title {
             ${titleHColor ? `color:${titleHColor};` : ''}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-text {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-text {
             ${desHcolor ? `color:${desHcolor};` : ''}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverBGStyle}
             ${iconHBColor ? `border-color:${iconHBColor};` : ''}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg {
             ${iconHColor ? `fill:${iconHColor};` : ''}
         }
 	`;
 
     const tabletAllStyle = `
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon i {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon i {
             ${tabiconpadding} 
             ${iconNormalTabBGStyle}
             ${TabIconBorder}
             ${tabiconRadius}
         }
-         .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child  {
+         .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child  {
             ${itemTabBg}
 			${itemBorderTabStyle}
 			${itemTabBorderRadius}
@@ -373,20 +373,20 @@ const Style = ({ props }) => {
 			${itemTabMargin}
 			${itemBoxShadow}
 		}
-         .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
+         .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
             ${itemTabBgHover}
 		}
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${TabIconWidth}
             ${TabIconHeight}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
             ${tabGap}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${tabImageWidth}
             ${tabImageHeight}
             ${TabImageBorder}
@@ -394,33 +394,33 @@ const Style = ({ props }) => {
             ${tabImagepadding}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${tabMediaTypo}
         }
 
-      .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
+      .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
             ${tabtitletypo}
             ${titleTabSpacing}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
             ${tabdesctypo}
             ${descTabSpacing}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverTabBGStyle}
         }
 	`;
 
     const mobileAllStyle = `	
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon {
             ${mobiconpadding} 
             ${iconNormalMobBGStyle}
             ${MobIconBorder}
             ${mobiconRadius}
         }
-          .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child {
+          .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child {
             ${itemMobBg}
 			${itemBorderMobStyle}
 			${itemMobBorderRadius}
@@ -428,24 +428,24 @@ const Style = ({ props }) => {
 			${itemMobMargin}
 			${itemBoxShadow}
 		}
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
             ${itemMobBgHover}
 		}
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${mobIconWidth}
             ${mobIconHeight}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
             ${mobGap}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverMobBGStyle}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${mobImageWidth}
             ${mobImageHeight}
             ${MobImageBorder}
@@ -453,16 +453,16 @@ const Style = ({ props }) => {
             ${mobImagepadding}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${mobMediaTypo}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
             ${mobtitletypo}
             ${titleMobSpacing}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
+        .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
             ${mobdesctypo}
             ${descMobSpacing}
         }

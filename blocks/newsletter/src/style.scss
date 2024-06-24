@@ -66,7 +66,7 @@
     }
 
     .zolo-form-input:focus {
-        border-color: transparent;
+        border-color: transparent !important;
         outline-style: solid;
         outline-width: 1px;
         outline-color: var(--newsletter-input-focus-color);

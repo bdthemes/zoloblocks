@@ -571,11 +571,11 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-carousel {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${deskCarouselGap}
 		}
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-item {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-item {
 			${reviewContentDeskAlignStyle}
 			${containerDeskBorderStyle}
 			${containerDeskBorderRadius}
@@ -584,16 +584,16 @@ const Style = ({ props }) => {
             ${containerDeskPadding}
 		}
 
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-image-wrap {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap {
             ${photoDeskWidth}
             ${photoDeskHeight}
         }
 
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoBoxShadow}
@@ -601,92 +601,92 @@ const Style = ({ props }) => {
 			${photoDeskPadding}
 			${photoDeskBGStyle}
 		}
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
 			color: ${nameColor};
 		}
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name.has-link:hover {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name.has-link:hover {
 			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
 		}
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-designation {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-designation {
 			${designationTypoDesk}
 			${designationDeskMargin}
 			${designationColor ? `color: ${designationColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-meta-content .zolo-desc {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoDesk}
 			${testimonialMessageDeskMargin}
 			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating svg {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating svg {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating svg {
 			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating svg.empty-star {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating svg.empty-star {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev:hover {
             border-color: ${navHoverBorderColor} !important;
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
             ${navDeskWidth}
             ${navDeskHeight}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev{
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev{
             ${navDeskOffsetLeft}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next{
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next{
             ${navDeskOffsetRight}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:hover,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:hover,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev:hover {
             ${navHoverBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:after, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:after {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:after, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:after {
             color: ${navColor};
             ${navDeskSize}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next svg, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev svg {
             fill: ${navColor};
             ${cnavDeskSize}
             ${cnavDeskHSize}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:hover:after, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next:hover i, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev:hover i {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:hover:after, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:hover:after, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next:hover i, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev:hover i {
             color: ${navHoverColor};
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next:hover svg, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev:hover svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next:hover svg, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev:hover svg {
             fill: ${navHoverColor};
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullets {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets {
             ${pagSpacingDesktop}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagBottomSpacingDesktop.replace(/;/g, ' !important;')}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet {
             ${pagDeskWidth}
             ${pagDeskHeight}
             ${pagBorderStyles}
             ${pagBorderRadiusDesktop}
             ${pagNormalBGStyle}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagDeskWidth}
             ${apagDeskHeight}
             ${apagBorderStyles}
@@ -695,11 +695,11 @@ const Style = ({ props }) => {
         }
 	`;
     const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-carousel {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${tabCarouselGap}
 		}
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-item {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-item {
 			${reviewContentDeskAlignStyle}
 			${containerDeskBorderStyle}
 			${containerDeskBorderRadius}
@@ -708,16 +708,16 @@ const Style = ({ props }) => {
             ${containerDeskPadding}
 		}
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
             ${ratingIconDeskAlignStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-image-wrap{
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap{
             ${photoTabWidth}
             ${photoTabHeight}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
             ${photoTabBorderStyle}
             ${photoTabBorderRadius}
             ${photoTabMargin}
@@ -725,51 +725,51 @@ const Style = ({ props }) => {
             ${photoTabBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
             ${nameTypoTab}
             ${nameTabMargin}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-designation {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-designation {
             ${designationTypoTab}
             ${designationTabMargin}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-meta-content .zolo-desc {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content .zolo-desc {
             ${testimonialMessageTypoTab}
             ${testimonialMessageTabMargin}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating svg {
             ${ratingIconWidthTab}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev{
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev{
             ${navTabOffsetLeft}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next{
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next{
             ${navTabOffsetRight}
         }
 
-    .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev {
+    .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev {
             ${navTabWidth}
             ${navTabHeight}
             ${navBorderStylesTab}
             ${navBorderRadiusTab}
             ${navNormalBGStyleTab}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:hover {
             ${navHoverBGStyleTab}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:after, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:after {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:after, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:after {
             ${navTabSize}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next svg, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev svg {
             ${cnavTabSize}
             ${cnavTabHSize}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullet {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullet {
             ${pagTabWidth}
             ${pagTabHeight}
             ${pagBorderStylesTab}
@@ -777,10 +777,10 @@ const Style = ({ props }) => {
             ${pagNormalBGStyleTab}
             ${pagSpacingTab}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagBottomSpacingTab.replace(/;/g, ' !important;')}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagTabWidth}
             ${apagTabHeight}
             ${apagBorderStylesTab}
@@ -789,11 +789,11 @@ const Style = ({ props }) => {
         }
 	`;
     const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-carousel {
+		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${mobCarouselGap}
 		}
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-item {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-item {
 			${reviewContentDeskAlignStyle}
 			${containerDeskBorderStyle}
 			${containerDeskBorderRadius}
@@ -802,16 +802,16 @@ const Style = ({ props }) => {
             ${containerDeskPadding}
 		}
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
             ${ratingIconDeskAlignStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-image-wrap {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap {
             ${photoMobWidth}
             ${photoMobHeight}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
             ${photoMobBorderStyle}
             ${photoMobBorderRadius}
             ${photoMobMargin}
@@ -819,50 +819,50 @@ const Style = ({ props }) => {
             ${photoMobBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
             ${nameTypoMob}
             ${nameMobMargin}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-designation {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-designation {
             ${designationTypoMob}
             ${designationMobMargin}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-meta-content .zolo-desc {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content .zolo-desc {
             ${testimonialMessageTypoMob}
             ${testimonialMessageMobMargin}
         }
 
-        .${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating svg {
             ${ratingIconWidthMob}
         }
-          .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev{
+          .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev{
             ${navMobOffsetLeft}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next,
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next{
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next,
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next{
             ${navMobOffsetRight}
         }
-      .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev {
+      .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev {
             ${navMobWidth}
             ${navMobHeight}
             ${navBorderStylesMob}
             ${navBorderRadiusMob}
             ${navNormalBGStyleMob}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:hover, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:hover {
             ${navHoverBGStyleMob}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next:after, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev:after {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next:after, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev:after {
             ${navMobSize}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next svg, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev svg {
             ${cnavMobSize}
             ${cnavMobHSize}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullet {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullet {
             ${pagMobWidth}
             ${pagMobHeight}
             ${pagBorderStylesMob}
@@ -870,10 +870,10 @@ const Style = ({ props }) => {
             ${pagNormalBGStyleMob}
             ${pagSpacingMob}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagBottomSpacingMob.replace(/;/g, ' !important;')}
         }
-        .${uniqueId}.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagMobWidth}
             ${apagMobHeight}
             ${apagBorderStylesMob}

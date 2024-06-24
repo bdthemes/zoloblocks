@@ -1,3 +1,9 @@
+## 1.0.8 [***, 2024]
+
+### Fixed
+
+- Entrance animation confilict with global link issue fixed in Advanced Icon Box
+
 ## 1.0.7 [June 13, 2024]
 
 ### Added

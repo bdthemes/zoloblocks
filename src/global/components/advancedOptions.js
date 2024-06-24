@@ -33,14 +33,21 @@ import {
     VPOSITIONS,
     CONTENT_POSITIONS,
 } from '../constants';
-// value check
-const hasValCheck = (att, attributes) => {
+
+const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
     const { [`zolo_${att}Range`]: deskAtt, [`zolo_TAB${att}Range`]: tabAtt, [`zolo_MOB${att}Range`]: mobAtt } = attributes;
-    if (
-        (deskAtt !== undefined && deskAtt !== '' && deskAtt !== null && deskAtt !== 'undefined') ||
-        (tabAtt !== undefined && tabAtt !== '' && tabAtt !== null && tabAtt !== 'undefined') ||
-        (mobAtt !== undefined && mobAtt !== '' && mobAtt !== null && mobAtt !== 'undefined')
-    ) {
+
+    // Define a helper function to check the value
+    const hasAttrVal = (value) => {
+        if (customCondition) {
+            return value !== undefined && value !== null && value !== '' && value !== 0 && value != customValue;
+        } else {
+            return value !== undefined && value !== null && value !== '' && value !== 0;
+        }
+    };
+
+    // Check if any of the attribute values meet the condition
+    if (hasAttrVal(deskAtt) || hasAttrVal(tabAtt) || hasAttrVal(mobAtt)) {
         return true;
     } else {
         return false;
@@ -335,7 +342,7 @@ export const AdvancedOptions = (props) => {
             <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
+            <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
                     label={__('Transform', 'zoloblocks')}
                     checked={transformAnimationActive}
@@ -392,7 +399,6 @@ export const AdvancedOptions = (props) => {
                                 <PopoverControl
                                     label={__('Rotate', 'zoloblocks')}
                                     icon={ROTATE_ICON}
-                                    isPro={true}
                                     onReset={() =>
                                         resetAtt(
                                             ['transformRotate', 'transformRotateX', 'transformRotateY', 'transformPerspective'],
@@ -402,7 +408,7 @@ export const AdvancedOptions = (props) => {
                                     hasValue={
                                         hasValCheck('transformRotate', attributes) ||
                                         hasValCheck('transformRotateX', attributes) ||
-                                        hasValCheck('transformPerspective', attributes) ||
+                                        hasValCheck('transformPerspective', attributes, true, '1000') ||
                                         hasValCheck('transformRotateY', attributes)
                                     }
                                 >
@@ -455,7 +461,6 @@ export const AdvancedOptions = (props) => {
                                 <PopoverControl
                                     label={__('Scale', 'zoloblocks')}
                                     icon={SCALE_ICON}
-                                    isPro={true}
                                     onReset={() => resetAtt(['transformScaleX', 'transformScaleY', 'transformScale'], setAttributes)}
                                     hasValue={
                                         hasValCheck('transformScaleX', attributes) ||
@@ -511,7 +516,6 @@ export const AdvancedOptions = (props) => {
                                 <PopoverControl
                                     label={__('Skew', 'zoloblocks')}
                                     icon={SKEW_ICON}
-                                    isPro={true}
                                     onReset={() => resetAtt(['transformSkewX', 'transformSkewY'], setAttributes)}
                                     hasValue={hasValCheck('transformSkewX', attributes) || hasValCheck('transformSkewY', attributes)}
                                 >
@@ -535,7 +539,6 @@ export const AdvancedOptions = (props) => {
                                 <PopoverControl
                                     label={__('Flip', 'zoloblocks')}
                                     icon={FLIP_ICON}
-                                    isPro={true}
                                     onReset={() => resetAtt(['transformOriginX', 'transformOriginY'], setAttributes)}
                                     hasValue={hasValCheck('transformOriginX', attributes) || hasValCheck('transformOriginY', attributes)}
                                 >
@@ -616,7 +619,7 @@ export const AdvancedOptions = (props) => {
                                                 'transformRotateHover',
                                                 'transformRotateXHover',
                                                 'transformPerspectiveHover',
-                                                'transformPerspective',
+                                                'transformRotateYHover',
                                             ],
                                             setAttributes
                                         )
@@ -624,8 +627,8 @@ export const AdvancedOptions = (props) => {
                                     hasValue={
                                         hasValCheck('transformRotateHover', attributes) ||
                                         hasValCheck('transformRotateXHover', attributes) ||
-                                        hasValCheck('transformPerspective', attributes) ||
-                                        hasValCheck('transformPerspectiveHover', attributes)
+                                        hasValCheck('transformPerspectiveHover', attributes, true, '1000') ||
+                                        hasValCheck('transformRotateYHover', attributes)
                                     }
                                 >
                                     <ResRangeControl
