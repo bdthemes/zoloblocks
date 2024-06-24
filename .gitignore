@@ -13,8 +13,8 @@ tags*
 .vscode/
 yarn.lock
 
-vendor-bundle/
-vendor-editor-bundle/
+vendor-bundle/*
+vendor-editor-bundle/*
 dist/
 modules/
 build/

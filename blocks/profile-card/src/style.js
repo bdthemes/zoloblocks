@@ -23,10 +23,12 @@ import {
     HEADER_BADGE_BORDER,
     HEADER_AREA_BG,
     BADGE_PADDING,
+    BADGE_MARGIN,
     BADGE_BG,
     BADGE_BORDER_RADIUS,
     CONTENT_BORDER,
     CONTENT_PADDING,
+    INNER_CONTENT_PADDING,
     CONTENT_MARGIN,
     CONTENT_BG,
     CONTENT_BORDER_RADIUS,
@@ -34,6 +36,7 @@ import {
     PHOTO_SIZE,
     PHOTO_BORDER,
     PHOTO_BORDER_RADIUS,
+    META_WRAP_MARGIN,
     NAME_MARGIN,
     USERNAME_MARGIN,
     EMAIL_MARGIN,
@@ -72,6 +75,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         uniqueId,
         badgeColor,
         nameColor,
@@ -129,6 +133,17 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
+    const {
+        dimensionStylesDesktop: badgeDeskMargin,
+        dimensionStylesTab: badgeTabMargin,
+        dimensionStylesMobile: badgeMobMargin,
+    } = generateDimensionStyle({
+        controlName: BADGE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     const {
         desktopBorderStyle: headerBadgeDeskBorderStyle,
         tabBorderStyle: headerBadgeTabBorderStyle,
@@ -217,6 +232,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+
+    const {
+        dimensionStylesDesktop: innerContentPaddingDesk,
+        dimensionStylesTab: innerContentPaddingTab,
+        dimensionStylesMobile: innerContentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: INNER_CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     // Photo
     const {
         desktopRangeStyle: photoDeskWidth,
@@ -264,6 +290,16 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: PHOTO_BORDER_RADIUS,
         styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: metaWrapMarginDesk,
+        dimensionStylesTab: metaWrapMarginTab,
+        dimensionStylesMobile: metaWrapMarginMob,
+    } = generateDimensionStyle({
+        controlName: META_WRAP_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
@@ -572,21 +608,52 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId} .zb-profile-image {
+        ${
+         preset !== 'style-1'
+            ? `
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
+                    ${photoDeskWidth}
+                    ${photoDeskHeight}
+                    ${photoDeskBorderRadius}
+                    ${photoDeskBorderStyle}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
+                    ${photoDeskOffset}
+                }
+        
+            `
+            : ''
+        }
+
+        ${
+            preset === 'style-1'
+               ? `
+                   .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
+                       ${photoDeskWidth}
+                       ${photoDeskHeight}
+                       ${photoDeskBorderRadius}
+                       ${photoDeskBorderStyle}
+                   }
+               `
+               : ''
+        }
+
+
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
 			${photoDeskOffset}
 		}
-		.${uniqueId} .zb-profile-image img {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
 			${photoDeskWidth}
 			${photoDeskHeight}
 			${photoDeskBorderRadius}
 			${photoDeskBorderStyle}
 		}
-		.${uniqueId} .zb-profile-header-content {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-header-content {
 			${headerAreaBgDeskStyle}
 			${headerAreaDeskPadding}
 			${headerAreaDeskBorderRadius}
 		}
-		.${uniqueId} .zb-profile-badge {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-badge {
 			color: ${badgeColor ? badgeColor : ''};
 			${headerBadgeDeskBorderStyle}
 			${headerBadgeBgDeskStyle}
@@ -594,39 +661,57 @@ const Style = ({ props }) => {
 			${badgeTypoDesk}
 			${badgeDeskPadding}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
+
+        ${
+         preset === 'style-1'
+            ? `
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
+                    ${badgeDeskMargin}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginDesk}
+                }
+
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-inner-content {
+                    ${innerContentPaddingDesk}
+                }
+            `
+            : ''
+        }
+
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			color: ${nameColor ? nameColor : ''};
 			${nameTypoDesk}
 			${nameDeskMargin}
 		}
-		.${uniqueId} .zb-profile-username{
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-username{
 			color: ${usernameColor ? usernameColor : ''};
 			${userNameTypoDesk}
 			${userNameDeskMargin}
 		}
-		.${uniqueId} .zb-profile-email {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-email {
 			color: ${emailColor ? emailColor : ''};
 			${emailTypoDesk}
 			${emailDeskMargin}
 		}
-		.${uniqueId} .zb-profile-card-bio {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-card-bio {
 			color: ${bioColor ? bioColor : ''};
 			${bioTypoDesk}
 			${bioDeskMargin}
 		}
-		.${uniqueId} .zb-profile-status {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status {
 			${statusDeskGap}
 			${statusDeskMargin}
 		}
-		.${uniqueId} .zb-profile-status-count {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-count {
 			color: ${numberColor ? numberColor : ''};
 			${counterTypoDesk}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-text {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-text {
 			color: ${labelColor ? labelColor : ''};
 			${labelTypoDesk}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn {
 			color: ${btnColor ? btnColor : ''};
 			${btnTypoDesk}
 			${btnDeskBGStyle}
@@ -636,46 +721,46 @@ const Style = ({ props }) => {
 			${btnDeskMargin}
 			${btnBoxShadow}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn:hover {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn:hover {
 			color: ${btnHoverColor ? btnHoverColor : ''};
 			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''};
 			${btnHoverDeskBGStyle}
 			${btnHoverBoxShadow}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a {
 			${socialIconDeskBorderStyle}
 			${socialIconsBorderRadiusDesk}
 			${socialIconsPaddingDesk}
 			${iconsNormalDeskBG}
 		}
 
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover {
 			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
 			${iconsHoverDeskBG}
 		}
 
-        .${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover svg{
+        .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover svg{
             ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share svg {
+        .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share svg {
 			${socialIconContainerHeightDesk}
 			${socialIconContainerWidthDesk}
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
 
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share {
 			${socialIconsGapDesk}
 			${socialIconsMarginDesk}
 		}
 
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
 			${photoDeskWidth}
 			${photoDeskHeight}
 			${photoDeskBorderRadius}
 			${photoDeskBorderStyle}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
 			${contentDeskBGStyle}
 			${contentBorderRadiusDesk}
 			${contentBorderStyleDesk}
@@ -685,42 +770,60 @@ const Style = ({ props }) => {
 	`;
 
     const tabletAllStyle = `
-		.${uniqueId} .zb-profile-header-content {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-header-content {
 			${headerAreaBgTabStyle}
 			${headerAreaTabPadding}
 			${headerAreaTabBorderRadius}
 		}
-		.${uniqueId} .zb-profile-badge {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-badge {
 			${headerBadgeTabBorderStyle}
 			${headerBadgeBgTabStyle}
 			${headerBadgeTabBorderRadius}
 			${badgeTypoTab}
 			${badgeTabPadding}
 		}
-		.${uniqueId} .zb-profile-bottom-content {
+
+         ${
+         preset === 'style-1'
+            ? `
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
+                    ${badgeTabMargin}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginTab}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-inner-content {
+                    ${innerContentPaddingTab}
+                }
+            `
+            : ''
+        }
+
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
+
 			${contentTabBGStyle}
 			${contentBorderRadiusTab}
 			${contentBorderStyleTab}
 			${contentPaddingTab}
 			${contentMarginTab}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			${nameTypoTab}
 			${nameTabMargin}
 		}
-		.${uniqueId} .zb-profile-username{
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-username{
 			${userNameTypoTab}
 			${userNameTabMargin}
 		}
-		.${uniqueId} .zb-profile-email {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-email {
 			${emailTypoTab}
 			${emailTabMargin}
 		}
-		.${uniqueId} .zb-profile-card-bio {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-card-bio {
 			${bioTypoTab}
 			${bioTabMargin}
 		}
-		.${uniqueId} .zb-profile-fllow-btn {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn {
 			${btnTypoTab}
 			${btnTabBGStyle}
 			${btnTabBorderRadius}
@@ -728,46 +831,73 @@ const Style = ({ props }) => {
 			${btnTabPadding}
 			${btnTabMargin}
 		}
-		.${uniqueId} .zb-profile-fllow-btn:hover {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn:hover {
 			${btnHoverTabBGStyle}
 		}
-		.${uniqueId} .zb-profile-status {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status {
 			${statusTabMargin}
 			${statusTabGap}
 		}
-		.${uniqueId} .zb-profile-status-count {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-count {
 			${counterTypoTab}
 		}
-		.${uniqueId} .zb-profile-status-text {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-text {
 			${labelTypoTab}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a {
 			${socialIconTabBorderStyle}
 			${socialIconsBorderRadiusTab}
 			${socialIconsPaddingTab}
 			${iconsNormalTabBG}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover {
 			${iconsHoverTabBG}
 		}
-        .${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share svg {
+        .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share svg {
 			${socialIconContainerHeightTab}
 			${socialIconContainerWidthTab}
         }
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share {
 			${socialIconsGapTab}
 			${socialIconsMarginTab}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
-			${photoTabOffset}
-		}
-		.${uniqueId} .zb-profile-image img {
-			${photoTabWidth}
-			${photoTabHeight}
-			${photoTabBorderRadius}
-			${photoTabBorderStyle}
-		}
-		.${uniqueId} .zb-profile-bottom-content {
+
+        ${
+         preset !== 'style-1'
+            ? `
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
+                   ${photoTabWidth}
+                    ${photoTabHeight}
+                    ${photoTabBorderRadius}
+                    ${photoTabBorderStyle}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
+                    ${photoTabOffset}
+                }
+            `
+            : ''
+        }
+
+        ${
+            preset === 'style-1'
+               ? `
+                   .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
+                      ${photoTabWidth}
+                      ${photoTabHeight}
+                      ${photoTabBorderRadius}
+                      ${photoTabBorderStyle}
+                   }
+                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginTab}
+                 }
+               `
+               : ''
+        }
+
+
+
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
+
 			${contentTabBGStyle}
 			${contentBorderRadiusTab}
 			${contentBorderStyleTab}
@@ -777,42 +907,60 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
-		.${uniqueId} .zb-profile-header-content {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-header-content {
 			${headerAreaBgMobStyle}
 			${headerAreaMobPadding}
 			${headerAreaMobBorderRadius}
 		}
-		.${uniqueId} .zb-profile-badge {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-badge {
 			${headerBadgeMobBorderStyle}
 			${headerBadgeBgMobStyle}
 			${headerBadgeMobBorderRadius}
 			${badgeTypoMob}
 			${badgeMobPadding}
 		}
-		.${uniqueId} .zb-profile-bottom-content {
+
+         ${
+         preset === 'style-1'
+            ? `
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
+                    ${badgeMobMargin}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginMob}
+                }
+               .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-inner-content {
+                    ${innerContentPaddingMob}
+                }
+            `
+            : ''
+        }
+
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
+
 			${contentMobBGStyle}
 			${contentBorderRadiusMob}
 			${contentBorderStyleMob}
 			${contentPaddingMob}
 			${contentMarginMob}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			${nameTypoMob}
 			${nameMobMargin}
 		}
-		.${uniqueId} .zb-profile-username{
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-username{
 			${userNameTypoMob}
 			${userNameMobMargin}
 		}
-		.${uniqueId} .zb-profile-email {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-email {
 			${emailTypoMob}
 			${emailMobMargin}
 		}
-		.${uniqueId} .zb-profile-card-bio {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-card-bio {
 			${bioTypoMob}
 			${bioMobMargin}
 		}
-		.${uniqueId} .zb-profile-fllow-btn {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn {
 			${btnTypoMob}
 			${btnMobBGStyle}
 			${btnMobBorderRadius}
@@ -820,46 +968,75 @@ const Style = ({ props }) => {
 			${btnMobPadding}
 			${btnMobMargin}
 		}
-		.${uniqueId} .zb-profile-fllow-btn:hover {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-fllow-btn:hover {
 			${btnHoverTabBGStyle}
 		}
-		.${uniqueId} .zb-profile-status {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status {
 			${statusMobMargin}
 			${statusMobGap}
 		}
-		.${uniqueId} .zb-profile-status-count {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-count {
 			${counterTypoMob}
 		}
-		.${uniqueId} .zb-profile-status-text {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-status-text {
 			${labelTypoMob}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a {
 			${socialIconMobBorderStyle}
 			${socialIconsBorderRadiusMob}
 			${socialIconsPaddingMob}
 			${iconsNormalMobBG}
 		}
-        .${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share svg {
+        .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share svg {
 			${socialIconContainerHeightMob}
 			${socialIconContainerWidthMob}
         }
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share a:hover {
 			${iconsHoverMobBG}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-socail-share {
 			${socialIconsGapMob}
 			${socialIconsMarginMob}
 		}
-		.${uniqueId} .zb-profile-image {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
 			${photoMobOffset}
 		}
-		.${uniqueId} .zb-profile-image img {
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
 			${photoMobWidth}
 			${photoMobHeight}
 			${photoMobBorderRadius}
 			${photoMobBorderStyle}
 		}
-		.${uniqueId} .zb-profile-bottom-content {
+
+        ${
+         preset !== 'style-1'
+            ? `
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
+                    ${photoMobWidth}
+                    ${photoMobHeight}
+                    ${photoMobBorderRadius}
+                    ${photoMobBorderStyle}
+                }
+                .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
+                    ${photoMobOffset}
+                }
+            `
+            : ''
+        }
+
+        ${
+            preset === 'style-1'
+               ? `
+                   .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
+                        ${photoMobWidth}
+                        ${photoMobHeight}
+                        ${photoMobBorderRadius}
+                        ${photoMobBorderStyle}
+                   }
+               `
+               : ''
+        }
+		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
 			${contentMobBGStyle}
 			${contentBorderRadiusMob}
 			${contentBorderStyleMob}

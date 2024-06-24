@@ -178,6 +178,11 @@ const attributes = {
     nameHoverColor: {
         type: 'string',
     },
+
+    namePrefixHoverColor: {
+        type: 'string',
+    },
+
     showMeta: {
         type: 'boolean',
         default: true,

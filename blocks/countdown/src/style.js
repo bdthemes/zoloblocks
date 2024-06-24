@@ -224,17 +224,17 @@ const Style = ({ props }) => {
     const { boxShadowStyle: boxshadowBox } = generateBoxShadowStyles({ controlName: BOX_SHADOW, attributes });
 
     const desktopAllStyle = `
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
             ${layout == 'flex' ? 'display:flex' : `grid-template-columns:repeat(${deskColumns}, 1fr);`};
            ${deskGridGap};
         }
              
-        .wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
             ${layout == 'flex' && DesktopBoxwidth}
             ${layout == 'flex' && DesktopBoxheight}
          }
          
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
           ${DesktopBoxMargin}
            ${DeskBoxBg}
            ${desktopInnerAlign}
@@ -246,7 +246,7 @@ const Style = ({ props }) => {
             ${overflow ? `overflow: ${overflow};` : ''}
         }
 
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
            ${DesktopNumPadding}
            ${desktopNumBorder}
            ${DesktopDigitTypo}
@@ -254,7 +254,7 @@ const Style = ({ props }) => {
            ${DesktopNumRadius}
            ${digitColor ? `color:${digitColor}` : ''} 
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-label{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-label{
             ${DesktopLabelPadding};
             ${desktopLabelBorder};
             ${DesktopLabelMargin}
@@ -263,7 +263,7 @@ const Style = ({ props }) => {
             ${DesktopLabelRadius}
             ${labelColor ? `color:${labelColor}` : ''}
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
            ${DesktopSeparatorTypo}
            ${desktopStop}
            ${desktopSright}
@@ -274,18 +274,18 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
             ${layout == 'flex' ? 'display:flex' : `grid-template-columns:repeat(${tabColumns}, 1fr);`};
             ${tabGridGap}};
         
         }
         
-        .wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
             ${layout == 'flex' && TabBoxwidth}
             ${layout == 'flex' && TabBoxheight}
         }
 
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
             ${TabBoxMargin}
             ${TabBoxGg}
             ${tabInnerAlign}
@@ -296,7 +296,7 @@ const Style = ({ props }) => {
        
         }
 
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
             ${TabNumPadding}
             ${tabNumBorder}
             ${TabDigitTypo}
@@ -304,7 +304,7 @@ const Style = ({ props }) => {
             ${TabNumRadius}
          
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-label{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-label{
             ${TabLabelPadding};
             ${tabLabelBorder};
             ${TabLabelMargin}
@@ -312,7 +312,7 @@ const Style = ({ props }) => {
             ${TabLabelGg}
             ${TabLabelRadius}
         }
-       .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
+       .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
           ${TabSepararotTypo}
            ${tabStop}
            ${tabSright}
@@ -320,16 +320,16 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
             ${layout == 'flex' ? 'display:flex' : `grid-template-columns:repeat(${mobColumns}, 1fr);`};
            ${mobGridGap};
         }
         
-        .wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
             ${layout == 'flex' && MobBoxwidth};
             ${layout == 'flex' && MobBoxheight}
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
             ${MobBoxMargin}
             ${MobBoxBg}
             ${mobInnerAlign}
@@ -339,7 +339,7 @@ const Style = ({ props }) => {
             ${MobBoxRadius}
           
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
             ${MobNumPadding}
             ${mobNumBorder}
             ${MobDigitTypo}
@@ -347,7 +347,7 @@ const Style = ({ props }) => {
             ${MobNumRadius}
          
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-label{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-label{
             ${MobLabelPadding};
             ${mobLabelBorder};
             ${MobLabelMargin}
@@ -355,7 +355,7 @@ const Style = ({ props }) => {
             ${MobLabelBg}
             ${MobLabelRadius}
         }
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
+        .zolo-block.wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
            ${MobSeparatorTypo}
            ${mobStop}
            ${mobSright}

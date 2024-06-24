@@ -1,59 +1,64 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
+const { classArrayToStr, DynamicTag } = window.zoloModule;
 
-/**
- * Internal Dependencies
- */
-const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+// attributes.js
+import attributes from '../../attributes';
 
-const Save = ({ attributes }) => {
-    const {
-        uniqueId,
-        preset,
-        parentClasses,
-        titleTag,
-        mainIcon,
-        showMainIcon,
-        showHeading,
-        showDesc,
-        showButton,
-        showButtonIcon,
-        buttonIcon,
-        iconType,
-        iconTypeImage,
-        iconBoxTitle,
-        iconBoxDescription,
-        buttonText,
-        buttonLink,
-        globalLink,
-        zoloId,
-        imageRes,
-        showRibbon,
-        ribbonTitle,
-        ribbonPosition,
-        iconBoxDirection,
+const v1 = {
+    attributes: {
+        ...attributes,
+    },
+    save({ attributes }) {
+        const {
+            uniqueId,
+            preset,
+            parentClasses,
+            titleTag,
+            mainIcon,
+            showMainIcon,
+            showHeading,
+            showDesc,
+            showButton,
+            showButtonIcon,
+            buttonIcon,
+            iconType,
+            iconTypeImage,
+            iconBoxTitle,
+            iconBoxDescription,
+            buttonText,
+            buttonLink,
+            globalLink,
+            zoloId,
+            imageRes,
+            showRibbon,
+            ribbonTitle,
+            ribbonPosition,
+            iconBoxDirection,
 
-        // animation
-        animationType,
-        animationPositionOne,
-        animationPositionTwo
-    } = attributes;
+            // animation
+            animationType,
+            animationPositionOne,
+            animationPositionTwo,
+        } = attributes;
 
-    const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset, `${
-            preset === 'style-2' ? iconBoxDirection : ''
-        }`,  `${(preset === 'style-1' || preset === 'style-2' ) && animationType ? `animation-${animationType}` : ''
-        }`),
-    });
+        const blockProps = useBlockProps.save({
+            className: classnames(
+                uniqueId,
+                classArrayToStr(parentClasses),
+                'zolo-block-advanced-icon-box',
+                preset,
+                `${preset === 'style-2' ? iconBoxDirection : ''}`,
+                `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
+            ),
+        });
 
-    return (
-        <div
-            {...blockProps}
-            {...(zoloId && {
-                id: zoloId,
-            })}
-        >
+        return (
             <DynamicTag
+                {...blockProps}
+                {...(zoloId && {
+                    id: zoloId,
+                })}
                 tagName={globalLink === true ? 'a' : 'div'}
                 {...(globalLink === true && {
                     href: buttonLink && buttonLink.url,
@@ -112,8 +117,8 @@ const Save = ({ attributes }) => {
                     </div>
                 </div>
             </DynamicTag>
-        </div>
-    );
+        );
+    },
 };
 
-export default Save;
+export default v1;
