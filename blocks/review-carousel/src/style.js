@@ -63,6 +63,12 @@ import {
     APAG_BORDER_RADIUS,
     APAG_BG,
 
+    RCONTAINER_BG,
+    RCONTAINER_BORDER,
+    RCONTAINER_BRADIUS,
+    RCONTAINER_BSHADOW,
+    RCONTAINER_PADDING
+
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -70,6 +76,7 @@ import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MES
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         uniqueId,
         addReviewerWebsiteLink,
         nameColor,
@@ -81,6 +88,7 @@ const Style = ({ props }) => {
         navColor,
         navHoverColor,
         navHoverBorderColor,
+        presetFiveArrowColor,
     } = attributes;
 
     // column count
@@ -326,6 +334,52 @@ const Style = ({ props }) => {
         property: 'width',
         attributes,
     });
+
+    // RC
+    const {
+        desktopBorderStyle: rcDeskBorderStyle,
+        tabBorderStyle: rcTabBorderStyle,
+        mobBorderStyle: rcMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: RCONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: rcDeskBorderRadius,
+        dimensionStylesTab: rcTabBorderRadius,
+        dimensionStylesMobile: rcMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: RCONTAINER_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: rcDeskPadding,
+        dimensionStylesTab: rcTabPadding,
+        dimensionStylesMobile: rcMobPadding,
+    } = generateDimensionStyle({
+        controlName: RCONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    
+        const { boxShadowStyle: rcBoxShadow } = generateBoxShadowStyles({
+            attributes,
+            controlName: RCONTAINER_BSHADOW,
+        });
+    
+        const {
+            backgroundStylesDesktop: rcDeskBGStyle,
+            backgroundStylesTab: rcTabBGStyle,
+            backgroundStylesMobile: rcMobBGStyle,
+        } = generateNormalBGControlStyles({
+            controlName: RCONTAINER_BG,
+            attributes,
+            noMainBGImg: false,
+        });
+
     // carousel start
     // Navigation
     const {
@@ -632,8 +686,8 @@ const Style = ({ props }) => {
             border-color: ${navHoverBorderColor} !important;
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-button-prev,
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-next, .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-zolo-prev {
+        .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-review-carousel .swiper-button-prev,
+        .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-next, .${uniqueId}.wp-block-zolo-review-carousel .swiper-zolo-prev {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
@@ -693,7 +747,26 @@ const Style = ({ props }) => {
             ${apagBorderRadiusDesktop}
             ${apagNormalBGStyle}
         }
+
+         ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.style-4 .zolo-meta-content {
+                    ${rcDeskBorderStyle}
+                    ${rcDeskBorderRadius}
+                    ${rcBoxShadow}
+                    ${rcDeskBGStyle}
+                    ${rcDeskPadding}
+                }
+                .${uniqueId}.style-4 .zolo-info-wrap:before {
+                    --zolo-style-4-meta-content-bg-color: ${presetFiveArrowColor};
+                }
+
+            `
+                : ''
+        }
 	`;
+
     const tabletAllStyle = `
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${tabCarouselGap}
@@ -787,6 +860,20 @@ const Style = ({ props }) => {
             ${apagBorderRadiusTab}
             ${apagNormalBGStyleTab}
         }
+
+        ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.style-4 .zolo-meta-content {
+                    ${rcTabBorderStyle}
+                    ${rcTabBorderRadius}
+                    ${rcTabBGStyle}
+                    ${rcTabPadding}
+                }
+
+            `
+                : ''
+        }
 	`;
     const mobileAllStyle = `
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
@@ -874,11 +961,26 @@ const Style = ({ props }) => {
             ${pagBottomSpacingMob.replace(/;/g, ' !important;')}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+
             ${apagMobWidth}
             ${apagMobHeight}
             ${apagBorderStylesMob}
             ${apagBorderRadiusMob}
             ${apagNormalBGStyleMob}
+        }
+
+        ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.style-4 .zolo-meta-content {
+                    ${rcMobBorderStyle}
+                    ${rcMobBorderRadius}
+                    ${rcMobBGStyle}
+                    ${rcMobPadding}
+                }
+
+            `
+                : ''
         }
 	`;
 

@@ -11,6 +11,7 @@ export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Preset 3', 'zoloblocks'), value: 'default' },
+    { label: __('Preset 4', 'zoloblocks'), value: 'style-4' },
 ];
 
 
@@ -90,3 +91,10 @@ export const APAG_HEIGHT = 'apagHeight';
 export const APAG_BORDER = 'apagBorder';
 export const APAG_BORDER_RADIUS = 'apagBorderRadius';
 export const APAG_BG = 'apagBg';
+
+// review container
+export const RCONTAINER_BORDER = 'rcBorder';
+export const RCONTAINER_BRADIUS = 'rcBRadius';
+export const RCONTAINER_BG = 'rcBg';
+export const RCONTAINER_PADDING = 'rcPadding';
+export const RCONTAINER_BSHADOW = 'rcBShadow';
