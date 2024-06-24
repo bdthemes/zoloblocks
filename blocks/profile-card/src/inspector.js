@@ -2,9 +2,10 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { CardDivider, PanelBody, TextControl, TextareaControl, ToggleControl, BaseControl, Button } from '@wordpress/components';
+import { CardDivider, PanelBody, TextControl, TextareaControl, ToggleControl, SelectControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { cloneDeep } from 'lodash';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -30,22 +31,26 @@ const {
 
 import objAttributes from './attributes';
 import {
+    PRESETS,
     HEADER_AREA_BORDER_RADIUS,
     HEADER_AREA_PADDING,
     HEADER_BADGE_BORDER,
     HEADER_AREA_BG,
     BADGE_PADDING,
+    BADGE_MARGIN,
     BADGE_BG,
     BADGE_BORDER_RADIUS,
     CONTENT_BORDER_RADIUS,
     CONTENT_BG,
     CONTENT_BORDER,
     CONTENT_PADDING,
+    INNER_CONTENT_PADDING,
     CONTENT_MARGIN,
     PHOTO_VOFFSET,
     PHOTO_SIZE,
     PHOTO_BORDER,
     PHOTO_BORDER_RADIUS,
+    META_WRAP_MARGIN,
     NAME_MARGIN,
     USERNAME_MARGIN,
     EMAIL_MARGIN,
@@ -86,6 +91,7 @@ import Sortable from './sortable';
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         resMode,
         showBadge,
         badgeText,
@@ -140,6 +146,18 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+
+                            <SelectControl
+                                label={__('Preset', 'zoloblocks')}
+                                value={preset}
+                                options={applyFilters('zolo.profileCard.presets', PRESETS)}
+                                onChange={(v) => {
+                                    setAttributes({
+                                        preset: v,
+                                    });
+                                }}
+                            />
+
                             <ToggleControl
                                 label={__('Show Badge', 'zoloblocks')}
                                 checked={showBadge}
@@ -426,21 +444,24 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Header Area', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={HEADER_AREA_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={HEADER_AREA_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={HEADER_AREA_BG} noMainBGImg={true} />
-                        </ZoloPanelBody>
+                        {preset !== 'style-1' && (
+                            <ZoloPanelBody title={__('Header Area', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={HEADER_AREA_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={HEADER_AREA_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <NormalBGControl requiredProps={requiredProps} controlName={HEADER_AREA_BG} noMainBGImg={true} />
+                            </ZoloPanelBody>
+                        )}
+
                         {showBadge && (
                             <ZoloPanelBody title={__('Header Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
@@ -455,6 +476,17 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
+
+                                {preset === 'style-1' && (
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zoloblocks')}
+                                        controlName={BADGE_MARGIN}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
+                              
+
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={HEADER_BADGE_BORDER}
@@ -479,7 +511,12 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody title={__('Content Area', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody 
+                            // title={__('Content Area', 'zoloblocks')} 
+                            title={preset === 'style-1' ? __('Item Wrapper', 'zoloblocks') : __('Content Area', 'zoloblocks')}
+                            stylePanel={true} 
+                            panelProps={props}>
+
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
@@ -494,23 +531,38 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                           
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={CONTENT_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            {preset === 'style-1' && (
+                                 <ResDimensionsControl
+                                    label={__('Content Padding', 'zoloblocks')}
+                                    controlName={INNER_CONTENT_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                            )}
+                           
+
                         </ZoloPanelBody>
+
                         {showPhoto && (
                             <ZoloPanelBody title={__('Photo', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl label={__('Size', 'zoloblocks')} controlName={PHOTO_SIZE} requiredProps={requiredProps} />
-                                <ResRangeControl
-                                    label={__('Vertical Offset', 'zoloblocks')}
-                                    controlName={PHOTO_VOFFSET}
-                                    requiredProps={requiredProps}
-                                    min={-250}
-                                    max={250}
-                                />
+                                {preset !== 'style-1' && (
+                                    <ResRangeControl
+                                        label={__('Vertical Offset', 'zoloblocks')}
+                                        controlName={PHOTO_VOFFSET}
+                                        requiredProps={requiredProps}
+                                        min={-250}
+                                        max={250}
+                                    />
+                                )}
+
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={PHOTO_BORDER}
@@ -522,6 +574,15 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
+                                {preset === 'style-1' && (
+                                    <ResDimensionsControl
+                                        label={__('Meta Wrap Margin', 'zoloblocks')}
+                                        controlName={META_WRAP_MARGIN}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
+
                             </ZoloPanelBody>
                         )}
 

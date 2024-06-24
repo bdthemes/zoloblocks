@@ -23,10 +23,12 @@ import {
     HEADER_BADGE_BORDER,
     HEADER_AREA_BG,
     BADGE_PADDING,
+    BADGE_MARGIN,
     BADGE_BG,
     BADGE_BORDER_RADIUS,
     CONTENT_BORDER,
     CONTENT_PADDING,
+    INNER_CONTENT_PADDING,
     CONTENT_MARGIN,
     CONTENT_BG,
     CONTENT_BORDER_RADIUS,
@@ -34,6 +36,7 @@ import {
     PHOTO_SIZE,
     PHOTO_BORDER,
     PHOTO_BORDER_RADIUS,
+    META_WRAP_MARGIN,
     NAME_MARGIN,
     USERNAME_MARGIN,
     EMAIL_MARGIN,
@@ -72,6 +75,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         uniqueId,
         badgeColor,
         nameColor,
@@ -129,6 +133,17 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
+    const {
+        dimensionStylesDesktop: badgeDeskMargin,
+        dimensionStylesTab: badgeTabMargin,
+        dimensionStylesMobile: badgeMobMargin,
+    } = generateDimensionStyle({
+        controlName: BADGE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     const {
         desktopBorderStyle: headerBadgeDeskBorderStyle,
         tabBorderStyle: headerBadgeTabBorderStyle,
@@ -217,6 +232,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+
+    const {
+        dimensionStylesDesktop: innerContentPaddingDesk,
+        dimensionStylesTab: innerContentPaddingTab,
+        dimensionStylesMobile: innerContentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: INNER_CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     // Photo
     const {
         desktopRangeStyle: photoDeskWidth,
@@ -264,6 +290,16 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: PHOTO_BORDER_RADIUS,
         styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: metaWrapMarginDesk,
+        dimensionStylesTab: metaWrapMarginTab,
+        dimensionStylesMobile: metaWrapMarginMob,
+    } = generateDimensionStyle({
+        controlName: META_WRAP_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
@@ -572,15 +608,37 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId} .zb-profile-image {
-			${photoDeskOffset}
-		}
-		.${uniqueId} .zb-profile-image img {
-			${photoDeskWidth}
-			${photoDeskHeight}
-			${photoDeskBorderRadius}
-			${photoDeskBorderStyle}
-		}
+
+        ${
+         preset !== 'style-1'
+            ? `
+                .${uniqueId} .zb-profile-image img {
+                    ${photoDeskWidth}
+                    ${photoDeskHeight}
+                    ${photoDeskBorderRadius}
+                    ${photoDeskBorderStyle}
+                }
+                .${uniqueId} .zb-profile-image {
+                    ${photoDeskOffset}
+                }
+        
+            `
+            : ''
+        }
+
+        ${
+            preset === 'style-1'
+               ? `
+                   .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
+                       ${photoDeskWidth}
+                       ${photoDeskHeight}
+                       ${photoDeskBorderRadius}
+                       ${photoDeskBorderStyle}
+                   }
+               `
+               : ''
+        }
+
 		.${uniqueId} .zb-profile-header-content {
 			${headerAreaBgDeskStyle}
 			${headerAreaDeskPadding}
@@ -594,6 +652,24 @@ const Style = ({ props }) => {
 			${badgeTypoDesk}
 			${badgeDeskPadding}
 		}
+
+        ${
+         preset === 'style-1'
+            ? `
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
+                    ${badgeDeskMargin}
+                }
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginDesk}
+                }
+
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-inner-content {
+                    ${innerContentPaddingDesk}
+                }
+            `
+            : ''
+        }
+
 		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			color: ${nameColor ? nameColor : ''};
 			${nameTypoDesk}
@@ -697,6 +773,23 @@ const Style = ({ props }) => {
 			${badgeTypoTab}
 			${badgeTabPadding}
 		}
+
+         ${
+         preset === 'style-1'
+            ? `
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
+                    ${badgeTabMargin}
+                }
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginTab}
+                }
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-inner-content {
+                    ${innerContentPaddingTab}
+                }
+            `
+            : ''
+        }
+
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentTabBGStyle}
 			${contentBorderRadiusTab}
@@ -758,15 +851,40 @@ const Style = ({ props }) => {
 			${socialIconsGapTab}
 			${socialIconsMarginTab}
 		}
-		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
-			${photoTabOffset}
-		}
-		.${uniqueId} .zb-profile-image img {
-			${photoTabWidth}
-			${photoTabHeight}
-			${photoTabBorderRadius}
-			${photoTabBorderStyle}
-		}
+
+        ${
+         preset !== 'style-1'
+            ? `
+                .${uniqueId} .zb-profile-image img {
+                   ${photoTabWidth}
+                    ${photoTabHeight}
+                    ${photoTabBorderRadius}
+                    ${photoTabBorderStyle}
+                }
+                .${uniqueId}.wp-block-zolo-profile-card .zb-profile-image {
+                    ${photoTabOffset}
+                }
+            `
+            : ''
+        }
+
+        ${
+            preset === 'style-1'
+               ? `
+                   .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
+                      ${photoTabWidth}
+                      ${photoTabHeight}
+                      ${photoTabBorderRadius}
+                      ${photoTabBorderStyle}
+                   }
+                 .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginTab}
+                 }
+               `
+               : ''
+        }
+
+
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentTabBGStyle}
 			${contentBorderRadiusTab}
@@ -789,6 +907,23 @@ const Style = ({ props }) => {
 			${badgeTypoMob}
 			${badgeMobPadding}
 		}
+
+         ${
+         preset === 'style-1'
+            ? `
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
+                    ${badgeMobMargin}
+                }
+                .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-info {
+                   ${metaWrapMarginMob}
+                }
+               .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-inner-content {
+                    ${innerContentPaddingMob}
+                }
+            `
+            : ''
+        }
+
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentMobBGStyle}
 			${contentBorderRadiusMob}
@@ -850,15 +985,43 @@ const Style = ({ props }) => {
 			${socialIconsGapMob}
 			${socialIconsMarginMob}
 		}
-		.${uniqueId} .zb-profile-image {
-			${photoMobOffset}
-		}
+
 		.${uniqueId} .zb-profile-image img {
 			${photoMobWidth}
 			${photoMobHeight}
 			${photoMobBorderRadius}
 			${photoMobBorderStyle}
 		}
+
+        ${
+         preset !== 'style-1'
+            ? `
+                .${uniqueId} .zb-profile-image img {
+                    ${photoMobWidth}
+                    ${photoMobHeight}
+                    ${photoMobBorderRadius}
+                    ${photoMobBorderStyle}
+                }
+                .${uniqueId} .zb-profile-image {
+                    ${photoMobOffset}
+                }
+            `
+            : ''
+        }
+
+        ${
+            preset === 'style-1'
+               ? `
+                   .${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
+                        ${photoMobWidth}
+                        ${photoMobHeight}
+                        ${photoMobBorderRadius}
+                        ${photoMobBorderStyle}
+                   }
+               `
+               : ''
+        }
+
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentMobBGStyle}
 			${contentBorderRadiusMob}
