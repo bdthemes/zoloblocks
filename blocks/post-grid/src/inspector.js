@@ -117,6 +117,7 @@ function Inspector(props) {
         namePrefixColor,
         nameColor,
         nameHoverColor,
+        namePrefixHoverColor,
         pagColor,
         pagBgColor,
         apagColor,
@@ -826,6 +827,18 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                {preset === 'style-3' && (
+                                                    <ColorControl
+                                                        label={__('Prefix Hover Color', 'zoloblocks')}
+                                                        color={namePrefixHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                namePrefixHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                )}
+                                                
                                             </>
                                         }
                                     />

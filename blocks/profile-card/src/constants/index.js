@@ -9,7 +9,7 @@ export const BLOCK_PREFIX = 'profile-card';
 // Presets
 export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'default' },
-    { label: __('Preset 2', 'zoloblocks'), value: 'style-1' },
+    { label: __('Preset 2 Pro', 'zoloblocks'), value: 'style-1' },
 ];
 
 // Container
@@ -25,6 +25,7 @@ export const HEADER_AREA_BG = 'HeaderAreaBg';
 export const BADGE_BG = 'BadgeBg';
 export const BADGE_BORDER_RADIUS = 'BadgeBorderRadius';
 export const BADGE_PADDING = 'BadgePadding';
+export const BADGE_MARGIN = 'BadgeMargin';
 
 // content
 export const CONTENT_BORDER_RADIUS = 'ContentBorderRadius';
@@ -32,12 +33,14 @@ export const CONTENT_BG = 'ContentBg';
 export const CONTENT_BORDER = 'ContentBorder';
 export const CONTENT_PADDING = 'ContentPadding';
 export const CONTENT_MARGIN = 'ContentMargin';
+export const INNER_CONTENT_PADDING = 'InnerContentPadding';
 
 // photo
 export const PHOTO_SIZE = 'PhotoSize';
 export const PHOTO_BORDER = 'PhotoBorder';
 export const PHOTO_BORDER_RADIUS = 'PhotoBorderRadius';
 export const PHOTO_VOFFSET = 'PhotoVOffset';
+export const META_WRAP_MARGIN = 'MetaWrapMargin';
 
 // name
 export const NAME_MARGIN = 'NameMargin';
