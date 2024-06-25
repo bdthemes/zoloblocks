@@ -40,6 +40,10 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
+    TITLE_BACKGROUND,
+    TITLE_BORDER,
+    TITLE_BORDER_RADIUS,
+    TITLE_PADDING,
     ICON_SIZE,
     ICON_BACKGROUND,
     ICON_BOX_SHADOW,
@@ -455,8 +459,34 @@ function Inspector(props) {
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                 />
+
+                                {preset === 'style-3' && (
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={TITLE_BACKGROUND} noMainBGImg={false} />
+                                        <BorderControl label={__('Border', 'zoloblocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={TITLE_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                    </>
+                                )}
+
+
                                 <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                                 <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
+
+                                {preset === 'style-3' && (
+                                    <>
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={TITLE_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                )}
+
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={TITLE_MARGIN}

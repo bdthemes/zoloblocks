@@ -41,6 +41,10 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
+    TITLE_BACKGROUND,
+    TITLE_BORDER,
+    TITLE_BORDER_RADIUS,
+    TITLE_PADDING,
     ICON_BOX_SHADOW,
 } from './constants';
 
@@ -49,7 +53,7 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, titleTextColor, textColor, suffixColor, descColor, iconColor } = attributes;
+    const { preset, uniqueId, titleTextColor, textColor, suffixColor, descColor, iconColor } = attributes;
 
     // content align
     const {
@@ -205,6 +209,45 @@ const Style = ({ props }) => {
         controlName: TITLE_TEXT_STROKE,
     });
 
+    const {
+        backgroundStylesDesktop: titleDeskBGStyle,
+        backgroundStylesTab: titleTabBGStyle,
+        backgroundStylesMobile: titleMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: TITLE_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopBorderStyle: titleBorderDeskStyle,
+        tabBorderStyle: titleBorderTabStyle,
+        mobBorderStyle: titleBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: TITLE_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: titleDeskBorderRadius,
+        dimensionStylesTab: titleTabBorderRadius,
+        dimensionStylesMobile: titleMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: TITLE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: titlePaddingDesk,
+        dimensionStylesTab: titlePaddingTab,
+        dimensionStylesMobile: titlePaddingMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     // ICON - IMAGE
     const {
         desktopRangeStyle: iconImageWidthDesk,
@@ -332,6 +375,19 @@ const Style = ({ props }) => {
             ${titleTextStrokeStyle}
         }
 
+        ${
+            preset === 'style-3'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-title {
+                        ${titleDeskBGStyle}
+                        ${titleBorderDeskStyle}
+                        ${titleDeskBorderRadius}
+                        ${titlePaddingDesk}
+                    }
+                `
+            : ''
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon svg {
             ${iconSize}
             ${iconHSize}
@@ -382,6 +438,18 @@ const Style = ({ props }) => {
             ${titleMarginTab}
             ${tabTitleTextStrokeStyle}
         }
+        
+        ${
+            preset === 'style-3'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-title {
+                        ${titleBorderTabStyle}
+                        ${titleTabBorderRadius}
+                        ${titlePaddingTab}
+                    }
+                `
+            : ''
+        }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon .zolo__display-icon, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
             ${borderStylesTab}
@@ -431,6 +499,18 @@ const Style = ({ props }) => {
             ${titleTypoMobile}
             ${titleMarginMob}
             ${mobTitleTextStrokeStyle}
+        }
+
+        ${
+            preset === 'style-3'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-title {
+                        ${titleBorderMobStyle}
+                        ${titleMobBorderRadius}
+                        ${titlePaddingMob}
+                    }
+                `
+            : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon .zolo__display-icon, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
