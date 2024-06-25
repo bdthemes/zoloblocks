@@ -1,37 +1,18 @@
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import { Button, Modal, Tooltip } from '@wordpress/components';
+import { Tooltip } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 
-const FavoriteTemplates = ({ templates, handleImportTemplate, allTemplates, handleFavTemplates }) => {
+const FavoriteTemplates = ({ templates, handleImportTemplate, handleFavTemplates }) => {
     const [saveFavTemplates, setSaveFavTemplates] = useState([]);
-    const [allFavTemplates, setAllFavTemplates] = useState([]);
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
-
     useEffect(() => {
-        if (!templates) {
-            return;
+        if (templates.length > 0) {
+            setTotal(templates.length);
+            setSaveFavTemplates(templates.slice(0, number));
         }
-
-        const favTemplates = templates.map((templateId) => {
-            // find templates from all templates
-            const template = allTemplates.find((temp) => temp.id === templateId);
-
-            return template;
-        });
-
-        // remove undefined values from array
-        const filteredFavTemplates = favTemplates.filter((template) => template);
-        setAllFavTemplates(filteredFavTemplates);
-        setTotal(filteredFavTemplates.length);
-    }, [templates, allTemplates]);
-
-    useEffect(() => {
-        if (allFavTemplates.length > 0) {
-            setSaveFavTemplates(allFavTemplates.slice(0, number));
-        }
-    }, [allFavTemplates, number]);
+    }, [templates, number]);
 
     return (
         <>
