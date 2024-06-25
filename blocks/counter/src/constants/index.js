@@ -106,6 +106,11 @@ export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
 
+export const TITLE_BACKGROUND = 'titleBg';
+export const TITLE_BORDER = 'titleBorder';
+export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
+export const TITLE_PADDING = 'titlePadding';
+
 // image
 export const ICON_IMAGE_SIZE = 'iconImageSize';
 export const IMAGE_BORDER = 'imageBorder';
