@@ -1,22 +1,22 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr,} = window.zoloModule;
+import { CardDivider } from '@wordpress/components';
+const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { 
-        uniqueId, 
-        parentClasses, 
+    const {
+        uniqueId,
+        parentClasses,
         zoloId,
         progressValue,
         progressDuration,
-        progressTitle ,
+        progressTitle,
         toggleLabel,
         progressFillColor,
         circleColor,
-        progressTopColor,
-        progressBottomColor,
+        progPieMultiColor,
         progPiePrefixPostfix,
-        proPieperpostToggle
+        proPieperpostToggle,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -30,19 +30,16 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
             data-progressvalue={progressValue}
-            data-progressDuration ={progressDuration}
+            data-progressDuration={progressDuration}
             data-progressTitle={progressTitle}
             data-toggleLabel={toggleLabel}
             data-progressFillColor={progressFillColor}
             data-circleColor={circleColor}
             data-uniqueid={uniqueId}
-            data-progressTopColor={progressTopColor}
-            data-progressBottomColor={progressBottomColor}
+            data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
             data-propieprefixpostfix={JSON.stringify(progPiePrefixPostfix)}
             data-propieperposttoggle={proPieperpostToggle}
-        >
-             
-        </div>
+        ></div>
     );
 };
 
