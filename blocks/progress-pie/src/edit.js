@@ -21,6 +21,7 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+import MultiColor from './multicolor';
 
 /**
  * Edit Function
@@ -136,7 +137,6 @@ export default function Edit(props) {
                                 <defs>
                                     <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
                                         {progPieMultiColor.map((color, index) => {
-                                            //  const offset = `${Math.round((index + 1) * 100 / progPieMultiColor.length)}%`;
                                             const averageOffset = 100 / (progPieMultiColor.length - 1);
                                             let offset;
                                             if (index === 0) {
