@@ -1,9 +1,10 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { render, useState, useEffect } from '@wordpress/element';
 import { subscribe } from '@wordpress/data';
-import { Button, Modal, Tooltip } from '@wordpress/components';
+import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import axios from 'axios';
+import apiFetch from '@wordpress/api-fetch';
 
 /**
  * Template Library Style
@@ -17,6 +18,7 @@ import classNames from 'classnames';
 import PreLoader from './preloader';
 import Templates from './templates';
 import Pages from './pages';
+import FavoriteTemplates from './favorites';
 
 /**
  * Constants
@@ -33,6 +35,10 @@ const TABS = [
     {
         label: __('Pages', 'zoloblocks'),
         value: 'pages',
+    },
+    {
+        label: __('Favorites', 'zoloblocks'),
+        value: 'favorites',
     },
 ];
 
@@ -52,6 +58,76 @@ function ZoloBlocksTemplateLibraryButton() {
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
     const [templates, setTemplates] = useState([]);
+    const [favTemplates, setFavTemplates] = useState([]);
+    const [favTemplatesData, setFavTemplatesData] = useState([]);
+
+    // tags
+    const [activeTag, setActiveTag] = useState('');
+    const [tags, setTags] = useState([]);
+    const sortTemplatesByTag = (tag) => {
+        setActiveTag(tag);
+        const filteredTemplates = allTemplates.filter((template) => template.tags.includes(tag));
+        setTemplates(filteredTemplates);
+    };
+
+    // sorting
+    const [sortBy, setSortBy] = useState('newest');
+    const handleSortBy = (value) => {
+        setSortBy(value);
+        const sortedTemplates = templates.sort((a, b) => {
+            if (value === 'newest') {
+                return new Date(b.created) - new Date(a.created);
+            } else if (value === 'oldest') {
+                return new Date(a.created) - new Date(b.created);
+            }
+        });
+        setTemplates([...sortedTemplates]); // update the state
+    };
+
+    // fetch settings
+    const fetchSettings = async (options) => {
+        try {
+            const response = await apiFetch(options);
+            return response;
+        } catch (error) {
+            console.error('API Fetch Error:', error);
+            throw error;
+        }
+    };
+
+    // favorite templates
+    useEffect(() => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'GET',
+        }).then(({ zolo_favorite_templates }) => {
+            setFavTemplates(zolo_favorite_templates);
+        });
+    }, []);
+
+    // save favorite templates to database
+    const saveFavTemplates = (templateID) => {
+        const newFavTemplates = favTemplates.includes(templateID)
+            ? favTemplates.filter((fav) => fav !== templateID)
+            : [...favTemplates, templateID];
+
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_favorite_templates: newFavTemplates,
+            },
+        }).then(({ zolo_favorite_templates }) => {
+            setFavTemplates(zolo_favorite_templates);
+        });
+    };
+
+    useEffect(() => {
+        if (favTemplates.length > 0) {
+            const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
+            setFavTemplatesData(favTemplatesData);
+        }
+    }, [favTemplates, allTemplates]);
 
     const LibraryButton = () => (
         <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
@@ -84,23 +160,39 @@ function ZoloBlocksTemplateLibraryButton() {
         }
     });
 
+    const fetchTemplates = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
+            const { data } = response;
+            setAllTemplates(data);
+            setTotal(data.length);
+            localStorage.setItem('zoloblocks_templates', JSON.stringify(data));
+
+            // find tags
+            const allTags = data.map((template) => template.tags);
+
+            // find top 5 tags based on frequency
+            const tags = allTags.flat().reduce((acc, tag) => {
+                acc[tag] = (acc[tag] || 0) + 1;
+                return acc;
+            }, {});
+
+            const sortedTags = Object.keys(tags)
+                .sort((a, b) => tags[b] - tags[a])
+                .slice(0, 5);
+            setTags(sortedTags);
+            setLoading(false);
+        } catch (error) {
+            console.error(error);
+            setLoading(false);
+        }
+    };
+
     /**
      * Fetch Templates
      */
     useEffect(() => {
-        const fetchTemplates = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
-                const { data } = response;
-                setAllTemplates(data);
-                localStorage.setItem('zoloblocks_templates', JSON.stringify(data));
-                setLoading(false);
-            } catch (error) {
-                console.error(error);
-                setLoading(false);
-            }
-        };
         fetchTemplates();
     }, [pullDemos]);
 
@@ -110,7 +202,6 @@ function ZoloBlocksTemplateLibraryButton() {
         const templates = JSON.parse(localStorage.getItem('zoloblocks_templates'));
         if (templates) {
             setTemplates(templates.slice(0, number));
-            setTotal(templates.length);
             // find unique categories
             const allCategories = templates.map((template) => template.categories);
             const uniqueCategories = [...new Set(allCategories.flat())];
@@ -147,7 +238,17 @@ function ZoloBlocksTemplateLibraryButton() {
         });
         setTemplates(filteredTemplates.slice(0, number));
         setTotal(filteredTemplates.length);
-    }, [searchText]); // eslint-disable-line
+
+        // search for favorite templates
+        if (activeTab === 'favorites' && favTemplates.length > 0) {
+            const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
+            const filteredFavTemplates = favTemplatesData.filter((template) => {
+                return template.title.toLowerCase().includes(searchText.toLowerCase());
+            });
+
+            setFavTemplatesData(filteredFavTemplates);
+        }
+    }, [searchText, activeTab]); // eslint-disable-line
 
     /**
      * Handle Import Template
@@ -253,7 +354,7 @@ function ZoloBlocksTemplateLibraryButton() {
                         <div className="demos-container">
                             <div className="zolo-dm-head">
                                 <div className="logo-area">
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
                                         <path
                                             fillRule="evenodd"
                                             clipRule="evenodd"
@@ -297,7 +398,6 @@ function ZoloBlocksTemplateLibraryButton() {
                                                 <svg
                                                     className="w-6 h-6 text-gray-800 dark:text-white"
                                                     aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg"
                                                     width="24"
                                                     height="24"
                                                     fill="none"
@@ -329,81 +429,242 @@ function ZoloBlocksTemplateLibraryButton() {
                                     </div>
                                 </div>
                             </div>
+                            {activeTab === 'patterns' && (
+                                <div className="zolo-secondary-head">
+                                    <div className="secondary-header-item">
+                                        <div className="secondary-item">
+                                            <SelectControl
+                                                label={__('Sort By', 'zoloblocks')}
+                                                options={[
+                                                    { label: __('Newest', 'zoloblocks'), value: 'newest' },
+                                                    { label: __('Oldest', 'zoloblocks'), value: 'oldest' },
+                                                ]}
+                                                onChange={(v) => {
+                                                    handleSortBy(v);
+                                                }}
+                                                value={sortBy}
+                                            />
+                                        </div>
 
+                                        <div className="secondary-item">
+                                            <BaseControl label={__('Popular Tags', 'zoloblocks')} className="zolo-tags">
+                                                <div className="tags-wrap">
+                                                    {tags &&
+                                                        tags.length > 0 &&
+                                                        tags.map((tag) => (
+                                                            <button
+                                                                key={tag}
+                                                                className={classNames('single-tag', `${activeTag === tag ? 'active' : ''}`)}
+                                                                onClick={() => sortTemplatesByTag(tag)}
+                                                            >
+                                                                {
+                                                                    //make the first letter uppercase of each word in the tag
+                                                                    tag
+                                                                        .split(' ')
+                                                                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                                                        .join(' ')
+                                                                }
+                                                            </button>
+                                                        ))}
+                                                    <button
+                                                        className={classNames('clear-tag', `${activeTag !== '' ? 'active' : ''}`)}
+                                                        onClick={() => {
+                                                            setActiveTag('');
+                                                            setTemplates(allTemplates);
+                                                        }}
+                                                    >
+                                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M5.46257 4.43262C7.21556 2.91688 9.5007 2 12 2C17.5228 2 22 6.47715 22 12C22 14.1361 21.3302 16.1158 20.1892 17.7406L17 12H20C20 7.58172 16.4183 4 12 4C9.84982 4 7.89777 4.84827 6.46023 6.22842L5.46257 4.43262ZM18.5374 19.5674C16.7844 21.0831 14.4993 22 12 22C6.47715 22 2 17.5228 2 12C2 9.86386 2.66979 7.88416 3.8108 6.25944L7 12H4C4 16.4183 7.58172 20 12 20C14.1502 20 16.1022 19.1517 17.5398 17.7716L18.5374 19.5674Z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </BaseControl>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                             {activeTab === 'patterns' && (
                                 <>
-                                    <div className="zolo-demos-wrapper">
-                                        {templates && templates.length > 0 ? (
-                                            templates.map((template) => {
+                                    {templates && templates.length > 0 && (
+                                        <div className="zolo-demos-wrapper">
+                                            {templates.map((template) => {
                                                 return (
                                                     <div className="single-demo">
                                                         <div className="demo-preview">
-                                                            <img src={template.demo_preview} alt={template.title} />
-                                                            {template?.pro === '1' && (
+                                                            <img
+                                                                src={template.demo_preview}
+                                                                alt={template.title}
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                            />
+                                                            {template?.pro === '1' && zoloParams?.zolo_pro_status === 'inactive' && (
                                                                 <div className="image-overlay-content">
                                                                     <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
+                                                                    <a
+                                                                        href="https://zoloblocks.com/pricing/"
+                                                                        className="zolo-pro-link"
+                                                                        target="_blank"
+                                                                    >
+                                                                        {__('Upgrade to Pro', 'zoloblocks')}
+                                                                    </a>
                                                                 </div>
                                                             )}
 
                                                             <div className="demo-actions-btn-wrap">
-                                                                <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
-                                                                    <a
-                                                                        className="demo-btn view-btn"
-                                                                        href={template?.demo_link}
-                                                                        target="_blank"
-                                                                    >
-                                                                        {__('Demo', 'zoloblocks')}
-                                                                        <svg
-                                                                            aria-hidden="true"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width={24}
-                                                                            height={24}
-                                                                            fill="none"
-                                                                            viewBox="0 0 24 24"
-                                                                        >
-                                                                            <path
-                                                                                stroke="currentColor"
-                                                                                strokeWidth={2}
-                                                                                d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                                                                            />
-                                                                            <path
-                                                                                stroke="currentColor"
-                                                                                strokeWidth={2}
-                                                                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                                                            />
-                                                                        </svg>
-                                                                    </a>
-                                                                </Tooltip>
-
-                                                                <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
-                                                                    <button
-                                                                        className="demo-btn import-btn"
-                                                                        onClick={() => handleImportTemplate(template?.json_file)}
-                                                                    >
-                                                                        {__('Import', 'zoloblocks')}
-                                                                        <svg
-                                                                            aria-hidden="true"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width={24}
-                                                                            height={24}
-                                                                            fill="none"
-                                                                            viewBox="0 0 24 24"
-                                                                        >
-                                                                            <path
-                                                                                stroke="currentColor"
-                                                                                strokeLinecap="round"
-                                                                                strokeLinejoin="round"
-                                                                                strokeWidth={2}
-                                                                                d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
-                                                                            />
-                                                                        </svg>
-                                                                    </button>
-                                                                </Tooltip>
+                                                                {template?.pro === '1' ? (
+                                                                    <>
+                                                                        {
+                                                                            // check if the user has ZoloBlocks Pro
+                                                                            zoloParams?.zolo_pro_status === 'active' && (
+                                                                                <>
+                                                                                    <Tooltip
+                                                                                        text={__('View Demo', 'zoloblocks')}
+                                                                                        placement="top"
+                                                                                    >
+                                                                                        <a
+                                                                                            className="demo-btn view-btn"
+                                                                                            href={template?.demo_link}
+                                                                                            target="_blank"
+                                                                                        >
+                                                                                            {__('Demo', 'zoloblocks')}
+                                                                                            <svg
+                                                                                                aria-hidden="true"
+                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                width={24}
+                                                                                                height={24}
+                                                                                                fill="none"
+                                                                                                viewBox="0 0 24 24"
+                                                                                            >
+                                                                                                <path
+                                                                                                    stroke="currentColor"
+                                                                                                    strokeWidth={2}
+                                                                                                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                                                                                                />
+                                                                                                <path
+                                                                                                    stroke="currentColor"
+                                                                                                    strokeWidth={2}
+                                                                                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                                                                                />
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    </Tooltip>
+                                                                                    <Tooltip
+                                                                                        text={__('Import Demo', 'zoloblocks')}
+                                                                                        placement="top"
+                                                                                    >
+                                                                                        <button
+                                                                                            className="demo-btn import-btn"
+                                                                                            onClick={() =>
+                                                                                                handleImportTemplate(template?.json_file)
+                                                                                            }
+                                                                                        >
+                                                                                            {__('Import', 'zoloblocks')}
+                                                                                            <svg
+                                                                                                aria-hidden="true"
+                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                width={24}
+                                                                                                height={24}
+                                                                                                fill="none"
+                                                                                                viewBox="0 0 24 24"
+                                                                                            >
+                                                                                                <path
+                                                                                                    stroke="currentColor"
+                                                                                                    strokeLinecap="round"
+                                                                                                    strokeLinejoin="round"
+                                                                                                    strokeWidth={2}
+                                                                                                    d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
+                                                                                                />
+                                                                                            </svg>
+                                                                                        </button>
+                                                                                    </Tooltip>
+                                                                                </>
+                                                                            )
+                                                                        }
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
+                                                                            <a
+                                                                                className="demo-btn view-btn"
+                                                                                href={template?.demo_link}
+                                                                                target="_blank"
+                                                                            >
+                                                                                {__('Demo', 'zoloblocks')}
+                                                                                <svg
+                                                                                    aria-hidden="true"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    width={24}
+                                                                                    height={24}
+                                                                                    fill="none"
+                                                                                    viewBox="0 0 24 24"
+                                                                                >
+                                                                                    <path
+                                                                                        stroke="currentColor"
+                                                                                        strokeWidth={2}
+                                                                                        d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                                                                                    />
+                                                                                    <path
+                                                                                        stroke="currentColor"
+                                                                                        strokeWidth={2}
+                                                                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                                                                    />
+                                                                                </svg>
+                                                                            </a>
+                                                                        </Tooltip>
+                                                                        <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
+                                                                            <button
+                                                                                className="demo-btn import-btn"
+                                                                                onClick={() => handleImportTemplate(template?.json_file)}
+                                                                            >
+                                                                                {__('Import', 'zoloblocks')}
+                                                                                <svg
+                                                                                    aria-hidden="true"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    width={24}
+                                                                                    height={24}
+                                                                                    fill="none"
+                                                                                    viewBox="0 0 24 24"
+                                                                                >
+                                                                                    <path
+                                                                                        stroke="currentColor"
+                                                                                        strokeLinecap="round"
+                                                                                        strokeLinejoin="round"
+                                                                                        strokeWidth={2}
+                                                                                        d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
+                                                                                    />
+                                                                                </svg>
+                                                                            </button>
+                                                                        </Tooltip>
+                                                                    </>
+                                                                )}
                                                             </div>
+                                                            <Tooltip
+                                                                text={
+                                                                    favTemplates.includes(template.id)
+                                                                        ? __('Remove from Favorite', 'zoloblocks')
+                                                                        : __('Add to Favorite', 'zoloblocks')
+                                                                }
+                                                                placement="top"
+                                                            ></Tooltip>
                                                         </div>
                                                         <div className="demo-footer">
                                                             <div className="footer-left">
                                                                 <h2 className="demo-title">{template.title}</h2>
+                                                                <button
+                                                                    onClick={() => {
+                                                                        saveFavTemplates(template.id);
+                                                                    }}
+                                                                    className={
+                                                                        favTemplates.includes(template.id) ? 'fav-btn active' : 'fav-btn'
+                                                                    }
+                                                                >
+                                                                    <svg viewBox="0 0 24 24" fill="currentColor" className="fav">
+                                                                        <path d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3Z" />
+                                                                    </svg>
+                                                                    <svg viewBox="0 0 24 24" fill="currentColor" className="not-fav">
+                                                                        <path d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3ZM12.9339 18.6038C13.8155 18.0485 14.61 17.4955 15.3549 16.9029C18.3337 14.533 20 11.9435 20 9C20 6.64076 18.463 5 16.5 5C15.4241 5 14.2593 5.56911 13.4142 6.41421L12 7.82843L10.5858 6.41421C9.74068 5.56911 8.5759 5 7.5 5C5.55906 5 4 6.6565 4 9C4 11.9435 5.66627 14.533 8.64514 16.9029C9.39 17.4955 10.1845 18.0485 11.0661 18.6038C11.3646 18.7919 11.6611 18.9729 12 19.1752C12.3389 18.9729 12.6354 18.7919 12.9339 18.6038Z" />
+                                                                    </svg>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                         <span
@@ -416,13 +677,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                                         </span>
                                                     </div>
                                                 );
-                                            })
-                                        ) : (
-                                            <div className="single-demo no-found-item">
-                                                <h2>{__('No Templates Found', 'zoloblocks')}</h2>
-                                            </div>
-                                        )}
-                                    </div>
+                                            })}
+                                        </div>
+                                    )}
                                     {total > number && (
                                         <div className="load-more-btn-wrapper">
                                             <button
@@ -439,9 +696,17 @@ function ZoloBlocksTemplateLibraryButton() {
                             )}
                             {activeTab === 'templates' && <Templates />}
                             {activeTab === 'pages' && <Pages />}
-                            {loading && (
-                                <div className="zolo-spinner">
-                                    <PreLoader />
+                            {activeTab === 'favorites' && (
+                                <FavoriteTemplates
+                                    templates={favTemplatesData}
+                                    handleImportTemplate={handleImportTemplate}
+                                    handleFavTemplates={saveFavTemplates}
+                                />
+                            )}
+                            {loading && <PreLoader />}
+                            {templates?.length === 0 && !loading && (
+                                <div className="no-found-item">
+                                    <h2>{__('No Templates Found', 'zoloblocks')}</h2>
                                 </div>
                             )}
                         </div>

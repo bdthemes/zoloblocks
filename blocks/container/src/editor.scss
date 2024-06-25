@@ -138,6 +138,20 @@
             .block-editor-inner-blocks {
                 border: 1px dashed #e0e0e0;
             }
+
+            .block-list-appender {
+                display: block !important;
+            }
+        }
+
+        .block-editor-button-block-appender {
+            height: 80px;
+        }
+    }
+
+    &.zolo-container-has-children {
+        .block-list-appender {
+            display: none !important;
         }
     }
 }
