@@ -56,7 +56,7 @@ import {
     RCONTAINER_BG,
     RCONTAINER_BRADIUS,
     RCONTAINER_BSHADOW,
-    RCONTAINER_PADDING
+    RCONTAINER_PADDING,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -561,26 +561,19 @@ function Inspector(props) {
                                         })
                                     }
                                 />
-                                <BorderControl label={__('Border', 'zoloblocks')}
-                                 controlName={RCONTAINER_BORDER} 
-                                 requiredProps={requiredProps}
-                                 />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={RCONTAINER_BORDER}
+                                    requiredProps={requiredProps}
+                                />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zoloblocks')}
                                     controlName={RCONTAINER_BRADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                <BoxShadowControl
-                                    controlName={RCONTAINER_BSHADOW} 
-                                    requiredProps={requiredProps}
-                                    enableTransition={false}
-                                 />
-                                <NormalBGControl 
-                                    requiredProps={requiredProps}
-                                    controlName={RCONTAINER_BG}
-                                    noMainBGImg={false} 
-                                />
+                                <BoxShadowControl controlName={RCONTAINER_BSHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <NormalBGControl requiredProps={requiredProps} controlName={RCONTAINER_BG} noMainBGImg={false} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
                                     controlName={RCONTAINER_PADDING}
@@ -589,7 +582,6 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-
 
                         {showTestimonialMessage && (
                             <ZoloPanelBody title={__('Review Text', 'zoloblocks')} stylePanel={true} panelProps={props}>

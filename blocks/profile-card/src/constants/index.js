@@ -9,7 +9,7 @@ export const BLOCK_PREFIX = 'profile-card';
 // Presets
 export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'default' },
-    { label: __('Preset 2 Pro', 'zoloblocks'), value: 'style-1' },
+    { label: __('Preset 2 (Pro)', 'zoloblocks'), value: 'style-1', disabled: true },
 ];
 
 // Container
