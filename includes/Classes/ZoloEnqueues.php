@@ -396,6 +396,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                 'zolo_version'   => ZOLO_VERSION,
                 'editor_type'    => $editor_type,
+                'zolo_pro_status' => get_option('zolo_pro_status', 'inactive'),
                 'admin_email'    => get_option('admin_email'),
                 'blocksPreview'  => apply_filters('zolo_blocks_preview', [
                     'advancedSearch' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-search.svg',
