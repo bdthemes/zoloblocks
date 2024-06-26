@@ -1,6 +1,22 @@
 .edit-post-header__center {
     flex-grow: unset !important;
 }
+
+.zolo-preloader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(237, 240, 244, 0.85);
+    // backdrop-filter: blur(5px);
+    z-index: 1111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 .zolo-library-open-button {
     background-color: #dee7ff;
     gap: 0.5rem;
@@ -41,6 +57,7 @@
     top: 0;
     position: fixed;
     height: 100%;
+    width: 100%;
     max-height: none !important;
     max-width: none;
     background-color: #edf0f4;
@@ -234,13 +251,13 @@
                 text-transform: uppercase;
                 span {
                     position: absolute;
-                    top: 0;
-                    right: 0;
-                    font-size: 10px;
-                    color: #000;
-                    background: #fff;
-                    padding: 2px;
-                    border-bottom-left-radius: 6px;
+                    top: 6px;
+                    right: 10px;
+                    font-size: 9px;
+                    color: #fff;
+                    background: #2c67ff;
+                    padding: 4px 6px;
+                    border-radius: 3px;
                 }
                 svg {
                     width: 20px;
@@ -369,8 +386,8 @@
         font-weight: 600;
         border-radius: 3px;
         width: 26px;
-        height: 26px;
-        line-height: 26px;
+        height: 20px;
+        line-height: 20px;
         text-align: center;
     }
 
@@ -443,6 +460,7 @@
             margin: 0 !important;
             padding: 0 !important;
             overflow: visible !important;
+            text-align: center;
             h2 {
                 margin: 0;
                 font-size: 22px;
@@ -694,8 +712,9 @@
             .components-input-control__label {
                 margin: 0;
                 font-size: 14px;
-                font-weight: 500;
+                font-weight: 700;
                 text-transform: capitalize;
+                color: #000;
             }
             .zolo-tags {
                 .components-base-control__field {
@@ -711,17 +730,16 @@
             display: flex;
             gap: 8px;
             .single-tag {
-                height: 40px;
-                background: #fff;
-                padding: 0 15px;
+                background: transparent;
                 cursor: pointer;
                 border-radius: 6px;
-                border: 1px solid #eae7f2;
-                color: #2d2e34;
-                &.active {
-                    background: #2b67ff;
-                    color: #fff;
-                    border-color: #2b67ff;
+                border: 0;
+                color: #6a6b6f;
+                text-decoration: underline;
+                font-weight: 500;
+                &.active,
+                &:hover {
+                    color: #2b67ff;
                 }
             }
         }
@@ -781,6 +799,78 @@
         p {
             margin: 0;
             font-size: 18px !important;
+        }
+    }
+}
+
+// zolo pro modal css start
+
+.zolo-pro-modal {
+    min-width: 450px;
+    border-radius: 6px;
+    box-shadow: none;
+
+    .components-modal__content {
+        padding: 40px;
+        margin: 0;
+        text-align: center;
+
+    }
+    .components-modal__header {
+        padding: 0;
+        margin: 0;
+        height: auto;
+        margin: 10px;
+        width: auto;
+        right: 0;
+        left: unset;
+        .components-button {
+            padding: 0;
+            min-width: none;
+            margin: 0;
+            left: 0;
+            svg {
+                color: #a3a7b1;
+            }
+            &:hover {
+                svg {
+                    color: #f00;
+                }
+            }
+        }
+    }
+    .zolo-pro-modal-title {
+        margin: 10px 0 30px;
+        font-size: 22px;
+        color: #1c1c1d;
+        font-weight: 600;
+    }
+
+    .zolo-pro-modal-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .zolo-pro-modal-btn {
+        text-decoration: none;
+        background-color: #ffe9e9;
+        padding: 12px 20px;
+        display: inline-block;
+        color: #f00;
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 6px;
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+        &:focus {
+            outline: 2px solid rgba(255, 156, 156, 0.98) !important;
         }
     }
 }
