@@ -785,29 +785,6 @@
     }
 }
 
-.auto-fold {
-    .components-modal__frame.zolo-demos-modal {
-        left: 0;
-        right: 0;
-        // width: calc(100% - 160px);
-    }
-    .components-modal__screen-overlay {
-        left: 160px;
-        top: 32px;
-    }
-}
-
-.folded {
-    .components-modal__frame.zolo-demos-modal {
-        left: 36px;
-        width: calc(100% - 36px);
-    }
-    .components-modal__screen-overlay {
-        left: 36px;
-        top: 32px;
-    }
-}
-
 @media (min-width: 768px) {
     .components-modal__frame {
         &.zolo-demos-modal {

@@ -1,50 +1,57 @@
 .zolo-preloader {
-    --uib-size: 45px;
+    --uib-size: 60px;
     --uib-color: black;
-    --uib-speed: 1s;
-    --uib-stroke: 3.5px;
+    --uib-speed: 2.6s;
+    --uib-dot-size: calc(var(--uib-size) * 0.23);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: var(--uib-size);
-    height: calc(var(--uib-size) * 0.9);
+    height: var(--uib-dot-size);
+    filter: url('#uib-jelly-ooze');
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    .bar {
-        width: var(--uib-stroke);
-        height: 100%;
+    .dot {
+        position: absolute;
+        top: calc(50% - var(--uib-dot-size) / 2);
+        left: calc(0px - var(--uib-dot-size) / 2);
+        display: block;
+        height: var(--uib-dot-size);
+        width: var(--uib-dot-size);
+        border-radius: 50%;
         background-color: var(--uib-color);
+        animation: stream var(--uib-speed) linear infinite both;
         transition: background-color 0.3s ease;
     }
 
-    .bar:nth-child(1) {
-        animation: grow var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.45) infinite;
+    .dot:nth-child(2) {
+        animation-delay: calc(var(--uib-speed) * -0.2);
     }
 
-    .bar:nth-child(2) {
-        animation: grow var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.3) infinite;
+    .dot:nth-child(3) {
+        animation-delay: calc(var(--uib-speed) * -0.4);
     }
 
-    .bar:nth-child(3) {
-        animation: grow var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.15) infinite;
+    .dot:nth-child(4) {
+        animation-delay: calc(var(--uib-speed) * -0.6);
     }
 
-    .bar:nth-child(4) {
-        animation: grow var(--uib-speed) ease-in-out infinite;
+    .dot:nth-child(5) {
+        animation-delay: calc(var(--uib-speed) * -0.8);
+    }
+}
+
+@keyframes stream {
+    0%,
+    100% {
+        transform: translateX(0) scale(0);
     }
 
-    @keyframes grow {
-        0%,
-        100% {
-            transform: scaleY(0.3);
-        }
+    50% {
+        transform: translateX(calc(var(--uib-size) * 0.5)) scale(1);
+    }
 
-        50% {
-            transform: scaleY(1);
-        }
+    99.999% {
+        transform: translateX(calc(var(--uib-size))) scale(0);
     }
 }

@@ -61,6 +61,9 @@ function ZoloBlocksTemplateLibraryButton() {
     const [favTemplates, setFavTemplates] = useState([]);
     const [favTemplatesData, setFavTemplatesData] = useState([]);
 
+    // Pro Popup Modal
+    const [proModal, setProModal] = useState(false);
+
     // tags
     const [activeTag, setActiveTag] = useState('');
     const [tags, setTags] = useState([]);
@@ -255,6 +258,8 @@ function ZoloBlocksTemplateLibraryButton() {
      * @param {string} jsonFile
      */
     const handleImportTemplate = (jsonFile) => {
+        setLoading(true);
+
         jQuery.ajax({
             url: zoloParams?.ajaxurl,
             type: 'POST',
@@ -274,6 +279,7 @@ function ZoloBlocksTemplateLibraryButton() {
                         } else {
                             wp.data.dispatch('core/block-editor').insertBlocks(blocks, 0);
                         }
+                        setLoading(false);
                         setIsOpen(false);
                     }
                 } else {
@@ -499,14 +505,48 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             />
                                                             {template?.pro === '1' && zoloParams?.zolo_pro_status === 'inactive' && (
                                                                 <div className="image-overlay-content">
-                                                                    <p>{__('Needs ZoloBlocks Pro', 'zoloblocks')}</p>
-                                                                    <a
-                                                                        href="https://zoloblocks.com/pricing/"
-                                                                        className="zolo-pro-link"
-                                                                        target="_blank"
-                                                                    >
+                                                                    <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
+                                                                        <a
+                                                                            className="demo-btn view-btn"
+                                                                            href={template?.demo_link}
+                                                                            target="_blank"
+                                                                        >
+                                                                            {__('Demo', 'zoloblocks')}
+                                                                            <svg
+                                                                                aria-hidden="true"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width={24}
+                                                                                height={24}
+                                                                                fill="none"
+                                                                                viewBox="0 0 24 24"
+                                                                            >
+                                                                                <path
+                                                                                    stroke="currentColor"
+                                                                                    strokeWidth={2}
+                                                                                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                                                                                />
+                                                                                <path
+                                                                                    stroke="currentColor"
+                                                                                    strokeWidth={2}
+                                                                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                                                                />
+                                                                            </svg>
+                                                                        </a>
+                                                                    </Tooltip>
+                                                                    <button className="zolo-pro-modal" onClick={() => setProModal(true)}>
                                                                         {__('Upgrade to Pro', 'zoloblocks')}
-                                                                    </a>
+                                                                    </button>
+                                                                    {
+                                                                        // Pro Modal
+                                                                        proModal && (
+                                                                            <Modal
+                                                                                className="zolo-pro-modal"
+                                                                                onRequestClose={() => setProModal(false)}
+                                                                            >
+                                                                                Pro Content Goes here
+                                                                            </Modal>
+                                                                        )
+                                                                    }
                                                                 </div>
                                                             )}
 
@@ -703,7 +743,8 @@ function ZoloBlocksTemplateLibraryButton() {
                                     handleFavTemplates={saveFavTemplates}
                                 />
                             )}
-                            {loading && <PreLoader />}
+                            {/* {loading && <PreLoader />} */}
+                            <PreLoader />
                             {templates?.length === 0 && !loading && (
                                 <div className="no-found-item">
                                     <h2>{__('No Templates Found', 'zoloblocks')}</h2>
