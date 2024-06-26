@@ -7,10 +7,11 @@ const {
     generateDimensionAttributes,
     generateNormalBGAttributes,
     generateBorderAttributies,
-    generateResAlignmentAttributies
+    generateResAlignmentAttributies,
+    generateTextStrokeAttributies,
 } = window.zoloModule;
 
-import {TEXTPATH_ALIGN} from './constants';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -41,7 +42,6 @@ const attributes = {
         },
     },
 
-
     // Generators
     // ...generateResAlignmentAttributies(ITEMS_ALIGN),
     // ...generateDimensionAttributes(LABEL_MARGIN),
@@ -54,31 +54,45 @@ const attributes = {
     // ...generateBorderAttributies(FIELD_BORDER),
     // ...generateDimensionAttributes(FIELD_BRADIUS),
     // ...generateResRangeAttributies(ICON_SIZE),
-    // ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     ...generateResAlignmentAttributies(TEXTPATH_ALIGN),
+    ...generateResRangeAttributies(TEXTPATH_SIZE),
+    ...generateTextStrokeAttributies(TEXT_PATH_STROKE),
+    ...generateResRangeAttributies(TEXT_WORD_SPACING),
 
-    textpathContent:{
-        type:'string',
-        default:'Add your curve text here'
+    textpathContent: {
+        type: 'string',
+        default: 'Add your curve text here',
     },
-    textPathType:{
-        type:'string',
-        default:'M10,90 Q90,90 90,45 Q90,10 50,10 Q10,10 10,40 Q10,70 45,70 Q70,70 75,50'
+    textPathType: {
+        type: 'string',
+        default: 'wave',
     },
-    pathlink:{
+    pathlink: {
         type: 'object',
         default: {
             url: '#',
             openInNewTab: false,
         },
     },
-    textPathShow:{
-        type:'boolean',
-        default:false
-    }
-
- 
+    textPathShow: {
+        type: 'boolean',
+        default: false,
+    },
+    textpathRotate: {
+        type: 'number',
+    },
+    textpathLength: {
+        type: 'number',
+    },
+    textPathColor: {
+        type: 'string',
+    },
+    textPathHoverColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;

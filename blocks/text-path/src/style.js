@@ -14,140 +14,70 @@ const {
     generateTypographyStyles,
     generateResRangeStyle,
     generateNormalBGControlStyles,
+    generateTextStrokeStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
-import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
-import {TEXTPATH_ALIGN} from './constants';
+import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, textPathShow} = attributes;
-
-    // label
-    // const {
-    //     desktopBorderStyle: labelBorderStyles,
-    //     tabBorderStyle: labelBorderStylesTab,
-    //     mobBorderStyle: labelBorderStylesMob,
-    // } = generateBorderStyle({
-    //     controlName: LABEL_BORDER,
-    //     attributes,
-    // });
-
-    // const {
-    //     dimensionStylesDesktop: labelBRDesktop,
-    //     dimensionStylesTab: labelBRTab,
-    //     dimensionStylesMobile: labelBRMob,
-    // } = generateDimensionStyle({
-    //     controlName: LABEL_BRADIUS,
-    //     styleFor: 'border-radius',
-    //     attributes,
-    // });
-
-    // const {
-    //     dimensionStylesDesktop: labelPaddingDesk,
-    //     dimensionStylesTab: labelPaddingTab,
-    //     dimensionStylesMobile: labelPaddingMob,
-    // } = generateDimensionStyle({
-    //     controlName: LABEL_PADDING,
-    //     styleFor: 'padding',
-    //     attributes,
-    // });
-
-    // const { backgroundStylesDesktop: labelBGStyle } = generateNormalBGControlStyles({
-    //     controlName: LABEL_BG,
-    //     attributes,
-    //     noMainBGImg: true,
-    // });
-
-    // const {
-    //     dimensionStylesDesktop: labelMarginDesk,
-    //     dimensionStylesTab: labelMarginTab,
-    //     dimensionStylesMobile: labelMarginMob,
-    // } = generateDimensionStyle({
-    //     controlName: LABEL_MARGIN,
-    //     styleFor: 'margin',
-    //     attributes,
-    // });
-
-    // const {
-    //     typoStylesDesktop: labelTypoDesk,
-    //     typoStylesTab: labelTypoTab,
-    //     typoStylesMobile: labelTypoMob,
-    // } = generateTypographyStyles({
-    //     prefixConstant: LABEL_TYPO,
-    //     defaultFontSize: '',
-    //     attributes,
-    // });
-
-    // Field
-    // const {
-    //     typoStylesDesktop: fieldTypoDesk,
-    //     typoStylesTab: fieldTypoTab,
-    //     typoStylesMobile: fieldTypoMob,
-    // } = generateTypographyStyles({
-    //     prefixConstant: FIELD_TYPO,
-    //     defaultFontSize: '',
-    //     attributes,
-    // });
-
-    // const {
-    //     desktopBorderStyle: fieldBorderStyles,
-    //     tabBorderStyle: fieldBorderStylesTab,
-    //     mobBorderStyle: fieldBorderStylesMob,
-    // } = generateBorderStyle({
-    //     controlName: FIELD_BORDER,
-    //     attributes,
-    // });
-
-    // const {
-    //     dimensionStylesDesktop: fieldBRDesktop,
-    //     dimensionStylesTab: fieldBRTab,
-    //     dimensionStylesMobile: fieldBRMob,
-    // } = generateDimensionStyle({
-    //     controlName: FIELD_BRADIUS,
-    //     styleFor: 'border-radius',
-    //     attributes,
-    // });
-
-    // const {
-    //     dimensionStylesDesktop: fieldPaddingDesktop,
-    //     dimensionStylesTab: fieldPaddingTab,
-    //     dimensionStylesMobile: fieldPaddingMob,
-    // } = generateDimensionStyle({
-    //     controlName: FIELD_PADDING,
-    //     styleFor: 'padding',
-    //     attributes,
-    // });
-
-    // const {
-    //     backgroundStylesDesktop: fieldBGStyle,
-    //     backgroundStylesTab: fieldTabBGStyle,
-    //     backgroundStylesMobile: fieldMobBGStyle,
-    // } = generateNormalBGControlStyles({
-    //     controlName: FIELD_BG,
-    //     attributes,
-    //     noMainBGImg: false,
-    // });
-
-    // Icon
-    // const {
-    //     desktopRangeStyle: iconSize,
-    //     tabRangeStyle: iconTabSize,
-    //     mobRangeStyle: iconMobSize,
-    // } = generateResRangeStyle({
-    //     controlName: ICON_SIZE,
-    //     property: 'font-size',
-    //     attributes,
-    // });
+    const { uniqueId, textPathShow, textpathRotate, textPathColor, textPathHoverColor } = attributes;
 
     const {
         desktopAlignStyle: textPathDeskAlignStyle,
         tabAlignStyle: textPathTabAlignStyle,
-        mobAlignStyle:textPathMobAlignStyle,
+        mobAlignStyle: textPathMobAlignStyle,
     } = generateResAlignmentStyle({
         controlName: TEXTPATH_ALIGN,
         property: 'text-align',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: DeskTextpathWidth,
+        tabRangeStyle: TabTextpathWidth,
+        mobRangeStyle: MobTextpathWidth,
+    } = generateResRangeStyle({
+        controlName: TEXTPATH_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: DeskTextpathHeight,
+        tabRangeStyle: TabTextpathHeight,
+        mobRangeStyle: MobTextpathHeight,
+    } = generateResRangeStyle({
+        controlName: TEXTPATH_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: DesktopTextpathTypo,
+        typoStylesTab: TabTextpathTypo,
+        typoStylesMobile: MobTextpathTypo,
+    } = generateTypographyStyles({
+        prefixConstant: TEXTPATHTYPO,
+        attributes,
+    });
+    const {
+        desktopTextStrokeStyle: Desktextstroke,
+        tabTextStrokeStyle: Tabktextstroke,
+        mobTextStrokeStyle: Mobtextstroke,
+    } = generateTextStrokeStyles({
+        controlName: TEXT_PATH_STROKE,
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: DeskTextpathSpacing,
+        tabRangeStyle: TabTextpathSpacing,
+        mobRangeStyle: MobTextpathSpacing,
+    } = generateResRangeStyle({
+        controlName: TEXT_WORD_SPACING,
+        property: 'word-spacing',
         attributes,
     });
 
@@ -155,22 +85,60 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-textpath {
+        .${uniqueId}.wp-block-zolo-text-path  {
           ${textPathDeskAlignStyle}
         }
-        .${uniqueId}.wp-block-zolo-textpath .zolo-path{
+        .${uniqueId}.wp-block-zolo-text-path tspan {
+            ${Desktextstroke}
+            ${DeskTextpathSpacing}
+            ${textPathColor && `stroke:${textPathColor}`}
+            
+        }
+        .${uniqueId}.wp-block-zolo-text-path tspan:hover {
+            ${textPathHoverColor && `stroke:${textPathHoverColor}`}
+        }  
+        .${uniqueId}.wp-block-zolo-text-path .zolo-path{
             ${textPathShow && 'stroke:red'};
+        }
+        .${uniqueId}.wp-block-zolo-text-path svg {
+            ${DeskTextpathWidth}
+            ${DeskTextpathHeight}
+            ${DesktopTextpathTypo}
+            
+            ${textpathRotate && `rotate:${textpathRotate}deg`}
         }
     `;
 
     const tabletAllStyle = `
-        
+        .${uniqueId}.wp-block-zolo-text-path  {
+          ${textPathTabAlignStyle}
+        }
+        .${uniqueId}.wp-block-zolo-text-path tspan {
+            ${Tabktextstroke}
+            ${TabTextpathSpacing}
+        }
+        .${uniqueId}.wp-block-zolo-text-path svg {
+            ${TabTextpathWidth}
+            ${TabTextpathHeight}
+            ${TabTextpathTypo}
+            
+        }
    
     `;
 
     const mobileAllStyle = `
-      
-    
+         .${uniqueId}.wp-block-zolo-text-path  {
+          ${textPathMobAlignStyle}
+        }
+        .${uniqueId}.wp-block-zolo-text-path tspan {
+            ${Mobtextstroke}
+            ${MobTextpathSpacing}
+        }
+        .${uniqueId}.wp-block-zolo-text-path svg {
+            ${MobTextpathWidth}
+            ${MobTextpathHeight}
+            ${MobTextpathTypo}
+        }
     `;
 
     return (
@@ -178,9 +146,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.textarea.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.textarea.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.textarea.mobileAllStyle', mobileAllStyle, props)}
+                desktopAllStyle={desktopAllStyle}
+                tabAllStyle={tabletAllStyle}
+                mobileAllStyle={mobileAllStyle}
             />
         </>
     );

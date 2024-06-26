@@ -2,9 +2,8 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl, SelectControl,ToggleControl } from '@wordpress/components';
+import { TextControl, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
 
 /**
  * Internal depencencies
@@ -21,24 +20,30 @@ const {
     NormalBGControl,
     ZoloPanelBody,
     LinkControl,
-    ResAlignmentControl
+    ResAlignmentControl,
+    SimpleRangeControl,
+    TextStrokeControl,
+    TabPanelControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 
-import { } from './constants/typoPrefixConstant';
-import {TEXTPATH_ALIGN} from './constants';
-import { DEFAULT_ALIGNS} from '../../../src/global/constants';
+import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
+import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        showLabel,
         textpathContent,
         textPathType,
         pathlink,
-        textPathShow
+        textpathLength,
+        textPathShow,
+        textpathRotate,
+        textPathColor,
+        textPathHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -58,69 +63,128 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <TextControl
-                                label={__('Text','zoloblocks')}
+                                label={__('Text', 'zoloblocks')}
                                 value={textpathContent}
-                                onChange={ (v) => setAttributes({textpathContent:v})}
+                                onChange={(v) => setAttributes({ textpathContent: v })}
                             />
-                          
                             <SelectControl
-                                label={__('Path Type','zoloblocks')}
+                                label={__('Path Type', 'zoloblocks')}
                                 value={textPathType}
-                                options={ [
-                                    {label:__('Circle'),value:'M10,90 Q90,90 90,45 Q90,10 50,10 Q10,10 10,40 Q10,70 45,70 Q70,70 75,50'},
-                                    {label:__('Line'),value:'M50,50 Q250,100 400,50'},
-                                        
-                                ] }
-                             onChange={ (v) => setAttributes({textPathType:v}) }
+                                options={[
+                                    {
+                                        label: __('wave', 'zoloblocks'),
+                                        value: 'wave',
+                                    },
+                                    {
+                                        label: __('Arc', 'zoloblocks'),
+                                        value: 'arc',
+                                    },
+                                    {
+                                        label: __('Circle', 'zoloblocks'),
+                                        value: 'circle',
+                                    },
+                                    { label: __('Line', 'zoloblocks'), value: 'line' },
+                                    { label: __('Oval', 'zoloblocks'), value: 'oval' },
+                                    { label: __('Spiral', 'zoloblocks'), value: 'spiral' },
+                                ]}
+                                onChange={(v) => setAttributes({ textPathType: v })}
                             />
-                          <LinkControl
-                            label={__('URL', 'zoloblocks')}
-                            value={pathlink}
-                            onChange={(value) => setAttributes({ pathlink: value })}
+
+                            <LinkControl
+                                label={__('URL', 'zoloblocks')}
+                                value={pathlink}
+                                onChange={(value) => setAttributes({ pathlink: value })}
                             />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={TEXTPATH_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
-                           />
-                             <ToggleControl
-                                label={__('Show Path','zoloblocks')}
-                                checked={ textPathShow}
-                                 onChange={ () => setAttributes({textPathShow:!textPathShow}) }
-                              />
-                          
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                           
-
-                           
+                            />
+                            <ToggleControl
+                                label={__('Show Path', 'zoloblocks')}
+                                checked={textPathShow}
+                                onChange={() => setAttributes({ textPathShow: !textPathShow })}
+                            />
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                  
-                            <ZoloPanelBody title={__('Label', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            
-                            </ZoloPanelBody>
-                  
+                        <ZoloPanelBody title={__('Text Path', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ResRangeControl
+                                label={__('Size', 'zoloblocks')}
+                                controlName={TEXTPATH_SIZE}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={500}
+                                step={1}
+                            />
 
-                        <ZoloPanelBody
-                            title={__('Field', 'zoloblocks')}
-                            stylePanel={true}
-                            panelProps={props}
-                            firstOpen={showLabel ? false : true}
-                        >
-                          
-                         
-
+                            <SimpleRangeControl
+                                label={__('Rotate', 'zoloblocks')}
+                                onChange={(v) => setAttributes({ textpathRotate: v })}
+                                value={textpathRotate}
+                                onReset={() => setAttributes({ textpathRotate: '' })}
+                                min={1}
+                                max={360}
+                                step={1}
+                                noUnits={true}
+                            />
+                            <SimpleRangeControl
+                                label={__('Text Length', 'zoloblocks')}
+                                onChange={(v) => setAttributes({ textpathLength: v })}
+                                value={textpathLength}
+                                onReset={() => setAttributes({ textpathLength: '' })}
+                                min={1}
+                                max={1000}
+                                step={1}
+                                noUnits={true}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={TEXTPATHTYPO}
+                                requiredProps={requiredProps}
+                                max={36}
+                            />
+                            <TextStrokeControl controlName={TEXT_PATH_STROKE} requiredProps={requiredProps} enableTransition={false} />
+                            <ResRangeControl
+                                label={__('Word Spacing', 'zoloblocks')}
+                                controlName={TEXT_WORD_SPACING}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={35}
+                                step={1}
+                            />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={textPathColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textPathColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={textPathHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textPathHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
                         </ZoloPanelBody>
-                        
-                            <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                           
-                            </ZoloPanelBody>
-                     
                     </>
                 }
                 advancedTab={

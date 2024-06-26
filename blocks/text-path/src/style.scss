@@ -1,6 +1,12 @@
-.wp-block-zolo-textpath{
+.wp-block-zolo-text-path {
+    svg {
+        overflow: visible;
+        transform: rotate(22deg);
+        path {
+            fill: transparent;
+        }
+    }
     a.zolo-textpath {
         text-decoration: none;
     }
-    
 }

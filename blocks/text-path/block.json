@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Text Path",
-    "name": "zolo/textpath",
+    "name": "zolo/text-path",
     "category": "zoloblocks",
     "keywords": ["zolo", "text", "textpath"],
     "description": "A simple text path  block",

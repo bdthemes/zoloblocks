@@ -1,0 +1,46 @@
+import { render } from '@wordpress/element';
+import SvgComponent from './svg';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const textPath = document.querySelectorAll('.wp-block-zolo-text-path');
+    if (textPath.length < 0) {
+        return;
+    }
+    const SvgItem = ({ textpathContent, textPathType, pathlink, uniqueId, textpathLength }) => {
+        return (
+            <SvgComponent uniqueId={uniqueId} pathType={textPathType}>
+                <text>
+                    <textPath id="e-text-path-bb2a80b" href={`#MyPath-${uniqueId}`} textLength={textpathLength}>
+                        <a
+                            className="zolo-textpath"
+                            href={pathlink && pathlink.url}
+                            rel={pathlink && pathlink.openInNewTab && 'noreferrer noopener'}
+                            target={pathlink && pathlink.openInNewTab && '_blank'}
+                            title={textpathContent}
+                        >
+                            <tspan>{textpathContent && textpathContent}</tspan>
+                        </a>
+                    </textPath>
+                </text>
+            </SvgComponent>
+        );
+    };
+    textPath.forEach((item) => {
+        const textpathContent = item.dataset.textpathcontent;
+        const textPathType = item.dataset.textpathtype;
+        const pathlink = item.dataset.pathlink;
+        const textpathLength = item.dataset.textpathlength;
+        const uniqueId = item.dataset.uniqueid;
+
+        render(
+            <SvgItem
+                textpathContent={textpathContent}
+                textPathType={textPathType}
+                pathlink={pathlink}
+                uniqueid={uniqueId}
+                textpathLength={textpathLength}
+            />,
+            item
+        );
+    });
+});
