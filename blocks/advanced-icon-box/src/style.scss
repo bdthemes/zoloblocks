@@ -96,6 +96,10 @@
         transition: all 0.3s ease;
         color: var(--zolo-link-btn-text-color);
         font-weight: 700;
+        .zolo__display-icon {
+            width: auto;
+            height: auto;
+        }
         &:hover {
             color: var(--zoloblocks-button-hover-color);
         }
@@ -139,7 +143,7 @@
         font-size: 12px;
         padding: var(--zolo-ribbon-btn-padding);
         border-radius: var(--zolo-ribbon-btn-border-radius);
-        z-index: 1;
+        z-index: 99;
         &.zolo-ribbon-btn.top__right {
             right: 0;
         }
