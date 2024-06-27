@@ -591,8 +591,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                                                                     </linearGradient>
                                                                                 </defs>
                                                                                 </svg>
-
-                                                                                <h3 className="zolo-pro-modal-title">{__('Upgrade to ZoloBlocks Pro', 'zoloblocks')}</h3>
+                                                                                <p className="zolo-pro-modal-desc">{__('Get premium resources at ZoloBlocks and save more time with stunning patterns and templates', 'zoloblocks')}</p>
                                                                                 <a className="zolo-pro-modal-btn" href='https://zoloblocks.com/pricing/' target='_blank'> 
                                                                                     {__('Upgrade Now', 'zoloblocks')}
                                                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

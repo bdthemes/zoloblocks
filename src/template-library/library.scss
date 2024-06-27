@@ -253,11 +253,12 @@
                     position: absolute;
                     top: 6px;
                     right: 10px;
-                    font-size: 9px;
-                    color: #fff;
-                    background: #2c67ff;
-                    padding: 4px 6px;
+                    font-size: 8px;
+                    color: #2c67ff;
+                    background: #ffffff;
+                    padding: 4px;
                     border-radius: 3px;
+                    border: 1px solid #2c67ff;
                 }
                 svg {
                     width: 20px;
@@ -692,15 +693,20 @@
             .components-input-base {
                 align-items: center;
                 flex-direction: row;
+                --select-x-padding: 12px;
                 select {
                     height: 40px !important;
                     border-radius: 6px;
                     outline: none;
                     border: 1px solid #eae7f2;
+                    padding: 0 var(--select-x-padding) !important;
                     &:focus {
                         border-color: #2667ff;
                         outline: 1px solid #2667ff;
                     }
+                }
+                .components-input-control-suffix-wrapper {
+                    padding-right: calc(var(--select-x-padding));
                 }
                 .components-input-control__backdrop {
                     border-radius: 6px;
@@ -839,11 +845,11 @@
             }
         }
     }
-    .zolo-pro-modal-title {
+    .zolo-pro-modal-desc {
         margin: 10px 0 30px;
-        font-size: 22px;
-        color: #1c1c1d;
-        font-weight: 600;
+        font-size: 16px;
+        color: #4e4e55;
+        max-width: 420px;
     }
 
     .zolo-pro-modal-icon {
