@@ -183,7 +183,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedTags = Object.keys(tags)
                 .sort((a, b) => tags[b] - tags[a])
-                .slice(0, 5);
+                .slice(0, 9);
             setTags(sortedTags);
             setLoading(false);
         } catch (error) {
@@ -455,23 +455,25 @@ function ZoloBlocksTemplateLibraryButton() {
                                         <div className="secondary-item">
                                             <BaseControl label={__('Popular Tags :', 'zoloblocks')} className="zolo-tags">
                                                 <div className="tags-wrap">
+                                                    <div className='tags-btn-wrap'>
                                                     {tags &&
                                                         tags.length > 0 &&
                                                         tags.map((tag) => (
-                                                            <button
-                                                                key={tag}
-                                                                className={classNames('single-tag', `${activeTag === tag ? 'active' : ''}`)}
-                                                                onClick={() => sortTemplatesByTag(tag)}
-                                                            >
-                                                                {
-                                                                    //make the first letter uppercase of each word in the tag
-                                                                    tag
-                                                                        .split(' ')
-                                                                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                                                                        .join(' ')
-                                                                }
-                                                            </button>
+                                                                <button
+                                                                    key={tag}
+                                                                    className={classNames('single-tag', `${activeTag === tag ? 'active' : ''}`)}
+                                                                    onClick={() => sortTemplatesByTag(tag)}
+                                                                >
+                                                                    {
+                                                                        //make the first letter uppercase of each word in the tag
+                                                                        tag
+                                                                            .split(' ')
+                                                                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                                                            .join(' ')
+                                                                    }
+                                                                </button>
                                                         ))}
+                                                    </div>
                                                     <button
                                                         className={classNames('clear-tag', `${activeTag !== '' ? 'active' : ''}`)}
                                                         onClick={() => {

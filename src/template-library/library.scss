@@ -736,12 +736,19 @@
         .tags-wrap {
             display: flex;
             gap: 8px;
+            .tags-btn-wrap {
+                display: flex;
+                align-items: center;
+                gap: 4px;  
+                mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.078) 100%);
+                flex-wrap: wrap;
+            }
             .single-tag {
                 background: transparent;
                 cursor: pointer;
                 border-radius: 6px;
                 border: 0;
-                color: #6a6b6f;
+                color: #595a5e;
                 text-decoration: underline;
                 font-weight: 500;
                 &.active,
