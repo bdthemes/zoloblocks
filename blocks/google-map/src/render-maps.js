@@ -29,8 +29,8 @@ function GoogleMap({ attributes }) {
                     <div className="zolo-gmap-wrapper">
                         <Map
                             {...(mapStyleType === 'custom' && mapStyleCodes && { styles: JSON.parse(mapStyleCodes) })}
-                            zoom={zoom}
-                            center={position}
+                            defaultZoom={zoom}
+                            defaultCenter={position}
                             language={language}
                             {...(mapStyleType === 'default' && { mapId: mapId })}
                             mapTypeId={mapType}
