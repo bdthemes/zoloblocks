@@ -3,6 +3,7 @@
 ### Fixed
 
 - Entrance animation confilict with global link issue fixed in Advanced Icon Box
+- the map zoom in/out and draggble issue fixed in Google Map block
 
 ## 1.0.7 [June 13, 2024]
 
