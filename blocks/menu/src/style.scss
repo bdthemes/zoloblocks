@@ -1,0 +1,176 @@
+.zb-brand-grid-wrap {
+    --zolo-item-gap: 20px;
+    --zolo-item-height: 250px;
+    --zolo-img-placeholder-margin: 20px;
+    --zolor-title-text-color: #3c4356;
+    --zolo-title-margin: 0 0 0px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: var(--zolo-item-gap);
+    box-sizing: border-box;
+    // overflow: hidden;
+    a {
+        text-decoration: none !important;
+    }
+
+    .zb-brand-item {
+        position: relative;
+        height: var(--zolo-item-height);
+        background-color: #f1f1f1;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .zb-brand-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .components-placeholder {
+            margin: var(--zolo-img-placeholder-margin);
+        }
+    }
+
+    .zb-brand-image img {
+        display: block;
+        width: auto;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .zb-brand-content {
+        position: absolute;
+        background-color: #fff;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .zb-brand-title {
+        font-size: 32px;
+        margin: var(--zolo-title-margin);
+        text-transform: capitalize;
+        transition: all 0.3s ease;
+    }
+
+    .zb-brand-title-link {
+        font-size: 18px;
+        font-weight: 300;
+        color: var(--zolo-img-placeholder-margin);
+        display: block;
+        transition: all 0.3s ease;
+    }
+
+    .zb-brand-title-link.has-link:hover {
+        color: var(--zoloblocks-brand-color-hover);
+    }
+
+    .zb-brand-inner-content {
+        text-align: center;
+    }
+
+    .zb-brand-content {
+        top: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .has-photo.zb-brand-item:hover .zb-brand-content {
+        opacity: 1;
+        visibility: visible;
+    }
+    &.zb-brand-style-1 .zb-brand-title {
+        transform: translateX(-40px);
+    }
+
+    &.zb-brand-style-1 .zb-brand-title-link {
+        transform: translateX(40px);
+    }
+
+    &.zb-brand-style-2 .zb-brand-title {
+        transform: translateY(-20px);
+    }
+    &.zb-brand-style-2 .zb-brand-title-link {
+        transform: translateY(20px);
+    }
+
+    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title,
+    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title-link {
+        transform: translateX(0);
+    }
+
+    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title,
+    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title-link {
+        transform: translateY(0);
+    }
+
+    &.zb-brand-style-1 .zb-brand-icon,
+    &.zb-brand-style-2 .zb-brand-icon,
+    &.zb-brand-style-3 .zb-brand-icon{
+        display: none;
+    }
+
+    &.zb-brand-style-2 .zb-brand-content {
+        align-items: start;
+        justify-content: end;
+    }
+
+    // Style 3 pro css
+    &.zb-brand-style-3 {
+        .zb-brand-item {
+            &:hover {
+                .zb-brand-content {
+                    height: 100%;
+                }
+                .zb-brand-title,
+                .zb-brand-title-link {
+                    transform: translateY(0);
+                    opacity: 1;
+
+                }
+                .zb-brand-title {
+                    transition-delay: .2s;
+                }
+                .zb-brand-title-link {
+                    transition-delay: .3s;
+                }
+                .zb-brand-image {
+                    img {
+                        transform: translateY(-20px);
+                    }
+                }
+            }
+        }
+        .zb-brand-content {
+            top: unset;
+            bottom: 0;
+            height: 0;
+        }
+        // .zb-brand-inner-content {
+        //     overflow: hidden;
+        // }
+       .zb-brand-title,
+       .zb-brand-title-link {
+           opacity: 0;
+           transform: translateY(16px);
+           transition: transform 350ms cubic-bezier(0.165, 0.84, 0.44, 1), opacity 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .zb-brand-image {
+            img {
+                transition: all .3s ease;
+            }
+        }
+    }
+}
+
+/* Demo style 1 & style 2 css  */
