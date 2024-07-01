@@ -403,6 +403,10 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
             content: url("data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20display%3D%22block%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeLinecap%3D%22round%22%20strokeLinejoin%3D%22round%22%20strokeWidth%3D%221.5%22%20d%3D%22M3.933%2013.909A4.357%204.357%200%200%201%203%2012c0-1%204-6%209-6m7.6%203.8A5.068%205.068%200%200%201%2021%2012c0%201-3%206-9%206-.314%200-.62-.014-.918-.04M5%2019%2019%205m-4%207a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E");
         }
     }
+
+    .components-dropdown.block-editor-inserter {
+        display: inline;
+    }
 }
 
 
