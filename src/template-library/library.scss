@@ -312,7 +312,7 @@
     .category-list {
         height: 80vh;
         overflow-y: auto;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
         mask-image: linear-gradient(#000 92%, transparent);
         &::-webkit-scrollbar {
             width: 5px;
@@ -740,8 +740,10 @@
                 display: flex;
                 align-items: center;
                 gap: 4px;  
-                mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.078) 100%);
-                flex-wrap: wrap;
+                mask-image: linear-gradient(to right, #000 50%, rgba(0, 0, 0, 0.078) 100%);
+                flex-wrap: nowrap;
+                max-width: 800px;
+                overflow: hidden;
             }
             .single-tag {
                 background: transparent;
@@ -751,6 +753,7 @@
                 color: #595a5e;
                 text-decoration: underline;
                 font-weight: 500;
+                white-space: nowrap;
                 &.active,
                 &:hover {
                     color: #2b67ff;
