@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
 import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
@@ -14,6 +14,7 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+import { all } from 'axios';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
@@ -23,6 +24,8 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, `zb-menu-wrap ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
     });
+
+    const innerBlockProps = useInnerBlocksProps();
 
     /**
      * Custom Append Button for InnerBlocks
@@ -42,17 +45,6 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <style>
-                {`
-                    .zb-menu-wrap {
-                        display: block;
-                    }
-                    .zb-menu-wrap .block-editor-block-list__layout {
-                        display: grid;
-                        grid-template-columns: repeat(2, 1fr);
-                    }
-                `}
-            </style>
             <BlockControls>
                 <ToolbarGroup>
                     <ToolbarButton icon="insert" label={__('Add Brand', 'zoloblocks')} onClick={() => appendBlock()} />
@@ -60,60 +52,7 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
-                <InnerBlocks
-                    allowedBlocks={['zolo/menu-child']}
-                    template={[
-                        [
-                            'zolo/menu-child',
-                            {
-                                brandTitle: 'Zolo Blocks',
-                                brandLabel: 'www.zoloblocks.com',
-                                brandPhoto: {
-                                    url: zoloPlaceholders.zbBrand,
-                                },
-                            },
-                        ],
-                        [
-                            'zolo/menu-child',
-                            {
-                                brandTitle: 'Element Pack',
-                                brandLabel: 'www.elementpack.pro',
-                                brandPhoto: {
-                                    url: zoloPlaceholders.epBrand,
-                                },
-                            },
-                        ],
-                        [
-                            'zolo/menu-child',
-                            {
-                                brandTitle: 'Prime Slider',
-                                brandLabel: 'www.primeslider.pro',
-                                brandPhoto: {
-                                    url: zoloPlaceholders.psBrand,
-                                },
-                            },
-                        ],
-                        [
-                            'zolo/menu-child',
-                            {
-                                brandTitle: 'Post kit Pro',
-                                brandLabel: 'www.postkit.pro',
-                                brandPhoto: {
-                                    url: zoloPlaceholders.upkBrand,
-                                },
-                            },
-                        ],
-                    ]}
-                    renderAppender={false}
-                />
-                <div className="appender-btn">
-                    <button className="zolo-appender-btn" onClick={() => appendBlock()}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                        </svg>
-                        {__('Add Menu', 'zoloblocks')}
-                    </button>
-                </div>
+                <div {...innerBlockProps} />
             </div>
         </>
     );
