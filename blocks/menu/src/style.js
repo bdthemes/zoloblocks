@@ -339,156 +339,14 @@ const Style = ({ props }) => {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
             ${colGapDeskstyle}
         }
-        .${uniqueId}.zolo-menu-grid-wrap .block-editor-block-list__layout{
-			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
-            ${colGapDeskstyle}
-        }
-        .${uniqueId} .zolo-menu-item{
-            ${deskContainerHeight}
-            ${containerBorderDesk}
-
-            ${containerBoxShadow}
-            ${containerPaddingDesk}
-            ${containerMarginDesk}
-            ${containerDeskBGStyle}
-		}
-        .${uniqueId} .zolo-menu-item:hover .zolo-menu-content{
-            ${containerDeskBGHStyle}
-		}
-
-        .${uniqueId} .zolo-menu-item, .${uniqueId} .zolo-menu-content{
-            ${containerBorderRadiusDesk}
-		}
-
-		.${uniqueId} .wp-block-zolo-brand-child .zolo-menu-image img {
-            ${brandPhotoPaddingDesk}
-			${deskImageWidth}
-			${brandPhotoBorderRadiusDesk}
-			${brandPhotoBoxShadow}
-			${brandPhotoDeskBGStyle}
-			${brandPhotoMaringDesk}
-			${photoBorderDesktop}
-		}
-        .${uniqueId}.zolo-menu-grid-wrap.wp-block-zolo-brand-grid .zolo-menu-inner-content{
-            ${brandContentDeskAlignStyle}
-        }
-		.${uniqueId}.zolo-menu-grid-wrap.wp-block-zolo-brand-grid .zolo-menu-content{
-            ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
-            ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
-		}
-		.${uniqueId} .zolo-menu-content{
-            ${contentDeskBGStyle}
-            ${contentDeskPadding}
-		}
-		.${uniqueId} .zolo-menu-title{
-			${titleTypoDesk}
-			${titleMarginDesk}
-			${titleTextShadow}
-			${titleTextStrokeDesk}
-            ${nameColor ? `color:${nameColor};` : ''}
-		}
-		.${uniqueId} .zolo-menu-title.has-link:hover{
-            ${nameHoverColor ? `color:${nameHoverColor};` : ''}
-		}
-		.${uniqueId} .zolo-menu-item .zolo-menu-title-link{
-			${linkTypoDesk}
-			${linkMarginDesk}
-			${linkTextShadow}
-			${linkTextStrokeDesk}
-            ${labelColor ? `color:${labelColor};` : ''}
-		}
-		.${uniqueId} .zolo-menu-item .zolo-menu-title-link.has-link:hover{
-            ${labelHoverColor ? `color:${labelHoverColor};` : ''}
-		}
     `;
 
     const tabletAllStyle = `
-        .${uniqueId}.zolo-menu-grid-wrap{
-            grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
-            ${colGapTabStyle}
 
-        }
-        .${uniqueId}.zolo-menu-grid-wrap .block-editor-block-list__layout{
-            grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
-            ${colGapTabStyle}
-        }
-        .${uniqueId} .zolo-menu-item{
-            ${tabContainerHeight}
-            ${containerBorderTab}
-            ${containerBorderRadiusTab}
-            ${containerPaddingTab}
-            ${containerMarginTab}
-            ${containerTabBGStyle}
-        }
-        .${uniqueId} .zolo-menu-image img{
-            ${brandPhotoPaddingTab}
-            ${tabImageWidth}
-            ${brandPhotoBorderRadiusTab}
-            ${brandPhotoTabBGStyle}
-            ${brandPhotoMarginTab}
-            ${photoBorderTab}
-        }
-        .${uniqueId} .zolo-menu-inner-content{
-            ${brandContentTabAlignStyle}
-        }
-        .${uniqueId} .zolo-menu-content{
-            ${contentTabBGStyle}
-            ${contentTabPadding}
-        }
-        .${uniqueId} .zolo-menu-title{
-            ${titleTypoTab}
-            ${titleMarginTab}
-            ${titleTextStrokeTab}
-        }
-        .${uniqueId} .zolo-menu-link{
-            ${linkTypoTab}
-            ${linkMarginTab}
-            ${linkTextStrokeTab}
-        }
     `;
 
     const mobileAllStyle = `
-        .${uniqueId}.zolo-menu-grid-wrap{
-            grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
-            ${colGapMobStyle}
-        }
-        .${uniqueId}.zolo-menu-grid-wrap .block-editor-block-list__layout{
-            grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
-            ${colGapMobStyle}
-        }
-        .${uniqueId} .zolo-menu-item{
-            ${mobContainerHeight}
-            ${containerBorderMob}
-            ${containerBorderRadiusMob}
-            ${containerPaddingMob}
-            ${containerMarginMob}
-            ${containerMobBGStyle}
-        }
-        .${uniqueId} .zolo-menu-image img{
-            ${brandPhotoPaddingMob}
-            ${mobImageWidth}
-            ${brandPhotoBorderRadiusMob}
-            ${brandPhotoMobBGStyle}
-            ${brandPhotoMarginMob}
-            ${photoBorderMob}
-        }
-        .${uniqueId} .zolo-menu-inner-content{
-            ${brandContentMobAlignStyle}
-        }
-        .${uniqueId} .zolo-menu-content{
-            ${contentMobBGStyle}
-            ${contentMobPadding}
-        }
-        .${uniqueId} .zolo-menu-title{
-            ${titleTypoMob}
-            ${titleMarginMob}
-            ${titleTextStrokeMob}
-        }
-        .${uniqueId} .zolo-menu-link{
-            ${linkTypoMob}
-            ${linkMarginMob}
-            ${linkTextStrokeMob}
-        }
+
     `;
 
     return (
@@ -496,9 +354,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.brandGrid.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.brandGrid.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.brandGrid.mobileAllStyle', mobileAllStyle, props)}
+                desktopAllStyle={applyFilters('zolo.menu.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.menu.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.menu.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

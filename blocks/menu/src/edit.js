@@ -22,18 +22,27 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, `zb-menu-wrap ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, `zolo-menu ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
     });
 
-    const innerBlockProps = useInnerBlocksProps();
+    const innerBlockProps = useInnerBlocksProps(
+        {
+            className: 'zolo-menu-inner-blocks',
+        },
+        {
+            templateLock: false,
+            allowedBlocks: ['core/navigation-link', 'zolo/advanced-button'],
+            template: [['core/navigation-link']],
+        }
+    );
 
     /**
      * Custom Append Button for InnerBlocks
      */
     const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
     const appendBlock = () => {
-        const newBlock = wp.blocks.createBlock('zolo/menu-child', {});
-        wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
+        const newBlock = wp.blocks.createBlock('core/navigation-link', {});
+        wp.data.dispatch('core/block-editor').insertBlocks(newBlock, childBlocks.length, clientId);
     };
 
     // preview image
@@ -47,12 +56,12 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 <ToolbarGroup>
-                    <ToolbarButton icon="insert" label={__('Add Brand', 'zoloblocks')} onClick={() => appendBlock()} />
+                    <ToolbarButton icon="insert" label={__('Add Menu', 'zoloblocks')} onClick={() => appendBlock()} />
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
-                <div {...innerBlockProps} />
+                <ul {...innerBlockProps} />
             </div>
         </>
     );
