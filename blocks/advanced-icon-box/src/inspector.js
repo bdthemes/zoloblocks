@@ -98,6 +98,7 @@ function Inspector(props) {
         titleTag,
         resMode,
         showButtonIcon,
+        showButtonText,
         mainIcon,
         showMainIcon,
         iconTypeImage,
@@ -227,6 +228,22 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
+                            {showButton && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Show Button Text', 'zoloblocks')}
+                                        checked={showButtonText}
+                                        onChange={() =>
+                                            setAttributes({
+                                                showButtonText: !showButtonText,
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
+
+
                             {showButton && (
                                 <>
                                     <ToggleControl
@@ -240,6 +257,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
+
                             <ToggleControl
                                 label={__('Use Link as Global', 'zoloblocks')}
                                 checked={globalLink}
@@ -428,7 +446,7 @@ function Inspector(props) {
                                 placeholder={__('Description goes here..', 'zoloblocks')}
                             />
 
-                            {showButton && (
+                            {showButton && showButtonText && (
                                 <>
                                     <TextControl
                                         label={__('Button Text', 'zoloblocks')}
