@@ -59,7 +59,6 @@ final class ZoloBlocks {
         //Run Maintainance
         Maintenance::getInstance();
     }
-
     /**
      * Define Constants
      */

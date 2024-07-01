@@ -85,6 +85,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             wp_localize_script('zolo-block-vendor-dependency', 'zoloSettings', [
                 'ajaxurl'      => admin_url('admin-ajax.php'),
                 'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
+                'theme_fonts'  => ZoloHelpers::zolo_get_theme_fonts(),
                 'googleAPIKey' => get_option('zolo_google_api_key'),
                 'maskShapes' => [
                     'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',
