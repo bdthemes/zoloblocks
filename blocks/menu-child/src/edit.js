@@ -3,7 +3,6 @@
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -26,7 +25,7 @@ export default function Edit(props) {
 
     // block props
     const blockProps = useBlockProps({
-        className: classnames(className, `zb-brand-item ${uniqueId} ${brandPhoto ? 'has-photo' : ''}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `zolo-menu-item ${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
     /**

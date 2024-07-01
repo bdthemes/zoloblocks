@@ -165,7 +165,7 @@ const attributes = {
     // context
     preset: {
         type: 'string',
-        default: 'zb-brand-style-1',
+        default: 'zolo-menu-style-1',
     },
     brandNameTag: {
         type: 'string',

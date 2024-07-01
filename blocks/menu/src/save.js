@@ -8,7 +8,7 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(`zb-brand-grid-wrap ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
+                className: classnames(`zb-menu-wrap ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
             })}
             {...(zoloId && {
                 id: zoloId,

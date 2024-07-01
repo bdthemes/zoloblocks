@@ -13,7 +13,7 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(`zb-brand-item ${brandPhoto ? 'has-photo' : ''} ${uniqueId}`, classArrayToStr(parentClasses)),
+                className: classnames(`zolo-menu-item ${uniqueId}`, classArrayToStr(parentClasses)),
             })}
             {...(zoloId && {
                 id: zoloId,

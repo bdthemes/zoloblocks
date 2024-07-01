@@ -335,15 +335,15 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId}.zb-brand-grid-wrap{
+        .${uniqueId}.zolo-menu-grid-wrap{
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
             ${colGapDeskstyle}
         }
-        .${uniqueId}.zb-brand-grid-wrap .block-editor-block-list__layout{
+        .${uniqueId}.zolo-menu-grid-wrap .block-editor-block-list__layout{
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
             ${colGapDeskstyle}
         }
-        .${uniqueId} .zb-brand-item{
+        .${uniqueId} .zolo-menu-item{
             ${deskContainerHeight}
             ${containerBorderDesk}
 
@@ -352,15 +352,15 @@ const Style = ({ props }) => {
             ${containerMarginDesk}
             ${containerDeskBGStyle}
 		}
-        .${uniqueId} .zb-brand-item:hover .zb-brand-content{
+        .${uniqueId} .zolo-menu-item:hover .zolo-menu-content{
             ${containerDeskBGHStyle}
 		}
 
-        .${uniqueId} .zb-brand-item, .${uniqueId} .zb-brand-content{
+        .${uniqueId} .zolo-menu-item, .${uniqueId} .zolo-menu-content{
             ${containerBorderRadiusDesk}
 		}
 
-		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img {
+		.${uniqueId} .wp-block-zolo-brand-child .zolo-menu-image img {
             ${brandPhotoPaddingDesk}
 			${deskImageWidth}
 			${brandPhotoBorderRadiusDesk}
@@ -369,50 +369,50 @@ const Style = ({ props }) => {
 			${brandPhotoMaringDesk}
 			${photoBorderDesktop}
 		}
-        .${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-inner-content{
+        .${uniqueId}.zolo-menu-grid-wrap.wp-block-zolo-brand-grid .zolo-menu-inner-content{
             ${brandContentDeskAlignStyle}
         }
-		.${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-content{
+		.${uniqueId}.zolo-menu-grid-wrap.wp-block-zolo-brand-grid .zolo-menu-content{
             ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
             ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
 		}
-		.${uniqueId} .zb-brand-content{
+		.${uniqueId} .zolo-menu-content{
             ${contentDeskBGStyle}
             ${contentDeskPadding}
 		}
-		.${uniqueId} .zb-brand-title{
+		.${uniqueId} .zolo-menu-title{
 			${titleTypoDesk}
 			${titleMarginDesk}
 			${titleTextShadow}
 			${titleTextStrokeDesk}
             ${nameColor ? `color:${nameColor};` : ''}
 		}
-		.${uniqueId} .zb-brand-title.has-link:hover{
+		.${uniqueId} .zolo-menu-title.has-link:hover{
             ${nameHoverColor ? `color:${nameHoverColor};` : ''}
 		}
-		.${uniqueId} .zb-brand-item .zb-brand-title-link{
+		.${uniqueId} .zolo-menu-item .zolo-menu-title-link{
 			${linkTypoDesk}
 			${linkMarginDesk}
 			${linkTextShadow}
 			${linkTextStrokeDesk}
             ${labelColor ? `color:${labelColor};` : ''}
 		}
-		.${uniqueId} .zb-brand-item .zb-brand-title-link.has-link:hover{
+		.${uniqueId} .zolo-menu-item .zolo-menu-title-link.has-link:hover{
             ${labelHoverColor ? `color:${labelHoverColor};` : ''}
 		}
     `;
 
     const tabletAllStyle = `
-        .${uniqueId}.zb-brand-grid-wrap{
+        .${uniqueId}.zolo-menu-grid-wrap{
             grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
             ${colGapTabStyle}
 
         }
-        .${uniqueId}.zb-brand-grid-wrap .block-editor-block-list__layout{
+        .${uniqueId}.zolo-menu-grid-wrap .block-editor-block-list__layout{
             grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
             ${colGapTabStyle}
         }
-        .${uniqueId} .zb-brand-item{
+        .${uniqueId} .zolo-menu-item{
             ${tabContainerHeight}
             ${containerBorderTab}
             ${containerBorderRadiusTab}
@@ -420,7 +420,7 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerTabBGStyle}
         }
-        .${uniqueId} .zb-brand-image img{
+        .${uniqueId} .zolo-menu-image img{
             ${brandPhotoPaddingTab}
             ${tabImageWidth}
             ${brandPhotoBorderRadiusTab}
@@ -428,19 +428,19 @@ const Style = ({ props }) => {
             ${brandPhotoMarginTab}
             ${photoBorderTab}
         }
-        .${uniqueId} .zb-brand-inner-content{
+        .${uniqueId} .zolo-menu-inner-content{
             ${brandContentTabAlignStyle}
         }
-        .${uniqueId} .zb-brand-content{
+        .${uniqueId} .zolo-menu-content{
             ${contentTabBGStyle}
             ${contentTabPadding}
         }
-        .${uniqueId} .zb-brand-title{
+        .${uniqueId} .zolo-menu-title{
             ${titleTypoTab}
             ${titleMarginTab}
             ${titleTextStrokeTab}
         }
-        .${uniqueId} .zb-brand-link{
+        .${uniqueId} .zolo-menu-link{
             ${linkTypoTab}
             ${linkMarginTab}
             ${linkTextStrokeTab}
@@ -448,15 +448,15 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-        .${uniqueId}.zb-brand-grid-wrap{
+        .${uniqueId}.zolo-menu-grid-wrap{
             grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
             ${colGapMobStyle}
         }
-        .${uniqueId}.zb-brand-grid-wrap .block-editor-block-list__layout{
+        .${uniqueId}.zolo-menu-grid-wrap .block-editor-block-list__layout{
             grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
             ${colGapMobStyle}
         }
-        .${uniqueId} .zb-brand-item{
+        .${uniqueId} .zolo-menu-item{
             ${mobContainerHeight}
             ${containerBorderMob}
             ${containerBorderRadiusMob}
@@ -464,7 +464,7 @@ const Style = ({ props }) => {
             ${containerMarginMob}
             ${containerMobBGStyle}
         }
-        .${uniqueId} .zb-brand-image img{
+        .${uniqueId} .zolo-menu-image img{
             ${brandPhotoPaddingMob}
             ${mobImageWidth}
             ${brandPhotoBorderRadiusMob}
@@ -472,19 +472,19 @@ const Style = ({ props }) => {
             ${brandPhotoMarginMob}
             ${photoBorderMob}
         }
-        .${uniqueId} .zb-brand-inner-content{
+        .${uniqueId} .zolo-menu-inner-content{
             ${brandContentMobAlignStyle}
         }
-        .${uniqueId} .zb-brand-content{
+        .${uniqueId} .zolo-menu-content{
             ${contentMobBGStyle}
             ${contentMobPadding}
         }
-        .${uniqueId} .zb-brand-title{
+        .${uniqueId} .zolo-menu-title{
             ${titleTypoMob}
             ${titleMarginMob}
             ${titleTextStrokeMob}
         }
-        .${uniqueId} .zb-brand-link{
+        .${uniqueId} .zolo-menu-link{
             ${linkTypoMob}
             ${linkMarginMob}
             ${linkTextStrokeMob}

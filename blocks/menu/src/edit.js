@@ -21,7 +21,7 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, `zb-brand-grid-wrap ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, `zb-menu-wrap ${uniqueId} ${preset}`, classArrayToStr(parentClasses)),
     });
 
     /**
@@ -44,10 +44,10 @@ export default function Edit(props) {
             <Style props={props} />
             <style>
                 {`
-                    .zb-brand-grid-wrap {
+                    .zb-menu-wrap {
                         display: block;
                     }
-                    .zb-brand-grid-wrap .block-editor-block-list__layout {
+                    .zb-menu-wrap .block-editor-block-list__layout {
                         display: grid;
                         grid-template-columns: repeat(2, 1fr);
                     }
