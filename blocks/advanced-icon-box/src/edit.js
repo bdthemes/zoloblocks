@@ -23,6 +23,7 @@ export default function Edit(props) {
         parentClasses,
         titleTag,
         showButtonIcon,
+        showButtonText,
         mainIcon,
         buttonIcon,
         showMainIcon,
@@ -184,17 +185,19 @@ export default function Edit(props) {
                                         title: buttonText,
                                     })}
                                 >
-                                    <RichText
-                                        value={buttonText}
-                                        tagName="span"
-                                        onChange={(text) =>
-                                            setAttributes({
-                                                buttonText: text,
-                                            })
-                                        }
-                                        placeholder={__('Read More', 'zoloblocks')}
-                                        allowedFormats={['core/bold', 'core/italic']}
-                                    />
+                                    {showButtonText && (
+                                        <RichText
+                                            value={buttonText}
+                                            tagName="span"
+                                            onChange={(text) =>
+                                                setAttributes({
+                                                    buttonText: text,
+                                                })
+                                            }
+                                            placeholder={__('Read More', 'zoloblocks')}
+                                            allowedFormats={['core/bold', 'core/italic']}
+                                        />
+                                    )}
                                     {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                 </DynamicTag>
                             </div>

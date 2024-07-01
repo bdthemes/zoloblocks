@@ -213,6 +213,12 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+
+    showButtonText: {
+        type: 'boolean',
+        default: true,
+    },
+
     globalLink: {
         type: 'boolean',
         default: false,
