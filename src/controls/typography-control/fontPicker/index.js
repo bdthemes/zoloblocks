@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { fontsseControl } from '@wordpress/components';
+import { BaseControl } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -18,72 +18,61 @@ import Select2 from 'react-select';
 import { googleFonts } from './googleFonts';
 
 const zoloThemeFonts = zoloSettings?.theme_fonts;
-
 const zoloAvailableFonts = [];
 
 if (zoloThemeFonts) {
-    // create an array of of objects with value and label from zoloThemeFonts array
-    zoloThemeFonts.map((font) => {
-        zoloAvailableFonts.push({ value: font, label: font });
-    });
+    // check the object is not empty
+    if (Object.keys(zoloThemeFonts).length > 0) {
+        Object.keys(zoloThemeFonts).map((font) => {
+            zoloAvailableFonts.push({ value: font, label: zoloThemeFonts[font] });
+        });
+    }
 }
 
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
     const id = `inspector-zb-font-family-${instanceId}`;
-    // const fonts = [
-    //     { value: '', label: __('Default', 'zoloblocks') },
-    //     { value: 'Arial', label: 'Arial' },
-    //     { value: 'Helvetica', label: 'Helvetica' },
-    //     { value: 'Times-New-Roman', label: 'Times New Roman' },
-    //     { value: 'Georgia', label: 'Georgia' },
-    // ];
+    const fonts = [
+        { value: '', label: __('Default', 'zoloblocks') },
+        { value: 'Arial', label: 'Arial' },
+        { value: 'Helvetica', label: 'Helvetica' },
+        { value: 'Times-New-Roman', label: 'Times New Roman' },
+        { value: 'Georgia', label: 'Georgia' },
+    ];
 
     //Add Google Fonts
-    // Object.keys(googleFonts).map((font) => {
-    //     fonts.push({ value: font, label: googleFonts[font].family });
-    // });
+    Object.keys(googleFonts).map((font) => {
+        fonts.push({ value: font, label: googleFonts[font].family });
+    });
 
     const onChangeValue = (select) => {
-        // let selectedFont = select.label;
-
-        // // const googleFontsAttr =
-        // //   ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
-
-        // // if (selectedFont) {
-        // //   const link = document.createElement('link');
-        // //   link.rel = 'stylesheet';
-        // //   link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
-        // //   document.head.appendChild(link);
-        // // }
-
-        // if (selectedFont) {
-        //     // skip if default OR Arial, Helvetica, Times New Roman, Georgia
-        //     if (
-        //         selectedFont === 'Default' ||
-        //         selectedFont === 'Arial' ||
-        //         selectedFont === 'Helvetica' ||
-        //         selectedFont === 'Times-New-Roman' ||
-        //         selectedFont === 'Georgia'
-        //     ) {
-        //         onChange(selectedFont);
-        //         return;
-        //     }
-        // }
-        // let webFontConfig = {
-        //     google: {
-        //         families: [selectedFont],
-        //     },
-        //     context: frames['editor-canvas'],
-        // };
-        // WebFont.load(webFontConfig);
-        // onChange(selectedFont);
-
         let selectedFont = select.label;
+        if (selectedFont) {
+            // skip if default OR Arial, Helvetica, Times New Roman, Georgia
+            if (
+                selectedFont === 'Default' ||
+                selectedFont === 'Arial' ||
+                selectedFont === 'Helvetica' ||
+                selectedFont === 'Times-New-Roman' ||
+                selectedFont === 'Georgia' ||
+                zoloAvailableFonts.find((font) => font.label === selectedFont)
+            ) {
+                onChange(selectedFont);
+                return;
+            }
+        }
+
+        let webFontConfig = {
+            google: {
+                families: [selectedFont],
+            },
+            context: frames['editor-canvas'],
+        };
+        WebFont.load(webFontConfig);
         onChange(selectedFont);
     };
 
     return (
-        <fontsseControl label={label} id={id} help={help} className={className}>
+        <BaseControl label={label} id={id} help={help} className={className}>
             <Select2
                 name="zb-select-font"
                 classNamePrefix="zolo"
@@ -92,9 +81,9 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                     label: value,
                 }}
                 onChange={onChangeValue}
-                options={zoloAvailableFonts}
+                options={zoloAvailableFonts && zoloAvailableFonts.length > 0 ? zoloAvailableFonts : fonts}
             />
-        </fontsseControl>
+        </BaseControl>
     );
 };
 

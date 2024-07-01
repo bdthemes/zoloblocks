@@ -309,9 +309,10 @@ class ZoloHelpers {
 
         // final fonts array including system fonts at the top
         $final_fonts = array_merge($system_fonts, array_diff($final_fonts, $system_fonts));
-
-        
     
+        // remove duplicate fonts
+        $final_fonts = array_unique($final_fonts); 
+
         return $final_fonts;
     }
 }
