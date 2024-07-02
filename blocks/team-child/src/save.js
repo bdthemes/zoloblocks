@@ -96,7 +96,7 @@ const Save = ({ attributes }) => {
                             </div>
                         )}
 
-                        {addDetailPageLink && preset !== 'style-4' &&(
+                        {addDetailPageLink && preset !== 'style-4' && preset !== 'style-5' &&(
                             <div className="zolo-link-btn">
                                 <a className='zolo-external-link'
                                     href={memberDetailPageLink && memberDetailPageLink.url}

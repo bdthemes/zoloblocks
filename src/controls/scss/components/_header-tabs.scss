@@ -67,8 +67,14 @@
     }
 }
 
-// .zolo-tab-controls {
-//     .components-base-control {
-//         margin-bottom: 16px !important;
-//     }
-// }
+.zolo-tab-controls {
+    .components-base-control {
+        margin-bottom: 16px !important;
+    }
+    .zb-counter-control {
+        .components-base-control {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
