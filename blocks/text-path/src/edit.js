@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -48,7 +48,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.textarea} alt={__('Text Path Preview', 'zoloblocks')} />;
     }
 
     return (

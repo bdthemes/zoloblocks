@@ -1,15 +1,8 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateTypographyAttributes,
-    generateDimensionAttributes,
-    generateNormalBGAttributes,
-    generateBorderAttributies,
-    generateResAlignmentAttributies,
-    generateTextStrokeAttributies,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies, generateTextStrokeAttributies } =
+    window.zoloModule;
 
 import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
 
@@ -41,22 +34,7 @@ const attributes = {
             responsiveControls: true,
         },
     },
-
-    // Generators
-    // ...generateResAlignmentAttributies(ITEMS_ALIGN),
-    // ...generateDimensionAttributes(LABEL_MARGIN),
-    // ...generateNormalBGAttributes(LABEL_BG),
-    // ...generateDimensionAttributes(LABEL_PADDING),
-    // ...generateDimensionAttributes(LABEL_BRADIUS),
-    // ...generateBorderAttributies(LABEL_BORDER),
-    // ...generateDimensionAttributes(FIELD_PADDING),
-    // ...generateNormalBGAttributes(FIELD_BG),
-    // ...generateBorderAttributies(FIELD_BORDER),
-    // ...generateDimensionAttributes(FIELD_BRADIUS),
-    // ...generateResRangeAttributies(ICON_SIZE),
-
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-
     ...generateResAlignmentAttributies(TEXTPATH_ALIGN),
     ...generateResRangeAttributies(TEXTPATH_SIZE),
     ...generateTextStrokeAttributies(TEXT_PATH_STROKE),

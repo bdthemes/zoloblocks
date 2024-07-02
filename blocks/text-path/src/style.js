@@ -2,21 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
-const {
-    generateDimensionStyle,
-    generateBorderStyle,
-    generateResAlignmentStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateNormalBGControlStyles,
-    generateTextStrokeStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, generateTextStrokeStyles, GlobalStyleHanlder } =
+    window.zoloModule;
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
 import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
