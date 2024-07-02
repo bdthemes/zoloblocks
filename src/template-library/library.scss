@@ -171,6 +171,23 @@
         transition: 0.3s;
         position: relative;
 
+        &.fav {
+            .fav-count {
+                position: absolute;
+                top: 4px;
+                right: 0;
+                font-size: 8px;
+                height: 20px;
+                line-height: 20px;
+                color: #fff;
+                background-color: #2c67ff;
+                border-radius: 50%;
+                font-weight: 700;
+                border-bottom-left-radius: 0;
+                padding: 0 8px;
+            }
+        }
+
         &:after {
             content: '';
             position: absolute;
@@ -312,7 +329,7 @@
     .category-list {
         height: 80vh;
         overflow-y: auto;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
         mask-image: linear-gradient(#000 92%, transparent);
         &::-webkit-scrollbar {
             width: 5px;
@@ -387,10 +404,10 @@
         background-color: #edf0f4;
         font-weight: 600;
         border-radius: 3px;
-        width: 26px;
         height: 20px;
         line-height: 20px;
         text-align: center;
+        padding: 0 7px;
     }
 
     .demos-container {
@@ -474,6 +491,10 @@
         border-bottom: 1px solid #f4f4f4;
         position: relative;
         overflow: hidden;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &::before {
             content: '';
             position: absolute;
@@ -677,7 +698,7 @@
     // tags
     .secondary-header-item {
         display: none;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
         margin: 30px;
         gap: 20px;
@@ -685,7 +706,7 @@
         margin-bottom: 0;
         padding: 20px;
         border-radius: 6px;
-        flex-direction: column;
+        flex-direction: row;
 
         .secondary-item {
             .components-base-control__field {
@@ -722,6 +743,7 @@
                 font-weight: 700;
                 text-transform: capitalize;
                 color: #000;
+                display: none;
             }
             .zolo-tags {
                 .components-base-control__field {
@@ -740,8 +762,10 @@
                 display: flex;
                 align-items: center;
                 gap: 4px;  
-                mask-image: linear-gradient(to right, #000, rgba(0, 0, 0, 0.078) 100%);
-                flex-wrap: wrap;
+                mask-image: linear-gradient(to right, #000 50%, rgba(0, 0, 0, 0.078) 100%);
+                flex-wrap: nowrap;
+                width: 350px;
+                overflow: hidden;
             }
             .single-tag {
                 background: transparent;
@@ -751,6 +775,7 @@
                 color: #595a5e;
                 text-decoration: underline;
                 font-weight: 500;
+                white-space: nowrap;
                 &.active,
                 &:hover {
                     color: #2b67ff;
@@ -761,13 +786,20 @@
             background: none;
             border: none;
             cursor: pointer;
+            
             svg {
-                width: 20px;
-                fill: #cdcdcd;
+                width: 18px;
+                height: 18px;
+                display: block;
+                transform: scale(0);
+                transition: 0.3s;
             }
             &.active {
                 svg {
-                    fill: #2b67ff;
+                    transform: scale(1);
+                }
+                g {
+                    stroke: #2b67ff;
                 }
             }
         }
@@ -855,9 +887,9 @@
     }
     .zolo-pro-modal-desc {
         margin: 10px 0 30px;
-        font-size: 16px;
+        font-size: 18px;
         color: #4e4e55;
-        max-width: 420px;
+        max-width: 430px;
     }
 
     .zolo-pro-modal-icon {
@@ -886,6 +918,10 @@
         &:focus {
             outline: 2px solid rgba(255, 156, 156, 0.98) !important;
         }
+        &:hover {
+            background-color: #f00;
+            color: #fff;
+        }
     }
 }
 
@@ -899,6 +935,9 @@
                 padding: 0 20px;
             }
             .tabs-area {
+                display: flex;
+            }
+            .secondary-header-item {
                 display: flex;
             }
         }
@@ -922,9 +961,6 @@
                     min-width: 200px;
                 }
             }
-            .secondary-header-item {
-                display: flex;
-            }
         }
     }
 }
@@ -945,12 +981,24 @@
                 }
             }
             .secondary-header-item {
-                align-items: center;
-                flex-direction: row;
+                // align-items: center;
+                // flex-direction: row;
                 .secondary-item .zolo-tags .components-base-control__field {
                     flex-direction: row;
                     align-items: center;
                 }
+                .secondary-item {
+                    .components-base-control__label,
+                    .components-input-control__label {
+                        display: block;
+                    }
+                }
+                .tags-wrap {
+                    .tags-btn-wrap {
+                        width: 700px;
+                    }
+                }
+
             }
         }
     }
