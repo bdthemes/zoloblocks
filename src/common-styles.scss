@@ -334,15 +334,15 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 
-:not(.zolo-block.wp-block-zolo-container) {
-    &:hover,
-    &:focus {
-        > div {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-}
+// :not(.zolo-block.wp-block-zolo-container) {
+//     &:hover,
+//     &:focus {
+//         > div {
+//             opacity: 1;
+//             visibility: visible;
+//         }
+//     }
+// }
 
 
 .block-editor-block-list__layout .block-editor-block-list__block.is-highlighted:after,
