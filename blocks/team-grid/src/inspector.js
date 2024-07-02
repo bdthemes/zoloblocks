@@ -60,6 +60,7 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
     ITEM_OVERLAY,
+    IMAGE_OVERLAY,
     SEPARATOR_TEAM_SIZE,
     SEPARATOR_SPACING_TEAM,
 } from './constants';
@@ -118,7 +119,7 @@ function Inspector(props) {
         switch (selected) {
             case 'default':
                 setAttributes({
-                    showShortBio: true,
+                    showShortBio: false,
                     showSocialProfiles: true,
                     showDesignation: true,
                     addDetailPageLink: true,
@@ -129,6 +130,7 @@ function Inspector(props) {
                     showShortBio: true,
                     showSocialProfiles: true,
                     showDesignation: true,
+                    addDetailPageLink: true,
                 });
                 break;
             case 'style-2':
@@ -136,6 +138,7 @@ function Inspector(props) {
                     showShortBio: false,
                     showSocialProfiles: true,
                     showDesignation: true,
+                    addDetailPageLink: true,
                 });
                 break;
             case 'style-3':
@@ -143,11 +146,19 @@ function Inspector(props) {
                     showShortBio: false,
                     showSocialProfiles: true,
                     showDesignation: true,
+                    addDetailPageLink: false,
                 });
                 break;
             case 'style-4':
                 setAttributes({
                     showShortBio: true,
+                    showSocialProfiles: true,
+                    showDesignation: true,
+                });
+                break;
+            case 'style-5':
+                setAttributes({
+                    showShortBio: false,
                     showSocialProfiles: true,
                     showDesignation: true,
                 });
@@ -172,7 +183,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.teamGrid.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                            {preset !== 'style-4' && (
+                            {preset !== 'style-4' && preset !=='style-5' &&(
                                 <ToggleControl
                                     label={__('Add Detail Page Link', 'zoloblocks')}
                                     checked={addDetailPageLink}
@@ -210,7 +221,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            {preset !== 'style-4' && (
+                            {preset !== 'style-4' && preset !=='style-2' && (
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={CONTENT_ALIGNMENT}
@@ -259,7 +270,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
-                            {preset === 'style-2' && (
+                            {preset === 'style-2' &&(
                                 <NormalBGControl
                                     label={__('Overlay', 'zoloblocks')}
                                     requiredProps={requiredProps}
@@ -326,6 +337,14 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            {preset === 'style-5' &&(
+                                <NormalBGControl
+                                    label={__('Overlay', 'zoloblocks')}
+                                    requiredProps={requiredProps}
+                                    controlName={IMAGE_OVERLAY}
+                                    noMainBGImg={true}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Name', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
@@ -549,7 +568,7 @@ function Inspector(props) {
                                 </ZoloPanelBody>
                             </>
                         )}
-                        {addDetailPageLink && preset !== 'style-4' && (
+                        {addDetailPageLink && preset !== 'style-4' && preset !=='style-5' && (
                             <ZoloPanelBody title={__('Details Page Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}

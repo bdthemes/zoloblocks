@@ -44,6 +44,7 @@ import {
     TEAM_PHOTO_BOX_SHADOW,
     TEAM_PHOTO_MARGIN,
     TEAM_PHOTO_PADDING,
+    IMAGE_OVERLAY,
     TEAM_NAME_MARGIN,
     TEAM_DESIGNATION_MARGIN,
     TEAM_SHORT_BIO_MARGIN,
@@ -220,7 +221,7 @@ function Inspector(props) {
                                     placeholder={__('Short Bio..', 'zoloblocks')}
                                 />
                             )}
-                            {addDetailPageLink && preset !=='style-4' &&(
+                            {addDetailPageLink && preset !=='style-4' && preset !=='style-45' &&(
                                 <LinkControl
                                     label={__('Detail Page Link', 'zoloblocks')}
                                     value={memberDetailPageLink}
@@ -329,6 +330,14 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            {preset === 'style-5' &&(
+                                <NormalBGControl
+                                    label={__('Overlay', 'zoloblocks')}
+                                    requiredProps={requiredProps}
+                                    controlName={IMAGE_OVERLAY}
+                                    noMainBGImg={true}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Name', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
@@ -548,7 +557,7 @@ function Inspector(props) {
                                 </ZoloPanelBody>
                             </>
                         )}
-                        {addDetailPageLink && preset !=='style-4' &&(
+                        {addDetailPageLink && preset !=='style-4' && preset !== 'style-5' &&(
                             <ZoloPanelBody title={__('Details Page Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}

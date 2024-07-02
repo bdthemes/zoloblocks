@@ -41,6 +41,8 @@ export const TEAM_PHOTO_BORDER_RADIUS = 'PhotoBorderRadius';
 export const TEAM_PHOTO_BOX_SHADOW = 'PhotoBoxShadow';
 export const TEAM_PHOTO_MARGIN = 'PhotoMargin';
 export const TEAM_PHOTO_PADDING = 'PhotoPadding';
+export const IMAGE_OVERLAY = 'imageOverlay';
+
 export const TEAM_NAME_MARGIN = 'NameMargin';
 export const TEAM_DESIGNATION_MARGIN = 'DesignationMargin';
 export const TEAM_SHORT_BIO_MARGIN = 'ShortBioMargin';
