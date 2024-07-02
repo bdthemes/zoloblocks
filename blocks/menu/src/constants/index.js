@@ -4,71 +4,83 @@
 import { __ } from '@wordpress/i18n';
 
 // Block Prefix
-export const BLOCK_PREFIX = 'brand-grid';
-
+export const BLOCK_PREFIX = 'list';
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zoloblocks'), value: 'zb-brand-style-1' },
-    { label: __('Preset 2', 'zoloblocks'), value: 'zb-brand-style-2' },
-    { label: __('Preset 3 (Pro)', 'zoloblocks'), value: 'zb-brand-style-3', disabled: true },
+    { label: __('Preset 1', 'zoloblocks'), value: 'zolo-menu-style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'zolo-menu-style-2' },
+    { label: __('Preset 3', 'zoloblocks'), value: 'zolo-menu-style-3' },
+    { label: __('Preset 4', 'zoloblocks'), value: 'zolo-menu-style-4' },
 ];
 
-// icon types
-export const LINK_TYPES = [
+//menu list
+export const ITEMS_GAP = 'itemsGap';
+export const MENU_HEIGHT = 'menuHeight';
+export const MENU_COLUMNS_GAP = 'menuColumnsGap';
+export const LIST_COLUMN_COUNT = 'listColumnCount';
+export const SINGLE_ITEM_ALIGNMENT = 'singleItemAlignment';
+//ITEM
+export const ITEM_ALIGNMENT = 'itemAlignment';
+export const LIST_BOX_RADIUS = 'listBoxRadius';
+export const LIST_BORDER = 'listBorder';
+export const LIST_ALLBOX_PADDING = 'listAllBoxPadding';
+export const LIST_BOX_SHADOW = 'listBoxShadow';
+export const LIST_BG = 'listBg';
+export const LIST_HOVER_BG = 'listHoverBg';
+export const LIST_HOVER_BOX_SHADOW = 'listHoverBoxShadow';
+
+//List title
+export const TEXT_LIST_RADIUS = 'textListradius';
+export const TEXT_LIST_PADDING = 'textListPadding';
+
+//DSC
+export const DSC_MARGIN = 'dscMargin';
+
+// icon
+export const LIST_ICON_SIZE = 'listIconSize';
+export const ICON_LIST_BG = 'iconListBg';
+export const ICON_LIST_HOVER_BG = 'iconListHoverBg';
+export const ICON_LIST_PADDING = 'iconListPadding';
+export const ICON_LIST_MARGIN = 'iconListMargin';
+export const ICON_LIST_BORDER = 'iconListBorder';
+export const ICON_RADIUS = 'iconBorderRadius';
+export const ICON_VERTICAL_ALIGN = 'iconVerticalAlign';
+
+//Hover icon
+export const LIST_HOVER_ICON_SIZE = 'listHoverIconSize';
+export const ICON_HOVER_LIST_MARGIN = 'iconHoverListMargin';
+export const ICON_LINKVERTICAL_ALIGN = 'iconLinkVerticalAlign';
+
+export const ITEM_ALIGNS_OPTION = [
     {
-        label: __('Global', 'zoloblocks'),
-        value: 'logo__global',
+        label: 'Left',
+        value: 'flex-start',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
     },
     {
-        label: __('Label', 'zoloblocks'),
-        value: 'logo__label',
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
     },
     {
-        label: __('Title', 'zoloblocks'),
-        value: 'logo__title',
+        label: 'Right',
+        value: 'flex-end',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
     },
 ];
-
-// Grid
-export const GRID_COLUMNS = 'gridColumns';
-export const GRID_GAP = 'gridGap';
-
-// global style for child blocks
-// container
-export const CONTAINER_HEIGHT = 'containerHeight';
-export const CONTAINER_BG = 'containerBg';
-export const CONTAINER_H_BG = 'containerHBg';
-export const CONTAINER_BORDER = 'containerBorder';
-export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
-export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
-export const CONTAINER_MARGIN = 'containerMargin';
-export const CONTAINER_PADDING = 'containerPadding';
-
-
-//  photo
-export const BRAND_PHOTO_BG = 'photoBackground';
-export const BRAND_PHOTO_BORDER = 'photoBorder';
-export const BRAND_PHOTO_BORDER_RADIUS = 'photoBorderRadius';
-export const BRAND_PHOTO_BOX_SHADOW = 'photoBoxShadow';
-export const BRAND_PHOTO_MARGIN = 'photoMargin';
-export const BRAND_PHOTO_PADDING = 'photoPadding';
-
-// title
-export const TITLE_ALIGNMENT = 'titleAlignment';
-export const TITLE_MARGIN = 'titleMargin';
-export const TITLE_TEXT_SHADOW = 'titleTextShadow';
-export const TITLE_TEXT_STROKE = 'titleTextStroke';
-
-// content
-export const CONTENT_ALIGNMENT = 'ContentAlignment';
-export const CONTENT_PADDING = 'ContentPadding';
-export const CONTENT_BG = 'ContentBg';
-
-// link
-export const LINK_TEXT_SHADOW = 'linkTextShadow';
-export const LINK_MARGIN = 'linkMargin';
-export const LINK_TEXT_STROKE = 'linkTextStroke';
-
-// image
-export const IMAGE_HEIGHT = 'imageHeight';
-export const IMAGE_WIDTH = 'imageWidth';

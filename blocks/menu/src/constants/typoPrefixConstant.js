@@ -1,3 +1,4 @@
-// the consts defined here should be unique from one another
-export const TITLE_TYPOGRAPHY = 'title';
-export const LINK_TYPOGRAPHY = 'linkTypo';
+//DSC
+export const DSC_TYPOGRAPHY = 'dscTypography';
+//list
+export const TEXT_LIST_TYPOGRAPHY = 'textListTypography';

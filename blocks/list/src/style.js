@@ -67,7 +67,7 @@ const Style = ({ props }) => {
         HoverIconColor,
         iconToggle,
         BorderHovColor,
-        
+
     } = attributes;
 
     //desc
@@ -291,195 +291,195 @@ const Style = ({ props }) => {
      */
 
     const desktopAllStyle = `
-	  .wp-block-zolo-list.${uniqueId} {
+	  .wp-block-zolo-menu.${uniqueId} {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridDeskstyle}, 1fr)`};
         ${listGapDeskstyle};
         ${desktopSingleAlign}
         ${layout=='flex' && desktopListAlign}
       }
-	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout=='grid' && desktopListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4')  && layout=='grid' && desktopListAlign};
+	.wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item {
+        ${(preset == 'zolo-menu-style-1' || preset == 'zolo-menu-style-2') && layout=='grid' && desktopListAlign};
+        ${!iconToggle && (preset == 'zolo-menu-style-3' || preset == 'zolo-menu-style-4')  && layout=='grid' && desktopListAlign};
         ${DesktopListRadius}
         ${desktopListBorder}
         ${DesktopListP}
         ${boxshadowListitem}
         ${DeskListBg}
-        ${preset == 'zolo-list-style-4' && desktopHVListAlign}
+        ${preset == 'zolo-menu-style-4' && desktopHVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover{
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item:hover{
           ${BorderHovColor && `border-color:${BorderHovColor}`}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${preset == 'zolo-list-style-3' && desktopVListAlign}
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item {
+        ${preset == 'zolo-menu-style-3' && desktopVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-icon-and-content-wrap{
-        ${preset == 'zolo-list-style-4' && desktopVListAlign}
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-icon-and-content-wrap{
+        ${preset == 'zolo-menu-style-4' && desktopVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item:hover {
         ${boxshadowHListitem}
         ${DeskHListBg}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover .zolo-list-title {
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item:hover .zolo-menu-title {
         color:${txtHListColor}
      }
-     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover.zolo-list-title {
+     .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item:hover.zolo-menu-title {
         color:${txtHListColor}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-title{
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-title{
         ${DesktopTextListTypo}
         color:${textListColor}
      }
-    
-    .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
+
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-desc {
         ${DesktopDsceTypo}
         ${DesktopDsceMargin}
         color:${dscColor}
     }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-desc{
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-item:hover .zolo-menu-desc{
         color:${dscHcolor}
     }
-   
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
-        ${desktopIconSize} 
+
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-icon svg {
+        ${desktopIconSize}
         fill:${listIconColor}
      }
-     
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
+
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-icon {
          ${DeskIconBg}
          ${DesktopIconPadding}
          ${DesktopIconMargin}
          ${desktopIconBorder}
          ${DesktopIconRadius}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon{
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-item:hover .zolo-menu-icon{
          ${DeskIconHBg}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon svg{
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-item:hover .zolo-menu-icon svg{
          fill:${listIconHover}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon svg,.wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon {
         ${desktopIconHWidth}
         ${desktopIconHHeight}
         fill:${HoverIconColor}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
-        ${DesktopIconHoMargin}  
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon {
+        ${DesktopIconHoMargin}
     }
   	`;
     const tabletAllStyle = `
-    .wp-block-zolo-list.${uniqueId} {
+    .wp-block-zolo-menu.${uniqueId} {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridTabStyle}, 1fr)`};
         ${listGapTabStyle};
         ${tabSingleAlign}
         ${layout=='flex' && tabListAlign}
       }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2')&& layout=='grid' && tabListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4')&& layout=='grid' && tabListAlign};
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item {
+        ${(preset == 'zolo-menu-style-1' || preset == 'zolo-menu-style-2')&& layout=='grid' && tabListAlign};
+        ${!iconToggle && (preset == 'zolo-menu-style-3' || preset == 'zolo-menu-style-4')&& layout=='grid' && tabListAlign};
         ${TabListRadius}
         ${tabListBorder}
         ${TabListp}
         ${TabListBg}
-        ${preset == 'zolo-list-style-4' && tabHVListAlign}
+        ${preset == 'zolo-menu-style-4' && tabHVListAlign}
     }
 
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${preset == 'zolo-list-style-3' && tabVListAlign}
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item {
+        ${preset == 'zolo-menu-style-3' && tabVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-icon-and-content-wrap{
-        ${preset == 'zolo-list-style-4' && tabVListAlign}
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-icon-and-content-wrap{
+        ${preset == 'zolo-menu-style-4' && tabVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item:hover {
         ${TabHListBg}
     }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-title{
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-title{
         ${TabTextListTypo}
      }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-desc {
         ${TabDscTypo}
         ${TabDsceMargin}
 
     }
- 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
-        ${tabIconSize} 
+
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-icon svg {
+        ${tabIconSize}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-icon {
          ${TabIconBg}
          ${TabIconPadding}
          ${TabIconMargin}
          ${tabIconBorder}
          ${TabIconRadius}
-     
+
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon {
-         ${TabIconHBg} 
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-item:hover .zolo-menu-icon {
+         ${TabIconHBg}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon svg,.wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon {
         ${tabIconHWidth}
         ${tabIconHHeight}
-        
+
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon {
         ${TabIconHoMargin}
     }
-  		
+
 	`;
 
     const mobileAllStyle = `
-    .wp-block-zolo-list.${uniqueId} {
+    .wp-block-zolo-menu.${uniqueId} {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridMobStyle}, 1fr)`};
         ${listGapMobStyle};
         ${mobSingleAlign}
         ${layout=='flex' && mobListAlign}
     }
-	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item { 
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout=='grid'  && mobListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout=='grid' && mobListAlign};
+	.wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item {
+        ${(preset == 'zolo-menu-style-1' || preset == 'zolo-menu-style-2') && layout=='grid'  && mobListAlign};
+        ${!iconToggle && (preset == 'zolo-menu-style-3' || preset == 'zolo-menu-style-4') && layout=='grid' && mobListAlign};
         ${MobListRadius}
         ${mobListBorder}
         ${MobListp}
         ${MobListBg}
-        ${preset == 'zolo-list-style-4' && mobHVListAlign}
+        ${preset == 'zolo-menu-style-4' && mobHVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${preset == 'zolo-list-style-3' && mobVListAlign}
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item {
+        ${preset == 'zolo-menu-style-3' && mobVListAlign}
     }
-    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-icon-and-content-wrap{
-        ${preset == 'zolo-list-style-4' && mobVListAlign}
+    .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-icon-and-content-wrap{
+        ${preset == 'zolo-menu-style-4' && mobVListAlign}
     }
-     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
+     .wp-block-zolo-menu.${uniqueId}.${preset} .zolo-menu-item:hover {
         ${MobHListBg}
     }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-title{
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-title{
         ${MobTextListTypo}
     }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-desc {
         ${MobDscTypo}
         ${MobDsceMargin}
     }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-icon svg {
         ${mobIconSize}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-icon {
          ${MobIconBg}
          ${MobIconPadding}
          ${MobIconMargin}
          ${mobIconBorder}
          ${MobIconRadius}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon {
-         ${MobIconHBg} 
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-item:hover .zolo-menu-icon {
+         ${MobIconHBg}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon svg,.wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon {
         ${mobIconHWidth}
-        ${mobIconHHeight} 
+        ${mobIconHHeight}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-hover-icon {
         ${MobIconHoMargin}
     }
   	`;
@@ -488,9 +488,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.list.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.list.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.list.mobileAllStyle', mobileAllStyle, props)}
+                desktopAllStyle={applyFilters('zolo.menu.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.menu.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.menu.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

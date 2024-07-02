@@ -2,353 +2,311 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+
 /**
  * Internal depencencies
  */
 const {
-    generateNormalBGControlStyles,
+    generateResRangeStyle,
+    generateBorderStyle,
+    generateResCounterStyle,
     generateDimensionStyle,
     generateBoxShadowStyles,
-    generateBorderStyle,
-    generateResRangeStyle,
-    generateResCounterStyle,
-    GlobalStyleHanlder,
-    generateResAlignmentStyle,
     generateTypographyStyles,
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
     generateGapStyle,
+    GlobalStyleHanlder,
+    generateNormalBGControlStyles,
+    generateResAlignmentStyle,
 } = window.zoloModule;
 
 import {
-    GRID_COLUMNS,
-    GRID_GAP,
-    CONTAINER_HEIGHT,
-    CONTAINER_BG,
-    CONTAINER_H_BG,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
-    CONTENT_ALIGNMENT,
-    CONTENT_PADDING,
-    CONTENT_BG,
-    TITLE_MARGIN,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
-    LINK_MARGIN,
-    LINK_TEXT_SHADOW,
-    LINK_TEXT_STROKE,
-    BRAND_PHOTO_BORDER,
-    BRAND_PHOTO_BORDER_RADIUS,
-    BRAND_PHOTO_BOX_SHADOW,
-    BRAND_PHOTO_BG,
-    BRAND_PHOTO_PADDING,
-    BRAND_PHOTO_MARGIN,
-    IMAGE_WIDTH,
+    MENU_COLUMNS_GAP,
+    ITEMS_GAP,
+    MENU_HEIGHT,
+    LIST_COLUMN_COUNT,
+    SINGLE_ITEM_ALIGNMENT,
+    //item
+    ITEM_ALIGNMENT,
+    LIST_BOX_RADIUS,
+    LIST_BORDER,
+    LIST_ALLBOX_PADDING,
+    LIST_BOX_SHADOW,
+    LIST_BG,
+    LIST_HOVER_BOX_SHADOW,
+    LIST_HOVER_BG,
+    //desc
+    DSC_MARGIN,
+    // icon
+    LIST_ICON_SIZE,
+    ICON_LIST_BG,
+    ICON_LIST_HOVER_BG,
+    ICON_LIST_PADDING,
+    ICON_LIST_MARGIN,
+    ICON_LIST_BORDER,
+    ICON_RADIUS,
+    ICON_VERTICAL_ALIGN,
+    //Hover Icon
+    LIST_HOVER_ICON_SIZE,
+    ICON_HOVER_LIST_MARGIN,
+    ICON_LINKVERTICAL_ALIGN,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, contentHorizontalPosition, contentVerticalPosition } =
-        attributes;
+    const {
+        preset,
+        uniqueId,
+        dscColor,
+        dscHcolor,
+        textListColor,
+        txtHListColor,
+        listIconColor,
+        listIconHover,
+        layout,
+        HoverIconColor,
+        iconToggle,
+        BorderHovColor,
+    } = attributes;
 
-    // column count
+    //desc
     const {
-        desktopRangeStyle: columnCountDeskstyle,
-        tabRangeStyle: columnCountTabStyle,
-        mobRangeStyle: columnCountMobStyle,
-    } = generateResCounterStyle({
-        controlName: GRID_COLUMNS,
-        attributes,
-        noProperty: true,
-        defaults: {
-            deskRange: 4,
-            tabRange: 2,
-            mobRange: 1,
-        },
-    });
+        typoStylesDesktop: DesktopDsceTypo,
+        typoStylesTab: TabDscTypo,
+        typoStylesMobile: MobDscTypo,
+    } = generateTypographyStyles({ prefixConstant: DSC_TYPOGRAPHY, attributes });
 
-    // column gap
     const {
-        gapStylesDesktop: colGapDeskstyle,
-        gapStylesTab: colGapTabStyle,
-        gapStylesMobile: colGapMobStyle,
-    } = generateGapStyle({
-        controlName: GRID_GAP,
-        attributes,
-    });
-
-    // Content Align
-    const {
-        desktopAlignStyle: brandContentDeskAlignStyle,
-        tabAlignStyle: brandContentTabAlignStyle,
-        mobAlignStyle: brandContentMobAlignStyle,
-    } = generateResAlignmentStyle({
-        controlName: CONTENT_ALIGNMENT,
-        property: 'text-align',
-        attributes,
-    });
-    const {
-        dimensionStylesDesktop: contentDeskPadding,
-        dimensionStylesTab: contentTabPadding,
-        dimensionStylesMobile: contentMobPadding,
+        dimensionStylesDesktop: DesktopDsceMargin,
+        dimensionStylesTab: TabDsceMargin,
+        dimensionStylesMobile: MobDsceMargin,
     } = generateDimensionStyle({
-        controlName: CONTENT_PADDING,
-        styleFor: 'padding',
+        controlName: DSC_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    //Text LIST
+    const {
+        typoStylesDesktop: DesktopTextListTypo,
+        typoStylesTab: TabTextListTypo,
+        typoStylesMobile: MobTextListTypo,
+    } = generateTypographyStyles({ prefixConstant: TEXT_LIST_TYPOGRAPHY, attributes });
+
+    //icon
+    const {
+        desktopAlignStyle: desktopVListAlign,
+        tabAlignStyle: tabVListAlign,
+        mobAlignStyle: mobVListAlign,
+    } = generateResAlignmentStyle({
+        controlName: ICON_VERTICAL_ALIGN,
+        property: 'align-items',
         attributes,
     });
 
     const {
-        backgroundStylesDesktop: contentDeskBGStyle,
-        backgroundStylesTab: contentTabBGStyle,
-        backgroundStylesMobile: contentMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTENT_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // Container
-    const {
-        desktopRangeStyle: deskContainerHeight,
-        tabRangeStyle: tabContainerHeight,
-        mobRangeStyle: mobContainerHeight,
+        desktopRangeStyle: desktopMenuHeight,
+        tabRangeStyle: tabMenuHeight,
+        mobRangeStyle: mobMenuHeight,
     } = generateResRangeStyle({
-        controlName: CONTAINER_HEIGHT,
+        controlName: MENU_HEIGHT,
         property: 'height',
         attributes,
     });
 
     const {
-        desktopBorderStyle: containerBorderDesk,
-        tabBorderStyle: containerBorderTab,
-        mobBorderStyle: containerBorderMob,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
+        backgroundStylesDesktop: DeskIconBg,
+        backgroundStylesTab: TabIconBg,
+        backgroundStylesMobile: MobIconBg,
+    } = generateNormalBGControlStyles({ controlName: ICON_LIST_BG, attributes });
+    const {
+        backgroundStylesDesktop: DeskIconHBg,
+        backgroundStylesTab: TabIconHBg,
+        backgroundStylesMobile: MobIconHBg,
+    } = generateNormalBGControlStyles({ controlName: ICON_LIST_HOVER_BG, attributes });
+    const {
+        dimensionStylesDesktop: DesktopIconPadding,
+        dimensionStylesTab: TabIconPadding,
+        dimensionStylesMobile: MobIconPadding,
+    } = generateDimensionStyle({
+        controlName: ICON_LIST_PADDING,
+        styleFor: 'padding',
         attributes,
     });
-
     const {
-        dimensionStylesDesktop: containerBorderRadiusDesk,
-        dimensionStylesTab: containerBorderRadiusTab,
-        dimensionStylesMobile: containerBorderRadiusMob,
+        desktopBorderStyle: desktopIconBorder,
+        tabBorderStyle: tabIconBorder,
+        mobBorderStyle: mobIconBorder,
+    } = generateBorderStyle({ controlName: ICON_LIST_BORDER, attributes });
+    const {
+        dimensionStylesDesktop: DesktopIconRadius,
+        dimensionStylesTab: TabIconRadius,
+        dimensionStylesMobile: MobIconRadius,
     } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
+        controlName: ICON_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
 
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
     const {
-        dimensionStylesDesktop: containerPaddingDesk,
-        dimensionStylesTab: containerPaddingTab,
-        dimensionStylesMobile: containerPaddingMob,
+        dimensionStylesDesktop: DesktopIconMargin,
+        dimensionStylesTab: TabIconMargin,
+        dimensionStylesMobile: MobIconMargin,
     } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerMarginDesk,
-        dimensionStylesTab: containerMarginTab,
-        dimensionStylesMobile: containerMarginMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_MARGIN,
+        controlName: ICON_LIST_MARGIN,
         styleFor: 'margin',
         attributes,
     });
 
+    //Hover icon
     const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BG,
+        desktopAlignStyle: desktopHVListAlign,
+        tabAlignStyle: tabHVListAlign,
+        mobAlignStyle: mobHVListAlign,
+    } = generateResAlignmentStyle({
+        controlName: ICON_LINKVERTICAL_ALIGN,
+        property: 'align-items',
         attributes,
-        noMainBGImg: false,
     });
-
     const {
-        backgroundStylesDesktop: containerDeskBGHStyle,
-        backgroundStylesTab: containerTabBGHStyle,
-        backgroundStylesMobile: containerMobBGHStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_H_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // Photo
-    const {
-        backgroundStylesDesktop: brandPhotoDeskBGStyle,
-        backgroundStylesTab: brandPhotoTabBGStyle,
-        backgroundStylesMobile: brandPhotoMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: BRAND_PHOTO_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    const {
-        desktopRangeStyle: deskImageWidth,
-        tabRangeStyle: tabImageWidth,
-        mobRangeStyle: mobImageWidth,
+        desktopRangeStyle: desktopIconHWidth,
+        tabRangeStyle: tabIconHWidth,
+        mobRangeStyle: mobIconHWidth,
     } = generateResRangeStyle({
-        controlName: IMAGE_WIDTH,
+        controlName: LIST_HOVER_ICON_SIZE,
         property: 'width',
         attributes,
     });
-
     const {
-        desktopBorderStyle: photoBorderDesktop,
-        tabBorderStyle: photoBorderTab,
-        mobBorderStyle: photoBorderMob,
-    } = generateBorderStyle({
-        controlName: BRAND_PHOTO_BORDER,
+        desktopRangeStyle: desktopIconHHeight,
+        tabRangeStyle: tabIconHHeight,
+        mobRangeStyle: mobIconHHeight,
+    } = generateResRangeStyle({
+        controlName: LIST_HOVER_ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: brandPhotoBorderRadiusDesk,
-        dimensionStylesTab: brandPhotoBorderRadiusTab,
-        dimensionStylesMobile: brandPhotoBorderRadiusMob,
+        dimensionStylesDesktop: DesktopIconHoMargin,
+        dimensionStylesTab: TabIconHoMargin,
+        dimensionStylesMobile: MobIconHoMargin,
     } = generateDimensionStyle({
-        controlName: BRAND_PHOTO_BORDER_RADIUS,
+        controlName: ICON_HOVER_LIST_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    //item
+    const {
+        desktopAlignStyle: desktopListAlign,
+        tabAlignStyle: tabListAlign,
+        mobAlignStyle: mobListAlign,
+    } = generateResAlignmentStyle({
+        controlName: ITEM_ALIGNMENT,
+        property: 'justify-content',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: DesktopListRadius,
+        dimensionStylesTab: TabListRadius,
+        dimensionStylesMobile: MobListRadius,
+    } = generateDimensionStyle({
+        controlName: LIST_BOX_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
 
-    // Photo Box Shadow
-    const { boxShadowStyle: brandPhotoBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: BRAND_PHOTO_BOX_SHADOW,
-    });
-
-    // Brand Photo Padding
     const {
-        dimensionStylesDesktop: brandPhotoPaddingDesk,
-        dimensionStylesTab: brandPhotoPaddingTab,
-        dimensionStylesMobile: brandPhotoPaddingMob,
+        desktopBorderStyle: desktopListBorder,
+        tabBorderStyle: tabListBorder,
+        mobBorderStyle: mobListBorder,
+    } = generateBorderStyle({ controlName: LIST_BORDER, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopListP,
+        dimensionStylesTab: TabListp,
+        dimensionStylesMobile: MobListp,
     } = generateDimensionStyle({
-        controlName: BRAND_PHOTO_PADDING,
+        controlName: LIST_ALLBOX_PADDING,
         styleFor: 'padding',
         attributes,
     });
 
-    // Brand Photo Margin
+    const { boxShadowStyle: boxshadowListitem } = generateBoxShadowStyles({ controlName: LIST_BOX_SHADOW, attributes });
     const {
-        dimensionStylesDesktop: brandPhotoMaringDesk,
-        dimensionStylesTab: brandPhotoMarginTab,
-        dimensionStylesMobile: brandPhotoMarginMob,
-    } = generateDimensionStyle({
-        controlName: BRAND_PHOTO_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
+        backgroundStylesDesktop: DeskListBg,
+        backgroundStylesTab: TabListBg,
+        backgroundStylesMobile: MobListBg,
+    } = generateNormalBGControlStyles({ controlName: LIST_BG, attributes });
 
-    // Title Typography
+    const { boxShadowStyle: boxshadowHListitem } = generateBoxShadowStyles({ controlName: LIST_HOVER_BOX_SHADOW, attributes });
+
     const {
-        typoStylesDesktop: titleTypoDesk,
-        typoStylesTab: titleTypoTab,
-        typoStylesMobile: titleTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: TITLE_TYPOGRAPHY,
-        attributes,
-    });
+        backgroundStylesDesktop: DeskHListBg,
+        backgroundStylesTab: TabHListBg,
+        backgroundStylesMobile: MobHListBg,
+    } = generateNormalBGControlStyles({ controlName: LIST_HOVER_BG, attributes });
 
-    // Link Typography
+    // column count
     const {
-        typoStylesDesktop: linkTypoDesk,
-        typoStylesTab: linkTypoTab,
-        typoStylesMobile: linkTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: LINK_TYPOGRAPHY,
-        defaultFontSize: 16,
+        desktopRangeStyle: listGridDeskstyle,
+        tabRangeStyle: listGridTabStyle,
+        mobRangeStyle: listGridMobStyle,
+    } = generateResCounterStyle({
+        controlName: LIST_COLUMN_COUNT,
         attributes,
+        noProperty: true,
+        defaults: {
+            deskRange: 1,
+            tabRange: 1,
+            mobRange: 1,
+        },
     });
 
-    // Title Margin
     const {
-        dimensionStylesDesktop: titleMarginDesk,
-        dimensionStylesTab: titleMarginTab,
-        dimensionStylesMobile: titleMarginMob,
-    } = generateDimensionStyle({
-        controlName: TITLE_MARGIN,
-        styleFor: 'margin',
+        desktopAlignStyle: desktopSingleAlign,
+        tabAlignStyle: tabSingleAlign,
+        mobAlignStyle: mobSingleAlign,
+    } = generateResAlignmentStyle({
+        controlName: SINGLE_ITEM_ALIGNMENT,
+        property: 'align-items',
         attributes,
     });
 
-    // Link Margin
+    // menu height
     const {
-        dimensionStylesDesktop: linkMarginDesk,
-        dimensionStylesTab: linkMarginTab,
-        dimensionStylesMobile: linkMarginMob,
-    } = generateDimensionStyle({
-        controlName: LINK_MARGIN,
-        styleFor: 'margin',
+        gapStylesDesktop: menuHeightDeskstyle,
+        gapStylesTab: menuHeightTabStyle,
+        gapStylesMobile: menuHeightMobStyle,
+    } = generateGapStyle({
+        controlName: ITEMS_GAP,
         attributes,
-    });
-
-    // Title Text Shadow
-    const { textShadowStyle: titleTextShadow } = generateTextShadowStyles({
-        attributes,
-        controlName: TITLE_TEXT_SHADOW,
-    });
-
-    // Title Text Stroke
-    const {
-        desktopTextStrokeStyle: titleTextStrokeDesk,
-        tabTextStrokeStyle: titleTextStrokeTab,
-        mobTextStrokeStyle: titleTextStrokeMob,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: TITLE_TEXT_STROKE,
-    });
-
-    // Link Text Shadow
-    const { textShadowStyle: linkTextShadow } = generateTextShadowStyles({
-        attributes,
-        controlName: LINK_TEXT_SHADOW,
-    });
-
-    // Link Text Stroke
-    const {
-        desktopTextStrokeStyle: linkTextStrokeDesk,
-        tabTextStrokeStyle: linkTextStrokeTab,
-        mobTextStrokeStyle: linkTextStrokeMob,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: LINK_TEXT_STROKE,
     });
 
     /**
      * All Style Combination
      */
+
     const desktopAllStyle = `
-        .${uniqueId}.zolo-menu-grid-wrap{
-			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
-            ${colGapDeskstyle}
-        }
-    `;
-
+    .wp-block-zolo-menu.${uniqueId} .zolo-menu-inner-blocks {
+        ${desktopListAlign}
+        ${menuHeightDeskstyle}
+        ${desktopMenuHeight}
+      }
+  	`;
     const tabletAllStyle = `
+    .wp-block-zolo-menu.${uniqueId} {
 
-    `;
+      }
+	`;
 
     const mobileAllStyle = `
 
-    `;
-
+  	`;
     return (
         <>
             <GlobalStyleHanlder
@@ -361,5 +319,4 @@ const Style = ({ props }) => {
         </>
     );
 };
-
 export default Style;
