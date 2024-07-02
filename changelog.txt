@@ -1,9 +1,18 @@
-## 1.0.8 [***, 2024]
+### 1.0.8 [July 02, 2024]
 
 ### Fixed
 
 - Entrance animation confilict with global link issue fixed in Advanced Icon Box
-- the map zoom in/out and draggble issue fixed in Google Map block
+- The map zoom in/out and draggble issue fixed in Google Map block
+- Patterns save as favorite features added in Template Library
+- Image Uploading issue fixed in Advanced Image block
+- Theme fonts support added
+
+###Improved
+
+- Transform Rotate reset control added in Transform features
+- Dynamic CSS Generation optimized
+- Template Library UI improved
 
 ## 1.0.7 [June 13, 2024]
 
