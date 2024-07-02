@@ -33,6 +33,7 @@ let allEntries = {
     ['build/extensions/export-pattern']: './src/extensions/export-pattern/index.js',
     ['build/extensions/import-pattern']: './src/extensions/import-pattern/index.js',
     ['build/template-library']: './src/template-library/index.js',
+    ['build/popup']: './src/popup/index.js',
     ['build/module']: {
         import: path.resolve(__dirname, 'src/module-export.js'),
         library: {

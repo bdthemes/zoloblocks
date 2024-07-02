@@ -153,7 +153,7 @@ function ZoloBlocksTemplateLibraryButton() {
     };
 
     subscribe(() => {
-        const toolbar = document.querySelector('.edit-post-header__toolbar');
+        const toolbar = document.querySelector('.editor-document-tools');
         const libraryButton = document.querySelector('.zoloblocks-template-library-button');
 
         if (toolbar && !libraryButton) {
