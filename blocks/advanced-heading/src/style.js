@@ -505,7 +505,7 @@ export default function Style({ props }) {
     }
 
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
-      -webkit-text-strokeWidth: 1px;
+      -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: ${titleColor || 'rgba(6, 6, 7, 0.919)'};
     }
 
@@ -630,7 +630,7 @@ export default function Style({ props }) {
     transform: translate(var(--zb-advanced-heading-pos-x, 0), var(--zb-advanced-heading-pos-y, 0)) rotate(var(--zb-advanced-heading-rotate, 0));
   }
   .zolo-block-wrapper.${uniqueId}.zolo-ah-style-2 .zolo-transparent-heading {
-    -webkit-text-strokeWidth: 3px;
+    -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: ${tptColor || 'rgba(6, 6, 7, 0.22)'};
   }
 `;
