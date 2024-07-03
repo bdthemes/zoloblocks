@@ -1,4 +1,4 @@
-import {render,useRef,useEffect} from '@wordpress/element'
+import {createRoot,useRef,useEffect} from '@wordpress/element'
 import CountUp from 'react-countup';
 
 // render on page load
@@ -69,15 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         )
     }
-
-    render(<CountupComponent
+    createRoot(item).render(<CountupComponent
       progressValue={progressValue}
       circleColor={circleColor}
       progressFillColor={progressFillColor}
       toggleLabel={toggleLabel}
       progressTitle={progressTitle}
       progressDuration ={progressDuration }
-      />,item)
+      />)
     });
   }
 });
