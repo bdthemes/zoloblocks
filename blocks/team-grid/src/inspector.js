@@ -521,7 +521,7 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
-                                                {preset !== 'style-2' && (
+                                                {preset === 'style-1' && (
                                                     <ColorControl
                                                         label={__('Separator Color', 'zoloblocks')}
                                                         color={separatorColor}
