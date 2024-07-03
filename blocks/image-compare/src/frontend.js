@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
 
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const comparisonOptions = JSON.parse(beafslider.dataset.comparisonoptions);
             const beforeImage = JSON.parse(beafslider.dataset.beforeimage);
             const afterImage = JSON.parse(beafslider.dataset.afterimage);
-
-            render(
+            const root = createRoot(item);
+            root.render(
                 <ReactCompareSlider
                     changePositionOnHover={comparisonOptions?.slideOnHover}
                     portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
@@ -57,8 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <ReactCompareSliderImage src={afterImage && afterImage?.url} alt={afterImage?.alt} />
                         </div>
                     }
-                />,
-                item
+                />
             );
         });
     }

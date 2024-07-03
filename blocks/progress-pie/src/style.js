@@ -19,7 +19,7 @@ import {NUMBER_TYPO,TITLE_TYPO} from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { 
+    const {
         uniqueId,
         progressSize,
         progressBarColor,
@@ -40,21 +40,21 @@ const Style = ({ props }) => {
         property: 'max-width',
         attributes,
     });
-    const { 
-        typoStylesDesktop: DesktopNumberTypo, 
-        typoStylesTab: TabNumberTypo, 
-        typoStylesMobile: MobNumberTypo 
-    } = generateTypographyStyles({ 
-        prefixConstant: NUMBER_TYPO, 
-        attributes 
+    const {
+        typoStylesDesktop: DesktopNumberTypo,
+        typoStylesTab: TabNumberTypo,
+        typoStylesMobile: MobNumberTypo
+    } = generateTypographyStyles({
+        prefixConstant: NUMBER_TYPO,
+        attributes
     });
-    const { 
-        typoStylesDesktop: DesktopTittleTypo, 
-        typoStylesTab: TabTittleTypo, 
-        typoStylesMobile: MobTittleTypo 
-    } = generateTypographyStyles({ 
-            prefixConstant: TITLE_TYPO, 
-            attributes 
+    const {
+        typoStylesDesktop: DesktopTittleTypo,
+        typoStylesTab: TabTittleTypo,
+        typoStylesMobile: MobTittleTypo
+    } = generateTypographyStyles({
+            prefixConstant: TITLE_TYPO,
+            attributes
         });
 
         const {
@@ -67,20 +67,20 @@ const Style = ({ props }) => {
             attributes,
         });
 
-  
-  
+
+
     /**
-     
+
      * All Style Combination
      */
-    // 
+    //
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-progress-pie {
             ${progressDeskAlignStyle}
          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-progress {
             ${progressSize ? `stroke-width:${progressSize/10}` : ''};
-            ${!toggleProgressColor && progressBarColor ? `stroke:${progressBarColor}` : ''};  
+            ${!toggleProgressColor && progressBarColor ? `stroke:${progressBarColor}` : ''};
             ${progressRound ? 'stroke-linecap:round' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
@@ -88,7 +88,7 @@ const Style = ({ props }) => {
          }
         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${deskProgressWidth}
-        }   
+        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
             ${DesktopNumberTypo}
             ${numberColor ? `fill:${numberColor }` :''}
@@ -109,22 +109,22 @@ const Style = ({ props }) => {
          }
       .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${tabProgressWidth}
-        } 
+        }
      .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${TabNumberTypo}
-        
+
        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
-            ${TabTittleTypo}   
-       } 
+            ${TabTittleTypo}
+       }
        `
-    const mobileAllStyle = ` 
+    const mobileAllStyle = `
      .${uniqueId}.wp-block-zolo-progress-pie {
           ${progressMobAlignStyle}
      }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
         ${mobProgressWidth}
-    }  
+    }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${MobNumberTypo}
     }

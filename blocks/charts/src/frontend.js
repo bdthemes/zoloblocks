@@ -1,4 +1,6 @@
-import { render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
+import React from 'react';
+
 import ApexCharts from 'react-apexcharts';
 import { v4 as uuidv4 } from 'uuid';
 document.addEventListener('DOMContentLoaded', () => {
@@ -155,15 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: pieChartData.labels,
             };
 
-            render(
+            const root = createRoot(item);
+            root.render(
                 <ApexCharts
                     options={chartType === 'pie' || chartType === 'donut' ? newPieChartOptions : newChartOptions}
                     series={chartType === 'pie' || chartType === 'donut' ? pieChartData.series : barChartData.series}
                     type={chartType}
                     width={'100%'}
                     height={chartHeight}
-                />,
-                item
+                />
             );
         });
     }
