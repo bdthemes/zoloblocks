@@ -54,6 +54,70 @@
                 }
             }
         }
+
+        &.grid {
+            &.zolo-countdown-col-1 {
+                .zolo-countdown-item {
+                    &::after {
+                        display: none;
+                    }
+                }
+            }
+            &.zolo-countdown-col-2 {
+                .zolo-countdown-item {
+                    &:nth-child(even){
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &.zolo-countdown-col-3 {
+                .zolo-countdown-item {
+                    &:nth-child(3n+3){
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &.zolo-countdown-col-4 {
+                .zolo-countdown-item {
+                    &:nth-child(4n+4){
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &.zolo-countdown-col-5 {
+                .zolo-countdown-item {
+                    &:nth-child(5n+5){
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &.zolo-countdown-col-6 {
+                .zolo-countdown-item {
+                    &:nth-child(6n+6){
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &.zolo-countdown-col-7 {
+                .zolo-countdown-item {
+                    &:nth-child(7n+7){
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .zolo-countdown-item {
@@ -151,6 +215,8 @@
     .zolo-countdown-style-4 .zolo-countdown-face {
         font-size: 2rem;
     }
+
+
 }
 
 @media (min-width: 768px) {
