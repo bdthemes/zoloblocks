@@ -3,45 +3,49 @@ import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
 
 import SingleBlock from './single-block';
-import blocks from './blocks.json';
+import extensions from './extensions.json';
 import categories from './categories';
 
 import Notice from '../notice';
 import { applyFilters } from '@wordpress/hooks';
 
-let zoloBlocksInitStatus;
+let zoloExtensionsInitStatus;
 apiFetch({
     path: '/wp/v2/settings',
     method: 'GET',
 })
     .then((response) => {
-        const { zolo_blocks_settings } = response;
-        zoloBlocksInitStatus = zolo_blocks_settings;
+        // console.log(response);
+        const { zolo_extensions_settings } = response;
+        console.log(zolo_extensions_settings);
+        zoloExtensionsInitStatus = zolo_extensions_settings;
     })
     .catch((error) => console.error('API Fetch Error:', error));
 
 const Extensions = () => {
     const [blockStates, setBlockStates] = useState([]);
-    const [blockStatus, setBlockStatus] = useState(zoloBlocksInitStatus || []);
+    const [blockStatus, setBlockStatus] = useState(zoloExtensionsInitStatus || []);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
+
 
     // set notice to false after 3 seconds
     useEffect(() => {
         if (notice) {
             setTimeout(() => {
                 setNotice(false);
-            }, 1000);
+                blockStatus
+}, 1000);
         }
     }, [notice]);
 
     // set blocks list
     useEffect(() => {
-        if (blocks.length > 0) {
-            setBlockStates(applyFilters('zoloblocks.dashboardExtensions', blocks));
+        if (extensions.length > 0) {
+            setBlockStates(applyFilters('zoloblocks.dashboardExtensions', extensions));
         }
-    }, [blocks]);
+    }, [extensions]);
 
     // update block setting
     const updateStatus = useCallback(
@@ -61,11 +65,11 @@ const Extensions = () => {
                 method: 'POST',
                 data: {
                     zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_blocks_settings: blocksToUpdate,
+                    zolo_extensions_settings: blocksToUpdate,
                 },
             })
                 .then((response) => {
-                    setBlockStatus(response.zolo_blocks_settings);
+                    setBlockStatus(response.zolo_extensions_settings);
                 })
                 .catch((error) => console.error('API Fetch Error:', error));
         },
@@ -107,11 +111,11 @@ const Extensions = () => {
                 method: 'POST',
                 data: {
                     zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_blocks_settings: blocksToUpdate,
+                    zolo_extensions_settings: blocksToUpdate,
                 },
             })
                 .then((response) => {
-                    setBlockStatus(response.zolo_blocks_settings);
+                    setBlockStatus(response.zolo_extensions_settings);
                 })
                 .catch((error) => console.error('API Fetch Error:', error));
         },
@@ -242,6 +246,7 @@ const Extensions = () => {
                                             return block.name === blockState.name;
                                         });
                                         if (status?.length > 0) {
+                                            console.log(status);
                                             return (
                                                 <SingleBlock
                                                     key={index}

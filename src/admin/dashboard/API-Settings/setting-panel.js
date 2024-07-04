@@ -3,7 +3,6 @@ import { useState } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
 
 const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, disabled = false }) => {
-    console.log(children);
     const [settingsPanel, setSettingsPanel] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 

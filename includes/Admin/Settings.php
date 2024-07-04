@@ -60,7 +60,7 @@ class Zolo_Settings {
             'zolo_extensions_settings',
             [
                 'type'              => 'array',
-                'default'           => $this::block_list(),
+                'default'           => $this::extensions_list(),
                 'sanitize_callback' => NULL,
                 'show_in_rest'      => [
                     'schema' => [
@@ -315,6 +315,16 @@ class Zolo_Settings {
         if (file_exists($blocks_file)) {
             $blocks = require $blocks_file;
             return is_array($blocks) ? $blocks : [];
+        } else {
+            return [];
+        }
+    }
+    public static function extensions_list() {
+        $extensions_file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Admin/Extensions.php';
+
+        if (file_exists($extensions_file)) {
+            $extensions = require $extensions_file;
+            return is_array($extensions) ? $extensions : [];
         } else {
             return [];
         }

@@ -32,7 +32,7 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
                 </div>
             </div>
             <div className="block-switcher">
-                <span>UPCOMING</span>
+                <span>Coming Soon</span>
                 {/* <ToggleControl checked={value} onChange={onClick} /> */}
             </div>
         </div>

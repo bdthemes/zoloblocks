@@ -187,7 +187,7 @@ const ApiSettings = () => {
                     title={__('Instagram Feed (coming soon)', 'zoloblocks')}
                     description={
                         <>
-                            <p class="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">https://developers.facebook.com/docs/instagram-basic-display-api/getting-started</a> for create your Consumer key and Access Token.</p>
+                            <p class="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</p>
                         </>
                     }
                     docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
