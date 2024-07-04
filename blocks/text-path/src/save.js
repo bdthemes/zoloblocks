@@ -18,7 +18,7 @@ const Save = ({ attributes }) => {
             })}
             data-textpathcontent={textpathContent}
             data-textpathtype={textPathType}
-            data-pathlink={pathlink}
+            data-pathlink={JSON.stringify(pathlink)}
             data-textpathlength={textpathLength}
             data-uniqueid={uniqueId}
         ></div>

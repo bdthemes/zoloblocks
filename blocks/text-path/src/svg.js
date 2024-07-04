@@ -1,4 +1,3 @@
-import { RawHTML } from '@wordpress/element';
 const SvgComponent = ({ children, uniqueId, pathType }) => {
     // Ensure uniqueId is defined and unique for each instance
     // Generate random id if not provided

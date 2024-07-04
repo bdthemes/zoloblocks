@@ -4,7 +4,7 @@
 const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies, generateTextStrokeAttributies } =
     window.zoloModule;
 
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -39,6 +39,7 @@ const attributes = {
     ...generateResRangeAttributies(TEXTPATH_SIZE),
     ...generateTextStrokeAttributies(TEXT_PATH_STROKE),
     ...generateResRangeAttributies(TEXT_WORD_SPACING),
+    ...generateResRangeAttributies(PATH_TEXT_SPACING),
 
     textpathContent: {
         type: 'string',
@@ -51,7 +52,7 @@ const attributes = {
     pathlink: {
         type: 'object',
         default: {
-            url: '#',
+            url: '',
             openInNewTab: false,
         },
     },

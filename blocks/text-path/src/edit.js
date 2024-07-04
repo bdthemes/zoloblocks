@@ -30,7 +30,7 @@ import SvgComponent from './svg';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, textpathContent, textPathType, pathlink, textpathLength, textPathShow } = attributes;
+    const { preview, uniqueId, parentClasses, textpathContent, textPathType, pathlink, textpathLength } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -58,7 +58,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SvgComponent uniqueId={uniqueId} pathType={textPathType}>
                     <text>
-                        <textPath id="e-text-path-bb2a80b" href={`#MyPath-${uniqueId}`} textLength={textpathLength}>
+                        <textPath href={`#MyPath-${uniqueId}`} textLength={textpathLength}>
                             <a
                                 className="zolo-textpath"
                                 href={pathlink && pathlink.url}

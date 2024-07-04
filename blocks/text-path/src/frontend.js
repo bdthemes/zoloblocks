@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (
             <SvgComponent uniqueId={uniqueId} pathType={textPathType}>
                 <text>
-                    <textPath id="e-text-path-bb2a80b" href={`#MyPath-${uniqueId}`} textLength={textpathLength}>
+                    <textPath href={`#MyPath-${uniqueId}`} textLength={textpathLength}>
                         <a
                             className="zolo-textpath"
                             href={pathlink && pathlink.url}
@@ -28,10 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     textPath.forEach((item) => {
         const textpathContent = item.dataset.textpathcontent;
         const textPathType = item.dataset.textpathtype;
-        const pathlink = item.dataset.pathlink;
+        const pathlink = JSON.parse(item.dataset.pathlink);
         const textpathLength = item.dataset.textpathlength;
         const uniqueId = item.dataset.uniqueid;
-
         render(
             <SvgItem
                 textpathContent={textpathContent}

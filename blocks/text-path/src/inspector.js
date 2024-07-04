@@ -25,7 +25,7 @@ const {
 import objAttributes from './attributes';
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 function Inspector(props) {
@@ -113,7 +113,7 @@ function Inspector(props) {
                                 controlName={TEXTPATH_SIZE}
                                 requiredProps={requiredProps}
                                 min={0}
-                                max={500}
+                                max={1000}
                                 step={1}
                             />
 
@@ -147,6 +147,14 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Word Spacing', 'zoloblocks')}
                                 controlName={TEXT_WORD_SPACING}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={35}
+                                step={1}
+                            />
+                            <ResRangeControl
+                                label={__('Text Spacing', 'zoloblocks')}
+                                controlName={PATH_TEXT_SPACING}
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={35}

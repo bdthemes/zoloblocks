@@ -10,7 +10,7 @@ const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeSty
     window.zoloModule;
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING } from './constants';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -71,6 +71,15 @@ const Style = ({ props }) => {
         property: 'word-spacing',
         attributes,
     });
+    const {
+        desktopRangeStyle: DeskTextSpacing,
+        tabRangeStyle: TabTextSpacing,
+        mobRangeStyle: MobTextSpacing,
+    } = generateResRangeStyle({
+        controlName: PATH_TEXT_SPACING,
+        property: 'letter-spacing',
+        attributes,
+    });
 
     /**
      * All Style Combination
@@ -82,6 +91,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-text-path tspan {
             ${Desktextstroke}
             ${DeskTextpathSpacing}
+            ${DeskTextSpacing}
             ${textPathColor && `stroke:${textPathColor}`}
             
         }
@@ -89,7 +99,7 @@ const Style = ({ props }) => {
             ${textPathHoverColor && `stroke:${textPathHoverColor}`}
         }  
         .${uniqueId}.wp-block-zolo-text-path .zolo-path{
-            ${textPathShow && 'stroke:red'};
+            ${textPathShow && 'stroke:#2667ff'};
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
             ${DeskTextpathWidth}
@@ -107,6 +117,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-text-path tspan {
             ${Tabktextstroke}
             ${TabTextpathSpacing}
+            ${TabTextSpacing}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
             ${TabTextpathWidth}
@@ -124,6 +135,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-text-path tspan {
             ${Mobtextstroke}
             ${MobTextpathSpacing}
+            ${MobTextSpacing}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
             ${MobTextpathWidth}

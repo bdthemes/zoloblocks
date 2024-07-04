@@ -6,7 +6,18 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateResAlignmentStyle, generateDimensionStyle, generateTypographyStyles, generateResRangeStyle, generateBoxShadowStyles, generateBorderStyle, generateNormalBGControlStyles, generateResCounterStyle, generateGapStyle, GlobalStyleHanlder } = window.zoloModule;
+const {
+    generateResAlignmentStyle,
+    generateDimensionStyle,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    generateBoxShadowStyles,
+    generateBorderStyle,
+    generateNormalBGControlStyles,
+    generateResCounterStyle,
+    generateGapStyle,
+    GlobalStyleHanlder,
+} = window.zoloModule;
 
 import {
     INNER_ALIGNMENT,
@@ -114,7 +125,11 @@ const Style = ({ props }) => {
         styleFor: 'border-radius',
         attributes,
     });
-    const { desktopBorderStyle: desktopLabelBorder, tabBorderStyle: tabLabelBorder, mobBorderStyle: mobLabelBorder } = generateBorderStyle({ controlName: COUNTLABEL_BORDER, attributes });
+    const {
+        desktopBorderStyle: desktopLabelBorder,
+        tabBorderStyle: tabLabelBorder,
+        mobBorderStyle: mobLabelBorder,
+    } = generateBorderStyle({ controlName: COUNTLABEL_BORDER, attributes });
 
     //NUMBER
     const {
@@ -146,10 +161,22 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
-    const { desktopBorderStyle: desktopNumBorder, tabBorderStyle: tabNumBorder, mobBorderStyle: mobNumBorder } = generateBorderStyle({ controlName: COUNTNUM_BORDER, attributes });
-    const { backgroundStylesDesktop: DeskNumBg, backgroundStylesTab: TabNumGg, backgroundStylesMobile: MobNumBg } = generateNormalBGControlStyles({ controlName: COUNT_NUM_BG, attributes });
+    const {
+        desktopBorderStyle: desktopNumBorder,
+        tabBorderStyle: tabNumBorder,
+        mobBorderStyle: mobNumBorder,
+    } = generateBorderStyle({ controlName: COUNTNUM_BORDER, attributes });
+    const {
+        backgroundStylesDesktop: DeskNumBg,
+        backgroundStylesTab: TabNumGg,
+        backgroundStylesMobile: MobNumBg,
+    } = generateNormalBGControlStyles({ controlName: COUNT_NUM_BG, attributes });
 
-    const { backgroundStylesDesktop: DeskBoxBg, backgroundStylesTab: TabBoxGg, backgroundStylesMobile: MobBoxBg } = generateNormalBGControlStyles({ controlName: COUNT_BG, attributes });
+    const {
+        backgroundStylesDesktop: DeskBoxBg,
+        backgroundStylesTab: TabBoxGg,
+        backgroundStylesMobile: MobBoxBg,
+    } = generateNormalBGControlStyles({ controlName: COUNT_BG, attributes });
 
     const {
         dimensionStylesDesktop: DesktopBoxPadding,
@@ -160,7 +187,11 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
-    const { desktopBorderStyle: desktopBoxborder, tabBorderStyle: tabBoxborder, mobBorderStyle: mobBoxborder } = generateBorderStyle({ controlName: COUNT_BORDER, attributes });
+    const {
+        desktopBorderStyle: desktopBoxborder,
+        tabBorderStyle: tabBoxborder,
+        mobBorderStyle: mobBoxborder,
+    } = generateBorderStyle({ controlName: COUNT_BORDER, attributes });
     const {
         dimensionStylesDesktop: DesktopBoxRadius,
         dimensionStylesTab: TabBoxRadius,
@@ -191,13 +222,29 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    const { typoStylesDesktop: DesktopDigitTypo, typoStylesTab: TabDigitTypo, typoStylesMobile: MobDigitTypo } = generateTypographyStyles({ prefixConstant: DIGIT_TYPO, attributes });
+    const {
+        typoStylesDesktop: DesktopDigitTypo,
+        typoStylesTab: TabDigitTypo,
+        typoStylesMobile: MobDigitTypo,
+    } = generateTypographyStyles({ prefixConstant: DIGIT_TYPO, attributes });
 
-    const { typoStylesDesktop: DesktopLabelTypo, typoStylesTab: TabLabelTypo, typoStylesMobile: MobLabelTypo } = generateTypographyStyles({ prefixConstant: LABEL_TYPO, attributes });
+    const {
+        typoStylesDesktop: DesktopLabelTypo,
+        typoStylesTab: TabLabelTypo,
+        typoStylesMobile: MobLabelTypo,
+    } = generateTypographyStyles({ prefixConstant: LABEL_TYPO, attributes });
 
-    const { backgroundStylesDesktop: DeskLabelBg, backgroundStylesTab: TabLabelGg, backgroundStylesMobile: MobLabelBg } = generateNormalBGControlStyles({ controlName: COUNT_LABEL_BG, attributes });
+    const {
+        backgroundStylesDesktop: DeskLabelBg,
+        backgroundStylesTab: TabLabelGg,
+        backgroundStylesMobile: MobLabelBg,
+    } = generateNormalBGControlStyles({ controlName: COUNT_LABEL_BG, attributes });
 
-    const { typoStylesDesktop: DesktopSeparatorTypo, typoStylesTab: TabSepararotTypo, typoStylesMobile: MobSeparatorTypo } = generateTypographyStyles({ prefixConstant: SEPARATOR_TYPO, attributes });
+    const {
+        typoStylesDesktop: DesktopSeparatorTypo,
+        typoStylesTab: TabSepararotTypo,
+        typoStylesMobile: MobSeparatorTypo,
+    } = generateTypographyStyles({ prefixConstant: SEPARATOR_TYPO, attributes });
 
     const {
         desktopRangeStyle: desktopSright,
