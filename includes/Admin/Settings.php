@@ -55,8 +55,38 @@ class Zolo_Settings {
                 ],
             ]
         );
-
-        // favorite templates 
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_extensions_settings',
+            [
+                'type'              => 'array',
+                'default'           => $this::block_list(),
+                'sanitize_callback' => NULL,
+                'show_in_rest'      => [
+                    'schema' => [
+                        'type'  => 'array',
+                        'items' => [
+                            'type'       => 'object',
+                            'properties' => [
+                                'name' => [
+                                    'type' => 'string',
+                                ],
+                                'categories' => [
+                                    'type'  => 'array',
+                                    'items' => [
+                                        'type' => 'string',
+                                    ],
+                                ],
+                                'status' => [
+                                    'type' => 'boolean',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ]
+        );
+        // favorite templates
         register_setting(
             'zolo_blocks_settings_group',
             'zolo_favorite_templates',

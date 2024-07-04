@@ -10,6 +10,10 @@ export const TABS = [
         value: 'blocks',
     },
     {
+        label: __('Extensions', 'zoloblocks'),
+        value: 'extensions',
+    },
+    {
         label: __('API Settings', 'zoloblocks'),
         value: 'apiSettings',
     },

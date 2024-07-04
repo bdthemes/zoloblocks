@@ -1,0 +1,12 @@
+Entrarance animation
+Scroll Animation
+Floating animation
+Sticky Animation
+Advanced Visibility
+Mouse Track (coming soon)
+Mouse Tilt (coming soon)
+Dynamic content (coming soon)
+Copy Paste Style
+Reset style (coming soon)
+Export Pattern
+Export Page

@@ -2,7 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
 
-const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave }) => {
+const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, disabled = false }) => {
+    console.log(children);
     const [settingsPanel, setSettingsPanel] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -89,9 +90,16 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                         <h4 className="modal-title">{title}</h4>
                         <p className="modal-description">{description}</p>
                         {children}
-                        <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
-                            {isSaving ? __('Saving...', 'zoloblocks') : __('Save Changes', 'zoloblocks')}
-                        </button>
+                        {disabled ? (
+                            <button className="settings-save-btn" onClick={handleSaveChanges} disabled={true}>
+                                {__('Comming Soon', 'zoloblocks')}
+                            </button>
+                        ) : (
+                            <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
+                                {isSaving ? __('Saving...', 'zoloblocks') : __('Save Changes', 'zoloblocks')}
+                            </button>
+                        )}
+
                     </div>
                 </Modal>
             )}

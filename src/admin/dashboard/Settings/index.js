@@ -215,6 +215,12 @@ const Settings = () => {
                                         }}
                                     />
                                 </SettingBox>
+                                <SettingBox
+                                    title={__('Popup Builder (upcoming)', 'zoloblocks')}
+                                    description={__('Enable the Pattern Import option to import your block(s) pattern.', 'zoloblocks')}
+                                >
+                                    <span>Coming</span>
+                                </SettingBox>
                             </div>
                         </div>
                         <div className="zolo-tab-content-item"></div>
