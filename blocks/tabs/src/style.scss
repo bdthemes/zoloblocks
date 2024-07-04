@@ -9,7 +9,7 @@
     --zolo-tab-title-margin: 0;
     --zolo-tab-desc-margin: 10px 0 0;
     --zolo-tab-desc-color: #88888b;
-    --zolo-tab-head-item-padding: 14px 30px;
+    --zolo-tab-head-item-padding: 14px 20px;
     --zolo-tab-head-item-border-radius: 10px;
     --zolo-tab-wrap-gap: 30px;
     --zolo-tab-head-item-gap: 15px;
@@ -28,6 +28,10 @@
                 width: 100%;
             }
         }
+    }
+
+    .zolo-tab_icon-number-wrap {
+        display: inline-flex;
     }
 
     .zolo-tab_head-item {
@@ -232,6 +236,23 @@
         .zolo-tab_vertical-left .tab__content,
         .zolo-tab_vertical-right .tab__content {
             width: 100%;
+        }
+    }
+}
+
+
+.zolo-editor {
+    .wp-block-zolo-tabs {
+         .block-editor-button-block-appender {
+            height: auto;
+            box-shadow: none;
+            box-sizing: border-box;
+        }
+        .tab__content {
+            .block-editor-inner-blocks {
+                z-index: 11;
+                position: relative;
+            }
         }
     }
 }
