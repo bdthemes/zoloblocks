@@ -29,7 +29,7 @@ import CountdownTimer from './counter';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
-    const { resMode, preview, uniqueId, parentClasses, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels, layout } =
+    const { resMode, preview, uniqueId, parentClasses, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels, layout, zolo_countBoxGridRange, zolo_TABcountBoxGridRange, zolo_MOBcountBoxGridRange } =
         attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -55,6 +55,12 @@ export default function Edit(props) {
         setAttributes({ CountDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] });
     }
 
+    console.log('attributes', attributes);
+
+    // zolo_countBoxGridRange
+    // zolo_TABcountBoxGridRange
+    // zolo_MOBcountBoxGridRange
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -62,7 +68,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
                 <div
-                    className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`} ${layout == 'flex' ? 'flex' : 'grid'}`}
+                    className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`} ${layout == 'flex' ? 'flex' : `grid zolo-dgc-${zolo_countBoxGridRange} zolo-tbgc-${zolo_TABcountBoxGridRange} zolo-mbgc-${zolo_MOBcountBoxGridRange}`}`}
                 >
                     <CountdownTimer
                         targetDate={CountDate}
