@@ -216,10 +216,10 @@ const Settings = () => {
                                     />
                                 </SettingBox>
                                 <SettingBox
-                                    title={__('Popup Builder (upcoming)', 'zoloblocks')}
+                                    title={__('Popup Builder (Coming Soon)', 'zoloblocks')}
                                     description={__('Enable the Pattern Import option to import your block(s) pattern.', 'zoloblocks')}
                                 >
-                                    <span>Coming</span>
+                                    <span>Coming Soon</span>
                                 </SettingBox>
                             </div>
                         </div>
