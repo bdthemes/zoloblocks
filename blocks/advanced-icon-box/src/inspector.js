@@ -98,6 +98,7 @@ function Inspector(props) {
         titleTag,
         resMode,
         showButtonIcon,
+        showButtonText,
         mainIcon,
         showMainIcon,
         iconTypeImage,
@@ -227,6 +228,22 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
+                            {showButton && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Show Button Text', 'zoloblocks')}
+                                        checked={showButtonText}
+                                        onChange={() =>
+                                            setAttributes({
+                                                showButtonText: !showButtonText,
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
+
+
                             {showButton && (
                                 <>
                                     <ToggleControl
@@ -240,6 +257,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
+
                             <ToggleControl
                                 label={__('Use Link as Global', 'zoloblocks')}
                                 checked={globalLink}
@@ -263,7 +281,7 @@ function Inspector(props) {
                                     'zolo.advancedIconBox.animation',
                                     <ZoloPanelBody title={__('Animation', 'zoloblocks')} panelProps={props} isPro={true} isDisabled={true}>
                                         <SelectControl
-                                            label={__('Animation Type', 'zoloblocks')}
+                                            label={__('Type', 'zoloblocks')}
                                             value={animationType}
                                             options={ANIMATION_TYPES}
                                             onChange={(value) => {
@@ -284,7 +302,7 @@ function Inspector(props) {
                                         />
                                         {animationType === 'style-1' && (
                                             <SelectControl
-                                                label={__('Animation Position', 'zoloblocks')}
+                                                label={__('Position', 'zoloblocks')}
                                                 value={animationPositionOne}
                                                 options={ANIMATION_POSITIONS_ONE}
                                                 onChange={(value) =>
@@ -297,7 +315,7 @@ function Inspector(props) {
 
                                         {animationType === 'style-2' && (
                                             <SelectControl
-                                                label={__('Animation Position', 'zoloblocks')}
+                                                label={__('Position', 'zoloblocks')}
                                                 value={animationPositionTwo}
                                                 options={ANIMATION_POSITIONS_TWO}
                                                 onChange={(value) =>
@@ -428,7 +446,7 @@ function Inspector(props) {
                                 placeholder={__('Description goes here..', 'zoloblocks')}
                             />
 
-                            {showButton && (
+                            {showButton && showButtonText && (
                                 <>
                                     <TextControl
                                         label={__('Button Text', 'zoloblocks')}

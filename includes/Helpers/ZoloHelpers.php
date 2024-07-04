@@ -267,4 +267,52 @@ class ZoloHelpers {
 
         return array_merge($defaults, $svg_args);
     }
+
+    public static function zolo_get_theme_fonts() {
+        // Retrieve global settings
+        $global_settings = wp_get_global_settings();
+        $global_fonts = $global_settings['typography']['fontFamilies'] ?? [];
+    
+        if (empty($global_fonts)) {
+            return [];
+        }
+
+        $theme_fonts = [];
+        $custom_fonts = [];
+        $final_fonts = [];
+    
+        // Check if theme fonts exist and are not empty
+        if (isset($global_fonts['theme']) && !empty($global_fonts['theme'])) {
+            foreach ($global_fonts['theme'] as $font) {
+                if (isset($font['name'])) {
+                    $theme_fonts[] = $font['name'];
+                }
+            }
+        }
+    
+        // Check if custom fonts exist and are not empty
+        if (isset($global_fonts['custom']) && !empty($global_fonts['custom'])) {
+            foreach ($global_fonts['custom'] as $font) {
+                if (isset($font['name'])) {
+                    $custom_fonts[] = $font['name'];
+                }
+            }
+        }
+    
+        // Merge theme and custom fonts into the final array
+        $final_fonts = array_merge($theme_fonts, $custom_fonts);
+
+        // if any font in final_fonts array includes 'system' or 'System' keyword, then keep them at the top of the array
+        $system_fonts = array_filter($final_fonts, function ($font) {
+            return strpos($font, 'system') !== false || strpos($font, 'System') !== false;
+        }); 
+
+        // final fonts array including system fonts at the top
+        $final_fonts = array_merge($system_fonts, array_diff($final_fonts, $system_fonts));
+    
+        // remove duplicate fonts
+        $final_fonts = array_unique($final_fonts); 
+
+        return $final_fonts;
+    }
 }

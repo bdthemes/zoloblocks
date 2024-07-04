@@ -161,7 +161,7 @@ export const AdvancedOptions = (props) => {
                     label={__('Set Z Index ', 'zoloblocks')}
                     controlName={'zIndex'}
                     requiredProps={requiredProps}
-                    min={0}
+                    min={-100}
                     max={100}
                     step={1}
                     help={__('Set the z-index for the section', 'zoloblocks')}

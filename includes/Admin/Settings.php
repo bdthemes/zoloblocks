@@ -56,6 +56,25 @@ class Zolo_Settings {
             ]
         );
 
+        // favorite templates 
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_favorite_templates',
+            [
+                'type'              => 'array',
+                'default'           => [],
+                'sanitize_callback' => NULL,
+                'show_in_rest'      => [
+                    'schema' => [
+                        'type'  => 'array',
+                        'items' => [
+                            'type'       => 'number',
+                        ],
+                    ],
+                ],
+            ]
+        );
+
         // register zolo google api key setting
         register_setting(
             'zolo_blocks_settings_group',

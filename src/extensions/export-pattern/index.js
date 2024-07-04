@@ -5,6 +5,9 @@ import { __ } from '@wordpress/i18n';
 import { Notice, TextControl, ToggleControl, Modal, Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
+// page export
+import '../page-export';
+
 // import style
 import './export.scss';
 

@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { fontsseControl } from '@wordpress/components';
+import { BaseControl } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -16,6 +16,18 @@ import Select2 from 'react-select';
  * Internal dependencies
  */
 import { googleFonts } from './googleFonts';
+
+const zoloThemeFonts = zoloSettings?.theme_fonts;
+const zoloAvailableFonts = [];
+
+if (zoloThemeFonts) {
+    // check the object is not empty
+    if (Object.keys(zoloThemeFonts).length > 0) {
+        Object.keys(zoloThemeFonts).map((font) => {
+            zoloAvailableFonts.push({ value: font, label: zoloThemeFonts[font] });
+        });
+    }
+}
 
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
     const id = `inspector-zb-font-family-${instanceId}`;
@@ -34,17 +46,6 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
 
     const onChangeValue = (select) => {
         let selectedFont = select.label;
-
-        // const googleFontsAttr =
-        //   ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
-
-        // if (selectedFont) {
-        //   const link = document.createElement('link');
-        //   link.rel = 'stylesheet';
-        //   link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
-        //   document.head.appendChild(link);
-        // }
-
         if (selectedFont) {
             // skip if default OR Arial, Helvetica, Times New Roman, Georgia
             if (
@@ -52,12 +53,14 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                 selectedFont === 'Arial' ||
                 selectedFont === 'Helvetica' ||
                 selectedFont === 'Times-New-Roman' ||
-                selectedFont === 'Georgia'
+                selectedFont === 'Georgia' ||
+                zoloAvailableFonts.find((font) => font.label === selectedFont)
             ) {
                 onChange(selectedFont);
                 return;
             }
         }
+
         let webFontConfig = {
             google: {
                 families: [selectedFont],
@@ -69,7 +72,7 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
     };
 
     return (
-        <fontsseControl label={label} id={id} help={help} className={className}>
+        <BaseControl label={label} id={id} help={help} className={className}>
             <Select2
                 name="zb-select-font"
                 classNamePrefix="zolo"
@@ -78,9 +81,9 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                     label: value,
                 }}
                 onChange={onChangeValue}
-                options={fonts}
+                options={zoloAvailableFonts && zoloAvailableFonts.length > 0 ? zoloAvailableFonts : fonts}
             />
-        </fontsseControl>
+        </BaseControl>
     );
 };
 

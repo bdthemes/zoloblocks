@@ -18,6 +18,7 @@ const Save = ({ attributes }) => {
         showDesc,
         showButton,
         showButtonIcon,
+        showButtonText,
         buttonIcon,
         iconType,
         iconTypeImage,
@@ -104,7 +105,7 @@ const Save = ({ attributes }) => {
                                         rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
                                     })}
                                 >
-                                    <RichText.Content tagName="span" value={buttonText} />
+                                    {showButtonText && <RichText.Content tagName="span" value={buttonText} />}
                                     {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                 </DynamicTag>
                             </div>

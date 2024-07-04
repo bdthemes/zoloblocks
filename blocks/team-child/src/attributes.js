@@ -25,6 +25,7 @@ import {
     TEAM_PHOTO_BOX_SHADOW,
     TEAM_PHOTO_MARGIN,
     TEAM_PHOTO_PADDING,
+    IMAGE_OVERLAY,
     TEAM_NAME_MARGIN,
     TEAM_DESIGNATION_MARGIN,
     TEAM_SHORT_BIO_MARGIN,
@@ -116,8 +117,10 @@ const attributes = {
     ...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
     ...generateDimensionAttributes(TEAM_PHOTO_PADDING),
     ...generateBoxShadowAttributies(TEAM_PHOTO_BOX_SHADOW),
+    ...generateNormalBGAttributes(IMAGE_OVERLAY),
     ...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
     ...generateDimensionAttributes(TEAM_NAME_MARGIN),
+
 
     ...generateDimensionAttributes(ICONS_CONTAINER_PADDING),
     ...generateDimensionAttributes(ICONS_CONTAINER_MARGIN),
