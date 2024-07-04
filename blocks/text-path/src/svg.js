@@ -1,7 +1,7 @@
 const SvgComponent = ({ children, uniqueId, pathType }) => {
     // Ensure uniqueId is defined and unique for each instance
     // Generate random id if not provided
-    let path;
+    let path, viewBox, height, width;
     if (pathType == 'wave') {
         path = (
             <>
@@ -14,12 +14,24 @@ const SvgComponent = ({ children, uniqueId, pathType }) => {
                 <path d="M-208.3307,-6.75" />
             </>
         );
+        viewBox = '0 0 250 42.4994';
+        height = '42.4994';
+        width = '250';
     } else if (pathType == 'arc') {
         path = <path d="M.25,125.25a125,125,0,0,1,250,0" id={`MyPath-${uniqueId}`} className="zolo-path" />;
+        viewBox = '0 0 250.5 125.25';
+        height = '125.25';
+        width = '250.5';
     } else if (pathType == 'circle') {
         path = <path d="M.25,125.25a125,125,0,1,1,125,125,125,125,0,0,1-125-125" id={`MyPath-${uniqueId}`} className="zolo-path" />;
+        viewBox = '0 0 250.5 250.5';
+        height = '250.5';
+        width = '250.5';
     } else if (pathType == 'line') {
         path = <path d="M 0 27 l 250 -22" id={`MyPath-${uniqueId}`} className="zolo-path" />;
+        viewBox = '0 0 250 22';
+        height = '22';
+        width = '250';
     } else if (pathType == 'oval') {
         path = (
             <path
@@ -28,6 +40,9 @@ const SvgComponent = ({ children, uniqueId, pathType }) => {
                 className="zolo-path"
             />
         );
+        viewBox = '0 0 250.5 125.75';
+        height = '125.75';
+        width = '250.5';
     } else if (pathType == 'spiral') {
         path = (
             <path
@@ -36,9 +51,12 @@ const SvgComponent = ({ children, uniqueId, pathType }) => {
                 className="zolo-path"
             />
         );
+        viewBox = '0 0 250.4348 239.4454';
+        height = '239.4454';
+        width = '250.4348';
     }
     return (
-        <svg width="250.5" height="250.5" viewBox="0 0 250.5 250.5" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox={viewBox} height={height} width={width}>
             {/* First path with dynamic id */}
             {path}
             {/* Render children if any */}

@@ -31,17 +31,7 @@ const Style = ({ props }) => {
         mobRangeStyle: MobTextpathWidth,
     } = generateResRangeStyle({
         controlName: TEXTPATH_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: DeskTextpathHeight,
-        tabRangeStyle: TabTextpathHeight,
-        mobRangeStyle: MobTextpathHeight,
-    } = generateResRangeStyle({
-        controlName: TEXTPATH_SIZE,
-        property: 'height',
+        property: '--width',
         attributes,
     });
 
@@ -102,11 +92,9 @@ const Style = ({ props }) => {
             ${textPathShow && 'stroke:#2667ff'};
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
-            ${DeskTextpathWidth}
-            ${DeskTextpathHeight}
             ${DesktopTextpathTypo}
-            
-            ${textpathRotate && `rotate:${textpathRotate}deg`}
+            ${textpathRotate && `rotate:${textpathRotate}deg`};
+            ${DeskTextpathWidth}
         }
     `;
 
@@ -120,10 +108,8 @@ const Style = ({ props }) => {
             ${TabTextSpacing}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
+            ${TabTextpathTypo}  
             ${TabTextpathWidth}
-            ${TabTextpathHeight}
-            ${TabTextpathTypo}
-            
         }
    
     `;
@@ -138,12 +124,10 @@ const Style = ({ props }) => {
             ${MobTextSpacing}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
-            ${MobTextpathWidth}
-            ${MobTextpathHeight}
             ${MobTextpathTypo}
+            ${MobTextpathWidth}
         }
     `;
-
     return (
         <>
             <GlobalStyleHanlder
