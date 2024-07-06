@@ -187,7 +187,7 @@ const ApiSettings = () => {
                     title={__('Instagram Feed (coming soon)', 'zoloblocks')}
                     description={
                         <>
-                            <p class="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</p>
+                            <span className="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</span>
                         </>
                     }
                     docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
@@ -205,7 +205,7 @@ const ApiSettings = () => {
                 <SettingPanel
                     title={__('Google Review (coming soon)', 'zoloblocks')}
                     description={<>
-                        <p class="description">Go to <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com</a> and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review widget so you must enabled Places API too.</p>
+                        <span className="description">Go to <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com</a> and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review widget so you must enabled Places API too.</span>
                     </>
                     }
                     docLink="https://developers.google.com/maps/documentation/javascript/get-api-key"
@@ -221,7 +221,7 @@ const ApiSettings = () => {
                 <SettingPanel
                     title={__('Yelp Review (coming soon)', 'zoloblocks')}
                     description={<>
-                        <p class="description">Go to your <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">Yelp Developer Account</a> to get access client ID and Key. This credential need for Social Proof widget.</p>
+                        <span className="description">Go to your <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">Yelp Developer Account</a> to get access client ID and Key. This credential need for Social Proof widget.</span>
                     </>}
                     docLink="#"
                     icon="yelp"
