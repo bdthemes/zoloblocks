@@ -91,7 +91,7 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                         {children}
                         {disabled ? (
                             <button className="settings-save-btn" onClick={handleSaveChanges} disabled={true}>
-                                {__('Comming Soon', 'zoloblocks')}
+                                {__('Coming Soon', 'zoloblocks')}
                             </button>
                         ) : (
                             <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>

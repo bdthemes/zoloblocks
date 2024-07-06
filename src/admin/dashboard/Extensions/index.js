@@ -15,9 +15,7 @@ apiFetch({
     method: 'GET',
 })
     .then((response) => {
-        // console.log(response);
         const { zolo_extensions_settings } = response;
-        console.log(zolo_extensions_settings);
         zoloExtensionsInitStatus = zolo_extensions_settings;
     })
     .catch((error) => console.error('API Fetch Error:', error));
