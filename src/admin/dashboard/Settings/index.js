@@ -13,6 +13,7 @@ const Settings = () => {
     const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
     const [blockImport, setBlockImport] = useState(false);
+    const [blockLibrary, setBlockLibrary] = useState(false);
     const [activeTab, setActiveTab] = useState('editor-options');
 
     const handleFetchError = (error) => {
@@ -28,6 +29,7 @@ const Settings = () => {
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
+            setBlockLibrary(response.zolo_enable_template_library);
         } catch (error) {
             handleFetchError(error);
         }
@@ -45,6 +47,7 @@ const Settings = () => {
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
+            setBlockLibrary(response.zolo_enable_template_library);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -88,6 +91,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_enable_block_import: value },
+        });
+    };
+
+    const updateBlockLibrary = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_enable_template_library: value },
         });
     };
 
@@ -408,8 +419,14 @@ const Settings = () => {
                                             <>
                                                 ZoloBlocks includes a rich library of page templates and block patterns. Accessible via the Templates button during page or post editing, you can manage the visibility of this button using this option.                                            </>}
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
-                                    </SettingBox>
+                                        <ToggleControl
+                                            checked={blockLibrary}
+                                            onChange={() => {
+                                                updateBlockLibrary(!blockLibrary);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                        </SettingBox>
                                 </div>
                             </div>
                         )}

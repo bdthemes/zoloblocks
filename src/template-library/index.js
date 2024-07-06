@@ -152,7 +152,7 @@ function ZoloBlocksTemplateLibraryButton() {
         render(<LibraryButton />, libraryButton);
     };
 
-    subscribe(() => {
+    ssubscribeubscribe(() => {
         const toolbar = document.querySelector('.editor-document-tools');
         const libraryButton = document.querySelector('.zoloblocks-template-library-button');
 
