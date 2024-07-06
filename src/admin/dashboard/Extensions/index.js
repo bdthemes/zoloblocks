@@ -246,7 +246,6 @@ const Extensions = () => {
                                             return block.name === blockState.name;
                                         });
                                         if (status?.length > 0) {
-                                            console.log(status);
                                             return (
                                                 <SingleBlock
                                                     key={index}
@@ -255,6 +254,7 @@ const Extensions = () => {
                                                     value={status[0].status}
                                                     demo={blockState.demo || ''}
                                                     video={blockState.video || ''}
+                                                    released={blockState.released || false}
                                                     onClick={() => {
                                                         updateStatus(!status[0].status, blockState.name);
                                                         setNotice(true);
