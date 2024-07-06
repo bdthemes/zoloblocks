@@ -27,6 +27,7 @@ import {
     ICONTAINER_BORDER,
     ICONTAINER_BRADIUS,
     ICON_SIZE,
+    ANIMATED_BORDER_SIZE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -88,6 +89,13 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     // icon
     ...generateResRangeAttributies(ICON_SIZE),
+
+    // animated border
+    ...generateDimensionAttributes(ANIMATED_BORDER_SIZE),
+    preset: {
+        type: 'string',
+        default: '',
+      },    
     // Tab Icons
     collapseIcon: {
         type: 'string',
@@ -117,6 +125,12 @@ const attributes = {
     titleTag: {
         type: 'string',
         default: 'h4',
+    },
+    animatedBorderColor: {
+        type: 'string',
+    },
+    animatedBorderActiveColor: {
+       type: 'string',
     },
 };
 

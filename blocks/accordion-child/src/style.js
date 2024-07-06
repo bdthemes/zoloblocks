@@ -35,13 +35,14 @@ import {
     ICONTAINER_BORDER,
     ICONTAINER_BRADIUS,
     ICON_SIZE,
+    ANIMATED_BORDER_SIZE,
 } from './constants';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, iconColor, iconHoverColor, titleColor, titleHoverColor } = attributes;
+    const { uniqueId, preset, iconColor, iconHoverColor, titleColor, titleHoverColor, animatedBorderColor, animatedBorderActiveColor } = attributes;
 
     // accordion container
     const {
@@ -284,6 +285,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: animatedBorderSizeDesk,
+        tabRangeStyle: animatedBorderSizeTab,
+        mobRangeStyle: animatedBorderSizeMob,
+    } = generateResRangeStyle({
+        controlName: ANIMATED_BORDER_SIZE,
+        property: 'height',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -314,6 +325,25 @@ const Style = ({ props }) => {
 
         .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-head-title {
             ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
+        }
+
+        ${
+            preset === 'style-3'
+                ? `
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:before,
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:after{
+                        ${animatedBorderSizeDesk}
+                    }
+
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:after{
+                        ${animatedBorderColor ? `background: ${animatedBorderColor};` : ''}
+                    }
+
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:before{
+                        ${animatedBorderActiveColor ? `background: ${animatedBorderActiveColor};` : ''}
+                    }
+            `
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item .zolo-accordion-toggle {
@@ -371,6 +401,17 @@ const Style = ({ props }) => {
             ${titleTabTypo}
         }
 
+        ${
+            preset === 'style-3'
+                ? `
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:before,
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:after{
+                        ${animatedBorderSizeTab}
+                    }
+            `
+                : ''
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle {
             ${icNormalTab}
             ${borderStylesTab}
@@ -418,6 +459,18 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-title {
             ${titleMobTypo}
         }
+
+        ${
+            preset === 'style-3'
+                ? `
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:before,
+                    .zolo-accordion-wrap .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:after{
+                        ${animatedBorderSizeMob}
+                    }
+            `
+                : ''
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle {
             ${icNormalMob}
             ${borderStylesMob}
