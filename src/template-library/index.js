@@ -1,5 +1,5 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { createRoot, useState, useEffect } from '@wordpress/element';
+import {render, createRoot, useState, useEffect } from '@wordpress/element';
 import { subscribe } from '@wordpress/data';
 import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -146,15 +146,15 @@ function ZoloBlocksTemplateLibraryButton() {
     );
 
     const renderButton = (selector) => {
-        // const libraryButton = document.createElement('div');
-        // libraryButton.classList.add('zoloblocks-template-library-button');
-        // selector.appendChild(libraryButton);
-        // render(<LibraryButton />, libraryButton);
-        createRoot(selector).render(<LibraryButton />);
+        const libraryButton = document.createElement('div');
+        libraryButton.classList.add('zoloblocks-template-library-button');
+        selector.appendChild(libraryButton);
+        render(<LibraryButton />, libraryButton);
+        // createRoot(selector).render(<LibraryButton />);
 
     };
 
-    ssubscribeubscribe(() => {
+    subscribe(() => {
         const toolbar = document.querySelector('.editor-document-tools');
         const libraryButton = document.querySelector('.zoloblocks-template-library-button');
 
