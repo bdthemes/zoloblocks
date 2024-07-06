@@ -1,4 +1,5 @@
 import CountdownTimer from './counter';
+
 import { createRoot } from '@wordpress/element';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemsVisibility = JSON.parse(zoloCounter.dataset.itemsvisibility);
             const itemsLabels = JSON.parse(zoloCounter.dataset.itemslabels);
             const toggleLabels = zoloCounter.dataset.togglelabels;
+
             const targetDate = new Date(CountDate);
             const root = createRoot(zoloCounter);
             root.render(
