@@ -11,8 +11,8 @@ export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Preset 3', 'zoloblocks'), value: 'default' },
+    { label: __('Preset 4 (Pro)', 'zoloblocks'), value: 'style-4', disabled: true },
 ];
-
 
 export const CAROUSEL_EFFECTS = [
     { label: __('Slide', 'zoloblocks'), value: 'slide' },
@@ -23,7 +23,6 @@ export const CAROUSEL_EFFECTS = [
 export const CAROUSEL_COLUMNS = 'carouselColumns';
 export const CAROUSEL_GAP = 'carouselGap';
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
-
 
 // conatainer
 export const REVIEW_CAROUSEL_BG = 'reviewCarouselBg';
@@ -90,3 +89,10 @@ export const APAG_HEIGHT = 'apagHeight';
 export const APAG_BORDER = 'apagBorder';
 export const APAG_BORDER_RADIUS = 'apagBorderRadius';
 export const APAG_BG = 'apagBg';
+
+// review container
+export const RCONTAINER_BORDER = 'rcBorder';
+export const RCONTAINER_BRADIUS = 'rcBRadius';
+export const RCONTAINER_BG = 'rcBg';
+export const RCONTAINER_PADDING = 'rcPadding';
+export const RCONTAINER_BSHADOW = 'rcBShadow';

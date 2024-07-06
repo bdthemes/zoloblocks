@@ -39,6 +39,7 @@
     .zolo-post-item {
         position: relative;
         overflow: hidden;
+        box-sizing: border-box;
     }
 
     .zolo-post-image {
@@ -595,6 +596,14 @@
             height: var(--zolo-nav-button-icon-size);
             display: block;
         }
+    }
+
+    .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+        content: 'next';
+    }
+
+    .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+        content: 'prev';
     }
 }
 // pagination css  start

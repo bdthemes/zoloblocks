@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
 import StarRating from '../../../src/controls/star-rating';
 
 // const starRating = ({ rating }) => {
@@ -9,9 +9,10 @@ import StarRating from '../../../src/controls/star-rating';
 document.addEventListener('DOMContentLoaded', () => {
   const starRatingItems = document.querySelectorAll('.zolo-star-rating');
   if (starRatingItems.length) {
-    starRatingItems.forEach((item) => {
+    starRatingItems.forEach((item, index) => {
       const ratingValue = item.dataset.rating;
-      render(<StarRating rating={ratingValue} total={5} />, item);
+      const root = createRoot(item);
+      root.render(<StarRating key={index} rating={ratingValue} total={5} />);
     });
   }
 });

@@ -81,12 +81,8 @@
         border: 0;
     }
 
-    .block-editor-inner-blocks {
-        border: 1px dashed #d5dadf;
-    }
-
     .block-list-appender.wp-block {
-        width: 80px;
+        // width: 80px;
         height: 80px;
         margin: 0 auto;
         display: flex;
@@ -134,4 +130,28 @@
 .editor-styles-wrapper .has-global-padding > .alignfull.wp-block-zolo-container.zolo-root-container {
     margin-left: auto;
     margin-right: auto;
+}
+
+.wp-block-zolo-container {
+    &.backend {
+        &:not(.zolo-container-has-children) {
+            .block-editor-inner-blocks {
+                border: 1px dashed #e0e0e0;
+            }
+
+            .block-list-appender {
+                display: block !important;
+            }
+        }
+
+        .block-editor-button-block-appender {
+            height: 80px;
+        }
+    }
+
+    // &.zolo-container-has-children {
+    //     .block-list-appender {
+    //         display: none !important;
+    //     }
+    // }
 }

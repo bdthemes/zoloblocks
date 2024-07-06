@@ -1,5 +1,6 @@
 import CountdownTimer from './counter';
-const { render } = wp.element;
+
+import { createRoot } from '@wordpress/element';
 
 document.addEventListener('DOMContentLoaded', () => {
     const zoloCounters = document.querySelectorAll('.wp-block-zolo-countdown');
@@ -12,10 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const toggleLabels = zoloCounter.dataset.togglelabels;
 
             const targetDate = new Date(CountDate);
-
-            render(
-                <CountdownTimer targetDate={targetDate} itemsVisibility={itemsVisibility} showLabels={toggleLabels} labels={itemsLabels} />,
-                zoloCounter
+            const root = createRoot(zoloCounter);
+            root.render(
+                <CountdownTimer targetDate={targetDate} itemsVisibility={itemsVisibility} showLabels={toggleLabels} labels={itemsLabels} />
             );
         });
     }

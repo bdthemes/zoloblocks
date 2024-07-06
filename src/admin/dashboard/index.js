@@ -10,6 +10,7 @@ import Welcome from './Welcome';
 import Blocks from './Blocks';
 import ApiSettings from './API-Settings';
 import Settings from './Settings';
+import Extensions from './Extensions';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState(TABS[0].value);
@@ -78,6 +79,7 @@ const Dashboard = () => {
                 <div className="zolo-body">
                     {activeTab === 'welcome' && <Welcome />}
                     {activeTab === 'blocks' && <Blocks />}
+                    {activeTab === 'extensions' && <Extensions />}
                     {activeTab === 'apiSettings' && <ApiSettings />}
                     {activeTab === 'settings' && <Settings />}
                 </div>

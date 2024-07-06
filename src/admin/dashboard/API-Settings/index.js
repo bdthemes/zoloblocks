@@ -1,9 +1,10 @@
 import SettingPanel from './setting-panel';
 
 import { __ } from '@wordpress/i18n';
-import { TextControl } from '@wordpress/components';
+import { TextControl, ToggleControl } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+const { zoloBlocks } = window;
 
 const ApiSettings = () => {
     const [googleAPIKey, setGoogleAPIKey] = useState('');
@@ -31,13 +32,21 @@ const ApiSettings = () => {
         fetchSettings({
             path: '/wp/v2/settings',
             method: 'GET',
-        }).then(({ zolo_google_api_key, zolo_recaptcha_site_key, zolo_recaptcha_secret_key, zolo_mailchimp_api_key, zolo_mailchimp_audience_id }) => {
-            setGoogleAPIKey(zolo_google_api_key);
-            setSiteKey(zolo_recaptcha_site_key);
-            setSecretKey(zolo_recaptcha_secret_key);
-            setMailchimpKey(zolo_mailchimp_api_key);
-            setAudienceID(zolo_mailchimp_audience_id);
-        });
+        }).then(
+            ({
+                zolo_google_api_key,
+                zolo_recaptcha_site_key,
+                zolo_recaptcha_secret_key,
+                zolo_mailchimp_api_key,
+                zolo_mailchimp_audience_id,
+            }) => {
+                setGoogleAPIKey(zolo_google_api_key);
+                setSiteKey(zolo_recaptcha_site_key);
+                setSecretKey(zolo_recaptcha_secret_key);
+                setMailchimpKey(zolo_mailchimp_api_key);
+                setAudienceID(zolo_mailchimp_audience_id);
+            }
+        );
     }, []);
 
     // update api key
@@ -149,8 +158,115 @@ const ApiSettings = () => {
                         onChangeMailchimpAudienceID(audienceID);
                     }}
                 >
-                    <TextControl label={__('Mailchimp Key', 'zoloblocks')} onChange={(value) => setMailchimpKey(value)} value={mailchimpKey} />
+                    <TextControl
+                        label={__('Mailchimp Key', 'zoloblocks')}
+                        onChange={(value) => setMailchimpKey(value)}
+                        value={mailchimpKey}
+                    />
                     <TextControl label={__('Audience ID', 'zoloblocks')} onChange={(value) => setAudienceID(value)} value={audienceID} />
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Facebook Page Feed (coming soon)', 'zoloblocks')}
+                    description={<>
+                        <a href="https://developers.facebook.com/apps/" target="_blank">{__('Facebook Developer Account', 'zoloblocks')}</a> to get access Page ID and Access Token. This credential need for Social Feeds widget.
+                    </>}
+                    docLink="https://mailchimp.com/help/find-audience-id/"
+                    icon="facebook"
+                    disabled={true}
+                    onSave={() => {
+                        onChangeMailchimpKey(mailchimpKey);
+                        onChangeMailchimpAudienceID(audienceID);
+                    }}
+                >
+                    <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
+                    <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
+
+                </SettingPanel>
+
+                <SettingPanel
+                    title={__('Instagram Feed (coming soon)', 'zoloblocks')}
+                    description={
+                        <>
+                            <p class="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</p>
+                        </>
+                    }
+                    docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
+                    icon="instagram"
+                    disabled={true}
+                    onSave={() => {
+
+                    }}
+                >
+                    <TextControl label={__('Instagram App ID', 'zoloblocks')} disabled={true} />
+                    <TextControl label={__('Instagram App Secret', 'zoloblocks')} disabled={true} />
+                    <TextControl label={__('Instagram Access Token', 'zoloblocks')} disabled={true} />
+
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Google Review (coming soon)', 'zoloblocks')}
+                    description={<>
+                        <p class="description">Go to <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com</a> and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review widget so you must enabled Places API too.</p>
+                    </>
+                    }
+                    docLink="https://developers.google.com/maps/documentation/javascript/get-api-key"
+                    icon="google"
+                    disabled={true}
+                    onSave={() => {
+
+                    }}
+                >
+                    <TextControl label={__('API Key', 'zoloblocks')} disabled={true} />
+
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Yelp Review (coming soon)', 'zoloblocks')}
+                    description={<>
+                        <p class="description">Go to your <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">Yelp Developer Account</a> to get access client ID and Key. This credential need for Social Proof widget.</p>
+                    </>}
+                    docLink="#"
+                    icon="yelp"
+                    disabled={true}
+                    onSave={() => {
+
+                    }}
+                >
+                    <TextControl label={__('Yelp Client ID', 'zoloblocks')} disabled={true} />
+                    <TextControl label={__('Yelp API Key', 'zoloblocks')} disabled={true} />
+
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Facebook Page Review (coming soon)', 'zoloblocks')}
+                    description={<>
+                        <a href="https://developers.facebook.com/apps/" target="_blank">{__('Facebook Developer Account', 'zoloblocks')}</a> to get access Page ID and Access Token. This credential need for Social Feeds widget.
+                    </>}
+                    docLink="#"
+                    icon="facebook"
+                    disabled={true}
+                    onSave={() => {
+                        onChangeMailchimpKey(mailchimpKey);
+                        onChangeMailchimpAudienceID(audienceID);
+                    }}
+                >
+                    <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
+                    <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
+
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Zoom (coming soon)', 'zoloblocks')}
+                    description={<>
+                        <a href="https://developers.zoom.us/docs/api/" target="_blank">{__('Zoom Developer Account', 'zoloblocks')}</a> to get access API Keyand Secret Key. This credential need for Zoom Features.
+                    </>}
+                    docLink="#"
+                    icon="zoom"
+                    disabled={true}
+                    onSave={() => {
+                        onChangeMailchimpKey(mailchimpKey);
+                        onChangeMailchimpAudienceID(audienceID);
+                    }}
+                >
+                    <TextControl label={__('Zoom API Key', 'zoloblocks')} disabled={true} />
+                    <TextControl label={__('Zoom  Secret Key', 'zoloblocks')} disabled={true} />
+
                 </SettingPanel>
             </div>
         </div>

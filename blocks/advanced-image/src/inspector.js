@@ -199,7 +199,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <TextControl label={__('Alt Text', 'zoloblocks')} onChange={(v) => setAttributes({ imgAlt: v })} value={imgAlt || photo?.alt} placeholder={__('Enter alt text', 'zoloblocks')} />
+                            <TextControl label={__('Alt Text', 'zoloblocks')} onChange={(v) => setAttributes({ imgAlt: v })} value={imgAlt } placeholder={__('Enter alt text', 'zoloblocks')} />
                             <LinkControl label={__('Image Link', 'zoloblocks')} value={link} onChange={(value) => setAttributes({ link: value })} />
                             {layout === 'normal' && <ToggleControl label={__('Enable Caption', 'zoloblocks')} checked={showCaption} onChange={() => setAttributes({ showCaption: !showCaption })} />}
                         </ZoloPanelBody>

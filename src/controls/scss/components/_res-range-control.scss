@@ -1,12 +1,13 @@
 .zb-res-range-control-wrapper {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     .components-range-control {
         flex-grow: 1;
 
         .components-input-control {
             margin: 0 !important;
             width: auto !important;
+
             input {
                 height: 35px !important;
                 min-height: 35px !important;
@@ -19,5 +20,7 @@
                 border: none !important;
             }
         }
-    }
+
+
+    }  
 }

@@ -99,6 +99,7 @@ function Inspector(props) {
         titleHoverColor,
         excerptColor,
         metaColor,
+        metaHColor,
         metaArrowColor,
         catBgColor,
         catColor,
@@ -116,6 +117,7 @@ function Inspector(props) {
         namePrefixColor,
         nameColor,
         nameHoverColor,
+        namePrefixHoverColor,
         pagColor,
         pagBgColor,
         apagColor,
@@ -291,15 +293,13 @@ function Inspector(props) {
                                     onChange={(value) => setAttributes({ metaSeparator: value })}
                                 />
                             )}
-                            {
-                                showAuthor && (
-                                    <TextControl
-                                        label={__('Author Prefix', 'zoloblocks')}
-                                        value={authorPrefix}
-                                        onChange={(authorPrefix) => setAttributes({ authorPrefix })}
-                                    />
-                                )
-                            }
+                            {showAuthor && (
+                                <TextControl
+                                    label={__('Author Prefix', 'zoloblocks')}
+                                    value={authorPrefix}
+                                    onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                />
+                            )}
                         </ZoloPanelBody>
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zoloblocks')} panelProps={props}>
@@ -520,6 +520,13 @@ function Inspector(props) {
                                     color={metaColor}
                                     onChange={(metaColor) => setAttributes({ metaColor })}
                                 />
+                                {preset === 'style-3' && (
+                                    <ColorControl
+                                        label={__('Hover Color', 'zoloblocks')}
+                                        color={metaHColor}
+                                        onChange={(metaHColor) => setAttributes({ metaHColor })}
+                                    />
+                                )}
                                 <ResRangeControl
                                     label={__('Space', 'zoloblocks')}
                                     controlName={META_SPACE}
@@ -820,6 +827,18 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                {preset === 'style-3' && (
+                                                    <ColorControl
+                                                        label={__('Prefix Hover Color', 'zoloblocks')}
+                                                        color={namePrefixHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                namePrefixHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                )}
+                                                
                                             </>
                                         }
                                     />

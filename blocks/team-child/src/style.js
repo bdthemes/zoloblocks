@@ -46,6 +46,7 @@ import {
     TEAM_PHOTO_BOX_SHADOW,
     TEAM_PHOTO_MARGIN,
     TEAM_PHOTO_PADDING,
+    IMAGE_OVERLAY,
     TEAM_SHORT_BIO_MARGIN,
     DETAIL_PAGE_LINK_BG,
     DETAIL_PAGE_LINK_HOVER_BG,
@@ -227,6 +228,16 @@ const Style = ({ props }) => {
         backgroundStylesMobile: photoMobBGStyle,
     } = generateNormalBGControlStyles({
         controlName: PHOTO_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        backgroundStylesDesktop: imageDeskOverlayStyle,
+        backgroundStylesTab: imageTabOverlayStyle,
+        backgroundStylesMobile: imageMobOverlayStyle,
+    } = generateNormalBGControlStyles({
+        controlName: IMAGE_OVERLAY,
         attributes,
         noMainBGImg: true,
     });
@@ -614,6 +625,18 @@ const Style = ({ props }) => {
 			${photoDeskPadding}
 			${teamPhotoBoxShadow}
 		}
+
+        ${
+            preset === 'style-5'
+                ? `
+                       .${uniqueId}.zolo-block.wp-block-zolo-team-child.style-5 .zolo-image-wrap:before {
+                            ${imageDeskOverlayStyle}
+                        }
+            `
+                : ''
+        }
+
+
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap,
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap img {
 			${photoDeskBorderRadius}

@@ -55,6 +55,55 @@ class Zolo_Settings {
                 ],
             ]
         );
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_extensions_settings',
+            [
+                'type'              => 'array',
+                'default'           => $this::extensions_list(),
+                'sanitize_callback' => NULL,
+                'show_in_rest'      => [
+                    'schema' => [
+                        'type'  => 'array',
+                        'items' => [
+                            'type'       => 'object',
+                            'properties' => [
+                                'name' => [
+                                    'type' => 'string',
+                                ],
+                                'categories' => [
+                                    'type'  => 'array',
+                                    'items' => [
+                                        'type' => 'string',
+                                    ],
+                                ],
+                                'status' => [
+                                    'type' => 'boolean',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ]
+        );
+        // favorite templates
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_favorite_templates',
+            [
+                'type'              => 'array',
+                'default'           => [],
+                'sanitize_callback' => NULL,
+                'show_in_rest'      => [
+                    'schema' => [
+                        'type'  => 'array',
+                        'items' => [
+                            'type'       => 'number',
+                        ],
+                    ],
+                ],
+            ]
+        );
 
         // register zolo google api key setting
         register_setting(
@@ -266,6 +315,16 @@ class Zolo_Settings {
         if (file_exists($blocks_file)) {
             $blocks = require $blocks_file;
             return is_array($blocks) ? $blocks : [];
+        } else {
+            return [];
+        }
+    }
+    public static function extensions_list() {
+        $extensions_file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Admin/Extensions.php';
+
+        if (file_exists($extensions_file)) {
+            $extensions = require $extensions_file;
+            return is_array($extensions) ? $extensions : [];
         } else {
             return [];
         }

@@ -75,6 +75,7 @@ export default function Edit(props) {
         return () => clearTimeout();
     }, [progressValue]);
 
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}

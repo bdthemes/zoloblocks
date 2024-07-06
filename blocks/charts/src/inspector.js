@@ -69,7 +69,6 @@ function Inspector(props) {
         pieChartData,
     } = attributes;
 
-
     const requiredProps = {
         attributes,
         setAttributes,
@@ -206,10 +205,10 @@ function Inspector(props) {
                                     label={__('Enter chart data separated by commas', 'zoloblocks')}
                                     placeholder={__(
                                         `Label, Value
-Team A, 10
-Team B, 15
-Team C, 20,
-Team D, 5`,
+                                        Team A, 10
+                                        Team B, 15
+                                        Team C, 20,
+                                        Team D, 5`,
                                         'zoloblocks'
                                     )}
                                     value={chartInputData}
@@ -228,7 +227,11 @@ Team D, 5`,
                                 onChange={(v) => {
                                     setAttributes({ chartType: v });
                                 }}
-                                help={ chartType === 'line' ? __('You may need to save and refresh the page to see the changes.', 'zoloblocks'): ''}
+                                help={
+                                    chartType === 'line'
+                                        ? __('You may need to save and refresh the page to see the changes.', 'zoloblocks')
+                                        : ''
+                                }
                             />
                             <SimpleRangeControl
                                 label={__('Height', 'zoloblocks')}

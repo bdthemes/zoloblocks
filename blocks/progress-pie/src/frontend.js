@@ -1,4 +1,4 @@
-import {render,useRef,useEffect} from '@wordpress/element'
+import {createRoot,useRef,useEffect} from '@wordpress/element'
 import CountUp from 'react-countup';
 
 // render on page load
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const progressTitle =item.dataset.progresstitle;
       const progressTopColor =item.dataset.progresstopcolor;
       const progressBottomColor=item.dataset.progressbottomcolor;
-  
-    const CountupComponent=({      
+
+    const CountupComponent=({
       progressValue,
       progressDuration,
       progressFillColor,
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       })=>{
         const progress = useRef(null)
-      
+
         useEffect(()=>{
             const progressPie = progress.current;
             const progressVal   = progressValue;
-    
+
             startAnim();
             function startAnim() {
                 setTimeout(function() {
@@ -40,15 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return ()=>clearTimeout();
         },[progressValue])
-       console.log(typeof toggleLabel)
-       console.log(toggleLabel)
-      return (  
+      return (
         <CountUp start={0} end={progressValue} delay={0} duration={progressDuration ? progressDuration : 3} suffix="%">
             {({ countUpRef }) => (
               <>
                   <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">
                   {/*  optional background if need  */}
-                  <circle className="donut-hole progress-donut-hole" cx="21" cy="21" r="15.91549430918954" ></circle> 
+                  <circle className="donut-hole progress-donut-hole" cx="21" cy="21" r="15.91549430918954" ></circle>
                   <circle className="progress-pie-fill" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke={progressFillColor ? progressFillColor :'#e5e5e5'}  stroke-dasharray="100 0" stroke-dashoffset="25"></circle>
                   <circle id="progress1" className="progress-pie-progress" ref={progress} cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke={`url(#gradient-${uniqueId})`}  stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
                   
@@ -64,24 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
                   {/* Progress number and text  */}
                       <g className="progress-pie-text">
                         <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>{progressValue &&  progressValue}</text>
-                        {toggleLabel && <text x="50%" y="50%"  className="progress-pie-label">{progressTitle && progressTitle}</text>} 
+                        {toggleLabel && <text x="50%" y="50%"  className="progress-pie-label">{progressTitle && progressTitle}</text>}
                       </g>
-                  </svg> 
+                  </svg>
               </>
             )}
-          </CountUp>  
-  
+          </CountUp>
+
         )
     }
-
-    render(<CountupComponent 
+    createRoot(item).render(<CountupComponent
       progressValue={progressValue}
       circleColor={circleColor}
       progressFillColor={progressFillColor}
       toggleLabel={toggleLabel}
       progressTitle={progressTitle}
       progressDuration ={progressDuration }
-      />,item)
+      />)
     });
   }
 });

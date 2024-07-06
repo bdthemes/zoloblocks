@@ -154,9 +154,9 @@ export const POSITIONS = [
         <path
           d="M2 2V22"
           stroke="#4D4D4D"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         ></path>
         <rect
           x="7"
@@ -166,9 +166,9 @@ export const POSITIONS = [
           rx="1"
           fill="none"
           stroke="#4D4D4D"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1"
         ></rect>
       </svg>
     ),

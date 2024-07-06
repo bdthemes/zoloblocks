@@ -18,6 +18,7 @@ const Save = ({ attributes }) => {
         showDesc,
         showButton,
         showButtonIcon,
+        showButtonText,
         buttonIcon,
         iconType,
         iconTypeImage,
@@ -33,7 +34,7 @@ const Save = ({ attributes }) => {
         ribbonPosition,
         iconBoxDirection,
 
-        // animation 
+        // animation
         animationType,
         animationPositionOne,
         animationPositionTwo
@@ -47,26 +48,31 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <DynamicTag
+        <div
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
             })}
-            tagName={globalLink === true ? 'a' : 'div'}
-            {...(globalLink === true && {
-                href: buttonLink && buttonLink.url,
-                target: buttonLink && buttonLink.openInNewTab && '_blank',
-                rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
-                title: buttonText,
-            })}
-         >
-
-            <div className={
-                    classnames( 'zolo-block-item', `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-1' ? `animation-${animationPositionOne}` : ''}`, `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`)
-                }>
-                {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
-                {showMainIcon && (
-                    <div className={`zolo-block-icon-wrap`}>
+        >
+            <DynamicTag
+                tagName={globalLink === true ? 'a' : 'div'}
+                {...(globalLink === true && {
+                    href: buttonLink && buttonLink.url,
+                    target: buttonLink && buttonLink.openInNewTab && '_blank',
+                    rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                    title: buttonText,
+                })}
+            >
+                <div
+                    className={classnames(
+                        'zolo-block-item',
+                        `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-1' ? `animation-${animationPositionOne}` : ''}`,
+                        `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
+                    )}
+                >
+                    {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
+                    {showMainIcon && (
+                        <div className={`zolo-block-icon-wrap`}>
                             {iconType == 'icon' ? (
                                 <DisplayZoloIcon icon={mainIcon} />
                             ) : (
@@ -83,30 +89,31 @@ const Save = ({ attributes }) => {
                                     />
                                 )
                             )}
-                    </div>
-                )}
-                <div className="zolo-block-body-content">
-                    {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
-                    {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
-                    {showButton && (
-                        <div className={`zolo-block-link-btn`}>
-                            <DynamicTag
-                                tagName={globalLink === true ? 'div' : 'a'}
-                                className="zolo-box-button"
-                                {...(globalLink !== true && {
-                                    href: buttonLink && buttonLink.url,
-                                    target: buttonLink && buttonLink.openInNewTab && '_blank',
-                                    rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
-                                })}
-                            >
-                                <RichText.Content tagName="span" value={buttonText} />
-                                {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
-                            </DynamicTag>
                         </div>
                     )}
+                    <div className="zolo-block-body-content">
+                        {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
+                        {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
+                        {showButton && (
+                            <div className={`zolo-block-link-btn`}>
+                                <DynamicTag
+                                    tagName={globalLink === true ? 'div' : 'a'}
+                                    className="zolo-box-button"
+                                    {...(globalLink !== true && {
+                                        href: buttonLink && buttonLink.url,
+                                        target: buttonLink && buttonLink.openInNewTab && '_blank',
+                                        rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                                    })}
+                                >
+                                    {showButtonText && <RichText.Content tagName="span" value={buttonText} />}
+                                    {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
+                                </DynamicTag>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
-        </DynamicTag>
+            </DynamicTag>
+        </div>
     );
 };
 

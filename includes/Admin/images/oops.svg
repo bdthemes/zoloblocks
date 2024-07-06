@@ -14,7 +14,7 @@
       }
 
       .cls-1, .cls-7, .cls-9, .cls-6 {
-        stroke-width: 2px;
+        strokeWidth: 2px;
       }
 
       .cls-12 {
@@ -22,12 +22,12 @@
       }
 
       .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19 {
-        stroke-width: 0px;
+        strokeWidth: 0px;
       }
 
       .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
-        stroke-linecap: round;
-        stroke-linejoin: round;
+        strokeLinecap: round;
+        strokeLinejoin: round;
       }
 
       .cls-2, .cls-5 {
@@ -67,11 +67,11 @@
       }
 
       .cls-3 {
-        stroke-width: .75px;
+        strokeWidth: .75px;
       }
 
       .cls-5 {
-        stroke-width: .5px;
+        strokeWidth: .5px;
       }
 
       .cls-18 {

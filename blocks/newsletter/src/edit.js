@@ -52,7 +52,7 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
-                <form className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`}>
+                <form className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}`}>
                     {showNameField && (
                         <div className="zolo-form-control" role="tablist">
                             <input
