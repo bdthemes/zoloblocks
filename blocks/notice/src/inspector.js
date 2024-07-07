@@ -119,26 +119,15 @@ function Inspector(props) {
         showDesc,
         showButton,
         iconType,
-        btnColor,
-        btnHoverColor,
-        btnHoverBorderColor,
-        buttonText,
-        buttonLink,
-        globalLink,
-        iconPosition,
         imageRes,
-        //ribbon
-        showRibbon,
-        ribbonTitle,
-        ribbonPosition,
-        //ribbon style
-        ribbonColor,
         iconBoxDirection,
-
         // animation
         animationType,
         animationPositionOne,
         animationPositionTwo,
+        //notice
+        dismissible,
+        showAfterDismiss,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -187,6 +176,17 @@ function Inspector(props) {
                                     />
                                 )
                             }
+
+                            <ToggleControl
+                                label={__('Dismisible', 'zoloblocks')}
+                                checked={dismissible}
+                                onChange={() => setAttributes({ dismissible: !dismissible })}
+                            />
+                            <ToggleControl
+                                label={__('Show After Dismiss', 'zoloblocks')}
+                                checked={showAfterDismiss}
+                                onChange={() => setAttributes({ showAfterDismiss: !showAfterDismiss })}
+                            />
                             <ResAlignmentControl
                                 label={__('Content Alignment', 'zoloblocks')}
                                 controlName={CONTENT_ALIGNMENT}

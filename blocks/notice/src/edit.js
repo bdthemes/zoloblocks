@@ -8,7 +8,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, DynamicTag, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -22,32 +22,19 @@ export default function Edit(props) {
         preset,
         parentClasses,
         titleTag,
-        showButtonIcon,
-        showButtonText,
         mainIcon,
-        buttonIcon,
-        showMainIcon,
-        showHeading,
-        showDesc,
-        showButton,
         iconType,
         iconTypeImage,
         iconBoxTitle,
         iconBoxDescription,
-        buttonText,
-        buttonLink,
-        globalLink,
         imageRes,
-        //ribbon
-        showRibbon,
-        ribbonTitle,
-        ribbonPosition,
         iconBoxDirection,
-
         // animation
         animationType,
         animationPositionOne,
         animationPositionTwo,
+        //notice
+        dismissible,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -107,45 +94,40 @@ export default function Edit(props) {
                         `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-1' ? `animation-${animationPositionOne}` : ''}`,
                         `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
                     )}
+                    data-id={uniqueId}
                 >
-                    {showRibbon && ribbonTitle && (
-                        <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
-                            <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />
-                        </div>
-                    )}
-                    {showMainIcon && (
-                        <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
-                                <DisplayZoloIcon icon={mainIcon} />
-                            ) : iconTypeImage ? (
-                                <>
-                                    <img
-                                        src={
-                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
-                                                ? iconTypeImage.sizes[imageRes].url
-                                                : iconTypeImage.url
-                                        }
-                                        alt={iconTypeImage.alt || 'Team Member'}
-                                    />
-                                </>
-                            ) : (
-                                <MediaPlaceholder
-                                    icon="format-image"
-                                    labels={{
-                                        title: __('Add Photo', 'zoloblocks'),
-                                        instructions: '',
-                                    }}
-                                    onSelect={(media) => {
-                                        setAttributes({
-                                            iconTypeImage: media,
-                                        });
-                                    }}
-                                    accept="image/*"
-                                    allowedTypes={['image']}
+                    <div className={`zolo-block-icon-wrap`}>
+                        {iconType == 'icon' ? (
+                            <DisplayZoloIcon icon={mainIcon} />
+                        ) : iconTypeImage ? (
+                            <>
+                                <img
+                                    src={
+                                        iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                            ? iconTypeImage.sizes[imageRes].url
+                                            : iconTypeImage.url
+                                    }
+                                    alt={iconTypeImage.alt || 'Team Member'}
                                 />
-                            )}
-                        </div>
-                    )}
+                            </>
+                        ) : (
+                            <MediaPlaceholder
+                                icon="format-image"
+                                labels={{
+                                    title: __('Add Photo', 'zoloblocks'),
+                                    instructions: '',
+                                }}
+                                onSelect={(media) => {
+                                    setAttributes({
+                                        iconTypeImage: media,
+                                    });
+                                }}
+                                accept="image/*"
+                                allowedTypes={['image']}
+                            />
+                        )}
+                    </div>
+
                     <div className="zolo-block-body-content">
                         <RichText
                             className={`zolo-block-title`}
@@ -158,7 +140,7 @@ export default function Edit(props) {
                             }
                             placeholder={__('The Title Goes Here', 'zoloblocks')}
                         />
-
+                        {dismissible && <span className="zolo-notice-dismiss" />}
                         <RichText
                             className={`zolo-block-desc`}
                             tagName="div"

@@ -13,13 +13,6 @@ const Save = ({ attributes }) => {
         parentClasses,
         titleTag,
         mainIcon,
-        showMainIcon,
-        showHeading,
-        showDesc,
-        showButton,
-        showButtonIcon,
-        showButtonText,
-        buttonIcon,
         iconType,
         iconTypeImage,
         iconBoxTitle,
@@ -29,14 +22,14 @@ const Save = ({ attributes }) => {
         globalLink,
         zoloId,
         imageRes,
-        showRibbon,
-        ribbonTitle,
-        ribbonPosition,
         iconBoxDirection,
         // animation
         animationType,
         animationPositionOne,
         animationPositionTwo,
+        //notice
+        dismissible,
+        showAfterDismiss,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -56,6 +49,8 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
+            data-id={uniqueId}
+            data-show-again={showAfterDismiss}
         >
             <DynamicTag
                 tagName={globalLink === true ? 'a' : 'div'}
@@ -73,29 +68,28 @@ const Save = ({ attributes }) => {
                         `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
                     )}
                 >
-                    {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
-                    {showMainIcon && (
-                        <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
-                                <DisplayZoloIcon icon={mainIcon} />
-                            ) : (
-                                iconTypeImage && (
-                                    <img
-                                        src={
-                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
-                                                ? iconTypeImage.sizes[imageRes].url
-                                                : iconTypeImage.url
-                                        }
-                                        alt={iconTypeImage.alt || iconBoxTitle}
-                                        className={`wp-image-${iconTypeImage.id}`}
-                                        loading="lazy"
-                                    />
-                                )
-                            )}
-                        </div>
-                    )}
+                    <div className={`zolo-block-icon-wrap`}>
+                        {iconType == 'icon' ? (
+                            <DisplayZoloIcon icon={mainIcon} />
+                        ) : (
+                            iconTypeImage && (
+                                <img
+                                    src={
+                                        iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                            ? iconTypeImage.sizes[imageRes].url
+                                            : iconTypeImage.url
+                                    }
+                                    alt={iconTypeImage.alt || iconBoxTitle}
+                                    className={`wp-image-${iconTypeImage.id}`}
+                                    loading="lazy"
+                                />
+                            )
+                        )}
+                    </div>
+
                     <div className="zolo-block-body-content">
                         <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
+                        {dismissible && <span className="zolo-notice-dismiss" style={{ cursor: 'pointer' }} />}
                         <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />
                     </div>
                 </div>

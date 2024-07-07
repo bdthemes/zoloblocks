@@ -21,6 +21,18 @@
     display: block;
     // overflow: hidden;
 
+    .zolo-notice-dismiss {
+        &:after {
+            content: '\00d7';
+        }
+        display: flex;
+        top: -104px;
+        right: -37px;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        justify-content: center;
+    }
     .zolo-block-item {
         padding: var(--zolo-item-padding);
         border-radius: var(--zolo-item-border-radius);

@@ -258,6 +258,15 @@ const attributes = {
     animationPositionTwo: {
         type: 'string',
     },
+    //notice
+    dismissible: {
+        type: 'boolean',
+        default: false,
+    },
+    showAfterDismiss: {
+        type: 'boolean',
+        default: false,
+    },
 };
 
 export default attributes;
