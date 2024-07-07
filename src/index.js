@@ -26,6 +26,7 @@ import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
 import '../blocks/flipbox/src';
 import '../blocks/google-map/src';
+import '../blocks/icon/src';
 import '../blocks/image-gallery/src';
 import '../blocks/image-compare/src';
 import '../blocks/list/src';
