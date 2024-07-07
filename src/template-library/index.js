@@ -5,6 +5,7 @@ import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/c
 import { __ } from '@wordpress/i18n';
 import axios from 'axios';
 import apiFetch from '@wordpress/api-fetch';
+let root;
 
 /**
  * Template Library Style
@@ -148,20 +149,20 @@ function ZoloBlocksTemplateLibraryButton() {
     const renderButton = (selector) => {
         const libraryButton = document.createElement('div');
         libraryButton.classList.add('zoloblocks-template-library-button');
-        selector.appendChild(libraryButton);
-        render(<LibraryButton />, libraryButton);
-        // createRoot(selector).render(<LibraryButton />);
+        selector.append(libraryButton);
+        createRoot(libraryButton).render(<LibraryButton />);
 
     };
 
     subscribe(() => {
-        const toolbar = document.querySelector('.editor-document-tools');
+        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
         const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-
         if (toolbar && !libraryButton) {
             renderButton(toolbar);
         }
     });
+
+
 
     const fetchTemplates = async () => {
         setLoading(true);
@@ -529,9 +530,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                 <>
                                     {templates && templates.length > 0 && (
                                         <div className="zolo-demos-wrapper">
-                                            {templates.map((template) => {
+                                            {templates.map((template, index) => {
                                                 return (
-                                                    <div className="single-demo">
+                                                    <div className="single-demo" key={index}>
                                                         <div className="demo-preview">
                                                             <img
                                                                 src={template.demo_preview}
