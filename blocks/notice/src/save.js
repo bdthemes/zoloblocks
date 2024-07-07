@@ -30,6 +30,7 @@ const Save = ({ attributes }) => {
         //notice
         dismissible,
         showAfterDismiss,
+        enableIcon,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -68,28 +69,35 @@ const Save = ({ attributes }) => {
                         `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
                     )}
                 >
-                    <div className={`zolo-block-icon-wrap`}>
-                        {iconType == 'icon' ? (
-                            <DisplayZoloIcon icon={mainIcon} />
-                        ) : (
-                            iconTypeImage && (
-                                <img
-                                    src={
-                                        iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
-                                            ? iconTypeImage.sizes[imageRes].url
-                                            : iconTypeImage.url
-                                    }
-                                    alt={iconTypeImage.alt || iconBoxTitle}
-                                    className={`wp-image-${iconTypeImage.id}`}
-                                    loading="lazy"
-                                />
-                            )
-                        )}
-                    </div>
+                    {enableIcon && (
+                        <div className={`zolo-block-icon-wrap`}>
+                            {iconType == 'icon' ? (
+                                <DisplayZoloIcon icon={mainIcon} />
+                            ) : (
+                                iconTypeImage && (
+                                    <img
+                                        src={
+                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                ? iconTypeImage.sizes[imageRes].url
+                                                : iconTypeImage.url
+                                        }
+                                        alt={iconTypeImage.alt || iconBoxTitle}
+                                        className={`wp-image-${iconTypeImage.id}`}
+                                        loading="lazy"
+                                    />
+                                )
+                            )}
+                        </div>
+                    )}
 
                     <div className="zolo-block-body-content">
                         <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
-                        {dismissible && <span className="zolo-notice-dismiss" style={{ cursor: 'pointer' }} />}
+                        {dismissible && (
+                            <span
+                                className={`${enableIcon == false ? `zolo-notice-closed` : ''} zolo-notice-dismiss`}
+                                style={{ cursor: 'pointer' }}
+                            />
+                        )}
                         <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />
                     </div>
                 </div>

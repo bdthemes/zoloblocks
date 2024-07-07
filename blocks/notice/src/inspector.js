@@ -39,24 +39,14 @@ import {
     DESCRIPTION_MARGIN,
     PRESETS,
     ICON_SIZE,
-    BUTTON_ICON_SIZE,
-    ICON_TEXT_SPACING,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    BUTTON_BG_COLOR,
-    BUTTON_BG_HOVER_COLOR,
-    BUTTON_BOX_SHADOW,
-    BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_MARGIN,
-    BUTTON_BORDER,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_MARGIN,
-    BUTTON_PADDING,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
@@ -69,12 +59,6 @@ import {
     ITEM_MARGIN,
     ITEM_BOX_SHADOW,
     ITEM_HBOX_SHADOW,
-    RIBBON_MARGIN,
-    RIBBON_PADDING,
-    RIBBON_BORDER,
-    RIBBON_RADIUS,
-    RIBBON_BG,
-    RIBBON_POSITIONS,
     PRESETS_ALIGNMENT,
     ICON_WRAPPER_BG_COLOR,
     ANIMATION_TYPES,
@@ -97,12 +81,8 @@ function Inspector(props) {
         itemHBorderColor,
         titleTag,
         resMode,
-        showButtonIcon,
-        showButtonText,
         mainIcon,
-        showMainIcon,
         iconTypeImage,
-        buttonIcon,
         iconBoxTitle,
         iconBoxDescription,
         iconAlignment,
@@ -115,9 +95,6 @@ function Inspector(props) {
         textHoverColor,
         descColor,
         descHoverColor,
-        showHeading,
-        showDesc,
-        showButton,
         iconType,
         imageRes,
         iconBoxDirection,
@@ -128,6 +105,7 @@ function Inspector(props) {
         //notice
         dismissible,
         showAfterDismiss,
+        enableIcon,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -139,7 +117,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/advanced-icon-box"
+                block="zolo/notice"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -176,6 +154,12 @@ function Inspector(props) {
                                     />
                                 )
                             }
+
+                            <ToggleControl
+                                label={__('Enable Icon', 'zoloblocks')}
+                                checked={enableIcon}
+                                onChange={() => setAttributes({ enableIcon: !enableIcon })}
+                            />
 
                             <ToggleControl
                                 label={__('Dismisible', 'zoloblocks')}

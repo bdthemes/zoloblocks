@@ -267,6 +267,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    enableIcon: {
+        type: 'boolean',
+        default: true,
+    },
 };
 
 export default attributes;

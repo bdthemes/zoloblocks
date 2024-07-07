@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { Dashicon } from '@wordpress/components';
 
 // Block Prefix
-export const BLOCK_PREFIX = 'advanced-icon-box';
+export const BLOCK_PREFIX = 'notice';
 // Presets
 export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },

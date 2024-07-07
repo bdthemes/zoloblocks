@@ -1,14 +1,3 @@
-//complete
-// .style-2 .iconbox-align-left .zolo-notice-dismiss {
-//     display: flex;
-//     top: -40px;
-//     right: -109px;
-//     width: 24px;
-//     height: 24px;
-//     position: absolute;
-//     justify-content: center;
-// }
-
 .wp-block-zolo-notice {
     --zolo-item-gap: clamp(0.625rem, 1.5vw, 1rem);
     --zolo-item-padding: clamp(1.875rem, 4vw, 2.5rem);
@@ -30,37 +19,30 @@
     position: relative;
     box-sizing: border-box;
     display: block;
-    // overflow: hidden;
-
-    &.style-1 .zolo-notice-dismiss {
+    .zolo-notice-closed {
+        margin-top: 64px;
+    }
+    .zolo-notice-dismiss {
         &:after {
             content: '\00d7';
         }
         display: flex;
-        top: -104px;
-        right: -37px;
         width: 24px;
         height: 24px;
         position: absolute;
         justify-content: center;
     }
+    &.style-1 .zolo-notice-dismiss {
+        top: -104px;
+        right: -37px;
+    }
     &.style-2 .iconbox-align-left .zolo-notice-dismiss {
-        display: flex;
-        display: flex;
         top: 0;
         left: 101%;
     }
     &.style-3 .zolo-notice-dismiss {
-        &:after {
-            content: '\00d7';
-        }
-        display: flex;
         top: 0px;
         right: 0px;
-        width: 24px;
-        height: 24px;
-        position: absolute;
-        justify-content: center;
     }
     .zolo-block-item {
         padding: var(--zolo-item-padding);
@@ -155,27 +137,15 @@
     /* icon box style 2 */
     &.style-2,
     &.iconbox-align-right {
-        //notice close
+        //notice close '
         .zolo-notice-dismiss {
-            &:after {
-                content: '\00d7';
-            }
-            display: flex;
             top: -40px;
             right: -109px;
-            width: 24px;
-            height: 24px;
-            position: absolute;
-            justify-content: center;
         }
+
         &.iconbox-align-left .zolo-notice-dismiss {
-            display: flex;
             top: -39px;
             right: -38px;
-            width: 24px;
-            height: 24px;
-            position: absolute;
-            justify-content: center;
         }
         .zolo-block-item {
             display: flex;
@@ -184,6 +154,7 @@
 
         .zolo-block-icon-wrap {
             display: flex;
+            margin-right: 10px;
         }
 
         .zolo-block-body-content {

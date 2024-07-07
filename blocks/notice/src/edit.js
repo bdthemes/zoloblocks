@@ -35,6 +35,7 @@ export default function Edit(props) {
         animationPositionTwo,
         //notice
         dismissible,
+        enableIcon,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -96,37 +97,39 @@ export default function Edit(props) {
                     )}
                     data-id={uniqueId}
                 >
-                    <div className={`zolo-block-icon-wrap`}>
-                        {iconType == 'icon' ? (
-                            <DisplayZoloIcon icon={mainIcon} />
-                        ) : iconTypeImage ? (
-                            <>
-                                <img
-                                    src={
-                                        iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
-                                            ? iconTypeImage.sizes[imageRes].url
-                                            : iconTypeImage.url
-                                    }
-                                    alt={iconTypeImage.alt || 'Team Member'}
+                    {enableIcon && (
+                        <div className={`zolo-block-icon-wrap`}>
+                            {iconType == 'icon' ? (
+                                <DisplayZoloIcon icon={mainIcon} />
+                            ) : iconTypeImage ? (
+                                <>
+                                    <img
+                                        src={
+                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                ? iconTypeImage.sizes[imageRes].url
+                                                : iconTypeImage.url
+                                        }
+                                        alt={iconTypeImage.alt || 'Team Member'}
+                                    />
+                                </>
+                            ) : (
+                                <MediaPlaceholder
+                                    icon="format-image"
+                                    labels={{
+                                        title: __('Add Photo', 'zoloblocks'),
+                                        instructions: '',
+                                    }}
+                                    onSelect={(media) => {
+                                        setAttributes({
+                                            iconTypeImage: media,
+                                        });
+                                    }}
+                                    accept="image/*"
+                                    allowedTypes={['image']}
                                 />
-                            </>
-                        ) : (
-                            <MediaPlaceholder
-                                icon="format-image"
-                                labels={{
-                                    title: __('Add Photo', 'zoloblocks'),
-                                    instructions: '',
-                                }}
-                                onSelect={(media) => {
-                                    setAttributes({
-                                        iconTypeImage: media,
-                                    });
-                                }}
-                                accept="image/*"
-                                allowedTypes={['image']}
-                            />
-                        )}
-                    </div>
+                            )}
+                        </div>
+                    )}
 
                     <div className="zolo-block-body-content">
                         <RichText
@@ -140,7 +143,7 @@ export default function Edit(props) {
                             }
                             placeholder={__('The Title Goes Here', 'zoloblocks')}
                         />
-                        {dismissible && <span className="zolo-notice-dismiss" />}
+                        {dismissible && <span className={`${enableIcon == false ? `zolo-notice-closed` : ''} zolo-notice-dismiss`} />}
                         <RichText
                             className={`zolo-block-desc`}
                             tagName="div"
