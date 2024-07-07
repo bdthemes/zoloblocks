@@ -9,16 +9,11 @@ import { applyFilters } from '@wordpress/hooks';
  * Internal depencencies
  */
 const {
-    generateResAlignmentStyle,
-    generateNormalBGControlStyles,
     generateResRangeStyle,
     generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
     generateBoxShadowStyles,
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
     GlobalStyleHanlder,
+    generateResAlignmentStyle
 } = window.zoloModule;
 
 import {
@@ -29,6 +24,7 @@ import {
     ICON_PADDING,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
+    ICON_ALIGNMENT
 } from './constants';
 
 
@@ -118,10 +114,33 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopAlignStyle: iconDeskAlign,
+        tabAlignStyle: iconTabAlign,
+        mobAlignStyle: iconMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: ICON_ALIGNMENT,
+        property: 'justify-content',
+        attributes,
+    });
+    const {
+        desktopAlignStyle: iconDeskTextAlign,
+        tabAlignStyle: iconTabTextAlign,
+        mobAlignStyle: iconMobTextAlign,
+    } = generateResAlignmentStyle({
+        controlName: ICON_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
+
 
 
     // All Icon Style
     const desktopAllStyle = `
+        .${uniqueId}.wp-block-zolo-icon {
+            ${iconDeskAlign}
+            ${iconDeskTextAlign}
+        }
         .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg {
             ${iconWidthSizeDesk}
             ${iconHeightSizeDesk}
@@ -145,6 +164,10 @@ export default function Style({ props }) {
     `;
 
     const tabletAllStyle = `
+        .${uniqueId}.wp-block-zolo-icon {
+            ${iconTabAlign}
+            ${iconTabTextAlign}
+        }
         .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg {
             ${iconWidthSizeTab}
             ${iconHeightSizeTab}
@@ -157,6 +180,10 @@ export default function Style({ props }) {
     `;
 
     const mobileAllStyle = `
+            .${uniqueId}.wp-block-zolo-icon {
+            ${iconMobAlign}
+            ${iconMobTextAlign}
+        }
         .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg {
             ${iconWidthSizeMob}
             ${iconHeightSizeMob}

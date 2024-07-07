@@ -10,6 +10,7 @@ export const BLOCK_PREFIX = 'icon';
 
 export const ICON_SIZE = 'iconSize';
 export const ICON_BORDER = 'iconBorder';
+export const ICON_ALIGNMENT = 'iconAlignment';
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 export const ICON_MARGIN = 'iconMargin';
 export const ICON_PADDING = 'iconPadding';

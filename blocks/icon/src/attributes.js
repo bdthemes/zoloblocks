@@ -18,6 +18,7 @@ import {
     ICON_PADDING,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
+    ICON_ALIGNMENT,
 } from './constants';
 
 const attributes = {
@@ -58,6 +59,8 @@ const attributes = {
     ...generateResRangeAttributies(ICON_PADDING),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
     ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
+    ...generateResAlignmentAttributies(ICON_ALIGNMENT),
+
 
     iconColor: {
         type: 'string',

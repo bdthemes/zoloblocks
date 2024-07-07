@@ -1,11 +1,11 @@
-import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 export default function save(props) {
     const { attributes } = props

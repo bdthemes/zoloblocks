@@ -7,6 +7,7 @@ import { __ } from "@wordpress/i18n";
 import { Fragment } from "@wordpress/element";
 import { applyFilters } from "@wordpress/hooks";
 import objAttributes from './attributes';
+import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 /**
  * Internal depencencies
@@ -42,6 +43,7 @@ import {
     ICON_PADDING,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
+    ICON_ALIGNMENT
 } from './constants';
 
 export default function Inspector(props) {
@@ -82,6 +84,12 @@ export default function Inspector(props) {
                                     onChange={(value) => setAttributes({
                                         mainIcon: value,
                                     })}
+                                />
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zoloblocks')}
+                                    controlName={ICON_ALIGNMENT}
+                                    requiredProps={requiredProps}
+                                    alignOptions={DEFAULT_ALIGNS}
                                 />
                             </ZoloPanelBody>
                         </>
