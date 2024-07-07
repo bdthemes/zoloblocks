@@ -20,7 +20,7 @@
 .zolo-library-open-button {
     background-color: #dee7ff;
     gap: 0.5rem;
-    margin-right: 0.5rem;
+    margin:0 0.5rem;
     order: 1 !important;
     color: #2667ff;
     font-weight: 700;
@@ -761,7 +761,7 @@
             .tags-btn-wrap {
                 display: flex;
                 align-items: center;
-                gap: 4px;  
+                gap: 4px;
                 mask-image: linear-gradient(to right, #000 50%, rgba(0, 0, 0, 0.078) 100%);
                 flex-wrap: nowrap;
                 width: 350px;
@@ -786,7 +786,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            
+
             svg {
                 width: 18px;
                 height: 18px;
@@ -896,7 +896,7 @@
         width: 100px;
         height: 100px;
     }
-    
+
     .zolo-pro-modal-btn {
         text-decoration: none;
         background-color: #ffe9e9;
