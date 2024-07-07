@@ -659,47 +659,15 @@ export default function Style({ props }) {
 			${iconImageBorderDesk}
 			${iconImageBorderRadiusDesk}
 		}
-
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
-			${buttonBGDeskStyle}
-			${gapDesk}
-			${buttonBorderStyles}
-			${buttonBorderRadiusDesktop}
-			${buttonPaddingDesktop}
-			${buttonMarginDesktop}
-			${buttonBoxShadow}
-            color: ${btnColor ? btnColor : ''};
-			${btnTypoDesktop}
-            flex-direction: ${iconPosition};
-		}
-
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
-			${buttonIconSize}
-            ${buttonIconHSize}
-            ${btnColor ? `fill: ${btnColor};` : ''}
-		}
-
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-                ${buttonBGHoverDeskStyle}
-                ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
-                ${buttonHoverBoxShadow}
-                ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
-                ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-            }
-            .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button svg{
-                ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
-            }
-            .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon {
-                ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
-
-                ${iconHoverBoxShadow}
-                ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
-            }
-            .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon svg{
-                ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
-            }
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon {
+            ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
+            ${iconHoverBoxShadow}
+            ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
         }
-
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon svg{
+            ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
+        }
+        
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
             ${textHoverColor ? `color: ${textHoverColor};` : ''}
         }
@@ -776,39 +744,6 @@ export default function Style({ props }) {
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
-            ${buttonBGTabStyle}
-			${gapTab}
-			${buttonBorderStylesTab}
-			${buttonBorderRadiusTab}
-			${buttonPaddingTab}
-			${buttonMarginTab}
-		}
-
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
-			${buttonIconSizeTab}
-            ${buttonIconHSizeTab}
-		}
-
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button{
-			${btnTypoTab}
-		}
-
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-            ${buttonBGHoverTabStyle}
-        }
-        .${uniqueId} .zolo-ribbon-btn{
-            ${ribbonTypoTab}
-            ${ribbonBgTab}
-            ${ribbonPaddingTab}
-            ${ribbonMarginTab}
-            ${ribbonBorderTab}
-            ${ribbonTabRadius}
-        }
-
-      
-
         .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
          ${animationBgTabStyle}
          ${animationBorderRadiusTab}
@@ -875,28 +810,6 @@ export default function Style({ props }) {
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
-            ${buttonBGMobStyle}
-			${gapMob}
-			${buttonBorderStylesMob}
-			${buttonBorderRadiusMob}
-			${buttonPaddingMob}
-			${buttonMarginMob}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button svg{
-			${buttonIconSizeMob}
-            ${buttonIconHSizeMob}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
-			${btnTypoMobile}
-		}
-
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-            ${buttonBGHoverMobStyle}
-        }
 
       .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
          ${animationBgMobStyle}

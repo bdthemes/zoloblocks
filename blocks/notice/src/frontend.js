@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
             return;
         }
 
-        notices[i].style.position = 'relative';
-        dismissButton.style.position = 'absolute';
-        dismissButton.style.right = ' -37px';
-        dismissButton.style.top = '-104px';
+        // notices[i].style.position = 'relative';
+        // dismissButton.style.position = 'absolute';
+        // dismissButton.style.right = ' -37px';
+        // dismissButton.style.top = '-104px';
         // Hide notice if it's already closed
         let noticeId = notices[i].getAttribute('data-id');
         let showAgain = notices[i].getAttribute('data-show-again');
