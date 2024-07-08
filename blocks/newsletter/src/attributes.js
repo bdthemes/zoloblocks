@@ -42,6 +42,9 @@ SUBSCRIBED_MSG_BG,
   INPUT_BG,
   LABEL_HOVER_BG_COLOR,
   FOCUS_BORDER_WIDTH,
+  FOCUS_STYLE_5_BORDER_WIDTH,
+  FIELD_ICON_SIZE,
+FIELD_ICON_SPACING,
 } from "./constants";
 
 import * as typographyObjs from "./constants/typoPrefixConstant";
@@ -110,6 +113,9 @@ const attributes = {
     ...generateResRangeAttributies(LABEL_SPACING),
     ...generateResRangeAttributies(LABEL_BOTTOM_SPACING),
     ...generateResRangeAttributies(FOCUS_BORDER_WIDTH),
+    ...generateResRangeAttributies(FOCUS_STYLE_5_BORDER_WIDTH),
+    ...generateResRangeAttributies(FIELD_ICON_SIZE),
+    ...generateResRangeAttributies(FIELD_ICON_SPACING),
 
     // presets
 
@@ -120,6 +126,10 @@ const attributes = {
     preset: {
         type: 'string',
         default: 'zolo-newsletter-1',
+    },
+    focusStyle: {
+        type: 'string',
+        default: 'zolo-focus-style-1',
     },
     namePlaceholder: {
         type: 'string',
@@ -143,6 +153,14 @@ const attributes = {
         default: true,
     },
     showIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    showFieldIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    showLabels: {
         type: 'boolean',
         default: true,
     },
@@ -199,6 +217,10 @@ const attributes = {
         default: '',
     },
     focusColor: {
+        type: 'string',
+        default: '',
+    },
+    focusStyle5Color: {
         type: 'string',
         default: '',
     },
