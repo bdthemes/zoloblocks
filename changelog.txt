@@ -13,6 +13,7 @@
 
 - Entrance animation confilict with global link issue fixed in Advanced Icon Box
 - The map zoom in/out and draggble issue fixed in Google Map block
+- Floating label issue fixed in advanced search & newslatter block
 - Patterns save as favorite features added in Template Library
 - Image Uploading issue fixed in Advanced Image block
 - Separator color issue fixed in team grid block
