@@ -1,4 +1,13 @@
-### 1.0.8 [July 02, 2024]
+### 1.0.8 [July 08, 2024]
+
+### Added
+
+- Icon block added
+- Text path block added
+- zIndex nagative value added
+- Theme fonts support added
+- position sticky feature added
+- Box Shadow control added in Flipbox block
 
 ### Fixed
 
@@ -6,7 +15,8 @@
 - The map zoom in/out and draggble issue fixed in Google Map block
 - Patterns save as favorite features added in Template Library
 - Image Uploading issue fixed in Advanced Image block
-- Theme fonts support added
+- Separator color issue fixed in team grid block
+- Label issue fixed in Form block
 
 ###Improved
 
