@@ -270,12 +270,6 @@ const Settings = () => {
                                             }}
                                         />
                                     </SettingBox>
-                                    <SettingBox
-                                        title={__('Popup Builder (Coming Soon)', 'zoloblocks')}
-                                        description={__('Enable the Pattern Import option to import your block(s) pattern.', 'zoloblocks')}
-                                    >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
-                                    </SettingBox>
                                 </div>
                             </div>
                         )}
@@ -290,7 +284,6 @@ const Settings = () => {
                                                 By default, ZoloBlocks loads CSS and JS inline on the page. If you prefer to generate separate CSS and JS files for ZoloBlocks components, enable this option. To understand the difference between generating CSS and JS inline versus in separate files, please read this article.
                                             </>}
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Asset Regeneration (Coming Soon)', 'zoloblocks')}
@@ -300,7 +293,6 @@ const Settings = () => {
                                             </>}
                                         released={false}
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                 </div>
                             </div>
