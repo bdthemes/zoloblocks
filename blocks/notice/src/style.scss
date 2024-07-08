@@ -1,8 +1,8 @@
 .wp-block-zolo-notice {
     --zolo-item-gap: 10px;
-    --zolo-item-padding: 20px;
+    --zolo-item-padding: 16px;
     --zolo-title-text-color: #2f2f44;
-    --zolo-title-margin: 0 0 5px;
+    --zolo-title-margin: 0;
     --zolo-desc-text-color: #51515d;
     --zolo-icon-margin: 0 0 clamp(0.938rem, 2.3vw, 1.3rem);
     --zolo-icon-img-width: clamp(3.125rem, 5vw, 3.75rem);
@@ -21,16 +21,11 @@
     display: block;
     .zolo-block-item {
         padding: var(--zolo-item-padding);
-        border-radius: 20px;
-        background-color: rgba(233, 239, 255, 0.29);
-        border-width: 2px;
-        border-style: var(--zolo-item-border-style);
-        border-color: #8eb1ff;
+        border-radius: 4px;
         box-sizing: border-box;
         display: block;
         transition: all 0.3s ease;
         position: relative;
-        box-shadow: var(--zoloblocks-item-box-shadow);
     }
 
     .zolo-inner-item {
@@ -43,8 +38,8 @@
     }
     &.success {
         .zolo-block-item {
-            background-color: #f3faf7;
-            border-color: #2ed47a;
+            background-color: #dbfff0;
+            // border-left-color: #2ed47a;
         }
         .zolo__display-icon {
             background-color: #2ed47a;
@@ -54,7 +49,7 @@
     &.info {
         .zolo-block-item {
             background-color: #ebf5ff;
-            border-color: #8eb1ff;
+            // border-left-color: #8eb1ff;
         }
         .zolo__display-icon {
             background-color: #2970ff;
@@ -62,24 +57,20 @@
     } 
     &.warnging {
         .zolo-block-item {
-            background-color: #fdfdea;
-            border-color: #efef00;
+            background-color: #fff5ea;
+            // border-left-color: #ff9b2e;
         }
         .zolo__display-icon {
-            background-color: #fafa0b;
-            svg {
-                --zoloblocks-brand-color: #000;
-                fill: var(--zoloblocks-brand-color);
-            }
+            background-color: #ff9b2e;
         }
     } 
     &.danger {
         .zolo-block-item {
-            background-color: #fdf2f2;
-            border-color: #ff4545;
+            background-color: #fff3f3;
+            // border-left-color: #f71c1c;
         }
         .zolo__display-icon {
-            background-color: #ff4545;
+            background-color: #f71c1c;
         }
     }
 
@@ -94,6 +85,7 @@
     .zolo-block-desc {
         font-size: clamp(0.75rem, 1.5vw, 0.875rem);
         color: var(--zolo-desc-text-color);
+        margin: 5px 0 0;
     }
 
     .zolo-block-icon-wrap {
@@ -106,7 +98,7 @@
     .zolo__display-icon {
         display: inline-flex;
         align-items: center;
-        font-size: 18px;
+        font-size: 16px;
         background-color: #2970ff;
         padding: 12px;
         border-radius: 50%;
@@ -153,6 +145,8 @@
             display: flex;
             align-items: center;
             grid-gap: var(--zolo-item-gap);
+            border-left-width: 4px;
+            border-left-style: var(--zolo-item-border-style);
         }
         .zolo-block-body-content {
             width: 100%;
@@ -160,6 +154,28 @@
         &.iconbox-align-right {
             .zolo-block-item {
                 flex-direction: row-reverse;
+            }
+        }
+
+        &.success {
+            .zolo-block-item {
+                border-left-color: #2ed47a;
+            }
+        }
+    
+        &.info {
+            .zolo-block-item {
+                border-left-color: #8eb1ff;
+            }
+        } 
+        &.warnging {
+            .zolo-block-item {
+                border-left-color: #ff9b2e;
+            }
+        } 
+        &.danger {
+            .zolo-block-item {
+                border-left-color: #f71c1c;
             }
         }
     }
@@ -171,9 +187,32 @@
             --zolo-item-padding: 30px;
             padding: var(--zolo-item-padding);
             text-align: center;
+            border-top-width: 4px;
+            border-top-style: var(--zolo-item-border-style);
         }
          .zolo-block-icon-wrap {
              margin-bottom: 10px;
          }
+         &.success {
+            .zolo-block-item {
+                border-top-color: #2ed47a;
+            }
+        }
+    
+        &.info {
+            .zolo-block-item {
+                border-top-color: #8eb1ff;
+            }
+        } 
+        &.warnging {
+            .zolo-block-item {
+                border-top-color: #ff9b2e;
+            }
+        } 
+        &.danger {
+            .zolo-block-item {
+                border-top-color: #f71c1c;
+            }
+        }
      }
 }

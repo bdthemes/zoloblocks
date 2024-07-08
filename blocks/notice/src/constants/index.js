@@ -11,7 +11,6 @@ export const PRESETS = [
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
 ];
 export const NOTICE_TYPE = [
-    { label: 'Default', value: 'default' },
     { label: 'Success', value: 'success' },
     { label: 'Info', value: 'info' },
     { label: 'Warning', value: 'warnging' },
@@ -121,3 +120,9 @@ export const CLOSE_ICON_BORDER = 'closeIconBorder';
 export const CLOSE_ICON_BORDER_RADIUS = 'closeIconBorderRadius';
 export const CLOSE_ICON_BOX_SHADOW = 'closeIconBoxShadow';
 export const CLOSE_ICON_HOVER_BOX_SHADOW = 'closeIconHoverBoxShadow';
+
+export const CONTENT_TAB_PANEL_OPTION = [
+    { label: 'Icon', value: 'normal' },
+    { label: 'Title', value: 'hover' },
+    { label: 'Description', value: 'active' },
+];

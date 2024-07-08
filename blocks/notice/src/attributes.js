@@ -146,14 +146,14 @@ const attributes = {
     },
     noticeType: {
         type: 'string',
-        default: 'default',
+        default: 'info',
     },
     label: {
         type: 'string',
     },
     titleTag: {
         type: 'string',
-        default: 'h2',
+        default: 'h3',
     },
 
     icon: {
