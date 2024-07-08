@@ -31,14 +31,16 @@ const Save = ({ attributes }) => {
         dismissible,
         showAfterDismiss,
         enableIcon,
+        noticeType,
     } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(
             uniqueId,
             classArrayToStr(parentClasses),
-            'zolo-block-advanced-icon-box',
+            'zolo-block-notice',
             preset,
+            noticeType,
             `${preset === 'style-2' ? iconBoxDirection : ''}`,
             `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
         ),
@@ -70,7 +72,7 @@ const Save = ({ attributes }) => {
                     )}
                 >
                     {enableIcon && (
-                        <div className={`zolo-block-icon-wrap`}>
+                        <div className="zolo-block-icon-wrap">
                             {iconType == 'icon' ? (
                                 <DisplayZoloIcon icon={mainIcon} />
                             ) : (
@@ -94,7 +96,7 @@ const Save = ({ attributes }) => {
                         <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
                         {dismissible && (
                             <span
-                                className={`${enableIcon == false ? `zolo-notice-closed` : ''} zolo-notice-dismiss`}
+                                className={`${enableIcon == false && preset == 'style-1' ? `zolo-notice-closed` : ''} zolo-notice-dismiss`}
                                 style={{ cursor: 'pointer' }}
                             />
                         )}

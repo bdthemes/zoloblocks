@@ -23,14 +23,12 @@ const {
     BoxShadowControl,
     HeaderTabs,
     IconicBtnGroup,
-    LinkControl,
     NormalBGControl,
     ImageAvatar,
     ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
     ImageSizes,
-    RangeResetControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -69,9 +67,11 @@ import {
     ICON_ANIMATION_SIZE,
     ICON_ANIMATION_RADIUS,
     ICON_ANIMATION_THICKNESS,
+    //NOTICE TYPE
+    NOTICE_TYPE,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS, ICON_BOX_OPTIONS, FLEX_ALIGN_OPTIONS, POSITIONS, HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
@@ -106,6 +106,8 @@ function Inspector(props) {
         dismissible,
         showAfterDismiss,
         enableIcon,
+        noticeType,
+        closedColor,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -154,13 +156,11 @@ function Inspector(props) {
                                     />
                                 )
                             }
-
                             <ToggleControl
                                 label={__('Enable Icon', 'zoloblocks')}
                                 checked={enableIcon}
                                 onChange={() => setAttributes({ enableIcon: !enableIcon })}
                             />
-
                             <ToggleControl
                                 label={__('Dismisible', 'zoloblocks')}
                                 checked={dismissible}
@@ -176,6 +176,13 @@ function Inspector(props) {
                                 controlName={CONTENT_ALIGNMENT}
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
+                            />
+
+                            <SelectControl
+                                label={__('type', 'zoloblocks')}
+                                value={noticeType}
+                                options={NOTICE_TYPE}
+                                onChange={(v) => setAttributes({ noticeType: v })}
                             />
                         </ZoloPanelBody>
                         {preset !== 'style-3' && (
@@ -234,17 +241,19 @@ function Inspector(props) {
                         )}
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <>
-                                <IconicBtnGroup
-                                    label={__('Icon Type', 'zoloblocks')}
-                                    value={iconType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            iconType: value,
-                                        })
-                                    }
-                                    options={ICON_BOX_OPTIONS}
-                                />
-                                {iconType === 'icon' && (
+                                {enableIcon && (
+                                    <IconicBtnGroup
+                                        label={__('Icon Type', 'zoloblocks')}
+                                        value={iconType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconType: value,
+                                            })
+                                        }
+                                        options={ICON_BOX_OPTIONS}
+                                    />
+                                )}
+                                {enableIcon && iconType === 'icon' && (
                                     <Fragment>
                                         <ZoloIconPicker
                                             label={__('Select Icon', 'zoloblocks')}
@@ -258,7 +267,7 @@ function Inspector(props) {
                                     </Fragment>
                                 )}
 
-                                {iconType === 'image' && (
+                                {enableIcon && iconType === 'image' && (
                                     <>
                                         <BaseControl label={__('Image', 'zoloblocks')}>
                                             {iconTypeImage ? (
@@ -648,7 +657,7 @@ function Inspector(props) {
                         {preset !== 'style-3' && (
                             <>
                                 {applyFilters(
-                                    'zolo.advancedIconBox.animationStyle',
+                                    'zolo.notice.animationStyle',
                                     <ZoloPanelBody
                                         title={__('Animation', 'zoloblocks')}
                                         panelProps={props}
@@ -687,6 +696,19 @@ function Inspector(props) {
                                     </ZoloPanelBody>
                                 )}
                             </>
+                        )}
+                        {dismissible && (
+                            <ZoloPanelBody title={__('Closed Button', 'zoloblocks')} panelProps={props} stylePanel={true}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={closedColor}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            closedColor: value,
+                                        })
+                                    }
+                                />
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

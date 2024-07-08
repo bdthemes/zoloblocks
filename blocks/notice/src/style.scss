@@ -22,6 +22,9 @@
     .zolo-notice-closed {
         margin-top: 64px;
     }
+    .zolo-block-icon-wrap {
+        display: flex;
+    }
     .zolo-notice-dismiss {
         &:after {
             content: '\00d7';
@@ -33,8 +36,8 @@
         justify-content: center;
     }
     &.style-1 .zolo-notice-dismiss {
-        top: -104px;
-        right: -37px;
+        top: -82px;
+        right: -38px;
     }
     &.style-2 .iconbox-align-left .zolo-notice-dismiss {
         top: 0;
@@ -61,6 +64,19 @@
     a {
         text-decoration: none;
     }
+    &.success .zolo-block-item {
+        background-color: #4caf50;
+    }
+
+    &.info .zolo-block-item {
+        background-color: #d3d3d3;
+    }
+    &.warnging .zolo-block-item {
+        background-color: #ffcc00;
+    }
+    &.danger .zolo-block-item {
+        background-color: #f44336;
+    }
 
     .zolo-block-title {
         font-size: clamp(1.25rem, 2.5vw, 1.3rem);
@@ -76,10 +92,6 @@
     }
 
     .zolo-block-icon-wrap {
-        margin: var(--zolo-icon-margin);
-        display: inline-block;
-        z-index: 1;
-        position: relative;
         img {
             width: var(--zolo-icon-img-width);
             height: auto;
@@ -107,31 +119,6 @@
     .zolo-block-body-content {
         z-index: 1;
         position: relative;
-    }
-    .zolo-block-link-btn {
-        margin: var(--zolo-link-btn-margin);
-    }
-    .zolo-box-button {
-        display: inline-flex;
-        gap: var(--zolo-link-btn-gap);
-        align-items: center;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        color: var(--zolo-link-btn-text-color);
-        font-weight: 700;
-        .zolo__display-icon {
-            width: auto;
-            height: auto;
-        }
-        &:hover {
-            color: var(--zoloblocks-button-hover-color);
-        }
-        svg {
-            width: var(--zolo-link-btn-icon-size);
-            height: var(--zolo-link-btn-icon-size);
-            fill: var(--zolo-link-btn-icon-color);
-            display: block;
-        }
     }
 
     /* icon box style 2 */
@@ -191,9 +178,6 @@
             .zolo__display-icon {
                 margin: auto;
                 padding: 100px;
-                svg {
-                    fill: #fff;
-                }
             }
         }
         .zolo-block-body-content {

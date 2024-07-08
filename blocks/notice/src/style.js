@@ -30,18 +30,9 @@ import {
     ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
-    BUTTON_BG_COLOR,
-    BUTTON_BG_HOVER_COLOR,
-    BUTTON_ICON_SIZE,
-    BUTTON_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    BUTTON_BOX_SHADOW,
-    BUTTON_HOVER_BOX_SHADOW,
     ICON_TEXT_SPACING,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_MARGIN,
-    BUTTON_PADDING,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     CONTENT_ALIGNMENT,
@@ -54,11 +45,6 @@ import {
     ITEM_MARGIN,
     ITEM_BOX_SHADOW,
     ITEM_HBOX_SHADOW,
-    RIBBON_MARGIN,
-    RIBBON_PADDING,
-    RIBBON_BORDER,
-    RIBBON_RADIUS,
-    RIBBON_BG,
     ICON_WRAPPER_BG_COLOR,
     //Animating Icon
     ICON_ANIMATION_BG,
@@ -67,7 +53,7 @@ import {
     ICON_ANIMATION_THICKNESS,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
@@ -88,16 +74,8 @@ export default function Style({ props }) {
         iconBackgroundColor,
         iconBackgroundHoverColor,
         iconPosition,
-        btnColor,
-        btnHoverColor,
-        btnBgHoverColor,
-        btnHoverBorderColor,
-        globalLink,
-        //ribbon
-        ribbonXPosition,
-        ribbonYPosition,
-        ribbonRotate,
-        ribbonColor,
+        //notice
+        closedColor,
     } = attributes;
 
     // item
@@ -182,64 +160,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    //ribbon style
-    const {
-        typoStylesDesktop: ribbonTypoDesktop,
-        typoStylesTab: ribbonTypoTab,
-        typoStylesMobile: ribbonTypoMobile,
-    } = generateTypographyStyles({
-        prefixConstant: RIBBON_TYPOGRAPHY,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: ribbonMarginDesktop,
-        dimensionStylesTab: ribbonMarginTab,
-        dimensionStylesMobile: ribbonMarginMobile,
-    } = generateDimensionStyle({
-        controlName: RIBBON_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: ribbonPaddingDesktop,
-        dimensionStylesTab: ribbonPaddingTab,
-        dimensionStylesMobile: ribbonPaddingMobile,
-    } = generateDimensionStyle({
-        controlName: RIBBON_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: ribbonBorderDesktop,
-        tabBorderStyle: ribbonBorderTab,
-        mobBorderStyle: ribbonBorderMob,
-    } = generateBorderStyle({
-        attributes,
-        controlName: RIBBON_BORDER,
-    });
-
-    const {
-        dimensionStylesDesktop: ribbonDeskRadius,
-        dimensionStylesTab: ribbonTabRadius,
-        dimensionStylesMobile: ribbonMobRadius,
-    } = generateDimensionStyle({
-        controlName: RIBBON_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
-        backgroundStylesDesktop: ribbonBgDesktop,
-        backgroundStylesTab: ribbonBgTab,
-        backgroundStylesMobile: ribbonBgMob,
-    } = generateNormalBGControlStyles({
-        attributes,
-        controlName: RIBBON_BG,
-    });
-
     // icon alignment
     const {
         desktopAlignStyle: iconAlignmentDesktop,
@@ -274,18 +194,6 @@ export default function Style({ props }) {
         controlName: ICON_HOVER_BOX_SHADOW,
     });
 
-    // Generate Button Box Shadow
-    const { boxShadowStyle: buttonBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: BUTTON_BOX_SHADOW,
-    });
-
-    // Generate Icon Hover Box Shadow
-    const { boxShadowStyle: buttonHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: BUTTON_HOVER_BOX_SHADOW,
-    });
-
     // Generate Icon Padding
     const {
         dimensionStylesDesktop: iconPaddingDesktop,
@@ -293,16 +201,6 @@ export default function Style({ props }) {
         dimensionStylesMobile: iconPaddingMob,
     } = generateDimensionStyle({
         controlName: ICON_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-    // Generate Button Padding
-    const {
-        dimensionStylesDesktop: buttonPaddingDesktop,
-        dimensionStylesTab: buttonPaddingTab,
-        dimensionStylesMobile: buttonPaddingMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_PADDING,
         styleFor: 'padding',
         attributes,
     });
@@ -314,17 +212,6 @@ export default function Style({ props }) {
         dimensionStylesMobile: iconMarginMob,
     } = generateDimensionStyle({
         controlName: ICON_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Generate Button Margin
-    const {
-        dimensionStylesDesktop: buttonMarginDesktop,
-        dimensionStylesTab: buttonMarginTab,
-        dimensionStylesMobile: buttonMarginMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_MARGIN,
         styleFor: 'margin',
         attributes,
     });
@@ -376,16 +263,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    // button typography
-    const {
-        typoStylesDesktop: btnTypoDesktop,
-        typoStylesTab: btnTypoTab,
-        typoStylesMobile: btnTypoMobile,
-    } = generateTypographyStyles({
-        prefixConstant: BUTTON_TYPOGRAPHY,
-        attributes,
-    });
-
     // Generate Title Margin
     const {
         dimensionStylesDesktop: descMarginDesktop,
@@ -429,17 +306,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    // button background color
-    const {
-        backgroundStylesDesktop: buttonBGDeskStyle,
-        backgroundStylesTab: buttonBGTabStyle,
-        backgroundStylesMobile: buttonBGMobStyle,
-    } = generateNormalBGControlStyles({
-        controlName: BUTTON_BG_COLOR,
-        attributes,
-        noMainBGImg: true,
-    });
-
     const {
         backgroundStylesDesktop: iconWrapperBgColorDesk,
         backgroundStylesTab: iconWrapperBgColorTab,
@@ -448,58 +314,6 @@ export default function Style({ props }) {
         controlName: ICON_WRAPPER_BG_COLOR,
         attributes,
         noMainBGImg: true,
-    });
-    // button background hover color
-    const {
-        backgroundStylesDesktop: buttonBGHoverDeskStyle,
-        backgroundStylesTab: buttonBGHoverTabStyle,
-        backgroundStylesMobile: buttonBGHoverMobStyle,
-    } = generateNormalBGControlStyles({
-        controlName: BUTTON_BG_HOVER_COLOR,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    // generate button icon size
-    const {
-        desktopRangeStyle: buttonIconSize,
-        tabRangeStyle: buttonIconSizeTab,
-        mobRangeStyle: buttonIconSizeMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: buttonIconHSize,
-        tabRangeStyle: buttonIconHSizeTab,
-        mobRangeStyle: buttonIconHSizeMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
-
-    // generate button style
-    const {
-        desktopBorderStyle: buttonBorderStyles,
-        tabBorderStyle: buttonBorderStylesTab,
-        mobBorderStyle: buttonBorderStylesMob,
-    } = generateBorderStyle({
-        controlName: BUTTON_BORDER,
-        attributes,
-    });
-
-    // generate button border radius
-    const {
-        dimensionStylesDesktop: buttonBorderRadiusDesktop,
-        dimensionStylesTab: buttonBorderRadiusTab,
-        dimensionStylesMobile: buttonBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
     });
 
     // generate image size
@@ -589,24 +403,22 @@ export default function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
-    	
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item {
+        .${uniqueId}.zolo-block-notice .zolo-block-item {
             ${itemBgDesk}
             ${itemBorderDesk}
             ${itemRadiusDesk}
             ${itemBoxShadow}
-           ${preset !== 'style-3' ? itemPaddingDesk : ''}
+            ${preset !== 'style-3' ? itemPaddingDesk : ''}
             ${itemMarginDesk}
         }
-        .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-icon-wrap{
+        .${uniqueId}.zolo-block-notice.style-3 .zolo-block-icon-wrap{
             ${iconWrapperBgColorDesk}
         }
-
-        .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
+        .${uniqueId}.zolo-block-notice.style-3 .zolo-block-body-content{
            ${preset === 'style-3' ? itemPaddingDesk : ''}
         }
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover {
+        .${uniqueId}.zolo-block-notice .zolo-block-item:hover {
             ${itemHBoxShadow}
             ${itemHBgDesk}
             ${itemHBorderColor ? `border-color: ${itemHBorderColor};` : ''}
@@ -615,7 +427,7 @@ export default function Style({ props }) {
         .${uniqueId}{
             ${iconAlignmentDesktop}
         }
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap{
+		.${uniqueId}.zolo-block-notice .zolo-block-icon-wrap{
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
 		}
 
@@ -623,7 +435,7 @@ export default function Style({ props }) {
 			${contentDeskAlign}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
+		.${uniqueId}.zolo-block-notice .zolo-block-item .zolo-block-title{
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
@@ -631,17 +443,17 @@ export default function Style({ props }) {
             ${textColor ? `color: ${textColor};` : ''}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
+		.${uniqueId}.zolo-block-notice .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
             ${descColor ? `color: ${descColor};` : ''}
 		}
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
+        .${uniqueId}.zolo-block-notice .zolo-block-icon-wrap {
 			${iconMarginDesktop}
         }
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
+        .${uniqueId}.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon {
             ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
@@ -650,50 +462,52 @@ export default function Style({ props }) {
             ${iconSize}
         }
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap svg {
+		.${uniqueId}.zolo-block-notice.${preset} .zolo-block-icon-wrap svg {
             --zoloblocks-brand-color: ${iconColor ? iconColor : ''};
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
+		.${uniqueId}.zolo-block-notice .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
 			${iconImageBorderDesk}
 			${iconImageBorderRadiusDesk}
 		}
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon {
+        .${uniqueId}.wp-block-zolo-notice.${preset}:hover .zolo-block-icon-wrap .zolo__display-icon {
             ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
             ${iconHoverBoxShadow}
             ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap .zolo__display-icon svg{
+        .${uniqueId}.wp-block-zolo-notice.${preset}:hover .zolo-block-icon-wrap .zolo__display-icon svg{
             ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
         }
         
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
+        .${uniqueId}.wp-block-zolo-notice:hover .zolo-block-title{
             ${textHoverColor ? `color: ${textHoverColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-desc{
+        .${uniqueId}.wp-block-zolo-notice:hover .zolo-block-desc{
             ${descHoverColor ? `color: ${descHoverColor};` : ''}
         }
      
 
-      .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
+      .${uniqueId}.wp-block-zolo-notice .zolo-block-item:before{
          ${animationBgDeskStyle}
          ${animationBorderRadiusDesk}
       }
-      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-1 .zolo-block-item:before {
+      .${uniqueId}.wp-block-zolo-notice.animation-style-1 .zolo-block-item:before {
           ${animationType === 'style-1' && animationWidthDesk}
           ${animationType === 'style-1' && animationHeightDesk}
       }
-      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-2 .zolo-block-item::before{
 
-        ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickDesk.replace('width', '')};`}
-        
+      .${uniqueId}.wp-block-zolo-notice.animation-style-2 .zolo-block-item::before{
+        ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickDesk.replace('width', '')};`} 
       }
+     .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss{
+        ${closedColor ? `color:${closedColor}` : ''}
+     }
   	`;
 
     const tabletAllStyle = `
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
+        .${uniqueId}.zolo-block-notice .zolo-block-item{
             ${itemBgTab}
             ${itemBorderTab}
             ${itemRadiusTab}
@@ -701,11 +515,11 @@ export default function Style({ props }) {
             ${itemMarginTab}
         }
 
-         .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
+         .${uniqueId}.zolo-block-notice.style-3 .zolo-block-body-content{
            ${preset === 'style-3' ? itemPaddingTab : ''}
         }
 
-        .${uniqueId}.zolo-block-advanced-icon-box:hover {
+        .${uniqueId}.zolo-block-notice:hover {
             ${itemHBgTab}
         }
 
@@ -717,42 +531,42 @@ export default function Style({ props }) {
 			${contentTabAlign}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
+		.${uniqueId}.zolo-block-notice .zolo-block-item .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
 			${titleMarginTab}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
+		.${uniqueId}.zolo-block-notice .zolo-block-desc{
 			${descMarginTab}
 			${descTypoTab}
 		}
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
+        .${uniqueId}.zolo-block-notice .zolo-block-icon-wrap {
 			${iconMarginTab}
         }
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
+        .${uniqueId}.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon {
 			${iconSizeTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
+		.${uniqueId}.zolo-block-notice .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-        .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
+        .${uniqueId}.wp-block-zolo-notice .zolo-block-item:before{
          ${animationBgTabStyle}
          ${animationBorderRadiusTab}
       }
-      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-1 .zolo-block-item:before {
+      .${uniqueId}.wp-block-zolo-notice.animation-style-1 .zolo-block-item:before {
           ${animationType === 'style-1' && animationWidthTab}
           ${animationType === 'style-1' && animationHeightTab}
       }
-      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-2 .zolo-block-item::before{
+      .${uniqueId}.wp-block-zolo-notice.animation-style-2 .zolo-block-item::before{
 
         ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickTab.replace('width', '')};`}
         
@@ -760,7 +574,7 @@ export default function Style({ props }) {
 	`;
 
     const mobileAllStyle = `
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
+        .${uniqueId}.zolo-block-notice .zolo-block-item{
             ${itemBgMob}
             ${itemBorderMob}
             ${itemRadiusMob}
@@ -768,11 +582,11 @@ export default function Style({ props }) {
             ${itemMarginMob}
         }
 
-         .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
+         .${uniqueId}.zolo-block-notice.style-3 .zolo-block-body-content{
            ${preset === 'style-3' ? itemPaddingMob : ''}
         }
 
-        .${uniqueId}.zolo-block-advanced-icon-box:hover {
+        .${uniqueId}.zolo-block-notice:hover {
             ${itemHBgMob}
         }
 		.${uniqueId}{
@@ -783,43 +597,43 @@ export default function Style({ props }) {
 			${contentMobAlign}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
+		.${uniqueId}.zolo-block-notice .zolo-block-item .zolo-block-title{
 			${titleTypoMobile}
 			${mobTitleTextStrokeStyle}
 			${titleMarginMob}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
+		.${uniqueId}.zolo-block-notice .zolo-block-desc{
 			${descMarginMob}
 			${descTypoMobile}
 		}
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
+        .${uniqueId}.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon {
 			${iconPaddingMob}
         }
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
+		.${uniqueId}.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon {
 			${borderStylesMob}
 			${iconBorderRadiusMob}
 			${iconMarginMob}
             ${iconSizeMob}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
+		.${uniqueId}.zolo-block-notice .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
 
-      .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
+      .${uniqueId}.wp-block-zolo-notice .zolo-block-item:before{
          ${animationBgMobStyle}
          ${animationBorderRadiusMob}
       }
-      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-1 .zolo-block-item:before {
+      .${uniqueId}.wp-block-zolo-notice.animation-style-1 .zolo-block-item:before {
           ${animationType === 'style-1' && animationWidthMob}
           ${animationType === 'style-1' && animationHeightMob}
       }
-      .${uniqueId}.wp-block-zolo-advanced-icon-box.animation-style-2 .zolo-block-item::before{
+      .${uniqueId}.wp-block-zolo-notice.animation-style-2 .zolo-block-item::before{
 
         ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickMob.replace('width', '')};`}
         

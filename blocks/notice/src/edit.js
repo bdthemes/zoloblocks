@@ -36,6 +36,7 @@ export default function Edit(props) {
         //notice
         dismissible,
         enableIcon,
+        noticeType,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -44,8 +45,9 @@ export default function Edit(props) {
         className: classnames(
             uniqueId,
             classArrayToStr(parentClasses),
-            'zolo-block-advanced-icon-box',
+            'zolo-block-notice',
             preset,
+            noticeType,
             `${preset === 'style-2' ? iconBoxDirection : ''}`,
             `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
         ),
@@ -98,7 +100,7 @@ export default function Edit(props) {
                     data-id={uniqueId}
                 >
                     {enableIcon && (
-                        <div className={`zolo-block-icon-wrap`}>
+                        <div className="zolo-block-icon-wrap">
                             {iconType == 'icon' ? (
                                 <DisplayZoloIcon icon={mainIcon} />
                             ) : iconTypeImage ? (
@@ -143,7 +145,11 @@ export default function Edit(props) {
                             }
                             placeholder={__('The Title Goes Here', 'zoloblocks')}
                         />
-                        {dismissible && <span className={`${enableIcon == false ? `zolo-notice-closed` : ''} zolo-notice-dismiss`} />}
+                        {dismissible && (
+                            <span
+                                className={`${enableIcon == false && preset == 'style-1' ? `zolo-notice-closed` : ''} zolo-notice-dismiss`}
+                            />
+                        )}
                         <RichText
                             className={`zolo-block-desc`}
                             tagName="div"
