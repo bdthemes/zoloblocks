@@ -13,7 +13,7 @@ const Settings = () => {
     const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
     const [blockImport, setBlockImport] = useState(false);
-    const [blockLibrary, setBlockLibrary] = useState(false);
+    const [blockLibrary, setBlockLibrary] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
 
     const handleFetchError = (error) => {

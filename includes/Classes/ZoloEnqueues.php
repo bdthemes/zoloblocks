@@ -366,8 +366,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
 
             // template library
-            $enble_template_library = get_option('zolo_enable_template_library');
-            if ($enble_template_library === '1') {
+            $enable_template_library = get_option('zolo_enable_template_library');
+            if ($enable_template_library !== '') {
                 $tb_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/template-library/index.asset.php';
                 if (file_exists($tb_dep_file)) {
                     $script_dependecy = include $tb_dep_file;
