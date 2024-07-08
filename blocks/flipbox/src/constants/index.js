@@ -64,6 +64,7 @@ export const FLIPBOX_BORDER_RADIUS = 'FrontItemsBorderRadius';
 export const FLIPBOX_ITEMS_PADDING = 'FlipboxItemsPadding';
 export const FRONT_ITEMS_BORDER = 'FrontItemsBorder';
 export const FRONT_ITEMS_BG = 'FrontItemsBg';
+export const FRONT_ITEMS_SHADOW = 'FrontItemsShadow';
 export const FRONT_ITEMS_ALIGNMENT = 'FrontItemsAlignment';
 export const FRONT_ITEMS_VERTICAL_ALIGNMENT = 'FrontItemsVerticalAlignment';
 
@@ -71,6 +72,7 @@ export const FRONT_ITEMS_VERTICAL_ALIGNMENT = 'FrontItemsVerticalAlignment';
 //BACK ITEMS
 export const BACK_ITEMS_BORDER = 'BackItemsBorder';
 export const BACK_ITEMS_BG = 'BackItemsBg';
+export const BACK_ITEMS_SHADOW = 'BackItemsShadow';
 export const BACK_ITEMS_PADDING = 'BackItemsPadding';
 export const BACK_ITEMS_ALIGNMENT = 'BackItemsAlignment';
 export const BACK_ITEMS_VERTICAL_ALIGNMENT = 'BackItemsVerticalAlignment';
