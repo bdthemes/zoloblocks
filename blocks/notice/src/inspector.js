@@ -698,7 +698,7 @@ function Inspector(props) {
                             </>
                         )}
                         {dismissible && (
-                            <ZoloPanelBody title={__('Closed Button', 'zoloblocks')} panelProps={props} stylePanel={true}>
+                            <ZoloPanelBody title={__('Close Button', 'zoloblocks')} panelProps={props} stylePanel={true}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={closedColor}
