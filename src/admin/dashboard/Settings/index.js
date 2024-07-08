@@ -188,6 +188,7 @@ const Settings = () => {
                                             "This setting will apply to Container Block's default Width in the Editor.",
                                             'zoloblocks'
                                         )}
+                                        released={true}
                                     >
                                         <div className="zolo-width-number">
                                             <input
@@ -283,6 +284,7 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('File Generation (Coming Soon)', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 By default, ZoloBlocks loads CSS and JS inline on the page. If you prefer to generate separate CSS and JS files for ZoloBlocks components, enable this option. To understand the difference between generating CSS and JS inline versus in separate files, please read this article.
@@ -296,6 +298,7 @@ const Settings = () => {
                                             <>
                                                 If you're encountering issues with style, layout, color, or any other page element, use this option to regenerate the CSS and JavaScript assets. It can help resolve various asset-related problems.
                                             </>}
+                                        released={false}
                                     >
                                         <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
@@ -311,16 +314,18 @@ const Settings = () => {
                                             <>
                                                 Move the page title to the top to create a cleaner, more organized editor.
                                             </>}
+                                        released={false}
+
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Collapse Panels (Coming Soon)', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 Enable "Collapse Panels" to focus on one panel at a time by collapsing all others in your Blocks Settings except the one clicked. This simplifies your editing experience.                                            </>}
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
+
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Enable Templates Button', 'zoloblocks')}
@@ -344,31 +349,31 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('Rollback to Previous Version', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 If you encounter issues with ZoloBlocks with latest version, consider rolling back to a previous version to troubleshoot and resolve the issue.
                                             </>
                                         }
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Enable Beta', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 Enable this option to receive notifications for beta updates of ZoloBlocks. Beta versions will not install automatically; you will need to manually install them when notified. It's advisable to test beta versions in a separate environment.                                            </>
                                         }
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Enable Legacy Blocks', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 Enable this option to activate support for our Legacy Blocks on your site.                                            </>
                                         }
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                 </div>
                             </div>
@@ -378,28 +383,28 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('Load Google Fonts Locally', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 Enable this option to download Google Fonts and store them on your server. This can enhance your website's speed and ensure compliance with GDPR laws.                                            </>
                                         }
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Preload Local Fonts', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 This option loads font files immediately on page load. Preloading local fonts can further speed up your website. </>}
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Allow Only Selected Fonts', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 ZoloBlocks offers over 1500 Google font options. Use this option to limit the number of fonts shown in the block settings if the variety is overwhelming for your clients.</>}
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                 </div>
                             </div>
@@ -409,21 +414,21 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('Enable Coming Soon Mode', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.
                                             </>
                                         }
                                     >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Enable Maintenance Mode', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.
                                             </>}                                    >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
                                     </SettingBox>
                                 </div>
                             </div>
@@ -433,12 +438,13 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('Font Families', 'zoloblocks')}
+                                        released={false}
                                         description={
                                             <>
                                                 ZoloBlocks offers over 1500 Google font options. Choose the fonts you want to use in your FSE Typography settings.
                                             </>}                                    >
-                                        <span className="zolo-badge-upcoming">Coming Soon</span>
-                                    </SettingBox>                                </div>
+                                    </SettingBox>
+                                    </div>
                             </div>
                         )}
                     </div>
