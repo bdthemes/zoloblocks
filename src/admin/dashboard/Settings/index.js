@@ -277,7 +277,7 @@ const Settings = () => {
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
-                                        title={__('File Generation (Coming Soon)', 'zoloblocks')}
+                                        title={__('File Generation', 'zoloblocks')}
                                         released={false}
                                         description={
                                             <>
@@ -286,7 +286,7 @@ const Settings = () => {
                                     >
                                     </SettingBox>
                                     <SettingBox
-                                        title={__('Asset Regeneration (Coming Soon)', 'zoloblocks')}
+                                        title={__('Asset Regeneration', 'zoloblocks')}
                                         description={
                                             <>
                                                 If you're encountering issues with style, layout, color, or any other page element, use this option to regenerate the CSS and JavaScript assets. It can help resolve various asset-related problems.
@@ -301,7 +301,7 @@ const Settings = () => {
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
-                                        title={__('Move Title Top (Coming Soon)', 'zoloblocks')}
+                                        title={__('Move Title Top', 'zoloblocks')}
                                         description={
                                             <>
                                                 Move the page title to the top to create a cleaner, more organized editor.
@@ -311,7 +311,7 @@ const Settings = () => {
                                     >
                                     </SettingBox>
                                     <SettingBox
-                                        title={__('Collapse Panels (Coming Soon)', 'zoloblocks')}
+                                        title={__('Collapse Panels', 'zoloblocks')}
                                         released={false}
                                         description={
                                             <>
