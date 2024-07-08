@@ -41,7 +41,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          */
         public function __construct() {
             // block editor assets
-            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader'], 1);
+            add_action('enqueue_block_assets', [$this, 'editor_assets_loader'], 1);
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
@@ -219,6 +219,11 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
+
+            if( ! is_admin() ) {
+                return; 
+            }
+            
             // dist for all blocks
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
