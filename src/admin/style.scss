@@ -281,6 +281,29 @@
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
     }
+
+    // upcomging item style css start 
+    // &.upcoming {
+    //     box-shadow: 0 0 0 1px #e7eaf5 inset !important;
+    //     background-color: transparent !important;
+    //     pointer-events: none;
+    // }
+}
+
+.zolo-single-setting.upcoming,
+.zolo-single-block.upcoming {
+    box-shadow: 0 0 0 1px #e7eaf5 inset !important;
+    background-color: transparent !important;
+    pointer-events: none;
+}
+
+.zolo-settings-option-item.upcoming {
+    position: relative;
+    .zolo-badge-upcoming {
+        margin-top: 22px;
+        font-size: 14px;
+        padding: 8px 20px;
+    }
 }
 
 .zolo-single-block.active,
