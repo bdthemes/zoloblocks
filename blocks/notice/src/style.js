@@ -51,6 +51,17 @@ import {
     ICON_ANIMATION_SIZE,
     ICON_ANIMATION_RADIUS,
     ICON_ANIMATION_THICKNESS,
+
+    // Close icon
+    CLOSE_ICON_SIZE,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BORDER_RADIUS,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_BOX_SHADOW,
+    CLOSE_ICON_HOVER_BG,
+    CLOSE_ICON_HOVER_BOX_SHADOW,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -76,6 +87,8 @@ export default function Style({ props }) {
         iconPosition,
         //notice
         closedColor,
+        closeIconHoverColor,
+        closeIconBorderHoverColor,
     } = attributes;
 
     // item
@@ -399,6 +412,95 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // Close Icon
+
+    const {
+        desktopRangeStyle: closeIconSizeWDesk,
+        tabRangeStyle: closeIconSizeWTab,
+        mobRangeStyle: closeIconSizeWMob,
+    } = generateResRangeStyle({
+        controlName: CLOSE_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: closeIconBorderDesk,
+        tabBorderStyle: closeIconBorderTab,
+        mobBorderStyle: closeIconBorderMob,
+    } = generateBorderStyle({
+        controlName: CLOSE_ICON_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconBorderRadiusDesk,
+        dimensionStylesTab: closeIconBorderRadiusTab,
+        dimensionStylesMobile: closeIconBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconPaddingDesk,
+        dimensionStylesTab: closeIconPaddingTab,
+        dimensionStylesMobile: closeIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconMarginDesk,
+        dimensionStylesTab: closeIconMarginTab,
+        dimensionStylesMobile: closeIconMarginMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: closeIconBgDesk,
+        backgroundStylesTab: closeIconBgTab,
+        backgroundStylesMobile: closeIconBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        backgroundStylesDesktop: closeIconHoverBgDesk,
+        backgroundStylesTab: closeIconHoverBgTab,
+        backgroundStylesMobile: closeIconHoverBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_HOVER_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+
+
+    const {
+        boxShadowStyle: closeIconBoxShadow,
+    } = generateBoxShadowStyles({
+        attributes,
+        controlName: CLOSE_ICON_BOX_SHADOW,
+    });
+
+    const {
+        boxShadowStyle: closeIconHoverBoxShadow,
+    } = generateBoxShadowStyles({
+        attributes,
+        controlName: CLOSE_ICON_HOVER_BOX_SHADOW,
+    });
+
+
+
     /**
      * All Style Combination
      */
@@ -427,8 +529,8 @@ export default function Style({ props }) {
         .${uniqueId}{
             ${iconAlignmentDesktop}
         }
-		.${uniqueId}.zolo-block-notice .zolo-block-icon-wrap{
-			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
+		.${uniqueId}.zolo-block-notice .zolo-block-item{
+			align-items: ${iconAlignment ? iconAlignment : 'center'};
 		}
 
 		.wp-block-zolo-notice.${uniqueId} .zolo-block-item{
@@ -501,9 +603,29 @@ export default function Style({ props }) {
       .${uniqueId}.wp-block-zolo-notice.animation-style-2 .zolo-block-item::before{
         ${animationType === 'style-2' && `--zolo-animation-thickness ${animationThickDesk.replace('width', '')};`} 
       }
-     .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss{
+     .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss svg {
         ${closedColor ? `color:${closedColor}` : ''}
+        ${closeIconSizeWDesk}
      }
+     .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss:hover svg{
+        ${closeIconHoverColor ? `color:${closeIconHoverColor}` : ''}
+     }
+
+    .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss {
+        ${closeIconBgDesk}
+        ${closeIconBorderDesk}
+        ${closeIconBorderRadiusDesk}
+        ${closeIconPaddingDesk}
+        ${closeIconMarginDesk}
+        ${closeIconBoxShadow}
+    }
+    
+    .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss:hover {
+        ${closeIconHoverBgDesk}
+        ${closeIconBorderHoverColor}
+        ${closeIconHoverBoxShadow}
+    }
+
   	`;
 
     const tabletAllStyle = `

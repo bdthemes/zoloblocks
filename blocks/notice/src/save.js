@@ -23,14 +23,11 @@ const Save = ({ attributes }) => {
         zoloId,
         imageRes,
         iconBoxDirection,
-        // animation
-        animationType,
-        animationPositionOne,
-        animationPositionTwo,
-        //notice
         dismissible,
         showAfterDismiss,
         enableIcon,
+        showTitle,
+        showText,
         noticeType,
     } = attributes;
 
@@ -41,8 +38,7 @@ const Save = ({ attributes }) => {
             'zolo-block-notice',
             preset,
             noticeType,
-            `${preset === 'style-2' ? iconBoxDirection : ''}`,
-            `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
+            `${preset === 'style-1' ? iconBoxDirection : ''}`,
         ),
     });
 
@@ -67,10 +63,11 @@ const Save = ({ attributes }) => {
                 <div
                     className={classnames(
                         'zolo-block-item',
-                        `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-1' ? `animation-${animationPositionOne}` : ''}`,
-                        `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
+                        `${(preset === 'style-1' || preset === 'style-2') && ''}`,
+                        `${(preset === 'style-1' || preset === 'style-2') && ''}`
                     )}
                 >
+
                     {enableIcon && (
                         <div className="zolo-block-icon-wrap">
                             {iconType == 'icon' ? (
@@ -93,15 +90,25 @@ const Save = ({ attributes }) => {
                     )}
 
                     <div className="zolo-block-body-content">
-                        <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
-                        {dismissible && (
-                            <span
-                                className={`${enableIcon == false && preset == 'style-1' ? `zolo-notice-closed` : ''} zolo-notice-dismiss`}
-                                style={{ cursor: 'pointer' }}
-                            />
+                        {showTitle && (
+                          <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
                         )}
-                        <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />
+
+                        {showText && (
+                          <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />
+                        )}
                     </div>
+
+                    {dismissible && (
+                        <span
+                            className={`${enableIcon == false && preset == 'style-1' ? `zolo-notice-closed` : ''} zolo-notice-dismiss`} >
+                                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M18 6l-12 12" />
+                                    <path d="M6 6l12 12" />
+                                </svg>
+                        </span>
+                    )}
                 </div>
             </DynamicTag>
         </div>
