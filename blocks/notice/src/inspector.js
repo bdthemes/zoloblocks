@@ -60,7 +60,6 @@ import {
     PRESETS_ALIGNMENT,
     ICON_WRAPPER_BG_COLOR,
     NOTICE_TYPE,
-
     CLOSE_ICON_SIZE,
     CLOSE_ICON_BORDER,
     CLOSE_ICON_BORDER_RADIUS,
@@ -173,7 +172,7 @@ function Inspector(props) {
                                 onChange={() => setAttributes({ enableIcon: !enableIcon })}
                             />
 
-                             <ToggleControl
+                            <ToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={showTitle}
                                 onChange={() => setAttributes({ showTitle: !showTitle })}
@@ -186,20 +185,19 @@ function Inspector(props) {
                             />
 
                             <ToggleControl
-                                label={__('Closed', 'zoloblocks')}
+                                label={__('Close Button', 'zoloblocks')}
                                 checked={dismissible}
                                 onChange={() => setAttributes({ dismissible: !dismissible })}
                             />
                             {dismissible && (
                                 <ToggleControl
-                                    label={__('Closed Repeat', 'zoloblocks')}
+                                    label={__('Close Repeat Button', 'zoloblocks')}
                                     checked={showAfterDismiss}
                                     onChange={() => setAttributes({ showAfterDismiss: !showAfterDismiss })}
                                 />
                             )}
-
                         </ZoloPanelBody>
-                        
+
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <>
                                 {enableIcon && (
@@ -296,7 +294,7 @@ function Inspector(props) {
                                         }}
                                         value={titleTag}
                                     />
-        
+
                                     <TextControl
                                         label={__('Title', 'zoloblocks')}
                                         onChange={(title) =>
@@ -310,7 +308,7 @@ function Inspector(props) {
                                 </>
                             )}
 
-                            {showText &&(
+                            {showText && (
                                 <TextareaControl
                                     label={__('Description', 'zoloblocks')}
                                     value={iconBoxDescription}
@@ -327,7 +325,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item', 'zoloblocks')} panelProps={props} stylePanel={true} firstOpen={true}>
+                        <ZoloPanelBody title={__('Notice', 'zoloblocks')} panelProps={props} stylePanel={true} firstOpen={true}>
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={ITEM_BORDER}
@@ -387,7 +385,6 @@ function Inspector(props) {
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
                             )}
-
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props} stylePanel={true}>
@@ -398,7 +395,11 @@ function Inspector(props) {
                                         {enableIcon && (
                                             <>
                                                 {preset === 'style-3' && (
-                                                    <NormalBGControl requiredProps={requiredProps} controlName={ICON_WRAPPER_BG_COLOR} noMainBGImg={true} />
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={ICON_WRAPPER_BG_COLOR}
+                                                        noMainBGImg={true}
+                                                    />
                                                 )}
 
                                                 {iconType === 'image' && (
@@ -492,7 +493,6 @@ function Inspector(props) {
                                                     requiredProps={requiredProps}
                                                     enableTransition={false}
                                                 />
-
                                             </>
                                         )}
                                     </>
@@ -520,8 +520,16 @@ function Inspector(props) {
                                                     controlName={TITLE_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                                                <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
+                                                <TextShadowControl
+                                                    controlName={TITLE_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={TITLE_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
                                             </>
                                         )}
                                     </>
@@ -556,20 +564,9 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        
-                        
-                        {dismissible && (
-                        <ZoloPanelBody title={__('Close Button', 'zoloblocks')} panelProps={props} stylePanel={true}>
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={closedColor}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            closedColor: value,
-                                        })
-                                    }
-                                />
 
+                        {dismissible && (
+                            <ZoloPanelBody title={__('Close Button', 'zoloblocks')} panelProps={props} stylePanel={true}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}
                                     controlName={CLOSE_ICON_SIZE}
@@ -613,35 +610,51 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
 
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={false} />
-                                        <BoxShadowControl controlName={CLOSE_ICON_BOX_SHADOW} requiredProps={requiredProps} />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
                                             <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={closeIconHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    closeIconHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_HOVER_BG} noMainBGImg={false} />
-                                        <BoxShadowControl
-                                            controlName={CLOSE_ICON_HOVER_BOX_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={true}
-                                        />
-                                    </>
-                                }
-                            />
-
-                        </ZoloPanelBody>
+                                                label={__('Color', 'zoloblocks')}
+                                                color={closedColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        closedColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={CLOSE_ICON_BG}
+                                                noMainBGImg={false}
+                                            />
+                                            <BoxShadowControl controlName={CLOSE_ICON_BOX_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={closeIconHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        closeIconHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={CLOSE_ICON_HOVER_BG}
+                                                noMainBGImg={false}
+                                            />
+                                            <BoxShadowControl
+                                                controlName={CLOSE_ICON_HOVER_BOX_SHADOW}
+                                                requiredProps={requiredProps}
+                                                enableTransition={true}
+                                            />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

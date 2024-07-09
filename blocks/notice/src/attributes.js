@@ -155,7 +155,7 @@ const attributes = {
             info: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M160 448h-32V224c0-17.69-14.33-32-32-32L32 192c-17.67 0-32 14.31-32 32s14.33 31.1 32 31.1h32v192H32c-17.67 0-32 14.31-32 32s14.33 32 32 32h128c17.67 0 32-14.31 32-32S177.7 448 160 448zM96 128c26.51 0 48-21.49 48-48S122.5 32.01 96 32.01s-48 21.49-48 48S69.49 128 96 128z"></path></svg>',
             danger: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path></svg>',
             warning:
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"><path fill="#ffcc00" d="M498.5 389.1L291.5 44.5c-9.4-16.3-25.6-16.3-35 0L13.5 389.1c-9.8 16.9 2.5 38.9 19.7 38.9h445.6c17.2 0 29.5-22 19.7-38.9zM256 464c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zM256 352c-17.7 0-32-14.3-32-32V192c0-17.7 14.3-32 32-32s32 14.3 32 32v128c0 17.7-14.3 32-32 32z"/></svg>',
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 512">{/*!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.*/}<path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM32 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" /></svg>',
         },
     },
     label: {
@@ -239,11 +239,12 @@ const attributes = {
     },
     iconBoxTitle: {
         type: 'string',
-        default: 'Congratulations',
+        default: 'This is a Notice from ZoloBlocks',
     },
     iconBoxDescription: {
         type: 'string',
-        default: 'Zoloblocks plugin has been updated for the latest version',
+        default:
+            'You can add any description here, also you can <strong>bold</strong>, <em>italic</em>, <u>underline</u> or link the text so much easily.',
     },
 
     // animation
