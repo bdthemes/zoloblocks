@@ -1,0 +1,46 @@
+.widefat td {
+    vertical-align: middle;
+}
+/* Switcher container */
+.zolo-popup-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Switcher styles */
+.zolo-popup-btn .switch {
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+/* Switcher toggle styles */
+.zolo-popup-btn .switch::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s;
+}
+
+/* Switch-on state */
+.zolo-popup-btn .switch.switch-on {
+    background-color: #4caf50;
+}
+
+.zolo-popup-btn .switch.switch-on::before {
+    transform: translateX(20px);
+}
+
+/* Switch-off state */
+.zolo-popup-btn .switch.switch-off {
+    background-color: #f44336;
+}

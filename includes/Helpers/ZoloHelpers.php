@@ -184,6 +184,13 @@ class ZoloHelpers {
         return $options;
     }
 
+    /**
+     * Get the post thumbnail URL
+     * 
+     * @param int $post_id
+     * @param string $size
+     * @return string
+     */
     public static function get_wrapper_class($settings = [], $class_name = '') {
         $wrap_class = '';
 
@@ -198,6 +205,13 @@ class ZoloHelpers {
         return $wrap_class;
     }
 
+    /**
+     * Get the post thumbnail URL
+     * 
+     * @param int $post_id
+     * @param string $size
+     * @return string
+     */
     public static function removeHtmlTagContents($contant, $tags) {
         if (is_array($tags)) {
             foreach ($tags as $tag) {
@@ -217,6 +231,12 @@ class ZoloHelpers {
         return $contant;
     }
 
+    /**
+     * Get Pagination
+     * 
+     * @param int $max_pages
+     * @return string
+     */
     public static function pagination($max_pages) {
         global $paged;
 
@@ -239,6 +259,13 @@ class ZoloHelpers {
         }
     }
 
+    /**
+     * Get SVG Icon
+     * 
+     * @param string $icon
+     * @param string $class
+     * @return string
+     */
     public static function render_svg_html($viewBox, $path) {
         return sprintf(
             '<svg xmlns="https://www.w3.org/2000/svg" viewBox="%s" width="1em" height="1em" fill="currentColor"><path d="%s"></path></svg>',
@@ -247,6 +274,11 @@ class ZoloHelpers {
         );
     }
 
+    /**
+     * Get Allowed SVG
+     * 
+     * @return array
+     */
     public static function wp_kses_allowed_svg() {
         $defaults = wp_kses_allowed_html('post');
         $svg_args = [
@@ -268,6 +300,11 @@ class ZoloHelpers {
         return array_merge($defaults, $svg_args);
     }
 
+    /**
+     * Get Theme Fonts
+     * 
+     * @return array
+     */
     public static function zolo_get_theme_fonts() {
         // Retrieve global settings
         $global_settings = wp_get_global_settings();
@@ -314,5 +351,33 @@ class ZoloHelpers {
         $final_fonts = array_unique($final_fonts); 
 
         return $final_fonts;
+    }
+    
+    /**
+     * Generate Style String
+     */
+    public static function zolo_generate_style($style) {
+        $css = "";
+        if (isset($style['desktop']) && strlen($style['desktop']) > 0) {
+            $css .= $style['desktop'];
+        }
+        if (isset($style['tab']) && strlen($style['tab']) > 0) {
+            $css .= sprintf(
+                '@media all and (max-width: 1024px) {%1$s}',
+                $style['tab']
+            );
+        }
+        if (isset($style['mobile']) && strlen($style['mobile']) > 0) {
+            $css .= sprintf(
+                '@media all and (max-width: 767px) {%1$s}',
+                $style['mobile']
+            );
+        }
+
+        if (!empty($style['customCss']) && strlen($style['customCss']) > 0) {
+            $css .= $style['customCss'];
+        }
+
+        return $css;
     }
 }

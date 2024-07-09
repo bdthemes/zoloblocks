@@ -289,6 +289,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'popup-builder' => [
+        'name'             => 'popup-builder',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/popup-builder/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ]
     'text-path' => [
         'name'             => 'text-path',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/text-path/block.json',
