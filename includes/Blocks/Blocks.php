@@ -294,7 +294,7 @@ return apply_filters('zolo_blocks_list_data', [
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/popup-builder/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
-    ]
+    ],
     'text-path' => [
         'name'             => 'text-path',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/text-path/block.json',
