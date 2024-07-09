@@ -29,16 +29,13 @@ export default function Edit(props) {
         iconBoxDescription,
         imageRes,
         iconBoxDirection,
-        // animation
-        animationType,
-        animationPositionOne,
-        animationPositionTwo,
         //notice
         dismissible,
         enableIcon,
         showTitle,
         showText,
         noticeType,
+        infoDefaultIcon,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -50,7 +47,7 @@ export default function Edit(props) {
             'zolo-block-notice',
             preset,
             noticeType,
-            `${preset === 'style-1' ? iconBoxDirection : ''}`,
+            `${preset === 'style-1' ? iconBoxDirection : ''}`
             // `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
         ),
     });
@@ -101,77 +98,93 @@ export default function Edit(props) {
                     )}
                     data-id={uniqueId}
                 >
-                    {/* <div className='zolo-inner-item'> */}
-                        {enableIcon && (
-                            <div className="zolo-block-icon-wrap">
-                                {iconType == 'icon' ? (
-                                    <DisplayZoloIcon icon={mainIcon} />
-                                ) : iconTypeImage ? (
-                                    <>
-                                        <img
-                                            src={
-                                                iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
-                                                    ? iconTypeImage.sizes[imageRes].url
-                                                    : iconTypeImage.url
-                                            }
-                                            alt={iconTypeImage.alt || 'Team Member'}
-                                        />
-                                    </>
-                                ) : (
-                                    <MediaPlaceholder
-                                        icon="format-image"
-                                        labels={{
-                                            title: __('Add Photo', 'zoloblocks'),
-                                            instructions: '',
-                                        }}
-                                        onSelect={(media) => {
-                                            setAttributes({
-                                                iconTypeImage: media,
-                                            });
-                                        }}
-                                        accept="image/*"
-                                        allowedTypes={['image']}
+                    {enableIcon && (
+                        <div className="zolo-block-icon-wrap">
+                            {iconType == 'icon' ? (
+                                <DisplayZoloIcon
+                                    icon={
+                                        mainIcon ||
+                                        (noticeType == 'info' && infoDefaultIcon.info) ||
+                                        (noticeType == 'success' && infoDefaultIcon.success) ||
+                                        (noticeType == 'warning' && infoDefaultIcon.warning) ||
+                                        (noticeType == 'danger' && infoDefaultIcon.danger)
+                                    }
+                                />
+                            ) : iconTypeImage ? (
+                                <>
+                                    <img
+                                        src={
+                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                ? iconTypeImage.sizes[imageRes].url
+                                                : iconTypeImage.url
+                                        }
+                                        alt={iconTypeImage.alt || 'Team Member'}
                                     />
-                                )}
-                            </div>
-                        )}
-
-                        <div className="zolo-block-body-content">
-                            {showTitle && (
-                                <RichText
-                                    className={`zolo-block-title`}
-                                    tagName={titleTag}
-                                    value={iconBoxTitle}
-                                    onChange={(text) =>
+                                </>
+                            ) : (
+                                <MediaPlaceholder
+                                    icon="format-image"
+                                    labels={{
+                                        title: __('Add Photo', 'zoloblocks'),
+                                        instructions: '',
+                                    }}
+                                    onSelect={(media) => {
                                         setAttributes({
-                                            iconBoxTitle: text,
-                                        })
-                                    }
-                                    placeholder={__('The Title Goes Here', 'zoloblocks')}
+                                            iconTypeImage: media,
+                                        });
+                                    }}
+                                    accept="image/*"
+                                    allowedTypes={['image']}
                                 />
                             )}
-                            {showText && (
-                                <RichText
-                                    className={`zolo-block-desc`}
-                                    tagName="div"
-                                    value={iconBoxDescription}
-                                    onChange={(text) =>
-                                        setAttributes({
-                                            iconBoxDescription: text,
-                                        })
-                                    }
-                                    placeholder={__('The Description Goes Here..', 'zoloblocks')}
-                                />
-                            )}
-
                         </div>
-                    {/* </div> */}
+                    )}
+
+                    <div className="zolo-block-body-content">
+                        {showTitle && (
+                            <RichText
+                                className={`zolo-block-title`}
+                                tagName={titleTag}
+                                value={iconBoxTitle}
+                                onChange={(text) =>
+                                    setAttributes({
+                                        iconBoxTitle: text,
+                                    })
+                                }
+                                placeholder={__('The Title Goes Here', 'zoloblocks')}
+                            />
+                        )}
+                        {showText && (
+                            <RichText
+                                className={`zolo-block-desc`}
+                                tagName="div"
+                                value={iconBoxDescription}
+                                onChange={(text) =>
+                                    setAttributes({
+                                        iconBoxDescription: text,
+                                    })
+                                }
+                                placeholder={__('The Description Goes Here..', 'zoloblocks')}
+                            />
+                        )}
+                    </div>
                     {dismissible && (
-                        <span className={`${enableIcon == false && preset == 'style-1' ? `zolo-notice-closed` : ''} zolo-notice-dismiss`} >
-                            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M18 6l-12 12" />
-                            <path d="M6 6l12 12" />
+                        <span className={` zolo-notice-dismiss`}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={24}
+                                height={24}
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="icon icon-tabler icons-tabler-outline icon-tabler-x"
+                            >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M18 6l-12 12" />
+                                <path d="M6 6l12 12" />
                             </svg>
                         </span>
                     )}

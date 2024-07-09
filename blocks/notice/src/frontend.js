@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
         // dismissButton.style.position = 'absolute';
         // dismissButton.style.right = ' -37px';
         // dismissButton.style.top = '-104px';
+
         // Hide notice if it's already closed
         let noticeId = notices[i].getAttribute('data-id');
         let showAgain = notices[i].getAttribute('data-show-again');
         let alreadyHidden = localStorage.getItem(`zolo-notice-hidden-${noticeId}`);
-
         showAgain === 'true' && showNoticeAgain(noticeId);
         showAgain === 'false' && alreadyHidden === '1' && removeNotice(notices[i]);
 
@@ -40,6 +40,7 @@ function showNoticeAgain(noticeId) {
 
 function removeNotice(notice) {
     notice.remove();
+    notice.classList.add('body-hidden');
 }
 
 // Dismiss button click handler. Hide notice when clicked, hide permanently if

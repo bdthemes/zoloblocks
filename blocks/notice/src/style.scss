@@ -16,6 +16,11 @@
     --zolo-ribbon-btn-text-color: #fff;
     --zolo-ribbon-btn-border-radius: 2px;
 
+    .body-hidden {
+        display: none;
+        background-color: red !important;
+    }
+
     position: relative;
     box-sizing: border-box;
     display: block;
@@ -54,8 +59,8 @@
         .zolo__display-icon {
             background-color: #2970ff;
         }
-    } 
-    &.warnging {
+    }
+    &.warning {
         .zolo-block-item {
             background-color: #fff5ea;
             // border-left-color: #ff9b2e;
@@ -63,7 +68,7 @@
         .zolo__display-icon {
             background-color: #ff9b2e;
         }
-    } 
+    }
     &.danger {
         .zolo-block-item {
             background-color: #fff3f3;
@@ -118,7 +123,6 @@
         position: relative;
     }
 
-
     .zolo-notice-dismiss {
         position: absolute;
         top: 0;
@@ -162,17 +166,17 @@
                 border-left-color: #2ed47a;
             }
         }
-    
+
         &.info {
             .zolo-block-item {
                 border-left-color: #8eb1ff;
             }
-        } 
-        &.warnging {
+        }
+        &.warning {
             .zolo-block-item {
                 border-left-color: #ff9b2e;
             }
-        } 
+        }
         &.danger {
             .zolo-block-item {
                 border-left-color: #f71c1c;
@@ -180,9 +184,8 @@
         }
     }
 
-
-     /* icon box style 2 */
-     &.style-2 {
+    /* icon box style 2 */
+    &.style-2 {
         .zolo-block-item {
             --zolo-item-padding: 30px;
             padding: var(--zolo-item-padding);
@@ -190,29 +193,29 @@
             border-top-width: 4px;
             border-top-style: var(--zolo-item-border-style);
         }
-         .zolo-block-icon-wrap {
-             margin-bottom: 10px;
-         }
-         &.success {
+        .zolo-block-icon-wrap {
+            margin-bottom: 10px;
+        }
+        &.success {
             .zolo-block-item {
                 border-top-color: #2ed47a;
             }
         }
-    
+
         &.info {
             .zolo-block-item {
                 border-top-color: #8eb1ff;
             }
-        } 
-        &.warnging {
+        }
+        &.warning {
             .zolo-block-item {
                 border-top-color: #ff9b2e;
             }
-        } 
+        }
         &.danger {
             .zolo-block-item {
                 border-top-color: #f71c1c;
             }
         }
-     }
+    }
 }

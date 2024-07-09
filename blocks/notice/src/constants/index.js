@@ -13,7 +13,7 @@ export const PRESETS = [
 export const NOTICE_TYPE = [
     { label: 'Success', value: 'success' },
     { label: 'Info', value: 'info' },
-    { label: 'Warning', value: 'warnging' },
+    { label: 'Warning', value: 'warning' },
     { label: 'Danger', value: 'danger' },
 ];
 

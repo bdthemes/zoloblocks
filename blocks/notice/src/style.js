@@ -89,6 +89,7 @@ export default function Style({ props }) {
         closedColor,
         closeIconHoverColor,
         closeIconBorderHoverColor,
+        showAfterDismiss,
     } = attributes;
 
     // item
@@ -483,28 +484,21 @@ export default function Style({ props }) {
         noMainBGImg: true,
     });
 
-
-
-    const {
-        boxShadowStyle: closeIconBoxShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: closeIconBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: CLOSE_ICON_BOX_SHADOW,
     });
 
-    const {
-        boxShadowStyle: closeIconHoverBoxShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: closeIconHoverBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: CLOSE_ICON_HOVER_BOX_SHADOW,
     });
-
-
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
+      
         .${uniqueId}.wp-block-zolo-notice.zolo-block-notice .zolo-block-item {
             ${itemBgDesk}
             ${itemBorderDesk}
