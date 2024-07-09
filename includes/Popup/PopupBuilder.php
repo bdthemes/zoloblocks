@@ -308,72 +308,6 @@ class Zolo_PopupBuilder {
      * 
      * @return void
      */
-    // public function load_popup_builder() {
-    //     $args = [
-    //         'post_type'      => 'zolo-popup',
-    //         'post_status'    => 'publish',
-    //         'posts_per_page' => -1,
-    //     ];
-    
-    //     $popups = new \WP_Query($args);
-    
-    //     if ($popups->have_posts()) {
-    //         while ($popups->have_posts()) {
-    //             $popups->the_post();
-                
-    //             $meta_keys = [
-    //                 'zolo_popup_id', 'zolo_popup_trigger', 'zolo_popup_enable_disable','zolo_popup_infinite_repeat','zolo_popup_repeat_num'
-    //             ];
-    
-    //             $popup_meta = [];
-    //             foreach ($meta_keys as $key) {
-    //                 $popup_meta[$key] = get_post_meta(get_the_ID(), $key, true);
-    //             }
-
-    //             // cookie
-    //             $cookie_name = 'zp_' . $popup_meta['zolo_popup_id'];
-    //             $cookie_value = isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : 0;
-
-    //             if ($popup_meta['zolo_popup_enable_disable']) {
-    //                 $block_content = get_the_content();
-    //                 $blocks = parse_blocks($block_content);
-    //                 $styles = '';
-    
-    //                 foreach ($blocks as $block) {
-    //                     if (isset($block['innerBlocks']) && !empty($block['innerBlocks'])) {
-    //                         foreach ($block['innerBlocks'] as $inner_block) {
-    //                             if (isset($inner_block['attrs']['zoloStyles'])) {
-    //                                 $styles .= ZoloHelpers::zolo_generate_style($inner_block['attrs']['zoloStyles']);
-    //                             }
-    //                         }
-    //                     }
-    //                     if (isset($block['attrs']['zoloStyles'])) {
-    //                         $styles .= ZoloHelpers::zolo_generate_style($block['attrs']['zoloStyles']);
-    //                     }
-    //                 }
-
-    //                 if (!empty($styles)) {
-    //                     $this->enqueue_popup_styles($styles);
-    //                 }
-
-    //                 // check if the popup is infinite repeat
-    //                 if($popup_meta['zolo_popup_infinite_repeat']) {
-    //                     $popup_meta['zolo_popup_repeat_num'] = -1;
-    //                 } else {
-    //                     $popup_meta['zolo_popup_repeat_num'] = intval($popup_meta['zolo_popup_repeat_num']);
-    //                 }
-
-    //                 if( $popup_meta['zolo_popup_repeat_num'] === -1 || intval($cookie_value) < intval($popup_meta['zolo_popup_repeat_num'])){
-    //                     if ('onload' === $popup_meta['zolo_popup_trigger']) {
-    //                         the_content();
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    
-    //     wp_reset_postdata();
-    // }
 
     public function load_popup_builder() {
         $args = [
@@ -445,6 +379,13 @@ class Zolo_PopupBuilder {
         return $styles;
     }
 
+    /**
+     * Enqueue Popup Styles
+     * 
+     * @param string $styles
+     * 
+     * @return void
+     */
     public function enqueue_popup_styles($styles) {
         if ( ! empty( $styles ) ) {
             $handle = 'zolo-block-inline-popup-style-' . rand(100, 10000); 

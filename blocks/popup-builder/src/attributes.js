@@ -14,6 +14,14 @@ import {
     CB_TOP_OFFSET,
     CB_LEFT_OFFSET,
     CB_RIGHT_OFFSET,
+
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BRADIUS,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_HOVER_BG,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+
 } from './constants';
 
 const attributes = {
@@ -77,6 +85,7 @@ const attributes = {
     closeBtnId: {
         type: 'string',
     },
+
     hideOnDesktop: {
         type: 'boolean',
         default: false,
@@ -99,6 +108,13 @@ const attributes = {
     ...generateBorderAttributies(PB_BORDER),
     ...generateDimensionAttributes(PB_BRADIUS),
     ...generateDimensionAttributes(PB_PADDING),
+
+    ...generateBorderAttributies(CLOSE_ICON_BORDER),
+    ...generateDimensionAttributes(CLOSE_ICON_BRADIUS),
+    ...generateNormalBGAttributes(CLOSE_ICON_BG),
+    ...generateNormalBGAttributes(CLOSE_ICON_HOVER_BG),
+    ...generateDimensionAttributes(CLOSE_ICON_PADDING),
+    ...generateDimensionAttributes(CLOSE_ICON_MARGIN),
 };
 
 export default attributes;
