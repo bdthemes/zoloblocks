@@ -1,0 +1,32 @@
+// .zolo-popup-inner {
+//     // border: 1px dashed #e2e2e2;
+
+//     .block-list-appender.wp-block {
+//         width: 100px;
+//         margin: 0 auto;
+//     }
+
+//     .block-editor-button-block-appender {
+//         box-shadow: none;
+//     }
+
+//     .block-editor-button-block-appender:hover {
+//         box-shadow: none;
+//     }
+
+//     .block-list-appender.wp-block {
+//         padding: 15px;
+//     }
+// }
+
+.block-editor-block-list__block.wp-block.wp-block-zolo-popup-builder {
+    &.info_bar,
+    &.popup_box {
+        max-width: 100% !important;
+    }
+
+    &.popup_box {
+        position: relative;
+        height: 100vh !important;
+    }
+}

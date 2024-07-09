@@ -18,7 +18,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, name } = props;
-    const { variationStatus } = attributes;
+    const { variationStatus, testClass } = attributes;
 
     const { variations, defaultVariation, getBlockParents, parentBlocks } = useSelect((select) => {
         const coreBlocks = select('core/blocks');
@@ -61,6 +61,7 @@ export default function Edit(props) {
                     clientId,
                     className,
                     setAttributes,
+                    testClass,
                 }}
             />
         </>

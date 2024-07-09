@@ -1,0 +1,110 @@
+body.zolo-popup-fixed {
+    overflow: hidden;
+}
+
+.wp-block-zolo-popup-builder {
+    position: relative;
+
+    &.info_bar {
+        &.not-push {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+        &.inp_top {
+            top: 0;
+        }
+        &.inp_bottom {
+            bottom: 0;
+        }
+    }
+
+    &.popup_box {
+        &.zolo-popup-overlay {
+            background-color: rgb(37 103 255 / 50%);
+            &.frontend {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .zolo-popup-inner {
+        background-color: #2567ff;
+        padding: 40px;
+        &.popup_box {
+            width: 600px;
+            position: absolute;
+            box-sizing: border-box;
+
+            &.frontend {
+                position: fixed;
+            }
+
+            &.pbp_center_center {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    .zolo-popup-close-btn {
+        position: absolute;
+        top: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        &.cbp_top_left {
+            left: 10px;
+        }
+        &.cbp_top_right {
+            right: 10px;
+        }
+        svg {
+            transition: color 0.3s;
+            width: 20px;
+            fill: #c4c4c4;
+        }
+        &:hover {
+            svg {
+                fill: #fff;
+            }
+        }
+    }
+}
+
+.admin-bar {
+    .wp-block-zolo-popup-builder {
+        &.info_bar {
+            &.inp_top {
+                top: 32px;
+            }
+        }
+    }
+}
+
+/* Responsive Visibilty */
+@media screen and (min-width: 1025px) {
+    .wp-block-zolo-popup-builder.zolo-popup-hod {
+        display: none !important;
+    }
+}
+
+/* Tablet View */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .wp-block-zolo-popup-builder.zolo-popup-hot {
+        display: none !important;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+    .wp-block-zolo-popup-builder.zolo-popup-hom {
+        display: none !important;
+    }
+}
