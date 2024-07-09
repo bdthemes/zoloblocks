@@ -211,8 +211,8 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 = 1.1.0 - 09-07-2024 =
 
 = Added =
-
 * Icon block added
+* Popup builder added
 * Text path block added
 * zIndex nagative value added
 * Theme fonts support added

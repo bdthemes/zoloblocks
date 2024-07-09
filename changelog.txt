@@ -4,6 +4,7 @@
 
 - Icon block added
 - Text path block added
+- Popup builder added
 - zIndex nagative value added
 - Theme fonts support added
 - position sticky feature added
