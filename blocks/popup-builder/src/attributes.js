@@ -26,7 +26,7 @@ const attributes = {
     },
     popupType: {
         type: 'string',
-        default: 'info_bar',
+        default: 'popup_box',
     },
     pushContent: {
         type: 'boolean',

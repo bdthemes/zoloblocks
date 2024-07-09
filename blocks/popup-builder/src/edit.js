@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
