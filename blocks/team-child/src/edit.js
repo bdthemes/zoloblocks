@@ -123,6 +123,18 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                             />
                         )}
+
+                        {addDetailPageLink && preset ==='default' && (
+                            <div className="zolo-link-btn">
+                                <a className='zolo-external-link'
+                                    href={memberDetailPageLink && memberDetailPageLink.url}
+                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
+                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                                >
+                                    <DisplayZoloIcon icon={detailIcon} />
+                                </a>
+                            </div>
+                        )}
                     </div>
                     <div className="zolo-info-wrap">
                         <div className="zolo-content">
@@ -214,7 +226,7 @@ export default function Edit(props) {
                                         })}
                                 </div>
                             )}
-                            {addDetailPageLink && preset !=='style-4' &&(
+                            {addDetailPageLink && preset !=='style-4' && preset !=='style-5' && preset !=='default' && (
                                 <div className="zolo-link-btn">
                                     <a className='zolo-external-link'
                                         href={memberDetailPageLink && memberDetailPageLink.url}

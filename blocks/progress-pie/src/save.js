@@ -33,6 +33,7 @@ const Save = ({ attributes }) => {
             data-toggleLabel={toggleLabel}
             data-progressFillColor={progressFillColor}
             data-circleColor={circleColor}
+            data-uniqueid={uniqueId}
             //test
             data-progressTopColor={progressTopColor}
             data-progressBottomColor={progressBottomColor}

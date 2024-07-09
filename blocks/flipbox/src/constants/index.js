@@ -64,6 +64,7 @@ export const FLIPBOX_BORDER_RADIUS = 'FrontItemsBorderRadius';
 export const FLIPBOX_ITEMS_PADDING = 'FlipboxItemsPadding';
 export const FRONT_ITEMS_BORDER = 'FrontItemsBorder';
 export const FRONT_ITEMS_BG = 'FrontItemsBg';
+export const FRONT_ITEMS_SHADOW = 'FrontItemsShadow';
 export const FRONT_ITEMS_ALIGNMENT = 'FrontItemsAlignment';
 export const FRONT_ITEMS_VERTICAL_ALIGNMENT = 'FrontItemsVerticalAlignment';
 
@@ -71,6 +72,7 @@ export const FRONT_ITEMS_VERTICAL_ALIGNMENT = 'FrontItemsVerticalAlignment';
 //BACK ITEMS
 export const BACK_ITEMS_BORDER = 'BackItemsBorder';
 export const BACK_ITEMS_BG = 'BackItemsBg';
+export const BACK_ITEMS_SHADOW = 'BackItemsShadow';
 export const BACK_ITEMS_PADDING = 'BackItemsPadding';
 export const BACK_ITEMS_ALIGNMENT = 'BackItemsAlignment';
 export const BACK_ITEMS_VERTICAL_ALIGNMENT = 'BackItemsVerticalAlignment';
@@ -111,16 +113,16 @@ export const FLIPBOX_VERTICAL_ALIGNMENT = [
         value: 'flex-start',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.39385 12.142L16.5189 12.142" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7.39385 12.142L16.5189 12.142" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                     d="M7.39385 7.15051L16.5189 7.15051"
                     stroke="#4D4D4D"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
-                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3L3 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M21 21L3 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },
@@ -132,19 +134,19 @@ export const FLIPBOX_VERTICAL_ALIGNMENT = [
                 <path
                     d="M16.5599 9.46875L7.42934 9.46875"
                     stroke="#4D4D4D"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 <path
                     d="M16.5599 14.4974L7.42934 14.4974"
                     stroke="#4D4D4D"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
-                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3L3 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M21 21L3 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },
@@ -153,16 +155,16 @@ export const FLIPBOX_VERTICAL_ALIGNMENT = [
         value: 'flex-end',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.606 11.858L7.48088 11.858" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.606 11.858L7.48088 11.858" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                     d="M16.606 16.8495L7.48088 16.8495"
                     stroke="#4D4D4D"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
-                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },
@@ -171,16 +173,16 @@ export const FLIPBOX_VERTICAL_ALIGNMENT = [
         value: 'space-between',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.606 7.1615L7.48088 7.1615" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.606 7.1615L7.48088 7.1615" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                     d="M16.606 16.8386L7.48088 16.8386"
                     stroke="#4D4D4D"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
-                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },

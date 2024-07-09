@@ -22,7 +22,7 @@ body.zolo-popup-fixed {
 
     &.popup_box {
         &.zolo-popup-overlay {
-            background-color: #C8C8CF;
+            background-color: rgba(62, 62, 62, 0.7);
             &.frontend {
                 position: fixed;
                 top: 0;

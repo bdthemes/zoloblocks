@@ -7,18 +7,21 @@ const {
     generateDimensionAttributes,
     generateTypographyAttributes,
     generateNormalBGAttributes,
+    generateBoxShadowAttributies,
     generateResAlignmentAttributies,
 } = window.zoloModule;
 
 import {
     FLIPBOX_HEIGHT,
     FRONT_ITEMS_BG,
+    FRONT_ITEMS_SHADOW,
     FRONT_ITEMS_BORDER,
     FLIPBOX_BORDER_RADIUS,
     FLIPBOX_ITEMS_PADDING,
     FRONT_ITEMS_ALIGNMENT,
     FRONT_ITEMS_VERTICAL_ALIGNMENT,
     BACK_ITEMS_BG,
+    BACK_ITEMS_SHADOW,
     BACK_ITEMS_BORDER,
     BACK_ITEMS_PADDING,
     BACK_ITEMS_ALIGNMENT,
@@ -81,6 +84,7 @@ const attributes = {
     // FLIPBOX FRONT ITEMS
     ...generateResRangeAttributies(FLIPBOX_HEIGHT),
     ...generateNormalBGAttributes(FRONT_ITEMS_BG),
+    ...generateBoxShadowAttributies(FRONT_ITEMS_SHADOW),
     ...generateBorderAttributies(FRONT_ITEMS_BORDER),
     ...generateDimensionAttributes(FLIPBOX_BORDER_RADIUS),
     ...generateDimensionAttributes(FLIPBOX_ITEMS_PADDING),
@@ -89,6 +93,7 @@ const attributes = {
 
     // FLIPBOX FRONT ITEMS
     ...generateNormalBGAttributes(BACK_ITEMS_BG),
+    ...generateBoxShadowAttributies(BACK_ITEMS_SHADOW),
     ...generateBorderAttributies(BACK_ITEMS_BORDER),
     ...generateDimensionAttributes(BACK_ITEMS_PADDING),
     ...generateResAlignmentAttributies(BACK_ITEMS_ALIGNMENT),

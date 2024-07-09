@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import apiFetch from '@wordpress/api-fetch';
 import ZoloMarker from './marker';
@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (googleMaps.length > 0) {
         googleMaps.forEach((googleMap) => {
             const options = JSON.parse(googleMap.dataset.options);
-            render(<GoogleMapFrontend apiKey={apiKey} {...options} />, googleMap);
+            const root = createRoot(googleMap);
+            root.render(<GoogleMapFrontend apiKey={apiKey} {...options} />);
         });
     }
 });

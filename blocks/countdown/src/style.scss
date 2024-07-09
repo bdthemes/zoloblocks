@@ -54,6 +54,70 @@
                 }
             }
         }
+
+        // &.grid {
+        //     &.zolo-mbgc-1 {
+        //         .zolo-countdown-item {
+        //             &::after {
+        //                 display: none;
+        //             }
+        //         }
+        //     }
+        //     &.zolo-mbgc-2{
+        //         .zolo-countdown-item {
+        //             &:nth-child(even){
+        //                 &::after {
+        //                     display: none;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     &.zolo-mbgc-3{
+        //         .zolo-countdown-item {
+        //             &:nth-child(3n+3){
+        //                 &::after {
+        //                     display: none;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     &.zolo-mbgc-4{
+        //         .zolo-countdown-item {
+        //             &:nth-child(4n+4){
+        //                 &::after {
+        //                     display: none;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     &.zolo-mbgc-5{
+        //         .zolo-countdown-item {
+        //             &:nth-child(5n+5){
+        //                 &::after {
+        //                     display: none;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     &.zolo-mbgc-6 {
+        //         .zolo-countdown-item {
+        //             &:nth-child(6n+6){
+        //                 &::after {
+        //                     display: none;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     &.zolo-mbgc-7{
+        //         .zolo-countdown-item {
+        //             &:nth-child(7n+7){
+        //                 &::after {
+        //                     display: none;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     .zolo-countdown-item {
@@ -151,12 +215,226 @@
     .zolo-countdown-style-4 .zolo-countdown-face {
         font-size: 2rem;
     }
+
+
 }
+
 
 @media (min-width: 768px) {
     .wp-block-zolo-countdown {
         .zolo-countdown-wrap {
             grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
+
+
+@media (max-width: 767px) {
+    .wp-block-zolo-countdown {
+        .zolo-countdown-wrap {
+            &.grid {
+                &.zolo-mbgc-1 {
+                    .zolo-countdown-item {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+                &.zolo-mbgc-2{
+                    .zolo-countdown-item {
+                        &:nth-child(even){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-mbgc-3{
+                    .zolo-countdown-item {
+                        &:nth-child(3n+3){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-mbgc-4{
+                    .zolo-countdown-item {
+                        &:nth-child(4n+4){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-mbgc-5{
+                    .zolo-countdown-item {
+                        &:nth-child(5n+5){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-mbgc-6{
+                    .zolo-countdown-item {
+                        &:nth-child(6n+6){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-mbgc-7{
+                    .zolo-countdown-item {
+                        &:nth-child(7n+7){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .wp-block-zolo-countdown {
+        .zolo-countdown-wrap {
+            &.grid {
+                &.zolo-tbgc-1 {
+                    .zolo-countdown-item {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+                &.zolo-tbgc-2{
+                    .zolo-countdown-item {
+                        &:nth-child(even){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-tbgc-3{
+                    .zolo-countdown-item {
+                        &:nth-child(3n+3){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-tbgc-4{
+                    .zolo-countdown-item {
+                        &:nth-child(4n+4){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-tbgc-5{
+                    .zolo-countdown-item {
+                        &:nth-child(5n+5){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-tbgc-6{
+                    .zolo-countdown-item {
+                        &:nth-child(6n+6){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-tbgc-7{
+                    .zolo-countdown-item {
+                        &:nth-child(7n+7){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    .wp-block-zolo-countdown {
+        .zolo-countdown-wrap {
+            &.grid {
+                &.zolo-dgc-1 {
+                    .zolo-countdown-item {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+                &.zolo-dgc-2{
+                    .zolo-countdown-item {
+                        &:nth-child(even){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-dgc-3{
+                    .zolo-countdown-item {
+                        &:nth-child(3n+3){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-dgc-4{
+                    .zolo-countdown-item {
+                        &:nth-child(4n+4){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-dgc-5{
+                    .zolo-countdown-item {
+                        &:nth-child(5n+5){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-dgc-6{
+                    .zolo-countdown-item {
+                        &:nth-child(6n+6){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &.zolo-dgc-7{
+                    .zolo-countdown-item {
+                        &:nth-child(7n+7){
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

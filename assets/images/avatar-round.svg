@@ -5,7 +5,7 @@
       <circle cx="152.59" cy="152.59" r="147.5" style="fill: none;"/>
     </clipPath>
   </defs>
-  <g style="clip-path: url(#clippath);">
+  <g style="clipPath: url(#clippath);">
     <g>
       <rect width="305.17" height="305.17" style="fill: #a4c2d8;"/>
       <g>
@@ -17,23 +17,23 @@
         <path d="m154.28,216.83l-4.46-7.59-2.34,7.59-9.19,72.41c3.52,3.94,7.41,7.87,11.77,11.77,0,0,4.87-3.5,11.43-10.76l-7.2-73.42Z" style="fill: #5d7698;"/>
         <path d="m139.6,205.44s1.74,7.59,7.88,11.38h6.8s6.06-6.42,5.76-11.38c0,0-3.91-6.73-9.99-6.87,0,0-8.71,1.6-10.46,6.87Z" style="fill: #5d7698;"/>
         <path d="m104.16,105s-1.59-4.4-4.78-4.8c-2.59-.33-7.41,2.24-7.8,5.92-.47,4.52,8.34,24.28,15.46,16.96,0,0,1.64-10.59-2.88-18.08Z" style="fill: #f69d85;"/>
-        <path d="m95.48,106.75s1.45-2.85,3.63-2.22c4.44,1.26,6.41,16.19,2.55,15.24" style="fill: none; stroke: #c87157; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.36px;"/>
-        <path d="m97.02,110.19s3.24-3.33,5.51-1.03" style="fill: none; stroke: #c87157; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.36px;"/>
+        <path d="m95.48,106.75s1.45-2.85,3.63-2.22c4.44,1.26,6.41,16.19,2.55,15.24" style="fill: none; stroke: #c87157; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.36px;"/>
+        <path d="m97.02,110.19s3.24-3.33,5.51-1.03" style="fill: none; stroke: #c87157; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.36px;"/>
         <path d="m195.57,105s1.61-4.4,4.78-4.8c2.6-.33,7.28,2.27,7.8,5.92,1.18,8.18-8.34,24.28-15.45,16.96,0,0-1.65-10.59,2.88-18.08Z" style="fill: #f69d85;"/>
-        <path d="m204.25,106.75s-1.45-2.85-3.64-2.22c-4.43,1.26-4.51,16.24-.63,15.29" style="fill: none; stroke: #c87157; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.36px;"/>
-        <path d="m202.72,110.19s-3.23-3.33-5.51-1.03" style="fill: none; stroke: #c87157; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.36px;"/>
+        <path d="m204.25,106.75s-1.45-2.85-3.64-2.22c-4.43,1.26-4.51,16.24-.63,15.29" style="fill: none; stroke: #c87157; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.36px;"/>
+        <path d="m202.72,110.19s-3.23-3.33-5.51-1.03" style="fill: none; stroke: #c87157; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.36px;"/>
         <path d="m197.33,99.81c0-31.86-21.02-57.71-46.93-57.71s-46.93,25.84-46.93,57.71c0,2.32.13,4.6.36,6.84h-.03s0,37.4,35.43,62.09c5.56,3.87,16.76,3.87,22.32,0,35.43-24.69,35.43-62.08,35.43-62.08h-.03c.23-2.25.38-4.53.38-6.85Z" style="fill: #f69d85;"/>
         <g>
           <path d="m140.19,92.42s-12.42-5.08-17.77,3.39c0,0,9.71-1.27,15.57,0,4.39.96,4.86-1.49,2.2-3.39Z" style="fill: #3e326e;"/>
           <path d="m163.79,92.42s12.41-5.08,17.76,3.39c0,0-9.71-1.27-15.57,0-4.4.96-4.87-1.49-2.19-3.39Z" style="fill: #3e326e;"/>
         </g>
-        <path d="m160.18,104.44s-2.68,5.68.96,17.82c.76,2.54,1.46,4.99-.14,6.67-.55.57-2.65,2.75-5.43,3.54" style="fill: none; stroke: #c87157; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.79px;"/>
-        <path d="m163.96,142.83s-9.52,4.67-22.13,0" style="fill: none; stroke: #c87157; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.79px;"/>
+        <path d="m160.18,104.44s-2.68,5.68.96,17.82c.76,2.54,1.46,4.99-.14,6.67-.55.57-2.65,2.75-5.43,3.54" style="fill: none; stroke: #c87157; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.79px;"/>
+        <path d="m163.96,142.83s-9.52,4.67-22.13,0" style="fill: none; stroke: #c87157; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.79px;"/>
         <path d="m103.82,103.2s5.11-.9,5-8.34c-.1-7.44,4.32-28.76,9.03-32.02,0,0,18.74,13.7,35.97,8.13,25.11-8.13,29.1-1.71,31.17-1.24,0,0,2.5,10.66,4.21,13.71,1.71,3.05,2.05,11.9,2.74,14.69.69,2.8,2.33,6.48,5.01,5.08,0,0,21.95-48.84-2.07-54.89,0,0-19.79-37.24-63.38-22.82,0,0-9.63,2.95-17.04,12.46-3.11,3.98-12.41-1.4-14.23,8.38-1.23,6.52-5.91,45.98,3.6,56.87Z" style="fill: #3e326e;"/>
-        <path d="m113.01,44.89s20.55,8.7,30.53,6.52" style="fill: none; stroke: #1e1748; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.79px;"/>
-        <path d="m113.01,50.48s10.27,9,20.55,10.55" style="fill: none; stroke: #1e1748; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.79px;"/>
-        <path d="m188.91,51.76s-2-3.76-4.85-6.87" style="fill: none; stroke: #1e1748; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.79px;"/>
-        <line x1="188.91" y1="55.76" x2="199.97" y2="57" style="fill: none; stroke: #1e1748; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.79px;"/>
+        <path d="m113.01,44.89s20.55,8.7,30.53,6.52" style="fill: none; stroke: #1e1748; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.79px;"/>
+        <path d="m113.01,50.48s10.27,9,20.55,10.55" style="fill: none; stroke: #1e1748; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.79px;"/>
+        <path d="m188.91,51.76s-2-3.76-4.85-6.87" style="fill: none; stroke: #1e1748; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.79px;"/>
+        <line x1="188.91" y1="55.76" x2="199.97" y2="57" style="fill: none; stroke: #1e1748; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.79px;"/>
         <path d="m135.85,107.18c0,2.09-1.67,3.8-3.72,3.8s-3.72-1.7-3.72-3.8,1.66-3.8,3.72-3.8,3.72,1.69,3.72,3.8Z" style="fill: #302b44;"/>
         <path d="m174.56,107.18c0,2.09-1.67,3.8-3.71,3.8s-3.72-1.7-3.72-3.8,1.67-3.8,3.72-3.8,3.71,1.69,3.71,3.8Z" style="fill: #302b44;"/>
         <path d="m118.68,179.14s-19.35,12.45-13.39,18.94l28.91,19.94,17.02-19.44-32.54-19.43Z" style="fill: #d8d8ec;"/>
@@ -46,8 +46,8 @@
           <path d="m239.69,305.17h45.32c-.29-15.1-1.72-34.27-5.2-48.75-7.05-29.28-45.53-37.27-45.53-37.27-2.87,6.25-3.75,55.94,1.52,72.48,1.31,4.12,2.6,8.6,3.89,13.54Z" style="fill: #f4866f;"/>
           <path d="m288.73,305.17c-3.82-37.06-10.66-65.87-22.47-72.41,0,0-20.55-13.16-36.8-18.85v62.7l2.9,28.57h56.36Z" style="fill: #3e326e;"/>
         </g>
-        <path d="m100.02,207.7c-7.77,23.05-24.59,43.13-3.13,64.44" style="fill: none; stroke: #1e1748; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.72px;"/>
-        <path d="m205.95,209.23c3.38,22.45,18.38,41.35,2.94,62.72" style="fill: none; stroke: #1e1748; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1.72px;"/>
+        <path d="m100.02,207.7c-7.77,23.05-24.59,43.13-3.13,64.44" style="fill: none; stroke: #1e1748; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.72px;"/>
+        <path d="m205.95,209.23c3.38,22.45,18.38,41.35,2.94,62.72" style="fill: none; stroke: #1e1748; strokeLinecap: round; stroke-miterlimit: 10; strokeWidth: 1.72px;"/>
       </g>
     </g>
   </g>

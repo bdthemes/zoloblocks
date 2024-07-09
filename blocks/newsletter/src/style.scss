@@ -154,17 +154,18 @@
 
     }
 
-
-    .zolo-newsletter-3 .zolo-form-input:focus + .zolo-form-label,
-    .zolo-newsletter-4 .zolo-form-input:focus + .zolo-form-label,
-    .zolo-newsletter-5 .zolo-form-input:focus + .zolo-form-label {
+    .zolo-newsletter-3 .zolo-form-input:focus ~ .zolo-form-label,
+		.zolo-newsletter-3 .zolo-form-input:not(:placeholder-shown).zolo-form-input:not(:focus) ~ .zolo-form-label,
+    .zolo-newsletter-4 .zolo-form-input:focus ~ .zolo-form-label,
+    .zolo-newsletter-4 .zolo-form-input:not(:placeholder-shown).zolo-form-input:not(:focus) ~ .zolo-form-label,
+    .zolo-newsletter-5 .zolo-form-input:focus ~ .zolo-form-label,
+    .zolo-newsletter-5 .zolo-form-input:not(:placeholder-shown).zolo-form-input:not(:focus) ~ .zolo-form-label {
       font-weight: 500;
       top: 0;
       background-color: #fff;
-    }
+		}
 
     /* newsletter form style 4 */
-
 
     .zolo-newsletter-4 {
       --newsletter-form-item-gap: 10px;

@@ -450,13 +450,14 @@ export const GlobalStyleHanlder = (props) => {
 
 
     const positionDesktop = `
-        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
-        ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important`: ''}
-    `;
+        ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important` : ''}
+        ${position.value == 'sticky' ? `position: -webkit-sticky;` : ''}
+ `;
     const positionTab = `
         ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
