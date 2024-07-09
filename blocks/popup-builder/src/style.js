@@ -16,12 +16,20 @@ import {
     PB_BRADIUS,
     PB_BG,
     PB_PADDING,
+
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BRADIUS,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_HOVER_BG,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+
 } from './constants';
 
 const Style = ({ props }) => {
     const { clientId, attributes, setAttributes } = props;
 
-    const { uniqueId, closeBtnSize, closeBtnPosition, closeBtnColors, closeBtnId } = attributes;
+    const { uniqueId, closeBtnSize, closeBtnPosition, closeBtnColors, closeBtnId, borderHoverColor, } = attributes;
 
     // popup box width
     const {
@@ -114,6 +122,64 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // close icon styles
+    const {
+        desktopBorderStyle: closeIconBorderDesk,
+        tabBorderStyle: closeIconBorderTab,
+        mobBorderStyle: closeIconBorderMob,
+    } = generateBorderStyle({
+        controlName: CLOSE_ICON_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconBradiusDesk,
+        dimensionStylesTab: closeIconBradiusTab,
+        dimensionStylesMobile: closeIconBradiusMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: closeIconBgDesk,
+        backgroundStylesTab: closeIconBgTab,
+        backgroundStylesMobile: closeIconBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_BG,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: closeIconHoverBgDesk,
+        backgroundStylesTab: closeIconHoverBgTab,
+        backgroundStylesMobile: closeIconHoverBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_HOVER_BG,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconPaddingDesk,
+        dimensionStylesTab: closeIconPaddingTab,
+        dimensionStylesMobile: closeIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconMarginDesk,
+        dimensionStylesTab: closeIconMarginTab,
+        dimensionStylesMobile: closeIconMarginMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -135,6 +201,7 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn svg{
             ${closeBtnSize ? `width: ${closeBtnSize}px;` : ''}
+            ${closeBtnSize ? `height: ${closeBtnSize}px;` : ''}
             ${closeBtnColors && closeBtnColors?.normal ? `fill: ${closeBtnColors.normal};` : ''} 
         }
         .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn:hover svg {
@@ -145,6 +212,19 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn.cbp_top_left {
             ${cbLeftOffsetDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn {
+            ${closeIconBorderDesk}
+            ${closeIconBradiusDesk}
+            ${closeIconBgDesk}
+            ${closeIconPaddingDesk}
+            ${closeIconMarginDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn:hover {
+            ${closeIconHoverBgDesk}
+            border-color: ${borderHoverColor ? borderHoverColor : ''};
         }
     `;
 

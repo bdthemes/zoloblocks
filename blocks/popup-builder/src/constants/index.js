@@ -16,6 +16,15 @@ export const CB_TOP_OFFSET = 'cbTopOffset';
 export const CB_RIGHT_OFFSET = 'cbRightOffset';
 export const CB_LEFT_OFFSET = 'cbBottomOffset';
 
+// CLOSE ICON
+export const CLOSE_ICON_BORDER = 'closeIconBorder';
+export const CLOSE_ICON_BRADIUS = 'closeIconBradius';
+export const CLOSE_ICON_BG = 'closeIconBg';
+export const CLOSE_ICON_HOVER_BG = 'closeIconHoverBg';
+export const CLOSE_ICON_PADDING = 'closeIconPadding';
+export const CLOSE_ICON_MARGIN = 'closeIconMargin';
+
+
 export const CONTENT_POS = [
     {
         label: __('Top', 'zoloblocks'),

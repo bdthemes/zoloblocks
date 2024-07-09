@@ -6,16 +6,26 @@
     .components-placeholder {
         box-shadow: none !important;
         padding: 40px;
-        border: 1px solid #2567ff;
+        border: 1px solid #a7c1ff;
     }
 
     .components-placeholder__label {
         align-items: center;
         justify-content: center !important;
         width: 100%;
-        svg path {
-            fill: #2567ff;
-        }
+        flex-direction: column;
+        gap: 15px;
+        font-size: 26px;
+        font-weight: 500;
+        color: #2f2f37;
+        svg {
+            width: 40px;
+            height: 40px;
+            display: block;
+            path {
+                fill: #2567ff;
+            }
+        } 
     }
 
     legend.components-placeholder__instructions {
@@ -34,12 +44,13 @@
 
     button.components-button.block-editor-block-variation-picker__variation.is-secondary.has-icon {
         background: #ffffff;
-        border: 1px solid #2567ff !important;
+        border: 1px solid #e8e8e8 !important;
         padding: 10px 20px !important;
+        border-radius: 4px;
     }
 
     .block-editor-block-variation-picker__variation path {
-        fill: #2567ff !important;
+        fill: #c9cacc !important;
     }
 
     .block-editor-block-variation-picker.has-many-variations .components-placeholder__fieldset {
@@ -63,6 +74,8 @@
     .components-placeholder__instructions {
         width: 100% !important;
         text-align: center !important;
+        font-size: 14px;
+        color: #6f6f79;
     }
 }
 

@@ -36,6 +36,12 @@ import {
     PB_POSITIONS,
     POPUP_TYPES,
     PB_PADDING,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BRADIUS,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_HOVER_BG,
 } from './constants';
 
 function Inspector(props) {
@@ -58,6 +64,7 @@ function Inspector(props) {
         hideOnMobile,
         repetitionNumber,
         closeBtnSize,
+        borderHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -255,14 +262,19 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={PB_BG} noMainBGImg={true} />
+
+                            <div className='zolo-custom-heading'>
+                                {__('Popup Overlay', 'zoloblocks')}
+                            </div>
                             {popupType === 'popup_box' && enableOverlay && (
                                 <NormalBGControl
                                     requiredProps={requiredProps}
                                     controlName={PB_OVERLAY_BG}
                                     noMainBGImg={true}
-                                    label={__('Overlay Background', 'zoloblocks')}
+                                    label={__('Background', 'zoloblocks')}
                                 />
                             )}
+  
                         </ZoloPanelBody>
 
                         {isDismissable && (
@@ -275,6 +287,43 @@ function Inspector(props) {
                                     step={1}
                                     requiredProps={requiredProps}
                                 />
+
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={CLOSE_ICON_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={borderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    borderHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    }
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={CLOSE_ICON_BRADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={CLOSE_ICON_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={CLOSE_ICON_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                           
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -287,6 +336,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                             <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={true} />
                                         </>
                                     }
                                     hoverComponents={
@@ -300,6 +350,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                             <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_HOVER_BG} noMainBGImg={true} />
                                         </>
                                     }
                                 />
