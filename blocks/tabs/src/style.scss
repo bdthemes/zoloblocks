@@ -18,6 +18,8 @@
     --zolo-head-item-border-width: 1px;
     --zolo-head-item-border-style: solid;
 
+    --tab-vertical-width: 22%;
+
     .zolo-tab_header-wrap {
         display: flex;
         gap: var(--zolo-tab-head-wrap-gap);
@@ -231,11 +233,11 @@
         }
         .zolo-tab_vertical-left .zolo-tab_header-wrap,
         .zolo-tab_vertical-right .zolo-tab_header-wrap {
-            width: 40%;
+            width: var(--tab-vertical-width);
         }
         .zolo-tab_vertical-left .tab__content,
         .zolo-tab_vertical-right .tab__content {
-            width: 100%;
+            width: calc(100% - var(--tab-vertical-width));
         }
     }
 }

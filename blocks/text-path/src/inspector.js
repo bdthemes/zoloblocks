@@ -82,6 +82,7 @@ function Inspector(props) {
                                     { label: __('Line', 'zoloblocks'), value: 'line' },
                                     { label: __('Oval', 'zoloblocks'), value: 'oval' },
                                     { label: __('Spiral', 'zoloblocks'), value: 'spiral' },
+                                    { label: __('Under Circle', 'zoloblocks'), value: 'underCircle' },
                                 ]}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
