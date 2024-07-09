@@ -96,6 +96,12 @@ class Zolo_Admin_Assets {
                 'captcha'        => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/captcha.svg',
                 'oops'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/oops.svg',
                 'mailchimp'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/mailchimp.svg',
+                'facebook'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/facebook.svg',
+                'instagram'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/instagram.svg',
+                'yelp'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/yelp.svg',
+                'google'         => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/google.svg',
+                'zoom'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/zoom.svg',
+
             ]
         );
 

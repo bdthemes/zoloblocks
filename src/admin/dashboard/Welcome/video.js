@@ -10,9 +10,9 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
                         height="426"
                         src={`https://www.youtube.com/embed/${videoInfo.id}`}
                         title={videoInfo.title || 'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes'}
-                        frameborder="0"
+                        frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                 </div>
             )}

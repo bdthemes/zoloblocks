@@ -24,29 +24,29 @@
 	.st21{opacity:0.2;fill:#115CFA;enable-background:new    ;}
 	.st22{fill:#2768EF;}
 	.st23{opacity:0.2;fill:#FB2D00;enable-background:new    ;}
-	.st24{fill:none;stroke:#263238;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st24{fill:none;stroke:#263238;strokeWidth:0.5;strokeLinecap:round;strokeLinejoin:round;stroke-miterlimit:10;}
 	.st25{fill:#FFAC9E;}
-	.st26{fill:none;stroke:#263238;stroke-width:0.7247;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st26{fill:none;stroke:#263238;strokeWidth:0.7247;strokeLinecap:round;strokeLinejoin:round;stroke-miterlimit:10;}
 	.st27{fill:#316EED;}
 	.st28{fill:#E2E2E2;}
 	.st29{fill:#EBEBEB;}
 	.st30{opacity:0.5;}
-	.st31{fill:none;stroke:#8BAFFC;stroke-width:4;}
+	.st31{fill:none;stroke:#8BAFFC;strokeWidth:4;}
 	.st32{opacity:0.6;fill:#8BAFFC;enable-background:new    ;}
-	.st33{fill:none;stroke:#FFFFFF;stroke-width:4;}
-	.st34{fill:none;stroke:#FFFFFF;stroke-width:12;}
+	.st33{fill:none;stroke:#FFFFFF;strokeWidth:4;}
+	.st34{fill:none;stroke:#FFFFFF;strokeWidth:12;}
 	.st35{opacity:0.3;fill:#FFFFFF;enable-background:new    ;}
 	.st36{opacity:0.8;fill:#F4F4F4;enable-background:new    ;}
 	.st37{fill:#E52A3F;}
 	.st38{fill:url(#SVGID_1_);}
 	.st39{fill:#FF8264;}
-	.st40{clip-path:url(#SVGID_3_);}
+	.st40{clipPath:url(#SVGID_3_);}
 	.st41{fill:url(#SVGID_4_);}
 	.st42{fill:url(#SVGID_5_);}
 	.st43{fill:#CDE7FF;}
 	.st44{fill:#DAEDFF;}
 
-	
+
 		.rotate-element {
 			-webkit-animation: rotation 10s infinite linear;
 			transform-origin: center center;
@@ -62,7 +62,7 @@
 			100% {
 					-webkit-transform: scale(1);
 			}
-		
+
 		}
 
 
@@ -81,7 +81,7 @@
 			100% {
 					-webkit-transform: Push(1);
 			}
-		
+
 		}
 
 
@@ -100,8 +100,8 @@
 			100% {
 					-webkit-transform: scaleDown(1.1);
 			}
-		
-		} 
+
+		}
 
 		.rotate-element-4 {
 			-webkit-animation: rotation 20s infinite linear;
@@ -118,7 +118,7 @@
 			100% {
 					-webkit-transform: scale(1);
 			}
-		
+
 		}
 
 		.rotate-element-5 {
@@ -136,10 +136,10 @@
 			100% {
 					-webkit-transform: scaleY(1);
 			}
-		
+
 		}
 
-	
+
 
 
 </style>

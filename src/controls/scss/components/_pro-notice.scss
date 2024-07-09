@@ -1,19 +1,18 @@
 .zolo-side-premium-notice {
     $color_1: #414048;
     $color_2: #fff;
-    $background-color_1: #f8f9ff;
+    $background-color_1: #fbfcfd;
     $background-color_2: #f00;
     $background-color_3: #e80000;
 
     background-color: $background-color_1;
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     border-top: 1px solid #e0e0e0;
     .zolo-premium-icon {
         margin-bottom: 10px;
-        path {
-            fill: #2c67ff;
-        }
+        width: 80px;
+        height: 80px;
     }
     p {
         color: $color_1;
@@ -39,6 +38,10 @@
         }
         &:hover {
             background-color: $background-color_3;
+        }
+        &:focus {
+            box-shadow: none;
+            outline: 2px solid rgba(255, 134, 134, 0.96);
         }
     }
 }

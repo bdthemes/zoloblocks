@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
 
-const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave }) => {
+const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, released = true }) => {
     const [settingsPanel, setSettingsPanel] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -21,7 +21,8 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
     };
 
     return (
-        <div className="zolo-single-setting">
+        <div className={`zolo-single-setting${released ? '': ' upcoming'}`}>
+            {!released && <div className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</div>}
             {icon && (
                 <div className="zolo-setting-icon">
                     <img src={zoloBlocks[icon]} alt={title} />
@@ -89,9 +90,17 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                         <h4 className="modal-title">{title}</h4>
                         <p className="modal-description">{description}</p>
                         {children}
-                        <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
-                            {isSaving ? __('Saving...', 'zoloblocks') : __('Save Changes', 'zoloblocks')}
-                        </button>
+                        {released ? (
+
+                            <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
+                                {isSaving ? __('Saving...', 'zoloblocks') : __('Save Changes', 'zoloblocks')}
+                            </button>
+                        ) : (
+                            <button className="settings-save-btn" onClick={handleSaveChanges} disabled={true}>
+                                {__('Coming Soon', 'zoloblocks')}
+                            </button>
+                        )}
+
                     </div>
                 </Modal>
             )}

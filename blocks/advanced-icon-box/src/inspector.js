@@ -281,7 +281,7 @@ function Inspector(props) {
                                     'zolo.advancedIconBox.animation',
                                     <ZoloPanelBody title={__('Animation', 'zoloblocks')} panelProps={props} isPro={true} isDisabled={true}>
                                         <SelectControl
-                                            label={__('Animation Type', 'zoloblocks')}
+                                            label={__('Type', 'zoloblocks')}
                                             value={animationType}
                                             options={ANIMATION_TYPES}
                                             onChange={(value) => {
@@ -302,7 +302,7 @@ function Inspector(props) {
                                         />
                                         {animationType === 'style-1' && (
                                             <SelectControl
-                                                label={__('Animation Position', 'zoloblocks')}
+                                                label={__('Position', 'zoloblocks')}
                                                 value={animationPositionOne}
                                                 options={ANIMATION_POSITIONS_ONE}
                                                 onChange={(value) =>
@@ -315,7 +315,7 @@ function Inspector(props) {
 
                                         {animationType === 'style-2' && (
                                             <SelectControl
-                                                label={__('Animation Position', 'zoloblocks')}
+                                                label={__('Position', 'zoloblocks')}
                                                 value={animationPositionTwo}
                                                 options={ANIMATION_POSITIONS_TWO}
                                                 onChange={(value) =>
