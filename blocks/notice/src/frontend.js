@@ -40,7 +40,6 @@ function showNoticeAgain(noticeId) {
 
 function removeNotice(notice) {
     notice.remove();
-    notice.classList.add('body-hidden');
 }
 
 // Dismiss button click handler. Hide notice when clicked, hide permanently if
