@@ -87,6 +87,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // wp localize script
             wp_localize_script('zolo-block-vendor-dependency', 'zoloSettings', [
                 'ajaxurl'      => admin_url('admin-ajax.php'),
+                'home_url'     => home_url(),
                 'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
                 'theme_fonts'  => ZoloHelpers::zolo_get_theme_fonts(),
                 'googleAPIKey' => get_option('zolo_google_api_key'),
@@ -221,9 +222,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         public function editor_assets_loader() {
 
             if( ! is_admin() ) {
-                return; 
+                return;
             }
-            
+
             // dist for all blocks
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
