@@ -150,6 +150,9 @@ const Inspector = (props) => {
         }
     };
 
+    // animation panel
+    const animationPanels = applyFilters('zolo.advancedHeading.animationPanels', [], 'zolo/advanced-heading', props);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -326,6 +329,7 @@ const Inspector = (props) => {
                                 />
                             </ZoloPanelBody>
                         )}
+                        {animationPanels && animationPanels.length > 0 && animationPanels}
                     </>
                 }
                 styleTab={
