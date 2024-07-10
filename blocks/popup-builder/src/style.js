@@ -7,16 +7,13 @@ const { generateBorderStyle, generateNormalBGControlStyles, generateResRangeStyl
     window.zoloModule;
 
 import {
-    CB_TOP_OFFSET,
-    CB_LEFT_OFFSET,
-    CB_RIGHT_OFFSET,
     PB_WIDTH,
     PB_OVERLAY_BG,
     PB_BORDER,
     PB_BRADIUS,
     PB_BG,
     PB_PADDING,
-
+    PB_MARGIN,
     CLOSE_ICON_BORDER,
     CLOSE_ICON_BRADIUS,
     CLOSE_ICON_BG,
@@ -90,37 +87,17 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
-
-    // close btn offset
+    
     const {
-        desktopRangeStyle: cbTopOffsetDesk,
-        tabRangeStyle: cbTopOffsetTab,
-        mobRangeStyle: cbTopOffsetMob,
-    } = generateResRangeStyle({
-        controlName: CB_TOP_OFFSET,
-        property: 'top',
+        dimensionStylesDesktop: marginDesktop,
+        dimensionStylesTab: marginTab,
+        dimensionStylesMobile: marginMob,
+    } = generateDimensionStyle({
+        controlName: PB_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
-
-    const {
-        desktopRangeStyle: cbRightOffsetDesk,
-        tabRangeStyle: cbRightOffsetTab,
-        mobRangeStyle: cbRightOffsetMob,
-    } = generateResRangeStyle({
-        controlName: CB_RIGHT_OFFSET,
-        property: 'right',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: cbLeftOffsetDesk,
-        tabRangeStyle: cbLeftOffsetTab,
-        mobRangeStyle: cbLeftOffsetMob,
-    } = generateResRangeStyle({
-        controlName: CB_LEFT_OFFSET,
-        property: 'left',
-        attributes,
-    });
+    
 
     // close icon styles
     const {
@@ -195,9 +172,7 @@ const Style = ({ props }) => {
             ${borderStyles}
             ${borderRadiusDesktop}
             ${paddingDesktop}
-        }
-        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn {
-            ${cbTopOffsetDesk}
+            ${marginDesktop}
         }
         .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn svg{
             ${closeBtnSize ? `width: ${closeBtnSize}px;` : ''}
@@ -206,12 +181,6 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn:hover svg {
             ${closeBtnColors && closeBtnColors?.hover ? `fill: ${closeBtnColors.hover};` : ''} 
-        }
-        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn.cbp_top_right {
-            ${cbRightOffsetDesk}
-        }
-        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn.cbp_top_left {
-            ${cbLeftOffsetDesk}
         }
 
         .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn {

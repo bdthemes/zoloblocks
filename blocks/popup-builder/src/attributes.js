@@ -11,9 +11,7 @@ import {
     PB_BRADIUS,
     PB_BG,
     PB_PADDING,
-    CB_TOP_OFFSET,
-    CB_LEFT_OFFSET,
-    CB_RIGHT_OFFSET,
+    PB_MARGIN,
 
     CLOSE_ICON_BORDER,
     CLOSE_ICON_BRADIUS,
@@ -99,15 +97,13 @@ const attributes = {
         default: false,
     },
     // New Generators
-    ...generateResRangeAttributies(CB_TOP_OFFSET),
-    ...generateResRangeAttributies(CB_LEFT_OFFSET),
-    ...generateResRangeAttributies(CB_RIGHT_OFFSET),
     ...generateResRangeAttributies(PB_WIDTH),
     ...generateNormalBGAttributes(PB_OVERLAY_BG),
     ...generateNormalBGAttributes(PB_BG),
     ...generateBorderAttributies(PB_BORDER),
     ...generateDimensionAttributes(PB_BRADIUS),
     ...generateDimensionAttributes(PB_PADDING),
+    ...generateDimensionAttributes(PB_MARGIN),
 
     ...generateBorderAttributies(CLOSE_ICON_BORDER),
     ...generateDimensionAttributes(CLOSE_ICON_BRADIUS),

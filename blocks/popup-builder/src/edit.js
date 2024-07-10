@@ -17,7 +17,7 @@ export default function Edit(props) {
     const { uniqueId, popupType, popupBoxPosition, enableOverlay, isDismissable, closeBtnPosition, closeBtnId } = attributes;
 
     const blockPros = useBlockProps({
-        className: classNames(className, uniqueId, popupType, `${enableOverlay ? 'zolo-popup-overlay' : ''}`),
+        className: classNames(className, uniqueId, popupType, `${enableOverlay ? 'zolo-popup-overlay' : ''}`, `${popupType === 'popup_box' ? popupBoxPosition : ''}`),
     });
 
     // chech if the innerblocks has child or not
@@ -35,7 +35,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockPros}>
-                <div className={classNames('zolo-popup-inner', popupType, `${popupType === 'popup_box' ? popupBoxPosition : ''}`)}>
+                <div className={classNames('zolo-popup-inner', popupType)}>
                     <InnerBlocks
                         templateLock={false}
                         renderAppender={hasChildBlocks ? false : InnerBlocks.ButtonBlockAppender}
@@ -95,7 +95,7 @@ export default function Edit(props) {
                                     [
                                         'zolo/advanced-button',
                                         {
-                                            preset: 'button-1',
+                                            // preset: 'button-1',
                                             label: 'Subscribe Now',
                                             iconType: 'iconText',
                                             iconPosition: 'right',

@@ -10,6 +10,7 @@ export const PB_WIDTH = 'pbWidth';
 export const PB_BORDER = 'pbBorder';
 export const PB_BRADIUS = 'pbBradius';
 export const PB_PADDING = 'pbPadding';
+export const PB_MARGIN = 'pbMargin';
 export const PB_BG = 'pbBg';
 export const PB_OVERLAY_BG = 'pbOverlayBg';
 export const CB_TOP_OFFSET = 'cbTopOffset';
