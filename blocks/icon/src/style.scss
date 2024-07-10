@@ -6,8 +6,11 @@
     // line-height: 1;
     // vertical-align: middle;
 
-    .zolo__display-icon svg {
-        width: 64px;
-        height: 64px;
+    .zolo__display-icon {
+        svg {
+        width: 1em;
+        height: 1em;
+        display: block;
+    }
     }
 }

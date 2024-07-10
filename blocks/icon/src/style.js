@@ -4,17 +4,11 @@
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
-
 /**
  * Internal depencencies
  */
-const {
-    generateResRangeStyle,
-    generateBorderStyle,
-    generateBoxShadowStyles,
-    GlobalStyleHanlder,
-    generateResAlignmentStyle
-} = window.zoloModule;
+const { generateResRangeStyle, generateBorderStyle, generateBoxShadowStyles, GlobalStyleHanlder, generateResAlignmentStyle } =
+    window.zoloModule;
 
 import {
     ICON_SIZE,
@@ -24,31 +18,15 @@ import {
     ICON_PADDING,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    ICON_ALIGNMENT
+    ICON_ALIGNMENT,
 } from './constants';
 
-
 export default function Style({ props }) {
-    const { attributes, setAttributes } = props
+    const { attributes, setAttributes } = props;
 
-    const {
-        uniqueId,
-        iconColor,
-        iconBackgroundColor,
-        iconHover,
-        iconBackgroundHoverColor,
-    } = attributes;
+    const { uniqueId, iconColor, iconBackgroundColor, iconHover, iconBackgroundHoverColor } = attributes;
 
     // settings
-    const {
-        desktopRangeStyle: iconWidthSizeDesk,
-        tabRangeStyle: iconWidthSizeTab,
-        mobRangeStyle: iconWidthSizeMob,
-    } = generateResRangeStyle({
-        controlName: ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
 
     const {
         desktopRangeStyle: iconHeightSizeDesk,
@@ -56,10 +34,9 @@ export default function Style({ props }) {
         mobRangeStyle: iconHeightSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'height',
+        property: 'font-size',
         attributes,
     });
-
 
     const {
         desktopBorderStyle: iconBorderDesktop,
@@ -100,16 +77,12 @@ export default function Style({ props }) {
         attributes,
     });
 
-    const {
-        boxShadowStyle: iconBoxShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: iconBoxShadow } = generateBoxShadowStyles({
         controlName: ICON_BOX_SHADOW,
         attributes,
     });
 
-    const {
-        boxShadowStyle: iconHoverBoxShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles({
         controlName: ICON_HOVER_BOX_SHADOW,
         attributes,
     });
@@ -133,29 +106,26 @@ export default function Style({ props }) {
         attributes,
     });
 
-
-
     // All Icon Style
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-icon {
             ${iconDeskAlign}
             ${iconDeskTextAlign}
         }
-        .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg {
-            ${iconWidthSizeDesk}
+        .${uniqueId} .zolo-icon-wrap .zolo__display-icon {
             ${iconHeightSizeDesk}
             ${iconBorderDesktop}
             ${iconBorderRadiusDesk}
             ${iconMarginDesk}
             ${iconPaddingDesk}
             ${iconBoxShadow}
+            background-color: ${iconBackgroundColor};
         }
         .${uniqueId} .zolo__display-icon svg {
             fill: ${iconColor};
-            background-color: ${iconBackgroundColor};
 
        }
-        .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg:hover {
+        .${uniqueId} .zolo-icon-wrap .zolo__display-icon:hover {
             fill: ${iconHover};
             background-color: ${iconBackgroundHoverColor};
             ${iconHoverBoxShadow}
@@ -167,8 +137,7 @@ export default function Style({ props }) {
             ${iconTabAlign}
             ${iconTabTextAlign}
         }
-        .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg {
-            ${iconWidthSizeTab}
+        .${uniqueId} .zolo-icon-wrap .zolo__display-icon {
             ${iconHeightSizeTab}
             ${iconBorderTab}
             ${iconBorderRadiusTab}
@@ -179,18 +148,16 @@ export default function Style({ props }) {
     `;
 
     const mobileAllStyle = `
-            .${uniqueId}.wp-block-zolo-icon {
+        .${uniqueId}.wp-block-zolo-icon {
             ${iconMobAlign}
             ${iconMobTextAlign}
         }
-        .${uniqueId} .zolo-icon-wrap .zolo__display-icon svg {
-            ${iconWidthSizeMob}
+        .${uniqueId} .zolo-icon-wrap .zolo__display-icon {
             ${iconHeightSizeMob}
             ${iconBorderMob}
             ${iconBorderRadiusMob}
             ${iconMarginMob}
             ${iconPaddingMob}
-            ${iconBoxShadow}
         }
     `;
 
@@ -199,23 +166,10 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters(
-                    "zolo.firstBlock.desktopAllStyle",
-                    desktopAllStyle,
-                    props,
-                )}
-                tabAllStyle={applyFilters(
-                    "zolo.firstBlock.tabletAllStyle",
-                    tabletAllStyle,
-                    props,
-                )}
-                mobileAllStyle={applyFilters(
-                    "zolo.firstBlock.mobileAllStyle",
-                    mobileAllStyle,
-                    props,
-                )}
+                desktopAllStyle={applyFilters('zolo.firstBlock.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.firstBlock.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.firstBlock.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
-    )
-
+    );
 }
