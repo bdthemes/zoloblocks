@@ -26,6 +26,7 @@ import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
 import '../blocks/flipbox/src';
 import '../blocks/google-map/src';
+import '../blocks/icon/src';
 import '../blocks/image-gallery/src';
 import '../blocks/image-compare/src';
 import '../blocks/list/src';
@@ -55,6 +56,7 @@ import '../blocks/team-grid/src';
 import '../blocks/list/src';
 import '../blocks/tab/src';
 import '../blocks/tabs/src';
+import '../blocks/popup-builder/src';
 import '../blocks/text-path/src';
 
 // inner blocks

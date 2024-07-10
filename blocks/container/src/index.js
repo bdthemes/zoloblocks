@@ -20,6 +20,7 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
+
     attributes,
     variations,
     edit: Edit,

@@ -31,6 +31,7 @@ const Edit = (props) => {
         transparentTag,
         transparentTitleText,
         transparentTitleRotateOrigin,
+        zolo_titleFontWeight,
     } = attributes;
 
     //block wrapper class

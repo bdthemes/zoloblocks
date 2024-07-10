@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 
 const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released= false }) => {
     return (
-        <div className={`zolo-single-block ${value ? 'active' : ''}`}>
+        <div className={`zolo-single-block ${value ? 'active' : ''} ${released ? '': 'upcoming'}`}>
             {isPro && (
                 <div className="block-pro">
                     <span>{__('Pro', 'zoloblocks')}</span>
@@ -32,7 +32,6 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
                 </div>
             </div>
             <div className="block-switcher">
-                {/* <span className="zolo-badge-upcoming">Coming Soon</span> */}
                 {released ? <ToggleControl checked={value} onChange={onClick} /> : <span className='zolo-badge-upcoming'>{__('Coming Soon', 'zoloblocks')}</span>}
 
             </div>

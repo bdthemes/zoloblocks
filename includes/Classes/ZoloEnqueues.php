@@ -41,7 +41,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          */
         public function __construct() {
             // block editor assets
-            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader'], 1);
+            add_action('enqueue_block_assets', [$this, 'editor_assets_loader'], 1);
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
@@ -87,6 +87,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // wp localize script
             wp_localize_script('zolo-block-vendor-dependency', 'zoloSettings', [
                 'ajaxurl'      => admin_url('admin-ajax.php'),
+                'home_url'     => home_url(),
                 'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
                 'theme_fonts'  => ZoloHelpers::zolo_get_theme_fonts(),
                 'googleAPIKey' => get_option('zolo_google_api_key'),
@@ -208,8 +209,11 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
 
-            // load gsap from cdn
             wp_enqueue_script('zolo-transform-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', [], ZOLO_VERSION, true);
+
+            // zolo popup 
+            wp_enqueue_script('zolo-popup-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js', [], ZOLO_VERSION, true);
+        
         }
         /**
          * Load Block Editor Assets
@@ -219,6 +223,11 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
+
+            if( ! is_admin() ) {
+                return;
+            }
+
             // dist for all blocks
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
@@ -366,8 +375,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
 
             // template library
-            $enble_template_library = get_option('zolo_enable_template_library');
-            if ($enble_template_library === '1') {
+            $enable_template_library = get_option('zolo_enable_template_library');
+            if ($enable_template_library !== '') {
                 $tb_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/template-library/index.asset.php';
                 if (file_exists($tb_dep_file)) {
                     $script_dependecy = include $tb_dep_file;
@@ -461,6 +470,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'epBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/ep-brand.svg',
                 'psBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/ps-brand.svg',
                 'upkBrand'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/upk-brand.svg',
+                'popupBg'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/popup-bg.svg',
             ]);
         }
     }

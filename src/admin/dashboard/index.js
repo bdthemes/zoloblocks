@@ -13,7 +13,31 @@ import Settings from './Settings';
 import Extensions from './Extensions';
 
 const Dashboard = () => {
-    const [activeTab, setActiveTab] = useState(TABS[0].value);
+    // const [activeTab, setActiveTab] = useState(TABS[0].value);
+    const getInitialStateFromURLQuery = () => {
+        const hash = window.location.hash.slice(1); // Remove the '#' at the start
+        return hash;
+    };
+    const [activeTab, setActiveTab] = useState(getInitialStateFromURLQuery);
+
+    if (activeTab) {
+        window.location.hash = activeTab;
+        window.history.pushState({}, "", `#${activeTab}`);
+    }
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'blocks':
+                return <Blocks />;
+            case 'extensions':
+                return <Extensions />;
+            case 'apiSettings':
+                return <ApiSettings />;
+            case 'settings':
+                return <Settings />;
+            default:
+                return <Welcome />;
+        }
+    };
 
     return (
         <div className="zolo-dashboard-wrapper">
@@ -77,11 +101,7 @@ const Dashboard = () => {
             </div>
             <div className="zolo-dashboard-container">
                 <div className="zolo-body">
-                    {activeTab === 'welcome' && <Welcome />}
-                    {activeTab === 'blocks' && <Blocks />}
-                    {activeTab === 'extensions' && <Extensions />}
-                    {activeTab === 'apiSettings' && <ApiSettings />}
-                    {activeTab === 'settings' && <Settings />}
+                    {renderContent()}
                 </div>
             </div>
             <div className="zolo-footer">

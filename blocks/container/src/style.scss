@@ -9,18 +9,22 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
 
 .wp-block-zolo-container .block-editor-block-list__layout > * {
     width: 100%;
-
 }
 
 // block style
 .wp-block-zolo-container {
+    &.zolo-root-container {
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
     box-sizing: border-box;
     figure {
         margin: 0;
     }
     // .block-editor-block-list__layout
     .block-editor-block-list__layout {
-       position: unset;
+        position: unset;
     }
 }
 
@@ -38,13 +42,6 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
             margin-right: auto !important;
             width: 100%;
         }
-    }
-
-    &.zolo-root-container {
-        margin-left: auto;
-        margin-right: auto;
-        margin-block-start: 0;
-        margin-block-end: 0;
     }
 }
 

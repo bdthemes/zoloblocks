@@ -8,8 +8,6 @@ const { __ } = wp.i18n;
 const handleCurrentPostExport = () => {
     // current block content code view
     const blockContent = select('core/editor').getEditedPostContent();
-
-
     const patternName = select('core/editor').getEditedPostAttribute('title');
 
     const blob = new Blob(

@@ -585,7 +585,6 @@ function Inspector(props) {
                     </>
                 }
             />
-            
         </InspectorControls>
     );
 }
