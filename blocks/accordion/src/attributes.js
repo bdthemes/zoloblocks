@@ -34,6 +34,7 @@ import {
   ICONTAINER_BORDER,
   ICONTAINER_BRADIUS,
   ICON_SIZE,
+  ANIMATED_BORDER_SIZE,
 
   // active accordion
   AAC_HEADER_BG,
@@ -124,6 +125,12 @@ const attributes = {
   atitleColor: {
     type: 'string',
   },
+  animatedBorderColor: {
+    type: 'string',
+  },
+  animatedBorderActiveColor: {
+    type: 'string',
+  },
   // Generators
   ...generateBorderAttributies(AC_CONTAINER_BORDER),
   ...generateDimensionAttributes(AC_CONTAINER_BORDER_RADIUS),
@@ -158,6 +165,9 @@ const attributes = {
 
   // icon
   ...generateResRangeAttributies(ICON_SIZE),
+
+  // animated border size
+  ...generateResRangeAttributies(ANIMATED_BORDER_SIZE),
 };
 
 export default attributes;

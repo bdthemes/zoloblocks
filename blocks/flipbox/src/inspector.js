@@ -17,6 +17,7 @@ const {
     RangeResetControl,
     TypographyDropdown,
     NormalBGControl,
+    BoxShadowControl,
     TabPanelControl,
     HeaderTabs,
     AdvancedOptions,
@@ -43,6 +44,7 @@ import {
     FRONT_ITEMS_ALIGNMENT,
     FRONT_ITEMS_VERTICAL_ALIGNMENT,
     FRONT_ITEMS_BG,
+    FRONT_ITEMS_SHADOW,
     BACK_ITEMS_BORDER,
     BACK_ITEMS_ALIGNMENT,
     BACK_ITEMS_VERTICAL_ALIGNMENT,
@@ -56,6 +58,7 @@ import {
     BACK_ICON_SIZE,
     BACK_ICON_BORDER,
     BACK_ICON_BG,
+    BACK_ITEMS_SHADOW,
     BACK_ICON_BORDER_RADIUS,
     BACK_ICON_PADDING,
     BACK_TITLE_MARGIN,
@@ -640,6 +643,11 @@ function Inspector(props) {
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
                                     />
                                     <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
+                                    <BoxShadowControl
+                                        controlName={FRONT_ITEMS_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={false}
+                                    />
                                 </>
                             )}
                             {side === 'back' && (
@@ -664,6 +672,11 @@ function Inspector(props) {
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
                                     />
                                     <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
+                                    <BoxShadowControl
+                                        controlName={BACK_ITEMS_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={false}
+                                    />
                                 </>
                             )}
                         </ZoloPanelBody>

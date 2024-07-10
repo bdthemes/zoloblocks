@@ -13,6 +13,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     REVIEWER_PHOTO_WIDTH,
@@ -221,6 +222,10 @@ const attributes = {
     ...generateDimensionAttributes(RCONTAINER_PADDING),
     ...generateBoxShadowAttributies(RCONTAINER_BSHADOW),
     ...generateNormalBGAttributes(RCONTAINER_BG),
+
+    // CAROUSEL CONTAINER
+    ...generateDimensionAttributes(CAROUSEL_CONTAINER_PADDING),
+    
     // swiper options
     slideItems: {
         type: 'number',

@@ -1,0 +1,16 @@
+.wp-block-zolo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // font-size: 32px;
+    // line-height: 1;
+    // vertical-align: middle;
+
+    .zolo__display-icon {
+        svg {
+        width: 1em;
+        height: 1em;
+        display: block;
+    }
+    }
+}

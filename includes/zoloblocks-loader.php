@@ -59,6 +59,9 @@ class ZoloBlocks_Loader {
 
         // notice block 
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
+        
+        // popup
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Popup/PopupBuilder.php';
 
         //templates
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Templates/Templates.php';

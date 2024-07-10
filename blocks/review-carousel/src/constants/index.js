@@ -96,3 +96,7 @@ export const RCONTAINER_BRADIUS = 'rcBRadius';
 export const RCONTAINER_BG = 'rcBg';
 export const RCONTAINER_PADDING = 'rcPadding';
 export const RCONTAINER_BSHADOW = 'rcBShadow';
+
+// Carousel container
+export const CAROUSEL_CONTAINER_PADDING = 'carouselContainerPadding';
+

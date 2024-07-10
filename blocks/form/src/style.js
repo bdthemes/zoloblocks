@@ -384,7 +384,7 @@ const Style = ({ props }) => {
             ${labelMarginDesk}
         }
 
-        .${uniqueId}.style-3 .zolo-label {
+        .${uniqueId}.style-3 .zolo-label-wrapper {
             ${labelPaddingDesk}
             ${labelBGStyle}
             ${labelBorderStyles}
@@ -480,7 +480,7 @@ const Style = ({ props }) => {
             ${labelMarginTab}
         }
 
-        .${uniqueId}.style-3 .zolo-label {
+        .${uniqueId}.style-3 .zolo-label-wrapper {
             ${labelPaddingTab}
             ${labelBorderStylesTab}
             ${labelBRTab}
@@ -545,7 +545,7 @@ const Style = ({ props }) => {
             ${labelMarginMob}
         }
 
-        .${uniqueId}.style-3 .zolo-label {
+        .${uniqueId}.style-3 .zolo-label-wrapper {
             ${labelPaddingMob}
             ${labelBorderStylesMob}
             ${labelBRMob}

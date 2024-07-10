@@ -279,6 +279,20 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_enable_template_library',
+            [
+                'type'             => 'boolean',
+                'default'          => true,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
     }
 
     // Update settings on plugin activation

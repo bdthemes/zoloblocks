@@ -54,6 +54,15 @@ const SvgComponent = ({ children, uniqueId, pathType }) => {
         viewBox = '0 0 250.4348 239.4454';
         height = '239.4454';
         width = '250.4348';
+    } else if (pathType == 'underCircle') {
+        path = (
+            <path
+                id={`MyPath-${uniqueId}`}
+                className="zolo-path"
+                d="m185.61,22.44h-31.22c-44.32,0-85.26,23.64-107.42,62.02l-15.61,27.03c-22.16,38.38-22.16,85.66,0,124.04l15.61,27.03c22.16,38.38,63.11,62.02,107.42,62.02h31.22c44.32,0,85.26-23.64,107.42-62.02l15.61-27.03c22.16-38.38,22.16-85.66,0-124.04l-15.61-27.03c-22.16-38.38-63.11-62.02-107.42-62.02Z"
+            />
+        );
+        viewBox = '0 0 342 352';
     }
     return (
         <svg viewBox={viewBox} height={height} width={width}>

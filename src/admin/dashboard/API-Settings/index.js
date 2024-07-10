@@ -166,13 +166,13 @@ const ApiSettings = () => {
                     <TextControl label={__('Audience ID', 'zoloblocks')} onChange={(value) => setAudienceID(value)} value={audienceID} />
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Facebook Page Feed (coming soon)', 'zoloblocks')}
+                    title={__('Facebook Page Feed', 'zoloblocks')}
                     description={<>
                         <a href="https://developers.facebook.com/apps/" target="_blank">{__('Facebook Developer Account', 'zoloblocks')}</a> to get access Page ID and Access Token. This credential need for Social Feeds widget.
                     </>}
                     docLink="https://mailchimp.com/help/find-audience-id/"
                     icon="facebook"
-                    disabled={true}
+                    released={false}
                     onSave={() => {
                         onChangeMailchimpKey(mailchimpKey);
                         onChangeMailchimpAudienceID(audienceID);
@@ -184,15 +184,15 @@ const ApiSettings = () => {
                 </SettingPanel>
 
                 <SettingPanel
-                    title={__('Instagram Feed (coming soon)', 'zoloblocks')}
+                    title={__('Instagram Feed', 'zoloblocks')}
                     description={
                         <>
-                            <p class="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</p>
+                            <span className="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</span>
                         </>
                     }
                     docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
                     icon="instagram"
-                    disabled={true}
+                    released={false}
                     onSave={() => {
 
                     }}
@@ -203,14 +203,14 @@ const ApiSettings = () => {
 
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Google Review (coming soon)', 'zoloblocks')}
+                    title={__('Google Review', 'zoloblocks')}
                     description={<>
-                        <p class="description">Go to <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com</a> and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review widget so you must enabled Places API too.</p>
+                        <span className="description">Go to <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com</a> and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review widget so you must enabled Places API too.</span>
                     </>
                     }
                     docLink="https://developers.google.com/maps/documentation/javascript/get-api-key"
                     icon="google"
-                    disabled={true}
+                    released={false}
                     onSave={() => {
 
                     }}
@@ -219,13 +219,13 @@ const ApiSettings = () => {
 
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Yelp Review (coming soon)', 'zoloblocks')}
+                    title={__('Yelp Review', 'zoloblocks')}
                     description={<>
-                        <p class="description">Go to your <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">Yelp Developer Account</a> to get access client ID and Key. This credential need for Social Proof widget.</p>
+                        <span className="description">Go to your <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">Yelp Developer Account</a> to get access client ID and Key. This credential need for Social Proof widget.</span>
                     </>}
                     docLink="#"
                     icon="yelp"
-                    disabled={true}
+                    released={false}
                     onSave={() => {
 
                     }}
@@ -235,13 +235,13 @@ const ApiSettings = () => {
 
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Facebook Page Review (coming soon)', 'zoloblocks')}
+                    title={__('Facebook Page Review', 'zoloblocks')}
                     description={<>
                         <a href="https://developers.facebook.com/apps/" target="_blank">{__('Facebook Developer Account', 'zoloblocks')}</a> to get access Page ID and Access Token. This credential need for Social Feeds widget.
                     </>}
                     docLink="#"
                     icon="facebook"
-                    disabled={true}
+                    released={false}
                     onSave={() => {
                         onChangeMailchimpKey(mailchimpKey);
                         onChangeMailchimpAudienceID(audienceID);
@@ -252,13 +252,13 @@ const ApiSettings = () => {
 
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Zoom (coming soon)', 'zoloblocks')}
+                    title={__('Zoom', 'zoloblocks')}
                     description={<>
                         <a href="https://developers.zoom.us/docs/api/" target="_blank">{__('Zoom Developer Account', 'zoloblocks')}</a> to get access API Keyand Secret Key. This credential need for Zoom Features.
                     </>}
                     docLink="#"
                     icon="zoom"
-                    disabled={true}
+                    released={false}
                     onSave={() => {
                         onChangeMailchimpKey(mailchimpKey);
                         onChangeMailchimpAudienceID(audienceID);

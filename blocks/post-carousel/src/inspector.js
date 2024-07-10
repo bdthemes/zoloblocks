@@ -61,6 +61,7 @@ import {
     APAG_BORDER_RADIUS,
     META_BOX_WRAP_PADDING,
     META_ARROW_SPACE,
+    CAROUSEL_CONTAINER_PADDING,
 } from './constants';
 
 import {
@@ -555,6 +556,17 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={COLUMN_SHADOW} requiredProps={requiredProps} />
+
+                            <div className='zolo-custom-heading' >
+                                {__('Carousel Container', 'zoloblocks')}
+                            </div>
+
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CAROUSEL_CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
