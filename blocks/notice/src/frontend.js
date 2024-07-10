@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener('DOMContentLoaded', () => {
     let notices = document.querySelectorAll('.wp-block-zolo-notice');
 
     for (let i = 0; i < notices.length; i++) {
@@ -8,11 +8,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
         if (!dismissButton) {
             return;
         }
-
-        // notices[i].style.position = 'relative';
-        // dismissButton.style.position = 'absolute';
-        // dismissButton.style.right = ' -37px';
-        // dismissButton.style.top = '-104px';
 
         // Hide notice if it's already closed
         let noticeId = notices[i].getAttribute('data-id');
@@ -52,3 +47,5 @@ function onButtonClick(notice) {
     showAgain === 'false' && hidePermanently(noticeId);
     removeNotice(notice);
 }
+
+//EXPETIMENT
