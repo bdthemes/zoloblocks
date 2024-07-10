@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId, textpathContent, textPathType, pathlink, textpathLength } = attributes;
+    const { uniqueId, parentClasses, zoloId, textpathContent, textPathType, pathlink, textpathLength, textPathSpoint } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -20,6 +20,7 @@ const Save = ({ attributes }) => {
             data-textpathtype={textPathType}
             data-pathlink={JSON.stringify(pathlink)}
             data-textpathlength={textpathLength}
+            data-textstartoffset={textPathSpoint}
             data-uniqueid={uniqueId}
         ></div>
     );

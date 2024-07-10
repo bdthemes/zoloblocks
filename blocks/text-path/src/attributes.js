@@ -66,6 +66,9 @@ const attributes = {
     textpathLength: {
         type: 'number',
     },
+    textPathSpoint: {
+        type: 'number',
+    },
     textPathColor: {
         type: 'string',
     },
