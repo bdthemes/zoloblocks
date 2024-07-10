@@ -5,14 +5,15 @@ import classnames from 'classnames';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
 
 export default function save(props) {
     const { attributes } = props
     const {
         uniqueId,
         parentClasses,
-
+        iconLink,
+        isLinkable,
         // settings
         mainIcon,
     } = attributes;
@@ -23,9 +24,17 @@ export default function save(props) {
 
     return (
         <div {...blockProps}>
-            <div className='zolo-icon-wrap'>
+            <DynamicTag
+                tagName={isLinkable === true ? 'a' : 'div'}
+                className="zolo-icon-wrap"
+                {...(iconLink !== '' && {
+                    href: iconLink && iconLink.url,
+                    target: iconLink && iconLink.openInNewTab && '_blank',
+                    rel: iconLink && iconLink.openInNewTab && 'noopener noreferrer',
+                })}
+            >
                 <DisplayZoloIcon icon={mainIcon} />
-            </div>
+            </DynamicTag>
         </div>
-    )
+    );
 }
