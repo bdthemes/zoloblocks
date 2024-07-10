@@ -54,7 +54,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.iconBox} alt={__('Notice Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.notice} alt={__('Notice Preview', 'zoloblocks')} />;
     }
 
     return (

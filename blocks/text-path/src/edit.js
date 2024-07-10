@@ -58,7 +58,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SvgComponent uniqueId={uniqueId} pathType={textPathType}>
                     <text>
-                        <textPath href={`#MyPath-${uniqueId}`} textLength={textpathLength}>
+                        <textPath href={`#MyPath-${uniqueId}`} textLength={textpathLength} startOffset="100%">
                             <a
                                 className="zolo-textpath"
                                 href={pathlink && pathlink.url}

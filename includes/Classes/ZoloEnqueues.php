@@ -440,6 +440,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'tabs'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/tabs.svg',
                     'imageComparison' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-comparison.svg',
                     'newsletter'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/newsletter.svg',
+                    'notice'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/notice.svg',
                 ])
             ]);
 
