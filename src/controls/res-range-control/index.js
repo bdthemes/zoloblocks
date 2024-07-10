@@ -7,7 +7,7 @@ import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
 
-const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, step, noUnits }) => {
+const ResRangeControl = ({ label, help="", controlName, units, requiredProps, min, max, step, noUnits }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const {
         [`${prefix}${controlName}Range`]: desktopRange,
@@ -240,6 +240,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                     )}
                 </>
             )}
+            {help && <p className="help-text">{help}</p>}
         </div>
     );
 };

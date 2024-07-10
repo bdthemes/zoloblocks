@@ -6,7 +6,7 @@ import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import LinkUnlink from '../link-unlink';
 
-const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadius, units, max = null }) => {
+const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forBorderRadius, units, max = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
 
     const {
@@ -205,6 +205,7 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                     />
                 </>
             )}
+            {help && <p className="components-base-control__help">{help}</p>}
         </div>
     );
 };
