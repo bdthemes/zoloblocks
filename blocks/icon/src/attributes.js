@@ -61,19 +61,29 @@ const attributes = {
     ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
     ...generateResAlignmentAttributies(ICON_ALIGNMENT),
 
-
     iconColor: {
         type: 'string',
-        default: ''
+        default: '',
+    },
+    isLinkable:{
+        type: 'boolean',
+        default: false
+    },
+    iconLink: {
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
     },
     iconHover: {
         type: 'string',
-        default: ''
+        default: '',
     },
     iconBackgroundColor: {
         type: 'string',
         default: '',
-    }
-}
+    },
+};
 
 export default attributes;

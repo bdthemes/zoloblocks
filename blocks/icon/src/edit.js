@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
  * Internal depencencies
-*/
+ */
 const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
 
 import Inspector from './inspector';
@@ -22,10 +22,12 @@ export default function Edit(props) {
 
         // settings
         mainIcon,
+        iconLink,
+        isLinkable,
     } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses))
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (
@@ -33,10 +35,18 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className='zolo-icon-wrap'>
+                <DynamicTag
+                    tagName={isLinkable === true ? 'a' : 'div'}
+                    className="zolo-icon-wrap"
+                    {...(iconLink !== '' && {
+                        href: iconLink && iconLink.url,
+                        target: iconLink && iconLink.openInNewTab && '_blank',
+                        rel: iconLink && iconLink.openInNewTab && 'noopener noreferrer',
+                    })}
+                >
                     <DisplayZoloIcon icon={mainIcon} />
-                </div>
+                </DynamicTag>
             </div>
         </>
-    )
+    );
 }

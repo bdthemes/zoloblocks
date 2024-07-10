@@ -57,8 +57,10 @@ export default function Inspector(props) {
         mainIcon,
         iconColor,
         iconHover,
+        isLinkable,
         iconBackgroundColor,
         iconBackgroundHoverColor,
+        iconLink,
     } = attributes;
 
     const requiredProps = {
@@ -72,7 +74,7 @@ export default function Inspector(props) {
         <>
             <InspectorControls>
                 <HeaderTabs
-                    block='zolo/icon'
+                    block="zolo/icon"
                     attributes={attributes}
                     setAttributes={setAttributes}
                     generalTab={
@@ -81,10 +83,33 @@ export default function Inspector(props) {
                                 <ZoloIconPicker
                                     label={__('Selected Icon', 'zoloblocks')}
                                     value={mainIcon}
-                                    onChange={(value) => setAttributes({
-                                        mainIcon: value,
-                                    })}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            mainIcon: value,
+                                        })
+                                    }
                                 />
+                                <ToggleControl
+                                    label={__('Linkable', 'zoloblocks')}
+                                    checked={isLinkable}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            isLinkable: value,
+                                        })
+                                    }
+                                />
+                                {
+                                    isLinkable &&
+                                    <LinkControl
+                                        label={__('Icon Link', 'zoloblocks')}
+                                        value={iconLink}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconLink: value,
+                                            })
+                                        }
+                                    />
+                                }
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={ICON_ALIGNMENT}
@@ -105,11 +130,7 @@ export default function Inspector(props) {
                                     max={100}
                                 />
 
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={ICON_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={ICON_BORDER} requiredProps={requiredProps} />
                                 <ResRangeControl
                                     label={__('Border Radius', 'zoloblocks')}
                                     controlName={ICON_BORDER_RADIUS}
@@ -135,17 +156,21 @@ export default function Inspector(props) {
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={iconColor}
-                                                onChange={(value) => setAttributes({
-                                                    iconColor: value,
-                                                })}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        iconColor: value,
+                                                    })
+                                                }
                                             />
 
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={iconBackgroundColor}
-                                                onChange={(value) => setAttributes({
-                                                    iconBackgroundColor: value,
-                                                })}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        iconBackgroundColor: value,
+                                                    })
+                                                }
                                             />
 
                                             <BoxShadowControl
@@ -160,17 +185,21 @@ export default function Inspector(props) {
                                             <ColorControl
                                                 label={__('Hover Color', 'zoloblocks')}
                                                 color={iconHover}
-                                                onChange={(value) => setAttributes({
-                                                    iconHover: value,
-                                                })}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        iconHover: value,
+                                                    })
+                                                }
                                             />
 
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={iconBackgroundHoverColor}
-                                                onChange={(value) => setAttributes({
-                                                    iconBackgroundHoverColor: value,
-                                                })}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        iconBackgroundHoverColor: value,
+                                                    })
+                                                }
                                             />
 
                                             <BoxShadowControl
@@ -178,11 +207,9 @@ export default function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
-
                                         </>
                                     }
                                 />
-
                             </ZoloPanelBody>
                         </>
                     }
@@ -192,12 +219,12 @@ export default function Inspector(props) {
                                 attributes={attributes}
                                 setAttributes={setAttributes}
                                 requiredProps={requiredProps}
-                                block='zolo/icon'
+                                block="zolo/icon"
                             />
                         </>
                     }
                 />
             </InspectorControls>
         </>
-    )
+    );
 }
