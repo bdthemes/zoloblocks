@@ -19,6 +19,11 @@
     position: relative;
     box-sizing: border-box;
     display: block;
+
+    &.is-hidden {
+        display: none;
+    }
+
     .zolo-block-item {
         padding: var(--zolo-item-padding);
         border-radius: 4px;
@@ -127,6 +132,8 @@
         display: flex;
         cursor: pointer;
         z-index: 99;
+        background: none;
+        border: none;
         svg {
             width: 1em;
             height: 1em;

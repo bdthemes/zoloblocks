@@ -9,13 +9,7 @@ import './style.scss';
 registerBlockType(metadata, {
     icon: {
         src: (
-            <svg
-                width={36} // Increase width to 36
-                height={36} // Increase height to 36
-                viewBox="0 0 24 24"
-                fill="#4F8FFF" // Adjust fill color to a brighter shade
-                xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width={36} height={36} viewBox="0 0 24 24" fill="#2667FF" xmlns="http://www.w3.org/2000/svg">
                 <path
                     fillRule="evenodd"
                     clipRule="evenodd"

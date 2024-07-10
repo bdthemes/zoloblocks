@@ -47,7 +47,6 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
             data-id={uniqueId}
-            data-show-again={showAfterDismiss}
         >
             <div
                 className={classnames(
@@ -91,7 +90,7 @@ const Save = ({ attributes }) => {
                 </div>
 
                 {dismissible && (
-                    <span className={` zolo-notice-dismiss`}>
+                    <button className="zolo-notice-dismiss">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={24}
@@ -108,7 +107,7 @@ const Save = ({ attributes }) => {
                             <path d="M18 6l-12 12" />
                             <path d="M6 6l12 12" />
                         </svg>
-                    </span>
+                    </button>
                 )}
             </div>
         </div>

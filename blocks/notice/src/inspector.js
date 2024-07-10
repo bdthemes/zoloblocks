@@ -185,13 +185,13 @@ function Inspector(props) {
                             />
 
                             <ToggleControl
-                                label={__('Close Button', 'zoloblocks')}
+                                label={__('Is Dimissible Notice?', 'zoloblocks')}
                                 checked={dismissible}
                                 onChange={() => setAttributes({ dismissible: !dismissible })}
                             />
                             {dismissible && (
                                 <ToggleControl
-                                    label={__('Close Repeat Button', 'zoloblocks')}
+                                    label={__('Infinite Repetitions', 'zoloblocks')}
                                     checked={showAfterDismiss}
                                     onChange={() => setAttributes({ showAfterDismiss: !showAfterDismiss })}
                                 />

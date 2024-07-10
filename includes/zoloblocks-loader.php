@@ -57,6 +57,9 @@ class ZoloBlocks_Loader {
         //mailchimp
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Mailchimp/Mailchimp.php';
 
+        // notice block 
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
+
         //templates
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Templates/Templates.php';
 

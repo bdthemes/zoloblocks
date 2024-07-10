@@ -38,8 +38,6 @@ export default function Edit(props) {
         infoDefaultIcon,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
     const blockProps = useBlockProps({
         className: classnames(
             uniqueId,
@@ -48,7 +46,6 @@ export default function Edit(props) {
             preset,
             noticeType,
             `${preset === 'style-1' ? iconBoxDirection : ''}`
-            // `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
         ),
     });
 
@@ -169,7 +166,7 @@ export default function Edit(props) {
                         )}
                     </div>
                     {dismissible && (
-                        <span className={` zolo-notice-dismiss`}>
+                        <button className="zolo-notice-dismiss">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width={24}
@@ -186,7 +183,7 @@ export default function Edit(props) {
                                 <path d="M18 6l-12 12" />
                                 <path d="M6 6l12 12" />
                             </svg>
-                        </span>
+                        </button>
                     )}
                 </div>
             </div>

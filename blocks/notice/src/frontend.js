@@ -1,51 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let notices = document.querySelectorAll('.wp-block-zolo-notice');
+document.addEventListener('DOMContentLoaded', function () {
+    const zoloNotices = document.querySelectorAll('.wp-block-zolo-notice');
 
-    for (let i = 0; i < notices.length; i++) {
-        let dismissButton = notices[i].querySelector('.zolo-notice-dismiss');
+    if (zoloNotices && zoloNotices.length > 0) {
+        zoloNotices.forEach(function (notice) {
+            const dismissBtn = notice.querySelector('.zolo-notice-dismiss');
+            const id = notice.getAttribute('data-id');
 
-        // Return if there is no dismiss button
-        if (!dismissButton) {
-            return;
-        }
+            if (!dismissBtn) {
+                return;
+            }
 
-        // Hide notice if it's already closed
-        let noticeId = notices[i].getAttribute('data-id');
-        let showAgain = notices[i].getAttribute('data-show-again');
-        let alreadyHidden = localStorage.getItem(`zolo-notice-hidden-${noticeId}`);
-        showAgain === 'true' && showNoticeAgain(noticeId);
-        showAgain === 'false' && alreadyHidden === '1' && removeNotice(notices[i]);
-
-        // Add click listener
-        (function (i) {
-            dismissButton.addEventListener('click', function () {
-                onButtonClick(notices[i]);
+            // close notice on click event
+            dismissBtn.addEventListener('click', function () {
+                // add a class to the notice to hide it
+                notice.classList.add('is-hidden');
+                // create a dynamic cookie name based on the notice id and set it to true for 30 days
+                document.cookie = `zolo_${id}=true; expires=${new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
             });
-        })(i);
+        });
     }
 });
-
-function hidePermanently(noticeId) {
-    localStorage.setItem(`zolo-notice-hidden-${noticeId}`, '1');
-}
-
-function showNoticeAgain(noticeId) {
-    localStorage.hasOwnProperty(`zolo-notice-hidden-${noticeId}`) && localStorage.removeItem(`zolo-notice-hidden-${noticeId}`);
-}
-
-function removeNotice(notice) {
-    notice.remove();
-}
-
-// Dismiss button click handler. Hide notice when clicked, hide permanently if
-// 'Show After Dismiss' toggle is enabled
-function onButtonClick(notice) {
-    let noticeId = notice.getAttribute('data-id');
-    let showAgain = notice.getAttribute('data-show-again');
-
-    showAgain === 'true' && showNoticeAgain(noticeId);
-    showAgain === 'false' && hidePermanently(noticeId);
-    removeNotice(notice);
-}
-
-//EXPETIMENT
