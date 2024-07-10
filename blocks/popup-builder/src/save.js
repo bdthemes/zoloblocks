@@ -29,14 +29,15 @@ const Save = ({ attributes }) => {
                     `${hideOnDesktop ? 'zolo-popup-hod' : ''}`,
                     `${hideOnTablet ? 'zolo-popup-hot' : ''}`,
                     `${hideOnMobile ? 'zolo-popup-hom' : ''}`,
-                    `${enableOverlay ? 'zolo-popup-overlay' : ''}`
+                    `${enableOverlay ? 'zolo-popup-overlay' : ''}`,
+                    `${popupType === 'popup_box' ? popupBoxPosition + ' frontend' : ''}`
                 ),
             })}
             data-type={popupType}
             data-bg-fixed={fixedBackground}
         >
             <div
-                className={classnames('zolo-popup-inner', popupType, `${popupType === 'popup_box' ? popupBoxPosition + ' frontend' : ''}`)}
+                className={classnames('zolo-popup-inner', popupType)}
             >
                 <InnerBlocks.Content />
                 {isDismissable && (

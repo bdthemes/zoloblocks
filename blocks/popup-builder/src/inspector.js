@@ -24,9 +24,6 @@ const {
 
 import objAttributes from './attributes';
 import {
-    CB_TOP_OFFSET,
-    CB_LEFT_OFFSET,
-    CB_RIGHT_OFFSET,
     PB_WIDTH,
     CONTENT_POS,
     PB_OVERLAY_BG,
@@ -36,6 +33,7 @@ import {
     PB_POSITIONS,
     POPUP_TYPES,
     PB_PADDING,
+    PB_MARGIN,
     CLOSE_ICON_BORDER,
     CLOSE_ICON_BRADIUS,
     CLOSE_ICON_PADDING,
@@ -200,34 +198,6 @@ function Inspector(props) {
                                         }}
                                         value={closeBtnPosition}
                                     />
-                                    <ResRangeControl
-                                        label={__('Top Offset', 'zoloblocks')}
-                                        controlName={CB_TOP_OFFSET}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                    />
-                                    {closeBtnPosition === 'cbp_top_right' && (
-                                        <ResRangeControl
-                                            label={__('Right Offset', 'zoloblocks')}
-                                            controlName={CB_RIGHT_OFFSET}
-                                            requiredProps={requiredProps}
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                        />
-                                    )}
-                                    {closeBtnPosition === 'cbp_top_left' && (
-                                        <ResRangeControl
-                                            label={__('Left Offset', 'zoloblocks')}
-                                            controlName={CB_LEFT_OFFSET}
-                                            requiredProps={requiredProps}
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                        />
-                                    )}
                                 </>
                             )}
                             <CardDivider />
@@ -261,6 +231,15 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+
+                            <ResDimensionsControl
+
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={PB_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+
                             <NormalBGControl requiredProps={requiredProps} controlName={PB_BG} noMainBGImg={true} />
 
                             <div className='zolo-custom-heading'>
