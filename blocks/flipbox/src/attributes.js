@@ -9,6 +9,7 @@ const {
     generateNormalBGAttributes,
     generateBoxShadowAttributies,
     generateResAlignmentAttributies,
+    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
@@ -26,6 +27,7 @@ import {
     BACK_ITEMS_PADDING,
     BACK_ITEMS_ALIGNMENT,
     BACK_ITEMS_VERTICAL_ALIGNMENT,
+    FLIP_ITEM_BOX_SHADOW,
 
     //Flipbox Front Icon
     FRONT_ICON_SIZE,
@@ -90,6 +92,7 @@ const attributes = {
     ...generateDimensionAttributes(FLIPBOX_ITEMS_PADDING),
     ...generateResAlignmentAttributies(FRONT_ITEMS_ALIGNMENT),
     ...generateResAlignmentAttributies(FRONT_ITEMS_VERTICAL_ALIGNMENT),
+    ...generateBoxShadowAttributies(FLIP_ITEM_BOX_SHADOW),
 
     // FLIPBOX FRONT ITEMS
     ...generateNormalBGAttributes(BACK_ITEMS_BG),

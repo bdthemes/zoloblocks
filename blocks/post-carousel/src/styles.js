@@ -54,6 +54,7 @@ import {
     APAG_BG,
     META_ARROW_SPACE,
     META_BOX_WRAP_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
 } from './constants';
 
 import {
@@ -704,6 +705,17 @@ function Style({ props }) {
         attributes,
     });
 
+    //carousel Container Padding
+    const {
+        dimensionStylesDesktop: carouselContainerPaddingDesk,
+        dimensionStylesTab: carouselContainerPaddingTab,
+        dimensionStylesMobile: carouselContainerPaddingMob,
+        } = generateDimensionStyle({
+            controlName: CAROUSEL_CONTAINER_PADDING,
+            styleFor: 'padding',
+            attributes,
+        });
+
     //carousel end
     /**
      * All Style Combination
@@ -717,6 +729,11 @@ function Style({ props }) {
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
       }
+
+      .${uniqueId}.wp-block-zolo-post-carousel.zolo-post-carousel .swiper{
+        ${carouselContainerPaddingDesk}
+      }
+
       .${uniqueId}.wp-block-zolo-post-carousel.zolo-post-carousel .zolo-post-item .zolo-post-content{
         ${contentPaddingDesk}
       }
@@ -967,6 +984,9 @@ function Style({ props }) {
       ${columnTabBorderRadius}
     }
 
+    .${uniqueId}.wp-block-zolo-post-carousel.zolo-post-carousel .swiper{
+        ${carouselContainerPaddingTab}
+    }
 
      .${uniqueId}.wp-block-zolo-post-carousel.zolo-post-carousel .zolo-post-item .zolo-post-content{
         ${contentPaddingTab}
@@ -1125,6 +1145,12 @@ function Style({ props }) {
         ${columnMobBorderStyle}
         ${columnMobBorderRadius}
       }
+
+
+    .${uniqueId}.wp-block-zolo-post-carousel.zolo-post-carousel .swiper{
+        ${carouselContainerPaddingMob}
+    }
+
 
        .${uniqueId}.wp-block-zolo-post-carousel.zolo-post-carousel .zolo-post-item .zolo-post-content{
         ${contentPaddingMob}

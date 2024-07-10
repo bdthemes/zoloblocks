@@ -12,6 +12,7 @@ const {
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
+    generateBoxShadowStyles,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
     generateBoxShadowStyles,
@@ -33,6 +34,7 @@ import {
     FRONT_ITEMS_VERTICAL_ALIGNMENT,
     BACK_ITEMS_ALIGNMENT,
     BACK_ITEMS_VERTICAL_ALIGNMENT,
+    FLIP_ITEM_BOX_SHADOW,
 
     //FLIPBOX FRONT CONTENT
     FRONT_ICON_SIZE,
@@ -121,6 +123,11 @@ const Style = ({ props }) => {
         controlName: FLIPBOX_ITEMS_PADDING,
         styleFor: 'padding',
         attributes,
+    });
+
+    const { boxShadowStyle: flipItemBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: FLIP_ITEM_BOX_SHADOW,
     });
 
     // alignment
@@ -498,6 +505,9 @@ const Style = ({ props }) => {
 
         }
 
+    .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_item .zolo-flip-box_face {
+        ${flipItemBoxShadow}
+    }
 
     .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_front {
         ${frontItemsBorderDeskStyle}
