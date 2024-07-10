@@ -212,6 +212,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 = Added =
 * Icon block added
+* Notice block added
 * Popup builder added
 * Text path block added
 * zIndex nagative value added
