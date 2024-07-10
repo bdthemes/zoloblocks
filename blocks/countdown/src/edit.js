@@ -55,12 +55,6 @@ export default function Edit(props) {
         setAttributes({ CountDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] });
     }
 
-    console.log('attributes', attributes);
-
-    // zolo_countBoxGridRange
-    // zolo_TABcountBoxGridRange
-    // zolo_MOBcountBoxGridRange
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
