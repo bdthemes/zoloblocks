@@ -67,7 +67,6 @@ export const FRONT_ITEMS_BG = 'FrontItemsBg';
 export const FRONT_ITEMS_SHADOW = 'FrontItemsShadow';
 export const FRONT_ITEMS_ALIGNMENT = 'FrontItemsAlignment';
 export const FRONT_ITEMS_VERTICAL_ALIGNMENT = 'FrontItemsVerticalAlignment';
-export const FLIP_ITEM_BOX_SHADOW = 'flipItemBoxShadow';
 
 
 //BACK ITEMS
