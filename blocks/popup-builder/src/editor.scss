@@ -1,28 +1,30 @@
-.editor-template-validation-notice.components-notice.is-warning {
-    display: none !important;
+.post-type-zolo-popup {
+    .editor-template-validation-notice.components-notice.is-warning {
+        display: none !important;
+    }
+
+    .block-editor-block-settings-menu__popover {
+        .components-menu-group:nth-child(2) {
+            display: none !important;
+        }
+    }
+
+    .components-toolbar-group.block-editor-block-lock-toolbar {
+        button[aria-label='Unlock'] {
+            display: none !important;
+        }
+    }
+
+    .components-dropdown-menu__menu[aria-label='Options for Popup Builder'] {
+        .components-menu-group:nth-child(2) {
+            div[role='group'] {
+                button:nth-child(1) {
+                    display: none !important;
+                }
+            }
+        }
+    }
 }
-
-// .block-editor-block-settings-menu__popover {
-//     .components-menu-group:nth-child(2) {
-//         display: none !important;
-//     }
-// }
-
-// .components-toolbar-group.block-editor-block-lock-toolbar {
-//     button[aria-label='Unlock'] {
-//         display: none !important;
-//     }
-// }
-
-// .components-dropdown-menu__menu[aria-label='Options for Popup Builder'] {
-//     .components-menu-group:nth-child(2) {
-//         div[role='group'] {
-//             button:nth-child(1) {
-//                 display: none !important;
-//             }
-//         }
-//     }
-// }
 
 .block-editor-block-list__block.wp-block.wp-block-zolo-popup-builder {
     &.info_bar,
