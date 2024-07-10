@@ -1,9 +1,10 @@
-### 1.0.8 [July 08, 2024]
+### 1.1.0 [July 09, 2024]
 
 ### Added
 
 - Icon block added
 - Text path block added
+- Popup builder added
 - zIndex nagative value added
 - Theme fonts support added
 - position sticky feature added

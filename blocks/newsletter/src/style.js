@@ -48,6 +48,9 @@ import {
     INPUT_PADDING,
     INPUT_BG,
     FOCUS_BORDER_WIDTH,
+    FOCUS_STYLE_5_BORDER_WIDTH,
+    FIELD_ICON_SIZE,
+    FIELD_ICON_SPACING,
 } from './constants';
 
 import { LABEL_TYPOGRAPHY, INPUT_TYPOGRAPHY, BUTTON_TYPOGRAPHY, MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -66,7 +69,9 @@ export default function Style({ props }) {
         labelColor,
         inputColor,
         focusColor,
+        focusStyle5Color,
         iconColor,
+        fieldIconColor,
         iconHoverColor,
         placeholderColor,
         btnLayoutType,
@@ -328,6 +333,60 @@ export default function Style({ props }) {
         property: 'outline-width',
         attributes,
     });
+
+    const {
+        desktopRangeStyle: focusStyle5BorderHeightDesk,
+        tabRangeStyle: focusStyle5BorderHeightTab,
+        mobRangeStyle: focusStyle5BorderHeightMob,
+    } = generateResRangeStyle({
+        controlName: FOCUS_STYLE_5_BORDER_WIDTH,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: focusStyle5BorderWidthDesk,
+        tabRangeStyle: focusStyle5BorderWidthTab,
+        mobRangeStyle: focusStyle5BorderWidthMob,
+    } = generateResRangeStyle({
+        controlName: FOCUS_STYLE_5_BORDER_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    // FIELD ICON SIZE
+    const {
+        desktopRangeStyle: fiColorHeightDesk,
+        tabRangeStyle: fiColorHeightTab,
+        mobRangeStyle: fiColorHeightMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_ICON_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: fiColorWidthDesk,
+        tabRangeStyle: fiColorWidthTab,
+        mobRangeStyle: fiColorWidthMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    // FIELD ICON MARGIN
+    const {
+        desktopRangeStyle: fiMarginDesktop,
+        tabRangeStyle: fiMarginTab,
+        mobRangeStyle: fiMarginMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_ICON_SPACING,
+        property: 'margin-right',
+        attributes,
+    });
+
+
     const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
         controlName: BUTTON_BOX_SHADOW,
         attributes,
@@ -442,8 +501,60 @@ export default function Style({ props }) {
         ${focusColor ? `outline-color: ${focusColor};` : ''}
         ${focusBorderWidthDesk}
         ${fieldHoverBoxShadowStyle}
-
       }
+
+      ${
+         preset === 'zolo-newsletter-5'
+            ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon-wrap{
+                    ${inputBorderRadiusDesktop}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-1 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-2 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-3 .zolo-form-input ~ .zolo-focus-border::before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-3 .zolo-form-input ~ .zolo-focus-border::after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after, 
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after { 
+                    ${focusStyle5Color ? `background-color: ${focusStyle5Color};` : ''}
+                }
+                
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-1 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-2 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-3 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:after {
+                    ${focusStyle5BorderHeightDesk}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after {
+                    ${focusStyle5BorderWidthDesk}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon {
+                   ${fiMarginDesktop}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon svg {
+                    ${fiColorHeightDesk}
+                    ${fiColorWidthDesk}
+                    ${fieldIconColor ? `color: ${fieldIconColor};` : ''}
+                }
+            `
+         : ''
+      }
+
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStyles}
         ${borderRadiusDesktop}
@@ -513,6 +624,34 @@ export default function Style({ props }) {
         ${inputBorderRadiusTab}
         ${inputPaddingTab}
       }
+
+      ${
+         preset === 'zolo-newsletter-5'
+            ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon-wrap{
+                    ${inputBorderRadiusTab}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-1 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-2 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-3 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:after {
+                    ${focusStyle5BorderHeightTab}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after {
+                    ${focusStyle5BorderWidthTab}
+                }
+            `
+         : ''
+      }
+
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStylesTab}
         ${borderRadiusTab}
@@ -550,6 +689,34 @@ export default function Style({ props }) {
         ${inputBorderRadiusMob}
         ${inputPaddingMob}
       }
+
+     ${
+         preset === 'zolo-newsletter-5'
+            ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon-wrap{
+                    ${inputBorderRadiusMob}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-1 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-2 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-3 .zolo-form-input ~ .zolo-focus-border,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border:after {
+                    ${focusStyle5BorderHeightMob}
+                }
+
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-4 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:before,
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5.zolo-focus-style-5 .zolo-form-input ~ .zolo-focus-border .zolo-focus-inner:after {
+                    ${focusStyle5BorderWidthMob}
+                }
+            `
+         : ''
+      }
+
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStylesMob}
         ${borderRadiusMob}
