@@ -17,7 +17,6 @@ const {
     RangeResetControl,
     TypographyDropdown,
     NormalBGControl,
-    BoxShadowControl,
     TabPanelControl,
     HeaderTabs,
     AdvancedOptions,
@@ -600,11 +599,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                             />
 
-                            <BoxShadowControl
-                                controlName={FLIP_ITEM_BOX_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
+                            <BoxShadowControl controlName={FLIP_ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
 
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">

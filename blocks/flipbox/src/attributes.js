@@ -302,8 +302,8 @@ const attributes = {
         default: 'ease-out',
     },
     flipCustomEasing: {
-        'type': 'string',
-        'default': '',
+        type: 'string',
+        default: '',
     },
     triggerType: {
         type: 'string',

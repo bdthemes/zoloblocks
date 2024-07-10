@@ -32,7 +32,6 @@ if (zoloThemeFonts) {
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
     const id = `inspector-zb-font-family-${instanceId}`;
     const fonts = [
-        { value: '', label: __('Default', 'zoloblocks') },
         { value: 'Arial', label: 'Arial' },
         { value: 'Helvetica', label: 'Helvetica' },
         { value: 'Times-New-Roman', label: 'Times New Roman' },
@@ -44,12 +43,13 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
         fonts.push({ value: font, label: googleFonts[font].family });
     });
 
+    const allFonts = zoloAvailableFonts.concat(fonts);
+
     const onChangeValue = (select) => {
         let selectedFont = select.label;
         if (selectedFont) {
             // skip if default OR Arial, Helvetica, Times New Roman, Georgia
             if (
-                selectedFont === 'Default' ||
                 selectedFont === 'Arial' ||
                 selectedFont === 'Helvetica' ||
                 selectedFont === 'Times-New-Roman' ||
@@ -81,7 +81,7 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                     label: value,
                 }}
                 onChange={onChangeValue}
-                options={zoloAvailableFonts && zoloAvailableFonts.length > 0 ? zoloAvailableFonts : fonts}
+                options={allFonts}
             />
         </BaseControl>
     );
