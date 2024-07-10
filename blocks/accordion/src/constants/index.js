@@ -9,6 +9,7 @@ export const BLOCK_PREFIX = 'slide';
 export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: '' },
     { label: __('Preset 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
+    { label: __('Preset 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
 ];
 
 // accordion container
@@ -50,3 +51,6 @@ export const AAC_BODY_BG = 'aacbBg';
 
 // accordion icon
 export const AICONTAINER_BG = 'aiContainerBg';
+
+// animated border size
+export const ANIMATED_BORDER_SIZE = 'animatedBorderSize';

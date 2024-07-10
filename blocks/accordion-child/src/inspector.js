@@ -47,13 +47,14 @@ import {
     AC_BODY_BG,
     AC_BODY_PADDING,
     AC_BODY_MARGIN,
+    ANIMATED_BORDER_SIZE,
 } from './constants';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, title, iconColor, iconHoverColor, titleColor, titleHoverColor } = attributes;
+    const { preset, resMode, title, iconColor, iconHoverColor, titleColor, titleHoverColor, animatedBorderColor, animatedBorderActiveColor } = attributes;
 
     const requiredProps = {
         resMode,
@@ -141,6 +142,35 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+
+                            {preset === 'style-3' && (
+                                <>
+                                    <div className='zolo-custom-heading' >
+                                        {__('Animated Border', 'zoloblocks')}
+                                    </div>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={animatedBorderColor}
+                                        onChange={(value) =>
+                                                setAttributes({
+                                                    animatedBorderColor: value,
+                                                })
+                                        }
+                                    />
+                                    <ColorControl
+                                        label={__('Active Color', 'zoloblocks')}
+                                        color={animatedBorderActiveColor}
+                                        onChange={(value) =>
+                                                setAttributes({
+                                                    animatedBorderActiveColor: value,
+                                                })
+                                        }
+                                    />
+                                    <ResRangeControl label={__('Thickness', 'zoloblocks')} controlName={ANIMATED_BORDER_SIZE} requiredProps={requiredProps} />
+                                </>
+                            
+                            )}
+
                             <TabPanelControl
                                 normalComponents={
                                     <>

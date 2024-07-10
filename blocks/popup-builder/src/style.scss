@@ -47,10 +47,54 @@ body.zolo-popup-fixed {
                 position: fixed;
             }
 
+            &.pbp_top_left {
+                top: 0;
+                left: 0;
+            }
+
+            &.pbp_top_center {
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            &.pbp_top_right {
+                top: 0;
+                right: 0;
+            }
+
+            &.pbp_center_left {
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+
             &.pbp_center_center {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+            }
+
+            &.pbp_center_right {
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+            }
+
+            &.pbp_bottom_left {
+                bottom: 0;
+                left: 0;
+            }
+
+            &.pbp_bottom_center {
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            &.pbp_bottom_right {
+                bottom: 0;
+                right: 0;
             }
         }
     }

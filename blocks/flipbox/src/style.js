@@ -33,6 +33,7 @@ import {
     FRONT_ITEMS_VERTICAL_ALIGNMENT,
     BACK_ITEMS_ALIGNMENT,
     BACK_ITEMS_VERTICAL_ALIGNMENT,
+    FLIP_ITEM_BOX_SHADOW,
 
     //FLIPBOX FRONT CONTENT
     FRONT_ICON_SIZE,
@@ -123,6 +124,11 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const { boxShadowStyle: flipItemBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: FLIP_ITEM_BOX_SHADOW,
+    });
+
     // alignment
     const {
         desktopAlignStyle: frontItemsAlignmentDesktop,
@@ -171,17 +177,12 @@ const Style = ({ props }) => {
         attributes,
         noMainBGImg: false,
     });
-    const {
-        boxShadowStyle: frontItemsShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: frontItemsShadow } = generateBoxShadowStyles({
         controlName: FRONT_ITEMS_SHADOW,
         attributes,
     });
 
-
-    const {
-        boxShadowStyle: backItemsShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: backItemsShadow } = generateBoxShadowStyles({
         controlName: BACK_ITEMS_SHADOW,
         attributes,
     });
@@ -498,6 +499,9 @@ const Style = ({ props }) => {
 
         }
 
+    .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_item .zolo-flip-box_face {
+        ${flipItemBoxShadow}
+    }
 
     .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_front {
         ${frontItemsBorderDeskStyle}
