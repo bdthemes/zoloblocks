@@ -15,7 +15,6 @@ const {
     generateBoxShadowStyles,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
-    generateBoxShadowStyles,
     generateResAlignmentStyle,
 } = window.zoloModule;
 

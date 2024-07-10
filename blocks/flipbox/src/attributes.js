@@ -9,7 +9,6 @@ const {
     generateNormalBGAttributes,
     generateBoxShadowAttributies,
     generateResAlignmentAttributies,
-    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
