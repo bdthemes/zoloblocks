@@ -11,7 +11,19 @@ export const PRESETS = [
   { label: __("Preset 2", "zoloblocks"), value: "zolo-newsletter-2" },
   { label: __("Preset 3", "zoloblocks"), value: "zolo-newsletter-3" },
   { label: __("Preset 4", "zoloblocks"), value: "zolo-newsletter-4" },
+  { label: __("Preset 5 Pro", "zoloblocks"), value: "zolo-newsletter-5" },
 ];
+
+
+export const FOCUS_STYLE = [
+  { label: __("Style 1", "zoloblocks"), value: "zolo-focus-style-1" },
+  { label: __("Style 2", "zoloblocks"), value: "zolo-focus-style-2" },
+  { label: __("Style 3", "zoloblocks"), value: "zolo-focus-style-3" },
+  { label: __("Style 4", "zoloblocks"), value: "zolo-focus-style-4" },
+  { label: __("Style 5", "zoloblocks"), value: "zolo-focus-style-5" },
+];
+
+
 export const BUTTON_TYPES = [
   { label: __("Text", "zoloblocks"), value: "text" },
   { label: __("Icon", "zoloblocks"), value: "icon" },
@@ -121,6 +133,9 @@ export const FIELD_FOCUS_BOX_SHADOW = "fieldHoverBoxShadow";
 export const ICON_SIZE = "iconSize";
 export const BUTTON_SIZE = "buttonSize";
 export const FOCUS_BORDER_WIDTH = "focusBorderWidth";
+export const FOCUS_STYLE_5_BORDER_WIDTH = "focusStyle5BorderWidth";
+export const FIELD_ICON_SIZE = "fieldIconSize";
+export const FIELD_ICON_SPACING = "fieldIconSpacing";
 
 // newsletter label
 
