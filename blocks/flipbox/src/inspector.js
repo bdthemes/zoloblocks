@@ -17,6 +17,7 @@ const {
     RangeResetControl,
     TypographyDropdown,
     NormalBGControl,
+    BoxShadowControl,
     TabPanelControl,
     HeaderTabs,
     AdvancedOptions,
@@ -38,7 +39,6 @@ import {
     FLIP_EASING_TYPE,
     FLIP_TRIGGER_TYPE,
     FLIPBOX_BORDER_RADIUS,
-    FLIP_ITEM_BOX_SHADOW,
     FLIPBOX_ITEMS_PADDING,
     FRONT_ITEMS_BORDER,
     FRONT_ITEMS_ALIGNMENT,
@@ -598,9 +598,6 @@ function Inspector(props) {
                                 controlName={FLIPBOX_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                             />
-
-                            <BoxShadowControl controlName={FLIP_ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
