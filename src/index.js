@@ -58,7 +58,7 @@ import '../blocks/tab/src';
 import '../blocks/tabs/src';
 import '../blocks/popup-builder/src';
 import '../blocks/text-path/src';
-
+import '../blocks/notice/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';

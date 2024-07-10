@@ -25,7 +25,7 @@ const {
 import objAttributes from './attributes';
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING } from './constants';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING, PATH_OPTION } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 function Inspector(props) {
@@ -36,6 +36,7 @@ function Inspector(props) {
         textPathType,
         pathlink,
         textpathLength,
+        textPathSpoint,
         textPathShow,
         textpathRotate,
         textPathColor,
@@ -66,24 +67,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Path Type', 'zoloblocks')}
                                 value={textPathType}
-                                options={[
-                                    {
-                                        label: __('wave', 'zoloblocks'),
-                                        value: 'wave',
-                                    },
-                                    {
-                                        label: __('Arc', 'zoloblocks'),
-                                        value: 'arc',
-                                    },
-                                    {
-                                        label: __('Circle', 'zoloblocks'),
-                                        value: 'circle',
-                                    },
-                                    { label: __('Line', 'zoloblocks'), value: 'line' },
-                                    { label: __('Oval', 'zoloblocks'), value: 'oval' },
-                                    { label: __('Spiral', 'zoloblocks'), value: 'spiral' },
-                                    { label: __('Under Circle', 'zoloblocks'), value: 'underCircle' },
-                                ]}
+                                options={PATH_OPTION}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
 
@@ -135,6 +119,16 @@ function Inspector(props) {
                                 onReset={() => setAttributes({ textpathLength: '' })}
                                 min={1}
                                 max={1000}
+                                step={1}
+                                noUnits={true}
+                            />
+                            <SimpleRangeControl
+                                label={__('Staring Points', 'zoloblocks')}
+                                onChange={(v) => setAttributes({ textPathSpoint: v })}
+                                value={textPathSpoint}
+                                onReset={() => setAttributes({ textPathSpoint: '' })}
+                                min={1}
+                                max={100}
                                 step={1}
                                 noUnits={true}
                             />
