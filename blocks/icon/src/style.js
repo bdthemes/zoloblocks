@@ -149,7 +149,6 @@ export default function Style({ props }) {
             ${iconMarginDesk}
             ${iconPaddingDesk}
             ${iconBoxShadow}
-
         }
         .${uniqueId} .zolo__display-icon svg {
             fill: ${iconColor};
