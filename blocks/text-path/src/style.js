@@ -82,11 +82,11 @@ const Style = ({ props }) => {
             ${Desktextstroke}
             ${DeskTextpathSpacing}
             ${DeskTextSpacing}
-            ${textPathColor && `stroke:${textPathColor}`}
+            ${textPathColor && `fill:${textPathColor}`}
             
         }
         .${uniqueId}.wp-block-zolo-text-path tspan:hover {
-            ${textPathHoverColor && `stroke:${textPathHoverColor}`}
+            ${textPathHoverColor && `fill:${textPathHoverColor}`}
         }  
         .${uniqueId}.wp-block-zolo-text-path .zolo-path{
             ${textPathShow && 'stroke:#2667ff'};
