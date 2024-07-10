@@ -16,7 +16,6 @@ const {
     ResDimensionsControl,
     RangeResetControl,
     TypographyDropdown,
-    BoxShadowControl,
     NormalBGControl,
     BoxShadowControl,
     TabPanelControl,

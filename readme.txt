@@ -208,7 +208,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.1.0 - 09-07-2024 =
+= 1.1.0 - 10-07-2024 =
 
 = Added =
 * Icon block added
