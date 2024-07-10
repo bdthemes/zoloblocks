@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { render, createRoot } from '@wordpress/element';
 import SvgComponent from './svg';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,15 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const pathlink = JSON.parse(item.dataset.pathlink);
         const textpathLength = item.dataset.textpathlength;
         const uniqueId = item.dataset.uniqueid;
-        render(
+        let root = createRoot(item);
+        root.render(
             <SvgItem
                 textpathContent={textpathContent}
                 textPathType={textPathType}
                 pathlink={pathlink}
                 uniqueid={uniqueId}
                 textpathLength={textpathLength}
-            />,
-            item
+            />
         );
     });
 });
