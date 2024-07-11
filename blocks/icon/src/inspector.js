@@ -43,7 +43,9 @@ import {
     ICON_PADDING,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    ICON_ALIGNMENT
+    ICON_ALIGNMENT,
+    ICON_HOVER_BG_COLOR,
+    ICON_BG_COLOR,
 } from './constants';
 
 export default function Inspector(props) {
@@ -98,8 +100,7 @@ export default function Inspector(props) {
                                         })
                                     }
                                 />
-                                {
-                                    isLinkable &&
+                                {isLinkable && (
                                     <LinkControl
                                         label={__('Icon Link', 'zoloblocks')}
                                         value={iconLink}
@@ -109,7 +110,7 @@ export default function Inspector(props) {
                                             })
                                         }
                                     />
-                                }
+                                )}
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={ICON_ALIGNMENT}
@@ -138,13 +139,12 @@ export default function Inspector(props) {
                                     forBorderRadius={true}
                                 />
 
-                                <ResRangeControl
+                                <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={ICON_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-
-                                <ResRangeControl
+                                <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
                                     controlName={ICON_PADDING}
                                     requiredProps={requiredProps}
@@ -163,16 +163,7 @@ export default function Inspector(props) {
                                                 }
                                             />
 
-                                            <ColorControl
-                                                label={__('Background', 'zoloblocks')}
-                                                color={iconBackgroundColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconBackgroundColor: value,
-                                                    })
-                                                }
-                                            />
-
+                                            <NormalBGControl controlName={ICON_BG_COLOR} requiredProps={requiredProps} />
                                             <BoxShadowControl
                                                 controlName={ICON_BOX_SHADOW}
                                                 requiredProps={requiredProps}
@@ -192,15 +183,7 @@ export default function Inspector(props) {
                                                 }
                                             />
 
-                                            <ColorControl
-                                                label={__('Background', 'zoloblocks')}
-                                                color={iconBackgroundHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconBackgroundHoverColor: value,
-                                                    })
-                                                }
-                                            />
+                                            <NormalBGControl controlName={ICON_HOVER_BG_COLOR} requiredProps={requiredProps} />
 
                                             <BoxShadowControl
                                                 controlName={ICON_HOVER_BOX_SHADOW}

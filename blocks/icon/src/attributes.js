@@ -3,10 +3,7 @@ const {
     generateResRangeAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
-    generateTypographyAttributes,
     generateBoxShadowAttributies,
-    generateTextShadowAttributies,
-    generateTextStrokeAttributies,
     generateNormalBGAttributes
 } = window.zoloModule;
 
@@ -19,6 +16,8 @@ import {
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     ICON_ALIGNMENT,
+    ICON_BG_COLOR,
+    ICON_HOVER_BG_COLOR
 } from './constants';
 
 const attributes = {
@@ -55,11 +54,14 @@ const attributes = {
     ...generateResRangeAttributies(ICON_SIZE),
     ...generateBorderAttributies(ICON_BORDER),
     ...generateResRangeAttributies(ICON_BORDER_RADIUS),
-    ...generateResRangeAttributies(ICON_MARGIN),
-    ...generateResRangeAttributies(ICON_PADDING),
+    ...generateDimensionAttributes(ICON_MARGIN),
+    ...generateDimensionAttributes(ICON_PADDING),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
     ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
     ...generateResAlignmentAttributies(ICON_ALIGNMENT),
+    ...generateNormalBGAttributes(ICON_BG_COLOR),
+    ...generateNormalBGAttributes(ICON_HOVER_BG_COLOR),
+
 
     iconColor: {
         type: 'string',
@@ -75,14 +77,6 @@ const attributes = {
             url: '#',
             openInNewTab: false,
         },
-    },
-    iconHover: {
-        type: 'string',
-        default: '',
-    },
-    iconBackgroundColor: {
-        type: 'string',
-        default: '',
     },
 };
 
