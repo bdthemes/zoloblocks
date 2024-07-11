@@ -16,3 +16,5 @@ export const ICON_MARGIN = 'iconMargin';
 export const ICON_PADDING = 'iconPadding';
 export const ICON_BOX_SHADOW = 'iconBoxShadow';
 export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
+export const ICON_BG_COLOR = 'iconBackgroundColor';
+export const ICON_HOVER_BG_COLOR = 'iconBackgroundHoverColor';
