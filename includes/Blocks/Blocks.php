@@ -289,12 +289,7 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-    'shape-divider' => [
-        'name'             => 'shape-divider',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/shape-divider/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false
-    ],
+
     'popup-builder' => [
         'name'             => 'popup-builder',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/popup-builder/block.json',
