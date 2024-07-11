@@ -24,6 +24,27 @@ class ZoloHelpers {
     use SingletonTrait;
 
     /**
+     * ZoloHelpers constructor.
+     */
+    private function __construct() {
+        add_filter('admin_body_class', [$this, 'zoloblocks_editor_body_class']);
+        add_filter('body_class', [$this, 'zoloblocks_frontend_body_class']);
+    }
+    public function zoloblocks_editor_body_class($classes) {
+        // Check if we are on editing screen in WordPress admin
+        if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') {
+            $classes .= ' zolo-editor';
+        }
+        return $classes;
+    }
+    public function zoloblocks_frontend_body_class(array $classes) {
+        $new_class =  'zolo-frontend';
+        if ($new_class) {
+            $classes[] = $new_class;
+        }
+        return $classes;
+    }
+    /**
      * Filter Blocks
      */
     public static function filter_blocks($block) {
@@ -186,7 +207,7 @@ class ZoloHelpers {
 
     /**
      * Get the post thumbnail URL
-     * 
+     *
      * @param int $post_id
      * @param string $size
      * @return string
@@ -207,7 +228,7 @@ class ZoloHelpers {
 
     /**
      * Get the post thumbnail URL
-     * 
+     *
      * @param int $post_id
      * @param string $size
      * @return string
@@ -233,7 +254,7 @@ class ZoloHelpers {
 
     /**
      * Get Pagination
-     * 
+     *
      * @param int $max_pages
      * @return string
      */
@@ -261,7 +282,7 @@ class ZoloHelpers {
 
     /**
      * Get SVG Icon
-     * 
+     *
      * @param string $icon
      * @param string $class
      * @return string
@@ -276,7 +297,7 @@ class ZoloHelpers {
 
     /**
      * Get Allowed SVG
-     * 
+     *
      * @return array
      */
     public static function wp_kses_allowed_svg() {
@@ -302,14 +323,14 @@ class ZoloHelpers {
 
     /**
      * Get Theme Fonts
-     * 
+     *
      * @return array
      */
     public static function zolo_get_theme_fonts() {
         // Retrieve global settings
         $global_settings = wp_get_global_settings();
         $global_fonts = $global_settings['typography']['fontFamilies'] ?? [];
-    
+
         if (empty($global_fonts)) {
             return [];
         }
@@ -317,7 +338,7 @@ class ZoloHelpers {
         $theme_fonts = [];
         $custom_fonts = [];
         $final_fonts = [];
-    
+
         // Check if theme fonts exist and are not empty
         if (isset($global_fonts['theme']) && !empty($global_fonts['theme'])) {
             foreach ($global_fonts['theme'] as $font) {
@@ -326,7 +347,7 @@ class ZoloHelpers {
                 }
             }
         }
-    
+
         // Check if custom fonts exist and are not empty
         if (isset($global_fonts['custom']) && !empty($global_fonts['custom'])) {
             foreach ($global_fonts['custom'] as $font) {
@@ -335,24 +356,24 @@ class ZoloHelpers {
                 }
             }
         }
-    
+
         // Merge theme and custom fonts into the final array
         $final_fonts = array_merge($theme_fonts, $custom_fonts);
 
         // if any font in final_fonts array includes 'system' or 'System' keyword, then keep them at the top of the array
         $system_fonts = array_filter($final_fonts, function ($font) {
             return strpos($font, 'system') !== false || strpos($font, 'System') !== false;
-        }); 
+        });
 
         // final fonts array including system fonts at the top
         $final_fonts = array_merge($system_fonts, array_diff($final_fonts, $system_fonts));
-    
+
         // remove duplicate fonts
-        $final_fonts = array_unique($final_fonts); 
+        $final_fonts = array_unique($final_fonts);
 
         return $final_fonts;
     }
-    
+
     /**
      * Generate Style String
      */

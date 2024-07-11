@@ -4,11 +4,11 @@
  * Zolo From
  */
 
-namespace Zolo\Mailchimp;
+namespace Zolo\Classes;
 
 use Zolo\Traits\SingletonTrait;
 
-class Zolo_Mailchimp {
+class Mailchimp {
 
     use SingletonTrait;
 
@@ -135,6 +135,3 @@ class Zolo_Mailchimp {
         return $array;
     }
 }
-
-
-Zolo_Mailchimp::getInstance();

@@ -8,7 +8,7 @@ namespace Zolo\Admin;
 
 use Zolo\Traits\SingletonTrait;
 
-class Zolo_Settings {
+class Settings {
     use SingletonTrait;
 
     // Create a new endpoint route for all blocks
@@ -345,4 +345,4 @@ class Zolo_Settings {
     }
 }
 
-Zolo_Settings::getInstance();
+Settings::getInstance();

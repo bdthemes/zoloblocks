@@ -8,7 +8,7 @@ namespace Zolo\Admin;
 
 use Zolo\Traits\SingletonTrait;
 
-class Zolo_Dashboard {
+class Dashboard {
     use SingletonTrait;
 
     public function __construct() {
@@ -31,8 +31,8 @@ class Zolo_Dashboard {
 
         add_submenu_page(
             'zoloblocks',
-            __( 'Dashboard', 'zoloblocks' ),
-            __( 'Dashboard', 'zoloblocks' ),
+            __('Dashboard', 'zoloblocks'),
+            __('Dashboard', 'zoloblocks'),
             'manage_options',
             'zoloblocks',
             [$this, 'zolo_blocks_page']
@@ -40,8 +40,8 @@ class Zolo_Dashboard {
 
         add_submenu_page(
             'zoloblocks',
-            __( 'Popup Builder', 'zoloblocks' ),
-            __( 'Popup Builder', 'zoloblocks' ),
+            __('Popup Builder', 'zoloblocks'),
+            __('Popup Builder', 'zoloblocks'),
             'manage_options',
             'edit.php?post_type=zolo-popup'
         );
@@ -57,4 +57,4 @@ class Zolo_Dashboard {
     }
 }
 
-Zolo_Dashboard::getInstance();
+Dashboard::getInstance();

@@ -1,42 +1,42 @@
 <?php
 
 /**
- * Zolo_AJAX
+ * ZoloAjax
  *
  * AJAX Event Handler
  *
- * @class    Zolo_AJAX
+ * @class    ZoloAjax
  * @version  0.0.1
  * @package  zolo-ajax
  * @category Class
  */
 
+namespace Zolo\Classes;
+
+use Zolo\Traits\SingletonTrait;
+
 if (!defined('ABSPATH')) {
-    exit;
+    exit; // Exit if accessed directly
 }
 
-class Zolo_AJAX {
-    private static $instance;
-
-    public static function get_instance() {
-        if (null === self::$instance) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
+class ZoloAjax {
+    use SingletonTrait;
 
     /**
-     * The Constructor.
+     * ZoloAjax constructor.
      */
     public function __construct() {
         self::zolo_ajax_action_init();
     }
 
+    /**
+     * Initialize AJAX actions.
+     */
     public static function zolo_ajax_action_init() {
         $ajax_events = array(
-            'zolo_example_ajax_function'   => array(
-                'callback' => 'zolo_example_ajax_function_callback',
-                'nopriv'   => true
+            'zolo_ajax_function' => array(
+                'callback' => 'zolo_ajax_function_callback',
+                'nopriv'   => true,
             ),
         );
 
@@ -49,17 +49,13 @@ class Zolo_AJAX {
     }
 
     /**
-     * Example Function
+     * Example AJAX callback function.
      */
-    public static function zolo_example_ajax_function_callback() {
-        if (!wp_verify_nonce($_POST['nonce'], 'nonce')) {
-            wp_die(esc_html_e('Nonce did not match', 'zoloblocks')); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    public static function zolo_ajax_function_callback() {
+        // Check nonce for security
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'nonce')) {
+            wp_die(esc_html__('Nonce did not match', 'zoloblocks')); // Output escaped error message
         }
-
-        //Write your code here
-
-        exit;
+        wp_die(); // Properly terminate the script
     }
 }
-
-Zolo_AJAX::get_instance();

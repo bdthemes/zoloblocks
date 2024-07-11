@@ -8,7 +8,7 @@ namespace Zolo\Admin;
 
 use Zolo\Traits\SingletonTrait;
 
-class Zolo_Admin_Assets {
+class Assets {
 
     use SingletonTrait;
 
@@ -108,5 +108,3 @@ class Zolo_Admin_Assets {
         wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', null, null, true);
     }
 }
-
-Zolo_Admin_Assets::getInstance();
