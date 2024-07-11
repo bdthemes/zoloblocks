@@ -62,6 +62,11 @@ import {
     CLOSE_ICON_BOX_SHADOW,
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_HOVER_BOX_SHADOW,
+
+    STYLE3_ICON_BG_COLOR,
+    STYLE3_ICON_SIZE,
+    // STYLE3_ICON_RADIUS,
+    STYLE3_ICON_OFFSET,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -493,6 +498,59 @@ export default function Style({ props }) {
         attributes,
         controlName: CLOSE_ICON_HOVER_BOX_SHADOW,
     });
+    
+    // style 3 
+    
+    const {
+        backgroundStylesDesktop: style3IconBgColorDesk,
+        backgroundStylesTab: style3IconBgColorTab,
+        backgroundStylesMobile: style3IconBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: STYLE3_ICON_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopRangeStyle: style3IconSizeDesk,
+        tabRangeStyle: style3IconSizeTab,
+        mobRangeStyle: style3IconSizeMob,
+    } = generateResRangeStyle({
+        controlName: STYLE3_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: style3IconSizeHDesk,
+        tabRangeStyle: style3IconSizeHTab,
+        mobRangeStyle: style3IconSizeHMob,
+    } = generateResRangeStyle({
+        controlName: STYLE3_ICON_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    // const {
+    //     dimensionStylesDesktop: style3IconRadiusDesk,
+    //     dimensionStylesTab: style3IconRadiusTab,
+    //     dimensionStylesMobile: style3IconRadiusMob,
+    // } = generateDimensionStyle({
+    //     controlName: STYLE3_ICON_RADIUS,
+    //     styleFor: 'border-radius',
+    //     attributes,
+    // });
+    
+
+    const {
+        desktopRangeStyle: style3IconOffsetDesk,
+        tabRangeStyle: style3IconOffsetTab,
+        mobRangeStyle: style3IconOffsetMob,
+    } = generateResRangeStyle({
+        controlName: STYLE3_ICON_OFFSET,
+        property: 'left',
+        attributes,
+    });
 
     /**
      * All Style Combination
@@ -504,14 +562,15 @@ export default function Style({ props }) {
             ${itemBorderDesk}
             ${itemRadiusDesk}
             ${itemBoxShadow}
-            ${preset !== 'style-3' ? itemPaddingDesk : ''}
+            ${itemPaddingDesk}
             ${itemMarginDesk}
         }
-        .${uniqueId}.wp-block-zolo-notice.zolo-block-notice.style-3 .zolo-block-icon-wrap{
-            ${iconWrapperBgColorDesk}
-        }
-        .${uniqueId}.wp-block-zolo-notice.zolo-block-notice.style-3 .zolo-block-body-content{
-           ${preset === 'style-3' ? itemPaddingDesk : ''}
+
+        .${uniqueId}.wp-block-zolo-notice.style-3 .zolo-block-item::before {
+            ${style3IconBgColorDesk}
+            ${style3IconSizeDesk}
+            ${style3IconSizeHDesk}
+            ${style3IconOffsetDesk}
         }
 
         .${uniqueId}.wp-block-zolo-notice.zolo-block-notice .zolo-block-item:hover {
@@ -599,7 +658,7 @@ export default function Style({ props }) {
       }
 
      .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss svg {
-        ${closedColor ? `color:${closedColor}` : ''}
+        ${closedColor ? `color:${closedColor}` : ''};
         ${closeIconSizeWDesk}
      }
      .${uniqueId}.wp-block-zolo-notice .zolo-notice-dismiss:hover svg{
@@ -628,12 +687,15 @@ export default function Style({ props }) {
             ${itemBgTab}
             ${itemBorderTab}
             ${itemRadiusTab}
-           ${preset !== 'style-3' ? itemPaddingTab : ''}
+            ${ itemPaddingTab}
             ${itemMarginTab}
         }
 
-         .${uniqueId}.wp-block-zolo-notice.zolo-block-notice.style-3 .zolo-block-body-content{
-           ${preset === 'style-3' ? itemPaddingTab : ''}
+        .${uniqueId}.wp-block-zolo-notice.style-3 .zolo-block-item::before {
+            ${style3IconBgColorTab}
+            ${style3IconSizeTab}
+            ${style3IconSizeHTab}
+            ${style3IconOffsetTab}
         }
 
         .${uniqueId}.wp-block-zolo-notice.zolo-block-notice:hover {
@@ -644,7 +706,7 @@ export default function Style({ props }) {
 			${iconAlignmentTab}
 		}
 
-        .wp-block-zolo-notice.${uniqueId} .zolo-block-item{
+        .wp-block-zolo-notice.${uniqueId} .zolo-block-item {
 			${contentTabAlign}
 		}
 
@@ -712,12 +774,15 @@ export default function Style({ props }) {
             ${itemBgMob}
             ${itemBorderMob}
             ${itemRadiusMob}
-            ${preset !== 'style-3' ? itemPaddingMob : ''}
+            ${itemPaddingMob}
             ${itemMarginMob}
         }
 
-         .${uniqueId}.wp-block-zolo-notice.zolo-block-notice.style-3 .zolo-block-body-content{
-           ${preset === 'style-3' ? itemPaddingMob : ''}
+        .${uniqueId}.wp-block-zolo-notice.style-3 .zolo-block-item::before {
+            ${style3IconBgColorMob}
+            ${style3IconSizeMob}
+            ${style3IconSizeHMob}
+            ${style3IconOffsetMob}
         }
 
         .${uniqueId}.wp-block-zolo-notice.zolo-block-notice:hover {
