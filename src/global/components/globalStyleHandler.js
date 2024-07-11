@@ -457,6 +457,7 @@ export const GlobalStyleHanlder = (props) => {
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
         ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important` : ''}
         ${position.value == 'sticky' ? `position: -webkit-sticky;` : ''}
+        ${position.value == 'sticky' && position?.verticalOrientation.direction === 'top' && positionTopDesktop === '' ? `top: 0;` : ''}
  `;
     const positionTab = `
         ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
