@@ -145,6 +145,16 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     true
                 );
             }
+            // form validation
+            if (has_block('zolo/shape-divider')) {
+                wp_enqueue_script(
+                    'zolo-shape-divider',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/vendor/shape-divider/cdivs.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
 
             // commom viewport / waypoint
             wp_enqueue_script(
@@ -211,9 +221,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             wp_enqueue_script('zolo-transform-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', [], ZOLO_VERSION, true);
 
-            // zolo popup 
+            // zolo popup
             wp_enqueue_script('zolo-popup-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js', [], ZOLO_VERSION, true);
-        
         }
         /**
          * Load Block Editor Assets
@@ -224,7 +233,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          */
         public function editor_assets_loader() {
 
-            if( ! is_admin() ) {
+            if (!is_admin()) {
                 return;
             }
 
@@ -242,7 +251,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 $script_dependecy['version'],
                 true
             );
-
+            wp_enqueue_script(
+                'zolo-shape-divider',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/vendor/shape-divider/cdivs.min.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
             // editor vendor bundle
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-editor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
