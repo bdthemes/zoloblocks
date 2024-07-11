@@ -1043,7 +1043,6 @@ export const CONTENT_POSITIONS = [
     { label: __('Relative', 'zoloblocks'), value: 'relative' },
     { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
     { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
-    { label: __('Sticky', 'zoloblocks'), value: 'sticky' },
 ];
 
 export const OBJECT_FITS = [
