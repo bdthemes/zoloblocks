@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Shape Divider",
+    "name": "zolo/shape-divider",
+    "category": "zoloblocks",
+    "keywords": [
+        "shape",
+        "divider",
+        "zoloblocks"
+    ],
+    "description": "Add a shape divider to your page",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "editorScript": "zolo-block-editor-script"
+}

@@ -63,6 +63,7 @@ import '../blocks/notice/src';
 import '../blocks/text-field/src';
 import '../blocks/email/src';
 import '../blocks/textarea/src';
+import '../blocks/shape-divider/src';
 
 // unregister blocks
 import './unregister';

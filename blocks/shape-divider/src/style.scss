@@ -1,0 +1,18 @@
+/* Sections */
+.wp-block-zolo-shape-divider {
+    /* width: 100%; */
+    /* padding: 100px 15%; */
+
+    /* CDivs offset */
+    --cdivs-top: 0px;
+    --cdivs-bottom: 0px;
+    --cdivs-offset-top: 0px;
+    --cdivs-offset-bottom: 0px;
+    padding-top: calc(0px + var(--cdivs-top) + var(--cdivs-offset-top));
+    padding-bottom: calc(0px + var(--cdivs-bottom) + var(--cdivs-offset-bottom));
+    background: #c22;
+}
+
+.wp-block-zolo-shape-divider * {
+    box-sizing: border-box;
+}
