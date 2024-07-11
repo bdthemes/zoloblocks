@@ -163,7 +163,7 @@ export const AdvancedOptions = (props) => {
                         }
                         value={position.value}
                     />
-                    {(position.value === 'absolute' || position.value === 'fixed' || position.value === 'sticky') && (
+                    {(position.value === 'absolute' || position.value === 'fixed') && (
                         <>
                             <IconicBtnGroup
                                 label={__('Vertical Orientation', 'zoloblocks')}
@@ -205,48 +205,44 @@ export const AdvancedOptions = (props) => {
                                     />
                                 </>
                             )}
-                            {position.value !== 'sticky' && (
+                            <IconicBtnGroup
+                                label={__('Horizontal Orientation', 'zoloblocks')}
+                                value={position.horizontalOrientation.direction}
+                                onChange={(direction) => {
+                                    setAttributes({
+                                        position: {
+                                            ...position,
+                                            horizontalOrientation: {
+                                                ...position.horizontalOrientation,
+                                                direction,
+                                            },
+                                        },
+                                    });
+                                }}
+                                options={ICON_HPOSITIONS}
+                            />
+                            {position.horizontalOrientation.direction === 'left' && (
                                 <>
-                                    <IconicBtnGroup
-                                        label={__('Horizontal Orientation', 'zoloblocks')}
-                                        value={position.horizontalOrientation.direction}
-                                        onChange={(direction) => {
-                                            setAttributes({
-                                                position: {
-                                                    ...position,
-                                                    horizontalOrientation: {
-                                                        ...position.horizontalOrientation,
-                                                        direction,
-                                                    },
-                                                },
-                                            });
-                                        }}
-                                        options={ICON_HPOSITIONS}
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionLeft'}
+                                        requiredProps={requiredProps}
+                                        min={-500}
+                                        max={500}
+                                        noUnits={false}
                                     />
-                                    {position.horizontalOrientation.direction === 'left' && (
-                                        <>
-                                            <ResRangeControl
-                                                label={__('Offset', 'zoloblocks')}
-                                                controlName={'positionLeft'}
-                                                requiredProps={requiredProps}
-                                                min={-500}
-                                                max={500}
-                                                noUnits={false}
-                                            />
-                                        </>
-                                    )}
-                                    {position.horizontalOrientation.direction === 'right' && (
-                                        <>
-                                            <ResRangeControl
-                                                label={__('Offset', 'zoloblocks')}
-                                                controlName={'positionRight'}
-                                                requiredProps={requiredProps}
-                                                min={-500}
-                                                max={500}
-                                                noUnits={false}
-                                            />
-                                        </>
-                                    )}
+                                </>
+                            )}
+                            {position.horizontalOrientation.direction === 'right' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionRight'}
+                                        requiredProps={requiredProps}
+                                        min={-500}
+                                        max={500}
+                                        noUnits={false}
+                                    />
                                 </>
                             )}
                         </>
