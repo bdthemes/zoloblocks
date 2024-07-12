@@ -1,6 +1,8 @@
-import {createRoot,useRef,useEffect} from '@wordpress/element'
-import CountUp from 'react-countup';
 
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import { useRef, useEffect } from '@wordpress/element'
+import CountUp from 'react-countup';
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
   const progress = document.querySelectorAll('.wp-block-zolo-progress-pie');
@@ -49,10 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                   <circle className="donut-hole progress-donut-hole" cx="21" cy="21" r="15.91549430918954" ></circle>
                   <circle className="progress-pie-fill" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke={progressFillColor ? progressFillColor :'#e5e5e5'}  stroke-dasharray="100 0" stroke-dashoffset="25"></circle>
                   <circle id="progress1" className="progress-pie-progress" ref={progress} cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke={`url(#gradient-${uniqueId})`}  stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
-                  
+
                   {/* optional for gradient color  */}
                    {/* optional for gradient color  */}
-                   {(progressTopColor || progressBottomColor) && (   
+                   {(progressTopColor || progressBottomColor) && (
                         <defs>
                         <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" stop-color={progressTopColor ? progressTopColor : "#00bc9b" } />

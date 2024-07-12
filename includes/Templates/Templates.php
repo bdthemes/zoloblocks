@@ -1,11 +1,14 @@
 <?php
+
 /**
  * Zolo Templates
  */
+
 namespace Zolo\Templates;
+
 use Zolo\Traits\SingletonTrait;
 
-class Zolo_Templates {
+class Templates {
 
     use SingletonTrait;
 
@@ -49,10 +52,10 @@ class Zolo_Templates {
                     $bg_srcs = $bg_matches[2];
 
                     // remove \\u0022 from all $bg_srcs
-                    if(!empty($bg_srcs)){
+                    if (!empty($bg_srcs)) {
                         $bg_srcs = array_map(function ($src) {
                             return str_replace('\\u0022', '', $src);
-                        }, $bg_srcs); 
+                        }, $bg_srcs);
                     }
 
                     // Combine all matches, filter out empty ones
@@ -90,5 +93,3 @@ class Zolo_Templates {
         }
     }
 }
-
-Zolo_Templates::getInstance();

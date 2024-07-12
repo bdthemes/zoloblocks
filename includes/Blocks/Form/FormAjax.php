@@ -1,15 +1,15 @@
-<?php 
+<?php
 /**
- * Zolo From 
+ * Zolo From
  */
 
- namespace Zolo\Form;
+ namespace Zolo\Blocks\Form;
  use Zolo\Traits\SingletonTrait;
 
- class Zolo_Form_Ajax {
+ class FormAjax {
 
     use SingletonTrait;
-    
+
     public function __construct() {
         // hanlde ajax form submission
         add_action('wp_ajax_update_form_settings', [$this, 'update_form_settings']);
@@ -60,6 +60,3 @@
         echo wp_json_encode( 'Form settings updated' );
     }
  }
-
-
- Zolo_Form_Ajax::getInstance();

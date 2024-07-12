@@ -14,10 +14,17 @@ use Zolo\Classes\ZoloEnqueues;
 use Zolo\Classes\ZoloAjax;
 use Zolo\Classes\FontLoader;
 use Zolo\Classes\PostMeta;
+use Zolo\Classes\SupportSVG;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
 use Zolo\Classes\Mailchimp;
+use Zolo\Templates\Templates;
+use Zolo\Popup\PopupBuilder;
+use Zolo\Blocks\NoticeBlock;
+use Zolo\Blocks\Form\Form;
+use Zolo\Blocks\Form\FormAjax;
+use Zolo\Blocks\Form\Recaptcha;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -50,35 +57,24 @@ class ZoloBlocks_Loader {
         ZoloAjax::getInstance();
         FontLoader::getInstance();
         PostMeta::getInstance();
+        Mailchimp::getInstance();
+        NoticeBlock::getInstance();
+        Form::getInstance();
+        FormAjax::getInstance();
+        Recaptcha::getInstance();
+        Settings::getInstance();
+        PopupBuilder::getInstance();
+
 
         // addmin files
-        Dashboard::getInstance();
-        Assets::getInstance();
-        Settings::getInstance();
-        Mailchimp::getInstance();
-
-
-
-        // form
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Form.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Recaptcha.php';
-
-
-        // notice block
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
-
-        // popup
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Popup/PopupBuilder.php';
-
-        //templates
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Templates/Templates.php';
-
         if (is_admin()) {
-            // zolo blocks settings
+            Dashboard::getInstance();
+            Assets::getInstance();
+            Templates::getInstance();
+
             $zoloSupportSVG = get_option('zolo_support_svg', false);
             if ($zoloSupportSVG === '1') {
-                require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/SupportSVG.php';
+                SupportSVG::getInstance();
             }
         }
     }

@@ -1,5 +1,5 @@
-import { createRoot } from '@wordpress/element';
 import React from 'react';
+import { createRoot } from 'react-dom/client';
 
 import ApexCharts from 'react-apexcharts';
 import { v4 as uuidv4 } from 'uuid';

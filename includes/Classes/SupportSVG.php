@@ -119,6 +119,3 @@ class SupportSVG {
 <?php
     }
 }
-
-// Initialize the SupportSVG class.
-SupportSVG::getInstance();

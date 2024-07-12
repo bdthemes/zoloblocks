@@ -1,12 +1,12 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { createRoot, useState, useEffect } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { subscribe } from '@wordpress/data';
 import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import axios from 'axios';
 import apiFetch from '@wordpress/api-fetch';
-let root;
 
+import {createRoot} from 'react-dom/client';
 /**
  * Template Library Style
  */

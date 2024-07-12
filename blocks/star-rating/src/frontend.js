@@ -1,4 +1,4 @@
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 import StarRating from '../../../src/controls/star-rating';
 
 // const starRating = ({ rating }) => {
