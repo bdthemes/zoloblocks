@@ -16,7 +16,6 @@ use Zolo\Classes\FontLoader;
 use Zolo\Classes\PostMeta;
 use Zolo\Classes\SupportSVG;
 use Zolo\Admin\Dashboard;
-use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
 use Zolo\Classes\Newsletter;
 use Zolo\Templates\Templates;
@@ -58,14 +57,13 @@ class ZoloBlocks_Loader {
         NoticeBlock::getInstance();
         Form::getInstance();
         PopupBuilder::getInstance();
-
+        Templates::getInstance();
+        PostMeta::getInstance();
+        Newsletter::getInstance();
 
         // addmin files
         if (is_admin()) {
             Dashboard::getInstance();
-            Templates::getInstance();
-            PostMeta::getInstance();
-            Newsletter::getInstance();
             $zoloSupportSVG = get_option('zolo_support_svg', false);
             if ($zoloSupportSVG === '1') {
                 SupportSVG::getInstance();
