@@ -7,6 +7,8 @@
 namespace Zolo\Blocks\Form;
 
 use Zolo\Traits\SingletonTrait;
+use Zolo\Blocks\Form\FormAjax;
+use Zolo\Blocks\Form\Recaptcha;
 
 class Form {
 
@@ -19,6 +21,9 @@ class Form {
         // hanlde ajax form submission
         add_action('wp_ajax_send_form_data', [$this, 'send_form_data']);
         add_action('wp_ajax_nopriv_send_form_data', [$this, 'send_form_data']);
+
+        FormAjax::getInstance();
+        Recaptcha::getInstance();
     }
 
     /**

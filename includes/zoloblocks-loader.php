@@ -18,13 +18,11 @@ use Zolo\Classes\SupportSVG;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
-use Zolo\Classes\Mailchimp;
+use Zolo\Classes\Newsletter;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
 use Zolo\Blocks\NoticeBlock;
 use Zolo\Blocks\Form\Form;
-use Zolo\Blocks\Form\FormAjax;
-use Zolo\Blocks\Form\Recaptcha;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -49,29 +47,25 @@ class ZoloBlocks_Loader {
      * @return void
      */
     public function plugins_loaded() {
-        GetPostsV1::getInstance();
         ZoloHelpers::getInstance();
+        Settings::getInstance();
+        GetPostsV1::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
         ZoloEnqueues::getInstance();
         ZoloAjax::getInstance();
         FontLoader::getInstance();
-        PostMeta::getInstance();
-        Mailchimp::getInstance();
         NoticeBlock::getInstance();
         Form::getInstance();
-        FormAjax::getInstance();
-        Recaptcha::getInstance();
-        Settings::getInstance();
         PopupBuilder::getInstance();
 
 
         // addmin files
         if (is_admin()) {
             Dashboard::getInstance();
-            Assets::getInstance();
             Templates::getInstance();
-
+            PostMeta::getInstance();
+            Newsletter::getInstance();
             $zoloSupportSVG = get_option('zolo_support_svg', false);
             if ($zoloSupportSVG === '1') {
                 SupportSVG::getInstance();

@@ -8,7 +8,7 @@ namespace Zolo\Classes;
 
 use Zolo\Traits\SingletonTrait;
 
-class Mailchimp {
+class Newsletter{
 
     use SingletonTrait;
 

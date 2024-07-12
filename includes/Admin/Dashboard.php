@@ -7,12 +7,14 @@
 namespace Zolo\Admin;
 
 use Zolo\Traits\SingletonTrait;
+use Zolo\Admin\Assets;
 
 class Dashboard {
     use SingletonTrait;
 
     public function __construct() {
         add_action('admin_menu', [$this, 'zolo_admin_menu']);
+        Assets::getInstance();
     }
 
     /**
