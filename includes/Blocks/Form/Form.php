@@ -245,6 +245,3 @@ class Form {
         wp_die();
     }
 }
-
-
-Form::getInstance();

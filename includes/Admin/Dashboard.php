@@ -58,5 +58,3 @@ class Dashboard {
 <?php
     }
 }
-
-Dashboard::getInstance();

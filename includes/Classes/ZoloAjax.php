@@ -38,7 +38,6 @@ class ZoloAjax {
                 'callback' => 'zolo_ajax_function_callback',
                 'nopriv'   => true,
             ),
-            
         );
 
         foreach ($ajax_events as $ajax_event_key => $ajax_event_func) {

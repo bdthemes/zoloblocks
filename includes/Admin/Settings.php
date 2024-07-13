@@ -344,5 +344,3 @@ class Settings {
         }
     }
 }
-
-Settings::getInstance();
