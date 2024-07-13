@@ -194,13 +194,7 @@ const attributes = {
     textColor: {
         type: 'string',
     },
-    textHoverColor: {
-        type: 'string',
-    },
     descColor: {
-        type: 'string',
-    },
-    descHoverColor: {
         type: 'string',
     },
     iconType: {
@@ -296,6 +290,12 @@ const attributes = {
         type: 'string',
     },
     closeIconBorderHoverColor: {
+        type: 'string',
+    },
+    titleHoverColor: {
+        type: 'string',
+    },
+    descHoverColor: {
         type: 'string',
     },
 };

@@ -272,9 +272,19 @@
             padding: 12px;
             border-radius: 50%;
         }
+        .zolo-block-title,
+        .zolo-block-desc {
+            transition: color 0.3s ease;
+        }
 
         &.success {
             .zolo-block-item {
+                &:hover {
+                    .zolo-block-title,
+                    .zolo-block-desc {
+                        color: var(--zolo-success-color);
+                    }
+                }
                 &::before {
                     background-color: var(--zolo-seccess-light-color);
                 }
@@ -282,6 +292,12 @@
         }
         &.info {
             .zolo-block-item {
+                &:hover {
+                    .zolo-block-title,
+                    .zolo-block-desc {
+                        color: var(--zolo-info-color);
+                    }
+                }
                 &::before {
                     background-color: var(--zolo-info-light-color);
                 }
@@ -289,12 +305,29 @@
         }
         &.warning {
             .zolo-block-item {
+                &:hover {
+                    .zolo-block-title,
+                    .zolo-block-desc {
+                        color: var(--zolo-warning-color);
+                    }
+                }
                 &::before {
                     background-color: var(--zolo-warning-light-color);
                 }
             }
         }
         &.danger {
+            .zolo-block-item {
+                &:hover {
+                    .zolo-block-title,
+                    .zolo-block-desc {
+                        color: var(--zolo-danger-color);
+                    }
+                }
+                &::before {
+                    background-color: var(--zolo-danger-light-color);
+                }
+            }
             .zolo-block-item {
                 &::before {
                     background-color: var(--zolo-danger-light-color);

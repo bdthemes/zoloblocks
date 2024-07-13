@@ -99,7 +99,7 @@ function Inspector(props) {
         iconBackgroundColor,
         iconBackgroundHoverColor,
         textColor,
-        textHoverColor,
+        titleHoverColor,
         descColor,
         descHoverColor,
         iconType,
@@ -551,6 +551,21 @@ function Inspector(props) {
                                                     requiredProps={requiredProps}
                                                     enableTransition={false}
                                                 />
+
+                                                {preset === 'style-3' && (
+                                                    <>
+                                                        <div className="zolo-custom-heading">{__('HOVER', 'zoloblocks')}</div>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={titleHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    titleHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
                                             </>
                                         )}
                                     </>
@@ -579,6 +594,20 @@ function Inspector(props) {
                                                     controlName={DESCRIPTION_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
+                                                 {preset === 'style-3' && (
+                                                    <>
+                                                        <div className="zolo-custom-heading">{__('HOVER', 'zoloblocks')}</div>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={descHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    descHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
                                             </>
                                         )}
                                     </>
