@@ -44,6 +44,12 @@ import {
     DPL_MARGIN,
     DPL_ICON_SIZE,
     CONTENT_GAP,
+    RW_BACKGROUND,
+    RW_BORDER,
+    RW_BORDER_RADIUS,
+    RW_BOX_SHADOW,
+    RW_MARGIN,
+    RW_PADDING,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -51,8 +57,10 @@ import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MES
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
+        stylePreset,
         uniqueId,
         nameColor,
+        separatorColor,
         designationColor,
         testimonialMessageColor,
         activeRatingColor,
@@ -126,6 +134,7 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
 
     // rating icon align
     let ratingIconDeskAlignStyle;
@@ -410,6 +419,60 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        dimensionStylesDesktop: rwDeskMargin,
+        dimensionStylesTab: rwTabMargin,
+        dimensionStylesMobile: rwMobMargin,
+    } = generateDimensionStyle({
+        controlName: RW_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: rwDeskPadding,
+        dimensionStylesTab: rwTabPadding,
+        dimensionStylesMobile: rwMobPadding,
+    } = generateDimensionStyle({
+        controlName: RW_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: rwDeskBG,
+        backgroundStylesTab: rwTabBG,
+        backgroundStylesMobile: rwMobBG,
+    } = generateNormalBGControlStyles({
+        controlName: RW_BACKGROUND,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopBorderStyle: rwDeskBorder,
+        tabBorderStyle: rwTabBorder,
+        mobBorderStyle: rwMobBorder,
+    } = generateBorderStyle({
+        controlName: RW_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: rwDeskBorderRadius,
+        dimensionStylesTab: rwTabBorderRadius,
+        dimensionStylesMobile: rwMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: RW_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: rwBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: RW_BOX_SHADOW,
+    });
+
     /**
      * All Style Combination
      */
@@ -418,14 +481,40 @@ const Style = ({ props }) => {
 			${reviewContentDeskAlignStyle}
             ${contentDeskGap}
 		}
-        .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
-			${contentDeskMargin}
-			${contentDeskPadding}
-			${contentDeskBorderStyle}
-			${contentDeskBorderRadius}
-			${contentDeskBGStyle}
-            ${contentBoxShadow}
-		}
+
+        ${
+            stylePreset === 'style-preset-2'
+            ? `
+                .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-item {
+                    ${rwDeskMargin}
+                    ${rwDeskPadding}
+                    ${rwDeskBG}
+                    ${rwDeskBorder}
+                    ${rwDeskBorderRadius}
+                    ${rwBoxShadow}
+                }
+                .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-meta-content {
+                    ${separatorColor ? `border-top-color: ${separatorColor};` : ''}
+                }
+            `
+            : ''
+        }
+
+        ${
+            stylePreset !== 'style-preset-2'
+            ? `
+                .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
+                    ${contentDeskMargin}
+                    ${contentDeskPadding}
+                    ${contentDeskBorderStyle}
+                    ${contentDeskBorderRadius}
+                    ${contentDeskBGStyle}
+                    ${contentBoxShadow}
+                }
+
+            `
+            : ''
+        }
 
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
@@ -459,7 +548,7 @@ const Style = ({ props }) => {
 			${designationDeskMargin}
 			${designationColor ? `color: ${designationColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-desc {
+		.${uniqueId}.wp-block-zolo-review .zolo-desc {
 			${testimonialMessageTypoDesk}
 			${testimonialMessageDeskMargin}
 			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
@@ -495,13 +584,35 @@ const Style = ({ props }) => {
 			${reviewContentTabAlignStyle}
             ${contentTabGap}
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
-			${contentTabMargin}
-			${contentTabPadding}
-			${contentTabBorderStyle}
-			${contentTabBorderRadius}
-			${contentTabBGStyle}
-		}
+
+        ${
+            stylePreset === 'style-preset-2'
+            ? `
+                .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-item {
+                    ${rwTabMargin}
+                    ${rwTabPadding}
+                    ${rwTabBG}
+                    ${rwTabBorder}
+                    ${rwTabBorderRadius}
+                }
+            `
+            : ''
+        }
+
+        ${
+            stylePreset !== 'style-preset-2'
+            ? `
+                .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
+                    ${contentTabMargin}
+                    ${contentTabPadding}
+                    ${contentTabBorderStyle}
+                    ${contentTabBorderRadius}
+                    ${contentTabBGStyle}
+                }
+            `
+            : ''
+        }
+
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconTabAlignStyle}
 		}
@@ -523,7 +634,7 @@ const Style = ({ props }) => {
 			${designationTypoTab}
 			${designationTabMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-desc {
+		.${uniqueId}.wp-block-zolo-review .zolo-desc {
 			${testimonialMessageTypoTab}
 			${testimonialMessageTabMargin}
 		}
@@ -550,13 +661,35 @@ const Style = ({ props }) => {
 			${reviewContentMobAlignStyle}
             ${contentMobGap}
 		}
-        .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
-			${contentMobMargin}
-			${contentMobPadding}
-			${contentMobBorderStyle}
-			${contentMobBorderRadius}
-			${contentMobBGStyle}
-		}
+
+        ${
+            stylePreset === 'style-preset-2'
+            ? `
+                .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-item {
+                    ${rwMobMargin}
+                    ${rwMobPadding}
+                    ${rwMobBG}
+                    ${rwMobBorder}
+                    ${rwMobBorderRadius}
+                }
+            `
+            : ''
+        }
+
+        ${
+            stylePreset !== 'style-preset-2'
+            ? `
+                .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
+                    ${contentMobMargin}
+                    ${contentMobPadding}
+                    ${contentMobBorderStyle}
+                    ${contentMobBorderRadius}
+                    ${contentMobBGStyle}
+                }
+            `
+            : ''
+        }
+
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconMobAlignStyle}
 		}
@@ -578,7 +711,7 @@ const Style = ({ props }) => {
 			${designationTypoMob}
 			${designationMobMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-desc {
+		.${uniqueId}.wp-block-zolo-review .zolo-desc {
 			${testimonialMessageTypoMob}
 			${testimonialMessageMobMargin}
 		}
