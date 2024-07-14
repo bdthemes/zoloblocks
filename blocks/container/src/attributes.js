@@ -55,41 +55,24 @@ const attributes = {
     },
     containerWidthType: {
         type: 'string',
-        default: 'alignfull',
     },
     contentWidthType: {
         type: 'string',
-        default: 'alignwide',
     },
     // container gap
-    ...generateGapAttributes(CONTAINER_GAP, {
-        defaultRange: 20,
-        defaultUnit: 'px',
-    }),
+    ...generateGapAttributes(CONTAINER_GAP, {}),
     // New Generators
     ...generateResRangeAttributies(CONTAINER_WIDTH, {
-        defaultRange: 100,
         defaultUnit: '%',
     }),
-    ...generateResRangeAttributies(CONTENT_WIDTH, {
-        defaultRange: 1200,
-        defaultUnit: 'px',
-    }),
+    ...generateResRangeAttributies(CONTENT_WIDTH, {}),
     ...generateResRangeAttributies(MIN_HEIGHT, {}),
 
     // flex
-    ...generateResAlignmentAttributies(FLEX_DIRECTION, {
-        defaultAlign: 'row',
-    }),
-    ...generateResAlignmentAttributies(FLEX_ALIGN, {
-        defaultAlign: 'center',
-    }),
-    ...generateResAlignmentAttributies(FLEX_JUSTIFY, {
-        defaultAlign: 'center',
-    }),
-    ...generateResAlignmentAttributies(FLEX_WRAP, {
-        defaultAlign: 'nowrap',
-    }),
+    ...generateResAlignmentAttributies(FLEX_DIRECTION, {}),
+    ...generateResAlignmentAttributies(FLEX_ALIGN, {}),
+    ...generateResAlignmentAttributies(FLEX_JUSTIFY, {}),
+    ...generateResAlignmentAttributies(FLEX_WRAP, {}),
 };
 
 export default attributes;

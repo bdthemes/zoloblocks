@@ -26,10 +26,10 @@ export default function RenderView({ attributes, clientId, className }) {
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildBlocks ? false : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
-                    <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                    <InnerBlocks renderAppender={hasChildBlocks ? false : InnerBlocks.ButtonBlockAppender} />
                 )}
             </div>
         </>

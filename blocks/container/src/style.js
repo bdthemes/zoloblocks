@@ -138,7 +138,6 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerDeskWidth}
-            width: 100%;
         }
 
         .${uniqueId} {
@@ -173,7 +172,6 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerTabWidth}
-            width: 100%;
         }
 
         .${uniqueId} {
@@ -208,7 +206,6 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerMobWidth}
-            width: 100%;
         }
 
         .${uniqueId} {

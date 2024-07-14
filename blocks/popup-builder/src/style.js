@@ -1,4 +1,3 @@
-import { useEffect } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
@@ -20,13 +19,12 @@ import {
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_PADDING,
     CLOSE_ICON_MARGIN,
-
 } from './constants';
 
 const Style = ({ props }) => {
-    const { clientId, attributes, setAttributes } = props;
+    const { attributes, setAttributes } = props;
 
-    const { uniqueId, closeBtnSize, closeBtnPosition, closeBtnColors, closeBtnId, borderHoverColor, } = attributes;
+    const { uniqueId, closeBtnSize, closeBtnColors, borderHoverColor } = attributes;
 
     // popup box width
     const {
@@ -56,7 +54,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: PB_BG,
         attributes,
-        noMainBGImg: true,
+        noMainBGImg: false,
     });
 
     const {
@@ -87,7 +85,7 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
-    
+
     const {
         dimensionStylesDesktop: marginDesktop,
         dimensionStylesTab: marginTab,
@@ -97,7 +95,6 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
-    
 
     // close icon styles
     const {
@@ -197,9 +194,51 @@ const Style = ({ props }) => {
         }
     `;
 
-    const tabletAllStyle = ``;
+    const tabletAllStyle = `
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner.popup_box {
+            ${pbWidthTab}
+        }
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner {
+            ${pbBgTab}
+            ${borderStylesTab}
+            ${borderRadiusTab}
+            ${paddingTab}
+            ${marginTab}
+        }
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn {
+            ${closeIconBorderTab}
+            ${closeIconBradiusTab}
+            ${closeIconBgTab}
+            ${closeIconPaddingTab}
+            ${closeIconMarginTab}
+        }
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn:hover {
+            ${closeIconHoverBgTab}
+        }
+    `;
 
-    const mobileAllStyle = ``;
+    const mobileAllStyle = `
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner.popup_box {
+            ${pbWidthMob}
+        }
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner {
+            ${pbBgMob}
+            ${borderStylesMob}
+            ${borderRadiusMob}
+            ${paddingMob}
+            ${marginMob}
+        }
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn {
+            ${closeIconBorderMob}
+            ${closeIconBradiusMob}
+            ${closeIconBgMob}
+            ${closeIconPaddingMob}
+            ${closeIconMarginMob}
+        }
+        .${uniqueId}.wp-block-zolo-popup-builder .zolo-popup-inner .zolo-popup-close-btn:hover {
+            ${closeIconHoverBgMob}
+        }
+    `;
     return (
         <>
             <GlobalStyleHanlder
