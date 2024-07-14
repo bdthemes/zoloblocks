@@ -3,7 +3,7 @@ import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId } = attributes;
+    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerLayoutClass } = attributes;
 
     return (
         <div
@@ -12,7 +12,8 @@ const Save = ({ attributes }) => {
                     uniqueId,
                     isBlockRootParent ? `${containerWidthType} zolo-root-container` : '',
                     'frontend',
-                    classArrayToStr(parentClasses)
+                    classArrayToStr(parentClasses),
+                    `${containerLayoutClass !== '' ? containerLayoutClass : ''}`
                 ),
             })}
             {...(zoloId && {

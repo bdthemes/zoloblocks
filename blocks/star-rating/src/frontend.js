@@ -7,12 +7,12 @@ import StarRating from '../../../src/controls/star-rating';
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
-  const starRatingItems = document.querySelectorAll('.zolo-star-rating');
-  if (starRatingItems.length) {
-    starRatingItems.forEach((item, index) => {
-      const ratingValue = item.dataset.rating;
-      const root = createRoot(item);
-      root.render(<StarRating key={index} rating={ratingValue} total={5} />);
-    });
-  }
+    const starRatingItems = document.querySelectorAll('.zolo-star-rating');
+    if (starRatingItems.length) {
+        starRatingItems.forEach((item, index) => {
+            const ratingValue = item.dataset.rating || 5;
+            const root = createRoot(item);
+            root.render(<StarRating key={index} rating={ratingValue} total={5} />);
+        });
+    }
 });

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 export default function RenderView({ attributes, clientId, className }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses } = attributes;
+    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerLayoutClass } = attributes;
 
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
@@ -16,7 +16,8 @@ export default function RenderView({ attributes, clientId, className }) {
         className: classnames(
             className,
             `${uniqueId} ${containerWidthType} ${hasChildrenClass} ${isRootContainerClass} backend`,
-            classArrayToStr(parentClasses)
+            classArrayToStr(parentClasses),
+            `${containerLayoutClass !== '' ? containerLayoutClass : ''}`
         ),
     });
 

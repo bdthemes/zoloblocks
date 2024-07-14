@@ -59,6 +59,12 @@ const attributes = {
     contentWidthType: {
         type: 'string',
     },
+
+    // container layout class
+    containerLayoutClass: {
+        type: 'string',
+        default: '',
+    },
     // container gap
     ...generateGapAttributes(CONTAINER_GAP, {}),
     // New Generators

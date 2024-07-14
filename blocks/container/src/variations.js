@@ -696,6 +696,9 @@ export const VariationPicker = (props) => {
 
         if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
             replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
+
+            // set container layout class
+            setAttributes({ containerLayoutClass: nextVariation.name });
         }
     };
 
