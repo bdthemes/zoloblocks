@@ -136,7 +136,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Layouts', 'zoloblocks')}
                                 value={preset}
-                                options={applyFilters('zolo.advancedIconBox.presets', PRESETS)}
+                                options={applyFilters('zolo.notice.presets', PRESETS)}
                                 onChange={(value) => {
                                     setAttributes({
                                         preset: value,
