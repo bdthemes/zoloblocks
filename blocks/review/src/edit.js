@@ -24,6 +24,7 @@ export default function Edit(props) {
     const {
         preview,
         uniqueId,
+        stylePreset,
         preset,
         parentClasses,
         showPhoto,
@@ -44,7 +45,7 @@ export default function Edit(props) {
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId} ${preset && stylePreset === '' ? preset : ''} ${stylePreset !== '' && stylePreset}`, classArrayToStr(parentClasses)),
     });
 
     // preview image
@@ -90,7 +91,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
                 <div className="zolo-item">
-                    {showPhoto && (
+                    {showPhoto && stylePreset !=='style-preset-2' &&(
                         <div className="zolo-image-quote-wrap">
                             <div className="zolo-image-wrap">
                                 {memberPhoto ? (
@@ -133,14 +134,74 @@ export default function Edit(props) {
                             )}
                         </div>
                     )}
+
+                    {showTestimonialMessage && stylePreset ==='style-preset-2' &&(
+                        <>
+                           <div className='zolo-desc-quote-wrap'>
+                               {showQuoteIcon && (
+                                    <div className="zolo-quote-icon">
+                                        <DisplayZoloIcon icon={quoteIcon} />
+                                    </div>
+                                )}
+                                <div className="zolo-desc">
+                                    <RichText
+                                        value={testimonialMessage}
+                                        onChange={(content) =>
+                                            setAttributes({
+                                                testimonialMessage: content,
+                                            })
+                                        }
+                                        placeholder={__('message..', 'zoloblocks')}
+                                    />
+                                </div>
+                           </div>
+                        </>
+                    )}
+
                     <div className="zolo-info-wrap">
+                        {showPhoto && stylePreset ==='style-preset-2' &&(
+                            <div className="zolo-image-wrap">
+                                {memberPhoto ? (
+                                    <img
+                                        src={
+                                            memberPhoto.sizes && memberPhoto.sizes[imageRes]
+                                                ? memberPhoto.sizes[imageRes].url
+                                                : memberPhoto.url
+                                        }
+                                        alt={memberPhoto.alt || memberName}
+                                        className="zolo-img"
+                                    />
+                                ) : (
+                                    <MediaPlaceholder
+                                        icon="format-image"
+                                        labels={{
+                                            title: __('Add Photo', 'zoloblocks'),
+                                            instructions: '',
+                                        }}
+                                        onSelect={(media) => {
+                                            setAttributes({
+                                                memberPhoto: {
+                                                    id: media.id,
+                                                    url: media.url,
+                                                    alt: media.alt,
+                                                    sizes: media.sizes,
+                                                    caption: media.caption,
+                                                },
+                                            });
+                                        }}
+                                        accept="image/*"
+                                        allowedTypes={['image']}
+                                    />
+                                )}
+                            </div>
+                        )}
                         <div className="zolo-meta-content">
-                            {showRating && (
+                            {showRating &&(
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>
                             )}
-                            {showTestimonialMessage && (
+                            {showTestimonialMessage && stylePreset !=='style-preset-2' &&(
                                 <div className="zolo-desc">
                                     <RichText
                                         value={testimonialMessage}

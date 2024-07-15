@@ -13,6 +13,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     REVIEWER_PHOTO_WIDTH,
@@ -48,9 +49,19 @@ import {
     APAG_BORDER_RADIUS,
     APAG_BG,
     PAG_BOTTOM_SPACING,
+    RCONTAINER_BG,
+    RCONTAINER_BORDER,
+    RCONTAINER_BRADIUS,
+    RCONTAINER_BSHADOW,
+    RCONTAINER_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
+import { RC_BG } from './../../review-child/src/constants/index';
+import { RC_BORDER } from './../../review-child/src/constants/index';
+import { RC_BRADIUS } from './../../review-grid/src/constants/index';
+import { RC_BSHADOW } from './../../review-child/src/constants/index';
+import { RC_PADDING } from './../../review-grid/src/constants/index';
 
 const attributes = {
     // global Attributes
@@ -204,6 +215,17 @@ const attributes = {
     ...generateBorderAttributies(APAG_BORDER),
     ...generateDimensionAttributes(APAG_BORDER_RADIUS),
     ...generateNormalBGAttributes(APAG_BG),
+
+    // rc
+    ...generateBorderAttributies(RCONTAINER_BORDER),
+    ...generateDimensionAttributes(RCONTAINER_BRADIUS),
+    ...generateDimensionAttributes(RCONTAINER_PADDING),
+    ...generateBoxShadowAttributies(RCONTAINER_BSHADOW),
+    ...generateNormalBGAttributes(RCONTAINER_BG),
+
+    // CAROUSEL CONTAINER
+    ...generateDimensionAttributes(CAROUSEL_CONTAINER_PADDING),
+    
     // swiper options
     slideItems: {
         type: 'number',
@@ -240,6 +262,9 @@ const attributes = {
         type: 'string',
     },
     navHoverColor: {
+        type: 'string',
+    },
+    presetFiveArrowColor: {
         type: 'string',
     },
     showPagination: {
@@ -290,6 +315,7 @@ const attributes = {
         default:
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"></path></svg>',
     },
+
 };
 
 export default attributes;

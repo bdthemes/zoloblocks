@@ -4,7 +4,7 @@ import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 
-const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {} }) => {
+const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {}, noteText="" }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const {
         [`${prefix}${controlName}Range`]: desktopRange = defaults.deskRange || 3,
@@ -72,8 +72,8 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                 </Button>
                             </div>
                             <p className="zb-counter-note">
-                                <strong>{__('Note: ', 'zita-blocks')}</strong>
-                                {__('maximum ', 'zita-blocks') + max + ' ' + __('minimum ') + min}
+                                <strong>{__('Note: ', 'zoloblocks')}</strong>
+                                {noteText || __('maximum ', 'zoloblocks') + max + ' ' + __('minimum ') + min}
                             </p>
                         </div>
                     </WithResDeviceBtn>
@@ -126,8 +126,8 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                             </Button>
                         </div>
                         <p className="zb-counter-note">
-                            <strong>{__('Note: ', 'zita-blocks')}</strong>
-                            {__('maximum ', 'zita-blocks') + max + ' ' + __('minimum ') + min}
+                            <strong>{__('Note: ', 'zoloblock')}</strong>
+                            {noteText || __('maximum ', 'zoloblock') + max + ' ' + __('minimum ') + min}
                         </p>
                     </div>
                 </WithResDeviceBtn>
@@ -179,8 +179,8 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                             </Button>
                         </div>
                         <p className="zb-counter-note">
-                            <strong>{__('Note: ', 'zita-blocks')}</strong>
-                            {__('maximum ', 'zita-blocks') + max + ' ' + __('minimum ') + min}
+                            <strong>{__('Note: ', 'zoloblock')}</strong>
+                            {noteText || __('maximum ', 'zoloblock') + max + ' ' + __('minimum ') + min}
                         </p>
                     </div>
                 </WithResDeviceBtn>

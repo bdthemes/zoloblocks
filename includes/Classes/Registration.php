@@ -24,6 +24,7 @@ class Registration {
      */
     public function block_register() {
         $blocks = $this::block_list();
+
         if (is_array($blocks) && count($blocks) > 0) {
             foreach ($blocks as $key => $block) {
                 if (!isset($block['name'])) {

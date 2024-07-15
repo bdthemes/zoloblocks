@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, BaseControl, SelectControl, CardDivider, __experimentalInputControl as InputControl } from '@wordpress/components';
+import { ToggleControl, BaseControl, SelectControl, CardDivider, __experimentalInputControl as InputControl, __experimentalHeading as Heading } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -55,6 +55,7 @@ import {
     AAC_BODY_BG,
     AICONTAINER_BG,
     PRESETS,
+    ANIMATED_BORDER_SIZE,
 } from './constants';
 
 import { HEADING } from '../../../src/global/constants';
@@ -75,6 +76,8 @@ function Inspector(props) {
         atitleColor,
         initialOpen,
         allowMultiple,
+        animatedBorderColor,
+        animatedBorderActiveColor,
         preset,
     } = attributes;
 
@@ -236,6 +239,35 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+
+                            {preset === 'style-3' && (
+                                <>
+                                    <div className='zolo-custom-heading' >
+                                        {__('Animated Border', 'zoloblocks')}
+                                    </div>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={animatedBorderColor}
+                                        onChange={(value) =>
+                                                setAttributes({
+                                                    animatedBorderColor: value,
+                                                })
+                                        }
+                                    />
+                                    <ColorControl
+                                        label={__('Active Color', 'zoloblocks')}
+                                        color={animatedBorderActiveColor}
+                                        onChange={(value) =>
+                                                setAttributes({
+                                                    animatedBorderActiveColor: value,
+                                                })
+                                        }
+                                    />
+                                    <ResRangeControl label={__('Thickness', 'zoloblocks')} controlName={ANIMATED_BORDER_SIZE} requiredProps={requiredProps} />
+                                </>
+                            
+                            )}
+
                             <TabPanelControl
                                 options={[
                                     { label: __('Normal', 'zoloblocks'), value: 'normal' },

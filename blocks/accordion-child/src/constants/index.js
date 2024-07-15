@@ -38,3 +38,6 @@ export const ICONTAINER_BRADIUS = 'iContainerBorderRadius';
 export const ICONTAINER_HBG = 'iContainerHoverBg';
 
 export const ICON_SIZE = 'iconSize';
+
+// animated border size
+export const ANIMATED_BORDER_SIZE = 'animatedBorderSize';

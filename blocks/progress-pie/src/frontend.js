@@ -1,4 +1,5 @@
-import { render, useRef, useEffect } from '@wordpress/element';
+
+import {render,useRef,useEffect} from '@wordpress/element'
 import CountUp from 'react-countup';
 
 // render on page load

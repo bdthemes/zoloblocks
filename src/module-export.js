@@ -20,6 +20,7 @@ export { default as TypographyDropdown } from './controls/typography-control';
 export { default as TabPanelControl } from './controls/tabpanel-control';
 export { default as StarRating } from './controls/star-rating';
 export { default as LinkControl } from './controls/link-control';
+export { default as LinkUnlink } from './controls/link-unlink';
 export { default as IconicBtnGroup } from './controls/iconic-btn-group';
 export { default as SortableControl } from './controls/sortable-control';
 export { default as SortableItem } from './controls/sortable-control/sortableitem';
@@ -43,6 +44,7 @@ export { default as MultiRangeControl } from './controls/multi-range-control';
 export { default as BazierControl } from './controls/bezier-control';
 export { default as ContainerSidebarOpener } from './controls/container-sidebar-opener';
 export { default as SidebarOpener } from './controls/sidebar-opener';
+export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

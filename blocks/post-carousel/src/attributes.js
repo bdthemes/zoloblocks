@@ -58,6 +58,7 @@ import {
     APAG_BORDER_RADIUS,
     META_ARROW_SPACE,
     META_BOX_WRAP_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -189,6 +190,9 @@ const attributes = {
     metaColor: {
         type: 'string',
     },
+    metaHColor: {
+        type: 'string',
+    },
     metaArrowColor: {
         type: 'string',
     },
@@ -303,6 +307,9 @@ const attributes = {
 
     // meta box wrap
     ...generateDimensionAttributes(META_BOX_WRAP_PADDING),
+
+    // carousel container
+    ...generateDimensionAttributes(CAROUSEL_CONTAINER_PADDING),
     // swiper options
     slideItems: {
         type: 'number',

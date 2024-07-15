@@ -28,6 +28,7 @@ const {
 import objAttributes from './attributes';
 import {
     PRESETS,
+    FOCUS_STYLE,
     BUTTON_BORDER,
     BUTTON_BORDER_RADIUS,
     MSG_BORDER,
@@ -50,13 +51,17 @@ import {
     INPUT_PADDING,
     INPUT_BG,
     ICON_SIZE,
+    FIELD_ICON_SIZE,
+    FIELD_ICON_SPACING,
     BUTTON_SIZE,
     FOCUS_BORDER_WIDTH,
+    FOCUS_STYLE_5_BORDER_WIDTH,
     BUTTON_LAYOUT_TYPES,
     LABEL_BORDER,
     LABEL_BORDER_RADIUS,
     LABEL_PADDING,
     LABEL_SPACING,
+    LABEL_BOTTOM_SPACING,
     LABEL_BG,
     LABEL_HOVER_BG_COLOR,
 } from './constants';
@@ -67,11 +72,13 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        focusStyle,
         resMode,
         labelText,
         labelName,
         labelColor,
         iconColor,
+        fieldIconColor,
         iconHoverColor,
         btnTextColor,
         btnTextHoverColor,
@@ -81,13 +88,16 @@ function Inspector(props) {
         buttonText,
         inputColor,
         focusColor,
+        focusStyle5Color,
         placeholderColor,
         placeholder,
         namePlaceholder,
         btnLayoutType,
         showButtonText,
         showIcon,
+        showFieldIcon,
         showNameField,
+        showLabels,
         textSuccess,
         textSubscribed,
         textError,
@@ -108,7 +118,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/advanced-search"
+                block="zolo/newsletter"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -117,14 +127,28 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
-                                options={applyFilters('zolo.advancedSearch.presets', PRESETS)}
-                                onChange={(value) =>
+                                options={applyFilters('zolo.advancedNewsletter.presets', PRESETS)}
+                                onChange={(value) => {
                                     setAttributes({
                                         preset: value,
-                                    })
-                                }
+                                    });
+
+                                    if (value === 'zolo-newsletter-5') {
+                                        setAttributes({
+                                            showLabels: false,
+                                        });
+                                    } else if (value === 'zolo-newsletter-1') {
+                                        setAttributes({
+                                            showLabels: true,
+                                        });
+                                    } else {
+                                        setAttributes({
+                                            showLabels: true,
+                                        });
+                                    }
+                                }}
                             />
-                            {preset === 'zolo-newslatter-4' && (
+                            {preset === 'zolo-newsletter-4' && (
                                 <IconicBtnGroup
                                     label={__('Button Style', 'zoloblocks')}
                                     value={btnLayoutType}
@@ -136,6 +160,7 @@ function Inspector(props) {
                                     options={BUTTON_LAYOUT_TYPES}
                                 />
                             )}
+
                             <ToggleControl
                                 label={__('Show Name Field', 'zoloblocks')}
                                 checked={showNameField}
@@ -145,6 +170,20 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
+                            {preset === 'zolo-newsletter-5' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Show Field Icon', 'zoloblocks')}
+                                        checked={showFieldIcon}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                showFieldIcon: value,
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
                             <ToggleControl
                                 label={__('Show Button Text', 'zoloblocks')}
                                 checked={showButtonText}
@@ -163,6 +202,17 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            {(preset === 'zolo-newsletter-1' || preset === 'zolo-newsletter-5') && (
+                                <ToggleControl
+                                    label={__('Show Labels', 'zoloblocks')}
+                                    checked={showLabels}
+                                    onChange={() =>
+                                        setAttributes({
+                                            showLabels: !showLabels,
+                                        })
+                                    }
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
                             {showIcon && (
@@ -176,26 +226,33 @@ function Inspector(props) {
                                     }}
                                 />
                             )}
-                            {showNameField && (
-                                <TextControl
-                                    label={__('Label name', 'zoloblocks')}
-                                    value={labelName}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            labelName: value,
-                                        })
-                                    }
-                                />
+
+                            {showLabels && (
+                                <>
+                                    {showNameField && (
+                                        <TextControl
+                                            label={__('Label name', 'zoloblocks')}
+                                            value={labelName}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    labelName: value,
+                                                })
+                                            }
+                                        />
+                                    )}
+
+                                    <TextControl
+                                        label={__('Label email', 'zoloblocks')}
+                                        value={labelText}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                labelText: value,
+                                            })
+                                        }
+                                    />
+                                </>
                             )}
-                            <TextControl
-                                label={__('Label email', 'zoloblocks')}
-                                value={labelText}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        labelText: value,
-                                    })
-                                }
-                            />
+
                             {showButtonText && (
                                 <TextControl
                                     label={__('Button text', 'zoloblocks')}
@@ -207,7 +264,7 @@ function Inspector(props) {
                                     }
                                 />
                             )}
-                            {preset === 'zolo-newslatter-1' && (
+                            {(preset === 'zolo-newsletter-1' || preset === 'zolo-newsletter-5') && (
                                 <>
                                     {showNameField && (
                                         <TextControl
@@ -255,102 +312,121 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <>
-                            <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={LABEL_BORDER}
-                                    requiredProps={requiredProps}
-                                    hoverControl={
-                                        <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={labelBorderHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    labelBorderHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                    }
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={LABEL_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    controlName={LABEL_PADDING}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
-                                {btnLayoutType === 'zolo-newsletter-button-style-2' && (
-                                    <ResRangeControl
-                                        label={__('Spacing', 'zoloblocks')}
-                                        controlName={LABEL_SPACING}
-                                        requiredProps={requiredProps}
-                                    />
-                                )}
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={LABEL_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                />
-                                <TabPanelControl
-                                    options={[
-                                        {
-                                            label: __('Normal', 'zoloblocks'),
-                                            value: 'normal',
-                                        },
-                                        {
-                                            label: __('Focus', 'zoloblocks'),
-                                            value: 'hover',
-                                        },
-                                    ]}
-                                    normalComponents={
+                            {showLabels && (
+                                <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
+                                    {preset !== 'zolo-newsletter-1' && (
                                         <>
-                                            <ColorControl
-                                                label={__('Color', 'zoloblocks')}
-                                                color={labelColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        labelColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={LABEL_BG} noMainBGImg={false} />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            {showButtonText && (
-                                                <>
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={LABEL_BORDER}
+                                                requiredProps={requiredProps}
+                                                hoverControl={
                                                     <ColorControl
-                                                        label={__('Color', 'zoloblocks')}
-                                                        color={labelTextHoverColor}
+                                                        label={__('Border Color', 'zoloblocks')}
+                                                        color={labelBorderHoverColor}
                                                         onChange={(value) =>
                                                             setAttributes({
-                                                                labelTextHoverColor: value,
+                                                                labelBorderHoverColor: value,
                                                             })
                                                         }
                                                     />
+                                                }
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={LABEL_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={LABEL_PADDING}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Spacing', 'zoloblocks')}
+                                                controlName={LABEL_SPACING}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    )}
+                                    {preset === 'zolo-newsletter-1' && (
+                                        <ResRangeControl
+                                            label={__('Bottom Spacing', 'zoloblocks')}
+                                            controlName={LABEL_BOTTOM_SPACING}
+                                            requiredProps={requiredProps}
+                                        />
+                                    )}
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zoloblocks')}
+                                        typoPrefixConstant={LABEL_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                label: __('Normal', 'zoloblocks'),
+                                                value: 'normal',
+                                            },
+                                            {
+                                                label: __('Focus', 'zoloblocks'),
+                                                value: 'hover',
+                                            },
+                                        ]}
+                                        normalComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={labelColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            labelColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                {preset !== 'zolo-newsletter-1' && (
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
-                                                        controlName={LABEL_HOVER_BG_COLOR}
+                                                        controlName={LABEL_BG}
                                                         noMainBGImg={false}
                                                     />
-                                                </>
-                                            )}
-                                        </>
-                                    }
-                                />
-                            </ZoloPanelBody>
+                                                )}
+                                            </>
+                                        }
+                                        hoverComponents={
+                                            <>
+                                                {showButtonText && (
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={labelTextHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    labelTextHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                        {preset !== 'zolo-newsletter-1' && (
+                                                            <NormalBGControl
+                                                                requiredProps={requiredProps}
+                                                                controlName={LABEL_HOVER_BG_COLOR}
+                                                                noMainBGImg={false}
+                                                            />
+                                                        )}
+                                                    </>
+                                                )}
+                                            </>
+                                        }
+                                    />
+                                </ZoloPanelBody>
+                            )}
                         </>
                         <ZoloPanelBody
                             title={__('Field', 'zoloblocks')}
                             stylePanel={true}
                             panelProps={props}
-                            firstOpen={preset === 'zolo-search-1' ? true : false}
+                            firstOpen={preset === 'zolo-newsletter-1' ? true : false}
                         >
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
@@ -388,7 +464,14 @@ function Inspector(props) {
                                             color={inputColor}
                                             onChange={(color) => setAttributes({ inputColor: color })}
                                         />
-                                        {preset === 'zolo-newslatter-1' && (
+                                        {preset === 'zolo-newsletter-1' && (
+                                            <ColorControl
+                                                label={__('Placeholder Color', 'zoloblocks')}
+                                                color={placeholderColor}
+                                                onChange={(color) => setAttributes({ placeholderColor: color })}
+                                            />
+                                        )}
+                                        {preset === 'zolo-newsletter-5' && (
                                             <ColorControl
                                                 label={__('Placeholder Color', 'zoloblocks')}
                                                 color={placeholderColor}
@@ -401,23 +484,83 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={focusColor}
-                                            onChange={(color) => setAttributes({ focusColor: color })}
-                                        />
-                                        <ResRangeControl
-                                            label={__('Width', 'zoloblocks')}
-                                            controlName={FOCUS_BORDER_WIDTH}
-                                            requiredProps={requiredProps}
-                                            min={1}
-                                            max={10}
-                                            step={1}
-                                        />
+                                        {preset === 'zolo-newsletter-5' && (
+                                            <SelectControl
+                                                label={__('Focus Style', 'zoloblocks')}
+                                                value={focusStyle}
+                                                options={applyFilters('zolo.advancedNewsletter.focusStyle', FOCUS_STYLE)}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        focusStyle: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+                                        {preset !== 'zolo-newsletter-5' && (
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={focusColor}
+                                                    onChange={(color) => setAttributes({ focusColor: color })}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Width', 'zoloblocks')}
+                                                    controlName={FOCUS_BORDER_WIDTH}
+                                                    requiredProps={requiredProps}
+                                                    min={1}
+                                                    max={10}
+                                                    step={1}
+                                                />
+                                            </>
+                                        )}
+
+                                        {preset === 'zolo-newsletter-5' && (
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={focusStyle5Color}
+                                                    onChange={(color) => setAttributes({ focusStyle5Color: color })}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Width', 'zoloblocks')}
+                                                    controlName={FOCUS_STYLE_5_BORDER_WIDTH}
+                                                    requiredProps={requiredProps}
+                                                    min={1}
+                                                    max={10}
+                                                    step={1}
+                                                />
+                                            </>
+                                        )}
                                         <BoxShadowControl controlName={FIELD_FOCUS_BOX_SHADOW} requiredProps={requiredProps} />
                                     </>
                                 }
                             />
+
+                            {preset === 'zolo-newsletter-5' && showFieldIcon && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Animated Border', 'zoloblocks')}</div>
+                                    <ColorControl
+                                        label={__('Icon Color', 'zoloblocks')}
+                                        color={fieldIconColor}
+                                        onChange={(color) => setAttributes({ fieldIconColor: color })}
+                                    />
+
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zoloblocks')}
+                                        controlName={FIELD_ICON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
+
+                                    <ResRangeControl
+                                        label={__('Spacing', 'zoloblocks')}
+                                        controlName={FIELD_ICON_SPACING}
+                                        requiredProps={requiredProps}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -439,7 +582,7 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         max={36}
                                     />
-                                    {preset === 'zolo-search-1' && (
+                                    {preset === 'zolo-newsletter-1' && (
                                         <ResRangeControl
                                             label={__('Button Size', 'zoloblocks')}
                                             controlName={BUTTON_SIZE}
@@ -594,21 +737,20 @@ function Inspector(props) {
                                     forBorderRadius={false}
                                 />
                                 <TabPanelControl
-                                options={[
-                                    {
-                                        label: __('Success', 'zoloblocks'),
-                                        value: 'normal',
-                                    },
-                                    {
-                                        label: __('Warning', 'zoloblocks'),
-                                        value: 'hover',
-                                    },
-                                    {
-                                        label: __('Error', 'zoloblocks'),
-                                        value: 'active',
-                                    },
-
-                                ]}
+                                    options={[
+                                        {
+                                            label: __('Success', 'zoloblocks'),
+                                            value: 'normal',
+                                        },
+                                        {
+                                            label: __('Warning', 'zoloblocks'),
+                                            value: 'hover',
+                                        },
+                                        {
+                                            label: __('Error', 'zoloblocks'),
+                                            value: 'active',
+                                        },
+                                    ]}
                                     normalComponents={
                                         <>
                                             <ColorControl
@@ -616,11 +758,15 @@ function Inspector(props) {
                                                 color={successTextColor}
                                                 onChange={(value) =>
                                                     setAttributes({
-                                                       successTextColor : value,
+                                                        successTextColor: value,
                                                     })
                                                 }
                                             />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={SUCCESS_MSG_BG} noMainBGImg={false} />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={SUCCESS_MSG_BG}
+                                                noMainBGImg={false}
+                                            />
                                         </>
                                     }
                                     hoverComponents={
@@ -630,7 +776,7 @@ function Inspector(props) {
                                                 color={subscribedTextColor}
                                                 onChange={(value) =>
                                                     setAttributes({
-                                                       subscribedTextColor : value,
+                                                        subscribedTextColor: value,
                                                     })
                                                 }
                                             />
@@ -649,16 +795,12 @@ function Inspector(props) {
                                                 color={errorTextColor}
                                                 onChange={(value) =>
                                                     setAttributes({
-                                                        errorTextColor : value,
+                                                        errorTextColor: value,
                                                     })
                                                 }
                                             />
 
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={ERROR_MSG_BG}
-                                                noMainBGImg={false}
-                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={ERROR_MSG_BG} noMainBGImg={false} />
                                         </>
                                     }
                                 />
@@ -672,7 +814,7 @@ function Inspector(props) {
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
-                            block="zolo/advanced-search"
+                            block="zolo/newsletter"
                         />
                     </>
                 }

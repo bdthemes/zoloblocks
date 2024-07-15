@@ -40,6 +40,7 @@ import {
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
     REVIEWER_PHOTO_WIDTH,
     REVIEWER_PHOTO_HEIGHT,
     REVIEWER_PHOTO_BG,
@@ -52,6 +53,11 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
+    RCONTAINER_BORDER,
+    RCONTAINER_BG,
+    RCONTAINER_BRADIUS,
+    RCONTAINER_BSHADOW,
+    RCONTAINER_PADDING,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -74,6 +80,7 @@ const {
     ZoloPanelBody,
     ResGapControl,
     ZoloIconPicker,
+    presetFiveArrowColor,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -415,6 +422,17 @@ function Inspector(props) {
                             />
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
+
+                            <div className='zolo-custom-heading' >
+                                {__('Carousel Container', 'zoloblocks')}
+                            </div>
+
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CAROUSEL_CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
                         </ZoloPanelBody>
 
                         {showPhoto && (
@@ -543,6 +561,40 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
+
+                        {preset === 'style-4' && (
+                            <ZoloPanelBody title={__('Review Container', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Arrow Color', 'zoloblocks')}
+                                    color={presetFiveArrowColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            presetFiveArrowColor: color,
+                                        })
+                                    }
+                                />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={RCONTAINER_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={RCONTAINER_BRADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <BoxShadowControl controlName={RCONTAINER_BSHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <NormalBGControl requiredProps={requiredProps} controlName={RCONTAINER_BG} noMainBGImg={false} />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={RCONTAINER_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                            </ZoloPanelBody>
+                        )}
+
                         {showTestimonialMessage && (
                             <ZoloPanelBody title={__('Review Text', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown

@@ -16,6 +16,7 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, progressSize, numberColor, titleColor, progressFillSize, progressRound, circleColor } = attributes;
 
+
     const {
         desktopRangeStyle: deskProgressWidth,
         tabRangeStyle: tabProgressWidth,
@@ -42,6 +43,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
+
     const {
         desktopAlignStyle: progressDeskAlignStyle,
         tabAlignStyle: progressTabAlignStyle,
@@ -53,7 +55,7 @@ const Style = ({ props }) => {
     });
 
     /**
-     
+
      * All Style Combination
      */
     //
@@ -63,6 +65,7 @@ const Style = ({ props }) => {
          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-progress {
             ${progressSize ? `stroke-width:${progressSize / 10}` : ''}; 
+
             ${progressRound ? 'stroke-linecap:round' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
@@ -70,7 +73,7 @@ const Style = ({ props }) => {
          }
         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${deskProgressWidth}
-        }   
+        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
             ${DesktopNumberTypo}
             ${numberColor ? `fill:${numberColor}` : ''}
@@ -91,22 +94,23 @@ const Style = ({ props }) => {
          }
       .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${tabProgressWidth}
-        } 
+        }
      .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${TabNumberTypo}
-        
+
        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
             ${TabTittleTypo}   
        } 
        `;
     const mobileAllStyle = ` 
+
      .${uniqueId}.wp-block-zolo-progress-pie {
           ${progressMobAlignStyle}
      }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
         ${mobProgressWidth}
-    }  
+    }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${MobNumberTypo}
     }

@@ -1,6 +1,6 @@
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { Button, RangeControl, SelectControl, TextControl, ToggleControl, BaseControl, CardDivider } from '@wordpress/components';
+import { Button, SelectControl, TextControl, ToggleControl, BaseControl, CardDivider } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
@@ -149,6 +149,9 @@ const Inspector = (props) => {
                 return false;
         }
     };
+
+    // animation panel
+    const animationPanels = applyFilters('zolo.advancedHeading.animationPanels', [], 'zolo/advanced-heading', props);
 
     return (
         <InspectorControls key="controls">
@@ -326,6 +329,7 @@ const Inspector = (props) => {
                                 />
                             </ZoloPanelBody>
                         )}
+                        {animationPanels && animationPanels.length > 0 && animationPanels}
                     </>
                 }
                 styleTab={

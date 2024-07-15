@@ -450,13 +450,13 @@ export const GlobalStyleHanlder = (props) => {
 
 
     const positionDesktop = `
-        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
-        ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important`: ''}
-    `;
+        ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important` : ''}
+ `;
     const positionTab = `
         ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
@@ -573,7 +573,7 @@ export const GlobalStyleHanlder = (props) => {
       .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
             ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
       }
-      .parent-${uniqueId}.zolo-transform-wrapper {
+      .parent-${uniqueId}.zolo-transform-animation {
         ${transformStylesDesktop}
         ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
       }
@@ -582,7 +582,7 @@ export const GlobalStyleHanlder = (props) => {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
           ${transformStylesDesktopHover}
       }
-        .parent-${uniqueId}.zolo-transform-wrapper:hover {
+        .parent-${uniqueId}.zolo-transform-animation:hover {
             ${transformStylesDesktopHover}
             }
       .parent-${uniqueId}.zolo-block:after {

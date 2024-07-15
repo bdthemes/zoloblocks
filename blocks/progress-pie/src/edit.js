@@ -100,6 +100,7 @@ export default function Edit(props) {
                             : ''
                     }
                 >
+
                     {({ countUpRef }) => (
                         <>
                             <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">

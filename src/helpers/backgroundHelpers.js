@@ -892,7 +892,6 @@ export const generateBackgroundControlStyles = ({
         // background overlay attributes end
     } = attributes;
 
-
     const backgroundStylesDesktop = `
   ${
       (BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL) || (backgroundType === 'gradient' && gradientColor)

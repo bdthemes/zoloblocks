@@ -37,6 +37,14 @@ import {
     DPL_MARGIN,
     DPL_ICON_SIZE,
     CONTENT_GAP,
+
+    RW_BACKGROUND,
+    RW_BORDER,
+    RW_BORDER_RADIUS,
+    RW_BOX_SHADOW,
+    RW_MARGIN,
+    RW_PADDING,
+    
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -68,6 +76,12 @@ const attributes = {
         },
     },
     // block attributes
+
+    stylePreset: {
+        type: 'string',
+        default: '',
+    },
+
     preset: {
         type: 'string',
         default: 'default',
@@ -109,6 +123,13 @@ const attributes = {
 
     // Gap
     ...generateResRangeAttributies(CONTENT_GAP),
+
+    ...generateNormalBGAttributes(RW_BACKGROUND),
+    ...generateBorderAttributies(RW_BORDER),
+    ...generateDimensionAttributes(RW_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(RW_BOX_SHADOW),
+    ...generateDimensionAttributes(RW_MARGIN),
+    ...generateDimensionAttributes(RW_PADDING),
 
     //Block Specific Attributes
     showPhoto: {
@@ -172,6 +193,11 @@ const attributes = {
     nameColor: {
         type: 'string',
     },
+
+    separatorColor: {
+        type: 'string',
+    },
+
     designationColor: {
         type: 'string',
     },

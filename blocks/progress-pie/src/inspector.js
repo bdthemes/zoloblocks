@@ -2,8 +2,10 @@
  * WordPress dependencies
  */
 
+import { useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, RangeControl, Button } from '@wordpress/components';
+
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -29,6 +31,7 @@ import { PROGRESS_BAR_SIZE, CIRCLE_OPTION, PROGRESS_ALIGN } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import MultiColor from './multicolor';
 
+
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
@@ -47,6 +50,7 @@ function Inspector(props) {
         proPieperpostToggle,
         circleColor,
         progPieMultiColor,
+
     } = attributes;
 
     const requiredProps = {
@@ -124,6 +128,7 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
+
                         {toggleLabel && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
                                 <TextControl

@@ -2,6 +2,7 @@ import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { __ } from '@wordpress/i18n';
 // marker
 import ZoloMarker from './marker';
+const { zoloSettings } = window;
 
 function GoogleMap({ attributes }) {
     const {
@@ -29,8 +30,8 @@ function GoogleMap({ attributes }) {
                     <div className="zolo-gmap-wrapper">
                         <Map
                             {...(mapStyleType === 'custom' && mapStyleCodes && { styles: JSON.parse(mapStyleCodes) })}
-                            zoom={zoom}
-                            center={position}
+                            defaultZoom={zoom}
+                            defaultCenter={position}
                             language={language}
                             {...(mapStyleType === 'default' && { mapId: mapId })}
                             mapTypeId={mapType}
@@ -53,7 +54,7 @@ function GoogleMap({ attributes }) {
             ) : (
                 <div className="zolo-google-map">
                     <p className="zolo-notice-error">
-                        {__('No Google API Key Found. Please add google api key in the ZoloBlocks settings', 'zoloblocks')}
+                        {__('No Google API Key Found. Please add google api key in the', 'zoloblocks')} <a href={`${zoloSettings.home_url}/wp-admin/admin.php?page=zoloblocks#apiSettings`}>{__('ZoloBlocks settings', 'zoloblocks')}</a>
                     </p>
                 </div>
             )}

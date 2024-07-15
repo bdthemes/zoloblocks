@@ -14,6 +14,7 @@
 namespace Zolo\Classes;
 
 use Zolo\Traits\SingletonTrait;
+use Zolo\Helpers\ZoloHelpers;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -23,9 +24,14 @@ if (!defined('ABSPATH')) {
 class StyleGenerator {
     use SingletonTrait;
 
+    private $dynamic_styles; 
+
     public function __construct() {
         //Generate Style on block render
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);
+
+        // Enqueue Dynamic Styles
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_dynamic_styles']);
     }
 
     /**
@@ -37,35 +43,11 @@ class StyleGenerator {
      */
     public function generate_style_on_render_block($block_content, $block) {
         if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
+            $currnet_post_type = get_post_type();
             do_action('zolo_block_render_block', $block);
             if (isset($block['attrs']['zoloStyles'])) {
-                $style = $this::zolo_generate_style($block['attrs']['zoloStyles']);
-                // minify style string
-                // $style = preg_replace( '/\s+/', ' ', $style );
-
-                // var_dump($block['attrs']);
-
-                // $block_content = sprintf(
-                //     '<style>%1$s</style>%2$s',
-                //     $style,
-                //     $block_content
-                // );
-
-
-                $handle = isset($block['attrs']['uniqueId']) ? $block['attrs']['uniqueId'] : 'zoloblocks';
-
-                // if ( is_array( $style ) && !empty( $style ) ) {
-                //     $style = implode(' ', $style);
-                // }
-                // // minify style to remove extra space
-                // $style = preg_replace( '/\s+/', ' ', $style );
-
-                // var_dump($style);
-
-                // register style
-                wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all'); // wp_register_style( $handle, $src, $deps, $ver, $media );
-                wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
-                wp_add_inline_style($handle, $style);
+                $style = ZoloHelpers::zolo_generate_style($block['attrs']['zoloStyles']);
+                $this->dynamic_styles .= $style;
             }
         }
 
@@ -73,30 +55,18 @@ class StyleGenerator {
     }
 
     /**
-     * Generate Style String
+     * Enqueue Dynamic Styles
+     *
+     * @since 0.0.1
+     *
+     * @return void
      */
-    public static function zolo_generate_style($style) {
-        $css = "";
-        if (isset($style['desktop']) && strlen($style['desktop']) > 0) {
-            $css .= $style['desktop'];
+    public function enqueue_dynamic_styles() {
+        if (!empty($this->dynamic_styles)) {
+            $handle = 'zolo-block-inline-style-' . rand(100, 10000); 
+            wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all');
+            wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
+            wp_add_inline_style($handle, $this->dynamic_styles);
         }
-        if (isset($style['tab']) && strlen($style['tab']) > 0) {
-            $css .= sprintf(
-                '@media all and (max-width: 1024px) {%1$s}',
-                $style['tab']
-            );
-        }
-        if (isset($style['mobile']) && strlen($style['mobile']) > 0) {
-            $css .= sprintf(
-                '@media all and (max-width: 767px) {%1$s}',
-                $style['mobile']
-            );
-        }
-
-        if (!empty($style['customCss']) && strlen($style['customCss']) > 0) {
-            $css .= $style['customCss'];
-        }
-
-        return $css;
     }
 }

@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw
 Donate link: http://bdthemes.com/
 Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
 Requires at least: 6.5
-Tested up to: 6.5.4
+Tested up to: 6.5.5
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -207,6 +207,52 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.1.0 - 10-07-2024 =
+
+= Added =
+* Icon block added
+* Notice block added
+* Popup builder added
+* Text path block added
+* zIndex nagative value added
+* Theme fonts support added
+* Position sticky feature added
+* Box Shadow control added in Flipbox block
+
+= Fixed =
+
+* Entrance animation confilict with global link issue fixed in Advanced Icon Box
+* The map zoom in/out and draggble issue fixed in Google Map block
+* Floating label issue fixed in advanced search & newslatter block
+* Patterns save as favorite features added in Template Library
+* Image Uploading issue fixed in Advanced Image block
+* Separator color issue fixed in team grid block
+* Label issue fixed in Form block
+
+= Improved =
+
+* Transform Rotate reset control added in Transform features
+* Dynamic CSS Generation optimized
+* Template Library UI improved
+
+= 1.0.7 - 13-06-2024 =
+
+= Added =
+
+* progress pie block added
+* template library feature added
+* buttom spacing control added in Newsletter block
+
+= Fixed =
+
+* extra panel styling options not working issue fixed in the Social Share and Social Links block
+* container border issue fixed
+* alt text missing issue fixed in advanced image block
+
+### Improved
+
+* Default style improved in Advanced Search block
 
 = 1.0.6 - 08-06-2024 =
 
