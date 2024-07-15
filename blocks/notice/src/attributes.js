@@ -50,6 +50,11 @@ import {
     CLOSE_ICON_BORDER_RADIUS,
     CLOSE_ICON_BOX_SHADOW,
     CLOSE_ICON_HOVER_BOX_SHADOW,
+
+    STYLE3_ICON_BG_COLOR,
+    STYLE3_ICON_SIZE,
+    // STYLE3_ICON_RADIUS,
+    STYLE3_ICON_OFFSET,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -134,6 +139,12 @@ const attributes = {
     ...generateDimensionAttributes(CLOSE_ICON_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CLOSE_ICON_BOX_SHADOW),
     ...generateBoxShadowAttributies(CLOSE_ICON_HOVER_BOX_SHADOW),
+
+    // style 3
+    ...generateNormalBGAttributes(STYLE3_ICON_BG_COLOR),
+    ...generateResRangeAttributies(STYLE3_ICON_SIZE),
+    // ...generateDimensionAttributes(STYLE3_ICON_RADIUS),
+    ...generateDimensionAttributes(STYLE3_ICON_OFFSET),
     // item
     itemHBorderColor: {
         type: 'string',
@@ -183,13 +194,7 @@ const attributes = {
     textColor: {
         type: 'string',
     },
-    textHoverColor: {
-        type: 'string',
-    },
     descColor: {
-        type: 'string',
-    },
-    descHoverColor: {
         type: 'string',
     },
     iconType: {
@@ -285,6 +290,12 @@ const attributes = {
         type: 'string',
     },
     closeIconBorderHoverColor: {
+        type: 'string',
+    },
+    titleHoverColor: {
+        type: 'string',
+    },
+    descHoverColor: {
         type: 'string',
     },
 };
