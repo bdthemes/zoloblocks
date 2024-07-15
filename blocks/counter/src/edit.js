@@ -121,7 +121,7 @@ export default function Edit(props) {
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">
-                                                <CountUp end={counterNumber} duration={3.2} />
+                                                <CountUp end={counterNumber || '1000'} duration={3.2} />
                                             </span>
                                             {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
                                         </>
@@ -134,7 +134,7 @@ export default function Edit(props) {
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">
-                                                <CountUp end={counterNumber} duration={3.2} />
+                                                <CountUp end={counterNumber || '1000'} duration={3.2} />
                                             </span>
                                             {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
                                         </>

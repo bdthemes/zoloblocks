@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (animatedCounters.length > 0) {
         animatedCounters.forEach((counter) => {
             const root = createRoot(counter);
-            root.render(<CountUp end={counter.dataset.count} duration={3.2} />);
+            root.render(<CountUp end={counter.dataset.count || '1000'} duration={3.2} />);
         });
     }
 });

@@ -18,7 +18,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            // FlexDirectionZRPAlign: 'column',
+            FlexDirectionZRPAlign: 'column',
         },
     },
     {
@@ -36,26 +36,25 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 50,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 50,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 50,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 50,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -76,36 +75,35 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 33.33,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 33.33,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 33.33,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 33.33,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 33.33,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 33.33,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -126,46 +124,45 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 25,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 25,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 25,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 25,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 25,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 25,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    // zolo_ContainerWidthRange: 25,
-                    // zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_ContainerWidthRange: 25,
+                    zolo_ContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -187,6 +184,7 @@ export const variations = [
         attributes: {
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
+            FlexWrapZRPAlign: 'nowrap',
         },
         innerBlocks: [
             [
@@ -194,8 +192,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 25,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -204,8 +202,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 75,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -227,6 +225,7 @@ export const variations = [
         attributes: {
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
+            FlexWrapZRPAlign: 'nowrap',
         },
         innerBlocks: [
             [
@@ -234,8 +233,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 75,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -244,8 +243,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 25,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -268,46 +267,45 @@ export const variations = [
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
-            FlexJustifyZRPAlign: 'space-between',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 49,
+                    zolo_ContainerWidthRange: 48,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 49,
+                    zolo_ContainerWidthRange: 48,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 49,
+                    zolo_ContainerWidthRange: 48,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 49,
+                    zolo_ContainerWidthRange: 48,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -337,66 +335,65 @@ export const variations = [
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
-            FlexJustifyZRPAlign: 'space-between',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 32,
+                    zolo_ContainerWidthRange: 31,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 32,
+                    zolo_ContainerWidthRange: 31,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 32,
+                    zolo_ContainerWidthRange: 31,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 32,
+                    zolo_ContainerWidthRange: 31,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 32,
+                    zolo_ContainerWidthRange: 31,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 32,
+                    zolo_ContainerWidthRange: 31,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -425,7 +422,7 @@ export const variations = [
         attributes: {
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
-            // FlexWrapZRPAlign: 'nowrap',
+            FlexWrapZRPAlign: 'nowrap',
         },
         innerBlocks: [
             [
@@ -433,8 +430,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 25,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -443,8 +440,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 50,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -453,8 +450,8 @@ export const variations = [
                 {
                     zolo_ContainerWidthRange: 25,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -494,46 +491,45 @@ export const variations = [
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
-            FlexJustifyZRPAlign: 'space-between',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 74,
+                    zolo_ContainerWidthRange: 73,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 24,
+                    zolo_ContainerWidthRange: 23,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 24,
+                    zolo_ContainerWidthRange: 23,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 74,
+                    zolo_ContainerWidthRange: 73,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -573,46 +569,45 @@ export const variations = [
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
-            FlexJustifyZRPAlign: 'space-between',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 24,
+                    zolo_ContainerWidthRange: 23,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 74,
+                    zolo_ContainerWidthRange: 73,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 74,
+                    zolo_ContainerWidthRange: 73,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 24,
+                    zolo_ContainerWidthRange: 23,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -648,36 +643,35 @@ export const variations = [
             variationStatus: true,
             FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
-            FlexJustifyZRPAlign: 'space-between',
         },
         innerBlocks: [
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 49,
+                    zolo_ContainerWidthRange: 48,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 49,
+                    zolo_ContainerWidthRange: 48,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
                 'zolo/container',
                 {
-                    zolo_ContainerWidthRange: 100,
+                    zolo_ContainerWidthRange: 98,
                     zolo_ContainerWidthUnit: '%',
-                    // zolo_TABContainerWidthRange: 100,
-                    // zolo_TABContainerWidthUnit: '%',
+                    zolo_TABContainerWidthRange: 100,
+                    zolo_TABContainerWidthUnit: '%',
                     FlexDirectionZRPAlign: 'column',
                 },
             ],
@@ -696,9 +690,6 @@ export const VariationPicker = (props) => {
 
         if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
             replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
-
-            // set container layout class
-            setAttributes({ containerLayoutClass: nextVariation.name });
         }
     };
 

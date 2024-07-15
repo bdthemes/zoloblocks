@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             new Accordion(accordion, {
                 duration: 400,
                 showMultiple: allowMultiple ? true : false,
-                openOnInit: initialOpen ? [initialOpen - 1] : [],
+                openOnInit: initialOpen ? [initialOpen - 1] : [0],
             });
         });
     }

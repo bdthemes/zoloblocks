@@ -7,8 +7,6 @@ import { variations } from './variations';
 import './editor.scss';
 import './style.scss';
 
-import deprecated from './deprecated';
-
 registerBlockType(metadata, {
     icon: {
         src: (
@@ -27,5 +25,4 @@ registerBlockType(metadata, {
     variations,
     edit: Edit,
     save: Save,
-    deprecated: [deprecated],
 });
