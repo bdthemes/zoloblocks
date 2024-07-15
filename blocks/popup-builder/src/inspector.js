@@ -242,16 +242,20 @@ function Inspector(props) {
 
                             <NormalBGControl requiredProps={requiredProps} controlName={PB_BG} noMainBGImg={true} />
 
-                            <div className='zolo-custom-heading'>
-                                {__('Popup Overlay', 'zoloblocks')}
-                            </div>
-                            {popupType === 'popup_box' && enableOverlay && (
-                                <NormalBGControl
-                                    requiredProps={requiredProps}
-                                    controlName={PB_OVERLAY_BG}
-                                    noMainBGImg={true}
-                                    label={__('Background', 'zoloblocks')}
-                                />
+                            {popupType === 'popup_box' && (
+                                <>
+                                    <div className='zolo-custom-heading'>
+                                        {__('Popup Overlay', 'zoloblocks')}
+                                    </div>
+                                    {popupType === 'popup_box' && enableOverlay && (
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={PB_OVERLAY_BG}
+                                            noMainBGImg={true}
+                                            label={__('Background', 'zoloblocks')}
+                                        />
+                                    )}
+                                </>
                             )}
   
                         </ZoloPanelBody>

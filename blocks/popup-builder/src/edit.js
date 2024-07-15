@@ -96,7 +96,7 @@ export default function Edit(props) {
                                         'zolo/advanced-button',
                                         {
                                             // preset: 'button-1',
-                                            label: 'Subscribe Now',
+                                            label: 'Grab the Deal',
                                             iconType: 'iconText',
                                             iconPosition: 'right',
                                             buttonAlignmentZRPAlign: 'center',
