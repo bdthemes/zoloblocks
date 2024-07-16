@@ -1,3 +1,11 @@
+
+[class*="zolo-block"] {
+    .swiper:not(.swiper-initialized) {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 :root {
     --zoloblocks-brand-color: #3f8efc;
     --zoloblocks-brand-color-hover: #2667ff;
