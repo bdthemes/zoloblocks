@@ -4,10 +4,10 @@ const { classArrayToStr } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
 
 const Save = ({ attributes }) => {
-    console.log('attributes', attributes);
     const panelProps = { attributes };
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId } = attributes;
-        const renderShapeDivider = applyFilters('zolo.blocks.styleTab.renderShapeDivider', [], 'zolo/container', panelProps);
+        const hapeDividerBefore = applyFilters('zolo.blocks.render.shapeDivider.before', [], panelProps);
+        const hapeDividerAfter = applyFilters('zolo.blocks.render.shapeDivider.after', [], panelProps);
 
     return (
         <div
@@ -25,11 +25,16 @@ const Save = ({ attributes }) => {
         >
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
-                    {renderShapeDivider && renderShapeDivider.length > 0 && renderShapeDivider}
+                    {attributes.enableShapeDivider && hapeDividerBefore && hapeDividerBefore.length > 0 && hapeDividerBefore}
                     <InnerBlocks.Content />
+                    {attributes.enableShapeDivider && hapeDividerAfter && hapeDividerAfter.length > 0 && hapeDividerAfter}
                 </div>
             ) : (
+                <>
+                    {attributes.enableShapeDivider && hapeDividerBefore && hapeDividerBefore.length > 0 && hapeDividerBefore}
                 <InnerBlocks.Content />
+                    {attributes.enableShapeDivider && hapeDividerAfter && hapeDividerAfter.length > 0 && hapeDividerAfter}
+                </>
             )}
         </div>
     );
