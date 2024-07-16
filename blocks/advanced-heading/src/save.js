@@ -80,7 +80,7 @@ const Save = ({ className, attributes }) => {
 
                 {showSubTitle && subTitlePosition == 'bottom' && (
                     <RichText.Content
-                        tagName={'h4'}
+                        tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
                         formattingControl={['bold', 'italic']}
