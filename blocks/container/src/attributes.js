@@ -3,6 +3,7 @@
  */
 const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
 
+import { shape } from 'prop-types';
 import {
     CONTAINER_WIDTH,
     CONTAINER_GAP,
@@ -61,6 +62,11 @@ const attributes = {
         type: 'string',
         default: 'alignwide',
     },
+    enableShapeDivider: {
+        type: 'boolean',
+        default: false,
+    },
+
     // container gap
     ...generateGapAttributes(CONTAINER_GAP, {
         defaultRange: 20,

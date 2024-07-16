@@ -3,6 +3,7 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { ToggleControl } from '@wordpress/components';
 
 /**
  * Internal depencencies
@@ -43,6 +44,7 @@ function Inspector(props) {
         FlexDirectionZRPAlign,
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
+        enableShapeDivider,
     } = attributes;
 
     const requiredProps = {
@@ -171,6 +173,13 @@ function Inspector(props) {
                                 controlName={CONTAINER_GAP}
                                 requiredProps={requiredProps}
                                 max={200}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} stylePanel={true} firstOpen={false} panelProps={props}>
+                            <ToggleControl
+                                label={__('Enable Shape Divider', 'zoloblocks')}
+                                checked={enableShapeDivider}
+                                onChange={() => setAttributes({ enableShapeDivider: !enableShapeDivider })}
                             />
                         </ZoloPanelBody>
                     </>
