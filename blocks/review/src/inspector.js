@@ -131,7 +131,7 @@ function Inspector(props) {
                           <SelectControl
                                 label={__('Style', 'zoloblocks')}
                                 value={stylePreset}
-                                options={applyFilters('zolo.pricingTable.presets', STYLE_PRESETS)}
+                                options={applyFilters('zolo.review.stylePresets', STYLE_PRESETS)}
                                 onChange={(stylePreset) => {
                                     setAttributes({ stylePreset });
 
