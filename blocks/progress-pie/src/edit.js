@@ -66,7 +66,7 @@ export default function Edit(props) {
 
     useEffect(() => {
         const progressPie = progress.current;
-        const progressVal = progressValue;
+        const progressVal = progressValue || 50;
 
         startAnim();
         function startAnim() {
@@ -84,21 +84,11 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <CountUp
                     start={0}
-                    end={progressValue}
+                    end={progressValue || 50}
                     delay={0}
-                    duration={progressDuration ? progressDuration : 3}
-                    prefix={
-                        proPieperpostToggle && typeof progPiePrefixPostfix.Prefix === 'string' && isNaN(Number(progPiePrefixPostfix.Prefix))
-                            ? progPiePrefixPostfix.Prefix
-                            : ''
-                    }
-                    suffix={
-                        proPieperpostToggle &&
-                        typeof progPiePrefixPostfix.Postfix === 'string' &&
-                        isNaN(Number(progPiePrefixPostfix.Postfix))
-                            ? progPiePrefixPostfix.Postfix
-                            : ''
-                    }
+                    duration={progressDuration || 3}
+                    prefix={proPieperpostToggle ? progPiePrefixPostfix?.Prefix : ''}
+                    suffix={proPieperpostToggle ? progPiePrefixPostfix?.Postfix : ''}
                 >
                     {({ countUpRef }) => (
                         <>
@@ -136,31 +126,33 @@ export default function Edit(props) {
                                 ></circle>
                                 <defs>
                                     <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                                        {progPieMultiColor.map((color, index) => {
-                                            const averageOffset = 100 / (progPieMultiColor.length - 1);
-                                            let offset;
-                                            if (index === 0) {
-                                                // First child, offset is 0%
-                                                offset = '0%';
-                                            } else if (index === progPieMultiColor.length - 1) {
-                                                // Last child, offset is 100%
-                                                offset = '100%';
-                                            } else {
-                                                // Intermediate children, calculate offset
-                                                offset = `${averageOffset * index}%`;
-                                            }
-                                            return <stop offset={offset} stopColor={color.color ? color.color : '#00bc9b'} key={index} />;
-                                        })}
+                                        {progPieMultiColor &&
+                                            progPieMultiColor.map((color, index) => {
+                                                const averageOffset = 100 / (progPieMultiColor.length - 1);
+                                                let offset;
+                                                if (index === 0) {
+                                                    // First child, offset is 0%
+                                                    offset = '0%';
+                                                } else if (index === progPieMultiColor.length - 1) {
+                                                    // Last child, offset is 100%
+                                                    offset = '100%';
+                                                } else {
+                                                    // Intermediate children, calculate offset
+                                                    offset = `${averageOffset * index}%`;
+                                                }
+                                                console.log(color);
+                                                return <stop offset={offset} stopColor={color?.color || '#00bc9b'} key={index} />;
+                                            })}
                                     </linearGradient>
                                 </defs>
                                 {/* Progress number and text  */}
                                 <g className="progress-pie-text">
                                     <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
-                                        {progressValue && progressValue}
+                                        {progressValue || 50}
                                     </text>
                                     {toggleLabel && (
                                         <text x="50%" y="50%" className="progress-pie-label">
-                                            {progressTitle && progressTitle}
+                                            {progressTitle || __('Total', 'zoloblocks')}
                                         </text>
                                     )}
                                 </g>
