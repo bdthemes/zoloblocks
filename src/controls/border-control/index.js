@@ -59,7 +59,6 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
 
     const neededProps = {
         label,
-        controlName,
         setAttributes,
         resMode,
         controlName,

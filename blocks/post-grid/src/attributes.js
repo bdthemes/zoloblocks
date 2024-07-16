@@ -126,10 +126,6 @@ const attributes = {
     titleWords: {
         type: 'number',
     },
-    showExcerpt: {
-        type: 'boolean',
-        default: false,
-    },
     excerptWords: {
         type: 'number',
         default: 15,

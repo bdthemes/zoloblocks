@@ -56,8 +56,7 @@ class GetPostsV1 {
 
 
         if (isset($data['postInclude']) && !empty($data['postInclude'])) {
-            $post_ids         = explode(',', $data['postInclude']);
-            $post_ids         = array_map('trim', $post_ids);
+            $post_ids = wp_list_pluck($data['postInclude'], 'value');
             $args['post__in'] = $post_ids;
             if ($excluded_ids != null && is_array($excluded_ids)) {
                 $args['post__in'] = array_diff($post_ids, $excluded_ids);
@@ -84,9 +83,8 @@ class GetPostsV1 {
         if (isset($data['postExclude']) || isset($data['postOffset'])) {
 
             $excluded_ids = [];
-            if ($data['postExclude']) {
-                $excluded_ids = explode(',', $data['postExclude']);
-                $excluded_ids = array_map('trim', $excluded_ids);
+            if (!empty($data['postExclude'])) {
+                $excluded_ids = wp_list_pluck($data['postExclude'], 'value');
             }
 
             $offset_posts = [];
