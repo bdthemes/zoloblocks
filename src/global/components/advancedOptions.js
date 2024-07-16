@@ -410,8 +410,8 @@ export const AdvancedOptions = (props) => {
                                         label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotate'}
                                         requiredProps={requiredProps}
-                                        min={-360}
-                                        max={360}
+                                        min={0}
+                                        max={180}
                                         noUnits={true}
                                     />
                                     <ToggleControl

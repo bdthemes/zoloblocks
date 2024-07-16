@@ -2,45 +2,49 @@
     @import url(https://fonts.googleapis.com/css?family=Montserrat:400);
 
     body {
-      font: 16px/1.4em "Montserrat", Arial, sans-serif;
+        font:
+            16px/1.4em 'Montserrat',
+            Arial,
+            sans-serif;
     }
     * {
-      -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-              box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
     }
     .progress-pie-progress {
-      transition: stroke-dasharray 1s cubic-bezier(0.15, 1.06, 0.58, 1), stroke-dashoffset 1s cubic-bezier(0.15, 1.06, 0.58, 1);
-    } 
-    
-    .progress-pie-text {
-      /*font: 16px/1.4em "Montserrat", Arial, sans-serif;*/
-      // fill: #000;
-      -moz-transform: translateY(0.25em);
-      -ms-transform: translateY(0.25em);
-      -webkit-transform: translateY(0.25em);
-      transform: translateY(0.25em);
-    }
-    
-    .progress-pie-number {
-      font-size: 0.5em;
-      font-weight: 700;
-      line-height: 1;
-      text-anchor: middle;
-      -moz-transform: translateY(-0.25em);
-      -ms-transform: translateY(-0.25em);
-      -webkit-transform: translateY(-0.25em);
-      transform: translateY(-0.25em);
-    }
-    
-    .progress-pie-label {
-      font-size: 0.2em;
-      // text-transform: uppercase;
-      text-anchor: middle;
-      -moz-transform: translateY(0.7em);
-      -ms-transform: translateY(0.7em);
-      -webkit-transform: translateY(0.7em);
-      transform: translateY(0.7em);
+        transition:
+            stroke-dasharray 1s cubic-bezier(0.15, 1.06, 0.58, 1),
+            stroke-dashoffset 1s cubic-bezier(0.15, 1.06, 0.58, 1);
     }
 
+    .progress-pie-text {
+        /*font: 16px/1.4em "Montserrat", Arial, sans-serif;*/
+        // fill: #000;
+        -moz-transform: translateY(0.25em);
+        -ms-transform: translateY(0.25em);
+        -webkit-transform: translateY(0.25em);
+        transform: translateY(0.25em);
+    }
+
+    .progress-pie-number {
+        font-size: 0.5em;
+        font-weight: 700;
+        line-height: 1;
+        text-anchor: middle;
+        -moz-transform: translateY(-0.25em);
+        -ms-transform: translateY(-0.25em);
+        -webkit-transform: translateY(-0.25em);
+        transform: translateY(-0.25em);
+    }
+
+    .progress-pie-label {
+        font-size: 0.2em;
+        // text-transform: uppercase;
+        text-anchor: middle;
+        -moz-transform: translateY(0.7em);
+        -ms-transform: translateY(0.7em);
+        -webkit-transform: translateY(0.7em);
+        transform: translateY(0.7em);
+    }
 }

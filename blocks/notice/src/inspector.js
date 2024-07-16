@@ -70,6 +70,12 @@ import {
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_HOVER_BOX_SHADOW,
     CONTENT_TAB_PANEL_OPTION,
+
+    STYLE3_ICON_BG_COLOR,
+    STYLE3_ICON_SIZE,
+    // STYLE3_ICON_RADIUS,
+    STYLE3_ICON_OFFSET,
+
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -93,7 +99,7 @@ function Inspector(props) {
         iconBackgroundColor,
         iconBackgroundHoverColor,
         textColor,
-        textHoverColor,
+        titleHoverColor,
         descColor,
         descHoverColor,
         iconType,
@@ -135,12 +141,6 @@ function Inspector(props) {
                                     setAttributes({
                                         preset: value,
                                     });
-
-                                    if (value === 'style-3') {
-                                        setAttributes({
-                                            iconType: 'image',
-                                        });
-                                    }
                                 }}
                             />
 
@@ -385,6 +385,33 @@ function Inspector(props) {
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
                             )}
+
+                           {preset === 'style-3' && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Overlay', 'zoloblocks')}</div>
+                                    <NormalBGControl
+                                        requiredProps={requiredProps}
+                                        controlName={STYLE3_ICON_BG_COLOR}
+                                        noMainBGImg={true}
+                                    />
+
+                                    <ResRangeControl
+                                        label={__('Width', 'zoloblocks')}
+                                        controlName={STYLE3_ICON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={500}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={STYLE3_ICON_OFFSET}
+                                        requiredProps={requiredProps}
+                                        min={-500}
+                                        max={500}
+                                    />
+                                </>
+                            )}
+
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props} stylePanel={true}>
@@ -394,13 +421,6 @@ function Inspector(props) {
                                     <>
                                         {enableIcon && (
                                             <>
-                                                {preset === 'style-3' && (
-                                                    <NormalBGControl
-                                                        requiredProps={requiredProps}
-                                                        controlName={ICON_WRAPPER_BG_COLOR}
-                                                        noMainBGImg={true}
-                                                    />
-                                                )}
 
                                                 {iconType === 'image' && (
                                                     <>
@@ -494,6 +514,7 @@ function Inspector(props) {
                                                     enableTransition={false}
                                                 />
                                             </>
+
                                         )}
                                     </>
                                 }
@@ -530,6 +551,21 @@ function Inspector(props) {
                                                     requiredProps={requiredProps}
                                                     enableTransition={false}
                                                 />
+
+                                                {preset === 'style-3' && (
+                                                    <>
+                                                        <div className="zolo-custom-heading">{__('HOVER', 'zoloblocks')}</div>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={titleHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    titleHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
                                             </>
                                         )}
                                     </>
@@ -558,6 +594,20 @@ function Inspector(props) {
                                                     controlName={DESCRIPTION_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
+                                                 {preset === 'style-3' && (
+                                                    <>
+                                                        <div className="zolo-custom-heading">{__('HOVER', 'zoloblocks')}</div>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={descHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    descHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
                                             </>
                                         )}
                                     </>

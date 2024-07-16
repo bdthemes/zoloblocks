@@ -37,8 +37,9 @@ export default function Edit(props) {
         progressTitle,
         toggleLabel,
         progressFillColor,
-        progressTopColor,
-        progressBottomColor,
+        progPieMultiColor,
+        progPiePrefixPostfix,
+        proPieperpostToggle,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -75,13 +76,21 @@ export default function Edit(props) {
         return () => clearTimeout();
     }, [progressValue]);
 
+    console.log('progPieMultiColor', progPieMultiColor);
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <CountUp start={0} end={progressValue} delay={0} duration={progressDuration ? progressDuration : 3} suffix="%">
+                <CountUp
+                    start={0}
+                    end={progressValue || 50}
+                    delay={0}
+                    duration={progressDuration || 3}
+                    prefix={proPieperpostToggle && progPiePrefixPostfix?.Prefix ? progPiePrefixPostfix?.Prefix : '$'}
+                    suffix={proPieperpostToggle && progPiePrefixPostfix?.Postfix ? progPiePrefixPostfix?.Postfix : '%'}
+                >
                     {({ countUpRef }) => (
                         <>
                             <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">
@@ -116,25 +125,36 @@ export default function Edit(props) {
                                     stroke-dasharray="0 100"
                                     stroke-dashoffset="25"
                                 ></circle>
-
-                                {/* optional for gradient color  */}
-                                {(progressTopColor || progressBottomColor) && (
-                                    <defs>
-                                        <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color={progressTopColor ? progressTopColor : '#00bc9b'} />
-                                            <stop offset="100%" stop-color={progressBottomColor ? progressBottomColor : '#5eaefd'} />
-                                        </linearGradient>
-                                    </defs>
-                                )}
-
+                                <defs>
+                                    <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                        {progPieMultiColor &&
+                                            progPieMultiColor.map((color, index) => {
+                                                const averageOffset = 100 / (progPieMultiColor.length - 1);
+                                                let offset;
+                                                if (index === 0) {
+                                                    // First child, offset is 0%
+                                                    offset = '0%';
+                                                } else if (index === progPieMultiColor.length - 1) {
+                                                    // Last child, offset is 100%
+                                                    offset = '100%';
+                                                } else {
+                                                    // Intermediate children, calculate offset
+                                                    offset = `${averageOffset * index}%`;
+                                                }
+                                                return (
+                                                    <stop offset={offset} stopColor={color.color ? color.color : '#00bc9b'} key={index} />
+                                                );
+                                            })}
+                                    </linearGradient>
+                                </defs>
                                 {/* Progress number and text  */}
                                 <g className="progress-pie-text">
                                     <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
-                                        {progressValue && progressValue}
+                                        {progressValue || 50}
                                     </text>
                                     {toggleLabel && (
                                         <text x="50%" y="50%" className="progress-pie-label">
-                                            {progressTitle && progressTitle}
+                                            {progressTitle || __('Total', 'zoloblocks')}
                                         </text>
                                     )}
                                 </g>

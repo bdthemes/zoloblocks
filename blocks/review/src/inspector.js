@@ -41,6 +41,7 @@ const {
 
 import objAttributes from './attributes';
 import {
+    STYLE_PRESETS,
     PRESETS,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
@@ -67,6 +68,13 @@ import {
     DPL_MARGIN,
     DPL_ICON_SIZE,
     CONTENT_GAP,
+
+    RW_BACKGROUND,
+    RW_BORDER,
+    RW_BORDER_RADIUS,
+    RW_BOX_SHADOW,
+    RW_MARGIN,
+    RW_PADDING,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -78,6 +86,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
+        stylePreset,
         preset,
         showPhoto,
         memberPhoto,
@@ -92,6 +101,7 @@ function Inspector(props) {
         showRating,
         rating,
         nameColor,
+        separatorColor,
         designationColor,
         testimonialMessageColor,
         activeRatingColor,
@@ -118,12 +128,29 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Layout Direction', 'zoloblocks')}
-                                value={preset}
-                                onChange={(selected) => setAttributes({ preset: selected })}
-                                options={applyFilters('zolo.review.presets', PRESETS)}
+                          <SelectControl
+                                label={__('Style', 'zoloblocks')}
+                                value={stylePreset}
+                                options={applyFilters('zolo.pricingTable.presets', STYLE_PRESETS)}
+                                onChange={(stylePreset) => {
+                                    setAttributes({ stylePreset });
+
+                                    if (stylePreset === 'style-preset-2') {
+                                        setAttributes({
+                                            sale: true,
+                                        });
+                                    }
+                                }}
                             />
+                            {stylePreset !== 'style-preset-2' && (
+                                <IconicBtnGroup
+                                    label={__('Layout Direction', 'zoloblocks')}
+                                    value={preset}
+                                    onChange={(selected) => setAttributes({ preset: selected })}
+                                    options={applyFilters('zolo.review.presets', PRESETS)}
+                                />
+                            )}
+
                             <ToggleControl
                                 label={__('Show Photo', 'zoloblocks')}
                                 checked={showPhoto}
@@ -161,7 +188,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Testimonial', 'zoloblocks')}
+                                label={__('Show Review Text', 'zoloblocks')}
                                 checked={showTestimonialMessage}
                                 onChange={() =>
                                     setAttributes({
@@ -269,14 +296,14 @@ function Inspector(props) {
                             )}
                             {showTestimonialMessage && (
                                 <TextareaControl
-                                    label={__('Testimonial', 'zoloblocks')}
+                                    label={__('Review Text', 'zoloblocks')}
                                     value={testimonialMessage}
                                     onChange={(bio) =>
                                         setAttributes({
                                             testimonialMessage: bio,
                                         })
                                     }
-                                    placeholder={__('Testimonial..', 'zoloblocks')}
+                                    placeholder={__('Review Text..', 'zoloblocks')}
                                 />
                             )}
                             {showRating && (
@@ -311,35 +338,62 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ResAlignmentControl
-                                label={__('Content Alignment', 'zoloblocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={CONTENT_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={CONTENT_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BACKGROUND} noMainBGImg={true} />
-                        </ZoloPanelBody>
+                       {stylePreset === 'style-preset-2' && (
+                            <ZoloPanelBody title={__('Review Warpper', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={RW_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={RW_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={RW_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={RW_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <BoxShadowControl controlName={RW_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <NormalBGControl requiredProps={requiredProps} controlName={RW_BACKGROUND} noMainBGImg={true} />
+                            </ZoloPanelBody>
+                        )}
+                        {stylePreset !== 'style-preset-2' && (
+                            <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <ResAlignmentControl
+                                    label={__('Content Alignment', 'zoloblocks')}
+                                    controlName={CONTENT_ALIGNMENT}
+                                    requiredProps={requiredProps}
+                                    alignOptions={DEFAULT_ALIGNS}
+                                />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={CONTENT_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={CONTENT_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={CONTENT_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BACKGROUND} noMainBGImg={true} />
+                            </ZoloPanelBody>
+                        )}
                         {showPhoto && (
                             <ZoloPanelBody title={__('Photo', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
@@ -414,6 +468,17 @@ function Inspector(props) {
                                     controlName={REVIEWER_NAME_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+
+                             <div className="zolo-custom-heading">{__('Separator Color', 'zoloblocks')}</div>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={separatorColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            separatorColor: color,
+                                        })
+                                    }
+                                />
                             </ZoloPanelBody>
                         )}
 
@@ -442,7 +507,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {showTestimonialMessage && (
-                            <ZoloPanelBody title={__('Testimonial', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Review Text', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={REVIEWER_MESSAGE_TYPOGRAPHY}
@@ -527,27 +592,33 @@ function Inspector(props) {
                                 label={__('Icon Size', 'zoloblocks')}
                                 controlName={DPL_ICON_SIZE}
                                 requiredProps={requiredProps}
+                                min={0}
+                                max={200}
                             />
                             <CardDivider />
-
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={DPL_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={DPL_PADDING}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={DPL_MARGIN}
-                                requiredProps={requiredProps}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_BG} noMainBGImg={true} />
+                            
+                            {stylePreset !== 'style-preset-2' && (
+                                <>
+                                    <BorderControl label={__('Border', 'zoloblocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={DPL_BORDER_RADIUS}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={DPL_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zoloblocks')}
+                                        controlName={DPL_MARGIN}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <NormalBGControl requiredProps={requiredProps} controlName={DPL_BG} noMainBGImg={true} />
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }
