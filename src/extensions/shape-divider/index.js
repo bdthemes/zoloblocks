@@ -3,53 +3,38 @@ import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
 import { SelectControl, ToggleControl } from '@wordpress/components';
 import objAttributes from './attributes';
-import  './style.scss';
-import RenderBefore from './renderBefore';
-import RenderAfter from './renderAfter';
+import './style.scss';
+import Render from './render';
+import Style from './style.js';
 const {
-    ResRangeControl,
     ColorControl,
     ResDimensionsControl,
-    TextShadowControl,
-    TextStrokeControl,
-    TypographyDropdown,
     TabPanelControl,
-    ZoloIconPicker,
-    BoxShadowControl,
-    HeaderTabs,
-    IconicBtnGroup,
-    LinkControl,
-    NormalBGControl,
-    ImageAvatar,
-    ResAlignmentControl,
-    AdvancedOptions,
     ZoloPanelBody,
-    ImageSizes,
-    RangeResetControl,
 } = window.zoloModule;
 import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 const ShapeDivider = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-        const {
-            resMode,
+    const {
+        resMode,
 
-            // settings
-            topType,
-            topColor,
-            topInvert,
-            bottomType,
-            bottomColor,
-            bottomInvert,
-            bringFront,
-        } = attributes;
+        // settings
+        topType,
+        topColor,
+        topInvert,
+        bottomType,
+        bottomColor,
+        bottomInvert,
+        bringFront,
+    } = attributes;
 
-            const requiredProps = {
-                resMode,
-                attributes,
-                setAttributes,
-                objAttributes,
-            };
+    const requiredProps = {
+        resMode,
+        attributes,
+        setAttributes,
+        objAttributes,
+    };
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <ToggleControl
@@ -483,11 +468,20 @@ addFilter('zolo.blocks.styleTab.shapeDivider', 'zolo/shape-divider', (panels, pa
 
 
 addFilter('zolo.blocks.render.shapeDivider.before', 'zolo/shape-divider', (panels, panelProps) => {
-    panels.push(<RenderBefore panelProps={panelProps} />);
+    const {Top} = Render(panelProps);
+    panels.push(<Top />);
     return panels;
 });
 
 addFilter('zolo.blocks.render.shapeDivider.after', 'zolo/shape-divider', (panels, panelProps) => {
-    panels.push(<RenderAfter panelProps={panelProps} />);
+    const {Bottom } = Render(panelProps);
+    panels.push(<Bottom />);
     return panels;
+});
+
+
+
+addFilter('zolo.container.desktopAllStyle', 'zolo/shape-divider', (desktopAllStyle, props) => {
+    const {shapeDividerDesktop} = Style(props);
+    return desktopAllStyle + shapeDividerDesktop;
 });

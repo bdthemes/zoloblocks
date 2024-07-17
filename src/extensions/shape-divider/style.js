@@ -2,22 +2,14 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks';
+
 
 /**
  * Internal depencencies
  */
 const {
-    generateResAlignmentStyle,
-    generateNormalBGControlStyles,
-    generateResRangeStyle,
-    generateBorderStyle,
     generateDimensionStyle,
-    generateTypographyStyles,
-    generateBoxShadowStyles,
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
-    GlobalStyleHanlder,
+
 } = window.zoloModule;
 
 import {
@@ -28,17 +20,10 @@ import {
     BOTTOM_HEIGHT_SHAPE
 } from './constants';
 
-export default function Style({ props }) {
+
+const Style = (props) => {
     const { attributes, setAttributes } = props;
-
-    const {
-        uniqueId,
-
-        // settings
-        topType,
-        topColor,
-        bottomColor,
-    } = attributes;
+    const { topType, topColor, bottomColor, uniqueId } = attributes;
 
     // settings
 
@@ -81,10 +66,7 @@ export default function Style({ props }) {
         styleFor: 'height',
         attributes,
     });
-
-    // All Icon Style
-
-    const desktopAllStyle = `
+    const shapeDividerDesktop = `
         .${uniqueId} .zolo-shape-top svg {
             fill :${topColor};
             ${topHeightDesk}
@@ -96,7 +78,7 @@ export default function Style({ props }) {
             ${bottomWidthDesk}
         }
     `;
-    const tabletAllStyle = `
+    const shapeDividerTablet = `
         .${uniqueId} .zolo-shape-top svg {
             fill :${topColor};
             ${topHeightTab}
@@ -108,7 +90,7 @@ export default function Style({ props }) {
             ${bottomWidthTab}
         }
     `;
-    const mobileAllStyle = `
+    const shapeDividerMobile = `
         .${uniqueId} .zolo-shape-top svg {
             fill :${topColor};
             ${topHeightMob}
@@ -120,16 +102,10 @@ export default function Style({ props }) {
             ${bottomWidthMob}
         }
     `;
-
-    return (
-        <>
-            <GlobalStyleHanlder
-                attributes={attributes}
-                setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.shapeDivider.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.shapeDivider.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.shapeDivider.mobileAllStyle', mobileAllStyle, props)}
-            />
-        </>
-    );
+    return {
+        shapeDividerDesktop,
+        shapeDividerTablet,
+        shapeDividerMobile,
+    };
 }
+export default Style
