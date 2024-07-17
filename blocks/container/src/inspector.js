@@ -55,7 +55,7 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-        const animationPanels = applyFilters('zolo.blocks.styleTab.shapeDivider', [], panelProps);
+        const animationPanels = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
     const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';

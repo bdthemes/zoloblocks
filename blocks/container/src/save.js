@@ -6,8 +6,8 @@ import { applyFilters } from '@wordpress/hooks';
 const Save = ({ attributes }) => {
     const panelProps = { attributes };
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId } = attributes;
-        const hapeDividerBefore = applyFilters('zolo.blocks.render.shapeDivider.before', [], panelProps);
-        const hapeDividerAfter = applyFilters('zolo.blocks.render.shapeDivider.after', [], panelProps);
+        const hapeDividerBefore = applyFilters('zolo.extensions.render.shapeDivider.top', [], panelProps);
+        const hapeDividerAfter = applyFilters('zolo.extensions.render.shapeDivider.bottom', [], panelProps);
 
     return (
         <div
