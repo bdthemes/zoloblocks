@@ -437,3 +437,39 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
 .components-dropdown.block-editor-inserter {
     display: inline;
 }
+
+//temporary
+
+.zolo-shape svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.zolo-shape {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    direction: ltr;
+}
+
+.zolo-shape-top {
+    top: -1px;
+}
+
+.zolo-shape-bottom {
+    bottom: -1px;
+}
+
+.zolo-shape-bottom {
+    transform: rotate(180deg);
+}
+
+.zolo-shape .zolo-shape-fill {
+    transform-origin: center;
+    transform: rotateY(0deg);
+}
