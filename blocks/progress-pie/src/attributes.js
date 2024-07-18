@@ -55,7 +55,7 @@ const attributes = {
     },
     toggleLabel: {
         type: 'boolean',
-        default: true,
+        // default: true,
     },
 
     progressSize: {
@@ -70,13 +70,13 @@ const attributes = {
     progPiePrefixPostfix: {
         type: 'object',
         default: {
-            Prefix: '$',
-            Postfix: '%',
+            Prefix: '',
+            Postfix: '',
         },
     },
     proPieperpostToggle: {
         type: 'boolean',
-        default: true,
+        // default: true,
     },
     //progress multi color
     progPieMultiColor: {

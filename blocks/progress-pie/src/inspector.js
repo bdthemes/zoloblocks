@@ -101,16 +101,16 @@ function Inspector(props) {
                             />
                             <ToggleControl
                                 label={__('Enable Title', 'zoloblocks')}
-                                checked={toggleLabel}
-                                onChange={() => setAttributes({ toggleLabel: !toggleLabel })}
+                                checked={toggleLabel === undefined ? true : toggleLabel}
+                                onChange={(v) => setAttributes({ toggleLabel: v })}
                             />
                             <ToggleControl
                                 label={__('Enable Prefix & Postfix', 'zoloblocks')}
-                                checked={proPieperpostToggle}
-                                onChange={() => setAttributes({ proPieperpostToggle: !proPieperpostToggle })}
+                                checked={proPieperpostToggle === undefined ? true : proPieperpostToggle}
+                                onChange={(v) => setAttributes({ proPieperpostToggle: v })}
                             />
                         </ZoloPanelBody>
-                        {proPieperpostToggle && (
+                        {(proPieperpostToggle == undefined || true) && (
                             <ZoloPanelBody title={__('Prefix & PostFix', 'zoloblocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Prefix', 'zoloblocks')}
@@ -124,7 +124,7 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        {toggleLabel && (
+                        {(toggleLabel == undefined || true) && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Title', 'zoloblocks')}

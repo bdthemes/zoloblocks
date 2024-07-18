@@ -21,7 +21,6 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
-import MultiColor from './multicolor';
 
 /**
  * Edit Function
@@ -87,8 +86,8 @@ export default function Edit(props) {
                     end={progressValue || 50}
                     delay={0}
                     duration={progressDuration || 3}
-                    prefix={proPieperpostToggle ? progPiePrefixPostfix?.Prefix : ''}
-                    suffix={proPieperpostToggle ? progPiePrefixPostfix?.Postfix : ''}
+                    prefix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Prefix || '$' : ''}
+                    suffix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Postfix || '%' : ''}
                 >
                     {({ countUpRef }) => (
                         <>
@@ -150,7 +149,7 @@ export default function Edit(props) {
                                     <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
                                         {progressValue || 50}
                                     </text>
-                                    {toggleLabel && (
+                                    {(toggleLabel == undefined || toggleLabel) && (
                                         <text x="50%" y="50%" className="progress-pie-label">
                                             {progressTitle || __('Total', 'zoloblocks')}
                                         </text>

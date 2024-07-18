@@ -38,10 +38,10 @@ const Save = ({ attributes }) => {
             })}
             // data-progressTitle={progressTitle}
             {...(progressTitle && {
-                'data-progressvalue': progressTitle,
+                'data-progresstitle': progressTitle,
             })}
             // data-toggleLabel={toggleLabel}
-            {...(progressTitle && {
+            {...(toggleLabel && {
                 'data-toggleLabel': toggleLabel,
             })}
             // data-progressFillColor={progressFillColor}
@@ -52,15 +52,10 @@ const Save = ({ attributes }) => {
             {...(circleColor && {
                 'data-circleColor': circleColor,
             })}
-            // data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
-            {...(progPieMultiColor && {
-                'data-progpiemulticolor': JSON.stringify(progPieMultiColor),
-            })}
-            // data-propieprefixpostfix={JSON.stringify(progPiePrefixPostfix)}
+            data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
             {...(progPiePrefixPostfix && {
                 'data-propieprefixpostfix': JSON.stringify(progPiePrefixPostfix),
             })}
-            // data-propieperposttoggle={proPieperpostToggle}
             {...(proPieperpostToggle && {
                 'data-propieperposttoggle': proPieperpostToggle,
             })}

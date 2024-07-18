@@ -1,17 +1,19 @@
-import { render, useRef, useEffect } from '@wordpress/element';
+import { createRoot, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const progress = document.querySelectorAll('.wp-block-zolo-progress-pie');
-
+    let toggleLabel;
     if (progress.length > 0) {
         progress.forEach((item) => {
             const progressValue = Number(item.dataset.progressvalue);
             const progressDuration = Number(item.dataset.progressduration);
             const circleColor = item.dataset.circlecolor;
             const progressFillColor = item.dataset.progressfillcolor;
-            const toggleLabel = item.dataset.togglelabel === 'true' ? true : false;
+
+            toggleLabel = item.dataset.togglelabel === 'true' ? true : false;
+
             const progressTitle = item.dataset.progresstitle;
             const progPieMultiColor = JSON.parse(item.dataset.progpiemulticolor);
             const progPiePrefixPostfix = JSON.parse(item.dataset.propieprefixpostfix);
@@ -32,15 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     return () => clearTimeout();
                 }, [progressValue]);
-
+                console.log(toggleLabel);
                 return (
                     <CountUp
                         start={0}
                         end={progressValue || 50}
                         delay={0}
                         duration={progressDuration || 3}
-                        prefix={proPieperpostToggle ? progPiePrefixPostfix?.Prefix : ''}
-                        suffix={proPieperpostToggle ? progPiePrefixPostfix?.Postfix : ''}
+                        // prefix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Prefix || '$' : ''}
+                        // suffix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Postfix || '%' : ''}
                     >
                         {({ countUpRef }) => (
                             <>
@@ -97,6 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
                                             {progressValue || 50}
                                         </text>
+                                        {/* {(toggleLabel === undefined || toggleLabel) && (
+                                            <text x="50%" y="50%" className="progress-pie-label">
+                                                {progressTitle || __('Total', 'zoloblocks')}
+                                            </text>
+                                        )} */}
                                         {toggleLabel && (
                                             <text x="50%" y="50%" className="progress-pie-label">
                                                 {progressTitle || __('Total', 'zoloblocks')}
@@ -109,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </CountUp>
                 );
             };
-
-            render(
+            const root = createRoot(item);
+            root.render(
                 <CountupComponent
                     progressValue={progressValue}
                     circleColor={circleColor}
@@ -118,8 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     toggleLabel={toggleLabel}
                     progressTitle={progressTitle}
                     progressDuration={progressDuration}
-                />,
-                item
+                />
             );
         });
     }
