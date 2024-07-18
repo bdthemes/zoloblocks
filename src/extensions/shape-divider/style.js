@@ -67,36 +67,36 @@ const Style = (props) => {
         attributes,
     });
     const shapeDividerDesktop = `
-        .${uniqueId} .zolo-shape-top svg {
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg {
             fill :${topColor};
             ${topHeightDesk}
             ${topWidthDesk}
         }
-        .${uniqueId} .zolo-shape-bottom svg {
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
             fill: ${bottomColor};
             ${bottomHeightDesk}
             ${bottomWidthDesk}
         }
     `;
     const shapeDividerTablet = `
-        .${uniqueId} .zolo-shape-top svg {
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg {
             fill :${topColor};
             ${topHeightTab}
             ${topWidthTab}
         }
-        .${uniqueId} .zolo-shape-bottom svg {
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
             fill: ${bottomColor};
             ${bottomHeightTab}
             ${bottomWidthTab}
         }
     `;
     const shapeDividerMobile = `
-        .${uniqueId} .zolo-shape-top svg {
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg {
             fill :${topColor};
             ${topHeightMob}
             ${topWidthMob}
         }
-        .${uniqueId} .zolo-shape-bottom svg {
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
             fill: ${bottomColor};
             ${bottomHeightMob}
             ${bottomWidthMob}
