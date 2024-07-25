@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     return () => clearTimeout();
                 }, [progressValue]);
-                console.log(proPieperpostToggle);
+
                 return (
                     <CountUp
                         start={0}
