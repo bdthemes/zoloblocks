@@ -3,58 +3,23 @@ import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const {
-        uniqueId,
-        parentClasses,
-        zoloId,
-        progressValue,
-        progressDuration,
-        progressTitle,
-        toggleLabel,
-        progressFillColor,
-        circleColor,
-        progPieMultiColor,
-        progPiePrefixPostfix,
-        proPieperpostToggle,
-    } = attributes;
+    const { uniqueId, parentClasses, zoloId, progressPie, progPieMultiColor } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    const options = {
+        progressPie,
+        progPieMultiColor,
+    };
     return (
         <div
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
             })}
-            {...(progressValue && {
-                'data-progressvalue': progressValue,
-            })}
-            {...(progressDuration && {
-                'data-progressDuration': progressDuration,
-            })}
-            {...(progressTitle && {
-                'data-progresstitle': progressTitle,
-            })}
-            {...(toggleLabel !== undefined && {
-                'data-toggleLabel': toggleLabel,
-
-            })}
-            {...(progressFillColor && {
-                'data-progressFillColor': progressFillColor,
-            })}
-            {...(circleColor && {
-                'data-circleColor': circleColor,
-            })}
-            data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
-            {...(progPiePrefixPostfix &&
-                (progPiePrefixPostfix?.Prefix !== '' || progPiePrefixPostfix?.Postfix !== '') && {
-                    'data-propieprefixpostfix': JSON.stringify(progPiePrefixPostfix),
-                })}
-            {...(proPieperpostToggle !== undefined && {
-                'data-propieperposttoggle': proPieperpostToggle,
-            })}
+            data-settings={JSON.stringify(options)}
         ></div>
     );
 };

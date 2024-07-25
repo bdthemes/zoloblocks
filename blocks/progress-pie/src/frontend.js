@@ -7,27 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (progress.length > 0) {
         progress.forEach((item) => {
-            const progressValue = Number(item.dataset?.progressvalue);
-            const progressDuration = Number(item.dataset?.progressduration);
-            const circleColor = item.dataset?.circlecolor;
-            const progressFillColor = item.dataset?.progressfillcolor;
-            const toggleLabel = item.dataset?.togglelabel === 'true' || item.dataset?.togglelabel === undefined ? true : false;
-            const progressTitle = item.dataset.progresstitle;
-            const progPieMultiColor = JSON.parse(item.dataset?.progpiemulticolor);
-            const progPiePrefixPostfix = JSON.parse(item.dataset?.propieprefixpostfix || '{}');
-            const prefix = progPiePrefixPostfix?.Prefix || '$';
-            const suffix = progPiePrefixPostfix?.Postfix || '%';
+            const settings = JSON.parse(item.dataset?.settings);
+            const { progPieMultiColor, progressPie } = settings;
+            const {
+                value,
+                duration,
+                title,
+                toggleLabel,
+                size,
+                round,
+                prefix,
+                suffix,
+                proPieperpostToggle,
+                fillColor,
+                fillSize,
+                numberColor,
+                titleColor,
+                circleColor,
+            } = progressPie;
 
-            const proPieperpostToggle =
-                item.dataset?.propieperposttoggle === 'true' || item.dataset?.propieperposttoggle === undefined ? true : false;
-
-
-            const CountupComponent = ({ progressValue, progressDuration, progressFillColor, toggleLabel, progressTitle }) => {
+            const CountupComponent = ({ value, duration, fillColor, toggleLabel, title }) => {
                 const progress = useRef(null);
                 const uniqueId = Array.from(item.classList).find((className) => className.startsWith('progress-'));
                 useEffect(() => {
                     const progressPie = progress.current;
-                    const progressVal = progressValue || 50;
+                    const progressVal = value || 50;
 
                     startAnim();
                     function startAnim() {
@@ -36,16 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, 20);
                     }
                     return () => clearTimeout();
-                }, [progressValue]);
+                }, [value]);
 
                 return (
                     <CountUp
                         start={0}
-                        end={progressValue || 50}
+                        end={value || 50}
                         delay={0}
-                        duration={progressDuration || 3}
-                        prefix={proPieperpostToggle ? prefix : ''}
-                        suffix={proPieperpostToggle ? suffix : ''}
+                        duration={duration || 3}
+                        prefix={prefix !== '' ? prefix : ''}
+                        suffix={prefix !== '' ? suffix : ''}
                     >
                         {({ countUpRef }) => (
                             <>
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         cy="21"
                                         r="15.91549430918954"
                                         fill="transparent"
-                                        stroke={progressFillColor ? progressFillColor : '#e5e5e5'}
+                                        stroke={fillColor ? fillColor : '#e5e5e5'}
                                         stroke-dasharray="100 0"
                                         stroke-dashoffset="25"
                                     ></circle>
@@ -100,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     {/* Progress number and text  */}
                                     <g className="progress-pie-text">
                                         <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
-                                            {progressValue || 50}
+                                            {value || 50}
                                         </text>
                                         {toggleLabel && (
                                             <text x="50%" y="50%" className="progress-pie-label">
-                                                {progressTitle || __('Total', 'zoloblocks')}
+                                                {title || __('Total', 'zoloblocks')}
                                             </text>
                                         )}
                                     </g>
@@ -117,12 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const root = createRoot(item);
             root.render(
                 <CountupComponent
-                    progressValue={progressValue}
+                    progressValue={value}
                     circleColor={circleColor}
-                    progressFillColor={progressFillColor}
+                    fillColor={fillColor}
                     toggleLabel={toggleLabel}
-                    progressTitle={progressTitle}
-                    progressDuration={progressDuration}
+                    progressTitle={title}
+                    progressDuration={duration}
                 />
             );
         });
