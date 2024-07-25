@@ -7,8 +7,9 @@ const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
-  
+
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
+    const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
     const hasChildren = 0 !== select('core/block-editor').getBlocks(clientId).length;
