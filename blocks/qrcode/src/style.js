@@ -9,12 +9,8 @@ import { applyFilters } from '@wordpress/hooks';
  */
 const {
     generateResAlignmentStyle,
-    generateNormalBGControlStyles,
-    generateResRangeStyle,
     generateBorderStyle,
     generateDimensionStyle,
-    generateTypographyStyles,
-    generateTextShadowStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
@@ -60,15 +56,13 @@ export default function Style({ props }) {
 
     const desktopAllStyle = `
         .${uniqueId} .zolo-qrcode-wrapper {
-            ${qrCodeAlignDesk}
+            ${qrCodeAlignDesk !== '' ? qrCodeAlignDesk : 'text-align: center;'}
         }
 
         .${uniqueId} .zolo-qrcode-wrapper canvas{
             ${qrCodeBorderRadiusDesk}
-        }
-        
-        .${uniqueId} .zolo-qrcode-wrapper canvas{
             ${qrCodeBorderDesk}
+
         }
     `;
 
@@ -79,6 +73,7 @@ export default function Style({ props }) {
 
         .${uniqueId} .zolo-qrcode-wrapper canvas{
             ${qrCodeBorderRadiusTab}
+              ${qrCodeBorderTab}
         }
     `;
 
@@ -89,6 +84,7 @@ export default function Style({ props }) {
 
         .${uniqueId} .zolo-qrcode-wrapper canvas{
             ${qrCodeBorderRadiusMob}
+              ${qrCodeBorderMob}
         }
     `;
 
@@ -97,9 +93,9 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.couponBlock.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.couponBlock.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.couponBlock.mobileAllStyle', mobileAllStyle, props)}
+                desktopAllStyle={applyFilters('zolo.qrCode.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.qrCode.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.qrCode.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

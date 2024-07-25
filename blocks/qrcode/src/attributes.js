@@ -1,14 +1,4 @@
-const {
-    generateResAlignmentAttributies,
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateTypographyAttributes,
-    generateBoxShadowAttributies,
-    generateTextShadowAttributies,
-    generateTextStrokeAttributies,
-    generateNormalBGAttributes,
-} = window.zoloModule;
+const { generateResAlignmentAttributies, generateBorderAttributies, generateDimensionAttributes } = window.zoloModule;
 
 import { QR_CODE_ALIGN, QR_CODE_BORDER_RADIUS, QR_CODE_PADDING, QR_CODE_BORDER } from './constants/index';
 
@@ -48,7 +38,7 @@ const attributes = {
     },
     qrCodeStyle: {
         type: 'string',
-        default: '',
+        deafult: '#000',
     },
     logoQr: {
         type: 'object',
@@ -58,10 +48,9 @@ const attributes = {
         default: false,
     },
 
-    ...generateResAlignmentAttributies(QR_CODE_ALIGN),
-
     codeColor: {
         type: 'string',
+        default: '#000',
     },
     backgroundColor: {
         type: 'string',
@@ -70,10 +59,6 @@ const attributes = {
         type: 'number',
         default: '',
     },
-
-    ...generateBorderAttributies(QR_CODE_BORDER),
-    ...generateDimensionAttributes(QR_CODE_BORDER_RADIUS),
-
     qrCodeLevel: {
         type: 'string',
         default: '',
@@ -105,12 +90,15 @@ const attributes = {
     },
     eyeColor: {
         type: 'string',
-        default: '',
+        default: '#000',
     },
     eyeRadius: {
         type: 'string',
         default: 0,
     },
+    ...generateBorderAttributies(QR_CODE_BORDER),
+    ...generateDimensionAttributes(QR_CODE_BORDER_RADIUS),
+    ...generateResAlignmentAttributies(QR_CODE_ALIGN),
 };
 
 export default attributes;
