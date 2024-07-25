@@ -102,6 +102,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'qrcode' => [
+        'name'             => 'qrcode',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/qrcode/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-qrcode-frontend']
+    ],
     'review' => [
         'name'             => 'review',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/review/block.json',

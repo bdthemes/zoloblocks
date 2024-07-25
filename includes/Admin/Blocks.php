@@ -203,5 +203,10 @@ return apply_filters(
             'categories' => ['others'],
             'status'     => true,
         ],
+        [
+            'name'       => 'zolo_qrcode',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
     ]
 );
