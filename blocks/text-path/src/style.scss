@@ -1,0 +1,19 @@
+:root {
+    --width: 500px;
+}
+
+.wp-block-zolo-text-path {
+    svg {
+        width: var(--width);
+        max-width: 100%;
+        height: auto;
+        overflow: visible;
+        transform: rotate(5deg);
+        path {
+            fill: transparent;
+        }
+    }
+    a.zolo-textpath {
+        text-decoration: none;
+    }
+}

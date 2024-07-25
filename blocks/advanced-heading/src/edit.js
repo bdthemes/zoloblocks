@@ -31,6 +31,7 @@ const Edit = (props) => {
         transparentTag,
         transparentTitleText,
         transparentTitleRotateOrigin,
+        zolo_titleFontWeight,
     } = attributes;
 
     //block wrapper class
@@ -95,7 +96,7 @@ const Edit = (props) => {
                     </DynamicTag>
                     {showSubTitle && subTitlePosition == 'bottom' && (
                         <RichText
-                            tagName={'h4'}
+                            tagName={subTitleTag}
                             className="zolo-ah-subtitle"
                             value={subTitleText}
                             formattingControl={['bold', 'italic']}

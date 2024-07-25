@@ -113,6 +113,7 @@
   background-color: #fff;
   left: 9px;
   padding: 0 6px;
+  border-radius: 6px;
 }
 
 /* search form style 3 */
@@ -123,12 +124,13 @@
   pointer-events: none;
   font-weight: 400;
   transition: all 0.2s ease-in-out;
-
 }
 
-.zolo-search-2 .zolo-form-input:focus + .zolo-form-label {
+.zolo-search-2 .zolo-form-input:focus ~ .zolo-form-label,
+.zolo-search-2 .zolo-form-input:not(:placeholder-shown).zolo-form-input:not(:focus) ~ .zolo-form-label {
   font-weight: 500;
   top: 0;
+  background-color: #fff;
 }
 
 .zolo-search-2 .zolo-form-input::placeholder {

@@ -1,3 +1,70 @@
+### 1.2.0 [July 25, 2024]
+
+### Added
+
+- QR Code block added
+- Shape Divider Added to Container Block
+
+### Fixed
+
+- Transform issue fixed
+- Hover color issue fixed in Icon block
+- CLS issue fixed in Slider block and Post Carousel block
+- Subtitle Heading Tag issue fixed in Advanced Heading block
+
+
+### Improved
+
+- Blocks scripts default values are improved
+
+
+### 1.1.0 [July 10, 2024]
+
+### Added
+
+- Icon block added
+- Notice block added
+- Text path block added
+- Popup builder added
+- zIndex nagative value added
+- Theme fonts support added
+- position sticky feature added
+- Box Shadow control added in Flipbox block
+
+### Fixed
+
+- Entrance animation confilict with global link issue fixed in Advanced Icon Box
+- The map zoom in/out and draggble issue fixed in Google Map block
+- Floating label issue fixed in advanced search & newslatter block
+- Patterns save as favorite features added in Template Library
+- Image Uploading issue fixed in Advanced Image block
+- Separator color issue fixed in team grid block
+- Label issue fixed in Form block
+
+###Improved
+
+- Transform Rotate reset control added in Transform features
+- Dynamic CSS Generation optimized
+- Template Library UI improved
+
+## 1.0.7 [June 13, 2024]
+
+### Added
+
+- progress pie block added
+- template library feature added
+- buttom spacing control added in Newsletter block
+
+### Fixed
+
+- extra panel styling options not working issue fixed in the Social Share and Social Links block
+- container border issue fixed
+- alt text missing issue fixed in advanced image block
+
+### Improved
+
+- Default style improved in Advanced Search block
+
 ## 1.0.6 [June 08, 2024]
 
 ### Added

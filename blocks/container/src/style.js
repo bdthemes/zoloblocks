@@ -28,7 +28,7 @@ const Style = ({ props }) => {
         mobRangeStyle: contentMobWidth,
     } = generateResRangeStyle({
         controlName: CONTENT_WIDTH,
-        property: 'max-width',
+        property: '--zolo-container-content-width',
         attributes,
     });
 
@@ -39,7 +39,7 @@ const Style = ({ props }) => {
         mobRangeStyle: containerMobWidth,
     } = generateResRangeStyle({
         controlName: CONTAINER_WIDTH,
-        property: 'max-width',
+        property: 'width',
         attributes,
     });
 
@@ -121,8 +121,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+        .${uniqueId} {
             ${contentDeskWidth}
         }
 
@@ -138,7 +137,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerDeskWidth}
-            width: 100%;
+           
         }
 
         .${uniqueId} {
@@ -156,8 +155,7 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
-        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+        .${uniqueId} {
             ${contentTabWidth}
         }
 
@@ -173,7 +171,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerTabWidth}
-            width: 100%;
+           
         }
 
         .${uniqueId} {
@@ -191,8 +189,7 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+        .${uniqueId} {
             ${contentMobWidth}
         }
 
@@ -208,7 +205,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerMobWidth}
-            width: 100%;
+           
         }
 
         .${uniqueId} {
@@ -217,7 +214,7 @@ const Style = ({ props }) => {
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
-            ${containerMobGap}  
+            ${containerMobGap}
             ${flexDirectionMob}
             ${flexWrapMob}
             ${flexJustifyMob}

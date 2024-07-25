@@ -34,6 +34,7 @@ SUBSCRIBED_MSG_BG,
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
   LABEL_SPACING,
+  LABEL_BOTTOM_SPACING,
   LABEL_BG,
   INPUT_BORDER,
   INPUT_BORDER_RADIUS,
@@ -41,6 +42,9 @@ SUBSCRIBED_MSG_BG,
   INPUT_BG,
   LABEL_HOVER_BG_COLOR,
   FOCUS_BORDER_WIDTH,
+  FOCUS_STYLE_5_BORDER_WIDTH,
+  FIELD_ICON_SIZE,
+FIELD_ICON_SPACING,
 } from "./constants";
 
 import * as typographyObjs from "./constants/typoPrefixConstant";
@@ -107,7 +111,11 @@ const attributes = {
     ...generateResRangeAttributies(BUTTON_SIZE),
     ...generateResRangeAttributies(BUTTON_SPACING),
     ...generateResRangeAttributies(LABEL_SPACING),
+    ...generateResRangeAttributies(LABEL_BOTTOM_SPACING),
     ...generateResRangeAttributies(FOCUS_BORDER_WIDTH),
+    ...generateResRangeAttributies(FOCUS_STYLE_5_BORDER_WIDTH),
+    ...generateResRangeAttributies(FIELD_ICON_SIZE),
+    ...generateResRangeAttributies(FIELD_ICON_SPACING),
 
     // presets
 
@@ -117,7 +125,11 @@ const attributes = {
     //Block specific Attributes
     preset: {
         type: 'string',
-        default: 'zolo-newslatter-1',
+        default: 'zolo-newsletter-1',
+    },
+    focusStyle: {
+        type: 'string',
+        default: 'zolo-focus-style-1',
     },
     namePlaceholder: {
         type: 'string',
@@ -141,6 +153,14 @@ const attributes = {
         default: true,
     },
     showIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    showFieldIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    showLabels: {
         type: 'boolean',
         default: true,
     },
@@ -200,6 +220,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    focusStyle5Color: {
+        type: 'string',
+        default: '',
+    },
     iconColor: {
         type: 'string',
         default: '',
@@ -214,7 +238,7 @@ const attributes = {
     },
     btnLayoutType: {
         type: 'string',
-        default: 'zolo-search-button-style-1',
+        default: 'zolo-newsletter-button-style-1',
     },
     labelBorderHoverColor: {
         type: 'string',

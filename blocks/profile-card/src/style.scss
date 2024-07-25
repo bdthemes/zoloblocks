@@ -229,4 +229,139 @@
             border-style: var(--zolo-profile-img-border-style);
         }
     }
+
+    &.style-1 {
+
+        .zb-profile-bottom-content {
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            border-radius: 10px;
+        }
+        .zb-profile-item {
+            position: relative;
+            &:hover {
+                .zb-profile-image {
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+                .zb-profile-email,
+                .zb-profile-name,
+                .zb-profile-username {
+                    transform: translateY(0);
+                }
+                .zb-profile-email {
+                    opacity: 1;
+                    margin-top: 3px;
+                }
+            }
+
+        }
+        .zb-profile-meta-wrap {
+            position: relative;
+        }
+
+        .zb-profile-image {
+            margin: 0;
+            position: relative;
+            border-radius: var(--zolo-item-border-radius);
+            overflow: hidden;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(transparent, #121b24);
+                z-index: 1;
+            }
+            img {
+                width: 100%;
+                height: auto;
+                border: 0;
+                transition: transform 0.3s ease;
+            }
+        }
+
+        .zb-profile-info {
+            position: absolute;
+            bottom: 0;
+            text-align: left;
+            padding: 0;
+            margin: 30px;
+            z-index: 99;
+        }
+
+        .zb-profile-badge {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 99;
+            margin: 20px;
+            background-color: #f00;
+            border: 0;
+        }
+
+        .zb-profile-inner-content {
+            padding: 30px;
+        }
+        .zb-profile-card-bio {
+            margin: 0 0 30px;
+        }
+        .zb-profile-status {
+            justify-content: space-between;
+            text-align: center;
+            margin: 0 0 25px;
+        }
+        .zb-profile-socail-and-fllow {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .zb-profile-fllow-btn {
+            margin: 0;
+        }
+
+        .zb-profile-name {
+            color: #f8f8f8;
+            margin: 0 0 10px;
+            line-height: 1;
+            font-size: 24px;
+        }
+        .zb-profile-email, 
+        .zb-profile-username {
+            color: #d6d6d6;
+        }
+
+        .zb-profile-email, 
+        .zb-profile-username, 
+        .zb-profile-card-bio {
+            font-size: 14px;
+        }
+
+        .zb-profile-email,
+        .zb-profile-name,
+        .zb-profile-username {
+            transform: translateY(20px);
+            transition: transform 0.3s ease, opacity 0.3s ease; 
+        }
+        .zb-profile-email {
+            opacity: 0;
+        }
+
+        .zb-profile-status-count {
+            font-size: 20px;
+        }
+        .zb-profile-fllow-btn {
+            color: #fff;
+            background-color: var(--zoloblocks-brand-color);
+            &:hover {
+                background-color:#2478ed;
+            }
+        }
+    }
 }

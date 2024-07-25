@@ -53,7 +53,6 @@ const attributes = {
     toggleLabel: {
         type: 'boolean',
     },
-
     progressSize: {
         type: 'number',
     },

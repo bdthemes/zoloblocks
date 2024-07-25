@@ -39,6 +39,7 @@ const Save = ({ attributes }) => {
             })}
             {...(toggleLabel !== undefined && {
                 'data-toggleLabel': toggleLabel,
+
             })}
             {...(progressFillColor && {
                 'data-progressFillColor': progressFillColor,

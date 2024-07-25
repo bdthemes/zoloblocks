@@ -5,6 +5,9 @@ import { __ } from '@wordpress/i18n';
 import { Notice, TextControl, ToggleControl, Modal, Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
+// page export
+import '../page-export';
+
 // import style
 import './export.scss';
 
@@ -107,17 +110,7 @@ const ZoloExportBlock = ({ clientId }) => {
 };
 registerPlugin('zolo-export-block', {
     render: () => {
-        const selectedBlock = select('core/block-editor').getSelectedBlock();
-        const selectedBlockClientId = selectedBlock?.clientId;
-
-        if (!selectedBlockClientId) {
-            return (
-                <Notice status="warning" isDismissible>
-                    {__('Please select a block to export.', 'zoloblocks')}
-                </Notice>
-            );
-        } else {
-            return <ZoloExportBlock clientId={selectedBlockClientId} />;
-        }
+        const selectedBlockClientId = select('core/block-editor').getSelectedBlockClientId();
+        return <ZoloExportBlock clientId={selectedBlockClientId} />;
     },
 });

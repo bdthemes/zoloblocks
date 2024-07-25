@@ -61,6 +61,7 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
     ITEM_OVERLAY,
+    IMAGE_OVERLAY,
     SEPARATOR_TEAM_SIZE,
     SEPARATOR_SPACING_TEAM
 } from './constants';
@@ -153,6 +154,7 @@ const attributes = {
     ...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
     ...generateDimensionAttributes(TEAM_PHOTO_PADDING),
     ...generateBoxShadowAttributies(TEAM_PHOTO_BOX_SHADOW),
+    ...generateNormalBGAttributes(IMAGE_OVERLAY),
     ...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
     ...generateDimensionAttributes(TEAM_NAME_MARGIN),
 

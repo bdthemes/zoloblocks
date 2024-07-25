@@ -76,6 +76,8 @@ export default function Edit(props) {
         return () => clearTimeout();
     }, [progressValue]);
 
+    console.log('progPieMultiColor', progPieMultiColor);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -141,6 +143,7 @@ export default function Edit(props) {
                                                 }
 
                                                 return <stop offset={offset} stopColor={color?.color || '#00bc9b'} key={index} />;
+
                                             })}
                                     </linearGradient>
                                 </defs>

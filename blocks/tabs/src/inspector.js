@@ -144,6 +144,7 @@ function Inspector(props) {
                                 max={tabChildCount || 99}
                                 labelPosition="edge"
                                 __unstableInputWidth="64px"
+                                placeholder="1"
                             />
                             <IconicBtnGroup
                                 label={__('Layout Type', 'zoloblocks')}

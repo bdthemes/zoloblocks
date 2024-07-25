@@ -14,6 +14,7 @@ const {
     generateResRangeStyle,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
+    generateBoxShadowStyles,
     generateResAlignmentStyle,
 } = window.zoloModule;
 
@@ -23,9 +24,11 @@ import {
     FRONT_ITEMS_BORDER,
     FLIPBOX_BORDER_RADIUS,
     FRONT_ITEMS_BG,
+    FRONT_ITEMS_SHADOW,
     FLIPBOX_ITEMS_PADDING,
     BACK_ITEMS_BORDER,
     BACK_ITEMS_BG,
+    BACK_ITEMS_SHADOW,
     FRONT_ITEMS_ALIGNMENT,
     FRONT_ITEMS_VERTICAL_ALIGNMENT,
     BACK_ITEMS_ALIGNMENT,
@@ -168,7 +171,20 @@ const Style = ({ props }) => {
         attributes,
         noMainBGImg: false,
     });
+    const {
+        boxShadowStyle: frontItemsShadow,
+    } = generateBoxShadowStyles({
+        controlName: FRONT_ITEMS_SHADOW,
+        attributes,
+    });
 
+
+    const {
+        boxShadowStyle: backItemsShadow,
+    } = generateBoxShadowStyles({
+        controlName: BACK_ITEMS_SHADOW,
+        attributes,
+    });
     //FLIPBOX BACK CONTENT
     const {
         desktopBorderStyle: backItemsBorderDeskStyle,
@@ -486,11 +502,13 @@ const Style = ({ props }) => {
     .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_front {
         ${frontItemsBorderDeskStyle}
         ${frontItemsDeskBg}
+        ${frontItemsShadow}
         }
 
     .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_back {
         ${backItemsBorderDeskStyle}
         ${backItemsDeskBg}
+        ${backItemsShadow}
         }
 
         .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_front .zolo-flip-box_inner-icon {

@@ -1,3 +1,11 @@
+
+[class*="zolo-block"] {
+    .swiper:not(.swiper-initialized) {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 :root {
     --zoloblocks-brand-color: #3f8efc;
     --zoloblocks-brand-color-hover: #2667ff;
@@ -46,40 +54,51 @@
 
 // Responsive show/hide css
 @media screen and (min-width: 1025px) {
-    .zolo-hide-desktop {
-        display: none !important;
+    .zolo-frontend {
+        .zolo-hide-desktop {
+            display: none !important;
+        }
     }
 }
 
 // tablet view
 @media screen and (max-width: 1024px) and (min-width: 768px) {
-    .zolo-hide-tab {
-        display: none !important;
+    .zolo-frontend {
+        .zolo-hide-tab {
+            display: none !important;
+        }
     }
 }
 
 // mobile view
 @media screen and (max-width: 767px) {
-    .zolo-hide-mobile {
-        display: none !important;
+    .zolo-frontend {
+        .zolo-hide-mobile {
+            display: none !important;
+        }
     }
 }
 
 // Responsive show/hide css for Editor
 .zolo-editor .zolo-hide-desktop {
-    display: block !important;
     opacity: 0.5;
+    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .05) 1px, transparent 2px, transparent 9px);
+    border: 1px solid rgba(0, 0, 0, .02);
 }
 
-.zolo-editor .zolo-hide-tab {
-    display: block !important;
-    opacity: 0.5;
-}
+// .zolo-editor .zolo-hide-tab {
+//     // display: block !important;
+//     opacity: 0.5;
+//     background: repeating-linear-gradient(125deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .05) 1px, transparent 2px, transparent 9px);
+//     border: 1px solid rgba(0, 0, 0, .02);
+// }
 
-.zolo-editor .zolo-hide-mobile {
-    display: block !important;
-    opacity: 0.5;
-}
+// .zolo-editor .zolo-hide-mobile {
+//     // display: block !important;
+//     opacity: 0.5;
+//     background: repeating-linear-gradient(125deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .05) 1px, transparent 2px, transparent 9px);
+//     border: 1px solid rgba(0, 0, 0, .02);
+// }
 
 button[class*='editor-block-list-item-zolo'] {
     // &:button {
@@ -137,8 +156,7 @@ span.zolo-pro-badge {
     background: red;
     margin-left: 10px;
 }
-.zolo-editor .zolo-transform-animation,
-.zolo-transform-wrapper {
+.zolo-transform-animation {
     transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
         rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
         translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))
@@ -147,6 +165,7 @@ span.zolo-pro-badge {
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
+
 .zolo-editor .zolo-block:not(.zolo-entrance-animation) {
     transition: transform 0.3s ease-out;
 }
@@ -258,7 +277,8 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 
-    .zolo-container-inner-blocks-wrap {
+    .zolo-container-inner-blocks-wrap,
+    .block-editor-inner-blocks {
         .zolo-blocks-toolbar {
             &.container {
                 transform: unset;
@@ -302,15 +322,48 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
             display: none;
         }
     }
+}
 
+.zolo-block div[class*=wp-block-zolo] {
     &:hover,
     &:focus {
-        .zolo-blocks-toolbar {
+        .general-block {
             opacity: 1;
             visibility: visible;
         }
     }
 }
+
+.zolo-block div[class*=wp-block-zolo] {
+    &:hover,
+    &:focus {
+        .container {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.zolo-block.wp-block-zolo-container {
+    &:hover,
+    &:focus {
+        > div {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+// :not(.zolo-block.wp-block-zolo-container) {
+//     &:hover,
+//     &:focus {
+//         > div {
+//             opacity: 1;
+//             visibility: visible;
+//         }
+//     }
+// }
+
 
 .block-editor-block-list__layout .block-editor-block-list__block.is-highlighted:after,
 .block-editor-block-list__layout .block-editor-block-list__block.is-highlighted ~ .is-multi-selected:after,
@@ -332,4 +385,92 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
 .block-editor-block-list__block.zolo-block:hover,
 .block-editor-block-list__block.zolo-block.is-selected:focus {
     box-shadow: 0 0 0 1px #837e7e;
+}
+
+.zolo-editor {
+    .zolo_cd_show,
+    .zolo_cd_hide {
+        position: relative;
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            color: #fff;
+            padding: 4px 4px 0px 4px;
+            text-transform: capitalize;
+            background-color: #3b67fe;
+            border-bottom-right-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+        }
+        &:hover,
+        &:focus{
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        }
+    }
+    .zolo_cd_show {
+        &:before {
+            content: url("data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M21%2012c0%201.2-4.03%206-9%206s-9-4.8-9-6c0-1.2%204.03-6%209-6s9%204.8%209%206Z%22%2F%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M15%2012a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E");
+        }
+    }
+    .zolo_cd_hide {
+        &:before {
+            content: url("data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20display%3D%22block%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeLinecap%3D%22round%22%20strokeLinejoin%3D%22round%22%20strokeWidth%3D%221.5%22%20d%3D%22M3.933%2013.909A4.357%204.357%200%200%201%203%2012c0-1%204-6%209-6m7.6%203.8A5.068%205.068%200%200%201%2021%2012c0%201-3%206-9%206-.314%200-.62-.014-.918-.04M5%2019%2019%205m-4%207a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E");
+        }
+    }
+
+    .components-dropdown.block-editor-inserter {
+        display: inline;
+    }
+}
+
+
+.zolo-frontend .pin-spacer{
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.components-dropdown.block-editor-inserter {
+    display: inline;
+}
+
+//temporary
+
+.zolo-shape svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.zolo-shape {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    direction: ltr;
+}
+
+.zolo-shape-top {
+    top: -1px;
+}
+
+.zolo-shape-bottom {
+    bottom: -1px;
+}
+
+.zolo-shape-bottom {
+    transform: rotate(180deg);
+}
+
+.zolo-shape .zolo-shape-fill {
+    transform-origin: center;
+    transform: rotateY(0deg);
 }

@@ -165,7 +165,7 @@ const attributes = {
     },
     tabActiveItemNo: {
         type: 'string',
-        default: '1',
+        // default: '1',
     },
     // tab item width
     tabItemWidth: {

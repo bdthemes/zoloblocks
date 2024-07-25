@@ -241,7 +241,7 @@ function Inspector(props) {
                                         controlName={COUNT_BOX_GRID}
                                         requiredProps={requiredProps}
                                         min={1}
-                                        max={10}
+                                        max={7}
                                         defaults={{
                                             deskRange: 4,
                                             tabRange: 2,

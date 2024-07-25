@@ -1,5 +1,5 @@
 <?php
-
+use Zolo\Helpers\ZoloHelpers;
 /**
  * Load google fonts.
  */
@@ -54,11 +54,11 @@ class ZB_Font_Loader {
 	public function fonts_loader() {
 
 		if (is_array(self::$all_fonts) && count(self::$all_fonts) > 0) {
-
+	
 			$fonts = array_filter(array_unique(self::$all_fonts));
-
-			if (!empty($fonts) ) {
-
+	
+			if (!empty($fonts)) {
+	
 				$system = array(
 					'Arial',
 					'Tahoma',
@@ -68,51 +68,44 @@ class ZB_Font_Loader {
 					'Trebuchet MS',
 					'Georgia',
 				);
-
-				$gfonts = '';
-
+	
+				$theme_fonts = ZoloHelpers::zolo_get_theme_fonts();
+	
+				$system = array_merge($system, $theme_fonts);
+				$system = array_unique($system);
+	
+				$gfonts = [];
+	
 				$gfonts_attr = ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
-
+	
 				foreach ($fonts as $font) {
-
+	
 					// Check if font is Default
-					if( strpos( $font, 'Default' ) !== false ) {
+					if (strpos($font, 'Default') !== false) {
 						continue;
 					}
-
+	
 					if (!in_array($font, $system, true) && !empty($font)) {
-						$gfonts .= str_replace(' ', '+', trim($font)) . $gfonts_attr . '|';
+						$gfonts[] = str_replace(' ', '+', trim($font)) . $gfonts_attr;
 					}
 				}
-
+	
 				if (!empty($gfonts)) {
-					$font_array = explode('|', $gfonts);
-					
-					foreach ($font_array as $font) {
-
-						if (empty($font) ) {
-							continue;
-						}
-
-						
-
-						$query_args = ['family' => $font];
-						$font_handle = 'zolo-block-fonts-' . sanitize_title($font);
-
-						wp_register_style(
-							$font_handle,
-							add_query_arg($query_args, '//fonts.googleapis.com/css'),
-							[],
-							ZOLO_VERSION,
-							'all'
-						);
-				
-						wp_enqueue_style($font_handle);
-					}
+					$gfonts_string = implode('|', $gfonts);
+	
+					$query_args = ['family' => $gfonts_string];
+					$font_handle = 'zolo-block-fonts';
+	
+					wp_register_style(
+						$font_handle,
+						add_query_arg($query_args, '//fonts.googleapis.com/css'),
+						[],
+						ZOLO_VERSION,
+						'all'
+					);
+	
+					wp_enqueue_style($font_handle);
 				}
-
-				// Reset.
-				$gfonts = '';
 			}
 		}
 	}

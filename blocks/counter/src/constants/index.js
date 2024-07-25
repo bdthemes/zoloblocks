@@ -21,16 +21,16 @@ export const PRESETS_ALIGNMENT = [
                 <path
                     d="M15.73 8.32h6.22M15.73 12.41h6.22M15.73 16.5h6.22M6.53 10.75a.58.58 0 1 0 0-1.16.58.58 0 0 0 0 1.16zM12.05 13.7l-.84-.84c-.29-.29-.68-.45-1.09-.45-.41 0-.8.16-1.09.45l-4.71 4.71"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 <path
                     d="M11.23 7H3.99a.99.99 0 0 0-.99.99v8.84c0 .547.443.99.99.99h7.24a.99.99 0 0 0 .99-.99V7.99a.99.99 0 0 0-.99-.99z"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
             </svg>
         ),
@@ -43,16 +43,16 @@ export const PRESETS_ALIGNMENT = [
                 <path
                     d="M3 8.32h6.22M3 12.41h6.22M3 16.5h6.22M16.26 10.75a.58.58 0 1 0 0-1.16.58.58 0 0 0 0 1.16zM21.78 13.7l-.84-.84c-.29-.29-.68-.45-1.09-.45-.41 0-.8.16-1.09.45l-4.71 4.71"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 <path
                     d="M20.96 7h-7.24a.99.99 0 0 0-.99.99v8.84c0 .547.443.99.99.99h7.24a.99.99 0 0 0 .99-.99V7.99a.99.99 0 0 0-.99-.99z"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
             </svg>
         ),
@@ -105,6 +105,11 @@ export const BUTTON_PADDING = 'buttonPadding';
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
+
+export const TITLE_BACKGROUND = 'titleBg';
+export const TITLE_BORDER = 'titleBorder';
+export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
+export const TITLE_PADDING = 'titlePadding';
 
 // image
 export const ICON_IMAGE_SIZE = 'iconImageSize';

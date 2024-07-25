@@ -1,7 +1,17 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateDimensionAttributes, generateResAlignmentAttributies, generateBorderAttributies, generateBoxShadowAttributies, generateTypographyAttributes, generateNormalBGAttributes, generateResCounterAttributies, generateGapAttributes } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateDimensionAttributes,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateNormalBGAttributes,
+    generateResCounterAttributies,
+    generateGapAttributes,
+} = window.zoloModule;
 
 import {
     CAROUSEL_COLUMNS,
@@ -13,6 +23,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     REVIEWER_PHOTO_WIDTH,
@@ -48,6 +59,11 @@ import {
     APAG_BORDER_RADIUS,
     APAG_BG,
     PAG_BOTTOM_SPACING,
+    RCONTAINER_BG,
+    RCONTAINER_BORDER,
+    RCONTAINER_BRADIUS,
+    RCONTAINER_BSHADOW,
+    RCONTAINER_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -138,11 +154,11 @@ const attributes = {
     ...generateNormalBGAttributes(REVIEW_CAROUSEL_BG),
     ...generateResCounterAttributies(CAROUSEL_COLUMNS, {
         noUnits: true,
-        defaults: {
-            deskRange: 3,
-            tabRange: 2,
-            mobRange: 1,
-        },
+        // defaults: {
+        //     deskRange: 3,
+        //     tabRange: 2,
+        //     mobRange: 1,
+        // },
     }),
     ...generateGapAttributes(CAROUSEL_GAP, {
         defaultUnit: 'px',
@@ -204,6 +220,17 @@ const attributes = {
     ...generateBorderAttributies(APAG_BORDER),
     ...generateDimensionAttributes(APAG_BORDER_RADIUS),
     ...generateNormalBGAttributes(APAG_BG),
+
+    // rc
+    ...generateBorderAttributies(RCONTAINER_BORDER),
+    ...generateDimensionAttributes(RCONTAINER_BRADIUS),
+    ...generateDimensionAttributes(RCONTAINER_PADDING),
+    ...generateBoxShadowAttributies(RCONTAINER_BSHADOW),
+    ...generateNormalBGAttributes(RCONTAINER_BG),
+
+    // CAROUSEL CONTAINER
+    ...generateDimensionAttributes(CAROUSEL_CONTAINER_PADDING),
+
     // swiper options
     slideItems: {
         type: 'number',
@@ -230,11 +257,11 @@ const attributes = {
     },
     infiniteLoop: {
         type: 'boolean',
-        default: true,
+        // default: true,
     },
     showNavigation: {
         type: 'boolean',
-        default: false,
+        // default: false,
     },
     navColor: {
         type: 'string',
@@ -242,9 +269,12 @@ const attributes = {
     navHoverColor: {
         type: 'string',
     },
+    presetFiveArrowColor: {
+        type: 'string',
+    },
     showPagination: {
         type: 'boolean',
-        default: true,
+        // default: true,
     },
     paginationType: {
         type: 'string',
@@ -256,7 +286,7 @@ const attributes = {
     },
     speed: {
         type: 'number',
-        default: 8,
+        // default: 8,
     },
     carouselEffect: {
         type: 'string',

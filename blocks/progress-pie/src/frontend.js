@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const proPieperpostToggle =
                 item.dataset?.propieperposttoggle === 'true' || item.dataset?.propieperposttoggle === undefined ? true : false;
 
+
             const CountupComponent = ({ progressValue, progressDuration, progressFillColor, toggleLabel, progressTitle }) => {
                 const progress = useRef(null);
                 const uniqueId = Array.from(item.classList).find((className) => className.startsWith('progress-'));

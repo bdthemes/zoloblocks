@@ -125,15 +125,6 @@ registerPlugin('zolo-import-block', {
     render: () => {
         const selectedBlock = select('core/block-editor').getSelectedBlock();
         const selectedBlockClientId = selectedBlock?.clientId;
-
-        if (!selectedBlockClientId) {
-            return (
-                <Notice status="warning" isDismissible>
-                    {__('Please upload a pattern JSON file.', 'zoloblocks')}
-                </Notice>
-            );
-        } else {
-            return <ZoloExportBlock clientId={selectedBlockClientId} />;
-        }
+        return <ZoloExportBlock clientId={selectedBlockClientId} />;
     },
 });

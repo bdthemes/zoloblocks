@@ -3,6 +3,7 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -34,7 +35,10 @@ import {
 } from '../../../src/global/constants';
 
 function Inspector(props) {
+
     const { attributes, setAttributes } = props;
+        const panelProps = { attributes, setAttributes };
+
     const {
         containerWidthType,
         contentWidthType,
@@ -51,7 +55,7 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-
+        const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
     const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';
@@ -173,6 +177,7 @@ function Inspector(props) {
                                 max={200}
                             />
                         </ZoloPanelBody>
+                        {shapeDividerControls && shapeDividerControls.length > 0 && shapeDividerControls}
                     </>
                 }
                 advancedTab={

@@ -1,4 +1,4 @@
-## ZOLO Blocks
+## ZoloBlocks
 
 To start developing, simply follow the steps:-
 

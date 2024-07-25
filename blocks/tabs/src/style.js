@@ -64,7 +64,7 @@ const Style = ({ props }) => {
         mobRangeStyle: mobTabsWidth,
     } = generateResRangeStyle({
         controlName: TABS_CWIDTH,
-        property: 'width',
+        property: '--tab-vertical-width',
         attributes,
     });
 
@@ -484,7 +484,7 @@ const Style = ({ props }) => {
             ${iconColors ? `fill: ${iconColors?.active};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-left .zolo-tab_header-wrap, .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-right .zolo-tab_header-wrap {
+        .${uniqueId}{
             ${deskTabsWidth}
         }
     `;
@@ -542,7 +542,7 @@ const Style = ({ props }) => {
             ${iconHeightWidthTab}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-left .zolo-tab_header-wrap, .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-right .zolo-tab_header-wrap {
+        .${uniqueId}{
             ${tabTabsWidth}
         }
     `;
@@ -606,7 +606,7 @@ const Style = ({ props }) => {
             ${iconHeightWidthMob}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-left .zolo-tab_header-wrap, .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-right .zolo-tab_header-wrap {
+        .${uniqueId} {
             ${mobTabsWidth}
         }
     `;

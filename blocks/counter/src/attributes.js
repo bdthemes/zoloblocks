@@ -1,4 +1,14 @@
-const { generateResAlignmentAttributies, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateTypographyAttributes, generateBoxShadowAttributies, generateTextShadowAttributies, generateTextStrokeAttributies, generateNormalBGAttributes } = window.zoloModule;
+const {
+    generateResAlignmentAttributies,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+    generateBoxShadowAttributies,
+    generateTextShadowAttributies,
+    generateTextStrokeAttributies,
+    generateNormalBGAttributes,
+} = window.zoloModule;
 
 import {
     CONTENT_ALIGN,
@@ -6,6 +16,10 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
+    TITLE_BACKGROUND,
+    TITLE_BORDER,
+    TITLE_BORDER_RADIUS,
+    TITLE_PADDING,
     ICON_BORDER,
     ICON_BOX_SHADOW,
     ICON_BORDER_RADIUS,
@@ -81,6 +95,10 @@ const attributes = {
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
     ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+    ...generateNormalBGAttributes(TITLE_BACKGROUND),
+    ...generateBorderAttributies(TITLE_BORDER),
+    ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
+    ...generateDimensionAttributes(TITLE_PADDING),
 
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -117,7 +135,6 @@ const attributes = {
     },
     counterNumber: {
         type: 'text',
-        default: '1000',
     },
     counterSuffix: {
         type: 'text',
