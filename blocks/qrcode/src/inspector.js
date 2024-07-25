@@ -73,25 +73,17 @@ export default function Inspector(props) {
                     generalTab={
                         <>
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                {qrCodeLink ? (
-                                    <></>
-                                ) : (
-                                    <>
-                                        <>
-                                            <TextareaControl
-                                                label={__('Content', 'zoloblocks')}
-                                                value={qrContent}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        qrContent: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    </>
-                                )}
+                                <TextareaControl
+                                    label={__('Content', 'zoloblocks')}
+                                    value={qrContent}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            qrContent: value,
+                                        })
+                                    }
+                                />
 
-                                <ToggleControl
+                                {/* <ToggleControl
                                     label={__('Enable Page Link', 'zoloblocks')}
                                     checked={qrCodeLink}
                                     onChange={() =>
@@ -99,7 +91,7 @@ export default function Inspector(props) {
                                             qrCodeLink: !qrCodeLink,
                                         })
                                     }
-                                />
+                                /> */}
 
                                 <SimpleRangeControl
                                     label={__('Size', 'zoloblocks')}
@@ -129,7 +121,7 @@ export default function Inspector(props) {
                                     options={QR_CODE_LEVEL}
                                 />
 
-                                <SelectControl
+                                {/* <SelectControl
                                     label={__('Style', 'zoloblocks')}
                                     value={qrCodeStyle}
                                     onChange={(value) =>
@@ -138,7 +130,7 @@ export default function Inspector(props) {
                                         })
                                     }
                                     options={QR_CODE_STYLE}
-                                />
+                                /> */}
 
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
@@ -147,7 +139,7 @@ export default function Inspector(props) {
                                 />
                             </ZoloPanelBody>
 
-                            <ZoloPanelBody title={__('Logo')} panelProps={props} firstOpen={false}>
+                            {/* <ZoloPanelBody title={__('Logo')} panelProps={props} firstOpen={false}>
                                 <BaseControl label={__('Choose Logo', 'zoloblocks')}>
                                     {logoQr ? (
                                         <ImageAvatar
@@ -209,7 +201,7 @@ export default function Inspector(props) {
                                         })
                                     }
                                 />
-                            </ZoloPanelBody>
+                            </ZoloPanelBody> */}
                         </>
                     }
                     styleTab={
@@ -295,7 +287,7 @@ export default function Inspector(props) {
                                 />
                             </ZoloPanelBody>
 
-                            <ZoloPanelBody title={__('Logo', 'zoloblocks')} panelProps={props}>
+                            {/* <ZoloPanelBody title={__('Logo', 'zoloblocks')} panelProps={props}>
                                 <SimpleRangeControl
                                     label={__('Size', 'zoloblocks')}
                                     value={logoWidth}
@@ -361,7 +353,7 @@ export default function Inspector(props) {
                                     max={50}
                                     noUnits={true}
                                 />
-                            </ZoloPanelBody>
+                            </ZoloPanelBody> */}
                         </>
                     }
                     advancedTab={

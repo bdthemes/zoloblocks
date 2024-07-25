@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <QRCode
                     value={qrContent}
                     ecLevel={qrCodeLevel}
-                    size={qrCodeSize !== 0 ? qrCodeSize : 100}
+                    size={qrCodeSize !== 0 ? qrCodeSize : 240}
                     qrStyle={qrCodeStyle}
                     fgColor={codeColor !== '' ? codeColor : '#000'}
                     bgColor={backgroundColor}

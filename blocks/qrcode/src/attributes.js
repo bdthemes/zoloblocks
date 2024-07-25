@@ -65,7 +65,7 @@ const attributes = {
     },
     qrCodeSize: {
         type: 'number',
-        default: 100,
+        default: 240,
     },
     qrCodeLevel: {
         type: 'string',
@@ -93,7 +93,7 @@ const attributes = {
         default: '#000',
     },
     eyeRadius: {
-        type: 'string',
+        type: 'number',
         default: 0,
     },
     ...generateBorderAttributies(QR_CODE_BORDER),
