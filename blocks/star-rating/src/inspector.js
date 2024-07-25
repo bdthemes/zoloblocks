@@ -30,7 +30,17 @@ const {
 import objAttributes from './attributes';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN, ICON_OPTIONS, ICON_SIZE, ICON_BORDER, ICON_BORDER_RADIUS, ICON_PADDING, ICON_BG} from './constants';
+import {
+    STAR_SIZE,
+    TITLE_GAP,
+    ITEMS_ALIGN,
+    ICON_OPTIONS,
+    ICON_SIZE,
+    ICON_BORDER,
+    ICON_BORDER_RADIUS,
+    ICON_PADDING,
+    ICON_BG,
+} from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
 
 function Inspector(props) {
@@ -114,6 +124,7 @@ function Inspector(props) {
                                 min={1}
                                 max={5}
                                 step={0.1}
+                                help={__('Default rating value: 5', 'zoloblocks')}
                             />
                         </ZoloPanelBody>
                         {showTitle && (
@@ -288,11 +299,7 @@ function Inspector(props) {
                         {showIcon && (
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                                 <ResRangeControl label={__('Size', 'zoloblocks')} controlName={ICON_SIZE} requiredProps={requiredProps} />
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={ICON_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={ICON_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zoloblocks')}
                                     controlName={ICON_BORDER_RADIUS}

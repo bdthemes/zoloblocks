@@ -26,7 +26,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected, context } = props;
-    const { uniqueId, collapseIcon, expandIcon, title, titleTag, parentClasses } = attributes;
+    const { uniqueId,  collapseIcon, expandIcon, title, titleTag, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -38,6 +38,7 @@ export default function Edit(props) {
      */
     useEffect(() => {
         setAttributes({
+            preset: context['zolo/preset'],
             collapseIcon: context['zolo/collapseIcon'],
             expandIcon: context['zolo/expandIcon'],
             titleTag: context['zolo/titleTag'],

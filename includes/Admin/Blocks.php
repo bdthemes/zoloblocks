@@ -32,6 +32,16 @@ return apply_filters(
             'status'     => true
         ],
         [
+            'name'       => 'zolo_icon',
+            'categories' => ['others'],
+            'status'     => true
+        ],
+        [
+            'name'       => 'zolo_text_path',
+            'categories' => ['others'],
+            'status'     => true
+        ],
+        [
             'name'       => 'zolo_advanced_image',
             'categories' => ['gallery'],
             'status'     => true
@@ -185,6 +195,11 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_google_map',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_notice',
             'categories' => ['others'],
             'status'     => true,
         ],

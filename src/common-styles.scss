@@ -1,3 +1,11 @@
+
+[class*="zolo-block"] {
+    .swiper:not(.swiper-initialized) {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 :root {
     --zoloblocks-brand-color: #3f8efc;
     --zoloblocks-brand-color-hover: #2667ff;
@@ -148,8 +156,7 @@ span.zolo-pro-badge {
     background: red;
     margin-left: 10px;
 }
-.zolo-editor .zolo-transform-animation,
-.zolo-transform-wrapper {
+.zolo-transform-animation {
     transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
         rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
         translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))
@@ -158,6 +165,7 @@ span.zolo-pro-badge {
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
+
 .zolo-editor .zolo-block:not(.zolo-entrance-animation) {
     transition: transform 0.3s ease-out;
 }
@@ -269,7 +277,8 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 
-    .zolo-container-inner-blocks-wrap {
+    .zolo-container-inner-blocks-wrap,
+    .block-editor-inner-blocks {
         .zolo-blocks-toolbar {
             &.container {
                 transform: unset;
@@ -417,7 +426,6 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
 
     .components-dropdown.block-editor-inserter {
         display: inline;
-        width: 100%;
     }
 }
 

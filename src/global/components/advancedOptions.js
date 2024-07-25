@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, TextControl,SelectControl, FormTokenField } from '@wordpress/components';
+import { ToggleControl, TextControl, SelectControl, FormTokenField } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -85,7 +85,6 @@ export const AdvancedOptions = (props) => {
         position,
     } = attributes;
 
-
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
         //remove class is value is false
@@ -116,27 +115,10 @@ export const AdvancedOptions = (props) => {
         });
     };
 
-    const displayPanels = (
-        <>
-            <ToggleControl
-                label={__('Hide on Desktop', 'zoloblocks')}
-                checked={responsiveness?.hideDesktop || false}
-                onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
-            />
-            <ToggleControl
-                label={__('Hide on Tablet', 'zoloblocks')}
-                checked={responsiveness?.hideTab || false}
-                onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
-            />
-            <ToggleControl
-                label={__('Hide on Mobile', 'zoloblocks')}
-                checked={responsiveness?.hideMobile || false}
-                onChange={() => handleResponsiveness('hideMobile', !responsiveness.hideMobile, 'zolo-hide-mobile')}
-            />
-        </>
-    );
+    const displayPanels = applyFilters('zolo.blocks.displayConditions', [], panelProps);
+    const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
 
-    const panels = (
+    return (
         <>
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
@@ -181,7 +163,7 @@ export const AdvancedOptions = (props) => {
                         }
                         value={position.value}
                     />
-                    {(position.value === 'absolute' || position.value === 'fixed' || position.value === 'sticky') && (
+                    {(position.value === 'absolute' || position.value === 'fixed') && (
                         <>
                             <IconicBtnGroup
                                 label={__('Vertical Orientation', 'zoloblocks')}
@@ -223,48 +205,44 @@ export const AdvancedOptions = (props) => {
                                     />
                                 </>
                             )}
-                            {position.value !== 'sticky' && (
+                            <IconicBtnGroup
+                                label={__('Horizontal Orientation', 'zoloblocks')}
+                                value={position.horizontalOrientation.direction}
+                                onChange={(direction) => {
+                                    setAttributes({
+                                        position: {
+                                            ...position,
+                                            horizontalOrientation: {
+                                                ...position.horizontalOrientation,
+                                                direction,
+                                            },
+                                        },
+                                    });
+                                }}
+                                options={ICON_HPOSITIONS}
+                            />
+                            {position.horizontalOrientation.direction === 'left' && (
                                 <>
-                                    <IconicBtnGroup
-                                        label={__('Horizontal Orientation', 'zoloblocks')}
-                                        value={position.horizontalOrientation.direction}
-                                        onChange={(direction) => {
-                                            setAttributes({
-                                                position: {
-                                                    ...position,
-                                                    horizontalOrientation: {
-                                                        ...position.horizontalOrientation,
-                                                        direction,
-                                                    },
-                                                },
-                                            });
-                                        }}
-                                        options={ICON_HPOSITIONS}
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionLeft'}
+                                        requiredProps={requiredProps}
+                                        min={-500}
+                                        max={500}
+                                        noUnits={false}
                                     />
-                                    {position.horizontalOrientation.direction === 'left' && (
-                                        <>
-                                            <ResRangeControl
-                                                label={__('Offset', 'zoloblocks')}
-                                                controlName={'positionLeft'}
-                                                requiredProps={requiredProps}
-                                                min={-500}
-                                                max={500}
-                                                noUnits={false}
-                                            />
-                                        </>
-                                    )}
-                                    {position.horizontalOrientation.direction === 'right' && (
-                                        <>
-                                            <ResRangeControl
-                                                label={__('Offset', 'zoloblocks')}
-                                                controlName={'positionRight'}
-                                                requiredProps={requiredProps}
-                                                min={-500}
-                                                max={500}
-                                                noUnits={false}
-                                            />
-                                        </>
-                                    )}
+                                </>
+                            )}
+                            {position.horizontalOrientation.direction === 'right' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={'positionRight'}
+                                        requiredProps={requiredProps}
+                                        min={-500}
+                                        max={500}
+                                        noUnits={false}
+                                    />
                                 </>
                             )}
                         </>
@@ -339,13 +317,25 @@ export const AdvancedOptions = (props) => {
             {globalConfig?.responsiveControls && (
                 <>
                     <ZoloPanelBody title={__('Visibility Control', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                        {applyFilters('zolo.blocks.displayConditions', displayPanels, panelProps)}
+                        <ToggleControl
+                            label={__('Hide on Desktop', 'zoloblocks')}
+                            checked={responsiveness?.hideDesktop || false}
+                            onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
+                        />
+                        <ToggleControl
+                            label={__('Hide on Tablet', 'zoloblocks')}
+                            checked={responsiveness?.hideTab || false}
+                            onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
+                        />
+                        <ToggleControl
+                            label={__('Hide on Mobile', 'zoloblocks')}
+                            checked={responsiveness?.hideMobile || false}
+                            onChange={() => handleResponsiveness('hideMobile', !responsiveness.hideMobile, 'zolo-hide-mobile')}
+                        />
+                        {displayPanels && displayPanels.length > 0 && displayPanels}
                     </ZoloPanelBody>
                 </>
             )}
-            <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
-                <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
-            </ZoloPanelBody>
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
                     label={__('Transform', 'zoloblocks')}
@@ -420,8 +410,8 @@ export const AdvancedOptions = (props) => {
                                         label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotate'}
                                         requiredProps={requiredProps}
-                                        min={-360}
-                                        max={360}
+                                        min={-180}
+                                        max={180}
                                         noUnits={true}
                                     />
                                     <ToggleControl
@@ -794,8 +784,10 @@ export const AdvancedOptions = (props) => {
                     />
                 )}
             </ZoloPanelBody>
+            {animationPanels && animationPanels.length > 0 && animationPanels}
+            <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
+                <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
+            </ZoloPanelBody>
         </>
     );
-
-    return <>{applyFilters('zolo.blocks.extraTab', panels, block, panelProps)}</>;
 };

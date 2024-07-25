@@ -67,7 +67,9 @@ import {
     RCONTAINER_BORDER,
     RCONTAINER_BRADIUS,
     RCONTAINER_BSHADOW,
-    RCONTAINER_PADDING
+    RCONTAINER_PADDING,
+
+    CAROUSEL_CONTAINER_PADDING
 
 } from './constants';
 
@@ -611,6 +613,17 @@ const Style = ({ props }) => {
         noMainBGImg: true,
     });
 
+    // carousel container padding
+    const {
+        dimensionStylesDesktop: carouselContainerDeskPadding,
+        dimensionStylesTab: carouselContainerTabPadding,
+        dimensionStylesMobile: carouselContainerMobPadding,
+    } = generateDimensionStyle({
+        controlName: CAROUSEL_CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     // const {
     //     dimensionStylesDesktop: contentPaddingDesk,
     //     dimensionStylesTab: contentPaddingTab,
@@ -636,6 +649,10 @@ const Style = ({ props }) => {
 			${containerBoxShadow}
 			${containerDeskBGStyle}
             ${containerDeskPadding}
+		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper {
+            ${carouselContainerDeskPadding}
 		}
 
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
@@ -781,6 +798,10 @@ const Style = ({ props }) => {
             ${containerDeskPadding}
 		}
 
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper {
+            ${carouselContainerTabPadding}
+		}
+
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
             ${ratingIconDeskAlignStyle}
         }
@@ -887,6 +908,10 @@ const Style = ({ props }) => {
 			${containerBoxShadow}
 			${containerDeskBGStyle}
             ${containerDeskPadding}
+		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper {
+            ${carouselContainerMobPadding}
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {

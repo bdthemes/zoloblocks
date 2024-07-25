@@ -1,10 +1,11 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { render, useState, useEffect } from '@wordpress/element';
+import { createRoot, useState, useEffect } from '@wordpress/element';
 import { subscribe } from '@wordpress/data';
 import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import axios from 'axios';
 import apiFetch from '@wordpress/api-fetch';
+let root;
 
 /**
  * Template Library Style
@@ -148,15 +149,17 @@ function ZoloBlocksTemplateLibraryButton() {
     const renderButton = (selector) => {
         const libraryButton = document.createElement('div');
         libraryButton.classList.add('zoloblocks-template-library-button');
-        selector.appendChild(libraryButton);
-        render(<LibraryButton />, libraryButton);
+        selector.append(libraryButton);
+        createRoot(libraryButton).render(<LibraryButton />);
     };
 
     subscribe(() => {
-        const toolbar = document.querySelector('.editor-document-tools');
+        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
         const libraryButton = document.querySelector('.zoloblocks-template-library-button');
 
-        if (toolbar && !libraryButton) {
+        const currentPostType = wp.data.select('core/editor').getCurrentPostType();
+
+        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
             renderButton(toolbar);
         }
     });
@@ -490,31 +493,31 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             setTemplates(allTemplates);
                                                         }}
                                                     >
-                                                       <svg
-                                                        width="64px"
-                                                        height="64px"
-                                                        viewBox="0 0 21 21"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="#2483ff"
-                                                        stroke="#2483ff"
+                                                        <svg
+                                                            width="64px"
+                                                            height="64px"
+                                                            viewBox="0 0 21 21"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="#2483ff"
+                                                            stroke="#2483ff"
                                                         >
-                                                        <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                                                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
-                                                        <g id="SVGRepo_iconCarrier">
-                                                            {" "}
-                                                            <g
-                                                            fill="none"
-                                                            fillRule="evenodd"
-                                                            stroke="#000000"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            transform="matrix(0 1 1 0 2.5 2.5)"
-                                                            >
-                                                            {" "}
-                                                            <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />{" "}
-                                                            <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />{" "}
-                                                            </g>{" "}
-                                                        </g>
+                                                            <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+                                                            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                {' '}
+                                                                <g
+                                                                    fill="none"
+                                                                    fillRule="evenodd"
+                                                                    stroke="#000000"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    transform="matrix(0 1 1 0 2.5 2.5)"
+                                                                >
+                                                                    {' '}
+                                                                    <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />{' '}
+                                                                    <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />{' '}
+                                                                </g>{' '}
+                                                            </g>
                                                         </svg>
                                                     </button>
                                                 </div>
@@ -527,9 +530,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                 <>
                                     {templates && templates.length > 0 && (
                                         <div className="zolo-demos-wrapper">
-                                            {templates.map((template) => {
+                                            {templates.map((template, index) => {
                                                 return (
-                                                    <div className="single-demo">
+                                                    <div className="single-demo" key={index}>
                                                         <div className="demo-preview">
                                                             <img
                                                                 src={template.demo_preview}

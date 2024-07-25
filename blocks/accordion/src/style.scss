@@ -34,6 +34,71 @@
             padding: 0 0 20px;
         }
     }
+
+    &.style-3 {
+        .zolo-accordion-item {
+            &.is-active {
+                .zolo-accordion-head-item {
+                    &:before{
+                       width: 100%;
+                    }
+                }
+                .zolo-accordion-toggle {
+                    background-color: #e5ecfc;
+                    svg {
+                        fill: #2667ff;
+                    }
+                }
+            }
+        }
+
+        .wp-block-zolo-accordion-child {
+            border: 0;
+            border-radius: 0;
+            margin: 0;
+        }
+        .ac-trigger {
+            padding: 20px 0;
+            background-color: transparent;
+        }
+        .zolo-accordion-inner {
+            padding: 0;
+        }
+        .zolo-accordion-head-item {
+            position: relative;
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 3px;
+            }
+            &:after {
+                width: 100%;
+                background-color: rgba(170, 170, 170, 0.27);
+            }
+            &:before {
+                width: 70px;
+                background-color: #2667ff;
+                transition: width 0.3s ease;
+                z-index: 99;
+            }
+        }
+        .zolo-accordion-head-title {
+            font-weight: 600;
+        }
+        .zolo-accordion-toggle {
+            background-color: rgba(235, 235, 235, 0.98);
+            border-radius: 50%;
+            padding: 8px;
+            --zolo-toggle-icon-size: 14px;
+            svg {
+                width: var(--zolo-toggle-icon-size);
+                height: var(--zolo-toggle-icon-size);;
+            }
+        }
+    }
 }
 
 

@@ -89,3 +89,6 @@ export const APAG_BG = 'apagBg';
 // post meta arrow space
 export const META_ARROW_SPACE = 'metaArrowSpace';
 export const META_BOX_WRAP_PADDING = 'metaBoxWrapPadding';
+
+// carousel container padding
+export const CAROUSEL_CONTAINER_PADDING = 'carouselContainerPadding';

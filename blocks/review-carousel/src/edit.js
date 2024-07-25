@@ -81,50 +81,98 @@ export default function Edit(props) {
         if (sliderE.swiper) {
             sliderE.swiper.destroy();
         }
-        new Swiper(sliderE, options);
+
+        const defaultOptions = {
+            pagination: {
+                el: `.${uniqueId} .swiper-pagination`,
+                clickable: true,
+                type: 'bullets',
+            },
+            effect: 'slide',
+            breakpoints: {
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+            },
+        };
+
+        console.log('defaultOptions', defaultOptions);
+
+        new Swiper(sliderE, Object.keys(options).length > 0 ? options : defaultOptions);
     };
 
     //slider initialize
     useEffect(() => {
         let breakpoints = {};
         breakpoints = {
-            1024: {
-                slidesPerView: deskCol || 2,
-                spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
-            },
-            768: {
-                slidesPerView: tabCol || 2,
-                spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
-            },
-            640: {
-                slidesPerView: mobCol || 1,
-                spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
-            },
+            ...((deskCol !== '' || deskColGap !== '') && {
+                1024: {
+                    slidesPerView: deskCol || 3,
+                    spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
+                },
+            }),
+            ...((tabCol !== '' || tabColGap !== '') && {
+                768: {
+                    slidesPerView: tabCol || 2,
+                    spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
+                },
+            }),
+            ...((mobCol !== '' || mobColGap !== '') && {
+                640: {
+                    slidesPerView: mobCol || 1,
+                    spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
+                },
+            }),
         };
 
         let options = {
-            loop: infiniteLoop,
-            speed: speed * 100,
-            effect: carouselEffect,
+            ...(infiniteLoop !== undefined && { loop: infiniteLoop }),
+            ...(speed !== undefined && { speed: speed * 100 }),
+            ...(carouselEffect !== 'slide' && {
+                effect: carouselEffect,
+            }),
             ...(carouselEffect === 'coverflow' && {
                 coverflowEffect: coverFlowEffect,
             }),
-            autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
-            navigation: showNavigation
-                ? {
-                      nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
-                      prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
-                  }
-                : false,
-            pagination: showPagination
-                ? {
-                      el: `.${uniqueId} .swiper-pagination`,
-                      clickable: true,
-                      type: paginationType,
-                      dynamicBullets: dynamicBullets,
-                  }
-                : false,
-            breakpoints: breakpoints,
+            ...(autoplay && {
+                autoplay: autoplay
+                    ? {
+                          delay: autoplayDelay * 100,
+                          pauseOnMouseEnter: pauseOnMouseEnter,
+                      }
+                    : false,
+            }),
+            ...(showNavigation !== undefined && {
+                navigation: showNavigation
+                    ? {
+                          nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
+                          prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
+                      }
+                    : false,
+            }),
+            ...((showPagination || showPagination !== undefined) && {
+                pagination: showPagination
+                    ? {
+                          el: `.${uniqueId} .swiper-pagination`,
+                          clickable: true,
+                          type: paginationType,
+                          dynamicBullets: dynamicBullets,
+                      }
+                    : false,
+            }),
+            // breakpoints: breakpoints,
+            ...(Object.keys(breakpoints).length > 0 && {
+                breakpoints: breakpoints,
+            }),
         };
 
         setAttributes({ sliderOptions: options });
@@ -208,7 +256,9 @@ export default function Edit(props) {
                 <div className="swiper" ref={reviewCarouselRef}>
                     <div {...innerBlocksProps} />
                 </div>
-                {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
+                {(showPagination || showPagination === undefined) && (
+                    <div class="swiper-pagination swiper-pagination-position-bottom"></div>
+                )}
                 {showNavigation && (
                     <Fragment>
                         <div

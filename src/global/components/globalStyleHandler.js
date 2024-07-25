@@ -456,7 +456,6 @@ export const GlobalStyleHanlder = (props) => {
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
         ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important` : ''}
-        ${position.value == 'sticky' ? `position: -webkit-sticky;` : ''}
  `;
     const positionTab = `
         ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
@@ -574,7 +573,7 @@ export const GlobalStyleHanlder = (props) => {
       .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
             ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
       }
-      .parent-${uniqueId}.zolo-transform-wrapper {
+      .parent-${uniqueId}.zolo-transform-animation {
         ${transformStylesDesktop}
         ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
       }
@@ -583,7 +582,7 @@ export const GlobalStyleHanlder = (props) => {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
           ${transformStylesDesktopHover}
       }
-        .parent-${uniqueId}.zolo-transform-wrapper:hover {
+        .parent-${uniqueId}.zolo-transform-animation:hover {
             ${transformStylesDesktopHover}
             }
       .parent-${uniqueId}.zolo-block:after {

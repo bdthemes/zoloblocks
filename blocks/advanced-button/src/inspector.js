@@ -102,6 +102,9 @@ function Inspector(props) {
         setAttributes({ preset: selected });
     };
 
+    // preset options
+    const presetOptions = applyFilters('zolo.advancedButton.presets', PRESETS);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -117,6 +120,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.advancedButton.presets', PRESETS)}
                                 onChange={(value) => onPresetChange(value)}
                             />
+
                             <ResAlignmentControl
                                 label={__('Button Alignment', 'zoloblocks')}
                                 controlName={BUTTON_ALIGNMENT}
@@ -585,7 +589,6 @@ function Inspector(props) {
                     </>
                 }
             />
-            
         </InspectorControls>
     );
 }

@@ -40,6 +40,7 @@ import {
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_PADDING,
+    CAROUSEL_CONTAINER_PADDING,
     REVIEWER_PHOTO_WIDTH,
     REVIEWER_PHOTO_HEIGHT,
     REVIEWER_PHOTO_BG,
@@ -346,10 +347,10 @@ function Inspector(props) {
                             />
                             <ToggleControl
                                 label={__('Show Pagination', 'zoloblocks')}
-                                checked={showPagination}
-                                onChange={() =>
+                                checked={showPagination === undefined ? true : showPagination}
+                                onChange={(v) =>
                                     setAttributes({
-                                        showPagination: !showPagination,
+                                        showPagination: v,
                                     })
                                 }
                             />
@@ -421,6 +422,15 @@ function Inspector(props) {
                             />
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
+
+                            <div className="zolo-custom-heading">{__('Carousel Container', 'zoloblocks')}</div>
+
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CAROUSEL_CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
                         </ZoloPanelBody>
 
                         {showPhoto && (

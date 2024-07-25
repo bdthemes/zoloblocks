@@ -111,15 +111,6 @@ const ZoloExportBlock = ({ clientId }) => {
 registerPlugin('zolo-export-block', {
     render: () => {
         const selectedBlockClientId = select('core/block-editor').getSelectedBlockClientId();
-
-        if (!selectedBlockClientId) {
-            return (
-                <Notice status="warning" isDismissible>
-                    {__('Please select a block to export.', 'zoloblocks')}
-                </Notice>
-            );
-        } else {
-            return <ZoloExportBlock clientId={selectedBlockClientId} />;
-        }
+        return <ZoloExportBlock clientId={selectedBlockClientId} />;
     },
 });

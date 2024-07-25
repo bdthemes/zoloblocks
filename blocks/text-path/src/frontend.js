@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const textpathLength = item.dataset.textpathlength;
         const textPathSpoint = item.dataset.textstartoffset;
         const uniqueId = item.dataset.uniqueid;
-        console.log(uniqueId);
         let root = createRoot(item);
         root.render(
             <SvgItem

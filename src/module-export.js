@@ -44,6 +44,7 @@ export { default as MultiRangeControl } from './controls/multi-range-control';
 export { default as BazierControl } from './controls/bezier-control';
 export { default as ContainerSidebarOpener } from './controls/container-sidebar-opener';
 export { default as SidebarOpener } from './controls/sidebar-opener';
+export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

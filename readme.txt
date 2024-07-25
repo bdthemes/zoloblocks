@@ -208,15 +208,27 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.0.8 - 02-07-2024 =
+= 1.1.0 - 10-07-2024 =
 
 = Added =
+* Icon block added
+* Notice block added
+* Popup builder added
+* Text path block added
+* zIndex nagative value added
+* Theme fonts support added
+* Position sticky feature added
+* Box Shadow control added in Flipbox block
+
+= Fixed =
 
 * Entrance animation confilict with global link issue fixed in Advanced Icon Box
 * The map zoom in/out and draggble issue fixed in Google Map block
+* Floating label issue fixed in advanced search & newslatter block
 * Patterns save as favorite features added in Template Library
 * Image Uploading issue fixed in Advanced Image block
-* Theme fonts support added
+* Separator color issue fixed in team grid block
+* Label issue fixed in Form block
 
 = Improved =
 

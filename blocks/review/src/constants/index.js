@@ -6,7 +6,12 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'review';
 
-// Presets
+
+// Style Presets
+export const STYLE_PRESETS = [
+    { label: __('Style 1', 'zoloblocks'), value: '' },
+    { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-preset-2', disabled: true },
+];
 
 export const PRESETS = [
     {
@@ -72,6 +77,15 @@ export const REVIEWER_PHOTO_BORDER_RADIUS = 'PhotoBorderRadius';
 export const REVIEWER_PHOTO_BOX_SHADOW = 'PhotoBoxShadow';
 export const REVIEWER_PHOTO_MARGIN = 'PhotoMargin';
 export const REVIEWER_PHOTO_PADDING = 'PhotoPadding';
+
+// review wrapper
+export const RW_BACKGROUND = 'rwBackground';
+export const RW_BORDER = 'rwBorder';
+export const RW_BORDER_RADIUS = 'rwBorderRadius';
+export const RW_BOX_SHADOW = 'rwBoxShadow';
+export const RW_MARGIN = 'rwMargin';
+export const RW_PADDING = 'ContentPadding';
+
 
 // name margin
 export const REVIEWER_NAME_MARGIN = 'NameMargin';

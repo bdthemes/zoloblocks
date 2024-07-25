@@ -259,27 +259,9 @@ export const FLEX_DIRECTIONS = [
         value: 'column',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.391 6.72949L16.391 17.1923"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M16.3909 17.1923L18.606 15.2941"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M16.391 17.1923L14.176 15.2941"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.391 6.72949L16.391 17.1923" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16.3909 17.1923L18.606 15.2941" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16.391 17.1923L14.176 15.2941" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                     d="M7.65393 6.72949L7.65393 17.1923"
                     stroke="#4D4D4D"
@@ -311,27 +293,9 @@ export const FLEX_DIRECTIONS = [
         value: 'row-reverse',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M17.2705 16.391L6.80771 16.391"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M6.80767 16.3909L8.70593 18.606"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M6.80767 16.391L8.70593 14.176"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M17.2705 16.391L6.80771 16.391" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.80767 16.3909L8.70593 18.606" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.80767 16.391L8.70593 14.176" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                     d="M17.2705 7.65393L6.80771 7.65393"
                     stroke="#4D4D4D"
@@ -455,13 +419,7 @@ export const FLEX_ALIGNS = [
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.86999 15.69L7.87 8.88" stroke="#4D4D4D" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M4.03003 3.96997L4.03003 20.51"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M4.03003 3.96997L4.03003 20.51" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M20.51 3.96997L20.51 20.51" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M16.67 15.69L16.67 8.88" stroke="#4D4D4D" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -476,13 +434,7 @@ export const FLEX_ALIGNS_ROW = [
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.39385 12.142L16.5189 12.142" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M7.39385 7.15051L16.5189 7.15051"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M7.39385 7.15051L16.5189 7.15051" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 3L3 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 21L3 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -493,20 +445,8 @@ export const FLEX_ALIGNS_ROW = [
         value: 'center',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.5599 9.46875L7.42934 9.46875"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M16.5599 14.4974L7.42934 14.4974"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.5599 9.46875L7.42934 9.46875" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16.5599 14.4974L7.42934 14.4974" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 3L3 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 21L3 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -518,13 +458,7 @@ export const FLEX_ALIGNS_ROW = [
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.606 11.858L7.48088 11.858" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M16.606 16.8495L7.48088 16.8495"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.606 16.8495L7.48088 16.8495" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -551,13 +485,7 @@ export const FLEX_JUSTIFIES = [
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.39385 12.142L16.5189 12.142" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M7.39385 7.15051L16.5189 7.15051"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M7.39385 7.15051L16.5189 7.15051" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 3L3 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 21L3 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -568,20 +496,8 @@ export const FLEX_JUSTIFIES = [
         value: 'center',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.5599 9.46875L7.42934 9.46875"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M16.5599 14.4974L7.42934 14.4974"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.5599 9.46875L7.42934 9.46875" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16.5599 14.4974L7.42934 14.4974" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 3L3 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 21L3 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -593,13 +509,7 @@ export const FLEX_JUSTIFIES = [
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.606 11.858L7.48088 11.858" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M16.606 16.8495L7.48088 16.8495"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.606 16.8495L7.48088 16.8495" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -611,13 +521,7 @@ export const FLEX_JUSTIFIES = [
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.606 7.1615L7.48088 7.1615" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M16.606 16.8386L7.48088 16.8386"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.606 16.8386L7.48088 16.8386" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -628,20 +532,8 @@ export const FLEX_JUSTIFIES = [
         value: 'space-around',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.6713 8.21777L7.54619 8.21777"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M16.606 15.8041L7.48088 15.8041"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.6713 8.21777L7.54619 8.21777" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16.606 15.8041L7.48088 15.8041" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -652,20 +544,8 @@ export const FLEX_JUSTIFIES = [
         value: 'space-evenly',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.606 8.73425L7.48088 8.73425"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M16.606 15.2767L7.48088 15.2767"
-                    stroke="#4D4D4D"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
+                <path d="M16.606 8.73425L7.48088 8.73425" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16.606 15.2767L7.48088 15.2767" stroke="#4D4D4D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -1163,7 +1043,6 @@ export const CONTENT_POSITIONS = [
     { label: __('Relative', 'zoloblocks'), value: 'relative' },
     { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
     { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
-    { label: __('Sticky', 'zoloblocks'), value: 'sticky' },
 ];
 
 export const OBJECT_FITS = [

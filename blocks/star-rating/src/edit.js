@@ -118,7 +118,7 @@ export default function Edit(props) {
                                 )}
                             </span>
                         )}
-                        <StarRating rating={rating} total={5} />
+                        <StarRating rating={rating || 5} total={5} />
                     </div>
                 </div>
             </div>

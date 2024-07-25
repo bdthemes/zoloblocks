@@ -26,15 +26,22 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
-            data-swiper-options={JSON.stringify(sliderOptions)}
+            // {...(Object.keys(sliderOptions).length > 0 )}
+            // data-swiper-options={JSON.stringify(sliderOptions)}
             data-swiper-breakpoints={JSON.stringify(breakpoints)}
+            {...(sliderOptions &&
+                Object.keys(sliderOptions).length > 1 && {
+                    'data-swiper-options': JSON.stringify(sliderOptions),
+                })}
         >
             <div className="swiper">
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
             </div>
-            {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
+            {(showPagination || showPagination === undefined) && (
+                <div className="swiper-pagination swiper-pagination-position-bottom"></div>
+            )}
             {showNavigation && (
                 <Fragment>
                     <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>
