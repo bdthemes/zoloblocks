@@ -154,11 +154,11 @@ const attributes = {
     ...generateNormalBGAttributes(REVIEW_CAROUSEL_BG),
     ...generateResCounterAttributies(CAROUSEL_COLUMNS, {
         noUnits: true,
-        // defaults: {
-        //     deskRange: 3,
-        //     tabRange: 2,
-        //     mobRange: 1,
-        // },
+        defaults: {
+            deskRange: 3,
+            tabRange: 2,
+            mobRange: 1,
+        },
     }),
     ...generateGapAttributes(CAROUSEL_GAP, {
         defaultUnit: 'px',

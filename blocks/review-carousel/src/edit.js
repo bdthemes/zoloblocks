@@ -82,9 +82,10 @@ export default function Edit(props) {
             sliderE.swiper.destroy();
         }
 
+        const pagination = sliderE.querySelector('.swiper-pagination');
         const defaultOptions = {
             pagination: {
-                el: `.${uniqueId} .swiper-pagination`,
+                el: pagination,
                 clickable: true,
                 type: 'bullets',
             },
@@ -104,9 +105,6 @@ export default function Edit(props) {
                 },
             },
         };
-
-        console.log('defaultOptions', defaultOptions);
-
         new Swiper(sliderE, Object.keys(options).length > 0 ? options : defaultOptions);
     };
 
@@ -159,8 +157,9 @@ export default function Edit(props) {
                       }
                     : false,
             }),
-            ...((showPagination || showPagination !== undefined) && {
-                pagination: showPagination
+            // ...((showPagination || showPagination !== undefined) && {
+            pagination:
+                showPagination || showPagination === undefined
                     ? {
                           el: `.${uniqueId} .swiper-pagination`,
                           clickable: true,
@@ -168,7 +167,7 @@ export default function Edit(props) {
                           dynamicBullets: dynamicBullets,
                       }
                     : false,
-            }),
+            // }),
             // breakpoints: breakpoints,
             ...(Object.keys(breakpoints).length > 0 && {
                 breakpoints: breakpoints,
@@ -259,6 +258,7 @@ export default function Edit(props) {
                 {(showPagination || showPagination === undefined) && (
                     <div class="swiper-pagination swiper-pagination-position-bottom"></div>
                 )}
+
                 {showNavigation && (
                     <Fragment>
                         <div

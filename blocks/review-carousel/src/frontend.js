@@ -5,10 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const carouselSelector = carousel.querySelector('.swiper');
             const carouselOptions = carousel.dataset?.swiperOptions || '{}';
             const carouselOptionsObj = JSON.parse(carouselOptions);
+            const pagination = carousel.querySelector('.swiper-pagination');
 
             const defaultOptions = {
                 pagination: {
-                    el: '.swiper-pagination',
+                    el: pagination,
                     clickable: true,
                     type: 'bullets',
                 },
