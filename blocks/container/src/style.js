@@ -214,7 +214,7 @@ const Style = ({ props }) => {
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
-            ${containerMobGap}  
+            ${containerMobGap}
             ${flexDirectionMob}
             ${flexWrapMob}
             ${flexJustifyMob}
