@@ -269,7 +269,8 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 
-    .zolo-container-inner-blocks-wrap {
+    .zolo-container-inner-blocks-wrap,
+    .block-editor-inner-blocks {
         .zolo-blocks-toolbar {
             &.container {
                 transform: unset;
