@@ -39,7 +39,7 @@ const Style = ({ props }) => {
         mobRangeStyle: containerMobWidth,
     } = generateResRangeStyle({
         controlName: CONTAINER_WIDTH,
-        property: 'max-width',
+        property: 'width',
         attributes,
     });
 

@@ -58,3 +58,59 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
 .zolo-container-variation-picker .block-editor-block-variation-picker__variations.block-editor-block-variation-picker__variations > li {
     margin: 0 5px;
 }
+
+
+
+.zolo-container-width-type {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    .zolo-container-btn {
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px;
+        height: auto;
+        min-height: auto;
+    }
+    .c-icon-labels {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .c-icon svg {
+        width: 30px;
+        height: 30px;
+        display: block;
+    }
+
+    .c-icon-info {
+        color: #757575;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+}
+
+// container top toolbar width css style
+.wp-block-zolo-container {
+    &.zolo-root-container {
+        &.cw_wide {
+            max-width: 1280px !important;
+            margin-left: auto;
+            margin-right: auto;
+            .zolo-container-inner-blocks-wrap {
+                max-width: 1200px !important;
+            }
+        }
+        &.cw_full {
+            max-width: unset !important;
+            .zolo-container-inner-blocks-wrap {
+                max-width: unset !important;
+            }
+        }
+    }
+}
+
