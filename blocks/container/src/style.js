@@ -22,13 +22,14 @@ const Style = ({ props }) => {
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType } = attributes;
 
     // content boxed width
+    // content boxed width
     const {
         desktopRangeStyle: contentDeskWidth,
         tabRangeStyle: contentTabWidth,
         mobRangeStyle: contentMobWidth,
     } = generateResRangeStyle({
         controlName: CONTENT_WIDTH,
-        property: '--zolo-container-content-width',
+        property: 'max-width',
         attributes,
     });
 
@@ -121,10 +122,10 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} {
+         .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
             ${contentDeskWidth}
-        }
-
+         }
         ${
             'custom_width' === containerWidthType
                 ? `
@@ -155,9 +156,10 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} {
-            ${contentTabWidth}
-        }
+        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+             ${contentTabWidth}
+         }
 
         ${
             'custom_width' === containerWidthType
@@ -189,9 +191,10 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} {
-            ${contentMobWidth}
-        }
+        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+             ${contentMobWidth}
+         }
 
         ${
             'custom_width' === containerWidthType
