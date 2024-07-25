@@ -60,6 +60,8 @@ function Inspector(props) {
         objAttributes,
     };
 
+    console.log('toggleLabel', toggleLabel);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -105,31 +107,32 @@ function Inspector(props) {
                             />
                             <ToggleControl
                                 label={__('Enable Title', 'zoloblocks')}
-                                checked={toggleLabel}
-                                onChange={() => setAttributes({ toggleLabel: !toggleLabel })}
+                                checked={toggleLabel === undefined ? true : toggleLabel}
+                                onChange={(v) => setAttributes({ toggleLabel: v })}
                             />
                             <ToggleControl
                                 label={__('Enable Prefix & Postfix', 'zoloblocks')}
-                                checked={proPieperpostToggle}
-                                onChange={() => setAttributes({ proPieperpostToggle: !proPieperpostToggle })}
+                                checked={proPieperpostToggle === undefined ? true : proPieperpostToggle}
+                                onChange={(v) => setAttributes({ proPieperpostToggle: v })}
                             />
                         </ZoloPanelBody>
-                        {proPieperpostToggle && (
+                        {(proPieperpostToggle == undefined || proPieperpostToggle == true) && (
                             <ZoloPanelBody title={__('Prefix & PostFix', 'zoloblocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Prefix', 'zoloblocks')}
                                     value={progPiePrefixPostfix?.Prefix}
                                     onChange={(v) => setAttributes({ progPiePrefixPostfix: { ...progPiePrefixPostfix, Prefix: v } })}
+                                    placeholder={__('$', 'zoloblocks')}
                                 />
                                 <TextControl
                                     label={__('Postfix', 'zoloblocks')}
                                     value={progPiePrefixPostfix?.Postfix}
                                     onChange={(v) => setAttributes({ progPiePrefixPostfix: { ...progPiePrefixPostfix, Postfix: v } })}
+                                    placeholder={__('%', 'zoloblocks')}
                                 />
                             </ZoloPanelBody>
                         )}
-
-                        {toggleLabel && (
+                        {(toggleLabel == undefined || toggleLabel == true) && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Title', 'zoloblocks')}

@@ -1,32 +1,33 @@
-import { render, useRef, useEffect } from '@wordpress/element';
+import { createRoot, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
-
+import { __ } from '@wordpress/i18n';
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const progress = document.querySelectorAll('.wp-block-zolo-progress-pie');
 
     if (progress.length > 0) {
         progress.forEach((item) => {
-            // find the class name starts with parent-
-            const uniqueId = Array.from(item.classList).find((className) => className.startsWith('progress-'));
-
-            // const uniqueId = item.dataset.uniqueid;
-            const progressValue = Number(item.dataset?.progressvalue ? item.dataset.progressvalue : 50);
-            const progressDuration = Number(item.dataset?.progressduration ? item.dataset.progressduration : 3);
+            const progressValue = Number(item.dataset?.progressvalue);
+            const progressDuration = Number(item.dataset?.progressduration);
             const circleColor = item.dataset?.circlecolor;
             const progressFillColor = item.dataset?.progressfillcolor;
-            const toggleLabel = item.dataset?.togglelabel === 'true' ? true : false;
-            const progressTitle = item.dataset?.progresstitle;
-            const progPieMultiColor = JSON.parse(item.dataset?.progpiemulticolor || '[]');
+            const toggleLabel = item.dataset?.togglelabel === 'true' || item.dataset?.togglelabel === undefined ? true : false;
+            const progressTitle = item.dataset.progresstitle;
+            const progPieMultiColor = JSON.parse(item.dataset?.progpiemulticolor);
             const progPiePrefixPostfix = JSON.parse(item.dataset?.propieprefixpostfix || '{}');
-            const proPieperpostToggle = item.dataset?.propieperposttoggle === 'true' ? true : false;
+            const prefix = progPiePrefixPostfix?.Prefix || '$';
+            const suffix = progPiePrefixPostfix?.Postfix || '%';
+
+            const proPieperpostToggle =
+                item.dataset?.propieperposttoggle === 'true' || item.dataset?.propieperposttoggle === undefined ? true : false;
+
 
             const CountupComponent = ({ progressValue, progressDuration, progressFillColor, toggleLabel, progressTitle }) => {
                 const progress = useRef(null);
-
+                const uniqueId = Array.from(item.classList).find((className) => className.startsWith('progress-'));
                 useEffect(() => {
                     const progressPie = progress.current;
-                    const progressVal = progressValue;
+                    const progressVal = progressValue || 50;
 
                     startAnim();
                     function startAnim() {
@@ -42,13 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         start={0}
                         end={progressValue || 50}
                         delay={0}
-                        duration={progressDuration ? progressDuration : 3}
-                        prefix={proPieperpostToggle && progPiePrefixPostfix?.Prefix ? progPiePrefixPostfix.Prefix : ''}
-                        suffix={proPieperpostToggle && progPiePrefixPostfix?.Postfix ? progPiePrefixPostfix.Postfix : ''}
+                        duration={progressDuration || 3}
+                        prefix={proPieperpostToggle ? prefix : ''}
+                        suffix={proPieperpostToggle ? suffix : ''}
                     >
                         {({ countUpRef }) => (
                             <>
-                                <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">
+                                <svg className="progress-pie" width="450px" height="100%" viewBox="0 0 42 42">
                                     {/*  optional background if need  */}
                                     <circle className="donut-hole progress-donut-hole" cx="21" cy="21" r="15.91549430918954"></circle>
                                     <circle
@@ -77,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
                                             {progPieMultiColor &&
                                                 progPieMultiColor.map((color, index) => {
-                                                    //  const offset = `${Math.round((index + 1) * 100 / progPieMultiColor.length)}%`;
                                                     const averageOffset = 100 / (progPieMultiColor.length - 1);
                                                     let offset;
                                                     if (index === 0) {
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </text>
                                         {toggleLabel && (
                                             <text x="50%" y="50%" className="progress-pie-label">
-                                                {progressTitle || 'Total'}
+                                                {progressTitle || __('Total', 'zoloblocks')}
                                             </text>
                                         )}
                                     </g>
@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </CountUp>
                 );
             };
-
-            render(
+            const root = createRoot(item);
+            root.render(
                 <CountupComponent
                     progressValue={progressValue}
                     circleColor={circleColor}
@@ -123,8 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     toggleLabel={toggleLabel}
                     progressTitle={progressTitle}
                     progressDuration={progressDuration}
-                />,
-                item
+                />
             );
         });
     }

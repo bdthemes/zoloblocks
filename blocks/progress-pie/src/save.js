@@ -1,4 +1,4 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
@@ -35,7 +35,11 @@ const Save = ({ attributes }) => {
                 'data-progressDuration': progressDuration,
             })}
             {...(progressTitle && {
-                'data-progressTitle': progressTitle,
+                'data-progresstitle': progressTitle,
+            })}
+            {...(toggleLabel !== undefined && {
+                'data-toggleLabel': toggleLabel,
+
             })}
             {...(progressFillColor && {
                 'data-progressFillColor': progressFillColor,
@@ -43,22 +47,14 @@ const Save = ({ attributes }) => {
             {...(circleColor && {
                 'data-circleColor': circleColor,
             })}
-            {...(progPieMultiColor && {
-                'data-progpiemulticolor': progPieMultiColor,
+            data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
+            {...(progPiePrefixPostfix &&
+                (progPiePrefixPostfix?.Prefix !== '' || progPiePrefixPostfix?.Postfix !== '') && {
+                    'data-propieprefixpostfix': JSON.stringify(progPiePrefixPostfix),
+                })}
+            {...(proPieperpostToggle !== undefined && {
+                'data-propieperposttoggle': proPieperpostToggle,
             })}
-            {...(progPiePrefixPostfix && {
-                'data-propieprefixpostfix': progPiePrefixPostfix,
-            })}
-            // data-progressvalue={progressValue}
-            // data-progressDuration={progressDuration}
-            // data-progressTitle={progressTitle}
-            data-toggleLabel={toggleLabel}
-            data-propieperposttoggle={proPieperpostToggle}
-            // data-progressFillColor={progressFillColor}
-            // data-circleColor={circleColor}
-            // data-uniqueid={uniqueId}
-            // data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
-            // data-propieprefixpostfix={JSON.stringify(progPiePrefixPostfix)}
         ></div>
     );
 };
