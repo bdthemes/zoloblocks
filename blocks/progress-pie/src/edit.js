@@ -91,7 +91,7 @@ export default function Edit(props) {
                 >
                     {({ countUpRef }) => (
                         <>
-                            <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">
+                            <svg className="progress-pie" width="450px" height="100%" viewBox="0 0 42 42">
                                 {/*  optional background if need  */}
                                 <circle
                                     className="donut-hole progress-donut-hole"
@@ -139,7 +139,7 @@ export default function Edit(props) {
                                                     // Intermediate children, calculate offset
                                                     offset = `${averageOffset * index}%`;
                                                 }
-                                                console.log(color);
+
                                                 return <stop offset={offset} stopColor={color?.color || '#00bc9b'} key={index} />;
                                             })}
                                     </linearGradient>
@@ -149,7 +149,7 @@ export default function Edit(props) {
                                     <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
                                         {progressValue || 50}
                                     </text>
-                                    {(toggleLabel == undefined || toggleLabel) && (
+                                    {(toggleLabel === undefined || toggleLabel) && (
                                         <text x="50%" y="50%" className="progress-pie-label">
                                             {progressTitle || __('Total', 'zoloblocks')}
                                         </text>

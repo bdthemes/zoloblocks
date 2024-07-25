@@ -28,35 +28,30 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
-            // data-progressvalue={progressValue}
             {...(progressValue && {
                 'data-progressvalue': progressValue,
             })}
-            // data-progressDuration={progressDuration}
             {...(progressDuration && {
                 'data-progressDuration': progressDuration,
             })}
-            // data-progressTitle={progressTitle}
             {...(progressTitle && {
                 'data-progresstitle': progressTitle,
             })}
-            // data-toggleLabel={toggleLabel}
-            {...(toggleLabel && {
+            {...(toggleLabel !== undefined && {
                 'data-toggleLabel': toggleLabel,
             })}
-            // data-progressFillColor={progressFillColor}
             {...(progressFillColor && {
                 'data-progressFillColor': progressFillColor,
             })}
-            // data-circleColor={circleColor}
             {...(circleColor && {
                 'data-circleColor': circleColor,
             })}
             data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
-            {...(progPiePrefixPostfix && {
-                'data-propieprefixpostfix': JSON.stringify(progPiePrefixPostfix),
-            })}
-            {...(proPieperpostToggle && {
+            {...(progPiePrefixPostfix &&
+                (progPiePrefixPostfix?.Prefix !== '' || progPiePrefixPostfix?.Postfix !== '') && {
+                    'data-propieprefixpostfix': JSON.stringify(progPiePrefixPostfix),
+                })}
+            {...(proPieperpostToggle !== undefined && {
                 'data-propieperposttoggle': proPieperpostToggle,
             })}
         ></div>

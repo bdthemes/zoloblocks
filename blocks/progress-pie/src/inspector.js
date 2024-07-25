@@ -56,6 +56,8 @@ function Inspector(props) {
         objAttributes,
     };
 
+    console.log('toggleLabel', toggleLabel);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -110,21 +112,23 @@ function Inspector(props) {
                                 onChange={(v) => setAttributes({ proPieperpostToggle: v })}
                             />
                         </ZoloPanelBody>
-                        {(proPieperpostToggle == undefined || true) && (
+                        {(proPieperpostToggle == undefined || proPieperpostToggle == true) && (
                             <ZoloPanelBody title={__('Prefix & PostFix', 'zoloblocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Prefix', 'zoloblocks')}
                                     value={progPiePrefixPostfix?.Prefix}
                                     onChange={(v) => setAttributes({ progPiePrefixPostfix: { ...progPiePrefixPostfix, Prefix: v } })}
+                                    placeholder={__('$', 'zoloblocks')}
                                 />
                                 <TextControl
                                     label={__('Postfix', 'zoloblocks')}
                                     value={progPiePrefixPostfix?.Postfix}
                                     onChange={(v) => setAttributes({ progPiePrefixPostfix: { ...progPiePrefixPostfix, Postfix: v } })}
+                                    placeholder={__('%', 'zoloblocks')}
                                 />
                             </ZoloPanelBody>
                         )}
-                        {(toggleLabel == undefined || true) && (
+                        {(toggleLabel == undefined || toggleLabel == true) && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Title', 'zoloblocks')}

@@ -1,23 +1,25 @@
 import { createRoot, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
-
+import { __ } from '@wordpress/i18n';
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const progress = document.querySelectorAll('.wp-block-zolo-progress-pie');
-    let toggleLabel;
+
     if (progress.length > 0) {
         progress.forEach((item) => {
-            const progressValue = Number(item.dataset.progressvalue);
-            const progressDuration = Number(item.dataset.progressduration);
-            const circleColor = item.dataset.circlecolor;
-            const progressFillColor = item.dataset.progressfillcolor;
-
-            toggleLabel = item.dataset.togglelabel === 'true' ? true : false;
-
+            const progressValue = Number(item.dataset?.progressvalue);
+            const progressDuration = Number(item.dataset?.progressduration);
+            const circleColor = item.dataset?.circlecolor;
+            const progressFillColor = item.dataset?.progressfillcolor;
+            const toggleLabel = item.dataset?.togglelabel === 'true' || item.dataset?.togglelabel === undefined ? true : false;
             const progressTitle = item.dataset.progresstitle;
-            const progPieMultiColor = JSON.parse(item.dataset.progpiemulticolor);
-            const progPiePrefixPostfix = JSON.parse(item.dataset.propieprefixpostfix);
-            const proPieperpostToggle = item.dataset.propieperposttoggle === 'true' ? true : false;
+            const progPieMultiColor = JSON.parse(item.dataset?.progpiemulticolor);
+            const progPiePrefixPostfix = JSON.parse(item.dataset?.propieprefixpostfix || '{}');
+            const prefix = progPiePrefixPostfix?.Prefix || '$';
+            const suffix = progPiePrefixPostfix?.Postfix || '%';
+
+            const proPieperpostToggle =
+                item.dataset?.propieperposttoggle === 'true' || item.dataset?.propieperposttoggle === undefined ? true : false;
 
             const CountupComponent = ({ progressValue, progressDuration, progressFillColor, toggleLabel, progressTitle }) => {
                 const progress = useRef(null);
@@ -34,19 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     return () => clearTimeout();
                 }, [progressValue]);
-                console.log(toggleLabel);
+                console.log(proPieperpostToggle);
                 return (
                     <CountUp
                         start={0}
                         end={progressValue || 50}
                         delay={0}
                         duration={progressDuration || 3}
-                        // prefix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Prefix || '$' : ''}
-                        // suffix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Postfix || '%' : ''}
+                        prefix={proPieperpostToggle ? prefix : ''}
+                        suffix={proPieperpostToggle ? suffix : ''}
                     >
                         {({ countUpRef }) => (
                             <>
-                                <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">
+                                <svg className="progress-pie" width="450px" height="100%" viewBox="0 0 42 42">
                                     {/*  optional background if need  */}
                                     <circle className="donut-hole progress-donut-hole" cx="21" cy="21" r="15.91549430918954"></circle>
                                     <circle
@@ -99,11 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
                                             {progressValue || 50}
                                         </text>
-                                        {/* {(toggleLabel === undefined || toggleLabel) && (
-                                            <text x="50%" y="50%" className="progress-pie-label">
-                                                {progressTitle || __('Total', 'zoloblocks')}
-                                            </text>
-                                        )} */}
                                         {toggleLabel && (
                                             <text x="50%" y="50%" className="progress-pie-label">
                                                 {progressTitle || __('Total', 'zoloblocks')}
