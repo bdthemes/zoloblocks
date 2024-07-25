@@ -13,7 +13,6 @@ const {
 } = window.zoloModule;
 
 import {
-    SHAPE_DIVIDER,
     TOP_WIDTH_SHAPE,
     TOP_HEIGHT_SHAPE,
     BOTTOM_WIDTH_SHAPE,
@@ -22,8 +21,8 @@ import {
 
 
 const Style = (props) => {
-    const { attributes, setAttributes } = props;
-    const { topType, topColor, bottomColor, uniqueId } = attributes;
+    const { attributes } = props;
+    const { shapeDivider, uniqueId } = attributes;
 
     // settings
 
@@ -68,36 +67,36 @@ const Style = (props) => {
     });
     const shapeDividerDesktop = `
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${topColor};
+            fill :${shapeDivider.top.color};
             ${topHeightDesk}
             ${topWidthDesk}
         }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${bottomColor};
+            fill: ${shapeDivider.bottom.color};
             ${bottomHeightDesk}
             ${bottomWidthDesk}
         }
     `;
     const shapeDividerTablet = `
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${topColor};
+            fill :${shapeDivider.top.color};
             ${topHeightTab}
             ${topWidthTab}
         }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${bottomColor};
+            fill: ${shapeDivider.bottom.color};
             ${bottomHeightTab}
             ${bottomWidthTab}
         }
     `;
     const shapeDividerMobile = `
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${topColor};
+            fill :${shapeDivider.top.color};
             ${topHeightMob}
             ${topWidthMob}
         }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${bottomColor};
+            fill: ${shapeDivider.bottom.color};
             ${bottomHeightMob}
             ${bottomWidthMob}
         }

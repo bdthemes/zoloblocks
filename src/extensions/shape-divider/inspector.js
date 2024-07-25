@@ -1,9 +1,4 @@
-const {
-    ColorControl,
-    ResDimensionsControl,
-    TabPanelControl,
-    ZoloPanelBody,
-} = window.zoloModule;
+const { ColorControl, ResDimensionsControl, TabPanelControl, ZoloPanelBody } = window.zoloModule;
 import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 import { __ } from '@wordpress/i18n';
@@ -13,18 +8,7 @@ import objAttributes from './attributes';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-    const {
-        resMode,
-
-        // settings
-        topType,
-        topColor,
-        topInvert,
-        bottomType,
-        bottomColor,
-        bottomInvert,
-        bringFront,
-    } = attributes;
+    const { resMode, shapeDivider } = attributes;
 
     const requiredProps = {
         resMode,
@@ -32,6 +16,16 @@ const Inspector = ({ panelProps }) => {
         setAttributes,
         objAttributes,
     };
+    const toggleTypeFlip =
+        shapeDivider.top.type === 'clouds' ||
+        shapeDivider.top.type === 'curve' ||
+        shapeDivider.top.type === 'curveasym' ||
+        shapeDivider.top.type === 'pyramids';
+    const toggleTypeFlipBottom =
+        shapeDivider.bottom.type === 'clouds' ||
+        shapeDivider.bottom.type === 'curve' ||
+        shapeDivider.bottom.type === 'curveasym' ||
+        shapeDivider.bottom.type === 'pyramids';
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <ToggleControl
@@ -50,25 +44,37 @@ const Inspector = ({ panelProps }) => {
                         <>
                             <SelectControl
                                 label={__('Top Type', 'zoloblocks')}
-                                value={topType}
+                                value={shapeDivider.top.type}
                                 onChange={(value) =>
                                     setAttributes({
-                                        topType: value,
+                                        shapeDivider: {
+                                            ...shapeDivider,
+                                            top: {
+                                                ...shapeDivider.top,
+                                                type: value,
+                                            },
+                                        },
                                     })
                                 }
                                 options={SHAPE_DIVIDER}
                             />
 
-                            {topType === 'none' ? (
+                            {shapeDivider.top.type === 'none' ? (
                                 <></>
                             ) : (
                                 <>
                                     <ColorControl
                                         label={__('Top Color', 'zoloblocks')}
-                                        color={topColor}
+                                        color={shapeDivider.top.color}
                                         onChange={(value) =>
                                             setAttributes({
-                                                topColor: value,
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    top: {
+                                                        ...shapeDivider.top,
+                                                        color: value,
+                                                    },
+                                                },
                                             })
                                         }
                                     />
@@ -88,181 +94,18 @@ const Inspector = ({ panelProps }) => {
                                         max={500}
                                         min={1}
                                     />
-
-                                    {topType === 'arrow' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'book' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'clouds' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'curve' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'curveasym' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'drops' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'mountains' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'pyramids' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'split' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'triangle' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'triangleAsy' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {topType === 'waves' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={topInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
                                     <ToggleControl
-                                        label={__('Bring To Front', 'zoloblocks')}
-                                        checked={bringFront}
-                                        onChange={() =>
+                                        label={__(`${toggleTypeFlip ? 'Flip' : 'Invert'}`, 'zoloblocks')}
+                                        checked={shapeDivider.top.invert}
+                                        onChange={(value) =>
                                             setAttributes({
-                                                topbringFront: !bringFront,
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    top: {
+                                                        ...shapeDivider.top,
+                                                        invert: value,
+                                                    },
+                                                },
                                             })
                                         }
                                     />
@@ -274,25 +117,37 @@ const Inspector = ({ panelProps }) => {
                         <>
                             <SelectControl
                                 label={__('Bottom Type', 'zoloblocks')}
-                                value={bottomType}
+                                value={shapeDivider.bottom.type}
                                 onChange={(value) =>
                                     setAttributes({
-                                        bottomType: value,
+                                        shapeDivider: {
+                                            ...shapeDivider,
+                                            bottom: {
+                                                ...shapeDivider.bottom,
+                                                type: value,
+                                            },
+                                        },
                                     })
                                 }
                                 options={SHAPE_DIVIDER}
                             />
 
-                            {bottomType === 'none' ? (
+                            {shapeDivider.bottom.type === 'none' ? (
                                 <></>
                             ) : (
                                 <>
                                     <ColorControl
                                         label={__('Bottom Color', 'zoloblocks')}
-                                        color={bottomColor}
+                                        color={shapeDivider.bottom.color}
                                         onChange={(value) =>
                                             setAttributes({
-                                                bottomColor: value,
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    bottom: {
+                                                        ...shapeDivider.bottom,
+                                                        color: value,
+                                                    },
+                                                },
                                             })
                                         }
                                     />
@@ -312,139 +167,18 @@ const Inspector = ({ panelProps }) => {
                                         max={500}
                                         min={1}
                                     />
-
-                                    {bottomType === 'arrow' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        bottomInvert: !bottomInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'book' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        bottomInvert: !bottomInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'clouds' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        bottomInvert: !bottomInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'mountains' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        bottomInvert: !bottomInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'pyramids' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Flip', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'split' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'triangle' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'triangleAsy' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
-                                    {bottomType === 'waves' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Invert', 'zoloblocks')}
-                                                checked={bottomInvert}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        topInvert: !topInvert,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )}
-
                                     <ToggleControl
-                                        label={__('Bring To Front', 'zoloblocks')}
-                                        checked={bringFront}
-                                        onChange={() =>
+                                        label={__(`${toggleTypeFlipBottom ? 'Flip' : 'Invert'}`, 'zoloblocks')}
+                                        checked={shapeDivider.bottom.invert}
+                                        onChange={(value) =>
                                             setAttributes({
-                                                topbringFront: !bringFront,
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    bottom: {
+                                                        ...shapeDivider.bottom,
+                                                        invert: value,
+                                                    },
+                                                },
                                             })
                                         }
                                     />
