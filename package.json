@@ -43,6 +43,7 @@
         "react-countup": "^6.5.1",
         "react-google-autocomplete": "^2.7.3",
         "react-multi-select-component": "^4.3.4",
+        "react-qrcode-logo": "^3.0.0",
         "react-select": "^5.8.0",
         "uuid": "^9.0.1",
         "webfontloader": "^1.6.28"

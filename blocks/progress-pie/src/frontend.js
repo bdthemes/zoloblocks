@@ -1,5 +1,4 @@
-
-import {render,useRef,useEffect} from '@wordpress/element'
+import { render, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
 
 // render on page load
@@ -8,16 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (progress.length > 0) {
         progress.forEach((item) => {
-            const uniqueId = item.dataset.uniqueid;
-            const progressValue = Number(item.dataset.progressvalue);
-            const progressDuration = Number(item.dataset.progressduration);
-            const circleColor = item.dataset.circlecolor;
-            const progressFillColor = item.dataset.progressfillcolor;
-            const toggleLabel = item.dataset.togglelabel === 'true' ? true : false;
-            const progressTitle = item.dataset.progresstitle;
-            const progPieMultiColor = JSON.parse(item.dataset.progpiemulticolor);
-            const progPiePrefixPostfix = JSON.parse(item.dataset.propieprefixpostfix);
-            const proPieperpostToggle = item.dataset.propieperposttoggle === 'true' ? true : false;
+            // find the class name starts with parent-
+            const uniqueId = Array.from(item.classList).find((className) => className.startsWith('progress-'));
+
+            // const uniqueId = item.dataset.uniqueid;
+            const progressValue = Number(item.dataset?.progressvalue ? item.dataset.progressvalue : 50);
+            const progressDuration = Number(item.dataset?.progressduration ? item.dataset.progressduration : 3);
+            const circleColor = item.dataset?.circlecolor;
+            const progressFillColor = item.dataset?.progressfillcolor;
+            const toggleLabel = item.dataset?.togglelabel === 'true' ? true : false;
+            const progressTitle = item.dataset?.progresstitle;
+            const progPieMultiColor = JSON.parse(item.dataset?.progpiemulticolor || '[]');
+            const progPiePrefixPostfix = JSON.parse(item.dataset?.propieprefixpostfix || '{}');
+            const proPieperpostToggle = item.dataset?.propieperposttoggle === 'true' ? true : false;
 
             const CountupComponent = ({ progressValue, progressDuration, progressFillColor, toggleLabel, progressTitle }) => {
                 const progress = useRef(null);
@@ -38,23 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return (
                     <CountUp
                         start={0}
-                        end={progressValue}
+                        end={progressValue || 50}
                         delay={0}
                         duration={progressDuration ? progressDuration : 3}
-                        prefix={
-                            proPieperpostToggle &&
-                            typeof progPiePrefixPostfix.Prefix === 'string' &&
-                            isNaN(Number(progPiePrefixPostfix.Prefix))
-                                ? progPiePrefixPostfix.Prefix
-                                : ''
-                        }
-                        suffix={
-                            proPieperpostToggle &&
-                            typeof progPiePrefixPostfix.Postfix === 'string' &&
-                            isNaN(Number(progPiePrefixPostfix.Postfix))
-                                ? progPiePrefixPostfix.Postfix
-                                : ''
-                        }
+                        prefix={proPieperpostToggle && progPiePrefixPostfix?.Prefix ? progPiePrefixPostfix.Prefix : ''}
+                        suffix={proPieperpostToggle && progPiePrefixPostfix?.Postfix ? progPiePrefixPostfix.Postfix : ''}
                     >
                         {({ countUpRef }) => (
                             <>
@@ -85,31 +75,36 @@ document.addEventListener('DOMContentLoaded', () => {
                                     ></circle>
                                     <defs>
                                         <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                                            {progPieMultiColor.map((color, index) => {
-                                                //  const offset = `${Math.round((index + 1) * 100 / progPieMultiColor.length)}%`;
-                                                const averageOffset = 100 / (progPieMultiColor.length - 1);
-                                                let offset;
-                                                if (index === 0) {
-                                                    offset = '0%';
-                                                } else if (index === progPieMultiColor.length - 1) {
-                                                    offset = '100%';
-                                                } else {
-                                                    offset = `${averageOffset * index}%`;
-                                                }
-                                                return (
-                                                    <stop offset={offset} stopColor={color.color ? color.color : '#00bc9b'} key={index} />
-                                                );
-                                            })}
+                                            {progPieMultiColor &&
+                                                progPieMultiColor.map((color, index) => {
+                                                    //  const offset = `${Math.round((index + 1) * 100 / progPieMultiColor.length)}%`;
+                                                    const averageOffset = 100 / (progPieMultiColor.length - 1);
+                                                    let offset;
+                                                    if (index === 0) {
+                                                        offset = '0%';
+                                                    } else if (index === progPieMultiColor.length - 1) {
+                                                        offset = '100%';
+                                                    } else {
+                                                        offset = `${averageOffset * index}%`;
+                                                    }
+                                                    return (
+                                                        <stop
+                                                            offset={offset}
+                                                            stopColor={color.color ? color.color : '#00bc9b'}
+                                                            key={index}
+                                                        />
+                                                    );
+                                                })}
                                         </linearGradient>
                                     </defs>
                                     {/* Progress number and text  */}
                                     <g className="progress-pie-text">
                                         <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
-                                            {progressValue && progressValue}
+                                            {progressValue || 50}
                                         </text>
                                         {toggleLabel && (
                                             <text x="50%" y="50%" className="progress-pie-label">
-                                                {progressTitle && progressTitle}
+                                                {progressTitle || 'Total'}
                                             </text>
                                         )}
                                     </g>

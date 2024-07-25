@@ -233,31 +233,22 @@ function Inspector(props) {
                             />
 
                             <ResDimensionsControl
-
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PB_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <NormalBGControl requiredProps={requiredProps} controlName={PB_BG} noMainBGImg={false} />
 
-                            <NormalBGControl requiredProps={requiredProps} controlName={PB_BG} noMainBGImg={true} />
-
-                            {popupType === 'popup_box' && (
-                                <>
-                                    <div className='zolo-custom-heading'>
-                                        {__('Popup Overlay', 'zoloblocks')}
-                                    </div>
-                                    {popupType === 'popup_box' && enableOverlay && (
-                                        <NormalBGControl
-                                            requiredProps={requiredProps}
-                                            controlName={PB_OVERLAY_BG}
-                                            noMainBGImg={true}
-                                            label={__('Background', 'zoloblocks')}
-                                        />
-                                    )}
-                                </>
+                            <div className="zolo-custom-heading">{__('Popup Overlay', 'zoloblocks')}</div>
+                            {popupType === 'popup_box' && enableOverlay && (
+                                <NormalBGControl
+                                    requiredProps={requiredProps}
+                                    controlName={PB_OVERLAY_BG}
+                                    noMainBGImg={true}
+                                    label={__('Background', 'zoloblocks')}
+                                />
                             )}
-  
                         </ZoloPanelBody>
 
                         {isDismissable && (
@@ -306,7 +297,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                           
+
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -319,7 +310,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                             <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={true} />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={true} />
                                         </>
                                     }
                                     hoverComponents={
@@ -333,7 +324,11 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                             <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_HOVER_BG} noMainBGImg={true} />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={CLOSE_ICON_HOVER_BG}
+                                                noMainBGImg={true}
+                                            />
                                         </>
                                     }
                                 />

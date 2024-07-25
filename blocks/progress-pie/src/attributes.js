@@ -43,11 +43,11 @@ const attributes = {
     //attr
     progressValue: {
         type: 'number',
-        default: 50,
+        // default: 50,
     },
     progressDuration: {
         type: 'number',
-        default: 3,
+        // default: 3,
     },
     progressTitle: {
         type: 'string',
@@ -57,7 +57,6 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-
     progressSize: {
         type: 'number',
         default: 10,
@@ -69,10 +68,10 @@ const attributes = {
     },
     progPiePrefixPostfix: {
         type: 'object',
-        default: {
-            Prefix: '$',
-            Postfix: '%',
-        },
+        // default: {
+        //     Prefix: '$',
+        //     Postfix: '%',
+        // },
     },
     proPieperpostToggle: {
         type: 'boolean',

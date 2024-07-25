@@ -1,13 +1,14 @@
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
+import { ToolbarGroup, Dropdown, ToolbarButton, Button } from '@wordpress/components';
 import { select } from '@wordpress/data';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
-export default function RenderView({ attributes, setAttributes, clientId, className }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses } = attributes;
-    const panelProps = { attributes, setAttributes };
-
+import { CW_TYPES, CWT_ICONS } from './constants';
+export default function RenderView({ attributes, clientId, className, setAttributes }) {
+  
+    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
     const hasChildren = 0 !== select('core/block-editor').getBlocks(clientId).length;
@@ -18,6 +19,7 @@ export default function RenderView({ attributes, setAttributes, clientId, classN
         className: classnames(
             className,
             `${uniqueId} ${containerWidthType} ${hasChildrenClass} ${isRootContainerClass} backend`,
+            `${containerWidth !== 'cw_none' ? containerWidth : ''}`,
             classArrayToStr(parentClasses)
         ),
     });
@@ -27,6 +29,42 @@ export default function RenderView({ attributes, setAttributes, clientId, classN
 
     return (
         <>
+            <BlockControls>
+                <ToolbarGroup>
+                    <Dropdown
+                        className="my-container-class-name"
+                        contentClassName="my-popover-content-classname"
+                        placement="bottom right"
+                        renderToggle={({ isOpen, onToggle }) => (
+                            <ToolbarButton onClick={onToggle} aria-expanded={isOpen} icon={CWT_ICONS[containerWidth]} />
+                        )}
+                        renderContent={() => (
+                            <div className="zolo-container-width-type">
+                                {CW_TYPES &&
+                                    CW_TYPES.map((type, index) => {
+                                        return (
+                                            <Button
+                                                className="zolo-container-btn"
+                                                key={index}
+                                                onClick={() => {
+                                                    setAttributes({
+                                                        containerWidth: type?.value,
+                                                    });
+                                                }}
+                                            >
+                                                <div className="c-icon">{type?.icon}</div>
+                                                <div className="c-icon-labels">
+                                                    <span className="c-icon-label">{type?.label}</span>
+                                                    <span className="c-icon-info">{type?.info}</span>
+                                                </div>
+                                            </Button>
+                                        );
+                                    })}
+                            </div>
+                        )}
+                    />
+                </ToolbarGroup>
+            </BlockControls>
             <div {...blockProps}>
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (

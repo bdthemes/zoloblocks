@@ -12,8 +12,12 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...blockProps}
-            data-initialOpen={initialOpen}
-            data-multiple={allowMultiple}
+            {...(initialOpen && {
+                'data-initial-open': initialOpen,
+            })}
+            {...(allowMultiple && {
+                'data-multiple': allowMultiple,
+            })}
             {...(zoloId && {
                 id: zoloId,
             })}

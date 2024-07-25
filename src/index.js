@@ -39,6 +39,7 @@ import '../blocks/profile-card/src';
 import '../blocks/progress-bar/src';
 import '../blocks/progress-bar-child/src';
 import '../blocks/progress-pie/src';
+import '../blocks/qrcode/src';
 import '../blocks/review-child/src';
 import '../blocks/review-grid/src';
 import '../blocks/review-carousel/src';

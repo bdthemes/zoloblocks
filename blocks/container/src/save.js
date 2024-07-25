@@ -5,9 +5,9 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Save = ({ attributes }) => {
     const panelProps = { attributes };
-    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId } = attributes;
         const shapeDividerBefore = applyFilters('zolo.extensions.render.shapeDivider.top', [], panelProps);
         const shapeDividerAfter = applyFilters('zolo.extensions.render.shapeDivider.bottom', [], panelProps);
+    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth } = attributes;
 
     return (
         <div
@@ -16,6 +16,7 @@ const Save = ({ attributes }) => {
                     uniqueId,
                     isBlockRootParent ? `${containerWidthType} zolo-root-container` : '',
                     'frontend',
+                    `${containerWidth !== 'cw_none' ? containerWidth : ''}`,
                     classArrayToStr(parentClasses)
                 ),
             })}

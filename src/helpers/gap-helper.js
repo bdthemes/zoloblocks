@@ -2,7 +2,7 @@ import { hasVal } from './helper';
 import { prefix } from '../global/constants';
 
 export const generateGapAttributes = (controlName, defaults = {}) => {
-    const { defaultRange, defaultUnit } = defaults;
+    const { defaultRange, defaultUnit = 'px' } = defaults;
 
     return {
         [`${prefix}${controlName}Gap`]: {
