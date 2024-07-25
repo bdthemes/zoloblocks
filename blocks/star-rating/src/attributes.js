@@ -64,7 +64,6 @@ const attributes = {
 
     rating: {
         type: 'number',
-        default: 5,
     },
     showTitle: {
         type: 'boolean',

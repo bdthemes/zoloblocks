@@ -19,7 +19,7 @@ const Save = ({ attributes }) => {
         verticalLayoutDirection,
         contentDirection,
         tabItemWidth,
-        verticalPreset
+        verticalPreset,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -43,7 +43,10 @@ const Save = ({ attributes }) => {
                 )}
                 role="tablist"
                 tabIndex={0}
-                data-activeIndex={tabActiveItemNo - 1}
+                {...(tabActiveItemNo && {
+                    'data-activeIndex': tabActiveItemNo - 1,
+                })}
+                // data-activeIndex={tabActiveItemNo - 1}
             >
                 <div className={`tab__list zolo-tab_header-wrap ${tabItemWidth}`}>
                     {tabTitles &&

@@ -12,12 +12,21 @@ import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/bloc
 import Inspector from './inspector';
 import Style from './style';
 
+// register variations
+import './variations';
+
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
     const { uniqueId, popupType, popupBoxPosition, enableOverlay, isDismissable, closeBtnPosition, closeBtnId } = attributes;
 
     const blockPros = useBlockProps({
-        className: classNames(className, uniqueId, popupType, `${enableOverlay ? 'zolo-popup-overlay' : ''}`, `${popupType === 'popup_box' ? popupBoxPosition : ''}`),
+        className: classNames(
+            className,
+            uniqueId,
+            popupType,
+            `${enableOverlay ? 'zolo-popup-overlay' : ''}`,
+            `${popupType === 'popup_box' ? popupBoxPosition : ''}`
+        ),
     });
 
     // chech if the innerblocks has child or not
