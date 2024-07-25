@@ -55,7 +55,7 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-        const animationPanels = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
+        const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
     const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';
@@ -177,7 +177,7 @@ function Inspector(props) {
                                 max={200}
                             />
                         </ZoloPanelBody>
-                        {animationPanels && animationPanels.length > 0 && animationPanels}
+                        {shapeDividerControls && shapeDividerControls.length > 0 && shapeDividerControls}
                     </>
                 }
                 advancedTab={

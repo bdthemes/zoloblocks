@@ -22,8 +22,8 @@ export default function RenderView({ attributes, setAttributes, clientId, classN
         ),
     });
 
-    const hapeDividerBefore = applyFilters('zolo.extensions.render.shapeDivider.top', [], panelProps);
-    const hapeDividerAfter = applyFilters('zolo.extensions.render.shapeDivider.bottom', [], panelProps);
+    const shapeDividerBefore = applyFilters('zolo.extensions.render.shapeDivider.top', [], panelProps);
+    const shapeDividerAfter = applyFilters('zolo.extensions.render.shapeDivider.bottom', [], panelProps);
 
     return (
         <>
@@ -31,15 +31,15 @@ export default function RenderView({ attributes, setAttributes, clientId, classN
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        {attributes.enableShapeDivider && hapeDividerBefore && hapeDividerBefore.length > 0 && hapeDividerBefore}
+                        {attributes.enableShapeDivider && shapeDividerBefore && shapeDividerBefore.length > 0 && shapeDividerBefore}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
-                        {attributes.enableShapeDivider && hapeDividerAfter && hapeDividerAfter.length > 0 && hapeDividerAfter}
+                        {attributes.enableShapeDivider && shapeDividerAfter && shapeDividerAfter.length > 0 && shapeDividerAfter}
                     </div>
                 ) : (
                     <>
-                        {attributes.enableShapeDivider && hapeDividerBefore && hapeDividerBefore.length > 0 && hapeDividerBefore}
+                        {attributes.enableShapeDivider && shapeDividerBefore && shapeDividerBefore.length > 0 && shapeDividerBefore}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
-                        {attributes.enableShapeDivider && hapeDividerAfter && hapeDividerAfter.length > 0 && hapeDividerAfter}
+                        {attributes.enableShapeDivider && shapeDividerAfter && shapeDividerAfter.length > 0 && shapeDividerAfter}
                     </>
                 )}
             </div>
