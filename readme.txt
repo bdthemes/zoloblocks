@@ -2,10 +2,10 @@
 Contributors: bdthemes, selimmw
 Donate link: http://bdthemes.com/
 Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
-Requires at least: 6.5
-Tested up to: 6.5.5
+Requires at least: 6.1
+Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 1.0.8
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
