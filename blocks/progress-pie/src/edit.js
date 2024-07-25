@@ -31,16 +31,29 @@ export default function Edit(props) {
     const {
         preview,
         uniqueId,
+        progressPie,
         parentClasses,
-        progressValue,
-        progressDuration,
-        progressTitle,
-        toggleLabel,
-        progressFillColor,
-        progPieMultiColor,
+        // toggleLabel,
         progPiePrefixPostfix,
-        proPieperpostToggle,
+        progPieMultiColor
+        // proPieperpostToggle,
     } = attributes;
+               const {
+                   value,
+                   duration,
+                   title,
+                   toggleLabel,
+                   size,
+                   round,
+                   prefix,
+                   suffix,
+                   proPieperpostToggle,
+                   fillColor,
+                   fillSize,
+                   numberColor,
+                   titleColor,
+                   circleColor,
+               } = progressPie;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -65,7 +78,7 @@ export default function Edit(props) {
 
     useEffect(() => {
         const progressPie = progress.current;
-        const progressVal = progressValue || 50;
+        const progressVal = value || 50;
 
         startAnim();
         function startAnim() {
@@ -74,9 +87,8 @@ export default function Edit(props) {
             }, 20);
         }
         return () => clearTimeout();
-    }, [progressValue]);
+    }, [value]);
 
-    console.log('progPieMultiColor', progPieMultiColor);
 
     return (
         <>
@@ -85,11 +97,11 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <CountUp
                     start={0}
-                    end={progressValue || 50}
+                    end={value || 50}
                     delay={0}
-                    duration={progressDuration || 3}
-                    prefix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Prefix || '$' : ''}
-                    suffix={proPieperpostToggle == undefined || proPieperpostToggle ? progPiePrefixPostfix?.Postfix || '%' : ''}
+                    duration={duration || 3}
+                    prefix={prefix !== '' ? prefix : ''}
+                    suffix={suffix !== '' ? suffix : ''}
                 >
                     {({ countUpRef }) => (
                         <>
@@ -108,7 +120,7 @@ export default function Edit(props) {
                                     cy="21"
                                     r="15.91549430918954"
                                     fill="transparent"
-                                    stroke={progressFillColor ? progressFillColor : '#e5e5e5'}
+                                    stroke={fillColor ? fillColor : '#e5e5e5'}
                                     stroke-dasharray="100 0"
                                     stroke-dashoffset="25"
                                 ></circle>
@@ -150,11 +162,11 @@ export default function Edit(props) {
                                 {/* Progress number and text  */}
                                 <g className="progress-pie-text">
                                     <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
-                                        {progressValue || 50}
+                                        {value || 50}
                                     </text>
                                     {(toggleLabel === undefined || toggleLabel) && (
                                         <text x="50%" y="50%" className="progress-pie-label">
-                                            {progressTitle || __('Total', 'zoloblocks')}
+                                            {title || __('Total', 'zoloblocks')}
                                         </text>
                                     )}
                                 </g>

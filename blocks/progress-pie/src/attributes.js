@@ -41,34 +41,30 @@ const attributes = {
     ...generateResAlignmentAttributies(PROGRESS_ALIGN, { defaultAlign: 'center' }),
 
     //attr
-    progressValue: {
-        type: 'number',
-    },
-    progressDuration: {
-        type: 'number',
-    },
-    progressTitle: {
-        type: 'string',
-    },
-    toggleLabel: {
-        type: 'boolean',
-    },
-    progressSize: {
-        type: 'number',
-    },
-
-    progressRound: {
-        type: 'boolean',
-    },
-    progPiePrefixPostfix: {
+    progressPie: {
         type: 'object',
         default: {
-            Prefix: '',
-            Postfix: '',
+            value: 50,
+            duration: 3,
+            title: 'Progress Title',
+            toggleLabel: true,
+            size: undefined,
+            round: false,
+            prefix: '',
+            suffix: '',
+            proPieperpostToggle: true,
+            mulitColor: [
+                {
+                    id: 1,
+                    color: '#2667ff',
+                },
+            ],
+            fillColor: '#2667ff',
+            fillSize: 1,
+            numberColor: '',
+            titleColor: '',
+            circleColor: '',
         },
-    },
-    proPieperpostToggle: {
-        type: 'boolean',
     },
     //progress multi color
     progPieMultiColor: {
@@ -79,24 +75,6 @@ const attributes = {
                 color: '#2667ff',
             },
         ],
-    },
-
-    //progress fill
-    progressFillColor: {
-        type: 'string',
-    },
-    progressFillSize: {
-        type: 'number',
-    },
-
-    numberColor: {
-        type: 'string',
-    },
-    titleColor: {
-        type: 'string',
-    },
-    circleColor: {
-        type: 'string',
     },
 };
 
