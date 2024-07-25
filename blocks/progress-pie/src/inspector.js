@@ -2,9 +2,8 @@
  * WordPress dependencies
  */
 
-import { useEffect } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, Button } from '@wordpress/components';
+import { ToggleControl, TextControl, RangeControl } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
 
@@ -31,45 +30,25 @@ import { PROGRESS_BAR_SIZE, CIRCLE_OPTION, PROGRESS_ALIGN } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import MultiColor from './multicolor';
 
-
 function Inspector(props) {
     const { attributes, setAttributes } = props;
+    const { resMode, progressPie, progPieMultiColor } = attributes;
     const {
-        resMode,
-        progressPie,
-        progressValue,
-        progressTitle,
-        progPieMultiColor,
-        // toggleLabel,
-        progressSize,
-        progressDuration,
-        progressRound,
-        progressFillColor,
-        progressFillSize,
-        // numberColor,
-        // titleColor,
-        progPiePrefixPostfix,
-        // proPieperpostToggle,
-        // circleColor,
-
-    } = attributes;
-          const {
-              value,
-              duration,
-              title,
-              toggleLabel,
-              size,
-              round,
-              prefix,
-              suffix,
-              proPieperpostToggle,
-              mulitColor,
-              fillColor,
-              fillSize,
-              numberColor,
-              titleColor,
-              circleColor,
-          } = progressPie;
+        value,
+        duration,
+        title,
+        toggleLabel,
+        size,
+        round,
+        prefix,
+        suffix,
+        proPieperpostToggle,
+        fillColor,
+        fillSize,
+        numberColor,
+        titleColor,
+        circleColor,
+    } = progressPie;
     console.log('progressPie', progressPie);
 
     const requiredProps = {
@@ -78,7 +57,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
 
     return (
         <InspectorControls key="controls">

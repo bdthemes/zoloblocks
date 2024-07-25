@@ -208,6 +208,21 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
+= 1.2.0 - 25-07-2024 =
+
+= Added =
+* QR Code block added
+* Shape Divider Added to Container Block
+
+= Fixed =
+* Transform issue fixed
+* Hover color issue fixed in Icon block
+* CLS issue fixed in Slider block and Post Carousel block
+* Subtitle Heading Tag issue fixed in Advanced Heading block
+
+= Improved =
+* Blocks scripts default values are improved
+
 = 1.1.0 - 10-07-2024 =
 
 = Added =
