@@ -10,7 +10,7 @@ export const BLOCK_PREFIX = 'review';
 // Style Presets
 export const STYLE_PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: '' },
-    { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-preset-2', disabled: false },
+    { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-preset-2', disabled: true },
 ];
 
 export const PRESETS = [

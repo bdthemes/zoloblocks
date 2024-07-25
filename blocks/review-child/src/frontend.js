@@ -1,4 +1,4 @@
-import { createRoot } from '@wordpress/element';
+import { render } from '@wordpress/element';
 import StarRating from '../../../src/controls/star-rating';
 
 const ReviewFrontend = ({ rating }) => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (reviewItems.length) {
         reviewItems.forEach((item) => {
             const ratingValue = item.dataset.rating;
-            createRoot(item).render(<ReviewFrontend rating={ratingValue} />);
+            render(<ReviewFrontend rating={ratingValue} />, item);
         });
     }
 });

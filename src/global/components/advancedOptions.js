@@ -410,7 +410,7 @@ export const AdvancedOptions = (props) => {
                                         label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotate'}
                                         requiredProps={requiredProps}
-                                        min={0}
+                                        min={-180}
                                         max={180}
                                         noUnits={true}
                                     />

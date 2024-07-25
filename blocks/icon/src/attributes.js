@@ -62,14 +62,17 @@ const attributes = {
     ...generateNormalBGAttributes(ICON_BG_COLOR),
     ...generateNormalBGAttributes(ICON_HOVER_BG_COLOR),
 
-
     iconColor: {
         type: 'string',
         default: '',
     },
-    isLinkable:{
+    iconHover: {
+        type: 'string',
+        default: '',
+    },
+    isLinkable: {
         type: 'boolean',
-        default: false
+        default: false,
     },
     iconLink: {
         type: 'object',
