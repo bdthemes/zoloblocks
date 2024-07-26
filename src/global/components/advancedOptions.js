@@ -118,6 +118,7 @@ export const AdvancedOptions = (props) => {
     const displayPanels = applyFilters('zolo.blocks.displayConditions', [], panelProps);
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, panelProps);
+    const backdropFilters = applyFilters('zolo.extensions.controls.backdropFilters', [], block, panelProps);
 
 
     return (
@@ -286,6 +287,7 @@ export const AdvancedOptions = (props) => {
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
                     <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
                     {cssFilters && cssFilters.length > 0 && cssFilters}
+                    {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
