@@ -11,6 +11,7 @@ import { generateBorderStyle } from '../../helpers/border-helper';
 import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 import { generateResRangeStyle } from '../../helpers/res-range-helper';
 import { generateResAlignmentStyle } from '../../helpers/res-alignment-helper';
+import { applyFilters } from '@wordpress/hooks';
 
 export const GlobalStyleHanlder = (props) => {
     const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
@@ -646,20 +647,28 @@ export const GlobalStyleHanlder = (props) => {
 
     const blockWriteCss = customCss ? customCss.replace(/{{ZOLO}}/g, `.${uniqueId}`) : '';
 
+
+      const filteredDesktopAllStyle = applyFilters('zolo_desktop_all_style', desktopAllStyle, attributes);
+      const filteredTabAllStyle = applyFilters('zolo_tab_all_style', tabAllStyle, attributes);
+      const filteredMobileAllStyle = applyFilters('zolo_mobile_all_style', mobileAllStyle, attributes);
+
+
     const allStyle = `
-		${softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles)}
+		${softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles)}
         ${blockWriteCss}
 		@media all and (max-width: 1024px) {
-			${softMinifyCssStrings(tabAllStyle + tabGlobalStyles)}
+			${softMinifyCssStrings(filteredTabAllStyle + tabGlobalStyles)}
 		}
 		@media all and (max-width: 767px) {
-			${softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles)}
+			${softMinifyCssStrings(filteredMobileAllStyle + mobileGlobalStyles)}
 		}
 	`;
 
-    const softMinifyDeskStrings = softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles);
-    const softMinifyTabStrings = softMinifyCssStrings(tabAllStyle + tabGlobalStyles);
-    const softMinifyMobStrings = softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles);
+
+
+    const softMinifyDeskStrings = softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles);
+    const softMinifyTabStrings = softMinifyCssStrings(filteredTabAllStyle + tabGlobalStyles);
+    const softMinifyMobStrings = softMinifyCssStrings(filteredMobileAllStyle + mobileGlobalStyles);
 
     // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
