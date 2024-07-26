@@ -49,7 +49,6 @@ function Inspector(props) {
         titleColor,
         circleColor,
     } = progressPie;
-    console.log('progressPie', progressPie);
 
     const requiredProps = {
         attributes,
