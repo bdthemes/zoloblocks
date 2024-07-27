@@ -27,6 +27,7 @@ import objAttributes from './attributes';
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
 import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING, PATH_OPTION } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -67,7 +68,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Path Type', 'zoloblocks')}
                                 value={textPathType}
-                                options={PATH_OPTION}
+                                options={applyFilters('zolo.presets.TextPath', PATH_OPTION)}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
 
