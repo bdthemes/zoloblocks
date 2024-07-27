@@ -3,78 +3,76 @@
  */
 import { __ } from '@wordpress/i18n';
 
-
 /**
  * Internal depencencies
  */
-const {
-    generateDimensionStyle,
+const { generateResRangeStyle } = window.zoloModule;
 
-} = window.zoloModule;
-
-import {
-    TOP_WIDTH_SHAPE,
-    TOP_HEIGHT_SHAPE,
-    BOTTOM_WIDTH_SHAPE,
-    BOTTOM_HEIGHT_SHAPE
-} from './constants';
-
+import { TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 const Style = (props) => {
     const { attributes } = props;
     const { shapeDivider, uniqueId } = attributes;
 
     // settings
-
     const {
-        dimensionStylesDesktop: topWidthDesk,
-        dimensionStylesTab: topWidthTab,
-        dimensionStylesMobile: topWidthMob,
-    } = generateDimensionStyle({
+        desktopRangeStyle: topWidthDesk,
+        tabRangeStyle: topWidthTab,
+        mobRangeStyle: topWidthMob,
+    } = generateResRangeStyle({
         controlName: TOP_WIDTH_SHAPE,
-        styleFor: 'width',
+        property: 'width',
         attributes,
     });
-
     const {
-        dimensionStylesDesktop: topHeightDesk,
-        dimensionStylesTab: topHeightTab,
-        dimensionStylesMobile: topHeightMob,
-    } = generateDimensionStyle({
+        desktopRangeStyle: topHeightDesk,
+        tabRangeStyle: topHeightTab,
+        mobRangeStyle: topHeightMob,
+    } = generateResRangeStyle({
         controlName: TOP_HEIGHT_SHAPE,
-        styleFor: 'height',
+        property: 'height',
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: bottomWidthDesk,
-        dimensionStylesTab: bottomWidthTab,
-        dimensionStylesMobile: bottomWidthMob,
-    } = generateDimensionStyle({
+        desktopRangeStyle: bottomWidthDesk,
+        tabRangeStyle: bottomWidthTab,
+        mobRangeStyle: bottomWidthMob,
+    } = generateResRangeStyle({
         controlName: BOTTOM_WIDTH_SHAPE,
-        styleFor: 'width',
+        property: 'width',
         attributes,
     });
-
     const {
-        dimensionStylesDesktop: bottomHeightDesk,
-        dimensionStylesTab: bottomHeightTab,
-        dimensionStylesMobile: bottomHeightMob,
-    } = generateDimensionStyle({
+        desktopRangeStyle: bottomHeightDesk,
+        tabRangeStyle: bottomHeightTab,
+        mobRangeStyle: bottomHeightMob,
+    } = generateResRangeStyle({
         controlName: BOTTOM_HEIGHT_SHAPE,
-        styleFor: 'height',
+        property: 'height',
         attributes,
     });
     const shapeDividerDesktop = `
+        .${uniqueId} .zolo-shape-top.${uniqueId} {
+            ${shapeDivider.top.bringToFront ? 'z-index: 2;' : ''}
+        }
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
             fill :${shapeDivider.top.color};
             ${topHeightDesk}
             ${topWidthDesk}
+            ${shapeDivider.top.flip ? 'transform: translateX(-50%) rotateY(180deg);' : ''}
+            ${shapeDivider.top.bringToFront ? 'z-index: 2;' : ''}
+        }
+
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} {
+            ${shapeDivider.bottom.bringToFront ? 'z-index: 2;' : ''}
         }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
             fill: ${shapeDivider.bottom.color};
             ${bottomHeightDesk}
             ${bottomWidthDesk}
+            ${shapeDivider.bottom.flip ? 'transform: translateX(-50%) rotateY(180deg);' : ''}
+            z-index: 2;
         }
     `;
     const shapeDividerTablet = `
@@ -106,5 +104,5 @@ const Style = (props) => {
         shapeDividerTablet,
         shapeDividerMobile,
     };
-}
-export default Style
+};
+export default Style;

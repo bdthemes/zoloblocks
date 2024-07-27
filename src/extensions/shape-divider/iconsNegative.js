@@ -1,7 +1,20 @@
 const ICONS_NEGATIVE = {
     arrow: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
-            <path className="zolo-shape-fill" d="M360 0L350 9.9 340 0 0 0 0 10 700 10 700 0" />
+        // <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        //     <polygon points="350,4.2 344.8,0 355.2,0 " />
+        //     <polygon points="700.2,0 700.2,10 0,10 0,0 339,0 350,9 361,0 " />
+        // </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 701 10" preserveAspectRatio="none">
+            <g clipPath="url(#clip0_28_16)">
+                <path d="M350 4.2L344.8 0H355.2L350 4.2Z" />
+                <path d="M700.2 0V10H0V0H339L350 9L361 0H700.2Z" />
+            </g>
+            <defs>
+                <clipPath id="clip0_28_16">
+                    <rect width="700.2" height={10} fill="white" />
+                </clipPath>
+            </defs>
         </svg>
     ),
     book: (
