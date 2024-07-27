@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, RangeControl, SelectControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -29,7 +29,8 @@ import { MINFO_TYPO } from './constants/typoPrefixConstant';
 import Repeater from './repeater';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
+
     const {
         resMode,
         mapStyleType,
@@ -55,6 +56,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -287,6 +289,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
+                            {cssFilters && cssFilters.length > 0 && cssFilters}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Marker Info', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl

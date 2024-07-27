@@ -1,4 +1,4 @@
-const { ColorControl, ResDimensionsControl, TabPanelControl, ZoloPanelBody } = window.zoloModule;
+const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody } = window.zoloModule;
 import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 import { __ } from '@wordpress/i18n';
@@ -28,166 +28,203 @@ const Inspector = ({ panelProps }) => {
         shapeDivider.bottom.type === 'pyramids';
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
-            <ToggleControl
-                label={__('Enable Shape Divider', 'zoloblocks')}
-                checked={attributes.enableShapeDivider}
-                onChange={() =>
-                    setAttributes({
-                        enableShapeDivider: !attributes.enableShapeDivider,
-                    })
+            <TabPanelControl
+                options={TB_POSITION}
+                normalComponents={
+                    <>
+                        <SelectControl
+                            label={__('Type', 'zoloblocks')}
+                            value={shapeDivider.top.type}
+                            onChange={(value) =>
+                                setAttributes({
+                                    shapeDivider: {
+                                        ...shapeDivider,
+                                        top: {
+                                            ...shapeDivider.top,
+                                            type: value,
+                                        },
+                                    },
+                                })
+                            }
+                            options={SHAPE_DIVIDER}
+                        />
+
+                        {shapeDivider?.top?.type !== 'none' && (
+                            <>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={shapeDivider.top.color}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                top: {
+                                                    ...shapeDivider.top,
+                                                    color: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                                <ResRangeControl
+                                    label={__('Width', 'zoloblocks')}
+                                    controlName={TOP_WIDTH_SHAPE}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResRangeControl
+                                    label={__('Height', 'zoloblocks')}
+                                    controlName={TOP_HEIGHT_SHAPE}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ToggleControl
+                                    label={__('Flip', 'zoloblocks')}
+                                    checked={shapeDivider.top.flip}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                top: {
+                                                    ...shapeDivider.top,
+                                                    flip: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                                <ToggleControl
+                                    label={__('Invert', 'zoloblocks')}
+                                    checked={shapeDivider.top.invert}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                top: {
+                                                    ...shapeDivider.top,
+                                                    invert: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                                <ToggleControl
+                                    label={__('Bring to Front', 'zoloblocks')}
+                                    checked={shapeDivider.top.bringToFront}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                top: {
+                                                    ...shapeDivider.top,
+                                                    bringToFront: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                            </>
+                        )}
+                    </>
+                }
+                hoverComponents={
+                    <>
+                        <SelectControl
+                            label={__('Type', 'zoloblocks')}
+                            value={shapeDivider.bottom.type}
+                            onChange={(value) =>
+                                setAttributes({
+                                    shapeDivider: {
+                                        ...shapeDivider,
+                                        bottom: {
+                                            ...shapeDivider.bottom,
+                                            type: value,
+                                        },
+                                    },
+                                })
+                            }
+                            options={SHAPE_DIVIDER}
+                        />
+
+                        {shapeDivider.bottom.type === 'none' ? (
+                            <></>
+                        ) : (
+                            <>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={shapeDivider.bottom.color}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                bottom: {
+                                                    ...shapeDivider.bottom,
+                                                    color: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+
+                                <ResRangeControl
+                                    label={__('Width', 'zoloblocks')}
+                                    controlName={BOTTOM_WIDTH_SHAPE}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResRangeControl
+                                    label={__('Height', 'zoloblocks')}
+                                    controlName={BOTTOM_HEIGHT_SHAPE}
+                                    requiredProps={requiredProps}
+                                />
+                                <ToggleControl
+                                    label={__('Flip', 'zoloblocks')}
+                                    checked={shapeDivider.bottom.flip}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                bottom: {
+                                                    ...shapeDivider.bottom,
+                                                    flip: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                                <ToggleControl
+                                    label={__('Invert', 'zoloblocks')}
+                                    checked={shapeDivider.bottom.invert}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                bottom: {
+                                                    ...shapeDivider.bottom,
+                                                    invert: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                                <ToggleControl
+                                    label={__('Bring to Front', 'zoloblocks')}
+                                    checked={shapeDivider.bottom.bringToFront}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            shapeDivider: {
+                                                ...shapeDivider,
+                                                bottom: {
+                                                    ...shapeDivider.bottom,
+                                                    bringToFront: value,
+                                                },
+                                            },
+                                        })
+                                    }
+                                />
+                            </>
+                        )}
+                    </>
                 }
             />
-            {attributes.enableShapeDivider && (
-                <TabPanelControl
-                    options={TB_POSITION}
-                    normalComponents={
-                        <>
-                            <SelectControl
-                                label={__('Top Type', 'zoloblocks')}
-                                value={shapeDivider.top.type}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        shapeDivider: {
-                                            ...shapeDivider,
-                                            top: {
-                                                ...shapeDivider.top,
-                                                type: value,
-                                            },
-                                        },
-                                    })
-                                }
-                                options={SHAPE_DIVIDER}
-                            />
-
-                            {shapeDivider.top.type === 'none' ? (
-                                <></>
-                            ) : (
-                                <>
-                                    <ColorControl
-                                        label={__('Top Color', 'zoloblocks')}
-                                        color={shapeDivider.top.color}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                shapeDivider: {
-                                                    ...shapeDivider,
-                                                    top: {
-                                                        ...shapeDivider.top,
-                                                        color: value,
-                                                    },
-                                                },
-                                            })
-                                        }
-                                    />
-
-                                    <ResDimensionsControl
-                                        label={__('Width', 'zoloblocks')}
-                                        requiredProps={requiredProps}
-                                        controlName={TOP_WIDTH_SHAPE}
-                                        max={300}
-                                        min={1}
-                                    />
-
-                                    <ResDimensionsControl
-                                        label={__('Height', 'zoloblocks')}
-                                        requiredProps={requiredProps}
-                                        controlName={TOP_HEIGHT_SHAPE}
-                                        max={500}
-                                        min={1}
-                                    />
-                                    <ToggleControl
-                                        label={__(`${toggleTypeFlip ? 'Flip' : 'Invert'}`, 'zoloblocks')}
-                                        checked={shapeDivider.top.invert}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                shapeDivider: {
-                                                    ...shapeDivider,
-                                                    top: {
-                                                        ...shapeDivider.top,
-                                                        invert: value,
-                                                    },
-                                                },
-                                            })
-                                        }
-                                    />
-                                </>
-                            )}
-                        </>
-                    }
-                    hoverComponents={
-                        <>
-                            <SelectControl
-                                label={__('Bottom Type', 'zoloblocks')}
-                                value={shapeDivider.bottom.type}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        shapeDivider: {
-                                            ...shapeDivider,
-                                            bottom: {
-                                                ...shapeDivider.bottom,
-                                                type: value,
-                                            },
-                                        },
-                                    })
-                                }
-                                options={SHAPE_DIVIDER}
-                            />
-
-                            {shapeDivider.bottom.type === 'none' ? (
-                                <></>
-                            ) : (
-                                <>
-                                    <ColorControl
-                                        label={__('Bottom Color', 'zoloblocks')}
-                                        color={shapeDivider.bottom.color}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                shapeDivider: {
-                                                    ...shapeDivider,
-                                                    bottom: {
-                                                        ...shapeDivider.bottom,
-                                                        color: value,
-                                                    },
-                                                },
-                                            })
-                                        }
-                                    />
-
-                                    <ResDimensionsControl
-                                        label={__('Width', 'zoloblocks')}
-                                        requiredProps={requiredProps}
-                                        controlName={BOTTOM_WIDTH_SHAPE}
-                                        max={300}
-                                        min={1}
-                                    />
-
-                                    <ResDimensionsControl
-                                        label={__('Height', 'zoloblocks')}
-                                        requiredProps={requiredProps}
-                                        controlName={BOTTOM_HEIGHT_SHAPE}
-                                        max={500}
-                                        min={1}
-                                    />
-                                    <ToggleControl
-                                        label={__(`${toggleTypeFlipBottom ? 'Flip' : 'Invert'}`, 'zoloblocks')}
-                                        checked={shapeDivider.bottom.invert}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                shapeDivider: {
-                                                    ...shapeDivider,
-                                                    bottom: {
-                                                        ...shapeDivider.bottom,
-                                                        invert: value,
-                                                    },
-                                                },
-                                            })
-                                        }
-                                    />
-                                </>
-                            )}
-                        </>
-                    }
-                />
-            )}
         </ZoloPanelBody>
     );
 };

@@ -25,8 +25,7 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         ),
     });
 
-    const shapeDividerBefore = applyFilters('zolo.extensions.render.shapeDivider.top', [], panelProps);
-    const shapeDividerAfter = applyFilters('zolo.extensions.render.shapeDivider.bottom', [], panelProps);
+    const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
 
     return (
         <>
@@ -70,15 +69,13 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        {attributes.enableShapeDivider && shapeDividerBefore && shapeDividerBefore.length > 0 && shapeDividerBefore}
+                        {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
-                        {attributes.enableShapeDivider && shapeDividerAfter && shapeDividerAfter.length > 0 && shapeDividerAfter}
                     </div>
                 ) : (
                     <>
-                        {attributes.enableShapeDivider && shapeDividerBefore && shapeDividerBefore.length > 0 && shapeDividerBefore}
+                        {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
-                        {attributes.enableShapeDivider && shapeDividerAfter && shapeDividerAfter.length > 0 && shapeDividerAfter}
                     </>
                 )}
             </div>

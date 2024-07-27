@@ -373,12 +373,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 }
             }
 
-            // import block pattern
-            // $enable_block_import = get_option('zolo_enable_block_import');
-            // if ($enable_block_import === '1') {
-            $import_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
-            if (file_exists($import_dep_file)) {
-                $script_dependecy = include $import_dep_file;
+            // import shape divider
+            $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
+            if (file_exists($import_shape_divider_file)) {
+                $script_dependecy = include $import_shape_divider_file;
                 wp_enqueue_script(
                     'zolo-shape-divider-editor-script',
                     trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/index.js',
@@ -386,9 +384,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     ZOLO_VERSION,
                     true
                 );
-                wp_enqueue_style('zolo-shape-divider-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/style.css', [], ZOLO_VERSION);
             }
-            // }
 
 
             // template library

@@ -1,5 +1,4 @@
-
-[class*="zolo-block"] {
+[class*='zolo-block'] {
     .swiper:not(.swiper-initialized) {
         opacity: 0;
         visibility: hidden;
@@ -82,8 +81,8 @@
 // Responsive show/hide css for Editor
 .zolo-editor .zolo-hide-desktop {
     opacity: 0.5;
-    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .05) 1px, transparent 2px, transparent 9px);
-    border: 1px solid rgba(0, 0, 0, .02);
+    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
+    border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 // .zolo-editor .zolo-hide-tab {
@@ -324,7 +323,7 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 
-.zolo-block div[class*=wp-block-zolo] {
+.zolo-block div[class*='wp-block-zolo'] {
     &:hover,
     &:focus {
         .general-block {
@@ -334,7 +333,7 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 
-.zolo-block div[class*=wp-block-zolo] {
+.zolo-block div[class*='wp-block-zolo'] {
     &:hover,
     &:focus {
         .container {
@@ -363,7 +362,6 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
 //         }
 //     }
 // }
-
 
 .block-editor-block-list__layout .block-editor-block-list__block.is-highlighted:after,
 .block-editor-block-list__layout .block-editor-block-list__block.is-highlighted ~ .is-multi-selected:after,
@@ -405,22 +403,21 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
             visibility: hidden;
         }
         &:hover,
-        &:focus{
+        &:focus {
             &:before {
                 opacity: 1;
                 visibility: visible;
             }
-
         }
     }
     .zolo_cd_show {
         &:before {
-            content: url("data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M21%2012c0%201.2-4.03%206-9%206s-9-4.8-9-6c0-1.2%204.03-6%209-6s9%204.8%209%206Z%22%2F%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M15%2012a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E");
+            content: url('data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M21%2012c0%201.2-4.03%206-9%206s-9-4.8-9-6c0-1.2%204.03-6%209-6s9%204.8%209%206Z%22%2F%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M15%2012a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E');
         }
     }
     .zolo_cd_hide {
         &:before {
-            content: url("data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20display%3D%22block%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeLinecap%3D%22round%22%20strokeLinejoin%3D%22round%22%20strokeWidth%3D%221.5%22%20d%3D%22M3.933%2013.909A4.357%204.357%200%200%201%203%2012c0-1%204-6%209-6m7.6%203.8A5.068%205.068%200%200%201%2021%2012c0%201-3%206-9%206-.314%200-.62-.014-.918-.04M5%2019%2019%205m-4%207a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E");
+            content: url('data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20display%3D%22block%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeLinecap%3D%22round%22%20strokeLinejoin%3D%22round%22%20strokeWidth%3D%221.5%22%20d%3D%22M3.933%2013.909A4.357%204.357%200%200%201%203%2012c0-1%204-6%209-6m7.6%203.8A5.068%205.068%200%200%201%2021%2012c0%201-3%206-9%206-.314%200-.62-.014-.918-.04M5%2019%2019%205m-4%207a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E');
         }
     }
 
@@ -429,8 +426,7 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 
-
-.zolo-frontend .pin-spacer{
+.zolo-frontend .pin-spacer {
     width: 100% !important;
     max-width: 100% !important;
 }
@@ -439,15 +435,7 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     display: inline;
 }
 
-//temporary
-
-.zolo-shape svg {
-    display: block;
-    width: calc(100% + 1.3px);
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
+//extension shape divider
 
 .zolo-shape {
     overflow: hidden;
@@ -456,21 +444,22 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     width: 100%;
     line-height: 0;
     direction: ltr;
-}
-
-.zolo-shape-top {
-    top: -1px;
-}
-
-.zolo-shape-bottom {
-    bottom: -1px;
-}
-
-.zolo-shape-bottom {
-    transform: rotate(180deg);
-}
-
-.zolo-shape .zolo-shape-fill {
-    transform-origin: center;
-    transform: rotateY(0deg);
+    &.zolo-shape-top {
+        top: -1px;
+    }
+    &.zolo-shape-bottom {
+        bottom: -1px;
+        transform: rotate(180deg);
+    }
+    svg {
+        display: block;
+        width: calc(100% + 1.3px);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        .zolo-shape-fill {
+            transform-origin: center;
+            transform: rotateY(0deg);
+        }
+    }
 }
