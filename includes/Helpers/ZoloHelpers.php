@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Zolo helper main helper function
+ */
 class ZoloHelpers {
 	use SingletonTrait;
 
@@ -73,15 +76,34 @@ class ZoloHelpers {
 		return false;
 	}
 
+	/**
+	 * Get file path
+	 *
+	 * @param string $name file name.
+	 * @return false|string
+	 */
 	protected static function get_views_path( $name ) {
-		$file = trailingslashit( ZOLO_DIR_PATH ) . 'views/' . $name . '.php';
+		// Define the base path.
+		$paths = [
+			trailingslashit( ZOLO_DIR_PATH ) . 'views/' . $name . '.php',
+		];
 
-		if ( file_exists( $file ) ) {
-			return $file;
+		// Check if ZOLO_PRO_DIR_PATH is defined and add it to the paths.
+		if ( defined( 'ZOLO_PRO_DIR_PATH' ) ) {
+			$paths[] = trailingslashit( ZOLO_PRO_DIR_PATH ) . 'views/' . $name . '.php';
+		}
+
+		// Iterate through the paths and return the first existing file.
+		foreach ( $paths as $path ) {
+			if ( file_exists( $path ) ) {
+				return $path;
+			}
 		}
 
 		return false;
 	}
+
+
 
 	/**
 	 * Get views for front-end display
