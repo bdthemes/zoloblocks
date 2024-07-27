@@ -651,3 +651,50 @@ textarea[readonly] {
     
 }
 
+.zolo-panel-control {
+    .components-select-control {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        .components-flex-item {
+            width: 45%;
+        }
+        .components-input-control__container {
+            width: 100%;
+            flex: unset;
+        }
+    }
+    .components-base-control__field {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        .components-base-control__label {
+            width: 45%;
+            margin-bottom: 0;
+        }
+        
+        .components-text-control__input {
+            width: 100%;
+        }
+    }
+
+    .zolo-flex-col-control {
+        .components-base-control__field {
+            display: block;
+
+            .components-base-control__label {
+                margin-bottom: calc(8px);
+                width: auto;
+            }
+        }
+        .components-select-control {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            gap: calc(8px);
+        }
+    }
+
+}

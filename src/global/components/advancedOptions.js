@@ -284,8 +284,11 @@ export const AdvancedOptions = (props) => {
                 </div>
             </ZoloPanelBody>
             {globalConfig?.background && (
+
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                    <div className='zolo-flex-col-control'>
+                      <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                    </div>
                     {cssFilters && cssFilters.length > 0 && cssFilters}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                 </ZoloPanelBody>
