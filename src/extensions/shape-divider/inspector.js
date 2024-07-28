@@ -16,16 +16,10 @@ const Inspector = ({ panelProps }) => {
         setAttributes,
         objAttributes,
     };
-    const toggleTypeFlip =
-        shapeDivider.top.type === 'clouds' ||
-        shapeDivider.top.type === 'curve' ||
-        shapeDivider.top.type === 'curveasym' ||
-        shapeDivider.top.type === 'pyramids';
-    const toggleTypeFlipBottom =
-        shapeDivider.bottom.type === 'clouds' ||
-        shapeDivider.bottom.type === 'curve' ||
-        shapeDivider.bottom.type === 'curveasym' ||
-        shapeDivider.bottom.type === 'pyramids';
+    const toggleInvertTop =
+        shapeDivider.top.type !== 'wavebrush' &&
+        shapeDivider.top.type !== 'wavepattern';
+    const toggleInvertBottom = shapeDivider.bottom.type !== 'wavebrush' && shapeDivider.bottom.type !== 'wavepattern';
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <TabPanelControl
@@ -92,21 +86,24 @@ const Inspector = ({ panelProps }) => {
                                         })
                                     }
                                 />
-                                <ToggleControl
-                                    label={__('Invert', 'zoloblocks')}
-                                    checked={shapeDivider.top.invert}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            shapeDivider: {
-                                                ...shapeDivider,
-                                                top: {
-                                                    ...shapeDivider.top,
-                                                    invert: value,
+                                {toggleInvertTop && (
+                                    <ToggleControl
+                                        label={__('Invert', 'zoloblocks')}
+                                        checked={shapeDivider.top.invert}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    top: {
+                                                        ...shapeDivider.top,
+                                                        invert: value,
+                                                    },
                                                 },
-                                            },
-                                        })
-                                    }
-                                />
+                                            })
+                                        }
+                                    />
+                                )}
+
                                 <ToggleControl
                                     label={__('Bring to Front', 'zoloblocks')}
                                     checked={shapeDivider.top.bringToFront}
@@ -190,21 +187,24 @@ const Inspector = ({ panelProps }) => {
                                         })
                                     }
                                 />
-                                <ToggleControl
-                                    label={__('Invert', 'zoloblocks')}
-                                    checked={shapeDivider.bottom.invert}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            shapeDivider: {
-                                                ...shapeDivider,
-                                                bottom: {
-                                                    ...shapeDivider.bottom,
-                                                    invert: value,
+
+                                {toggleInvertBottom && (
+                                    <ToggleControl
+                                        label={__('Invert', 'zoloblocks')}
+                                        checked={shapeDivider.bottom.invert}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    bottom: {
+                                                        ...shapeDivider.bottom,
+                                                        invert: value,
+                                                    },
                                                 },
-                                            },
-                                        })
-                                    }
-                                />
+                                            })
+                                        }
+                                    />
+                                )}
                                 <ToggleControl
                                     label={__('Bring to Front', 'zoloblocks')}
                                     checked={shapeDivider.bottom.bringToFront}

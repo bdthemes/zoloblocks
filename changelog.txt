@@ -1,3 +1,13 @@
+### 1.2.1 [July 28, 2024]
+
+### Added
+
+- Suffix and Prefix styling controls added to QR Code block
+
+### Fixed
+
+- Some minor issue fixed
+
 ### 1.2.0 [July 25, 2024]
 
 ### Added
