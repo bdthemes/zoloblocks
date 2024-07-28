@@ -5,7 +5,7 @@ Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -207,6 +207,14 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.2.1 - 28-07-2024 =
+
+= Added =
+* Suffix and Prefix style controls added to QR Code block
+
+= Fixed =
+* Some minor issue fixed
 
 = 1.2.0 - 25-07-2024 =
 
