@@ -6,7 +6,7 @@
 
 ### Fixed
 
-- Some minor issue fixed
+- Some minor issues are fixed
 
 ### 1.2.0 [July 25, 2024]
 
