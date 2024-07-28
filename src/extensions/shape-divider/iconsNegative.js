@@ -68,8 +68,17 @@ const ICONS_NEGATIVE = {
         </svg>
     ),
     pyramids: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
-            <path className="zolo-shape-fill" d="M761.9,40.6L643.1,24L333.9,93.8L0.1,1H0v99h1000V1" />
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="Layer_1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1000 100"
+            xmlSpace="preserve"
+        >
+            <polygon points="798.1,71.1 674.4,28.7 556.6,67.6 360.9,7.3 166.3,77.7 0,20.7 0,100 26,100 1000,100 1000,66.7 1000,26 " />
         </svg>
     ),
     split: (

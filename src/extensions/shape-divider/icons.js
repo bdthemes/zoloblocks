@@ -1,5 +1,9 @@
 const ICONS = {
     arrow: (
+        // <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
+        //     <path d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z" />
+        //     <path d="M357.5 0L350 6.1L342.5 0H357.5Z" />
+        // </svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
             <path d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z"/>
             <path d="M357.5 0L350 6.1L342.5 0H357.5Z"/>

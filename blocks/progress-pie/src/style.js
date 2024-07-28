@@ -9,14 +9,13 @@ import { applyFilters } from '@wordpress/hooks';
  */
 const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
 
-import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN, NUMBER_BOTTOM_SPACE } from './constants';
+import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN, NUMBER_BOTTOM_SPACE, NUMBER_SPACE } from './constants';
 import { NUMBER_TYPO, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, progressPie } = attributes;
-    const {size, numberColor, titleColor, fillSize, round, circleColor} = progressPie;
-
+    const { size, numberColor, titleColor, fillSize, round, circleColor, suffixColor, prefixColor } = progressPie;
 
     const {
         desktopRangeStyle: deskProgressWidth,
@@ -28,12 +27,30 @@ const Style = ({ props }) => {
         attributes,
     });
     const {
-        desktopRangeStyle: deskNumberSpacing,
-        tabRangeStyle: tabNumberSpacing,
-        mobRangeStyle: mobNumberSpacing,
+        desktopRangeStyle: deskNumberBottomSpacing,
+        tabRangeStyle: tabNumberBottomSpacing,
+        mobRangeStyle: mobNumberBottomSpacing,
     } = generateResRangeStyle({
         controlName: NUMBER_BOTTOM_SPACE,
         property: 'margin-bottom',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: deskPrefixSpacing,
+        tabRangeStyle: tabPrefixSpacing,
+        mobRangeStyle: mobPrefixSpacing,
+    } = generateResRangeStyle({
+        controlName: NUMBER_SPACE,
+        property: 'margin-right',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: deskSuffixSpacing,
+        tabRangeStyle: tabSuffixSpacing,
+        mobRangeStyle: mobSuffixSpacing,
+    } = generateResRangeStyle({
+        controlName: NUMBER_SPACE,
+        property: 'margin-left',
         attributes,
     });
     const {
@@ -52,7 +69,6 @@ const Style = ({ props }) => {
         prefixConstant: TITLE_TYPO,
         attributes,
     });
-
 
     const {
         desktopAlignStyle: progressDeskAlignStyle,
@@ -86,7 +102,19 @@ const Style = ({ props }) => {
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
             ${DesktopNumberTypo}
             ${numberColor ? `color:${numberColor};` : ''}
-            ${deskNumberSpacing}
+            ${deskNumberBottomSpacing}
+       }
+        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-prefix{
+            ${deskPrefixSpacing}
+        }
+        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-suffix{
+            ${deskSuffixSpacing}
+        }
+       .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-suffix{
+            ${suffixColor ? `color:${suffixColor};` : ''}
+       }
+       .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-prefix{
+            ${prefixColor ? `color:${prefixColor};` : ''}
        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
             ${DesktopTittleTypo}
@@ -107,9 +135,14 @@ const Style = ({ props }) => {
         }
      .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${TabNumberTypo}
-        ${tabNumberSpacing}
-
+        ${tabNumberBottomSpacing}
        }
+         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-prefix{
+                ${tabPrefixSpacing}
+          }
+          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-suffix{
+                ${tabSuffixSpacing}
+          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
             ${TabTittleTypo}
        }
@@ -124,7 +157,13 @@ const Style = ({ props }) => {
     }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${MobNumberTypo}
-        ${mobNumberSpacing}
+        ${mobNumberBottomSpacing}
+    }
+    .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-prefix{
+        ${mobPrefixSpacing}
+    }
+    .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number .progress-suffix{
+        ${mobSuffixSpacing}
     }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
         ${MobTittleTypo}
