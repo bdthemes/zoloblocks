@@ -31,7 +31,7 @@ class StyleGenerator {
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);
 
         // Enqueue Dynamic Styles
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_dynamic_styles']);
+        // add_action('wp_enqueue_scripts', [$this, 'enqueue_dynamic_styles'], 90);
     }
 
     /**
@@ -46,8 +46,12 @@ class StyleGenerator {
             $currnet_post_type = get_post_type();
             do_action('zolo_block_render_block', $block);
             if (isset($block['attrs']['zoloStyles'])) {
+                $uniqueId = $block['attrs']['uniqueId'];
                 $style = ZoloHelpers::zolo_generate_style($block['attrs']['zoloStyles']);
-                $this->dynamic_styles .= $style;
+                $handle = 'zolo-block-inline-style-' . $uniqueId;
+                wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all');
+                wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
+                wp_add_inline_style($handle, $style);
             }
         }
 
@@ -61,12 +65,13 @@ class StyleGenerator {
      *
      * @return void
      */
-    public function enqueue_dynamic_styles() {
-        if (!empty($this->dynamic_styles)) {
-            $handle = 'zolo-block-inline-style-' . rand(100, 10000); 
-            wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all');
-            wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
-            wp_add_inline_style($handle, $this->dynamic_styles);
-        }
-    }
+    // public function enqueue_dynamic_styles() {
+    //     var_dump($this->dynamic_styles);
+    //     if (isset($this->dynamic_styles)) {
+    //         $handle = 'zolo-block-inline-style-' . rand(100, 10000);
+    //         wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all');
+    //         wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
+    //         wp_add_inline_style($handle, $this->dynamic_styles);
+    //     }
+    // }
 }

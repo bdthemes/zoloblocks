@@ -121,6 +121,22 @@ class Zolo_Settings {
             ]
         );
 
+        // register zolo google spread sheet api key setting
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_google_spread_sheet_api_key',
+            [
+                'type'         => 'string',
+                'default'      => '',
+                'show_in_rest' => [
+                    'schema' => [
+                        'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+
         // register editor width
         register_setting(
             'zolo_blocks_settings_group',
