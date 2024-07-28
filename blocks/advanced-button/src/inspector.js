@@ -137,13 +137,11 @@ function Inspector(props) {
                                     placeholder={__('label..', 'zoloblocks')}
                                 />
                             )}
-                            <div className="zolo-flex-col-control">
-                                <LinkControl
-                                    label={__('URL', 'zoloblocks')}
-                                    value={link}
-                                    onChange={(value) => setAttributes({ link: value })}
-                                />
-                            </div>
+                            <LinkControl
+                                label={__('URL', 'zoloblocks')}
+                                value={link}
+                                onChange={(value) => setAttributes({ link: value })}
+                            />
                             <IconicBtnGroup
                                 label={__('Icon Status', 'zoloblocks')}
                                 value={iconType}

@@ -1,4 +1,9 @@
 // select control css
+:root {
+    --zolo-flex-row-control-gap: 15px;
+    --zolo-flex-row-control-label-width: 70%;
+}
+
 .zolo-select__control {
     .zolo-select__input-container {
         .zolo-select__input,
@@ -571,15 +576,16 @@ textarea[readonly] {
     .components-base-control__field {
         display: flex;
         justify-content: space-between;
-        gap: 10px;
+        gap: var(--zolo-flex-row-control-gap);
         align-items: center;
         input,
         .zolo-css-class {
-            width: 65%;
+            width: 100%;
         }
 
         label {
             margin: 0;
+            width: var(--zolo-flex-row-control-label-width);
         }
     }
     .components-form-token-field {
@@ -651,14 +657,17 @@ textarea[readonly] {
     
 }
 
+
+// inline flex control style
+
 .zolo-panel-control {
     .components-select-control {
         flex-direction: row;
         align-items: center;
         width: 100%;
-        gap: 20px;
+        gap: var(--zolo-flex-row-control-gap);
         .components-flex-item {
-            width: 45%;
+            width: var(--zolo-flex-row-control-label-width);
         }
         .components-input-control__container {
             width: 100%;
@@ -668,10 +677,10 @@ textarea[readonly] {
     .components-base-control__field {
         display: flex;
         justify-content: space-between;
-        gap: 20px;
+        gap: var(--zolo-flex-row-control-gap);
         align-items: center;
         .components-base-control__label {
-            width: 45%;
+            width: var(--zolo-flex-row-control-label-width);
             margin-bottom: 0;
         }
         
@@ -694,6 +703,23 @@ textarea[readonly] {
             align-items: flex-start;
             width: 100%;
             gap: calc(8px);
+        }
+    }
+
+    .zb-fontpicker-fontfamily {
+        .components-base-control__field {
+            display: block;
+        }
+        .components-base-control__label {
+            margin-bottom: calc(8px);
+            width: auto;
+        }
+        .zolo__input {
+            border: 0 !important;
+            padding: 0 !important;
+        }
+        .zolo__input-container {
+            padding: 0 5px !important;
         }
     }
 
