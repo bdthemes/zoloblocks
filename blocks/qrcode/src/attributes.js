@@ -30,7 +30,7 @@ const attributes = {
 
     qrContent: {
         type: 'string',
-        default: 'Qr Code',
+        default: 'https://zoloblocks.com',
     },
     qrCodeLink: {
         type: 'boolean',
