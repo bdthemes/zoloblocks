@@ -472,6 +472,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'newsletter'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/newsletter.svg',
                     'notice'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/notice.svg',
                     'textPath'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/text-path.svg',
+                    'qrcode'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/qrcode.svg',
                 ])
             ]);
 

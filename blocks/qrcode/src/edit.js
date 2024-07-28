@@ -20,7 +20,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-
+        preview,
         // settings
         qrContent,
         qrCodeSize,
@@ -40,10 +40,14 @@ export default function Edit(props) {
         eyeRadius,
     } = attributes;
 
-
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.qrcode} alt={__('QR Code Preview', 'zoloblocks')} />;
+    }
 
     return (
         <>
