@@ -33,5 +33,5 @@ export const PATH_OPTION = [
     { label: __('Triangle', 'zoloblocks'), value: 'triangle', disabled: true },
     { label: __('Rectangle', 'zoloblocks'), value: 'rectangle', disabled: true },
     { label: __('Polygon', 'zoloblocks'), value: 'polygon', disabled: true },
-    { label: __('Double Spiral', 'zoloblocks'), value: 'dspiral', disabled: true },
+    { label: __('Curve', 'zoloblocks'), value: 'curve', disabled: true },
 ];
