@@ -214,7 +214,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 * Suffix and Prefix style controls added to QR Code block
 
 = Fixed =
-* Some minor issue fixed
+* Some minor issues are fixed
 
 = 1.2.0 - 25-07-2024 =
 
