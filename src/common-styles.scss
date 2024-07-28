@@ -156,6 +156,9 @@ span.zolo-pro-badge {
     margin-left: 10px;
 }
 .zolo-transform-animation {
+    :root {
+        --zolo-transform-perspective: 1000px;
+    }
     transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
         rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
         translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))

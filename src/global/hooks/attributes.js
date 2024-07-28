@@ -234,6 +234,7 @@ function addAttributes(settings) {
             }),
             ...generateResRangeAttributies('transitionDuration', {
                 defaultUnit: 'ms',
+                defaultRange: 300,
             }),
 
             //Position
