@@ -61,7 +61,7 @@ const attributes = {
             numberColor: '',
             titleColor: '',
             circleColor: '',
-            suffixColor: 'red',
+            suffixColor: '',
             prefixColor: '',
 
         },
