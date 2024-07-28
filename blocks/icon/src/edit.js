@@ -19,6 +19,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
+        preview,
 
         // settings
         mainIcon,
@@ -30,6 +31,12 @@ export default function Edit(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.icon} alt={__('Icon Box Preview', 'zoloblocks')} />;
+    }
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
