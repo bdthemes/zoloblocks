@@ -3,7 +3,8 @@
  */
 const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
 
-import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN, NUMBER_BOTTOM_SPACE } from './constants';
+import { prefix } from '../../../src/global/constants';
+import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN, NUMBER_BOTTOM_SPACE, NUMBER_SPACE } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -39,6 +40,7 @@ const attributes = {
     //progress bar size
     ...generateResRangeAttributies(PROGRESS_BAR_SIZE),
     ...generateResRangeAttributies(NUMBER_BOTTOM_SPACE),
+    ...generateResRangeAttributies(NUMBER_SPACE),
     ...generateResAlignmentAttributies(PROGRESS_ALIGN, { defaultAlign: 'center' }),
 
     //attr
@@ -59,6 +61,9 @@ const attributes = {
             numberColor: '',
             titleColor: '',
             circleColor: '',
+            suffixColor: 'red',
+            prefixColor: '',
+
         },
     },
     //progress multi color

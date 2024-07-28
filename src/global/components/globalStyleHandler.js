@@ -477,7 +477,7 @@ export const GlobalStyleHanlder = (props) => {
             ${translateXStylesDesktop}
             ${translateYStylesDesktop}
             ${rotateStylesDesktop}
-            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ''}
+            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : '--zolo-transform-perspective: 1000px;'}
             ${scaleProportionally ? `${scaleStylesDesktop}` : ''}
             ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ''}
             ${skewXStylesDesktop}
@@ -499,7 +499,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesTab}
             ${transformOriginXTab}
             ${transformOriginYTab}
-            ${transitionDurationTab ? `${transitionDurationTab}ms;` : ''}
+            ${transitionDurationTab ? `${transitionDurationTab}` : ''}
             `;
     const transformStylesMob = `
             ${translateXStylesMob}
@@ -512,7 +512,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesMob}
             ${transformOriginXMob}
             ${transformOriginYMob}
-            ${transitionDurationMob ? `${transitionDurationMob}ms;` : ''}
+            ${transitionDurationMob ? `${transitionDurationMob}` : ''}
             `;
 
     // transform hover
@@ -527,7 +527,8 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesDesktopHover}
             ${transformOriginXDesktopHover}
             ${transformOriginYDesktopHover}
-            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
+            ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
+
             `;
     const transformStylesTabHover = `
             ${translateXStylesTabHover}
@@ -541,7 +542,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesTabHover}
             ${transformOriginXTabHover}
             ${transformOriginYTabHover}
-           ${transitionDurationTab ? `${transitionDurationTab}ms;` : ''}
+           ${transitionDurationTab ? `${transitionDurationTab}` : ''}
             `;
     const transformStylesMobHover = `
             ${translateXStylesMobHover}
@@ -555,7 +556,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesMobHover}
             ${transformOriginXMobHover}
             ${transformOriginYMobHover}
-            ${transitionDurationMob ? `${transitionDurationMob}ms;` : ''}
+            ${transitionDurationMob ? `${transitionDurationMob}` : ''}
             `;
 
     const desktopGlobalStyles = `
@@ -572,11 +573,11 @@ export const GlobalStyleHanlder = (props) => {
         ${positionDesktop}
       }
       .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
-            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
+            ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
       }
       .parent-${uniqueId}.zolo-transform-animation {
         ${transformStylesDesktop}
-        ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
+        ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
       }
 
       .parent-${uniqueId}.zolo-block:hover {

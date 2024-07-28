@@ -44,10 +44,12 @@ export default function Edit(props) {
         className: classnames(uniqueId, `zolo-newsletter ${preset}`, classArrayToStr(parentClasses)),
     });
 
+
+    console.log('preview', zoloParams.blocksPreview.newsletter);
     // preview image
-    if (preview) {
-        return <img src={zoloParams.blocksPreview.newsletter} alt={__('Newsletter', 'zoloblocks')} />;
-    }
+     if (preview) {
+         return <img src={zoloParams.blocksPreview.list} alt={__('List Block Preview', 'zoloblocks')} />;
+     }
 
     return (
         <>

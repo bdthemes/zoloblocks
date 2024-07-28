@@ -1,17 +1,28 @@
 const ICONS = {
     arrow: (
+        // <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
+        //     <path d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z" />
+        //     <path d="M357.5 0L350 6.1L342.5 0H357.5Z" />
+        // </svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
-            <path d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z"/>
-            <path d="M357.5 0L350 6.1L342.5 0H357.5Z"/>
+            <path d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z" />
+            <path d="M357.5 0L350 6.1L342.5 0H357.5Z" />
         </svg>
     ),
 
     book: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
-            <path
-                className="zolo-shape-fill"
-                d="M194,99c186.7,0.7,305-78.3,306-97.2c1,18.9,119.3,97.9,306,97.2c114.3-0.3,194,0.3,194,0.3s0-91.7,0-100c0,0,0,0,0-0 L0,0v99.3C0,99.3,79.7,98.7,194,99z"
-            />
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="Layer_1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1000 73.6"
+            style={{ enableBackground: 'new 0 0 1000 73.6' }}
+            xmlSpace="preserve"
+        >
+            <path d="M1000.3,0v56.7c-23.2-8.3-75.9-22.5-152.3-14.5c-105.4,11-164.8,29-223.4,27S500,44.6,500,44.6s-66.1,22.6-124.7,24.6  s-118-16-223.4-27c-76.1-7.9-128.6,6-152,14.3V0H1000.3z" />
         </svg>
     ),
 
