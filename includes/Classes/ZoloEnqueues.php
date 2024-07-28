@@ -86,12 +86,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // wp localize script
             wp_localize_script('zolo-block-vendor-dependency', 'zoloSettings', [
-                'ajaxurl'      => admin_url('admin-ajax.php'),
-                'home_url'     => home_url(),
-                'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
-                'theme_fonts'  => ZoloHelpers::zolo_get_theme_fonts(),
-                'googleAPIKey' => get_option('zolo_google_api_key'),
-                'maskShapes' => [
+                'ajaxurl'                 => admin_url('admin-ajax.php'),
+                'home_url'                => home_url(),
+                'zolo_nonce'              => wp_create_nonce('zolo-nonce'),
+                'theme_fonts'             => ZoloHelpers::zolo_get_theme_fonts(),
+                'googleAPIKey'            => get_option('zolo_google_api_key'),
+                'maskShapes'              => [
                     'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',
                     'abstract-brush-1' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-1.svg',
                     'abstract-brush-2' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-2.svg',
