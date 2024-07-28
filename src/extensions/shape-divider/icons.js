@@ -5,8 +5,8 @@ const ICONS = {
         //     <path d="M357.5 0L350 6.1L342.5 0H357.5Z" />
         // </svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
-            <path d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z" />
-            <path d="M357.5 0L350 6.1L342.5 0H357.5Z" />
+            <path className="zolo-shape-fill" d="M361 0L350 9L339 0H340.9L350 7.4L359.1 0H361Z" />
+            <path className="zolo-shape-fill" d="M357.5 0L350 6.1L342.5 0H357.5Z" />
         </svg>
     ),
 
@@ -187,10 +187,10 @@ const ICONS = {
         </svg>
     ),
     split: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 20" preserveAspectRatio="none">
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 1000 20">
             <path
-                className="zolo-shape-fill"
-                d="M0,0v3c0,0,393.8,0,483.4,0c9.2,0,16.6,7.4,16.6,16.6c0-9.1,7.4-16.6,16.6-16.6C606.2,3,1000,3,1000,3V0H0z"
+                d="m0,0h1000v5h-478.3s-12.1-.79-19.59,10.37c-1.2,1.78-3.8,1.75-5.02-.02-2.99-4.32-8.96-10.15-19.59-10.45C460.5,4.42,0,4.9,0,4.9V0Z"
+                strokeWidth={0}
             />
         </svg>
     ),
