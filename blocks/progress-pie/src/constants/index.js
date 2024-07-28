@@ -10,8 +10,9 @@ export const BLOCK_PREFIX = 'progress-pie';
 
 export const PROGRESS_BAR_SIZE = 'PROGRESS_SIZE';
 export const PROGRESS_ALIGN = 'progressAlign';
+export const NUMBER_BOTTOM_SPACE = 'numberBottomSpace';
 
 export const CIRCLE_OPTION = [
     { label: 'Number', value: 'normal' },
-    { label: 'Title', value: 'hover' },
+    { label: 'Label', value: 'hover' },
 ];

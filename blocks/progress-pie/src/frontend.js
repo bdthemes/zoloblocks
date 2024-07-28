@@ -1,4 +1,4 @@
-import { createRoot, useRef, useEffect } from '@wordpress/element';
+import { createRoot, render, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
 import { __ } from '@wordpress/i18n';
 // render on page load
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 round,
                 prefix,
                 suffix,
-                proPieperpostToggle,
+                toggleSuffixPrefix,
                 fillColor,
                 fillSize,
                 numberColor,
@@ -48,86 +48,106 @@ document.addEventListener('DOMContentLoaded', () => {
                         end={value || 50}
                         delay={0}
                         duration={duration || 3}
-                        prefix={prefix !== '' ? prefix : ''}
-                        suffix={prefix !== '' ? suffix : ''}
+                        {...toggleSuffixPrefix && (
+                            <CountUp.Suffix>
+                                {suffix}
+                            </CountUp.Suffix>
+                        )}
+                        {...toggleSuffixPrefix && (
+                            <CountUp.Prefix>
+                                {prefix}
+                            </CountUp.Prefix>
+                        )}
                     >
                         {({ countUpRef }) => (
                             <>
-                                <svg className="progress-pie" width="450px" height="100%" viewBox="0 0 42 42">
-                                    {/*  optional background if need  */}
-                                    <circle className="donut-hole progress-donut-hole" cx="21" cy="21" r="15.91549430918954"></circle>
-                                    <circle
-                                        className="progress-pie-fill"
-                                        cx="21"
-                                        cy="21"
-                                        r="15.91549430918954"
-                                        fill="transparent"
-                                        stroke={fillColor ? fillColor : '#e5e5e5'}
-                                        stroke-dasharray="100 0"
-                                        stroke-dashoffset="25"
-                                    ></circle>
-                                    <circle
-                                        id="progress1"
-                                        className="progress-pie-progress"
-                                        ref={progress}
-                                        cx="21"
-                                        cy="21"
-                                        r="15.91549430918954"
-                                        fill="transparent"
-                                        stroke={`url(#gradient-${uniqueId})`}
-                                        stroke-dasharray="0 100"
-                                        stroke-dashoffset="25"
-                                    ></circle>
-                                    <defs>
-                                        <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                                            {progPieMultiColor &&
-                                                progPieMultiColor.map((color, index) => {
-                                                    const averageOffset = 100 / (progPieMultiColor.length - 1);
-                                                    let offset;
-                                                    if (index === 0) {
-                                                        offset = '0%';
-                                                    } else if (index === progPieMultiColor.length - 1) {
-                                                        offset = '100%';
-                                                    } else {
-                                                        offset = `${averageOffset * index}%`;
-                                                    }
-                                                    return (
-                                                        <stop
-                                                            offset={offset}
-                                                            stopColor={color.color ? color.color : '#00bc9b'}
-                                                            key={index}
-                                                        />
-                                                    );
-                                                })}
-                                        </linearGradient>
-                                    </defs>
-                                    {/* Progress number and text  */}
-                                    <g className="progress-pie-text">
-                                        <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
+                                <div class="progress-pie-wrapper">
+                                    <svg className="progress-pie" width="450px" height="100%" viewBox="0 0 42 42">
+                                        {/*  optional background if need  */}
+                                        <circle
+                                            className="donut-hole progress-donut-hole"
+                                            cx="21"
+                                            cy="21"
+                                            r="15.91549430918954"
+                                            stroke-width="3"
+                                        ></circle>
+                                        <circle
+                                            className="progress-pie-fill"
+                                            cx="21"
+                                            cy="21"
+                                            r="15.91549430918954"
+                                            fill="transparent"
+                                            stroke={fillColor ? fillColor : '#e5e5e5'}
+                                            stroke-dasharray="100 0"
+                                            stroke-dashoffset="25"
+                                        ></circle>
+                                        <circle
+                                            id="progress1"
+                                            className="progress-pie-progress"
+                                            ref={progress}
+                                            cx="21"
+                                            cy="21"
+                                            r="15.91549430918954"
+                                            fill="transparent"
+                                            stroke={`url(#gradient-${uniqueId})`}
+                                            stroke-width="3"
+                                            stroke-dasharray="0 100"
+                                            stroke-dashoffset="25"
+                                        ></circle>
+                                        <defs>
+                                            <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                                {progPieMultiColor &&
+                                                    progPieMultiColor.map((color, index) => {
+                                                        const averageOffset = 100 / (progPieMultiColor.length - 1);
+                                                        let offset;
+                                                        if (index === 0) {
+                                                            // First child, offset is 0%
+                                                            offset = '0%';
+                                                        } else if (index === progPieMultiColor.length - 1) {
+                                                            // Last child, offset is 100%
+                                                            offset = '100%';
+                                                        } else {
+                                                            // Intermediate children, calculate offset
+                                                            offset = `${averageOffset * index}%`;
+                                                        }
+
+                                                        return <stop offset={offset} stopColor={color?.color || '#00bc9b'} key={index} />;
+                                                    })}
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                    <div class="progress-content">
+                                        <div class="progress-pie-number" ref={countUpRef}>
                                             {value || 50}
-                                        </text>
-                                        {toggleLabel && (
-                                            <text x="50%" y="50%" className="progress-pie-label">
-                                                {title || __('Total', 'zoloblocks')}
-                                            </text>
-                                        )}
-                                    </g>
-                                </svg>
+                                        </div>
+                                        {(toggleLabel === undefined || toggleLabel) && <div class="progress-pie-label">{title}</div>}
+                                    </div>
+                                </div>
                             </>
                         )}
                     </CountUp>
                 );
             };
-            const root = createRoot(item);
-            root.render(
+            // const root = createRoot(item);
+            // root.render(
+            //     <CountupComponent
+            //         progressValue={value}
+            //         circleColor={circleColor}
+            //         fillColor={fillColor}
+            //         toggleLabel={toggleLabel}
+            //         progressTitle={title}
+            //         progressDuration={duration}
+            //     />
+            // );
+            render(
                 <CountupComponent
-                    progressValue={value}
-                    circleColor={circleColor}
+                    value={value}
+                    duration={duration}
                     fillColor={fillColor}
                     toggleLabel={toggleLabel}
-                    progressTitle={title}
-                    progressDuration={duration}
-                />
+                    title={title}
+                />,
+                item
             );
         });
     }
