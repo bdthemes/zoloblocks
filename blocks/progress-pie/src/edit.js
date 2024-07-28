@@ -28,23 +28,8 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        preview,
-        uniqueId,
-        progressPie,
-        parentClasses,
-        progPieMultiColor
-    } = attributes;
-               const {
-                   value,
-                   duration,
-                   title,
-                   toggleLabel,
-                   prefix,
-                   suffix,
-                    toggleSuffixPrefix,
-                   fillColor,
-               } = progressPie;
+    const { preview, uniqueId, progressPie, parentClasses, progPieMultiColor } = attributes;
+    const { value, duration, title, toggleLabel, prefix, suffix, toggleSuffixPrefix, fillColor } = progressPie;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -79,7 +64,6 @@ export default function Edit(props) {
         }
         return () => clearTimeout();
     }, [value]);
-
 
     return (
         <>

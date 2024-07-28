@@ -47,19 +47,13 @@ const attributes = {
         default: {
             value: 50,
             duration: 3,
-            title: 'Progress Title',
+            title: 'Progress Pie',
             toggleLabel: true,
             size: undefined,
             round: false,
             prefix: '',
             suffix: '',
             toggleSuffixPrefix: true,
-            multiColor: [
-                {
-                    id: 1,
-                    color: '#2667ff',
-                },
-            ],
             fillColor: '#2667ff',
             fillSize: 1,
             numberColor: '',
