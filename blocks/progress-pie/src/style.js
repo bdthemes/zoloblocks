@@ -9,7 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
 
-import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN } from './constants';
+import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN, NUMBER_BOTTOM_SPACE } from './constants';
 import { NUMBER_TYPO, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
@@ -25,6 +25,15 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: PROGRESS_BAR_SIZE,
         property: 'max-width',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: deskNumberSpacing,
+        tabRangeStyle: tabNumberSpacing,
+        mobRangeStyle: mobNumberSpacing,
+    } = generateResRangeStyle({
+        controlName: NUMBER_BOTTOM_SPACE,
+        property: 'margin-bottom',
         attributes,
     });
     const {
@@ -65,8 +74,8 @@ const Style = ({ props }) => {
             ${progressDeskAlignStyle}
          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-progress {
-            ${size ? `stroke-width:${size / 10}` : 'stroke-width:1'};
-            ${round ? 'stroke-linecap:round' : ''}
+            ${size ? `stroke-width:${size / 10};` : 'stroke-width:1'};
+            ${round ? 'stroke-linecap:round;' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
                 ${fillSize ? `stroke-width:${fillSize / 10}` : 'stroke-width:1'}
@@ -76,14 +85,15 @@ const Style = ({ props }) => {
         }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
             ${DesktopNumberTypo}
-            ${numberColor ? `fill:${numberColor}` : ''}
+            ${numberColor ? `color:${numberColor};` : ''}
+            ${deskNumberSpacing}
        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
             ${DesktopTittleTypo}
-            ${titleColor ? `fill:${titleColor}` : ''}
+            ${titleColor ? `color:${titleColor};` : ''}
        }
         .${uniqueId}.wp-block-zolo-progress-pie  .progress-donut-hole{
-                ${circleColor ? `fill:${circleColor}` : 'fill:transparent'}
+                ${circleColor ? `fill:${circleColor};` : 'fill:transparent'}
          }
 
     `;
@@ -97,6 +107,7 @@ const Style = ({ props }) => {
         }
      .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${TabNumberTypo}
+        ${tabNumberSpacing}
 
        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
@@ -113,6 +124,7 @@ const Style = ({ props }) => {
     }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-number{
         ${MobNumberTypo}
+        ${mobNumberSpacing}
     }
     .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
         ${MobTittleTypo}
