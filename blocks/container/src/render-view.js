@@ -4,6 +4,8 @@ import { select } from '@wordpress/data';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
+import Cotton from 'cottonjs';
+import { useEffect } from '@wordpress/element';
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
@@ -26,6 +28,16 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     });
 
     const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
+
+    useEffect (() => {
+        const { zoloCursors } = attributes;
+        const { active, source, preset, speed, disabledDefault } = zoloCursors;
+        const ball = new Cotton('.cursors-' + uniqueId + '.ball', {
+            // speed: 1,
+            scene: `.wp-block.${uniqueId}`,
+            
+        });
+    } , []);
 
     return (
         <>

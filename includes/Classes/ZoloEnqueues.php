@@ -129,6 +129,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
+            wp_enqueue_style('zolo-cursors-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/cursors/style.css', [], ZOLO_VERSION);
+
+
 
             // override css
             if (is_admin()) {
@@ -380,6 +383,17 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script(
                     'zolo-shape-divider-editor-script',
                     trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/index.js',
+                    $script_dependecy['dependencies'],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+            $import_cursors_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/cursors/index.asset.php';
+            if (file_exists($import_cursors_file)) {
+                $script_dependecy = include $import_cursors_file;
+                wp_enqueue_script(
+                    'zolo-cursors-editor-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/cursors/index.js',
                     $script_dependecy['dependencies'],
                     ZOLO_VERSION,
                     true
