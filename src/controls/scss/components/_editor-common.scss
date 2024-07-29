@@ -4,6 +4,12 @@
     --zolo-flex-row-control-label-width: 70%;
 }
 
+.zolo-flex-row-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .zolo-select__control {
     .zolo-select__input-container {
         .zolo-select__input,
@@ -549,8 +555,6 @@ textarea[readonly] {
     }
 }
 
-
-
 // .zolo-css-id {
 //     .components-base-control__field {
 //         display: flex;
@@ -569,7 +573,7 @@ textarea[readonly] {
 //     .components-base-control__help {
 //         text-align: right;
 //     }
-// } 
+// }
 
 .zolo-inline-control-wrapper {
     .components-form-token-field,
@@ -654,9 +658,7 @@ textarea[readonly] {
         font-size: 13px;
         color: #000;
     }
-    
 }
-
 
 // inline flex control style
 
@@ -683,7 +685,7 @@ textarea[readonly] {
             width: var(--zolo-flex-row-control-label-width);
             margin-bottom: 0;
         }
-        
+
         .components-text-control__input {
             width: 100%;
         }
@@ -722,5 +724,4 @@ textarea[readonly] {
             padding: 0 5px !important;
         }
     }
-
 }

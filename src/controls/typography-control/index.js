@@ -4,11 +4,11 @@ import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 //internal dependencies control
-import UnitBtn from '../unit-btn';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import FontPicker from './fontPicker';
+import IconicBtnGroup from '../iconic-btn-group';
 
 import { prefix } from '../../global/constants';
 
@@ -123,16 +123,33 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                     )}
                     renderContent={() => (
                         <div className="zolo-panel-control zb-typography-component-panel">
-                            <FontPicker
-                                className="zb-fontpicker-fontfamily"
-                                label={__('Font Family', 'zoloblocks')}
-                                value={fontFamily}
-                                onChange={(FontFamily) => {
-                                    setAttributes({
-                                        [`${prefix}${typoPrefixConstant}FontFamily`]: FontFamily,
-                                    });
-                                }}
-                            />
+                            <div className="zolo-flex-row-control">
+                                <div className="zolo-flex-col-control">
+                                    <FontPicker
+                                        className="zb-fontpicker-fontfamily"
+                                        label={__('Font Family', 'zoloblocks')}
+                                        value={fontFamily}
+                                        onChange={(FontFamily) => {
+                                            setAttributes({
+                                                [`${prefix}${typoPrefixConstant}FontFamily`]: FontFamily,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <div className="zolo-flex-col-control">
+                                    <SelectControl
+                                        label={__('Weight', 'zoloblocks')}
+                                        value={fontWeight}
+                                        options={fontWeightOptions}
+                                        onChange={(FontWeight) =>
+                                            setAttributes({
+                                                [`${prefix}${typoPrefixConstant}FontWeight`]: FontWeight,
+                                            })
+                                        }
+                                    />
+                                </div>
+                            </div>
+
                             <div className="zb-res-range-control-wrapper">
                                 {resMode == 'Desktop' && (
                                     <>
@@ -156,11 +173,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             />
                                         </UnitsBtn>
 
-                                        <WithResDeviceBtn
-                                            label={__('Font Size', 'zoloblocks')}
-                                            requiredProps={requiredProps}
-                                            noResetBtn={true}
-                                        >
+                                        <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
                                             <RangeControl
                                                 value={fontSize}
                                                 onChange={(FontSize) =>
@@ -197,11 +210,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             />
                                         </UnitsBtn>
 
-                                        <WithResDeviceBtn
-                                            label={__('Font Size', 'zoloblocks')}
-                                            requiredProps={requiredProps}
-                                            noResetBtn={true}
-                                        >
+                                        <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
                                             <RangeControl
                                                 value={TABfontSize}
                                                 onChange={(FontSize) =>
@@ -238,11 +247,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             />
                                         </UnitsBtn>
 
-                                        <WithResDeviceBtn
-                                            label={__('Font Size', 'zoloblocks')}
-                                            requiredProps={requiredProps}
-                                            noResetBtn={true}
-                                        >
+                                        <WithResDeviceBtn label={__(' Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
                                             <RangeControl
                                                 value={MOBfontSize}
                                                 onChange={(FontSize) =>
@@ -258,50 +263,6 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                     </>
                                 )}
                             </div>
-
-                            <SelectControl
-                                label={__('Font Weight', 'zoloblocks')}
-                                value={fontWeight}
-                                options={fontWeightOptions}
-                                onChange={(FontWeight) =>
-                                    setAttributes({
-                                        [`${prefix}${typoPrefixConstant}FontWeight`]: FontWeight,
-                                    })
-                                }
-                            />
-
-                            <SelectControl
-                                label={__('Font Style', 'zoloblocks')}
-                                value={fontStyle}
-                                options={fontStyleOptions}
-                                onChange={(fontStyle) =>
-                                    setAttributes({
-                                        [`${prefix}${typoPrefixConstant}FontStyle`]: fontStyle,
-                                    })
-                                }
-                            />
-
-                            <SelectControl
-                                label={__('Text Transform', 'zoloblocks')}
-                                value={textTransform}
-                                options={textTransformOptions}
-                                onChange={(TextTransform) =>
-                                    setAttributes({
-                                        [`${prefix}${typoPrefixConstant}TextTransform`]: TextTransform,
-                                    })
-                                }
-                            />
-
-                            <SelectControl
-                                label={__('Text Decoration', 'zoloblocks')}
-                                value={textDecoration}
-                                options={textDecorationOptions}
-                                onChange={(TextDecoration) =>
-                                    setAttributes({
-                                        [`${prefix}${typoPrefixConstant}TextDecoration`]: TextDecoration,
-                                    })
-                                }
-                            />
                             <div className="zb-res-range-control-wrapper">
                                 {resMode == 'Desktop' && (
                                     <>
@@ -551,6 +512,40 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </WithResDeviceBtn>
                                     </>
                                 )}
+                            </div>
+                            <div className="zolo-flex-col-control">
+                                <IconicBtnGroup
+                                    label={__('Text Transform', 'zoloblocks')}
+                                    value={textTransform}
+                                    options={textTransformOptions}
+                                    onChange={(TextTransform) =>
+                                        setAttributes({
+                                            [`${prefix}${typoPrefixConstant}TextTransform`]: TextTransform,
+                                        })
+                                    }
+                                />
+                            </div>
+                            <div className="zolo-flex-row-control">
+                                <IconicBtnGroup
+                                    label={__('Font Style', 'zoloblocks')}
+                                    value={fontStyle}
+                                    options={fontStyleOptions}
+                                    onChange={(fontStyle) =>
+                                        setAttributes({
+                                            [`${prefix}${typoPrefixConstant}FontStyle`]: fontStyle,
+                                        })
+                                    }
+                                />
+                                <IconicBtnGroup
+                                    label={__('Text Decoration', 'zoloblocks')}
+                                    value={textDecoration}
+                                    options={textDecorationOptions}
+                                    onChange={(TextDecoration) =>
+                                        setAttributes({
+                                            [`${prefix}${typoPrefixConstant}TextDecoration`]: TextDecoration,
+                                        })
+                                    }
+                                />
                             </div>
                         </div>
                     )}
