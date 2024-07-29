@@ -462,21 +462,23 @@ function Inspector(props) {
                                 <NormalBGControl requiredProps={requiredProps} controlName={LABEL_BG} noMainBGImg={true} />
                             )}
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Field Icons', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={iconColor}
-                                onChange={(color) => setAttributes({ iconColor: color })}
-                            />
-                            <ResRangeControl
-                                label={__('Icon', 'zoloblocks')}
-                                controlName={ICON_SIZE}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                            />
-                        </ZoloPanelBody>
+                        {showFieldIcon && preset !== 'style-3' &&(
+                            <ZoloPanelBody title={__('Field Icons', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={iconColor}
+                                    onChange={(color) => setAttributes({ iconColor: color })}
+                                />
+                                <ResRangeControl
+                                    label={__('Icon', 'zoloblocks')}
+                                    controlName={ICON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                />
+                            </ZoloPanelBody>
+                        )}
                         <ZoloPanelBody title={__('Input Fields', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
                                 label={__('Text Color', 'zoloblocks')}

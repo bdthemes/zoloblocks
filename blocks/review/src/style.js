@@ -535,6 +535,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-review .zolo-image-wrap .zolo-img {
             ${objectFit ? `object-fit: ${objectFit};` : ''}
+            ${photoDeskBorderRadius}
         }
 
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name {

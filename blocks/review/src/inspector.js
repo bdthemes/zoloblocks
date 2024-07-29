@@ -409,13 +409,15 @@ function Inspector(props) {
                                     value={photoOverflow}
                                     onChange={(value) => setAttributes({ photoOverflow: value })}
                                 />
-                                <ResRangeControl
-                                    label={__('Gap', 'zoloblocks')}
-                                    controlName={CONTENT_GAP}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={200}
-                                />
+                                {stylePreset !== 'style-preset-2' && (
+                                    <ResRangeControl
+                                        label={__('Gap', 'zoloblocks')}
+                                        controlName={CONTENT_GAP}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={200}
+                                    />
+                                )}
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={REVIEWER_PHOTO_BORDER}

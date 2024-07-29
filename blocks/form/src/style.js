@@ -389,6 +389,7 @@ const Style = ({ props }) => {
             ${labelBGStyle}
             ${labelBorderStyles}
             ${labelBRDesktop}
+            ${labelMarginDesk}
         }
 
         .${uniqueId} .zolo-required {
