@@ -8,7 +8,6 @@
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "attributes": {
-        "preview": true,
         "displayType": {
             "type": "string",
             "default": "row"
@@ -42,6 +41,12 @@
             "type": "string",
             "default": "left"
         }
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 400
     },
     "providesContext": {
         "zoloNewsletterDisplayType": "displayType",

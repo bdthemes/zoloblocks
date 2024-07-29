@@ -32,7 +32,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Social Links Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.socialShare} alt={__('Social Share Preview', 'zoloblocks')} />;
     }
 
     return (

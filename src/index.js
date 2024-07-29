@@ -47,7 +47,6 @@ import '../blocks/review/src';
 import '../blocks/slide/src';
 import '../blocks/slider/src';
 import '../blocks/social-links/src';
-import '../blocks/social-links/src';
 import '../blocks/social-share/src';
 import '../blocks/star-rating/src';
 import '../blocks/team-child/src';
