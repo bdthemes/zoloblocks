@@ -71,7 +71,16 @@ function Inspector(props) {
                                 options={applyFilters('zolo.presets.TextPath', PATH_OPTION)}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
-
+                            <SimpleRangeControl
+                                label={__('Staring Points', 'zoloblocks')}
+                                onChange={(v) => setAttributes({ textPathSpoint: v })}
+                                value={textPathSpoint}
+                                onReset={() => setAttributes({ textPathSpoint: '' })}
+                                min={1}
+                                max={100}
+                                step={1}
+                                noUnits={true}
+                            />
                             <LinkControl
                                 label={__('URL', 'zoloblocks')}
                                 value={pathlink}
@@ -123,16 +132,7 @@ function Inspector(props) {
                                 step={1}
                                 noUnits={true}
                             />
-                            <SimpleRangeControl
-                                label={__('Staring Points', 'zoloblocks')}
-                                onChange={(v) => setAttributes({ textPathSpoint: v })}
-                                value={textPathSpoint}
-                                onReset={() => setAttributes({ textPathSpoint: '' })}
-                                min={1}
-                                max={100}
-                                step={1}
-                                noUnits={true}
-                            />
+
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TEXTPATHTYPO}
