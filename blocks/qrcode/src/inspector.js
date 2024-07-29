@@ -79,15 +79,17 @@ export default function Inspector(props) {
                     generalTab={
                         <>
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                <TextareaControl
-                                    label={__('Content', 'zoloblocks')}
-                                    value={qrContent}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            qrContent: value,
-                                        })
-                                    }
-                                />
+                                {!qrCodeLink && (
+                                    <TextareaControl
+                                        label={__('Content', 'zoloblocks')}
+                                        value={qrContent}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                qrContent: value,
+                                            })
+                                        }
+                                    />
+                                )}
                                 {/* hook links */}
                                 {hookLinks && hookLinks.length > 0 && hookLinks}
                                 <SimpleRangeControl
@@ -127,9 +129,8 @@ export default function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
-                                {/* hook logo  */}
-                                {hookLogo && hookLogo.length > 0 && hookLogo}
-
+                            {/* hook logo  */}
+                            {hookLogo && hookLogo.length > 0 && hookLogo}
                         </>
                     }
                     styleTab={
