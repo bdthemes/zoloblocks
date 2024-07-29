@@ -402,13 +402,13 @@ function Inspector(props) {
                                         min={0}
                                         max={500}
                                     />
-                                    <ResRangeControl
+                                    {/* <ResRangeControl
                                         label={__('Offset', 'zoloblocks')}
                                         controlName={STYLE3_ICON_OFFSET}
                                         requiredProps={requiredProps}
                                         min={-500}
                                         max={500}
-                                    />
+                                    /> */}
                                 </>
                             )}
 
