@@ -572,9 +572,7 @@ export const GlobalStyleHanlder = (props) => {
         ${transformStylesDesktop}
         ${positionDesktop}
       }
-      .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
-            ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
-      }
+
       .parent-${uniqueId}.zolo-transform-animation {
         ${transformStylesDesktop}
         ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
