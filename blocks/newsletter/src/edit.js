@@ -48,7 +48,7 @@ export default function Edit(props) {
     console.log('preview', zoloParams.blocksPreview.newsletter);
     // preview image
      if (preview) {
-         return <img src={zoloParams.blocksPreview.list} alt={__('List Block Preview', 'zoloblocks')} />;
+         return <img src={zoloParams.blocksPreview.newsletter} alt={__('List Block Preview', 'zoloblocks')} />;
      }
 
     return (

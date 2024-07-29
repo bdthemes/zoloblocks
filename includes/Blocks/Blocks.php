@@ -138,6 +138,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => true
     ],
+    'social-share' => [
+        'name'             => 'social-share',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/social-share/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => true
+    ],
     'team-grid' => [
         'name'             => 'team-grid',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/team-grid/block.json',
