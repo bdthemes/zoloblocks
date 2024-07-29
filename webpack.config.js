@@ -34,6 +34,7 @@ let allEntries = {
     ['build/extensions/import-pattern']: './src/extensions/import-pattern/index.js',
     ['build/extensions/shape-divider']: './src/extensions/shape-divider/index.js',
     ['build/extensions/cursors']: './src/extensions/cursors/index.js',
+    ['build/extensions/cursors/frontend']: './src/extensions/cursors/frontend.js',
     ['build/template-library']: './src/template-library/index.js',
     ['build/module']: {
         import: path.resolve(__dirname, 'src/module-export.js'),
