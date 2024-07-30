@@ -1,5 +1,5 @@
 //wordpress dependencies
-import { BaseControl, Button, Dropdown, RangeControl, SelectControl } from '@wordpress/components';
+import { BaseControl, Button, Dropdown, RangeControl, SelectControl, Tooltip } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -11,6 +11,8 @@ import FontPicker from './fontPicker';
 import IconicBtnGroup from '../iconic-btn-group';
 
 import { prefix } from '../../global/constants';
+
+
 
 //block constant
 import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions } from './constant';
@@ -124,7 +126,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                     renderContent={() => (
                         <div className="zolo-panel-control zb-typography-component-panel">
                             <div className="zolo-flex-row-control">
-                                <div className="zolo-flex-col-control">
+                                <div className="zolo-flex-col-control zolo-font-family-input">
                                     <FontPicker
                                         className="zb-fontpicker-fontfamily"
                                         label={__('Font Family', 'zoloblocks')}
@@ -136,7 +138,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         }}
                                     />
                                 </div>
-                                <div className="zolo-flex-col-control">
+                                <div className="zolo-flex-col-control zolo-font-weight-input">
                                     <SelectControl
                                         label={__('Weight', 'zoloblocks')}
                                         value={fontWeight}

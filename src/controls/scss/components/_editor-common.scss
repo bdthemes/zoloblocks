@@ -240,6 +240,10 @@
         border-top: 1px solid #ebebf6;
         letter-spacing: 1.5px;
     }
+
+    .components-input-control__container {
+        width: calc(80px);
+    }
 }
 
 .zb-res-range-control-wrapper {
@@ -441,6 +445,7 @@ textarea[readonly] {
         display: flex;
         align-items: center;
         gap: 15px;
+        flex-direction: row-reverse;
     }
 
     .e1epgpqk10,
@@ -681,6 +686,7 @@ textarea[readonly] {
         justify-content: space-between;
         gap: var(--zolo-flex-row-control-gap);
         align-items: center;
+        padding: 0;
         .components-base-control__label {
             width: var(--zolo-flex-row-control-label-width);
             margin-bottom: 0;

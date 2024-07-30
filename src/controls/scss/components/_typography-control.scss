@@ -12,9 +12,18 @@
         }
     }
 
+    .zolo__control {
+        &:hover {
+            border-color: #e9e9e9;
+        }
+        &.zolo__control--is-focused{
+            border-color: #001feb !important;
+        }
+    }
+
     .zolo {
         &__control {
-            height: 40px;
+            height: 35px;
             min-height: auto !important;
             box-shadow: none;
             border: 1px solid #e5e5e5;
@@ -22,19 +31,20 @@
             padding: 0 8px;
         }
         &__value-container {
-            height: 32px;
+            height: 35px;
             min-height: auto !important;
             margin: 0;
             padding: 0;
         }
         &__single-value {
+            line-height: 1;
             &:focus {
                 border: none;
                 outline: none;
             }
         }
         &__option {
-            height: 32px;
+            height: 35px;
             min-height: auto !important;
             padding: 2px 8px;
             // background: #000;
@@ -47,7 +57,7 @@
         }
         &__input-container {
             position: relative;
-            height: 30px;
+            height: 35px;
             padding: 0;
         }
         &__input {
@@ -69,16 +79,23 @@
             }
         }
         &__indicators {
-            height: 40px;
+            height: 35px;
             min-height: auto !important;
         }
         &__indicator {
+            padding: 0;
             padding-left: 8px;
             cursor: pointer;
+            color: rgb(30, 30, 30);
+            svg {
+                width: 15px;
+                height: 15px;
+                display: block;
+            }
         }
         &__indicator-separator {
             color: #fff;
-            background: #3d87f6;
+            background: transparent;
         }
         &__menu {
             border-radius: 3px;
@@ -155,13 +172,27 @@
 
 // Iconic Button
 .zb-typography-component-panel {
+
+    .zb-iconic-btn-group {
+        padding: 6px;
+        .components-button.iconic-btn {
+            box-shadow: none !important;
+            padding: 0;
+            height: 30px;
+        }
+    }
+
     .zolo-iconic-btn-group {
+        width: 100%;
         .iconic-btn svg {
             fill: currentColor !important;
             width: 18px;
         }
     }
-    .zolo-flex-col-control {
-        width: 100%;
+    .zolo-font-weight-input {
+        width: 50%;
+    }
+    .zolo-font-family-input {
+        width: 80%;
     }
 }
