@@ -35,6 +35,15 @@ const Inspector = ({ panelProps }) => {
             shapeDivider.top.type !== 'triangle' &&
             shapeDivider.top.type !== 'opacityFan';
 
+        const showFlipBottom =
+            shapeDivider.bottom.type !== 'book' &&
+            shapeDivider.bottom.type !== 'arrow' &&
+            shapeDivider.bottom.type !== 'curve' &&
+            shapeDivider.bottom.type !== 'split' &&
+            shapeDivider.bottom.type !== 'waves' &&
+            shapeDivider.bottom.type !== 'triangle' &&
+            shapeDivider.bottom.type !== 'opacityFan';
+
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <TabPanelControl
@@ -191,21 +200,23 @@ const Inspector = ({ panelProps }) => {
                                     requiredProps={requiredProps}
                                     max={300}
                                 />
-                                <ToggleControl
-                                    label={__('Flip', 'zoloblocks')}
-                                    checked={shapeDivider.bottom.flip}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            shapeDivider: {
-                                                ...shapeDivider,
-                                                bottom: {
-                                                    ...shapeDivider.bottom,
-                                                    flip: value,
+                                {showFlipBottom && (
+                                    <ToggleControl
+                                        label={__('Flip', 'zoloblocks')}
+                                        checked={shapeDivider.bottom.flip}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    bottom: {
+                                                        ...shapeDivider.bottom,
+                                                        flip: value,
+                                                    },
                                                 },
-                                            },
-                                        })
-                                    }
-                                />
+                                            })
+                                        }
+                                    />
+                                )}
 
                                 {toggleInvertBottom && (
                                     <ToggleControl
