@@ -20,6 +20,7 @@ const Inspector = ({ panelProps }) => {
         shapeDivider.top.type !== 'wavebrush' &&
         shapeDivider.top.type !== 'wavepattern';
     const toggleInvertBottom = shapeDivider.bottom.type !== 'wavebrush' && shapeDivider.bottom.type !== 'wavepattern';
+    const showFlipTop = shapeDivider.top.type !== 'book' && shapeDivider.top.type !== 'arrow' && shapeDivider.top.type !== 'curve';
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <TabPanelControl
@@ -69,23 +70,26 @@ const Inspector = ({ panelProps }) => {
                                     label={__('Height', 'zoloblocks')}
                                     controlName={TOP_HEIGHT_SHAPE}
                                     requiredProps={requiredProps}
+                                    max={300}
                                 />
 
-                                <ToggleControl
-                                    label={__('Flip', 'zoloblocks')}
-                                    checked={shapeDivider.top.flip}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            shapeDivider: {
-                                                ...shapeDivider,
-                                                top: {
-                                                    ...shapeDivider.top,
-                                                    flip: value,
+                                {showFlipTop && (
+                                    <ToggleControl
+                                        label={__('Flip', 'zoloblocks')}
+                                        checked={shapeDivider.top.flip}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                shapeDivider: {
+                                                    ...shapeDivider,
+                                                    top: {
+                                                        ...shapeDivider.top,
+                                                        flip: value,
+                                                    },
                                                 },
-                                            },
-                                        })
-                                    }
-                                />
+                                            })
+                                        }
+                                    />
+                                )}
                                 {toggleInvertTop && (
                                     <ToggleControl
                                         label={__('Invert', 'zoloblocks')}
@@ -171,6 +175,7 @@ const Inspector = ({ panelProps }) => {
                                     label={__('Height', 'zoloblocks')}
                                     controlName={BOTTOM_HEIGHT_SHAPE}
                                     requiredProps={requiredProps}
+                                    max={300}
                                 />
                                 <ToggleControl
                                     label={__('Flip', 'zoloblocks')}
