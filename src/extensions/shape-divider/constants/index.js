@@ -79,18 +79,18 @@ export const SHAPE_DIVIDER = [
         label: __('Waves', 'zoloblocks'),
         value: 'waves',
     },
-    {
-        label: __('Waves Brush', 'zoloblocks'),
-        value: 'wavebrush',
-    },
-    {
-        label: __('Wave Pattern', 'zoloblocks'),
-        value: 'wavepattern',
-    },
-    {
-        label: __('Zigzag', 'zoloblocks'),
-        value: 'zigzag',
-    },
+    // {
+    //     label: __('Waves Brush', 'zoloblocks'),
+    //     value: 'wavebrush',
+    // },
+    // {
+    //     label: __('Wave Pattern', 'zoloblocks'),
+    //     value: 'wavepattern',
+    // },
+    // {
+    //     label: __('Zigzag', 'zoloblocks'),
+    //     value: 'zigzag',
+    // },
 ];
 
 // style tab

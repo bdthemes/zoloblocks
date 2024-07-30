@@ -18,9 +18,23 @@ const Inspector = ({ panelProps }) => {
     };
     const toggleInvertTop =
         shapeDivider.top.type !== 'wavebrush' &&
-        shapeDivider.top.type !== 'wavepattern';
-    const toggleInvertBottom = shapeDivider.bottom.type !== 'wavebrush' && shapeDivider.bottom.type !== 'wavepattern';
-    const showFlipTop = shapeDivider.top.type !== 'book' && shapeDivider.top.type !== 'arrow' && shapeDivider.top.type !== 'curve';
+        shapeDivider.top.type !== 'opacityFan' &&
+        shapeDivider.top.type !== 'wavepattern' &&
+        shapeDivider.top.type !== 'stilt' &&
+        shapeDivider.top.type !== 'opacityTilt';
+
+        const toggleInvertBottom =
+        shapeDivider.bottom.type !== 'wavebrush' && shapeDivider.bottom.type !== 'opacityFan' && shapeDivider.bottom.type !== 'wavepattern';
+
+        const showFlipTop =
+            shapeDivider.top.type !== 'book' &&
+            shapeDivider.top.type !== 'arrow' &&
+            shapeDivider.top.type !== 'curve' &&
+            shapeDivider.top.type !== 'split' &&
+            shapeDivider.top.type !== 'waves' &&
+            shapeDivider.top.type !== 'triangle' &&
+            shapeDivider.top.type !== 'opacityFan';
+
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <TabPanelControl
