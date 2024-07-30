@@ -71,12 +71,8 @@ const attributes = {
         type: 'string',
         default: 'upload',
     },
-    gssId: {
+    gssUrl: {
         type: 'string',
-    },
-    gid: {
-        type: 'string',
-        default: '0',
     },
     uploadStatus: {
         type: 'boolean',

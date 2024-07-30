@@ -46,8 +46,7 @@ function Inspector(props) {
     const {
         resMode,
         chartType,
-        gssId,
-        gid,
+        gssUrl,
         chartHeight,
         sourceType,
         uploadStatus,
@@ -185,28 +184,46 @@ function Inspector(props) {
             pieChartLabels: labels,
         });
     }
+
+    // extract Ids
+    function extractIdsFromUrl(url) {
+        const regex = /\/d\/(.*?)\/edit.*?gid=(\d+)/;
+        const match = url.match(regex);
+
+        if (match) {
+            const spreadsheetId = match[1];
+            const sheetId = match[2];
+            return { spreadsheetId, sheetId };
+        } else {
+            return {};
+        }
+    }
+
+    // Fetch Google Sheet Data
     const { createErrorNotice } = useDispatch(noticesStore);
     const [loading, setLoading] = useState(false);
-
     /**
      * Fetch Google Sheet Data
      */
     const fetchGoogleSheetData = () => {
-        if (!gssId) {
-            createErrorNotice(__('Google Spreadsheet ID is required', 'zoloblocks'));
-            return;
-        }
-
-        if (!gid) {
-            createErrorNotice(__('Gid ID is required. Default ID: 0', 'zoloblocks'));
+        if (!gssUrl) {
+            createErrorNotice(__('😔 Please provide a Google Spreadsheet URL.', 'zoloblocks'));
             return;
         }
 
         // Start loading
         setLoading(true);
 
+        const { spreadsheetId, sheetId } = extractIdsFromUrl(gssUrl);
+
+        if (!spreadsheetId || !sheetId) {
+            createErrorNotice(__('😔 Invalid Google Spreadsheet URL.', 'zoloblocks'));
+            setLoading(false);
+            return;
+        }
+
         // Google Spreadsheet URL
-        const url = `https://docs.google.com/spreadsheets/d/${gssId}/export?format=csv&gid=${gid}`;
+        const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${sheetId}`;
 
         // Use axios to fetch the data from the Google Spreadsheet
         axios
@@ -216,7 +233,7 @@ function Inspector(props) {
 
                 // check if the data is empty
                 if (!data) {
-                    createErrorNotice(__('Sorry, No data found', 'zoloblocks'));
+                    createErrorNotice(__('😔 Sorry, No data found', 'zoloblocks'));
                     setLoading(false);
                     return;
                 }
@@ -268,14 +285,7 @@ function Inspector(props) {
                             {sourceType == 'input' && (
                                 <TextareaControl
                                     label={__('Enter chart data separated by commas', 'zoloblocks')}
-                                    placeholder={__(
-                                        `Label, Value
-                                        Team A, 10
-                                        Team B, 15
-                                        Team C, 20,
-                                        Team D, 5`,
-                                        'zoloblocks'
-                                    )}
+                                    placeholder={__(`Label, Value\nTeam A, 10\nTeam B, 15\nTeam C, 20\nTeam D, 5`, 'zoloblocks')}
                                     value={chartInputData}
                                     rows={10}
                                     onChange={(value) => {
@@ -292,23 +302,13 @@ function Inspector(props) {
                                         {__('Make sure your Google Spreadsheet is public.', 'zoloblocks')}
                                     </p>
                                     <TextControl
-                                        label={__('Google Spreadsheet ID', 'zoloblocks')}
-                                        value={gssId}
+                                        label={__('Google Spreadsheet URL', 'zoloblocks')}
+                                        value={gssUrl}
                                         onChange={(v) =>
                                             setAttributes({
-                                                gssId: v,
+                                                gssUrl: v,
                                             })
                                         }
-                                    />
-                                    <TextControl
-                                        label={__('Gid ID', 'zoloblocks')}
-                                        value={gid}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                gid: v,
-                                            })
-                                        }
-                                        help={__('Default Gid: 0', 'zoloblocks')}
                                     />
                                     <Button
                                         style={{ marginBottom: '10px' }}
