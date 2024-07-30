@@ -117,7 +117,7 @@ export const AdvancedOptions = (props) => {
 
     const displayPanels = applyFilters('zolo.blocks.displayConditions', [], panelProps);
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
-    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, panelProps);
+    const cursorsControls = applyFilters('zolo.extensions.controls.cursors', [], block, panelProps);
 
 
     return (
@@ -629,7 +629,7 @@ export const AdvancedOptions = (props) => {
                                         hasValCheck('transformRotateYHover', attributes)
                                     }
                                 >
-                                    {!transformRotate3DActiveHover &&(
+                                    {!transformRotate3DActiveHover && (
                                         <ResRangeControl
                                             label={__('Rotate', 'zoloblocks')}
                                             controlName={'transformRotateHover'}
@@ -791,6 +791,7 @@ export const AdvancedOptions = (props) => {
                 )}
             </ZoloPanelBody>
             {animationPanels && animationPanels.length > 0 && animationPanels}
+            {cursorsControls && cursorsControls.length > 0 && cursorsControls}
             <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>

@@ -26,7 +26,9 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     });
 
     const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
-    applyFilters('zolo.extensions.render.cursors', [], panelProps);
+    //init cursors
+    applyFilters('zolo.extensions.init.cursors', [], panelProps);
+    const renderCursors = applyFilters('zolo.extensions.render.cursors', [], panelProps);
 
     return (
         <>
@@ -70,12 +72,14 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
+                        {renderCursors && renderCursors}
                         {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
                     <>
                         {shapeDivider && shapeDivider.length > 0 && shapeDivider}
+                        {renderCursors && renderCursors}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </>
                 )}
