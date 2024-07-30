@@ -5,6 +5,7 @@ import './style.scss';
 // import Style from './style.js';
 
 import './attributes';
+import useCursorInit from './hook';
 
 // addFilter('zolo.extensions.controls.shapeDivider', 'zolo/shape-divider', (panels, panelProps) => {
 //     panels.push(<Inspector panelProps={panelProps} />);
@@ -13,6 +14,10 @@ import './attributes';
 
 addFilter('zolo.extensions.render.shapeDivider', 'zolo/shape-divider', (panels, panelProps) => {
     panels.push(<Render panelProps={panelProps} />);
+    return panels;
+});
+addFilter('zolo.extensions.render.cursors', 'zolo/cursors', (panels, panelProps) => {
+    panels.push(useCursorInit(panelProps.attributes, panelProps.attributes.uniqueId));
     return panels;
 });
 
