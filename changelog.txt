@@ -1,3 +1,16 @@
+### 1.2.2 [July 30, 2024]
+
+### Fixed
+
+- Popup block issue fixed
+- Astra theme support issue fixed
+- Transform confilict with Entrance animation issue fixed
+- glitching issue fixed in marquee block (pro)
+
+### Improved
+
+- Form, Notice, Review, QR Code blocks improved
+
 ### 1.2.1 [July 28, 2024]
 
 ### Added
