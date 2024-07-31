@@ -244,6 +244,22 @@
     .components-input-control__container {
         width: calc(80px);
     }
+
+    .zolo-text-shadow {
+        .zolo-box-shadow-options {
+            .components-input-control__container {
+                width: auto !important;
+            }
+        }
+    }
+    .zolo-text-stroke {
+        .zolo-box-shadow-options {
+            .components-input-control__container {
+                width: calc(80px) !important;
+            }
+        }
+    }
+
 }
 
 .zb-res-range-control-wrapper {
@@ -729,5 +745,11 @@ textarea[readonly] {
         .zolo__input-container {
             padding: 0 5px !important;
         }
+    }
+}
+
+.zolo-background-control-popover {
+    .components-input-control__container {
+        width: calc(80px);
     }
 }

@@ -90,7 +90,9 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <BaseControl label={__('Brand Logo', 'zoloblocks')}>
+                            <BaseControl label={__('Brand Logo', 'zoloblocks')} 
+                                className='zolo-flex-col-control'
+                            >
                                 {brandPhoto ? (
                                     <ImageAvatar
                                         imageUrl={brandPhoto && brandPhoto.url}
@@ -133,7 +135,7 @@ function Inspector(props) {
                                 )}
                             </BaseControl>
                             <ImageSizes
-                                label={__('Logo Resolution', 'zoloblocks')}
+                                label={__('Resolution', 'zoloblocks')}
                                 value={imageRes}
                                 onChange={(value) =>
                                     setAttributes({
