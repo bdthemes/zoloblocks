@@ -440,4 +440,19 @@ class ZoloHelpers {
 	public static function get_nonce_text() {
 		return 'zolo-nonce';
 	}
+
+	/**
+	 * WordCount function
+	 *
+	 * @param string $phrase .
+	 * @param number $max_words .
+	 * @return string
+	 */
+	public static function wordcount( $phrase, $max_words ) {
+		$phrase_array = explode( ' ', $phrase );
+		if ( count( $phrase_array ) > $max_words && $max_words >= 0 ) {
+			$phrase = implode( ' ', array_slice( $phrase_array, 0, $max_words ) );
+		}
+		return strip_shortcodes( $phrase );
+	}
 }

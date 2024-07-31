@@ -111,7 +111,7 @@ class GetPostsV1 {
 			}
 		}
 		// only for post tab.
-		if ( ! empty( $data['postCategory'] ) ) {
+		if ( isset( $data['postCategory'] ) && '*' !== $data['postCategory'] ) {
 			$args['tax_query'][] = [
 				'taxonomy' => 'category',
 				'field'    => 'term_id',
