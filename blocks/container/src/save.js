@@ -3,9 +3,10 @@ import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
+const Save = ({ attributes, block }) => {
     const panelProps = { attributes };
-        const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
+        const applyHooksBefore = applyFilters('zolo.blocks.render.before.applyHooks', [], block, panelProps);
+        const applyHooksAfter = applyFilters('zolo.blocks.render.after.applyHooks', [], block, panelProps);
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth } = attributes;
 
     return (
@@ -23,17 +24,18 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {applyHooksBefore && applyHooksBefore}
+
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
-                    {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                     <InnerBlocks.Content />
                 </div>
             ) : (
                 <>
-                    {shapeDivider && shapeDivider.length > 0 && shapeDivider}
-                <InnerBlocks.Content />
+                    <InnerBlocks.Content />
                 </>
             )}
+            {applyHooksAfter && applyHooksAfter}
         </div>
     );
 };

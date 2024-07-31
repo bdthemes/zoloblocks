@@ -6,7 +6,7 @@ import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
-export default function RenderView({ attributes, clientId, className, setAttributes }) {
+export default function RenderView({ attributes, clientId, className, setAttributes, block }) {
 
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
     const panelProps = { attributes, setAttributes };
@@ -25,7 +25,8 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         ),
     });
 
-    const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
+      const applyHooksBefore = applyFilters('zolo.blocks.render.before.applyHooks', [], block, panelProps);
+      const applyHooksAfter = applyFilters('zolo.blocks.render.after.applyHooks', [], block, panelProps);
 
     return (
         <>
@@ -66,18 +67,18 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                {applyHooksBefore && applyHooksBefore}
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
                     <>
-                        {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </>
                 )}
+                {applyHooksAfter && applyHooksAfter}
             </div>
         </>
     );
