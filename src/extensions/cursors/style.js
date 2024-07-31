@@ -2,107 +2,110 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
-const { generateResRangeStyle } = window.zoloModule;
+const {
+    generateNormalBGControlStyles,
+    generateBorderStyle,
+    generateDimensionStyle,
+} = window.zoloModule;
 
-import { TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
+import { 
+    TEXT_BG_COLOR, 
+    TEXT_BORDER, 
+    TEXT_BORDER_RADIUS, 
+    TEXT_PADDING,
+    IMAGE_BORDER,
+    IMAGE_BORDER_RADIUS,
+} from './constants';
+
+// import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 const Style = (props) => {
     const { attributes } = props;
-    const { shapeDivider, uniqueId } = attributes;
+    const { zoloCursors, uniqueId } = attributes;
 
-    // settings
+    const {} = zoloCursors;
+
     const {
-        desktopRangeStyle: topWidthDesk,
-        tabRangeStyle: topWidthTab,
-        mobRangeStyle: topWidthMob,
-    } = generateResRangeStyle({
-        controlName: TOP_WIDTH_SHAPE,
-        property: 'width',
-        attributes,
-    });
-    const {
-        desktopRangeStyle: topHeightDesk,
-        tabRangeStyle: topHeightTab,
-        mobRangeStyle: topHeightMob,
-    } = generateResRangeStyle({
-        controlName: TOP_HEIGHT_SHAPE,
-        property: 'height',
+        backgroundStylesDesktop: textBgColorDesk,
+        backgroundStylesTab: textBgColorTab,
+        backgroundStylesMob: textBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: TEXT_BG_COLOR,
+        noMainBGIMG: false,
         attributes,
     });
 
     const {
-        desktopRangeStyle: bottomWidthDesk,
-        tabRangeStyle: bottomWidthTab,
-        mobRangeStyle: bottomWidthMob,
-    } = generateResRangeStyle({
-        controlName: BOTTOM_WIDTH_SHAPE,
-        property: 'width',
+        desktopBorderStyle: textBorderDesk,
+        tabBorderStyle: textBorderTab,
+        mobBorderStyle: textBorderMob,
+    } = generateBorderStyle({
+        controlName: TEXT_BORDER,
         attributes,
     });
-    const {
-        desktopRangeStyle: bottomHeightDesk,
-        tabRangeStyle: bottomHeightTab,
-        mobRangeStyle: bottomHeightMob,
-    } = generateResRangeStyle({
-        controlName: BOTTOM_HEIGHT_SHAPE,
-        property: 'height',
-        attributes,
-    });
-    const shapeDividerDesktop = `
-        .${uniqueId} .zolo-shape-top.${uniqueId} {
-            ${shapeDivider.top.bringToFront ? 'z-index: 2;' : ''}
-        }
-        .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${shapeDivider.top.color};
-            ${topHeightDesk}
-            ${topWidthDesk}
-            ${shapeDivider.top.flip ? 'transform: translateX(-50%) rotateY(180deg);' : ''}
-            ${shapeDivider.top.bringToFront ? 'z-index: 2;' : ''}
-        }
 
-        .${uniqueId} .zolo-shape-bottom.${uniqueId} {
-            ${shapeDivider.bottom.bringToFront ? 'z-index: 2;' : ''}
-        }
-        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${shapeDivider.bottom.color};
-            ${bottomHeightDesk}
-            ${bottomWidthDesk}
-            ${shapeDivider.bottom.flip ? 'transform: translateX(-50%) rotateY(180deg);' : ''}
-            z-index: 2;
-        }
-    `;
-    const shapeDividerTablet = `
-        .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${shapeDivider.top.color};
-            ${topHeightTab}
-            ${topWidthTab}
-        }
-        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${shapeDivider.bottom.color};
-            ${bottomHeightTab}
-            ${bottomWidthTab}
-        }
-    `;
-    const shapeDividerMobile = `
-        .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${shapeDivider.top.color};
-            ${topHeightMob}
-            ${topWidthMob}
-        }
-        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${shapeDivider.bottom.color};
-            ${bottomHeightMob}
-            ${bottomWidthMob}
-        }
-    `;
+    const {
+        dimensionStylesDesktop: textBorderRadiusDesk,
+        dimensionStylesTab: textBorderRadiusTab,
+        dimensionStylesMobile: textBorderRadiusMob,
+    } =generateDimensionStyle({
+        controlName: TEXT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: textPaddingDesk,
+        dimensionStylesTab: textPaddingTab,
+        dimensionStylesMobile: textPaddingMob,
+    } = generateDimensionStyle({
+        controlName: TEXT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // const {
+    //     typoStylesDesktop: textTypoDesk,
+    //     typoStylesTab: textTypoTab,
+    //     typoStylesMobile: textTypoMob,
+    // } = generateTypographyStyles({
+    //     prefixContants: TEXT_TYPOGRAPHY,
+    //     attributes,
+    // });
+
+    const {
+        desktopBorderStyle: imageBorderDesk,
+        tabBorderStyle: imageBorderTab,
+        mobBorderStyle: imageBorderMob,
+    } = generateBorderStyle({
+        controlName: IMAGE_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: imageBorderRadiusDesk,
+        dimensionStylesTab: imageBorderRadiusTab,
+        dimensionStylesMobile: imageBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: IMAGE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+
+    const zoloCursorsDesktop = ``;
+    const zoloCursorsTablet = ``;
+    const zoloCursorsMobile = ``;
+
     return {
-        shapeDividerDesktop,
-        shapeDividerTablet,
-        shapeDividerMobile,
+        zoloCursorsDesktop,
+        zoloCursorsTablet,
+        zoloCursorsMobile,
     };
 };
 export default Style;

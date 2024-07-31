@@ -1,100 +1,57 @@
 import { __ } from '@wordpress/i18n';
-export const BLOCK_PREFIX = 'zolo-shape-block';
+export const BLOCK_PREFIX = 'zolo-cursors-block';
 
 //settings tab
 
-export const TB_POSITION = [
+export const LA_POSITION = [
     {
-        value: 'normal',
-        label: __('Top', 'zoloblocks'),
+        value: 'layout',
+        label: __('Layout', 'zoloblocks'),
     },
     {
-        value: 'hover',
-        label: __('Bottom', 'zoloblocks'),
-    },
-];
-
-export const SHAPE_DIVIDER = [
-    {
-        label: __('None', 'zoloblocks'),
-        value: 'none',
-    },
-    {
-        label: __('Arrow', 'zoloblocks'),
-        value: 'arrow',
-    },
-    {
-        label: __('Book', 'zoloblocks'),
-        value: 'book',
-    },
-    {
-        label: __('Clouds', 'zoloblocks'),
-        value: 'clouds',
-    },
-    {
-        label: __('Curve', 'zoloblocks'),
-        value: 'curve',
-    },
-    {
-        label: __('Curve Asymmetrical', 'zoloblocks'),
-        value: 'curveasym',
-    },
-    {
-        label: __('Drops', 'zoloblocks'),
-        value: 'drops',
-    },
-    {
-        label: __('Mountains', 'zoloblocks'),
-        value: 'mountains',
-    },
-    {
-        label: __('Opacity', 'zoloblocks'),
-        value: 'opacityFan',
-    },
-    {
-        label: __('Opacity Tilt', 'zoloblocks'),
-        value: 'opacityTilt',
-    },
-    {
-        label: __('Pyramids', 'zoloblocks'),
-        value: 'pyramids',
-    },
-    {
-        label: __('Semi Circle', 'zoloblocks'),
-        value: 'split',
-    },
-    {
-        label: __('Semi Circle Asymmetrical', 'zoloblocks'),
-        value: 'stilt',
-    },
-    {
-        label: __('Triangle', 'zoloblocks'),
-        value: 'triangle',
-    },
-    {
-        label: __('Triangle Asymmetrical', 'zoloblocks'),
-        value: 'triangleAsy',
-    },
-    {
-        label: __('Waves', 'zoloblocks'),
-        value: 'waves',
-    },
-    {
-        label: __('Waves Brush', 'zoloblocks'),
-        value: 'wavebrush',
-    },
-    {
-        label: __('Wave Pattern', 'zoloblocks'),
-        value: 'wavepattern',
-    },
-    {
-        label: __('Zigzag', 'zoloblocks'),
-        value: 'zigzag',
+        value: 'style',
+        label: __('Style', 'zoloblocks'),
     },
 ];
 
-// style tab
-export const TOP_WIDTH_SHAPE = 'topWidthShape';
-export const TOP_HEIGHT_SHAPE = 'topHeightShape';
-export const BOTTOM_WIDTH_SHAPE = 'bottomWidthShape';
-export const BOTTOM_HEIGHT_SHAPE = 'bottomHeightShape';
+export const SELECT_SOURCE = [
+    {
+        value: 'default',
+        label: __('Default', 'zoloblocks'),
+    },
+    {
+        value: 'text',
+        label: __('Text', 'zoloblocks'),
+    },
+    {
+        value: 'image',
+        label: __('Image', 'zoloblocks'),
+    },
+    {
+        value: 'icon',
+        label: __('Icon', 'zoloblocks'),
+    },
+];
+
+export const PRESET = [
+    {
+        value: 'style-1',
+        label: __('Style 1', 'zoloblocks'),
+    },
+    {
+        value: 'style-2',
+        label: __('Style 2', 'zoloblocks'),
+    },
+    {
+        value: 'style-3',
+        label: __('Style 3', 'zoloblocks'),
+    },
+];
+
+
+export const TEXT_BG_COLOR = 'textBgColor';
+export const TEXT_BORDER = 'textBorder';
+export const TEXT_BORDER_RADIUS = 'textBorderRadius';
+export const TEXT_PADDING = 'textPadding';
+export const IMAGE_BORDER = 'imageBorder';
+export const IMAGE_BORDER_RADIUS = 'imageBorderRadius';

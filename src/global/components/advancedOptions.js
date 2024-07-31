@@ -117,11 +117,10 @@ export const AdvancedOptions = (props) => {
 
     const displayPanels = applyFilters('zolo.blocks.displayConditions', [], panelProps);
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
-    const cursorsControls = applyFilters('zolo.extensions.controls.cursors', [], block, panelProps);
-
 
     return (
         <>
+
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
                     <ResDimensionsControl
@@ -791,7 +790,6 @@ export const AdvancedOptions = (props) => {
                 )}
             </ZoloPanelBody>
             {animationPanels && animationPanels.length > 0 && animationPanels}
-            {cursorsControls && cursorsControls.length > 0 && cursorsControls}
             <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>
