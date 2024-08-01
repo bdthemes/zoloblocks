@@ -117,6 +117,7 @@ function Inspector(props) {
                             )}
 
                             {isRequired && (
+                            <div className='zolo-flex-col-control'>
                                 <TextareaControl
                                     label={__('Required Message', 'zoloblocks')}
                                     help={__('This message will be shown when the field is required.', 'zoloblocks')}
@@ -124,6 +125,7 @@ function Inspector(props) {
                                     onChange={(v) => setAttributes({ requiredMsg: v })}
                                     placeholder={__('Enter required message..', 'zoloblocks')}
                                 />
+                            </div>
                             )}
                             {showIcon && preset !== 'style-3' && (
                                 <ZoloIconPicker

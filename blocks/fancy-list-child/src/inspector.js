@@ -111,12 +111,14 @@ function Inspector(props) {
                                 />
                             )}
                             {textToggle && (
-                                <TextareaControl
-                                    label={__('Description', 'zolo-block')}
-                                    value={fancyListText}
-                                    onChange={(v) => setAttributes({ fancyListText: v })}
-                                    placeholder="description text.."
-                                />
+                                <div className='zolo-flex-col-control'>
+                                   <TextareaControl
+                                        label={__('Description', 'zolo-block')}
+                                        value={fancyListText}
+                                        onChange={(v) => setAttributes({ fancyListText: v })}
+                                        placeholder="description text.."
+                                    />
+                                </div>
                             )}
                             <ToggleControl
                                 label={__('Add item link', 'zolo-block')}
@@ -125,7 +127,7 @@ function Inspector(props) {
                             />
                             {fancyLinkToggle && (
                                 <LinkControl
-                                    label={__('Enter link', 'zolo-block')}
+                                    label={__('link', 'zolo-block')}
                                     value={fancyLink}
                                     onChange={(v) => setAttributes({ fancyLink: v })}
                                 />
@@ -194,7 +196,7 @@ function Inspector(props) {
                                     ))}
                                 {mediaType === 'image' && (
                                     <ImageSizes
-                                        label={__('Image Resolution', 'zolo-block')}
+                                        label={__('Resolution', 'zolo-block')}
                                         value={imageRes}
                                         onChange={(v) => setAttributes({ imageRes: v })}
                                     />

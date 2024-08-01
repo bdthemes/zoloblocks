@@ -191,7 +191,7 @@ function Inspector(props) {
                             {hideCounter && (
                                 <>
                                     <TextControl
-                                        label={__('Counter Number', 'zoloblocks')}
+                                        label={__('Number', 'zoloblocks')}
                                         value={counterNumber}
                                         onChange={(counterNumber) => setAttributes({ counterNumber })}
                                         placeholder="1000"
@@ -207,7 +207,7 @@ function Inspector(props) {
                             )}
                             {hideTitle && (
                                 <TextControl
-                                    label={__('Counter Title', 'zoloblocks')}
+                                    label={__('Title', 'zoloblocks')}
                                     value={titleText}
                                     onChange={(titleText) => setAttributes({ titleText })}
                                 />
@@ -240,7 +240,9 @@ function Inspector(props) {
 
                                     {iconType === 'image' && (
                                         <>
-                                            <BaseControl label={__('Photo', 'zoloblocks')}>
+                                            <BaseControl label={__('Photo', 'zoloblocks')}
+                                                className='zolo-flex-col-control'
+                                            >
                                                 {iconTypeImage ? (
                                                     <ImageAvatar
                                                         imageUrl={iconTypeImage && iconTypeImage.url}
@@ -289,7 +291,7 @@ function Inspector(props) {
                                                 )}
                                             </BaseControl>
                                             <ImageSizes
-                                                label={__('Image Resolution', 'zoloblocks')}
+                                                label={__('Resolution', 'zoloblocks')}
                                                 value={imageRes}
                                                 onChange={(value) =>
                                                     setAttributes({
