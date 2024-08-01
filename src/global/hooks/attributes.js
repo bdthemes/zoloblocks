@@ -232,10 +232,7 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('transformSkewYHover', {
                 defaultUnit: 'deg',
             }),
-            ...generateResRangeAttributies('transitionDuration', {
-                defaultUnit: 'ms',
-                defaultRange: 300,
-            }),
+            ...generateResRangeAttributies('transitionDuration'),
 
             //Position
             ...generateResRangeAttributies('positionLeft', {
