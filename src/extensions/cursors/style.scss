@@ -7,27 +7,23 @@
     transform: translate(-40%, -40%);
     position: fixed;
     z-index: 999999;
-}
-.zolo-cursors.cursor-type-default.cotton-moving {
-    width: 50px;
-    height: 50px;
-    background-color: #ff6847;
-    z-index: 10;
-    display: block;
-    text-align: center;
-    opacity: 1;
-}
-.zolo-cursors.cursor-type-text.cotton-moving {
-    width: 100px;
-    background-color: #ff6847;
-    z-index: 10;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 0.3s;
-}
-// init
-.zolo-cursors.cursor-type-text,
-.zolo-cursors.cursor-type-default {
-    opacity: 0;
-    transition: opacity 0.3s;
+    width: auto;
+    &.cursor-type-default.cotton-moving {
+        width: 50px;
+        // height: 50px;
+        background-color: #ff6847;
+    }
+    &.cursor-type-text.cotton-moving {
+        width: 100px;
+        background-color: #ff6847;
+    }
+    &.cotton-moving {
+        z-index: 10;
+        display: block;
+        text-align: center;
+        opacity: 1;
+    }
+    &:not(.cotton-moving) {
+        display: none;
+    }
 }

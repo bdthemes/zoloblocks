@@ -26,6 +26,7 @@ const {
 } = window.zoloModule;
 
 import {
+    DOT_SIZE,
     LA_POSITION,
     SELECT_SOURCE,
     PRESET,
@@ -248,7 +249,14 @@ const Inspector = ({ panelProps }) => {
                                             }
                                         />
 
-                                        <SimpleRangeControl
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={DOT_SIZE}
+                                            requiredProps={requiredProps}
+                                            max={300}
+                                        />
+
+                                        {/* <SimpleRangeControl
                                             label={__('Size', 'zoloblocks')}
                                             value={zoloCursors.primarySize}
                                             onChange={(value) =>
@@ -271,7 +279,7 @@ const Inspector = ({ panelProps }) => {
                                             max={100}
                                             step={1}
                                             noUits={true}
-                                        />
+                                        /> */}
 
                                         <hr></hr>
                                         <h3>{__('Secondary', 'zoloblocks')}</h3>

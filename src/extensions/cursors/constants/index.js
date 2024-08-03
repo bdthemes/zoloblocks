@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-export const BLOCK_PREFIX = 'zolo-cursors-block';
+export const BLOCK_PREFIX = 'zolo-cursors-extension';
 
 //settings tab
 
@@ -48,7 +48,7 @@ export const PRESET = [
     },
 ];
 
-
+export const DOT_SIZE = 'dotSize';
 export const TEXT_BG_COLOR = 'textBgColor';
 export const TEXT_BORDER = 'textBorder';
 export const TEXT_BORDER_RADIUS = 'textBorderRadius';

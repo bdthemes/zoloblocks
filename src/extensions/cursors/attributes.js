@@ -10,14 +10,7 @@ const {
     generateTypographyAttributes,
 } = window.zoloModule;
 
-import { 
-    TEXT_BG_COLOR,
-    TEXT_BORDER,
-    TEXT_BORDER_RADIUS,
-    TEXT_PADDING,
-    IMAGE_BORDER,
-    IMAGE_BORDER_RADIUS,
- } from './constants';
+import { DOT_SIZE, TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
 
 //  import * as typographyObjs from './constants/typoPrefixConstants';
 
@@ -40,24 +33,20 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/cursor
                     imageSource: 'object',
                     icon: 'string',
                     primaryColor: 'string',
-                    primarySize: 'string',
                     secondaryColor: 'string',
-                    secondarySize: 'string',
-                    textColor: 'string',
-                    imageSize: 'string',
+                    textColor: '#fcfcfc',
                     iconColor: 'string',
-                    iconSize: 'string',
                 },
             },
-                ...generateNormalBGAttributes(TEXT_BG_COLOR),
-                ...generateBorderAttributies(TEXT_BORDER),
-                ...generateDimensionAttributes(TEXT_BORDER_RADIUS),
-                ...generateDimensionAttributes(TEXT_PADDING),
-                // ...generateTypographyAttributes(Object.values(typographyObjs)),
+            ...generateResRangeAttributies(DOT_SIZE),
+            ...generateBorderAttributies(TEXT_BORDER),
+            ...generateDimensionAttributes(TEXT_BORDER_RADIUS),
+            ...generateDimensionAttributes(TEXT_PADDING),
+            // ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-                ...generateBorderAttributies(IMAGE_BORDER),
-                ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),
-            };
+            ...generateBorderAttributies(IMAGE_BORDER),
+            ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),
+        };
 
     };
 

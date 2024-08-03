@@ -17,6 +17,8 @@ const useCursorInit = (attributes, uniqueId) => {
 
     try {
         const cursors = new Cotton('.cursors-' + uniqueId, {
+            speed,
+
             scene: `.wp-block.${uniqueId}`,
         });
 

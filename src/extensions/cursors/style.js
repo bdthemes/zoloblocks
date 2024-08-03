@@ -1,35 +1,41 @@
 /**
- * WordPress dependencies
- */
-import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks';
-
-/**
  * Internal depencencies
  */
-const {
-    generateNormalBGControlStyles,
-    generateBorderStyle,
-    generateDimensionStyle,
-} = window.zoloModule;
+const { generateNormalBGControlStyles, generateBorderStyle, generateDimensionStyle, generateResRangeStyle } = window.zoloModule;
 
-import { 
-    TEXT_BG_COLOR, 
-    TEXT_BORDER, 
-    TEXT_BORDER_RADIUS, 
-    TEXT_PADDING,
-    IMAGE_BORDER,
-    IMAGE_BORDER_RADIUS,
-} from './constants';
+import { TEXT_BG_COLOR,DOT_SIZE, TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
 
 // import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 const Style = (props) => {
     const { attributes } = props;
     const { zoloCursors, uniqueId } = attributes;
+    console.log('zoloCursors', zoloCursors);
 
-    const {} = zoloCursors;
+    const { primaryColor } = zoloCursors;
 
+
+
+        const {
+            desktopRangeStyle: dotWidthDesk,
+            tabRangeStyle: dotWidthTab,
+            mobRangeStyle: dotWidthMob,
+        } = generateResRangeStyle({
+            controlName: DOT_SIZE,
+            property: 'width',
+            attributes,
+        });
+
+        console.log('dotWidthDesk', dotWidthDesk);
+        const {
+            desktopRangeStyle: dotHeightDesk,
+            tabRangeStyle: dotHeightTab,
+            mobRangeStyle: dotHeightMob,
+        } = generateResRangeStyle({
+            controlName: DOT_SIZE,
+            property: 'height',
+            attributes,
+        });
     const {
         backgroundStylesDesktop: textBgColorDesk,
         backgroundStylesTab: textBgColorTab,
@@ -53,7 +59,7 @@ const Style = (props) => {
         dimensionStylesDesktop: textBorderRadiusDesk,
         dimensionStylesTab: textBorderRadiusTab,
         dimensionStylesMobile: textBorderRadiusMob,
-    } =generateDimensionStyle({
+    } = generateDimensionStyle({
         controlName: TEXT_BORDER_RADIUS,
         styleFor: 'border-radius',
         attributes,
@@ -97,8 +103,13 @@ const Style = (props) => {
         attributes,
     });
 
-
-    const zoloCursorsDesktop = ``;
+    const zoloCursorsDesktop = `
+        .cursors-${uniqueId}.zolo-cursors.cotton-moving{
+        background-color: ${primaryColor} !important;
+        ${dotWidthDesk}
+        ${dotHeightDesk}
+        }
+    `;
     const zoloCursorsTablet = ``;
     const zoloCursorsMobile = ``;
 
