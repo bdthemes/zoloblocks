@@ -1,13 +1,14 @@
 import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
 import { ToolbarGroup, Dropdown, ToolbarButton, Button } from '@wordpress/components';
 import { select } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 import classnames from 'classnames';
-import { applyFilters } from '@wordpress/hooks';
+import { applyFilters, removeFilter } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
+
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
-
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
     const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
@@ -26,6 +27,32 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     });
 
     const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
+    const cursorsInit = applyFilters('zolo.extensions.init.cursors', [], panelProps);
+
+    useEffect(() => {
+        if (attributes.zoloCursors.active) {
+            // Run the initialization code
+            cursorsInit;
+        } else {
+            // Call the deactivate function or clean up
+            removeFilter('zolo.extensions.init.cursors', 'zolo/extensions/cursors');
+        }
+
+        // Cleanup function to run on component unmount
+        return () => {
+            if (attributes.zoloCursors.active) {
+                // Call the deactivate function or clean up if active
+                removeFilter('zolo.extensions.init.cursors', 'zolo/extensions/cursors');
+            }
+        };
+    }
+    , [attributes.zoloCursors.active]);
+    //init cursors
+    console.log('attributes', attributes.zoloCursors.active);
+
+
+
+    const renderCursors = applyFilters('zolo.extensions.render.cursors', [], panelProps);
 
     return (
         <>
@@ -69,12 +96,14 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
+                        {renderCursors && renderCursors}
                         {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
                     <>
                         {shapeDivider && shapeDivider.length > 0 && shapeDivider}
+                        {renderCursors && renderCursors}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </>
                 )}

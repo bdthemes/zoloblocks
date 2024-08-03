@@ -1,0 +1,80 @@
+
+
+
+
+  // cursor: none !important;
+  .zolo-cursor-wrapper {
+	  --cursor-ball-color: red;
+  --cursor-ball-size: 10px;
+
+  --cursor-circle-color: red;
+  --cursor-circle-size: 40px;
+  --cursor-text-label: "bdthemes";
+    position: fixed;
+    z-index: 999999;
+    .cotton-init {
+        &.cotton-moving {
+          position: fixed;
+          top: 0;
+          /*rtl:ignore*/
+          left: 0;
+          z-index: 999;
+          pointer-events: none;
+          /*rtl:ignore*/
+          transform: translate(-20px, -20px);
+        }
+    //   &.ep-cursor-circle {
+    //     &.cotton-moving {
+    //       position: fixed;
+    //       top: 0;
+    //       /*rtl:ignore*/
+    //       left: 0;
+    //       pointer-events: none;
+    //       /*rtl:ignore*/
+    //       transform: translate(-40px, -40px);
+    //     }
+    //   }
+    }
+    .cotton-moving {
+      .zolo-cursor-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+      .zolo-cursor-text,
+      .zolo-cursor-icons,
+      .zolo-cursor-image {
+        display: block;
+      }
+    }
+    .zolo-cursor-text,
+    .zolo-cursor-icons,
+    .zolo-cursor-image {
+      display: none;
+    }
+    .zolo-cursor-icons{
+      color: var(--cursor-ball-color);
+    }
+  }
+
+
+
+// /* cotton settings */
+// .zolo-cursor-wrapper{
+//     top: 0;
+//     left: 0;
+//     z-index: 9;
+//     border-radius: 50%;
+//     pointer-events: none;
+//     transform: translate(-40%, -40%);
+//     // position: fixed;
+//     z-index: 999999;
+// 	&.cotton-moving {
+// 	&.cursor-default{
+// 		width: 10px !important;
+// 		height: 10px !important;
+// 		background-color: #ff6847;
+// 		z-index: 10;
+// 		}
+// 	}
+// }
