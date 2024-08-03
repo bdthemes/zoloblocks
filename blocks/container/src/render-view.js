@@ -48,7 +48,6 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     }
     , [attributes.zoloCursors.active]);
     //init cursors
-    console.log('attributes', attributes.zoloCursors.active);
 
 
 

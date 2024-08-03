@@ -130,7 +130,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             wp_enqueue_style('zolo-cursors-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/cursors/style.css', [], ZOLO_VERSION);
-
+            wp_enqueue_script('zolo-cursors-script', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/cursors/frontend/index.js', [], ZOLO_VERSION, true);
 
 
             // override css

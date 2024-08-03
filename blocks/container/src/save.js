@@ -6,6 +6,8 @@ import { applyFilters } from '@wordpress/hooks';
 const Save = ({ attributes }) => {
     const panelProps = { attributes };
         const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
+            const renderCursors = applyFilters('zolo.extensions.render.cursors', [], panelProps);
+
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth } = attributes;
 
     return (
@@ -31,9 +33,10 @@ const Save = ({ attributes }) => {
             ) : (
                 <>
                     {shapeDivider && shapeDivider.length > 0 && shapeDivider}
-                <InnerBlocks.Content />
+                    <InnerBlocks.Content />
                 </>
             )}
+            {renderCursors && renderCursors}
         </div>
     );
 };
