@@ -125,9 +125,9 @@ const Inspector = ({ panelProps }) => {
                                                     },
                                                 })
                                             }
-                                            min={0.001}
-                                            max={1}
-                                            step={0.001}
+                                            min={0.1}
+                                            max={10}
+                                            step={0.1}
                                             noUits={true}
                                         />
                                     </>

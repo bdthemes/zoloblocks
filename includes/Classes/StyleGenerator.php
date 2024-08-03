@@ -52,9 +52,9 @@ class StyleGenerator {
         if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
 
             $zoloCursors = $block['attrs']['zoloCursors'] ?? false;
-            print_r($zoloCursors);
+            // print_r($zoloCursors);
             if ($zoloCursors) {
-                $cursorOptions = $block['attrs']['cursorOptions'] ?? [
+                $cursorOptions = $block['attrs']['zoloCursors'] ?? [
                     'active' => true,
                     'source' => 'default',
                     'preset' => 'style-1',

@@ -27,16 +27,19 @@ const Save = ({ attributes }) => {
         >
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
+                    {renderCursors && renderCursors}
+
                     {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                     <InnerBlocks.Content />
                 </div>
             ) : (
                 <>
+                    {renderCursors && renderCursors}
+
                     {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                     <InnerBlocks.Content />
                 </>
             )}
-            {renderCursors && renderCursors}
         </div>
     );
 };

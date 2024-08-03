@@ -10,32 +10,15 @@ import { useSelect } from '@wordpress/data';
 export default function Render({ panelProps }) {
     const { attributes, setAttributes } = panelProps;
 
-      const { uniqueId, zoloCursors } = attributes;
+    const { uniqueId, zoloCursors } = attributes;
 
-    const {
-        active,
-        source,
-        preset,
-        speed,
-        disabledDefault,
-        textLabel,
-    } = zoloCursors;
-
-    // const ball = new Cotton('#ball', {
-    //     speed: 1,
-    // });
-
-
-
-
+    const { active, source, preset, speed, disabledDefault, textLabel } = zoloCursors;
 
     return (
         <>
-            <div className={`zolo-cursor-wrapper cursors-${uniqueId}`}>
-                <div className={`zolo-cursor zolo-cursor-${source}`}>
-						{textLabel}
-					{/* <span className="zolo-cursor-text">{textLabel}</span> */}
-					</div>
+            <div className={`zolo-cursors cursors-${uniqueId} cursor-type-${source}`}>
+                {source === 'default' && <span className="zolo-cursor-default"></span>}
+                {source === 'text' && <span className="zolo-cursor-text">{textLabel}</span>}
             </div>
         </>
     );

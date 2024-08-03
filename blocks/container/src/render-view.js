@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import { applyFilters, removeFilter } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
-
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
@@ -26,31 +25,11 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         ),
     });
 
+    // useEffect(() => {
+    //     applyFilters('zolo.extensions.init.cursors', [], panelProps);
+    // }, [attributes.zoloCursors.active]);
+
     const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
-    const cursorsInit = applyFilters('zolo.extensions.init.cursors', [], panelProps);
-
-    useEffect(() => {
-        if (attributes.zoloCursors.active) {
-            // Run the initialization code
-            cursorsInit;
-        } else {
-            // Call the deactivate function or clean up
-            removeFilter('zolo.extensions.init.cursors', 'zolo/extensions/cursors');
-        }
-
-        // Cleanup function to run on component unmount
-        return () => {
-            if (attributes.zoloCursors.active) {
-                // Call the deactivate function or clean up if active
-                removeFilter('zolo.extensions.init.cursors', 'zolo/extensions/cursors');
-            }
-        };
-    }
-    , [attributes.zoloCursors.active]);
-    //init cursors
-
-
-
     const renderCursors = applyFilters('zolo.extensions.render.cursors', [], panelProps);
 
     return (
