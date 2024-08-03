@@ -1,41 +1,52 @@
 /**
  * Internal depencencies
  */
-const { generateNormalBGControlStyles, generateBorderStyle, generateDimensionStyle, generateResRangeStyle } = window.zoloModule;
+const { generateNormalBGControlStyles, generateBorderStyle, generateDimensionStyle, generateResRangeStyle, generateTypographyStyles } =
+    window.zoloModule;
 
-import { TEXT_BG_COLOR,DOT_SIZE, TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
+import { TEXT_BG_COLOR,DOT_SIZE,TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
 
-// import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
+// import { CURSOR_TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { CURSOR_TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = (props) => {
+console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
+
     const { attributes } = props;
     const { zoloCursors, uniqueId } = attributes;
-    console.log('zoloCursors', zoloCursors);
 
-    const { primaryColor } = zoloCursors;
+    const { primaryColor, textColor } = zoloCursors;
 
+    // Accordion Head
+    const {
+        typoStylesDesktop: titleDeskTypo,
+        typoStylesTab: titleTabTypo,
+        typoStylesMobile: titleMobTypo,
+    } = generateTypographyStyles({
+        prefixConstant: CURSOR_TEXT_TYPOGRAPHY,
+        attributes,
+    });
 
+    console.log('titleDeskTypo', titleDeskTypo);
+    const {
+        desktopRangeStyle: dotWidthDesk,
+        tabRangeStyle: dotWidthTab,
+        mobRangeStyle: dotWidthMob,
+    } = generateResRangeStyle({
+        controlName: DOT_SIZE,
+        property: 'width',
+        attributes,
+    });
 
-        const {
-            desktopRangeStyle: dotWidthDesk,
-            tabRangeStyle: dotWidthTab,
-            mobRangeStyle: dotWidthMob,
-        } = generateResRangeStyle({
-            controlName: DOT_SIZE,
-            property: 'width',
-            attributes,
-        });
-
-        console.log('dotWidthDesk', dotWidthDesk);
-        const {
-            desktopRangeStyle: dotHeightDesk,
-            tabRangeStyle: dotHeightTab,
-            mobRangeStyle: dotHeightMob,
-        } = generateResRangeStyle({
-            controlName: DOT_SIZE,
-            property: 'height',
-            attributes,
-        });
+    const {
+        desktopRangeStyle: dotHeightDesk,
+        tabRangeStyle: dotHeightTab,
+        mobRangeStyle: dotHeightMob,
+    } = generateResRangeStyle({
+        controlName: DOT_SIZE,
+        property: 'height',
+        attributes,
+    });
     const {
         backgroundStylesDesktop: textBgColorDesk,
         backgroundStylesTab: textBgColorTab,
@@ -80,7 +91,7 @@ const Style = (props) => {
     //     typoStylesTab: textTypoTab,
     //     typoStylesMobile: textTypoMob,
     // } = generateTypographyStyles({
-    //     prefixContants: TEXT_TYPOGRAPHY,
+    //     prefixContants: CURSOR_TEXT_TYPOGRAPHY,
     //     attributes,
     // });
 
@@ -104,12 +115,22 @@ const Style = (props) => {
     });
 
     const zoloCursorsDesktop = `
-        .cursors-${uniqueId}.zolo-cursors.cotton-moving{
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-default.cotton-moving{
         background-color: ${primaryColor} !important;
         ${dotWidthDesk}
         ${dotHeightDesk}
         }
+
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-text.cotton-moving .zolo-cursor-text{
+        ${textBgColorDesk}
+        ${textColor ? `color: ${textColor};` : ''}
+        ${textBorderDesk}
+        ${textBorderRadiusDesk}
+        ${textPaddingDesk}
+        ${titleDeskTypo}
+        }
     `;
+    // const zoloCursorsDesktop = ``;
     const zoloCursorsTablet = ``;
     const zoloCursorsMobile = ``;
 

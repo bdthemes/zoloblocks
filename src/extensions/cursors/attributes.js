@@ -10,9 +10,9 @@ const {
     generateTypographyAttributes,
 } = window.zoloModule;
 
-import { DOT_SIZE, TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
+import { DOT_SIZE, CURSOR_TEXT_TYPOGRAPHY, TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
 
-//  import * as typographyObjs from './constants/typoPrefixConstants';
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/cursors', (settings) => {
     if (settings.category && settings.category == 'zoloblocks') {
@@ -34,7 +34,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/cursor
                     icon: 'string',
                     primaryColor: 'string',
                     secondaryColor: 'string',
-                    textColor: '#fcfcfc',
+                    textColor: '#fff',
                     iconColor: 'string',
                 },
             },
@@ -42,7 +42,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/cursor
             ...generateBorderAttributies(TEXT_BORDER),
             ...generateDimensionAttributes(TEXT_BORDER_RADIUS),
             ...generateDimensionAttributes(TEXT_PADDING),
-            // ...generateTypographyAttributes(Object.values(typographyObjs)),
+            ...generateTypographyAttributes(Object.values(typographyObjs)),
 
             ...generateBorderAttributies(IMAGE_BORDER),
             ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),

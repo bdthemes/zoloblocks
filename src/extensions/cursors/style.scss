@@ -13,9 +13,17 @@
         // height: 50px;
         background-color: #ff6847;
     }
-    &.cursor-type-text.cotton-moving {
-        width: 100px;
+    &.cursor-type-text.cotton-moving .zolo-cursor-text {
+        color: #fff;
         background-color: #ff6847;
+        padding: 0 5px;
+        border-radius: 5px;
+
+    }
+    &.cursor-type-image.cotton-moving .zolo-cursor-image img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
     }
     &.cotton-moving {
         z-index: 10;

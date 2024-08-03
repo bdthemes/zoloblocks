@@ -55,3 +55,5 @@ export const TEXT_BORDER_RADIUS = 'textBorderRadius';
 export const TEXT_PADDING = 'textPadding';
 export const IMAGE_BORDER = 'imageBorder';
 export const IMAGE_BORDER_RADIUS = 'imageBorderRadius';
+export const CURSOR_TEXT_TYPOGRAPHY = 'textTypography';
+

@@ -38,7 +38,7 @@ import {
     IMAGE_BORDER_RADIUS,
 } from './constants';
 
-// import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { CURSOR_TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
@@ -47,7 +47,7 @@ const Inspector = ({ panelProps }) => {
 
     const [position, setPosition] = useState('layout');
 
-    const { active, source, preset, imageSource, } = zoloCursors;
+    const { active, source, preset, imageSource } = zoloCursors;
 
     const requiredProps = {
         resMode,
@@ -105,31 +105,6 @@ const Inspector = ({ panelProps }) => {
                                                     },
                                                 })
                                             }
-                                        />
-
-                                        <SimpleRangeControl
-                                            label={__('Speed', 'zoloblocks')}
-                                            value={zoloCursors.speed}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        speed: value,
-                                                    },
-                                                })
-                                            }
-                                            onReset={() =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        speed: '',
-                                                    },
-                                                })
-                                            }
-                                            min={0.1}
-                                            max={10}
-                                            step={0.1}
-                                            noUits={true}
                                         />
                                     </>
                                 )}
@@ -228,14 +203,49 @@ const Inspector = ({ panelProps }) => {
                                         />
                                     </>
                                 )}
+                                <SimpleRangeControl
+                                    label={__('Speed', 'zoloblocks')}
+                                    value={zoloCursors.speed}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            zoloCursors: {
+                                                ...zoloCursors,
+                                                speed: value,
+                                            },
+                                        })
+                                    }
+                                    onReset={() =>
+                                        setAttributes({
+                                            zoloCursors: {
+                                                ...zoloCursors,
+                                                speed: '',
+                                            },
+                                        })
+                                    }
+                                    min={0.1}
+                                    max={10}
+                                    step={0.1}
+                                    noUits={true}
+                                />
+                                <hr></hr>
+                                <ToggleControl
+                                    label={__('Disable Default Cursor', 'zoloblocks')}
+                                    checked={zoloCursors.disabledDefault}
+                                    onChange={() =>
+                                        setAttributes({
+                                            zoloCursors: {
+                                                ...zoloCursors,
+                                                disabledDefault: !zoloCursors.disabledDefault,
+                                            },
+                                        })
+                                    }
+                                />
                             </>
                         }
                         hoverComponents={
                             <>
                                 {zoloCursors.source === 'default' && (
                                     <>
-                                        <hr></hr>
-                                        <h3>{__('Primary', 'zoloblocks')}</h3>
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={zoloCursors.primaryColor}
@@ -254,71 +264,6 @@ const Inspector = ({ panelProps }) => {
                                             controlName={DOT_SIZE}
                                             requiredProps={requiredProps}
                                             max={300}
-                                        />
-
-                                        {/* <SimpleRangeControl
-                                            label={__('Size', 'zoloblocks')}
-                                            value={zoloCursors.primarySize}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        primarySize: value,
-                                                    },
-                                                })
-                                            }
-                                            onReset={() =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        primarySize: '',
-                                                    },
-                                                })
-                                            }
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                            noUits={true}
-                                        /> */}
-
-                                        <hr></hr>
-                                        <h3>{__('Secondary', 'zoloblocks')}</h3>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={zoloCursors.secondaryColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        secondaryColor: value,
-                                                    },
-                                                })
-                                            }
-                                        />
-
-                                        <SimpleRangeControl
-                                            label={__('Size', 'zoloblocks')}
-                                            value={zoloCursors.secondarySize}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        secondarySize: value,
-                                                    },
-                                                })
-                                            }
-                                            onReset={() =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        secondarySize: '',
-                                                    },
-                                                })
-                                            }
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                            noUits={true}
                                         />
                                     </>
                                 )}
@@ -363,114 +308,95 @@ const Inspector = ({ panelProps }) => {
                                             requiredProps={requiredProps}
                                         />
 
-                                        {/* <TypographyDropdown
+                                        <TypographyDropdown
                                         label={__('Typography', 'zoloblocks')}
-                                        prefixConstant={TEXT_TYPOGRAPHY}
+                                        prefixConstant={CURSOR_TEXT_TYPOGRAPHY}
                                         requiredProps={requiredProps}
-                                    /> */}
-                                        {zoloCursors.source === 'image' && (
-                                            <>
-                                                <SimpleRangeControl
-                                                    label={__('Size', 'zolo-blocks')}
-                                                    value={zoloCursors.imageSize}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            zoloCursors: {
-                                                                ...zoloCursors,
-                                                                imageSize: value,
-                                                            },
-                                                        })
-                                                    }
-                                                    onReset={() =>
-                                                        setAttributes({
-                                                            zoloCursors: {
-                                                                ...zoloCursors,
-                                                                imageSize: '',
-                                                            },
-                                                        })
-                                                    }
-                                                    min={0}
-                                                    max={100}
-                                                    step={1}
-                                                    noUits={true}
-                                                />
+                                    />
+                                    </>
+                                )}
+                                {zoloCursors.source === 'image' && (
+                                    <>
+                                        <SimpleRangeControl
+                                            label={__('Size', 'zolo-blocks')}
+                                            value={zoloCursors.imageSize}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoloCursors: {
+                                                        ...zoloCursors,
+                                                        imageSize: value,
+                                                    },
+                                                })
+                                            }
+                                            onReset={() =>
+                                                setAttributes({
+                                                    zoloCursors: {
+                                                        ...zoloCursors,
+                                                        imageSize: '',
+                                                    },
+                                                })
+                                            }
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                            noUits={true}
+                                        />
 
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={IMAGE_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={IMAGE_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
 
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={IMAGE_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                />
-                                            </>
-                                        )}
-                                        {zoloCursors.source === 'icon' && (
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={zoloCursors.iconColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            zoloCursors: {
-                                                                ...zoloCursors,
-                                                                iconColor: value,
-                                                            },
-                                                        })
-                                                    }
-                                                />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={IMAGE_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                )}
+                                {zoloCursors.source === 'icon' && (
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={zoloCursors.iconColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoloCursors: {
+                                                        ...zoloCursors,
+                                                        iconColor: value,
+                                                    },
+                                                })
+                                            }
+                                        />
 
-                                                <SimpleRangeControl
-                                                    label={__('Size', 'zoloblocks')}
-                                                    value={zoloCursors.iconSize}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            zoloCursors: {
-                                                                ...zoloCursors,
-                                                                iconSize: value,
-                                                            },
-                                                        })
-                                                    }
-                                                    onReset={() =>
-                                                        setAttributes({
-                                                            zoloCursors: {
-                                                                ...zoloCursors,
-                                                                iconSize: '',
-                                                            },
-                                                        })
-                                                    }
-                                                    min={0}
-                                                    max={100}
-                                                    step={1}
-                                                    noUits={true}
-                                                />
-                                            </>
-                                        )}
+                                        <SimpleRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            value={zoloCursors.iconSize}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoloCursors: {
+                                                        ...zoloCursors,
+                                                        iconSize: value,
+                                                    },
+                                                })
+                                            }
+                                            onReset={() =>
+                                                setAttributes({
+                                                    zoloCursors: {
+                                                        ...zoloCursors,
+                                                        iconSize: '',
+                                                    },
+                                                })
+                                            }
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                            noUits={true}
+                                        />
                                     </>
                                 )}
                             </>
-                        }
-                    />
-                </>
-            )}
-
-            {active && position === 'layout' && (
-                <>
-                    <hr></hr>
-
-                    <ToggleControl
-                        label={__('Disable Default Cursor', 'zoloblocks')}
-                        checked={zoloCursors.disabledDefault}
-                        onChange={() =>
-                            setAttributes({
-                                zoloCursors: {
-                                    ...zoloCursors,
-                                    disabledDefault: !zoloCursors.disabledDefault,
-                                },
-                            })
                         }
                     />
                 </>

@@ -12,13 +12,18 @@ export default function Render({ panelProps }) {
 
     const { uniqueId, zoloCursors } = attributes;
 
-    const { active, source, preset, speed, disabledDefault, textLabel } = zoloCursors;
+    const { active, source, preset, speed, disabledDefault, textLabel, imageSource } = zoloCursors;
 
     return (
         <>
             <div className={`zolo-cursors cursors-${uniqueId} cursor-type-${source}`}>
                 {source === 'default' && <span className="zolo-cursor-default"></span>}
                 {source === 'text' && <span className="zolo-cursor-text">{textLabel}</span>}
+                {source === 'image' && (
+                    <span className="zolo-cursor-image">
+                        <img src={imageSource.url} alt={imageSource.alt} />
+                    </span>
+                )}
             </div>
         </>
     );
