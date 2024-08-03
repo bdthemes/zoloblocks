@@ -45,6 +45,7 @@ export { default as BazierControl } from './controls/bezier-control';
 export { default as ContainerSidebarOpener } from './controls/container-sidebar-opener';
 export { default as SidebarOpener } from './controls/sidebar-opener';
 export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
+export { default as Select2AjaxControl } from './controls/select2-ajax-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

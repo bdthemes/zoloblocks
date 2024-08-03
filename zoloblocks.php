@@ -64,6 +64,7 @@ final class ZoloBlocks {
      */
     public function zolo_constants() {
         define('ZOLO_FILE', __FILE__);
+        define('ZOLO_DIR', __DIR__);
         define('ZOLO_NAMESPACE', 'zoloblocks');
         define('ZOLO_SLUG', 'zoloblocks');
         define('ZOLO_VERSION', '1.2.2');
