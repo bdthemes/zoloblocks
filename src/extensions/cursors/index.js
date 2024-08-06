@@ -7,7 +7,6 @@ import Style from './style.js';
 
 import './attributes';
 import useCursorInit from './init';
-import attributes from './attributes';
 
 addFilter('zolo.extensions.controls.cursors', 'zolo/extensions/cursors', (panels, block, panelProps) => {
     panels.push(<Inspector panelProps={panelProps} />);

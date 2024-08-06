@@ -8,9 +8,14 @@
     position: fixed;
     z-index: 999999;
     width: auto;
-    &.cursor-type-default.cotton-moving {
+    .zolo__display-icon svg {
         width: 50px;
-        // height: 50px;
+        height: 50px;
+        fill:#ff6847;
+    }
+    &.cursor-type-default.cotton-moving {
+        width: 48px;
+        height: 48px;
         background-color: #ff6847;
     }
     &.cursor-type-text.cotton-moving .zolo-cursor-text {
@@ -18,13 +23,17 @@
         background-color: #ff6847;
         padding: 0 5px;
         border-radius: 5px;
-
     }
-    &.cursor-type-image.cotton-moving .zolo-cursor-image img {
+    &.cursor-type-image .zolo-cursor-image {
         width: 50px;
         height: 50px;
         object-fit: cover;
     }
+    // &.cursor-type-image .zolo-cursor-image img {
+    //     width: 50px;
+    //     height: 50px;
+    //     object-fit: cover;
+    // }
     &.cotton-moving {
         z-index: 10;
         display: block;

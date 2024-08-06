@@ -23,7 +23,6 @@ function GoogleMap({ attributes }) {
 
     const position = { lat: latitude || 24.8233495, lng: longitude || 89.3841374 };
 
-    console.log(showUIControls, uiControls?.fullscreenControl);
 
     return (
         <>

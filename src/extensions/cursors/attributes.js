@@ -10,7 +10,17 @@ const {
     generateTypographyAttributes,
 } = window.zoloModule;
 
-import { DOT_SIZE, CURSOR_TEXT_TYPOGRAPHY, TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
+import {
+    DOT_SIZE,
+    IMAGE_SIZE,
+    ICON_SIZE,
+    CURSOR_TEXT_TYPOGRAPHY,
+    TEXT_BORDER,
+    TEXT_BORDER_RADIUS,
+    TEXT_PADDING,
+    IMAGE_BORDER,
+    IMAGE_BORDER_RADIUS,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -28,27 +38,20 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/cursor
                     disabledDefault: false,
                     speed: 1,
                     disabledDefault: false,
-
-                    textLabel: '',
-                    imageSource: 'object',
-                    icon: 'string',
-                    primaryColor: 'string',
-                    secondaryColor: 'string',
-                    textColor: '#fff',
-                    iconColor: 'string',
+                    textLabel: 'ZoloBlocks',
                 },
             },
             ...generateResRangeAttributies(DOT_SIZE),
+            ...generateResRangeAttributies(IMAGE_SIZE),
+            ...generateResRangeAttributies(ICON_SIZE),
             ...generateBorderAttributies(TEXT_BORDER),
             ...generateDimensionAttributes(TEXT_BORDER_RADIUS),
             ...generateDimensionAttributes(TEXT_PADDING),
             ...generateTypographyAttributes(Object.values(typographyObjs)),
-
             ...generateBorderAttributies(IMAGE_BORDER),
             ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),
         };
-
-    };
+    }
 
     return settings;
 });

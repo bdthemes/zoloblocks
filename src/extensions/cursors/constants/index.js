@@ -49,6 +49,8 @@ export const PRESET = [
 ];
 
 export const DOT_SIZE = 'dotSize';
+export const IMAGE_SIZE = 'imageSize';
+export const ICON_SIZE = 'iconSize';
 export const TEXT_BG_COLOR = 'textBgColor';
 export const TEXT_BORDER = 'textBorder';
 export const TEXT_BORDER_RADIUS = 'textBorderRadius';

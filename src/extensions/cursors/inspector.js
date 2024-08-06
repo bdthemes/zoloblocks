@@ -27,6 +27,8 @@ const {
 
 import {
     DOT_SIZE,
+    ICON_SIZE,
+    IMAGE_SIZE,
     LA_POSITION,
     SELECT_SOURCE,
     PRESET,
@@ -309,37 +311,19 @@ const Inspector = ({ panelProps }) => {
                                         />
 
                                         <TypographyDropdown
-                                        label={__('Typography', 'zoloblocks')}
-                                        prefixConstant={CURSOR_TEXT_TYPOGRAPHY}
-                                        requiredProps={requiredProps}
-                                    />
+                                            label={__('Typography', 'zoloblocks')}
+                                            prefixConstant={CURSOR_TEXT_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
                                     </>
                                 )}
                                 {zoloCursors.source === 'image' && (
                                     <>
-                                        <SimpleRangeControl
-                                            label={__('Size', 'zolo-blocks')}
-                                            value={zoloCursors.imageSize}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        imageSize: value,
-                                                    },
-                                                })
-                                            }
-                                            onReset={() =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        imageSize: '',
-                                                    },
-                                                })
-                                            }
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                            noUits={true}
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={IMAGE_SIZE}
+                                            requiredProps={requiredProps}
+                                            max={300}
                                         />
 
                                         <BorderControl
@@ -370,29 +354,11 @@ const Inspector = ({ panelProps }) => {
                                             }
                                         />
 
-                                        <SimpleRangeControl
+                                        <ResRangeControl
                                             label={__('Size', 'zoloblocks')}
-                                            value={zoloCursors.iconSize}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        iconSize: value,
-                                                    },
-                                                })
-                                            }
-                                            onReset={() =>
-                                                setAttributes({
-                                                    zoloCursors: {
-                                                        ...zoloCursors,
-                                                        iconSize: '',
-                                                    },
-                                                })
-                                            }
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                            noUits={true}
+                                            controlName={ICON_SIZE}
+                                            requiredProps={requiredProps}
+                                            max={300}
                                         />
                                     </>
                                 )}

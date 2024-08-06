@@ -4,18 +4,28 @@
 const { generateNormalBGControlStyles, generateBorderStyle, generateDimensionStyle, generateResRangeStyle, generateTypographyStyles } =
     window.zoloModule;
 
-import { TEXT_BG_COLOR,DOT_SIZE,TEXT_BORDER, TEXT_BORDER_RADIUS, TEXT_PADDING, IMAGE_BORDER, IMAGE_BORDER_RADIUS } from './constants';
+import {
+    TEXT_BG_COLOR,
+    DOT_SIZE,
+    IMAGE_SIZE,
+    ICON_SIZE,
+    TEXT_BORDER,
+    TEXT_BORDER_RADIUS,
+    TEXT_PADDING,
+    IMAGE_BORDER,
+    IMAGE_BORDER_RADIUS,
+} from './constants';
 
 // import { CURSOR_TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
 import { CURSOR_TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = (props) => {
-console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
+    console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
 
     const { attributes } = props;
     const { zoloCursors, uniqueId } = attributes;
 
-    const { primaryColor, textColor } = zoloCursors;
+    const { primaryColor, textColor, iconColor, disabledDefault } = zoloCursors;
 
     // Accordion Head
     const {
@@ -27,7 +37,6 @@ console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
         attributes,
     });
 
-    console.log('titleDeskTypo', titleDeskTypo);
     const {
         desktopRangeStyle: dotWidthDesk,
         tabRangeStyle: dotWidthTab,
@@ -44,6 +53,44 @@ console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
         mobRangeStyle: dotHeightMob,
     } = generateResRangeStyle({
         controlName: DOT_SIZE,
+        property: 'height',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: imageWidthDesk,
+        tabRangeStyle: imageWidthTab,
+        mobRangeStyle: imageWidthMob,
+    } = generateResRangeStyle({
+        controlName: IMAGE_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: imageHeightDesk,
+        tabRangeStyle: imageHeightTab,
+        mobRangeStyle: imageHeightMob,
+    } = generateResRangeStyle({
+        controlName: IMAGE_SIZE,
+        property: 'height',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: iconWidthDesk,
+        tabRangeStyle: iconWidthTab,
+        mobRangeStyle: iconWidthMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: iconHeightDesk,
+        tabRangeStyle: iconHeightTab,
+        mobRangeStyle: iconHeightMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
         property: 'height',
         attributes,
     });
@@ -115,6 +162,15 @@ console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
     });
 
     const zoloCursorsDesktop = `
+       ${
+           disabledDefault
+               ? `
+            .${uniqueId} {
+        cursor: none !important;
+        }
+        `
+               : ``
+       }
         .cursors-${uniqueId}.zolo-cursors.cursor-type-default.cotton-moving{
         background-color: ${primaryColor} !important;
         ${dotWidthDesk}
@@ -128,6 +184,17 @@ console.log('CURSOR_TEXT_TYPOGRAPHY', CURSOR_TEXT_TYPOGRAPHY);
         ${textBorderRadiusDesk}
         ${textPaddingDesk}
         ${titleDeskTypo}
+        }
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-image.cotton-moving .zolo-cursor-image{
+        ${imageWidthDesk}
+        ${imageHeightDesk}
+        ${imageBorderDesk}
+        ${imageBorderRadiusDesk}
+        }
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-icon.cotton-moving .zolo__display-icon svg{
+        ${iconColor ? `fill: ${iconColor};` : ''}
+        ${iconWidthDesk}
+        ${iconHeightDesk}
         }
     `;
     // const zoloCursorsDesktop = ``;
