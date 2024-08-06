@@ -2,7 +2,6 @@ import { addFilter } from '@wordpress/hooks';
 import Inspector from './inspector.js';
 import Render from './render';
 import './style.scss';
-import { useEffect } from '@wordpress/element';
 import Style from './style.js';
 
 import './attributes';

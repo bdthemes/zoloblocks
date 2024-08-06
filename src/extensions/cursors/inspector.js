@@ -1,5 +1,5 @@
 import { ToggleControl, SelectControl, TextControl, BaseControl, Button } from '@wordpress/components';
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { MediaUpload } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 import objAttributes from './attributes';
 import { __ } from '@wordpress/i18n';
@@ -12,17 +12,10 @@ const {
     ResDimensionsControl,
     TypographyDropdown,
     TabPanelControl,
-    IconicBtnGroup,
     ZoloIconPicker,
-    BoxShadowControl,
-    HeaderTabs,
-    LinkControl,
     NormalBGControl,
     ImageAvatar,
-    ResAlignmentControl,
-    AdvancedOptions,
     ZoloPanelBody,
-    ImageSizes,
 } = window.zoloModule;
 
 import {
@@ -310,11 +303,11 @@ const Inspector = ({ panelProps }) => {
                                             requiredProps={requiredProps}
                                         />
 
-                                        <TypographyDropdown
+                                        {/* <TypographyDropdown
                                             label={__('Typography', 'zoloblocks')}
                                             prefixConstant={CURSOR_TEXT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
-                                        />
+                                        /> */}
                                     </>
                                 )}
                                 {zoloCursors.source === 'image' && (

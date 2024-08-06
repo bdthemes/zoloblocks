@@ -133,15 +133,6 @@ const Style = (props) => {
         attributes,
     });
 
-    // const {
-    //     typoStylesDesktop: textTypoDesk,
-    //     typoStylesTab: textTypoTab,
-    //     typoStylesMobile: textTypoMob,
-    // } = generateTypographyStyles({
-    //     prefixContants: CURSOR_TEXT_TYPOGRAPHY,
-    //     attributes,
-    // });
-
     const {
         desktopBorderStyle: imageBorderDesk,
         tabBorderStyle: imageBorderTab,
@@ -198,8 +189,54 @@ const Style = (props) => {
         }
     `;
     // const zoloCursorsDesktop = ``;
-    const zoloCursorsTablet = ``;
-    const zoloCursorsMobile = ``;
+    const zoloCursorsTablet = `
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-default.cotton-moving{
+        ${dotWidthTab}
+        ${dotHeightTab}
+        }
+
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-text.cotton-moving .zolo-cursor-text{
+        ${textBgColorTab}
+        ${textBorderTab}
+        ${textBorderRadiusTab}
+        ${textPaddingTab}
+        ${titleTabTypo}
+        }
+         .cursors-${uniqueId}.zolo-cursors.cursor-type-image.cotton-moving .zolo-cursor-image{
+        ${imageWidthTab}
+        ${imageHeightTab}
+        ${imageBorderTab}
+        ${imageBorderRadiusTab}
+        }
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-icon.cotton-moving .zolo__display-icon svg{
+        ${iconWidthTab}
+        ${iconHeightTab}
+        }
+    `;
+    const zoloCursorsMobile = `
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-default.cotton-moving{
+        ${dotWidthMob}
+        ${dotHeightMob}
+        }
+
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-text.cotton-moving .zolo-cursor-text{
+        ${textBgColorMob}
+        ${textBorderMob}
+        ${textBorderRadiusMob}
+        ${textPaddingMob}
+        ${titleMobTypo}
+        }
+         .cursors-${uniqueId}.zolo-cursors.cursor-type-image.cotton-moving .zolo-cursor-image{
+        ${imageWidthMob}
+        ${imageHeightMob}
+        ${imageBorderMob}
+        ${imageBorderRadiusMob}
+        }
+        .cursors-${uniqueId}.zolo-cursors.cursor-type-icon.cotton-moving .zolo__display-icon svg{
+        ${iconWidthMob}
+        ${iconHeightMob}
+        }
+    `;
 
     return {
         zoloCursorsDesktop,

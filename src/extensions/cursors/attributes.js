@@ -2,11 +2,8 @@ import { addFilter } from '@wordpress/hooks';
 
 const {
     generateResRangeAttributies,
-    generateResAlignmentAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateNormalBGAttributes,
     generateTypographyAttributes,
 } = window.zoloModule;
 
