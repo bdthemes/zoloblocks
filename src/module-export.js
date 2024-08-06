@@ -52,7 +52,7 @@ export { generateBackgroundAttributes, generateBackgroundControlStyles } from '.
 export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
 export { generateBoxShadowAttributies, generateBoxShadowStyles } from './helpers/boxshadow-helper';
 export { generateDimensionAttributes, generateDimensionStyle } from './helpers/dimension-helper';
-export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr } from './helpers/helper';
+export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr,isEmpty,strToHex } from './helpers/helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';

@@ -1,42 +1,26 @@
 <?php
-/**
- * Zolo_AJAX
- *
- * AJAX Event Handler
- *
- * @class    Zolo_AJAX
- * @version  0.0.1
- * @package  zolo-ajax
- * @category Class
- */
+namespace Zolo\Classes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 use Zolo\Helpers\ZoloHelpers;
+use Zolo\Traits\SingletonTrait;
 
 /**
- * Zolo Ajax class
+ * ZoloAJAX
+ *
+ * AJAX Event Handler
+ *
+ * @class    ZoloAJAX
+ * @version  0.0.1
+ * @package  zolo-ajax
+ * @category Class
  */
-class Zolo_AJAX {
+class ZoloAJAX {
 
-	/**
-	 * @var $instance;
-	 */
-	private static $instance;
-
-	/**
-	 * Get instance
-	 *
-	 * @return self
-	 */
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
+	use SingletonTrait;
 
 	/**
 	 * The Constructor.
@@ -44,6 +28,68 @@ class Zolo_AJAX {
 	public function __construct() {
 		self::zolo_ajax_action_init();
 		add_action( 'wp_ajax_zolo_select2_search', [ $this, 'zolo_select2_response' ] );
+		add_action( 'wp_ajax_zolo_post_category', [ $this, 'get_post_categories' ] );
+	}
+
+	/**
+	 * Get post categories
+	 *
+	 * @return void
+	 */
+	public function get_post_categories() {
+		if ( ! wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
+			wp_send_json_error( 'Invalid nonce' );
+		}
+		$catQuery_json = sanitize_text_field( wp_unslash( $_POST['catQuery'] ?? [] ) );
+		$catQuery      = json_decode( $catQuery_json, true );
+		if ( ! is_array( $catQuery ) ) {
+			wp_send_json_error( 'Invalid category query' );
+		}
+		$results = self::zolo_post_category_query( $catQuery );
+		wp_send_json_success(
+			[ 'results' => $results ]
+		);
+	}
+
+	/**
+	 * Post category query
+	 *
+	 * @param array $data .
+	 * @return array
+	 */
+	public static function zolo_post_category_query( $data ) {
+		$catExclude = ! empty( $data['catExclude'] ) && is_array( $data['catExclude'] ) ? wp_list_pluck( $data['catExclude'], 'value' ) : [];
+		$imageSize  = ! empty( $data['catThumbnail'] ) ? sanitize_text_field( $data['catThumbnail'] ) : 'thumbnail';
+		$args       = [
+			'taxonomy'   => ! empty( $data['catTaxonomy'] ) ? sanitize_text_field( $data['catTaxonomy'] ) : 'category',
+			'orderby'    => ! empty( $data['catOrderby'] ) ? sanitize_text_field( $data['catOrderby'] ) : 'name',
+			'order'      => ! empty( $data['catOrder'] ) ? sanitize_text_field( $data['catOrder'] ) : 'desc',
+			'hide_empty' => 0,
+			'exclude'    => $catExclude,
+			'parent'     => isset( $data['catParent'] ) ? intval( $data['catParent'] ) : '',
+		];
+		$categories = get_categories( $args );
+		$results    = [];
+		foreach ( $categories as $index => $cat ) {
+			$category_image_id = get_term_meta( $cat->cat_ID, 'zolo-category-image-id', true );
+			$category_url      = '';
+			if ( ! empty( $category_image_id ) ) {
+				$category_url = wp_get_attachment_image_url( $category_image_id, $imageSize );
+			}
+			$category                = [];
+			$category['name']        = $cat->cat_name;
+			$category['description'] = $cat->category_description;
+			$category['count']       = $cat->category_count;
+			$category['image']       = $category_url;
+			$category['link']        = get_category_link( $cat->cat_ID );
+			$results[]               = $category;
+			if ( ! empty( $data['catItemLimit'] ) ) {
+				if ( ( $data['catItemLimit'] - 1 ) == $index ) {
+					break;
+				}
+			}
+		}
+		return $results;
 	}
 
 	/**
@@ -184,11 +230,7 @@ class Zolo_AJAX {
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'nonce' ) ) {
 			wp_die( esc_html_e( 'Nonce did not match', 'zoloblocks' ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 		}
-
-		// Write your code here
-
+		// Write your code here.
 		exit;
 	}
 }
-
-Zolo_AJAX::get_instance();

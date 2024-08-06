@@ -50,13 +50,13 @@ class GetPostsV1 {
 			wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks' ) );
 		}
 
-		$value1 = $data['postQuery'];
+		$postQuery = $data['postQuery'];
 		// Check if postCategory is not empty and update postQuery if it exists.
 		if ( ! empty( $data['postCategory'] ) && isset( $data['postQuery'] ) ) {
-			$value1['postCategory'] = $data['postCategory'];
+			$postQuery['postCategory'] = $data['postCategory'];
 		}
 
-		$results = self::zolo_posts_query( $value1 );
+		$results = self::zolo_posts_query( $postQuery );
 
 		if ( ! empty( $results['posts'] ) ) {
 			wp_send_json_success( $results );

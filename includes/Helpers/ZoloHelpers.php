@@ -455,4 +455,35 @@ class ZoloHelpers {
 		}
 		return strip_shortcodes( $phrase );
 	}
+
+	/**
+	 * Hex color
+	 *
+	 * @param string $string .
+	 * @param number $steps .
+	 * @return false|string
+	 */
+	public static function strToHex( $string, $steps = -10 ) {
+
+		if ( empty( $string ) ) {
+			return false;
+		}
+
+		$hex_output = sprintf( '%s', substr( md5( $string ), 0, 6 ) );
+
+		// Steps should be between -255 and 255. Negative = darker, positive = lighter.
+		$steps = max( -255, min( 255, $steps ) );
+
+		// Split into three parts: R, G and B.
+		$color_parts = str_split( $hex_output, 2 );
+		$output      = '#';
+
+		foreach ( $color_parts as $color ) {
+			$color   = hexdec( $color ); // Convert to decimal.
+			$color   = max( 0, min( 255, $color + $steps ) ); // Adjust color.
+			$output .= str_pad( dechex( $color ), 2, '0', STR_PAD_LEFT ); // Make two char hex code.
+		}
+
+		return strToUpper( $output );
+	}
 }
