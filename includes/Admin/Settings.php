@@ -169,6 +169,22 @@ class Zolo_Settings {
             ]
         );
 
+        // register support svg
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_maintenance_mode',
+            [
+                'type'             => 'boolean',
+                'default'          => false,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+
         // smooth scroller
         register_setting(
             'zolo_blocks_settings_group',

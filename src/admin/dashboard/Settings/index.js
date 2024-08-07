@@ -2,7 +2,7 @@ import SettingBox from './setting-box';
 import Notice from '../notice';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl, SelectControl } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 const { zoloBlocks } = window;
 
@@ -10,12 +10,12 @@ const Settings = () => {
     const [notice, setNotice] = useState(false);
     const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
+    const [maintenanceMode, setMaintenanceMode] = useState(false);
     const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
     const [blockImport, setBlockImport] = useState(false);
     const [blockLibrary, setBlockLibrary] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
-
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
@@ -26,6 +26,7 @@ const Settings = () => {
             const response = await apiFetch(data);
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
+            setMaintenanceMode(response.zolo_maintenance_mode);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
@@ -44,6 +45,7 @@ const Settings = () => {
             const response = await apiFetch(data);
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
+            setMaintenanceMode(response.zolo_maintenance_mode);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
@@ -67,6 +69,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_support_svg: value },
+        });
+    };
+
+    const updateMaintenanceMode = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_maintenance_mode: value },
         });
     };
 
@@ -466,14 +476,35 @@ const Settings = () => {
                                     ></SettingBox>
                                     <SettingBox
                                         title={__('Enable Maintenance Mode', 'zoloblocks')}
-                                        released={false}
                                         description={
                                             <>
                                                 Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to
                                                 revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.
                                             </>
                                         }
-                                    ></SettingBox>
+                                    >
+                                        <ToggleControl
+                                            checked={maintenanceMode}
+                                            onChange={() => {
+                                                updateMaintenanceMode(!maintenanceMode)
+                                                setNotice(true);
+                                            }}
+                                        />
+
+                                        <SelectControl
+                                            label="Size"
+                                            value={"25%"}
+                                            options={[
+                                                { label: 'Big', value: '100%' },
+                                                { label: 'Medium', value: '50%' },
+                                                { label: 'Small', value: '25%' },
+                                            ]}
+                                            // onChange={(newSize) => setSize(newSize)}
+                                            __nextHasNoMarginBottom
+                                        />
+
+
+                                    </SettingBox>
                                 </div>
                             </div>
                         )}

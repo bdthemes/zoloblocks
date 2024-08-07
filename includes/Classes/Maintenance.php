@@ -13,7 +13,14 @@ class Maintenance {
 
         // deactivation hook.
         register_deactivation_hook( ZOLO_FILE, [$this, 'deactivation'] );
-        
+
+        //template redirect
+        add_action( 'template_redirect', [$this, 'display_coming_soon_page'] );
+
+    }
+
+    public function display_coming_soon_page (){
+        wp_die(get_option('coming_soon_message'), 'Coming Soon', ['response' => 503]);
     }
 
     /**
