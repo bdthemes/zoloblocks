@@ -4,6 +4,7 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -44,6 +45,10 @@ export default function Edit(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zoloblocks')} />;
@@ -55,6 +60,7 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
+                {renderHookBefore && renderHookBefore}
                 <div className={`zolo-call-out ${preset} ${reversePosition ? 'reserve-position' : ''}`}>
                     <div className="zolo-call-out__content">
                         {showTitle && (
@@ -138,6 +144,7 @@ export default function Edit(props) {
                         </div>
                     )}
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

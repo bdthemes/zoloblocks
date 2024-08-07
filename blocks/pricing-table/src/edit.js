@@ -3,6 +3,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 //external dependencies
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 //internal dependencies
 import Inspector from './inspector';
 import './style.scss';
@@ -65,6 +66,10 @@ const Edit = (props) => {
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset !== '' && preset),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     const pricingPeriod = period.length !== 0 && period.split(',');
 
     // preview image
@@ -79,6 +84,7 @@ const Edit = (props) => {
             <Style props={props} />
 
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
                     <div className="zolo-item">
@@ -235,6 +241,7 @@ const Edit = (props) => {
                         </div>
                     </div>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

@@ -2,11 +2,8 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, useInnerBlocksProps } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-
 import classnames from 'classnames';
 
 /**
@@ -14,9 +11,7 @@ import classnames from 'classnames';
  */
 const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
-import { BLOCK_PREFIX } from './constants';
 
-import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 import Inspector from './inspector';
 
@@ -30,6 +25,10 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), fancyDirection),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     // preview image
     if (preview) {
@@ -90,6 +89,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls></BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div {...innerBlocksProps} />
                 <button className="zolo-appender-btn" label={__('Add List Item', 'zoloblocks')} onClick={() => appendBlock()}>
@@ -98,6 +98,7 @@ export default function Edit(props) {
                     </svg>
                     {__('Add List Item', 'zoloblocks')}
                 </button>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

@@ -1,10 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { useBlockProps} from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -30,8 +30,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     // preview image
     if (preview) {
@@ -42,6 +43,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <DynamicTag
                     tagName={isLinkable === true ? 'a' : 'div'}
                     className="zolo-icon-wrap"
@@ -53,6 +55,7 @@ export default function Edit(props) {
                 >
                     <DisplayZoloIcon icon={mainIcon} />
                 </DynamicTag>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

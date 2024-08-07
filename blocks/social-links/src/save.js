@@ -4,12 +4,15 @@
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import classnames from 'classnames';
-
+import { applyFilters } from '@wordpress/hooks';
 import { useBlockProps } from '@wordpress/block-editor';
 
-const Save = ({ attributes }) => {
-    const { uniqueId,parentClasses, preset, socialProfiles, socialColor, socialText, layout, zoloId } = attributes;
-
+const Save = (props) => {
+    const { attributes } = props;
+    const { uniqueId, parentClasses, preset, socialProfiles, socialColor, socialText, layout, zoloId } = attributes;
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...useBlockProps.save({
@@ -19,6 +22,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             {socialProfiles &&
                 socialProfiles.map((profile, index) => {
                     let socialName = Object.keys(profile.icon)[0];
@@ -41,6 +45,8 @@ const Save = ({ attributes }) => {
                         </a>
                     );
                 })}
+
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

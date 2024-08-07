@@ -1,7 +1,9 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         popupType,
@@ -17,6 +19,10 @@ const Save = ({ attributes }) => {
         hideOnTablet,
         hideOnMobile,
     } = attributes;
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     return (
         <div
@@ -36,9 +42,8 @@ const Save = ({ attributes }) => {
             data-type={popupType}
             data-bg-fixed={fixedBackground}
         >
-            <div
-                className={classnames('zolo-popup-inner', popupType)}
-            >
+            {renderHookBefore && renderHookBefore}
+            <div className={classnames('zolo-popup-inner', popupType)}>
                 <InnerBlocks.Content />
                 {isDismissable && (
                     <button className={classnames('zolo-popup-close-btn', closeBtnPosition)} id={closeBtnId}>
@@ -48,6 +53,7 @@ const Save = ({ attributes }) => {
                     </button>
                 )}
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };
