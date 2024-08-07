@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/
@@ -9,8 +8,9 @@
  * Text Domain: zoloblocks
  * Description: A collection of custom Gutenberg blocks to design your webpages with ease.
  * Domain Path: /languages
- *  License: GPL v2 or later
+ * License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * 
  */
 
 if (!defined('ABSPATH')) {
@@ -91,7 +91,6 @@ ZoloBlocks::get_instance();
 /**
  * SDK Integration
  */
-
 if (!function_exists('dci_plugin_zoloblocks')) {
     function dci_plugin_zoloblocks() {
 
