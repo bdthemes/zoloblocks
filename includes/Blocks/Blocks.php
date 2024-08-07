@@ -317,5 +317,12 @@ return apply_filters(
 			'frontend-scripts' => false,
 			'class'            => '\Zolo\Blocks\PostCategory',
 		],
+		'tag-cloud'          => [
+			'name'             => 'tag-cloud',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/tag-cloud/block.json',
+			'frontend-styles'  => [ 'zolo-fontawesome', 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+			'class'            => '\Zolo\Blocks\TagCloud',
+		],
 	]
 );
