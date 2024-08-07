@@ -11,6 +11,9 @@ const Settings = () => {
     const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
     const [maintenanceMode, setMaintenanceMode] = useState(false);
+    const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
+    const [templates, setTemplates] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
     const [blockImport, setBlockImport] = useState(false);
@@ -21,12 +24,32 @@ const Settings = () => {
         throw error;
     };
 
+    const fetchTemplates = useCallback(async (data) => {
+        try {
+            const response = await apiFetch(data);
+            const formattedTemplates = response.map(template => ({
+                label: template.title.rendered,
+                value: template.id
+            }));
+
+            setTemplates(formattedTemplates);
+        } catch (error) {
+            console.error('Error fetching block templates:', error);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+
+
     const fetchSettings = useCallback(async (data) => {
         try {
             const response = await apiFetch(data);
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
             setMaintenanceMode(response.zolo_maintenance_mode);
+            setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
+
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
@@ -40,12 +63,17 @@ const Settings = () => {
         fetchSettings({ path: '/wp/v2/settings' });
     }, [fetchSettings]);
 
+    useEffect(() => {
+        fetchTemplates({ path: 'wp/v2/templates' })
+    }, []);
+
     const updateSettings = useCallback(async (data) => {
         try {
             const response = await apiFetch(data);
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
             setMaintenanceMode(response.zolo_maintenance_mode);
+            setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
@@ -77,6 +105,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_maintenance_mode: value },
+        });
+    };
+
+    const updateMaintenanceModeTemplate = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_maintenance_mode_template: value },
         });
     };
 
@@ -491,17 +527,18 @@ const Settings = () => {
                                             }}
                                         />
 
-                                        <SelectControl
-                                            label="Size"
-                                            value={"25%"}
-                                            options={[
-                                                { label: 'Big', value: '100%' },
-                                                { label: 'Medium', value: '50%' },
-                                                { label: 'Small', value: '25%' },
-                                            ]}
-                                            // onChange={(newSize) => setSize(newSize)}
-                                            __nextHasNoMarginBottom
-                                        />
+                                       {maintenanceMode && (
+                                            <SelectControl
+                                                label={__('Select Templates', 'zoloblocks')}
+                                                help={
+                                                    __('`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`', 'zoloblocks')
+                                                }
+                                                value={maintenanceModeTemplate}
+                                                options={templates}
+                                                onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                __nextHasNoMarginBottom
+                                            />
+                                       )}
 
 
                                     </SettingBox>

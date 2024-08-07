@@ -37,7 +37,7 @@ class Registration {
                 $frontend_scripts    = false;
 
                 $blockname           = 'zolo/' . $block['name'];
-                $blockMetadata = $block['metadata']; 
+                $blockMetadata = $block['metadata'];
 
                 if (isset($block['metadata']) && file_exists($block['metadata'])) {
                     $blockname = $block['metadata'];

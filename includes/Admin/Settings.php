@@ -169,16 +169,31 @@ class Zolo_Settings {
             ]
         );
 
-        // register support svg
+        // register support maintenance mode
         register_setting(
             'zolo_blocks_settings_group',
             'zolo_maintenance_mode',
             [
                 'type'             => 'boolean',
-                'default'          => false,
+                'default'          => '',
                 'show_in_rest'     => [
                     'schema' => [
                         'type' => 'boolean',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+        // register support maintenance mode template
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_maintenance_mode_template',
+            [
+                'type'             => 'string',
+                'default'          => false,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'string',
                     ],
                 ],
                 'sanitize_callback' => NULL,

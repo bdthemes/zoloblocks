@@ -9,19 +9,42 @@ class Maintenance {
 
     public function __construct() {
         // Activation hook.
-        register_activation_hook( ZOLO_FILE, [$this, 'activation'] );
+        register_activation_hook(ZOLO_FILE, [$this, 'activation']);
 
         // deactivation hook.
-        register_deactivation_hook( ZOLO_FILE, [$this, 'deactivation'] );
+        register_deactivation_hook(ZOLO_FILE, [$this, 'deactivation']);
 
         //template redirect
-        add_action( 'template_redirect', [$this, 'display_coming_soon_page'] );
-
+        add_action('template_redirect', [$this, 'display_coming_soon_page']);
     }
 
-    public function display_coming_soon_page (){
-        wp_die(get_option('coming_soon_message'), 'Coming Soon', ['response' => 503]);
+    public function display_coming_soon_page() {
+        $template_id = get_option('zolo_maintenance_mode_template');
+        global $_wp_current_template_content;
+        if (current_theme_supports('block-templates') && $_wp_current_template_content) {
+            $blocks = parse_blocks($_wp_current_template_content);
+            foreach ($blocks as $block) {
+                if ($block['blockName'] === 'core/template-part') {
+                    $template_id = $block['attrs']['templateLock'] === 'all' ? $block['attrs']['templateId'] : $template_id;
+                }
+            }
+        }
+
+        if ($template_id) {
+            $template = get_block_template($template_id)->content;
+            if ($template) {
+                echo $template;
+                exit;
+            }
+            exit;
+        }
+
+
+
+
+        // wp_die(get_option('coming_soon_message'), 'Coming Soon', ['response' => 503]);
     }
+
 
     /**
      * Activation Function
@@ -29,7 +52,7 @@ class Maintenance {
      * @since 0.0.1
      */
     public function activation() {
-        update_option( ZOLO_SLUG . '-version', ZOLO_VERSION );
+        update_option(ZOLO_SLUG . '-version', ZOLO_VERSION);
 
         // create a new table in the database with the name 'zolo_form' if it does not exist and add the following columns: id, form_id, form_fields, form_settings, created_at, updated_at
         global $wpdb;
@@ -47,8 +70,8 @@ class Maintenance {
             PRIMARY KEY  (id)
         ) $charset_collate;";
 
-        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-        dbDelta( $sql );
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
     }
 
     /**
