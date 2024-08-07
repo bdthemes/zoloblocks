@@ -121,7 +121,6 @@ export const AdvancedOptions = (props) => {
 
     return (
         <>
-            {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
                     <ResDimensionsControl
@@ -338,6 +337,7 @@ export const AdvancedOptions = (props) => {
                     </ZoloPanelBody>
                 </>
             )}
+            {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
                     label={__('Transform', 'zoloblocks')}

@@ -55,8 +55,8 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-        const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
-    const cursorsPanel = applyFilters('zolo.extensions.controls.cursors', [], name, panelProps);
+    const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
+    
     const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';
@@ -81,7 +81,6 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        {cursorsPanel && cursorsPanel}
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             {isBlockRootParent && (
                                 <>

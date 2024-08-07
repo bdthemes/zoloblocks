@@ -10,7 +10,7 @@ addFilter('zolo.extensions.controls.shapeDivider', 'zolo/shape-divider', (panels
     }
 });
 
-addFilter('zolo.extensions.render.shapeDivider', 'zolo/shape-divider', (panels, panelProps) => {
+addFilter('zolo.blocks.render.hook.before', 'zolo/shape-divider', (panels, panelProps) => {
     if (panelProps.attributes.shapeDivider) {
         panels.push(<Render panelProps={panelProps} />);
         return panels;

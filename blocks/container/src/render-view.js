@@ -25,12 +25,9 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         ),
     });
 
-    // useEffect(() => {
-    //     applyFilters('zolo.extensions.init.cursors', [], panelProps);
-    // }, [attributes.zoloCursors.active]);
-
-    const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
-    const renderCursors = applyFilters('zolo.extensions.render.cursors', [], panelProps);
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
     return (
         <>
@@ -74,15 +71,15 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        {renderCursors && renderCursors}
-                        {shapeDivider && shapeDivider.length > 0 && shapeDivider}
+                        {renderHookBefore && renderHookBefore}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        {renderHookAfter && renderHookAfter}
                     </div>
                 ) : (
                     <>
-                        {shapeDivider && shapeDivider.length > 0 && shapeDivider}
-                        {renderCursors && renderCursors}
+                        {renderHookBefore && renderHookBefore}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        {renderHookAfter && renderHookAfter}
                     </>
                 )}
             </div>
