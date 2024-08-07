@@ -1,9 +1,10 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-
+import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr } = window.zoloModule;
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -76,6 +77,10 @@ const Save = ({ attributes }) => {
         showReset,
     };
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <div
             {...useBlockProps.save({
@@ -85,7 +90,9 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div className="zolo-chart" data-options={JSON.stringify(chartOptions)}></div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

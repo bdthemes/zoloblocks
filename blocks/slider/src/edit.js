@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { createBlock } from '@wordpress/blocks';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal dependencies
@@ -56,7 +57,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), `${resMode !== 'Desktop' ? resMode : ''}`),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     // Slider Ref
     const swiperRef = useRef(null);
     const dispatch = useDispatch();
@@ -192,6 +195,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className="swiper" ref={swiperRef}>
                     <div {...innerBlocksProps} />
@@ -223,6 +227,7 @@ export default function Edit(props) {
                         </div>
                     </Fragment>
                 )}
+                {renderHookAfter && renderHookAfter}
             </div>
         </Fragment>
     );

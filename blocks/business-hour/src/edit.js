@@ -5,6 +5,7 @@
 import { useBlockProps, BlockControls } from '@wordpress/block-editor';
 import { Button, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -26,6 +27,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, preset, classArrayToStr(parentClasses)),
     });
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     // preview image
     if (preview) {
@@ -38,6 +42,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls></BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 {businessList &&
                     businessList.map((profile, index) => {
@@ -67,6 +72,7 @@ export default function Edit(props) {
                             </div>
                         );
                     })}
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

@@ -4,7 +4,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
+import { applyFilters } from '@wordpress/hooks';
 /**
  * External dependencies
  */
@@ -29,8 +29,21 @@ import CountdownTimer from './counter';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
-    const { resMode, preview, uniqueId, parentClasses, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels, layout, zolo_countBoxGridRange, zolo_TABcountBoxGridRange, zolo_MOBcountBoxGridRange } =
-        attributes;
+    const {
+        resMode,
+        preview,
+        uniqueId,
+        parentClasses,
+        presets,
+        CountDate,
+        itemsLabels,
+        itemsVisibility,
+        toggleLabels,
+        layout,
+        zolo_countBoxGridRange,
+        zolo_TABcountBoxGridRange,
+        zolo_MOBcountBoxGridRange,
+    } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -46,6 +59,10 @@ export default function Edit(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.countdown} alt={__('Count down Preview', 'zoloblocks')} />;
@@ -60,6 +77,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
                     className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`} ${layout == 'flex' ? 'flex' : `grid zolo-dgc-${zolo_countBoxGridRange} zolo-tbgc-${zolo_TABcountBoxGridRange} zolo-mbgc-${zolo_MOBcountBoxGridRange}`}`}
@@ -71,6 +89,7 @@ export default function Edit(props) {
                         labels={itemsLabels}
                     />
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

@@ -5,6 +5,7 @@ import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder }
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -49,6 +50,10 @@ export default function Edit(props) {
         ),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.notice} alt={__('Notice Preview', 'zoloblocks')} />;
@@ -86,6 +91,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
                     className={classNames(
@@ -186,6 +192,7 @@ export default function Edit(props) {
                         </button>
                     )}
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );
