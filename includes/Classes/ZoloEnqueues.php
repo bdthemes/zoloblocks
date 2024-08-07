@@ -129,7 +129,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-
             // override css
             if (is_admin()) {
                 return;
@@ -385,7 +384,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     true
                 );
             }
-
 
             // template library
             $enable_template_library = get_option('zolo_enable_template_library');
