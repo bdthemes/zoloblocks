@@ -2,7 +2,7 @@ import {__} from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-post-category';
 export const PRESETS = [
   {label: __('Style 1', 'zoloblocks'), value: 'style-1'},
-  {label: __('Style 2', 'zoloblocks'), value: 'style-2'},
+  { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
 ];
 export const CAT_ORDER_BY = [
   {value: 'name', label: __('Name', 'zoloblocks')},

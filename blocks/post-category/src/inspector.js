@@ -125,42 +125,18 @@ export default function Inspector(props) {
                 options={applyFilters('zolo.postCategory.presets', PRESETS)}
                 onChange={(selected) => changePremade(selected)}
               />
-              <ResAlignmentControl
-                label={__('Alignment', 'zoloblocks')}
-                controlName={ITEM_TEXT_ALIGN}
-                requiredProps={requiredProps}
-                alignOptions={DEFAULT_ALIGNS}
-              />
-              <ResRangeControl
-                label={__('Item Height', 'zoloblocks')}
-                controlName={ITEM_HEIGHT}
-                requiredProps={requiredProps}
-                min={0}
-                max={500}
-                step={1}
-              />
-
-              <InputControl
-                label={__('Text Limit', 'zoloblocks')}
-                value={itemTextLimit}
-                onChange={(itemTextLimit) => setAttributes({itemTextLimit})}
-                type="number"
-                min={1}
-                max={99}
-                labelPosition="edge"
-                __unstableInputWidth="64px"
-              />
-
               <ToggleControl
                 label={__('Show Count', 'zoloblocks')}
                 checked={showCount}
                 onChange={(showCount) => setAttributes({showCount})}
               />
-              <ToggleControl
-                label={__('Show Text', 'zoloblocks')}
-                checked={showText}
-                onChange={(showText) => setAttributes({showText})}
-              />
+              {preset === 'style-1' && (
+                <ToggleControl
+                  label={__('Show Text', 'zoloblocks')}
+                  checked={showText}
+                  onChange={(showText) => setAttributes({showText})}
+                />
+              )}
 
               {preset === 'style-2' && (
                 <ToggleControl
@@ -170,11 +146,13 @@ export default function Inspector(props) {
                 />
               )}
 
+            {preset === 'style-1' && (
               <ToggleControl
                 label={__('View All Button', 'zoloblocks')}
                 checked={viewAllBtn}
                 onChange={(viewAllBtn) => setAttributes({viewAllBtn})}
               />
+             )}
 
             </ZoloPanelBody>
             <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
@@ -204,20 +182,27 @@ export default function Inspector(props) {
         }
         styleTab={
           <>
-            <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true}
-                           panelProps={props}>
+            <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true}panelProps={props}>
+            <ResRangeControl
+                label={__('Item Height', 'zoloblocks')}
+                controlName={ITEM_HEIGHT}
+                requiredProps={requiredProps}
+                min={0}
+                max={500}
+                step={1}
+              />
               <TabPanelControl
                 normalComponents={
                   <>
-                    <ToggleControl
+                    {/* <ToggleControl
                       label={__('Single Background', 'zoloblocks')}
                       checked={singleBG}
                       onChange={(singleBG) => setAttributes({singleBG})}
-                    />
+                    /> */}
                     {singleBG && (
                       <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true}/>
                     )}
-                    {!singleBG && (
+                    {/* {!singleBG && (
                       <TextareaControl
                         __nextHasNoMarginBottom
                         label={__('Multiple Background', 'zoloblocks')}
@@ -225,7 +210,7 @@ export default function Inspector(props) {
                         value={multipleBG}
                         onChange={(multipleBG) => setAttributes({multipleBG})}
                       />
-                    )}
+                    )} */}
 
                     <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER}
                                    requiredProps={requiredProps}/>
@@ -250,7 +235,9 @@ export default function Inspector(props) {
                 }
                 hoverComponents={
                   <>
-                    <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true}/>
+                    {singleBG && (
+                      <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true}/>
+                    )}
                     <BoxShadowControl
                       controlName={ITEM_HOVER_SHADOW}
                       requiredProps={requiredProps}
@@ -323,6 +310,18 @@ export default function Inspector(props) {
             </ZoloPanelBody>
             {showText && (
               <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
+
+                <InputControl
+                  label={__('Text Limit', 'zoloblocks')}
+                  value={itemTextLimit}
+                  onChange={(itemTextLimit) => setAttributes({itemTextLimit})}
+                  type="number"
+                  min={1}
+                  max={99}
+                  labelPosition="edge"
+                  __unstableInputWidth="64px"
+                />
+
                 <TypographyDropdown
                   label={__('Typography', 'zoloblocks')}
                   typoPrefixConstant={TEXT_TYPOGRAPHY}
@@ -353,7 +352,7 @@ export default function Inspector(props) {
                   hoverComponents={
                     <>
                       <ColorControl
-                        label={__('Hover Color', 'zoloblocks')}
+                        label={__('Color', 'zoloblocks')}
                         color={textHoverColor}
                         onChange={(color) =>
                           setAttributes({
@@ -410,7 +409,7 @@ export default function Inspector(props) {
                   hoverComponents={
                     <>
                       <ColorControl
-                        label={__('Hover Color', 'zoloblocks')}
+                        label={__('Color', 'zoloblocks')}
                         color={countHoverColor}
                         onChange={(color) =>
                           setAttributes({
@@ -484,21 +483,12 @@ export default function Inspector(props) {
                           })
                         }
                       />
-                      <ColorControl
-                        label={__('Icon Color', 'zoloblocks')}
-                        color={viewBtnIconColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnIconColor: color,
-                          })
-                        }
-                      />
                     </>
                   }
                   hoverComponents={
                     <>
                       <ColorControl
-                        label={__('Hover Color', 'zoloblocks')}
+                        label={__('Color', 'zoloblocks')}
                         color={viewBtnHoverColor}
                         onChange={(color) =>
                           setAttributes({
@@ -507,20 +497,11 @@ export default function Inspector(props) {
                         }
                       />
                       <ColorControl
-                        label={__('Hover Background', 'zoloblocks')}
+                        label={__('Background', 'zoloblocks')}
                         color={viewBtnBgHoverColor}
                         onChange={(color) =>
                           setAttributes({
                             viewBtnBgHoverColor: color,
-                          })
-                        }
-                      />
-                      <ColorControl
-                        label={__('Hover Icon Color', 'zoloblocks')}
-                        color={viewBtnIconHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnIconHoverColor: color,
                           })
                         }
                       />
