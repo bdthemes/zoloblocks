@@ -60,6 +60,7 @@ import '../blocks/popup-builder/src';
 import '../blocks/text-path/src';
 import '../blocks/notice/src';
 import '../blocks/post-category/src';
+import '../blocks/tag-cloud/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';

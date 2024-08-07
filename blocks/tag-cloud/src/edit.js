@@ -12,14 +12,14 @@ export default function Edit(props) {
   const {preview, uniqueId, parentClasses, catQuery, preset} = attributes;
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   const blockProps = useBlockProps({
-    className: classnames(className, `${uniqueId} zolo-post-category-wrap zolo-category-${preset}`, classArrayToStr(parentClasses)),
+    className: classnames(className, `${uniqueId} zolo-tag-cloud-wrap zolo-tag-${preset}`, classArrayToStr(parentClasses)),
   });
   useEffect(() => {
     if (typeof catQuery === 'undefined') {
       setAttributes({
         catQuery: {
           catExclude: [],
-          catTaxonomy: 'category',
+          catTaxonomy: 'post_tag',
           catThumbnail:'thumbnail',
           catItemLimit: 6,
           catOrderby: 'date',
@@ -32,7 +32,7 @@ export default function Edit(props) {
 
   // preview image
   if (preview) {
-    return <img src={zoloParams.blocksPreview.postCategory} alt={__('Post category Preview', 'zoloblocks')}/>;
+    return <img src={zoloParams.blocksPreview.postCategory} alt={__('Tag Cloud Preview', 'zoloblocks')}/>;
   }
 
   return (

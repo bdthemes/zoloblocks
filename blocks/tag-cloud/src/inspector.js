@@ -3,14 +3,13 @@ import {
   SelectControl,
   ToggleControl,
   RangeControl,
-  __experimentalInputControl as InputControl,
-  TextareaControl, TextControl
+  TextareaControl
 } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import {applyFilters} from '@wordpress/hooks';
 import objAttributes from './attributes';
-import {NAME_TYPOGRAPHY, TEXT_TYPOGRAPHY, COUNT_TYPOGRAPHY, VIEW_BTN_TYPOGRAPHY} from './constants/typoPrefixConstant';
-import {DEFAULT_ALIGNS, THUMBNAIL_SIZE} from '../../../src/global/constants';
+import {NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY} from './constants/typoPrefixConstant';
+import {DEFAULT_ALIGNS} from '../../../src/global/constants';
 import QuerySettings from "./query-settings";
 import {
   PRESETS,
@@ -18,7 +17,6 @@ import {
   COLUMNS_GAP,
   ITEM_HEIGHT,
   ITEM_TEXT_ALIGN,
-  TEXT_SPACING,
   COUNT_PADDING,
   COUNT_BG,
   COUNT_BORDER,
@@ -31,11 +29,6 @@ import {
   ITEM_SHADOW,
   ITEM_HOVER_BG,
   ITEM_HOVER_SHADOW,
-  VIEW_BTN_BORDER,
-  VIEW_BTN_BORDER_RADIUS,
-  VIEW_BTN_PADDING,
-  VIEW_BTN_SHADOW,
-  THUMBNAIL_OVERLAY_BG
 } from "./constants";
 
 const {
@@ -53,7 +46,6 @@ const {
   ResAlignmentControl,
   ZoloPanelBody,
   ResGapControl,
-  ZoloIconPicker
 } = window.zoloModule;
 export default function Inspector(props) {
   const {attributes, setAttributes} = props;
@@ -61,28 +53,15 @@ export default function Inspector(props) {
     catQuery,
     resMode,
     preset,
-    itemTextLimit,
     showCount,
-    showText,
-    viewAllBtn,
-    showImage,
     nameColor,
     nameHoverColor,
-    textColor,
-    textHoverColor,
     countColor,
     countHoverColor,
     singleBG,
     multipleBG,
     itemHoverOpacity,
-    viewBtnColor,
-    viewBtnHoverColor,
-    viewBtnBgColor,
-    viewBtnBgHoverColor,
-    viewBtnIconColor,
-    viewBtnIconHoverColor,
-    viewAllBtnText,
-    viewAllBtnIcon
+
   } = attributes;
   const requiredProps = {
     resMode,
@@ -140,40 +119,10 @@ export default function Inspector(props) {
                 step={1}
               />
 
-              <InputControl
-                label={__('Text Limit', 'zoloblocks')}
-                value={itemTextLimit}
-                onChange={(itemTextLimit) => setAttributes({itemTextLimit})}
-                type="number"
-                min={1}
-                max={99}
-                labelPosition="edge"
-                __unstableInputWidth="64px"
-              />
-
               <ToggleControl
                 label={__('Show Count', 'zoloblocks')}
                 checked={showCount}
                 onChange={(showCount) => setAttributes({showCount})}
-              />
-              <ToggleControl
-                label={__('Show Text', 'zoloblocks')}
-                checked={showText}
-                onChange={(showText) => setAttributes({showText})}
-              />
-
-              {preset === 'style-2' && (
-                <ToggleControl
-                  label={__('Show Image', 'zoloblocks')}
-                  checked={showImage}
-                  onChange={(showImage) => setAttributes({showImage})}
-                />
-              )}
-
-              <ToggleControl
-                label={__('View All Button', 'zoloblocks')}
-                checked={viewAllBtn}
-                onChange={(viewAllBtn) => setAttributes({viewAllBtn})}
               />
 
             </ZoloPanelBody>
@@ -269,21 +218,6 @@ export default function Inspector(props) {
               />
             </ZoloPanelBody>
 
-            {showImage && (
-              <ZoloPanelBody title={__('Thumbnail', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                <SelectControl
-                  label={__('Thumbnail Resolution', 'zoloblocks')}
-                  value={catQuery?.catThumbnail}
-                  options={THUMBNAIL_SIZE}
-                  onChange={(catThumbnail) =>
-                    setAttributes({
-                      catQuery: {...catQuery, catThumbnail},
-                    })
-                  }
-                />
-                <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_OVERLAY_BG} noMainBGImg={true}/>
-              </ZoloPanelBody>
-            )}
 
             <ZoloPanelBody title={__('Name', 'zoloblocks')} stylePanel={true} panelProps={props}>
               <TypographyDropdown
@@ -321,51 +255,6 @@ export default function Inspector(props) {
                 }
               />
             </ZoloPanelBody>
-            {showText && (
-              <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                <TypographyDropdown
-                  label={__('Typography', 'zoloblocks')}
-                  typoPrefixConstant={TEXT_TYPOGRAPHY}
-                  requiredProps={requiredProps}
-                />
-                <ResRangeControl
-                  label={__('Spacing', 'zoloblocks')}
-                  controlName={TEXT_SPACING}
-                  requiredProps={requiredProps}
-                  min={0}
-                  max={200}
-                  step={1}
-                />
-                <TabPanelControl
-                  normalComponents={
-                    <>
-                      <ColorControl
-                        label={__('Color', 'zoloblocks')}
-                        color={textColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            textColor: color,
-                          })
-                        }
-                      />
-                    </>
-                  }
-                  hoverComponents={
-                    <>
-                      <ColorControl
-                        label={__('Hover Color', 'zoloblocks')}
-                        color={textHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            textHoverColor: color,
-                          })
-                        }
-                      />
-                    </>
-                  }
-                />
-              </ZoloPanelBody>
-            )}
             {showCount && (
               <ZoloPanelBody title={__('Count', 'zoloblocks')} stylePanel={true} panelProps={props}>
                 <TypographyDropdown
@@ -415,112 +304,6 @@ export default function Inspector(props) {
                         onChange={(color) =>
                           setAttributes({
                             countHoverColor: color,
-                          })
-                        }
-                      />
-                    </>
-                  }
-                />
-              </ZoloPanelBody>
-            )}
-            {viewAllBtn && (
-              <ZoloPanelBody title={__('View All Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                <TextControl
-                  label={__('Button Text','zoloblocks')}
-                  value={viewAllBtnText}
-                  onChange={(viewAllBtnText)=>setAttributes({viewAllBtnText})}
-                />
-                <ZoloIconPicker
-                  label={__('Select Icon', 'zoloblocks')}
-                  value={viewAllBtnIcon}
-                  onChange={(value) => {
-                    setAttributes({
-                      viewAllBtnIcon: value,
-                    });
-                  }}
-                />
-                <TypographyDropdown
-                  label={__('Typography', 'zoloblocks')}
-                  typoPrefixConstant={VIEW_BTN_TYPOGRAPHY}
-                  requiredProps={requiredProps}
-                />
-
-                <BorderControl label={__('Border', 'zoloblocks')} controlName={VIEW_BTN_BORDER}
-                               requiredProps={requiredProps}/>
-                <ResDimensionsControl
-                  label={__('Border Radius', 'zoloblocks')}
-                  controlName={VIEW_BTN_BORDER_RADIUS}
-                  requiredProps={requiredProps}
-                  forBorderRadius={true}
-                />
-                <ResDimensionsControl
-                  label={__('Padding', 'zoloblocks')}
-                  controlName={VIEW_BTN_PADDING}
-                  requiredProps={requiredProps}
-                />
-                <BoxShadowControl
-                  controlName={VIEW_BTN_SHADOW}
-                  requiredProps={requiredProps}
-                  enableTransition={false}
-                />
-                <TabPanelControl
-                  normalComponents={
-                    <>
-                      <ColorControl
-                        label={__('Color', 'zoloblocks')}
-                        color={viewBtnColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnColor: color,
-                          })
-                        }
-                      />
-                      <ColorControl
-                        label={__('Background', 'zoloblocks')}
-                        color={viewBtnBgColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnBgColor: color,
-                          })
-                        }
-                      />
-                      <ColorControl
-                        label={__('Icon Color', 'zoloblocks')}
-                        color={viewBtnIconColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnIconColor: color,
-                          })
-                        }
-                      />
-                    </>
-                  }
-                  hoverComponents={
-                    <>
-                      <ColorControl
-                        label={__('Hover Color', 'zoloblocks')}
-                        color={viewBtnHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnHoverColor: color,
-                          })
-                        }
-                      />
-                      <ColorControl
-                        label={__('Hover Background', 'zoloblocks')}
-                        color={viewBtnBgHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnBgHoverColor: color,
-                          })
-                        }
-                      />
-                      <ColorControl
-                        label={__('Hover Icon Color', 'zoloblocks')}
-                        color={viewBtnIconHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            viewBtnIconHoverColor: color,
                           })
                         }
                       />
