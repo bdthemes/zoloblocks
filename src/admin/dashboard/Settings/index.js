@@ -64,7 +64,7 @@ const Settings = () => {
     }, [fetchSettings]);
 
     useEffect(() => {
-        fetchTemplates({ path: 'wp/v2/templates' })
+        fetchTemplates({ path: 'wp/v2/pages' })
     }, []);
 
     const updateSettings = useCallback(async (data) => {
