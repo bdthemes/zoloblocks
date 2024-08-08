@@ -242,6 +242,26 @@ return apply_filters(
             'name'       => 'zolo_post_tab',
             'categories' => ['others'],
             'status'     => true,
-            ]
+        ],
+        [
+            'name'       => 'zolo_video',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_lightbox',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_coupon_code',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_advanced_divider',
+            'categories' => ['others'],
+            'status'     => true,
+        ]
     ]
 );
