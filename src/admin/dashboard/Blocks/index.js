@@ -250,6 +250,7 @@ const Blocks = () => {
                                                     value={status[0].status}
                                                     demo={blockState.demo || ''}
                                                     video={blockState.video || ''}
+                                                    upcoming={blockState.upcoming}
                                                     onClick={() => {
                                                         updateStatus(!status[0].status, blockState.name);
                                                         setNotice(true);
