@@ -73,18 +73,21 @@ const Repeater = ({ markers, setAttributes }) => {
                                 />
                                 <TextControl label={__('Latitude', 'zoloblocks')} value={marker?.position.lat} readOnly={true} />
                                 <TextControl label={__('Longitude', 'zoloblocks')} value={marker?.position.lng} readOnly={true} />
-                                <TextareaControl
-                                    label={__('Marker Description', 'zoloblocks')}
-                                    value={marker?.info}
-                                    onChange={(v) => {
-                                        const newItems = [...deepCloneMarkers];
-                                        newItems[index].info = v;
-                                        setAttributes({
-                                            markers: newItems,
-                                        });
-                                    }}
-                                    help={__('HTML tags are allowed', 'zoloblocks')}
-                                />
+
+                                <div className='zolo-flex-col-control'>
+                                    <TextareaControl
+                                        label={__('Marker Description', 'zoloblocks')}
+                                        value={marker?.info}
+                                        onChange={(v) => {
+                                            const newItems = [...deepCloneMarkers];
+                                            newItems[index].info = v;
+                                            setAttributes({
+                                                markers: newItems,
+                                            });
+                                        }}
+                                        help={__('HTML tags are allowed', 'zoloblocks')}
+                                    />
+                                </div>
                             </PanelBody>
                         </div>
                     );

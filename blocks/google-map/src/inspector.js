@@ -66,7 +66,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <GoogleMapAutocomplete
-                                label={__('Default Location', 'zoloblocks')}
+                                label={__('Location', 'zoloblocks')}
                                 value={location}
                                 onChange={(v) => setAttributes({ location: v })}
                                 onClick={(v) => {
@@ -91,20 +91,22 @@ function Inspector(props) {
                                 readOnly={true}
                                 type="number"
                             />
-                            <TextareaControl
-                                label={__('Marker Description')}
-                                value={
-                                    infoWindow ||
-                                    '<a href="https://bdthemes.com"><b>BdThemes</b></a> is the sole owner of market-leading addons for #1 Elementor such as Element Pack Pro, Prime Slider, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery, and more useful plugins.'
-                                }
-                                onChange={(v) =>
-                                    setAttributes({
-                                        infoWindow: v,
-                                    })
-                                }
-                                placeholder={__('Enter your marker description', 'zoloblocks')}
-                                help={__('HTML tags are allowed', 'zoloblocks')}
-                            />
+                            <div className="zolo-flex-col-control">
+                                <TextareaControl
+                                    label={__('Marker Description')}
+                                    value={
+                                        infoWindow ||
+                                        '<a href="https://bdthemes.com"><b>BdThemes</b></a> is the sole owner of market-leading addons for #1 Elementor such as Element Pack Pro, Prime Slider, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery, and more useful plugins.'
+                                    }
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            infoWindow: v,
+                                        })
+                                    }
+                                    placeholder={__('Enter your marker description', 'zoloblocks')}
+                                    help={__('HTML tags are allowed', 'zoloblocks')}
+                                />
+                            </div>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('More Locations', 'zoloblocks')} panelProps={props}>
                             <Repeater markers={markers} setAttributes={setAttributes} />
@@ -189,8 +191,9 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
+                            <div className="zolo-flex-row-control-tab">
                             <IconicBtnGroup
-                                label={__('Map Style Type', 'zoloblocks')}
+                                label={__('Map Type', 'zoloblocks')}
                                 value={mapStyleType || 'default'}
                                 options={[
                                     {
@@ -204,6 +207,7 @@ function Inspector(props) {
                                 ]}
                                 onChange={(mapStyleType) => setAttributes({ mapStyleType })}
                             />
+                            </div>
                             {mapStyleType === 'default' && (
                                 <TextControl
                                     label={__('Map ID', 'zoloblocks')}
@@ -214,35 +218,39 @@ function Inspector(props) {
                                 />
                             )}
                             {mapStyleType === 'custom' && (
-                                <TextareaControl
-                                    label={__('Paste Style Codes', 'zoloblocks')}
-                                    help={
-                                        <div className="components-base-control__help">
-                                            Paste your map style codes here visit{' '}
-                                            <a href="https://snazzymaps.com/explore" target="_blank" rel="noopener noreferrer">
-                                                Snazzy Maps Styles
-                                            </a>
-                                        </div>
-                                    }
-                                    value={mapStyleCodes}
-                                    onChange={(v) => {
-                                        setAttributes({ mapStyleCodes: v });
-                                    }}
-                                />
+                                <div className="zolo-flex-col-control">
+                                    <TextareaControl
+                                        label={__('Paste Style Codes', 'zoloblocks')}
+                                        help={
+                                            <div className="components-base-control__help">
+                                                Paste your map style codes here visit{' '}
+                                                <a href="https://snazzymaps.com/explore" target="_blank" rel="noopener noreferrer">
+                                                    Snazzy Maps Styles
+                                                </a>
+                                            </div>
+                                        }
+                                        value={mapStyleCodes}
+                                        onChange={(v) => {
+                                            setAttributes({ mapStyleCodes: v });
+                                        }}
+                                    />
+                                </div>
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Settings', 'zoloblocks')} panelProps={props}>
-                            <RangeControl
-                                label={__('Zoom Level', 'zoloblocks')}
-                                help={__(
-                                    'Set the initial zoom level of the map. The higher the value will be the more zoomed in the map',
-                                    'zoloblocks'
-                                )}
-                                value={zoom}
-                                onChange={(zoom) => setAttributes({ zoom })}
-                                min={1}
-                                max={21}
-                            />
+                            <div className='zolo-flex-col-control'>
+                                <RangeControl
+                                    label={__('Zoom Level', 'zoloblocks')}
+                                    help={__(
+                                        'Set the initial zoom level of the map. The higher the value will be the more zoomed in the map',
+                                        'zoloblocks'
+                                    )}
+                                    value={zoom}
+                                    onChange={(zoom) => setAttributes({ zoom })}
+                                    min={1}
+                                    max={21}
+                                />
+                            </div>
                             <SelectControl
                                 label={__('Map View Type', 'zoloblocks')}
                                 help={__(
@@ -256,7 +264,7 @@ function Inspector(props) {
                                 }}
                             />
                             <SelectControl
-                                label={__('Select Language', 'zoloblocks')}
+                                label={__('Language', 'zoloblocks')}
                                 help={__(
                                     'Select the language of the map interface. such as for English select English or French select French',
                                     'zoloblocks'
