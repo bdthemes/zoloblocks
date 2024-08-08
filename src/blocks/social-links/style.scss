@@ -1,0 +1,452 @@
+@import 'src/social-brand-colors/colors.scss';
+
+.wp-block-zolo-social-links {
+    --zolo-item-grid-gap: 10px;
+    --zolo-icon-size: 1em;
+    --zolo-button-text-color: #fff;
+    --zolo-button-padding: 10px 20px;
+    --zolo-button-gap: 10px;
+    --zolo-item-border-width: 2px;
+    --zolo-item-border-style: solid;
+    --zolo-icon-width: 40px;
+    --zolo-icon-height: 40px;
+    --zolo-button-text-padding: 0 12px;
+    --zolo-button-icon-color: #000;
+
+    gap: var(--zolo-item-grid-gap);
+    &.flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &.grid {
+        display: grid;
+    }
+    .zolo-social-item {
+        border-radius: var(--zoloblocks-button-border-radius);
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: var(--zoloblocks-brand-color);
+        transition: all 0.2s ease;
+        svg {
+            width: var(--zolo-icon-size);
+            height: var(--zolo-icon-size);
+            fill: var(--zoloblocks-brand-button-color);
+            display: block;
+            transition: all 0.2s ease;
+        }
+        &:hover {
+            background-color: var(--zoloblocks-brand-color-hover);
+        }
+        &.original {
+            &.facebook,
+            &.facebook-f,
+            &.facebook-square,
+            &.fb {
+                background-color: var(--facebook);
+                border-color: var(--facebook);
+                &:hover {
+                    background-color: var(--facebook-hover);
+                }
+                .zolo-social-icon {
+                    background-color: var(--facebook);
+                }
+            }
+            &.twitter,
+            &.twitter-square {
+                background-color: var(--twitter);
+                border-color: var(--twitter);
+                &:hover {
+                    background-color: var(--twitter-hover);
+                }
+                .zolo-social-icon {
+                    background-color: var(--twitter);
+                }
+            }
+            &.instagram {
+                background-color: var(--instagram);
+                border-color: var(--instagram);
+                &:hover {
+                    background-color: var(--instagram-hover);
+                }
+                .zolo-social-icon {
+                    background-color: var(--instagram);
+                }
+            }
+            &.linkedin,
+            &.linkedin-in {
+                background-color: var(--linkedin);
+                border-color: var(--linkedin);
+                &:hover {
+                    background-color: var(--linkedin-hover);
+                }
+                .zolo-social-icon {
+                    background-color: var(--linkedin);
+                }
+            }
+            &.behance,
+            &.behance-square {
+                background-color: var(--behance);
+                border-color: var(--behance);
+                &:hover {
+                    background-color: var(--behance-hover);
+                }
+                .zolo-social-icon {
+                    background-color: var(--behance);
+                }
+            }
+            &.pinterest,
+            &.pinterest-p,
+            &.pinterest-square {
+                background-color: var(--pinterest);
+                border-color: var(--pinterest);
+                .zolo-social-icon {
+                    background-color: var(--pinterest);
+                }
+                &:hover {
+                    background-color: var(--pinterest-hover);
+                }
+            }
+            &.dribbble,
+            &.dribbble-square {
+                background-color: var(--dribbble);
+                border-color: var(--dribbble);
+                .zolo-social-icon {
+                    background-color: var(--dribbble);
+                }
+                &:hover {
+                    background-color: var(--dribble-hover);
+                }
+            }
+            &.whatsapp,
+            &.whatsapp-square {
+                background-color: var(--whatsapp);
+                border-color: var(--whatsapp);
+                .zolo-social-icon {
+                    background-color: var(--whatsapp);
+                }
+                &:hover {
+                    background-color: var(--whatsapp-hover);
+                }
+            }
+            &.youtube,
+            &.youtube-square {
+                background-color: var(--youtube);
+                border-color: var(--youtube);
+                .zolo-social-icon {
+                    background-color: var(--youtube);
+                }
+                &:hover {
+                    background-color: var(--youtube-hover);
+                }
+            }
+            &.tumblr,
+            &.tumblr-square {
+                background-color: var(--tumblr);
+                border-color: var(--tumblr);
+                .zolo-social-icon {
+                    background-color: var(--tumblr);
+                }
+                &:hover {
+                    background-color: var(--tumblr-hover);
+                }
+            }
+            &.reddit,
+            &.reddit-alien,
+            &.reddit-square {
+                background-color: var(--reddit);
+                border-color: var(--reddit);
+                .zolo-social-icon {
+                    background-color: var(--reddit);
+                }
+                &:hover {
+                    background-color: var(--reddit-hover);
+                }
+            }
+            &.snapchat,
+            &.snapchat-ghost,
+            &.snapchat-square {
+                color: #000;
+                background-color: var(--snapchat);
+                border-color: var(--snapchat);
+                .zolo-social-icon {
+                    background-color: var(--snapchat);
+                }
+                &:hover {
+                    background-color: var(--snapchat-hover);
+                }
+            }
+            &.telegram,
+            &.telegram-plane,
+            &.telegram-square {
+                background-color: var(--telegram);
+                border-color: var(--telegram);
+                .zolo-social-icon {
+                    background-color: var(--telegram);
+                }
+                &:hover {
+                    background-color: var(--telegram-hover);
+                }
+            }
+            &.vimeo,
+            &.vimeo-square {
+                background-color: var(--vimeo);
+                border-color: var(--vimeo);
+                .zolo-social-icon {
+                    background-color: var(--vimeo);
+                }
+                &:hover {
+                    background-color: var(--vimeo-hover);
+                }
+            }
+            &.skype,
+            &.skype,
+            &.skype-square {
+                background-color: var(--skype);
+                border-color: var(--skype);
+                .zolo-social-icon {
+                    background-color: var(--skype);
+                }
+                &:hover {
+                    background-color: var(--skype-hover);
+                }
+            }
+            &.spotify,
+            &.spotify-square {
+                background-color: var(--spotify);
+                border-color: var(--spotify);
+                .zolo-social-icon {
+                    background-color: var(--spotify);
+                }
+                &:hover {
+                    background-color: var(--spotify-hover);
+                }
+            }
+            &.soundcloud,
+            &.soundcloud-square {
+                background-color: var(--soundcloud);
+                border-color: var(--soundcloud);
+                .zolo-social-icon {
+                    background-color: var(--soundcloud);
+                }
+                &:hover {
+                    background-color: var(--soundcloud-hover);
+                }
+            }
+            &.github,
+            &.github-alt,
+            &.github-square {
+                background-color: var(--github);
+                border-color: var(--github);
+                .zolo-social-icon {
+                    background-color: var(--github);
+                }
+                &:hover {
+                    background-color: var(--github-hover);
+                }
+            }
+            &.twitch {
+                background-color: var(--twitch);
+                border-color: var(--twitch);
+                .zolo-social-icon {
+                    background-color: var(--twitch);
+                }
+                &:hover {
+                    background-color: var(--twitch-hover);
+                }
+            }
+            &.medium,
+            &.medium-m,
+            &.medium-square {
+                background-color: var(--medium);
+                border-color: var(--medium);
+                .zolo-social-icon {
+                    background-color: var(--medium);
+                }
+                &:hover {
+                    background-color: var(--medium-hover);
+                }
+            }
+            &.xing,
+            &.xing-square {
+                background-color: var(--xing);
+                border-color: var(--xing);
+                .zolo-social-icon {
+                    background-color: var(--xing);
+                }
+                &:hover {
+                    background-color: var(--xing-hover);
+                }
+            }
+            &.flickr,
+            &.flickr-square {
+                background-color: var(--flickr);
+                border-color: var(--flickr);
+                .zolo-social-icon {
+                    background-color: var(--flickr);
+                }
+                &:hover {
+                    background-color: var(--flickr-hover);
+                }
+            }
+            &.slack,
+            &.slack-hash {
+                background-color: var(--slack);
+                border-color: var(--slack);
+                .zolo-social-icon {
+                    background-color: var(--slack);
+                }
+                &:hover {
+                    background-color: var(--slack-hover);
+                }
+            }
+            &.discord,
+            &.discord-square {
+                background-color: var(--discord);
+                border-color: var(--discord);
+                .zolo-social-icon {
+                    background-color: var(--discord);
+                }
+                &:hover {
+                    background-color: var(--discord-hover);
+                }
+            }
+            &.meetup,
+            &.meetup-square {
+                background-color: var(--meetup);
+                border-color: var(--meetup);
+                .zolo-social-icon {
+                    background-color: var(--meetup);
+                }
+                &:hover {
+                    background-color: var(--meetup-hover);
+                }
+            }
+            &.wechat,
+            &.wechat-square {
+                background-color: var(--wechat);
+                border-color: var(--wechat);
+                .zolo-social-icon {
+                    background-color: var(--wechat);
+                }
+                &:hover {
+                    background-color: var(--wechat-hover);
+                }
+            }
+            &.quora,
+            &.quora-square {
+                background-color: var(--quora);
+                border-color: var(--quora);
+                .zolo-social-icon {
+                    background-color: var(--quora);
+                }
+                &:hover {
+                    background-color: var(--quora-hover);
+                }
+            }
+        }
+    }
+
+    &.preset-1,
+    &.preset-2 {
+        .zolo-social-item.original {
+            &.snapchat {
+                color: #000;
+                .zolo-social-icon {
+                    svg {
+                        fill: var(--zolo-button-icon-color);
+                    }
+                }
+            }
+        }
+        .zolo-social-icon {
+            background-color: transparent !important;
+            background: transparent;
+        }
+    }
+    &.preset-1,
+    &.preset-2,
+    &.preset-3 {
+        .zolo-social-item {
+            color: var(--zolo-button-text-color);
+        }
+    }
+
+    &.preset-1 {
+        .zolo-social-item {
+            padding: var(--zolo-button-padding);
+            gap: var(--zolo-button-gap);
+        }
+    }
+
+    &.preset-2 {
+        .zolo-social-item {
+            --zolo-button-padding: 10px;
+            padding: var(--zolo-button-padding);
+            gap: var(--zolo-button-gap);
+        }
+    }
+
+    &.preset-3 {
+        .zolo-social-item,
+        .zolo-social-item.original {
+            background-color: transparent;
+            background: transparent;
+            border-width: var(--zolo-item-border-width);
+            border-style: var(--zolo-item-border-style);
+            .zolo-social-text {
+                padding: var(--zolo-button-text-padding);
+            }
+        }
+
+        .zolo-social-icon {
+            height: var(--zolo-icon-height);
+            width: var(--zolo-icon-width);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zolo-social-item {
+            --zolo-button-text-color: #000;
+            border-color: var(--zoloblocks-brand-color);
+            color: var(--zolo-button-text-color);
+            justify-content: flex-start;
+            overflow: hidden;
+            .zolo-social-icon {
+                color: var(--zoloblocks-brand-button-color);
+                background-color: var(--zoloblocks-brand-color);
+            }
+            &:hover {
+                color: var(--zoloblocks-brand-button-color);
+                background-color: var(--zoloblocks-brand-color-hover);
+            }
+        }
+
+        .zolo-social-item.original {
+            .zolo-social-icon {
+                color: var(--zoloblocks-brand-button-color);
+            }
+            &.snapchat {
+                .zolo-social-icon {
+                    svg {
+                        fill: var(--zolo-button-icon-color);
+                    }
+                }
+                &:hover {
+                    .zolo-social-text {
+                        color: #000;
+                    }
+                }
+            }
+            &:hover {
+                .zolo-social-text {
+                    color: var(--zoloblocks-brand-button-color);
+                }
+            }
+        }
+    }
+}

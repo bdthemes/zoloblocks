@@ -19,5 +19,7 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
-    "editorScript": "zolo-block-editor-script"
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css"
 }

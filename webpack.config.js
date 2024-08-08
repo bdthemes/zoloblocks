@@ -15,7 +15,7 @@ module.exports = {
         'animation/index': ['./src/animation/index.js'],
         'extensions/export-pattern/index': ['./src/extensions/export-pattern/index.js'],
         'extensions/import-pattern/index': ['./src/extensions/import-pattern/index.js'],
-        'extensions/shape-divider/index': ['./src/extensions/shape-divider/index.js'],
+        // 'extensions/shape-divider/index': ['./src/extensions/shape-divider/index.js'],
         'template-library/index': ['./src/template-library/index.js'],
         'editor-common/index': ['./src/editor-common/index.js'],
         'common/index': ['./src/common/index.js'],

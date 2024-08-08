@@ -12,5 +12,7 @@
         "anchor": false,
         "customClassName": false
     },
-    "editorScript": "zolo-block-editor-script"
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
 }

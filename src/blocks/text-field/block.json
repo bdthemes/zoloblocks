@@ -20,5 +20,5 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
-    "editorScript": "zolo-block-editor-script"
+    "editorScript": "file:./index.js"
 }
