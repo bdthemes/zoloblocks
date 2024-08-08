@@ -1,98 +1,45 @@
 import {applyFilters} from '@wordpress/hooks';
 
 import {
-  ITEM_HEIGHT,
-  ITEM_TEXT_ALIGN,
   ITEM_BG,
   ITEM_BORDER,
   ITEM_BORDER_RADIUS,
   ITEM_SHADOW,
   ITEM_PADDING,
   COLUMNS_GAP,
-  GRID_COLUMNS,
   ITEM_HOVER_BG,
   ITEM_HOVER_SHADOW,
-  TEXT_SPACING,
-  COUNT_BG,
   COUNT_BORDER,
   COUNT_BORDER_RADIUS,
   COUNT_SHADOW,
   COUNT_PADDING,
-  VIEW_BTN_BORDER,
-  VIEW_BTN_BORDER_RADIUS,
-  VIEW_BTN_SHADOW,
-  VIEW_BTN_PADDING,
-  THUMBNAIL_OVERLAY_BG
 } from './constants';
 
-import {NAME_TYPOGRAPHY,TEXT_TYPOGRAPHY,COUNT_TYPOGRAPHY,VIEW_BTN_TYPOGRAPHY} from './constants/typoPrefixConstant';
+import {NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY} from './constants/typoPrefixConstant';
 
 const {
   generateDimensionStyle,
-  generateResRangeStyle,
   generateNormalBGControlStyles,
   generateBorderStyle,
   generateBoxShadowStyles,
   generateTypographyStyles,
-  generateResCounterStyle,
   GlobalStyleHanlder,
-  generateResAlignmentStyle,
   generateGapStyle,
 } = window.zoloModule;
 
 function Style({props}) {
-
   const {attributes, setAttributes} = props;
-
   const {
     uniqueId,
     itemHoverOpacity,
     nameColor,
     nameHoverColor,
-    textColor,
-    textHoverColor,
     countColor,
     countHoverColor,
-    viewBtnColor,
-    viewBtnHoverColor,
-    viewBtnBgColor,
-    viewBtnBgHoverColor,
-    viewBtnIconColor,
-    viewBtnIconHoverColor,
+    countBgColor,
+    countBgHoverColor,
   } = attributes
-  const {
-    desktopRangeStyle: itemHeightDesk,
-    tabRangeStyle: itemHeightTab,
-    mobRangeStyle: itemHeightMob,
-  } = generateResRangeStyle({
-    controlName: ITEM_HEIGHT,
-    property: 'min-height',
-    attributes,
-  });
-  const {
-    desktopAlignStyle: itemAlignDesk,
-    tabAlignStyle: itemAlignTab,
-    mobAlignStyle: itemAlignMob,
-  } = generateResAlignmentStyle({
-    controlName: ITEM_TEXT_ALIGN,
-    property: 'text-align',
-    attributes,
-  });
-  //grid style
-  const {
-    desktopRangeStyle: columnCountDesk,
-    tabRangeStyle: columnCountTab,
-    mobRangeStyle: columnCountMob,
-  } = generateResCounterStyle({
-    controlName: GRID_COLUMNS,
-    attributes,
-    noProperty: true,
-    defaults: {
-      deskRange: 4,
-      tabRange: 2,
-      mobRange: 1,
-    },
-  });
+
   const {
     gapStylesDesktop: colGapDesk,
     gapStylesTab: colGapTab,
@@ -154,16 +101,6 @@ function Style({props}) {
     attributes,
     controlName: ITEM_HOVER_SHADOW,
   });
-  // thumbnail
-  const {
-    backgroundStylesDesktop: thumbnailOverlayBGDesk,
-    backgroundStylesTab: thumbnailOverlayBGTab,
-    backgroundStylesMobile: thumbnailOverlayBGMob,
-  } = generateNormalBGControlStyles({
-    controlName: THUMBNAIL_OVERLAY_BG,
-    attributes,
-    noMainBGImg: true,
-  });
   //name style
   const {
     typoStylesDesktop: nameTypoDesk,
@@ -173,31 +110,13 @@ function Style({props}) {
     prefixConstant: NAME_TYPOGRAPHY,
     attributes,
   });
-//description
-  const {
-    typoStylesDesktop:textTypoDesk,
-    typoStylesTab:textTypoTab,
-    typoStylesMobile:textTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: TEXT_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    desktopRangeStyle: textSpacingDesk,
-    tabRangeStyle: textSpacingTab,
-    mobRangeStyle: textSpacingMob,
-  } = generateResRangeStyle({
-    controlName: TEXT_SPACING,
-    property: 'margin-top',
-    attributes,
-  });
   //count
   const {
     typoStylesDesktop: countTypoDesk,
     typoStylesTab: countTypoTab,
     typoStylesMobile: countTypoMob,
   } = generateTypographyStyles({
-    prefixConstant:COUNT_TYPOGRAPHY,
+    prefixConstant: COUNT_TYPOGRAPHY,
     attributes,
   });
   const {
@@ -208,15 +127,6 @@ function Style({props}) {
     controlName: COUNT_PADDING,
     styleFor: 'padding',
     attributes,
-  });
-  const {
-    backgroundStylesDesktop: countBGDesk,
-    backgroundStylesTab: countBGTab,
-    backgroundStylesMobile: countBGMob,
-  } = generateNormalBGControlStyles({
-    controlName: COUNT_BG,
-    attributes,
-    noMainBGImg: true,
   });
   const {
     desktopBorderStyle: countBorderDesk,
@@ -239,185 +149,90 @@ function Style({props}) {
     attributes,
     controlName: COUNT_SHADOW,
   });
-  //view btn
-  const {
-    typoStylesDesktop: viewBtnTypoDesk,
-    typoStylesTab: viewBtnTypoTab,
-    typoStylesMobile: viewBtnTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant:VIEW_BTN_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: viewBtnPaddingDesk,
-    dimensionStylesTab: viewBtnPaddingTab,
-    dimensionStylesMobile: viewBtnPaddingMob,
-  } = generateDimensionStyle({
-    controlName: VIEW_BTN_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
-
-  const {
-    desktopBorderStyle: viewBtnBorderDesk,
-    tabBorderStyle: viewBtnBorderTab,
-    mobBorderStyle: viewBtnBorderMob,
-  } = generateBorderStyle({
-    controlName: VIEW_BTN_BORDER,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: viewBtnBorderRadiusDesk,
-    dimensionStylesTab: viewBtnBorderRadiusTab,
-    dimensionStylesMobile: viewBtnBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: VIEW_BTN_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
-  const {boxShadowStyle: viewBtnBoxShadow} = generateBoxShadowStyles({
-    attributes,
-    controlName: VIEW_BTN_SHADOW,
-  });
   const desktopAllStyle = `
-        .${uniqueId}.zolo-block.zolo-post-category-wrap{
-          grid-template-columns:repeat(${columnCountDesk}, 1fr);
+        .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
           ${colGapDesk}
         }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
-        ${itemHeightDesk}
-        ${itemAlignDesk}
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
         ${itemBGDesk}
         ${itemPaddingDesk}
         ${itemBorderDesk}
         ${itemBorderRadiusDesk}
         ${itemBoxShadow}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img:before{
-        ${thumbnailOverlayBGDesk}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
-        ${itemBorderRadiusDesk}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover{
+
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover{
        ${itemHoverBGDesk}
        ${itemHoverBoxShadow}
        ${itemHoverOpacity ? `opacity:${itemHoverOpacity};` : ''}
-       ${nameHoverColor ? `color:${nameHoverColor};` : ''}
-       ${textHoverColor ? `color:${textHoverColor};` : ''}
-       ${countHoverColor ? `color:${countHoverColor};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover .zolo-name {
+        ${nameHoverColor ? `color:${nameHoverColor};` : ''}
+      }
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover .zolo-count{
+        ${countHoverColor ? `color:${countHoverColor};` : ''}
+        ${countBgHoverColor ? `background-color:${countBgHoverColor};` : ''}
+      }
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
         ${nameTypoDesk}
         ${nameColor ? `color:${nameColor};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{
-        ${textTypoDesk}
-        ${textSpacingDesk}
-        ${textColor ? `color:${textColor};` : ''}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-count{
+
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
         ${countTypoDesk}
         ${countPaddingDesk}
-        ${countBGDesk}
         ${countBorderDesk}
         ${countBorderRadiusDesk}
         ${countBoxShadow}
         ${countColor ? `color:${countColor};` : ''}
+        ${countBgColor ? `background-color:${countBgColor};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-link{
-        ${viewBtnTypoDesk}
-        ${viewBtnPaddingDesk}
-        ${viewBtnBorderDesk}
-        ${viewBtnBorderRadiusDesk}
-        ${viewBtnBoxShadow}
-        ${viewBtnColor ? `color:${viewBtnColor};` : ''}
-        ${viewBtnBgColor ? `background-color:${viewBtnBgColor};` : ''}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-link:hover{
-        ${viewBtnHoverColor ? `color:${viewBtnHoverColor};` : ''}
-        ${viewBtnBgHoverColor ? `background-color:${viewBtnBgHoverColor};` : ''}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-link .zolo__display-icon svg{
-        ${viewBtnIconColor ? `fill:${viewBtnIconColor};` : ''}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-link:hover .zolo__display-icon svg{
-        ${viewBtnIconHoverColor ? `fill:${viewBtnIconHoverColor};` : ''}
-      }
+
+
   `;
 
   const tabletAllStyle = `
-      .${uniqueId}.zolo-block.zolo-post-category-wrap{
-        grid-template-columns:repeat(${columnCountTab}, 1fr);
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
         ${colGapTab}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
-        ${itemHeightTab}
-        ${itemAlignTab}
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
         ${itemBGTab}
         ${itemPaddingTab}
         ${itemBorderTab}
         ${itemBorderRadiusTab}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
-        ${itemBorderRadiusTab}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
         ${nameTypoTab}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{
-        ${textTypoTab}
-        ${textSpacingTab}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-count{
+
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
         ${countTypoTab}
         ${countPaddingTab}
-        ${countBGTab}
         ${countBorderTab}
         ${countBorderRadiusTab}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-link{
-        ${viewBtnTypoTab}
-        ${viewBtnPaddingTab}
-        ${viewBtnBorderTab}
-        ${viewBtnBorderRadiusTab}
-      }
+
   `;
   const mobileAllStyle = `
-      .${uniqueId}.zolo-block.zolo-post-category-wrap{
-        grid-template-columns:repeat(${columnCountMob}, 1fr);
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
         ${colGapMob}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
-        ${itemHeightMob}
-        ${itemAlignMob}
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
         ${itemBGMob}
         ${itemPaddingMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
       }
-       .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
-        ${itemBorderRadiusMob}
-       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
+
+      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
         ${nameTypoMob}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{
-        ${textTypoMob}
-        ${textSpacingMob}
-      }
-       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-count{
+
+       .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
         ${countTypoMob}
         ${countPaddingMob}
-        ${countBGMob}
         ${countBorderMob}
         ${countBorderRadiusMob}
-      }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-link{
-        ${viewBtnTypoMob}
-        ${viewBtnPaddingMob}
-        ${viewBtnBorderMob}
-        ${viewBtnBorderRadiusMob}
       }
   `;
   return (
@@ -425,9 +240,9 @@ function Style({props}) {
       <GlobalStyleHanlder
         attributes={attributes}
         setAttributes={setAttributes}
-        desktopAllStyle={applyFilters('zolo.postCategory.desktopAllStyle', desktopAllStyle, props)}
-        tabAllStyle={applyFilters('zolo.postCategory.tabletAllStyle', tabletAllStyle, props)}
-        mobileAllStyle={applyFilters('zolo.postCategory.mobileAllStyle', mobileAllStyle, props)}
+        desktopAllStyle={applyFilters('zolo.tagCloud.desktopAllStyle', desktopAllStyle, props)}
+        tabAllStyle={applyFilters('zolo.tagCloud.tabletAllStyle', tabletAllStyle, props)}
+        mobileAllStyle={applyFilters('zolo.tagCloud.mobileAllStyle', mobileAllStyle, props)}
       />
     </>
   );
