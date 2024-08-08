@@ -184,6 +184,20 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_coming_soon_mode',
+            [
+                'type'             => 'boolean',
+                'default'          => '',
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
         // register support maintenance mode template
         register_setting(
             'zolo_blocks_settings_group',

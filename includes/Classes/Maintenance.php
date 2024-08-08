@@ -9,6 +9,7 @@ class Maintenance {
 
     public function __construct() {
         $maintenance_mode = get_option('zolo_maintenance_mode');
+        $coming_soon_mode = get_option('zolo_coming_soon_mode');
         $maintenance_page_id = get_option('zolo_maintenance_mode_template');
 
         // Activation and deactivation hooks.
@@ -16,15 +17,11 @@ class Maintenance {
         register_deactivation_hook(ZOLO_FILE, [$this, 'deactivation']);
 
         // Template redirect if maintenance mode is enabled.
-        if ($maintenance_mode && !empty($maintenance_page_id)) {
+        if ((!empty($maintenance_mode) || !empty($coming_soon_mode)) && !empty($maintenance_page_id)) {
             add_action('template_redirect', [$this, 'redirect_to_maintenance_page'], 99);
-            add_filter('template_include', [$this, 'load_maintenance_template'], 99);
         }
     }
 
-    public function load_maintenance_template() {
-        return ZOLO_DIR_PATH . 'views/maintenance.php';
-    }
 
     public function redirect_to_maintenance_page() {
         $maintenance_mode = get_option('zolo_maintenance_mode');
@@ -33,8 +30,11 @@ class Maintenance {
         if ($maintenance_page_id == $current_page_id) {
             return;
         }
-        if ($maintenance_mode && $maintenance_page_id !== $current_page_id) {
-            status_header(503);
+
+        if (!is_user_logged_in() && $maintenance_page_id !== $current_page_id) {
+            if ($maintenance_mode) {
+                status_header(503);
+            }
             echo '<script type="text/javascript">window.location.href = "' . esc_url(get_page_link($maintenance_page_id)) . '";</script>';
             exit();
         }

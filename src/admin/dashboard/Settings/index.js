@@ -11,9 +11,9 @@ const Settings = () => {
     const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
     const [maintenanceMode, setMaintenanceMode] = useState(false);
+    const [comingSoonMode, setComingSoonMode] = useState(false);
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
     const [blockImport, setBlockImport] = useState(false);
@@ -27,9 +27,9 @@ const Settings = () => {
     const fetchTemplates = useCallback(async (data) => {
         try {
             const response = await apiFetch(data);
-            const formattedTemplates = response.map(template => ({
+            const formattedTemplates = response.map((template) => ({
                 label: template.title.rendered,
-                value: template.id
+                value: template.id,
             }));
 
             setTemplates(formattedTemplates);
@@ -40,8 +40,6 @@ const Settings = () => {
         }
     }, []);
 
-
-
     const fetchSettings = useCallback(async (data) => {
         try {
             const response = await apiFetch(data);
@@ -49,7 +47,7 @@ const Settings = () => {
             setSupportSVG(response.zolo_support_svg);
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
-
+            setComingSoonMode(response.zolo_coming_soon_mode);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
@@ -64,7 +62,7 @@ const Settings = () => {
     }, [fetchSettings]);
 
     useEffect(() => {
-        fetchTemplates({ path: 'wp/v2/pages' })
+        fetchTemplates({ path: 'wp/v2/pages' });
     }, []);
 
     const updateSettings = useCallback(async (data) => {
@@ -74,6 +72,7 @@ const Settings = () => {
             setSupportSVG(response.zolo_support_svg);
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
+            setComingSoonMode(response.zolo_coming_soon_mode);
             setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
@@ -101,10 +100,28 @@ const Settings = () => {
     };
 
     const updateMaintenanceMode = (value) => {
+        const comingSoonValue = value ? false : undefined; // If maintenance mode is true, set coming soon to false.
+
         updateSettings({
             path: '/wp/v2/settings',
             method: 'POST',
-            data: { zolo_maintenance_mode: value },
+            data: {
+                zolo_maintenance_mode: value,
+                ...(comingSoonValue !== undefined && { zolo_coming_soon_mode: comingSoonValue }),
+            },
+        });
+    };
+
+    const updateComingSoonMode = (value) => {
+        const maintenanceValue = value ? false : undefined; // If coming soon mode is true, set maintenance mode to false.
+
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_coming_soon_mode: value,
+                ...(maintenanceValue !== undefined && { zolo_maintenance_mode: maintenanceValue }),
+            },
         });
     };
 
@@ -502,14 +519,34 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('Enable Coming Soon Mode', 'zoloblocks')}
-                                        released={false}
                                         description={
                                             <>
                                                 If your website is still under construction and not ready for public viewing, the 'Coming
                                                 Soon' page will return an HTTP 200 status code.
                                             </>
                                         }
-                                    ></SettingBox>
+                                    >
+                                        <ToggleControl
+                                            checked={comingSoonMode}
+                                            onChange={() => {
+                                                updateComingSoonMode(!comingSoonMode);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                        {!maintenanceMode && comingSoonMode && (
+                                            <SelectControl
+                                                label={__('Select Templates', 'zoloblocks')}
+                                                help={__(
+                                                    '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                    'zoloblocks'
+                                                )}
+                                                value={maintenanceModeTemplate}
+                                                options={templates}
+                                                onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                __nextHasNoMarginBottom
+                                            />
+                                        )}
+                                    </SettingBox>
                                     <SettingBox
                                         title={__('Enable Maintenance Mode', 'zoloblocks')}
                                         description={
@@ -522,25 +559,23 @@ const Settings = () => {
                                         <ToggleControl
                                             checked={maintenanceMode}
                                             onChange={() => {
-                                                updateMaintenanceMode(!maintenanceMode)
+                                                updateMaintenanceMode(!maintenanceMode);
                                                 setNotice(true);
                                             }}
                                         />
-
-                                       {maintenanceMode && (
+                                        {maintenanceMode && !comingSoonMode && (
                                             <SelectControl
                                                 label={__('Select Templates', 'zoloblocks')}
-                                                help={
-                                                    __('`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`', 'zoloblocks')
-                                                }
+                                                help={__(
+                                                    '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                    'zoloblocks'
+                                                )}
                                                 value={maintenanceModeTemplate}
                                                 options={templates}
                                                 onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
                                                 __nextHasNoMarginBottom
                                             />
-                                       )}
-
-
+                                        )}
                                     </SettingBox>
                                 </div>
                             </div>
