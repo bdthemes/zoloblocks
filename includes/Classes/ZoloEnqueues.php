@@ -134,6 +134,19 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 return;
             }
 
+            // particles js
+            if (has_block('zolo/container')) {
+                wp_enqueue_script(
+                    'particles-js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+
+                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
+            }
+
             // form validation
             if (has_block('zolo/form')) {
                 wp_enqueue_script(
@@ -283,6 +296,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 false
             );
 
+            // partilces js
+            wp_enqueue_script(
+                'particles-js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
+
+            wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
+
+
             // Register Modules
             $modules_dep_path = ZOLO_DIR_PATH . 'build/module/index.asset.php';
             $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [
@@ -379,6 +404,19 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script(
                     'zolo-shape-divider-editor-script',
                     trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/index.js',
+                    $script_dependecy['dependencies'],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+
+            // import shape divider
+            $import_particles_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/particles/index.asset.php';
+            if (file_exists($import_particles_file)) {
+                $script_dependecy = include $import_particles_file;
+                wp_enqueue_script(
+                    'zolo-particles-editor-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/index.js',
                     $script_dependecy['dependencies'],
                     ZOLO_VERSION,
                     true
