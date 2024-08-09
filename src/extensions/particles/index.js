@@ -1,6 +1,6 @@
 import { addFilter } from '@wordpress/hooks';
 // alert('particles');
-// import Inspector from './inspector.js';
+import Inspector from './inspector.js';
 import Render from './render';
 import './style.scss';
 // import Style from './style.js';
@@ -8,10 +8,10 @@ import './style.scss';
 import './attributes';
 import useParticlesInit from './init';
 
-// addFilter('zolo.extensions.controls.cursors', 'zolo/extensions/cursors', (panels, block, panelProps) => {
-//     panels.push(<Inspector panelProps={panelProps} />);
-//     return panels;
-// });
+addFilter('zolo.extensions.controls.particles', 'zolo/extensions/particles', (panels, block, panelProps) => {
+    panels.push(<Inspector panelProps={panelProps} />);
+    return panels;
+});
 
 addFilter('zolo.blocks.render.hook.before', 'zolo/extensions/particles', (panels, panelProps) => {
     //skip accordion child, brand child, email, fancy list child,  map

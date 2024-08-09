@@ -1,4 +1,4 @@
-
+import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
 
 const useParticlesInit = (attributes, uniqueId) => {
     // Validate inputs
@@ -10,126 +10,155 @@ const useParticlesInit = (attributes, uniqueId) => {
         console.error('Invalid uniqueId');
         return;
     }
-        // const { attributes } = panelProps;
-        const { zoloParticles } = attributes ;
-        const { backgroundColor, dotNumber, dotColor, dotShape, dotSize, speed, dotOpacity } = zoloParticles;
-
-    try {
-        particlesJS('particles-js', {
+    // const { attributes } = panelProps;
+    const { zoloParticles } = attributes;
+    const { particleOptions, preset, colors, dotSize, speed, dotOpacity } = zoloParticles;
+    const { shapes, direction, shapeSize } = particleOptions;
+    const color = colors && colors.map((color) => color.color);
+    const mainOptions = {
+        ...(preset === 'hover_bubble' && {
             particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800,
-                    },
-                },
+                ...optionOne?.particles,
                 color: {
-                    value: '#ffffff',
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000',
-                    },
-                    polygon: {
-                        nb_sides: 5,
-                    },
-                    image: {
-                        src: 'img/github.svg',
-                        width: 100,
-                        height: 100,
-                    },
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false,
-                    },
+                    value: color && color.length > 0 && color[0] !== '' ? color : optionOne?.particles.color?.value,
                 },
                 size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false,
-                    },
+                    ...optionSix?.size,
+                    value: shapeSize ? shapeSize : optionOne?.particles.size?.value,
                 },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#ffffff',
-                    opacity: 0.4,
-                    width: 1,
+
+                shape: {
+                    type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
+                },
+                ...(preset === 'hover_bubble' && {
+                    move: {
+                        ...optionOne?.move,
+                        direction: direction || 'none',
+                    },
+                }),
+            },
+        }),
+        ...(preset === 'hover_bubble' && { interactivity: optionOne?.interactivity }),
+
+        // dust_wind
+        ...(preset === 'dust_wind' && {
+            particles: {
+                ...optionTwo?.particles,
+                color: {
+                    value: color && color.length > 0 && color[0] !== '' ? color : optionTwo?.particles.color?.value || '#000000',
+                },
+                size: {
+                    ...optionSix?.size,
+                    value: shapeSize ? shapeSize : optionTwo?.particles.size?.value,
+                },
+                shape: {
+                    type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                 },
                 move: {
-                    enable: true,
-                    speed: 6,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200,
-                    },
+                    ...optionTwo?.move,
+                    direction: direction || 'none',
                 },
             },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'grab',
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push',
-                    },
-                    resize: true,
+        }),
+        //Flying Bubble
+        ...(preset === 'flying_bubble' && {
+            particles: {
+                ...optionThree?.particles,
+                color: {
+                    value: color && color.length > 0 && color[0] !== '' ? color : optionThree?.particles.color?.value || '#000000',
                 },
-                modes: {
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 1,
-                        },
-                    },
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 8,
-                        speed: 3,
-                    },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4,
-                    },
-                    push: {
-                        particles_nb: 4,
-                    },
-                    remove: {
-                        particles_nb: 2,
-                    },
+                size: {
+                    ...optionSix?.size,
+                    value: shapeSize ? shapeSize : optionThree?.particles.size?.value,
                 },
-            },
-            retina_detect: true,
-        });
+                shape: {
+                    type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
+                },
 
+                move: {
+                    ...optionThree?.move,
+                    direction: direction || 'none',
+                },
+            },
+            //interactivity
+            ...(preset === 'flying_bubble' && { interactivity: optionThree?.interactivity }),
+        }),
+        //snow fall
+        ...(preset === 'snow_fall' && {
+            particles: {
+                ...optionFour?.particles,
+                color: {
+                    value: color && color.length > 0 && color[0] !== '' ? color : optionFour?.particles.color?.value || '#000000',
+                },
+                size: {
+                    ...optionSix?.size,
+                    value: shapeSize ? shapeSize : optionFour?.particles.size?.value,
+                },
+                shape: {
+                    type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
+                },
+                move: {
+                    ...optionFour?.move,
+                    direction: direction || 'none',
+                },
+            },
+            //interactivity
+            ...(preset === 'snow_fall' && { interactivity: optionFour?.interactivity }),
+        }),
+
+        // flying shape
+        ...(preset === 'flying_shape' && {
+            particles: {
+                ...optionFive?.particles,
+                color: {
+                    value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
+                },
+                size: {
+                    ...optionSix?.shapeSize,
+                    value: shapeSize ? shapeSize : optionFive?.particles.size?.value,
+                },
+                shape: {
+                    type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
+                },
+                move: {
+                    ...optionFive?.move,
+                    direction: direction || 'none',
+                },
+            },
+            //interactivity
+            ...(preset === 'flying_shape' && { interactivity: optionFive?.interactivity }),
+        }),
+        // polygon Move
+        ...(preset === 'polygonal_move' && {
+            particles: {
+                ...optionSix?.particles,
+                color: {
+                    value: color && color.length > 0 && color[0] !== '' ? color : optionSix?.particles.color?.value || '#000000',
+                },
+                size: {
+                    ...optionSix?.size,
+                    value: shapeSize ? shapeSize : optionSix?.particles.size?.value,
+                },
+
+                shape: {
+                    type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionSix?.particles.shape?.type,
+                },
+                ...optionSix?.opacity,
+                move: {
+                    ...optionSix?.move,
+                    direction: direction || 'none',
+                },
+            },
+        }),
+
+        retina_detect: true,
+    };
+    try {
+        particlesJS('particles-js', mainOptions);
 
         // Optionally, add more code to handle cursors initialization logic
     } catch (error) {
-        console.error('Error initializing Cotton cursors:', error);
+        console.error('Error initializing particles effects:', error);
     }
 };
 

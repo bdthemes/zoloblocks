@@ -29,15 +29,13 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/partic
             zoloParticles: {
                 type: 'object',
                 default: {
-                    active: true,
-                    backgroundColor: '#000000',
-                    dotNumber: 100,
-                    dotColor: '#ffffff',
-                    dotShape: 'circle',
-                    dotSize: 4,
-                    speed: 2,
-                    dotOpacity: 0.5,
-
+                    active: false,
+                    preset: 'dust_wind',
+                    particleOptions: {
+                        colors: '#000000',
+                        customOptions: {},
+                    },
+                    colors:[],
                 },
             },
             ...generateResRangeAttributies(DOT_SIZE),

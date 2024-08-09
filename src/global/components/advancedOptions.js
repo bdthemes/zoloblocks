@@ -118,6 +118,7 @@ export const AdvancedOptions = (props) => {
     const displayPanels = applyFilters('zolo.blocks.displayConditions', [], panelProps);
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
     const cursorsPanel = applyFilters('zolo.extensions.controls.cursors', [], block, panelProps);
+    const particles = applyFilters('zolo.extensions.controls.particles', [], block, panelProps);
 
     return (
         <>
@@ -338,6 +339,7 @@ export const AdvancedOptions = (props) => {
                 </>
             )}
             {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
+            {particles && particles.length > 0 && particles}
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
                     label={__('Transform', 'zoloblocks')}
