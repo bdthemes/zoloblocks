@@ -144,6 +144,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     true
                 );
 
+                wp_enqueue_script('particles-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/frontend/index.js', [], ZOLO_VERSION, true);
                 wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
             }
 

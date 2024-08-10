@@ -1,6 +1,8 @@
 import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
 
-const useParticlesInit = (attributes, uniqueId) => {
+const useParticlesInit = (panelProps) => {
+    const { attributes, setAttributes } = panelProps;
+    const { uniqueId } = attributes;
     // Validate inputs
     if (typeof attributes !== 'object' || !attributes) {
         console.error('Invalid attributes object');
@@ -10,11 +12,22 @@ const useParticlesInit = (attributes, uniqueId) => {
         console.error('Invalid uniqueId');
         return;
     }
-    // const { attributes } = panelProps;
     const { zoloParticles } = attributes;
-    const { particleOptions, preset, colors, dotSize, speed, dotOpacity } = zoloParticles;
-    const { shapes, direction, shapeSize } = particleOptions;
+    const { particleOptions, preset, colors, toggleCustomOption, speed, dotOpacity } = zoloParticles;
+    const { shapes, direction, shapeSize, customOptions } = particleOptions;
     const color = colors && colors.map((color) => color.color);
+
+    function createObject(customOptions) {
+        if (!customOptions) {
+            return false;
+        }
+        try {
+            let obj = JSON.parse(customOptions);
+            return obj;
+        } catch (error) {
+            return false;
+        }
+    }
     const mainOptions = {
         ...(preset === 'hover_bubble' && {
             particles: {
@@ -153,8 +166,20 @@ const useParticlesInit = (attributes, uniqueId) => {
 
         retina_detect: true,
     };
+
+    // add default options
+    if (particleOptions === null || particleOptions === undefined) {
+        setAttributes({
+            zoloParticles: {
+                ...zoloParticles,
+                particleOptions: toggleCustomOption && customOptions ? createObject(customOptions) : !toggleCustomOption && mainOptions,
+            },
+        });
+    }
+    const optionData = toggleCustomOption && customOptions ? createObject(customOptions) : !toggleCustomOption && mainOptions;
+
     try {
-        particlesJS('particles-js', mainOptions);
+        particlesJS(`zolo-particles-${uniqueId}`, optionData);
 
         // Optionally, add more code to handle cursors initialization logic
     } catch (error) {

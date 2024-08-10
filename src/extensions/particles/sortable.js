@@ -20,13 +20,6 @@ const Sortable = ({ sortableProps }) => {
                 <Button
                     onClick={() =>
                         setAttributes({
-                            // colors: [
-                            //     ...colors,
-                            //     {
-                            //         id: colors.length + 1,
-                            //         color: '#808080',
-                            //     },
-                            // ],
                             zoloParticles: {
                                 ...zoloParticles,
                                 colors: [
@@ -57,7 +50,6 @@ const Sortable = ({ sortableProps }) => {
                                     icon="trash"
                                     onClick={() => {
                                         setAttributes({
-                                            // colors: colors.filter((color, i) => index !== i),
                                             zoloParticles: {
                                                 ...zoloParticles,
                                                 colors: colors.filter((color, i) => index !== i),

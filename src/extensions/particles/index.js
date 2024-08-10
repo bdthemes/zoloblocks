@@ -17,7 +17,7 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/extensions/particles', (panels
     //skip accordion child, brand child, email, fancy list child,  map
     if (!panelProps.attributes.zoloParticles.active) return panels;
     setTimeout(() => {
-        useParticlesInit(panelProps.attributes, panelProps.attributes.uniqueId);
+        useParticlesInit(panelProps);
     }, 400);
     panels.push(<Render panelProps={panelProps} />);
     return panels;
@@ -25,9 +25,9 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/extensions/particles', (panels
 
 
 // addFilter('zolo.container.desktopAllStyle', 'zolo/extensions/cursors', (desktopAllStyle, props) => {
-//     if (props.attributes.zoloCursors) {
-//         const { zoloCursorsDesktop } = Style(props);
-//         return desktopAllStyle + zoloCursorsDesktop;
+//     if (props.attributes.zoloParticles) {
+//         const { zoloParticlesDesktop } = Style(props);
+//         return desktopAllStyle + zoloParticlesDesktop;
 //     }
 //     return desktopAllStyle;
 // });

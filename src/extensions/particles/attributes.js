@@ -1,26 +1,5 @@
 import { addFilter } from '@wordpress/hooks';
 
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateTypographyAttributes,
-} = window.zoloModule;
-
-import {
-    DOT_SIZE,
-    IMAGE_SIZE,
-    ICON_SIZE,
-    CURSOR_TEXT_TYPOGRAPHY,
-    TEXT_BORDER,
-    TEXT_BORDER_RADIUS,
-    TEXT_PADDING,
-    IMAGE_BORDER,
-    IMAGE_BORDER_RADIUS,
-} from './constants';
-
-import * as typographyObjs from './constants/typoPrefixConstant';
-
 const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/particles', (settings) => {
     if (settings.category && settings.category == 'zoloblocks') {
         // Add new attribute
@@ -32,21 +11,12 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/partic
                     active: false,
                     preset: 'dust_wind',
                     particleOptions: {
-                        colors: '#000000',
                         customOptions: {},
                     },
-                    colors:[],
+                    colors: [],
+                    toggleCustomOption: false,
                 },
             },
-            ...generateResRangeAttributies(DOT_SIZE),
-            ...generateResRangeAttributies(IMAGE_SIZE),
-            ...generateResRangeAttributies(ICON_SIZE),
-            ...generateBorderAttributies(TEXT_BORDER),
-            ...generateDimensionAttributes(TEXT_BORDER_RADIUS),
-            ...generateDimensionAttributes(TEXT_PADDING),
-            // ...generateTypographyAttributes(Object.values(typographyObjs)),
-            ...generateBorderAttributies(IMAGE_BORDER),
-            ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),
         };
     }
 

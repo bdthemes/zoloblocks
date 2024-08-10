@@ -5,14 +5,13 @@
 import { __ } from '@wordpress/i18n';
 export default function Render({ panelProps }) {
     const { attributes } = panelProps;
+    const { uniqueId, zoloParticles } = attributes;
 
-    const { uniqueId, zoloCursors } = attributes;
-
-    const { source, textLabel, imageSource, icon } = zoloCursors;
+    // const { source, textLabel, imageSource, icon } = zoloParticles;
 
     return (
         <>
-            <div id="particles-js"></div>
+            <div id={`zolo-particles-${uniqueId}`} className='zolo-particles'></div>
         </>
     );
 }

@@ -22,9 +22,9 @@ import { CURSOR_TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 const Style = (props) => {
 
     const { attributes } = props;
-    const { zoloCursors, uniqueId } = attributes;
+    const { zoloParticles, uniqueId } = attributes;
 
-    const { primaryColor, textColor, iconColor, disabledDefault } = zoloCursors;
+    const { primaryColor, textColor, iconColor, disabledDefault } = zoloParticles;
 
     // Accordion Head
     const {
@@ -151,7 +151,7 @@ const Style = (props) => {
         attributes,
     });
 
-    const zoloCursorsDesktop = `
+    const zoloParticlesDesktop = `
        ${
            disabledDefault
                ? `
@@ -187,8 +187,8 @@ const Style = (props) => {
         ${iconHeightDesk}
         }
     `;
-    // const zoloCursorsDesktop = ``;
-    const zoloCursorsTablet = `
+    // const zoloParticlesDesktop = ``;
+    const zoloParticlesTablet = `
         .cursors-${uniqueId}.zolo-cursors.cursor-type-default.cotton-moving{
         ${dotWidthTab}
         ${dotHeightTab}
@@ -212,7 +212,7 @@ const Style = (props) => {
         ${iconHeightTab}
         }
     `;
-    const zoloCursorsMobile = `
+    const zoloParticlesMobile = `
         .cursors-${uniqueId}.zolo-cursors.cursor-type-default.cotton-moving{
         ${dotWidthMob}
         ${dotHeightMob}
@@ -238,9 +238,9 @@ const Style = (props) => {
     `;
 
     return {
-        zoloCursorsDesktop,
-        zoloCursorsTablet,
-        zoloCursorsMobile,
+        zoloParticlesDesktop,
+        zoloParticlesTablet,
+        zoloParticlesMobile,
     };
 };
 export default Style;
