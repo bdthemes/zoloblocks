@@ -94,7 +94,7 @@ const attributes = {
   },
   singleBG:{
     type:'boolean',
-    default: false,
+    default: true,
   },
   multipleBG:{
     type:'string',

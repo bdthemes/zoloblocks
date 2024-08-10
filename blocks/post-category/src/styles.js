@@ -45,6 +45,7 @@ function Style({props}) {
   const {attributes, setAttributes} = props;
 
   const {
+    preset,
     uniqueId,
     itemHoverOpacity,
     nameColor,
@@ -284,15 +285,36 @@ function Style({props}) {
           grid-template-columns:repeat(${columnCountDesk}, 1fr);
           ${colGapDesk}
         }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
-        ${itemHeightDesk}
-        ${itemAlignDesk}
-        ${itemBGDesk}
-        ${itemPaddingDesk}
-        ${itemBorderDesk}
-        ${itemBorderRadiusDesk}
-        ${itemBoxShadow}
-      }
+        .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
+          ${itemHeightDesk}
+          ${itemAlignDesk}
+          ${itemBGDesk}
+          ${itemBorderDesk}
+          ${itemBorderRadiusDesk}
+          ${itemBoxShadow}
+        }
+
+        ${
+          preset === 'style-1'
+              ? `
+                .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
+                  ${itemPaddingDesk}
+                }
+              `
+          : ''
+        }
+
+        ${
+          preset === 'style-2'
+              ? `
+                .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-content,
+                .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-bottom-content {
+                  ${itemPaddingDesk}
+                }
+              `
+          : ''
+        }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img:before{
         ${thumbnailOverlayBGDesk}
       }
@@ -303,14 +325,24 @@ function Style({props}) {
        ${itemHoverBGDesk}
        ${itemHoverBoxShadow}
        ${itemHoverOpacity ? `opacity:${itemHoverOpacity};` : ''}
-       ${nameHoverColor ? `color:${nameHoverColor};` : ''}
-       ${textHoverColor ? `color:${textHoverColor};` : ''}
-       ${countHoverColor ? `color:${countHoverColor};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
+      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name {
         ${nameTypoDesk}
         ${nameColor ? `color:${nameColor};` : ''}
       }
+
+      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-name {
+        ${nameHoverColor ? `color:${nameHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-text {
+          ${textHoverColor ? `color:${textHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-count {
+          ${countHoverColor ? `color:${countHoverColor};` : ''}
+      }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{
         ${textTypoDesk}
         ${textSpacingDesk}
@@ -355,10 +387,31 @@ function Style({props}) {
         ${itemHeightTab}
         ${itemAlignTab}
         ${itemBGTab}
-        ${itemPaddingTab}
         ${itemBorderTab}
         ${itemBorderRadiusTab}
       }
+
+      ${
+        preset === 'style-1'
+            ? `
+              .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
+                  ${itemPaddingTab}
+              }
+            `
+        : ''
+      }
+
+      ${
+        preset === 'style-2'
+            ? `
+              .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-content,
+              .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-bottom-content {
+                  ${itemPaddingTab}
+              }
+            `
+        : ''
+      }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
         ${itemBorderRadiusTab}
       }
@@ -392,17 +445,38 @@ function Style({props}) {
         ${itemHeightMob}
         ${itemAlignMob}
         ${itemBGMob}
-        ${itemPaddingMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
       }
+
+      ${
+        preset === 'style-1'
+            ? `
+              .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
+                ${itemPaddingMob}
+              }
+            `
+        : ''
+      }
+
+      ${
+        preset === 'style-2'
+            ? `
+              .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-content,
+              .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-bottom-content {
+                ${itemPaddingMob}
+              }
+            `
+        : ''
+      }
+
        .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
         ${itemBorderRadiusMob}
        }
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
         ${nameTypoMob}
       }
-      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{
+      .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text {
         ${textTypoMob}
         ${textSpacingMob}
       }
