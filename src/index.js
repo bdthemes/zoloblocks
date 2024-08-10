@@ -32,6 +32,8 @@ import '../blocks/image-compare/src';
 import '../blocks/list/src';
 import '../blocks/newsletter/src';
 import '../blocks/post-carousel/src';
+import '../blocks/post-category/src';
+import '../blocks/tag-cloud/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
 import '../blocks/pricing-table/src';

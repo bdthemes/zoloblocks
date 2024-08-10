@@ -1,4 +1,5 @@
 import { select } from '@wordpress/data';
+import CryptoJS from 'crypto-js';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
@@ -177,4 +178,65 @@ export const getContrastRatio = (color1, color2) => {
     const contrastRatio = luminance1 > luminance2 ? luminance1 / luminance2 : luminance2 / luminance1;
 
     return contrastRatio.toFixed(2); // Return the contrast ratio rounded to two decimal places
+};
+
+export const isEmpty = (value) => {
+    // Check for undefined or null
+    if (value == null) {
+        return true;
+    }
+
+    // Check for an empty string (including whitespace-only strings)
+    if (typeof value === 'string' && value.trim().length === 0) {
+        return true;
+    }
+
+    // Check for an empty array
+    if (Array.isArray(value) && value.length === 0) {
+        return true;
+    }
+
+    // Check for an empty object
+    if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) {
+        return true;
+    }
+
+    // If none of the above conditions are met, the value is not empty
+    return false;
+};
+
+/**
+ * Converts a string to a hexadecimal color code and adjusts brightness.
+ *
+ * @param {string} str - The input string.
+ * @param {number} steps - The steps to adjust brightness. Negative for darker, positive for lighter. Range: -255 to 255.
+ * @returns {string|boolean} The hexadecimal color code or false if the input string is empty.
+ */
+export const strToHex = (str, steps = -10) => {
+    if (!str) {
+        return false;
+    }
+
+    // Generate an MD5 hash of the string and get the first 6 characters.
+    const hexOutput = CryptoJS.MD5(str).toString(CryptoJS.enc.Hex).substring(0, 6);
+
+    // Ensure steps are between -255 and 255.
+    steps = Math.max(-255, Math.min(255, steps));
+
+    // Split the hex string into R, G, and B components.
+    const colorParts = hexOutput.match(/.{1,2}/g);
+    let output = '#';
+
+    colorParts.forEach((color) => {
+        // Convert hex to decimal.
+        let colorDec = parseInt(color, 16);
+
+        // Adjust the color value by the steps and clamp between 0 and 255.
+        colorDec = Math.max(0, Math.min(255, colorDec + steps));
+
+        // Convert the adjusted value back to hex and pad with leading zeros if necessary.
+        output += colorDec.toString(16).padStart(2, '0');
+    });
+
+    return output.toUpperCase();
 };
