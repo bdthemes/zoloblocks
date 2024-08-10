@@ -117,6 +117,26 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ]
             ]);
 
+            // common script + style for both frontend and editor
+            $common_dep = trailingslashit(ZOLO_DIR_PATH) . 'build/common/index.asset.php';
+            if (file_exists($common_dep)) {
+                $common_dep = include $common_dep;
+                wp_enqueue_script(
+                    'zolo-common-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/common/index.js',
+                    $common_dep['dependencies'],
+                    $common_dep['version'],
+                    true
+                );
+                wp_enqueue_style(
+                    'zolo-common-style',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/common/style-index.css',
+                    $common_dep['dependencies'],
+                    $common_dep['version'],
+                    'all'
+                );
+            }
+
             /**
              * Only for frontend
              */
@@ -248,11 +268,30 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             wp_enqueue_style(
                 'zoloblocks-modules-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/modules/index.css',
-                $script_dependecy['dependencies'],
-                $script_dependecy['version'],
+                [],
                 ZOLO_VERSION,
                 'all'
             );
+
+            // editor common 
+            $editor_common_dep = trailingslashit(ZOLO_DIR_PATH) . 'build/editor-common/index.asset.php';
+            if (file_exists($editor_common_dep)) {
+                $editor_common_dep = include $editor_common_dep;
+                wp_enqueue_script(
+                    'zolo-editor-common-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/editor-common/index.js',
+                    $editor_common_dep['dependencies'],
+                    $editor_common_dep['version'],
+                    true
+                );
+                wp_enqueue_style(
+                    'zolo-editor-common-style',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/editor-common/style-index.css',
+                    $editor_common_dep['dependencies'],
+                    $editor_common_dep['version'],
+                    'all'
+                );
+            }
 
             // accordion
             wp_enqueue_script(

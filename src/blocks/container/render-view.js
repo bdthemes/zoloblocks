@@ -1,9 +1,8 @@
-import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
-import { ToolbarGroup, Dropdown, ToolbarButton, Button } from '@wordpress/components';
+import { BlockControls, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { Button, Dropdown, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { select } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
-import { applyFilters, removeFilter } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
@@ -76,13 +75,13 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                     <div className="zolo-container-inner-blocks-wrap">
                         {renderCursors && renderCursors}
                         {shapeDivider && shapeDivider.length > 0 && shapeDivider}
-                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildren ? false : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
                     <>
                         {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                         {renderCursors && renderCursors}
-                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildren ? false : InnerBlocks.ButtonBlockAppender} />
                     </>
                 )}
             </div>

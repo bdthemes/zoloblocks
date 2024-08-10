@@ -2,10 +2,10 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, Disabled } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import { BaseControl, Button, SelectControl, TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
@@ -35,60 +35,60 @@ const {
 
 import objAttributes from './attributes';
 import {
-    TITLE_MARGIN,
-    DESCRIPTION_MARGIN,
-    PRESETS,
-    ICON_SIZE,
-    BUTTON_ICON_SIZE,
-    ICON_TEXT_SPACING,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
-    ICON_BOX_SHADOW,
-    ICON_HOVER_BOX_SHADOW,
-    BUTTON_BG_COLOR,
-    BUTTON_BG_HOVER_COLOR,
-    BUTTON_BOX_SHADOW,
-    BUTTON_HOVER_BOX_SHADOW,
-    ICON_BORDER,
-    ICON_BORDER_RADIUS,
-    ICON_PADDING,
-    ICON_MARGIN,
-    BUTTON_BORDER,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_MARGIN,
-    BUTTON_PADDING,
-    ICON_IMAGE_SIZE,
-    IMAGE_BORDER,
-    ICON_IMAGE_BORDER_RADIUS,
-    CONTENT_ALIGNMENT,
-    ITEM_BG,
-    ITEM_HOVER_BG,
-    ITEM_BORDER,
-    ITEM_BRADIUS,
-    ITEM_PADDING,
-    ITEM_MARGIN,
-    ITEM_BOX_SHADOW,
-    ITEM_HBOX_SHADOW,
-    RIBBON_MARGIN,
-    RIBBON_PADDING,
-    RIBBON_BORDER,
-    RIBBON_RADIUS,
-    RIBBON_BG,
-    RIBBON_POSITIONS,
-    PRESETS_ALIGNMENT,
-    ICON_WRAPPER_BG_COLOR,
-    ANIMATION_TYPES,
     ANIMATION_POSITIONS_ONE,
     ANIMATION_POSITIONS_TWO,
+    ANIMATION_TYPES,
+    BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
+    BUTTON_BORDER,
+    BUTTON_BORDER_RADIUS,
+    BUTTON_BOX_SHADOW,
+    BUTTON_HOVER_BOX_SHADOW,
+    BUTTON_ICON_SIZE,
+    BUTTON_MARGIN,
+    BUTTON_PADDING,
+    CONTENT_ALIGNMENT,
+    DESCRIPTION_MARGIN,
     //Animation
     ICON_ANIMATION_BG,
-    ICON_ANIMATION_SIZE,
     ICON_ANIMATION_RADIUS,
+    ICON_ANIMATION_SIZE,
     ICON_ANIMATION_THICKNESS,
+    ICON_BORDER,
+    ICON_BORDER_RADIUS,
+    ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
+    ICON_IMAGE_BORDER_RADIUS,
+    ICON_IMAGE_SIZE,
+    ICON_MARGIN,
+    ICON_PADDING,
+    ICON_SIZE,
+    ICON_TEXT_SPACING,
+    ICON_WRAPPER_BG_COLOR,
+    IMAGE_BORDER,
+    ITEM_BG,
+    ITEM_BORDER,
+    ITEM_BOX_SHADOW,
+    ITEM_BRADIUS,
+    ITEM_HBOX_SHADOW,
+    ITEM_HOVER_BG,
+    ITEM_MARGIN,
+    ITEM_PADDING,
+    PRESETS,
+    PRESETS_ALIGNMENT,
+    RIBBON_BG,
+    RIBBON_BORDER,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    RIBBON_POSITIONS,
+    RIBBON_RADIUS,
+    TITLE_MARGIN,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS, ICON_BOX_OPTIONS, FLEX_ALIGN_OPTIONS, POSITIONS, HEADING } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS, HEADING, ICON_BOX_OPTIONS, POSITIONS } from '../../../src/global/constants';
+import { BUTTON_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, RIBBON_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -242,7 +242,6 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-
 
                             {showButton && (
                                 <>

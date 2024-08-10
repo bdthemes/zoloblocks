@@ -168,16 +168,19 @@ const Inspector = (props) => {
                                 options={applyFilters('zolo.advancedHeading.presets', STYLES) || STYLES}
                                 onChange={(selected) => changePremade(selected)}
                             />
+
                             <ToggleControl
                                 label={__('Enable Heading Link', 'zoloblocks')}
                                 checked={enableTitleLink}
                                 onChange={() => setAttributes({ enableTitleLink: !enableTitleLink })}
                             />
+                            
                             <ToggleControl
                                 label={__('Show Sub Heading', 'zoloblocks')}
                                 checked={showSubTitle}
                                 onChange={() => setAttributes({ showSubTitle: !showSubTitle })}
                             />
+
                             <ToggleControl
                                 label={__('Show Separator', 'zoloblocks')}
                                 checked={showSeparator}
