@@ -35,8 +35,6 @@ const Settings = () => {
             setTemplates(formattedTemplates);
         } catch (error) {
             console.error('Error fetching block templates:', error);
-        } finally {
-            setLoading(false);
         }
     }, []);
 
@@ -517,15 +515,24 @@ const Settings = () => {
                         {activeTab === 'site-visibility' && (
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
-                                    <SettingBox
-                                        title={__('Enable Coming Soon Mode', 'zoloblocks')}
-                                        description={
-                                            <>
-                                                If your website is still under construction and not ready for public viewing, the 'Coming
-                                                Soon' page will return an HTTP 200 status code.
-                                            </>
-                                        }
-                                    >
+                                    <div className="zolo-settings-option-item">
+                                        <div className="zolo-settins-content">
+                                            <h2 className="zolo-settings-title">{__('Enable Coming Soon Mode', 'zoloblocks')}</h2>
+                                            <p className="zolo-settings-text">{__("If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.")} </p>
+                                            {!maintenanceMode && comingSoonMode && (
+                                                <SelectControl
+                                                    label={__('Select Templates', 'zoloblocks')}
+                                                    help={__(
+                                                        '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                        'zoloblocks'
+                                                    )}
+                                                    value={maintenanceModeTemplate}
+                                                    options={templates}
+                                                    onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                    __nextHasNoMarginBottom
+                                                />
+                                            )}
+                                        </div>
                                         <ToggleControl
                                             checked={comingSoonMode}
                                             onChange={() => {
@@ -533,29 +540,26 @@ const Settings = () => {
                                                 setNotice(true);
                                             }}
                                         />
-                                        {!maintenanceMode && comingSoonMode && (
-                                            <SelectControl
-                                                label={__('Select Templates', 'zoloblocks')}
-                                                help={__(
-                                                    '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                    'zoloblocks'
-                                                )}
-                                                value={maintenanceModeTemplate}
-                                                options={templates}
-                                                onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                __nextHasNoMarginBottom
-                                            />
-                                        )}
-                                    </SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Maintenance Mode', 'zoloblocks')}
-                                        description={
-                                            <>
-                                                Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to
-                                                revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.
-                                            </>
-                                        }
-                                    >
+                                    </div>
+
+                                    <div className="zolo-settings-option-item">
+                                        <div className="zolo-settins-content">
+                                            <h2 className="zolo-settings-title">{__('Enable Maintenance Mode', 'zoloblocks')}</h2>
+                                            <p className="zolo-settings-text">{__("Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.")} </p>
+                                            {maintenanceMode && !comingSoonMode && (
+                                                <SelectControl
+                                                    label={__('Select Templates', 'zoloblocks')}
+                                                    help={__(
+                                                        '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                        'zoloblocks'
+                                                    )}
+                                                    value={maintenanceModeTemplate}
+                                                    options={templates}
+                                                    onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                    __nextHasNoMarginBottom
+                                                />
+                                            )}
+                                        </div>
                                         <ToggleControl
                                             checked={maintenanceMode}
                                             onChange={() => {
@@ -563,20 +567,7 @@ const Settings = () => {
                                                 setNotice(true);
                                             }}
                                         />
-                                        {maintenanceMode && !comingSoonMode && (
-                                            <SelectControl
-                                                label={__('Select Templates', 'zoloblocks')}
-                                                help={__(
-                                                    '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                    'zoloblocks'
-                                                )}
-                                                value={maintenanceModeTemplate}
-                                                options={templates}
-                                                onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                __nextHasNoMarginBottom
-                                            />
-                                        )}
-                                    </SettingBox>
+                                    </div>
                                 </div>
                             </div>
                         )}
