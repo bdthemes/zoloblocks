@@ -6,6 +6,7 @@ import { ToggleControl, SelectControl, TextareaControl, Button } from '@wordpres
 import Select2 from 'react-select';
 import { useEffect } from '@wordpress/element';
 import MultiColor from './multicolor';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -119,6 +120,17 @@ const Inspector = ({ panelProps }) => {
         setAttributes,
     };
 
+    // zolo.presets.particles;
+    const presets = [
+        { label: __('Dust Wind', 'zoloblocks'), value: 'dust_wind' },
+        { label: __('Flying Bubble', 'zoloblocks'), value: 'flying_bubble' },
+        { label: __('Snow Fall (pro)', 'zoloblocks'), value: 'snow_fall', disabled: true },
+        { label: __('Flying Shape (pro)', 'zoloblocks'), value: 'flying_shape', disabled: true },
+        { label: __('Hover Bubble (pro)', 'zoloblocks'), value: 'hover_bubble', disabled: true },
+        { label: __('Polygonal Move (pro)', 'zoloblocks'), value: 'polygonal_move', disabled: true
+        },
+    ];
+
     return (
         <>
             <ToggleControl
@@ -141,14 +153,7 @@ const Inspector = ({ panelProps }) => {
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
-                                options={[
-                                    { label: __('Dust Wind', 'zoloblocks'), value: 'dust_wind' },
-                                    { label: __('Flying Bubble', 'zoloblocks'), value: 'flying_bubble' },
-                                    { label: __('Snow Fall (pro)', 'zoloblocks'), value: 'snow_fall', disabled: true },
-                                    { label: __('Flying Shape (pro)', 'zoloblocks'), value: 'flying_shape', disabled: true },
-                                    { label: __('Hover Bubble (pro)', 'zoloblocks'), value: 'hover_bubble', disabled: true },
-                                    { label: __('Polygonal Move (pro)', 'zoloblocks'), value: 'polygonal_move', disabled: true },
-                                ]}
+                                options={applyFilters('zolo.presets.particles', presets)}
                                 onChange={(preset) => onChangeHandler(preset)}
                             />
 
