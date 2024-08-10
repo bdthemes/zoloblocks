@@ -324,5 +324,12 @@ return apply_filters(
 			'frontend-scripts' => false,
 			'class'            => '\Zolo\Blocks\TagCloud',
 		],
+		'author'             => [
+			'name'             => 'author',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/author/block.json',
+			'frontend-styles'  => [ 'zolo-fontawesome', 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+			'class'            => '\Zolo\Blocks\Author',
+		],
 	]
 );

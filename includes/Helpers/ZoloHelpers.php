@@ -486,4 +486,15 @@ class ZoloHelpers {
 
 		return strToUpper( $output );
 	}
+
+	/**
+	 * Get user role
+	 *
+	 * @param number $id .
+	 * @return mixed|null
+	 */
+	public static function get_user_role( $id ) {
+		$user = new \WP_User( $id );
+		return array_shift( $user->roles );
+	}
 }

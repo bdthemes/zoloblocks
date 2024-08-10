@@ -61,6 +61,7 @@ import '../blocks/text-path/src';
 import '../blocks/notice/src';
 import '../blocks/post-category/src';
 import '../blocks/tag-cloud/src';
+import '../blocks/author/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';

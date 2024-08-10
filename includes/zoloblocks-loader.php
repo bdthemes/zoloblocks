@@ -12,7 +12,7 @@ use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
 use Zolo\Admin\PostCategoryImage;
 use Zolo\Classes\ZoloAJAX;
-
+use Zolo\Admin\Author;
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -51,6 +51,7 @@ class ZoloBlocks_Loader {
 
 		// Load Admin files.
 		PostCategoryImage::getInstance();
+		Author::getInstance();
 		require_once trailingslashit( ZOLO_DIR_PATH ) . '/includes/Admin/Dashboard.php';
 		require_once trailingslashit( ZOLO_DIR_PATH ) . '/includes/Admin/Assets.php';
 		require_once trailingslashit( ZOLO_DIR_PATH ) . '/includes/Admin/Settings.php';
