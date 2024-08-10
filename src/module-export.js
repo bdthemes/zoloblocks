@@ -7,6 +7,7 @@ export { default as BackgroundControl } from './controls/background-control';
 export { default as BorderControl } from './controls/border-control';
 export { default as BoxShadowControl } from './controls/boxshadow-control';
 export { default as ColorControl } from './controls/color-control';
+export { default as ColorControlAlt } from './controls/color-control-alt';
 export { default as ResDimensionsControl } from './controls/dimensions-control';
 export { default as GradientControl } from './controls/gradient-control';
 export { default as ImageAvatar } from './controls/image-avatar';
