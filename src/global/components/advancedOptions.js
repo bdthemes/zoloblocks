@@ -285,6 +285,7 @@ export const AdvancedOptions = (props) => {
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
                     <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                    {particles && particles.length > 0 && particles}
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
@@ -339,7 +340,7 @@ export const AdvancedOptions = (props) => {
                 </>
             )}
             {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
-            {particles && particles.length > 0 && particles}
+
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
                     label={__('Transform', 'zoloblocks')}

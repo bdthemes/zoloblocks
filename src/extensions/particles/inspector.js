@@ -5,22 +5,15 @@ import { __ } from '@wordpress/i18n';
 import { ToggleControl, SelectControl, TextareaControl, Button } from '@wordpress/components';
 import Select2 from 'react-select';
 import { useEffect } from '@wordpress/element';
-import Sortable from './sortable';
+import MultiColor from './multicolor';
 
 /**
  * Internal depencencies
  */
 const {
-    ResRangeControl,
-    HeaderTabs,
-    IconicBtnGroup,
-    ResAlignmentControl,
-    AdvancedOptions,
     ZoloPanelBody,
-    ResGapControl,
     PopoverControl,
     SimpleRangeControl,
-    ImageAvatar,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -116,7 +109,7 @@ const Inspector = ({ panelProps }) => {
         setAttributes({
             zoloParticles: {
                 ...zoloParticles,
-                cursorId: uniqueId,
+                particlesId: uniqueId,
             },
         });
     }, [uniqueId]);
@@ -127,12 +120,7 @@ const Inspector = ({ panelProps }) => {
     };
 
     return (
-        <ZoloPanelBody
-            title={__('Particles Animation', 'zoloblocks')}
-            panelProps={panelProps}
-            extraPanel={true}
-            isNew={true}
-        >
+        <>
             <ToggleControl
                 label={__('Enable Particles Effect', 'zoloblocks')}
                 checked={active}
@@ -156,10 +144,10 @@ const Inspector = ({ panelProps }) => {
                                 options={[
                                     { label: __('Dust Wind', 'zoloblocks'), value: 'dust_wind' },
                                     { label: __('Flying Bubble', 'zoloblocks'), value: 'flying_bubble' },
-                                    { label: __('Snow Fall', 'zoloblocks'), value: 'snow_fall' },
-                                    { label: __('Flying Shape', 'zoloblocks'), value: 'flying_shape' },
-                                    { label: __('Hover Bubble', 'zoloblocks'), value: 'hover_bubble' },
-                                    { label: __('Polygonal Move', 'zoloblocks'), value: 'polygonal_move' },
+                                    { label: __('Snow Fall (pro)', 'zoloblocks'), value: 'snow_fall', disabled: true },
+                                    { label: __('Flying Shape (pro)', 'zoloblocks'), value: 'flying_shape', disabled: true },
+                                    { label: __('Hover Bubble (pro)', 'zoloblocks'), value: 'hover_bubble', disabled: true },
+                                    { label: __('Polygonal Move (pro)', 'zoloblocks'), value: 'polygonal_move', disabled: true },
                                 ]}
                                 onChange={(preset) => onChangeHandler(preset)}
                             />
@@ -248,7 +236,8 @@ const Inspector = ({ panelProps }) => {
                                 step={1}
                                 noUnits={true}
                             />
-                            <PopoverControl label={__('Color', 'zoloblocks')} children={<Sortable sortableProps={sortableProps} />} />
+
+                            <PopoverControl label={__('Color', 'zoloblocks')} children={<MultiColor propsMultiColor={sortableProps} />} />
                         </>
                     )}
                     {
@@ -292,7 +281,7 @@ const Inspector = ({ panelProps }) => {
                     )}
                 </>
             )}
-        </ZoloPanelBody>
+        </>
     );
 };
 export default Inspector;

@@ -8,6 +8,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/partic
             zoloParticles: {
                 type: 'object',
                 default: {
+                    particlesId: 'zolo-particles',
                     active: false,
                     preset: 'dust_wind',
                     particleOptions: {

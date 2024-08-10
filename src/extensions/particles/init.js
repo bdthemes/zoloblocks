@@ -15,7 +15,7 @@ const useParticlesInit = (panelProps) => {
     const { zoloParticles } = attributes;
     const { particleOptions, preset, colors, toggleCustomOption, speed, dotOpacity } = zoloParticles;
     const { shapes, direction, shapeSize, customOptions } = particleOptions;
-    const color = colors && colors.map((color) => color.color);
+    const color = colors && colors.map((item) => item.color);
 
     function createObject(customOptions) {
         if (!customOptions) {
