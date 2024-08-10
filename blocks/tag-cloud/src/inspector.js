@@ -76,17 +76,17 @@ export default function Inspector(props) {
         generalTab={
           <>
             <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-              <SelectControl
+              {/* <SelectControl
                 label={__('Styles', 'zoloblocks')}
                 value={preset}
                 options={applyFilters('zolo.postCategory.presets', PRESETS)}
                 onChange={(selected) => changePremade(selected)}
-              />
+              /> */}
               <ResGapControl
                 label={__('Gap', 'zoloblocks')}
                 controlName={COLUMNS_GAP}
                 requiredProps={requiredProps}
-                max={200}
+                max={100}
               />
               <ToggleControl
                 label={__('Show Count', 'zoloblocks')}
@@ -148,7 +148,9 @@ export default function Inspector(props) {
                 }
                 hoverComponents={
                   <>
-                    <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true}/>
+                    {singleBG && (
+                      <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true}/>
+                    )}
                     <BoxShadowControl
                       controlName={ITEM_HOVER_SHADOW}
                       requiredProps={requiredProps}
@@ -192,7 +194,7 @@ export default function Inspector(props) {
                 hoverComponents={
                   <>
                     <ColorControl
-                      label={__('Hover Color', 'zoloblocks')}
+                      label={__('Color', 'zoloblocks')}
                       color={nameHoverColor}
                       onChange={(color) =>
                         setAttributes({
@@ -255,7 +257,7 @@ export default function Inspector(props) {
                   hoverComponents={
                     <>
                       <ColorControl
-                        label={__('Hover Color', 'zoloblocks')}
+                        label={__('Color', 'zoloblocks')}
                         color={countHoverColor}
                         onChange={(color) =>
                           setAttributes({
@@ -264,7 +266,7 @@ export default function Inspector(props) {
                         }
                       />
                       <ColorControl
-                        label={__('Hover Background', 'zoloblocks')}
+                        label={__('Background', 'zoloblocks')}
                         color={countBgHoverColor}
                         onChange={(color) =>
                           setAttributes({
