@@ -1,4 +1,14 @@
-const { generateResAlignmentAttributies, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateTypographyAttributes, generateBoxShadowAttributies, generateTextShadowAttributies, generateTextStrokeAttributies, generateNormalBGAttributes } = window.zoloModule;
+const {
+    generateResAlignmentAttributies,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+    generateBoxShadowAttributies,
+    generateTextShadowAttributies,
+    generateTextStrokeAttributies,
+    generateNormalBGAttributes,
+} = window.zoloModule;
 
 import {
     CONTENT_ALIGN,
@@ -125,7 +135,6 @@ const attributes = {
     },
     counterNumber: {
         type: 'text',
-        default: '1000',
     },
     counterSuffix: {
         type: 'text',

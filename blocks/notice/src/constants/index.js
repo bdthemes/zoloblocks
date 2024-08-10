@@ -9,7 +9,7 @@ export const BLOCK_PREFIX = 'notice';
 export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
-    { label: __('Style 3 Pro', 'zoloblocks'), value: 'style-3' },
+    { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
 ];
 export const NOTICE_TYPE = [
     { label: 'Success', value: 'success' },

@@ -3,7 +3,8 @@
  */
 const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
 
-import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN } from './constants';
+import { prefix } from '../../../src/global/constants';
+import { PROGRESS_BAR_SIZE, PROGRESS_ALIGN, NUMBER_BOTTOM_SPACE, NUMBER_SPACE } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -38,45 +39,32 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //progress bar size
     ...generateResRangeAttributies(PROGRESS_BAR_SIZE),
+    ...generateResRangeAttributies(NUMBER_BOTTOM_SPACE),
+    ...generateResRangeAttributies(NUMBER_SPACE),
     ...generateResAlignmentAttributies(PROGRESS_ALIGN, { defaultAlign: 'center' }),
 
     //attr
-    progressValue: {
-        type: 'number',
-        default: 50,
-    },
-    progressDuration: {
-        type: 'number',
-        default: 3,
-    },
-    progressTitle: {
-        type: 'string',
-        default: 'Total',
-    },
-    toggleLabel: {
-        type: 'boolean',
-        default: true,
-    },
-
-    progressSize: {
-        type: 'number',
-        default: 10,
-    },
-
-    progressRound: {
-        type: 'boolean',
-        default: false,
-    },
-    progPiePrefixPostfix: {
+    progressPie: {
         type: 'object',
         default: {
-            Prefix: '$',
-            Postfix: '%',
+            value: 50,
+            duration: 3,
+            title: 'Progress Pie',
+            toggleLabel: true,
+            size: undefined,
+            round: false,
+            prefix: '',
+            suffix: '',
+            toggleSuffixPrefix: true,
+            fillColor: '#2667ff',
+            fillSize: 1,
+            numberColor: '',
+            titleColor: '',
+            circleColor: '',
+            suffixColor: '',
+            prefixColor: '',
+
         },
-    },
-    proPieperpostToggle: {
-        type: 'boolean',
-        default: true,
     },
     //progress multi color
     progPieMultiColor: {
@@ -87,26 +75,6 @@ const attributes = {
                 color: '#2667ff',
             },
         ],
-    },
-
-    //progress fill
-    progressFillColor: {
-        type: 'string',
-        default: '#e5e5e5',
-    },
-    progressFillSize: {
-        type: 'number',
-        default: 10,
-    },
-
-    numberColor: {
-        type: 'string',
-    },
-    titleColor: {
-        type: 'string',
-    },
-    circleColor: {
-        type: 'string',
     },
 };
 

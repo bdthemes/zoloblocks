@@ -5,6 +5,7 @@ import Edit from './edit';
 import Save from './save';
 
 import './style.scss';
+import deprecated from './deprecated';
 
 registerBlockType(metadata, {
     icon: {
@@ -19,8 +20,8 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-
     attributes,
     edit: Edit,
     save: Save,
+    deprecated: [deprecated],
 });

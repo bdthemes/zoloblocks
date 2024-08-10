@@ -1,12 +1,13 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal Dependencies
  */
 const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         preset,
@@ -37,14 +38,22 @@ const Save = ({ attributes }) => {
         // animation
         animationType,
         animationPositionOne,
-        animationPositionTwo
+        animationPositionTwo,
     } = attributes;
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset, `${
-            preset === 'style-2' ? iconBoxDirection : ''
-        }`,  `${(preset === 'style-1' || preset === 'style-2' ) && animationType ? `animation-${animationType}` : ''
-        }`),
+        className: classnames(
+            uniqueId,
+            classArrayToStr(parentClasses),
+            'zolo-block-advanced-icon-box',
+            preset,
+            `${preset === 'style-2' ? iconBoxDirection : ''}`,
+            `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
+        ),
     });
 
     return (
@@ -54,6 +63,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <DynamicTag
                 tagName={globalLink === true ? 'a' : 'div'}
                 {...(globalLink === true && {
@@ -113,6 +123,7 @@ const Save = ({ attributes }) => {
                     </div>
                 </div>
             </DynamicTag>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

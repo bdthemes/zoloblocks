@@ -136,7 +136,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Layouts', 'zoloblocks')}
                                 value={preset}
-                                options={applyFilters('zolo.advancedIconBox.presets', PRESETS)}
+                                options={applyFilters('zolo.notice.presets', PRESETS)}
                                 onChange={(value) => {
                                     setAttributes({
                                         preset: value,
@@ -402,13 +402,13 @@ function Inspector(props) {
                                         min={0}
                                         max={500}
                                     />
-                                    <ResRangeControl
+                                    {/* <ResRangeControl
                                         label={__('Offset', 'zoloblocks')}
                                         controlName={STYLE3_ICON_OFFSET}
                                         requiredProps={requiredProps}
                                         min={-500}
                                         max={500}
-                                    />
+                                    /> */}
                                 </>
                             )}
 

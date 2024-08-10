@@ -86,12 +86,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // wp localize script
             wp_localize_script('zolo-block-vendor-dependency', 'zoloSettings', [
-                'ajaxurl'      => admin_url('admin-ajax.php'),
-                'home_url'     => home_url(),
-                'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
-                'theme_fonts'  => ZoloHelpers::zolo_get_theme_fonts(),
-                'googleAPIKey' => get_option('zolo_google_api_key'),
-                'maskShapes' => [
+                'ajaxurl'                 => admin_url('admin-ajax.php'),
+                'home_url'                => home_url(),
+                'zolo_nonce'              => wp_create_nonce('zolo-nonce'),
+                'theme_fonts'             => ZoloHelpers::zolo_get_theme_fonts(),
+                'googleAPIKey'            => get_option('zolo_google_api_key'),
+                'maskShapes'              => [
                     'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',
                     'abstract-brush-1' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-1.svg',
                     'abstract-brush-2' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-2.svg',
@@ -128,7 +128,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [],
                 ZOLO_VERSION
             );
-
 
             // override css
             if (is_admin()) {
@@ -373,6 +372,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 }
             }
 
+            // import shape divider
+            $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
+            if (file_exists($import_shape_divider_file)) {
+                $script_dependecy = include $import_shape_divider_file;
+                wp_enqueue_script(
+                    'zolo-shape-divider-editor-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/index.js',
+                    $script_dependecy['dependencies'],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
 
             // template library
             $enable_template_library = get_option('zolo_enable_template_library');
@@ -423,15 +434,17 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'button'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-button.svg',
                     'businessHour' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/business-hour.svg',
                     'heading'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-heading.svg',
+                    'icon'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/icon.svg',
                     'iconBox'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-icon-box.svg',
                     'imageGallery' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-gallery.svg',
-                    'image'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-preview.svg',
+                    'image'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-image.svg',
                     'charts'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/charts.svg',
                     'postCarousel' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-carousel.svg',
                     'postGrid'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-grid.svg',
                     'postList'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-list.svg',
                     'pricingTable' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/pricing-table.svg',
                     'socialLinks'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/social-links.svg',
+                    'socialShare'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/social-share.svg',
                     'teamGrid'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/team-grid.svg',
                     'brandGrid'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/brand-grid.svg',
                     'review'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/review.svg',
@@ -456,9 +469,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'tabs'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/tabs.svg',
                     'imageComparison' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-comparison.svg',
                     'newsletter'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/newsletter.svg',
+<<<<<<< HEAD
                     'notice'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/notice.svg',
                     'textPath'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/text-path.svg',
                     'postCategory'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/notice.svg',
+=======
+                    'notice'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/notice.svg',
+                    'textPath'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/text-path.svg',
+                    'qrcode'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/qrcode.svg',
+>>>>>>> main
                 ])
             ]);
 

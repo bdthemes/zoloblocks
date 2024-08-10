@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import ApexCharts from 'react-apexcharts';
 import { v4 as uuidv4 } from 'uuid';
+import { applyFilters } from '@wordpress/hooks';
 
 const { handleUniqueId, classArrayToStr, SidebarOpener } = window.zoloModule;
 
@@ -251,7 +252,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     const renderOptions = () => {
         if (chartType === 'pie' || chartType === 'donut') {
             const newOptions = {
@@ -284,8 +287,10 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <ApexCharts options={renderOptions()} series={renderSeries()} type={chartType} width={'100%'} height={chartHeight} />
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

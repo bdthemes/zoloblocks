@@ -5,6 +5,7 @@ import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder }
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -50,6 +51,9 @@ export default function Edit(props) {
         animationPositionTwo,
     } = attributes;
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
@@ -100,6 +104,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
                     className={classNames(
@@ -204,6 +209,7 @@ export default function Edit(props) {
                         )}
                     </div>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

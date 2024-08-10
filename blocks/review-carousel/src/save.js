@@ -20,21 +20,33 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
+
     return (
         <div
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
             })}
-            data-swiper-options={JSON.stringify(sliderOptions)}
             data-swiper-breakpoints={JSON.stringify(breakpoints)}
+            {...(sliderOptions &&
+                (Object.keys(sliderOptions).length > 2 ||
+                    sliderOptions?.breakpoints['1024']['slidesPerView'] !== '3' ||
+                    sliderOptions?.breakpoints['1024']['spaceBetween'] !== 30 ||
+                    sliderOptions?.breakpoints['768']['slidesPerView'] !== '2' ||
+                    sliderOptions?.breakpoints['768']['spaceBetween'] !== 30 ||
+                    sliderOptions?.breakpoints['640']['slidesPerView'] !== '1' ||
+                    sliderOptions?.breakpoints['640']['spaceBetween'] !== 0) && {
+                    'data-swiper-options': JSON.stringify(sliderOptions),
+                })}
         >
             <div className="swiper">
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
             </div>
-            {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
+            {(showPagination || showPagination === undefined) && (
+                <div className="swiper-pagination swiper-pagination-position-bottom"></div>
+            )}
             {showNavigation && (
                 <Fragment>
                     <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>

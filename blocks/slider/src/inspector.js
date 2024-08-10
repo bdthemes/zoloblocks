@@ -115,7 +115,7 @@ const Inspector = (props) => {
                                 }
                                 min={1}
                                 max={100}
-                                help={__('Speed: ', 'zoloblocks') + speed * 100 + 'ms'}
+                                help={__('Default Speed: ', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
@@ -162,10 +162,10 @@ const Inspector = (props) => {
                             )}
                             <ToggleControl
                                 label={__('Show Navigation', 'zoloblocks')}
-                                checked={showNavigation}
-                                onChange={() =>
+                                checked={showNavigation === undefined ? true : showNavigation}
+                                onChange={(v) =>
                                     setAttributes({
-                                        showNavigation: !showNavigation,
+                                        showNavigation: v,
                                     })
                                 }
                             />
@@ -193,7 +193,7 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        {showNavigation && (
+                        {(showNavigation || showNavigation === undefined) && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
                                     <ToggleControl

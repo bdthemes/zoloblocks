@@ -314,7 +314,7 @@ function Inspector(props) {
                         <>
                             {showLabels && (
                                 <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
-                                    {preset !== 'zolo-newsletter-1' && (
+                                    {(preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5') && (
                                         <>
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -351,7 +351,7 @@ function Inspector(props) {
                                             />
                                         </>
                                     )}
-                                    {preset === 'zolo-newsletter-1' && (
+                                    {(preset === 'zolo-newsletter-1' || preset === 'zolo-newsletter-5') && (
                                         <ResRangeControl
                                             label={__('Bottom Spacing', 'zoloblocks')}
                                             controlName={LABEL_BOTTOM_SPACING}
@@ -385,7 +385,7 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
-                                                {preset !== 'zolo-newsletter-1' && (
+                                                {(preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5') && (
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={LABEL_BG}
@@ -407,7 +407,7 @@ function Inspector(props) {
                                                                 })
                                                             }
                                                         />
-                                                        {preset !== 'zolo-newsletter-1' && (
+                                                       {(preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5') && (
                                                             <NormalBGControl
                                                                 requiredProps={requiredProps}
                                                                 controlName={LABEL_HOVER_BG_COLOR}

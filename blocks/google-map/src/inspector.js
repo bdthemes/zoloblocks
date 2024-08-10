@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, RangeControl, SelectControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -29,7 +29,8 @@ import { MINFO_TYPO } from './constants/typoPrefixConstant';
 import Repeater from './repeater';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
+
     const {
         resMode,
         mapStyleType,
@@ -55,6 +56,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -86,14 +88,17 @@ function Inspector(props) {
                             />
                             <TextControl
                                 label={__('Longitude', 'zoloblocks')}
-                                placeholder={__('-122.4194', 'zoloblocks')}
+                                placeholder={__('89.3841374', 'zoloblocks')}
                                 value={longitude}
                                 readOnly={true}
                                 type="number"
                             />
                             <TextareaControl
                                 label={__('Marker Description')}
-                                value={infoWindow}
+                                value={
+                                    infoWindow ||
+                                    '<a href="https://bdthemes.com"><b>BdThemes</b></a> is the sole owner of market-leading addons for #1 Elementor such as Element Pack Pro, Prime Slider, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery, and more useful plugins.'
+                                }
                                 onChange={(v) =>
                                     setAttributes({
                                         infoWindow: v,
@@ -109,77 +114,77 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Map UI', 'zoloblocks')} panelProps={props}>
                             <ToggleControl
                                 label={__('Enable Draggable', 'zoloblocks')}
-                                checked={draggable}
-                                onChange={() => setAttributes({ draggable: !draggable })}
+                                checked={draggable === undefined ? true : draggable}
+                                onChange={(v) => setAttributes({ draggable: v })}
                             />
                             <ToggleControl
                                 label={__('Show UI Controls', 'zoloblocks')}
-                                checked={showUIControls}
-                                onChange={() =>
+                                checked={showUIControls === undefined ? true : showUIControls}
+                                onChange={(v) =>
                                     setAttributes({
-                                        showUIControls: !showUIControls,
+                                        showUIControls: v,
                                     })
                                 }
                             />
 
-                            {showUIControls && (
+                            {(showUIControls || showUIControls === undefined) && (
                                 <>
                                     <ToggleControl
                                         label={__('Enable Fullscreen Control', 'zoloblocks')}
-                                        checked={uiControls?.fullscreenControl}
-                                        onChange={() => {
+                                        checked={uiControls?.fullscreenControl === undefined ? true : uiControls?.fullscreenControl}
+                                        onChange={(v) => {
                                             setAttributes({
                                                 uiControls: {
                                                     ...uiControls,
-                                                    fullscreenControl: !uiControls?.fullscreenControl,
+                                                    fullscreenControl: v,
                                                 },
                                             });
                                         }}
                                     />
                                     <ToggleControl
                                         label={__('Enable Map Type Control', 'zoloblocks')}
-                                        checked={uiControls?.mapTypeControl}
-                                        onChange={() =>
+                                        checked={uiControls?.mapTypeControl === undefined ? true : uiControls?.mapTypeControl}
+                                        onChange={(v) =>
                                             setAttributes({
                                                 uiControls: {
                                                     ...uiControls,
-                                                    mapTypeControl: !uiControls?.mapTypeControl,
+                                                    mapTypeControl: v,
                                                 },
                                             })
                                         }
                                     />
                                     <ToggleControl
                                         label={__('Enable Zoom Control', 'zoloblocks')}
-                                        checked={uiControls?.zoomControl}
-                                        onChange={() =>
+                                        checked={uiControls?.zoomControl === undefined ? true : uiControls?.zoomControl}
+                                        onChange={(v) =>
                                             setAttributes({
                                                 uiControls: {
                                                     ...uiControls,
-                                                    zoomControl: !uiControls?.zoomControl,
+                                                    zoomControl: v,
                                                 },
                                             })
                                         }
                                     />
                                     <ToggleControl
                                         label={__('Enable Scale Control', 'zoloblocks')}
-                                        checked={uiControls?.scaleControl}
-                                        onChange={() =>
+                                        checked={uiControls?.scaleControl === undefined ? true : uiControls?.scaleControl}
+                                        onChange={(v) =>
                                             setAttributes({
                                                 uiControls: {
                                                     ...uiControls,
-                                                    scaleControl: !uiControls?.scaleControl,
+                                                    scaleControl: v,
                                                 },
                                             })
                                         }
                                     />
                                     <ToggleControl
                                         label={__('Enable Street View Control', 'zoloblocks')}
-                                        checked={uiControls?.streetViewControl}
-                                        onChange={() =>
+                                        checked={uiControls?.streetViewControl === undefined ? true : uiControls?.streetViewControl}
+                                        onChange={(v) =>
                                             setAttributes({
                                                 uiControls: {
                                                     ...uiControls,
-                                                    streetViewControl: !uiControls?.streetViewControl,
+                                                    streetViewControl: v,
                                                 },
                                             })
                                         }
@@ -188,7 +193,7 @@ function Inspector(props) {
                             )}
                             <IconicBtnGroup
                                 label={__('Map Style Type', 'zoloblocks')}
-                                value={mapStyleType}
+                                value={mapStyleType || 'default'}
                                 options={[
                                     {
                                         label: __('Default', 'zoloblocks'),
@@ -284,6 +289,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
+                            {cssFilters && cssFilters.length > 0 && cssFilters}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Marker Info', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl

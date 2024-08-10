@@ -2,15 +2,28 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl, Button, TextareaControl, CardDivider } from '@wordpress/components';
+import {
+    ToggleControl,
+    TextControl,
+    RangeControl,
+    SelectControl,
+    Button,
+    TextareaControl,
+    CardDivider,
+    Spinner,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import Papa from 'papaparse';
+import { useEffect, useState } from '@wordpress/element';
+import { useDispatch } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
+import axios from 'axios';
 
 /**
  * Internal depencencies
  */
 const {
-    ResRangeControl,
     SimpleRangeControl,
     ColorControl,
     HeaderTabs,
@@ -33,6 +46,7 @@ function Inspector(props) {
     const {
         resMode,
         chartType,
+        gssUrl,
         chartHeight,
         sourceType,
         uploadStatus,
@@ -125,6 +139,9 @@ function Inspector(props) {
         parseCSVData(e);
     };
 
+    /**
+     * Parse CSV Data
+     */
     function parseCSVData(csvData) {
         const rows = csvData.trim().split('\n');
         const headers = rows[0].split(',');
@@ -167,6 +184,71 @@ function Inspector(props) {
             pieChartLabels: labels,
         });
     }
+
+    // extract Ids
+    function extractIdsFromUrl(url) {
+        const regex = /\/d\/(.*?)\/edit.*?gid=(\d+)/;
+        const match = url.match(regex);
+
+        if (match) {
+            const spreadsheetId = match[1];
+            const sheetId = match[2];
+            return { spreadsheetId, sheetId };
+        } else {
+            return {};
+        }
+    }
+
+    // Fetch Google Sheet Data
+    const { createErrorNotice } = useDispatch(noticesStore);
+    const [loading, setLoading] = useState(false);
+    /**
+     * Fetch Google Sheet Data
+     */
+    const fetchGoogleSheetData = () => {
+        if (!gssUrl) {
+            createErrorNotice(__('😔 Please provide a Google Spreadsheet URL.', 'zoloblocks'));
+            return;
+        }
+
+        // Start loading
+        setLoading(true);
+
+        const { spreadsheetId, sheetId } = extractIdsFromUrl(gssUrl);
+
+        if (!spreadsheetId || !sheetId) {
+            createErrorNotice(__('😔 Invalid Google Spreadsheet URL.', 'zoloblocks'));
+            setLoading(false);
+            return;
+        }
+
+        // Google Spreadsheet URL
+        const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${sheetId}`;
+
+        // Use axios to fetch the data from the Google Spreadsheet
+        axios
+            .get(url)
+            .then((response) => {
+                const data = response.data;
+
+                // check if the data is empty
+                if (!data) {
+                    createErrorNotice(__('😔 Sorry, No data found', 'zoloblocks'));
+                    setLoading(false);
+                    return;
+                }
+
+                // parse the data
+                parseCSVData(data);
+                // Stop loading
+                setLoading(false);
+            })
+            .catch((error) => {
+                createErrorNotice(error.message);
+                setLoading(false);
+            });
+    };
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -179,7 +261,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Source Type', 'zoloblocks')}
                                 value={sourceType}
-                                options={SOURCE_TYPES}
+                                options={applyFilters('zolo.charts.sourceTypes', SOURCE_TYPES)}
                                 onChange={(v) => setAttributes({ sourceType: v })}
                             />
                             {sourceType === 'upload' && (
@@ -203,14 +285,7 @@ function Inspector(props) {
                             {sourceType == 'input' && (
                                 <TextareaControl
                                     label={__('Enter chart data separated by commas', 'zoloblocks')}
-                                    placeholder={__(
-                                        `Label, Value
-                                        Team A, 10
-                                        Team B, 15
-                                        Team C, 20,
-                                        Team D, 5`,
-                                        'zoloblocks'
-                                    )}
+                                    placeholder={__(`Label, Value\nTeam A, 10\nTeam B, 15\nTeam C, 20\nTeam D, 5`, 'zoloblocks')}
                                     value={chartInputData}
                                     rows={10}
                                     onChange={(value) => {
@@ -218,6 +293,37 @@ function Inspector(props) {
                                         handleInputData(value);
                                     }}
                                 />
+                            )}
+
+                            {zoloParams?.zolo_pro_status === 'active' && sourceType === 'google-spreadsheet' && (
+                                <>
+                                    <CardDivider />
+                                    <p className="zolo-custom-help-note">
+                                        {__('Make sure your Google Spreadsheet is public.', 'zoloblocks')}
+                                    </p>
+                                    <TextControl
+                                        label={__('Google Spreadsheet URL', 'zoloblocks')}
+                                        value={gssUrl}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                gssUrl: v,
+                                            })
+                                        }
+                                    />
+                                    <Button
+                                        style={{ marginBottom: '10px' }}
+                                        className="zolo-action-button"
+                                        variant="primary"
+                                        onClick={fetchGoogleSheetData}
+                                    >
+                                        {__('Fetch Data', 'zoloblocks')}
+                                        {
+                                            // loading
+                                            loading && <Spinner />
+                                        }
+                                    </Button>
+                                    <CardDivider />
+                                </>
                             )}
 
                             <SelectControl

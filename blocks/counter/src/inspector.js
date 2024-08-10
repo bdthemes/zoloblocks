@@ -194,6 +194,7 @@ function Inspector(props) {
                                         label={__('Counter Number', 'zoloblocks')}
                                         value={counterNumber}
                                         onChange={(counterNumber) => setAttributes({ counterNumber })}
+                                        placeholder="1000"
                                     />
                                     {hideSuffix && (
                                         <TextControl
@@ -463,7 +464,11 @@ function Inspector(props) {
                                 {preset === 'style-3' && (
                                     <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={TITLE_BACKGROUND} noMainBGImg={false} />
-                                        <BorderControl label={__('Border', 'zoloblocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={TITLE_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
                                             controlName={TITLE_BORDER_RADIUS}
@@ -472,7 +477,6 @@ function Inspector(props) {
                                         />
                                     </>
                                 )}
-
 
                                 <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                                 <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />

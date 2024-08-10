@@ -203,5 +203,65 @@ return apply_filters(
             'categories' => ['others'],
             'status'     => true,
         ],
+        [
+            'name'       => 'zolo_qrcode',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_post_author',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_post_gallery_video_slider',
+            'categories' => ['gallery', 'slider'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_post_category',
+            'categories' => ['postCategory'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_post_comments',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_tag_cloud',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_post_social_count',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_post_tab',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_video',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_lightbox',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_coupon_code',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_advanced_divider',
+            'categories' => ['others'],
+            'status'     => true,
+        ]
     ]
 );

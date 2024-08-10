@@ -1,6 +1,7 @@
 //WordPress dependencies
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 //external dependencies
 import classnames from 'classnames';
 //internal dependencies
@@ -44,11 +45,16 @@ const Edit = (props) => {
         return <img src={zoloParams.blocksPreview.heading} alt={__('Heading Preview', 'zoloblocks')} />;
     }
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
                     {showTransparentTitle && (
@@ -96,7 +102,7 @@ const Edit = (props) => {
                     </DynamicTag>
                     {showSubTitle && subTitlePosition == 'bottom' && (
                         <RichText
-                            tagName={'h4'}
+                            tagName={subTitleTag}
                             className="zolo-ah-subtitle"
                             value={subTitleText}
                             formattingControl={['bold', 'italic']}
@@ -109,6 +115,7 @@ const Edit = (props) => {
                         </div>
                     )}
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

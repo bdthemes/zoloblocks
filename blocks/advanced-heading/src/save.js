@@ -1,8 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, DynamicTag } = window.zoloModule;
 
-const Save = ({ className, attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -25,6 +27,10 @@ const Save = ({ className, attributes }) => {
         zoloId,
     } = attributes;
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <div
             {...useBlockProps.save({
@@ -34,6 +40,7 @@ const Save = ({ className, attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
                 {showTransparentTitle && (
                     <div className="zolo-transparent-heading-wrap">
@@ -80,7 +87,7 @@ const Save = ({ className, attributes }) => {
 
                 {showSubTitle && subTitlePosition == 'bottom' && (
                     <RichText.Content
-                        tagName={'h4'}
+                        tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
                         formattingControl={['bold', 'italic']}
@@ -93,6 +100,7 @@ const Save = ({ className, attributes }) => {
                     </div>
                 )}
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

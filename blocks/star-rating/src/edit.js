@@ -4,7 +4,7 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
+import {applyFilters} from '@wordpress/hooks';
 /**
  * External dependencies
  */
@@ -57,6 +57,10 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zoloblocks')} />;
@@ -67,6 +71,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className={classnames('start-rating-wrapper', titlePosition)}>
                     <div className={classnames('star-rating-inner', titlePosition)}>
@@ -118,9 +123,10 @@ export default function Edit(props) {
                                 )}
                             </span>
                         )}
-                        <StarRating rating={rating} total={5} />
+                        <StarRating rating={rating || 5} total={5} />
                     </div>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

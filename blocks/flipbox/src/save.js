@@ -1,8 +1,10 @@
 import { useBlockProps } from '@wordpress/block-editor';
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         zoloId,
@@ -35,6 +37,11 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <div
             {...blockProps}
@@ -42,6 +49,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div className={`zolo-flip-box_wrap zolo-flip-box_animation_style-${flipEffect}`}>
                 <div
                     className={`zolo-flip-box_item ${triggerType === 'hover' ? 'zolo-flip-box_hover' : ''}`}
@@ -149,6 +157,7 @@ const Save = ({ attributes }) => {
                     </div>
                 </div>
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };
