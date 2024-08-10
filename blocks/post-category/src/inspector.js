@@ -10,14 +10,13 @@ import {__} from '@wordpress/i18n';
 import {applyFilters} from '@wordpress/hooks';
 import objAttributes from './attributes';
 import {NAME_TYPOGRAPHY, TEXT_TYPOGRAPHY, COUNT_TYPOGRAPHY, VIEW_BTN_TYPOGRAPHY} from './constants/typoPrefixConstant';
-import {DEFAULT_ALIGNS, THUMBNAIL_SIZE} from '../../../src/global/constants';
+import {THUMBNAIL_SIZE} from '../../../src/global/constants';
 import QuerySettings from "./query-settings";
 import {
   PRESETS,
   GRID_COLUMNS,
   COLUMNS_GAP,
   ITEM_HEIGHT,
-  ITEM_TEXT_ALIGN,
   TEXT_SPACING,
   COUNT_PADDING,
   COUNT_BG,
@@ -79,8 +78,6 @@ export default function Inspector(props) {
     viewBtnHoverColor,
     viewBtnBgColor,
     viewBtnBgHoverColor,
-    viewBtnIconColor,
-    viewBtnIconHoverColor,
     viewAllBtnText,
     viewAllBtnIcon
   } = attributes;
@@ -109,7 +106,7 @@ export default function Inspector(props) {
         break;
     }
   }
-
+  const multipleBgControl = applyFilters('zolo.blocks.postCategory.style.controls.multipleBg', [], props);
   return (
     <InspectorControls key="controls">
       <HeaderTabs
@@ -146,13 +143,13 @@ export default function Inspector(props) {
                 />
               )}
 
-            {preset === 'style-1' && (
-              <ToggleControl
-                label={__('View All Button', 'zoloblocks')}
-                checked={viewAllBtn}
-                onChange={(viewAllBtn) => setAttributes({viewAllBtn})}
-              />
-             )}
+              {preset === 'style-1' && (
+                <ToggleControl
+                  label={__('View All Button', 'zoloblocks')}
+                  checked={viewAllBtn}
+                  onChange={(viewAllBtn) => setAttributes({viewAllBtn})}
+                />
+              )}
 
             </ZoloPanelBody>
             <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
@@ -182,8 +179,8 @@ export default function Inspector(props) {
         }
         styleTab={
           <>
-            <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true}panelProps={props}>
-            <ResRangeControl
+            <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+              <ResRangeControl
                 label={__('Item Height', 'zoloblocks')}
                 controlName={ITEM_HEIGHT}
                 requiredProps={requiredProps}
@@ -202,15 +199,9 @@ export default function Inspector(props) {
                     {singleBG && (
                       <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true}/>
                     )}
-                    {!singleBG && (
-                      <TextareaControl
-                        __nextHasNoMarginBottom
-                        label={__('Multiple Background', 'zoloblocks')}
-                        placeholder={'#000000, #f5f5f5, #999999'}
-                        value={multipleBG}
-                        onChange={(multipleBG) => setAttributes({multipleBG})}
-                      />
-                    )}
+
+                    {/*from pro*/}
+                    {(multipleBgControl && multipleBgControl.length > 0) && multipleBgControl}
 
                     <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER}
                                    requiredProps={requiredProps}/>
@@ -425,9 +416,9 @@ export default function Inspector(props) {
             {viewAllBtn && (
               <ZoloPanelBody title={__('View All Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
                 <TextControl
-                  label={__('Button Text','zoloblocks')}
+                  label={__('Button Text', 'zoloblocks')}
                   value={viewAllBtnText}
-                  onChange={(viewAllBtnText)=>setAttributes({viewAllBtnText})}
+                  onChange={(viewAllBtnText) => setAttributes({viewAllBtnText})}
                 />
                 <ZoloIconPicker
                   label={__('Select Icon', 'zoloblocks')}

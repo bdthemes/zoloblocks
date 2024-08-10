@@ -18,7 +18,7 @@ class TagCloud extends PostBlock {
 	protected $default_block_attributes = [
 		'preset'           => 'style-1',
 		'showCount'        => true,
-		'singleBG'         => false,
+		'singleBG'         => true,
 		'multipleBG'       => '',
 		'itemHoverOpacity' => 1,
 	];
