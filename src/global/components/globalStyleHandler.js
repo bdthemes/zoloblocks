@@ -663,9 +663,9 @@ export const GlobalStyleHanlder = (props) => {
 
     const blockWriteCss = customCss ? customCss.replace(/{{ZOLO}}/g, `.${uniqueId}`) : '';
 
-    const filteredDesktopAllStyle = applyFilters('zolo_desktop_all_style', desktopAllStyle, attributes);
-    const filteredTabAllStyle = applyFilters('zolo_tab_all_style', tabAllStyle, attributes);
-    const filteredMobileAllStyle = applyFilters('zolo_mobile_all_style', mobileAllStyle, attributes);
+    const filteredDesktopAllStyle = applyFilters('zolo_desktop_all_style', desktopAllStyle, props);
+    const filteredTabAllStyle = applyFilters('zolo_tab_all_style', tabAllStyle, props);
+    const filteredMobileAllStyle = applyFilters('zolo_mobile_all_style', mobileAllStyle, props);
 
     const allStyle = `
 		${softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles)}
