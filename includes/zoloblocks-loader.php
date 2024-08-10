@@ -10,6 +10,8 @@ use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
+use Zolo\Admin\PostCategoryImage;
+use Zolo\Classes\ZoloAJAX;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -39,12 +41,14 @@ class ZoloBlocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloAjax.php';
+        ZoloAJAX::getInstance();
+        // require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloAjax.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloEnqueues.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/FontLoader.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/PostMeta.php';
 
         // Load Admin files
+        PostCategoryImage::getInstance();
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
@@ -57,9 +61,9 @@ class ZoloBlocks_Loader {
         //mailchimp
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Mailchimp/Mailchimp.php';
 
-        // notice block 
+        // notice block
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
-        
+
         // popup
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Popup/PopupBuilder.php';
 
