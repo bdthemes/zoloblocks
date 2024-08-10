@@ -44,6 +44,7 @@
         border-radius: var(--zolo-tab-head-item-border-radius);
         box-sizing: border-box;
         transition: all 0.25s cubic-bezier(0.23, 0.96, 0.59, 1.01);
+        outline: none;
         &:focus-visible {
             outline: none;
         }
