@@ -50,6 +50,11 @@
         }
     }
 
+    .zolo-tab_head-content {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     .tab__item.active {
         background-color: var(--zoloblocks-brand-color);
         .zolo-tab_title {
@@ -258,8 +263,10 @@
             }
         }
         .block-list-appender{
+             width: 100%;
              height: auto !important; 
              display: inline-block !important; 
         }
     }
+
 }
