@@ -66,7 +66,7 @@ export default function Inspector(props) {
   const changePremade = (selected) => {
     setAttributes({preset: selected});
   }
-
+  const MultipleBgControl = applyFilters('zolo.blocks.tagCloud.style.controls.multipleBg', [], props);
   return (
     <InspectorControls key="controls">
       <HeaderTabs
@@ -115,15 +115,19 @@ export default function Inspector(props) {
                     {singleBG && (
                       <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true}/>
                     )}
-                    {!singleBG && (
-                      <TextareaControl
-                        __nextHasNoMarginBottom
-                        label={__('Multiple Background', 'zoloblocks')}
-                        placeholder={'#000000, #f5f5f5, #999999'}
-                        value={multipleBG}
-                        onChange={(multipleBG) => setAttributes({multipleBG})}
-                      />
-                    )}
+
+                    {/*from pro*/}
+                    {(MultipleBgControl && MultipleBgControl.length > 0) && MultipleBgControl}
+
+                    {/*{!singleBG && (*/}
+                    {/*  <TextareaControl*/}
+                    {/*    __nextHasNoMarginBottom*/}
+                    {/*    label={__('Multiple Background', 'zoloblocks')}*/}
+                    {/*    placeholder={'#000000, #f5f5f5, #999999'}*/}
+                    {/*    value={multipleBG}*/}
+                    {/*    onChange={(multipleBG) => setAttributes({multipleBG})}*/}
+                    {/*  />*/}
+                    {/*)}*/}
 
                     <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER}
                                    requiredProps={requiredProps}/>
