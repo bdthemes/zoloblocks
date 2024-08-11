@@ -127,13 +127,6 @@ const attributes = {
   countHoverColor: {
     type: 'string'
   },
-  singleBG:{
-    type:'boolean',
-    default: true
-  },
-  multipleBG:{
-    type:'string',
-  },
   viewBtnColor:{
     type:'string',
   },

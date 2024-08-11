@@ -92,13 +92,7 @@ const attributes = {
   countBgHoverColor: {
     type: 'string'
   },
-  singleBG:{
-    type:'boolean',
-    default: true,
-  },
-  multipleBG:{
-    type:'string',
-  },
+
   //item
   ...generateDimensionAttributes(ITEM_PADDING),
   ...generateNormalBGAttributes(ITEM_BG),
