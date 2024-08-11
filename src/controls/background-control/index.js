@@ -12,6 +12,8 @@ const BackgroundControl = ({
     noMainBGImg = false,
     noOverlayBGImg = false,
     noTransition = false,
+    particles = false,
+
 }) => {
     const { setAttributes, attributes } = requiredProps;
 
@@ -42,6 +44,7 @@ const BackgroundControl = ({
                             noTransition={noTransition}
                         />
                     )}
+                    {particles && particles}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                 </>
             )}
