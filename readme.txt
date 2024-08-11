@@ -1,6 +1,6 @@
 === ZoloBlocks - Page Builder Blocks, Patterns, Ready Templates, Form Builder & Popup Builder for Gutenberg ===
 Contributors: bdthemes, selimmw
-Donate link: http://bdthemes.com/
+Donate link: http://zoloblocks.com/
 Tags: block editor, gutenberg blocks, gutenberg, wordpress blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.1
