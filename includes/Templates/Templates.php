@@ -1,8 +1,11 @@
 <?php
+
 /**
  * Zolo Templates
  */
+
 namespace Zolo\Templates;
+
 use Zolo\Traits\SingletonTrait;
 
 class Zolo_Templates {
@@ -18,6 +21,9 @@ class Zolo_Templates {
      * Demo import via AJAX.
      */
     public function demo_import() {
+        if (! wp_verify_nonce($_POST['security'], 'zolo-nonce')) {
+            wp_send_json_error('Invalid nonce');
+        }
         // Access the json_file_url from the POST data
         if (isset($_POST['json_file_url'])) {
             $json_file_url = sanitize_text_field($_POST['json_file_url']);
@@ -49,10 +55,10 @@ class Zolo_Templates {
                     $bg_srcs = $bg_matches[2];
 
                     // remove \\u0022 from all $bg_srcs
-                    if(!empty($bg_srcs)){
+                    if (!empty($bg_srcs)) {
                         $bg_srcs = array_map(function ($src) {
                             return str_replace('\\u0022', '', $src);
-                        }, $bg_srcs); 
+                        }, $bg_srcs);
                     }
 
                     // Combine all matches, filter out empty ones

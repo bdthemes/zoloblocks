@@ -266,6 +266,7 @@ function ZoloBlocksTemplateLibraryButton() {
             type: 'POST',
             data: {
                 action: 'zolo_demo_import',
+                security: zoloParams?.zolo_nonce,
                 json_file_url: jsonFile,
             },
             success: function (response) {

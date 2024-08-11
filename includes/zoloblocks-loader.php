@@ -85,9 +85,6 @@ class ZoloBlocks_Loader {
      * @return void
      */
     public function init_actions() {
-        add_filter('admin_body_class', [$this, 'zoloblocks_editor_custom_body_class']);
-        add_filter('body_class', [$this, 'zoloblocks_custom_body_class']);
-
         $theme_folder = get_template();
 
         if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
@@ -99,20 +96,6 @@ class ZoloBlocks_Loader {
         if ('astra' === $theme_folder) {
             // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
         }
-    }
-    public function zoloblocks_editor_custom_body_class($classes) {
-        // Check if we are on editing screen in WordPress admin
-        if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') {
-            $classes .= ' zolo-editor';
-        }
-        return $classes;
-    }
-    public function zoloblocks_custom_body_class(array $classes) {
-        $new_class =  'zolo-frontend';
-        if ($new_class) {
-            $classes[] = $new_class;
-        }
-        return $classes;
     }
 }
 

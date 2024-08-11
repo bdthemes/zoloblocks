@@ -325,7 +325,11 @@ class Zolo_PopupBuilder {
                 $popups->the_post();
 
                 $meta_keys = [
-                    'zolo_popup_id', 'zolo_popup_trigger', 'zolo_popup_enable_disable', 'zolo_popup_infinite_repeat', 'zolo_popup_repeat_num'
+                    'zolo_popup_id',
+                    'zolo_popup_trigger',
+                    'zolo_popup_enable_disable',
+                    'zolo_popup_infinite_repeat',
+                    'zolo_popup_repeat_num'
                 ];
 
                 $popup_meta = [];
@@ -390,7 +394,7 @@ class Zolo_PopupBuilder {
      */
     public function enqueue_popup_styles($styles) {
         if (!empty($styles)) {
-            $handle = 'zolo-block-inline-popup-style-' . rand(100, 10000);
+            $handle = 'zolo-block-inline-popup-style-' . wp_rand(100, 10000);
             wp_register_style($handle, false, [], ZOLO_VERSION, 'all');
             wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
             wp_add_inline_style($handle, $styles);

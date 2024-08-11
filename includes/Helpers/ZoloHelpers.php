@@ -25,7 +25,27 @@ if (! defined('ABSPATH')) {
  */
 class ZoloHelpers {
 	use SingletonTrait;
-
+	/**
+	 * ZoloHelpers constructor.
+	 */
+	private function __construct() {
+		add_filter('admin_body_class', [$this, 'zoloblocks_editor_body_class']);
+		add_filter('body_class', [$this, 'zoloblocks_frontend_body_class']);
+	}
+	public function zoloblocks_editor_body_class($classes) {
+		// Check if we are on editing screen in WordPress admin
+		if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') { // phpcs:ignore
+			$classes .= ' zolo-editor';
+		}
+		return $classes;
+	}
+	public function zoloblocks_frontend_body_class(array $classes) {
+		$new_class =  'zolo-frontend';
+		if ($new_class) {
+			$classes[] = $new_class;
+		}
+		return $classes;
+	}
 	/**
 	 * Filter Blocks
 	 */
