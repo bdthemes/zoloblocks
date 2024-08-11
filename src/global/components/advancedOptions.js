@@ -120,7 +120,6 @@ export const AdvancedOptions = (props) => {
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, panelProps);
     const backdropFilters = applyFilters('zolo.extensions.controls.backdropFilters', [], block, panelProps);
 
-
     return (
         <>
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
@@ -153,19 +152,21 @@ export const AdvancedOptions = (props) => {
                 />
 
                 <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
-                    <SelectControl
-                        label={__('Position', 'zoloblocks')}
-                        options={CONTENT_POSITIONS}
-                        onChange={(v) =>
-                            setAttributes({
-                                position: {
-                                    ...position,
-                                    value: v,
-                                },
-                            })
-                        }
-                        value={position.value}
-                    />
+                    <div className="zolo-flex-row-control">
+                        <SelectControl
+                            label={__('Position', 'zoloblocks')}
+                            options={CONTENT_POSITIONS}
+                            onChange={(v) =>
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        value: v,
+                                    },
+                                })
+                            }
+                            value={position.value}
+                        />
+                    </div>
                     {(position.value === 'absolute' || position.value === 'fixed') && (
                         <>
                             <IconicBtnGroup
@@ -284,10 +285,9 @@ export const AdvancedOptions = (props) => {
                 </div>
             </ZoloPanelBody>
             {globalConfig?.background && (
-
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <div className='zolo-flex-col-control'>
-                      <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                    <div className="zolo-flex-col-control">
+                        <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
                     </div>
                     {cssFilters && cssFilters.length > 0 && cssFilters}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}

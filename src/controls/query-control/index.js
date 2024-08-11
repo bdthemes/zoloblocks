@@ -61,7 +61,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 onChange={(postType) => setAttributes({ postQuery: { ...postQuery, postType } })}
             />
 
-            <BaseControl label={__('By Author', 'zolo-block')}>
+            <BaseControl label={__('By Author', 'zolo-block')} className="zolo-flex-col-control">
                 <Select2
                     classNamePrefix="zolo-select"
                     options={AUTHOR_LISTS}
@@ -89,7 +89,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             />
 
             {tpgAllTaxonomies.map((tax, index) => (
-                <BaseControl label={__('By ', 'zoloblocks') + tax.name} key={index}>
+                <BaseControl label={__('By ', 'zoloblocks') + tax.name} key={index} className="zolo-flex-col-control">
                     <Select2
                         classNamePrefix="zolo-select"
                         options={PRINT_TAXONOMY(allTermList[tax.value])}
