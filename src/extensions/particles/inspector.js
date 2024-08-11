@@ -11,11 +11,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const {
-    ZoloPanelBody,
-    PopoverControl,
-    SimpleRangeControl,
-} = window.zoloModule;
+const { ZoloPanelBody, PopoverControl, SimpleRangeControl } = window.zoloModule;
 
 import objAttributes from './attributes';
 
@@ -25,7 +21,7 @@ const Inspector = ({ panelProps }) => {
     const { resMode, zoloParticles, uniqueId } = attributes;
 
     const { active, colors, preset, particleOptions, toggleCustomOption } = zoloParticles;
-    const {direction } = particleOptions;
+    const { direction } = particleOptions;
 
     const onChangeHandler = (select) => {
         switch (select) {
@@ -45,8 +41,8 @@ const Inspector = ({ panelProps }) => {
             case 'dust_wind':
                 setAttributes({
                     zoloParticles: {
-                      ...zoloParticles,
-                      preset: select,
+                        ...zoloParticles,
+                        preset: select,
                         particleOptions: {
                             ...particleOptions,
                             direction: 'right',
@@ -103,6 +99,14 @@ const Inspector = ({ panelProps }) => {
                     },
                 });
                 break;
+            default:
+                setAttributes({
+                    zoloParticles: {
+                        ...zoloParticles,
+                        preset: select,
+                    },
+                });
+                break;
         }
     };
 
@@ -127,8 +131,8 @@ const Inspector = ({ panelProps }) => {
         { label: __('Snow Fall (pro)', 'zoloblocks'), value: 'snow_fall', disabled: true },
         { label: __('Flying Shape (pro)', 'zoloblocks'), value: 'flying_shape', disabled: true },
         { label: __('Hover Bubble (pro)', 'zoloblocks'), value: 'hover_bubble', disabled: true },
-        { label: __('Polygonal Move (pro)', 'zoloblocks'), value: 'polygonal_move', disabled: true
-        },
+        { label: __('Polygonal Move (pro)', 'zoloblocks'), value: 'polygonal_move', disabled: true },
+        { label: __('Custom Options (pro)', 'zoloblocks'), value: 'custom_options', disabled: true },
     ];
 
     return (
@@ -148,15 +152,15 @@ const Inspector = ({ panelProps }) => {
 
             {active && (
                 <>
-                    {!toggleCustomOption && (
-                        <>
-                            <SelectControl
-                                label={__('Presets', 'zoloblocks')}
-                                value={preset}
-                                options={applyFilters('zolo.presets.particles', presets)}
-                                onChange={(preset) => onChangeHandler(preset)}
-                            />
+                    <SelectControl
+                        label={__('Presets', 'zoloblocks')}
+                        value={preset}
+                        options={applyFilters('zolo.presets.particles', presets)}
+                        onChange={(preset) => onChangeHandler(preset)}
+                    />
 
+                    {preset !== 'custom_options' && (
+                        <>
                             <Select2
                                 isMulti
                                 isSearchable={false}
@@ -241,26 +245,10 @@ const Inspector = ({ panelProps }) => {
                                 step={1}
                                 noUnits={true}
                             />
-
                             <PopoverControl label={__('Color', 'zoloblocks')} children={<MultiColor propsMultiColor={sortableProps} />} />
                         </>
                     )}
-                    {
-                        <ToggleControl
-                            label={__('Enable Custom Options', 'zoloblocks')}
-                            checked={toggleCustomOption}
-                            onChange={() =>
-                                setAttributes({
-                                    zoloParticles: {
-                                        ...zoloParticles,
-                                        toggleCustomOption: !toggleCustomOption,
-                                    },
-                                })
-                            }
-                        />
-                    }
-
-                    {toggleCustomOption && (
+                    {preset === 'custom_options' && (
                         <TextareaControl
                             label={__('Custom Options', 'zoloblocks')}
                             onChange={(v) =>

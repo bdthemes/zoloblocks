@@ -13,7 +13,7 @@ const useParticlesInit = (panelProps) => {
         return;
     }
     const { zoloParticles } = attributes;
-    const { particleOptions, preset, colors, toggleCustomOption, speed, dotOpacity } = zoloParticles;
+    const { particleOptions, preset, colors, speed, dotOpacity } = zoloParticles;
     const { shapes, direction, shapeSize, customOptions } = particleOptions;
     const color = colors && colors.map((item) => item.color);
 
@@ -172,11 +172,11 @@ const useParticlesInit = (panelProps) => {
         setAttributes({
             zoloParticles: {
                 ...zoloParticles,
-                particleOptions: toggleCustomOption && customOptions ? createObject(customOptions) : !toggleCustomOption && mainOptions,
+                particleOptions: preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions,
             },
         });
     }
-    const optionData = toggleCustomOption && customOptions ? createObject(customOptions) : !toggleCustomOption && mainOptions;
+    const optionData = preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
 
     try {
         particlesJS(`zolo-particles-${uniqueId}`, optionData);

@@ -284,8 +284,9 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
-                    {particles && particles.length > 0 && particles}
+                    <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps}
+                        particles={particles}
+                    />
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
