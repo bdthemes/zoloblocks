@@ -178,13 +178,13 @@ const useParticlesInit = (panelProps) => {
     }
     const optionData = preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
 
-    try {
-        particlesJS(`zolo-particles-${uniqueId}`, optionData);
+    // try {
+    //     particlesJS(`zolo-particles-${uniqueId}`, optionData);
 
-        // Optionally, add more code to handle cursors initialization logic
-    } catch (error) {
-        console.error('Error initializing particles effects:', error);
-    }
+    //     // Optionally, add more code to handle cursors initialization logic
+    // } catch (error) {
+    //     console.error('Error initializing particles effects:', error);
+    // }
 };
 
 export default useParticlesInit;

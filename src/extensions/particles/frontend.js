@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const particlesOptions = particles.dataset.particles;
             if (!particlesOptions) return;
             const particlesData = JSON.parse(particlesOptions);
+            // active check for particles
+            if (!particlesData.active) {
+                return;
+            }
+
             const { particlesId, preset, colors, particleOptions } = particlesData;
             const { shapes, direction, shapeSize, customOptions } = particleOptions;
             const color = colors && colors.map((color) => color.color);
@@ -173,7 +178,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             const optionData =preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
 
-            particlesJS(`zolo-particles-${particlesId}`, optionData);
+            try {
+                particlesJS(`zolo-particles-${particlesId}`, optionData);
+
+            } catch (error) {
+                console.log(error);
+
+            }
         });
     }
 });
