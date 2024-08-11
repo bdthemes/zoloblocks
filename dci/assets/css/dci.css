@@ -451,35 +451,86 @@ button.notice-dismiss {
  */
 
 /**
- * Start Custom CSS
- * Change the class - .dci-notice-data
+ * Start Element Pack Pro
  */
 
-.dci-global-notice.dci-notice-data .dci-button-allow {
-	--primaryColor: #2667ff;
+.dci-global-notice.dci_element_pack_pro .dci-button-allow {
+	--primaryColor: #08AEEC;
 	--secondaryColor: #20E2AD;
 	background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
 }
 
-.dci-global-notice.dci-notice-data .dci-button-allow:hover {
+.dci-global-notice.dci_element_pack_pro .dci-button-allow:hover {
 	--primaryColor: #20E2AD;
 	;
-	--secondaryColor: #2667ff;
+	--secondaryColor: #08AEEC;
 }
 
-.dci-global-notice.dci-notice-data {
-	border-left-color: #2667ff;
+.dci-global-notice.dci_element_pack_pro {
+	border-left-color: #46d8bb;
 }
 
 
-.dci-global-notice.dci-notice-data .dci-button-skip {
+.dci-global-notice.dci_element_pack_pro .dci-button-skip {
 	background-color: #e0f5ff;
 }
 
-.dci-global-notice.dci-notice-data .dci-button-skip:hover {
+.dci-global-notice.dci_element_pack_pro .dci-button-skip:hover {
 	background-color: #d9f1fd;
 }
 
 /**
- * End Custom CSS
+ * Start Ultimate Post Kit
  */
+
+.dci-global-notice.dci_ultimate_post_kit .dci-button-allow {
+	--primaryColor: #60DF54;
+	--secondaryColor: #08C972;
+	background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
+}
+
+.dci-global-notice.dci_ultimate_post_kit .dci-button-allow:hover {
+	--primaryColor: #08C972;
+	--secondaryColor: #60DF54;
+}
+
+.dci-global-notice.dci_ultimate_post_kit {
+	border-left-color: #60DF54;
+}
+
+
+.dci-global-notice.dci_ultimate_post_kit .dci-button-skip {
+	background-color: rgba(86, 220, 88, 0.212);
+}
+
+.dci-global-notice.dci_ultimate_post_kit .dci-button-skip:hover {
+	background-color: rgba(86, 220, 88, 0.348);
+}
+
+/**
+ * Start Prime Slider
+ */
+
+.dci-global-notice.dci_prime_slider .dci-button-allow {
+	--primaryColor: #FE506C;
+	--secondaryColor: #FC6A2A;
+	background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
+}
+
+.dci-global-notice.dci_prime_slider .dci-button-allow:hover {
+	--primaryColor: #FC6A2A;
+	--secondaryColor: #FE506C;
+}
+
+.dci-global-notice.dci_prime_slider {
+	border-left-color: #FC6A2A;
+}
+
+
+.dci-global-notice.dci_prime_slider .dci-button-skip {
+	background-color: rgba(252, 142, 108, 0.322);
+}
+
+.dci-global-notice.dci_prime_slider .dci-button-skip:hover {
+	background-color: rgba(252, 142, 108, 0.422);
+}

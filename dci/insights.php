@@ -16,7 +16,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 	 */
 	class Insights_SDK {
 
-		public $version = '1.3.0';
+		public $version;
 
 		public $dci_name;
 		public $dci_allow_name;
@@ -33,7 +33,8 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		 */
 		public function __construct( $params ) {
 			$this->params      = $params;
-			$this->text_domain = $params['text_domain'];
+			$this->text_domain = isset( $params['text_domain'] ) ? $params['text_domain'] : 'dci';
+			$this->version     = isset( $params['sdk_version'] ) ? $params['sdk_version'] : '1.0.0';;
 
 			add_action( 'wp_ajax_dci_sdk_insights', array( $this, 'dci_sdk_insights' ) );
 			add_action( 'wp_ajax_dci_sdk_dismiss_notice', array( $this, 'dci_sdk_dismiss_notice' ) );
@@ -209,13 +210,15 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		 * @return void
 		 */
 		public function deactivation_feedback( $params ) {
-			$dci_data                 = array();
-			$dci_data['nonce']        = wp_create_nonce( 'dci_sdk' );
-			$dci_data['slug']         = $params['slug'];
-			$dci_data['text_domain']  = $this->text_domain;
-			$dci_data['api_endpoint'] = $params['api_endpoint'];
-			$dci_data['public_key']   = $params['public_key'];
-			$dci_data['product_id']   = $params['product_id'];
+			$dci_data                         = array();
+			$dci_data['nonce']                = wp_create_nonce( 'dci_sdk' );
+			$dci_data['slug']                 = $params['slug'];
+			$dci_data['text_domain']          = $this->text_domain;
+			$dci_data['api_endpoint']         = $params['api_endpoint'];
+			$dci_data['public_key']           = $params['public_key'];
+			$dci_data['product_id']           = $params['product_id'];
+			$dci_data['core_file']            = isset( $params['core_file'] ) ? $params['core_file'] : false;
+			$dci_data['plugin_deactivate_id'] = isset( $params['plugin_deactivate_id'] ) ? $params['plugin_deactivate_id'] : false;
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'dci_enqueue_scripts' ) );
 
@@ -316,19 +319,18 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 			/**
 			 * ==================================
 			 * 
-			 * Start Own Custom Important Data
+			 * Start Own Custom Data Important
 			 * 
 			 * ==================================
 			 */
+			$custom_data = array(
+				'active_modules' => get_option( 'element_pack_active_modules', false ),
+				'third_party'    => get_option( 'element_pack_third_party_widget', false ),
+				'extend'         => get_option( 'element_pack_elementor_extend', false ),
+				'other_settings' => get_option( 'element_pack_other_settings', false ),
+			);
 
-			// $custom_data = array(
-			// 	'active_modules' => array(),
-			// 	'third_party'    => array(),
-			// 	'extend'         => array(),
-			// 	'other_settings' => array(),
-			// );
-
-			// $custom_data = wp_json_encode($custom_data, true);
+			$custom_data = wp_json_encode( $custom_data, true );
 
 			/**
 			 * ==================================
