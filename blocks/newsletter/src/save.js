@@ -1,6 +1,6 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-
+import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 /**
  * Internal Dependencies
@@ -10,7 +10,8 @@ const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 const formPreventDefault = (e) => {
     e.preventDefault();
 };
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -35,11 +36,15 @@ const Save = ({ attributes }) => {
         textError,
         showLabels,
     } = attributes;
-    const  newsletterMsg = {
+    const newsletterMsg = {
         textSuccess,
         textError,
         textSubscribed,
     };
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...useBlockProps.save({
@@ -47,10 +52,14 @@ const Save = ({ attributes }) => {
             })}
             {...(zoloId && {
                 id: zoloId,
-                settings: ``
+                settings: ``,
             })}
         >
-            <form className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}${preset === 'zolo-newsletter-5' ? focusStyle : ''}`} data-settings={JSON.stringify(newsletterMsg)}>
+            {renderHookBefore && renderHookBefore}
+            <form
+                className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}${preset === 'zolo-newsletter-5' ? focusStyle : ''}`}
+                data-settings={JSON.stringify(newsletterMsg)}
+            >
                 {showNameField && (
                     <div className="zolo-form-control" role="tablist">
                         {preset !== 'zolo-newsletter-5' && (
@@ -65,7 +74,7 @@ const Save = ({ attributes }) => {
 
                         {preset === 'zolo-newsletter-5' && (
                             <>
-                               <div className='zolo-nl-field-icon-wrap'>
+                                <div className="zolo-nl-field-icon-wrap">
                                     <input
                                         id="zolo-newsletter-name-field"
                                         type="name"
@@ -74,26 +83,36 @@ const Save = ({ attributes }) => {
                                         className="zolo-form-input"
                                     />
                                     <span class="zolo-focus-border">
-                                       <span className='zolo-focus-inner'></span>
+                                        <span className="zolo-focus-inner"></span>
                                     </span>
                                     {showFieldIcon && (
-                                        <span className='zolo-nl-field-icon'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                                        <span className="zolo-nl-field-icon">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width={24}
+                                                height={24}
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth={2}
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="icon icon-tabler icons-tabler-outline icon-tabler-user"
+                                            >
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                             </svg>
                                         </span>
                                     )}
-                               </div>
+                                </div>
                             </>
                         )}
                         {showLabels && (
                             <label htmlFor={uniqueId} className="zolo-form-label">
-                            {labelName}
+                                {labelName}
                             </label>
                         )}
-
                     </div>
                 )}
 
@@ -110,7 +129,7 @@ const Save = ({ attributes }) => {
 
                     {preset === 'zolo-newsletter-5' && (
                         <>
-                            <div className='zolo-nl-field-icon-wrap'>
+                            <div className="zolo-nl-field-icon-wrap">
                                 <input
                                     id="zolo-newsletter-email-field"
                                     type="email"
@@ -119,11 +138,22 @@ const Save = ({ attributes }) => {
                                     className="zolo-form-input"
                                 />
                                 <span class="zolo-focus-border">
-                                   <span className='zolo-focus-inner'></span>
+                                    <span className="zolo-focus-inner"></span>
                                 </span>
                                 {showFieldIcon && (
-                                    <span className='zolo-nl-field-icon'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-mail">
+                                    <span className="zolo-nl-field-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={24}
+                                            height={24}
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="icon icon-tabler icons-tabler-outline icon-tabler-mail"
+                                        >
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
                                             <path d="M3 7l9 6l9 -6" />
@@ -138,7 +168,6 @@ const Save = ({ attributes }) => {
                             {labelText}
                         </label>
                     )}
-
                 </div>
 
                 <div className="zolo-form-control zolo-form-submit-btn">
@@ -154,6 +183,7 @@ const Save = ({ attributes }) => {
                     ) : null}
                 </div>
             </form>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

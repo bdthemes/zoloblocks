@@ -26,7 +26,7 @@ const {
 import objAttributes from './attributes';
 
 import { NUMBER_TYPO, TITLE_TYPO } from './constants/typoPrefixConstant';
-import { PROGRESS_BAR_SIZE, CIRCLE_OPTION, PROGRESS_ALIGN } from './constants';
+import { PROGRESS_BAR_SIZE, CIRCLE_OPTION, NUMBER_SPACE, NUMBER_BOTTOM_SPACE } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import MultiColor from './multicolor';
 
@@ -42,12 +42,14 @@ function Inspector(props) {
         round,
         prefix,
         suffix,
-        proPieperpostToggle,
+        toggleSuffixPrefix,
         fillColor,
         fillSize,
         numberColor,
         titleColor,
         circleColor,
+        suffixColor,
+        prefixColor,
     } = progressPie;
 
     const requiredProps = {
@@ -121,7 +123,7 @@ function Inspector(props) {
                                 noUnits={true}
                             />
                             <ToggleControl
-                                label={__('Enable Title', 'zoloblocks')}
+                                label={__('Enable Label', 'zoloblocks')}
                                 checked={toggleLabel === undefined ? true : toggleLabel}
                                 onChange={(v) =>
                                     setAttributes({
@@ -130,44 +132,44 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Enable Prefix & Postfix', 'zoloblocks')}
-                                checked={proPieperpostToggle === undefined ? true : proPieperpostToggle}
+                                label={__('Enable Suffix & Prefix', 'zoloblocks')}
+                                checked={toggleSuffixPrefix === undefined ? true : toggleSuffixPrefix}
                                 onChange={(v) =>
                                     setAttributes({
-                                        progressPie: { ...progressPie, proPieperpostToggle: v },
+                                        progressPie: { ...progressPie, toggleSuffixPrefix: v },
                                     })
                                 }
                             />
                         </ZoloPanelBody>
-                        {/* {(proPieperpostToggle == undefined || proPieperpostToggle == true) && ( */}
-                        <ZoloPanelBody title={__('Prefix & PostFix', 'zoloblocks')} panelProps={props}>
-                            <TextControl
-                                label={__('Prefix', 'zoloblocks')}
-                                value={prefix}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, prefix: v },
-                                    })
-                                }
-                                placeholder={__('$', 'zoloblocks')}
-                            />
-                            <TextControl
-                                label={__('Postfix', 'zoloblocks')}
-                                value={suffix}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, suffix: v },
-                                    })
-                                }
-                                placeholder={__('%', 'zoloblocks')}
-                            />
-                        </ZoloPanelBody>
-                        {/* )} */}
+                        {(toggleSuffixPrefix == undefined || toggleSuffixPrefix == true) && (
+                            <ZoloPanelBody title={__('Suffix & Prefix', 'zoloblocks')} panelProps={props}>
+                                <TextControl
+                                    label={__('Suffix', 'zoloblocks')}
+                                    value={suffix}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, suffix: v },
+                                        })
+                                    }
+                                    placeholder={__('%', 'zoloblocks')}
+                                />
+                                <TextControl
+                                    label={__('Prefix', 'zoloblocks')}
+                                    value={prefix}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, prefix: v },
+                                        })
+                                    }
+                                    placeholder={__('$', 'zoloblocks')}
+                                />
+                            </ZoloPanelBody>
+                        )}
 
                         {(toggleLabel == undefined || toggleLabel == true) && (
-                            <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Label', 'zoloblocks')} panelProps={props}>
                                 <TextControl
-                                    label={__('Title', 'zoloblocks')}
+                                    label={__('Label', 'zoloblocks')}
                                     value={title}
                                     onChange={(v) =>
                                         setAttributes({
@@ -191,12 +193,12 @@ function Inspector(props) {
                                 step={1}
                             />
 
-                            <ResAlignmentControl
+                            {/* <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={PROGRESS_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
-                            />
+                            /> */}
                             <ToggleControl
                                 label={__('Enable Progress Round', 'zoloblocks')}
                                 checked={round}
@@ -225,9 +227,9 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Circle', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Circle Color', 'zoloblocks')}
+                                label={__('Background', 'zoloblocks')}
                                 color={circleColor}
                                 onChange={(value) =>
                                     setAttributes({
@@ -244,7 +246,6 @@ function Inspector(props) {
                                             label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={NUMBER_TYPO}
                                             requiredProps={requiredProps}
-                                            max={36}
                                         />
 
                                         <ColorControl
@@ -255,6 +256,42 @@ function Inspector(props) {
                                                     progressPie: { ...progressPie, numberColor: value },
                                                 })
                                             }
+                                        />
+                                        {toggleSuffixPrefix && (
+                                            <>
+                                                {suffix !== '' && (
+                                                    <ColorControl
+                                                        label={__('Suffix Color', 'zoloblocks')}
+                                                        color={suffixColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                progressPie: { ...progressPie, suffixColor: value },
+                                                            })
+                                                        }
+                                                    />
+                                                )}
+                                                {prefix !== '' && (
+                                                    <ColorControl
+                                                        label={__('Prefix Color', 'zoloblocks')}
+                                                        color={prefixColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                progressPie: { ...progressPie, prefixColor: value },
+                                                            })
+                                                        }
+                                                    />
+                                                )}
+                                                <ResRangeControl
+                                                    label={__('Spacing', 'zoloblocks')}
+                                                    controlName={NUMBER_SPACE}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        )}
+                                        <ResRangeControl
+                                            label={__('Bottom Spacing', 'zoloblocks')}
+                                            controlName={NUMBER_BOTTOM_SPACE}
+                                            requiredProps={requiredProps}
                                         />
                                     </>
                                 }

@@ -59,9 +59,13 @@ const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
                 >
                     <ColorPicker
                         color={color}
-                        onChangeComplete={({ rgb }) => {
-                            onChange(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+                        onChange={(color) => {
+                            onChange(color);
                         }}
+                        // onChangeComplete={({ rgb }) => {
+                        //     onChange(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+                        // }}
+                        enableAlpha={true}
                     />
                     {COLORS && (
                         <Fragment>

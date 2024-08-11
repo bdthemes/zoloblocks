@@ -7,6 +7,7 @@ import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * External dependencies
@@ -75,6 +76,10 @@ export default function Edit(props) {
         ),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     /**
      * context
      */
@@ -127,6 +132,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <Style props={props} />
                 <div className="zolo-item">
                     <div className="zolo-review-img-meta-wrap">
@@ -246,6 +252,7 @@ export default function Edit(props) {
                         </div>
                     </div>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

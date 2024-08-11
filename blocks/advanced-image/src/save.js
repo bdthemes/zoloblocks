@@ -1,8 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, DynamicTag } = window.zoloModule;
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -28,6 +30,9 @@ const Save = ({ attributes }) => {
         photoMaskImage,
     } = attributes;
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
@@ -39,10 +44,16 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             {photo && (
                 <DynamicTag
                     tagName={link && link.url ? 'a' : 'div'}
-                    className={classnames('zolo-image-block-wrap', `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`, `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`, hoverEffect)}
+                    className={classnames(
+                        'zolo-image-block-wrap',
+                        `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`,
+                        `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
+                        hoverEffect
+                    )}
                     {...(link &&
                         link.url && {
                             href: link.url,
@@ -87,10 +98,13 @@ const Save = ({ attributes }) => {
                                 </div>
                             </div>
                         )}
-                        {layout === 'normal' && showCaption && <RichText.Content tagName="figcaption" value={caption || photo?.caption} className="zolo-caption" />}
+                        {layout === 'normal' && showCaption && (
+                            <RichText.Content tagName="figcaption" value={caption || photo?.caption} className="zolo-caption" />
+                        )}
                     </div>
                 </DynamicTag>
             )}
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

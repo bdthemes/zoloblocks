@@ -2,7 +2,7 @@ import { ToggleControl } from '@wordpress/components';
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false }) => {
+const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, upcoming }) => {
     return (
         <div className={`zolo-single-block ${value ? 'active' : ''}`}>
             {isPro && (
@@ -32,7 +32,13 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
                 </div>
             </div>
             <div className="block-switcher">
-                <ToggleControl checked={value} onChange={onClick} />
+                {
+                    upcoming ? (
+                        <span className='zolo-badge-upcoming'>{__('Coming Soon', 'zoloblocks')}</span>
+                    ) : (
+                        <ToggleControl checked={value} onChange={onClick} />
+                    )
+                }
             </div>
         </div>
     );

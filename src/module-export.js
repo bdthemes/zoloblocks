@@ -7,6 +7,7 @@ export { default as BackgroundControl } from './controls/background-control';
 export { default as BorderControl } from './controls/border-control';
 export { default as BoxShadowControl } from './controls/boxshadow-control';
 export { default as ColorControl } from './controls/color-control';
+export { default as ColorControlAlt } from './controls/color-control-alt';
 export { default as ResDimensionsControl } from './controls/dimensions-control';
 export { default as GradientControl } from './controls/gradient-control';
 export { default as ImageAvatar } from './controls/image-avatar';
@@ -45,13 +46,14 @@ export { default as BazierControl } from './controls/bezier-control';
 export { default as ContainerSidebarOpener } from './controls/container-sidebar-opener';
 export { default as SidebarOpener } from './controls/sidebar-opener';
 export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
+export { default as Select2AjaxControl } from './controls/select2-ajax-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
 export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
 export { generateBoxShadowAttributies, generateBoxShadowStyles } from './helpers/boxshadow-helper';
 export { generateDimensionAttributes, generateDimensionStyle } from './helpers/dimension-helper';
-export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr } from './helpers/helper';
+export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr, isEmpty, strToHex } from './helpers/helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';

@@ -5,6 +5,7 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 import { ToggleControl, TextControl, SelectControl, Button, BaseControl, __experimentalAlignmentMatrixControl as AlignmentMatrixControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -68,9 +69,12 @@ import {
 import { DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
 
 import { CAPTION_TYPO, HEADING_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
+import { css } from '@codemirror/lang-css';
+
+
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         resMode,
         photo,
@@ -115,6 +119,7 @@ function Inspector(props) {
     };
 
     const [duotone, setDuotone] = useState(['#000000', '#ffffff']);
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -312,6 +317,7 @@ function Inspector(props) {
                             {/* <ResRangeControl label={__('Max Width', 'zoloblocks')} controlName={IMGMAX_WIDTH} requiredProps={requiredProps} /> */}
                             <ResRangeControl label={__('Height', 'zoloblocks')} controlName={IMG_HEIGHT} requiredProps={requiredProps} max={1500} />
                             <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
+                            {cssFilters && cssFilters.length > 0 && cssFilters}
                             {photoMaskImage === '' && (
                                 <>
                                     <BorderControl

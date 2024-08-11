@@ -4,6 +4,7 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -16,6 +17,10 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
     const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link, iconAnimation } = attributes;
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -31,6 +36,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
                     className={classnames(
@@ -71,6 +77,7 @@ export default function Edit(props) {
                         {iconType !== 'none' && <DisplayZoloIcon icon={icon} />}
                     </a>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

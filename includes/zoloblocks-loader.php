@@ -10,6 +10,8 @@ use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
+use Zolo\Admin\PostCategoryImage;
+use Zolo\Classes\ZoloAJAX;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -39,12 +41,14 @@ class ZoloBlocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloAjax.php';
+        ZoloAJAX::getInstance();
+        // require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloAjax.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloEnqueues.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/FontLoader.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/PostMeta.php';
 
         // Load Admin files
+        PostCategoryImage::getInstance();
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
@@ -57,9 +61,9 @@ class ZoloBlocks_Loader {
         //mailchimp
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Mailchimp/Mailchimp.php';
 
-        // notice block 
+        // notice block
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
-        
+
         // popup
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Popup/PopupBuilder.php';
 
@@ -81,9 +85,6 @@ class ZoloBlocks_Loader {
      * @return void
      */
     public function init_actions() {
-        add_filter('admin_body_class', [$this, 'zoloblocks_editor_custom_body_class']);
-        add_filter('body_class', [$this, 'zoloblocks_custom_body_class']);
-
         $theme_folder = get_template();
 
         if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
@@ -95,20 +96,6 @@ class ZoloBlocks_Loader {
         if ('astra' === $theme_folder) {
             // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
         }
-    }
-    public function zoloblocks_editor_custom_body_class($classes) {
-        // Check if we are on editing screen in WordPress admin
-        if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') {
-            $classes .= ' zolo-editor';
-        }
-        return $classes;
-    }
-    public function zoloblocks_custom_body_class(array $classes) {
-        $new_class =  'zolo-frontend';
-        if ($new_class) {
-            $classes[] = $new_class;
-        }
-        return $classes;
     }
 }
 

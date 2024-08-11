@@ -1,11 +1,11 @@
-=== ZoloBlocks - Page Builder Blocks for Gutenberg ===
+=== ZoloBlocks - Page Builder Blocks, Patterns, Ready Templates, Form Builder & Popup Builder for Gutenberg ===
 Contributors: bdthemes, selimmw
-Donate link: http://bdthemes.com/
-Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
+Donate link: http://zoloblocks.com/
+Tags: block editor, gutenberg blocks, gutenberg, wordpress blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ You need just one good reason to come back to Gutenberg Builder. And that reason
 
 ZoloBlocks is the most advanced block editor plugin that rivals popular page builder plugins in terms of features, user interface, customizations, and ease of use. Built for Gutenberg, the plugin enhances how you should design your websites from scratch to perfection.
 
-Meet your page editor blocks, a good **30+** of them in a robust package.
+Meet your page editor blocks, a good **40+** of them in a robust package.
 
 All blocks come with a detailed options panel and a range of customizations. ZoloBlocks lets you modify the layouts of your content to shape your desired landing page.
 
@@ -29,7 +29,7 @@ ZoloBlocks promises the flexibility that you have been enjoying with page builde
 
 == User-Friendly Interface 👍 ==
 
-WordPress is known for offering a very straightforward UI to keep it simple for users. ZoloBlocks sticks to the same principle and provides a robust interface with familiar options and their naming. The UI is neat and clean to make your page-building journey smooth and comfortable.
+WordPress is known for offering a very straightforward UI to keep it simple for users. Zolo Blocks sticks to the same principle and provides a robust interface with familiar options and their naming. The UI is neat and clean to make your page-building journey smooth and comfortable.
 
 == One Plugin, Many Blocks 🎁 ==
 
@@ -128,10 +128,10 @@ Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builde
 - Activate the plugin
 
 = Installation via Zip file: =
-- Download ZoloBlocks block plugin zip file from WordPress
+- Download Zolo Blocks block plugin zip file from WordPress
 - Go to site Dashboard > Plugins > Add New > Upload Plugins
-- Select the ZoloBlocks zip file and proceed to install
-- Activate ZoloBlocks
+- Select the Zolo Blocks zip file and proceed to install
+- Activate Zolo Blocks
 
 https://youtu.be/WH-Afb6b4KQ
 
@@ -148,7 +148,7 @@ There are no requirement for upgrade notice.
 ZoloBlocks offers a range of features designed to enhance your web design experience. These includes customizable blocks, layouts, patterns,  drag-and-drop interface, advanced styling options, flexibility, responsiveness and more.
 
 = Does ZoloBlocks work with all WordPress themes? =
-Most certainly all WordPress themes are compatible with the ZoloBlocks framework as the plugin is built for maximum compatibility with WordPress itself.
+Most certainly all WordPress themes are compatible with the Zolo Blocks framework as the plugin is built for maximum compatibility with WordPress itself.
 
 = What if I update to the Premium version? =
 If you upgrade to the pro plugin version, you will unlock more unique features and customizations. Additionally, you will be able to receive personalized support from team BdThemes.
@@ -178,7 +178,7 @@ Of course. Please expect new features within the frequent plugin updates. Also, 
 The plugin has been developed to be used by all WordPress users, regardless of their freelancer-client relationship. And there are paid tiers of the plugin designed especially for giving out client-based web services.
 
 = Does the plugin require WordPress mastery? =
-No. In fact, it might be your first day at WordPress and you are using ZoloBlocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
+No. In fact, it might be your first day at WordPress and you are using Zolo Blocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
 
 = Will my site load slower if I install the plugin? =
 Absolutely no chance of slowing down your website. ZoloBlocks boosts a lightweight framework with only fresh green codes. Best thing can happen is that your site will get faster and more beautiful.
@@ -207,6 +207,41 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.2.3 - 11-8-2024 =
+
+### Added
+
+* Particles feature added
+* Post Category block added
+* Post Tag Cloud block added
+* Maintenance mode feature added
+
+### Fixed
+
+* Appender button issue fixed to Tabs block
+* Outline and border issue fixed to tabs block
+
+= 1.2.2 - 01-08-2024 =
+
+### Fixed
+
+* Popup block issue fixed
+* Astra theme support issue fixed
+* Transform confilict with Entrance animation issue fixed
+* glitching issue fixed in marquee block (pro)
+
+### Improved
+
+* Form, Notice, Review, QR Code blocks improved
+
+= 1.2.1 - 28-07-2024 =
+
+= Added =
+* Suffix and Prefix style controls added to QR Code block
+
+= Fixed =
+* Some minor issues are fixed
 
 = 1.2.0 - 25-07-2024 =
 

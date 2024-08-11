@@ -449,7 +449,6 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
-
     const positionDesktop = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
@@ -459,14 +458,14 @@ export const GlobalStyleHanlder = (props) => {
         ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important` : ''}
  `;
     const positionTab = `
-        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightTab}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopTab}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomTab}` : ''}
     `;
     const positionMob = `
-        ${position && position?.value !== '' ?  `position: ${position.value};` : ''}
+        ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftMob}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightMob}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopMob}` : ''}
@@ -477,7 +476,7 @@ export const GlobalStyleHanlder = (props) => {
             ${translateXStylesDesktop}
             ${translateYStylesDesktop}
             ${rotateStylesDesktop}
-            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ''}
+            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : '--zolo-transform-perspective: 1000px;'}
             ${scaleProportionally ? `${scaleStylesDesktop}` : ''}
             ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ''}
             ${skewXStylesDesktop}
@@ -499,7 +498,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesTab}
             ${transformOriginXTab}
             ${transformOriginYTab}
-            ${transitionDurationTab ? `${transitionDurationTab}ms;` : ''}
+            ${transitionDurationTab ? `${transitionDurationTab}` : ''}
             `;
     const transformStylesMob = `
             ${translateXStylesMob}
@@ -512,7 +511,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesMob}
             ${transformOriginXMob}
             ${transformOriginYMob}
-            ${transitionDurationMob ? `${transitionDurationMob}ms;` : ''}
+            ${transitionDurationMob ? `${transitionDurationMob}` : ''}
             `;
 
     // transform hover
@@ -527,7 +526,8 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesDesktopHover}
             ${transformOriginXDesktopHover}
             ${transformOriginYDesktopHover}
-            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
+            ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
+
             `;
     const transformStylesTabHover = `
             ${translateXStylesTabHover}
@@ -541,7 +541,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesTabHover}
             ${transformOriginXTabHover}
             ${transformOriginYTabHover}
-           ${transitionDurationTab ? `${transitionDurationTab}ms;` : ''}
+           ${transitionDurationTab ? `${transitionDurationTab}` : ''}
             `;
     const transformStylesMobHover = `
             ${translateXStylesMobHover}
@@ -555,7 +555,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesMobHover}
             ${transformOriginXMobHover}
             ${transformOriginYMobHover}
-            ${transitionDurationMob ? `${transitionDurationMob}ms;` : ''}
+            ${transitionDurationMob ? `${transitionDurationMob}` : ''}
             `;
 
     const desktopGlobalStyles = `
@@ -571,21 +571,23 @@ export const GlobalStyleHanlder = (props) => {
         ${transformStylesDesktop}
         ${positionDesktop}
       }
-      .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
-            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
+
+
+       .parent-${uniqueId}.zolo-transform-wrapper,
+       .zolo-editor .parent-${uniqueId}.zolo-transform-animation {
+       ${transformStylesDesktop}
+        ${transitionDurationDesktop ? `${transitionDurationDesktop}` : ''}
       }
-      .parent-${uniqueId}.zolo-transform-animation {
-        ${transformStylesDesktop}
-        ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
-      }
+        .parent-${uniqueId}.zolo-transform-wrapper:hover,
+        .zolo-editor .parent-${uniqueId}.zolo-transform-animation:hover {
+        ${transformStylesDesktopHover}
+        }
+
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
-          ${transformStylesDesktopHover}
       }
-        .parent-${uniqueId}.zolo-transform-animation:hover {
-            ${transformStylesDesktopHover}
-            }
+
       .parent-${uniqueId}.zolo-block:after {
           ${overlayDeskStyle ? overlayDeskStyle : ''}
       }
@@ -602,13 +604,11 @@ export const GlobalStyleHanlder = (props) => {
           ${marginStylesTab ? marginStylesTab : ''}
           ${paddingStylesTab ? paddingStylesTab : ''}
           ${bgTabStyle ? bgTabStyle : ''}
-          ${transformStylesTab}
         ${positionTab}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgTabStyle ? hoverBgTabStyle : ''}
-            ${transformStylesTabHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
@@ -618,6 +618,15 @@ export const GlobalStyleHanlder = (props) => {
       .parent-${uniqueId}.zolo-block:hover:after {
           ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
       }
+
+      .parent-${uniqueId}.zolo-transform-wrapper,
+       .zolo-editor .parent-${uniqueId}.zolo-transform-animation {
+        ${transformStylesTab}
+      }
+        .parent-${uniqueId}.zolo-transform-wrapper:hover,
+        .zolo-editor .parent-${uniqueId}.zolo-transform-animation:hover {
+        ${transformStylesTabHover}
+        }
   `;
 
     const mobileGlobalStyles = `
@@ -627,13 +636,11 @@ export const GlobalStyleHanlder = (props) => {
           ${marginStylesMobile ? marginStylesMobile : ''}
           ${paddingStylesMobile ? paddingStylesMobile : ''}
           ${bgMobStyle ? bgMobStyle : ''}
-          ${transformStylesMob}
         ${positionMob}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgMobStyle ? hoverBgMobStyle : ''}
-          ${transformStylesMobHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
@@ -643,15 +650,22 @@ export const GlobalStyleHanlder = (props) => {
       .parent-${uniqueId}.zolo-block:hover:after {
           ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
       }
+
+        .parent-${uniqueId}.zolo-transform-wrapper,
+       .zolo-editor .parent-${uniqueId}.zolo-transform-animation {
+          ${transformStylesMob}
+      }
+        .parent-${uniqueId}.zolo-transform-wrapper:hover,
+        .zolo-editor .parent-${uniqueId}.zolo-transform-animation:hover {
+        ${transformStylesMobHover}
+        }
   `;
 
     const blockWriteCss = customCss ? customCss.replace(/{{ZOLO}}/g, `.${uniqueId}`) : '';
 
-
-      const filteredDesktopAllStyle = applyFilters('zolo_desktop_all_style', desktopAllStyle, attributes);
-      const filteredTabAllStyle = applyFilters('zolo_tab_all_style', tabAllStyle, attributes);
-      const filteredMobileAllStyle = applyFilters('zolo_mobile_all_style', mobileAllStyle, attributes);
-
+    const filteredDesktopAllStyle = applyFilters('zolo_desktop_all_style', desktopAllStyle, props);
+    const filteredTabAllStyle = applyFilters('zolo_tab_all_style', tabAllStyle, props);
+    const filteredMobileAllStyle = applyFilters('zolo_mobile_all_style', mobileAllStyle, props);
 
     const allStyle = `
 		${softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles)}
@@ -663,8 +677,6 @@ export const GlobalStyleHanlder = (props) => {
 			${softMinifyCssStrings(filteredMobileAllStyle + mobileGlobalStyles)}
 		}
 	`;
-
-
 
     const softMinifyDeskStrings = softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles);
     const softMinifyTabStrings = softMinifyCssStrings(filteredTabAllStyle + tabGlobalStyles);

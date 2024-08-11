@@ -76,6 +76,20 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-scripts' => ['zolo-post-carousel-frontend'],
         'class' => '\Zolo\Blocks\PostCarousel'
     ],
+    'post-category'      => [
+        'name'             => 'post-category',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-category/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => false,
+        'class'            => '\Zolo\Blocks\PostCategory',
+    ],
+    'tag-cloud'          => [
+        'name'             => 'tag-cloud',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/tag-cloud/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => false,
+        'class'            => '\Zolo\Blocks\TagCloud',
+    ],
     'post-grid' => [
         'name'             => 'post-grid',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-grid/block.json',
@@ -135,6 +149,12 @@ return apply_filters('zolo_blocks_list_data', [
     'social-links' => [
         'name'             => 'social-links',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/social-links/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => true
+    ],
+    'social-share' => [
+        'name'             => 'social-share',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/social-share/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => true
     ],

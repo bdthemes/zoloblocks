@@ -1,13 +1,13 @@
 import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
 import { ToolbarGroup, Dropdown, ToolbarButton, Button } from '@wordpress/components';
 import { select } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 import classnames from 'classnames';
-import { applyFilters } from '@wordpress/hooks';
+import { applyFilters, removeFilter } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
-
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
     const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
@@ -25,8 +25,9 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         ),
     });
 
-    const shapeDividerBefore = applyFilters('zolo.extensions.render.shapeDivider.top', [], panelProps);
-    const shapeDividerAfter = applyFilters('zolo.extensions.render.shapeDivider.bottom', [], panelProps);
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
     return (
         <>
@@ -70,15 +71,15 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        {attributes.enableShapeDivider && shapeDividerBefore && shapeDividerBefore.length > 0 && shapeDividerBefore}
+                        {renderHookBefore && renderHookBefore}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
-                        {attributes.enableShapeDivider && shapeDividerAfter && shapeDividerAfter.length > 0 && shapeDividerAfter}
+                        {renderHookAfter && renderHookAfter}
                     </div>
                 ) : (
                     <>
-                        {attributes.enableShapeDivider && shapeDividerBefore && shapeDividerBefore.length > 0 && shapeDividerBefore}
+                        {renderHookBefore && renderHookBefore}
                         <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
-                        {attributes.enableShapeDivider && shapeDividerAfter && shapeDividerAfter.length > 0 && shapeDividerAfter}
+                        {renderHookAfter && renderHookAfter}
                     </>
                 )}
             </div>

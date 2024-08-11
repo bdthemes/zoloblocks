@@ -1,22 +1,10 @@
 <?php
 
-/**
- * ZoloHelpers
- *
- * AJAX Event Handler
- *
- * @class    ZoloHelpers
- * @version  0.0.1
- * @package  zolo-helpers
- * @category Class
- */
-
 namespace Zolo\Classes;
 
 use Zolo\Traits\SingletonTrait;
 use Zolo\Helpers\ZoloHelpers;
 
-// Exit if accessed directly.
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -24,26 +12,27 @@ if (!defined('ABSPATH')) {
 class StyleGenerator {
     use SingletonTrait;
 
-    private $dynamic_styles; 
+    private $dynamic_styles = '';
 
     public function __construct() {
-        //Generate Style on block render
+        // Ensure blocks in post content are rendered
+        add_filter('the_content', 'do_blocks', 9);
+
+        // Generate Style on block render
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);
+        add_filter('render_block', [$this, 'cursors_effects'], 10, 2);
+        add_filter('render_block', [$this, 'particles_effects'], 10, 2);
 
         // Enqueue Dynamic Styles
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_dynamic_styles']);
+        if (wp_is_block_theme()) {
+            add_action('wp_head', [$this, 'output_dynamic_styles']);
+        } else {
+            add_action('wp_footer', [$this, 'output_dynamic_styles']);
+        }
     }
 
-    /**
-     * Hanlde Block Style
-     *
-     * @since 0.0.1
-     *
-     * @return array
-     */
     public function generate_style_on_render_block($block_content, $block) {
         if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
-            $currnet_post_type = get_post_type();
             do_action('zolo_block_render_block', $block);
             if (isset($block['attrs']['zoloStyles'])) {
                 $style = ZoloHelpers::zolo_generate_style($block['attrs']['zoloStyles']);
@@ -54,19 +43,114 @@ class StyleGenerator {
         return $block_content;
     }
 
-    /**
-     * Enqueue Dynamic Styles
-     *
-     * @since 0.0.1
-     *
-     * @return void
-     */
-    public function enqueue_dynamic_styles() {
+    public function output_dynamic_styles() {
         if (!empty($this->dynamic_styles)) {
-            $handle = 'zolo-block-inline-style-' . rand(100, 10000); 
-            wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all');
-            wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
-            wp_add_inline_style($handle, $this->dynamic_styles);
+            echo '<style id="zolo-block-inline-styles">' . $this->dynamic_styles . '</style>';
         }
+    }
+
+    public function cursors_effects($block_content, $block) {
+        if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
+
+            $zoloCursors = $block['attrs']['zoloCursors'] ?? false;
+            // print_r($zoloCursors);
+            if ($zoloCursors) {
+                $cursorOptions = $block['attrs']['zoloCursors'] ?? [
+                    'active' => true,
+                    'source' => 'default',
+                    'preset' => 'style-1',
+                    'disabledDefault' => false,
+                    'speed' => 400,
+                    'textLabel' => 'Click Me',
+                ];
+
+                // Convert the heading animation to JSON string
+                // Convert the heading animation to JSON string
+                $cursorOptions = wp_json_encode($cursorOptions);
+
+                if (!empty($cursorOptions)) {
+                    // Parse the block content as HTML
+                    $dom = new \DOMDocument();
+                    // Use explicit error handling to prevent warnings from causing issues
+                    libxml_use_internal_errors(true);
+                    $dom->loadHTML($block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                    // Retrieve the first div or the outermost element
+                    $outerDiv = $dom->firstChild;
+                    if ($outerDiv) {
+                        // Retrieve existing class attribute
+                        $existingClasses = $outerDiv->getAttribute('class');
+
+                        // Add the animation attribute
+                        $outerDiv->setAttribute('data-cursors', $cursorOptions);
+                        // Restore existing classes
+                        if (!empty($existingClasses)) {
+                            $outerDiv->setAttribute('class', $existingClasses);
+                        }
+
+                        // Save the modified HTML
+                        // Use saveHTML() with the specified node to avoid getting unwanted doctype/html/body tags
+                        $block_content = $dom->saveHTML($dom->documentElement);
+                    }
+                }
+
+                // Clean up any libxml errors
+                libxml_clear_errors();
+            }
+        }
+
+        return $block_content;
+    }
+    public function particles_effects($block_content, $block) {
+        if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
+
+            $zoloParticles = $block['attrs']['zoloParticles'] ?? false;
+            // print_r($zoloParticles);
+            if ($zoloParticles) {
+                $particlesOptions = $block['attrs']['zoloParticles'] ?? [
+                    'active' => true,
+                    'source' => 'default',
+                    'preset' => 'style-1',
+                    'disabledDefault' => false,
+                    'speed' => 400,
+                    'textLabel' => 'Click Me',
+                ];
+
+                // Convert the heading animation to JSON string
+                // Convert the heading animation to JSON string
+                $particlesOptions = wp_json_encode($particlesOptions);
+
+                if (!empty($particlesOptions)) {
+                    // Parse the block content as HTML
+                    $dom = new \DOMDocument();
+                    // Use explicit error handling to prevent warnings from causing issues
+                    libxml_use_internal_errors(true);
+                    $dom->loadHTML($block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                    // Retrieve the first div or the outermost element
+                    $outerDiv = $dom->firstChild;
+                    if ($outerDiv) {
+                        // Retrieve existing class attribute
+                        $existingClasses = $outerDiv->getAttribute('class');
+
+                        // Add the animation attribute
+                        $outerDiv->setAttribute('data-particles', $particlesOptions);
+                        // Restore existing classes
+                        if (!empty($existingClasses)) {
+                            $outerDiv->setAttribute('class', $existingClasses);
+                        }
+
+                        // Save the modified HTML
+                        // Use saveHTML() with the specified node to avoid getting unwanted doctype/html/body tags
+                        $block_content = $dom->saveHTML($dom->documentElement);
+                    }
+                }
+
+                // Clean up any libxml errors
+                libxml_clear_errors();
+            }
+        }
+
+        return $block_content;
     }
 }

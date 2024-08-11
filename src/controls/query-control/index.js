@@ -1,14 +1,8 @@
-import {
-    BaseControl,
-    PanelBody,
-    SelectControl,
-    TextControl,
-    __experimentalNumberControl as NumberControl,
-    __experimentalInputControl as InputControl,
-} from '@wordpress/components';
+import { BaseControl, SelectControl, TextControl, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
 import { SORT_ORDER, ORDER_BY, PRINT_TAXONOMY } from '../../global/constants';
+import Select2AjaxControl from '../select2-ajax-control';
 
 const QueryControl = ({ attributes, setAttributes }) => {
     const { postQuery } = attributes;
@@ -61,7 +55,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 onChange={(postType) => setAttributes({ postQuery: { ...postQuery, postType } })}
             />
 
-            <BaseControl label={__('By Author', 'zolo-block')} className="zolo-flex-col-control">
+            <BaseControl label={__('By Author', 'zoloblocks')} className="zolo-flex-col-control">
                 <Select2
                     classNamePrefix="zolo-select"
                     options={AUTHOR_LISTS}
@@ -72,20 +66,24 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 />
             </BaseControl>
 
-            <TextControl
+            <Select2AjaxControl
                 label={__('Include Only', 'zoloblocks')}
-                value={postQuery.postInclude}
+                placeholder={__('Search...', 'zoloblocks')}
+                sourceName="post_type"
+                sourceType={postQuery.postType || 'post'}
+                isMulti={true}
+                value={postQuery?.postInclude || []}
                 onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
-                autocomplete="off"
             />
 
-            <TextControl
+            <Select2AjaxControl
                 label={__('Exclude', 'zoloblocks')}
-                autocomplete="off"
-                value={postQuery.postExclude}
-                onChange={(postExclude) => {
-                    setAttributes({ postQuery: { ...postQuery, postExclude } });
-                }}
+                placeholder={__('Search...', 'zoloblocks')}
+                sourceName="post_type"
+                sourceType={postQuery.postType || 'post'}
+                isMulti={true}
+                value={postQuery?.postExclude || []}
+                onChange={(postExclude) => setAttributes({ postQuery: { ...postQuery, postExclude } })}
             />
 
             {tpgAllTaxonomies.map((tax, index) => (

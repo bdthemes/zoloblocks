@@ -1,8 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -22,7 +24,9 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...blockProps}
@@ -30,6 +34,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div className={classnames('start-rating-wrapper', titlePosition)}>
                 <div className={classnames('star-rating-inner', titlePosition)}>
                     {showTitle && <RichText.Content tagName={titleTag} className="start-rating-title" value={title} />}
@@ -61,6 +66,7 @@ const Save = ({ attributes }) => {
                     ></div>
                 </div>
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

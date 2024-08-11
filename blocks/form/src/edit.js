@@ -6,6 +6,7 @@ import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import apiFetch from '@wordpress/api-fetch';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -65,11 +66,16 @@ export default function Edit(props) {
         });
     }, [formInnerBlocks]);
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1" id={formId}>
                     <InnerBlocks
@@ -85,6 +91,7 @@ export default function Edit(props) {
                         </div>
                     </div>
                 </form>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

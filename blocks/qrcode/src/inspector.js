@@ -1,10 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -31,7 +32,7 @@ import {
 } from './constants/index';
 
 export default function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
 
     const {
         resMode,
@@ -62,6 +63,11 @@ export default function Inspector(props) {
         setAttributes,
         objAttributes,
     };
+            const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [],  props);
+            const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [],  props);
+            const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [],  props);
+            const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [],  props);
+
 
     return (
         <>
@@ -73,26 +79,19 @@ export default function Inspector(props) {
                     generalTab={
                         <>
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                <TextareaControl
-                                    label={__('Content', 'zoloblocks')}
-                                    value={qrContent}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            qrContent: value,
-                                        })
-                                    }
-                                />
-
-                                {/* <ToggleControl
-                                    label={__('Enable Page Link', 'zoloblocks')}
-                                    checked={qrCodeLink}
-                                    onChange={() =>
-                                        setAttributes({
-                                            qrCodeLink: !qrCodeLink,
-                                        })
-                                    }
-                                /> */}
-
+                                {!qrCodeLink && (
+                                    <TextareaControl
+                                        label={__('Content', 'zoloblocks')}
+                                        value={qrContent}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                qrContent: value,
+                                            })
+                                        }
+                                    />
+                                )}
+                                {/* hook links */}
+                                {hookLinks && hookLinks.length > 0 && hookLinks}
                                 <SimpleRangeControl
                                     label={__('Size', 'zoloblocks')}
                                     value={qrCodeSize}
@@ -121,16 +120,8 @@ export default function Inspector(props) {
                                     options={QR_CODE_LEVEL}
                                 />
 
-                                {/* <SelectControl
-                                    label={__('Style', 'zoloblocks')}
-                                    value={qrCodeStyle}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            qrCodeStyle: value,
-                                        })
-                                    }
-                                    options={QR_CODE_STYLE}
-                                /> */}
+                                {/* hook styles */}
+                                {hookStyles && hookStyles.length > 0 && hookStyles}
 
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
@@ -138,70 +129,8 @@ export default function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
-
-                            {/* <ZoloPanelBody title={__('Logo')} panelProps={props} firstOpen={false}>
-                                <BaseControl label={__('Choose Logo', 'zoloblocks')}>
-                                    {logoQr ? (
-                                        <ImageAvatar
-                                            imageUrl={logoQr && logoQr.url}
-                                            onDeleteImage={() =>
-                                                setAttributes({
-                                                    logoQr: null,
-                                                })
-                                            }
-                                            imageId={logoQr && logoQr.id}
-                                            onEditImage={(media) => {
-                                                setAttributes({
-                                                    logoQr: media,
-                                                });
-                                            }}
-                                        />
-                                    ) : (
-                                        <>
-                                            <MediaUpload
-                                                onSelect={(media) => {
-                                                    setAttributes({
-                                                        logoQr: {
-                                                            id: media.id,
-                                                            url: media.url,
-                                                            sizes: media.sizes,
-                                                            alt: media.alt,
-                                                            caption: media.caption,
-                                                        },
-                                                    });
-                                                }}
-                                                allowedTypes={['image']}
-                                                value={logoQr && logoQr.id}
-                                                render={({ open }) => (
-                                                    <Button className="zolo-image-upload-btn" onClick={open}>
-                                                        <svg
-                                                            width="24"
-                                                            height="24"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                        >
-                                                            <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-                                                        </svg>
-                                                        {__(' Upload Logo', 'zoloblocks')}
-                                                    </Button>
-                                                )}
-                                            />
-                                            <span className="zolo-help-text">{__('Use Square Size Image', 'zoloblocks')}</span>
-                                        </>
-                                    )}
-                                </BaseControl>
-
-                                <ToggleControl
-                                    label={__('Behind the QR Code', 'zoloblocks')}
-                                    checked={logoQrBehind}
-                                    onChange={() =>
-                                        setAttributes({
-                                            logoQrBehind: !logoQrBehind,
-                                        })
-                                    }
-                                />
-                            </ZoloPanelBody> */}
+                            {/* hook logo  */}
+                            {hookLogo && hookLogo.length > 0 && hookLogo}
                         </>
                     }
                     styleTab={
@@ -287,73 +216,8 @@ export default function Inspector(props) {
                                 />
                             </ZoloPanelBody>
 
-                            {/* <ZoloPanelBody title={__('Logo', 'zoloblocks')} panelProps={props}>
-                                <SimpleRangeControl
-                                    label={__('Size', 'zoloblocks')}
-                                    value={logoWidth}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            logoWidth: value,
-                                        })
-                                    }
-                                    onReset={() => {
-                                        setAttributes({
-                                            logoWidth: '',
-                                        });
-                                    }}
-                                    min={1}
-                                    max={300}
-                                    noUnits={true}
-                                />
-
-                                <SimpleRangeControl
-                                    label={__('Opacity', 'zoloblocks')}
-                                    value={logoOpacity}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            logoOpacity: value,
-                                        })
-                                    }
-                                    onReset={() =>
-                                        setAttributes({
-                                            logoOpacity: '',
-                                        })
-                                    }
-                                    step={0.1}
-                                    min={0.1}
-                                    max={1}
-                                    noUnits={true}
-                                />
-
-                                <SelectControl
-                                    label={__('Padding Style', 'zoloblocks')}
-                                    value={logoPaddingStyle}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            logoPaddingStyle: value,
-                                        })
-                                    }
-                                    options={QR_LOGO_PADDING_STYLE}
-                                />
-
-                                <SimpleRangeControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    value={logoPadding}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            logoPadding: value,
-                                        })
-                                    }
-                                    onReset={() =>
-                                        setAttributes({
-                                            logoPadding: '',
-                                        })
-                                    }
-                                    min={0}
-                                    max={50}
-                                    noUnits={true}
-                                />
-                            </ZoloPanelBody> */}
+                            {/* hooks logo style  */}
+                            {hookLogoStyle && hookLogoStyle.length > 0 && hookLogoStyle}
                         </>
                     }
                     advancedTab={

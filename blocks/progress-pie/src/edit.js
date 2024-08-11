@@ -28,32 +28,8 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        preview,
-        uniqueId,
-        progressPie,
-        parentClasses,
-        // toggleLabel,
-        progPiePrefixPostfix,
-        progPieMultiColor
-        // proPieperpostToggle,
-    } = attributes;
-               const {
-                   value,
-                   duration,
-                   title,
-                   toggleLabel,
-                   size,
-                   round,
-                   prefix,
-                   suffix,
-                   proPieperpostToggle,
-                   fillColor,
-                   fillSize,
-                   numberColor,
-                   titleColor,
-                   circleColor,
-               } = progressPie;
+    const { preview, uniqueId, progressPie, parentClasses, progPieMultiColor } = attributes;
+    const { value, duration, title, toggleLabel, prefix, suffix, toggleSuffixPrefix, fillColor } = progressPie;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -89,7 +65,6 @@ export default function Edit(props) {
         return () => clearTimeout();
     }, [value]);
 
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -100,13 +75,12 @@ export default function Edit(props) {
                     end={value || 50}
                     delay={0}
                     duration={duration || 3}
-                    prefix={prefix !== '' ? prefix : ''}
-                    suffix={suffix !== '' ? suffix : ''}
+                    prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${prefix}</span>` : ''}
+                    suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${suffix}</span>` : ''}
                 >
                     {({ countUpRef }) => (
                         <>
-                            <svg className="progress-pie" width="450px" height="100%" viewBox="0 0 42 42">
-                                {/*  optional background if need  */}
+                            <svg className="progress-pie" width="100%" height="100%" viewBox="0 0 42 42">
                                 <circle
                                     className="donut-hole progress-donut-hole"
                                     cx="21"
@@ -155,22 +129,16 @@ export default function Edit(props) {
                                                 }
 
                                                 return <stop offset={offset} stopColor={color?.color || '#00bc9b'} key={index} />;
-
                                             })}
                                     </linearGradient>
                                 </defs>
-                                {/* Progress number and text  */}
-                                <g className="progress-pie-text">
-                                    <text x="50%" y="50%" className="progress-pie-number" ref={countUpRef}>
-                                        {value || 50}
-                                    </text>
-                                    {(toggleLabel === undefined || toggleLabel) && (
-                                        <text x="50%" y="50%" className="progress-pie-label">
-                                            {title || __('Total', 'zoloblocks')}
-                                        </text>
-                                    )}
-                                </g>
                             </svg>
+                            <div className="progress-content">
+                                <div className="progress-pie-number" ref={countUpRef}>
+                                    <span className="progress-number"> {value || 50}</span>
+                                </div>
+                                {(toggleLabel === undefined || toggleLabel) && <div className="progress-pie-label">{title}</div>}
+                            </div>
                         </>
                     )}
                 </CountUp>

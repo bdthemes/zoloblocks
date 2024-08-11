@@ -36,7 +36,7 @@ import {
 
 function Inspector(props) {
 
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, name} = props;
         const panelProps = { attributes, setAttributes };
 
     const {
@@ -55,7 +55,8 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-        const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
+    const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
+    
     const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';

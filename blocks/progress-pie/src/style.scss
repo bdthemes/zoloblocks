@@ -1,14 +1,11 @@
 .wp-block-zolo-progress-pie {
-    body {
-        font:
-            16px/1.4em 'Montserrat',
-            Arial,
-            sans-serif;
-    }
-    * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+        position: relative;
+    .progress-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
     }
     .progress-pie-progress {
         transition:
@@ -17,8 +14,6 @@
     }
 
     .progress-pie-text {
-        /*font: 16px/1.4em "Montserrat", Arial, sans-serif;*/
-        // fill: #000;
         -moz-transform: translateY(0.25em);
         -ms-transform: translateY(0.25em);
         -webkit-transform: translateY(0.25em);
@@ -26,23 +21,17 @@
     }
 
     .progress-pie-number {
-        font-size: 0.5em;
+        font-size: 5em;
         font-weight: 700;
         line-height: 1;
         text-anchor: middle;
-        -moz-transform: translateY(-0.25em);
-        -ms-transform: translateY(-0.25em);
-        -webkit-transform: translateY(-0.25em);
-        transform: translateY(-0.25em);
+		margin-bottom: 10px;
     }
 
     .progress-pie-label {
-        font-size: 0.2em;
-        // text-transform: uppercase;
+        font-size: 1em;
+        line-height: 1;
+        text-transform: uppercase;
         text-anchor: middle;
-        -moz-transform: translateY(0.7em);
-        -ms-transform: translateY(0.7em);
-        -webkit-transform: translateY(0.7em);
-        transform: translateY(0.7em);
     }
 }

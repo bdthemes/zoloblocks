@@ -1,4 +1,4 @@
-const { generateDimensionAttributes } = window.zoloModule;
+const { generateResRangeAttributies } = window.zoloModule;
 
 import { addFilter } from '@wordpress/hooks';
 
@@ -9,39 +9,33 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
-            enableShapeDivider: {
-                type: 'boolean',
-                default: false,
-            },
             shapeDivider: {
                 type: 'object',
                 default: {
                     top: {
-                        type: 'object',
-                        default: {
-                            type: 'none',
-                            color: '',
-                            invert: false,
-                        },
+                        type: 'none',
+                        color: '#2667ff',
+                        invert: false,
+                        flip: false,
+                        bringToFront: false,
                     },
                     bottom: {
-                        type: 'object',
-                        default: {
-                            type: 'none',
-                            color: '',
-                            invert: false,
-                        },
+                        type: 'none',
+                        color: '#2667ff',
+                        invert: false,
+                        flip: false,
+                        bringToFront: false,
                     },
                 },
             },
-            topType: {
-                type: 'string',
-                default: 'book',
-            },
-            ...generateDimensionAttributes(TOP_WIDTH_SHAPE),
-            ...generateDimensionAttributes(TOP_HEIGHT_SHAPE),
-            ...generateDimensionAttributes(BOTTOM_WIDTH_SHAPE),
-            ...generateDimensionAttributes(BOTTOM_HEIGHT_SHAPE),
+            ...generateResRangeAttributies(TOP_HEIGHT_SHAPE),
+            ...generateResRangeAttributies(BOTTOM_HEIGHT_SHAPE),
+            ...generateResRangeAttributies(TOP_WIDTH_SHAPE, {
+                defaultUnit: '%',
+            }),
+            ...generateResRangeAttributies(BOTTOM_WIDTH_SHAPE, {
+                defaultUnit: '%',
+            }),
         };
     }
 

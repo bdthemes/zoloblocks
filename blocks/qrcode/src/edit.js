@@ -4,6 +4,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -20,7 +21,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-
+        preview,
         // settings
         qrContent,
         qrCodeSize,
@@ -40,16 +41,24 @@ export default function Edit(props) {
         eyeRadius,
     } = attributes;
 
-
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.qrcode} alt={__('QR Code Preview', 'zoloblocks')} />;
+    }
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blocksProps}>
+                {renderHookBefore && renderHookBefore}
                 <div className="zolo-qrcode-wrapper">
                     <QRCode
                         value={qrContent}
@@ -70,6 +79,7 @@ export default function Edit(props) {
                         eyeRadius={eyeRadius}
                     />
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

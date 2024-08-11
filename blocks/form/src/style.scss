@@ -298,7 +298,10 @@
         transition: all 0.3s ease-in-out;
 
         svg {
-            fill: #fff;
+            fill: currentColor;
+            width: 1em;
+            height: 1em;
+            display: block;
         }
 
         &.right {
@@ -455,18 +458,23 @@
     .zolo-field-item {
         position: relative;
     }
-    &.style-3 .zolo-label-wrapper {
-        position: absolute;
-        top: 0;
-        transform: translateY(-50%);
-        left: 0;
-        margin: 0 10px;
-        z-index: 1;
-        background-color: #fff;
-        backdrop-filter: blur(4px);
-        padding: 6px 8px;
-        border-radius: 6px;
-      }
+    &.style-3 {
+        .zolo-label-wrapper {
+            position: absolute;
+            top: 0;
+            transform: translateY(-50%);
+            left: 0;
+            margin: 0 10px;
+            z-index: 1;
+            background-color: #fff;
+            backdrop-filter: blur(4px);
+            padding: 6px 8px;
+            border-radius: 6px;
+            .zolo-label {
+                margin: 0 !important;
+            }
+          }
+    } 
 
     //   &.style-3 .zolo-label {
 
@@ -482,6 +490,6 @@
       &.style-3 input::placeholder,
       &.style-3 textarea::placeholder,
       &.style-3 select::placeholder {
-        color: transparent;
+        color: transparent !important;
       }
   }

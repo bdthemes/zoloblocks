@@ -1,6 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal Dependencies
@@ -57,10 +58,16 @@ export default function Save(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <>
             <div {...blocksProps}>
+                {renderHookBefore && renderHookBefore}
                 <div className="zolo-qrcode-wrapper" data-options={JSON.stringify(options)}></div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );
