@@ -62,14 +62,12 @@
       box-sizing: border-box;
       line-height: 1;
       min-height: unset;
+      height: auto;
       background-color: transparent;
     }
 
     .zolo-form-input:focus {
-        border-color: var(--newsletter-input-focus-color) !important;
-        outline-style: solid;
-        outline-width: 1px;
-        outline-color: var(--newsletter-input-focus-color);
+        border-color: var(--newsletter-input-focus-color);
         box-shadow: none;
     }
 
