@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
+import { Button, ColorPicker } from '@wordpress/components';
 
 const { ColorControl } = window.zoloModule;
 
@@ -31,6 +31,7 @@ const MultiColor = ({ propsMultiColor }) => {
                         <ColorControl
                             label={__('Color', 'zoloblocks')}
                             color={item.color}
+                            disableAlpha={true}
                             onChange={(v) => {
                                 const newItems = [...particleColors];
                                 newItems[index].color = v;
@@ -42,9 +43,24 @@ const MultiColor = ({ propsMultiColor }) => {
                                 });
                             }}
                         />
+                        {/* <ColorPicker
+                            color={item.color}
+                            onChange={(v) => {
+                                const newItems = [...particleColors];
+                                newItems[index].color = v;
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        colors: newItems,
+                                    },
+                                });
+                            }}
+                            enableAlpha={false}
+                            defaultValue="#000"
+                        /> */}
                     </div>
                 ))}
-             <div className="repeater-label">
+            <div className="repeater-label">
                 <Button
                     onClick={() =>
                         setAttributes({
@@ -59,8 +75,6 @@ const MultiColor = ({ propsMultiColor }) => {
                                 ],
                             },
                         })
-
-
                     }
                 >
                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
