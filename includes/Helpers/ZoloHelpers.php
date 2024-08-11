@@ -506,4 +506,26 @@ class ZoloHelpers {
 
 		return strToUpper($output);
 	}
+
+	/**
+	 * default get_option() default value check
+	 *
+	 * @param string $option settings field name
+	 * @param string $section the section name this field belongs to
+	 * @param string $default default text if it's not found
+	 *
+	 * @return mixed
+	 */
+	public static function zoloblocks_get_option($option, $section, $default = '') {
+
+		$options = get_option($section);
+		if (isset($options) && is_array($options)) {
+			foreach ($options as $key => $value) {
+				if ($value['name'] == $option) {
+					return $value['status'];
+				}
+			}
+		}
+		return $default;
+	}
 }

@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             const { particlesId, preset, colors, particleOptions } = particlesData;
-            console.log(colors);
             const { shapes, direction, shapeSize, customOptions } = particleOptions;
             const color = colors && colors.map((color) => color.color);
 
