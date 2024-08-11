@@ -225,20 +225,6 @@ const Settings = () => {
                             <span>{__('Editor Enhancements', 'zoloblocks')}</span>
                         </div>
                         <div
-                            className={`zolo-tab-button-item ${activeTab === 'version-control' ? 'zolo-tab-active' : ''}`}
-                            onClick={() => handleTabClick('version-control')}
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M7.25 2.8C6.44919 2.8 5.8 3.44919 5.8 4.25001C5.8 5.05081 6.44918 5.7 7.25 5.7C8.05082 5.7 8.7 5.05081 8.7 4.25001C8.7 3.44919 8.05081 2.8 7.25 2.8ZM4 4.25001C4 2.45508 5.45507 1 7.25 1C9.04493 1 10.5 2.45508 10.5 4.25001C10.5 5.6775 9.57967 6.89004 8.3 7.32664V10.9917C8.65414 10.8623 9.02913 10.7895 9.40219 10.754C10.9017 10.6111 12.7999 11.0353 14.5473 11.5345C15.6911 11.8613 16.1855 11.5562 16.4332 11.283C16.5833 11.1174 16.6947 10.9045 16.7711 10.6785C15.3675 10.319 14.3301 9.04566 14.3301 7.53004C14.3301 5.73511 15.7852 4.28003 17.5801 4.28003C19.375 4.28003 20.8301 5.73511 20.8301 7.53004C20.8301 8.95411 19.9142 10.1643 18.6393 10.6035C18.535 11.2198 18.2815 11.9241 17.7668 12.4919C16.9645 13.3769 15.7089 13.7385 14.0528 13.2653C12.3002 12.7645 10.6983 12.4387 9.57285 12.5458C9.02262 12.5983 8.69925 12.7449 8.51757 12.9154C8.43846 12.9897 8.35943 13.0935 8.3 13.249V16.4634C9.57967 16.9 10.5 18.1125 10.5 19.54C10.5 21.335 9.04493 22.79 7.25 22.79C5.45507 22.79 4 21.335 4 19.54C4 18.0032 5.06665 16.7156 6.5 16.377V7.41303C5.06665 7.07445 4 5.7868 4 4.25001ZM7.25 18.09C6.44918 18.09 5.8 18.7392 5.8 19.54C5.8 20.3408 6.44919 20.99 7.25 20.99C8.05081 20.99 8.7 20.3408 8.7 19.54C8.7 18.7392 8.05082 18.09 7.25 18.09ZM16.1301 7.53004C16.1301 6.72922 16.7793 6.08003 17.5801 6.08003C18.3809 6.08003 19.0301 6.72922 19.0301 7.53004C19.0301 8.33084 18.3809 8.98003 17.5801 8.98003C16.7793 8.98003 16.1301 8.33084 16.1301 7.53004Z"
-                                    fill="#4D4D4D"
-                                />
-                            </svg>
-                            <span>{__('Version Control', 'zoloblocks')}</span>
-                        </div>
-                        <div
                             className={`zolo-tab-button-item ${activeTab === 'performance' ? 'zolo-tab-active' : ''}`}
                             onClick={() => handleTabClick('performance')}
                         >
@@ -441,38 +427,6 @@ const Settings = () => {
                                             }}
                                         />
                                     </SettingBox>
-                                </div>
-                            </div>
-                        )}
-                        {activeTab === 'version-control' && (
-                            <div className="zolo-tab-content-item zolo-tab-content-active">
-                                <div className="zolo-settings-option-wrap">
-                                    <SettingBox
-                                        title={__('Rollback to Previous Version', 'zoloblocks')}
-                                        released={false}
-                                        description={
-                                            <>
-                                                If you encounter issues with ZoloBlocks with latest version, consider rolling back to a
-                                                previous version to troubleshoot and resolve the issue.
-                                            </>
-                                        }
-                                    ></SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Beta', 'zoloblocks')}
-                                        released={false}
-                                        description={
-                                            <>
-                                                Enable this option to receive notifications for beta updates of ZoloBlocks. Beta versions
-                                                will not install automatically; you will need to manually install them when notified. It's
-                                                advisable to test beta versions in a separate environment.{' '}
-                                            </>
-                                        }
-                                    ></SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Legacy Blocks', 'zoloblocks')}
-                                        released={false}
-                                        description={<>Enable this option to activate support for our Legacy Blocks on your site. </>}
-                                    ></SettingBox>
                                 </div>
                             </div>
                         )}
