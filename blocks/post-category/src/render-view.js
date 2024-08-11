@@ -73,7 +73,7 @@ export default function RenderView({ attributes }) {
                     <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />
                 ))
             ) : (
-                <p>No categories found.</p>
+                <p>No items found.</p>
             )}
         </>
     );

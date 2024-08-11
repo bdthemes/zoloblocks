@@ -74,7 +74,7 @@ export default function RenderView({attributes}) {
         catResults.length > 0 ? (
           catResults.map((cat,index) => <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />)
         ) : (
-          <p>No categories found.</p>
+          <p>No items found.</p>
         )
       )}
     </>
