@@ -239,11 +239,6 @@ return apply_filters(
             'status'     => true,
         ],
         [
-            'name'       => 'zolo_post_tab',
-            'categories' => ['others'],
-            'status'     => true,
-        ],
-        [
             'name'       => 'zolo_video',
             'categories' => ['others'],
             'status'     => true,
