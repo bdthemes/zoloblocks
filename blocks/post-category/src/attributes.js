@@ -129,11 +129,15 @@ const attributes = {
   },
   singleBG:{
     type:'boolean',
-    default: true
+    default: false
   },
-  multipleBG:{
-    type:'string',
-  },
+  // enableMultipleBG:{
+  //   type:'boolean',
+  //   default: false
+  // },
+  // multipleBG:{
+  //   type:'string',
+  // },
   viewBtnColor:{
     type:'string',
   },
