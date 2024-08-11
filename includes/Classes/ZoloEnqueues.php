@@ -58,14 +58,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function initial_css_loader() {
-            $custom_css = ".zolo-entrance-animation:not(.animation-initialized), .zolo-entrance-animation .zolo-post-item:not(.animation-initialized)
-            { opacity: 0; }
-                   .zolo-editor .zolo-entrance-animation:not(.animation-initialized), .zolo-editor .zolo-entrance-animation .zolo-post-item:not(.animation-initialized)
-                    { opacity: 1; }";
+            $custom_css = ".zolo-entrance-animation:not(.animation-initialized), .zolo-entrance-animation .zolo-post-item:not(.animation-initialized) { opacity: 0; }
+                   .zolo-editor .zolo-entrance-animation:not(.animation-initialized), .zolo-editor .zolo-entrance-animation .zolo-post-item:not(.animation-initialized) { opacity: 1; }";
             if (!empty($custom_css)) {
-                echo '<style id="zolo-init">' . $custom_css . '</style>';
+                echo '<style id="zolo-init">' . esc_html($custom_css) . '</style>';
             }
         }
+
 
 
         /**
