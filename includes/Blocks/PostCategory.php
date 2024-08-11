@@ -21,7 +21,6 @@ class PostCategory extends PostBlock {
 		'showText'         => false,
 		'viewAllBtn'       => false,
 		'showImage'        => false,
-		'singleBG'         => true,
 		'itemTextLimit'    => 12,
 		'itemHoverOpacity' => 1,
 		'viewAllBtnText'   => 'View All',

@@ -49,7 +49,6 @@ const {
   TypographyDropdown,
   ResCounterControl,
   AdvancedOptions,
-  ResAlignmentControl,
   ZoloPanelBody,
   ResGapControl,
   ZoloIconPicker
@@ -71,9 +70,7 @@ export default function Inspector(props) {
     textHoverColor,
     countColor,
     countHoverColor,
-    singleBG,
     postCategoryPro,
-    multipleBG,
     itemHoverOpacity,
     viewBtnColor,
     viewBtnHoverColor,
@@ -219,7 +216,7 @@ export default function Inspector(props) {
                               }
                               hoverComponents={
                                   <>
-                                      {singleBG && (
+                                      {!enableMultipleBG && (
                                           <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true} />
                                       )}
                                       <BoxShadowControl

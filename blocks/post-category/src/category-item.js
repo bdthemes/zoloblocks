@@ -1,7 +1,7 @@
 const {isEmpty, strToHex,DisplayZoloIcon} = window.zoloModule;
 
 function CategoryItem({index, cat, attributes, multipleBgArray}) {
-  const { preset, showCount, showText, showImage, viewAllBtn, singleBG, postCategoryPro, itemTextLimit, viewAllBtnText, viewAllBtnIcon } =
+  const { preset, showCount, showText, showImage, viewAllBtn, postCategoryPro, itemTextLimit, viewAllBtnText, viewAllBtnIcon } =
       attributes;
       const { enableMultipleBG } = postCategoryPro ?? {};
 
