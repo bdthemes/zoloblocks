@@ -29,7 +29,7 @@ class TagCloud extends PostBlock {
 	public function get_default_attributes() {
 		if (class_exists('Zolo_Blocks_Pro')) {
 			$this->default_block_attributes['tagCloudPro'] = [
-				'enableMultipleBG' => true,
+				'enableMultipleBG' => false,
 				'multipleBG'       => '',
 			];
 		}
