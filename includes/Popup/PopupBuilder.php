@@ -227,8 +227,8 @@ class Zolo_PopupBuilder {
         if ('zolo_popup_enable_disable' === $column) {
             $status = get_post_meta($post_id, 'zolo_popup_enable_disable', true) ? 'checked' : '';
             $checked = $status ? 'switch-on' : 'switch-off';
-            echo '<div class="zolo-popup-btn" data-post-id="' . $post_id . '">';
-            echo '<span class="switch ' . $checked . '"></span>';
+            echo '<div class="zolo-popup-btn" data-post-id="' . esc_attr($post_id) . '">';
+            echo '<span class="switch ' . esc_attr($checked) . '"></span>';
             echo '</div>';
         }
     }

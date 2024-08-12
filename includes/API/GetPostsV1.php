@@ -136,7 +136,7 @@ class GetPostsV1 {
 			}
 
 			$excluded_post_ids    = array_merge($offset_posts, $excluded_ids);
-			$args['post__not_in'] = array_unique($excluded_post_ids);
+			$args['post__not_in'] = array_unique($excluded_post_ids); // phpcs:ignore
 		}
 
 		return apply_filters('zolo_post_args', $args);
