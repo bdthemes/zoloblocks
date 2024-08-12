@@ -66,7 +66,7 @@ class ZoloAJAX {
             'orderby'    => ! empty($data['catOrderby']) ? sanitize_text_field($data['catOrderby']) : 'name',
             'order'      => ! empty($data['catOrder']) ? sanitize_text_field($data['catOrder']) : 'desc',
             'hide_empty' => 0,
-            'exclude'    => $catExclude,
+            'exclude'    => $catExclude, // phpcs:ignore
             'parent'     => isset($data['catParent']) ? intval($data['catParent']) : '',
         ];
         $categories = get_categories($args);
