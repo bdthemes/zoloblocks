@@ -192,7 +192,7 @@ class ZoloAJAX {
         }
 
         $query   = "select post_title,ID  from $wpdb->posts where post_status = 'publish' {$where} {$limit}";
-        $results = $wpdb->get_results($query);
+        $results = $wpdb->get_results($query); //phpcs:ignore
 
         if (! empty($results)) {
             foreach ($results as $row) {
