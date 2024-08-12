@@ -450,6 +450,32 @@ button.notice-dismiss {
  * End Deactivate CSS
  */
 
+
+ .dci-global-notice.dci_zoloblocks .dci-button-allow {
+	/* --primaryColor: #08AEEC;
+	--secondaryColor: #20E2AD; */
+	background: #2667ff
+}
+
+.dci-global-notice.dci_zoloblocks .dci-button-allow:hover {
+	--primaryColor: #2667ff;
+	;
+	--secondaryColor: #08AEEC;
+}
+
+.dci-global-notice.dci_zoloblocks {
+	border-left-color: #2667ff;
+}
+
+
+.dci-global-notice.dci_zoloblocks .dci-button-skip {
+	background-color: #e0f5ff;
+}
+
+.dci-global-notice.dci_zoloblocks .dci-button-skip:hover {
+	background-color: #d9f1fd;
+}
+
 /**
  * Start Element Pack Pro
  */
