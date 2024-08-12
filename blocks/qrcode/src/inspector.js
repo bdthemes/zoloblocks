@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
@@ -20,6 +20,7 @@ const {
     ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
+    ZoloIconPicker,
 } = window.zoloModule;
 
 import {
@@ -29,6 +30,11 @@ import {
     QR_CODE_ALIGN,
     QR_CODE_BORDER_RADIUS,
     QR_LOGO_PADDING_STYLE,
+    BADGE_STYLE,
+    WRAP_QR_CODE_BORDER,
+    WRAP_QR_CODE_BORDER_RADIUS,
+    WRAP_QR_CODE_PADDING,
+    WRAP_QR_CODE_BOX_SHADOW,
 } from './constants/index';
 
 export default function Inspector(props) {
@@ -36,7 +42,7 @@ export default function Inspector(props) {
 
     const {
         resMode,
-
+        badgeStyle,
         // settings
         qrContent,
         qrCodeLink,
@@ -55,6 +61,12 @@ export default function Inspector(props) {
         logoPadding,
         eyeColor,
         eyeRadius,
+        showBadge,
+        showBadgeIcon,
+        badgeText,
+        badgeIcon,
+
+        wrapBackgroundColor,
     } = attributes;
 
     const requiredProps = {
@@ -63,11 +75,10 @@ export default function Inspector(props) {
         setAttributes,
         objAttributes,
     };
-            const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [],  props);
-            const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [],  props);
-            const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [],  props);
-            const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [],  props);
-
+    const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [], props);
+    const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [], props);
+    const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [], props);
+    const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [], props);
 
     return (
         <>
@@ -129,13 +140,104 @@ export default function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
+                            <ZoloPanelBody title={__('Badge', 'zoloblocks')} panelProps={props}>
+                                <ToggleControl
+                                    label={__('Show Badge', 'zoloblocks')}
+                                    checked={showBadge}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            showBadge: value,
+                                        })
+                                    }
+                                />
+
+                                {showBadge && (badgeStyle === 'zolo-badge-style-2' || badgeStyle === 'zolo-badge-style-3') && (
+                                    <ToggleControl
+                                        label={__('Show Badge Icon', 'zoloblocks')}
+                                        checked={showBadgeIcon}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                showBadgeIcon: value,
+                                            })
+                                        }
+                                    />
+                                )}
+
+                                {showBadge && (
+                                    <SelectControl
+                                        label={__('Badge Style', 'zoloblocks')}
+                                        value={badgeStyle}
+                                        options={applyFilters('zolo.qrcode.badgeStyle', BADGE_STYLE)}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                badgeStyle: value,
+                                            });
+                                        }}
+                                    />
+                                )}
+                                {showBadge && (
+                                    <TextControl
+                                        label={__('Title', 'zoloblocks')}
+                                        value={badgeText}
+                                        onChange={(badgeText) => setAttributes({ badgeText })}
+                                    />
+                                )}
+                                {showBadge && showBadgeIcon && (
+                                    <ZoloIconPicker
+                                        label={__('Selected Icon', 'zoloblocks')}
+                                        value={badgeIcon}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                badgeIcon: value,
+                                            })
+                                        }
+                                    />
+                                )}
+                            </ZoloPanelBody>
+
                             {/* hook logo  */}
                             {hookLogo && hookLogo.length > 0 && hookLogo}
                         </>
                     }
                     styleTab={
                         <>
-                            <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            {/* {showBadge && (
+                                <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                    <BorderControl
+                                        label={__('Border Type', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_BORDER_RADIUS}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_PADDING}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                    <ColorControl
+                                        label={__('Background Color', 'zoloblocks')}
+                                        color={wrapBackgroundColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                wrapBackgroundColor: value,
+                                            })
+                                        }
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Box Shadow', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_BOX_SHADOW}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                </ZoloPanelBody>
+                            )} */}
+                            <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={codeColor}

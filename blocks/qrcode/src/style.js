@@ -7,12 +7,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const {
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResAlignmentStyle, generateBorderStyle, generateDimensionStyle, GlobalStyleHanlder } = window.zoloModule;
 
 import { QR_CODE_ALIGN, QR_CODE_BORDER, QR_CODE_BORDER_RADIUS } from './constants/index';
 
@@ -55,7 +50,7 @@ export default function Style({ props }) {
     });
 
     const desktopAllStyle = `
-        .${uniqueId} .zolo-qrcode-wrapper {
+        .${uniqueId}.zolo-block.wp-block-zolo-qrcode {
             ${qrCodeAlignDesk !== '' ? qrCodeAlignDesk : 'text-align: center;'}
         }
 

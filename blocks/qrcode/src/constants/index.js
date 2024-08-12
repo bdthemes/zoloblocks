@@ -3,6 +3,12 @@
  */
 import { __ } from '@wordpress/i18n';
 
+export const BADGE_STYLE = [
+    { label: __('Style 1', 'zoloblocks'), value: 'zolo-badge-style-1' },
+    { label: __('Style 2', 'zoloblocks'), value: 'zolo-badge-style-2' },
+    { label: __('Style 3', 'zoloblocks'), value: 'zolo-badge-style-3' },
+];
+
 // Block Prefix
 export const BLOCK_PREFIX = 'qrcode';
 
