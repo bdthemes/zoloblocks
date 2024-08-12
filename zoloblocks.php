@@ -97,10 +97,12 @@ if (!function_exists('dci_plugin_zoloblocks')) {
 
         // Include DCI SDK.
         require_once dirname(__FILE__) . '/dci/start.php';
-        wp_enqueue_style('dci-sdk-zolo', plugins_url('dci/assets/css/dci.css', __FILE__), array(), '1.3.0', 'all');
+
+        wp_register_style('dci-sdk-zolo', plugins_url('dci/assets/css/dci.css', __FILE__), array(), '1.2.1', 'all');
+        wp_enqueue_style('dci-sdk-zolo');
 
         dci_dynamic_init(array(
-            'sdk_version'         => '1.2.0',
+            'sdk_version'         => '1.2.1',
             'product_id'          => 5,
             'plugin_name'         => 'ZoloBlocks', // make simple, must not empty
             'plugin_title'        => 'Love using ZoloBlocks? Congrats 🎉  ( Never miss an Important Update )',
@@ -112,7 +114,7 @@ if (!function_exists('dci_plugin_zoloblocks')) {
             ),
             'public_key'          => 'pk_gxu6BkkwuuRmL5TYa9TlkiRPMKluYB4b',
             'is_premium'          => false,
-            'popup_notice'        => true,
+            'popup_notice'        => false,
             'deactivate_feedback' => true,
             'plugin_msg'          => '<p>Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.',
         ));
