@@ -3,7 +3,7 @@
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zoloblocks
@@ -69,7 +69,7 @@ final class ZoloBlocks {
         define('ZOLO_DIR', __DIR__);
         define('ZOLO_NAMESPACE', 'zoloblocks');
         define('ZOLO_SLUG', 'zoloblocks');
-        define('ZOLO_VERSION', '1.3.0');
+        define('ZOLO_VERSION', '1.3.1');
         define('ZOLO_DIR_PATH', plugin_dir_path(__FILE__));
         define('ZOLO_ADMIN_URL', plugin_dir_url(__FILE__));
         define('ZOLO_WP_VERSION', (float) get_bloginfo('version'));
@@ -118,6 +118,9 @@ if (!function_exists('dci_plugin_zoloblocks')) {
             'is_premium'          => false,
             'popup_notice'        => false,
             'deactivate_feedback' => true,
+            'delay_time'   => [
+                'time' => 3 * DAY_IN_SECONDS
+            ],
             'plugin_msg'          => '<p>Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.',
         ));
     }

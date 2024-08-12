@@ -51,7 +51,7 @@ class TagCloud extends PostBlock {
 
 		$multiple_bg_create = [];
 
-		if (empty($attributes['tagCloudPro']['enableMultipleBG']) && ! empty($attributes['tagCloudPro']['multipleBG'])) {
+		if (!empty($attributes['tagCloudPro']['enableMultipleBG']) && ! empty($attributes['tagCloudPro']['multipleBG'])) {
 			$multi_bg       = $attributes['tagCloudPro']['multipleBG'];
 			$multiple_bg    = explode(',', rtrim($multi_bg, ','));
 			$total_category = count($categories);

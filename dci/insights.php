@@ -34,7 +34,7 @@ if (! class_exists('Insights_SDK')) {
 		public function __construct($params) {
 			$this->params      = $params;
 			$this->text_domain = isset($params['text_domain']) ? $params['text_domain'] : 'dci';
-			$this->version     = isset($params['sdk_version']) ? $params['sdk_version'] : '1.0.0';;
+			$this->version     = isset($params['sdk_version']) ? $params['sdk_version'] : '1.0.0';
 
 			add_action('wp_ajax_dci_sdk_insights', array($this, 'dci_sdk_insights'));
 			add_action('wp_ajax_dci_sdk_dismiss_notice', array($this, 'dci_sdk_dismiss_notice'));
@@ -60,6 +60,11 @@ if (! class_exists('Insights_SDK')) {
 			 * Show Notice Modal
 			 */
 			if (! $dci_status_db) {
+				$delay_check = $this->show_notice_delay_init($params);
+				if ($delay_check) {
+					return;
+				}
+
 				$this->notice_modal($params);
 				return;
 			}
@@ -108,6 +113,32 @@ if (! class_exists('Insights_SDK')) {
 			 * Prepare data
 			 */
 			$this->data_prepare($params);
+		}
+
+		/**
+		 * Show Notice after time/days delay first time init
+		 *
+		 * Installed time less than means hide notice
+		 */
+		public function show_notice_delay_init($params) {
+			if (! isset($params['delay_time'])) {
+				return false;
+			}
+			$installed = get_option($this->dci_name . '_installed', false);
+
+			if (! $installed) {
+				update_option($this->dci_name . '_installed', time());
+			}
+
+			$time = isset($params['delay_time']['time']) ? $params['delay_time']['time'] : 60 * MINUTE_IN_SECONDS;
+
+			$installed = get_option($this->dci_name . '_installed', false);
+
+			if ($installed && (time() - $installed) < $time) {
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
@@ -185,8 +216,14 @@ if (! class_exists('Insights_SDK')) {
 				return;
 			}
 
-			add_action('admin_notices', array($this, 'display_global_notice'));
+			/**
+			 * If Dismissed but always show welcome is true then show notice on welcome page
+			 */
+			if (! isset($params['always_show_welcome']) && get_transient('dismissed_notice_' . $this->dci_name)) {
+				return;
+			}
 
+			add_action('admin_notices', array($this, 'display_global_notice'));
 
 			if (isset($params['popup_notice']) && true === $params['popup_notice']) {
 
@@ -323,14 +360,8 @@ if (! class_exists('Insights_SDK')) {
 			 *
 			 * ==================================
 			 */
-			$custom_data = array(
-				'active_modules' => get_option('element_pack_active_modules', false),
-				'third_party'    => get_option('element_pack_third_party_widget', false),
-				'extend'         => get_option('element_pack_elementor_extend', false),
-				'other_settings' => get_option('element_pack_other_settings', false),
-			);
 
-			$custom_data = wp_json_encode($custom_data, true);
+			// $custom_data = wp_json_encode($custom_data, true);
 
 			/**
 			 * ==================================
@@ -609,9 +640,9 @@ if (! class_exists('Insights_SDK')) {
 					<?php endif; ?>
 					<div class="bdt-dci-notice-content">
 						<h3>
-							<?php printf(wp_kses_post($plugin_title)); ?>
+							<?php echo wp_kses_post($plugin_title); ?>
 						</h3>
-						<?php printf(wp_kses_post($plugin_msg)); ?>
+						<?php echo wp_kses_post($plugin_msg); ?>
 						<p>
 							<a href="<?php echo esc_url($admin_url); ?>">Learn More</a>?
 						</p>
@@ -658,10 +689,10 @@ if (! class_exists('Insights_SDK')) {
 						</div>
 					<?php endif; ?>
 					<h3>
-						<?php printf(esc_html($plugin_title)); ?>
+						<?php printf($plugin_title); ?>
 					</h3>
 				</div>
-				<?php printf(esc_html($plugin_msg)); ?>
+				<?php printf($plugin_msg); ?>
 				<p>
 					What we <a href="<?php echo esc_url($admin_url); ?>">collect</a>?
 				</p>
@@ -711,7 +742,7 @@ if (! class_exists('Insights_SDK')) {
 				wp_die();
 			}
 
-			set_transient('dismissed_notice_' . $dci_name, true, 30 * DAY_IN_SECONDS);
+			set_transient('dismissed_notice_' . $dci_name, true, 7 * DAY_IN_SECONDS);
 
 			wp_send_json(array(
 				'status'  => 'success',
