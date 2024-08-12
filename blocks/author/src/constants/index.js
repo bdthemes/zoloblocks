@@ -31,16 +31,19 @@ export const AVATAR_SIZE = [
     {value: '200', label: __('200 x 200')},
     {value: '250', label: __('250 x 250')},
   ]
-
-  export
-const GRID_COLUMNS = 'gridColumns';
+export const TEXT_ALIGNMENT = 'textAlignment';
+export const META_ALIGNMENT = 'metaAlignment';
+export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
 //count
+export const COUNT_BG='countBg';
 export const COUNT_PADDING = 'countPadding';
 export const COUNT_BORDER = 'countBorder';
 export const COUNT_BORDER_RADIUS = 'countBRadius';
 export const COUNT_SHADOW = 'countShadow';
+export const COUNT_SPACING='countSpacing';
 //item
+export const CONTENT_PADDING='contentPadding';
 export const ITEM_PADDING = 'itemPadding';
 export const ITEM_BG = 'itemBg';
 export const ITEM_BORDER = 'itemBorder';
@@ -48,5 +51,28 @@ export const ITEM_BORDER_RADIUS = 'itemBRadius';
 export const ITEM_SHADOW = 'itemShadow';
 export const ITEM_HOVER_BG = 'itemHoverBg';
 export const ITEM_HOVER_SHADOW = 'itemHoverShadow';
-
+//avatar
+export const AVATAR_MASK = 'avatar';
+export const AVATAR_BORDER = 'avatarBorder';
+export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
+export const AVATAR_SHADOW = 'avatarShadow';
+export const AVATAR_PADDING = 'avatarPadding';
+export const AVATAR_MARGIN = 'avatarMargin';
+//name
+export const NAME_TEXT_SHADOW='nameTShadow'
+//role
+export const ROLE_SPACING='roleSpacing';
+//desc
+export const DESC_SPACING='descSpacing';
+//social link
+export const LINK_SPACING='linkSpacing';
+export const LINK_PADDING = 'linkPadding';
+export const LINK_BG = 'linkBg';
+export const LINK_BORDER = 'linkBorder';
+export const LINK_BORDER_RADIUS = 'linkBRadius';
+export const LINK_SHADOW = 'linkShadow';
+export const LINK_SPACE='linkSpace';
+export const Link_ICON_SIZE='linkIconIsize'
+export const LINK_HOVER_BG = 'linkHoverBg';
+export const LINK_HOVER_BORDER_RADIUS = 'linkHoverBRadius';
 

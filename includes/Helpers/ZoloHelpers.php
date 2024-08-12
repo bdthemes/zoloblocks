@@ -326,12 +326,18 @@ class ZoloHelpers {
 				'width'           => true,
 				'height'          => true,
 				'viewbox'         => true,
+				'fill'            => true,
+				'stroke'          => true,
+				'stroke-width'    => true,
+				'stroke-linecap'  => true,
+				'stroke-linejoin' => true,
 			],
 			'g'     => [ 'fill' => true ],
 			'title' => [ 'title' => true ],
 			'path'  => [
-				'd'    => true,
-				'fill' => true,
+				'd'      => true,
+				'fill'   => true,
+				'stroke' => true,
 			],
 		];
 
@@ -496,5 +502,48 @@ class ZoloHelpers {
 	public static function get_user_role( $id ) {
 		$user = new \WP_User( $id );
 		return array_shift( $user->roles );
+	}
+
+	/**
+	 * Get social icon
+	 *
+	 * @param string $platform .
+	 * @return string|null
+	 */
+	public static function get_social_icon_svg( $platform ) {
+		switch ( $platform ) {
+			case 'email':
+				return '
+                <svg class="zolo-icon-email" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
+                    <path d="M3 7l9 6l9 -6"></path>
+                </svg>';
+			case 'url':
+				return '
+                <svg class="zolo-icon-url" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M21 12a9 9 0 1 0 -9.968 8.948"></path>
+                    <path d="M3.6 9h16.8"></path>
+                    <path d="M3.6 15h6.4"></path>
+                    <path d="M11.5 3a17.001 17.001 0 0 0 -1.886 13.802"></path>
+                    <path d="M12.5 3a16.982 16.982 0 0 1 2.549 8.01"></path>
+                    <path d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"></path>
+                </svg>';
+			case 'facebook':
+				return 'facebook';
+			case 'twitter':
+				return 'twitter';
+			case 'linkedin':
+				return 'linkedin';
+			case 'github':
+				return 'github';
+			case 'WordPress':
+				return 'WordPress';
+			case 'dribble':
+				return 'dribble';
+			default:
+				return null;
+		}
 	}
 }

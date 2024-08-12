@@ -41,7 +41,6 @@ class ZoloAJAX {
 		if ( ! wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
 			wp_send_json_error( 'Invalid nonce' );
 		}
-		error_log( print_r( $_POST, true ), 3, __DIR__ . '/log.txt' );
 		$authorQuery_json = sanitize_text_field( wp_unslash( $_POST['authorQuery'] ?? [] ) );
 		$authorQuery      = json_decode( $authorQuery_json, true );
 		if ( ! is_array( $authorQuery ) ) {
@@ -72,6 +71,7 @@ class ZoloAJAX {
 		$results    = [];
 		foreach ( $users as $author ) {
 			$user                = [];
+			$user['ID']          = $author->ID;
 			$user['name']        = get_the_author_meta( 'display_name', $author->ID );
 			$user['link']        = get_bloginfo( 'url' ) . '/?author=' . $author->ID;
 			$user['avatar']      = get_avatar( $author->ID, $avatarSize );

@@ -14,7 +14,27 @@ class Author {
 	 */
 	public function __construct() {
 		add_filter( 'user_contactmethods', [ $this,'user_contact_social_link' ] );
+		add_filter( 'rest_prepare_user', [ $this,'add_custom_meta_to_rest' ], 10, 2 );
 	}
+
+	/**
+	 * Add custom meta to REST API response.
+	 *
+	 * @param object $data .
+	 * @param object $user .
+	 * @return mixed
+	 */
+	public function add_custom_meta_to_rest( $data, $user ) {
+		$social_links = array_keys( $this->user_contact_social_link( [] ) );
+
+		foreach ( $social_links as $link ) {
+			$usermeta                    = get_user_meta( $user->ID, $link, true );
+			$data->data['meta'][ $link ] = $usermeta;
+		}
+
+		return $data;
+	}
+
 
 	/**
 	 * User profile contact social link
@@ -23,7 +43,7 @@ class Author {
 	 * @param boolean $core .
 	 * @return mixed
 	 */
-	public function user_contact_social_link( $methods, $core = false ) {
+	public static function user_contact_social_link( $methods, $core = false ) {
 
 		if ( $core ) {
 			$methods['email'] = __( 'Email', 'zoloblocks' );

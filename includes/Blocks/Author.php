@@ -16,8 +16,13 @@ class Author extends PostBlock {
 	 * @var string[]
 	 */
 	protected $default_block_attributes = [
-		'preset'           => 'style-1',
-		'showCount'        => true,
+		'preset'           => 'grid',
+		'showAvatar'       => true,
+		'showName'         => true,
+		'showDescription'  => true,
+		'showRole'         => true,
+		'showSocialLink'   => true,
+		'showPostCount'    => true,
 		'itemHoverOpacity' => 1,
 	];
 
@@ -38,10 +43,10 @@ class Author extends PostBlock {
 	 */
 	public function render( $attributes ) {
 
-		$attributes = wp_parse_args( $attributes, $this->get_default_attributes() );
-		$categories = ZoloAJAX::author_query( $attributes['authorQuery'] );
-		$cat_json   = wp_json_encode( $categories );
-		$cat_object = json_decode( $cat_json );
+		$attributes  = wp_parse_args( $attributes, $this->get_default_attributes() );
+		$users       = ZoloAJAX::author_query( $attributes['authorQuery'] );
+		$user_json   = wp_json_encode( $users );
+		$user_object = json_decode( $user_json );
 
 		ob_start();
 		ZoloHelpers::views(
@@ -50,7 +55,7 @@ class Author extends PostBlock {
 				'settings'     => $attributes,
 				'className'    => '',
 				'class_object' => $this,
-				'categories'   => $cat_object,
+				'authors'      => $user_object,
 			]
 		);
 		return ob_get_clean();
