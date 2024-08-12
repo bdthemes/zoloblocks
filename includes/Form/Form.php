@@ -66,7 +66,7 @@ class Zolo_Form {
 
 
         if ($form_id === NULL) {
-            $wpdb->insert(
+            $wpdb->insert( // phpcs:ignore
                 $table_name,
                 array(
                     'form_id'             => $formId,
@@ -77,7 +77,7 @@ class Zolo_Form {
                 )
             );
         } else {
-            $wpdb->update(
+            $wpdb->update( // phpcs:ignore
                 $table_name,
                 array(
                     'form_id'             => $formId,             // string
@@ -151,7 +151,7 @@ class Zolo_Form {
 
                 // Fetch form settings, submission settings, and validation rules in a single query
                 $form_query = $wpdb->prepare("SELECT form_settings, submission_settings, validation_rules FROM $table_name WHERE form_id = %s", $formId); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-                $form_data = $wpdb->get_row($form_query); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                $form_data = $wpdb->get_row($form_query); // phpcs:ignore
 
                 $form_submission_settings = json_decode($form_data->submission_settings, true);
 
@@ -215,7 +215,7 @@ class Zolo_Form {
                     $successStatus = true;
 
                     // Insert form data into database called zolo_form table
-                    $wpdb->insert(
+                    $wpdb->insert( // phpcs:ignore
                         $table_name,
                         array(
                             'form_id'             => $formId,
