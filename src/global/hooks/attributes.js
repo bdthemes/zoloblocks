@@ -111,6 +111,9 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
+            contentWidth: {
+                type: 'string'
+            },
             position: {
                 type: 'object',
                 default: {
@@ -235,6 +238,7 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('transitionDuration'),
 
             //Position
+
             ...generateResRangeAttributies('positionLeft', {
                 defaultUnit: 'px',
             }),
@@ -247,7 +251,9 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('positionBottom', {
                 defaultUnit: 'px',
             }),
-
+            ...generateResRangeAttributies('customWidth', {
+                defaultUnit: 'px',
+            }),
             ...generateResAlignmentAttributies('transformOriginXHover'),
             ...generateResAlignmentAttributies('transformOriginYHover'),
 

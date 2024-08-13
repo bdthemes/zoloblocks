@@ -32,6 +32,7 @@ import {
     ICON_HPOSITIONS,
     VPOSITIONS,
     CONTENT_POSITIONS,
+    CONTENT_WIDTH
 } from '../constants';
 
 const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
@@ -83,6 +84,7 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
+        contentWidth
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -150,7 +152,37 @@ export const AdvancedOptions = (props) => {
                     step={1}
                     help={__('Set the z-index for the section', 'zoloblocks')}
                 />
+                <div className="zolo-control-container zolo-single-control">
+                    <SelectControl
+                        label={__('Width', 'zoloblocks')}
+                        options={CONTENT_WIDTH}
+                        onChange={(v) =>
+                            setAttributes({
+                                contentWidth: v
+                            })
+                        }
+                        value={contentWidth}
+                    />
+                    {
+                        contentWidth === 'custom' && (
+                            <ResRangeControl
+                                label={__('Custom Width', 'zoloblocks')}
+                                controlName={'customWidth'}
+                                requiredProps={requiredProps}
+                                max={1000}
+                                noUnits={false}
+                            />
+                        )
+                    }
+                </div>
 
+                <OverflowControl
+                    label={__('Overflow', 'zoloblocks')}
+                    value={overflow}
+                    onChange={(v) => {
+                        setAttributes({ overflow: v });
+                    }}
+                />
                 <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
                     <SelectControl
                         label={__('Position', 'zoloblocks')}
@@ -250,13 +282,6 @@ export const AdvancedOptions = (props) => {
                         </>
                     )}
                 </PopoverControl>
-                <OverflowControl
-                    label={__('Overflow', 'zoloblocks')}
-                    value={overflow}
-                    onChange={(v) => {
-                        setAttributes({ overflow: v });
-                    }}
-                />
                 <div className="zolo-inline-control-wrapper">
                     <TextControl
                         label={__('CSS ID', 'zoloblocks')}

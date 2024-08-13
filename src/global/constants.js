@@ -1045,6 +1045,13 @@ export const CONTENT_POSITIONS = [
     { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
 ];
 
+export const CONTENT_WIDTH = [
+    { label: __('Default', 'zoloblocks'), value: 'default' },
+    { label: __('Full Width', 'zoloblocks'), value: 'full-width' },
+    { label: __('Inline (auto)', 'zoloblocks'), value: 'inline' },
+    { label: __('Custom', 'azoloblocks'), value: 'custom' },
+];
+
 export const OBJECT_FITS = [
     { label: __('None', 'zoloblocks'), value: 'none' },
     { label: __('Fill', 'zoloblocks'), value: 'fill' },
