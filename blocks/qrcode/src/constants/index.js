@@ -3,6 +3,12 @@
  */
 import { __ } from '@wordpress/i18n';
 
+export const BADGE_STYLE = [
+    { label: __('Style 1', 'zoloblocks'), value: 'zolo-badge-style-1' },
+    { label: __('Style 2', 'zoloblocks'), value: 'zolo-badge-style-2' },
+    { label: __('Style 3', 'zoloblocks'), value: 'zolo-badge-style-3' },
+];
+
 // Block Prefix
 export const BLOCK_PREFIX = 'qrcode';
 
@@ -54,3 +60,14 @@ export const QR_LOGO_PADDING_STYLE = [
 export const QR_CODE_ALIGN = 'qrCodeAlign';
 export const QR_CODE_BORDER_RADIUS = 'qrCodeBorderRadius';
 export const QR_CODE_BORDER = 'qrCodeBorder';
+export const WRAP_QR_CODE_BORDER = 'wrapQrCodeBorder';
+export const WRAP_QR_CODE_BORDER_RADIUS = 'wrapQrCodeBorderRadius';
+export const WRAP_QR_CODE_PADDING = 'wrapQrCodePadding';
+export const WRAP_QR_CODE_BOX_SHADOW = 'wrapQrCodeBoxShadow';
+
+export const BADGE_QR_CODE_BORDER = 'badgeQrCodeBorder';
+export const BADGE_QR_CODE_BORDER_RADIUS = 'badgeQrCodeBorderRadius';
+export const BADGE_QR_CODE_PADDING = 'badgeQrCodePadding';
+export const BADGE_QR_CODE_MARGIN = 'badgeQrCodeMargin';
+export const BADGE_QR_CODE_BOX_SHADOW = 'badgeQrCodeBoxShadow';
+export const BADGE_ICON_SIZE = 'badgeIconSize';
