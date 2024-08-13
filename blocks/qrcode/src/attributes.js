@@ -1,6 +1,30 @@
-const { generateResAlignmentAttributies, generateBorderAttributies, generateDimensionAttributes } = window.zoloModule;
+const {
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateResRangeAttributies,
+} = window.zoloModule;
 
-import { QR_CODE_ALIGN, QR_CODE_BORDER_RADIUS, QR_CODE_PADDING, QR_CODE_BORDER } from './constants/index';
+import {
+    QR_CODE_ALIGN,
+    QR_CODE_BORDER_RADIUS,
+    QR_CODE_PADDING,
+    QR_CODE_BORDER,
+    WRAP_QR_CODE_BORDER,
+    WRAP_QR_CODE_BORDER_RADIUS,
+    WRAP_QR_CODE_PADDING,
+    WRAP_QR_CODE_BOX_SHADOW,
+    BADGE_QR_CODE_BORDER,
+    BADGE_QR_CODE_BORDER_RADIUS,
+    BADGE_QR_CODE_PADDING,
+    BADGE_QR_CODE_BOX_SHADOW,
+    BADGE_QR_CODE_MARGIN,
+    BADGE_ICON_SIZE,
+} from './constants/index';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     globalConfig: {
@@ -123,9 +147,35 @@ const attributes = {
         default: 0,
     },
 
+    wrapBackgroundColor: {
+        type: 'string',
+    },
+
+    badgeTextColor: {
+        type: 'string',
+    },
+
+    badgeBackgroundColor: {
+        type: 'string',
+    },
+    badgeBackgroundArrowColor: {
+        type: 'string',
+    },
     ...generateBorderAttributies(QR_CODE_BORDER),
     ...generateDimensionAttributes(QR_CODE_BORDER_RADIUS),
     ...generateResAlignmentAttributies(QR_CODE_ALIGN),
+    ...generateBorderAttributies(WRAP_QR_CODE_BORDER),
+    ...generateDimensionAttributes(WRAP_QR_CODE_BORDER_RADIUS),
+    ...generateDimensionAttributes(WRAP_QR_CODE_PADDING),
+    ...generateBoxShadowAttributies(WRAP_QR_CODE_BOX_SHADOW),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    ...generateBorderAttributies(BADGE_QR_CODE_BORDER),
+    ...generateDimensionAttributes(BADGE_QR_CODE_BORDER_RADIUS),
+    ...generateDimensionAttributes(BADGE_QR_CODE_PADDING),
+    ...generateDimensionAttributes(BADGE_QR_CODE_MARGIN),
+    ...generateBoxShadowAttributies(BADGE_QR_CODE_BOX_SHADOW),
+    ...generateResRangeAttributies(BADGE_ICON_SIZE),
 };
 
 export default attributes;

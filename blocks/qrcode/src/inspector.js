@@ -21,6 +21,9 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ZoloIconPicker,
+    BoxShadowControl,
+    TypographyDropdown,
+    ResRangeControl,
 } = window.zoloModule;
 
 import {
@@ -35,7 +38,16 @@ import {
     WRAP_QR_CODE_BORDER_RADIUS,
     WRAP_QR_CODE_PADDING,
     WRAP_QR_CODE_BOX_SHADOW,
+    BADGE_QR_CODE_BORDER,
+    BADGE_QR_CODE_BORDER_RADIUS,
+    BADGE_QR_CODE_PADDING,
+    BADGE_QR_CODE_MARGIN,
+    BADGE_QR_CODE_BOX_SHADOW,
+    BADGE_ICON_SIZE,
+    // BADGE_TYPOGRAPHY
 } from './constants/index';
+
+import { BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Inspector(props) {
     const { attributes, setAttributes, block } = props;
@@ -67,6 +79,9 @@ export default function Inspector(props) {
         badgeIcon,
 
         wrapBackgroundColor,
+        badgeTextColor,
+        badgeBackgroundColor,
+        badgeBackgroundArrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -140,6 +155,8 @@ export default function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
+
+                            {/* Panel pro  */}
                             <ZoloPanelBody title={__('Badge', 'zoloblocks')} panelProps={props}>
                                 <ToggleControl
                                     label={__('Show Badge', 'zoloblocks')}
@@ -182,7 +199,7 @@ export default function Inspector(props) {
                                         onChange={(badgeText) => setAttributes({ badgeText })}
                                     />
                                 )}
-                                {showBadge && showBadgeIcon && (
+                                {showBadge && showBadgeIcon && badgeStyle !== 'zolo-badge-style-1' && (
                                     <ZoloIconPicker
                                         label={__('Selected Icon', 'zoloblocks')}
                                         value={badgeIcon}
@@ -201,8 +218,9 @@ export default function Inspector(props) {
                     }
                     styleTab={
                         <>
-                            {/* {showBadge && (
-                                <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            {/* Panel pro  */}
+                            {showBadge && (
+                                <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={showBadge ? true : false}>
                                     <BorderControl
                                         label={__('Border Type', 'zoloblocks')}
                                         controlName={WRAP_QR_CODE_BORDER}
@@ -229,15 +247,12 @@ export default function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <ResDimensionsControl
-                                        label={__('Box Shadow', 'zoloblocks')}
-                                        controlName={WRAP_QR_CODE_BOX_SHADOW}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={false}
-                                    />
+
+                                    <BoxShadowControl controlName={WRAP_QR_CODE_BOX_SHADOW} requiredProps={requiredProps} />
                                 </ZoloPanelBody>
-                            )} */}
-                            <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            )}
+
+                            <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={!showBadge ? true : false}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={codeColor}
@@ -320,6 +335,88 @@ export default function Inspector(props) {
 
                             {/* hooks logo style  */}
                             {hookLogoStyle && hookLogoStyle.length > 0 && hookLogoStyle}
+
+                            {/* Panel pro  */}
+                            {showBadge && (
+                                <ZoloPanelBody title={__('Badge', 'zoloblocks')} panelProps={props}>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={badgeTextColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                badgeTextColor: value,
+                                            })
+                                        }
+                                    />
+
+                                    <TypographyDropdown
+                                        label={__('Title Typography', 'zoloblocks')}
+                                        typoPrefixConstant={BADGE_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                        max={72}
+                                    />
+
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zoloblocks')}
+                                        controlName={BADGE_QR_CODE_MARGIN}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+
+                                    {badgeStyle !== 'zolo-badge-style-1' && (
+                                        <>
+                                            <BorderControl
+                                                label={__('Border Type', 'zoloblocks')}
+                                                controlName={BADGE_QR_CODE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={BADGE_QR_CODE_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={BADGE_QR_CODE_PADDING}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+
+                                            {showBadgeIcon && (
+                                                <ResRangeControl
+                                                    label={__('Icon Size', 'zoloblocks')}
+                                                    controlName={BADGE_ICON_SIZE}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={50}
+                                                    step={1}
+                                                />
+                                            )}
+                                            <ColorControl
+                                                label={__('Background Color', 'zoloblocks')}
+                                                color={badgeBackgroundColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        badgeBackgroundColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Arrow Color', 'zoloblocks')}
+                                                color={badgeBackgroundArrowColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        badgeBackgroundArrowColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={BADGE_QR_CODE_BOX_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    )}
+                                </ZoloPanelBody>
+                            )}
                         </>
                     }
                     advancedTab={
