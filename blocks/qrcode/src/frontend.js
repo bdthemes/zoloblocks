@@ -5,6 +5,8 @@ import { QRCode } from 'react-qrcode-logo';
 document.addEventListener('DOMContentLoaded', () => {
     const qrcodeWrapper = document.querySelectorAll('.zolo-qrcode-wrapper');
 
+    console.log(qrcodeWrapper);
+
     if (qrcodeWrapper.length > 0) {
         qrcodeWrapper.forEach((qrcode) => {
             const options = qrcode.dataset.options;
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             root.render(
                 <>
                     <QRCodeWrapper />
-                    {showBadge && badgeStyle === 'zolo-badge-style-1' && (
+                    {showBadge && badgeStyle == 'zolo-badge-style-1' && (
                         <span className="zolo-qrcode-badge">
                             <span className="zolo-qrcode-badge-text">{badgeText}</span>
                         </span>

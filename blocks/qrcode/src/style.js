@@ -210,11 +210,11 @@ export default function Style({ props }) {
                                     ${badgeQrCodeBoxShadow}
                                     ${badgeBackgroundColor ? `background: ${badgeBackgroundColor};` : ''}
                                 }
-                                
+
                                 .${uniqueId}.zolo-block.wp-block-zolo-qrcode .zolo-qrcode-badge:after {
                                     ${badgeBackgroundArrowColor ? `--zolo-badge-arrow-color: ${badgeBackgroundArrowColor};` : ''}
                                 }
-                                
+
                                 .${uniqueId}.zolo-block.wp-block-zolo-qrcode .zolo-qrcode-badge-icon svg {
                                     ${badgeIconHeight}
                                     ${badgeIconWidth}
