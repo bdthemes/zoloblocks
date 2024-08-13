@@ -89,11 +89,10 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blocksProps}>
                 {renderHookBefore && renderHookBefore}
-
-                {badgeStyle === 'zolo-badge-style-1' && (
+                {badgeStyle == 'zolo-badge-style-1' && (
                     <div class={`zolo-qrcode-wrapper`}>
                         <QRCodeWrapper />
-                        {showBadge && badgeStyle === 'zolo-badge-style-1' && (
+                        {showBadge && (
                             <span className="zolo-qrcode-badge">
                                 <RichText
                                     tagName="span"
@@ -106,12 +105,12 @@ export default function Edit(props) {
                     </div>
                 )}
 
-                {(badgeStyle === 'zolo-badge-style-2' || badgeStyle === 'zolo-badge-style-3') && (
+                {badgeStyle != 'zolo-badge-style-1' && (
                     <div className="zolo-qrcode-badge-wrapper">
                         <div class={`zolo-qrcode-wrapper`}>
                             <QRCodeWrapper />
                         </div>
-                        {showBadge && (badgeStyle === 'zolo-badge-style-2' || badgeStyle === 'zolo-badge-style-3') && (
+                        {showBadge && (
                             <span className="zolo-qrcode-badge">
                                 <RichText
                                     tagName="span"

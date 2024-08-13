@@ -78,13 +78,11 @@ export default function Save(props) {
         <>
             <div {...blocksProps}>
                 {renderHookBefore && renderHookBefore}
-                {showBadge && badgeStyle === 'zolo-badge-style-1' && (
-                    <div className="zolo-qrcode-wrapper" data-options={JSON.stringify(options)}></div>
-                )}
-                {(badgeStyle === 'zolo-badge-style-2' || badgeStyle === 'zolo-badge-style-3') && (
+                {badgeStyle == 'zolo-badge-style-1' && <div className="zolo-qrcode-wrapper" data-options={JSON.stringify(options)}></div>}
+                {badgeStyle != 'zolo-badge-style-1' && (
                     <div className="zolo-qrcode-badge-wrapper">
                         <div className="zolo-qrcode-wrapper" data-options={JSON.stringify(options)}></div>
-                        {showBadge && (badgeStyle === 'zolo-badge-style-2' || badgeStyle === 'zolo-badge-style-3') && (
+                        {showBadge && (
                             <span className="zolo-qrcode-badge">
                                 <span className="zolo-qrcode-badge-text">{badgeText}</span>
                                 {showBadgeIcon && (
