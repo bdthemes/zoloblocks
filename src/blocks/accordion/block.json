@@ -18,7 +18,7 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
-    "editorScript": "file:./index.js",
+    "editorScript": ["zolo-accordion-editor-script", "file:./index.js"],
     "style": "file:./style-index.css",
     "viewScript": "file:./frontend.js"
 }

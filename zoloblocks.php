@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/
- * Version: 1.2.2
+ * Version: 1.4.0
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zoloblocks
@@ -43,9 +43,7 @@ final class ZoloBlocks {
      * Constructor
      */
     public function __construct() {
-        //Define Zolo Constants
         $this->zolo_constants();
-
         if (!version_compare(ZOLO_WP_VERSION, '5.8', '>=')) {
             add_action('admin_notices', [Notice::class, 'zolo_check_wp_version']);
         } elseif (!version_compare(ZOLO_PHP_VERSION, '5.6', '>=')) {
@@ -67,7 +65,7 @@ final class ZoloBlocks {
         define('ZOLO_DIR', __DIR__);
         define('ZOLO_NAMESPACE', 'zoloblocks');
         define('ZOLO_SLUG', 'zoloblocks');
-        define('ZOLO_VERSION', '1.2.2');
+        define('ZOLO_VERSION', '1.4.0');
         define('ZOLO_DIR_PATH', plugin_dir_path(__FILE__));
         define('ZOLO_ADMIN_URL', plugin_dir_url(__FILE__));
         define('ZOLO_WP_VERSION', (float) get_bloginfo('version'));

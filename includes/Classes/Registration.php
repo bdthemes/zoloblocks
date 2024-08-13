@@ -24,16 +24,8 @@ class Registration {
      */
     public function block_register() {
         $blocks = $this::block_list();
-
-
-
         if (is_array($blocks) && count($blocks) > 0) {
-            foreach ($blocks as $key => $block) {
-                
-                // var_dump($block['name']);
-                // wp_die(); 
-
-                // Directory Path based on Free or Pro
+            foreach ($blocks as $block) {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);
                 $admin_path = trailingslashit(ZOLO_ADMIN_URL);
                 $version    = ZOLO_VERSION;
@@ -44,8 +36,17 @@ class Registration {
                     $version    = ZOLO_PRO_VERSION;
                 }
 
-                // Register Block
-                register_block_type( $block_path . '/build/blocks/' . $block['name'] );
+                //Check Render Class
+                if (isset($block['class'])) {
+                    $class = new $block['class'];
+                    // register block with render callback
+                    register_block_type($block_path . '/build/blocks/' . $block['name'], [
+                        'render_callback' => fn ($attributes, $content) => $this->render_callback($attributes, $content, $class),
+                    ]);
+                } else {
+                    // register block without render callback
+                    register_block_type($block_path . '/build/blocks/' . $block['name']);
+                }
             }
         }
     }
@@ -57,23 +58,7 @@ class Registration {
      *
      * @return string
      */
-    public function render_callback($attributes, $content, $render, $scripts, $styles) {
-        if ($scripts !== false && is_array($scripts) && count($scripts) > 0) {
-            foreach ($scripts as $script) {
-                if (is_string($script)) {
-                    wp_enqueue_script($script);
-                }
-            }
-        }
-
-        if ($styles !== false && is_array($styles) && count($styles) > 0) {
-            foreach ($styles as $style) {
-                if (is_string($style)) {
-                    wp_enqueue_style($style);
-                }
-            }
-        }
-
+    public function render_callback($attributes, $content, $render) {
         if ($render !== false) {
             return $render->render($attributes);
         }

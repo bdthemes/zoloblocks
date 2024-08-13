@@ -5,9 +5,7 @@
 /**
  * Import Style
  */
-import './style.scss';
-import './welcome.scss';
-import './settings.scss';
+import './scss/index.scss';
 
 /**
  * External dependencies

@@ -69,7 +69,7 @@ class Zolo_Admin_Assets {
 
         wp_enqueue_style(
             'zolo-admin-css',
-            trailingslashit(ZOLO_ADMIN_URL) . 'build/admin/style.css',
+            trailingslashit(ZOLO_ADMIN_URL) . 'build/admin/index.css',
             [],
             ZOLO_VERSION
         );

@@ -39,9 +39,9 @@
          */
         public function render_notice_block( $block_content, $block ) {
 
-            $attrs = $block['attrs'];
-            $id = $attrs['uniqueId'] ?? '';
-            $dismissible = $attrs['dismissible'] ?? false; 
+            $attrs           = $block['attrs'];
+            $id              = $attrs['uniqueId'] ?? '';
+            $dismissible     = $attrs['dismissible'] ?? false;
             $infinite_repeat = $attrs['showAfterDismiss'] ?? false;
 
             // dismissible is true and infinite repeat is false
