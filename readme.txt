@@ -5,7 +5,7 @@ Tags: block editor, gutenberg blocks, gutenberg, wordpress blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -207,6 +207,16 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.3.2 - 14-8-2024 =
+
+### Added
+
+* Width feature has been added to the extra tab for every block
+
+### Fixed
+
+* Some minor issues are fixed
 
 = 1.3.1 - 12-8-2024 =
 
