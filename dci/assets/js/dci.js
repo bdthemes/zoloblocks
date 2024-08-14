@@ -35,7 +35,6 @@
             allow_name: allow_name,
           },
           success: function (response) {
-            console.log(response);
             if (response.status == "success") {
               location.reload();
             } else {

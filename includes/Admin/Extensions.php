@@ -9,7 +9,7 @@ return apply_filters(
     'zolo_setting_extensions',
     [
         [
-            'name'       => 'zolo_floating_animation',
+            'name'       => 'zolo_particles_effects',
             'categories' => ['social'],
             'status'     => true
         ],
@@ -67,6 +67,21 @@ return apply_filters(
             'name'       => 'zolo_export_page',
             'categories' => ['list'],
             'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_floating_animation',
+            'categories' => ['social'],
+            'status'     => true
+        ],
+        [
+            'name'       => 'zolo_cursor_effects',
+            'categories' => ['social'],
+            'status'     => true
+        ],
+        [
+            'name'       => 'zolo_cursor_efdfects',
+            'categories' => ['social'],
+            'status'     => true
         ],
     ]
 );
