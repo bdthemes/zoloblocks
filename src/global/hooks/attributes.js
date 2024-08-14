@@ -20,6 +20,7 @@ import WebFont from 'webfontloader';
 const {
     handleUniqueId,
     generateResAlignmentAttributies,
+    generateResSelectAttributies,
     generateResRangeAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
@@ -110,6 +111,9 @@ function addAttributes(settings) {
             },
             overflow: {
                 type: 'string',
+            },
+            contentWidth: {
+                type: 'string'
             },
             position: {
                 type: 'object',
@@ -235,6 +239,7 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('transitionDuration'),
 
             //Position
+
             ...generateResRangeAttributies('positionLeft', {
                 defaultUnit: 'px',
             }),
@@ -247,7 +252,12 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('positionBottom', {
                 defaultUnit: 'px',
             }),
-
+            ...generateResRangeAttributies('customWidth', {
+                defaultUnit: 'px',
+            }),
+            ...generateResSelectAttributies('widthType', {
+                defaultSelect: 'default',
+            }),
             ...generateResAlignmentAttributies('transformOriginXHover'),
             ...generateResAlignmentAttributies('transformOriginYHover'),
 
