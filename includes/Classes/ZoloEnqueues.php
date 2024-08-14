@@ -1,48 +1,34 @@
 <?php
-
-/**
- * Zolo Blocks Enqueues.
- *
- * @package Zolo
- */
-
+namespace Zolo\Classes;
 use Zolo\Helpers\ZoloHelpers;
+use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!class_exists('Zolo_Block_Enqueue')) {
+if ( ! class_exists( 'ZoloEnqueues' ) ) {
+
     /**
-     * Class Zolo_Block_Enqueue.
+     * The ZoloEnqueues class handles enqueuing scripts and styles for the Zolo theme.
+     *
+     * This class provides methods to enqueue scripts and stylesheets required by the Zolo theme.
+     * It ensures that the necessary assets are loaded in the correct order and with the appropriate dependencies.
+     *
+     * @since 1.0.0
      */
-    final class Zolo_Block_Enqueue {
+    class ZoloEnqueues {
+
+        use SingletonTrait;
 
         /**
-         * Member Variable
-         *
-         * @var instance
-         */
-        private static $instance;
-
-        /**
-         *  Initiator
-         */
-        public static function get_instance() {
-            if (!isset(self::$instance)) {
-                self::$instance = new self();
-            }
-            return self::$instance;
-        }
-
-        /**
-         * Constructor
+         * Constructor for the ZoloEnqueues class.
          */
         public function __construct() {
-            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader'], 2);
-            add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
-            add_action('wp_head', [$this, 'initial_css_loader']);
+            add_action( 'enqueue_block_editor_assets', [ $this, 'editor_assets_loader' ], 2 );
+            add_action( 'enqueue_block_assets', [ $this, 'block_assets_loader' ] );
+            add_action( 'wp_head', [ $this, 'initial_css_loader' ] );
         }
 
         /**
@@ -53,10 +39,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function initial_css_loader() {
-            $custom_css = ".zolo-entrance-animation:not(.animation-initialized), .zolo-entrance-animation .zolo-post-item:not(.animation-initialized)
-            { opacity: 0; }
-                   .zolo-editor .zolo-entrance-animation:not(.animation-initialized), .zolo-editor .zolo-entrance-animation .zolo-post-item:not(.animation-initialized)
-                    { opacity: 1; }";
+            $custom_css = ".zolo-entrance-animation:not(.animation-initialized), .zolo-entrance-animation .zolo-post-item:not(.animation-initialized) { opacity: 0; }
+                           .zolo-editor .zolo-entrance-animation:not(.animation-initialized), .zolo-editor .zolo-entrance-animation .zolo-post-item:not(.animation-initialized) { opacity: 1; }";
             if (!empty($custom_css)) {
                 echo '<style id="zolo-init">' . $custom_css . '</style>';
             }
@@ -458,5 +442,3 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         }
     }
 }
-
-Zolo_Block_Enqueue::get_instance();

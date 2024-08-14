@@ -1,5 +1,4 @@
 import { ToggleControl } from '@wordpress/components';
-import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false }) => {
@@ -10,9 +9,7 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
                     <span>{__('Pro', 'zoloblocks')}</span>
                 </div>
             )}
-            <div className="block-icon">
-                <RawHTML>{icon}</RawHTML>
-            </div>
+            <div className="block-icon">{icon}</div>
             <div className="block-info">
                 <span className="block-title" onClick={onClick}>
                     {title}

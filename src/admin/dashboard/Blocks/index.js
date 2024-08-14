@@ -1,13 +1,15 @@
-import { useState, useEffect, useCallback } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import SingleBlock from './single-block';
+import BlockIcons from '../../../global/block-icons.js';
+
 import blocks from './blocks.json';
 import categories from './categories';
+import SingleBlock from './single-block';
 
-import Notice from '../notice';
 import { applyFilters } from '@wordpress/hooks';
+import Notice from '../notice';
 
 let zoloBlocksInitStatus;
 apiFetch({
@@ -242,10 +244,12 @@ const Blocks = () => {
                                             return block.name === blockState.name;
                                         });
                                         if (status?.length > 0) {
+                                            // remove zolo_ from block name and replace _ with dash(-)
+                                            const updatedName = blockState.name.replace('zolo_', '').replace(/_/g, '-');
                                             return (
                                                 <SingleBlock
                                                     key={index}
-                                                    icon={blockState.icon}
+                                                    icon={BlockIcons[updatedName]}
                                                     title={blockState.title}
                                                     value={status[0].status}
                                                     demo={blockState.demo || ''}

@@ -1,45 +1,25 @@
 <?php
-/**
- * Zolo_AJAX
- *
- * AJAX Event Handler
- *
- * @class    Zolo_AJAX
- * @version  0.0.1
- * @package  zolo-ajax
- * @category Class
- */
+namespace Zolo\Classes;
+use Zolo\Helpers\ZoloHelpers;
+use Zolo\Traits\SingletonTrait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Zolo\Helpers\ZoloHelpers;
-
 /**
- * Zolo Ajax class
+ * Zolo AJAX Class 
+ * 
+ * @package Zolo
+ * @since 1.0.0
  */
-class Zolo_AJAX {
+
+class ZoloAjax {
+
+	use SingletonTrait;
 
 	/**
-	 * @var $instance;
-	 */
-	private static $instance;
-
-	/**
-	 * Get instance
-	 *
-	 * @return self
-	 */
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * The Constructor.
+	 * Constructor for the ZoloAjax class.
 	 */
 	public function __construct() {
 		self::zolo_ajax_action_init();
@@ -52,7 +32,6 @@ class Zolo_AJAX {
 	 * @return void
 	 */
 	public function zolo_select2_response() {
-
 		if ( ! wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
 			wp_send_json_error( 'Invalid nonce' );
 		}
@@ -64,6 +43,7 @@ class Zolo_AJAX {
 		$paged          = intval( $_POST['page'] ?? 1 );
 		$results        = [];
 		$post_list      = [];
+
 		switch ( $source_name ) {
 			case 'taxonomy':
 				$args = [
@@ -80,10 +60,12 @@ class Zolo_AJAX {
 
 				$post_list = wp_list_pluck( get_terms( $args ), 'name', 'term_id' );
 				break;
+
 			case 'user':
 				$users     = get_users( [ 'search' => "*{$search_text}*" ] );
 				$post_list = wp_list_pluck( $users, 'display_name', 'ID' );
 				break;
+
 			default:
 				$post_list = $this->get_query_data( $source_type, $query_per_page, $search_text, $paged );
 		}
@@ -95,9 +77,7 @@ class Zolo_AJAX {
 			];
 		}
 
-		wp_send_json(
-			[ 'results' => $results ]
-		);
+		wp_send_json( [ 'results' => $results ] );
 	}
 
 	/**
@@ -114,42 +94,36 @@ class Zolo_AJAX {
 		$where = '';
 		$data  = [];
 
-		if ( -1 == $limit ) {
+		if (-1 == $limit) {
 			$limit = '';
-		} elseif ( 0 == $limit ) {
+		} elseif (0 == $limit) {
 			$limit = 'limit 0,1';
 		} else {
-			$offset = 0;
-			if ( $paged ) {
-				$offset = ( $paged - 1 ) * $limit;
-			}
-			$limit = $wpdb->prepare( ' limit %d, %d', esc_sql( $offset ), esc_sql( $limit ) );
+			$offset = ($paged - 1) * $limit;
+			$limit = $wpdb->prepare('LIMIT %d, %d', $offset, $limit);
 		}
 
-		if ( 'any' === $post_type ) {
-			$in_search_post_types = get_post_types( [ 'exclude_from_search' => false ] );
-			if ( empty( $in_search_post_types ) ) {
+		if ('any' === $post_type) {
+			$in_search_post_types = get_post_types(['exclude_from_search' => false]);
+			if (empty($in_search_post_types)) {
 				$where .= ' AND 1=0 ';
 			} else {
-				$where .= " AND {$wpdb->posts}.post_type IN ('" . join(
-					"', '",
-					array_map( 'esc_sql', $in_search_post_types )
-				) . "')";
+				$where .= " AND {$wpdb->posts}.post_type IN ('" . join("', '", array_map('esc_sql', $in_search_post_types)) . "')";
 			}
-		} elseif ( ! empty( $post_type ) ) {
-			$where .= $wpdb->prepare( " AND {$wpdb->posts}.post_type = %s", esc_sql( $post_type ) );
+		} elseif (!empty($post_type)) {
+			$where .= $wpdb->prepare(" AND {$wpdb->posts}.post_type = %s", $post_type);
 		}
 
-		if ( ! empty( $search ) ) {
-			$where .= $wpdb->prepare( " AND {$wpdb->posts}.post_title LIKE %s", '%' . esc_sql( $search ) . '%' );
+		if (!empty($search)) {
+			$where .= $wpdb->prepare(" AND {$wpdb->posts}.post_title LIKE %s", '%' . $search . '%');
 		}
 
-		$query   = "select post_title,ID  from $wpdb->posts where post_status = 'publish' {$where} {$limit}";
-		$results = $wpdb->get_results( $query );
+		$query = "SELECT post_title, ID FROM $wpdb->posts WHERE post_status = 'publish' {$where} {$limit}";
+		$results = $wpdb->get_results($query);
 
-		if ( ! empty( $results ) ) {
-			foreach ( $results as $row ) {
-				$data[ $row->ID ] = $row->post_title . ' [#' . $row->ID . ']';
+		if (!empty($results)) {
+			foreach ($results as $row) {
+				$data[$row->ID] = $row->post_title . ' [#' . $row->ID . ']';
 			}
 		}
 
@@ -190,5 +164,3 @@ class Zolo_AJAX {
 		exit;
 	}
 }
-
-Zolo_AJAX::get_instance();
