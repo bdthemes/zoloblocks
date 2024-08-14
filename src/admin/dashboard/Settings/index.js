@@ -302,7 +302,7 @@ const Settings = () => {
                                         )}
                                     >
                                         <ToggleControl
-                                            checked={supportSVG}
+                                            checked={!!supportSVG}
                                             onChange={() => {
                                                 updateSVG(!supportSVG);
                                                 setNotice(true);
@@ -318,7 +318,7 @@ const Settings = () => {
                                     >
                                         {zoloBlocks.has_pro ? (
                                             <ToggleControl
-                                                checked={smoothScroller}
+                                                checked={!!smoothScroller}
                                                 onChange={() => {
                                                     updateSmoothScroller(!smoothScroller);
                                                     setNotice(true);
@@ -340,7 +340,7 @@ const Settings = () => {
                                         )}
                                     >
                                         <ToggleControl
-                                            checked={blockExport}
+                                            checked={!!blockExport}
                                             onChange={() => {
                                                 updateBlockExport(!blockExport);
                                                 setNotice(true);
@@ -352,7 +352,7 @@ const Settings = () => {
                                         description={__('Enable the Pattern Import option to import your block(s) pattern.', 'zoloblocks')}
                                     >
                                         <ToggleControl
-                                            checked={blockImport}
+                                            checked={!!blockImport}
                                             onChange={() => {
                                                 updateBlockImport(!blockImport);
                                                 setNotice(true);
@@ -420,7 +420,7 @@ const Settings = () => {
                                         }
                                     >
                                         <ToggleControl
-                                            checked={blockLibrary}
+                                            checked={!!blockLibrary}
                                             onChange={() => {
                                                 updateBlockLibrary(!blockLibrary);
                                                 setNotice(true);
@@ -488,7 +488,7 @@ const Settings = () => {
                                             )}
                                         </div>
                                         <ToggleControl
-                                            checked={comingSoonMode}
+                                            checked={!!comingSoonMode}
                                             onChange={() => {
                                                 updateComingSoonMode(!comingSoonMode);
                                                 setNotice(true);
@@ -515,7 +515,7 @@ const Settings = () => {
                                             )}
                                         </div>
                                         <ToggleControl
-                                            checked={maintenanceMode}
+                                            checked={!!maintenanceMode}
                                             onChange={() => {
                                                 updateMaintenanceMode(!maintenanceMode);
                                                 setNotice(true);
