@@ -75,8 +75,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         public function block_assets_loader() {
             $extension_particles = ZoloHelpers::zoloblocks_get_option('zolo_particles_effects', 'zolo_extensions_settings', '1');
 
-            print_r($extension_particles);
-
             wp_enqueue_script(
                 'zolo-block-vendor-dependency',
                 trailingslashit(ZOLO_ADMIN_URL) . 'vendor-bundle/index.js',
@@ -192,7 +190,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
                 wp_enqueue_script(
                     'zolo-swiper-frontend-script',
-                    trailingslashit(ZOLO_ADMIN_floatingURL) . 'assets/js/swiper/swiper-bundle.min.js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
                     [],
                     ZOLO_VERSION,
                     true
