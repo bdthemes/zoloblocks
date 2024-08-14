@@ -4,9 +4,6 @@ import { QRCode } from 'react-qrcode-logo';
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const qrcodeWrapper = document.querySelectorAll('.zolo-qrcode-wrapper');
-
-    console.log(qrcodeWrapper);
-
     if (qrcodeWrapper.length > 0) {
         qrcodeWrapper.forEach((qrcode) => {
             const options = qrcode.dataset.options;

@@ -20,6 +20,7 @@ import WebFont from 'webfontloader';
 const {
     handleUniqueId,
     generateResAlignmentAttributies,
+    generateResSelectAttributies,
     generateResRangeAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
@@ -253,6 +254,9 @@ function addAttributes(settings) {
             }),
             ...generateResRangeAttributies('customWidth', {
                 defaultUnit: 'px',
+            }),
+            ...generateResSelectAttributies('widthType', {
+                defaultSelect: 'default',
             }),
             ...generateResAlignmentAttributies('transformOriginXHover'),
             ...generateResAlignmentAttributies('transformOriginYHover'),

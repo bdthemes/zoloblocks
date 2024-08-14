@@ -1047,7 +1047,7 @@ export const CONTENT_POSITIONS = [
 
 export const CONTENT_WIDTH = [
     { label: __('Default', 'zoloblocks'), value: 'default' },
-    { label: __('Full Width', 'zoloblocks'), value: 'full-width' },
+    { label: __('Full Width', 'zoloblocks'), value: 'full' },
     { label: __('Inline (auto)', 'zoloblocks'), value: 'inline' },
     { label: __('Custom', 'azoloblocks'), value: 'custom' },
 ];

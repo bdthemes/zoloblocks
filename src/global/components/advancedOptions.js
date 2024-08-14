@@ -20,6 +20,7 @@ import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 import IconicBtnGroup from '../../controls/iconic-btn-group';
+import ResSelectControl from '../../controls/res-select-control';
 import { applyFilters } from '@wordpress/hooks';
 import {
     DEFAULT_ALIGNS,
@@ -66,6 +67,7 @@ export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps, block } = props;
     const panelProps = { attributes, setAttributes };
 
+
     const {
         responsiveness,
         transformAnimationActive,
@@ -84,7 +86,11 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
-        contentWidth
+        contentWidth,
+        widthTypeZRPSelect,
+        TABwidthTypeZRPSelect,
+        MOBwidthTypeZRPSelect,
+        resMode,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -153,27 +159,24 @@ export const AdvancedOptions = (props) => {
                     help={__('Set the z-index for the section', 'zoloblocks')}
                 />
                 <div className="zolo-control-container zolo-single-control">
-                    <SelectControl
+                    <ResSelectControl
                         label={__('Width', 'zoloblocks')}
-                        options={CONTENT_WIDTH}
-                        onChange={(v) =>
-                            setAttributes({
-                                contentWidth: v
-                            })
-                        }
-                        value={contentWidth}
+                        controlName={'widthType'}
+                        requiredProps={requiredProps}
+                        alignOptions={CONTENT_WIDTH}
                     />
                     {
-                        contentWidth === 'custom' && (
-                            <ResRangeControl
-                                label={__('Custom Width', 'zoloblocks')}
-                                controlName={'customWidth'}
-                                requiredProps={requiredProps}
-                                max={1000}
-                                noUnits={false}
-                            />
-                        )
-                    }
+                    (resMode === 'Desktop' && widthTypeZRPSelect === 'custom') ||
+                    (resMode === 'Mobile' && MOBwidthTypeZRPSelect === 'custom') ||
+                    (resMode === 'Tablet' && TABwidthTypeZRPSelect === 'custom') ? (
+                        <ResRangeControl
+                            label={__('Custom Width', 'zoloblocks')}
+                            controlName={'customWidth'}
+                            requiredProps={requiredProps}
+                            max={1000}
+                            noUnits={false}
+                        />
+                    ) : null}
                 </div>
 
                 <OverflowControl
@@ -309,7 +312,9 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps}
+                    <BackgroundControl
+                        controlName={globalConfig.background.prefix || 'mainBg'}
+                        requiredProps={requiredProps}
                         particles={particles}
                     />
                 </ZoloPanelBody>
