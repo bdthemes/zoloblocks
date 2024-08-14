@@ -13,47 +13,70 @@ ZoloBlocks comes with a number of amazing custom Gutenberg blocks to extend the 
 
 == Description ==
 
-You need just one good reason to come back to Gutenberg Builder. And that reason is [**ZoloBlocks**](https://zoloblocks.com/).
+You only need one compelling reason to embrace Gutenberg Builder again: [**ZoloBlocks**](https://zoloblocks.com). This isn't just another block editor plugin—it's a game-changer that puts the power of premium page builders right at your fingertips. With ZoloBlocks, you get **40+ advanced blocks, 250+ pattern templates, 20+ extra editor options** for Gutenberg. This amazing plugin offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
 
-ZoloBlocks is the most advanced block editor plugin that rivals popular page builder plugins in terms of features, user interface, customizations, and ease of use. Built for Gutenberg, the plugin enhances how you should design your websites from scratch to perfection.
+Whether you're a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress block editor. Say goodbye to coding headaches and cumbersome page builders. ZoloBlocks replaces the need for slow and complicated page-builder plugins with fine-tuned website-building experience.
 
-Meet your page editor blocks, a good **40+** of them in a robust package.
+This plugin takes Gutenberg's capabilities to the next level, offering an all-in-one solution that is easy to use and offers advanced features.
 
-All blocks come with a detailed options panel and a range of customizations. ZoloBlocks lets you modify the layouts of your content to shape your desired landing page.
 
 https://www.youtube.com/watch?v=8kBMIL-4PZI
 
-Not just that, there’s more. The plugin also lets you seamlessly customize the appearance of each content down to each element, making it possible to get creative with your page content interface.
+== Key Features of ZoloBlocks ==
 
-ZoloBlocks promises the flexibility that you have been enjoying with page builders outside Gutenberg till now. But this time, it’s within Gutenberg. Made for solopreneurs and agencies alike, you will enjoy many benefits of ZoloBlocks-
+👍 40+ Advanced blocks for Gutenberg
+👍 250+ ready templates
+👍 One-click template import
+👍 15+ Creative blocks
+👍 8+ Useful extensions
+👍 Block editor personalization
+👍 Pattern import/export feature
+👍 Quick API setup for Map, reCaptcha, MailChimp, and more
+👍 A smooth and sleek dashboard experience
+👍 Instant settings sync
 
-== User-Friendly Interface 👍 ==
+We are continuously evolving ZoloBlocks. **Each update** brings a new dimension to your website-building experience. It is You who powered up with ZoloBlocks.
 
-WordPress is known for offering a very straightforward UI to keep it simple for users. Zolo Blocks sticks to the same principle and provides a robust interface with familiar options and their naming. The UI is neat and clean to make your page-building journey smooth and comfortable.
+== More Than 1-Step Ahead of Competition 🔥 ==
 
-== One Plugin, Many Blocks 🎁 ==
+With ZoloBlocks, you don’t just create your website, YOU OWN IT! With our **powerful block editor**, you can customize everything about the blocks. Whether it’s the layout style or font style, you have complete freedom over all elements.
 
-Aiming to let you grab the most number of features for Gutenberg, our plugin packs a growing number of block features. Ensuring the uniqueness and quality of blocks, ZoloBlocks outperforms the competition.
+What makes ZoloBlocks stand out is the level of detailing and a super smooth user experience.
 
-== Features and Customizations ==
+== Block Skins are Just Awesome 🎨 ==
 
-Talk about unique block features. Each ZoloBlocks block can accomplish a wide variety of interface designs with precise customizations for your content. You won't feel any lack in what you can customize here.
+While providing the best block editor experience, ZoloBlocks also adds more taste to your page style with **block skins**. Each block has its own set of skins to allow you to choose a unique style instantly. Moreover, you can customize the skins for better personalization.
 
-== Sleek Design ==
+== Wow, So Many Customizations? 😲 ==
 
-The plugin is tailored to look beautiful and deliver beautiful content designs at the same time. The neat and tidy design blends well with your workstation and makes you comfortable working on various web projects.
+We aim to give you the best of the best **page-building experience**. That’s why ZoloBlocks includes all the customizations you could ever have. All blocks come with a wide range of options. Not only padding and margin, but also you will find typography, box shadow, colors, text stroke, gradient, border, border radius, and so on.
 
-== Beginner Friendly Plugin 👩‍🏫 ==
+Even famous page builders bow down to this **design freedom** at ZoloBlocks.
 
-Made for ease of use, the plugin boosts the most stunning user interface across WordPress. You can master ZoloBlocks to design your website within a day. Fingers crossed 🤞!
+== One-Click Template Import 🪄 ==
 
-== Amazing Support ⛑ ==
+You open your page, then click on the ZoloBlocks Template Library icon, then choose a pattern template, and click it to import on your page. Only 4 steps are required to create your landing page almost instantly. That speed is a pride of our product. And you are free to choose from **250+ high-quality templates**. The numbers are going up fast.
 
-The team behind ZoloBlocks working diligently to bring you refreshing features every week. If you feel any hitch, [Contact support](https://bdthemes.com/support/) 💌 right away. We are happy to go the extra mile to make this plugin the best.
+== Creative Animations Transitions 🌠 ==
 
-== Pick Your Features ==
+What you were missing was quality animations and transitions. With our product, that worry is gone. Now you can enjoy custom transition effects such as entrance animations, **floating animations**, **transform effects**, **sticky elements**, **scroll effects**, **advanced content visibility** mode, and much more.
 
-ZoloBlocks is not about what we promise only, but everything you deserve. So, feel free to [**suggest features**](https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas) for this awesome plugin and taste it being developed in the next update. And we always remember to mention your name on the change log. Kachow!
+== Versatile Block Extensions 🧩 ==
+
+ZoloBlocks isn't just about blocks; it's about extending their functionality to new heights. With **8+ useful extensions**, you can add dynamic content, interactive elements, and advanced features that truly make your website stand out.
+
+== Advanced Customization for Developers 🧑‍💻 ==
+
+Not just for beginners; our product is a powerhouse for developers too. The plugin offers advanced customization options, including API integrations, dynamic content support, and **custom CSS fields**. These features allow developers to push the boundaries of what's possible within Gutenberg.
+
+== Instant Updates and Feature Additions 🎁 ==
+
+ZoloBlocks is a living, evolving plugin that continuously improves to meet market trends. Instant settings sync ensures that your preferences and customizations are **always up-to-date**. And our regular updates bring new features, blocks, and templates directly to your dashboard.
+
+== Optimized for Performance 🚀 ==
+
+One of the key challenges with page builders and block plugins is performance. Zolo Blocks is optimized to **deliver fast load times** and minimal impact on **site performance**. The lightweight code and efficient design ensure that your website remains speedy and responsive.
+So, are you ready to explore all the amazing Gutenberg block features by Zolo Blocks? Let’s get started-
 
 == Check Out All Feature Names And Patterns Below-==
 
@@ -99,6 +122,14 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 - [**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot/) - *Get creative with new advanced interactive image hotspots. With Image Hotspot Block, effortlessly engage your audience by highlighting specific info areas of images with informative tooltips.*
 
 Still not happy? Don’t worry, more features coming very soon ….
+
+== Amazing Support ⛑ ==
+
+The team behind ZoloBlocks working diligently to bring you refreshing features every week. If you feel any hitch, [Contact support](https://bdthemes.com/support/) 💌 right away. We are happy to go the extra mile to make this plugin the best.
+
+== Pick Your Features ==
+
+ZoloBlocks is not about what we promise only, but everything you deserve. So, feel free to [**suggest features**](https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas) for this awesome plugin and taste it being developed in the next update. And we always remember to mention your name on the change log. Kachow!
 
 == Check out our other Addons 🧩 ==
 
@@ -223,6 +254,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 ### Fixed
 
 * Frontend multicolor issue fixed in Tag Cloud block (pro)
+* File name case minor issue fixed
 
 = 1.3.0 - 12-8-2024 =
 
