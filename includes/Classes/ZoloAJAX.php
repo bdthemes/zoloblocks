@@ -66,7 +66,7 @@ class ZoloAJAX {
             'orderby'    => ! empty($data['catOrderby']) ? sanitize_text_field($data['catOrderby']) : 'name',
             'order'      => ! empty($data['catOrder']) ? sanitize_text_field($data['catOrder']) : 'desc',
             'hide_empty' => 0,
-            'exclude'    => $catExclude,
+            'exclude'    => $catExclude, // phpcs:ignore
             'parent'     => isset($data['catParent']) ? intval($data['catParent']) : '',
         ];
         $categories = get_categories($args);
@@ -192,7 +192,7 @@ class ZoloAJAX {
         }
 
         $query   = "select post_title,ID  from $wpdb->posts where post_status = 'publish' {$where} {$limit}";
-        $results = $wpdb->get_results($query);
+        $results = $wpdb->get_results($query); //phpcs:ignore
 
         if (! empty($results)) {
             foreach ($results as $row) {

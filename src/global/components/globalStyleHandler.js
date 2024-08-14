@@ -11,6 +11,7 @@ import { generateBorderStyle } from '../../helpers/border-helper';
 import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 import { generateResRangeStyle } from '../../helpers/res-range-helper';
 import { generateResAlignmentStyle } from '../../helpers/res-alignment-helper';
+import { generateResSelectStyle } from '../../helpers/res-select-helper';
 import { applyFilters } from '@wordpress/hooks';
 
 export const GlobalStyleHanlder = (props) => {
@@ -356,7 +357,25 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
-    // transform orgin x
+    // width type
+
+    const {
+        desktopSelectStyle: widthTypeDesktop,
+        tabSelectStyle: widthTypeTab,
+        mobSelectStyle: widthTypeMob,
+    } = generateResSelectStyle({
+        controlName: 'widthType',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: customWidthDesktop,
+        tabRangeStyle: customWidthTab,
+        mobRangeStyle: customWidthMob,
+    } = generateResRangeStyle({
+        controlName: 'customWidth',
+        property: 'width',
+        attributes,
+    });
 
     const {
         desktopAlignStyle: transformOriginXDesktop,
@@ -572,6 +591,16 @@ export const GlobalStyleHanlder = (props) => {
         ${positionDesktop}
       }
 
+      ${ widthTypeDesktop !== 'default' ? `
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),.zolo-frontend :where(.${uniqueId}){
+        ${widthTypeDesktop == 'full' ? `width: 100vw !important; ` : ''}
+        ${widthTypeDesktop == 'inline' ? `width: auto !important; ` : ''}
+        ${widthTypeDesktop == 'custom' ? `${customWidthDesktop.replace(';', ' !important;')} ` : ''}
+        }
+        `: ''
+      }
+
+
 
        .parent-${uniqueId}.zolo-transform-wrapper,
        .zolo-editor .parent-${uniqueId}.zolo-transform-animation {
@@ -607,6 +636,15 @@ export const GlobalStyleHanlder = (props) => {
         ${positionTab}
       }
 
+    ${ widthTypeTab !== 'default' ? `
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),.zolo-frontend :where(.${uniqueId}){
+        ${widthTypeTab == 'full' ? `width: 100vw !important; ` : ''}
+        ${widthTypeTab == 'inline' ? `width: auto !important; ` : ''}
+        ${widthTypeTab == 'custom' ? `${customWidthTab.replace(';', ' !important;')} ` : ''}
+        }
+        `: ''
+    }
+
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgTabStyle ? hoverBgTabStyle : ''}
       }
@@ -638,7 +676,14 @@ export const GlobalStyleHanlder = (props) => {
           ${bgMobStyle ? bgMobStyle : ''}
         ${positionMob}
       }
-
+    ${ widthTypeMob !== 'default' ? `
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),.zolo-frontend :where(.${uniqueId}){
+        ${widthTypeMob == 'full' ? `width: 100vw !important; ` : ''}
+        ${widthTypeMob == 'inline' ? `width: auto !important; ` : ''}
+        ${widthTypeMob == 'custom' ? `${customWidthMob.replace(';', ' !important;')} ` : ''}
+        }
+        `: ''
+    }
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgMobStyle ? hoverBgMobStyle : ''}
       }

@@ -30,9 +30,9 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
             )}
             {title && <h3 className="zolo-setting-title">{title}</h3>}
             {description && (
-                <p className="zolo-setting-description">
+                <div className="zolo-setting-description">
                     <RawHTML>{description}</RawHTML>
-                </p>
+                </div>
             )}
             <div className="help-docs">
                 {docLink && (
@@ -92,9 +92,9 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                 <Modal onRequestClose={closeSettingsPanel}>
                     <div className="settings-popup">
                         <h4 className="modal-title">{title}</h4>
-                        <p className="modal-description">
+                        <div className="modal-description">
                             <RawHTML>{description}</RawHTML>
-                        </p>
+                        </div>
                         {children}
                         {released ? (
                             <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>

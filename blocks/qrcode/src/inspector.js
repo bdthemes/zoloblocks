@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
@@ -20,6 +20,10 @@ const {
     ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
+    ZoloIconPicker,
+    BoxShadowControl,
+    TypographyDropdown,
+    ResRangeControl,
 } = window.zoloModule;
 
 import {
@@ -29,14 +33,27 @@ import {
     QR_CODE_ALIGN,
     QR_CODE_BORDER_RADIUS,
     QR_LOGO_PADDING_STYLE,
+    WRAP_QR_CODE_BORDER,
+    WRAP_QR_CODE_BORDER_RADIUS,
+    WRAP_QR_CODE_PADDING,
+    WRAP_QR_CODE_BOX_SHADOW,
+    BADGE_QR_CODE_BORDER,
+    BADGE_QR_CODE_BORDER_RADIUS,
+    BADGE_QR_CODE_PADDING,
+    BADGE_QR_CODE_MARGIN,
+    BADGE_QR_CODE_BOX_SHADOW,
+    BADGE_ICON_SIZE,
+    // BADGE_TYPOGRAPHY
 } from './constants/index';
+
+import { BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Inspector(props) {
     const { attributes, setAttributes, block } = props;
 
     const {
         resMode,
-
+        badgeStyle,
         // settings
         qrContent,
         qrCodeLink,
@@ -55,6 +72,15 @@ export default function Inspector(props) {
         logoPadding,
         eyeColor,
         eyeRadius,
+        showBadge,
+        showBadgeIcon,
+        badgeText,
+        badgeIcon,
+
+        wrapBackgroundColor,
+        badgeTextColor,
+        badgeBackgroundColor,
+        badgeBackgroundArrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -63,12 +89,11 @@ export default function Inspector(props) {
         setAttributes,
         objAttributes,
     };
-            const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [],  props);
-            const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [],  props);
-            const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [],  props);
-            const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [],  props);
-
-
+    const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [], props);
+    const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [], props);
+    const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [], props);
+    const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [], props);
+    const badgeStyleWrapper = applyFilters('zolo.blocks.controls.qrcode.badgeStyleWrapper', [], props);
     return (
         <>
             <InspectorControls>
@@ -135,7 +160,10 @@ export default function Inspector(props) {
                     }
                     styleTab={
                         <>
-                            <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            {/* Panel pro  */}
+                            {showBadge && badgeStyleWrapper && badgeStyleWrapper}
+
+                            <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={!showBadge ? true : false}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={codeColor}

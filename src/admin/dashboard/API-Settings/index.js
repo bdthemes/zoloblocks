@@ -185,7 +185,6 @@ const ApiSettings = () => {
                     <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
-
                 <SettingPanel
                     title={__('Instagram Feed', 'zoloblocks')}
                     description={

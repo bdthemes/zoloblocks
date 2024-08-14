@@ -29,7 +29,7 @@ class TagCloud extends PostBlock {
 	public function get_default_attributes() {
 		if (class_exists('Zolo_Blocks_Pro')) {
 			$this->default_block_attributes['tagCloudPro'] = [
-				'enableMultipleBG' => true,
+				'enableMultipleBG' => false,
 				'multipleBG'       => '',
 			];
 		}
@@ -51,7 +51,7 @@ class TagCloud extends PostBlock {
 
 		$multiple_bg_create = [];
 
-		if (empty($attributes['tagCloudPro']['enableMultipleBG']) && ! empty($attributes['tagCloudPro']['multipleBG'])) {
+		if (!empty($attributes['tagCloudPro']['enableMultipleBG']) && ! empty($attributes['tagCloudPro']['multipleBG'])) {
 			$multi_bg       = $attributes['tagCloudPro']['multipleBG'];
 			$multiple_bg    = explode(',', rtrim($multi_bg, ','));
 			$total_category = count($categories);
