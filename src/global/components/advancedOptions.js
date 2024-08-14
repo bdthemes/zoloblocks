@@ -86,7 +86,6 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
-        contentWidth,
         widthTypeZRPSelect,
         TABwidthTypeZRPSelect,
         MOBwidthTypeZRPSelect,
@@ -158,26 +157,27 @@ export const AdvancedOptions = (props) => {
                     step={1}
                     help={__('Set the z-index for the section', 'zoloblocks')}
                 />
-                <div className="zolo-control-container zolo-single-control">
-                    <ResSelectControl
-                        label={__('Width', 'zoloblocks')}
-                        controlName={'widthType'}
-                        requiredProps={requiredProps}
-                        alignOptions={CONTENT_WIDTH}
-                    />
-                    {
-                    (resMode === 'Desktop' && widthTypeZRPSelect === 'custom') ||
-                    (resMode === 'Mobile' && MOBwidthTypeZRPSelect === 'custom') ||
-                    (resMode === 'Tablet' && TABwidthTypeZRPSelect === 'custom') ? (
-                        <ResRangeControl
-                            label={__('Custom Width', 'zoloblocks')}
-                            controlName={'customWidth'}
+                {block !== 'zolo/container' && (
+                    <div className="zolo-control-container zolo-single-control">
+                        <ResSelectControl
+                            label={__('Width', 'zoloblocks')}
+                            controlName={'widthType'}
                             requiredProps={requiredProps}
-                            max={1000}
-                            noUnits={false}
+                            alignOptions={CONTENT_WIDTH}
                         />
-                    ) : null}
-                </div>
+                        {(resMode === 'Desktop' && widthTypeZRPSelect === 'custom') ||
+                        (resMode === 'Mobile' && MOBwidthTypeZRPSelect === 'custom') ||
+                        (resMode === 'Tablet' && TABwidthTypeZRPSelect === 'custom') ? (
+                            <ResRangeControl
+                                label={__('Custom Width', 'zoloblocks')}
+                                controlName={'customWidth'}
+                                requiredProps={requiredProps}
+                                max={1000}
+                                noUnits={false}
+                            />
+                        ) : null}
+                    </div>
+                )}
 
                 <OverflowControl
                     label={__('Overflow', 'zoloblocks')}
