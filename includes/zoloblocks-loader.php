@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zolo Blocks Loader.
  * @package Zolo
@@ -14,6 +13,16 @@ use Zolo\Classes\ZoloAjax;
 use Zolo\Classes\ZoloEnqueues;
 use Zolo\Classes\FontLoader;
 use Zolo\Classes\PostMeta;
+use Zolo\Admin\Dashboard;
+use Zolo\Admin\Assets;
+use Zolo\Admin\Settings;
+use Zolo\Templates\Templates;
+use Zolo\Popup\PopupBuilder;
+use Zolo\Form\Form;
+use Zolo\Form\FormAjax;
+use Zolo\Form\Recaptcha;
+use Zolo\Mailchimp\Mailchimp;
+use Zolo\Blocks\NoticeBlock;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -21,6 +30,7 @@ if (!defined('ABSPATH')) {
 }
 
 class ZoloBlocks_Loader {
+
     use SingletonTrait;
 
     /**
@@ -29,6 +39,8 @@ class ZoloBlocks_Loader {
     public function __construct() {
         add_action('plugins_loaded', [$this, 'plugins_loaded']);
         add_action('init', [$this, 'init_actions']);
+        add_filter('admin_body_class', [$this, 'zoloblocks_editor_custom_body_class']);
+        add_filter('body_class', [$this, 'zoloblocks_custom_body_class']);
     }
 
     /**
@@ -48,34 +60,35 @@ class ZoloBlocks_Loader {
         FontLoader::getInstance();
         PostMeta::getInstance();
 
-        // Load Admin files
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
-
         // form
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Form.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Recaptcha.php';
+        Form::getInstance();
+        FormAjax::getInstance();
+        Recaptcha::getInstance();
 
         //mailchimp
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Mailchimp/Mailchimp.php';
+        Mailchimp::getInstance();
 
         // notice block 
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
+        NoticeBlock::getInstance();
         
         // popup
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Popup/PopupBuilder.php';
+        PopupBuilder::getInstance();
 
-        //templates
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Templates/Templates.php';
+        if ( is_admin() ) {
 
-        if (is_admin()) {
-            // zolo blocks settings
-            $zoloSupportSVG = get_option('zolo_support_svg', false);
-            if ($zoloSupportSVG === '1') {
+            // Support SVG
+            if (get_option('zolo_support_svg', false) === '1') {
                 require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/SupportSVG.php';
             }
+
+            // Admin Dashboard
+            Dashboard::getInstance();
+            Assets::getInstance();
+            Settings::getInstance();
+
+            // Templates and Demo Import
+            Templates::getInstance();
+
         }
     }
 
@@ -85,8 +98,6 @@ class ZoloBlocks_Loader {
      * @return void
      */
     public function init_actions() {
-        add_filter('admin_body_class', [$this, 'zoloblocks_editor_custom_body_class']);
-        add_filter('body_class', [$this, 'zoloblocks_custom_body_class']);
         $theme_folder = get_template();
         if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
             if ('twentytwentytwo' === $theme_folder) {

@@ -1,21 +1,20 @@
 <?php
-/**
- * Notice Block Render
- */
+namespace Zolo\Blocks;
+use Zolo\Traits\SingletonTrait;
 
- namespace Zolo\Blocks;
- use Zolo\Traits\SingletonTrait;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
- if( ! class_exists( 'Zolo_Notice_Block' ) ) {
+ if( ! class_exists( 'NoticeBlock' ) ) {
 
     /**
-     * Notice Block Class 
+     * Class NoticeBlock
      * 
-     * @class Zolo_Notice_Block
-     * 
-     * @since 0.0.1
+     * @since 1.1.0
      */
-    class Zolo_Notice_Block {
+    class NoticeBlock {
 
         use SingletonTrait;
 
@@ -57,5 +56,3 @@
 
     }
  }
-    
- Zolo_Notice_Block::getInstance();

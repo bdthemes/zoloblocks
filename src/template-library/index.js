@@ -1,26 +1,26 @@
-import { registerPlugin } from '@wordpress/plugins';
-import { createRoot, useState, useEffect } from '@wordpress/element';
-import { subscribe } from '@wordpress/data';
-import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import axios from 'axios';
 import apiFetch from '@wordpress/api-fetch';
+import { BaseControl, Button, Modal, SelectControl, Tooltip } from '@wordpress/components';
+import { subscribe } from '@wordpress/data';
+import { createRoot, useEffect, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { registerPlugin } from '@wordpress/plugins';
+import axios from 'axios';
 let root;
 
 /**
  * Template Library Style
  */
-import './library.scss';
 import classNames from 'classnames';
+import './library.scss';
 
 /**
  * Internal dependencies
  */
-import PreLoader from './preloader';
-import Templates from './templates';
-import Pages from './pages';
 import FavoriteTemplates from './favorites';
+import Pages from './pages';
+import PreLoader from './preloader';
 import ProPopup from './pro-popup';
+import Templates from './templates';
 
 /**
  * Constants
@@ -125,7 +125,7 @@ function ZoloBlocksTemplateLibraryButton() {
     };
 
     useEffect(() => {
-        if (favTemplates.length > 0) {
+        if (favTemplates?.length > 0) {
             const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
             setFavTemplatesData(favTemplatesData);
         }
@@ -385,7 +385,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                             >
                                                 {tab.label}
 
-                                                {tab.value === 'favorites' && favTemplates.length > 0 && (
+                                                {tab.value === 'favorites' && favTemplates?.length > 0 && (
                                                     <span className="fav-count">{favTemplates.length}</span>
                                                 )}
                                             </button>
@@ -704,7 +704,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             </div>
                                                             <Tooltip
                                                                 text={
-                                                                    favTemplates.includes(template.id)
+                                                                    favTemplates?.includes(template.id)
                                                                         ? __('Remove from Favorite', 'zoloblocks')
                                                                         : __('Add to Favorite', 'zoloblocks')
                                                                 }
@@ -719,7 +719,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                                                         saveFavTemplates(template.id);
                                                                     }}
                                                                     className={
-                                                                        favTemplates.includes(template.id) ? 'fav-btn active' : 'fav-btn'
+                                                                        favTemplates?.includes(template.id) ? 'fav-btn active' : 'fav-btn'
                                                                     }
                                                                 >
                                                                     <svg viewBox="0 0 24 24" fill="currentColor" className="fav">
