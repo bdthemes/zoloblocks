@@ -74,16 +74,6 @@ const QueryControl = ({attributes, setAttributes}) => {
               value={postQuery?.postInclude || []}
               onChange={(postInclude) => setAttributes({postQuery: {...postQuery, postInclude}})}
             />
-            <BaseControl label={__('Author By', 'zoloblocks')}>
-              <Select2
-                classNamePrefix="zolo-select"
-                options={AUTHOR_LISTS}
-                value={postQuery.postAuthors}
-                onChange={(postAuthors) => setAttributes({postQuery: {...postQuery, postAuthors}})}
-                isMulti={true}
-                closeMenuOnSelect={false}
-              />
-            </BaseControl>
           </>
         }
         exclude={
@@ -97,16 +87,6 @@ const QueryControl = ({attributes, setAttributes}) => {
               value={postQuery?.postExclude || []}
               onChange={(postExclude) => setAttributes({postQuery: {...postQuery, postExclude}})}
             />
-            <BaseControl label={__('Author By', 'zoloblocks')}>
-              <Select2
-                classNamePrefix="zolo-select"
-                options={AUTHOR_LISTS}
-                value={postQuery.postAuthors}
-                onChange={(postAuthors) => setAttributes({postQuery: {...postQuery, postAuthors}})}
-                isMulti={true}
-                closeMenuOnSelect={false}
-              />
-            </BaseControl>
           </>
         }
       />
@@ -129,6 +109,17 @@ const QueryControl = ({attributes, setAttributes}) => {
           />
         </BaseControl>
       ))}
+
+      <BaseControl label={__('Author By', 'zoloblocks')}>
+        <Select2
+          classNamePrefix="zolo-select"
+          options={AUTHOR_LISTS}
+          value={postQuery.postAuthors}
+          onChange={(postAuthors) => setAttributes({postQuery: {...postQuery, postAuthors}})}
+          isMulti={true}
+          closeMenuOnSelect={false}
+        />
+      </BaseControl>
 
       <InputControl
         label={__('Item Limit', 'zoloblocks')}
