@@ -546,4 +546,34 @@ class ZoloHelpers {
 				return null;
 		}
 	}
+
+	/**
+	 * Get taxonomy name
+	 *
+	 * @param string $postType .
+	 * @param string $taxonomyType .
+	 * @return string
+	 */
+	public static function get_taxonomy_name( $postType = '', $taxonomyType = 'category' ): string {
+		// Mapping of post types to their corresponding category taxonomies.
+		$categoryTaxonomyMap = [
+			'product' => 'product_cat',
+			'post'    => 'category',
+		];
+
+		// Mapping of post types to their corresponding tag taxonomies.
+		$tagTaxonomyMap = [
+			'product' => 'product_tag',
+			'post'    => 'post_tag',
+		];
+
+		// Determine which taxonomy map to use based on the $taxonomyType.
+		switch ( $taxonomyType ) {
+			case 'tag':
+				return $tagTaxonomyMap[ $postType ] ?? 'post_tag';
+			case 'category':
+			default:
+				return $categoryTaxonomyMap[ $postType ] ?? 'category';
+		}
+	}
 }
