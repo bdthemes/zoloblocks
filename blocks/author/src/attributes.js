@@ -126,7 +126,7 @@ const attributes = {
     ...generateResAlignmentAttributies(TEXT_ALIGNMENT),
     ...generateResAlignmentAttributies(META_ALIGNMENT),
     ...generateResCounterAttributies(GRID_COLUMNS, {
-        deskRange: 4,
+        deskRange: 3,
         tabRange: 2,
         mobRange: 1,
     }),

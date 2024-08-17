@@ -201,7 +201,7 @@ export default function Inspector(props) {
                                 min={1}
                                 max={6}
                                 defaults={{
-                                    deskRange: 4,
+                                    deskRange: 3,
                                     tabRange: 2,
                                     mobRange: 1,
                                 }}
