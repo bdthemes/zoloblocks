@@ -86,7 +86,7 @@ const Edit = (props) => {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
+                <div className={`zolo-block-wrapper ${'zolo-pricing-' + styles}`}>
                     <div className="zolo-item">
                         <div className="zolo-head-content">
                             <RichText
