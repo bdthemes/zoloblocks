@@ -26,7 +26,7 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-    // deprecated,
+    deprecated,
     attributes,
     edit: Edit,
     save: Save,
