@@ -6,23 +6,28 @@ const {
   generateBoxShadowAttributies,
   generateTypographyAttributes,
   generateGapAttributes,
-  generateResAlignmentAttributies,
+  generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
-  BUTTON_PADDING,
-  BUTTON_BORDER,
-  BTN_BORDER_RADIUS,
-  BTN_SHADOW,
-  BTN_HOVER_SHADOW,
-  ICON_TEXT_SPACING,
-  BUTTON_SIZE,
-  COLUMN_COUNT,
+  GRID_COLUMNS,
   COLUMNS_GAP,
-  BLOCK_MARGIN,
-  PT_ICON_WIDTH,
-  PT_ICON_HEIGHT,
-  BLOCK_ALIGNMENT,
+  //item
+  ITEM_BG,
+  ITEM_BORDER,
+  ITEM_BORDER_RADIUS,
+  ITEM_PADDING,
+  ITEM_SHADOW,
+  ITEM_HOVER_BG,
+  //icon
+  ICON_BG,
+  ICON_BORDER,
+  ICON_BORDER_RADIUS,
+  ICON_PADDING,
+  ICON_SIZE,
+  ICON_SPACING,
+  ICON_HOVER_BG,
+  COUNTER_SPACING
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -53,40 +58,43 @@ const attributes = {
       responsiveControls: true,
     },
   },
-  // border attributes
-  ...generateBorderAttributies(BUTTON_BORDER),
-  ...generateDimensionAttributes(BTN_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(BTN_SHADOW),
-  ...generateBoxShadowAttributies(BTN_HOVER_SHADOW),
-  // column count
-  ...generateResCounterAttributies(COLUMN_COUNT, {
+
+  //grid
+  ...generateResCounterAttributies(GRID_COLUMNS, {
     defaultRange: 5,
   }),
-  //gaps
   ...generateGapAttributes(COLUMNS_GAP, {
     defaultUnit: 'px',
   }),
 
-  //button
-  ...generateDimensionAttributes(BUTTON_PADDING),
-  ...generateResRangeAttributies(BUTTON_SIZE),
+  // item
+  ...generateNormalBGAttributes(ITEM_BG),
+  ...generateBorderAttributies(ITEM_BORDER),
+  ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
+  ...generateDimensionAttributes(ITEM_PADDING),
+  ...generateBoxShadowAttributies(ITEM_SHADOW),
+  ...generateNormalBGAttributes(ITEM_HOVER_BG),
+//icon
+  ...generateNormalBGAttributes(ICON_BG),
+  ...generateBorderAttributies(ICON_BORDER),
+  ...generateDimensionAttributes(ICON_BORDER_RADIUS),
+  ...generateDimensionAttributes(ICON_PADDING),
+  ...generateNormalBGAttributes(ICON_HOVER_BG),
+  ...generateResRangeAttributies(ICON_SIZE),
+  ...generateResRangeAttributies(ICON_SPACING),
 
-  //icon spacing
-  ...generateResRangeAttributies(ICON_TEXT_SPACING),
 
-  // block margin
-  ...generateDimensionAttributes(BLOCK_MARGIN),
+  //counter
+  ...generateResRangeAttributies(COUNTER_SPACING),
+
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-  // preset 3 icon
-  ...generateResRangeAttributies(PT_ICON_WIDTH),
-  ...generateResRangeAttributies(PT_ICON_HEIGHT),
-  ...generateResAlignmentAttributies(BLOCK_ALIGNMENT),
+
 
   //Block specific Attributes
   preset: {
     type: 'string',
-    default: 'preset-1',
+    default: 'style-1',
   },
   layout: {
     type: 'string',
@@ -177,59 +185,17 @@ const attributes = {
     type: 'boolean',
     default: true,
   },
-  socialStyle: {
-    type: 'string',
-    default: 'default',
-  },
-  targetPage: {
-    type: 'string',
-  },
-  customLink: {
-    type: 'string',
-  },
-  socialColor: {
-    type: 'string',
-    default: 'original',
-  },
-  socialTextColor: {
-    type: 'string',
-  },
-  socialTextHoverColor: {
-    type: 'string',
-  },
-  socialBgColor: {
-    type: 'string',
-  },
-  socialBgHoverColor: {
-    type: 'string',
-  },
-  icon: {
-    type: 'string',
-  },
-  iconPosition: {
-    type: 'string',
-    default: 'right',
-  },
-  textColor: {
-    type: 'string',
-  },
-  textHoverColor: {
-    type: 'string',
-  },
-  borderHoverColor: {
-    type: 'string',
-  },
-  // preset 3 icon
+
   iconColor: {
-    type: 'string',
-  },
-  iconBgColor: {
     type: 'string',
   },
   iconHoverColor: {
     type: 'string',
   },
-  iconBgHoverColor: {
+  counterColor: {
+    type: 'string',
+  },
+  metaColor: {
     type: 'string',
   },
 };

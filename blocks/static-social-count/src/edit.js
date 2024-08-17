@@ -16,6 +16,7 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+import Counter from './counter';
 
 export default function Edit(props) {
   const {attributes, setAttributes, className, isSelected, clientId} = props;
@@ -58,9 +59,7 @@ export default function Edit(props) {
                 </div>
 
                 <div className="zolo-content">
-                  <div className="zolo-count">
-                    <span className="counter-value">{profile.number}</span>
-                  </div>
+                  <Counter endValue={profile.number}/>
                   <div className="zolo-meta">
                     <span>{profile.meta}</span>
                   </div>

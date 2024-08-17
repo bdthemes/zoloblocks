@@ -7,65 +7,26 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'social-icon';
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zoloblocks'), value: 'preset-1' },
-    { label: __('Preset 2', 'zoloblocks'), value: 'preset-2' },
-    { label: __('Preset 3', 'zoloblocks'), value: 'preset-3' },
+    { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Style 2', 'zoloblocks'), value: 'style-2' }
 ];
 
-// button icon positions
-export const ICON_POSITIONS = [
-    {
-        label: 'Left',
-        value: 'left',
-    },
-    {
-        label: 'Right',
-        value: 'right',
-    },
-    {
-        label: 'Top',
-        value: 'top',
-    },
-    {
-        label: 'Bottom',
-        value: 'bottom',
-    },
-];
-
-// social icon color
-export const SOCIAL_ICON_COLOR = [
-    {
-        label: __('Original', 'zoloblocks'),
-        value: 'original',
-    },
-    {
-        label: __('Custom', 'zoloblocks'),
-        value: 'custom',
-    },
-];
-
-// column count
-export const COLUMN_COUNT = 'columnCount';
-
-//columns Number
-export const COLUMNS_NUMBER = 'columns';
+export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
 
-//button
-export const BUTTON_PADDING = 'btnPadding';
-export const BUTTON_SIZE = 'btnSize';
-export const BUTTON_BORDER = 'btnBorder';
-export const BTN_BORDER_RADIUS = 'btnBorderRadius';
-export const BTN_SHADOW = 'btnShadow';
-export const BTN_HOVER_SHADOW = 'btnHoverShadow';
+export const ITEM_BG='itemBg';
+export const ITEM_BORDER='itemBorder';
+export const ITEM_BORDER_RADIUS='itemBRadius';
+export const ITEM_PADDING='itemPadding';
+export const ITEM_SHADOW='itemShadow';
+export const ITEM_HOVER_BG='itemHoverBg';
 
-// Icon
-export const ICON_TEXT_SPACING = 'iconTextSpacing';
-
-// Block Margin
-export const BLOCK_MARGIN = 'blockMargin';
-export const BLOCK_ALIGNMENT = 'blockAlignment';
-
-// preset 3 icon
-export const PT_ICON_WIDTH = 'ptIconWidth';
-export const PT_ICON_HEIGHT = 'ptIconHeight';
+export const ICON_BG='iconBg';
+export const ICON_BORDER='iconBorder';
+export const ICON_BORDER_RADIUS='iconBRadius';
+export const ICON_PADDING='iconPadding';
+export const ICON_SIZE='iconSize';
+export const ICON_SPACING='iconSpacing';
+export const ICON_HOVER_BG='iconHoverBg';
+//counter
+export const COUNTER_SPACING='counterSpacing';

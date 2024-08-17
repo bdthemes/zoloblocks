@@ -6,11 +6,10 @@
 	width: 100%;
 	box-sizing: border-box;
 
-
 	.zolo-item {
 		text-align: center;
 		transition: all .3s ease;
-		text-decoration: none;
+		text-decoration: none !important;
 	}
 
 	.zolo-item:hover .zolo-icon {

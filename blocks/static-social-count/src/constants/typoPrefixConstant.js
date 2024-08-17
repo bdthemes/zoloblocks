@@ -1,2 +1,2 @@
-// Button Typography
-export const TEXT_TYPOGRAPHY = 'textTypography';
+export const COUNTER_TYPOGRAPHY = 'counterTypography';
+export const META_TYPOGRAPHY = 'metaTypography';
