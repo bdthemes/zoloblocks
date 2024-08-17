@@ -1,11 +1,11 @@
 import CurrentVersion from './current-verison';
-import FrillWidget from './components/FrillWidget';
+import ChangeLogs from './components/changelog';
 
 const ExtraInfo = () => {
     return (
         <div className="zolo-extra-info">
             <CurrentVersion version={zoloBlocks.plugin_version} />
-            <FrillWidget />
+            <ChangeLogs />
         </div>
     );
 };

@@ -184,6 +184,7 @@ span.zolo-pro-badge {
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
     transition: transform 0.3s ease-out;
+    display: contents;
 }
 
 // .interface-interface-skeleton__footer .block-editor-block-breadcrumb {
