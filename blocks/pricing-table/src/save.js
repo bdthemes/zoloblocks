@@ -59,7 +59,7 @@ const Save = (props) => {
             })}
         >
             {renderHookBefore && renderHookBefore}
-            <div className={`zolo-block-wrapper ${'zolo-pricing-' + styles}`}>
+            <div className="zolo-block-wrapper">
                 <div className="zolo-item">
                     <div className="zolo-head-content">
                         <RichText.Content tagName={titleTagName} value={titleText} className="zolo-package-title" />
