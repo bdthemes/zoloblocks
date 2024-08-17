@@ -19,9 +19,9 @@ class Author extends PostBlock {
 		'preset'           => 'grid',
 		'showAvatar'       => true,
 		'showName'         => true,
-		'showDescription'  => true,
+		'showDescription'  => false,
 		'showRole'         => true,
-		'showSocialLink'   => true,
+		'showSocialLink'   => false,
 		'showPostCount'    => true,
 		'itemHoverOpacity' => 1,
 	];

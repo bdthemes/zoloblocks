@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Author",
+    "title": "Authors",
     "name": "zolo/author",
     "category": "zoloblocks",
     "keywords": ["author", "post author"],

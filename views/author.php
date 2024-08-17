@@ -14,6 +14,7 @@ $parentClasses = implode( ' ', $parentClasses );
 // add parent classes to wrapper class.
 $wrapper_class .= ' ' . $parentClasses;
 $wrapperId      = $settings['zoloId'] ?? '';
+
 ?>
 
 <div class="<?php echo esc_attr( $wrapper_class ); ?>" <?php if ( ! empty( $wrapperId ) ) { ?>
