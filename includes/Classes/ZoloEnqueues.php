@@ -203,8 +203,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
 
-            wp_enqueue_script('zolo-transform-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', [], ZOLO_VERSION, true);
-
             // zolo popup
             wp_enqueue_script('zolo-popup-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js', [], ZOLO_VERSION, true);
         }
