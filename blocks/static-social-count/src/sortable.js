@@ -35,6 +35,15 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                     openInNewTab: false,
                   },
                   text: 'Facebook',
+                  number:'450',
+                  meta:'Likes',
+                  bgColor: '',
+                  iconColor: '',
+                  iconBgColor: '',
+                  iconBorderColor: '',
+                  iconHColor: '',
+                  iconHBgColor: '',
+                  iconHBorderColor: ''
                 },
               ],
             })
@@ -140,7 +149,7 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                             <>
 
                               <ColorControl
-                                label={__('Icon Color','zoloblocks')}
+                                label={__('Color','zoloblocks')}
                                 color={profile.iconColor}
                                 onChange={(value)=>{
                                   const newItems = [...deepCloneProfiles];
@@ -149,7 +158,7 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                                 }}
                               />
                               <ColorControl
-                                label={__('Icon BG Color','zoloblocks')}
+                                label={__('Background','zoloblocks')}
                                 color={profile.iconBgColor}
                                 onChange={(value)=>{
                                   const newItems = [...deepCloneProfiles];
@@ -158,7 +167,7 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                                 }}
                               />
                               <ColorControl
-                                label={__('Icon Color','zoloblocks')}
+                                label={__('Border','zoloblocks')}
                                 color={profile.iconBorderColor}
                                 onChange={(value)=>{
                                   const newItems = [...deepCloneProfiles];
@@ -171,7 +180,7 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                             hoverComponents={
                             <>
                               <ColorControl
-                                label={__('Icon Color','zoloblocks')}
+                                label={__('Hover Color','zoloblocks')}
                                 color={profile.iconHColor}
                                 onChange={(value)=>{
                                   const newItems = [...deepCloneProfiles];
@@ -180,7 +189,7 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                                 }}
                               />
                               <ColorControl
-                                label={__('Icon BG Color','zoloblocks')}
+                                label={__('Hover Background','zoloblocks')}
                                 color={profile.iconHBgColor}
                                 onChange={(value)=>{
                                   const newItems = [...deepCloneProfiles];
@@ -189,7 +198,7 @@ const Sortable = ({socialProfiles, setAttributes}) => {
                                 }}
                               />
                               <ColorControl
-                                label={__('Icon Color','zoloblocks')}
+                                label={__('Hover Border','zoloblocks')}
                                 color={profile.iconHBorderColor}
                                 onChange={(value)=>{
                                   const newItems = [...deepCloneProfiles];

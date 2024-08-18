@@ -82,27 +82,14 @@ const attributes = {
   ...generateNormalBGAttributes(ICON_HOVER_BG),
   ...generateResRangeAttributies(ICON_SIZE),
   ...generateResRangeAttributies(ICON_SPACING),
-
-
   //counter
   ...generateResRangeAttributies(COUNTER_SPACING),
-
   ...generateTypographyAttributes(Object.values(typographyObjs)),
-
-
 
   //Block specific Attributes
   preset: {
     type: 'string',
     default: 'style-1',
-  },
-  layout: {
-    type: 'string',
-    default: 'flex',
-  },
-  socialText: {
-    type: 'string',
-    default: 'iconText',
   },
   socialProfiles: {
     type: 'array',
@@ -181,15 +168,13 @@ const attributes = {
       }
     ],
   },
-  socialProfilesLinkTarget: {
-    type: 'boolean',
-    default: true,
-  },
-
   iconColor: {
     type: 'string',
   },
   iconHoverColor: {
+    type: 'string',
+  },
+  iconHoverBorderColor:{
     type: 'string',
   },
   counterColor: {

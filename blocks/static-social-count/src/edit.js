@@ -32,6 +32,18 @@ export default function Edit(props) {
     return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Static Social Count Preview', 'zoloblocks')}/>;
   }
 
+  const individualStyle = socialProfiles.map((profile) => {
+    return {
+      '--zolo-ssc-bg': profile.bgColor || '',
+      '--zolo-ssc-icon-color': profile.iconColor || '',
+      '--zolo-ssc-icon-bg': profile.iconBgColor || '',
+      '--zolo-ssc-icon-border': profile.iconBorderColor || '',
+      '--zolo-ssc-icon-hcolor': profile.iconHColor || '',
+      '--zolo-ssc-icon-hbg': profile.iconHBgColor || '',
+      '--zolo-ssc-icon-hborder': profile.iconHBorderColor || '',
+    }
+  });
+
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
@@ -43,7 +55,6 @@ export default function Edit(props) {
 
         {socialProfiles &&
           socialProfiles.map((profile, index) => {
-            let socialName = Object.keys(profile.icon)[0];
             const iconName = profile && profile.text && profile.text.toLowerCase();
             return (
               <a
@@ -51,7 +62,8 @@ export default function Edit(props) {
                 key={index}
                 target={profile.link && profile.link.openInNewTab && '_blank'}
                 rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                className={`zolo-item zolo-social-icon zolo-social-icon-${socialName} ${socialColor} ${iconName}`}
+                className={`zolo-item zolo-social-icon ${iconName}`}
+                style={individualStyle[index]}
               >
 
                 <div className="zolo-icon">

@@ -9,7 +9,18 @@ import {useBlockProps} from '@wordpress/block-editor';
 
 const Save = (props) => {
   const {attributes, className} = props;
-  const {uniqueId, parentClasses, preset, socialProfiles, socialColor, socialText, zoloId} = attributes;
+  const {uniqueId, parentClasses, preset, socialProfiles, zoloId} = attributes;
+  const individualStyle = socialProfiles.map((profile) => {
+    return {
+      '--zolo-ssc-bg': profile.bgColor || '',
+      '--zolo-ssc-icon-color': profile.iconColor || '',
+      '--zolo-ssc-icon-bg': profile.iconBgColor || '',
+      '--zolo-ssc-icon-border': profile.iconBorderColor || '',
+      '--zolo-ssc-icon-hcolor': profile.iconHColor || '',
+      '--zolo-ssc-icon-hbg': profile.iconHBgColor || '',
+      '--zolo-ssc-icon-hborder': profile.iconHBorderColor || '',
+    }
+  });
 
   return (
     <div
@@ -22,7 +33,6 @@ const Save = (props) => {
     >
       {socialProfiles &&
         socialProfiles.map((profile, index) => {
-          let socialName = Object.keys(profile.icon)[0];
           const iconName = profile && profile.text && profile.text.toLowerCase();
           return (
             <a
@@ -30,8 +40,9 @@ const Save = (props) => {
               key={index}
               target={profile.link && profile.link.openInNewTab && '_blank'}
               rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-              className={`zolo-item zolo-social-icon zolo-social-icon-${socialName} ${socialColor} ${iconName}`}
+              className={`zolo-item zolo-social-icon ${iconName}`}
               title={profile.text}
+              style={individualStyle[index]}
             >
 
               <div className="zolo-icon">

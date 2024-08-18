@@ -7,7 +7,6 @@ const {
   ColorControl,
   TabPanelControl,
   HeaderTabs,
-  IconicBtnGroup,
   ResCounterControl,
   ResDimensionsControl,
   BorderControl,
@@ -17,7 +16,6 @@ const {
   AdvancedOptions,
   ResGapControl,
   ZoloPanelBody,
-  ResAlignmentControl,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -65,6 +63,7 @@ function Inspector(props) {
     socialProfiles,
     iconColor,
     iconHoverColor,
+    iconHoverBorderColor,
     counterColor,
     metaColor,
   } = attributes;
@@ -81,23 +80,6 @@ function Inspector(props) {
    */
   const changePremade = (selected) => {
     setAttributes({preset: selected});
-    // switch (selected) {
-    //     case 'style-1':
-    //         setAttributes({
-    //             socialText: 'iconText',
-    //         });
-    //         break;
-    //     case 'style-2':
-    //         setAttributes({
-    //             socialText: 'iconOnly',
-    //         });
-    //         break;
-    //     default:
-    //         setAttributes({
-    //             socialText: 'iconText',
-    //         });
-    //         break;
-    // }
   };
 
   return (
@@ -143,11 +125,8 @@ function Inspector(props) {
         }
         styleTab={
           <>
-
             <ZoloPanelBody title={__('Items', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
-
               <TabPanelControl
-
                 normalComponents={
                   <>
                     <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true}/>
@@ -156,14 +135,12 @@ function Inspector(props) {
                       controlName={ITEM_BORDER}
                       requiredProps={requiredProps}
                     />
-
                     <ResDimensionsControl
                       label={__('Border Radius', 'zoloblocks')}
                       controlName={ITEM_BORDER_RADIUS}
                       requiredProps={requiredProps}
                       forBorderRadius={true}
                     />
-
                     <ResDimensionsControl
                       label={__('Padding', 'zoloblocks')}
                       controlName={ITEM_PADDING}
@@ -179,10 +156,7 @@ function Inspector(props) {
                   </>
                 }
               />
-
-
             </ZoloPanelBody>
-
 
             <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
               <TabPanelControl
@@ -247,6 +221,15 @@ function Inspector(props) {
                       }
                     />
                     <NormalBGControl requiredProps={requiredProps} controlName={ICON_HOVER_BG} noMainBGImg={true}/>
+                    <ColorControl
+                      label={__('Hover Border Color', 'zoloblocks')}
+                      color={iconHoverBorderColor}
+                      onChange={(value) =>
+                        setAttributes({
+                          iconHoverBorderColor: value,
+                        })
+                      }
+                    />
                   </>
                 }
               />

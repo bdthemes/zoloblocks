@@ -40,7 +40,6 @@ import {
 } from './constants';
 
 import {COUNTER_TYPOGRAPHY, META_TYPOGRAPHY} from './constants/typoPrefixConstant';
-
 const Style = ({props}) => {
   const {attributes, setAttributes} = props;
   const {
@@ -48,6 +47,7 @@ const Style = ({props}) => {
     uniqueId,
     iconColor,
     iconHoverColor,
+    iconHoverBorderColor,
     counterColor,
     metaColor
   } = attributes;
@@ -186,7 +186,15 @@ const Style = ({props}) => {
     property: 'margin-bottom',
     attributes,
   });
-
+  const {
+    backgroundStylesDesktop: iconHoverBGDesk,
+    backgroundStylesTab: iconHoverBGTab,
+    backgroundStylesMobile: iconHoverBGMob,
+  } = generateNormalBGControlStyles({
+    controlName: ICON_HOVER_BG,
+    attributes,
+    noMainBGImg: true,
+  });
 //counter
   const {
     typoStylesDesktop:counterTypoDesk,
@@ -230,18 +238,24 @@ const Style = ({props}) => {
         ${itemBorderRadiusDesk}
         ${itemBoxShadow}
       }
+
      .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-item:hover{
       ${itemHoverBGDesk}
      }
-     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-item:hover .zolo-icon .zolo__display-icon svg{
-      ${iconHoverColor ? `fill:${iconHoverColor};` : ''}
-     }
+
      .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon{
       ${iconBGDesk}
       ${iconBorderDesk}
       ${iconBorderRadiusDesk}
       ${iconPaddingDesk}
       ${iconSpacingDesk}
+     }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon:hover .zolo__display-icon svg{
+      ${iconHoverColor ? `fill:${iconHoverColor};` : ''}
+     }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon:hover{
+      ${iconHoverBGDesk}
+      ${iconHoverBorderColor ? `border-color:${iconHoverBorderColor};` : ''}
      }
      .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon .zolo__display-icon svg{
        ${iconSizeDesk}
@@ -259,11 +273,83 @@ const Style = ({props}) => {
      }
   	`;
   const tabletAllStyle = `
+      .${uniqueId}.zolo-block.zolo-static-social-count-wrap{
+        grid-template-columns:repeat(${columnCountTab}, 1fr);
+        ${colGapTab}
+      }
 
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-item{
+        ${itemBGTab}
+        ${itemPaddingTab}
+        ${itemBorderTab}
+        ${itemBorderRadiusTab}
+      }
+
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-item:hover{
+      ${itemHoverBGTab}
+     }
+
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon{
+      ${iconBGTab}
+      ${iconBorderTab}
+      ${iconBorderRadiusTab}
+      ${iconPaddingTab}
+      ${iconSpacingTab}
+     }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon:hover{
+      ${iconHoverBGTab}
+     }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon .zolo__display-icon svg{
+       ${iconSizeTab}
+       ${iconSizeHeightTab}
+     }
+      .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-count{
+        ${counterTypoTab}
+        ${counterSpacingTab}
+      }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-meta span{
+      ${metaTypoTab}
+     }
 	`;
 
   const mobileAllStyle = `
+      .${uniqueId}.zolo-block.zolo-static-social-count-wrap{
+        grid-template-columns:repeat(${columnCountMob}, 1fr);
+        ${colGapMob}
+      }
 
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-item{
+        ${itemBGMob}
+        ${itemPaddingMob}
+        ${itemBorderMob}
+        ${itemBorderRadiusMob}
+      }
+
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-item:hover{
+      ${itemHoverBGMob}
+     }
+
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon{
+      ${iconBGMob}
+      ${iconBorderMob}
+      ${iconBorderRadiusMob}
+      ${iconPaddingMob}
+      ${iconSpacingMob}
+     }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon:hover{
+      ${iconHoverBGMob}
+     }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-icon .zolo__display-icon svg{
+       ${iconSizeMob}
+       ${iconSizeHeightMob}
+     }
+      .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-count{
+        ${counterTypoMob}
+        ${counterSpacingMob}
+      }
+     .${uniqueId}.zolo-block.zolo-static-social-count-wrap .zolo-meta span{
+      ${metaTypoMob}
+     }
   	`;
 
   return (
