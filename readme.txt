@@ -5,7 +5,7 @@ Tags: block editor, gutenberg blocks, gutenberg, wordpress blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,259 +239,154 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
+= 1.3.3 - 18-8-2024 =
+
+* Fixed: Pricing Table custom width issue fixed
+* Fixed: Transform Elements width issue fixed
+* Fixed: Transition duration issue fixed in Transform extensions
+* Improved: Dashboard, Blocks scripts are improved
+
 = 1.3.2 - 14-8-2024 =
 
-### Added
-
-* Width feature has been added to the extra tab for every block
-
-### Fixed
-
-* Some minor issues are fixed
+* Added: Width feature has been added to the extra tab for every block
+* Fixed: Some minor issues are fixed
 
 = 1.3.1 - 12-8-2024 =
 
-### Fixed
-
-* Frontend multicolor issue fixed in Tag Cloud block (pro)
-* File name case minor issue fixed
+* Fixed: Frontend multicolor issue fixed in Tag Cloud block (pro)
+* Fixed: File name case minor issue fixed
 
 = 1.3.0 - 12-8-2024 =
 
-### Added
-
-* Particles feature added
-* Post Category block added
-* Post Tag Cloud block added
-* Maintenance mode feature added
-
-### Fixed
-
-* Appender button issue fixed to Tabs block
-* Outline and border issue fixed to tabs block
+* Added: Particles feature added
+* Added: Post Category block added
+* Added: Post Tag Cloud block added
+* Added: Maintenance mode feature added
+* Fixed: Appender button issue fixed to Tabs block
+* Fixed: Outline and border issue fixed to tabs block
 
 = 1.2.2 - 01-08-2024 =
 
-### Fixed
-
-* Popup block issue fixed
-* Astra theme support issue fixed
-* Transform confilict with Entrance animation issue fixed
-* glitching issue fixed in marquee block (pro)
-
-### Improved
-
-* Form, Notice, Review, QR Code blocks improved
+* Fixed: Popup block issue fixed
+* Fixed: Astra theme support issue fixed
+* Fixed: Transform confilict with Entrance animation issue fixed
+* Fixed: Glitching issue fixed in marquee block (pro)
+* Improved: Form, Notice, Review, QR Code blocks improved
 
 = 1.2.1 - 28-07-2024 =
 
-= Added =
-* Suffix and Prefix style controls added to QR Code block
-
-= Fixed =
-* Some minor issues are fixed
+* Added: Suffix and Prefix style controls added to QR Code block
+* Fixed: Some minor issues are fixed
 
 = 1.2.0 - 25-07-2024 =
 
-= Added =
-* QR Code block added
-* Shape Divider Added to Container Block
-
-= Fixed =
-* Transform issue fixed
-* Hover color issue fixed in Icon block
-* CLS issue fixed in Slider block and Post Carousel block
-* Subtitle Heading Tag issue fixed in Advanced Heading block
-
-= Improved =
-* Blocks scripts default values are improved
+* Added: QR Code block added
+* Added: Shape Divider Added to Container Block
+* Fixed: Transform issue fixed
+* Fixed: Hover color issue fixed in Icon block
+* Fixed: CLS issue fixed in Slider block and Post Carousel block
+* Fixed: Subtitle Heading Tag issue fixed in Advanced Heading block
+* Improved Blocks scripts default values are improved
 
 = 1.1.0 - 10-07-2024 =
 
-= Added =
-* Icon block added
-* Notice block added
-* Popup builder added
-* Text path block added
-* zIndex nagative value added
-* Theme fonts support added
-* Position sticky feature added
-* Box Shadow control added in Flipbox block
-
-= Fixed =
-
-* Entrance animation confilict with global link issue fixed in Advanced Icon Box
-* The map zoom in/out and draggble issue fixed in Google Map block
-* Floating label issue fixed in advanced search & newslatter block
-* Patterns save as favorite features added in Template Library
-* Image Uploading issue fixed in Advanced Image block
-* Separator color issue fixed in team grid block
-* Label issue fixed in Form block
-
-= Improved =
-
-* Transform Rotate reset control added in Transform features
-* Dynamic CSS Generation optimized
-* Template Library UI improved
+* Added: Icon block added
+* Added: Notice block added
+* Added: Popup builder added
+* Added: Text path block added
+* Added: zIndex nagative value added
+* Added: Theme fonts support added
+* Added: Position sticky feature added
+* Added: Box Shadow control added in Flipbox block
+* Fixed: Entrance animation confilict with global link issue fixed in Advanced Icon Box
+* Fixed: The map zoom in/out and draggble issue fixed in Google Map block
+* Fixed: Floating label issue fixed in advanced search & newslatter block
+* Fixed: Patterns save as favorite features added in Template Library
+* Fixed: Image Uploading issue fixed in Advanced Image block
+* Fixed: Separator color issue fixed in team grid block
+* Fixed: Label issue fixed in Form block
+* Improved: Transform Rotate reset control added in Transform features
+* Improved: Dynamic CSS Generation optimized
+* Improved: Template Library UI improved
 
 = 1.0.7 - 13-06-2024 =
 
-= Added =
-
-* progress pie block added
-* template library feature added
-* buttom spacing control added in Newsletter block
-
-= Fixed =
-
-* extra panel styling options not working issue fixed in the Social Share and Social Links block
-* container border issue fixed
-* alt text missing issue fixed in advanced image block
-
-### Improved
-
-* Default style improved in Advanced Search block
+* Added: Progress pie block added
+* Added: Template library feature added
+* Added: Buttom spacing control added in Newsletter block
+* Fixed: Extra panel styling options not working issue fixed in the Social Share and Social Links block
+* Fixed: Container border issue fixed
+* Fixed: Alt text missing issue fixed in advanced image block
+* Improved: Default style improved in Advanced Search block
 
 = 1.0.6 - 08-06-2024 =
 
-= Added =
-
-* position feature has been added to the extra tab for every block
-* alignment options has been added to the Social Share and Social Links block
-
-= Fixed =
-
-* rerendering issue fixed in charts block
-* preset 5 title issue fixed in counter block
-* tab auto scrolling issue fixed in Tabs block
-* preset 3 hover color issue fixed in post grid block
-* preset 3 hover color issue fixed in post carousel block
-* default style overwriting issue fixed in pricing table block
-* default style overwriting issue fixed in advanced button block
-* global style not working issue fixed in Social Share and Social Links block
-* button text multiline issue fixed in Advanced Search block & Newsletter block
-* separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
-* icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
-
-= Improved =
-
-* CSS compression override issue fixed for WP-Optimize plugin
-* typography control font-size increased 72 to 136 in counter block
-* author prefix text control added to post grid, post carousel and post list block
+* Added: Position feature has been added to the extra tab for every block
+* Added: Alignment options has been added to the Social Share and Social Links block
+* Fixed: Rerendering issue fixed in charts block
+* Fixed: Preset 5 title issue fixed in counter block
+* Fixed: Tab auto scrolling issue fixed in Tabs block
+* Fixed: Preset 3 hover color issue fixed in post grid block
+* Fixed: Preset 3 hover color issue fixed in post carousel block
+* Fixed: Default style overwriting issue fixed in pricing table block
+* Fixed: Default style overwriting issue fixed in advanced button block
+* Fixed: Global style not working issue fixed in Social Share and Social Links block
+* Fixed: Button text multiline issue fixed in Advanced Search block & Newsletter block
+* Fixed: Separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
+* Fixed: Icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
+* Improved: CSS compression override issue fixed for WP-Optimize plugin
+* Improved: Typography control font-size increased 72 to 136 in counter block
+* Improved: Author prefix text control added to post grid, post carousel and post list block
 
 = 1.0.5 - 29-05-2024 =
 
-= Fixed =
-
-* flex issue fixed in Editor for Container block
-* spacing issue fixed for preset 3 in Advanced Icon box
-* Source type input data loading issue fixed in Charts block
-* vertical align issue fixed in Advanced heading block
-* focus color issue fixed in Newsletter block
-* preset 4 responsive issue fixed in Newsletter block
-
-= Improved =
-
-* Block editing experience improved, you will be able to select, delete, and insert block easily.
-* Assets loading improved and cleanup
-* Charts block improved
-* Dashboard changelog improved
+* Fixed: Flex issue fixed in Editor for Container block
+* Fixed: Spacing issue fixed for preset 3 in Advanced Icon box
+* Fixed: Source type input data loading issue fixed in Charts block
+* Fixed: Vertical align issue fixed in Advanced heading block
+* Fixed: Focus color issue fixed in Newsletter block
+* Fixed: Preset 4 responsive issue fixed in Newsletter block
+* Improved: Block editing experience improved, you will be able to select, delete, and insert block easily.
+* Improved: Assets loading improved and cleanup
+* Improved: Charts block improved
+* Improved: Dashboard changelog improved
 
 = 1.0.4 - 18-05-2024 =
 
-= Added =
-
-* Hover background control added to Brand Grid block
-
-= Fixed =
-
-* Box Shadow hover issue fixed to Advanced Image block
-* Border hover color issue fixed to Advanced Image block
-* Alignment issue fixed to Advanced Search block
-* Overflow issue fixed to Brand Grid block
-* Vertical Alignment issue fixed to Business hours block
-* Content Vertical Alignment issue fixed to Counter block
-
-= Tweak =
-
-* Max Width control has been removed from image panel within Advanced Image block
-* Margin control has been removed from container panel within Advanced Image block
-* Margin control has been removed from container panel within Brand Grid block
-
-= Improved =
-
-* Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-* Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-* Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-* Title tag control shifted from style tab to basic tab in Advanced Icon Box
-* Default design improved in Counter block
+* Added: Hover background control added to Brand Grid block
+* Fixed: Box Shadow hover issue fixed to Advanced Image block
+* Fixed: Border hover color issue fixed to Advanced Image block
+* Fixed: Alignment issue fixed to Advanced Search block
+* Fixed: Overflow issue fixed to Brand Grid block
+* Fixed: Vertical Alignment issue fixed to Business hours block
+* Fixed: Content Vertical Alignment issue fixed to Counter block
+* Tweak: Max Width control has been removed from image panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Brand Grid block
+* Improved: Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+* Improved: Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+* Improved: Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+* Improved: Title tag control shifted from style tab to basic tab in Advanced Icon Box
+* Improved: Default design improved in Counter block
 
 = 1.0.4 - 18-05-2024 =
 
-= Added =
+* Added: Hover background control added to Brand Grid block
+* Fixed: Box Sizing item issue fixed to Charts block
+* Fixed: Box Shadow hover issue fixed to Advanced Image block
+* Fixed: Border hover color issue fixed to Advanced Image block
+* Fixed: Alignment issue fixed to Advanced Search block
+* Fixed: Overflow issue fixed to Brand Grid block
+* Fixed: Vertical Alignment issue fixed to Business hours block
+* Fixed: Content Vertical Alignment issue fixed to Counter block
+* Tweak: Max Width control has been removed from image panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Brand Grid block
+* Improved: Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+* Improved: Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+* Improved: Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+* Improved: Title tag control shifted from style tab to basic tab in Advanced Icon Box
+* Improved: Default design improved in Counter block
+* Improved: Default design improved in Charts block
 
-* Hover background control added to Brand Grid block
-
-= Fixed
-
-* Box Sizing item issue fixed to Charts block
-* Box Shadow hover issue fixed to Advanced Image block
-* Border hover color issue fixed to Advanced Image block
-* Alignment issue fixed to Advanced Search block
-* Overflow issue fixed to Brand Grid block
-* Vertical Alignment issue fixed to Business hours block
-* Content Vertical Alignment issue fixed to Counter block
-
-= Tweak
-
-* Max Width control has been removed from image panel within Advanced Image block
-* Margin control has been removed from container panel within Advanced Image block
-* Margin control has been removed from container panel within Brand Grid block
-
-= Improved
-
-* Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-* Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-* Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-* Title tag control shifted from style tab to basic tab in Advanced Icon Box
-* Default design improved in Counter block
-* Default design improved in Charts block
-
-
-= 1.0.2 - 06-05-2024 =
-
-= Added =
-
-* Preset 4 layout added to Review Grid
-* Custom gradients colors feature added to the background control
-
-= Improved =
-
-* Controls UI improved
-* Deprecated codes are removed
-* Style 2 layout design improved to Team Grid block
-
-= 1.0.1 - 27-04-2024 =
-
-= Added =
-
-* Style copy & paste feature added 🦄
-* Image width, height, max width options added to Advanced image block
-* Button typography, shadow, spacing control added to Advanced Search block
-
-
-= Fixed =
-
-* Row and column issue fixed to Countdown block
-* Focus color issue fixed to Advanced Search block
-* Arrow position issue fixed to Slider and Carousel Block
-
-= Improved =
-
-* Controls UI improved
-* Deprecated codes are removed
-* Theme colors and gradients palettes are improved
-
-= 1.0.0 - 22-04-2024 =
-
-* Initial Release
+Details [changelog here](https://feedback.zoloblocks.com/announcements)
