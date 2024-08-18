@@ -105,7 +105,7 @@ class Zolo_Admin_Assets {
             ]
         );
 
-        wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', [], ZOLO_VERSION, true);
+        // wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', [], ZOLO_VERSION, true);
     }
 }
 
