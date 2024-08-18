@@ -446,6 +446,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'get_users'      => ZoloHelpers::get_all_users(),
                 'get_taxonomies' => ZoloHelpers::get_taxonomies(),
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
+                'user_social_link' => Author::user_contact_social_link([], true),
                 'home_url'       => home_url(),
                 'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                 'zolo_version'   => ZOLO_VERSION,
