@@ -35,6 +35,7 @@
 		position: relative;
 		z-index: 1;
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.zolo-name {
@@ -68,7 +69,7 @@
 	}
 
 	.zolo-link {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		margin-top: 15px;
 		gap: 10px;
