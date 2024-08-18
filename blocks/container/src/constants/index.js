@@ -32,7 +32,6 @@ export const CW_TYPES = [
                 width="24"
                 height="24"
                 className="components-menu-items__item-icon"
-                ariaHidden="true"
                 focusable="false"
             >
                 <path d="M19 5.5H5V4h14v1.5ZM19 20H5v-1.5h14V20ZM5 9h14v6H5V9Z"></path>
@@ -68,7 +67,6 @@ export const CW_TYPES = [
                 width="24"
                 height="24"
                 className="components-menu-items__item-icon"
-                ariaHidden="true"
                 focusable="false"
             >
                 <path d="M5 4h14v11H5V4Zm11 16H8v-1.5h8V20Z"></path>
@@ -85,7 +83,6 @@ export const CWT_ICONS = {
             width="24"
             height="24"
             className="components-menu-items__item-icon"
-            ariaHidden="true"
             focusable="false"
         >
             <path d="M19 5.5H5V4h14v1.5ZM19 20H5v-1.5h14V20ZM5 9h14v6H5V9Z"></path>
@@ -98,7 +95,6 @@ export const CWT_ICONS = {
             width="24"
             height="24"
             className="components-menu-items__item-icon"
-            ariaHidden="true"
             focusable="false"
         >
             <path d="M16 5.5H8V4h8v1.5ZM16 20H8v-1.5h8V20ZM5 9h14v6H5V9Z"></path>
@@ -111,7 +107,6 @@ export const CWT_ICONS = {
             width="24"
             height="24"
             className="components-menu-items__item-icon"
-            ariaHidden="true"
             focusable="false"
         >
             <path d="M5 4h14v11H5V4Zm11 16H8v-1.5h8V20Z"></path>

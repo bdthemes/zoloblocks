@@ -1,4 +1,3 @@
-import { useEffect } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
@@ -139,7 +138,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerDeskWidth}
-           
+
         }
 
         .${uniqueId} {
@@ -174,7 +173,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerTabWidth}
-           
+
         }
 
         .${uniqueId} {
@@ -209,7 +208,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerMobWidth}
-           
+
         }
 
         .${uniqueId} {

@@ -1,4 +1,4 @@
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 

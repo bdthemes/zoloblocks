@@ -1,4 +1,4 @@
-import { createRoot, render, useRef, useEffect } from '@wordpress/element';
+import { render, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
 import { __ } from '@wordpress/i18n';
 // render on page load

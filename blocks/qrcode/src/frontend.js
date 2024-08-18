@@ -1,4 +1,4 @@
-import { createRoot, DisplayZoloIcon } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 import { QRCode } from 'react-qrcode-logo';
 
 // render on page load
