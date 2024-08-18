@@ -1,9 +1,8 @@
 import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
 import { ToolbarGroup, Dropdown, ToolbarButton, Button } from '@wordpress/components';
 import { select } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
 import classnames from 'classnames';
-import { applyFilters, removeFilter } from '@wordpress/hooks';
+import { applyFilters, } from '@wordpress/hooks';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';

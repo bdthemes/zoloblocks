@@ -5,14 +5,14 @@ import Style from './style.js';
 
 addFilter('zolo.extensions.controls.shapeDivider', 'zolo/shape-divider', (panels, panelProps) => {
     if (panelProps.attributes.shapeDivider) {
-        panels.push(<Inspector panelProps={panelProps} />);
+        panels.push(<Inspector key={panelProps.attributes.uniqueId} panelProps={panelProps} />);
     }
     return panels;
 });
 
 addFilter('zolo.blocks.render.hook.before', 'zolo/shape-divider', (panels, panelProps) => {
     if (panelProps.attributes.shapeDivider) {
-        panels.push(<Render panelProps={panelProps} />);
+        panels.push(<Render key={panelProps.attributes.uniqueId} panelProps={panelProps} />);
     }
     return panels;
 });
