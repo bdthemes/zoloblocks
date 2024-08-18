@@ -30,6 +30,60 @@ class ZoloAJAX {
         self::zolo_ajax_action_init();
         add_action('wp_ajax_zolo_select2_search', [$this, 'zolo_select2_response']);
         add_action('wp_ajax_zolo_post_category', [$this, 'get_post_categories']);
+        add_action('wp_ajax_zolo_author_ajax', [$this, 'get_authors']);
+
+    }
+
+
+    /**
+     * Get authors list
+     *
+     * @return void
+     */
+    public function get_authors() {
+        if (! wp_verify_nonce(ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text())) {
+            wp_send_json_error('Invalid nonce');
+        }
+        $authorQuery_json = sanitize_text_field(wp_unslash($_POST['authorQuery'] ?? []));
+        $authorQuery      = json_decode($authorQuery_json, true);
+        if (! is_array($authorQuery)) {
+            wp_send_json_error('Invalid Author query');
+        }
+        $results = self::author_query($authorQuery);
+        wp_send_json_success(
+            ['results' => $results]
+        );
+    }
+
+    /**
+     * Author query
+     *
+     * @param array $data .
+     * @return array
+     */
+    public static function author_query($data) {
+        $avatarSize = ! empty($data['avatarSize']) ? sanitize_text_field($data['avatarSize']) : '250';
+        $args       = [
+            'orderby'  => ! empty($data['orderby']) ? sanitize_text_field($data['orderby']) : 'display_name',
+            'order'    => ! empty($data['order']) ? sanitize_text_field($data['order']) : 'desc',
+            'role__in' => ! empty($data['role']) && is_array($data['role']) ? wp_list_pluck($data['role'], 'value') : [],
+            'number'   => ! empty($data['itemLimit']) ? sanitize_text_field($data['itemLimit']) : 6,
+            'exclude'  => ! empty($data['exclude']) && is_array($data['exclude']) ? wp_list_pluck($data['exclude'], 'value') : [],
+        ];
+        $users      = get_users($args);
+        $results    = [];
+        foreach ($users as $author) {
+            $user                = [];
+            $user['ID']          = $author->ID;
+            $user['name']        = get_the_author_meta('display_name', $author->ID);
+            $user['link']        = get_bloginfo('url') . '/?author=' . $author->ID;
+            $user['avatar']      = get_avatar($author->ID, $avatarSize);
+            $user['postCount']   = count_user_posts($author->ID);
+            $user['role']        = ucwords(ZoloHelpers::get_user_role($author->ID));
+            $user['description'] = get_the_author_meta('description', $author->ID);
+            $results[]           = $user;
+        }
+        return $results;
     }
 
     /**
