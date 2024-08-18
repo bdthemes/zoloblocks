@@ -20,7 +20,7 @@ const QueryControl = ({attributes, setAttributes}) => {
 
   for (let tax in allTaxonomyList) {
     let value = allTaxonomyList[tax];
-    if (postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
+    if (value.public === true && postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
       tpgAllTaxonomies.add({
         value: value.name,
         name: value.label,
@@ -61,36 +61,6 @@ const QueryControl = ({attributes, setAttributes}) => {
         onChange={(postType) => setAttributes({postQuery: {...postQuery, postType}})}
       />
 
-      <TabDynamicControl
-        names={['include', 'exclude']}
-        include={
-          <>
-            <Select2AjaxControl
-              label={__('Include By', 'zoloblocks')}
-              placeholder={__('Search...', 'zoloblocks')}
-              sourceName='post_type'
-              sourceType={postQuery.postType || 'post'}
-              isMulti={true}
-              value={postQuery?.postInclude || []}
-              onChange={(postInclude) => setAttributes({postQuery: {...postQuery, postInclude}})}
-            />
-          </>
-        }
-        exclude={
-          <>
-            <Select2AjaxControl
-              label={__('Exclude By', 'zoloblocks')}
-              placeholder={__('Search...', 'zoloblocks')}
-              sourceName='post_type'
-              sourceType={postQuery.postType || 'post'}
-              isMulti={true}
-              value={postQuery?.postExclude || []}
-              onChange={(postExclude) => setAttributes({postQuery: {...postQuery, postExclude}})}
-            />
-          </>
-        }
-      />
-
       {tpgAllTaxonomies.map((tax, index) => (
         <BaseControl label={__('By ', 'zoloblocks') + tax.name} key={index}>
           <Select2
@@ -120,6 +90,36 @@ const QueryControl = ({attributes, setAttributes}) => {
           closeMenuOnSelect={false}
         />
       </BaseControl>
+
+      <TabDynamicControl
+        names={['include', 'exclude']}
+        include={
+          <>
+            <Select2AjaxControl
+              label={__('Include By', 'zoloblocks')}
+              placeholder={__('Search...', 'zoloblocks')}
+              sourceName='post_type'
+              sourceType={postQuery.postType || 'post'}
+              isMulti={true}
+              value={postQuery?.postInclude || []}
+              onChange={(postInclude) => setAttributes({postQuery: {...postQuery, postInclude}})}
+            />
+          </>
+        }
+        exclude={
+          <>
+            <Select2AjaxControl
+              label={__('Exclude By', 'zoloblocks')}
+              placeholder={__('Search...', 'zoloblocks')}
+              sourceName='post_type'
+              sourceType={postQuery.postType || 'post'}
+              isMulti={true}
+              value={postQuery?.postExclude || []}
+              onChange={(postExclude) => setAttributes({postQuery: {...postQuery, postExclude}})}
+            />
+          </>
+        }
+      />
 
       <InputControl
         label={__('Item Limit', 'zoloblocks')}
