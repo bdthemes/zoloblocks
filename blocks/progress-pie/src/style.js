@@ -64,12 +64,11 @@ const Style = ({ props }) => {
             ${progressDeskAlignStyle}
          }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-progress {
-            ${progressSize ? `stroke-width:${progressSize / 10}` : ''}; 
-
+            ${progressSize ? `stroke-width:${progressSize / 10}` : 'stroke-width:1'};
             ${progressRound ? 'stroke-linecap:round' : ''}
         }
          .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-fill{
-                ${progressFillSize ? `stroke-width:${progressFillSize / 10}` : 'stroke-width:3'}
+                ${progressFillSize ? `stroke-width:${progressFillSize / 10}` : 'stroke-width:1'}
          }
         .${uniqueId}.wp-block-zolo-progress-pie .progress-pie{
            ${deskProgressWidth}
@@ -100,10 +99,10 @@ const Style = ({ props }) => {
 
        }
        .${uniqueId}.wp-block-zolo-progress-pie .progress-pie-label{
-            ${TabTittleTypo}   
-       } 
+            ${TabTittleTypo}
+       }
        `;
-    const mobileAllStyle = ` 
+    const mobileAllStyle = `
 
      .${uniqueId}.wp-block-zolo-progress-pie {
           ${progressMobAlignStyle}

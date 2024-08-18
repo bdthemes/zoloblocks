@@ -1,6 +1,5 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { CardDivider } from '@wordpress/components';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
@@ -29,16 +28,42 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
-            data-progressvalue={progressValue}
-            data-progressDuration={progressDuration}
-            data-progressTitle={progressTitle}
-            data-toggleLabel={toggleLabel}
-            data-progressFillColor={progressFillColor}
-            data-circleColor={circleColor}
-            data-uniqueid={uniqueId}
-            data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
-            data-propieprefixpostfix={JSON.stringify(progPiePrefixPostfix)}
-            data-propieperposttoggle={proPieperpostToggle}
+            // data-progressvalue={progressValue}
+            {...(progressValue && {
+                'data-progressvalue': progressValue,
+            })}
+            // data-progressDuration={progressDuration}
+            {...(progressDuration && {
+                'data-progressDuration': progressDuration,
+            })}
+            // data-progressTitle={progressTitle}
+            {...(progressTitle && {
+                'data-progressvalue': progressTitle,
+            })}
+            // data-toggleLabel={toggleLabel}
+            {...(progressTitle && {
+                'data-toggleLabel': toggleLabel,
+            })}
+            // data-progressFillColor={progressFillColor}
+            {...(progressFillColor && {
+                'data-progressFillColor': progressFillColor,
+            })}
+            // data-circleColor={circleColor}
+            {...(circleColor && {
+                'data-circleColor': circleColor,
+            })}
+            // data-progpiemulticolor={JSON.stringify(progPieMultiColor)}
+            {...(progPieMultiColor && {
+                'data-progpiemulticolor': JSON.stringify(progPieMultiColor),
+            })}
+            // data-propieprefixpostfix={JSON.stringify(progPiePrefixPostfix)}
+            {...(progPiePrefixPostfix && {
+                'data-propieprefixpostfix': JSON.stringify(progPiePrefixPostfix),
+            })}
+            // data-propieperposttoggle={proPieperpostToggle}
+            {...(proPieperpostToggle && {
+                'data-propieperposttoggle': proPieperpostToggle,
+            })}
         ></div>
     );
 };

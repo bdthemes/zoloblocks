@@ -43,15 +43,15 @@ const attributes = {
     //attr
     progressValue: {
         type: 'number',
-        default: 50,
+        // default: 50,
     },
     progressDuration: {
         type: 'number',
-        default: 3,
+        // default: 3,
     },
     progressTitle: {
         type: 'string',
-        default: 'Total',
+        // default: 'Total',
     },
     toggleLabel: {
         type: 'boolean',
@@ -60,12 +60,12 @@ const attributes = {
 
     progressSize: {
         type: 'number',
-        default: 10,
+        // default: 10,
     },
 
     progressRound: {
         type: 'boolean',
-        default: false,
+        // default: false,
     },
     progPiePrefixPostfix: {
         type: 'object',
@@ -92,11 +92,11 @@ const attributes = {
     //progress fill
     progressFillColor: {
         type: 'string',
-        default: '#e5e5e5',
+        // default: '#e5e5e5',
     },
     progressFillSize: {
         type: 'number',
-        default: 10,
+        // default: 10,
     },
 
     numberColor: {
