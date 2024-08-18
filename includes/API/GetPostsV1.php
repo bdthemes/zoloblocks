@@ -52,11 +52,12 @@ class GetPostsV1 {
 
 		$postQuery = $data['postQuery'];
 		// Check if postCategory is not empty and update postQuery if it exists.
-		if (! empty($data['postCategory']) && isset($data['postQuery'])) {
+		if ( ! empty( $data['postCategory'] ) && isset( $data['postQuery'] ) ) {
 			$postQuery['postCategory'] = $data['postCategory'];
+			$postQuery['postTaxonomy'] = $data['postTaxonomy'] ?? 'category';
 		}
 
-		$results = self::zolo_posts_query($postQuery);
+		$results = self::zolo_posts_query( $postQuery );
 
 		if (! empty($results['posts'])) {
 			wp_send_json_success($results);
@@ -113,7 +114,7 @@ class GetPostsV1 {
 		// only for post tab.
 		if (isset($data['postCategory']) && '*' !== $data['postCategory']) {
 			$args['tax_query'][] = [
-				'taxonomy' => 'category',
+				'taxonomy' => $data['postTaxonomy'],
 				'field'    => 'term_id',
 				'terms'    => [$data['postCategory']],
 			];
@@ -175,9 +176,9 @@ class GetPostsV1 {
 				$post['excerpt']      = wp_strip_all_tags(get_the_excerpt());
 				$post['content']      = wp_strip_all_tags(get_the_content());
 				$post['date']         = get_the_date();
-				$post['reading_time'] = self::content_reading_time($content);
-				$post['categories']   = self::zolo_get_terms($post_id, 'category');
-				$post['tags']         = self::zolo_get_terms($post_id, 'post_tag');
+				$post['reading_time'] = self::content_reading_time( $content );
+				$post['categories']   = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'], 'category' ) );
+				$post['tags']         = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'], 'tag' ) );
 				$post['author']       = get_the_author();
 				$post['author_link']  = get_the_author_link();
 				$post['avatar']       = get_avatar(get_the_author_meta('ID'), 50);

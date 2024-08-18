@@ -1,7 +1,7 @@
 <?php
-
 /**
  * Zolo Blocks Loader.
+ *
  * @package Zolo
  */
 
@@ -12,12 +12,15 @@ use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
 use Zolo\Admin\PostCategoryImage;
 use Zolo\Classes\ZoloAJAX;
-
+use Zolo\Admin\Author;
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
+/**
+ * Zolo all file loader
+ */
 class ZoloBlocks_Loader {
     use SingletonTrait;
 
@@ -49,6 +52,7 @@ class ZoloBlocks_Loader {
 
         // Load Admin files
         PostCategoryImage::getInstance();
+		Author::getInstance();
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
@@ -99,7 +103,7 @@ class ZoloBlocks_Loader {
     }
 }
 
-// ZoloBlocks_Loader Instance
-if (class_exists('ZoloBlocks_Loader')) {
-    new ZoloBlocks_Loader();
+// ZoloBlocks_Loader Instance.
+if ( class_exists( 'ZoloBlocks_Loader' ) ) {
+	new ZoloBlocks_Loader();
 }

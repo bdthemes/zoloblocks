@@ -7,10 +7,11 @@
  */
 
 use Zolo\Helpers\ZoloHelpers;
+use Zolo\Admin\Author;
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 if (!class_exists('Zolo_Block_Enqueue')) {

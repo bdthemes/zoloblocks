@@ -1,0 +1,91 @@
+.zolo-static-social-count-wrap {
+	display: grid;
+	grid-column-gap: 40px;
+	grid-template-columns: repeat(4, 1fr);
+	justify-content: center;
+	width: 100%;
+	box-sizing: border-box;
+
+	.zolo-item {
+		text-align: center;
+		transition: all .3s ease;
+		text-decoration: none !important;
+		background-color: var(--zolo-ssc-bg);
+	}
+
+	.zolo-item:hover .zolo-icon {
+		transform: translateY(-5px);
+	}
+
+	.zolo-icon {
+		margin-bottom: 10px;
+		transform: translateY(0);
+		transition: transform .3s ease;
+	}
+
+	.zolo-icon {
+		border: 1px solid;
+		border-color:var(--zolo-ssc-icon-border,#c8c6c6);
+		color: #565252;
+		padding: 10px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 100%;
+		transition: all .3s ease;
+		background-color: var(--zolo-ssc-icon-bg);
+		&:hover{
+			border-color:var(--zolo-ssc-icon-hborder);
+			background-color: var(--zolo-ssc-icon-hbg);
+			.zolo__display-icon svg {
+				fill:var(--zolo-ssc-icon-hcolor) ;
+			}
+		}
+		.zolo__display-icon svg {
+			width: 16px;
+			height: 16px;
+			display: block;
+			fill:var(--zolo-ssc-icon-color,#29272e) ;
+			box-sizing: content-box;
+		}
+	}
+
+	.zolo-icon svg {
+		width: 18px;
+		height: 18px;
+		display: block;
+	}
+
+	.zolo-icon:hover {
+		color: #000;
+	}
+
+	.zolo-count {
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #383535;
+		font-weight: 700;
+		margin-bottom: 4px;
+	}
+
+	.zolo-meta {
+		font-size: 14px;
+		text-transform: capitalize;
+		color: #626262;
+	}
+
+	&.zolo-style-2 .zolo-item {
+		text-align: left;
+	}
+
+	&.zolo-style-2 .zolo-item {
+		display: inline-flex;
+		align-items: center;
+		grid-column-gap: 10px;
+	}
+
+	&.zolo-style-2 .zolo-icon {
+		margin: 0;
+	}
+}

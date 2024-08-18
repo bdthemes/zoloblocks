@@ -100,7 +100,7 @@ return apply_filters('zolo_blocks_list_data', [
     'post-list' => [
         'name'             => 'post-list',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-list/block.json',
-        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+			'frontend-stylpostTaxonomyes'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false,
         'class' => '\Zolo\Blocks\PostList'
     ],
@@ -297,41 +297,69 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-scripts' => false
     ],
 
-    'email' => [
-        'name'             => 'email',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/email/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false
-    ],
-    'textarea' => [
-        'name'             => 'textarea',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/textarea/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false
-    ],
-    'icon' => [
-        'name'             => 'icon',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/icon/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false
-    ],
+		'email'               => [
+			'name'             => 'email',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/email/block.json',
+			'frontend-styles'  => [ 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+		],
+		'textarea'            => [
+			'name'             => 'textarea',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/textarea/block.json',
+			'frontend-styles'  => [ 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+		],
+		'icon'                => [
+			'name'             => 'icon',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/icon/block.json',
+			'frontend-styles'  => [ 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+		],
 
-    'popup-builder' => [
-        'name'             => 'popup-builder',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/popup-builder/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false
-    ],
-    'text-path' => [
-        'name'             => 'text-path',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/text-path/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-text-path-frontend']
-    ],
-    'notice"' => [
-        'name'             => 'notice',
-        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/notice/block.json',
-        'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-notice-frontend']
-    ],
-]);
+		'popup-builder'       => [
+			'name'             => 'popup-builder',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/popup-builder/block.json',
+			'frontend-styles'  => [ 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+		],
+		'text-path'           => [
+			'name'             => 'text-path',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/text-path/block.json',
+			'frontend-styles'  => [ 'zolo-block-common-style' ],
+			'frontend-scripts' => [ 'zolo-text-path-frontend' ],
+		],
+		'notice"'             => [
+			'name'             => 'notice',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/notice/block.json',
+			'frontend-styles'  => [ 'zolo-block-common-style' ],
+			'frontend-scripts' => [ 'zolo-notice-frontend' ],
+		],
+		'post-category'       => [
+			'name'             => 'post-category',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/post-category/block.json',
+			'frontend-styles'  => [ 'zolo-fontawesome', 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+			'class'            => '\Zolo\Blocks\PostCategory',
+		],
+		'tag-cloud'           => [
+			'name'             => 'tag-cloud',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/tag-cloud/block.json',
+			'frontend-styles'  => [ 'zolo-fontawesome', 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+			'class'            => '\Zolo\Blocks\TagCloud',
+		],
+		'author'              => [
+			'name'             => 'author',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/author/block.json',
+			'frontend-styles'  => [ 'zolo-fontawesome', 'zolo-block-common-style' ],
+			'frontend-scripts' => false,
+			'class'            => '\Zolo\Blocks\Author',
+		],
+		'static-social-count' => [
+			'name'             => 'static-social-count',
+			'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/static-social-count/block.json',
+			'frontend-styles'  => [ 'zolo-fontawesome', 'zolo-block-common-style' ],
+			'frontend-scripts' => [ 'zolo-static-social-count-frontend' ],
+		],
+	]
+);
