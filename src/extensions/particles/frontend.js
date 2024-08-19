@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             direction: direction || 'none',
                         },
                     },
+                    //interactivity
+                    ...(preset === 'dust_wind' && { interactivity: optionTwo?.interactivity }),
                 }),
                 //Flying Bubble
                 ...(preset === 'flying_bubble' && {
@@ -135,6 +137,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         move: {
                             ...optionFive?.move,
                             direction: direction || 'none',
+                        },
+                        line_linked: {
+                            enable: false,
                         },
                     },
                     //interactivity

@@ -14,9 +14,9 @@ addFilter('zolo.extensions.controls.particles', 'zolo/extensions/particles', (pa
 
 addFilter('zolo.blocks.render.hook.before', 'zolo/extensions/particles', (panels, panelProps) => {
     if (!panelProps.attributes.zoloParticles.active) return panels;
-    // setTimeout(() => {
-    //     useParticlesInit(panelProps);
-    // }, 400);
+    setTimeout(() => {
+        useParticlesInit(panelProps);
+    }, 400);
     panels.push(<Render key={`render-particles-${panelProps.attributes.uniqueId}`} panelProps={panelProps} />);
     return panels;
 });

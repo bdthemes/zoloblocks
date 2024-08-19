@@ -111,13 +111,32 @@ export const optionTwo = {
         color: { value: ['#e9ecef', '#dee2e6', '#ced4da', '#adb5bd', '#6c757d', '#495057', '#343a40'] },
         shape: { type: ['circle'] },
         opacity: { value: 1 },
-
+        line_linked: { enable: false },
         size: {
             value: 8,
             random: true,
             anim: { enable: true, size_min: 1, speed: 1 },
         },
         move: { enable: true, direction: 'right', out_mode: 'out' },
+    },
+        interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'grab',
+            },
+
+            resize: true,
+        },
+        modes: {
+            grab: {
+                distance: 140,
+                line_linked: {
+                    opacity: 0,
+                },
+            },
+        },
     },
     retina_detect: true,
 };
@@ -136,7 +155,9 @@ export const optionThree = {
         },
         shape: { type: 'circle', stroke: { width: 0, color: '#000' }, polygon: { nb_sides: 5 } },
         opacity: { value: 1, random: true, anim: { enable: true, speed: 0, opacity_min: 0.5, sync: true } },
-
+        line_linked:{
+            enable: false,
+        },
         size: { value: 40, random: true, anim: { enable: false, speed: 40, size_min: 20, sync: true } },
         move: { enable: true, speed: 4, direction: 'top-right', random: true, straight: true, out_mode: 'out', bounce: false },
     },
@@ -264,6 +285,9 @@ export const optionFour = {
 
 export const optionFive = {
     particles: {
+        line_linked: {
+            enable: false,
+        },
         number: {
             value: 60,
             density: { enable: true, value_area: 1000 },
@@ -296,6 +320,9 @@ export const optionFive = {
         size: { value: 50, random: true },
         move: {
             enable: true,
+            line_linked: {
+                enable: false,
+            },
             speed: 4,
             direction: 'top',
             random: false,
@@ -305,11 +332,21 @@ export const optionFive = {
     },
     interactivity: {
         detect_on: 'canvas',
-        events: { onclick: { enable: true, mode: 'push' }, resize: true },
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'grab',
+            },
+
+            resize: true,
+        },
         modes: {
-            grab: { distance: 300, line_linked: { opacity: 1 } },
-            bubble: { distance: 100, size: 7.5, duration: 2, opacity: 8, speed: 3 },
-            repulse: { distance: 1 },
+            grab: {
+                distance: 140,
+                line_linked: {
+                    opacity: 0,
+                },
+            },
         },
     },
 };
