@@ -22,8 +22,6 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_PADDING,
     ITEM_SHADOW,
-    ITEM_HOVER_BG,
-    ITEM_HOVER_SHADOW,
     //avatar
     AVATAR_SIZE,
     AVATAR_IMG_SIZE,
@@ -85,7 +83,6 @@ export default function Inspector(props) {
         showDescription,
         showPostCount,
         showSocialLink,
-        itemHoverBorderColor,
         nameColor,
         nameHoverColor,
         roleColor,
@@ -222,53 +219,20 @@ export default function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true} />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={ITEM_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={ITEM_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={ITEM_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl
-                                            controlName={ITEM_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true} />
-                                        <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={itemHoverBorderColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    itemHoverBorderColor: color,
-                                                })
-                                            }
-                                        />
-                                        <BoxShadowControl
-                                            controlName={ITEM_HOVER_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                    </>
-                                }
+                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true} />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={ITEM_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
                             />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={ITEM_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <BoxShadowControl controlName={ITEM_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <div className="zolo-custom-heading">{__('Content', 'zoloblocks')}</div>
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
