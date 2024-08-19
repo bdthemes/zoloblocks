@@ -13,6 +13,7 @@ import {NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY} from './constants/typoPrefixConstant'
 import QuerySettings from "./query-settings";
 import {
   PRESETS,
+  AVATAR_SIZE,
   GRID_COLUMNS,
   COLUMNS_GAP,
   COUNT_PADDING,
@@ -55,6 +56,7 @@ export default function Inspector(props) {
     textLimit,
     showAuthor,
     authorMiddleText,
+    avatarSize,
     showDate,
     nameColor,
     nameHoverColor,
@@ -124,11 +126,19 @@ export default function Inspector(props) {
                 onChange={(showAuthor) => setAttributes({showAuthor})}
               />
               {showAuthor && (
-                <TextControl
-                  label={__('Author Middle Text ', 'zoloblocks')}
-                  value={authorMiddleText}
-                  onChange={(value) => setAttributes({authorMiddleText: value})}
-                />
+                <>
+                  <TextControl
+                    label={__('Author Middle Text ', 'zoloblocks')}
+                    value={authorMiddleText}
+                    onChange={(value) => setAttributes({authorMiddleText: value})}
+                  />
+                  <SelectControl
+                  label={__('Avatar Size','zoloblocks')}
+                  value={avatarSize}
+                  options={AVATAR_SIZE}
+                  onChange={(avatarSize)=>setAttributes({avatarSize})}
+                  />
+                </>
               )}
 
             </ZoloPanelBody>

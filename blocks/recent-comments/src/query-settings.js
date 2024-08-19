@@ -1,11 +1,11 @@
 import {
   SelectControl,
   __experimentalInputControl as InputControl,
-  TextControl
+  ToggleControl
 } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import {SORT_ORDER} from '../../../src/global/constants';
-import {CAT_ORDER_BY} from "./constants";
+import {CAT_ORDER_BY,STATUS} from "./constants";
 import Select2 from 'react-select';
 
 const {
@@ -22,29 +22,6 @@ const QuerySettings = ({attributes, setAttributes}) => {
     PostType.push({value: p, label: __(getPostType[p], 'zoloblocks')});
   }
 
-  //get taxonomies
-  const allTaxonomyList = zoloParams.get_taxonomies;
-  let tpgAllTaxonomies = new Set();
-  tpgAllTaxonomies.add({
-    value: '',
-    label: __('Select Type', 'zoloblocks'),
-  });
-  for (let tax in allTaxonomyList) {
-    let value = allTaxonomyList[tax];
-    if (value.public === true) {
-      tpgAllTaxonomies.add({
-        value: value.name,
-        label: value.label,
-      });
-    }
-  }
-
-  let tpgAllTaxonomiesArray = [...tpgAllTaxonomies];
-
-  const containsValue = (array, valueToCheck) => {
-
-    return array.some(item => item.value === valueToCheck);
-  }
 
   return (
     <>
@@ -70,7 +47,7 @@ const QuerySettings = ({attributes, setAttributes}) => {
 
             {(commentQuery?.includeBy?.some(item => item.value === 'author')) && (
               <Select2AjaxControl
-                label={__('In Authors', 'zoloblocks-pro')}
+                label={__('Authors', 'zoloblocks-pro')}
                 placeholder={__('Search...', 'zoloblocks-pro')}
                 sourceName='user'
                 sourceType={''}
@@ -95,7 +72,7 @@ const QuerySettings = ({attributes, setAttributes}) => {
 
             {(commentQuery?.excludeBy?.some(item => item.value === 'author')) && (
               <Select2AjaxControl
-                label={__('Ex Authors', 'zoloblocks-pro')}
+                label={__('Authors', 'zoloblocks-pro')}
                 placeholder={__('Search...', 'zoloblocks-pro')}
                 sourceName='user'
                 sourceType={''}
@@ -113,9 +90,9 @@ const QuerySettings = ({attributes, setAttributes}) => {
 
       <InputControl
         label={__('Item Limit', 'zoloblocks-pro')}
-        value={commentQuery?.catItemLimit}
-        onChange={(catItemLimit) => {
-          setAttributes({commentQuery: {...commentQuery, catItemLimit}});
+        value={commentQuery?.itemLimit}
+        onChange={(itemLimit) => {
+          setAttributes({commentQuery: {...commentQuery, itemLimit}});
         }}
         type="number"
         min={1}
@@ -124,30 +101,47 @@ const QuerySettings = ({attributes, setAttributes}) => {
         __unstableInputWidth="64px"
       />
 
+      <InputControl
+        label={__('Offset', 'zoloblocks-pro')}
+        value={commentQuery?.offset}
+        onChange={(offset) => {
+          setAttributes({commentQuery: {...commentQuery, offset}});
+        }}
+        type="number"
+        min={1}
+        max={99}
+        labelPosition="edge"
+        __unstableInputWidth="64px"
+      />
+      <ToggleControl
+        label={__('Only Parent', 'zoloblocks-pro')}
+        checked={commentQuery?.onlyParent}
+        onChange={(onlyParent) => setAttributes({commentQuery: {...commentQuery, onlyParent}})}
+      />
 
-
-
-      <TextControl
-        label={__('Parent', 'zoloblocks')}
-        value={commentQuery?.catParent}
-        onChange={(catParent) => setAttributes({commentQuery: {...commentQuery, catParent}})}
-        placeholder={__('Category ID: 12', 'zoloblocks')}
+      <SelectControl
+        label={__('Status', 'zoloblocks-pro')}
+        value={commentQuery?.statusComment}
+        onChange={(statusComment) => {
+          setAttributes({commentQuery: {...commentQuery, statusComment}});
+        }}
+        options={STATUS}
       />
 
       <SelectControl
         label={__('Order By', 'zoloblocks-pro')}
-        value={commentQuery?.catOrderby}
-        onChange={(catOrderby) => {
-          setAttributes({commentQuery: {...commentQuery, catOrderby}});
+        value={commentQuery?.orderBy}
+        onChange={(orderBy) => {
+          setAttributes({commentQuery: {...commentQuery, orderBy}});
         }}
         options={CAT_ORDER_BY}
       />
 
       <SelectControl
         label={__('Sort Order', 'zoloblocks-pro')}
-        value={commentQuery?.catOrder}
-        onChange={(catOrder) => {
-          setAttributes({commentQuery: {...commentQuery, catOrder}});
+        value={commentQuery?.order}
+        onChange={(order) => {
+          setAttributes({commentQuery: {...commentQuery, order}});
         }}
         options={SORT_ORDER}
       />

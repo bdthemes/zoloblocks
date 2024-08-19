@@ -1,23 +1,24 @@
 import {useEffect, useState} from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import {Spinner} from '@wordpress/components';
-import CategoryItem from './category-item';
-const {isEmpty, strToHex} = window.zoloModule;
+import CommentItem from './comment-item';
+const {isEmpty} = window.zoloModule;
 export default function RenderView({attributes}) {
   const {
-    catQuery,
-    singleBG,
-    multipleBG
+    commentQuery,
+    textLimit,
+    avatarSize
   } = attributes;
   const [isLoading, setIsLoading] = useState(true);
-  const [catResults, setCatResults] = useState([]);
-  const [multipleBgArray,setMultipleBgArray]=useState([]);
+  const [commentResults, setCommentResults] = useState([]);
 
   const dataFetch = async () => {
     const formData = new FormData();
-    formData.append('action', 'zolo_post_category');
+    formData.append('action', 'zolo_comments_ajax');
     formData.append('zolo_nonce', zoloParams.zolo_nonce);
-    formData.append('catQuery', JSON.stringify(catQuery));
+    formData.append('commentQuery', JSON.stringify(commentQuery));
+    formData.append('textLimit', textLimit);
+    formData.append('avatarSize', avatarSize);
 
     try {
       const response = await apiFetch({
@@ -25,14 +26,15 @@ export default function RenderView({attributes}) {
         method: 'POST',
         body: formData,
       });
+      console.log({response});
       if (response.success) {
-        setCatResults(response.data.results);
+        setCommentResults(response.data.results);
       } else {
-        setCatResults([]);
+        setCommentResults([]);
       }
     } catch (error) {
       console.error('Error:', error);
-      setCatResults([]);
+      setCommentResults([]);
     } finally {
       setIsLoading(false);
     }
@@ -41,41 +43,21 @@ export default function RenderView({attributes}) {
   useEffect(() => {
     setIsLoading(true);
     dataFetch();
-  }, [catQuery]);
-
-  useEffect(() => {
-    //multiple background setup
-    let bgArray = [];
-    if ( !singleBG && !isEmpty(multipleBG) &&  catResults.length > 0 ) {
-      const bgColorsArray = multipleBG.slice(0, -1).split(',');
-      const totalCategory = catResults.length;
-      // Re-creating array for the multiple colors.
-      const jCount = bgColorsArray.length;
-      let j = 0;
-      for (let i = 0; i < totalCategory; i++) {
-        if (j === jCount) {
-          j = 0;
-        }
-        bgArray[i] = bgColorsArray[j];
-        j++;
-      }
-    }
-    setMultipleBgArray(bgArray);
-  }, [multipleBG,catResults,singleBG]);
+  }, [commentQuery]);
 
 
   return (
     <>
       {isLoading ? (
         <div className="preloader">
-          <Spinner/>
+          <Spinner />
         </div>
+      ) : commentResults.length > 0 ? (
+        commentResults.map((comment, index) => (
+          <CommentItem key={index} comment={comment} attributes={attributes} />
+        ))
       ) : (
-        catResults.length > 0 ? (
-          catResults.map((cat,index) => <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />)
-        ) : (
-          <p>No categories found.</p>
-        )
+        <p>No items found.</p>
       )}
     </>
   );

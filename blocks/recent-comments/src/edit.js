@@ -12,7 +12,7 @@ export default function Edit(props) {
   const {preview, uniqueId, parentClasses, commentQuery, preset} = attributes;
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   const blockProps = useBlockProps({
-    className: classnames(className, `${uniqueId} zolo-tag-cloud-wrap zolo-tag-${preset}`, classArrayToStr(parentClasses)),
+    className: classnames(className, `${uniqueId} zolo-recent-comments-wrap zolo-comment-${preset}`, classArrayToStr(parentClasses)),
   });
   useEffect(() => {
     if (typeof commentQuery === 'undefined') {
@@ -23,13 +23,12 @@ export default function Edit(props) {
           excludeBy:[],
           includeAuthors:[],
           excludeAuthors:[],
-          catExclude: [],
-          catTaxonomy: 'post_tag',
-          catThumbnail:'thumbnail',
-          catItemLimit: 6,
-          catOrderby: 'date',
-          catOrder: 'desc',
-          catParent: ''
+          itemLimit: 6,
+          offset: 0,
+          onlyParent:false,
+          statusComment:'approve',
+          orderBy: 'date',
+          order: 'desc',
         },
       });
     }
@@ -37,7 +36,7 @@ export default function Edit(props) {
 
   // preview image
   if (preview) {
-    return <img src={zoloParams.blocksPreview.postCategory} alt={__('Tag Cloud Preview', 'zoloblocks')}/>;
+    return <img src={zoloParams.blocksPreview.postCategory} alt={__('Recent Comments Preview', 'zoloblocks')}/>;
   }
 
   return (

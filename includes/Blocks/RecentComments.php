@@ -17,9 +17,12 @@ class RecentComments extends PostBlock {
 	 */
 	protected $default_block_attributes = [
 		'preset'           => 'style-1',
-		'showCount'        => true,
-		'singleBG'         => false,
-		'multipleBG'       => '',
+		'showTitle'        => true,
+		'showText'         => true,
+		'textLimit'        => 30,
+		'showAuthor'       => true,
+		'authorMiddleText' => '@',
+		'showDate'         => true,
 		'itemHoverOpacity' => 1,
 	];
 
@@ -40,29 +43,16 @@ class RecentComments extends PostBlock {
 	 */
 	public function render( $attributes ) {
 
-		$attributes = wp_parse_args( $attributes, $this->get_default_attributes() );
-		$categories = ZoloAJAX::zolo_post_category_query( $attributes['catQuery'] );
-		$cat_json   = wp_json_encode( $categories );
-		$cat_object = json_decode( $cat_json );
+		$attributes                 = wp_parse_args( $attributes, $this->get_default_attributes() );
+		$textLimit                  = $attributes['textLimit'] ?? 30;
+		$avatarSize                 = $attributes['avatarSize'] ?? '80';
+		$commentQuery               = $attributes['commentQuery'] ?? [];
+		$commentQuery['textLimit']  = $textLimit;
+		$commentQuery['avatarSize'] = $avatarSize;
 
-		$multiple_bg_create = [];
-
-		if ( empty( $attributes['singleBG'] ) && ! empty( $attributes['multipleBG'] ) ) {
-			$multi_bg       = $attributes['multipleBG'];
-			$multiple_bg    = explode( ',', rtrim( $multi_bg, ',' ) );
-			$total_category = count( $categories );
-
-			// re-creating array for the multiple colors.
-			$jCount = count( $multiple_bg );
-			$j      = 0;
-			for ( $i = 0; $i < $total_category; $i++ ) {
-				if ( $j == $jCount ) {
-					$j = 0;
-				}
-				$multiple_bg_create[ $i ] = $multiple_bg[ $j ];
-				$j++;
-			}
-		}
+		$comments        = ZoloAJAX::comments_query( $commentQuery );
+		$comments_json   = wp_json_encode( $comments );
+		$comments_object = json_decode( $comments_json );
 
 		ob_start();
 		ZoloHelpers::views(
@@ -71,8 +61,7 @@ class RecentComments extends PostBlock {
 				'settings'     => $attributes,
 				'className'    => '',
 				'class_object' => $this,
-				'categories'   => $cat_object,
-				'multiple_bg'  => $multiple_bg_create,
+				'comments'     => $comments_object,
 			]
 		);
 		return ob_get_clean();

@@ -80,6 +80,10 @@ const attributes = {
     type:'string',
     default:'@'
   },
+  avatarSize:{
+    type:'string',
+    default:'80'
+  },
   showDate:{
     type: 'boolean',
     default: true
