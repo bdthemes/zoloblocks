@@ -5,15 +5,7 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
             {description && <p className="zolo-welcome-page-text">{description}</p>}
             {videoInfo && videoInfo.id && (
                 <div className="zolo-welcome-video-container">
-                    <a href={`https://www.youtube.com/embed/${videoInfo.id}`} target="_blank">
-                        <img
-                            width={'100%'}
-                            height={450}
-                            src={videoInfo.thumbnail}
-                            alt={videoInfo.title || 'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes'}
-                        />
-                    </a>
-                    {/* <iframe
+                    <iframe
                         width="100%"
                         height="426"
                         src={`https://www.youtube.com/embed/${videoInfo.id}`}
@@ -21,7 +13,7 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
-                    ></iframe> */}
+                    ></iframe>
                 </div>
             )}
             {buttons && buttons.length > 0 && (
