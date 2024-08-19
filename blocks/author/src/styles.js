@@ -12,8 +12,6 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_SHADOW,
     ITEM_PADDING,
-    ITEM_HOVER_BG,
-    ITEM_HOVER_SHADOW,
     //avatar
     AVATAR_MASK,
     AVATAR_BORDER,
@@ -68,8 +66,7 @@ const {
 } = window.zoloModule;
 function Style({ props }) {
     const { attributes, setAttributes } = props;
-    const { uniqueId, itemHoverBorderColor, nameColor, nameHoverColor, roleColor, descColor, countColor, linkColor, linkHoverColor } =
-        attributes;
+    const { uniqueId, nameColor, nameHoverColor, roleColor, descColor, countColor, linkColor, linkHoverColor } = attributes;
     const {
         desktopAlignStyle: itemAlignDesk,
         tabAlignStyle: itemAlignTab,
@@ -158,19 +155,6 @@ function Style({ props }) {
     const { boxShadowStyle: itemBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: ITEM_SHADOW,
-    });
-    const {
-        backgroundStylesDesktop: itemHoverBGDesk,
-        backgroundStylesTab: itemHoverBGTab,
-        backgroundStylesMobile: itemHoverBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: ITEM_HOVER_BG,
-        attributes,
-        noMainBGImg: true,
-    });
-    const { boxShadowStyle: itemHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: ITEM_HOVER_SHADOW,
     });
     //avatar
     const {
@@ -478,12 +462,6 @@ function Style({ props }) {
         ${itemBorderRadiusDesk}
         ${itemBoxShadow}
       }
-
-      .${uniqueId}.zolo-block.zolo-author-wrap .zolo-item:hover{
-       ${itemHoverBGDesk}
-       ${itemHoverBoxShadow}
-       ${itemHoverBorderColor ? `border-color:${itemHoverBorderColor};` : ''}
-      }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image{
         ${avatarPaddingDesk}
         ${avatarMarginDesk}
@@ -581,9 +559,6 @@ function Style({ props }) {
         ${itemBorderRadiusTab}
       }
 
-      .${uniqueId}.zolo-block.zolo-author-wrap .zolo-item:hover{
-       ${itemHoverBGTab}
-      }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image{
         ${avatarPaddingTab}
         ${avatarMarginTab}
@@ -658,10 +633,6 @@ function Style({ props }) {
         ${itemPaddingMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
-      }
-
-      .${uniqueId}.zolo-block.zolo-author-wrap .zolo-item:hover{
-       ${itemHoverBGMob}
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image{
         ${avatarPaddingMob}

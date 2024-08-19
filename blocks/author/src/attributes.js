@@ -15,8 +15,6 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_PADDING,
     ITEM_SHADOW,
-    ITEM_HOVER_BG,
-    ITEM_HOVER_SHADOW,
     //avatar
     AVATAR_MASK,
     AVATAR_BORDER,
@@ -166,8 +164,6 @@ const attributes = {
     ...generateBorderAttributies(ITEM_BORDER),
     ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
     ...generateBoxShadowAttributies(ITEM_SHADOW),
-    ...generateNormalBGAttributes(ITEM_HOVER_BG),
-    ...generateBoxShadowAttributies(ITEM_HOVER_SHADOW),
     //avatar
     ...generateMaskAttributes(AVATAR_MASK),
     ...generateBorderAttributies(AVATAR_BORDER),
