@@ -1,8 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         preset,
@@ -26,7 +28,9 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...blockProps}
@@ -34,6 +38,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (
@@ -61,23 +66,31 @@ const Save = ({ attributes }) => {
                         <div class="zolo-counter-count">
                             {hideCounter && preset !== 'style-3' && (
                                 <>
-                                    <span className="animated-counter" data-count={counterNumber}></span>
+                                    <span className="animated-counter" {...(counterNumber && { 'data-count': counterNumber })}></span>
                                     {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
                                 </>
                             )}
 
                             {hideCounter && preset === 'style-3' && (
                                 <>
-                                    <span className="animated-counter" data-count={counterNumber}></span>
+                                    <span
+                                        className="animated-counter"
+                                        {...(counterNumber && {
+                                            'data-count': counterNumber,
+                                        })}
+                                    ></span>
                                     {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
                                     {hideTitle && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
                                 </>
                             )}
                         </div>
-                        {hideTitle && preset !== 'style-3' && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
+                        {hideTitle && preset !== 'style-3' && (
+                            <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />
+                        )}
                     </div>
                 </div>
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

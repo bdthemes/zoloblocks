@@ -1,5 +1,5 @@
-import {select} from '@wordpress/data';
-import CryptoJS from "crypto-js";
+import { select } from '@wordpress/data';
+import CryptoJS from 'crypto-js';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
@@ -240,3 +240,4 @@ export const strToHex = (str, steps = -10) => {
 
   return output.toUpperCase();
 };
+

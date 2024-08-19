@@ -17,7 +17,7 @@
     --zolo-quote-icon-border-radius: 50%;
 
     box-sizing: border-box;
-    overflow: hidden;
+    // overflow: hidden;
     .zolo-item {
         display: flex;
         align-items: center;
@@ -123,9 +123,9 @@
     // style preset 2 css start here
     &.style-preset-2 {
         --zolo-quote-icon-color: rgba(221, 221, 221, 0.36);
-        --zolo-quote-icon-size: 100px;
+        --zolo-quote-icon-size: 120px;
         --zolo-img-size: clamp(4rem, 8vw, 6.875rem);
-        --zolo-desc-margin: -70px 0 clamp(1.875rem, 5vw, 3.125rem);
+        --zolo-desc-margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
         --zolo-star-rating-icon-size: 22px;
         .zolo-item {
             display: block;
@@ -151,9 +151,12 @@
             margin-right: 0;
             margin-bottom: 20px;
         }
+        .zolo-desc-quote-wrap {
+            position: relative;
+        }
         .zolo-quote-icon {
             display: block;
-            position: unset;
+            position: absolute;
             background-color: transparent;
             padding: 0;
             svg {

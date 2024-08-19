@@ -5,7 +5,7 @@ import ResetBtn from '../reset-btn';
 import { getContrastRatio } from '../../helpers/helper';
 import { Fragment } from 'react';
 
-const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
+const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha = false }) => {
     const [colorPanel, setColorPanel] = useState(false);
 
     // fetch theme colors from api
@@ -59,9 +59,13 @@ const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
                 >
                     <ColorPicker
                         color={color}
-                        onChangeComplete={({ rgb }) => {
-                            onChange(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+                        onChange={(color) => {
+                            onChange(color);
                         }}
+                        // onChangeComplete={({ rgb }) => {
+                        //     onChange(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+                        // }}
+                     {...(!disableAlpha && { enableAlpha: true })}
                     />
                     {COLORS && (
                         <Fragment>

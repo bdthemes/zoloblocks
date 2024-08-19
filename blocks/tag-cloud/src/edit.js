@@ -21,7 +21,7 @@ export default function Edit(props) {
           catExclude: [],
           catTaxonomy: 'post_tag',
           catThumbnail:'thumbnail',
-          catItemLimit: 6,
+          catItemLimit: 10,
           catOrderby: 'date',
           catOrder: 'desc',
           catParent: ''

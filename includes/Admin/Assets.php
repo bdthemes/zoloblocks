@@ -82,7 +82,7 @@ class Zolo_Admin_Assets {
             'zolo-admin-js',
             'zoloBlocks',
             [
-                'zolo_nonce'     => wp_create_nonce('zolo-nonce'),                                                   // Use the correct nonce action
+                'zolo_nonce'     => wp_create_nonce('zolo-nonce'),                                                 // Use the correct nonce action
                 'zolo_rest_url'  => esc_url_raw(rest_url('zolo/v1/settings')),
                 'plugin_version' => ZOLO_VERSION,
                 'has_pro'        => defined('ZOLO_PRO_VERSION'),
@@ -96,16 +96,16 @@ class Zolo_Admin_Assets {
                 'captcha'        => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/captcha.svg',
                 'oops'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/oops.svg',
                 'mailchimp'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/mailchimp.svg',
-                'facebook'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/facebook.svg',
+                'facebook'       => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/facebook.svg',
                 'instagram'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/instagram.svg',
                 'yelp'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/yelp.svg',
                 'google'         => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/google.svg',
                 'zoom'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/zoom.svg',
-
+                'gss'            => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/gss.svg',
             ]
         );
 
-        wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', null, null, true);
+        // wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', [], ZOLO_VERSION, true);
     }
 }
 

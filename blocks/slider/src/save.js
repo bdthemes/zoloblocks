@@ -5,12 +5,14 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
 import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Save function
  */
 
-export default function save({ attributes }) {
+export default function save(props) {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -28,48 +30,52 @@ export default function save({ attributes }) {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
             })}
-            data-swiper-options={JSON.stringify(sliderOptions)}
+            {...(sliderOptions &&
+                Object.keys(sliderOptions).length > 1 && {
+                    'data-swiper-options': JSON.stringify(sliderOptions),
+                })}
+            // data-swiper-options={JSON.stringify(sliderOptions)}
             data-swiper-breakpoints={JSON.stringify(breakpoints)}
         >
+            {renderHookBefore && renderHookBefore}
             <div className="swiper">
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
             </div>
-                {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
-                {showNavigation && (
-                    <Fragment>
-                        <div
-                            className={`swiper-navigation-wrap  swiper-navigation-position-center ${
-                                customNavIcon ? 'zolo-custom-nav' : ''
-                            }`}
-                        >
-                            {customNavIcon && (
-                                <>
-                                    <div className="swiper-nav-button swiper-zolo-prev">
-                                        <DisplayZoloIcon icon={prevNavIcon} />
-                                    </div>
-                                    <div className="swiper-nav-button swiper-zolo-next">
-                                        <DisplayZoloIcon icon={nextNavIcon} />
-                                    </div>
-                                </>
-                            )}
-                            {!customNavIcon && (
-                                <>
-                                    <div className="swiper-nav-button swiper-button-prev"></div>
-                                    <div className="swiper-nav-button swiper-button-next"></div>
-                                </>
-                            )}
-                        </div>
-                    </Fragment>
-                )}
+            {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
+            {(showNavigation || showNavigation === undefined) && (
+                <Fragment>
+                    <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>
+                        {customNavIcon && (
+                            <>
+                                <div className="swiper-nav-button swiper-zolo-prev">
+                                    <DisplayZoloIcon icon={prevNavIcon} />
+                                </div>
+                                <div className="swiper-nav-button swiper-zolo-next">
+                                    <DisplayZoloIcon icon={nextNavIcon} />
+                                </div>
+                            </>
+                        )}
+                        {!customNavIcon && (
+                            <>
+                                <div className="swiper-nav-button swiper-button-prev"></div>
+                                <div className="swiper-nav-button swiper-button-next"></div>
+                            </>
+                        )}
+                    </div>
+                </Fragment>
+            )}
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 }

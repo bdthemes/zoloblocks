@@ -254,8 +254,8 @@
             }
             &:hover {
                 &::before {
-                    width: 110%;
-                    height: 110%;
+                    width: 110% !important;
+                    height: 110% !important;
                     left: -10%;
                     border-radius: 0;
                 }

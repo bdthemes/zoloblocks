@@ -6,9 +6,9 @@ const {isEmpty, strToHex} = window.zoloModule;
 export default function RenderView({attributes}) {
   const {
     catQuery,
-    singleBG,
-    multipleBG
+    tagCloudPro,
   } = attributes;
+  const { enableMultipleBG, multipleBG } = tagCloudPro ?? {};
   const [isLoading, setIsLoading] = useState(true);
   const [catResults, setCatResults] = useState([]);
   const [multipleBgArray,setMultipleBgArray]=useState([]);
@@ -44,24 +44,24 @@ export default function RenderView({attributes}) {
   }, [catQuery]);
 
   useEffect(() => {
-    //multiple background setup
-    let bgArray = [];
-    if ( !singleBG && !isEmpty(multipleBG) &&  catResults.length > 0 ) {
-      const bgColorsArray = multipleBG.slice(0, -1).split(',');
-      const totalCategory = catResults.length;
-      // Re-creating array for the multiple colors.
-      const jCount = bgColorsArray.length;
-      let j = 0;
-      for (let i = 0; i < totalCategory; i++) {
-        if (j === jCount) {
-          j = 0;
-        }
-        bgArray[i] = bgColorsArray[j];
-        j++;
+      //multiple background setup
+      let bgArray = [];
+      if (enableMultipleBG && !isEmpty(multipleBG) && catResults.length > 0) {
+          const bgColorsArray = multipleBG.slice(0, -1).split(',');
+          const totalCategory = catResults.length;
+          // Re-creating array for the multiple colors.
+          const jCount = bgColorsArray.length;
+          let j = 0;
+          for (let i = 0; i < totalCategory; i++) {
+              if (j === jCount) {
+                  j = 0;
+              }
+              bgArray[i] = bgColorsArray[j];
+              j++;
+          }
       }
-    }
-    setMultipleBgArray(bgArray);
-  }, [multipleBG,catResults,singleBG]);
+      setMultipleBgArray(bgArray);
+  }, [multipleBG, catResults, enableMultipleBG]);
 
 
   return (
@@ -74,7 +74,7 @@ export default function RenderView({attributes}) {
         catResults.length > 0 ? (
           catResults.map((cat,index) => <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />)
         ) : (
-          <p>No categories found.</p>
+          <p>No items found.</p>
         )
       )}
     </>

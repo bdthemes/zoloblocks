@@ -40,6 +40,10 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    containerWidth: {
+        type: 'string',
+        default: 'cw_none',
+    },
     // block attributes
     variationStatus: {
         type: 'boolean',

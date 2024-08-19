@@ -12,14 +12,12 @@ import {
     PB_BG,
     PB_PADDING,
     PB_MARGIN,
-
     CLOSE_ICON_BORDER,
     CLOSE_ICON_BRADIUS,
     CLOSE_ICON_BG,
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_PADDING,
     CLOSE_ICON_MARGIN,
-
 } from './constants';
 
 const attributes = {

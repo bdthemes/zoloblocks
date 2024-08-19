@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { createBlock } from '@wordpress/blocks';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal dependencies
@@ -56,7 +57,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), `${resMode !== 'Desktop' ? resMode : ''}`),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     // Slider Ref
     const swiperRef = useRef(null);
     const dispatch = useDispatch();
@@ -94,31 +97,51 @@ export default function Edit(props) {
         if (sliderE.swiper) {
             sliderE.swiper.destroy();
         }
-        new Swiper(sliderE, options);
+
+        const defaultOptions = {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: false,
+            autoplay: false,
+            speed: 800,
+            effect: 'slide',
+        };
+
+        new Swiper(sliderE, options && Object.keys(options).length > 1 ? options : defaultOptions);
     };
 
     //slider initialize
     useEffect(() => {
-        let options = {
-            slidesPerView: 1,
-            loop: infiniteLoop,
-            speed: speed * 100,
-            effect: sliderEffect,
-            autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
-            navigation: showNavigation
-                ? {
-                      nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
-                      prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
-                  }
-                : false,
-            pagination: showPagination
-                ? {
-                      el: `.${uniqueId} .swiper-pagination`,
-                      clickable: true,
-                      type: paginationType,
-                      dynamicBullets: dynamicBullets,
-                  }
-                : false,
+        const options = {
+            ...(speed !== undefined && { speed: speed * 100 }),
+            ...(infiniteLoop !== undefined && { loop: infiniteLoop }),
+            ...(sliderEffect !== 'slide' && { effect: sliderEffect }),
+            ...(autoplay !== undefined && {
+                autoplay: autoplay
+                    ? {
+                          delay: autoplayDelay * 100,
+                          pauseOnMouseEnter: pauseOnMouseEnter,
+                      }
+                    : false,
+            }),
+            ...((showNavigation || showNavigation === undefined) && {
+                navigation: {
+                    nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
+                    prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
+                },
+            }),
+            ...(showPagination !== undefined && {
+                pagination: showPagination
+                    ? {
+                          el: `.${uniqueId} .swiper-pagination`,
+                          clickable: true,
+                          type: paginationType,
+                          dynamicBullets: dynamicBullets,
+                      }
+                    : false,
+            }),
         };
 
         setAttributes({ sliderOptions: options });
@@ -168,16 +191,17 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
                 <ToolbarGroup>
-                    <ToolbarButton title={__('Add Slide', 'zoloblocks')} icon="plus" onClick={addNewSlide} />
+                    <ToolbarButton title={__('Add Slide', 'zoloblocks')} icon="insert" onClick={addNewSlide} />
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className="swiper" ref={swiperRef}>
                     <div {...innerBlocksProps} />
                 </div>
                 {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
-                {showNavigation && (
+                {(showNavigation || showNavigation === undefined) && (
                     <Fragment>
                         <div
                             className={`swiper-navigation-wrap  swiper-navigation-position-center ${
@@ -203,6 +227,7 @@ export default function Edit(props) {
                         </div>
                     </Fragment>
                 )}
+                {renderHookAfter && renderHookAfter}
             </div>
         </Fragment>
     );

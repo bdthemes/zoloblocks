@@ -1,9 +1,11 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -19,12 +21,16 @@ const Save = ({ attributes }) => {
         verticalLayoutDirection,
         contentDirection,
         tabItemWidth,
-        verticalPreset
+        verticalPreset,
     } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     return (
         <div
@@ -33,6 +39,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div
                 className={classnames(
                     'zolo-tabs zolo-indicator-position-bottom',
@@ -43,7 +50,10 @@ const Save = ({ attributes }) => {
                 )}
                 role="tablist"
                 tabIndex={0}
-                data-activeIndex={tabActiveItemNo - 1}
+                {...(tabActiveItemNo && {
+                    'data-activeIndex': tabActiveItemNo - 1,
+                })}
+                // data-activeIndex={tabActiveItemNo - 1}
             >
                 <div className={`tab__list zolo-tab_header-wrap ${tabItemWidth}`}>
                     {tabTitles &&
@@ -79,6 +89,7 @@ const Save = ({ attributes }) => {
                     <InnerBlocks.Content />
                 </div>
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

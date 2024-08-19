@@ -4,6 +4,7 @@
 
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -30,9 +31,13 @@ export default function Edit(props) {
         className: classnames(className, `${preset} ${uniqueId}`, layout, classArrayToStr(parentClasses)),
     });
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Social Links Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.socialShare} alt={__('Social Share Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -42,6 +47,7 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 {socialMediaInfoFiltered &&
                     socialMediaInfoFiltered.map((brand, index) => {
@@ -67,6 +73,8 @@ export default function Edit(props) {
                             </div>
                         );
                     })}
+
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

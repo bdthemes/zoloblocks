@@ -1,8 +1,14 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     const { uniqueId, parentClasses, initialOpen, allowMultiple, zoloId, preset } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -12,13 +18,19 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...blockProps}
-            data-initialOpen={initialOpen}
-            data-multiple={allowMultiple}
+            {...(initialOpen && {
+                'data-initial-open': initialOpen,
+            })}
+            {...(allowMultiple && {
+                'data-multiple': allowMultiple,
+            })}
             {...(zoloId && {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <InnerBlocks.Content />
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

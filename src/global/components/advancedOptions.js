@@ -20,6 +20,7 @@ import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 import IconicBtnGroup from '../../controls/iconic-btn-group';
+import ResSelectControl from '../../controls/res-select-control';
 import { applyFilters } from '@wordpress/hooks';
 import {
     DEFAULT_ALIGNS,
@@ -32,6 +33,7 @@ import {
     ICON_HPOSITIONS,
     VPOSITIONS,
     CONTENT_POSITIONS,
+    CONTENT_WIDTH
 } from '../constants';
 
 const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
@@ -65,6 +67,7 @@ export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps, block } = props;
     const panelProps = { attributes, setAttributes };
 
+
     const {
         responsiveness,
         transformAnimationActive,
@@ -83,6 +86,10 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
+        widthTypeZRPSelect,
+        TABwidthTypeZRPSelect,
+        MOBwidthTypeZRPSelect,
+        resMode,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -117,6 +124,8 @@ export const AdvancedOptions = (props) => {
 
     const displayPanels = applyFilters('zolo.blocks.displayConditions', [], panelProps);
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
+    const cursorsPanel = applyFilters('zolo.extensions.controls.cursors', [], block, panelProps);
+    const particles = applyFilters('zolo.extensions.controls.particles', [], block, panelProps);
 
     return (
         <>
@@ -148,7 +157,35 @@ export const AdvancedOptions = (props) => {
                     step={1}
                     help={__('Set the z-index for the section', 'zoloblocks')}
                 />
+                {block !== 'zolo/container' && (
+                    <div className="zolo-control-container zolo-single-control">
+                        <ResSelectControl
+                            label={__('Width', 'zoloblocks')}
+                            controlName={'widthType'}
+                            requiredProps={requiredProps}
+                            alignOptions={CONTENT_WIDTH}
+                        />
+                        {(resMode === 'Desktop' && widthTypeZRPSelect === 'custom') ||
+                        (resMode === 'Mobile' && MOBwidthTypeZRPSelect === 'custom') ||
+                        (resMode === 'Tablet' && TABwidthTypeZRPSelect === 'custom') ? (
+                            <ResRangeControl
+                                label={__('Custom Width', 'zoloblocks')}
+                                controlName={'customWidth'}
+                                requiredProps={requiredProps}
+                                max={1000}
+                                noUnits={false}
+                            />
+                        ) : null}
+                    </div>
+                )}
 
+                <OverflowControl
+                    label={__('Overflow', 'zoloblocks')}
+                    value={overflow}
+                    onChange={(v) => {
+                        setAttributes({ overflow: v });
+                    }}
+                />
                 <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
                     <SelectControl
                         label={__('Position', 'zoloblocks')}
@@ -248,13 +285,6 @@ export const AdvancedOptions = (props) => {
                         </>
                     )}
                 </PopoverControl>
-                <OverflowControl
-                    label={__('Overflow', 'zoloblocks')}
-                    value={overflow}
-                    onChange={(v) => {
-                        setAttributes({ overflow: v });
-                    }}
-                />
                 <div className="zolo-inline-control-wrapper">
                     <TextControl
                         label={__('CSS ID', 'zoloblocks')}
@@ -282,7 +312,11 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                    <BackgroundControl
+                        controlName={globalConfig.background.prefix || 'mainBg'}
+                        requiredProps={requiredProps}
+                        particles={particles}
+                    />
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
@@ -336,6 +370,8 @@ export const AdvancedOptions = (props) => {
                     </ZoloPanelBody>
                 </>
             )}
+            {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
+
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
                     label={__('Transform', 'zoloblocks')}
@@ -406,14 +442,16 @@ export const AdvancedOptions = (props) => {
                                         hasValCheck('transformRotateY', attributes)
                                     }
                                 >
-                                    <ResRangeControl
-                                        label={__('Rotate', 'zoloblocks')}
-                                        controlName={'transformRotate'}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={180}
-                                        noUnits={true}
-                                    />
+                                    {!transformRotate3DActive && (
+                                        <ResRangeControl
+                                            label={__('Rotate', 'zoloblocks')}
+                                            controlName={'transformRotate'}
+                                            requiredProps={requiredProps}
+                                            min={-180}
+                                            max={180}
+                                            noUnits={true}
+                                        />
+                                    )}
                                     <ToggleControl
                                         label={__('Rotate 3D', 'zoloblocks')}
                                         checked={transformRotate3DActive}
@@ -429,16 +467,16 @@ export const AdvancedOptions = (props) => {
                                                 label={__('RotateX(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateX'}
                                                 requiredProps={requiredProps}
-                                                min={-360}
-                                                max={360}
+                                                min={-180}
+                                                max={180}
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
                                                 label={__('RotateY(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateY'}
                                                 requiredProps={requiredProps}
-                                                min={-360}
-                                                max={360}
+                                                min={-180}
+                                                max={180}
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
@@ -625,14 +663,16 @@ export const AdvancedOptions = (props) => {
                                         hasValCheck('transformRotateYHover', attributes)
                                     }
                                 >
-                                    <ResRangeControl
-                                        label={__('Rotate', 'zoloblocks')}
-                                        controlName={'transformRotateHover'}
-                                        requiredProps={requiredProps}
-                                        min={-360}
-                                        max={360}
-                                        noUnits={true}
-                                    />
+                                    {!transformRotate3DActiveHover && (
+                                        <ResRangeControl
+                                            label={__('Rotate', 'zoloblocks')}
+                                            controlName={'transformRotateHover'}
+                                            requiredProps={requiredProps}
+                                            min={-180}
+                                            max={180}
+                                            noUnits={true}
+                                        />
+                                    )}
                                     <ToggleControl
                                         label={__('Rotate 3D', 'zoloblocks')}
                                         checked={transformRotate3DActiveHover}
@@ -648,16 +688,16 @@ export const AdvancedOptions = (props) => {
                                                 label={__('RotateX(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateXHover'}
                                                 requiredProps={requiredProps}
-                                                min={-360}
-                                                max={360}
+                                                min={-180}
+                                                max={180}
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
                                                 label={__('RotateY(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateYHover'}
                                                 requiredProps={requiredProps}
-                                                min={-360}
-                                                max={360}
+                                                min={-180}
+                                                max={180}
                                                 noUnits={true}
                                             />
                                             <ResRangeControl

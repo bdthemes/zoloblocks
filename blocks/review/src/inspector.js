@@ -131,7 +131,7 @@ function Inspector(props) {
                           <SelectControl
                                 label={__('Style', 'zoloblocks')}
                                 value={stylePreset}
-                                options={applyFilters('zolo.pricingTable.presets', STYLE_PRESETS)}
+                                options={applyFilters('zolo.review.stylePresets', STYLE_PRESETS)}
                                 onChange={(stylePreset) => {
                                     setAttributes({ stylePreset });
 
@@ -409,13 +409,15 @@ function Inspector(props) {
                                     value={photoOverflow}
                                     onChange={(value) => setAttributes({ photoOverflow: value })}
                                 />
-                                <ResRangeControl
-                                    label={__('Gap', 'zoloblocks')}
-                                    controlName={CONTENT_GAP}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={200}
-                                />
+                                {stylePreset !== 'style-preset-2' && (
+                                    <ResRangeControl
+                                        label={__('Gap', 'zoloblocks')}
+                                        controlName={CONTENT_GAP}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={200}
+                                    />
+                                )}
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={REVIEWER_PHOTO_BORDER}

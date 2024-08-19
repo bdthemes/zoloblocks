@@ -1,4 +1,3 @@
-import { useEffect } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
@@ -22,6 +21,7 @@ const Style = ({ props }) => {
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType } = attributes;
 
     // content boxed width
+    // content boxed width
     const {
         desktopRangeStyle: contentDeskWidth,
         tabRangeStyle: contentTabWidth,
@@ -39,7 +39,7 @@ const Style = ({ props }) => {
         mobRangeStyle: containerMobWidth,
     } = generateResRangeStyle({
         controlName: CONTAINER_WIDTH,
-        property: 'max-width',
+        property: 'width',
         attributes,
     });
 
@@ -110,6 +110,7 @@ const Style = ({ props }) => {
 
     let editorFlexSelector =
         '.wp-block-zolo-container > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
+
     let flexSelector = '.wp-block-zolo-container.zolo-root-container.alignfull > .zolo-container-inner-blocks-wrap';
 
     if (!isBlockRootParent || 'alignfull' !== containerWidthType || 'alignwide' !== contentWidthType) {
@@ -121,11 +122,10 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+         .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
             ${contentDeskWidth}
-        }
-
+         }
         ${
             'custom_width' === containerWidthType
                 ? `
@@ -138,7 +138,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerDeskWidth}
-            width: 100%;
+
         }
 
         .${uniqueId} {
@@ -157,9 +157,9 @@ const Style = ({ props }) => {
 
     const tabletAllStyle = `
         .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
-            ${contentTabWidth}
-        }
+         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+             ${contentTabWidth}
+         }
 
         ${
             'custom_width' === containerWidthType
@@ -173,7 +173,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerTabWidth}
-            width: 100%;
+
         }
 
         .${uniqueId} {
@@ -192,9 +192,9 @@ const Style = ({ props }) => {
 
     const mobileAllStyle = `
         .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
-            ${contentMobWidth}
-        }
+         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+             ${contentMobWidth}
+         }
 
         ${
             'custom_width' === containerWidthType
@@ -208,7 +208,7 @@ const Style = ({ props }) => {
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
             ${containerMobWidth}
-            width: 100%;
+
         }
 
         .${uniqueId} {
@@ -217,7 +217,7 @@ const Style = ({ props }) => {
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
-            ${containerMobGap}  
+            ${containerMobGap}
             ${flexDirectionMob}
             ${flexWrapMob}
             ${flexJustifyMob}

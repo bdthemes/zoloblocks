@@ -1,10 +1,9 @@
 import SettingPanel from './setting-panel';
 
 import { __ } from '@wordpress/i18n';
-import { TextControl, ToggleControl } from '@wordpress/components';
+import { TextControl } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-const { zoloBlocks } = window;
 
 const ApiSettings = () => {
     const [googleAPIKey, setGoogleAPIKey] = useState('');
@@ -167,9 +166,14 @@ const ApiSettings = () => {
                 </SettingPanel>
                 <SettingPanel
                     title={__('Facebook Page Feed', 'zoloblocks')}
-                    description={<>
-                        <a href="https://developers.facebook.com/apps/" target="_blank">{__('Facebook Developer Account', 'zoloblocks')}</a> to get access Page ID and Access Token. This credential need for Social Feeds widget.
-                    </>}
+                    description={
+                        <>
+                            <a href="https://developers.facebook.com/apps/" target="_blank">
+                                {__('Facebook Developer Account', 'zoloblocks')}
+                            </a>{' '}
+                            to get access Page ID and Access Token. This credential need for Social Feeds widget.
+                        </>
+                    }
                     docLink="https://mailchimp.com/help/find-audience-id/"
                     icon="facebook"
                     released={false}
@@ -180,65 +184,82 @@ const ApiSettings = () => {
                 >
                     <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
-
                 </SettingPanel>
-
                 <SettingPanel
                     title={__('Instagram Feed', 'zoloblocks')}
                     description={
                         <>
-                            <span className="description">Go to <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">{__('Instagram Developer Account', 'zoloblocks')}</a> for create your Consumer key and Access Token.</span>
+                            <span className="description">
+                                Go to{' '}
+                                <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">
+                                    {__('Instagram Developer Account', 'zoloblocks')}
+                                </a>{' '}
+                                for create your Consumer key and Access Token.
+                            </span>
                         </>
                     }
                     docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
                     icon="instagram"
                     released={false}
-                    onSave={() => {
-
-                    }}
+                    onSave={() => {}}
                 >
                     <TextControl label={__('Instagram App ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('Instagram App Secret', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('Instagram Access Token', 'zoloblocks')} disabled={true} />
-
                 </SettingPanel>
                 <SettingPanel
                     title={__('Google Review', 'zoloblocks')}
-                    description={<>
-                        <span className="description">Go to <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com</a> and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review widget so you must enabled Places API too.</span>
-                    </>
+                    description={
+                        <>
+                            <span className="description">
+                                Go to{' '}
+                                <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">
+                                    https://developers.google.com
+                                </a>{' '}
+                                and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert
+                                here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review
+                                widget so you must enabled Places API too.
+                            </span>
+                        </>
                     }
                     docLink="https://developers.google.com/maps/documentation/javascript/get-api-key"
                     icon="google"
                     released={false}
-                    onSave={() => {
-
-                    }}
+                    onSave={() => {}}
                 >
                     <TextControl label={__('API Key', 'zoloblocks')} disabled={true} />
-
                 </SettingPanel>
                 <SettingPanel
                     title={__('Yelp Review', 'zoloblocks')}
-                    description={<>
-                        <span className="description">Go to your <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">Yelp Developer Account</a> to get access client ID and Key. This credential need for Social Proof widget.</span>
-                    </>}
+                    description={
+                        <>
+                            <span className="description">
+                                Go to your{' '}
+                                <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">
+                                    Yelp Developer Account
+                                </a>{' '}
+                                to get access client ID and Key. This credential need for Social Proof widget.
+                            </span>
+                        </>
+                    }
                     docLink="#"
                     icon="yelp"
                     released={false}
-                    onSave={() => {
-
-                    }}
+                    onSave={() => {}}
                 >
                     <TextControl label={__('Yelp Client ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('Yelp API Key', 'zoloblocks')} disabled={true} />
-
                 </SettingPanel>
                 <SettingPanel
                     title={__('Facebook Page Review', 'zoloblocks')}
-                    description={<>
-                        <a href="https://developers.facebook.com/apps/" target="_blank">{__('Facebook Developer Account', 'zoloblocks')}</a> to get access Page ID and Access Token. This credential need for Social Feeds widget.
-                    </>}
+                    description={
+                        <>
+                            <a href="https://developers.facebook.com/apps/" target="_blank">
+                                {__('Facebook Developer Account', 'zoloblocks')}
+                            </a>{' '}
+                            to get access Page ID and Access Token. This credential need for Social Feeds widget.
+                        </>
+                    }
                     docLink="#"
                     icon="facebook"
                     released={false}
@@ -249,13 +270,17 @@ const ApiSettings = () => {
                 >
                     <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
-
                 </SettingPanel>
                 <SettingPanel
                     title={__('Zoom', 'zoloblocks')}
-                    description={<>
-                        <a href="https://developers.zoom.us/docs/api/" target="_blank">{__('Zoom Developer Account', 'zoloblocks')}</a> to get access API Keyand Secret Key. This credential need for Zoom Features.
-                    </>}
+                    description={
+                        <>
+                            <a href="https://developers.zoom.us/docs/api/" target="_blank">
+                                {__('Zoom Developer Account', 'zoloblocks')}
+                            </a>{' '}
+                            to get access API Keyand Secret Key. This credential need for Zoom Features.
+                        </>
+                    }
                     docLink="#"
                     icon="zoom"
                     released={false}
@@ -266,7 +291,6 @@ const ApiSettings = () => {
                 >
                     <TextControl label={__('Zoom API Key', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('Zoom  Secret Key', 'zoloblocks')} disabled={true} />
-
                 </SettingPanel>
             </div>
         </div>

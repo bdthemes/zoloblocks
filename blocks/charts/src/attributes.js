@@ -1,8 +1,25 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies, generateNormalBGAttributes, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies } = window.zoloModule;
-import { CHART_HEIGHT, CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW, SUB_TITLE_ALIGNMENT } from './constants';
+const {
+    generateResRangeAttributies,
+    generateTypographyAttributes,
+    generateResAlignmentAttributies,
+    generateNormalBGAttributes,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+} = window.zoloModule;
+import {
+    CHART_HEIGHT,
+    CHART_BG_COLOR,
+    CHART_BORDER,
+    CHART_BORDER_RADIUS,
+    CHART_MARGIN,
+    CHART_PADDING,
+    CHART_BOX_SHADOW,
+    SUB_TITLE_ALIGNMENT,
+} from './constants';
 
 import PieChartAttributes from './data/piechart';
 import barChartAttributes from './data/barchart';
@@ -53,6 +70,9 @@ const attributes = {
     sourceType: {
         type: 'string',
         default: 'upload',
+    },
+    gssUrl: {
+        type: 'string',
     },
     uploadStatus: {
         type: 'boolean',

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState, RawHTML } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
 
 const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, released = true }) => {
@@ -21,7 +21,7 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
     };
 
     return (
-        <div className={`zolo-single-setting${released ? '': ' upcoming'}`}>
+        <div className={`zolo-single-setting${released ? '' : ' upcoming'}`}>
             {!released && <div className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</div>}
             {icon && (
                 <div className="zolo-setting-icon">
@@ -29,7 +29,11 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                 </div>
             )}
             {title && <h3 className="zolo-setting-title">{title}</h3>}
-            {description && <p className="zolo-setting-description">{description}</p>}
+            {description && (
+                <div className="zolo-setting-description">
+                    <RawHTML>{description}</RawHTML>
+                </div>
+            )}
             <div className="help-docs">
                 {docLink && (
                     <a href={docLink} target="_blank" rel="noopener noreferrer" title="View Documentation">
@@ -88,10 +92,11 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                 <Modal onRequestClose={closeSettingsPanel}>
                     <div className="settings-popup">
                         <h4 className="modal-title">{title}</h4>
-                        <p className="modal-description">{description}</p>
+                        <div className="modal-description">
+                            <RawHTML>{description}</RawHTML>
+                        </div>
                         {children}
                         {released ? (
-
                             <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
                                 {isSaving ? __('Saving...', 'zoloblocks') : __('Save Changes', 'zoloblocks')}
                             </button>
@@ -100,7 +105,6 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                                 {__('Coming Soon', 'zoloblocks')}
                             </button>
                         )}
-
                     </div>
                 </Modal>
             )}

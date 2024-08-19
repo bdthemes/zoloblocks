@@ -1,4 +1,4 @@
-import { render, createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 import SvgComponent from './svg';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (textPath.length < 0) {
         return;
     }
-    const SvgItem = ({ textpathContent, textPathType, pathlink, uniqueId, textpathLength, textPathSpoint }) => {
+    const SvgItem = ({ textpathContent, textPathType, pathlink, uniqueid, textpathLength, textPathSpoint }) => {
         return (
-            <SvgComponent uniqueId={uniqueId} pathType={textPathType}>
+            <SvgComponent uniqueId={uniqueid} pathType={textPathType}>
                 <text>
                     <textPath
-                        href={`#MyPath-${uniqueId}`}
+                        href={`#MyPath-${uniqueid}`}
                         textLength={textpathLength ? textpathLength : 0}
                         startOffset={textPathSpoint ? 100 - textPathSpoint + '%' : 0 + '%'}
                     >

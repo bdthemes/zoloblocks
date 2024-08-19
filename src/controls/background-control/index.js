@@ -1,13 +1,24 @@
 import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 import BGControl from './bg-control';
 import OverflowControl from './overlay-control';
 
-const BackgroundControl = ({ requiredProps, controlName, noOverlay = false, noMainBGImg = false, noOverlayBGImg = false, noTransition = false }) => {
+const BackgroundControl = ({
+    requiredProps,
+    controlName,
+    noOverlay = false,
+    noMainBGImg = false,
+    noOverlayBGImg = false,
+    noTransition = false,
+    particles = false,
+
+}) => {
     const { setAttributes, attributes } = requiredProps;
 
     const { [`${controlName}isBgOverlay`]: isBgOverlay } = attributes;
+    const backdropFilters = applyFilters('zolo.extensions.controls.backdropFilters', [], requiredProps);
 
     return (
         <>
@@ -25,7 +36,16 @@ const BackgroundControl = ({ requiredProps, controlName, noOverlay = false, noMa
                         }
                     />
 
-                    {isBgOverlay && <OverflowControl controlName={controlName} requiredProps={requiredProps} noOverlayBGImg={noOverlayBGImg} noTransition={noTransition} />}
+                    {isBgOverlay && (
+                        <OverflowControl
+                            controlName={controlName}
+                            requiredProps={requiredProps}
+                            noOverlayBGImg={noOverlayBGImg}
+                            noTransition={noTransition}
+                        />
+                    )}
+                    {particles && particles}
+                    {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                 </>
             )}
         </>

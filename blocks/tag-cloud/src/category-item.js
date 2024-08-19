@@ -3,8 +3,9 @@ const {isEmpty, strToHex} = window.zoloModule;
 function CategoryItem({index, cat, attributes, multipleBgArray}) {
   const {
     showCount,
-    singleBG,
+    tagCloudPro,
   } = attributes;
+  const { enableMultipleBG } = tagCloudPro ?? {};
 
   //set individual category background
   let bgColor = strToHex(cat.name);
@@ -12,12 +13,10 @@ function CategoryItem({index, cat, attributes, multipleBgArray}) {
     bgColor = multipleBgArray[index];
   }
   return (
-    <a className="zolo-item" href="#" style={!singleBG ? {backgroundColor: bgColor} : {}}>
-        <span className="zolo-name">{cat.name}</span>
-        {showCount && (
-          <span className="zolo-count">{cat.count}</span>
-        )}
-    </a>
+      <a className="zolo-item" href="#" style={enableMultipleBG ? { backgroundColor: bgColor } : {}}>
+          <span className="zolo-name">{cat.name}</span>
+          {showCount && <span className="zolo-count">{cat.count}</span>}
+      </a>
   );
 }
 

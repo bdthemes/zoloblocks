@@ -5,19 +5,28 @@ import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
 import Inspector from './inspector';
 import Style from './style';
 
+// register variations
+import './variations';
+
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
     const { uniqueId, popupType, popupBoxPosition, enableOverlay, isDismissable, closeBtnPosition, closeBtnId } = attributes;
 
     const blockPros = useBlockProps({
-        className: classNames(className, uniqueId, popupType, `${enableOverlay ? 'zolo-popup-overlay' : ''}`, `${popupType === 'popup_box' ? popupBoxPosition : ''}`),
+        className: classNames(
+            className,
+            uniqueId,
+            popupType,
+            `${enableOverlay ? 'zolo-popup-overlay' : ''}`,
+            `${popupType === 'popup_box' ? popupBoxPosition : ''}`
+        ),
     });
 
     // chech if the innerblocks has child or not
@@ -30,11 +39,15 @@ export default function Edit(props) {
         [props.clientId]
     );
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockPros}>
+                {renderHookBefore && renderHookBefore}
                 <div className={classNames('zolo-popup-inner', popupType)}>
                     <InnerBlocks
                         templateLock={false}
@@ -96,7 +109,7 @@ export default function Edit(props) {
                                         'zolo/advanced-button',
                                         {
                                             // preset: 'button-1',
-                                            label: 'Subscribe Now',
+                                            label: 'Grab the Deal',
                                             iconType: 'iconText',
                                             iconPosition: 'right',
                                             buttonAlignmentZRPAlign: 'center',
@@ -125,6 +138,7 @@ export default function Edit(props) {
                         </button>
                     )}
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

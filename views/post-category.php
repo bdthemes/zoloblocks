@@ -20,44 +20,46 @@ $viewAllBtnIcon = '<div class="zolo__display-icon">' . $viewAllBtnIcon . '</div>
 ?>
 
 <div class="<?php echo esc_attr( $wrapper_class ); ?>" <?php if ( ! empty( $wrapperId ) ) { ?>
-  id="<?php echo esc_attr( $wrapperId ); ?>" <?php } ?>>
-<?php
-if ( ! empty( $categories ) ) :
-	foreach ( $categories as $index => $category ) :
-		// multiple background color.
-		$bg_color = ZoloHelpers::strToHex( $category->name );
-		if ( ! empty( $multiple_bg ) ) {
-			$bg_color = $multiple_bg[ $index ];
-			if ( ! preg_match( '/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/', $multiple_bg[ $index ] ) ) {
-				$bg_color = ZoloHelpers::strToHex( $category->name );
+	id="<?php echo esc_attr( $wrapperId ); ?>" <?php } ?>>
+	<?php
+	if ( ! empty( $categories ) ) :
+		foreach ( $categories as $index => $category ) :
+			// multiple background color.
+			$bg_color = ZoloHelpers::strToHex( $category->name );
+			if ( ! empty( $multiple_bg ) ) {
+				$bg_color = $multiple_bg[ $index ];
+				if ( ! preg_match( '/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/', $multiple_bg[ $index ] ) ) {
+					$bg_color = ZoloHelpers::strToHex( $category->name );
+				}
 			}
-		}
-		?>
-			<a class="zolo-category-item" href="<?php echo esc_url( $category->link ); ?>" style="<?php echo empty( $settings['singleBG'] ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : ''; ?>">
-			<?php if ( ! empty( $settings['showImage'] ) && ! empty( $category->image ) && 'style-2' === $settings['preset'] ) : ?>
-					<div class="zolo-category-img"><img src="<?php echo esc_url( $category->image ); ?>" alt="<?php echo esc_html( $category->name ); ?>"></div>
+			?>
+			<a class="zolo-category-item" href="<?php echo esc_url( $category->link ); ?>"
+				style="<?php echo empty( $settings['singleBG'] ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : ''; ?>">
+				<?php if ( ! empty( $settings['showImage'] ) && ! empty( $category->image ) && 'style-2' === $settings['preset'] ) : ?>
+					<div class="zolo-category-img"><img src="<?php echo esc_url( $category->image ); ?>"
+							alt="<?php echo esc_html( $category->name ); ?>"></div>
 				<?php endif; ?>
 				<div class="zolo-content">
-					  <span class="zolo-category-name"><?php echo esc_html( $category->name ); ?></span>
-				  <?php if ( ! empty( $settings['showCount'] ) ) : ?>
+					<span class="zolo-category-name"><?php echo esc_html( $category->name ); ?></span>
+					<?php if ( ! empty( $settings['showCount'] ) ) : ?>
 						<span class="zolo-category-count"><?php echo esc_html( $category->count ); ?></span>
-					  <?php endif; ?>
+					<?php endif; ?>
 				</div>
 				<div class="zolo-category-bottom-content">
-				<?php if ( ! empty( $settings['showText'] ) && ! empty( $category->description ) ) : ?>
-					  <p class="zolo-category-text">
-						<?php
-						$text = ! empty( $settings['itemTextLimit'] ) ? ZoloHelpers::wordcount( $category->description, $settings['itemTextLimit'] ) : $category->description;
-						echo wp_kses( $text, ZoloHelpers::wp_kses_allowed_svg() )
-						?>
-					  </p>
+					<?php if ( ! empty( $settings['showText'] ) && ! empty( $category->description ) ) : ?>
+						<p class="zolo-category-text">
+							<?php
+							$text = ! empty( $settings['itemTextLimit'] ) ? ZoloHelpers::wordcount( $category->description, $settings['itemTextLimit'] ) : $category->description;
+							echo wp_kses( $text, ZoloHelpers::wp_kses_allowed_svg() )
+							?>
+						</p>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['viewAllBtn'] ) && ! empty( $settings['viewAllBtnText'] ) ) : ?>
-					  <span class="zolo-category-link">
-						<?php
+						<span class="zolo-category-link">
+							<?php
 							echo esc_html( $settings['viewAllBtnText'] );
 							echo wp_kses( $viewAllBtnIcon, ZoloHelpers::wp_kses_allowed_svg() );
-						?>
+							?>
 						</span>
 					<?php endif; ?>
 				</div>
@@ -65,5 +67,5 @@ if ( ! empty( $categories ) ) :
 			<?php
 		endforeach;
 	endif;
-?>
+	?>
 </div>

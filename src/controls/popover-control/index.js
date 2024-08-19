@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
 
-const PopoverControl = ({ label = '', icon = '', isPro = false, children, onReset = null, hasValue = false }) => {
+const PopoverControl = ({ label = '', icon = '', isPro = false, children, onReset = null, onChange = null, hasValue = false }) => {
     return (
         <>
             <div className="zolo-control-container zolo-border-control">
@@ -22,7 +22,13 @@ const PopoverControl = ({ label = '', icon = '', isPro = false, children, onRese
                         renderToggle={({ isOpen, onToggle }) => (
                             <Flex>
                                 {hasValue && <ResetBtn onReset={onReset} />}
-                                <button onClick={onToggle} aria-expanded={isOpen} className="zolo-panel-opener-btn">
+                                <button onClick={() => {
+                                  onToggle();
+                                  if (onChange) {
+                                    onChange(hasValue);
+                                  }
+
+                                }} aria-expanded={isOpen} className="zolo-panel-opener-btn">
                                     {icon || (
                                         <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect x={9} y={9} width={12} height={12} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
