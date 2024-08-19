@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Coupon Code",
+    "name": "zolo/coupon-code",
+    "category": "zoloblocks",
+    "keywords": [
+        "coupon",
+        "coupon code"
+    ],
+    "description": "Make stunning content with the Coupon Code",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 400
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "editorScript": "zolo-block-editor-script"
+}
