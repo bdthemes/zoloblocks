@@ -14,7 +14,7 @@
 		background-color: var(--zolo-ssc-bg);
 		color: unset;
 		&:hover {
-			background-color: var(--zolo-ssc-hbg);
+			background-color: var(--zolo-ssc-hbg,var(--zolo-ssc-bg));
 			.zolo-icon {
 				border-color:var(--zolo-ssc-icon-hborder);
 				background-color: var(--zolo-ssc-icon-hbg);
