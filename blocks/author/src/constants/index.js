@@ -49,8 +49,6 @@ export const ITEM_BG = 'itemBg';
 export const ITEM_BORDER = 'itemBorder';
 export const ITEM_BORDER_RADIUS = 'itemBRadius';
 export const ITEM_SHADOW = 'itemShadow';
-export const ITEM_HOVER_BG = 'itemHoverBg';
-export const ITEM_HOVER_SHADOW = 'itemHoverShadow';
 //avatar
 export const AVATAR_MASK = 'avatar';
 export const AVATAR_BORDER = 'avatarBorder';
