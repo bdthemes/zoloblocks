@@ -135,7 +135,7 @@ const QueryControl = ({attributes, setAttributes}) => {
             {postQuery?.postIncludeBy?.some(item => item.value === 'terms') && (
               zoloAllTaxonomies.map((tax, index) => (
                 <BaseControl
-                  label={tax.name}
+                  label={tax.label}
                   key={index}
                 >
                   <Select2
@@ -238,7 +238,7 @@ const QueryControl = ({attributes, setAttributes}) => {
             {postQuery?.postExcludeBy?.some(item => item.value === 'terms') && (
               zoloAllTaxonomies.map((tax, index) => (
                 <BaseControl
-                  label={tax.name}
+                  label={tax.label}
                   key={index}
                 >
                   <Select2
