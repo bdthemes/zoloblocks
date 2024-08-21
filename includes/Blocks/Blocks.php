@@ -363,5 +363,12 @@ return apply_filters(
             'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
             'frontend-scripts' => ['zolo-static-social-count-frontend'],
         ],
+        'recent-comments'     => [
+            'name'             => 'recent-comments',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/recent-comments/block.json',
+            'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+            'frontend-scripts' => false,
+            'class'            => '\Zolo\Blocks\RecentComments',
+        ],
     ]
 );
