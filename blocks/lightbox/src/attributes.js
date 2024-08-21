@@ -117,9 +117,17 @@ const attributes = {
         type: 'string',
         default: 'image',
     },
+    contentType: {
+        type: 'string',
+        default: 'image',
+    },
     contentImage: {
         type: 'object',
         default: {},
+    },
+    contentCaption: {
+        type: 'string',
+        default: 'zoloblocks lightbox',
     },
     videoSource: {
         type: 'object',

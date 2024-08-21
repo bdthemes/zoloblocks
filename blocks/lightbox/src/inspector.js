@@ -70,7 +70,7 @@ export default function Edit(props) {
         enableSubHeading,
         buttonHeadingText,
         buttonIcon,
-        lightBoxContent,
+        contentType,
         contentText,
         contentImage,
         videoSource,
@@ -192,6 +192,7 @@ export default function Edit(props) {
                                         {posterIconToggle && (
                                             <>
                                                 <ZoloIconPicker
+                                                    key="posterIcon"
                                                     label={__('Icon', 'zoloblocks')}
                                                     value={posterIcon}
                                                     onChange={(value) =>
@@ -254,6 +255,7 @@ export default function Edit(props) {
                                         )}
 
                                         <ZoloIconPicker
+                                            key="buttonIcon"
                                             label={__('Selected Icon', 'zoloblocks')}
                                             value={buttonIcon}
                                             onChange={(value) =>
@@ -275,16 +277,16 @@ export default function Edit(props) {
                             <ZoloPanelBody title={__('LightBox Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                 <SelectControl
                                     label={__('Select Light Box Content', 'zoloblocks')}
-                                    value={lightBoxContent}
+                                    value={contentType}
                                     onChange={(value) =>
                                         setAttributes({
-                                            lightBoxContent: value,
+                                            contentType: value,
                                         })
                                     }
                                     options={LIGHT_BOX_CONTENT}
                                 />
 
-                                {lightBoxContent === 'image' && (
+                                {contentType === 'image' && (
                                     <>
                                         <BaseControl label={__('Image Source', 'zoloblocks')}>
                                             {contentImage ? (
@@ -337,7 +339,7 @@ export default function Edit(props) {
                                     </>
                                 )}
 
-                                {lightBoxContent === 'video' && (
+                                {contentType === 'video' && (
                                     <>
                                         <LinkControl
                                             label={__('Video Source', 'zoloblocks')}
@@ -351,7 +353,7 @@ export default function Edit(props) {
                                     </>
                                 )}
 
-                                {lightBoxContent === 'googleMap' && (
+                                {contentType === 'googleMap' && (
                                     <LinkControl
                                         label={__('Google Map Embed Url', 'zoloblocks')}
                                         value={googleMapSource}

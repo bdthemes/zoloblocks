@@ -23,6 +23,10 @@ export default function Save(props) {
         enableSubHeading,
         buttonHeadingText,
         buttonIcon,
+        //content,
+        contentType,
+        contentImage,
+        contentCaption,
     } = attributes;
 
     const options = {
@@ -42,15 +46,13 @@ export default function Save(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
         'data-options': JSON.stringify(options),
     });
-    const randomImage = `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 100)}`;
 
 
     return (
         <div {...blocksProps}>
-            <a href="#vimeo" className="lightbox-trigger" data-fslightbox="gallery" data-caption="Caption for image 2">
+            <a href={`#${uniqueId}`} className="lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
                 <div className="zolo-lightbox-btn">
-                    <button className="zolo-play-btn zolo-lightbox-btn-1"
-                    >
+                    <button className="zolo-play-btn zolo-lightbox-btn-1">
                         {lightboxType !== 'poster' && (
                             <span className="zolo-btn-text">
                                 <small>{enableSubHeading && buttonHeadingText}</small>
@@ -71,17 +73,16 @@ export default function Save(props) {
                     </div>
                 )}
             </a>
-            <div className="zolo-lightbox-content">
-                <iframe
-                    src="https://player.vimeo.com/video/22439234"
-                    id="vimeo"
-                    width="1920px"
-                    height="1080px"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen"
-                    allowFullScreen
-                ></iframe>
-                </div>
+
+
+            <div id={`${uniqueId}`} className="zolo-lightbox-content">
+                {contentType === 'image' && (
+                    <img
+                        src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
+                        alt={contentImage.alt}
+                    />
+                )}
+            </div>
         </div>
     );
 }
