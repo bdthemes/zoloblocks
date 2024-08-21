@@ -106,7 +106,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                 )}
                 <Dropdown
                     className="zb-typography-dropdown"
-                    position="bottom right"
+                    popoverProps={{ placement: 'bottom-start' }}
                     renderToggle={({ isOpen, onToggle }) => (
                         <Button onClick={onToggle} aria-expanded={isOpen} className={`zb-typography-dropdown-btn ${hasValueClass}`}>
                             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -20,7 +20,6 @@ class StyleGenerator {
 
         // Generate Style on block render
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);
-        add_filter('render_block', [$this, 'cursors_effects'], 10, 2);
         add_filter('render_block', [$this, 'particles_effects'], 10, 2);
 
         // Enqueue Dynamic Styles

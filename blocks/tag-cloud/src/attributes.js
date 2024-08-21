@@ -92,7 +92,6 @@ const attributes = {
   countBgHoverColor: {
     type: 'string'
   },
-
   //item
   ...generateDimensionAttributes(ITEM_PADDING),
   ...generateNormalBGAttributes(ITEM_BG),

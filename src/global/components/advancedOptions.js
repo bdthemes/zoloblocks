@@ -347,7 +347,6 @@ export const AdvancedOptions = (props) => {
                     )}
                 </ZoloPanelBody>
             )}
-
             {globalConfig?.responsiveControls && (
                 <>
                     <ZoloPanelBody title={__('Visibility Control', 'zoloblocks')} panelProps={props} extraPanel={true}>

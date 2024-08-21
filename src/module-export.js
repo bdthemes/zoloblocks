@@ -49,13 +49,13 @@ export { default as SidebarOpener } from './controls/sidebar-opener';
 export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
 export { default as Select2AjaxControl } from './controls/select2-ajax-control';
 export { default as ToggleGroup } from './controls/toggle-group';
-
+export { default as TabDynamicControl } from './controls/tabdynamic-control';
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
 export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
 export { generateBoxShadowAttributies, generateBoxShadowStyles } from './helpers/boxshadow-helper';
 export { generateDimensionAttributes, generateDimensionStyle } from './helpers/dimension-helper';
-export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr, isEmpty, strToHex } from './helpers/helper';
+export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr, isEmpty, strToHex,getTaxonomies } from './helpers/helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';
