@@ -15,7 +15,14 @@ import { generateResSelectStyle } from '../../helpers/res-select-helper';
 import { applyFilters } from '@wordpress/hooks';
 
 export const GlobalStyleHanlder = (props) => {
-    const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
+    // Type checking and default props
+    if (!props || typeof props !== 'object') {
+        console.error('GlobalStyleHanlder: Invalid props.');
+        return null;
+    }
+
+    const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {} } = props;
+    // const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
     const {
         uniqueId,

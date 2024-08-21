@@ -90,7 +90,7 @@ export default function Edit(props) {
             <div {...blocksProps}>
                 {renderHookBefore && renderHookBefore}
                 {badgeStyle == 'zolo-badge-style-1' && (
-                    <div class={`zolo-qrcode-wrapper`}>
+                    <div className={`zolo-qrcode-wrapper`}>
                         <QRCodeWrapper />
                         {showBadge && (
                             <span className="zolo-qrcode-badge">
@@ -107,7 +107,7 @@ export default function Edit(props) {
 
                 {badgeStyle != 'zolo-badge-style-1' && (
                     <div className="zolo-qrcode-badge-wrapper">
-                        <div class={`zolo-qrcode-wrapper`}>
+                        <div className={`zolo-qrcode-wrapper`}>
                             <QRCodeWrapper />
                         </div>
                         {showBadge && (
