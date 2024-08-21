@@ -8,16 +8,16 @@ import useParticlesInit from './init';
 
 addFilter('zolo.extensions.controls.particles', 'zolo/extensions/particles', (panels, block, panelProps) => {
     if (block !== 'zolo/container') return panels;
-    panels.push(<Inspector panelProps={panelProps} />);
+    panels.push(<Inspector key={`controls-particles-${panelProps.attributes.uniqueId}`}  panelProps={panelProps} />);
     return panels;
 });
 
 addFilter('zolo.blocks.render.hook.before', 'zolo/extensions/particles', (panels, panelProps) => {
     if (!panelProps.attributes.zoloParticles.active) return panels;
-    setTimeout(() => {
-        useParticlesInit(panelProps);
-    }, 400);
-    panels.push(<Render panelProps={panelProps} />);
+    // setTimeout(() => {
+    //     useParticlesInit(panelProps);
+    // }, 400);
+    panels.push(<Render key={`render-particles-${panelProps.attributes.uniqueId}`} panelProps={panelProps} />);
     return panels;
 });
 

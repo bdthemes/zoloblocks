@@ -14,6 +14,7 @@ export { default as ImageAvatar } from './controls/image-avatar';
 export { default as NormalBGControl } from './controls/normal-bg-control';
 export { default as RangeResetControl } from './controls/range-reset-control';
 export { default as ResAlignmentControl } from './controls/res-alignment-control';
+export { default as ResSelectControl } from './controls/res-select-control';
 export { default as ResRangeControl } from './controls/res-range-control';
 export { default as TextShadowControl } from './controls/textshadow-control';
 export { default as TextStrokeControl } from './controls/textstroke-control';
@@ -47,7 +48,7 @@ export { default as ContainerSidebarOpener } from './controls/container-sidebar-
 export { default as SidebarOpener } from './controls/sidebar-opener';
 export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
 export { default as Select2AjaxControl } from './controls/select2-ajax-control';
-
+export { default as TabDynamicControl } from './controls/tabdynamic-control';
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
 export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
@@ -57,6 +58,7 @@ export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToS
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';
+export { generateResSelectAttributies, generateResSelectStyle } from './helpers/res-select-helper';
 export { generateResRangeAttributies, generateResRangeStyle } from './helpers/res-range-helper';
 export { generateTextShadowAttributies, generateTextShadowStyles } from './helpers/textshadow-helper';
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from './helpers/textstroke-helper';

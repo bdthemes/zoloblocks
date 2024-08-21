@@ -20,6 +20,7 @@ import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 import IconicBtnGroup from '../../controls/iconic-btn-group';
+import ResSelectControl from '../../controls/res-select-control';
 import { applyFilters } from '@wordpress/hooks';
 import {
     DEFAULT_ALIGNS,
@@ -32,6 +33,7 @@ import {
     ICON_HPOSITIONS,
     VPOSITIONS,
     CONTENT_POSITIONS,
+    CONTENT_WIDTH,
 } from '../constants';
 
 const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
@@ -83,6 +85,10 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
         position,
+        widthTypeZRPSelect,
+        TABwidthTypeZRPSelect,
+        MOBwidthTypeZRPSelect,
+        resMode,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -150,7 +156,35 @@ export const AdvancedOptions = (props) => {
                     step={1}
                     help={__('Set the z-index for the section', 'zoloblocks')}
                 />
+                {block !== 'zolo/container' && (
+                    <div className="zolo-control-container zolo-single-control">
+                        <ResSelectControl
+                            label={__('Width', 'zoloblocks')}
+                            controlName={'widthType'}
+                            requiredProps={requiredProps}
+                            alignOptions={CONTENT_WIDTH}
+                        />
+                        {(resMode === 'Desktop' && widthTypeZRPSelect === 'custom') ||
+                        (resMode === 'Mobile' && MOBwidthTypeZRPSelect === 'custom') ||
+                        (resMode === 'Tablet' && TABwidthTypeZRPSelect === 'custom') ? (
+                            <ResRangeControl
+                                label={__('Custom Width', 'zoloblocks')}
+                                controlName={'customWidth'}
+                                requiredProps={requiredProps}
+                                max={1000}
+                                noUnits={false}
+                            />
+                        ) : null}
+                    </div>
+                )}
 
+                <OverflowControl
+                    label={__('Overflow', 'zoloblocks')}
+                    value={overflow}
+                    onChange={(v) => {
+                        setAttributes({ overflow: v });
+                    }}
+                />
                 <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
                     <div className="zolo-flex-row-control">
                         <SelectControl
@@ -252,13 +286,6 @@ export const AdvancedOptions = (props) => {
                         </>
                     )}
                 </PopoverControl>
-                <OverflowControl
-                    label={__('Overflow', 'zoloblocks')}
-                    value={overflow}
-                    onChange={(v) => {
-                        setAttributes({ overflow: v });
-                    }}
-                />
                 <div className="zolo-inline-control-wrapper">
                     <TextControl
                         label={__('CSS ID', 'zoloblocks')}
@@ -287,10 +314,12 @@ export const AdvancedOptions = (props) => {
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
                     <div className="zolo-flex-col-control">
-                        <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                        <BackgroundControl
+                            controlName={globalConfig.background.prefix || 'mainBg'}
+                            requiredProps={requiredProps}
+                            particles={particles}
+                        />
                     </div>
-                    {cssFilters && cssFilters.length > 0 && cssFilters}
-                    {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
@@ -321,7 +350,6 @@ export const AdvancedOptions = (props) => {
                     )}
                 </ZoloPanelBody>
             )}
-
             {globalConfig?.responsiveControls && (
                 <>
                     <ZoloPanelBody title={__('Visibility Control', 'zoloblocks')} panelProps={props} extraPanel={true}>

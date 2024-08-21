@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
 import { SORT_ORDER, ORDER_BY, PRINT_TAXONOMY } from '../../global/constants';
 import Select2AjaxControl from '../select2-ajax-control';
+import TabDynamicControl from '../tabdynamic-control';
 
 const QueryControl = ({ attributes, setAttributes }) => {
     const { postQuery } = attributes;
@@ -14,7 +15,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
 
     for (let tax in allTaxonomyList) {
         let value = allTaxonomyList[tax];
-        if (postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
+        if (value.public === true && postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
             tpgAllTaxonomies.add({
                 value: value.name,
                 name: value.label,
@@ -55,39 +56,8 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 onChange={(postType) => setAttributes({ postQuery: { ...postQuery, postType } })}
             />
 
-            <BaseControl label={__('By Author', 'zoloblocks')} className="zolo-flex-col-control">
-                <Select2
-                    classNamePrefix="zolo-select"
-                    options={AUTHOR_LISTS}
-                    value={postQuery.postAuthors}
-                    onChange={(postAuthors) => setAttributes({ postQuery: { ...postQuery, postAuthors } })}
-                    isMulti={true}
-                    closeMenuOnSelect={false}
-                />
-            </BaseControl>
-
-            <Select2AjaxControl
-                label={__('Include Only', 'zoloblocks')}
-                placeholder={__('Search...', 'zoloblocks')}
-                sourceName="post_type"
-                sourceType={postQuery.postType || 'post'}
-                isMulti={true}
-                value={postQuery?.postInclude || []}
-                onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
-            />
-
-            <Select2AjaxControl
-                label={__('Exclude', 'zoloblocks')}
-                placeholder={__('Search...', 'zoloblocks')}
-                sourceName="post_type"
-                sourceType={postQuery.postType || 'post'}
-                isMulti={true}
-                value={postQuery?.postExclude || []}
-                onChange={(postExclude) => setAttributes({ postQuery: { ...postQuery, postExclude } })}
-            />
-
             {tpgAllTaxonomies.map((tax, index) => (
-                <BaseControl label={__('By ', 'zoloblocks') + tax.name} key={index} className="zolo-flex-col-control">
+                <BaseControl label={__('By ', 'zoloblocks') + tax.name} key={index}>
                     <Select2
                         classNamePrefix="zolo-select"
                         options={PRINT_TAXONOMY(allTermList[tax.value])}
@@ -105,8 +75,49 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 </BaseControl>
             ))}
 
+            <BaseControl label={__('Author By', 'zoloblocks')}>
+                <Select2
+                    classNamePrefix="zolo-select"
+                    options={AUTHOR_LISTS}
+                    value={postQuery.postAuthors}
+                    onChange={(postAuthors) => setAttributes({ postQuery: { ...postQuery, postAuthors } })}
+                    isMulti={true}
+                    closeMenuOnSelect={false}
+                />
+            </BaseControl>
+
+            <TabDynamicControl
+                names={['include', 'exclude']}
+                include={
+                    <>
+                        <Select2AjaxControl
+                            label={__('Include By', 'zoloblocks')}
+                            placeholder={__('Search...', 'zoloblocks')}
+                            sourceName="post_type"
+                            sourceType={postQuery.postType || 'post'}
+                            isMulti={true}
+                            value={postQuery?.postInclude || []}
+                            onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
+                        />
+                    </>
+                }
+                exclude={
+                    <>
+                        <Select2AjaxControl
+                            label={__('Exclude By', 'zoloblocks')}
+                            placeholder={__('Search...', 'zoloblocks')}
+                            sourceName="post_type"
+                            sourceType={postQuery.postType || 'post'}
+                            isMulti={true}
+                            value={postQuery?.postExclude || []}
+                            onChange={(postExclude) => setAttributes({ postQuery: { ...postQuery, postExclude } })}
+                        />
+                    </>
+                }
+            />
+
             <InputControl
-                label={__('Post Per Page', 'zoloblocks')}
+                label={__('Item Limit', 'zoloblocks')}
                 value={postQuery.postPerPage}
                 onChange={(postPerPage) => {
                     setAttributes({ postQuery: { ...postQuery, postPerPage } });

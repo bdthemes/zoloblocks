@@ -152,6 +152,14 @@ const Inspector = ({ panelProps }) => {
 
             {active && (
                 <>
+                    {<span style={
+                        {
+                            fontSize: '12px',
+                            color: 'gray',
+                            fontStyle: 'italic',
+
+                        }
+                    }>{__('Enable or disable the particles effect; it only applies to the frontend at this moment.', 'zoloblocks')}</span>}
                     <SelectControl
                         label={__('Presets', 'zoloblocks')}
                         value={preset}

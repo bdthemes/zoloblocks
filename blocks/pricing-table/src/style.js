@@ -709,7 +709,7 @@ const Style = ({ props }) => {
 
     //css style
     const wrapperStylesDesktop = `
-		.zolo-block.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId}{
+		.zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-item{
 			${wrapperMarginDesktop}
 			${wrapperPaddingDesktop}
 			${wrapperBgDesktop}
@@ -720,33 +720,33 @@ const Style = ({ props }) => {
       --zolo-ribbon-yposition: ${ribbonYPosition}px;
       ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
 		}
-    .zolo-block.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info {
       ${separatorWidthDesktop}
       border-top-style: solid;
       border-top-color: ${separatorColor};
     }
 	`;
     const wrapperStylesTab = `
-		.zolo-block.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId}{
+		.zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-item{
 			${wrapperMarginTab}
 			${wrapperPaddingTab}
 			${wrapperBgTab}
 			${wrapperBorderTab}
             ${wrapperTabRadius}
 		}
-    .zolo-block.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info {
       ${separatorWidthTab}
     }
 	`;
     const wrapperStylesMobile = `
-		.zolo-block.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId}{
+		.zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-item{
 			${wrapperMarginMobile}
 			${wrapperPaddingMobile}
 			${wrapperBgMob}
 			${wrapperBorderMob}
             ${wrapperMobRadius}
 		}
-    .zolo-block.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info {
       ${separatorWidthMob}
     }
 	`;
@@ -755,7 +755,7 @@ const Style = ({ props }) => {
     .${uniqueId} .zolo-head-content{
       ${titlePaddingDesktop}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-package-title{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-package-title{
       ${titleTypoDesktop}
       ${titleMarginDesktop}
       ${titleBorderDesktop}
@@ -765,17 +765,17 @@ const Style = ({ props }) => {
       ${titleTextBgDesktop}
       ${titleTextPaddingDesk}
     }
-    .zolo-block.wp-block-zolo-pricing-table  .${uniqueId} .zolo-package-desc{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-package-desc{
       ${descTypoDesktop}
       ${descMarginDesktop}
       ${descColor ? `color: ${descColor};` : ''}
     }
   `;
     const headerStylesTab = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-head-content{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-head-content{
       ${titlePaddingTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-package-title{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-package-title{
       ${titleTypoTab}
       ${titleMarginTab}
       ${titleBorderTab}
@@ -783,16 +783,16 @@ const Style = ({ props }) => {
       ${titleTextBgTab}
       ${titleTextPaddingTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-package-desc{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-package-desc{
       ${descTypoTab}
       ${descMarginTab}
     }
   `;
     const headerStylesMob = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-head-content{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-head-content{
       ${titlePaddingMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-package-title{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-package-title{
       ${titleTypoMobile}
       ${titleBorderMob}
       ${titleMarginMobile}
@@ -800,53 +800,53 @@ const Style = ({ props }) => {
       ${titleTextBgMob}
       ${titleTextPaddingMob}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-package-desc{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-package-desc{
       ${descTypoMobile}
       ${descMarginMobile}
     }
   `;
 
     const priceStylesDesktop = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-price-info{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-price-info{
       ${priceMarginDesktop}
       ${alignDesktop}
     }
-    .wp-block-zolo-pricing-table.zolo-block .${uniqueId} .zolo-price{
+    .wp-block-zolo-pricing-table.zolo-block.${uniqueId} .zolo-price{
       ${priceTypoDesktop}
       ${priceColor ? `color: ${priceColor};` : ''}
     }
-    .wp-block-zolo-pricing-table.zolo-block.style-2 .${uniqueId} .zolo-price{
+    .wp-block-zolo-pricing-table.zolo-block.style-2.${uniqueId} .zolo-price{
       ${priceBorderDesktop}
       ${priceBRadiusDesktop}
       ${pricePaddingDesktop}
       ${priceBgDesktop}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-price .currency{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-price .currency{
       ${prefixSize ? ` font-size: ${prefixSize}px;` : ''}
       ${prefixPosition ? ` top: ${prefixPosition}px;` : ''}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-price .fractional{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-price .fractional{
       ${suffixSize ? ` font-size: ${suffixSize}px;` : ''}
       ${suffixPosition ? ` top: ${suffixPosition}px;` : ''}
     }
 
-    .wp-block-zolo-pricing-table.zolo-block .${uniqueId} .zolo-orginal-price{
+    .wp-block-zolo-pricing-table.zolo-block.${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoDesktop}
       ${orginalPriceColor ? `color: ${orginalPriceColor};` : ''}
       ${orginalPriceMarginDesktop}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-user-month{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-user-month{
       ${periodTypoDesktop}
       ${periodColor ? `color: ${periodColor};` : ''}
       ${periodMarginDesktop}
     }
   `;
     const priceStylesTab = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-price-info{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-price-info{
       ${priceMarginTab}
       ${alignTab}
     }
-    .wp-block-zolo-pricing-table.zolo-block .${uniqueId} .zolo-price{
+    .wp-block-zolo-pricing-table.zolo-block.${uniqueId} .zolo-price{
       ${priceTypoTab}
     }
     .wp-block-zolo-pricing-table.zolo-block.style-2 .${uniqueId} .zolo-price{
@@ -855,72 +855,72 @@ const Style = ({ props }) => {
       ${pricePaddingTab}
       ${priceBgTab}
     }
-    .wp-block-zolo-pricing-table.zolo-block .${uniqueId} .zolo-orginal-price{
+    .wp-block-zolo-pricing-table.zolo-block.${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoTab}
       ${orginalPriceMarginTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-user-month{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-user-month{
       ${periodTypoTab}
       ${periodMarginTab}
     }
   `;
     const priceStylesMob = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-price-info{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-price-info{
       ${priceMarginMobile}
       ${alignMob}
     }
-    .wp-block-zolo-pricing-table.zolo-block .${uniqueId} .zolo-price{
+    .wp-block-zolo-pricing-table.zolo-block.${uniqueId} .zolo-price{
       ${priceTypoMobile}
     }
-    .wp-block-zolo-pricing-table.zolo-block.style-2 .${uniqueId} .zolo-price{
+    .wp-block-zolo-pricing-table.zolo-block.style-2.${uniqueId} .zolo-price{
       ${priceBorderMob}
       ${priceBRadiusMob}
       ${pricePaddingMobile}
       ${priceBgMob}
     }
-    .wp-block-zolo-pricing-table.zolo-block .${uniqueId} .zolo-orginal-price{
+    .wp-block-zolo-pricing-table.zolo-block.${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoMobile}
       ${orginalPriceMarginMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-user-month{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-user-month{
       ${periodTypoMobile}
       ${periodMarginMobile}
     }
   `;
     const featuresStylesDesktop = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-title{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-title{
       ${featureTitleTypoDesktop}
       ${featureTitleColor ? `color: ${featureTitleColor};` : ''}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-desc{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-desc{
       ${featureDescTypoDesktop}
       ${featureDescMarginDesktop}
       ${featureDescColor ? `color: ${featureDescColor};` : ''}
     }
 
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info, .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-head-content{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info, .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-head-content{
       ${featureInfoAlignDesktop}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info{
       ${featurePaddingDesktop}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .features{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .features{
       ${featureItemGapDesktop}
       ${featureMarginDesktop}
     }
 
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .zolo-check-icon{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconBgColor ? `background-color: ${featureIconBgColor};` : ''}
       ${featureIconDeskPadding}
     }
 
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .zolo-check-icon svg{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
       ${featureIconColor ? `fill: ${featureIconColor};` : ''}
       ${featureIconSizeDesktop}
       ${featureIconHSizeDesktop}
     }
 
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .features li{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .features li{
       ${featureTypoDesktop}
       ${alignDesktop}
       ${featureIconGapDesktop}
@@ -928,63 +928,63 @@ const Style = ({ props }) => {
     }
   `;
     const featuresStylesTab = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-title{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-title{
       ${featureTitleTypoTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-desc{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-desc{
       ${featureDescTypoTab}
       ${featureDescMarginTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info, .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-head-content{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info, .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-head-content{
       ${featureInfoAlignTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info {
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info {
       ${featurePaddingTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .features{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .features{
       ${featureItemGapTab}
       ${featureMarginTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table  .${uniqueId} .zolo-features-info .zolo-check-icon{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
 
       ${featureIconTabPadding}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .zolo-check-icon svg{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
       ${featureIconSizeTab}
       ${featureIconHSizeTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .features li{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .features li{
       ${featureTypoTab}
       ${alignTab}
       ${featureIconGapTab}
     }
   `;
     const featuresStylesMobile = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-title{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-title{
         ${featureTitleTypoMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-desc{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-desc{
       ${featureDescTypoMobile}
       ${featureDescMarginMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info, .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-head-content{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info, .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-head-content{
       ${featureInfoAlignMob}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info {
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info {
       ${featurePaddingMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .features{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .features{
       ${featureItemGapMob}
       ${featureMarginMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .zolo-check-icon{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconMobPadding}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .zolo-check-icon svg{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
       ${featureIconSizeMob}
       ${featureIconHSizeMob}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-features-info .features li{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .features li{
       ${featureTypoMobile}
       ${alignMob}
       ${featureIconGapMob}
@@ -992,10 +992,10 @@ const Style = ({ props }) => {
   `;
 
     const buttonStylesDesktop = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn{
       ${btnsMarginDesktop}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnTextColor ? `color: ${btnTextColor};` : ''}
       ${btnMarginDesktop}
       ${btnPaddingDesktop}
@@ -1005,13 +1005,13 @@ const Style = ({ props }) => {
       ${btnShadow}
       ${btnDeskRadius}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
       ${btnHoverTextColor ? `color: ${btnHoverTextColor};` : ''}
       ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
       ${btnHoverBgDesktop}
       ${btnHoverShadow}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-chat-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-chat-btn{
       ${chatBtnColor ? `color: ${chatBtnColor};` : ''}
       ${chatBtnMarginDesktop}
       ${chatBtnPaddingDesktop}
@@ -1021,7 +1021,7 @@ const Style = ({ props }) => {
       ${chatBtnShadow}
       ${chatBtnDeskRadius}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
       ${chatBtnHoverColor ? `color: ${chatBtnHoverColor};` : ''}
       ${chatBtnHoverBorderColor ? `border-color: ${chatBtnHoverBorderColor};` : ''}
       ${chatBtnHoverBgDesktop}
@@ -1030,10 +1030,10 @@ const Style = ({ props }) => {
   `;
 
     const buttonStylesTab = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn{
       ${btnsMarginTab}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnMarginTab}
       ${btnPaddingTab}
       ${btnTypoTab}
@@ -1041,11 +1041,11 @@ const Style = ({ props }) => {
       ${btnBorderTab}
       ${btnTabRadius}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
       ${btnHoverBgTab}
     }
 
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-chat-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-chat-btn{
       ${chatBtnMarginTab}
       ${chatBtnPaddingTab}
       ${chatBtnTypoTab}
@@ -1053,16 +1053,16 @@ const Style = ({ props }) => {
       ${chatBtnBorderTab}
       ${chatBtnTabRadius}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
       ${chatBtnHoverBgTab}
     }
   `;
 
     const buttonStylesMob = `
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn{
       ${btnsMarginMobile}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnMarginMobile}
       ${btnPaddingMobile}
       ${btnTypoMobile}
@@ -1070,11 +1070,11 @@ const Style = ({ props }) => {
       ${btnBorderMob}
       ${btnMobRadius}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
       ${btnHoverBgMob}
     }
 
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-chat-btn{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-chat-btn{
       ${chatBtnMarginMobile}
       ${chatBtnPaddingMobile}
       ${chatBtnTypoMobile}
@@ -1082,13 +1082,13 @@ const Style = ({ props }) => {
       ${chatBtnBorderMob}
       ${chatBtnMobRadius}
     }
-    .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
+    .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
       ${chatBtnHoverBgMob}
     }
   `;
 
     const ribbonStylesDesktop = `
-      .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-ribbon-btn{
+      .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-ribbon-btn{
         ${ribbonColor ? `color: ${ribbonColor};` : ''}
         ${ribbonBgDesktop}
         ${ribbonPaddingDesktop}
@@ -1101,7 +1101,7 @@ const Style = ({ props }) => {
       }
     `;
     const ribbonStylesTab = `
-      .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-ribbon-btn{
+      .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-ribbon-btn{
         ${ribbonTypoTab}
         ${ribbonBgTab}
         ${ribbonPaddingTab}
@@ -1111,7 +1111,7 @@ const Style = ({ props }) => {
       }
     `;
     const ribbonStylesMobile = `
-      .zolo-block.wp-block-zolo-pricing-table .${uniqueId} .zolo-ribbon-btn{
+      .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-ribbon-btn{
         ${ribbonTypoMobile}
         ${ribbonBgMob}
         ${ribbonPaddingMobile}

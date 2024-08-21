@@ -1,4 +1,4 @@
-(globalThis["webpackChunkzoloblocks"] = globalThis["webpackChunkzoloblocks"] || []).push([["vendor-editor-bundle"],{
+(self["webpackChunkzoloblocks"] = self["webpackChunkzoloblocks"] || []).push([["vendor-editor-bundle"],{
 
 /***/ "./node_modules/@dnd-kit/core/dist/core.esm.js":
 /*!*****************************************************!*\
@@ -5274,6 +5274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getTooltip: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.getTooltip),
 /* harmony export */   gutter: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.gutter),
 /* harmony export */   gutterLineClass: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.gutterLineClass),
+/* harmony export */   gutterWidgetClass: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.gutterWidgetClass),
 /* harmony export */   gutters: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.gutters),
 /* harmony export */   hasHoverTooltips: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.hasHoverTooltips),
 /* harmony export */   highlightActiveLine: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.highlightActiveLine),
@@ -5285,6 +5286,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   keymap: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.keymap),
 /* harmony export */   layer: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.layer),
 /* harmony export */   lineNumberMarkers: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.lineNumberMarkers),
+/* harmony export */   lineNumberWidgetMarker: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.lineNumberWidgetMarker),
 /* harmony export */   lineNumbers: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.lineNumbers),
 /* harmony export */   logException: () => (/* reexport safe */ _codemirror_view__WEBPACK_IMPORTED_MODULE_5__.logException),
 /* harmony export */   minimalSetup: () => (/* reexport safe */ _uiw_codemirror_extensions_basic_setup__WEBPACK_IMPORTED_MODULE_7__.minimalSetup),
@@ -6855,7 +6857,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _index_a301f526_esm_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./index-a301f526.esm.js */ "./node_modules/react-select/dist/index-a301f526.esm.js");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.esm.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
 /* harmony import */ var memoize_one__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! memoize-one */ "./node_modules/memoize-one/dist/memoize-one.esm.js");
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
 
@@ -9567,7 +9569,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.esm.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
 /* harmony import */ var _babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
 /* harmony import */ var _babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
@@ -10997,8 +10999,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Select_49a62830_esm_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Select-49a62830.esm.js */ "./node_modules/react-select/dist/Select-49a62830.esm.js");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-element-43c6fea0.browser.esm.js");
-/* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/cache */ "./node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-element-7a1343fa.browser.development.esm.js");
+/* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/cache */ "./node_modules/@emotion/cache/dist/emotion-cache.browser.development.esm.js");
 /* harmony import */ var _index_a301f526_esm_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index-a301f526.esm.js */ "./node_modules/react-select/dist/index-a301f526.esm.js");
 /* harmony import */ var _babel_runtime_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");

@@ -7,10 +7,11 @@
  */
 
 use Zolo\Helpers\ZoloHelpers;
+use Zolo\Admin\Author;
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 if (!class_exists('Zolo_Block_Enqueue')) {
@@ -45,26 +46,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
-
-            // enqueue inline css to hide block before animation
-            add_action('wp_head', [$this, 'initial_css_loader']);
         }
-
-        /**
-         * Load Inline CSS
-         *
-         * @since 0.0.1
-         *
-         * @return void
-         */
-        public function initial_css_loader() {
-            $custom_css = ".zolo-entrance-animation:not(.animation-initialized), .zolo-entrance-animation .zolo-post-item:not(.animation-initialized) { opacity: 0; }
-                   .zolo-editor .zolo-entrance-animation:not(.animation-initialized), .zolo-editor .zolo-entrance-animation .zolo-post-item:not(.animation-initialized) { opacity: 1; }";
-            if (!empty($custom_css)) {
-                echo '<style id="zolo-init">' . esc_html($custom_css) . '</style>';
-            }
-        }
-
 
 
         /**
@@ -73,8 +55,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
+            $extension_particles = ZoloHelpers::zoloblocks_get_option('zolo_particles_effects', 'zolo_extensions_settings', '1');
 
-            // vendor bundle
             wp_enqueue_script(
                 'zolo-block-vendor-dependency',
                 trailingslashit(ZOLO_ADMIN_URL) . 'vendor-bundle/index.js',
@@ -134,7 +116,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // particles js
-            if (has_block('zolo/container')) {
+            if (has_block('zolo/container') && $extension_particles == '1') {
                 wp_enqueue_script(
                     'particles-js',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
@@ -143,7 +125,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     true
                 );
 
-                wp_enqueue_script('particles-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/frontend/index.js', [], ZOLO_VERSION, true);
+                wp_enqueue_script('particles-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/frontend/index.js', ['particles-js'], ZOLO_VERSION, true);
                 wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
             }
 
@@ -222,8 +204,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
 
-            wp_enqueue_script('zolo-transform-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', [], ZOLO_VERSION, true);
-
             // zolo popup
             wp_enqueue_script('zolo-popup-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js', [], ZOLO_VERSION, true);
         }
@@ -235,6 +215,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
+            $extension_particles = ZoloHelpers::zoloblocks_get_option('zolo_particles_effects', 'zolo_extensions_settings', '1');
 
             if (!is_admin()) {
                 return;
@@ -296,16 +277,32 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 false
             );
 
-            // partilces js
-            wp_enqueue_script(
-                'particles-js',
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
-                [],
-                ZOLO_VERSION,
-                true
-            );
+            if ($extension_particles == '1') {
+                wp_enqueue_script(
+                    'particles-js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
 
-            wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
+                // import shape divider
+                $import_particles_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/particles/index.asset.php';
+                if (file_exists($import_particles_file)) {
+                    $script_dependecy = include $import_particles_file;
+                    wp_enqueue_script(
+                        'zolo-particles-editor-script',
+                        trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/index.js',
+                        $script_dependecy['dependencies'],
+                        ZOLO_VERSION,
+                        true
+                    );
+                }
+            }
+
+
+
 
 
             // Register Modules
@@ -410,18 +407,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 );
             }
 
-            // import shape divider
-            $import_particles_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/particles/index.asset.php';
-            if (file_exists($import_particles_file)) {
-                $script_dependecy = include $import_particles_file;
-                wp_enqueue_script(
-                    'zolo-particles-editor-script',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/index.js',
-                    $script_dependecy['dependencies'],
-                    ZOLO_VERSION,
-                    true
-                );
-            }
 
             // template library
             $enable_template_library = get_option('zolo_enable_template_library');
@@ -461,6 +446,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'get_users'      => ZoloHelpers::get_all_users(),
                 'get_taxonomies' => ZoloHelpers::get_taxonomies(),
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
+                'user_social_link' => Author::user_contact_social_link([], true),
                 'home_url'       => home_url(),
                 'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                 'zolo_version'   => ZOLO_VERSION,

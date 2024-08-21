@@ -257,6 +257,6 @@ return apply_filters(
             'name'       => 'zolo_advanced_divider',
             'categories' => ['others'],
             'status'     => true,
-        ]
+        ],
     ]
 );

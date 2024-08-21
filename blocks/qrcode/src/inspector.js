@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
@@ -16,45 +16,57 @@ const {
     BorderControl,
     ResDimensionsControl,
     HeaderTabs,
-    ImageAvatar,
     ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
+    BoxShadowControl,
+    TypographyDropdown,
+    ResRangeControl,
 } = window.zoloModule;
 
 import {
     QR_CODE_LEVEL,
-    QR_CODE_STYLE,
     QR_CODE_BORDER,
     QR_CODE_ALIGN,
     QR_CODE_BORDER_RADIUS,
-    QR_LOGO_PADDING_STYLE,
+    WRAP_QR_CODE_BORDER,
+    WRAP_QR_CODE_BORDER_RADIUS,
+    WRAP_QR_CODE_PADDING,
+    WRAP_QR_CODE_BOX_SHADOW,
+    BADGE_QR_CODE_BORDER,
+    BADGE_QR_CODE_BORDER_RADIUS,
+    BADGE_QR_CODE_PADDING,
+    BADGE_QR_CODE_MARGIN,
+    BADGE_QR_CODE_BOX_SHADOW,
+    BADGE_ICON_SIZE,
+    // BADGE_TYPOGRAPHY
 } from './constants/index';
+
+import { BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Inspector(props) {
     const { attributes, setAttributes, block } = props;
 
     const {
         resMode,
-
+        badgeStyle,
         // settings
         qrContent,
         qrCodeLink,
-        qrCodeStyle,
-        logoQr,
-        logoQrBehind,
         codeColor,
         backgroundColor,
         qrCodePadding,
 
         qrCodeLevel,
         qrCodeSize,
-        logoWidth,
-        logoOpacity,
-        logoPaddingStyle,
-        logoPadding,
         eyeColor,
         eyeRadius,
+        showBadge,
+        showBadgeIcon,
+        wrapBackgroundColor,
+        badgeTextColor,
+        badgeBackgroundColor,
+        badgeBackgroundArrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -63,12 +75,10 @@ export default function Inspector(props) {
         setAttributes,
         objAttributes,
     };
-            const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [],  props);
-            const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [],  props);
-            const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [],  props);
-            const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [],  props);
-
-
+    const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [], props);
+    const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [], props);
+    const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [], props);
+    const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [], props);
     return (
         <>
             <InspectorControls>
@@ -78,7 +88,7 @@ export default function Inspector(props) {
                     setAttributes={setAttributes}
                     generalTab={
                         <>
-                            <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                                 {!qrCodeLink && (
                                     <TextareaControl
                                         label={__('Content', 'zoloblocks')}
@@ -129,13 +139,54 @@ export default function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
-                            {/* hook logo  */}
                             {hookLogo && hookLogo.length > 0 && hookLogo}
                         </>
                     }
                     styleTab={
                         <>
-                            <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            {showBadge && (
+                                <ZoloPanelBody
+                                    title={__('Wrapper', 'zoloblocks')}
+                                    panelProps={requiredProps}
+                                    firstOpen={showBadge ? true : false}
+                                    isPro={true}
+                                >
+                                    <BorderControl
+                                        label={__('Border Type', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_BORDER_RADIUS}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={WRAP_QR_CODE_PADDING}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                    <ColorControl
+                                        label={__('Background Color', 'zoloblocks')}
+                                        color={wrapBackgroundColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                wrapBackgroundColor: value,
+                                            })
+                                        }
+                                    />
+
+                                    <BoxShadowControl controlName={WRAP_QR_CODE_BOX_SHADOW} requiredProps={requiredProps} />
+                                </ZoloPanelBody>
+                            )}
+
+                            <ZoloPanelBody
+                                title={__('QR Code', 'zoloblocks')}
+                                panelProps={requiredProps}
+                                firstOpen={!showBadge ? true : false}
+                            >
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={codeColor}
@@ -216,12 +267,93 @@ export default function Inspector(props) {
                                 />
                             </ZoloPanelBody>
 
-                            {/* hooks logo style  */}
                             {hookLogoStyle && hookLogoStyle.length > 0 && hookLogoStyle}
+
+                            {showBadge && (
+                                <ZoloPanelBody title={__('Badge', 'zoloblocks')} panelProps={requiredProps} isPro={true}>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={badgeTextColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                badgeTextColor: value,
+                                            })
+                                        }
+                                    />
+
+                                    <TypographyDropdown
+                                        label={__('Title Typography', 'zoloblocks')}
+                                        typoPrefixConstant={BADGE_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                        max={72}
+                                    />
+
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zoloblocks')}
+                                        controlName={BADGE_QR_CODE_MARGIN}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+
+                                    {badgeStyle !== 'zolo-badge-style-1' && (
+                                        <>
+                                            <BorderControl
+                                                label={__('Border Type', 'zoloblocks')}
+                                                controlName={BADGE_QR_CODE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={BADGE_QR_CODE_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={BADGE_QR_CODE_PADDING}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+
+                                            {showBadgeIcon && (
+                                                <ResRangeControl
+                                                    label={__('Icon Size', 'zoloblocks')}
+                                                    controlName={BADGE_ICON_SIZE}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={50}
+                                                    step={1}
+                                                />
+                                            )}
+                                            <ColorControl
+                                                label={__('Background Color', 'zoloblocks')}
+                                                color={badgeBackgroundColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        badgeBackgroundColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Arrow Color', 'zoloblocks')}
+                                                color={badgeBackgroundArrowColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        badgeBackgroundArrowColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={BADGE_QR_CODE_BOX_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    )}
+                                </ZoloPanelBody>
+                            )}
                         </>
                     }
                     advancedTab={
                         <AdvancedOptions
+                            key="zolo/qr-block/advanced-options"
                             block="zolo/qr-block"
                             attributes={attributes}
                             setAttributes={setAttributes}

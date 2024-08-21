@@ -263,7 +263,8 @@ function Inspector(props) {
                             )}
                             {showPhoto && (
                                 <>
-                                    <BaseControl label={__('Photo', 'zoloblocks')}>
+                                    <BaseControl label={__('Photo', 'zoloblocks')} className='zolo-flex-col-control'>
+
                                         {photo ? (
                                             <ImageAvatar
                                                 imageUrl={photo && photo.url}
@@ -318,7 +319,7 @@ function Inspector(props) {
                                         )}
                                     </BaseControl>
                                     <ImageSizes
-                                        label={__('Photo Resolution', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={imageRes}
                                         onChange={(value) =>
                                             setAttributes({
@@ -366,6 +367,7 @@ function Inspector(props) {
                             )}
                             {showBio && (
                                 <TextareaControl
+                                    className='zolo-flex-col-control'
                                     label={__('Bio', 'zoloblocks')}
                                     value={bio}
                                     onChange={(value) =>

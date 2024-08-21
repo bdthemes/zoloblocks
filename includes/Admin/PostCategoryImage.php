@@ -80,6 +80,9 @@ class PostCategoryImage {
                     id="zolo-category-image-remove" name="zolo-category-image-remove"
                     value="<?php esc_html_e('Remove Image', 'zoloblocks'); ?>" />
             </p>
+
+            <!-- Nonce Field for Security -->
+            <?php wp_nonce_field('zolo_save_category_image', 'zolo_category_image_nonce'); ?>
         </div>
     <?php
     }
@@ -91,6 +94,11 @@ class PostCategoryImage {
      * @return void
      */
     public function save_category_image($term_id) {
+        // Verify nonce before saving the data
+        if (!isset($_POST['zolo_category_image_nonce']) || !wp_verify_nonce($_POST['zolo_category_image_nonce'], 'zolo_save_category_image')) {
+            return;
+        }
+
         if (isset($_POST['zolo-category-image-id']) && '' !== $_POST['zolo-category-image-id']) {
             $image = sanitize_key($_POST['zolo-category-image-id']);
             add_term_meta($term_id, 'zolo-category-image-id', $image, true);
@@ -126,6 +134,9 @@ class PostCategoryImage {
                         id="zolo-category-image-remove" name="zolo-category-image-remove"
                         value="<?php esc_html_e('Remove Image', 'zoloblocks'); ?>" />
                 </p>
+
+                <!-- Nonce Field for Security -->
+                <?php wp_nonce_field('zolo_save_category_image', 'zolo_category_image_nonce'); ?>
             </td>
         </tr>
     <?php
@@ -138,6 +149,11 @@ class PostCategoryImage {
      * @return void
      */
     public function updated_category_image($term_id) {
+        // Verify nonce before saving the data
+        if (!isset($_POST['zolo_category_image_nonce']) || !wp_verify_nonce($_POST['zolo_category_image_nonce'], 'zolo_save_category_image')) {
+            return;
+        }
+
         if (isset($_POST['zolo-category-image-id']) && '' !== $_POST['zolo-category-image-id']) {
             $image = sanitize_key($_POST['zolo-category-image-id']);
             update_term_meta($term_id, 'zolo-category-image-id', $image);

@@ -86,159 +86,157 @@ const Edit = (props) => {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
-                    <div className="zolo-item">
-                        <div className="zolo-head-content">
-                            <RichText
-                                tagName={titleTagName}
-                                className="zolo-package-title"
-                                value={titleText}
-                                onChange={(titleText) => setAttributes({ titleText })}
-                                placeholder={__('Add service name', 'zoloblocks')}
-                                allowedFormats={['bold', 'italic', 'strikethrough']}
-                            />
+                <div className="zolo-item">
+                    <div className="zolo-head-content">
+                        <RichText
+                            tagName={titleTagName}
+                            className="zolo-package-title"
+                            value={titleText}
+                            onChange={(titleText) => setAttributes({ titleText })}
+                            placeholder={__('Add service name', 'zoloblocks')}
+                            allowedFormats={['bold', 'italic', 'strikethrough']}
+                        />
 
-                            {showRibbon && ribbonTitle && (
-                                <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
-                                    <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />
+                        {showRibbon && ribbonTitle && (
+                            <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
+                                <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />
+                            </div>
+                        )}
+
+                        <div className="zolo-price-info">
+                            {orginalPrice && sale && (
+                                <span className="zolo-orginal-price">
+                                    {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                                    <span className="price">{orginalPrice}</span>
+                                </span>
+                            )}
+
+                            {price && (
+                                <span className="zolo-price">
+                                    {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                                    <span className="price">{price}</span>
+                                    {priceSuffix && <span className="fractional">{priceSuffix}</span>}
+                                </span>
+                            )}
+
+                            {pricingPeriod && pricingPeriod.length > 0 && (
+                                <div className="zolo-user-month">
+                                    {pricingPeriod.map((name, index) => (
+                                        <span className={`zolo-period text-${index}`} key={index}>
+                                            {name}
+                                        </span>
+                                    ))}
                                 </div>
                             )}
+                        </div>
 
-                            <div className="zolo-price-info">
-                                {orginalPrice && sale && (
-                                    <span className="zolo-orginal-price">
-                                        {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                        <span className="price">{orginalPrice}</span>
-                                    </span>
-                                )}
-
-                                {price && (
-                                    <span className="zolo-price">
-                                        {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                        <span className="price">{price}</span>
-                                        {priceSuffix && <span className="fractional">{priceSuffix}</span>}
-                                    </span>
-                                )}
-
-                                {pricingPeriod && pricingPeriod.length > 0 && (
-                                    <div className="zolo-user-month">
-                                        {pricingPeriod.map((name, index) => (
-                                            <span className={`zolo-period text-${index}`} key={index}>
-                                                {name}
-                                            </span>
-                                        ))}
+                        {showDesc && (
+                            <RichText
+                                tagName="div"
+                                className="zolo-package-desc"
+                                value={descText}
+                                onChange={(descText) => setAttributes({ descText })}
+                                placeholder={__('Add description', 'zoloblocks')}
+                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                            />
+                        )}
+                        {btnsPosition === 'middle' && (
+                            <>
+                                {(showBtn || showChatBtn) && (
+                                    <div className={`zolo-link-btn ${btnsDirection}`}>
+                                        {showBtn && (
+                                            <RichText
+                                                tagName="a"
+                                                className="zolo-buy-btn"
+                                                value={buttonText}
+                                                onChange={(text) => setAttributes({ buttonText: text })}
+                                                placeholder={__('Button Text', 'zoloblocks')}
+                                                allowedFormats={[]}
+                                            />
+                                        )}
+                                        {showChatBtn && (
+                                            <RichText
+                                                tagName="a"
+                                                className="zolo-chat-btn"
+                                                value={chatBtnText}
+                                                onChange={(text) => setAttributes({ chatBtnText: text })}
+                                                placeholder={__('Button Text', 'zoloblocks')}
+                                                allowedFormats={[]}
+                                            />
+                                        )}
                                     </div>
                                 )}
-                            </div>
+                            </>
+                        )}
+                    </div>
 
-                            {showDesc && (
-                                <RichText
-                                    tagName="div"
-                                    className="zolo-package-desc"
-                                    value={descText}
-                                    onChange={(descText) => setAttributes({ descText })}
-                                    placeholder={__('Add description', 'zoloblocks')}
-                                    allowedFormats={['bold', 'italic', 'strikethrough']}
-                                />
-                            )}
-                            {btnsPosition === 'middle' && (
-                                <>
-                                    {(showBtn || showChatBtn) && (
-                                        <div className={`zolo-link-btn ${btnsDirection}`}>
-                                            {showBtn && (
-                                                <RichText
-                                                    tagName="a"
-                                                    className="zolo-buy-btn"
-                                                    value={buttonText}
-                                                    onChange={(text) => setAttributes({ buttonText: text })}
-                                                    placeholder={__('Button Text', 'zoloblocks')}
-                                                    allowedFormats={[]}
-                                                />
-                                            )}
-                                            {showChatBtn && (
-                                                <RichText
-                                                    tagName="a"
-                                                    className="zolo-chat-btn"
-                                                    value={chatBtnText}
-                                                    onChange={(text) => setAttributes({ chatBtnText: text })}
-                                                    placeholder={__('Button Text', 'zoloblocks')}
-                                                    allowedFormats={[]}
-                                                />
-                                            )}
-                                        </div>
-                                    )}
-                                </>
-                            )}
-                        </div>
+                    <div className="zolo-features-info">
+                        {showFeatureHeading && (
+                            <RichText
+                                tagName="div"
+                                className="zolo-features-title"
+                                value={featureTitle}
+                                onChange={(featureTitle) => setAttributes({ featureTitle })}
+                                placeholder={__('Add feature title', 'zoloblocks')}
+                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                            />
+                        )}
+                        {showFeatureDesc && (
+                            <RichText
+                                tagName="div"
+                                className="zolo-features-desc"
+                                value={featureDesc}
+                                onChange={(featureDesc) => setAttributes({ featureDesc })}
+                                placeholder={__('Add feature description', 'zoloblocks')}
+                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                            />
+                        )}
 
-                        <div className="zolo-features-info">
-                            {showFeatureHeading && (
-                                <RichText
-                                    tagName="div"
-                                    className="zolo-features-title"
-                                    value={featureTitle}
-                                    onChange={(featureTitle) => setAttributes({ featureTitle })}
-                                    placeholder={__('Add feature title', 'zoloblocks')}
-                                    allowedFormats={['bold', 'italic', 'strikethrough']}
-                                />
-                            )}
-                            {showFeatureDesc && (
-                                <RichText
-                                    tagName="div"
-                                    className="zolo-features-desc"
-                                    value={featureDesc}
-                                    onChange={(featureDesc) => setAttributes({ featureDesc })}
-                                    placeholder={__('Add feature description', 'zoloblocks')}
-                                    allowedFormats={['bold', 'italic', 'strikethrough']}
-                                />
-                            )}
+                        {features.length !== 0 && showFeatures && (
+                            <ul className="features">
+                                {features.map((item, index) => (
+                                    <li key={index}>
+                                        {item.icon && hideFeatureIcon !== true && (
+                                            <span className="zolo-check-icon">
+                                                <DisplayZoloIcon icon={item.icon} />
+                                            </span>
+                                        )}
+                                        <span className="zolo-list-text">{item.text}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
 
-                            {features.length !== 0 && showFeatures && (
-                                <ul className="features">
-                                    {features.map((item, index) => (
-                                        <li key={index}>
-                                            {item.icon && hideFeatureIcon !== true && (
-                                                <span className="zolo-check-icon">
-                                                    <DisplayZoloIcon icon={item.icon} />
-                                                </span>
-                                            )}
-                                            <span className="zolo-list-text">{item.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-
-                            {btnsPosition === 'bottom' && (
-                                <>
-                                    {(showBtn || showChatBtn) && (
-                                        <div className={`zolo-link-btn ${btnsDirection}`}>
-                                            {showBtn && (
-                                                <RichText
-                                                    tagName="a"
-                                                    className="zolo-buy-btn"
-                                                    value={buttonText}
-                                                    onChange={(text) => setAttributes({ buttonText: text })}
-                                                    placeholder={__('Button Text', 'zoloblocks')}
-                                                    allowedFormats={[]}
-                                                    title={buttonText}
-                                                />
-                                            )}
-                                            {showChatBtn && (
-                                                <RichText
-                                                    tagName="a"
-                                                    className="zolo-chat-btn"
-                                                    value={chatBtnText}
-                                                    onChange={(text) => setAttributes({ chatBtnText: text })}
-                                                    placeholder={__('Button Text', 'zoloblocks')}
-                                                    allowedFormats={[]}
-                                                    title={chatBtnText}
-                                                />
-                                            )}
-                                        </div>
-                                    )}
-                                </>
-                            )}
-                        </div>
+                        {btnsPosition === 'bottom' && (
+                            <>
+                                {(showBtn || showChatBtn) && (
+                                    <div className={`zolo-link-btn ${btnsDirection}`}>
+                                        {showBtn && (
+                                            <RichText
+                                                tagName="a"
+                                                className="zolo-buy-btn"
+                                                value={buttonText}
+                                                onChange={(text) => setAttributes({ buttonText: text })}
+                                                placeholder={__('Button Text', 'zoloblocks')}
+                                                allowedFormats={[]}
+                                                title={buttonText}
+                                            />
+                                        )}
+                                        {showChatBtn && (
+                                            <RichText
+                                                tagName="a"
+                                                className="zolo-chat-btn"
+                                                value={chatBtnText}
+                                                onChange={(text) => setAttributes({ chatBtnText: text })}
+                                                placeholder={__('Button Text', 'zoloblocks')}
+                                                allowedFormats={[]}
+                                                title={chatBtnText}
+                                            />
+                                        )}
+                                    </div>
+                                )}
+                            </>
+                        )}
                     </div>
                 </div>
                 {renderHookAfter && renderHookAfter}

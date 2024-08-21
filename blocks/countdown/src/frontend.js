@@ -1,6 +1,6 @@
 import CountdownTimer from './counter';
 
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 
 document.addEventListener('DOMContentLoaded', () => {
     const zoloCounters = document.querySelectorAll('.wp-block-zolo-countdown');
