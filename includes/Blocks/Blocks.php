@@ -242,7 +242,7 @@ return apply_filters(
             'name'             => 'lightbox',
             'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/lightbox/block.json',
             'frontend-styles'  => ['zolo-block-common-style'],
-            'frontend-scripts' => ['zolo-lightbox-frontend']
+            // 'frontend-scripts' => ['zolo-lightbox-frontend']
         ],
         'progress-bar-child' => [
             'name'             => 'progress-bar-child',

@@ -23,7 +23,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-
+contentType,
         // settings
         lightBox,
         lightboxType,
@@ -44,24 +44,42 @@ export default function Edit(props) {
         videoSource,
         googleMapSource,
     } = attributes;
+    const [toggler, setToggler] = useState(false);
 
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
     });
 
-    	const [toggler, setToggler] = useState(false);
-
+    const wrapLightboxContent = (content) => {
+        return (
+            <div id={`${uniqueId}`} className="zolo-lightbox-contefnt">
+                {contentType === 'image' && (
+                    <img
+                        src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
+                        alt={contentImage.alt}
+                    />
+                )}
+            </div>
+            // <iframe
+            //     src={`https://www.youtube.com/embed/enuJ5wE33dY`}
+            //     width="450"
+            //     height="450"
+            //     allowFullScreen={true}
+            //     allow="autoplay; fullscreen"
+            // />
+        );
+    };
 
     return (
         <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
             <div {...blocksProps}>
+                {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+                <Style props={props} />
                 <div className="zolo-lightbox-btn">
                     <button
                         className="zolo-play-btn zolo-lightbox-btn-1"
                         onClick={() => {
-                            setToggler({ toggler: !toggler });
+                            setToggler(!toggler );
                         }}
                     >
                         {lightboxType !== 'poster' && (
@@ -83,29 +101,8 @@ export default function Edit(props) {
                         />
                     </div>
                 )}
-                <FsLightbox
-                    toggler={toggler}
-                    sources={[
-                        <iframe
-                            src={`https://www.youtube.com/embed/enuJ5wE33dY`}
-                            width="450"
-                            height="450"
-                            allowFullScreen="allowfullscreen"
-                            scrolling="no"
-                            allow="autoplay; fullscreen"
-                        />,
 
-                        // <iframe
-                        //     width="100%"
-                        //     height="426"
-                        //     src={`https://www.youtube.com/embed/enuJ5wE33dY?autoplay=1&mute=1`}
-                        //     title={'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes'}
-                        //     frameBorder="0"
-                        //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        //     allowFullScreen
-                        // />,
-                    ]}
-                />
+                <FsLightbox toggler={toggler} sources={[wrapLightboxContent(lightBoxContent)]} captions={[contentCaption]} />
             </div>
         </>
     );

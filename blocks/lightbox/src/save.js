@@ -52,7 +52,7 @@ export default function Save(props) {
         <div {...blocksProps}>
             <a href={`#${uniqueId}`} className="lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
                 <div className="zolo-lightbox-btn">
-                    <button className="zolo-play-btn zolo-lightbox-btn-1">
+                    <button href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1">
                         {lightboxType !== 'poster' && (
                             <span className="zolo-btn-text">
                                 <small>{enableSubHeading && buttonHeadingText}</small>
@@ -73,7 +73,6 @@ export default function Save(props) {
                     </div>
                 )}
             </a>
-
 
             <div id={`${uniqueId}`} className="zolo-lightbox-content">
                 {contentType === 'image' && (
