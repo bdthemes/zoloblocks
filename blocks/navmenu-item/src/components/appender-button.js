@@ -4,13 +4,13 @@ import { __ } from '@wordpress/i18n';
 import { dispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 const NavMenuAppenderButton = ({ rootClientId, isMegaMenu = false, onClick }) => {
-    const buttonLabel = isMegaMenu ? __('Add Mega Menu', 'gutenkit-blocks-addon') : __('Add Submenu', 'gutenkit-blocks-addon');
+    const buttonLabel = isMegaMenu ? __('Add Mega Menu', 'zoloblocks') : __('Add Submenu', 'zoloblocks');
     const { insertBlock } = dispatch('core/block-editor');
     const submenu = createBlock('zolo/navmenu-submenu', {});
     const megamenu = isMegaMenu ? createBlock('zolo/megamenu', {}) : null;
     return (
         <Button
-            className="gkit-nav-menu-item-appender-button"
+            className="zolo-nav-menu-item-appender-button"
             onClick={() => {
                 onClick();
                 isMegaMenu ? insertBlock(megamenu, 0, rootClientId) : insertBlock(submenu, 0, rootClientId);

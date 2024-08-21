@@ -9,13 +9,13 @@ const NavMenuAppenderButton = ({ rootClientId }) => {
     const blockRootName = getBlockNamesByClientId(blockRootClientId);
     const isNested = blockRootName && blockRootName[0] === 'zolo/navmenu-item';
 
-    const buttonLabel = isNested ? __('Add Submenu Item', 'gutenkit-blocks-addon') : __('Add Menu Item', 'gutenkit-blocks-addon');
+    const buttonLabel = isNested ? __('Add Submenu Item', 'zoloblocks') : __('Add Menu Item', 'zoloblocks');
     return (
         <Inserter
             rootClientId={rootClientId}
             renderToggle={({ onToggle }) => (
                 <Button
-                    className="gkit-nav-menu-item-appender-button"
+                    className="zolo-nav-menu-item-appender-button"
                     onClick={() => {
                         onToggle();
                     }}

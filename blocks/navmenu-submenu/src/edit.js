@@ -50,7 +50,7 @@ const Edit = (props) => {
                         replaceInnerBlocks(clientId, [...innerBlocks, navmenuItem]);
                         selectBlock(navmenuItem.clientId);
                     }}>
-                    {__('Add Menu Item', 'gutenkit-blocks-addon')}
+                    {__('Add Menu Item', 'zoloblocks')}
                 </button>
             </div>
         </>

@@ -130,7 +130,7 @@ const Edit = (props) => {
                             <>
                                 <ToolbarButton
                                     icon={addSubmenuIcon}
-                                    label={__('Add Submenu', 'gutenkit-blocks-addon')}
+                                    label={__('Add Submenu', 'zoloblocks')}
                                     onClick={() => {
                                         setAttributes({ addSubmenu: true })
                                         setAttributes({ submenuType: 'dropdown' })
@@ -144,7 +144,7 @@ const Edit = (props) => {
                                 {!isNested &&
                                     <ToolbarButton
                                         icon={menuIcon}
-                                        label={__('Add Mega Menu', 'gutenkit-blocks-addon')}
+                                        label={__('Add Mega Menu', 'zoloblocks')}
                                         onClick={() => {
                                             setAttributes({ addSubmenu: true })
                                             setAttributes({ submenuType: 'megamenu' })
@@ -165,7 +165,7 @@ const Edit = (props) => {
                                 <ToolbarButton
                                     icon={removeSubmenu}
                                     name="Remove Submenu"
-                                    label={__(`${attributes?.submenuType && attributes?.submenuType === 'megamenu' ? 'Remove Mega Menu' : 'Remove Submenu'}`, 'gutenkit-blocks-addon')}
+                                    label={__(`${attributes?.submenuType && attributes?.submenuType === 'megamenu' ? 'Remove Mega Menu' : 'Remove Submenu'}`, 'zoloblocks')}
                                     onClick={() => {
                                         setAttributes({ addSubmenu: false })
                                         setAttributes({ submenuType: '' })
