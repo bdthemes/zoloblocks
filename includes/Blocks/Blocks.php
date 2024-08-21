@@ -334,4 +334,28 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-notice-frontend']
     ],
+    'navmenu' => [
+        'name'             => 'navmenu',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/navmenu/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        // 'frontend-scripts' => ['zolo-notice-frontend']
+    ],
+    'navmenu-item' => [
+        'name'             => 'navmenu-item',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/navmenu-item/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        // 'frontend-scripts' => ['zolo-notice-frontend']
+    ],
+    'navmenu-submenu' => [
+        'name'             => 'zolo/navmenu-submenu',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/navmenu-submenu/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        // 'frontend-scripts' => ['zolo-notice-frontend']
+    ],
+    'megamenu' => [
+        'name'             => 'zolo/megamenu',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/megamenu/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        // 'frontend-scripts' => ['zolo-notice-frontend']
+    ],
 ]);

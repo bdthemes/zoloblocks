@@ -50,10 +50,9 @@ class StyleGenerator {
     }
 
     public function cursors_effects($block_content, $block) {
-        if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
+        if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/') && $block_content) {
 
             $zoloCursors = $block['attrs']['zoloCursors'] ?? false;
-            // print_r($zoloCursors);
             if ($zoloCursors) {
                 $cursorOptions = $block['attrs']['zoloCursors'] ?? [
                     'active' => true,

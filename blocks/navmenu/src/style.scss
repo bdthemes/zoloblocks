@@ -1,0 +1,13 @@
+.wp-block-zolo-navmenu{
+    .zolo-navmenu-menu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        list-style-type: none;
+    }
+}
+
+.block-editor-block-list__block .zolo-navmenu-menu .block-list-appender.block-list-appender{
+    position: relative;
+}

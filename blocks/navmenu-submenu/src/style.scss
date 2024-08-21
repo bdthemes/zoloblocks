@@ -1,0 +1,27 @@
+.zolo-navmenu-submenu-wrapper{
+    &.submenu-type-dropdown{
+        min-width: 200px;
+        box-shadow: 0 10px 30px 0 rgba(45, 45, 45, 0.2);
+        background-color: #F1F1F1;
+        transition: all 0.4s ease;
+        padding: 20px;
+
+        .wp-block-zolo-navmenu-submenu{
+            position: relative;
+
+            .zolo-navmenu-submenu-add-btn{
+                position: absolute;
+                left: 0;
+                bottom: -52px;
+                width: 100%;
+                cursor: pointer;
+            }
+        }
+
+        .zolo-navmenu-submenu-items{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

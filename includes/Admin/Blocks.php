@@ -257,6 +257,11 @@ return apply_filters(
             'name'       => 'zolo_advanced_divider',
             'categories' => ['others'],
             'status'     => true,
+        ],
+        [
+            'name'       => 'navmenu',
+            'categories' => ['others'],
+            'status'     => true,
         ]
     ]
 );

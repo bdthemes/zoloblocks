@@ -61,6 +61,10 @@ import '../blocks/tabs/src';
 import '../blocks/popup-builder/src';
 import '../blocks/text-path/src';
 import '../blocks/notice/src';
+import '../blocks/navmenu/src';
+import '../blocks/navmenu-item/src';
+import '../blocks/navmenu-submenu/src';
+import '../blocks/megamenu/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';

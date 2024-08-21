@@ -48,6 +48,7 @@ export { default as ContainerSidebarOpener } from './controls/container-sidebar-
 export { default as SidebarOpener } from './controls/sidebar-opener';
 export { default as ResRangeControlRaw } from './controls/res-range-control-raw';
 export { default as Select2AjaxControl } from './controls/select2-ajax-control';
+export { default as ToggleGroup } from './controls/toggle-group';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
