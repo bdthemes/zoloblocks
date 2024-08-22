@@ -91,6 +91,7 @@ export default function Inspector(props) {
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                                 {!qrCodeLink && (
                                     <TextareaControl
+                                        className='zolo-flex-col-control'
                                         label={__('Content', 'zoloblocks')}
                                         value={qrContent}
                                         onChange={(value) =>
@@ -102,25 +103,27 @@ export default function Inspector(props) {
                                 )}
                                 {/* hook links */}
                                 {hookLinks && hookLinks.length > 0 && hookLinks}
-                                <SimpleRangeControl
-                                    label={__('Size', 'zoloblocks')}
-                                    value={qrCodeSize}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            qrCodeSize: value,
-                                        })
-                                    }
-                                    onReset={() =>
-                                        setAttributes({
-                                            qrCodeSize: 0,
-                                        })
-                                    }
-                                    max={500}
-                                    noUnits={true}
-                                />
+                                <div className='zolo-flex-col-control'>
+                                    <SimpleRangeControl
+                                        label={__('Size', 'zoloblocks')}
+                                        value={qrCodeSize}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                qrCodeSize: value,
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                qrCodeSize: 0,
+                                            })
+                                        }
+                                        max={500}
+                                        noUnits={true}
+                                    />
+                                </div>
 
                                 <SelectControl
-                                    label={__('Error Correction Level', 'zoloblocks')}
+                                    label={__('Error Level', 'zoloblocks')}
                                     value={qrCodeLevel}
                                     onChange={(value) =>
                                         setAttributes({
@@ -207,23 +210,25 @@ export default function Inspector(props) {
                                     }
                                 />
 
-                                <SimpleRangeControl
-                                    label={__('Eye Radius', 'zoloblocks')}
-                                    value={eyeRadius}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            eyeRadius: value,
-                                        })
-                                    }
-                                    onReset={() =>
-                                        setAttributes({
-                                            eyeRadius: '',
-                                        })
-                                    }
-                                    min={0}
-                                    max={100}
-                                    noUnits={true}
-                                />
+                                <div className='zolo-flex-col-control'>
+                                    <SimpleRangeControl
+                                        label={__('Eye Radius', 'zoloblocks')}
+                                        value={eyeRadius}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                eyeRadius: value,
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                eyeRadius: '',
+                                            })
+                                        }
+                                        min={0}
+                                        max={100}
+                                        noUnits={true}
+                                    />
+                                </div>
 
                                 <ColorControl
                                     label={__('Background Type', 'zoloblocks')}
@@ -248,23 +253,25 @@ export default function Inspector(props) {
                                     forBorderRadius={true}
                                 />
 
-                                <SimpleRangeControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    value={qrCodePadding}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            qrCodePadding: value,
-                                        })
-                                    }
-                                    onReset={() =>
-                                        setAttributes({
-                                            qrCodePadding: '',
-                                        })
-                                    }
-                                    min={1}
-                                    max={300}
-                                    noUnits={true}
-                                />
+                                <div className='zolo-flex-col-control'>
+                                    <SimpleRangeControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        value={qrCodePadding}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                qrCodePadding: value,
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                qrCodePadding: '',
+                                            })
+                                        }
+                                        min={1}
+                                        max={300}
+                                        noUnits={true}
+                                    />
+                                </div>
                             </ZoloPanelBody>
 
                             {hookLogoStyle && hookLogoStyle.length > 0 && hookLogoStyle}

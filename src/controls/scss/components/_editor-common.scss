@@ -829,3 +829,25 @@ textarea[readonly] {
         }
     }
 }
+
+.zolo-color-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    .zb-color-control-wrapper {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.repeater-label {
+    .components-button {
+        background-color: #f2f2f2;
+        border-radius: 6px;
+        padding: 10px;
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+}

@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
@@ -9,14 +8,13 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 import classnames from 'classnames';
-
 const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
-
 import Inspector from './inspector';
 
 // import style
 import Style from './style';
 import Counter from './counter';
+import generateStyle from "./generate-style";
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
@@ -31,24 +29,8 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Static Social Count Preview', 'zoloblocks')} />;
     }
-
-    const individualStyle = socialProfiles.map((profile) => {
-        return {
-            '--zolo-ssc-bg': profile.bgColor || '',
-            '--zolo-ssc-hbg': profile.bgHoverColor || '',
-            '--zolo-ssc-icon-color': profile.iconColor || '',
-            '--zolo-ssc-icon-bg': profile.iconBgColor || '',
-            '--zolo-ssc-icon-border': profile.iconBorderColor || '',
-            '--zolo-ssc-icon-hcolor': profile.iconHColor || '',
-            '--zolo-ssc-icon-hbg': profile.iconHBgColor || '',
-            '--zolo-ssc-icon-hborder': profile.iconHBorderColor || '',
-
-            '--zolo-ssc-number-color': profile.numberColor || '',
-            '--zolo-ssc-number-hcolor': profile.numberHoverColor || '',
-            '--zolo-ssc-meta-color': profile.metaSSHColor || '',
-            '--zolo-ssc-meta-hcolor': profile.metaSSHHoverColor || '',
-        };
-    });
+    //generate individual style
+   const individualStyle = socialProfiles.map(generateStyle);
 
     return (
         <>

@@ -238,6 +238,12 @@ return apply_filters(
             'frontend-styles'  => ['zolo-block-common-style'],
             'frontend-scripts' => ['zolo-progress-bar-frontend']
         ],
+        'lightbox' => [
+            'name'             => 'lightbox',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/lightbox/block.json',
+            'frontend-styles'  => ['zolo-block-common-style'],
+            // 'frontend-scripts' => ['zolo-lightbox-frontend']
+        ],
         'progress-bar-child' => [
             'name'             => 'progress-bar-child',
             'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/progress-bar-child/block.json',
@@ -362,6 +368,13 @@ return apply_filters(
             'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/static-social-count/block.json',
             'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
             'frontend-scripts' => ['zolo-static-social-count-frontend'],
+        ],
+        'recent-comments'     => [
+            'name'             => 'recent-comments',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/recent-comments/block.json',
+            'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+            'frontend-scripts' => false,
+            'class'            => '\Zolo\Blocks\RecentComments',
         ],
     ]
 );

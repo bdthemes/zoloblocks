@@ -241,3 +241,23 @@ export const strToHex = (str, steps = -10) => {
   return output.toUpperCase();
 };
 
+export const getTaxonomies=(postType, allTaxonomyList) =>{
+  const zoloTaxonomies = new Set();
+
+  for (let tax in allTaxonomyList) {
+    const value = allTaxonomyList[tax];
+
+    if (
+      value.public === true &&
+      postType === value.object_type[0]
+    ) {
+      zoloTaxonomies.add({
+        value: value.name,
+        label: value.label,
+      });
+    }
+  }
+
+  // Convert the Set to an array before returning
+  return [...zoloTaxonomies];
+}

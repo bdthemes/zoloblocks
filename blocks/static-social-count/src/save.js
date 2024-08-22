@@ -2,33 +2,18 @@
  * Internal depencencies
  */
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
-
 import classnames from 'classnames';
-
 import { useBlockProps } from '@wordpress/block-editor';
+import generateStyle from "./generate-style";
 
 const Save = (props) => {
     const { attributes, className } = props;
     const { uniqueId, parentClasses, preset, socialProfiles, zoloId } = attributes;
-    const individualStyle = socialProfiles.map((profile) => {
-        return {
-            '--zolo-ssc-bg': profile.bgColor || '',
-            '--zolo-ssc-hbg': profile.bgHoverColor || '',
-            '--zolo-ssc-icon-color': profile.iconColor || '',
-            '--zolo-ssc-icon-bg': profile.iconBgColor || '',
-            '--zolo-ssc-icon-border': profile.iconBorderColor || '',
-            '--zolo-ssc-icon-hcolor': profile.iconHColor || '',
-            '--zolo-ssc-icon-hbg': profile.iconHBgColor || '',
-            '--zolo-ssc-icon-hborder': profile.iconHBorderColor || '',
 
-            '--zolo-ssc-number-color': profile.numberColor || '',
-            '--zolo-ssc-number-hcolor': profile.numberHoverColor || '',
-            '--zolo-ssc-meta-color': profile.metaSSHColor || '',
-            '--zolo-ssc-meta-hcolor': profile.metaSSHHoverColor || '',
-        };
-    });
+  //generate individual style
+  const individualStyle = socialProfiles.map(generateStyle);
 
-    return (
+  return (
         <div
             {...useBlockProps.save({
                 className: classnames(

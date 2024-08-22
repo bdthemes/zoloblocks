@@ -30,6 +30,7 @@ import '../blocks/icon/src';
 import '../blocks/image-gallery/src';
 import '../blocks/image-compare/src';
 import '../blocks/list/src';
+import '../blocks/lightbox/src';
 import '../blocks/newsletter/src';
 import '../blocks/post-carousel/src';
 import '../blocks/post-category/src';
@@ -64,7 +65,8 @@ import '../blocks/notice/src';
 import '../blocks/post-category/src';
 import '../blocks/tag-cloud/src';
 import '../blocks/author/src';
-import '../blocks/static-social-count/src'
+import '../blocks/static-social-count/src';
+import '../blocks/recent-comments/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';

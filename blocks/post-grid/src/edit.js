@@ -26,10 +26,7 @@ export default function Edit(props) {
             setAttributes({
                 postQuery: {
                     postType: 'post',
-                    postInclude: [],
                     postExclude: [],
-                    postAuthors: [],
-                    postTaxonomies: {},
                     postPerPage: 6,
                     postOffset: 0,
                     postOrderby: 'date',
