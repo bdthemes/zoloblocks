@@ -31,7 +31,7 @@ $wrapperId      = $settings['zoloId'] ?? '';
 			}
 			?>
 			<a class="zolo-item" href="<?php echo esc_url( $category->link ); ?>"
-				style="<?php echo empty( $settings['singleBG'] ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : ''; ?>">
+				style="<?php echo ! empty( $settings['tagCloudPro']['enableMultipleBG'] ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : ''; ?>">
 				<span class="zolo-name"><?php echo esc_html( $category->name ); ?></span>
 				<?php if ( ! empty( $settings['showCount'] ) ) : ?>
 					<span class="zolo-count"><?php echo esc_html( $category->count ); ?></span>

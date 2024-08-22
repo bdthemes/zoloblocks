@@ -353,6 +353,7 @@ export default function Inspector(props) {
                     }
                     advancedTab={
                         <AdvancedOptions
+                            key="zolo/qr-block/advanced-options"
                             block="zolo/qr-block"
                             attributes={attributes}
                             setAttributes={setAttributes}

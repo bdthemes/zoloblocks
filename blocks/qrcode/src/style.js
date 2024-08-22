@@ -34,7 +34,7 @@ import {
     BADGE_ICON_SIZE,
 } from './constants/index';
 
-export default function Style({ props }) {
+export default function Style({props}) {
     const { attributes, setAttributes } = props;
 
     const { uniqueId, showBadge, badgeStyle, wrapBackgroundColor, badgeBackgroundColor, badgeBackgroundArrowColor, badgeTextColor } =
