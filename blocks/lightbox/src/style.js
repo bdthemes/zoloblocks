@@ -37,6 +37,8 @@ import {
     HOVER_BUTTON_BG_COLOR,
     HOVER_BUTTON_BORDER_RADIUS,
     HOVER_BUTTON_BOX_SHADOW,
+    CONTENT_HEIGHT,
+    CONTENT_WIDTH,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -60,6 +62,24 @@ export default function Style({ props }) {
     } = generateResRangeStyle({
         controlName: POSTER_HEIGHT,
         property: 'height',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: contentHeightDesk,
+        tabRangeStyle: contentHeightTab,
+        mobRangeStyle: contentHeightMob,
+    } = generateResRangeStyle({
+        controlName: CONTENT_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: contentWidthDesk,
+        tabRangeStyle: contentWidthTab,
+        mobRangeStyle: contentWidthMob,
+    } = generateResRangeStyle({
+        controlName: CONTENT_WIDTH,
+        property: 'width',
         attributes,
     });
 
@@ -238,9 +258,13 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-poster {
             ${buttonAlignDesk}
         }
+        .${uniqueId}.zolo-content-iframe {
+            ${contentHeightDesk}
+            ${contentWidthDesk}
+        }
         .${uniqueId} .zolo-lightbox-btn-2 {
             ${posterBgColorDesk}
-            
+
         }
         .${uniqueId} .zolo-lightbox-poster button {
             ${posterBorderDesk}
@@ -277,7 +301,7 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-btn-1:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
-            
+
         .${uniqueId} .zolo-btn-text small {
             ${buttonSubTypoDesk}
         }
@@ -286,7 +310,7 @@ export default function Style({ props }) {
         }
         .${uniqueId} .zolo-lightbox-btn-1:hover small {
             ${hoverTitleSubColor ? `color: ${hoverTitleSubColor};` : ''}
-        }  
+        }
     `;
 
     const tabletAllStyle = `
@@ -296,9 +320,14 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-poster {
             ${buttonAlignTab}
         }
+
+       .${uniqueId}.zolo-content-iframe {
+            ${contentHeightTab}
+            ${contentWidthTab}
+        }
         .${uniqueId} .zolo-lightbox-btn-2 {
             ${posterBgColorTab}
-            
+
         }
         .${uniqueId} .zolo-lightbox-poster button {
             ${posterBorderTab}
@@ -335,7 +364,7 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-btn-1:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
-            
+
         .${uniqueId} .zolo-btn-text small {
             ${buttonSubTypoTab}
         }
@@ -345,18 +374,22 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-btn-1:hover small {
             ${hoverTitleSubColor ? `color: ${hoverTitleSubColor};` : ''}
         }
-    
+
     `;
     const mobileAllStyle = `
         .${uniqueId} .zolo-poster-img {
             ${posterHeightMob}
+        }
+      .${uniqueId}.zolo-content-iframe {
+            ${contentHeightMob}
+            ${contentWidthMob}
         }
         .${uniqueId} .zolo-lightbox-poster {
             ${buttonAlignMob}
         }
         .${uniqueId} .zolo-lightbox-btn-2 {
             ${posterBgColorMob}
-            
+
         }
         .${uniqueId} .zolo-lightbox-poster button {
             ${posterBorderMob}
@@ -393,7 +426,7 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-btn-1:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
-            
+
         .${uniqueId} .zolo-btn-text small {
             ${buttonSubTypoMob}
         }

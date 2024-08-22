@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, BaseControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl,TextareaControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 
@@ -49,6 +49,8 @@ import {
     HOVER_BUTTON_BG_COLOR,
     HOVER_BUTTON_BORDER_RADIUS,
     HOVER_BUTTON_BOX_SHADOW,
+    CONTENT_WIDTH,
+    CONTENT_HEIGHT,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -63,13 +65,12 @@ export default function Edit(props) {
         lightboxType,
         imagePoster,
         posterIcon,
-        posterIconToggle,
+        showPosterIcon,
         imageSize,
         buttonText,
         enableHeading,
         enableSubHeading,
         buttonHeadingText,
-        buttonIcon,
         contentType,
         contentCaption,
         contentImage,
@@ -182,15 +183,15 @@ export default function Edit(props) {
 
                                         <ToggleControl
                                             label={__('Show Icon', 'zoloblocks')}
-                                            checked={posterIconToggle}
+                                            checked={showPosterIcon}
                                             onChange={() =>
                                                 setAttributes({
-                                                    posterIconToggle: !posterIconToggle,
+                                                    showPosterIcon: !showPosterIcon,
                                                 })
                                             }
                                         />
 
-                                        {posterIconToggle && (
+                                        {showPosterIcon && (
                                             <>
                                                 <ZoloIconPicker
                                                     key="posterIcon"
@@ -256,12 +257,12 @@ export default function Edit(props) {
                                         )}
 
                                         <ZoloIconPicker
-                                            key="buttonIcon"
+                                            key="posterIcon"
                                             label={__('Selected Icon', 'zoloblocks')}
-                                            value={buttonIcon}
+                                            value={posterIcon}
                                             onChange={(value) =>
                                                 setAttributes({
-                                                    buttonIcon: value,
+                                                    posterIcon: value,
                                                 })
                                             }
                                         />
@@ -342,8 +343,8 @@ export default function Edit(props) {
 
                                 {contentType === 'youtube' && (
                                     <>
-                                        <LinkControl
-                                            label={__('Youtube', 'zoloblocks')}
+                                        <TextareaControl
+                                            label={__('Youtube Video Url', 'zoloblocks')}
                                             value={youtubeUrl}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -355,8 +356,17 @@ export default function Edit(props) {
                                 )}
                                 {contentType === 'vimeo' && (
                                     <>
-                                        <LinkControl
+                                        {/* <LinkControl
                                             label={__('Vimeo', 'zoloblocks')}
+                                            value={vimeoUrl}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    vimeoUrl: value,
+                                                })
+                                            }
+                                        /> */}
+                                        <TextareaControl
+                                            label={__('Vimeo Video Url', 'zoloblocks')}
                                             value={vimeoUrl}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -368,8 +378,8 @@ export default function Edit(props) {
                                 )}
 
                                 {contentType === 'googleMap' && (
-                                    <TextControl
-                                        label={__('Content Caption', 'zoloblocks')}
+                                    <TextareaControl
+                                        label={__('Google Map Embed Url', 'zoloblocks')}
                                         value={googleMapUrl}
                                         onChange={(value) =>
                                             setAttributes({
@@ -404,7 +414,12 @@ export default function Edit(props) {
                         <>
                             {lightboxType === 'poster' && (
                                 <>
-                                    <ZoloPanelBody title={__('Poster Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                    <ZoloPanelBody
+                                        title={__('Poster Wrapper', 'zoloblocks')}
+                                        panelProps={props}
+                                        stylePanel={true}
+                                        firstOpen={true}
+                                    >
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
@@ -471,7 +486,12 @@ export default function Edit(props) {
 
                             {lightboxType === 'button' && (
                                 <>
-                                    <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                    <ZoloPanelBody
+                                        title={__('Button', 'zoloblocks')}
+                                        stylePanel={true}
+                                        panelProps={props}
+                                        firstOpen={false}
+                                    >
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
@@ -598,6 +618,22 @@ export default function Edit(props) {
                                     )}
                                 </>
                             )}
+
+                            <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={false}>
+                                <ResRangeControl
+                                    label={__('Width', 'zoloblocks')}
+                                    controlName={CONTENT_WIDTH}
+                                    requiredProps={requiredProps}
+                                    max={1500}
+                                />
+                                <ResRangeControl
+                                    label={__('Height', 'zoloblocks')}
+                                    controlName={CONTENT_HEIGHT}
+                                    requiredProps={requiredProps}
+                                    max={1500}
+                                />
+
+                            </ZoloPanelBody>
                         </>
                     }
                     advancedTab={

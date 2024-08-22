@@ -61,3 +61,5 @@ export const HOVER_BUTTON_BG_COLOR = 'hoverButtonBgColor';
 export const HOVER_BUTTON_BORDER_RADIUS = 'hoverButtonBorderRadius';
 export const HOVER_BUTTON_BOX_SHADOW = 'hoverButtonBoxShadow';
 
+export const CONTENT_HEIGHT = 'contentHeight';
+export const CONTENT_WIDTH = 'contentWidth';

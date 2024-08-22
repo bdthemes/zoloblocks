@@ -15,17 +15,12 @@ export default function Save(props) {
         parentClasses,
         lightboxType,
         imagePoster,
-        posterIcon,
         imageSize,
-        posterIconToggle,
         buttonText,
         enableHeading,
         enableSubHeading,
         buttonHeadingText,
-        buttonIcon,
-        //content,
-        contentType,
-        contentImage,
+        posterIcon,
         contentCaption,
     } = attributes;
 
@@ -36,7 +31,7 @@ export default function Save(props) {
 
     return (
         <div {...blocksProps}>
-            <a href={`#${uniqueId}`} className="lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
+            <a href={`#${uniqueId}`} className="zolo-lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
                 <div className="zolo-lightbox-btn">
                     <button href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1">
                         {lightboxType !== 'poster' && (
@@ -46,11 +41,11 @@ export default function Save(props) {
                             </span>
                         )}
                         <span className="zolo-btn-icon">
-                            <DisplayZoloIcon icon={buttonIcon} />
+                            <DisplayZoloIcon icon={posterIcon} />
                         </span>
                     </button>
                 </div>
-                {imagePoster && (
+                {lightboxType === 'poster' && (
                     <div className="zolo-poster-img">
                         <img
                             src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
@@ -59,7 +54,9 @@ export default function Save(props) {
                     </div>
                 )}
             </a>
-            {LightboxContent(props)}
+            <div id={`${uniqueId}`} className="zolo-lightbox-content">
+                {LightboxContent(props)}
+            </div>
         </div>
     );
 }

@@ -127,10 +127,9 @@
 
 /* lightbox poster style css  */
 
-
 .zolo-lightbox-poster .zolo-poster-img {
     display: block;
-	height: 400px;
+    height: 400px;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -157,5 +156,20 @@
     transform: scale(1.1);
 }
 
- .zolo-lightbox-content{
-display: none;}
+.zolo-lightbox-content {
+    display: none;
+}
+
+.zolo-content-iframe {
+    width: 1450px;
+    height: 450px;
+    border: none;
+}
+
+.wp-block-zolo-lightbox .zolo-lightbox-trigger {
+    text-decoration: none;
+    .zolo-play-btn {
+        outline: none;
+        text-decoration: none;
+    }
+}

@@ -31,6 +31,8 @@ import {
     HOVER_BUTTON_BG_COLOR,
     HOVER_BUTTON_BORDER_RADIUS,
     HOVER_BUTTON_BOX_SHADOW,
+    CONTENT_HEIGHT,
+    CONTENT_WIDTH,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -76,7 +78,7 @@ const attributes = {
         type: 'string',
         default: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>',
     },
-    posterIconToggle: {
+    showPosterIcon: {
         type: 'boolean',
         default: true,
     },
@@ -174,6 +176,9 @@ const attributes = {
     ...generateDimensionAttributes(POSTER_BORDER_RADIUS),
     ...generateDimensionAttributes(POSTER_PADDING),
     ...generateBoxShadowAttributies(POSTER_BOX_SHADOW),
+    ...generateResRangeAttributies(CONTENT_WIDTH),
+    ...generateResRangeAttributies(CONTENT_HEIGHT),
+
 
     ...generateNormalBGAttributes(HOVER_POSTER_BG_COLOR),
     ...generateDimensionAttributes(HOVER_POSTER_BORDER_RADIUS),

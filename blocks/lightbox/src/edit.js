@@ -1,19 +1,17 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
-import { Button, ToolbarButton, ToolbarGroup, ResizableBox } from '@wordpress/components';
+import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import FsLightbox from 'fslightbox-react';
 import { useState } from '@wordpress/element';
-import iframeUrl from './iframeUrl';
-import LightboxContent from './content';
 
 /**
  * Internal depencencies
  */
 import Inspector from './inspector';
+import LightboxContent from './content';
 import Style from './style';
 import './style.scss';
 
@@ -25,50 +23,21 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-        contentType,
-        // settings
-        lightBox,
         lightboxType,
         imagePoster,
-        posterIcon,
         imageSize,
-        posterIconToggle,
         buttonText,
         enableHeading,
         enableSubHeading,
         buttonHeadingText,
-        buttonIcon,
-        iconText,
-        iconIcon,
+        posterIcon,
         contentCaption,
-        contentImage,
-        youtubeUrl,
-        googleMapSource,
     } = attributes;
     const [toggler, setToggler] = useState(false);
-
-    // const VideoURL = iframeUrl(props);
-    // console.log('VideoURL', VideoURL);
 
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
     });
-
-    // const wrapLightboxContent = () => {
-    //     return (
-    //         <div id={`${uniqueId}`} className="zolo-lightbox-content-editor">
-    //             {contentType === 'image' && (
-    //                 <img
-    //                     src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
-    //                     alt={contentImage.alt}
-    //                 />
-    //             )}
-    //             {contentType !== 'image' && (
-    //                 <iframe src={VideoURL} width="450" height="450" allowFullScreen={true} allow="autoplay; fullscreen" />
-    //             )}
-    //         </div>
-    //     );
-    // };
 
     return (
         <>
@@ -89,11 +58,11 @@ export default function Edit(props) {
                             </span>
                         )}
                         <span className="zolo-btn-icon">
-                            <DisplayZoloIcon icon={buttonIcon} />
+                            <DisplayZoloIcon icon={posterIcon} />
                         </span>
                     </button>
                 </div>
-                {imagePoster && (
+                {lightboxType === 'poster' && (
                     <div className="zolo-poster-img">
                         <img
                             src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
@@ -102,7 +71,15 @@ export default function Edit(props) {
                     </div>
                 )}
 
-                <FsLightbox toggler={toggler} sources={[LightboxContent(props)]} captions={[contentCaption]} />
+                <FsLightbox
+                    toggler={toggler}
+                    sources={[
+                        <div id={`${uniqueId}`} className="zolo-lightbox-content-editor">
+                            {LightboxContent(props)}
+                        </div>,
+                    ]}
+                    captions={[contentCaption]}
+                />
             </div>
         </>
     );
