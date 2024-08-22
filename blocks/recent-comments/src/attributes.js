@@ -1,17 +1,18 @@
 import {
   GRID_COLUMNS,
   COLUMNS_GAP,
-  COUNT_PADDING,
-  COUNT_BORDER,
-  COUNT_BORDER_RADIUS,
-  COUNT_SHADOW,
+  META_SPACING,
+  AVATAR_BORDER,
+  AVATAR_BORDER_RADIUS,
+  AVATAR_PADDING,
+  AVATAR_MARGIN,
+  AVATAR_SHADOW,
   ITEM_BG,
   ITEM_BORDER,
   ITEM_BORDER_RADIUS,
   ITEM_PADDING,
   ITEM_SHADOW,
-  ITEM_HOVER_BG,
-  ITEM_HOVER_SHADOW,
+  DATE_MARGIN
 } from "./constants";
 
 /**
@@ -24,7 +25,8 @@ const {
   generateNormalBGAttributes,
   generateTypographyAttributes,
   generateGapAttributes,
-  generateResCounterAttributies
+  generateResCounterAttributies,
+  generateResRangeAttributies
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -89,12 +91,9 @@ const attributes = {
     default: true
   },
 
-  itemHoverOpacity:{
-    type: 'number',
-  },
   ...generateResCounterAttributies(GRID_COLUMNS, {
-    deskRange: 4,
-    tabRange: 2,
+    deskRange: 1,
+    tabRange: 1,
     mobRange: 1,
   }),
   ...generateGapAttributes(COLUMNS_GAP, {
@@ -104,30 +103,17 @@ const attributes = {
     type: 'object',
   },
   ...generateTypographyAttributes(Object.values(typographyObjs)),
-  nameColor: {
+  textColor: {
     type: 'string'
   },
-  nameHoverColor: {
+  authorColor: {
     type: 'string'
   },
-  countColor: {
+  authorHoverColor: {
     type: 'string'
   },
-  countHoverColor: {
+  dateColor: {
     type: 'string'
-  },
-  countBgColor: {
-    type: 'string'
-  },
-  countBgHoverColor: {
-    type: 'string'
-  },
-  singleBG:{
-    type:'boolean',
-    default:false
-  },
-  multipleBG:{
-    type:'string',
   },
   //item
   ...generateDimensionAttributes(ITEM_PADDING),
@@ -135,12 +121,14 @@ const attributes = {
   ...generateBorderAttributies(ITEM_BORDER),
   ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
   ...generateBoxShadowAttributies(ITEM_SHADOW),
-  ...generateNormalBGAttributes(ITEM_HOVER_BG),
-  ...generateBoxShadowAttributies(ITEM_HOVER_SHADOW),
-  //count
-  ...generateDimensionAttributes(COUNT_PADDING),
-  ...generateBorderAttributies(COUNT_BORDER),
-  ...generateDimensionAttributes(COUNT_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(COUNT_SHADOW),
+  //avatar
+  ...generateBorderAttributies(AVATAR_BORDER),
+  ...generateDimensionAttributes(AVATAR_BORDER_RADIUS),
+  ...generateDimensionAttributes(AVATAR_PADDING),
+  ...generateDimensionAttributes(AVATAR_MARGIN),
+  ...generateBoxShadowAttributies(AVATAR_SHADOW),
+  ...generateResRangeAttributies(META_SPACING),
+  ...generateDimensionAttributes(DATE_MARGIN),
+
 }
 export default attributes;

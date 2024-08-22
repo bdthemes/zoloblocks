@@ -7,7 +7,18 @@ const TabDynamicControl = (props) => {
   const renderContent = () => {
     return props[activeTab] || null;
   }
-  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  const transformText=(text)=> {
+    if(text.includes('-')){
+      return text
+        .split('-')
+        .map(word =>
+          word.charAt(0).toUpperCase() + word.slice(1)
+        )
+        .join(' ');
+    }else{
+      return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+  }
 
   return (
     <div className="zolo-tabs-container">
@@ -18,7 +29,7 @@ const TabDynamicControl = (props) => {
             variant={activeTab === name ? 'primary' : 'secondary'}
             onClick={() => setActiveTab(name)}
           >
-            {capitalize(name)}
+            {transformText(name)}
           </Button>
         ))}
       </div>
