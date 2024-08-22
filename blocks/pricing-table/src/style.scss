@@ -275,6 +275,15 @@
     }
 
     &.style-2 {
+
+        .zolo-item {
+            &:hover {
+                .zolo-price {
+                    transform: rotate(-25deg) translateY(-40px);
+                }
+            }
+        }
+
         .zolo-price-info {
             position: relative;
         }
@@ -295,13 +304,13 @@
             position: absolute;
             left: -3px;
         }
-        .zolo-price-info {
-            &:hover {
-                .zolo-price {
-                    transform: rotate(-25deg) translateY(-40px);
-                }
-            }
-        }
+        // .zolo-price-info {
+        //     &:hover {
+        //         .zolo-price {
+        //             transform: rotate(-25deg) translateY(-40px);
+        //         }
+        //     }
+        // }
         .zolo-user-month {
             margin-left: 10px;
         }
