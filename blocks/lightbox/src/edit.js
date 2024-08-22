@@ -7,6 +7,8 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import FsLightbox from 'fslightbox-react';
 import { useState } from '@wordpress/element';
+import iframeUrl from './iframeUrl';
+import LightboxContent from './content';
 
 /**
  * Internal depencencies
@@ -38,47 +40,35 @@ export default function Edit(props) {
         buttonIcon,
         iconText,
         iconIcon,
-        lightBoxContent,
         contentCaption,
         contentImage,
-        videoSource,
+        youtubeUrl,
         googleMapSource,
     } = attributes;
     const [toggler, setToggler] = useState(false);
+
+    // const VideoURL = iframeUrl(props);
+    // console.log('VideoURL', VideoURL);
 
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
     });
 
-    const wrapLightboxContent = (content) => {
-      const contentSRC = contentType === 'video' ? videoSource.url : contentType === 'googleMap' ? googleMapSource.url : '';
-        return (
-            <div id={`${uniqueId}`} className="zolo-lightbox-content-editor">
-                {contentType === 'image' && (
-                    <img
-                        src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
-                        alt={contentImage.alt}
-                    />
-                )}
-                {contentType !== 'image' && (
-                    <iframe
-                        src={contentSRC}
-                        width="450"
-                        height="450"
-                        allowFullScreen={true}
-                        allow="autoplay; fullscreen"
-                    />
-                )}
-            </div>
-            // <iframe
-            //     src={`https://www.youtube.com/embed/enuJ5wE33dY`}
-            //     width="450"
-            //     height="450"
-            //     allowFullScreen={true}
-            //     allow="autoplay; fullscreen"
-            // />
-        );
-    };
+    // const wrapLightboxContent = () => {
+    //     return (
+    //         <div id={`${uniqueId}`} className="zolo-lightbox-content-editor">
+    //             {contentType === 'image' && (
+    //                 <img
+    //                     src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
+    //                     alt={contentImage.alt}
+    //                 />
+    //             )}
+    //             {contentType !== 'image' && (
+    //                 <iframe src={VideoURL} width="450" height="450" allowFullScreen={true} allow="autoplay; fullscreen" />
+    //             )}
+    //         </div>
+    //     );
+    // };
 
     return (
         <>
@@ -112,7 +102,7 @@ export default function Edit(props) {
                     </div>
                 )}
 
-                <FsLightbox toggler={toggler} sources={[wrapLightboxContent(lightBoxContent)]} captions={[contentCaption]} />
+                <FsLightbox toggler={toggler} sources={[LightboxContent(props)]} captions={[contentCaption]} />
             </div>
         </>
     );

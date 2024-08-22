@@ -1,12 +1,12 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import LightboxContent from './content';
 
 /**
  * Internal Dependencies
  */
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
-
 export default function Save(props) {
     const { attributes } = props;
 
@@ -29,22 +29,8 @@ export default function Save(props) {
         contentCaption,
     } = attributes;
 
-    const options = {
-        uniqueId,
-        lightboxType,
-        enableSubHeading,
-        buttonHeadingText,
-        enableHeading,
-        buttonText,
-        buttonIcon,
-        imagePoster,
-        posterIcon,
-        imageSize,
-        posterIconToggle,
-    };
     const blocksProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
-        'data-options': JSON.stringify(options),
     });
 
 
@@ -73,15 +59,7 @@ export default function Save(props) {
                     </div>
                 )}
             </a>
-
-            <div id={`${uniqueId}`} className="zolo-lightbox-content">
-                {contentType === 'image' && (
-                    <img
-                        src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
-                        alt={contentImage.alt}
-                    />
-                )}
-            </div>
+            {LightboxContent(props)}
         </div>
     );
 }

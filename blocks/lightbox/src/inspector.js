@@ -73,8 +73,9 @@ export default function Edit(props) {
         contentType,
         contentCaption,
         contentImage,
-        videoSource,
-        googleMapSource,
+        youtubeUrl,
+        vimeoUrl,
+        googleMapUrl,
 
         titleColor,
         hoverTitleColor,
@@ -274,7 +275,7 @@ export default function Edit(props) {
                                 )}
                             </ZoloPanelBody>
 
-                            <ZoloPanelBody title={__('LightBox Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                            <ZoloPanelBody title={__('Lightbox Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                 <SelectControl
                                     label={__('Select Light Box Content', 'zoloblocks')}
                                     value={contentType}
@@ -339,14 +340,27 @@ export default function Edit(props) {
                                     </>
                                 )}
 
-                                {contentType === 'video' && (
+                                {contentType === 'youtube' && (
                                     <>
                                         <LinkControl
-                                            label={__('Video Source', 'zoloblocks')}
-                                            value={videoSource}
+                                            label={__('Youtube', 'zoloblocks')}
+                                            value={youtubeUrl}
                                             onChange={(value) =>
                                                 setAttributes({
-                                                    videoSource: value,
+                                                    youtubeUrl: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                )}
+                                {contentType === 'vimeo' && (
+                                    <>
+                                        <LinkControl
+                                            label={__('Vimeo', 'zoloblocks')}
+                                            value={vimeoUrl}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    vimeoUrl: value,
                                                 })
                                             }
                                         />
@@ -354,15 +368,24 @@ export default function Edit(props) {
                                 )}
 
                                 {contentType === 'googleMap' && (
-                                    <LinkControl
-                                        label={__('Google Map Embed Url', 'zoloblocks')}
-                                        value={googleMapSource}
+                                    <TextControl
+                                        label={__('Content Caption', 'zoloblocks')}
+                                        value={googleMapUrl}
                                         onChange={(value) =>
                                             setAttributes({
-                                                googleMapSource: value,
+                                                googleMapUrl: value,
                                             })
                                         }
                                     />
+                                    // <LinkControl
+                                    //     label={__('Google Map Embed Url', 'zoloblocks')}
+                                    //     value={googleMapSource}
+                                    //     onChange={(value) =>
+                                    //         setAttributes({
+                                    //             googleMapSource: value,
+                                    //         })
+                                    //     }
+                                    // />
                                 )}
 
                                 <TextControl

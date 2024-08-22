@@ -68,8 +68,8 @@ const attributes = {
     imagePoster: {
         type: 'object',
         default: {
-            url: 'https://via.placeholder.com/300/',
-            alt: '',
+            url: zoloPlaceholders.placeholder,
+            id: '',
         },
     },
     posterIcon: {
@@ -117,25 +117,33 @@ const attributes = {
         type: 'string',
         default: 'image',
     },
+    contentCaption: {
+        type: 'string',
+        default: 'zoloblocks lightbox',
+    },
     contentType: {
         type: 'string',
         default: 'image',
     },
     contentImage: {
         type: 'object',
-        default: {},
+        default: {
+            url: zoloPlaceholders.placeholder,
+            id: '',
+        },
     },
-    contentCaption: {
+    youtubeUrl: {
         type: 'string',
-        default: 'zoloblocks lightbox',
+        default: 'https://www.youtube.com/watch?v=jX4sIXG-9fo',
     },
-    videoSource: {
-        type: 'object',
-        default: {},
+    vimeoUrl: {
+        type: 'string',
+        default: 'https://vimeo.com/76979871',
     },
-    googleMapSource: {
-        type: 'object',
-        default: {},
+    googleMapUrl: {
+        type: 'string',
+        default:
+            'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4740.819266853735!2d9.99008871708242!3d53.550454675412404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3f9d24afe84a0263!2sRathaus!5e0!3m2!1sde!2sde!4v1499675200938',
     },
 
     titleColor: {

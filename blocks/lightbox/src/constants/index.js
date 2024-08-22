@@ -27,8 +27,12 @@ export const LIGHT_BOX_CONTENT = [
         value: 'image',
     },
     {
-        label: __('Video', 'zoloblocks'),
-        value: 'video',
+        label: __('Youtube', 'zoloblocks'),
+        value: 'youtube',
+    },
+    {
+        label: __('Vimeo', 'zoloblocks'),
+        value: 'vimeo',
     },
     {
         label: __('Google Map', 'zoloblocks'),
