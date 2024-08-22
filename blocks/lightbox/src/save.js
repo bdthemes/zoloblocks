@@ -33,7 +33,6 @@ export default function Save(props) {
     return (
         <div {...blocksProps}>
             <a href={`#${uniqueId}`} className="zolo-lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
-                {/* <div className="zolo-lightbox-btn"> */}
                     <button href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1">
                         {lightboxType !== 'poster' && (
                             <span className="zolo-btn-text">
@@ -47,7 +46,6 @@ export default function Save(props) {
                             </span>
                         )}
                     </button>
-                {/* </div> */}
                 {lightboxType === 'poster' && (
                     <div className="zolo-poster-img">
                         <img
