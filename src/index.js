@@ -30,6 +30,7 @@ import '../blocks/icon/src';
 import '../blocks/image-gallery/src';
 import '../blocks/image-compare/src';
 import '../blocks/list/src';
+import '../blocks/lightbox/src';
 import '../blocks/newsletter/src';
 import '../blocks/post-carousel/src';
 import '../blocks/post-category/src';

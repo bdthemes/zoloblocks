@@ -1,23 +1,27 @@
 import {applyFilters} from '@wordpress/hooks';
 
 import {
+  GRID_COLUMNS,
+  COLUMNS_GAP,
   ITEM_BG,
   ITEM_BORDER,
   ITEM_BORDER_RADIUS,
   ITEM_SHADOW,
   ITEM_PADDING,
-  COLUMNS_GAP,
-  ITEM_HOVER_BG,
-  ITEM_HOVER_SHADOW,
-  COUNT_BORDER,
-  COUNT_BORDER_RADIUS,
-  COUNT_SHADOW,
-  COUNT_PADDING,
+  AVATAR_BORDER,
+  AVATAR_BORDER_RADIUS,
+  AVATAR_SHADOW,
+  AVATAR_PADDING,
+  AVATAR_MARGIN,
+  META_SPACING,
+  DATE_MARGIN
 } from './constants';
 
-import {NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY} from './constants/typoPrefixConstant';
+import {TEXT_TYPOGRAPHY, AUTHOR_TYPOGRAPHY,DATE_TYPOGRAPHY} from './constants/typoPrefixConstant';
 
 const {
+  generateResCounterStyle,
+  generateResRangeStyle,
   generateDimensionStyle,
   generateNormalBGControlStyles,
   generateBorderStyle,
@@ -31,15 +35,27 @@ function Style({props}) {
   const {attributes, setAttributes} = props;
   const {
     uniqueId,
-    itemHoverOpacity,
-    nameColor,
-    nameHoverColor,
-    countColor,
-    countHoverColor,
-    countBgColor,
-    countBgHoverColor,
+    textColor,
+    authorColor,
+    authorHoverColor,
+    dateColor
   } = attributes
 
+  //grid style
+  const {
+    desktopRangeStyle: columnCountDesk,
+    tabRangeStyle: columnCountTab,
+    mobRangeStyle: columnCountMob,
+  } = generateResCounterStyle({
+    controlName: GRID_COLUMNS,
+    attributes,
+    noProperty: true,
+    defaults: {
+      deskRange: 1,
+      tabRange: 1,
+      mobRange: 1,
+    },
+  });
   const {
     gapStylesDesktop: colGapDesk,
     gapStylesTab: colGapTab,
@@ -88,151 +104,194 @@ function Style({props}) {
     attributes,
     controlName: ITEM_SHADOW,
   });
+
+  //text style
   const {
-    backgroundStylesDesktop: itemHoverBGDesk,
-    backgroundStylesTab: itemHoverBGTab,
-    backgroundStylesMobile: itemHoverBGMob,
-  } = generateNormalBGControlStyles({
-    controlName: ITEM_HOVER_BG,
-    attributes,
-    noMainBGImg: true,
-  });
-  const {boxShadowStyle: itemHoverBoxShadow} = generateBoxShadowStyles({
-    attributes,
-    controlName: ITEM_HOVER_SHADOW,
-  });
-  //name style
-  const {
-    typoStylesDesktop: nameTypoDesk,
-    typoStylesTab: nameTypoTab,
-    typoStylesMobile: nameTypoMob,
+    typoStylesDesktop: textTypoDesk,
+    typoStylesTab: textTypoTab,
+    typoStylesMobile: textTypoMob,
   } = generateTypographyStyles({
-    prefixConstant: NAME_TYPOGRAPHY,
+    prefixConstant: TEXT_TYPOGRAPHY,
     attributes,
   });
-  //count
+
   const {
-    typoStylesDesktop: countTypoDesk,
-    typoStylesTab: countTypoTab,
-    typoStylesMobile: countTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: COUNT_TYPOGRAPHY,
+    desktopRangeStyle: metaSpacingDesk,
+    tabRangeStyle: metaSpacingTab,
+    mobRangeStyle: metaSpacingMob,
+  } = generateResRangeStyle({
+    controlName: META_SPACING,
+    property: 'margin-bottom',
     attributes,
   });
+
+  //avatar
   const {
-    dimensionStylesDesktop: countPaddingDesk,
-    dimensionStylesTab: countPaddingTab,
-    dimensionStylesMobile: countPaddingMob,
+    dimensionStylesDesktop: avatarPaddingDesk,
+    dimensionStylesTab: avatarPaddingTab,
+    dimensionStylesMobile: avatarPaddingMob,
   } = generateDimensionStyle({
-    controlName: COUNT_PADDING,
+    controlName: AVATAR_PADDING,
     styleFor: 'padding',
     attributes,
   });
   const {
-    desktopBorderStyle: countBorderDesk,
-    tabBorderStyle: countBorderTab,
-    mobBorderStyle: countBorderMob,
-  } = generateBorderStyle({
-    controlName: COUNT_BORDER,
+    dimensionStylesDesktop: avatarMarginDesk,
+    dimensionStylesTab: avatarMarginTab,
+    dimensionStylesMobile: avatarMarginMob,
+  } = generateDimensionStyle({
+    controlName: AVATAR_MARGIN,
+    styleFor: 'margin',
     attributes,
   });
   const {
-    dimensionStylesDesktop: countBorderRadiusDesk,
-    dimensionStylesTab: countBorderRadiusTab,
-    dimensionStylesMobile: countBorderRadiusMob,
+    desktopBorderStyle: avatarBorderDesk,
+    tabBorderStyle: avatarBorderTab,
+    mobBorderStyle: avatarBorderMob,
+  } = generateBorderStyle({
+    controlName: AVATAR_BORDER,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: avatarBorderRadiusDesk,
+    dimensionStylesTab: avatarBorderRadiusTab,
+    dimensionStylesMobile: avatarBorderRadiusMob,
   } = generateDimensionStyle({
-    controlName: COUNT_BORDER_RADIUS,
+    controlName: AVATAR_BORDER_RADIUS,
     styleFor: 'border-radius',
     attributes,
   });
-  const {boxShadowStyle: countBoxShadow} = generateBoxShadowStyles({
+  const {boxShadowStyle: avatarBoxShadow} = generateBoxShadowStyles({
     attributes,
-    controlName: COUNT_SHADOW,
+    controlName: AVATAR_SHADOW,
+  });
+  //author
+  const {
+    typoStylesDesktop: authorTypoDesk,
+    typoStylesTab: authorTypoTab,
+    typoStylesMobile: authorTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: AUTHOR_TYPOGRAPHY,
+    attributes,
+  });
+  //date
+  const {
+    typoStylesDesktop: dateTypoDesk,
+    typoStylesTab: dateTypoTab,
+    typoStylesMobile: dateTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: DATE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: dateMarginDesk,
+    dimensionStylesTab: dateMarginTab,
+    dimensionStylesMobile: dateMarginMob,
+  } = generateDimensionStyle({
+    controlName: DATE_MARGIN,
+    styleFor: 'margin',
+    attributes,
   });
   const desktopAllStyle = `
-        .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
-          ${colGapDesk}
-        }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
+       .${uniqueId}.zolo-block.zolo-recent-comments-wrap{
+         grid-template-columns:repeat(${columnCountDesk}, 1fr);
+         ${colGapDesk}
+       }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-item{
         ${itemBGDesk}
         ${itemPaddingDesk}
         ${itemBorderDesk}
         ${itemBorderRadiusDesk}
         ${itemBoxShadow}
       }
-
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover{
-       ${itemHoverBGDesk}
-       ${itemHoverBoxShadow}
-       ${itemHoverOpacity ? `opacity:${itemHoverOpacity};` : ''}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-text{
+       ${textTypoDesk}
+       ${textColor?`color:${textColor};`:''}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover .zolo-name {
-        ${nameHoverColor ? `color:${nameHoverColor};` : ''}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta{
+        ${metaSpacingDesk}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover .zolo-count{
-        ${countHoverColor ? `color:${countHoverColor};` : ''}
-        ${countBgHoverColor ? `background-color:${countBgHoverColor};` : ''}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-avatar img{
+       ${avatarPaddingDesk}
+       ${avatarMarginDesk}
+        ${avatarBorderDesk}
+        ${avatarBorderRadiusDesk}
+        ${avatarBoxShadow}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
-        ${nameTypoDesk}
-        ${nameColor ? `color:${nameColor};` : ''}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name{
+        ${authorTypoDesk}
+        ${authorColor?`color:${authorColor};`:''}
       }
-
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
-        ${countTypoDesk}
-        ${countPaddingDesk}
-        ${countBorderDesk}
-        ${countBorderRadiusDesk}
-        ${countBoxShadow}
-        ${countColor ? `color:${countColor};` : ''}
-        ${countBgColor ? `background-color:${countBgColor};` : ''}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name:hover{
+        ${authorHoverColor?`color:${authorHoverColor};`:''}
       }
-
-
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-date{
+        ${dateTypoDesk}
+        ${dateMarginDesk}
+        ${dateColor?`color:${dateColor};`:''}
+      }
   `;
 
   const tabletAllStyle = `
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
-        ${colGapTab}
-      }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap{
+         grid-template-columns:repeat(${columnCountTab}, 1fr);
+         ${colGapTab}
+       }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-item{
         ${itemBGTab}
         ${itemPaddingTab}
         ${itemBorderTab}
         ${itemBorderRadiusTab}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
-        ${nameTypoTab}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-text{
+       ${textTypoTab}
       }
-
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
-        ${countTypoTab}
-        ${countPaddingTab}
-        ${countBorderTab}
-        ${countBorderRadiusTab}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta{
+        ${metaSpacingTab}
       }
-
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-avatar img{
+       ${avatarPaddingTab}
+       ${avatarMarginTab}
+        ${avatarBorderTab}
+        ${avatarBorderRadiusTab}
+      }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name{
+        ${authorTypoTab}
+      }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-date{
+        ${dateTypoTab}
+        ${dateMarginTab}
+      }
   `;
   const mobileAllStyle = `
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
-        ${colGapMob}
-      }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap{
+         grid-template-columns:repeat(${columnCountMob}, 1fr);
+         ${colGapMob}
+       }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-item{
         ${itemBGMob}
         ${itemPaddingMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
       }
-
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
-        ${nameTypoMob}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-text{
+       ${textTypoMob}
       }
-
-       .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
-        ${countTypoMob}
-        ${countPaddingMob}
-        ${countBorderMob}
-        ${countBorderRadiusMob}
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta{
+        ${metaSpacingMob}
+      }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-avatar img{
+       ${avatarPaddingMob}
+       ${avatarMarginMob}
+        ${avatarBorderMob}
+        ${avatarBorderRadiusMob}
+      }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name{
+        ${authorTypoMob}
+      }
+      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-date{
+        ${dateTypoMob}
+        ${dateMarginMob}
       }
   `;
   return (

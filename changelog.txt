@@ -1,3 +1,16 @@
+### 1.4.0 [August 22, 2024]
+
+### Added
+
+- Lightbox block added
+- Static social count block  added
+- Recent Comments block added
+
+### Improved
+
+- Assets loading improved
+- Block is improved
+
 ### 1.3.3 [August 18, 2024]
 
 ### Fixed

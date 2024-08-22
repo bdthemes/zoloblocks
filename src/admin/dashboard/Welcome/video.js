@@ -8,7 +8,7 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
                     <iframe
                         width="100%"
                         height="426"
-                        src={`https://www.youtube.com/embed/${videoInfo.id}`}
+                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&mute=1`}
                         title={videoInfo.title || 'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes'}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

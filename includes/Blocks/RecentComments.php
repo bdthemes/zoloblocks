@@ -50,7 +50,8 @@ class RecentComments extends PostBlock {
 		$commentQuery['textLimit']  = $textLimit;
 		$commentQuery['avatarSize'] = $avatarSize;
 
-		$comments        = ZoloAJAX::comments_query( $commentQuery );
+		$comments = ZoloAJAX::comments_query( $commentQuery );
+		// array to object convert.
 		$comments_json   = wp_json_encode( $comments );
 		$comments_object = json_decode( $comments_json );
 

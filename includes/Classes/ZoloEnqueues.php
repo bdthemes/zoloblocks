@@ -10,8 +10,8 @@ use Zolo\Helpers\ZoloHelpers;
 use Zolo\Admin\Author;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH')) {
+    exit;
 }
 
 if (!class_exists('Zolo_Block_Enqueue')) {
@@ -151,7 +151,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             // popup
-            if (has_block('zolo/image-gallery')) {
+            if (has_block('zolo/image-gallery') || has_block('zolo/lightbox')) {
                 wp_enqueue_script(
                     'zolo-fslightbox-popup',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
