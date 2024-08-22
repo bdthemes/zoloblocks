@@ -175,19 +175,19 @@ function Inspector(props) {
                                                     iconAnimation !== undefined &&
                                                     iconAnimation !== 'undefined' &&
                                                     (preset === 'button-1' || preset === 'button-3'))) && (
-                                                <>
-                                                    <IconicBtnGroup
-                                                        label={__('Icon Position', 'zoloblocks')}
-                                                        value={iconPosition}
-                                                        onChange={(value) =>
-                                                            setAttributes({
-                                                                iconPosition: value,
-                                                            })
-                                                        }
-                                                        options={ICON_POSITIONS}
-                                                    />
-                                                </>
-                                            )}
+                                                    <>
+                                                        <IconicBtnGroup
+                                                            label={__('Icon Position', 'zoloblocks')}
+                                                            value={iconPosition}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    iconPosition: value,
+                                                                })
+                                                            }
+                                                            options={ICON_POSITIONS}
+                                                        />
+                                                    </>
+                                                )}
                                         </>
                                     )}
                                 </Fragment>
@@ -283,11 +283,14 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <NormalBGControl
-                                            requiredProps={requiredProps}
-                                            controlName={BUTTON_HOVER_BG_COLOR}
-                                            noMainBGImg={false}
-                                        />
+                                        {preset !== 'button-1' && (
+
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={BUTTON_HOVER_BG_COLOR}
+                                                noMainBGImg={false}
+                                            />
+                                        )}
                                         <BoxShadowControl
                                             controlName={BUTTON_HOVER_BOX_SHADOW}
                                             requiredProps={requiredProps}
