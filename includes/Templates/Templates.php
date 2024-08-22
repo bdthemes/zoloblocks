@@ -24,6 +24,10 @@ if( ! class_exists( 'Templates' ) ) {
         public function __construct() {
             add_action('wp_ajax_zolo_demo_import', [$this, 'demo_import']);
             add_action('wp_ajax_nopriv_zolo_demo_import', [$this, 'demo_import']);
+
+            // update transient for the api 
+            add_action('wp_ajax_zolo_demo_pull', [$this, 'update_transient']);
+            add_action('wp_ajax_nopriv_zolo_demo_pull', [$this, 'update_transient']);
         }
 
         /**
@@ -105,6 +109,42 @@ if( ! class_exists( 'Templates' ) ) {
             } else {
                 wp_send_json_error('No JSON file URL provided');
             }
+        }
+
+        /**
+         * Updates the transient for the API.
+         *
+         * This method is responsible for updating the transient for the API.
+         * It is located in the `Templates.php` file within the `zoloblocks/includes/Templates` directory.
+         * The method is public and can be accessed from other parts of the codebase.
+         *
+         * @since 1.0.0
+         */
+        public function update_transient() {
+            $transient_key = 'zolo_templates';
+
+            // Delete old transient
+            delete_transient($transient_key);
+
+            // Fetch latest templates from external server
+            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
+            $body     = wp_remote_retrieve_body($response);
+            $data     = json_decode($body, true);
+
+            $templates = [];
+
+            // Set transient if data is available
+            if (!empty($data)) {
+                $templates = $data ?? [];
+                set_transient($transient_key, $templates, 7 * DAY_IN_SECONDS);
+            }
+
+            // Immediately update data in REST API endpoint
+            wp_send_json_success([
+                'status'  => 'success',
+                'message' => __('Templates pulled and REST API updated successfully!', 'zoloblocks'),
+                'data'    => $templates,
+            ]);
         }
     }
 }

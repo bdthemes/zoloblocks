@@ -1,7 +1,7 @@
+import { Tooltip } from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import { Tooltip } from '@wordpress/components';
-import { useState, useEffect } from '@wordpress/element';
 import ProPopup from './pro-popup';
 
 const FavoriteTemplates = ({ templates, handleImportTemplate, handleFavTemplates }) => {
@@ -11,7 +11,7 @@ const FavoriteTemplates = ({ templates, handleImportTemplate, handleFavTemplates
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        if (templates.length > 0) {
+        if (templates?.length > 0) {
             setTotal(templates.length);
             setSaveFavTemplates(templates.slice(0, number));
         }

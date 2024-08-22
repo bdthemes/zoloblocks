@@ -16,6 +16,7 @@ use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
+use Zolo\API\TemplatesV1;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
 use Zolo\Form\Form;
@@ -74,6 +75,10 @@ class ZoloBlocks_Loader {
         // popup
         PopupBuilder::getInstance();
 
+        // Templates and Demo Import
+        TemplatesV1::getInstance();
+        Templates::getInstance();
+
         if ( is_admin() ) {
 
             // Support SVG
@@ -85,10 +90,6 @@ class ZoloBlocks_Loader {
             Dashboard::getInstance();
             Assets::getInstance();
             Settings::getInstance();
-
-            // Templates and Demo Import
-            Templates::getInstance();
-
         }
     }
 

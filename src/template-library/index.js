@@ -4,8 +4,6 @@ import { subscribe } from '@wordpress/data';
 import { createRoot, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
-import axios from 'axios';
-let root;
 
 /**
  * Template Library Style
@@ -166,31 +164,50 @@ function ZoloBlocksTemplateLibraryButton() {
 
     const fetchTemplates = async () => {
         setLoading(true);
-        try {
-            const response = await axios.get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
+        apiFetch({
+            path: '/zolo/v1/templates',
+            method: 'GET',
+        }).then((response) => {
             const { data } = response;
             setAllTemplates(data);
             setTotal(data.length);
             localStorage.setItem('zoloblocks_templates', JSON.stringify(data));
-
             // find tags
             const allTags = data.map((template) => template.tags);
-
             // find top 5 tags based on frequency
             const tags = allTags.flat().reduce((acc, tag) => {
                 acc[tag] = (acc[tag] || 0) + 1;
                 return acc;
             }, {});
-
             const sortedTags = Object.keys(tags)
                 .sort((a, b) => tags[b] - tags[a])
                 .slice(0, 9);
             setTags(sortedTags);
             setLoading(false);
-        } catch (error) {
-            console.error(error);
-            setLoading(false);
-        }
+        });
+    };
+
+    const pullNewDemos = () => {
+        setLoading(true);
+        jQuery.ajax({
+            url: zoloParams?.ajaxurl,
+            type: 'POST',
+            nonce: zoloParams?.nonce,
+            data: {
+                action: 'zolo_demo_pull',
+            },
+            success: function (response) {
+                if (response.success) {
+                    fetchTemplates();
+                    setLoading(false);
+                } else {
+                    console.log('Error:', response.data);
+                }
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            },
+        });
     };
 
     /**
@@ -240,11 +257,12 @@ function ZoloBlocksTemplateLibraryButton() {
         const filteredTemplates = allTemplates.filter((template) => {
             return template.title.toLowerCase().includes(searchText.toLowerCase());
         });
+
         setTemplates(filteredTemplates.slice(0, number));
         setTotal(filteredTemplates.length);
 
         // search for favorite templates
-        if (activeTab === 'favorites' && favTemplates.length > 0) {
+        if (activeTab === 'favorites' && favTemplates?.length > 0) {
             const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
             const filteredFavTemplates = favTemplatesData.filter((template) => {
                 return template.title.toLowerCase().includes(searchText.toLowerCase());
@@ -264,6 +282,7 @@ function ZoloBlocksTemplateLibraryButton() {
         jQuery.ajax({
             url: zoloParams?.ajaxurl,
             type: 'POST',
+            nonce: zoloParams?.nonce,
             data: {
                 action: 'zolo_demo_import',
                 json_file_url: jsonFile,
@@ -386,7 +405,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                                 {tab.label}
 
                                                 {tab.value === 'favorites' && favTemplates?.length > 0 && (
-                                                    <span className="fav-count">{favTemplates.length}</span>
+                                                    <span className="fav-count">{favTemplates?.length}</span>
                                                 )}
                                             </button>
                                         ))}
@@ -405,7 +424,8 @@ function ZoloBlocksTemplateLibraryButton() {
                                             <button
                                                 className="sync-button"
                                                 onClick={() => {
-                                                    setPullDemos(!pullDemos);
+                                                    // setPullDemos(!pullDemos);
+                                                    pullNewDemos();
                                                     setActiveCat('all');
                                                     setSearchText('');
                                                 }}
