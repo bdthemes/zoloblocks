@@ -23,7 +23,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-contentType,
+        contentType,
         // settings
         lightBox,
         lightboxType,
@@ -51,12 +51,22 @@ contentType,
     });
 
     const wrapLightboxContent = (content) => {
+      const contentSRC = contentType === 'video' ? videoSource.url : contentType === 'googleMap' ? googleMapSource.url : '';
         return (
-            <div id={`${uniqueId}`} className="zolo-lightbox-contefnt">
+            <div id={`${uniqueId}`} className="zolo-lightbox-content-editor">
                 {contentType === 'image' && (
                     <img
                         src={contentImage.sizes && contentImage.sizes[imageSize] ? contentImage.sizes[imageSize].url : contentImage.url}
                         alt={contentImage.alt}
+                    />
+                )}
+                {contentType !== 'image' && (
+                    <iframe
+                        src={contentSRC}
+                        width="450"
+                        height="450"
+                        allowFullScreen={true}
+                        allow="autoplay; fullscreen"
                     />
                 )}
             </div>
@@ -79,7 +89,7 @@ contentType,
                     <button
                         className="zolo-play-btn zolo-lightbox-btn-1"
                         onClick={() => {
-                            setToggler(!toggler );
+                            setToggler(!toggler);
                         }}
                     >
                         {lightboxType !== 'poster' && (

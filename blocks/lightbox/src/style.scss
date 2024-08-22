@@ -127,12 +127,10 @@
 
 /* lightbox poster style css  */
 
-.wp-block-zolo-lightbox .zolo-poster-img {
-    display: none;
-}
 
 .zolo-lightbox-poster .zolo-poster-img {
     display: block;
+	height: 400px;
     overflow: hidden;
     border-radius: 10px;
 }

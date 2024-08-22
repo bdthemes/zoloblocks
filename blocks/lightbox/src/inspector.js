@@ -71,7 +71,7 @@ export default function Edit(props) {
         buttonHeadingText,
         buttonIcon,
         contentType,
-        contentText,
+        contentCaption,
         contentImage,
         videoSource,
         googleMapSource,
@@ -367,10 +367,10 @@ export default function Edit(props) {
 
                                 <TextControl
                                     label={__('Content Caption', 'zoloblocks')}
-                                    value={contentText}
+                                    value={contentCaption}
                                     onChange={(value) =>
                                         setAttributes({
-                                            contentText: value,
+                                            contentCaption: value,
                                         })
                                     }
                                 />
