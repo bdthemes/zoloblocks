@@ -5,6 +5,7 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, TextareaControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+import {applyFilters} from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -295,7 +296,7 @@ export default function Edit(props) {
                                             contentType: value,
                                         })
                                     }
-                                    options={LIGHT_BOX_CONTENT}
+                                    options={applyFilters('zolo.presets.lightbox', LIGHT_BOX_CONTENT)}
                                 />
 
                                 {contentType === 'image' && (
