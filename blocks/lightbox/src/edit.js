@@ -31,6 +31,7 @@ export default function Edit(props) {
         enableSubHeading,
         buttonHeadingText,
         posterIcon,
+        showPosterIcon,
         contentCaption,
     } = attributes;
     const [toggler, setToggler] = useState(false);
@@ -57,9 +58,11 @@ export default function Edit(props) {
                                 {enableHeading && buttonText}
                             </span>
                         )}
-                        <span className="zolo-btn-icon">
-                            <DisplayZoloIcon icon={posterIcon} />
-                        </span>
+                        {showPosterIcon && (
+                            <span className="zolo-btn-icon">
+                                <DisplayZoloIcon icon={posterIcon} />
+                            </span>
+                        )}
                     </button>
                 </div>
                 {lightboxType === 'poster' && (

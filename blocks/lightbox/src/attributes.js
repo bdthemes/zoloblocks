@@ -33,6 +33,8 @@ import {
     HOVER_BUTTON_BOX_SHADOW,
     CONTENT_HEIGHT,
     CONTENT_WIDTH,
+    ICON_BG_COLOR,
+    ICON_H_BG_COLOR
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -96,7 +98,7 @@ const attributes = {
     },
     enableSubHeading: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     buttonHeadingText: {
         type: 'string',
@@ -159,19 +161,28 @@ const attributes = {
     },
     titleSubColor: {
         type: 'string',
-        default: '#2667ff',
+        default: '',
     },
     hoverTitleSubColor: {
         type: 'string',
-        default: '#2667ff',
+        default: '',
     },
-
+    iconColor:{
+        type: 'string',
+        default: '',
+    },
+    iconHColor:{
+        type: 'string',
+        default: '',
+    },
     // style attributes
 
     ...generateResRangeAttributies(POSTER_HEIGHT, { default: 300 }),
     ...generateResAlignmentAttributies(BUTTON_ALIGN, { default: 'center' }),
     ...generateResAlignmentAttributies(ICON_ALIGN),
     ...generateNormalBGAttributes(POSTER_BG_COLOR),
+    ...generateBorderAttributies(ICON_BG_COLOR),
+    ...generateBorderAttributies(ICON_H_BG_COLOR),
     ...generateBorderAttributies(POSTER_BORDER),
     ...generateDimensionAttributes(POSTER_BORDER_RADIUS),
     ...generateDimensionAttributes(POSTER_PADDING),

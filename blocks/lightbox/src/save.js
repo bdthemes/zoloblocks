@@ -21,6 +21,7 @@ export default function Save(props) {
         enableSubHeading,
         buttonHeadingText,
         posterIcon,
+        showPosterIcon,
         contentCaption,
     } = attributes;
 
@@ -32,7 +33,7 @@ export default function Save(props) {
     return (
         <div {...blocksProps}>
             <a href={`#${uniqueId}`} className="zolo-lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
-                <div className="zolo-lightbox-btn">
+                {/* <div className="zolo-lightbox-btn"> */}
                     <button href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1">
                         {lightboxType !== 'poster' && (
                             <span className="zolo-btn-text">
@@ -40,11 +41,13 @@ export default function Save(props) {
                                 {enableHeading && buttonText}
                             </span>
                         )}
-                        <span className="zolo-btn-icon">
-                            <DisplayZoloIcon icon={posterIcon} />
-                        </span>
+                        {showPosterIcon && (
+                            <span className="zolo-btn-icon">
+                                <DisplayZoloIcon icon={posterIcon} />
+                            </span>
+                        )}
                     </button>
-                </div>
+                {/* </div> */}
                 {lightboxType === 'poster' && (
                     <div className="zolo-poster-img">
                         <img

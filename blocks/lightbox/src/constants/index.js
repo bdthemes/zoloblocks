@@ -15,10 +15,6 @@ export const LIGHT_BOX_SELECT = [
         label: __('Button', 'zoloblocks'),
         value: 'button',
     },
-    // {
-    //     label: __('Icon', 'zoloblocks'),
-    //     value: 'icon',
-    // },
 ];
 
 export const LIGHT_BOX_CONTENT = [
@@ -27,16 +23,19 @@ export const LIGHT_BOX_CONTENT = [
         value: 'image',
     },
     {
-        label: __('Youtube', 'zoloblocks'),
+        label: __('Youtube (pro)', 'zoloblocks'),
         value: 'youtube',
+        disabled: true,
     },
     {
-        label: __('Vimeo', 'zoloblocks'),
+        label: __('Vimeo (pro)', 'zoloblocks'),
         value: 'vimeo',
+        disabled: true,
     },
     {
-        label: __('Google Map', 'zoloblocks'),
+        label: __('Google Map (pro)', 'zoloblocks'),
         value: 'googleMap',
+        disabled: true,
     },
 ];
 
@@ -58,8 +57,12 @@ export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
 export const BUTTON_PADDING = 'buttonPadding';
 export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
 export const HOVER_BUTTON_BG_COLOR = 'hoverButtonBgColor';
+
 export const HOVER_BUTTON_BORDER_RADIUS = 'hoverButtonBorderRadius';
 export const HOVER_BUTTON_BOX_SHADOW = 'hoverButtonBoxShadow';
 
 export const CONTENT_HEIGHT = 'contentHeight';
 export const CONTENT_WIDTH = 'contentWidth';
+export const ICON_BG_COLOR = 'iconBgColor';
+export const ICON_H_BG_COLOR = 'iconHoverBgColor';
+
