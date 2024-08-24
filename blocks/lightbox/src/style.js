@@ -43,7 +43,7 @@ import {
     ICON_H_BG_COLOR,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -96,6 +96,16 @@ export default function Style({ props }) {
         property: 'text-align',
         attributes,
     });
+
+        const {
+            desktopAlignStyle: buttonAlignFDesk,
+            tabAlignStyle: buttonAlignFTab,
+            mobAlignStyle: buttonAlignFMob,
+        } = generateResAlignmentStyle({
+            controlName: BUTTON_ALIGN,
+            property: 'justify-content',
+            attributes,
+        });
 
     const {
         backgroundStylesDesktop: posterBgColorDesk,
@@ -258,7 +268,7 @@ export default function Style({ props }) {
         typoStylesTab: buttonTypoTab,
         typoStylesMobile: buttonTypoMob,
     } = generateTypographyStyles({
-        prefixContant: BUTTON_TYPOGRAPHY,
+        prefixConstant: BUTTON_TYPOGRAPHY,
         attributes,
     });
 
@@ -267,87 +277,74 @@ export default function Style({ props }) {
         typoStylesTab: buttonSubTypoTab,
         typoStylesMobile: buttonSubTypoMob,
     } = generateTypographyStyles({
-        prefixContant: BUTTON_SUB_TYPOGRAPHY,
+        prefixConstant: BUTTON_SUB_TYPOGRAPHY,
         attributes,
     });
 
     // style
 
     const desktopAllStyle = `
-        .${uniqueId} .zolo-poster-img {
-            ${posterHeightDesk}
-        }
-        .${uniqueId} .zolo-lightbox-poster {
-            ${buttonAlignDesk}
-        }
-        .${uniqueId}.zolo-content-iframe {
-            ${contentHeightDesk}
-            ${contentWidthDesk}
-        }
-        .${uniqueId} .zolo-play-btn {
+        .${uniqueId}.zolo-lightbox-button .zolo-play-btn{
             ${posterBgColorDesk}
-
-        }
-        .${uniqueId} .zolo-lightbox-poster button {
-            ${posterBorderDesk}
-            ${posterBorderRadiusDesk}
-            ${posterPaddingDesk}
-            ${posterBoxShadow}
-        }
-        .${uniqueId} .zolo-play-btn:hover {
-            ${hoverPosterBgColorDesk}
-        }
-        .${uniqueId} .zolo-lightbox-poster button:hover {
-            ${hoverPosterBoxShadow}
-        }
-     .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
-            ${iconColor ? `fill: ${iconColor} !important;` : ''}
-        }
-
-     .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg{
-            ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
-        }
-
-         .${uniqueId} .zolo-play-btn .zolo-btn-icon{
-            ${iconBgColorDesk}
-            ${iconColor ? `border-color: ${iconColor};` : ''}
-        }
-
-     .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
-            ${iconHBgColorDesk}
-        }
-
-        .${uniqueId} .zolo-lightbox-btn {
-            ${buttonAlignDesk}
-        }
-        .${uniqueId} .zolo-play-btn {
             ${buttonBgColorDesk}
             ${buttonBorderDesk}
             ${buttonBorderRadiusDesk}
             ${buttonPaddingDesk}
             ${buttonBoxShadow}
         }
-        .${uniqueId} .zolo-play-btn:hover {
-            ${hoverButtonBgColorDesk}
+        .${uniqueId}.zolo-lightbox-button .zolo-play-btn:hover{
+            ${hoverPosterBgColorDesk}
+             ${hoverButtonBgColorDesk}
             ${hoverButtonBorderRadiusDesk}
             ${hoverButtonBoxShadow}
         }
-        .${uniqueId} .zolo-play-btn .zolo-btn-text {
+         .${uniqueId} .zolo-play-btn .zolo-btn-icon{
+            ${iconBgColorDesk}
+            ${iconColor ? `border-color: ${iconColor};` : ''}
+        }
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
+            ${iconHBgColorDesk}
+        }
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
+             ${iconColor ? `fill: ${iconColor} !important;` : ''}
+        }
+       .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg{
+            ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
+        }
+
+        .${uniqueId}.zolo-lightbox-button .zolo-play-btn .zolo-btn-text {
             ${titleColor ? `color: ${titleColor};` : ''}
             ${buttonTypoDesk}
         }
-        .${uniqueId} .zolo-play-btn:hover .zolo-btn-text {
+
+        .${uniqueId}.zolo-lightbox-button .zolo-play-btn:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
 
-        .${uniqueId} .zolo-btn-text small {
+        .${uniqueId}.zolo-lightbox-button .zolo-btn-text small {
             ${buttonSubTypoDesk}
         }
-        .${uniqueId} .zolo-play-btn small {
+        .${uniqueId}.zolo-lightbox-button .zolo-play-btn small {
             ${titleSubColor ? `color: ${titleSubColor};` : ''}
         }
-        .${uniqueId} .zolo-play-btn:hover small {
+        .${uniqueId}.zolo-lightbox-button .zolo-play-btn:hover small {
             ${hoverTitleSubColor ? `color: ${hoverTitleSubColor};` : ''}
+        }
+
+       .${uniqueId}.zolo-lightbox-button .zolo-lightbox-btn{
+           ${buttonAlignDesk}
+      }
+       .${uniqueId}.zolo-lightbox-button .zolo-lightbox-trigger{
+           ${buttonAlignFDesk}
+      }
+      .${uniqueId}.zolo-lightbox-poster .zolo-poster-img {
+          ${posterHeightDesk}
+          ${posterBorderDesk}
+        ${posterBorderRadiusDesk}
+      }
+    .${uniqueId}.zolo-content-iframe {
+            ${contentHeightDesk}
+            ${contentWidthDesk}
         }
     `;
 
