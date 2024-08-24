@@ -149,7 +149,7 @@ export const AdvancedOptions = (props) => {
                     />
                 )}
                 <RangeResetControl
-                    label={__('Set Z Index ', 'zoloblocks')}
+                    label={__('Set Z Index', 'zoloblocks')}
                     controlName={'zIndex'}
                     requiredProps={requiredProps}
                     min={-100}
