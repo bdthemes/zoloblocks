@@ -32,29 +32,29 @@ export default function Save(props) {
 
     return (
         <div {...blocksProps}>
-            <a href={`#${uniqueId}`} className="zolo-lightbox-trigger" data-fslightbox={uniqueId} data-caption={contentCaption}>
-                    <button href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1">
-                        {lightboxType !== 'poster' && (
-                            <span className="zolo-btn-text">
-                                <small>{enableSubHeading && buttonHeadingText}</small>
-                                {enableHeading && buttonText}
-                            </span>
-                        )}
-                        {showPosterIcon && (
-                            <span className="zolo-btn-icon">
-                                <DisplayZoloIcon icon={posterIcon} />
-                            </span>
-                        )}
-                    </button>
-                {lightboxType === 'poster' && imagePoster && (
-                    <div className="zolo-poster-img">
-                        <img
-                            src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
-                            alt={imagePoster.alt}
-                        />
-                    </div>
+            <a href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1" data-fslightbox={uniqueId} data-caption={contentCaption}>
+            {/* <a href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1"> */}
+                {lightboxType !== 'poster' && (
+                    <span className="zolo-btn-text">
+                        <small>{enableSubHeading && buttonHeadingText}</small>
+                        {enableHeading && buttonText}
+                    </span>
+                )}
+                {showPosterIcon && (
+                    <span className="zolo-btn-icon">
+                        <DisplayZoloIcon icon={posterIcon} />
+                    </span>
                 )}
             </a>
+            {lightboxType === 'poster' && imagePoster && (
+                <div className="zolo-poster-img">
+                    <img
+                        src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
+                        alt={imagePoster.alt}
+                    />
+                </div>
+            )}
+            {/* </a> */}
             <div id={`${uniqueId}`} className="zolo-lightbox-content">
                 {LightboxContent(props)}
             </div>

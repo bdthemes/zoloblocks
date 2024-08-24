@@ -332,10 +332,10 @@ export default function Style({ props }) {
         }
 
        .${uniqueId}.zolo-lightbox-button .zolo-lightbox-btn{
-           ${buttonAlignDesk}
-      }
-       .${uniqueId}.zolo-lightbox-button .zolo-lightbox-trigger{
            ${buttonAlignFDesk}
+      }
+       .${uniqueId}.zolo-lightbox-button{
+           ${buttonAlignDesk}
       }
       .${uniqueId}.zolo-lightbox-poster .zolo-poster-img {
           ${posterHeightDesk}

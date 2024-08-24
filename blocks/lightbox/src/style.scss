@@ -13,7 +13,9 @@
     display: block;
 }
 .zolo-lightbox-btn{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* Zolo Lightbox Button 1 */
 .zolo-lightbox-btn-1.zolo-play-btn {
@@ -170,11 +172,8 @@
     border: none;
 }
 
-.wp-block-zolo-lightbox .zolo-lightbox-trigger {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+.wp-block-zolo-lightbox{
+    // text-decoration: none;
     .zolo-play-btn {
         outline: none;
         text-decoration: none;
