@@ -574,7 +574,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('PreFix', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Prefix', 'zoloblocks')} </h3>
                                     </BaseControl>
                                     <RangeResetControl
                                         label={__('Size', 'zoloblocks')}

@@ -203,7 +203,7 @@ function Inspector(props) {
                             <CardDivider />
                             <div className="zolo-popup-note">
                                 <p>
-                                    <b>{__('ID', 'zoloblocks')}</b>
+                                    <b>{__('ID:', 'zoloblocks')}</b>
                                     {closeBtnId}
                                 </p>
                             </div>
