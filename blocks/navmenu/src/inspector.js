@@ -45,6 +45,12 @@ import {
     NAV_MENU_ITEM_PADDING,
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
+    DROPDOWN_WRAP_BG,
+    DROPDOWN_WRAP_BORDER,
+    DROPDOWN_WRAP_BORDER_RADIUS,
+    DROPDOWN_WRAP_PADDING,
+    DROPDOWN_WRAP_MARGIN,
+    DROPDOWN_WRAP_BOX_SHADOW,
     TAB_STATES,
 
 } from './constants';
@@ -240,6 +246,57 @@ const Inspector = (props) => {
                                     </>
                                 }
                             />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Dropdown', 'zoloblocks')} panelProps={props}>
+                            <NormalBGControl requiredProps={requiredProps} controlName={DROPDOWN_WRAP_BG} noMainBGImg={false} />
+                            <BorderControl
+                                label={__('Border', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+
+                            <BoxShadowControl controlName={DROPDOWN_WRAP_BOX_SHADOW} requiredProps={requiredProps} />
+
+                            <TabPanelControl
+                                options={TAB_STATES}
+                                normalComponents={
+                                    <>
+
+                                    </>
+                                }
+
+                                hoverComponents={
+                                    <>
+
+                                    </>
+                                }
+
+                                activeComponents={
+                                    <>
+
+                                    </>
+                                }
+                            />
+
                         </ZoloPanelBody>
 
                     </>

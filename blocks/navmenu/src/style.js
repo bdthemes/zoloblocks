@@ -33,6 +33,13 @@ import {
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
 
+    DROPDOWN_WRAP_BG,
+    DROPDOWN_WRAP_BORDER,
+    DROPDOWN_WRAP_BORDER_RADIUS,
+    DROPDOWN_WRAP_PADDING,
+    DROPDOWN_WRAP_MARGIN,
+    DROPDOWN_WRAP_BOX_SHADOW,
+
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -190,6 +197,71 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    // DROPDOWN_WRAP_BG
+
+    const {
+        backgroundStylesDesktop: dropdownWrapBGDesk,
+        backgroundStylesTab: dropdownWrapBGTab,
+        backgroundStylesMobile: dropdownWrapBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: DROPDOWN_WRAP_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // DROPDOWN_WRAP_BORDER
+
+    const {
+        desktopBorderStyle: dropdownWrapBorderDesk,
+        tabBorderStyle: dropdownWrapBorderTab,
+        mobBorderStyle: dropdownWrapBorderMob,
+    } = generateBorderStyle({
+        controlName: DROPDOWN_WRAP_BORDER,
+        attributes,
+    });
+
+    // DROPDOWN_WRAP_BORDER_RADIUS
+    const {
+        dimensionStylesDesktop: dropdownWrapBorderRadiusDesk,
+        dimensionStylesTab: dropdownWrapBorderRadiusTab,
+        dimensionStylesMobile: dropdownWrapBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: DROPDOWN_WRAP_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // DROPDOWN_WRAP_PADDING
+
+    const {
+        dimensionStylesDesktop: dropdownWrapPaddingDesk,
+        dimensionStylesTab: dropdownWrapPaddingTab,
+        dimensionStylesMobile: dropdownWrapPaddingMob,
+    } = generateDimensionStyle({
+        controlName: DROPDOWN_WRAP_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // DROPDOWN_WRAP_MARGIN
+
+    const {
+        dimensionStylesDesktop: dropdownWrapMarginDesk,
+        dimensionStylesTab: dropdownWrapMarginTab,
+        dimensionStylesMobile: dropdownWrapMarginMob,
+    } = generateDimensionStyle({
+        controlName: DROPDOWN_WRAP_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // DROPDOWN_WRAP_BOX_SHADOW
+
+    const { boxShadowStyle: dropdownWrapBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: DROPDOWN_WRAP_BOX_SHADOW,
+        attributes,
+    });
+
     /**
      * Generate Alignment Class
      */
@@ -236,6 +308,16 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
             ${btnDeskAlign}
         }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-item .zolo-navmenu-submenu-wrapper{
+            ${dropdownWrapBGDesk}
+            ${dropdownWrapBorderDesk}
+            ${dropdownWrapBorderRadiusDesk}
+            ${dropdownWrapPaddingDesk}
+            ${dropdownWrapMarginDesk}
+            ${dropdownWrapBoxShadowStyle}
+        }
+
 	`;
     const tabletAllStyle = `
 		

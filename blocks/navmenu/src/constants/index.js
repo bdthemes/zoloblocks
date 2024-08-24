@@ -24,6 +24,14 @@ export const NAV_MENU_ITEM_BOX_SHADOW = 'navItemBoxShadow';
 export const NAV_MENU_ITEM_HOVER_BG = 'navItemHoverBg';
 export const NAV_MENU_ITEM_ACTIVE_BG = 'navItemHoverBg';
 
+export const DROPDOWN_WRAP_BOX_SHADOW = 'dropdownWrapBoxShadow';
+export const DROPDOWN_WRAP_BG = 'dropdownWrapBg';
+export const DROPDOWN_WRAP_BORDER = 'dropdownWrapBorder';
+export const DROPDOWN_WRAP_BORDER_RADIUS = 'dropdownWrapBorderRadius';
+export const DROPDOWN_WRAP_PADDING = 'dropdownWrapPadding';
+export const DROPDOWN_WRAP_MARGIN = 'dropdownWrapMargin';
+
+
 
 
 // tab states
