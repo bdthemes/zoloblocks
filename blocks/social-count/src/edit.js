@@ -22,12 +22,12 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} zolo-static-social-count-wrap zolo-${preset}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId} zolo-social-count-wrap zolo-${preset}`, classArrayToStr(parentClasses)),
     });
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Static Social Count Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Social Count Preview', 'zoloblocks')} />;
     }
     //generate individual style
    const individualStyle = socialProfiles.map(generateStyle);
