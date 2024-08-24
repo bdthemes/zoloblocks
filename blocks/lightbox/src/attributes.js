@@ -31,6 +31,10 @@ import {
     HOVER_BUTTON_BG_COLOR,
     HOVER_BUTTON_BORDER_RADIUS,
     HOVER_BUTTON_BOX_SHADOW,
+    CONTENT_HEIGHT,
+    CONTENT_WIDTH,
+    ICON_BG_COLOR,
+    ICON_H_BG_COLOR
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -68,15 +72,15 @@ const attributes = {
     imagePoster: {
         type: 'object',
         default: {
-            url: 'https://via.placeholder.com/300/',
-            alt: '',
+            url: zoloPlaceholders.placeholder,
+            id: '',
         },
     },
     posterIcon: {
         type: 'string',
         default: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>',
     },
-    posterIconToggle: {
+    showPosterIcon: {
         type: 'boolean',
         default: true,
     },
@@ -94,7 +98,7 @@ const attributes = {
     },
     enableSubHeading: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     buttonHeadingText: {
         type: 'string',
@@ -117,25 +121,33 @@ const attributes = {
         type: 'string',
         default: 'image',
     },
+    contentCaption: {
+        type: 'string',
+        default: 'zoloblocks lightbox',
+    },
     contentType: {
         type: 'string',
         default: 'image',
     },
     contentImage: {
         type: 'object',
-        default: {},
+        default: {
+            url: zoloPlaceholders.placeholder,
+            id: '',
+        },
     },
-    contentCaption: {
+    youtubeUrl: {
         type: 'string',
-        default: 'zoloblocks lightbox',
+        default: 'https://www.youtube.com/watch?v=jX4sIXG-9fo',
     },
-    videoSource: {
-        type: 'object',
-        default: {},
+    vimeoUrl: {
+        type: 'string',
+        default: 'https://vimeo.com/76979871',
     },
-    googleMapSource: {
-        type: 'object',
-        default: {},
+    googleMapUrl: {
+        type: 'string',
+        default:
+            'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4740.819266853735!2d9.99008871708242!3d53.550454675412404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3f9d24afe84a0263!2sRathaus!5e0!3m2!1sde!2sde!4v1499675200938',
     },
 
     titleColor: {
@@ -149,23 +161,35 @@ const attributes = {
     },
     titleSubColor: {
         type: 'string',
-        default: '#2667ff',
+        default: '',
     },
     hoverTitleSubColor: {
         type: 'string',
-        default: '#2667ff',
+        default: '',
     },
-
+    iconColor:{
+        type: 'string',
+        default: '',
+    },
+    iconHColor:{
+        type: 'string',
+        default: '',
+    },
     // style attributes
 
     ...generateResRangeAttributies(POSTER_HEIGHT, { default: 300 }),
     ...generateResAlignmentAttributies(BUTTON_ALIGN, { default: 'center' }),
     ...generateResAlignmentAttributies(ICON_ALIGN),
     ...generateNormalBGAttributes(POSTER_BG_COLOR),
+    ...generateBorderAttributies(ICON_BG_COLOR),
+    ...generateBorderAttributies(ICON_H_BG_COLOR),
     ...generateBorderAttributies(POSTER_BORDER),
     ...generateDimensionAttributes(POSTER_BORDER_RADIUS),
     ...generateDimensionAttributes(POSTER_PADDING),
     ...generateBoxShadowAttributies(POSTER_BOX_SHADOW),
+    ...generateResRangeAttributies(CONTENT_WIDTH),
+    ...generateResRangeAttributies(CONTENT_HEIGHT),
+
 
     ...generateNormalBGAttributes(HOVER_POSTER_BG_COLOR),
     ...generateDimensionAttributes(HOVER_POSTER_BORDER_RADIUS),

@@ -122,37 +122,41 @@ function Inspector(props) {
                                 options={applyFilters('zolo.socialLinks.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
-                            <IconicBtnGroup
-                                label={__('Type', 'zoloblocks')}
-                                value={socialText}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        socialText: value,
-                                    })
-                                }
-                                options={ICON_STATUS}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Type', 'zoloblocks')}
+                                    value={socialText}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            socialText: value,
+                                        })
+                                    }
+                                    options={ICON_STATUS}
+                                />
+                            </div>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zoloblocks')}
-                                value={layout}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        layout: value,
-                                    })
-                                }
-                                options={[
-                                    {
-                                        label: __('Flex', 'zoloblocks'),
-                                        value: 'flex',
-                                    },
-                                    {
-                                        label: __('Grid', 'zoloblocks'),
-                                        value: 'grid',
-                                    },
-                                ]}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout Type', 'zoloblocks')}
+                                    value={layout}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            layout: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Flex', 'zoloblocks'),
+                                            value: 'flex',
+                                        },
+                                        {
+                                            label: __('Grid', 'zoloblocks'),
+                                            value: 'grid',
+                                        },
+                                    ]}
+                                />
+                            </div>
                             {layout === 'grid' && (
                                 <>
                                     <ResCounterControl
@@ -287,16 +291,18 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <IconicBtnGroup
-                                label={__('Color Type', 'zoloblocks')}
-                                value={socialColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        socialColor: value,
-                                    })
-                                }
-                                options={SOCIAL_ICON_COLOR}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Color Type', 'zoloblocks')}
+                                    value={socialColor}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            socialColor: value,
+                                        })
+                                    }
+                                    options={SOCIAL_ICON_COLOR}
+                                />
+                            </div>
                             {socialColor === 'custom' && (
                                 <TabPanelControl
                                     normalComponents={

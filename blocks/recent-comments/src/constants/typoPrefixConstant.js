@@ -1,2 +1,3 @@
-export const NAME_TYPOGRAPHY = 'nameTypo';
-export const COUNT_TYPOGRAPHY='countTypo';
+export const TEXT_TYPOGRAPHY = 'textTypo';
+export const AUTHOR_TYPOGRAPHY='authorTypo';
+export const DATE_TYPOGRAPHY='dateTypo';

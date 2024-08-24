@@ -5,7 +5,7 @@ import {
 } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import {SORT_ORDER} from '../../../src/global/constants';
-import {CAT_ORDER_BY,STATUS} from "./constants";
+import {COMMENT_ORDER_BY,STATUS} from "./constants";
 import Select2 from 'react-select';
 
 const {
@@ -134,7 +134,7 @@ const QuerySettings = ({attributes, setAttributes}) => {
         onChange={(orderBy) => {
           setAttributes({commentQuery: {...commentQuery, orderBy}});
         }}
-        options={CAT_ORDER_BY}
+        options={COMMENT_ORDER_BY}
       />
 
       <SelectControl

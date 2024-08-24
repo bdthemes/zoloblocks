@@ -37,6 +37,10 @@ import {
     HOVER_BUTTON_BG_COLOR,
     HOVER_BUTTON_BORDER_RADIUS,
     HOVER_BUTTON_BOX_SHADOW,
+    CONTENT_HEIGHT,
+    CONTENT_WIDTH,
+    ICON_BG_COLOR,
+    ICON_H_BG_COLOR,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -51,6 +55,8 @@ export default function Style({ props }) {
         hoverTitleColor,
         titleSubColor,
         hoverTitleSubColor,
+        iconColor,
+        iconHColor,
     } = attributes;
 
     const {
@@ -60,6 +66,24 @@ export default function Style({ props }) {
     } = generateResRangeStyle({
         controlName: POSTER_HEIGHT,
         property: 'height',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: contentHeightDesk,
+        tabRangeStyle: contentHeightTab,
+        mobRangeStyle: contentHeightMob,
+    } = generateResRangeStyle({
+        controlName: CONTENT_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: contentWidthDesk,
+        tabRangeStyle: contentWidthTab,
+        mobRangeStyle: contentWidthMob,
+    } = generateResRangeStyle({
+        controlName: CONTENT_WIDTH,
+        property: 'width',
         attributes,
     });
 
@@ -79,6 +103,24 @@ export default function Style({ props }) {
         backgroundStylesMob: posterBgColorMob,
     } = generateNormalBGControlStyles({
         controlName: POSTER_BG_COLOR,
+        noMainBGIMG: false,
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: iconBgColorDesk,
+        backgroundStylesTab: iconBgColorTab,
+        backgroundStylesMob: iconBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: ICON_BG_COLOR,
+        noMainBGIMG: false,
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: iconHBgColorDesk,
+        backgroundStylesTab: iconHBgColorTab,
+        backgroundStylesMob: iconHBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: ICON_H_BG_COLOR,
         noMainBGIMG: false,
         attributes,
     });
@@ -238,9 +280,13 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-poster {
             ${buttonAlignDesk}
         }
-        .${uniqueId} .zolo-lightbox-btn-2 {
+        .${uniqueId}.zolo-content-iframe {
+            ${contentHeightDesk}
+            ${contentWidthDesk}
+        }
+        .${uniqueId} .zolo-play-btn {
             ${posterBgColorDesk}
-            
+
         }
         .${uniqueId} .zolo-lightbox-poster button {
             ${posterBorderDesk}
@@ -248,45 +294,61 @@ export default function Style({ props }) {
             ${posterPaddingDesk}
             ${posterBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-2:hover {
+        .${uniqueId} .zolo-play-btn:hover {
             ${hoverPosterBgColorDesk}
         }
         .${uniqueId} .zolo-lightbox-poster button:hover {
             ${hoverPosterBoxShadow}
         }
+     .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
+            ${iconColor ? `fill: ${iconColor} !important;` : ''}
+        }
+
+     .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg{
+            ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
+        }
+
+         .${uniqueId} .zolo-play-btn .zolo-btn-icon{
+            ${iconBgColorDesk}
+            ${iconColor ? `border-color: ${iconColor};` : ''}
+        }
+
+     .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
+            ${iconHBgColorDesk}
+        }
 
         .${uniqueId} .zolo-lightbox-btn {
             ${buttonAlignDesk}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 {
+        .${uniqueId} .zolo-play-btn {
             ${buttonBgColorDesk}
             ${buttonBorderDesk}
             ${buttonBorderRadiusDesk}
             ${buttonPaddingDesk}
             ${buttonBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover {
+        .${uniqueId} .zolo-play-btn:hover {
             ${hoverButtonBgColorDesk}
             ${hoverButtonBorderRadiusDesk}
             ${hoverButtonBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 .zolo-btn-text {
+        .${uniqueId} .zolo-play-btn .zolo-btn-text {
             ${titleColor ? `color: ${titleColor};` : ''}
             ${buttonTypoDesk}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover .zolo-btn-text {
+        .${uniqueId} .zolo-play-btn:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
-            
+
         .${uniqueId} .zolo-btn-text small {
             ${buttonSubTypoDesk}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 small {
+        .${uniqueId} .zolo-play-btn small {
             ${titleSubColor ? `color: ${titleSubColor};` : ''}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover small {
+        .${uniqueId} .zolo-play-btn:hover small {
             ${hoverTitleSubColor ? `color: ${hoverTitleSubColor};` : ''}
-        }  
+        }
     `;
 
     const tabletAllStyle = `
@@ -296,9 +358,14 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-poster {
             ${buttonAlignTab}
         }
-        .${uniqueId} .zolo-lightbox-btn-2 {
+
+       .${uniqueId}.zolo-content-iframe {
+            ${contentHeightTab}
+            ${contentWidthTab}
+        }
+        .${uniqueId} .zolo-play-btn {
             ${posterBgColorTab}
-            
+
         }
         .${uniqueId} .zolo-lightbox-poster button {
             ${posterBorderTab}
@@ -306,7 +373,7 @@ export default function Style({ props }) {
             ${posterPaddingTab}
             ${posterBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-2:hover {
+        .${uniqueId} .zolo-play-btn:hover {
             ${hoverPosterBgColorTab}
         }
         .${uniqueId} .zolo-lightbox-poster button:hover {
@@ -316,47 +383,55 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-btn {
             ${buttonAlignTab}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 {
+        .${uniqueId} .zolo-play-btn {
             ${buttonBgColorTab}
             ${buttonBorderTab}
             ${buttonBorderRadiusTab}
             ${buttonPaddingTab}
             ${buttonBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover {
+        .${uniqueId} .zolo-play-btn:hover {
             ${hoverButtonBgColorTab}
             ${hoverButtonBorderRadiusTab}
             ${hoverButtonBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 .zolo-btn-text {
+        .${uniqueId} .zolo-play-btn .zolo-btn-text {
             ${titleColor ? `color: ${titleColor};` : ''}
             ${buttonTypoTab}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover .zolo-btn-text {
+        .${uniqueId} .zolo-play-btn:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
-            
+
         .${uniqueId} .zolo-btn-text small {
             ${buttonSubTypoTab}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 small {
+        .${uniqueId} .zolo-play-btn small {
             ${titleSubColor ? `color: ${titleSubColor};` : ''}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover small {
+        .${uniqueId} .zolo-play-btn:hover small {
             ${hoverTitleSubColor ? `color: ${hoverTitleSubColor};` : ''}
         }
-    
+
     `;
     const mobileAllStyle = `
         .${uniqueId} .zolo-poster-img {
             ${posterHeightMob}
         }
+      .${uniqueId}.zolo-content-iframe {
+            ${contentHeightMob}
+            ${contentWidthMob}
+        }
         .${uniqueId} .zolo-lightbox-poster {
             ${buttonAlignMob}
         }
-        .${uniqueId} .zolo-lightbox-btn-2 {
+
+     .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
+            ${iconColor ? `fill: ${iconColor} !important;` : ''}
+
+        .${uniqueId} .zolo-lightbox-btn .zolo-play-btn{
             ${posterBgColorMob}
-            
+
         }
         .${uniqueId} .zolo-lightbox-poster button {
             ${posterBorderMob}
@@ -364,7 +439,7 @@ export default function Style({ props }) {
             ${posterPaddingMob}}
             ${posterBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-2:hover {
+        .${uniqueId} .zolo-play-btn:hover {
             ${hoverPosterBgColorMob}
         }
         .${uniqueId} .zolo-lightbox-poster button:hover {
@@ -374,33 +449,33 @@ export default function Style({ props }) {
         .${uniqueId} .zolo-lightbox-btn {
             ${buttonAlignDesk}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 {
+        .${uniqueId} .zolo-play-btn {
             ${buttonBgColorMob}
             ${buttonBorderMob}
             ${buttonBorderRadiusMob}
             ${buttonPaddingMob}
             ${buttonBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover {
+        .${uniqueId} .zolo-play-btn:hover {
             ${hoverButtonBgColorMob}
             ${hoverButtonBorderRadiusMob}
             ${hoverButtonBoxShadow}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 .zolo-btn-text {
+        .${uniqueId} .zolo-play-btn .zolo-btn-text {
             ${titleColor ? `color: ${titleColor};` : ''}
             ${buttonTypoMob}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover .zolo-btn-text {
+        .${uniqueId} .zolo-play-btn:hover .zolo-btn-text {
             ${hoverTitleColor ? `color: ${hoverTitleColor};` : ''}
         }
-            
+
         .${uniqueId} .zolo-btn-text small {
             ${buttonSubTypoMob}
         }
-        .${uniqueId} .zolo-lightbox-btn-1 small {
+        .${uniqueId} .zolo-play-btn small {
             ${titleSubColor ? `color: ${titleSubColor};` : ''}
         }
-        .${uniqueId} .zolo-lightbox-btn-1:hover small {
+        .${uniqueId} .zolo-play-btn:hover small {
             ${hoverTitleSubColor ? `color: ${hoverTitleSubColor};` : ''}
         }
     `;

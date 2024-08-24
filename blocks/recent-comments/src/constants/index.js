@@ -5,7 +5,7 @@ export const PRESETS = [
   {label: __('Style 1', 'zoloblocks'), value: 'style-1'},
   {label: __('Style 2', 'zoloblocks'), value: 'style-2'},
 ];
-export const CAT_ORDER_BY = [
+export const COMMENT_ORDER_BY = [
   {value: 'comment_author', label: __('Author', 'zoloblocks')},
   {value: 'comment_approved', label: __('Approved', 'zoloblocks')},
   {value: 'comment_date', label: __('Date', 'zoloblocks')},
@@ -31,18 +31,17 @@ export const AVATAR_SIZE = [
 //grid
 export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
-//count
-export const COUNT_PADDING = 'countPadding';
-export const COUNT_BORDER = 'countBorder';
-export const COUNT_BORDER_RADIUS = 'countBRadius';
-export const COUNT_SHADOW = 'countShadow';
 //item
 export const ITEM_PADDING = 'itemPadding';
 export const ITEM_BG = 'itemBg';
 export const ITEM_BORDER = 'itemBorder';
 export const ITEM_BORDER_RADIUS = 'itemBRadius';
 export const ITEM_SHADOW = 'itemShadow';
-export const ITEM_HOVER_BG = 'itemHoverBg';
-export const ITEM_HOVER_SHADOW = 'itemHoverShadow';
-
-
+export const META_SPACING='metaSpacing';
+//avatar
+export const AVATAR_BORDER = 'avatarBorder';
+export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
+export const AVATAR_PADDING = 'avatarPadding';
+export const AVATAR_MARGIN = 'avatarMargin';
+export const AVATAR_SHADOW = 'avatarShadow';
+export const DATE_MARGIN='dateMargin';

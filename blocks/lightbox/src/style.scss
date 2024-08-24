@@ -10,16 +10,18 @@
 .zolo-play-btn svg {
     width: 22px;
     height: 22px;
-    fill: currentColor;
     display: block;
 }
-
+.zolo-lightbox-btn{
+    text-align: center;
+}
 /* Zolo Lightbox Button 1 */
 .zolo-lightbox-btn-1.zolo-play-btn {
     background: transparent;
     gap: 20px;
     padding: 0;
     flex-direction: row-reverse;
+    text-align: center;
 }
 
 .zolo-lightbox-btn-1.zolo-play-btn .zolo-btn-text {
@@ -127,12 +129,9 @@
 
 /* lightbox poster style css  */
 
-.wp-block-zolo-lightbox .zolo-poster-img {
-    display: none;
-}
-
 .zolo-lightbox-poster .zolo-poster-img {
     display: block;
+    height: 400px;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -159,5 +158,20 @@
     transform: scale(1.1);
 }
 
- .zolo-lightbox-content{
-display: none;}
+.zolo-lightbox-content {
+    display: none;
+}
+
+.zolo-content-iframe {
+    width: 650px;
+    height: 450px;
+    border: none;
+}
+
+.wp-block-zolo-lightbox .zolo-lightbox-trigger {
+    text-decoration: none;
+    .zolo-play-btn {
+        outline: none;
+        text-decoration: none;
+    }
+}

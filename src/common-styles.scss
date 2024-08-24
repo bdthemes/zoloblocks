@@ -483,3 +483,16 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     font-style: italic;
     color: rgb(117, 117, 117);
 }
+.zolo-frontend {
+    &.ast-single-post{
+        .entry-content a, .ast-comment-content a:not(.ast-comment-edit-reply-wrap a) {
+            text-decoration: unset;
+        }
+    }
+}
+
+.zolo-editor {
+    .editor-styles-wrapper .is-root-container a {
+        text-decoration: unset;
+    }
+}

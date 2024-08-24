@@ -69,13 +69,13 @@
 
     .zolo-user-month {
         display: flex;
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 300;
         color: var(--zolo-user-month-color);
         flex-direction: column;
     }
     .zolo-price {
-        font-size: 50px;
+        font-size: 3.125rem;
         font-weight: 700;
         color: var(--zolo-price-color);
         line-height: 1;
@@ -96,7 +96,7 @@
 
     .zolo-package-desc,
     .zolo-features-desc {
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 400;
     }
     .zolo-package-desc {
@@ -128,7 +128,7 @@
             &.zolo-buy-btn,
             &.zolo-chat-btn {
                 padding: var(--zolo-link-btn-padding);
-                font-size: 14px;
+                font-size: 0.875rem;
                 border-radius: var(--zolo-link-btn-border-radius);
                 color: var(--zoloblocks-brand-button-color);
                 border-width: var(--zolo-link-btn-border-width);
@@ -186,7 +186,7 @@
     .features li {
         display: flex;
         align-items: center;
-        font-size: 14px;
+        font-size: 0.875rem;
         gap: var(--zolo-feature-list-gap);
         color: var(--zolo-feature-list-color);
         svg {
@@ -206,7 +206,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .zolo-ribbon-btn {
@@ -214,7 +214,7 @@
         top: 0;
         margin: var(--zolo-ribbon-btn-margin);
         color: var(--zoloblocks-brand-button-color);
-        font-size: 12px;
+        font-size: 0.75rem;
         text-transform: capitalize;
         background-color: var(--zoloblocks-brand-color);
         padding: var(--zolo-ribbon-btn-padding);
@@ -275,17 +275,25 @@
     }
 
     &.style-2 {
+        .zolo-item {
+            &:hover {
+                .zolo-price {
+                    transform: rotate(-25deg) translateY(-40px);
+                }
+            }
+        }
+
         .zolo-price-info {
             position: relative;
         }
         .zolo-orginal-price {
             padding: 0;
-            font-size: 30px;
+            font-size: 1.875rem;
         }
 
         .zolo-price {
             background-color: #3f8efc;
-            font-size: 24px;
+            font-size: 1.5rem;
             z-index: 1;
             color: #fff;
             padding: 8px 10px;
@@ -294,13 +302,6 @@
             transition: all 0.3s ease;
             position: absolute;
             left: -3px;
-        }
-        .zolo-price-info {
-            &:hover {
-                .zolo-price {
-                    transform: rotate(-25deg) translateY(-40px);
-                }
-            }
         }
         .zolo-user-month {
             margin-left: 10px;
