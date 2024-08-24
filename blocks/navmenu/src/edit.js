@@ -12,7 +12,15 @@ import { closeSmall } from '@wordpress/icons';
 import NavMenuAppenderButton from './components/appender-button';
 import { select } from '@wordpress/data';
 
+import { applyFilters } from '@wordpress/hooks';
+
+// import style
+import Style from './style';
+
+
 const { classArrayToStr } = window.zoloModule;
+
+
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
@@ -87,6 +95,7 @@ const Edit = (props) => {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <Style props={props} />
             <div {...blockProps}>
                 {
                     !isVariationSelected ? (

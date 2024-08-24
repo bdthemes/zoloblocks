@@ -5,9 +5,22 @@
         align-items: center;
         gap: 15px;
         list-style-type: none;
+        padding: 0;
+        margin: 0;
+        a {
+            display: inline-block;
+        }
+    }
+    .wp-block-zolo-navmenu-item {
+        position: relative;
     }
 }
 
-.block-editor-block-list__block .zolo-navmenu-menu .block-list-appender.block-list-appender{
-    position: relative;
-}
+.block-editor-block-list__block {
+    .zolo-navmenu-menu {
+        .block-list-appender.block-list-appender{
+            position: relative;
+            margin: 0;
+        }
+    } 
+} 
