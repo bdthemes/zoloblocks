@@ -56,7 +56,7 @@ import {
     ICON_H_BG_COLOR,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Edit(props) {
     const { attributes, setAttributes } = props;
@@ -80,11 +80,9 @@ export default function Edit(props) {
         youtubeUrl,
         vimeoUrl,
         googleMapUrl,
-
         titleColor,
         hoverTitleColor,
         titleSubColor,
-        hoverTitleSubColor,
         iconColor,
         iconHColor,
     } = attributes;
@@ -398,15 +396,6 @@ export default function Edit(props) {
                                             })
                                         }
                                     />
-                                    // <LinkControl
-                                    //     label={__('Google Map Embed Url', 'zoloblocks')}
-                                    //     value={googleMapSource}
-                                    //     onChange={(value) =>
-                                    //         setAttributes({
-                                    //             googleMapSource: value,
-                                    //         })
-                                    //     }
-                                    // />
                                 )}
 
                                 <TextControl
@@ -434,12 +423,6 @@ export default function Edit(props) {
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
-                                                    <NormalBGControl
-                                                        label={__('Background Color', 'zoloblocks')}
-                                                        controlName={POSTER_BG_COLOR}
-                                                        requiredProps={requiredProps}
-                                                        noMainBGIMG={false}
-                                                    />
 
                                                     <BorderControl
                                                         label={__('Border Type', 'zoloblocks')}
@@ -452,18 +435,6 @@ export default function Edit(props) {
                                                         controlName={POSTER_BORDER_RADIUS}
                                                         requiredProps={requiredProps}
                                                         forBorderRadius={true}
-                                                    />
-
-                                                    <ResDimensionsControl
-                                                        label={__('Padding', 'zoloblocks')}
-                                                        controlName={POSTER_PADDING}
-                                                        requiredProps={requiredProps}
-                                                    />
-
-                                                    <BoxShadowControl
-                                                        controlName={POSTER_BOX_SHADOW}
-                                                        requiredProps={requiredProps}
-                                                        enableTransition={false}
                                                     />
                                                 </>
                                             }
@@ -495,8 +466,8 @@ export default function Edit(props) {
                                 </>
                             )}
 
-                            {/* {lightboxType === 'button' && (
-                                <> */}
+                            {lightboxType === 'button' && (
+                                <>
                             <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                                 <TabPanelControl
                                     normalComponents={
@@ -603,21 +574,6 @@ export default function Edit(props) {
                                                             />
                                                         </>
                                                     )}
-                                                    {showPosterIcon && (
-                                                        <>
-                                                            <hr></hr>
-                                                            <h3>{__('Button Icon', 'zoloblocks')}</h3>
-                                                            <ColorControl
-                                                                label={__('Color', 'zoloblocks')}
-                                                                color={iconColor}
-                                                                onChange={(value) =>
-                                                                    setAttributes({
-                                                                        iconColor: value,
-                                                                    })
-                                                                }
-                                                            />
-                                                        </>
-                                                    )}
                                                 </>
                                             }
                                             hoverComponents={
@@ -636,6 +592,8 @@ export default function Edit(props) {
                                         />
                                     </ZoloPanelBody>
                                 </>
+                            )}
+                            </>
                             )}
                             {showPosterIcon && (
                                 <>
