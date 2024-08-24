@@ -1,4 +1,4 @@
-### 1.4.0 [August 22, 2024]
+### 1.4.0 [August 24, 2024]
 
 ### Added
 
@@ -9,7 +9,7 @@
 ### Improved
 
 - Assets loading improved
-- Block is improved
+- Block scripts improved
 
 ### 1.3.3 [August 18, 2024]
 
