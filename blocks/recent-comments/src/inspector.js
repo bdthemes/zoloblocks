@@ -122,7 +122,7 @@ export default function Inspector(props) {
               {showAuthor && (
                 <>
                   <TextControl
-                    label={__('Author Middle Text ', 'zoloblocks')}
+                    label={__('Author Middle Text', 'zoloblocks')}
                     value={authorMiddleText}
                     onChange={(value) => setAttributes({authorMiddleText: value})}
                   />
