@@ -7,10 +7,7 @@ import './style.scss';
 
 const Edit = (props) => {
     const { attributes, clientId } = props;
-    const {
-        uniqueId,
-        preview,
-    } = attributes;
+    const { uniqueId, preview } = attributes;
 
     const { replaceInnerBlocks, selectBlock } = dispatch('core/block-editor');
     const { getBlock } = select('core/block-editor');
@@ -22,34 +19,33 @@ const Edit = (props) => {
 
     const innerBlockProps = useInnerBlocksProps(
         {
-            className: classnames('zolo-navmenu-submenu-items',),
+            className: classnames('zolo-navmenu-submenu-items'),
         },
         {
             allowedBlocks: ['zolo/navmenu-item'],
-            renderAppender: false
+            renderAppender: false,
         }
     );
-
 
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.heading} alt={__('Heading Preview', 'zoloblocks')} />;
     }
 
-
     return (
         <>
             <div {...blockProps}>
                 <ul {...innerBlockProps}></ul>
                 <button
-                    className='zolo-navmenu-submenu-add-btn'
+                    className="zolo-navmenu-submenu-add-btn"
                     onClick={() => {
-                        const navmenuItem = createBlock('zolo/navmenu-item', {})
+                        const navmenuItem = createBlock('zolo/navmenu-item', {});
                         const innerBlocks = getBlock(clientId)?.innerBlocks;
                         createBlocksFromInnerBlocksTemplate([navmenuItem]);
                         replaceInnerBlocks(clientId, [...innerBlocks, navmenuItem]);
                         selectBlock(navmenuItem.clientId);
-                    }}>
+                    }}
+                >
                     {__('Add Menu Item', 'zoloblocks')}
                 </button>
             </div>

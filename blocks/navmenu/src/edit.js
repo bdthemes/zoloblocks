@@ -24,6 +24,7 @@ const { classArrayToStr } = window.zoloModule;
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
+    console.log('attributes', attributes);
     const [templateType, setTemplateType] = useState('');
     const [navMenuTemplates, setNavMenuTemplates] = useState([]);
     const [selectedVariation, setSelectedVariation] = useState();

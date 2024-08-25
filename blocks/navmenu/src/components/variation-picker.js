@@ -11,13 +11,9 @@ const VariationPicker = ({ setSelectedVariation, setTemplateType }) => {
                 variations={variations}
                 onSelect={(variation) => setSelectedVariation(variation)}
             />
-            <Button
-                icon={closeSmall}
-                className='zolo-navmenu-variation-picker-back'
-                onClick={() => setTemplateType('')}
-            />
+            <Button icon={closeSmall} className="zolo-navmenu-variation-picker-back" onClick={() => setTemplateType('')} />
         </div>
-    )
-}
+    );
+};
 
-export default VariationPicker
+export default VariationPicker;

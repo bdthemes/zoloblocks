@@ -18,24 +18,14 @@ import useIsInvalidLink from './utils/use-invalid-link';
 import NavMenuAppenderButton from './components/appender-button';
 import { createBlock, createBlocksFromInnerBlocksTemplate } from '@wordpress/blocks';
 
+// import style
+import Style from './style';
+
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId, onReplace } = props;
-    const {
-        uniqueId,
-        preview,
-        addSubmenu,
-        url,
-        label,
-        id,
-        kind,
-        type,
-    } = attributes;
+    const { uniqueId, preview, addSubmenu, url, label, id, kind, type } = attributes;
 
-    const {
-        selectPreviousBlock,
-        replaceInnerBlocks,
-        selectBlock,
-    } = useDispatch(blockEditorStore);
+    const { selectPreviousBlock, replaceInnerBlocks, selectBlock } = useDispatch(blockEditorStore);
 
     // Have the link editing ui open on mount when lacking a url and selected.
     const [isLinkOpen, setIsLinkOpen] = useState(isSelected && !url);
@@ -49,16 +39,25 @@ const Edit = (props) => {
     const listItemRef = useRef(null);
     const [isInvalid, isDraft] = useIsInvalidLink(kind, type, id);
 
-    const { hasInnerBlocks, isNested, hasChildBlocks } = useSelect((select) => {
-        const { getBlockOrder, getBlockParents, getBlockName, getBlock } = select('core/block-editor');
-        return {
-            hasInnerBlocks: getBlockOrder(clientId).length > 0,
-            isNested: getBlockName(getBlockParents(clientId).at(-1)) === 'zolo/navmenu-submenu',
-            hasChildBlocks: getBlock(clientId)?.innerBlocks?.length > 0
-        }
-    }, [clientId]);
+    const { hasInnerBlocks, isNested, hasChildBlocks } = useSelect(
+        (select) => {
+            const { getBlockOrder, getBlockParents, getBlockName, getBlock } = select('core/block-editor');
+            return {
+                hasInnerBlocks: getBlockOrder(clientId).length > 0,
+                isNested: getBlockName(getBlockParents(clientId).at(-1)) === 'zolo/navmenu-submenu',
+                hasChildBlocks: getBlock(clientId)?.innerBlocks?.length > 0,
+            };
+        },
+        [clientId]
+    );
 
-    const CustomAppender = () => <NavMenuAppenderButton onClick={() => setIsLinkOpen(true)} rootClientId={clientId} isMegaMenu={attributes?.addSubmenu && attributes?.submenuType === 'megamenu'} />;
+    const CustomAppender = () => (
+        <NavMenuAppenderButton
+            onClick={() => setIsLinkOpen(true)}
+            rootClientId={clientId}
+            isMegaMenu={attributes?.addSubmenu && attributes?.submenuType === 'megamenu'}
+        />
+    );
 
     //block wrapper class
     const blockProps = useBlockProps({
@@ -69,14 +68,17 @@ const Edit = (props) => {
         ref: useMergeRefs([listItemRef, setPopoverAnchor]),
     });
 
-    const innerBlocksProps = useInnerBlocksProps({
-        className: classnames('zolo-navmenu-submenu-wrapper', {
-            [`submenu-type-${attributes.submenuType}`]: attributes?.addSubmenu && attributes?.submenuType,
-        }),
-    }, {
-        allowedBlocks: ['zolo/navmenu-submenu', 'zolo/megamenu'],
-        renderAppender: !hasChildBlocks && isSelected ? CustomAppender : false,
-    });
+    const innerBlocksProps = useInnerBlocksProps(
+        {
+            className: classnames('zolo-navmenu-submenu-wrapper', {
+                [`submenu-type-${attributes.submenuType}`]: attributes?.addSubmenu && attributes?.submenuType,
+            }),
+        },
+        {
+            allowedBlocks: ['zolo/navmenu-submenu', 'zolo/megamenu'],
+            renderAppender: !hasChildBlocks && isSelected ? CustomAppender : false,
+        }
+    );
 
     useEffect(() => {
         if (url && !isSelected) {
@@ -88,7 +90,7 @@ const Edit = (props) => {
             if (linkUIref.current && !linkUIref.current.contains(event.target)) {
                 setIsLinkOpen(false);
             }
-        }
+        };
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -108,7 +110,10 @@ const Edit = (props) => {
 
     return (
         <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} hasInnerBlocks={hasInnerBlocks} isNested={isNested} />}
+            {isSelected && (
+                <Inspector attributes={attributes} setAttributes={setAttributes} hasInnerBlocks={hasInnerBlocks} isNested={isNested} />
+            )}
+            <Style props={props} />
             <BlockControls>
                 <ToolbarGroup>
                     <ToolbarButton
@@ -125,114 +130,105 @@ const Edit = (props) => {
                             }
                         }}
                     />
-                    {
-                        !hasInnerBlocks ? (
-                            <>
+                    {!hasInnerBlocks ? (
+                        <>
+                            <ToolbarButton
+                                icon={addSubmenuIcon}
+                                label={__('Add Submenu', 'zoloblocks')}
+                                onClick={() => {
+                                    setAttributes({ addSubmenu: true });
+                                    setAttributes({ submenuType: 'dropdown' });
+                                    const navmenuItem = createBlock('zolo/navmenu-item', {});
+                                    const submenu = createBlock('zolo/navmenu-submenu', {}, [navmenuItem]);
+                                    createBlocksFromInnerBlocksTemplate([submenu]);
+                                    replaceInnerBlocks(clientId, [submenu]);
+                                    selectBlock(navmenuItem?.clientId);
+                                }}
+                            />
+                            {!isNested && (
                                 <ToolbarButton
-                                    icon={addSubmenuIcon}
-                                    label={__('Add Submenu', 'zoloblocks')}
+                                    icon={menuIcon}
+                                    label={__('Add Mega Menu', 'zoloblocks')}
                                     onClick={() => {
-                                        setAttributes({ addSubmenu: true })
-                                        setAttributes({ submenuType: 'dropdown' })
-                                        const navmenuItem = createBlock('zolo/navmenu-item', {})
-                                        const submenu = createBlock('zolo/navmenu-submenu', {}, [navmenuItem]);
-                                        createBlocksFromInnerBlocksTemplate([submenu]);
-                                        replaceInnerBlocks(clientId, [submenu]);
-                                        selectBlock(navmenuItem?.clientId);
+                                        setAttributes({ addSubmenu: true });
+                                        setAttributes({ submenuType: 'megamenu' });
+                                        const container = createBlock('zolo/container', {
+                                            containerWidthType: 'alignfull',
+                                            variationStatus: true,
+                                        });
+                                        const megaMenu = createBlock('zolo/megamenu', {}, [container]);
+                                        createBlocksFromInnerBlocksTemplate([megaMenu]);
+                                        replaceInnerBlocks(clientId, [megaMenu]);
+                                        selectBlock(container?.clientId);
                                     }}
                                 />
-                                {!isNested &&
-                                    <ToolbarButton
-                                        icon={menuIcon}
-                                        label={__('Add Mega Menu', 'zoloblocks')}
-                                        onClick={() => {
-                                            setAttributes({ addSubmenu: true })
-                                            setAttributes({ submenuType: 'megamenu' })
-                                            const container = createBlock('zolo/container', {
-                                                containerWidthType: 'alignfull',
-                                                variationStatus: true
-                                            })
-                                            const megaMenu = createBlock('zolo/megamenu', {}, [container])
-                                            createBlocksFromInnerBlocksTemplate([megaMenu]);
-                                            replaceInnerBlocks(clientId, [megaMenu]);
-                                            selectBlock(container?.clientId);
-                                        }}
-                                    />
-                                }
-                            </>
-                        ) : (
-                            <>
-                                <ToolbarButton
-                                    icon={removeSubmenu}
-                                    name="Remove Submenu"
-                                    label={__(`${attributes?.submenuType && attributes?.submenuType === 'megamenu' ? 'Remove Mega Menu' : 'Remove Submenu'}`, 'zoloblocks')}
-                                    onClick={() => {
-                                        setAttributes({ addSubmenu: false })
-                                        setAttributes({ submenuType: '' })
-                                        replaceInnerBlocks(clientId, []);
-                                    }}
-                                />
-                            </>
-                        )
-                    }
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <ToolbarButton
+                                icon={removeSubmenu}
+                                name="Remove Submenu"
+                                label={__(
+                                    `${attributes?.submenuType && attributes?.submenuType === 'megamenu' ? 'Remove Mega Menu' : 'Remove Submenu'}`,
+                                    'zoloblocks'
+                                )}
+                                onClick={() => {
+                                    setAttributes({ addSubmenu: false });
+                                    setAttributes({ submenuType: '' });
+                                    replaceInnerBlocks(clientId, []);
+                                }}
+                            />
+                        </>
+                    )}
                 </ToolbarGroup>
             </BlockControls>
 
             <li {...blockProps}>
                 <a className="zolo-navmenu-link">
-                    {
-                        isLinkOpen ? (
-                            <LinkPopover
-                                ref={linkUIref}
-                                clientId={clientId}
-                                link={attributes}
-                                onClose={() => {
-                                    // If there is no link then remove the auto-inserted block.
-                                    // This avoids empty blocks which can provided a poor UX.
-                                    if (!url) {
-                                        // Fixes https://github.com/WordPress/gutenberg/issues/61361
-                                        // There's a chance we're closing due to the user selecting the browse all button.
-                                        // Only move focus if the focus is still within the popover ui. If it's not within
-                                        // the popover, it's because something has taken the focus from the popover, and
-                                        // we don't want to steal it back.
-                                        if (
-                                            linkUIref.current.contains(
-                                                window.document.activeElement
-                                            )
-                                        ) {
-                                            // Select the previous block to keep focus nearby
-                                            selectPreviousBlock(clientId, true);
-                                        }
-
-                                        // Remove the link.
-                                        onReplace([]);
-                                        return;
-                                    }
-
-                                    setIsLinkOpen(false);
-                                    if (openedBy) {
-                                        openedBy.focus();
-                                        setOpenedBy(null);
-                                    } else if (ref.current) {
-                                        // select the ref when adding a new link
-                                        ref.current.focus();
-                                    } else {
-                                        // Fallback
+                    {isLinkOpen ? (
+                        <LinkPopover
+                            ref={linkUIref}
+                            clientId={clientId}
+                            link={attributes}
+                            onClose={() => {
+                                // If there is no link then remove the auto-inserted block.
+                                // This avoids empty blocks which can provided a poor UX.
+                                if (!url) {
+                                    // Fixes https://github.com/WordPress/gutenberg/issues/61361
+                                    // There's a chance we're closing due to the user selecting the browse all button.
+                                    // Only move focus if the focus is still within the popover ui. If it's not within
+                                    // the popover, it's because something has taken the focus from the popover, and
+                                    // we don't want to steal it back.
+                                    if (linkUIref.current.contains(window.document.activeElement)) {
+                                        // Select the previous block to keep focus nearby
                                         selectPreviousBlock(clientId, true);
                                     }
-                                }}
-                                anchor={popoverAnchor}
-                                onRemove={() => removeLink(setAttributes, setIsLinkOpen)}
-                                onChange={(updatedValue) => {
-                                    updateAttributes(
-                                        updatedValue,
-                                        setAttributes,
-                                        attributes
-                                    );
-                                }}
-                            />
-                        ) : null
-                    }
+
+                                    // Remove the link.
+                                    onReplace([]);
+                                    return;
+                                }
+
+                                setIsLinkOpen(false);
+                                if (openedBy) {
+                                    openedBy.focus();
+                                    setOpenedBy(null);
+                                } else if (ref.current) {
+                                    // select the ref when adding a new link
+                                    ref.current.focus();
+                                } else {
+                                    // Fallback
+                                    selectPreviousBlock(clientId, true);
+                                }
+                            }}
+                            anchor={popoverAnchor}
+                            onRemove={() => removeLink(setAttributes, setIsLinkOpen)}
+                            onChange={(updatedValue) => {
+                                updateAttributes(updatedValue, setAttributes, attributes);
+                            }}
+                        />
+                    ) : null}
                     <RichText
                         tagName="span"
                         className="zolo-navmenu-text"

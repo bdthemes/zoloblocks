@@ -1,10 +1,5 @@
 import { __ } from '@wordpress/i18n';
-const {
-    HeaderTabs,
-    AdvancedOptions,
-    ZoloPanelBody,
-    ToggleGroup,
-} = window.zoloModule;
+const { HeaderTabs, AdvancedOptions, ZoloPanelBody, ToggleGroup, IconicBtnGroup } = window.zoloModule;
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl } from '@wordpress/components';
@@ -21,25 +16,37 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <ToggleControl 
+                            <ToggleControl
                                 label={__('Add Submenu', 'zoloblocks')}
                                 checked={attributes?.addSubmenu}
                                 onChange={(value) => setAttributes({ addSubmenu: value })}
                             />
-                            {
-                                attributes?.addSubmenu && !hasInnerBlocks && !isNested && (
-                                    <ToggleGroup
-                                        label={__('Submenu Type', 'zoloblocks')}
-                                        value={attributes?.submenuType}
-                                        onChange={(value) => setAttributes({ submenuType: value })}
-                                        options={[
-                                            { value: 'dropdown', label: __('Dropdown', 'zoloblocks') },
-                                            { value: 'megamenu', label: __('Megamenu', 'zoloblocks') },
-                                        ]}
-                                        isDeselectable
-                                    />
-                                )
-                            }
+
+                            {attributes?.addSubmenu && !hasInnerBlocks && !isNested && (
+                                <ToggleGroup
+                                    label={__('Submenu Type', 'zoloblocks')}
+                                    value={attributes?.submenuType}
+                                    onChange={(value) => setAttributes({ submenuType: value })}
+                                    options={[
+                                        { value: 'dropdown', label: __('Dropdown', 'zoloblocks') },
+                                        { value: 'megamenu', label: __('Megamenu', 'zoloblocks') },
+                                    ]}
+                                    isDeselectable
+                                />
+                            )}
+
+                            {/* {attributes?.addSubmenu && !hasInnerBlocks && !isNested && (
+                                <IconicBtnGroup
+                                    label={__('Submenu Type', 'zoloblocks')}
+                                    value={attributes?.submenuType}
+                                    onChange={(value) => setAttributes({ submenuType: value })}
+                                    options={[
+                                        { value: 'dropdown', label: __('Dropdown', 'zoloblocks') },
+                                        { value: 'megamenu', label: __('Megamenu', 'zoloblocks') },
+                                    ]}
+                                    isDeselectable
+                                />
+                            )} */}
                         </ZoloPanelBody>
                     </>
                 }

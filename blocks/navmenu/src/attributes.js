@@ -31,12 +31,21 @@ import {
     DROPDOWN_WRAP_PADDING,
     DROPDOWN_WRAP_MARGIN,
     DROPDOWN_WRAP_BOX_SHADOW,
+    DROPDOWN_WIDTH,
+    SUB_MENU_BG,
+    SUB_MENU_BORDER,
+    SUB_MENU_BORDER_RADIUS,
+    SUB_MENU_PADDING,
+    SUB_MENU_MARGIN,
+    SUB_MENU_BOX_SHADOW,
+    SUB_MENU_HOVER_BG,
+    SUB_MENU_ACTIVE_BG,
 } from './constants';
 
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     //Common Attributes
-
 
     globalConfig: {
         type: 'object',
@@ -63,7 +72,6 @@ const attributes = {
         },
     },
 
-
     // Generators
     ...generateResAlignmentAttributies(NAV_MENU_ALIGNMENT),
     ...generateNormalBGAttributes(NAV_MENU_WRAP_BG),
@@ -84,6 +92,18 @@ const attributes = {
     ...generateDimensionAttributes(DROPDOWN_WRAP_PADDING),
     ...generateDimensionAttributes(DROPDOWN_WRAP_MARGIN),
     ...generateBoxShadowAttributies(DROPDOWN_WRAP_BOX_SHADOW),
+    ...generateResRangeAttributies(DROPDOWN_WIDTH),
+    ...generateNormalBGAttributes(SUB_MENU_BG),
+    ...generateBorderAttributies(SUB_MENU_BORDER),
+    ...generateDimensionAttributes(SUB_MENU_BORDER_RADIUS),
+    ...generateDimensionAttributes(SUB_MENU_PADDING),
+    ...generateDimensionAttributes(SUB_MENU_MARGIN),
+    ...generateBoxShadowAttributies(SUB_MENU_BOX_SHADOW),
+    ...generateNormalBGAttributes(SUB_MENU_HOVER_BG),
+    ...generateNormalBGAttributes(SUB_MENU_ACTIVE_BG),
+
+    // Typography
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     // block attributes
     isVariationSelected: {
@@ -94,9 +114,6 @@ const attributes = {
         type: 'string',
         default: 'tablet',
     },
-
-
-
 
     navItemTextColor: {
         type: 'string',
@@ -115,6 +132,26 @@ const attributes = {
     },
 
     navItemBorderActiveColor: {
+        type: 'string',
+    },
+
+    subMenuTextColor: {
+        type: 'string',
+    },
+
+    subMenuHoverTextColor: {
+        type: 'string',
+    },
+
+    subMenuActiveTextColor: {
+        type: 'string',
+    },
+
+    subMenuBorderHoverColor: {
+        type: 'string',
+    },
+
+    subMenuBorderActiveColor: {
         type: 'string',
     },
 };
