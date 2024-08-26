@@ -57,8 +57,29 @@ import {
     SUB_MENU_BOX_SHADOW,
     SUB_MENU_HOVER_BG,
     SUB_MENU_ACTIVE_BG,
-    TAB_STATES,
     DROPDOWN_WIDTH,
+    TAB_STATES,
+    TAB_MOBILE,
+    MB_LOGO_PADDING,
+    MB_LOGO_MARGIN,
+    MB_LOGO_WIDTH,
+    MB_LOGO_HEIGHT,
+    HUMBURGER_MENU_ICON_SIZE,
+    HUMBURGER_MENU_BG,
+    HUMBURGER_MENU_BORDER,
+    HUMBURGER_MENU_BORDER_RADIUS,
+    HUMBURGER_MENU_PADDING,
+    HUMBURGER_MENU_MARGIN,
+    HUMBURGER_MENU_BOX_SHADOW,
+    HUMBURGER_MENU_HOVER_BG,
+    CLOSE_ICON_SIZE,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BORDER_RADIUS,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BOX_SHADOW,
+    CLOSE_ICON_HOVER_BG,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -77,6 +98,12 @@ const Inspector = (props) => {
         subMenuTextActiveColor,
         subMenuBorderHoverColor,
         subMenuBorderActiveColor,
+        humburgerMenuColor,
+        humburgerMenuHoverColor,
+        humburgerMenuBorderHoverColor,
+        closeIconColor,
+        closeIconHoverColor,
+        closeIconBorderHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -114,6 +141,8 @@ const Inspector = (props) => {
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Mobile Menu Settings', 'zoloblocks')} panelProps={props}></ZoloPanelBody>
                     </>
                 }
                 styleTab={
@@ -377,6 +406,190 @@ const Inspector = (props) => {
                                             onChange={(value) =>
                                                 setAttributes({
                                                     subMenuBorderActiveColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Mobile Menu', 'zoloblocks')} panelProps={props}>
+                            <TabPanelControl
+                                options={TAB_MOBILE}
+                                normalComponents={
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Width', 'zoloblocks')}
+                                            controlName={MB_LOGO_WIDTH}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={500}
+                                            step={1}
+                                        />
+
+                                        <ResRangeControl
+                                            label={__('Height', 'zoloblocks')}
+                                            controlName={MB_LOGO_HEIGHT}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={500}
+                                            step={1}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={MB_LOGO_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={MB_LOGO_MARGIN}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={humburgerMenuColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    humburgerMenuColor: value,
+                                                })
+                                            }
+                                        />
+                                        <ResRangeControl
+                                            label={__('Icon Size', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_ICON_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={HUMBURGER_MENU_BG}
+                                            noMainBGImg={false}
+                                        />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_MARGIN}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <BoxShadowControl controlName={HUMBURGER_MENU_BOX_SHADOW} requiredProps={requiredProps} />
+                                        <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={humburgerMenuHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    humburgerMenuHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={HUMBURGER_MENU_HOVER_BG}
+                                            noMainBGImg={false}
+                                        />
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={humburgerMenuBorderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    humburgerMenuBorderHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={closeIconColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    closeIconColor: value,
+                                                })
+                                            }
+                                        />
+                                        <ResRangeControl
+                                            label={__('Icon Size', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={false} />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_MARGIN}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <BoxShadowControl controlName={CLOSE_ICON_BOX_SHADOW} requiredProps={requiredProps} />
+                                        <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={closeIconHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    closeIconHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={CLOSE_ICON_HOVER_BG}
+                                            noMainBGImg={false}
+                                        />
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={closeIconBorderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    closeIconBorderHoverColor: value,
                                                 })
                                             }
                                         />

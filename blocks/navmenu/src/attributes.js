@@ -40,6 +40,26 @@ import {
     SUB_MENU_BOX_SHADOW,
     SUB_MENU_HOVER_BG,
     SUB_MENU_ACTIVE_BG,
+    MB_LOGO_WIDTH,
+    MB_LOGO_HEIGHT,
+    MB_LOGO_MARGIN,
+    MB_LOGO_PADDING,
+    HUMBURGER_MENU_ICON_SIZE,
+    HUMBURGER_MENU_BG,
+    HUMBURGER_MENU_BORDER,
+    HUMBURGER_MENU_BORDER_RADIUS,
+    HUMBURGER_MENU_PADDING,
+    HUMBURGER_MENU_MARGIN,
+    HUMBURGER_MENU_BOX_SHADOW,
+    HUMBURGER_MENU_HOVER_BG,
+    CLOSE_ICON_SIZE,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BORDER_RADIUS,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BOX_SHADOW,
+    CLOSE_ICON_HOVER_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -102,6 +122,32 @@ const attributes = {
     ...generateNormalBGAttributes(SUB_MENU_HOVER_BG),
     ...generateNormalBGAttributes(SUB_MENU_ACTIVE_BG),
 
+    // Mobile
+    ...generateResRangeAttributies(MB_LOGO_WIDTH),
+    ...generateResRangeAttributies(MB_LOGO_HEIGHT),
+    ...generateDimensionAttributes(MB_LOGO_MARGIN),
+    ...generateDimensionAttributes(MB_LOGO_PADDING),
+
+    // Hamburger
+    ...generateResRangeAttributies(HUMBURGER_MENU_ICON_SIZE),
+    ...generateNormalBGAttributes(HUMBURGER_MENU_BG),
+    ...generateBorderAttributies(HUMBURGER_MENU_BORDER),
+    ...generateDimensionAttributes(HUMBURGER_MENU_BORDER_RADIUS),
+    ...generateDimensionAttributes(HUMBURGER_MENU_PADDING),
+    ...generateDimensionAttributes(HUMBURGER_MENU_MARGIN),
+    ...generateBoxShadowAttributies(HUMBURGER_MENU_BOX_SHADOW),
+    ...generateNormalBGAttributes(HUMBURGER_MENU_HOVER_BG),
+
+    // Close Icon
+    ...generateResRangeAttributies(CLOSE_ICON_SIZE),
+    ...generateNormalBGAttributes(CLOSE_ICON_BG),
+    ...generateBorderAttributies(CLOSE_ICON_BORDER),
+    ...generateDimensionAttributes(CLOSE_ICON_BORDER_RADIUS),
+    ...generateDimensionAttributes(CLOSE_ICON_PADDING),
+    ...generateDimensionAttributes(CLOSE_ICON_MARGIN),
+    ...generateBoxShadowAttributies(CLOSE_ICON_BOX_SHADOW),
+    ...generateNormalBGAttributes(CLOSE_ICON_HOVER_BG),
+
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
@@ -152,6 +198,30 @@ const attributes = {
     },
 
     subMenuBorderActiveColor: {
+        type: 'string',
+    },
+
+    humburgerMenuColor: {
+        type: 'string',
+    },
+
+    humburgerMenuHoverColor: {
+        type: 'string',
+    },
+
+    humburgerMenuBorderHoverColor: {
+        type: 'string',
+    },
+
+    closeIconColor: {
+        type: 'string',
+    },
+
+    closeIconHoverColor: {
+        type: 'string',
+    },
+
+    closeIconBorderHoverColor: {
         type: 'string',
     },
 };

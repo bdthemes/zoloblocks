@@ -46,6 +46,26 @@ import {
     SUB_MENU_BOX_SHADOW,
     SUB_MENU_HOVER_BG,
     SUB_MENU_ACTIVE_BG,
+    MB_LOGO_WIDTH,
+    MB_LOGO_HEIGHT,
+    MB_LOGO_MARGIN,
+    MB_LOGO_PADDING,
+    HUMBURGER_MENU_ICON_SIZE,
+    HUMBURGER_MENU_BG,
+    HUMBURGER_MENU_BORDER,
+    HUMBURGER_MENU_BORDER_RADIUS,
+    HUMBURGER_MENU_PADDING,
+    HUMBURGER_MENU_MARGIN,
+    HUMBURGER_MENU_BOX_SHADOW,
+    HUMBURGER_MENU_HOVER_BG,
+    CLOSE_ICON_SIZE,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_BORDER_RADIUS,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BOX_SHADOW,
+    CLOSE_ICON_HOVER_BG,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -59,13 +79,18 @@ export default function Style({ props }) {
         navItemTextActiveColor,
         navItemBorderHoverColor,
         navItemBorderActiveColor,
-
         subMenuTextColor,
         subMenuTextHoverColor,
         subMenuTextActiveColor,
         subMenuBorderHoverColor,
         subMenuBorderActiveColor,
         uniqueId,
+        humburgerMenuColor,
+        humburgerMenuHoverColor,
+        humburgerMenuBorderHoverColor,
+        closeIconColor,
+        closeIconHoverColor,
+        closeIconBorderHoverColor,
     } = attributes;
 
     // alignment
@@ -396,6 +421,226 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    // MOBILE LOGO
+    const {
+        desktopRangeStyle: mbLogoWidthDesk,
+        tabRangeStyle: mbLogoWidthTab,
+        mobRangeStyle: mbLogoWidthMob,
+    } = generateResRangeStyle({
+        controlName: MB_LOGO_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: mbLogoHeightDesk,
+        tabRangeStyle: mbLogoHeightTab,
+        mobRangeStyle: mbLogoHeightMob,
+    } = generateResRangeStyle({
+        controlName: MB_LOGO_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: mbLogoMarginDesk,
+        dimensionStylesTab: mbLogoMarginTab,
+        dimensionStylesMobile: mbLogoMarginMob,
+    } = generateDimensionStyle({
+        controlName: MB_LOGO_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: mbLogoPaddingDesk,
+        dimensionStylesTab: mbLogoPaddingTab,
+        dimensionStylesMobile: mbLogoPaddingMob,
+    } = generateDimensionStyle({
+        controlName: MB_LOGO_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // HUMBURGER_MENU_ICON_SIZE
+    const {
+        desktopRangeStyle: humburgerMenuIconSizeDesk,
+        tabRangeStyle: humburgerMenuIconSizeTab,
+        mobRangeStyle: humburgerMenuIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: HUMBURGER_MENU_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    // HUMBURGER_MENU_BG
+
+    const {
+        backgroundStylesDesktop: humburgerMenuBGDesk,
+        backgroundStylesTab: humburgerMenuBGTab,
+        backgroundStylesMobile: humburgerMenuBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: HUMBURGER_MENU_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // HUMBURGER_MENU_BORDER
+
+    const {
+        desktopBorderStyle: humburgerMenuBorderDesk,
+        tabBorderStyle: humburgerMenuBorderTab,
+        mobBorderStyle: humburgerMenuBorderMob,
+    } = generateBorderStyle({
+        controlName: HUMBURGER_MENU_BORDER,
+        attributes,
+    });
+
+    // HUMBURGER_MENU_BORDER_RADIUS
+
+    const {
+        dimensionStylesDesktop: humburgerMenuBorderRadiusDesk,
+        dimensionStylesTab: humburgerMenuBorderRadiusTab,
+        dimensionStylesMobile: humburgerMenuBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: HUMBURGER_MENU_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // HUMBURGER_MENU_PADDING
+
+    const {
+        dimensionStylesDesktop: humburgerMenuPaddingDesk,
+        dimensionStylesTab: humburgerMenuPaddingTab,
+        dimensionStylesMobile: humburgerMenuPaddingMob,
+    } = generateDimensionStyle({
+        controlName: HUMBURGER_MENU_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // HUMBURGER_MENU_MARGIN
+
+    const {
+        dimensionStylesDesktop: humburgerMenuMarginDesk,
+        dimensionStylesTab: humburgerMenuMarginTab,
+        dimensionStylesMobile: humburgerMenuMarginMob,
+    } = generateDimensionStyle({
+        controlName: HUMBURGER_MENU_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // HUMBURGER_MENU_BOX_SHADOW
+
+    const { boxShadowStyle: humburgerMenuBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: HUMBURGER_MENU_BOX_SHADOW,
+        attributes,
+    });
+
+    // HUMBURGER_MENU_HOVER_BG
+
+    const {
+        backgroundStylesDesktop: humburgerMenuHoverBGDesk,
+        backgroundStylesTab: humburgerMenuHoverBGTab,
+        backgroundStylesMobile: humburgerMenuHoverBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: HUMBURGER_MENU_HOVER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // CLOSE_ICON_SIZE
+
+    const {
+        desktopRangeStyle: closeIconSizeDesk,
+        tabRangeStyle: closeIconSizeTab,
+        mobRangeStyle: closeIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: CLOSE_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    // CLOSE_ICON_BG
+
+    const {
+        backgroundStylesDesktop: closeIconBGDesk,
+        backgroundStylesTab: closeIconBGTab,
+        backgroundStylesMobile: closeIconBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // CLOSE_ICON_BORDER
+
+    const {
+        desktopBorderStyle: closeIconBorderDesk,
+        tabBorderStyle: closeIconBorderTab,
+        mobBorderStyle: closeIconBorderMob,
+    } = generateBorderStyle({
+        controlName: CLOSE_ICON_BORDER,
+        attributes,
+    });
+
+    // CLOSE_ICON_BORDER_RADIUS
+
+    const {
+        dimensionStylesDesktop: closeIconBorderRadiusDesk,
+        dimensionStylesTab: closeIconBorderRadiusTab,
+        dimensionStylesMobile: closeIconBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // CLOSE_ICON_PADDING
+
+    const {
+        dimensionStylesDesktop: closeIconPaddingDesk,
+        dimensionStylesTab: closeIconPaddingTab,
+        dimensionStylesMobile: closeIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // CLOSE_ICON_MARGIN
+
+    const {
+        dimensionStylesDesktop: closeIconMarginDesk,
+        dimensionStylesTab: closeIconMarginTab,
+        dimensionStylesMobile: closeIconMarginMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // CLOSE_ICON_BOX_SHADOW
+
+    const { boxShadowStyle: closeIconBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: CLOSE_ICON_BOX_SHADOW,
+        attributes,
+    });
+
+    // CLOSE_ICON_HOVER_BG
+
+    const {
+        backgroundStylesDesktop: closeIconHoverBGDesk,
+        backgroundStylesTab: closeIconHoverBGTab,
+        backgroundStylesMobile: closeIconHoverBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_HOVER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * Generate Alignment Class
      */
@@ -482,6 +727,47 @@ export default function Style({ props }) {
             border-color: ${subMenuBorderActiveColor ? subMenuBorderActiveColor : ''};
         }
 
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-mobile-logo img{
+            ${mbLogoWidthDesk}
+            ${mbLogoHeightDesk}
+            ${mbLogoMarginDesk}
+            ${mbLogoPaddingDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu{
+            color: ${humburgerMenuColor ? humburgerMenuColor : ''};
+            ${humburgerMenuIconSizeDesk}
+            ${humburgerMenuBGDesk}
+            ${humburgerMenuBorderDesk}
+            ${humburgerMenuBorderRadiusDesk}
+            ${humburgerMenuPaddingDesk}
+            ${humburgerMenuMarginDesk}
+            ${humburgerMenuBoxShadowStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu:hover{
+            color: ${humburgerMenuHoverColor ? humburgerMenuHoverColor : ''};
+            ${humburgerMenuHoverBGDesk}
+            border-color: ${humburgerMenuBorderHoverColor ? humburgerMenuBorderHoverColor : ''};
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon{
+            color: ${closeIconColor ? closeIconColor : ''};
+            ${closeIconSizeDesk}
+            ${closeIconBGDesk}
+            ${closeIconBorderDesk}
+            ${closeIconBorderRadiusDesk}
+            ${closeIconPaddingDesk}
+            ${closeIconMarginDesk}
+            ${closeIconBoxShadowStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon:hover{
+            ${closeIconHoverBGDesk}
+            color: ${closeIconHoverColor ? closeIconHoverColor : ''};
+            border-color: ${closeIconBorderHoverColor ? closeIconBorderHoverColor : ''};
+        }
+
 	`;
     const tabletAllStyle = `
 
@@ -539,6 +825,34 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
             ${subMenuActiveBGTab}
         }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-mobile-logo img{
+            ${mbLogoWidthDesk}
+            ${mbLogoHeightDesk}
+            ${mbLogoMarginDesk}
+            ${mbLogoPaddingDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu{
+            ${humburgerMenuIconSizeTab}
+            ${humburgerMenuBGTab}
+            ${humburgerMenuBorderTab}
+            ${humburgerMenuBorderRadiusTab}
+            ${humburgerMenuPaddingTab}
+            ${humburgerMenuMarginTab}
+            ${humburgerMenuBoxShadowStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon{
+            ${closeIconSizeTab}
+            ${closeIconBGTab}
+            ${closeIconBorderTab}
+            ${closeIconBorderRadiusTab}
+            ${closeIconPaddingTab}
+            ${closeIconMarginTab}
+            ${closeIconBoxShadowStyle}
+        }
+       
   	`;
     const mobileAllStyle = `
 
@@ -596,6 +910,33 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
             ${subMenuActiveBGMob}
+        }
+        
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-mobile-logo img{
+            ${mbLogoWidthDesk}
+            ${mbLogoHeightDesk}
+            ${mbLogoMarginDesk}
+            ${mbLogoPaddingDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu{
+            ${humburgerMenuIconSizeMob}
+            ${humburgerMenuBGDesk}
+            ${humburgerMenuBorderDesk}
+            ${humburgerMenuBorderRadiusDesk}
+            ${humburgerMenuPaddingDesk}
+            ${humburgerMenuMarginDesk}
+            ${humburgerMenuBoxShadowStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon{
+            ${closeIconSizeMob}
+            ${closeIconBGMob}
+            ${closeIconBorderMob}
+            ${closeIconBorderRadiusMob}
+            ${closeIconPaddingMob}
+            ${closeIconMarginMob}
+            ${closeIconBoxShadowStyle}
         }
   	`;
 
