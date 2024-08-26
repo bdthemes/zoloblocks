@@ -257,7 +257,7 @@ function Inspector(props) {
                                 }
                                 min={1}
                                 max={100}
-                                help={__('Speed: ', 'zoloblocks') + speed * 100 + 'ms'}
+                                help={__('Speed:', 'zoloblocks') + speed * 100 + 'ms'}
                             />
                             {carouselEffect === 'coverflow' && (
                                 <>
@@ -325,7 +325,7 @@ function Inspector(props) {
                                         }
                                         min={1}
                                         max={100}
-                                        help={__('Autoplay Dealy: ', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
                                     />
                                     <ToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}

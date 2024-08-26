@@ -70,12 +70,10 @@ import {
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_HOVER_BOX_SHADOW,
     CONTENT_TAB_PANEL_OPTION,
-
     STYLE3_ICON_BG_COLOR,
     STYLE3_ICON_SIZE,
     // STYLE3_ICON_RADIUS,
     STYLE3_ICON_OFFSET,
-
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -154,16 +152,18 @@ function Inspector(props) {
                             {
                                 // If preset is not selected, show alignment control
                                 enableIcon && preset === 'style-1' && (
-                                    <IconicBtnGroup
-                                        label={__('Layout Direction', 'zoloblocks')}
-                                        value={iconBoxDirection}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconBoxDirection: value,
-                                            })
-                                        }
-                                        options={PRESETS_ALIGNMENT}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Direction', 'zoloblocks')}
+                                            value={iconBoxDirection}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconBoxDirection: value,
+                                                })
+                                            }
+                                            options={PRESETS_ALIGNMENT}
+                                        />
+                                    </div>
                                 )
                             }
                             <ToggleControl
@@ -201,16 +201,18 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <>
                                 {enableIcon && (
-                                    <IconicBtnGroup
-                                        label={__('Icon Type', 'zoloblocks')}
-                                        value={iconType}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconType: value,
-                                            })
-                                        }
-                                        options={ICON_BOX_OPTIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Icon Type', 'zoloblocks')}
+                                            value={iconType}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconType: value,
+                                                })
+                                            }
+                                            options={ICON_BOX_OPTIONS}
+                                        />
+                                    </div>
                                 )}
                                 {enableIcon && iconType === 'icon' && (
                                     <Fragment>
@@ -228,7 +230,7 @@ function Inspector(props) {
 
                                 {enableIcon && iconType === 'image' && (
                                     <>
-                                        <BaseControl label={__('Image', 'zoloblocks')}>
+                                        <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                             {iconTypeImage ? (
                                                 <ImageAvatar
                                                     imageUrl={iconTypeImage && iconTypeImage.url}
@@ -271,7 +273,7 @@ function Inspector(props) {
                                             )}
                                         </BaseControl>
                                         <ImageSizes
-                                            label={__('Image Resolution', 'zoloblocks')}
+                                            label={__('Resolution', 'zoloblocks')}
                                             value={imageRes}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -310,6 +312,7 @@ function Inspector(props) {
 
                             {showText && (
                                 <TextareaControl
+                                    className="zolo-flex-col-control"
                                     label={__('Description', 'zoloblocks')}
                                     value={iconBoxDescription}
                                     onChange={(desc) =>
@@ -386,14 +389,10 @@ function Inspector(props) {
                                 />
                             )}
 
-                           {preset === 'style-3' && (
+                            {preset === 'style-3' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Overlay', 'zoloblocks')}</div>
-                                    <NormalBGControl
-                                        requiredProps={requiredProps}
-                                        controlName={STYLE3_ICON_BG_COLOR}
-                                        noMainBGImg={true}
-                                    />
+                                    <NormalBGControl requiredProps={requiredProps} controlName={STYLE3_ICON_BG_COLOR} noMainBGImg={true} />
 
                                     <ResRangeControl
                                         label={__('Width', 'zoloblocks')}
@@ -411,7 +410,6 @@ function Inspector(props) {
                                     /> */}
                                 </>
                             )}
-
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props} stylePanel={true}>
@@ -421,7 +419,6 @@ function Inspector(props) {
                                     <>
                                         {enableIcon && (
                                             <>
-
                                                 {iconType === 'image' && (
                                                     <>
                                                         <ResRangeControl
@@ -514,7 +511,6 @@ function Inspector(props) {
                                                     enableTransition={false}
                                                 />
                                             </>
-
                                         )}
                                     </>
                                 }
@@ -594,7 +590,7 @@ function Inspector(props) {
                                                     controlName={DESCRIPTION_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
-                                                 {preset === 'style-3' && (
+                                                {preset === 'style-3' && (
                                                     <>
                                                         <div className="zolo-custom-heading">{__('HOVER', 'zoloblocks')}</div>
                                                         <ColorControl

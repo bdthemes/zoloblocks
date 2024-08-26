@@ -68,7 +68,7 @@ const CustomCSSControl = ({ attributes, setAttributes }) => {
                     highlight="{{ ZOLO }}"
                 />
                 <p style={{ margin: '10px 0', padding: '0 5px', lineHeight: '1.5', fontSize: '12px' }}>
-                    <strong>{__('Suggested Classes: ', 'zoloblocks')}</strong>
+                    <strong>{__('Suggested Classes:', 'zoloblocks')}</strong>
                 </p>
                 <div className="zolo-suggested-class">
                     {updatedClassesArray &&

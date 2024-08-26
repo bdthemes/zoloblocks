@@ -118,6 +118,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Rating', 'zoloblocks')} panelProps={props}>
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Rating', 'zoloblocks')}
                                 value={rating}
                                 onChange={(v) => setAttributes({ rating: v })}
@@ -147,16 +148,18 @@ function Inspector(props) {
                         )}
                         {showIcon && (
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} panelProps={props}>
-                                <IconicBtnGroup
-                                    label={__('Icon Type', 'zoloblocks')}
-                                    value={iconType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            iconType: value,
-                                        })
-                                    }
-                                    options={ICON_OPTIONS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Icon Type', 'zoloblocks')}
+                                        value={iconType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconType: value,
+                                            })
+                                        }
+                                        options={ICON_OPTIONS}
+                                    />
+                                </div>
                                 {iconType === 'icon' && (
                                     <ZoloIconPicker
                                         label={__('Select Icon', 'zolo-block')}
@@ -166,7 +169,7 @@ function Inspector(props) {
                                 )}
                                 {iconType === 'image' && (
                                     <>
-                                        <BaseControl label={__('Image', 'zoloblocks')}>
+                                        <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                             {iconTypeImage ? (
                                                 <ImageAvatar
                                                     imageUrl={iconTypeImage && iconTypeImage.url}
@@ -221,7 +224,7 @@ function Inspector(props) {
                                             )}
                                         </BaseControl>
                                         <ImageSizes
-                                            label={__('Image Resolution', 'zoloblocks')}
+                                            label={__('Resolution', 'zoloblocks')}
                                             value={imageRes}
                                             onChange={(value) =>
                                                 setAttributes({

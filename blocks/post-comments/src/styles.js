@@ -193,39 +193,39 @@ function Style({props}) {
     attributes,
   });
   const desktopAllStyle = `
-       .${uniqueId}.zolo-block.zolo-recent-comments-wrap{
+       .${uniqueId}.zolo-block.zolo-post-comments-wrap{
          grid-template-columns:repeat(${columnCountDesk}, 1fr);
          ${colGapDesk}
        }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-item{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-item{
         ${itemBGDesk}
         ${itemPaddingDesk}
         ${itemBorderDesk}
         ${itemBorderRadiusDesk}
         ${itemBoxShadow}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-text{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-text{
        ${textTypoDesk}
        ${textColor?`color:${textColor};`:''}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta{
         ${metaSpacingDesk}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-avatar img{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-avatar img{
        ${avatarPaddingDesk}
        ${avatarMarginDesk}
         ${avatarBorderDesk}
         ${avatarBorderRadiusDesk}
         ${avatarBoxShadow}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-author-name{
         ${authorTypoDesk}
         ${authorColor?`color:${authorColor};`:''}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name:hover{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-author-name:hover{
         ${authorHoverColor?`color:${authorHoverColor};`:''}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-date{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-date{
         ${dateTypoDesk}
         ${dateMarginDesk}
         ${dateColor?`color:${dateColor};`:''}
@@ -233,63 +233,63 @@ function Style({props}) {
   `;
 
   const tabletAllStyle = `
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap{
          grid-template-columns:repeat(${columnCountTab}, 1fr);
          ${colGapTab}
        }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-item{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-item{
         ${itemBGTab}
         ${itemPaddingTab}
         ${itemBorderTab}
         ${itemBorderRadiusTab}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-text{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-text{
        ${textTypoTab}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta{
         ${metaSpacingTab}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-avatar img{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-avatar img{
        ${avatarPaddingTab}
        ${avatarMarginTab}
         ${avatarBorderTab}
         ${avatarBorderRadiusTab}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-author-name{
         ${authorTypoTab}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-date{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-date{
         ${dateTypoTab}
         ${dateMarginTab}
       }
   `;
   const mobileAllStyle = `
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap{
          grid-template-columns:repeat(${columnCountMob}, 1fr);
          ${colGapMob}
        }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-item{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-item{
         ${itemBGMob}
         ${itemPaddingMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-text{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-text{
        ${textTypoMob}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta{
         ${metaSpacingMob}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-avatar img{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-avatar img{
        ${avatarPaddingMob}
        ${avatarMarginMob}
         ${avatarBorderMob}
         ${avatarBorderRadiusMob}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-author-name{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-author-name{
         ${authorTypoMob}
       }
-      .${uniqueId}.zolo-block.zolo-recent-comments-wrap .zolo-meta .zolo-date{
+      .${uniqueId}.zolo-block.zolo-post-comments-wrap .zolo-meta .zolo-date{
         ${dateTypoMob}
         ${dateMarginMob}
       }

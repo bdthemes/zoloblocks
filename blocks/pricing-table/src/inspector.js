@@ -356,7 +356,7 @@ const Inspector = (props) => {
 
                             {sale && (
                                 <TextControl
-                                    label={__('Orginal Price', 'zoloblocks')}
+                                    label={__('Original Price', 'zoloblocks')}
                                     value={orginalPrice}
                                     onChange={(orginalPrice) => setAttributes({ orginalPrice })}
                                 />
@@ -507,7 +507,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Description ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Description', 'zoloblocks')} </h3>
                                     </BaseControl>
 
                                     <TypographyDropdown
@@ -582,7 +582,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('PreFix ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Prefix', 'zoloblocks')} </h3>
                                     </BaseControl>
                                     <RangeResetControl
                                         label={__('Size', 'zoloblocks')}
@@ -607,7 +607,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Suffix ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Suffix', 'zoloblocks')} </h3>
                                     </BaseControl>
                                     <RangeResetControl
                                         label={__('Size', 'zoloblocks')}
@@ -632,7 +632,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Orginal Price ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Original Price', 'zoloblocks')} </h3>
                                     </BaseControl>
 
                                     <TypographyDropdown
@@ -741,7 +741,7 @@ const Inspector = (props) => {
 
                                             <Divider />
                                             <BaseControl>
-                                                <h3 className="zolo-devider-title"> {__('Description ', 'zoloblocks')} </h3>
+                                                <h3 className="zolo-devider-title"> {__('Description', 'zoloblocks')} </h3>
                                             </BaseControl>
 
                                             <TypographyDropdown
@@ -773,7 +773,7 @@ const Inspector = (props) => {
                                         <>
                                             <Divider />
                                             <BaseControl>
-                                                <h3 className="zolo-devider-title"> {__('Feature Lists ', 'zoloblocks')} </h3>
+                                                <h3 className="zolo-devider-title"> {__('Feature Lists', 'zoloblocks')} </h3>
                                             </BaseControl>
                                         </>
                                     )}

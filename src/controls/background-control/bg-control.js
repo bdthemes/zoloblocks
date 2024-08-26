@@ -1148,7 +1148,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                 <TextareaControl
                                                     help={
                                                         <>
-                                                            {__('Add your gradient color here. Get Sample ', 'zoloblocks')}
+                                                            {__('Add your gradient color here. Get Sample', 'zoloblocks')}
                                                             <a
                                                                 href="https://csspro.com/css-gradients/"
                                                                 target="_blank"

@@ -391,20 +391,19 @@ function Inspector(props) {
                                 step={1}
                                 noUnits={true}
                             />
-                            <div className="zolo-flex-col-control">
-                                <RangeControl
-                                    label={__('Speed', 'zoloblocks')}
-                                    value={speed}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            speed: v,
-                                        })
-                                    }
-                                    min={1}
-                                    max={100}
-                                    help={__('Speed: ', 'zoloblocks') + speed * 100 + 'ms'}
-                                />
-                            </div>
+                            <RangeControl
+                                className="zolo-flex-col-control"
+                                label={__('Speed', 'zoloblocks')}
+                                value={speed}
+                                onChange={(v) =>
+                                    setAttributes({
+                                        speed: v,
+                                    })
+                                }
+                                min={1}
+                                max={100}
+                                help={__('Speed:', 'zoloblocks') + speed * 100 + 'ms'}
+                            />
                             {carouselEffect === 'coverflow' && (
                                 <>
                                     <div className="zolo-flex-col-control">
@@ -470,20 +469,19 @@ function Inspector(props) {
 
                             {autoplay && (
                                 <Fragment>
-                                    <div className="zolo-flex-col-control">
-                                        <RangeControl
-                                            label={__('Autoplay Delay', 'zoloblocks')}
-                                            value={autoplayDelay}
-                                            onChange={(v) =>
-                                                setAttributes({
-                                                    autoplayDelay: v,
-                                                })
-                                            }
-                                            min={1}
-                                            max={100}
-                                            help={__('Autoplay Dealy: ', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
-                                        />
-                                    </div>
+                                    <RangeControl
+                                        className="zolo-flex-col-control"
+                                        label={__('Autoplay Delay', 'zoloblocks')}
+                                        value={autoplayDelay}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                autoplayDelay: v,
+                                            })
+                                        }
+                                        min={1}
+                                        max={100}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                    />
                                     <ToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}
                                         checked={pauseOnMouseEnter}
@@ -601,7 +599,7 @@ function Inspector(props) {
                                 />
                                 {showThumbnail && (
                                     <SelectControl
-                                        label={__('Thumbnail Resolution', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={postQuery?.postThumbnail}
                                         options={THUMBNAIL_SIZE}
                                         onChange={(postThumbnail) =>
@@ -965,27 +963,20 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                                <BaseControl label={__('Avatar', 'zoloblocks')} className="zolo-flex-col-control">
-                                    <ResRangeControl
-                                        label={__('Size', 'zoloblocks')}
-                                        controlName={AVATAR_SIZE}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <BorderControl
-                                        label={__('Border', 'zoloblocks')}
-                                        controlName={AVATAR_BORDER}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Border Radius', 'zoloblocks')}
-                                        controlName={AVATAR_BORDER_RADIUS}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                </BaseControl>
-
-                                <CardDivider />
-                                {/* <BaseControl label={__('Name', 'zoloblocks')} className="zolo-flex-col-contorl"> */}
+                                <div className="zolo-custom-heading">{__('Avatar', 'zoloblocks')}</div>
+                                <ResRangeControl label={__('Size', 'zoloblocks')} controlName={AVATAR_SIZE} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <div className="zolo-custom-heading">{__('Name', 'zoloblocks')}</div>
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={NAME_TYPOGRAPHY}
@@ -1029,7 +1020,6 @@ function Inspector(props) {
                                         </>
                                     }
                                 />
-                                {/* </BaseControl> */}
                             </ZoloPanelBody>
                         )}
 

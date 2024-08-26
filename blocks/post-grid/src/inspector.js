@@ -280,7 +280,7 @@ function Inspector(props) {
                                         step={1}
                                     />
                                     <TextControl
-                                        label={__(' Expansion Indicator', 'zoloblocks')}
+                                        label={__('EXP Indic', 'zoloblocks')}
                                         value={excerptindicator}
                                         onChange={(excerptindicator) => setAttributes({ excerptindicator })}
                                     />
@@ -396,7 +396,7 @@ function Inspector(props) {
                                 />
                                 {showThumbnail && (
                                     <SelectControl
-                                        label={__('Thumbnail Resolution', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={postQuery?.postThumbnail}
                                         options={THUMBNAIL_SIZE}
                                         onChange={(postThumbnail) =>
@@ -766,83 +766,75 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                                <BaseControl label={__('Avatar', 'zoloblocks')}>
-                                    <ResRangeControl
-                                        label={__('Size', 'zoloblocks')}
-                                        controlName={AVATAR_SIZE}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <BorderControl
-                                        label={__('Border', 'zoloblocks')}
-                                        controlName={AVATAR_BORDER}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Border Radius', 'zoloblocks')}
-                                        controlName={AVATAR_BORDER_RADIUS}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                </BaseControl>
+                                <div className="zolo-custom-heading">{__('Avatar', 'zoloblocks')}</div>
+                                <ResRangeControl label={__('Size', 'zoloblocks')} controlName={AVATAR_SIZE} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                {/* </BaseControl> */}
+                                <div className="zolo-custom-heading">{__('Name', 'zoloblocks')}</div>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={NAME_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
 
-                                <CardDivider />
-                                <BaseControl label={__('Name', 'zoloblocks')}>
-                                    <TypographyDropdown
-                                        label={__('Typography', 'zoloblocks')}
-                                        typoPrefixConstant={NAME_TYPOGRAPHY}
-                                        requiredProps={requiredProps}
-                                    />
-
-                                    <TabPanelControl
-                                        normalComponents={
-                                            <>
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Prefix Color', 'zoloblocks')}
+                                                color={namePrefixColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        namePrefixColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Name Color', 'zoloblocks')}
+                                                color={nameColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        nameColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Name Hover Color', 'zoloblocks')}
+                                                color={nameHoverColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        nameHoverColor: color,
+                                                    })
+                                                }
+                                            />
+                                            {preset === 'style-3' && (
                                                 <ColorControl
-                                                    label={__('Prefix Color', 'zoloblocks')}
-                                                    color={namePrefixColor}
+                                                    label={__('Prefix Hover Color', 'zoloblocks')}
+                                                    color={namePrefixHoverColor}
                                                     onChange={(color) =>
                                                         setAttributes({
-                                                            namePrefixColor: color,
+                                                            namePrefixHoverColor: color,
                                                         })
                                                     }
                                                 />
-                                                <ColorControl
-                                                    label={__('Name Color', 'zoloblocks')}
-                                                    color={nameColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            nameColor: color,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                        hoverComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Name Hover Color', 'zoloblocks')}
-                                                    color={nameHoverColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            nameHoverColor: color,
-                                                        })
-                                                    }
-                                                />
-                                                {preset === 'style-3' && (
-                                                    <ColorControl
-                                                        label={__('Prefix Hover Color', 'zoloblocks')}
-                                                        color={namePrefixHoverColor}
-                                                        onChange={(color) =>
-                                                            setAttributes({
-                                                                namePrefixHoverColor: color,
-                                                            })
-                                                        }
-                                                    />
-                                                )}
-                                                
-                                            </>
-                                        }
-                                    />
-                                </BaseControl>
+                                            )}
+                                        </>
+                                    }
+                                />
                             </ZoloPanelBody>
                         )}
                         {postQuery?.showPagination && (

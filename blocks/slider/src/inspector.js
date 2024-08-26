@@ -116,7 +116,7 @@ const Inspector = (props) => {
                                 }
                                 min={1}
                                 max={100}
-                                help={__('Default Speed: ', 'zoloblocks') + 8 * 100 + 'ms'}
+                                help={__('Default Speed:', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
@@ -149,7 +149,7 @@ const Inspector = (props) => {
                                         }
                                         min={1}
                                         max={100}
-                                        help={__('Autoplay Dealy: ', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
                                     />
                                     <ToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}

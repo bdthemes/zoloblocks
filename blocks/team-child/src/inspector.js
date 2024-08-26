@@ -24,7 +24,7 @@ const {
     ZoloIconPicker,
     ZoloPanelBody,
     ImageSizes,
-    ResGapControl
+    ResGapControl,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -128,7 +128,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Photo', 'zoloblocks')}>
+                            <BaseControl label={__('Photo', 'zoloblocks')} className="zolo-flex-col-control">
                                 {memberPhoto ? (
                                     <ImageAvatar
                                         imageUrl={memberPhoto && memberPhoto.url}
@@ -183,7 +183,7 @@ function Inspector(props) {
                                 )}
                             </BaseControl>
                             <ImageSizes
-                                label={__('Photo Resolution', 'zoloblocks')}
+                                label={__('Resolution', 'zoloblocks')}
                                 value={imageRes}
                                 onChange={(res) => setAttributes({ imageRes: res })}
                             />
@@ -211,6 +211,7 @@ function Inspector(props) {
                             )}
                             {showShortBio && (
                                 <TextareaControl
+                                    className="zolo-flex-col-control"
                                     label={__('Short Bio', 'zoloblocks')}
                                     value={memberShortBio}
                                     onChange={(bio) =>
@@ -221,9 +222,9 @@ function Inspector(props) {
                                     placeholder={__('Short Bio..', 'zoloblocks')}
                                 />
                             )}
-                            {addDetailPageLink && preset !=='style-4' && preset !=='style-45' &&(
+                            {addDetailPageLink && preset !== 'style-4' && preset !== 'style-45' && (
                                 <LinkControl
-                                    label={__('Detail Page Link', 'zoloblocks')}
+                                    label={__('Link', 'zoloblocks')}
                                     value={memberDetailPageLink}
                                     onChange={(link) =>
                                         setAttributes({
@@ -238,7 +239,7 @@ function Inspector(props) {
                                 <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                             </ZoloPanelBody>
                         )}
-                        {addDetailPageLink && preset !=='style-4' &&(
+                        {addDetailPageLink && preset !== 'style-4' && (
                             <ZoloPanelBody title={__('Details Page Icon', 'zoloblocks')} panelProps={props}>
                                 <ZoloIconPicker
                                     label={__('Select Icon', 'zoloblocks')}
@@ -330,7 +331,7 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            {preset === 'style-5' &&(
+                            {preset === 'style-5' && (
                                 <NormalBGControl
                                     label={__('Overlay', 'zoloblocks')}
                                     requiredProps={requiredProps}
@@ -404,11 +405,14 @@ function Inspector(props) {
                                     />
                                 )}
 
-                                { preset === 'style-4' && (
-                                    <ResGapControl label={__('Separator Gap', 'zoloblocks')} controlName={SEPARATOR_SPACING_TEAM} requiredProps={requiredProps} max={200} />
+                                {preset === 'style-4' && (
+                                    <ResGapControl
+                                        label={__('Separator Gap', 'zoloblocks')}
+                                        controlName={SEPARATOR_SPACING_TEAM}
+                                        requiredProps={requiredProps}
+                                        max={200}
+                                    />
                                 )}
-
-
                             </ZoloPanelBody>
                         )}
                         {showShortBio && (
@@ -557,7 +561,7 @@ function Inspector(props) {
                                 </ZoloPanelBody>
                             </>
                         )}
-                        {addDetailPageLink && preset !=='style-4' && preset !== 'style-5' &&(
+                        {addDetailPageLink && preset !== 'style-4' && preset !== 'style-5' && (
                             <ZoloPanelBody title={__('Details Page Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zoloblocks')}

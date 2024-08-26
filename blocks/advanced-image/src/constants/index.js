@@ -20,8 +20,8 @@ export const HOVER_EFFECTS = [
     { value: 'zolo-adi-slide-left', label: __('Slide Left', 'zoloblocks') },
     { value: 'zolo-adi-slide-bottom', label: __('Slide Bottom', 'zoloblocks') },
     { value: 'zolo-adi-slide-right', label: __('Slide Right', 'zoloblocks') },
-    { value: 'zolo-adi-zoom ', label: __('Zoom', 'zoloblocks') },
-    { value: 'zolo-adi-gray ', label: __('Gray Scale', 'zoloblocks') },
+    { value: 'zolo-adi-zoom', label: __('Zoom', 'zoloblocks') },
+    { value: 'zolo-adi-gray', label: __('Gray Scale', 'zoloblocks') },
 ];
 
 // image masking

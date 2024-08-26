@@ -18,7 +18,7 @@ const Save = (props) => {
             {...useBlockProps.save({
                 className: classnames(
                     className,
-                    `${uniqueId} zolo-static-social-count-wrap zolo-${preset}`,
+                    `${uniqueId} zolo-social-count-wrap zolo-${preset}`,
                     classArrayToStr(parentClasses)
                 ),
             })}
