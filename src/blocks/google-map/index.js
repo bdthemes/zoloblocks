@@ -4,10 +4,10 @@ import metadata from './block.json';
 import Edit from './edit';
 import Save from './save';
 
+import deprecated from './deprecated';
 import './style.scss';
 
-import BlockIcons from '../../global/block-icons';
-import deprecated from './deprecated';
+const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata, {
     icon: {

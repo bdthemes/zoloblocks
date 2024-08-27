@@ -107,7 +107,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
     // save favorite templates to database
     const saveFavTemplates = (templateID) => {
-        const newFavTemplates = favTemplates.includes(templateID)
+        const newFavTemplates = favTemplates?.includes(templateID)
             ? favTemplates.filter((fav) => fav !== templateID)
             : [...favTemplates, templateID];
 
@@ -262,14 +262,14 @@ function ZoloBlocksTemplateLibraryButton() {
         setTotal(filteredTemplates.length);
 
         // search for favorite templates
-        if (activeTab === 'favorites' && favTemplates?.length > 0) {
-            const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
-            const filteredFavTemplates = favTemplatesData.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
+        // if (activeTab === 'favorites' && favTemplates?.length > 0) {
+        //     const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
+        //     const filteredFavTemplates = favTemplatesData.filter((template) => {
+        //         return template.title.toLowerCase().includes(searchText.toLowerCase());
+        //     });
 
-            setFavTemplatesData(filteredFavTemplates);
-        }
+        //     setFavTemplatesData(filteredFavTemplates);
+        // }
     }, [searchText, activeTab]); // eslint-disable-line
 
     /**
@@ -404,9 +404,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                             >
                                                 {tab.label}
 
-                                                {tab.value === 'favorites' && favTemplates?.length > 0 && (
+                                                {/* {tab.value === 'favorites' && favTemplates?.length > 0 && (
                                                     <span className="fav-count">{favTemplates?.length}</span>
-                                                )}
+                                                )} */}
                                             </button>
                                         ))}
                                 </div>
@@ -524,7 +524,6 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             <g id="SVGRepo_bgCarrier" strokeWidth={0} />
                                                             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
                                                             <g id="SVGRepo_iconCarrier">
-                                                                {' '}
                                                                 <g
                                                                     fill="none"
                                                                     fillRule="evenodd"
@@ -533,10 +532,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                                                     strokeLinejoin="round"
                                                                     transform="matrix(0 1 1 0 2.5 2.5)"
                                                                 >
-                                                                    {' '}
-                                                                    <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />{' '}
-                                                                    <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />{' '}
-                                                                </g>{' '}
+                                                                    <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />
+                                                                    <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />
+                                                                </g>
                                                             </g>
                                                         </svg>
                                                     </button>

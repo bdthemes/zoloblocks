@@ -5,12 +5,14 @@
 /**
  * Import Style
  */
-import './scss/index.scss';
+import './style.scss';
+import './welcome.scss';
+import './settings.scss';
 
 /**
  * External dependencies
  */
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 
 import Dashboard from './dashboard';
 

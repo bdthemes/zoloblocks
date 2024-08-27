@@ -166,14 +166,19 @@ const ApiSettings = () => {
                 </SettingPanel>
                 <SettingPanel
                     title={__('Facebook Page Feed', 'zoloblocks')}
-                    description={
-                        <>
-                            <a href="https://developers.facebook.com/apps/" target="_blank">
-                                {__('Facebook Developer Account', 'zoloblocks')}
-                            </a>{' '}
-                            to get access Page ID and Access Token. This credential need for Social Feeds widget.
-                        </>
-                    }
+                    // description={
+                    //     <>
+                    //         <a href="https://developers.facebook.com/apps/" target="_blank">
+                    //             {__('Facebook Developer Account', 'zoloblocks')}
+                    //         </a>{' '}
+
+                    //     </>
+                    // }
+                    description={__(
+                        'The Facebook Page Feed block allows you to display the latest posts from your Facebook page directly on your WordPress site. You can also customize the layout and style to match your website’s design. Please connect your Facebook API key to seamlessly integrate your Facebook content.',
+                        'zoloblocks'
+                    )}
+
                     docLink="https://mailchimp.com/help/find-audience-id/"
                     icon="facebook"
                     released={false}
@@ -185,24 +190,28 @@ const ApiSettings = () => {
                     <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
-
                 <SettingPanel
                     title={__('Instagram Feed', 'zoloblocks')}
-                    description={
-                        <>
-                            <span className="description">
-                                Go to{' '}
-                                <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">
-                                    {__('Instagram Developer Account', 'zoloblocks')}
-                                </a>{' '}
-                                for create your Consumer key and Access Token.
-                            </span>
-                        </>
-                    }
+                    // description={
+                    //     <>
+                    //         <span className="description">
+                    //             Go to{' '}
+                    //             <a href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started" target="_blank">
+                    //                 {__('Instagram Developer Account', 'zoloblocks')}
+                    //             </a>{' '}
+                    //             for create your Consumer key and Access Token.
+                    //         </span>
+                    //     </>
+                    // }
+
+                    description={__(
+                        'The Instagram Feed block lets you showcase your Instagram photos and videos on your landing page. An API key from Instagram needs to be linked to ZoloBlocks to show and customize your content.',
+                        'zoloblocks'
+                    )}
                     docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
                     icon="instagram"
                     released={false}
-                    onSave={() => {}}
+                    onSave={() => { }}
                 >
                     <TextControl label={__('Instagram App ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('Instagram App Secret', 'zoloblocks')} disabled={true} />
@@ -210,48 +219,56 @@ const ApiSettings = () => {
                 </SettingPanel>
                 <SettingPanel
                     title={__('Google Review', 'zoloblocks')}
-                    description={
-                        <>
-                            <span className="description">
-                                Go to{' '}
-                                <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">
-                                    https://developers.google.com
-                                </a>{' '}
-                                and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert
-                                here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review
-                                widget so you must enabled Places API too.
-                            </span>
-                        </>
-                    }
+                    // description={
+                    //     <>
+                    //         <span className="description">
+                    //             Go to{' '}
+                    //             <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">
+                    //                 https://developers.google.com
+                    //             </a>{' '}
+                    //             and <a href="https://console.cloud.google.com/google/maps-apis/overview">generate the API key</a> and insert
+                    //             here. This API key needs for show Advanced Google Map widget correctly. API Key also works for Google Review
+                    //             widget so you must enabled Places API too.
+                    //         </span>
+                    //     </>
+                    // }
+                    description={__(
+                        'The Google Review block enables you to display Google reviews on WordPress site the secured Google API key. You can customize the review appearance from editor options.',
+                        'zoloblocks'
+                    )}
                     docLink="https://developers.google.com/maps/documentation/javascript/get-api-key"
                     icon="google"
                     released={false}
-                    onSave={() => {}}
+                    onSave={() => { }}
                 >
                     <TextControl label={__('API Key', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
                 <SettingPanel
                     title={__('Yelp Review', 'zoloblocks')}
-                    description={
-                        <>
-                            <span className="description">
-                                Go to your{' '}
-                                <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">
-                                    Yelp Developer Account
-                                </a>{' '}
-                                to get access client ID and Key. This credential need for Social Proof widget.
-                            </span>
-                        </>
-                    }
+                    // description={
+                    //     <>
+                    //         <span className="description">
+                    //             Go to your{' '}
+                    //             <a href="https://www.yelp.com/developers/v3/manage_app" target="_blank">
+                    //                 Yelp Developer Account
+                    //             </a>{' '}
+                    //             to get access client ID and Key. This credential need for Social Proof widget.
+                    //         </span>
+                    //     </>
+                    // }
+                    description={__(
+                        'The Yelp Review block lets you feature original Yelp reviews on your landing page by pulling data directly through Yelp API. Please insert the API key to start.',
+                        'zoloblocks'
+                    )}
                     docLink="#"
                     icon="yelp"
                     released={false}
-                    onSave={() => {}}
+                    onSave={() => { }}
                 >
                     <TextControl label={__('Yelp Client ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('Yelp API Key', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
-                <SettingPanel
+                {/* <SettingPanel
                     title={__('Facebook Page Review', 'zoloblocks')}
                     description={
                         <>
@@ -271,17 +288,23 @@ const ApiSettings = () => {
                 >
                     <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
                     <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
-                </SettingPanel>
+                </SettingPanel> */}
                 <SettingPanel
                     title={__('Zoom', 'zoloblocks')}
-                    description={
-                        <>
-                            <a href="https://developers.zoom.us/docs/api/" target="_blank">
-                                {__('Zoom Developer Account', 'zoloblocks')}
-                            </a>{' '}
-                            to get access API Keyand Secret Key. This credential need for Zoom Features.
-                        </>
-                    }
+                    // description={
+                    //     <>
+                    //         <a href="https://developers.zoom.us/docs/api/" target="_blank">
+                    //             {__('Zoom Developer Account', 'zoloblocks')}
+                    //         </a>{' '}
+                    //         to get access API Keyand Secret Key. This credential need for Zoom Features.
+                    //     </>
+                    // }
+
+                    description={__(
+                        'The Zoom Meeting block allows you to embed live Zoom meetings directly on your WordPress site. You’ll need an API key from Zoom to connect your Zoom account.',
+                        'zoloblocks'
+                    )}
+
                     docLink="#"
                     icon="zoom"
                     released={false}

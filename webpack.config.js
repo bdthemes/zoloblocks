@@ -26,5 +26,12 @@ module.exports = {
                 type: 'window',
             },
         },
+        'blocks-icons/index': {
+            import: ['./src/blocks-icons/index.js'],
+            library: {
+                name: 'zoloIcons',
+                type: 'window',
+            },
+        },
     },
 };

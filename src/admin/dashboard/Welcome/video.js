@@ -7,8 +7,8 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
                 <div className="zolo-welcome-video-container">
                     <iframe
                         width="100%"
-                        height="426"
-                        src={`https://www.youtube.com/embed/${videoInfo.id}`}
+                        height="415"
+                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&mute=1&rel=0`}
                         title={videoInfo.title || 'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes'}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -22,12 +22,7 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
                         return (
                             <a href={button.link} target="_blank" className={`zolo-welcome-page-btn zolo-${button.type}-btn`}>
                                 {button.text}
-                                <svg
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 18 18"
-                                    >
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                     <path
                                         stroke="currentColor"
                                         strokeLinecap="round"

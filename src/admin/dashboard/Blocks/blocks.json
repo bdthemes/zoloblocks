@@ -21,6 +21,14 @@
         "categories": ["others"]
     },
     {
+        "title": "Advanced Divider",
+        "name": "zolo_advanced_divider",
+        "demo": "https://demo.zoloblocks.com/advanced-divider/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["others"],
+        "upcoming": true
+    },
+    {
         "title": "Advanced Heading",
         "name": "zolo_advanced_heading",
         "demo": "https://demo.zoloblocks.com/advanced-heading/",
@@ -70,6 +78,13 @@
         "categories": ["others"]
     },
     {
+        "title": "Charts",
+        "name": "zolo_charts",
+        "demo": "https://demo.zoloblocks.com/charts/",
+        "video": "#",
+        "categories": ["others"]
+    },
+    {
         "title": "Counter",
         "name": "zolo_counter",
         "demo": "https://demo.zoloblocks.com/counter/",
@@ -84,11 +99,12 @@
         "categories": ["others"]
     },
     {
-        "title": "Charts",
-        "name": "zolo_charts",
-        "demo": "https://demo.zoloblocks.com/charts/",
-        "video": "#",
-        "categories": ["others"]
+        "title": "Coupon Code",
+        "name": "zolo_coupon_code",
+        "demo": "https://demo.zoloblocks.com/coupon-code/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["others"],
+        "upcoming": true
     },
     {
         "title": "Fancy List",
@@ -147,6 +163,13 @@
         "categories": ["list"]
     },
     {
+        "title": "Lightbox",
+        "name": "zolo_lightbox",
+        "demo": "https://demo.zoloblocks.com/listbox/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["others"]
+    },
+    {
         "title": "NewsLetter",
         "name": "zolo_list",
         "demo": "https://demo.zoloblocks.com/newsletter/",
@@ -154,11 +177,49 @@
         "categories": ["others"]
     },
     {
+        "title": "Notice",
+        "name": "zolo_notice",
+        "demo": "https://demo.zoloblocks.com/notice/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["others"]
+    },
+    {
+        "title": "Post Author",
+        "name": "zolo_post_author",
+        "demo": "https://demo.zoloblocks.com/post-author/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"],
+        "upcoming": true
+    },
+    {
+        "title": "Post Comments",
+        "name": "zolo_post_comments",
+        "demo": "https://demo.zoloblocks.com/post-comments/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"],
+        "upcoming": true
+    },
+    {
         "title": "Post Carousel",
         "name": "zolo_post_carousel",
         "demo": "https://demo.zoloblocks.com/post-carousel/",
         "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
         "categories": ["slider", "postCategory"]
+    },
+    {
+        "title": "Post Category",
+        "name": "zolo_post_category",
+        "demo": "https://demo.zoloblocks.com/post-category/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"]
+    },
+    {
+        "title": "Post Gallery Slider",
+        "name": "zolo_post_gallery_video_slider",
+        "demo": "https://demo.zoloblocks.com/post-gallery-slider/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"],
+        "upcoming": true
     },
     {
         "title": "Post Grid",
@@ -173,6 +234,21 @@
         "demo": "https://demo.zoloblocks.com/post-list/",
         "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
         "categories": ["list", "postCategory"]
+    },
+    {
+        "title": "Post Social Count",
+        "name": "zolo_post_social_count",
+        "demo": "https://demo.zoloblocks.com/post-social-count/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"],
+        "upcoming": true
+    },
+    {
+        "title": "Post Tag Cloud",
+        "name": "zolo_tag_cloud",
+        "demo": "https://demo.zoloblocks.com/post-tag-cloud/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"]
     },
     {
         "title": "Pricing Table",
@@ -280,10 +356,11 @@
         "categories": ["others"]
     },
     {
-        "title": "Notice",
-        "name": "zolo_notice",
-        "demo": "https://demo.zoloblocks.com/notice/",
+        "title": "Video",
+        "name": "zolo_video",
+        "demo": "https://demo.zoloblocks.com/video/",
         "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
-        "categories": ["others"]
+        "categories": ["others"],
+        "upcoming": true
     }
 ]

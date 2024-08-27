@@ -1,6 +1,7 @@
 <?php
 namespace Zolo\Admin;
 use Zolo\Traits\SingletonTrait;
+use Zolo\Helpers\ZoloHelpers;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -24,6 +25,10 @@ if( ! class_exists( 'Assets' ) ) {
         public function __construct() {
             add_action('admin_enqueue_scripts', [$this, 'zolo_admin_enqueue_scripts']);
             add_action('admin_head', [$this, 'zolo_block_editor_assets']);
+
+            // blocks icons
+            add_action('enqueue_block_editor_assets', [$this, 'zolo_blocks_icons'], 2);
+            add_action( 'admin_enqueue_scripts', [$this, 'zolo_blocks_icons'], 2 ); 
         }
     
         /**
@@ -73,7 +78,14 @@ if( ! class_exists( 'Assets' ) ) {
             );
 
             wp_enqueue_style(
-                'zolo-admin-css',
+                'zolo-admin-style-css',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/admin/style-index.css',
+                [],
+                ZOLO_VERSION
+            );
+
+            wp_enqueue_style(
+                'zolo-admin-index-css',
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/admin/index.css',
                 [],
                 ZOLO_VERSION
@@ -87,6 +99,17 @@ if( ! class_exists( 'Assets' ) ) {
                 'zolo-admin-js',
                 'zoloBlocks',
                 [
+                    'system_info' => [
+                        'php_version'        => ZoloHelpers::get_php_version(),
+                        'wp_version'         => ZoloHelpers::get_wp_version(),
+                        'memory_limit'       => ZoloHelpers::get_memory_limit(),
+                        'max_upload_size'    => ZoloHelpers::get_max_upload_size(),
+                        'post_max_size'      => ZoloHelpers::get_max_post_size(),
+                        'max_execution_time' => ZoloHelpers::get_max_execution_time(),
+                        'gzip'               => ZoloHelpers::get_gzip_status(),
+                        'multi_site'         => ZoloHelpers::is_multisite(),
+                        'debug_mode'         => ZoloHelpers::is_debug_mode(),
+                    ],
                     'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                     'zolo_rest_url'  => esc_url_raw(rest_url('zolo/v1/settings')),
                     'plugin_version' => ZOLO_VERSION,
@@ -111,6 +134,27 @@ if( ! class_exists( 'Assets' ) ) {
             );
 
             wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', null, null, true);
+        }
+
+        /**
+         * Enqueue blocks icons
+         *
+         * @return void
+         */
+        public function zolo_blocks_icons( $screen ) {
+            // zoloModules
+            $dep_file = ZOLO_DIR_PATH . 'build/blocks-icons/index.asset.php';
+            $script_dependecy = file_exists($dep_file) ? include $dep_file : [
+                'dependencies' => [],
+                'version'      => ZOLO_VERSION
+            ];
+            wp_enqueue_script(
+                'zoloblocks-icons-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/blocks-icons/index.js',
+                $script_dependecy['dependencies'],
+                $script_dependecy['version'],
+                false 
+            );
         }
     }
     

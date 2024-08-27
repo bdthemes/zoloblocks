@@ -79,6 +79,9 @@ class ZoloBlocks_Loader {
         TemplatesV1::getInstance();
         Templates::getInstance();
 
+        // Settings
+        Settings::getInstance();
+
         if ( is_admin() ) {
 
             // Support SVG
@@ -89,7 +92,6 @@ class ZoloBlocks_Loader {
             // Admin Dashboard
             Dashboard::getInstance();
             Assets::getInstance();
-            Settings::getInstance();
         }
     }
 
