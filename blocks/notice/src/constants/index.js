@@ -10,6 +10,7 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
+    { label: __('Style 4 (Pro)', 'zoloblocks'), value: 'style-4', disabled: true },
 ];
 export const NOTICE_TYPE = [
     { label: 'Success', value: 'success' },
@@ -126,6 +127,9 @@ export const STYLE3_ICON_BG_COLOR = 'style3IconBgColor';
 export const STYLE3_ICON_SIZE = 'style3IconSize';
 // export const STYLE3_ICON_RADIUS = 'style3IconRadius';
 export const STYLE3_ICON_OFFSET = 'style3IconOffset';
+
+export const HIGHTLIGHT_BORDER_WIDTH = 'highlightBorderWidth';
+export const HIGHTLIGHT_BORDER_HEIGHT = 'highlightBorderHeight';
 
 export const CONTENT_TAB_PANEL_OPTION = [
     { label: 'Icon', value: 'normal' },

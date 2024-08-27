@@ -70,12 +70,12 @@ import {
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_HOVER_BOX_SHADOW,
     CONTENT_TAB_PANEL_OPTION,
-
     STYLE3_ICON_BG_COLOR,
     STYLE3_ICON_SIZE,
     // STYLE3_ICON_RADIUS,
+    HIGHTLIGHT_BORDER_WIDTH,
+    HIGHTLIGHT_BORDER_HEIGHT,
     STYLE3_ICON_OFFSET,
-
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -116,6 +116,7 @@ function Inspector(props) {
         closedColor,
         closeIconHoverColor,
         closeIconBorderHoverColor,
+        styleBorderColor,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -358,6 +359,7 @@ function Inspector(props) {
                                 controlName={ITEM_PADDING}
                                 requiredProps={requiredProps}
                             />
+
                             <TabPanelControl
                                 normalComponents={
                                     <>
@@ -386,14 +388,10 @@ function Inspector(props) {
                                 />
                             )}
 
-                           {preset === 'style-3' && (
+                            {preset === 'style-3' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Overlay', 'zoloblocks')}</div>
-                                    <NormalBGControl
-                                        requiredProps={requiredProps}
-                                        controlName={STYLE3_ICON_BG_COLOR}
-                                        noMainBGImg={true}
-                                    />
+                                    <NormalBGControl requiredProps={requiredProps} controlName={STYLE3_ICON_BG_COLOR} noMainBGImg={true} />
 
                                     <ResRangeControl
                                         label={__('Width', 'zoloblocks')}
@@ -412,6 +410,36 @@ function Inspector(props) {
                                 </>
                             )}
 
+                            {preset === 'style-4' && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Highlight Border', 'zoloblocks')}</div>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={styleBorderColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                styleBorderColor: value,
+                                            })
+                                        }
+                                    />
+                                    <ResRangeControl
+                                        label={__('Width', 'zoloblocks')}
+                                        controlName={HIGHTLIGHT_BORDER_WIDTH}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                        min={0}
+                                        max={50}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Height', 'zoloblocks')}
+                                        controlName={HIGHTLIGHT_BORDER_HEIGHT}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                        min={0}
+                                        max={200}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props} stylePanel={true}>
@@ -421,7 +449,6 @@ function Inspector(props) {
                                     <>
                                         {enableIcon && (
                                             <>
-
                                                 {iconType === 'image' && (
                                                     <>
                                                         <ResRangeControl
@@ -514,7 +541,6 @@ function Inspector(props) {
                                                     enableTransition={false}
                                                 />
                                             </>
-
                                         )}
                                     </>
                                 }
@@ -594,7 +620,7 @@ function Inspector(props) {
                                                     controlName={DESCRIPTION_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
-                                                 {preset === 'style-3' && (
+                                                {preset === 'style-3' && (
                                                     <>
                                                         <div className="zolo-custom-heading">{__('HOVER', 'zoloblocks')}</div>
                                                         <ColorControl
