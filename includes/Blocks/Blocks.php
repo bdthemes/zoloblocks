@@ -376,5 +376,12 @@ return apply_filters(
             'frontend-scripts' => false,
             'class'            => '\Zolo\Blocks\PostComments',
         ],
+        'breadcrumbs'     => [
+            'name'             => 'breadcrumbs',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/breadcrumbs/block.json',
+            'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+            'frontend-scripts' => false,
+            'class'            => '\Zolo\Blocks\BreadcrumbsBlock',
+        ],
     ]
 );
