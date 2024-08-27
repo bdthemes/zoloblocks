@@ -40,16 +40,28 @@ const Save = ({ attributes }) => {
                             className={`wp-image-${memberPhoto.id}`}
                         />
                     )}
+
+                    {addDetailPageLink && preset === 'default' && (
+                        <div className="zolo-link-btn">
+                            <a
+                                className="zolo-external-link"
+                                href={memberDetailPageLink && memberDetailPageLink.url}
+                                rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
+                                target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                            >
+                                <DisplayZoloIcon icon={detailIcon} />
+                            </a>
+                        </div>
+                    )}
                 </div>
                 <div className="zolo-info-wrap">
                     <div className="zolo-content">
-
                         {preset !== 'style-4' && (
                             <div className="zolo-name">
                                 <RichText.Content value={memberName} />
                             </div>
                         )}
-                        {showDesignation && preset !== 'style-4' &&(
+                        {showDesignation && preset !== 'style-4' && (
                             <div className="zolo-designation">
                                 <RichText.Content value={memberDesignation} />
                             </div>
@@ -60,7 +72,7 @@ const Save = ({ attributes }) => {
                                 <div className="zolo-name">
                                     <RichText.Content value={memberName} />
                                 </div>
-                                <span className='zolo-nameDg-separator'></span>
+                                <span className="zolo-nameDg-separator"></span>
                                 {showDesignation && (
                                     <div className="zolo-designation">
                                         <RichText.Content value={memberDesignation} />
@@ -82,7 +94,8 @@ const Save = ({ attributes }) => {
                                 {socialProfiles &&
                                     socialProfiles.map((profile, index) => {
                                         return (
-                                            <a className='zolo-social-link'
+                                            <a
+                                                className="zolo-social-link"
                                                 href={profile.link && profile.link.url}
                                                 key={index}
                                                 rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
@@ -96,9 +109,10 @@ const Save = ({ attributes }) => {
                             </div>
                         )}
 
-                        {addDetailPageLink && preset !== 'style-4' && preset !== 'style-5' &&(
+                        {addDetailPageLink && preset !== 'style-4' && preset !== 'style-5' && preset !== 'default' && (
                             <div className="zolo-link-btn">
-                                <a className='zolo-external-link'
+                                <a
+                                    className="zolo-external-link"
                                     href={memberDetailPageLink && memberDetailPageLink.url}
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
