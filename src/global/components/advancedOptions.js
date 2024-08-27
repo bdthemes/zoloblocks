@@ -126,6 +126,7 @@ export const AdvancedOptions = (props) => {
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
     const cursorsPanel = applyFilters('zolo.extensions.controls.cursors', [], block, panelProps);
     const particles = applyFilters('zolo.extensions.controls.particles', [], block, panelProps);
+    const tilt = applyFilters('zolo.extensions.controls.tilt', [], block, panelProps);
 
     return (
         <>
@@ -149,7 +150,7 @@ export const AdvancedOptions = (props) => {
                     />
                 )}
                 <RangeResetControl
-                    label={__('Set Z Index ', 'zoloblocks')}
+                    label={__('Set Z Index', 'zoloblocks')}
                     controlName={'zIndex'}
                     requiredProps={requiredProps}
                     min={-100}
@@ -370,6 +371,7 @@ export const AdvancedOptions = (props) => {
                 </>
             )}
             {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
+            {tilt && tilt.length > 0 && tilt}
 
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl

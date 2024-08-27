@@ -37,7 +37,7 @@ import {
     ICON_H_BG_COLOR
 } from './constants';
 
-import * as typographyObjs from './constants/typoPrefixConstants';
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     // global Attributes

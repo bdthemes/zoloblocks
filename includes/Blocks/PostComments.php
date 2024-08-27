@@ -8,7 +8,7 @@ use Zolo\Helpers\ZoloHelpers;
 /**
  * Post Category block
  */
-class RecentComments extends PostBlock {
+class PostComments extends PostBlock {
 
 	/**
 	 * Default block attributes
@@ -57,7 +57,7 @@ class RecentComments extends PostBlock {
 
 		ob_start();
 		ZoloHelpers::views(
-			'recent-comments',
+			'post-comments',
 			[
 				'settings'     => $attributes,
 				'className'    => '',

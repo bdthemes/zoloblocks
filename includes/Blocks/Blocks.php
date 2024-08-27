@@ -363,18 +363,18 @@ return apply_filters(
             'frontend-scripts' => false,
             'class'            => '\Zolo\Blocks\Author',
         ],
-        'static-social-count' => [
-            'name'             => 'static-social-count',
-            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/static-social-count/block.json',
+        'social-count' => [
+            'name'             => 'social-count',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/social-count/block.json',
             'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-            'frontend-scripts' => ['zolo-static-social-count-frontend'],
+            'frontend-scripts' => ['zolo-social-count-frontend'],
         ],
-        'recent-comments'     => [
-            'name'             => 'recent-comments',
-            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/recent-comments/block.json',
+        'post-comments'     => [
+            'name'             => 'post-comments',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-comments/block.json',
             'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
             'frontend-scripts' => false,
-            'class'            => '\Zolo\Blocks\RecentComments',
+            'class'            => '\Zolo\Blocks\PostComments',
         ],
         'breadcrumbs'     => [
             'name'             => 'breadcrumbs',

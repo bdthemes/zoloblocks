@@ -65,9 +65,9 @@ import '../blocks/notice/src';
 import '../blocks/post-category/src';
 import '../blocks/tag-cloud/src';
 import '../blocks/author/src';
-import '../blocks/static-social-count/src';
-import '../blocks/recent-comments/src';
 import '../blocks/breadcrumbs/src';
+import '../blocks/social-count/src';
+import '../blocks/post-comments/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';

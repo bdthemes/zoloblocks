@@ -1,10 +1,10 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Recent Comments",
-    "name": "zolo/recent-comments",
+    "title": "Social Count",
+    "name": "zolo/social-count",
     "category": "zoloblocks",
-    "keywords": ["post", "comments", "post comments","recent comments"],
-    "description": "Customizable dynamic recent comment for your website comments",
+    "keywords": ["icon", "social", "social count"],
+    "description": "Display accessible custom business social profiles",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {
@@ -18,5 +18,5 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
-    "editorScript": "zolo-block-editor-script"
+    "editorScript": ""
 }

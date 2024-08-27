@@ -98,7 +98,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
-                                options={applyFilters('zolo.staticSocialCount.presets', PRESETS)}
+                                options={applyFilters('zolo.socialCount.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
                         </ZoloPanelBody>

@@ -1,7 +1,7 @@
 <?php
 use Zolo\Helpers\ZoloHelpers;
 
-$topclass = 'zolo-recent-comments-wrap';
+$topclass = 'zolo-post-comments-wrap';
 if ( ! empty( $settings['preset'] ) ) {
 	$topclass .= ' zolo-comments-' . $settings['preset'];
 }

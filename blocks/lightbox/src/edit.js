@@ -65,7 +65,7 @@ export default function Edit(props) {
                         )}
                     </button>
                 </div>
-                {lightboxType === 'poster' && (
+                {lightboxType === 'poster' && imagePoster && (
                     <div className="zolo-poster-img">
                         <img
                             src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
