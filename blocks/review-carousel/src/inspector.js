@@ -58,6 +58,7 @@ import {
     RCONTAINER_BRADIUS,
     RCONTAINER_BSHADOW,
     RCONTAINER_PADDING,
+    SHADOW_RANGE,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -101,7 +102,6 @@ function Inspector(props) {
         activeRatingColor,
         inactiveRatingColor,
         carouselEffect,
-
         coverFlowEffect,
         infiniteLoop,
         autoplay,
@@ -119,6 +119,7 @@ function Inspector(props) {
         navBg,
         navHoverBg,
         navWidth,
+        enableShadow,
     } = attributes;
 
     const requiredProps = {
@@ -218,6 +219,28 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
+                            <ToggleControl
+                                label={__('Mask Shadow', 'zoloblocks-pro')}
+                                checked={enableShadow}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        enableShadow: value,
+                                    });
+                                }}
+                            />
+
+                            {enableShadow && (
+                                <ResRangeControl
+                                    label={__('Shadow Range', 'zoloblocks')}
+                                    controlName={SHADOW_RANGE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={1000}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Carousel Options', 'zoloblocks')} panelProps={props}>
                             <SelectControl

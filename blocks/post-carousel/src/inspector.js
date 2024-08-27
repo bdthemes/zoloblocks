@@ -62,6 +62,7 @@ import {
     META_BOX_WRAP_PADDING,
     META_ARROW_SPACE,
     CAROUSEL_CONTAINER_PADDING,
+    SHADOW_RANGE,
 } from './constants';
 
 import {
@@ -150,6 +151,7 @@ function Inspector(props) {
         nextNavIcon,
         coverFlowEffect,
         authorPrefix,
+        enableShadow,
     } = attributes;
 
     const requiredProps = {
@@ -275,6 +277,27 @@ function Inspector(props) {
                                     label={__('Show Reading Time', 'zoloblocks')}
                                     checked={showReadingTime}
                                     onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
+                                />
+                            )}
+                            <ToggleControl
+                                label={__('Mask Shadow', 'zoloblocks-pro')}
+                                checked={enableShadow}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        enableShadow: value,
+                                    });
+                                }}
+                            />
+
+                            {enableShadow && (
+                                <ResRangeControl
+                                    label={__('Shadow Range', 'zoloblocks')}
+                                    controlName={SHADOW_RANGE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={1000}
+                                    step={1}
+                                    noUnits={true}
                                 />
                             )}
                         </ZoloPanelBody>
@@ -557,9 +580,7 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={COLUMN_SHADOW} requiredProps={requiredProps} />
 
-                            <div className='zolo-custom-heading' >
-                                {__('Carousel Container', 'zoloblocks')}
-                            </div>
+                            <div className="zolo-custom-heading">{__('Carousel Container', 'zoloblocks')}</div>
 
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
