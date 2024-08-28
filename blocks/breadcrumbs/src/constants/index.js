@@ -1,12 +1,12 @@
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 
 export const BLOCK_PREFIX = 'zolo-breadcrumbs';
 export const PRESETS = [
-  {label: __('Style 1', 'zoloblocks'), value: '1'},
-  {label: __('Style 2', 'zoloblocks'), value: '2'},
-  {label: __('Style 3', 'zoloblocks'), value: '3'},
-  {label: __('Style 4', 'zoloblocks'), value: '4'},
-  {label: __('Style 5', 'zoloblocks'), value: '5'},
+    { label: __('Style 1', 'zoloblocks'), value: '1' },
+    { label: __('Style 2', 'zoloblocks'), value: '2' },
+    { label: __('Style 3', 'zoloblocks'), value: '3' },
+    { label: __('Style 4', 'zoloblocks'), value: '4' },
+    { label: __('Style 5', 'zoloblocks'), value: '5' },
 ];
 
 export const ROW_ALIGNMENT = 'rowAlign';
@@ -58,4 +58,13 @@ export const SEP_HOVER_BG = 'sepHBg';
 export const SEP_HOVER_BORDER_RADIUS = 'sepHBRadius';
 export const SEP_HOVER_SHADOW = 'sepHShadow';
 
-
+export const HOME_BTN_OPTIONS = [
+    {
+        label: __('Text', 'zoloblocks'),
+        value: 'text',
+    },
+    {
+        label: __('Icon', 'zoloblocks'),
+        value: 'icon',
+    },
+];
