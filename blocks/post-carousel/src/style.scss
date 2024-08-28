@@ -1,4 +1,3 @@
-
 .zolo-post-carousel {
     --zolo-meta-box-gap: clamp(0.438rem, 1vw, 0.75rem);
     --zolo-meta-box-padding: clamp(1.25rem, 2vw, 1.875rem);
@@ -37,6 +36,11 @@
     --zolo-nav-button-icon-size: 16px;
     position: relative;
     box-sizing: border-box;
+
+    .swiper {
+        --review-carousel-mask-offset: 300px;
+    }
+
     .zolo-post-item {
         position: relative;
         overflow: hidden;
@@ -254,7 +258,6 @@
         color: var(--zolo-link-btn-color);
     }
 
-
     &.zolo-post-style-1 .zolo-post-secount-dateTime,
     &.zolo-post-style-2 .zolo-post-secount-dateTime,
     &.zolo-post-style-3 .zolo-post-secount-dateTime {
@@ -415,7 +418,7 @@
             padding: 20px;
             position: relative;
             &::before {
-                content: "";
+                content: '';
                 position: absolute;
                 left: 30px;
                 top: 100%;
@@ -425,7 +428,7 @@
                 border-right: 8px solid transparent;
                 border-top: 8px solid #fff;
                 clear: both;
-                z-index: 1
+                z-index: 1;
             }
         }
 
@@ -438,7 +441,7 @@
             flex-wrap: wrap;
         }
         .zolo-post-meta-box img {
-            --zolo-meta-box-img-size : 35px;
+            --zolo-meta-box-img-size: 35px;
             width: var(--zolo-meta-box-img-size);
             height: var(--zolo-meta-box-img-size);
         }
@@ -482,7 +485,7 @@
             }
         }
 
-        .zolo-post-link-btn  {
+        .zolo-post-link-btn {
             a {
                 padding: 0;
                 font-weight: 500;
@@ -495,12 +498,12 @@
                     height: 2px;
                     content: '';
                     background-color: currentColor;
-                    transition: width .3s ease;
+                    transition: width 0.3s ease;
                 }
                 .zolo__display-icon {
                     opacity: 0;
                     transform: translateX(-10px);
-                    transition: all .3s ease;
+                    transition: all 0.3s ease;
                 }
                 &:hover {
                     .zolo__display-icon {
@@ -516,9 +519,7 @@
         }
     }
 
-
     // style 4 css here end
-
 
     .swiper-pagination-bullet {
         margin: 0 !important;
@@ -599,11 +600,13 @@
         }
     }
 
-    .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
         content: 'next';
     }
 
-    .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
         content: 'prev';
     }
 }

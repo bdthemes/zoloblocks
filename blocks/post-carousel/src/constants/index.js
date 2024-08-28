@@ -12,7 +12,6 @@ export const PRESETS = [
 export const CAROUSEL_EFFECTS = [
     { label: __('Slide', 'zoloblocks'), value: 'slide' },
     { label: __('Coverflow', 'zoloblocks'), value: 'coverflow' },
-
 ];
 
 export const COLUMNS = 'sliderColumns';
@@ -57,8 +56,6 @@ export const AVATAR_GAP = 'avatarGap';
 // post meta
 export const META_SPACE = 'metaSpace';
 
-
-
 // Navigation settings
 export const NAV_WIDTH = 'navWidth';
 export const NAV_HEIGHT = 'navHeight';
@@ -92,3 +89,6 @@ export const META_BOX_WRAP_PADDING = 'metaBoxWrapPadding';
 
 // carousel container padding
 export const CAROUSEL_CONTAINER_PADDING = 'carouselContainerPadding';
+
+// shadow range
+export const SHADOW_RANGE = 'shadowRange';

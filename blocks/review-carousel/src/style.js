@@ -62,15 +62,13 @@ import {
     APAG_BORDER,
     APAG_BORDER_RADIUS,
     APAG_BG,
-
     RCONTAINER_BG,
     RCONTAINER_BORDER,
     RCONTAINER_BRADIUS,
     RCONTAINER_BSHADOW,
     RCONTAINER_PADDING,
-
-    CAROUSEL_CONTAINER_PADDING
-
+    CAROUSEL_CONTAINER_PADDING,
+    SHADOW_RANGE,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -91,6 +89,7 @@ const Style = ({ props }) => {
         navHoverColor,
         navHoverBorderColor,
         presetFiveArrowColor,
+        enableShadow,
     } = attributes;
 
     // column count
@@ -366,21 +365,21 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
-    
-        const { boxShadowStyle: rcBoxShadow } = generateBoxShadowStyles({
-            attributes,
-            controlName: RCONTAINER_BSHADOW,
-        });
-    
-        const {
-            backgroundStylesDesktop: rcDeskBGStyle,
-            backgroundStylesTab: rcTabBGStyle,
-            backgroundStylesMobile: rcMobBGStyle,
-        } = generateNormalBGControlStyles({
-            controlName: RCONTAINER_BG,
-            attributes,
-            noMainBGImg: false,
-        });
+
+    const { boxShadowStyle: rcBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: RCONTAINER_BSHADOW,
+    });
+
+    const {
+        backgroundStylesDesktop: rcDeskBGStyle,
+        backgroundStylesTab: rcTabBGStyle,
+        backgroundStylesMobile: rcMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: RCONTAINER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
 
     // carousel start
     // Navigation
@@ -633,11 +632,40 @@ const Style = ({ props }) => {
     //     styleFor: 'padding',
     //     attributes,
     // });
+
     //carousel end
+
+    const {
+        desktopRangeStyle: shadowRangeDesk,
+        tabRangeStyle: shadowRangeTab,
+        mobRangeStyle: shadowRangeMob,
+    } = generateResRangeStyle({
+        controlName: SHADOW_RANGE,
+        property: '--review-carousel-mask-offset',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
+        
+        ${
+            enableShadow
+                ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper{
+                         mask-image: linear-gradient(
+                            to right,
+                            transparent,
+                            black var(--review-carousel-mask-offset),
+                            black calc(100% - var(--review-carousel-mask-offset)),
+                            transparent);
+                          ${shadowRangeDesk}
+                    }
+                    `
+                : ''
+        }
+
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${deskCarouselGap}
 		}
@@ -766,8 +794,8 @@ const Style = ({ props }) => {
         }
 
          ${
-            preset === 'style-4'
-                ? `
+             preset === 'style-4'
+                 ? `
                 .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-meta-content {
                     ${rcDeskBorderStyle}
                     ${rcDeskBorderRadius}
@@ -780,11 +808,22 @@ const Style = ({ props }) => {
                 }
 
             `
-                : ''
-        }
+                 : ''
+         }
 	`;
 
     const tabletAllStyle = `
+
+        ${
+            enableShadow
+                ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper{
+                        ${shadowRangeTab}
+                    }
+                    `
+                : ''
+        }
+
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${tabCarouselGap}
 		}
@@ -897,6 +936,16 @@ const Style = ({ props }) => {
         }
 	`;
     const mobileAllStyle = `
+
+        ${
+            enableShadow
+                ? `
+                     .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper{
+                        ${shadowRangeMob}
+                    }
+                    `
+                : ''
+        }
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel {
 			${mobCarouselGap}
 		}
