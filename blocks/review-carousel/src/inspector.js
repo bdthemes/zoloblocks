@@ -119,8 +119,8 @@ function Inspector(props) {
         navBg,
         navHoverBg,
         navWidth,
-        enableShadow,
     } = attributes;
+
 
     const requiredProps = {
         resMode,
@@ -149,6 +149,8 @@ function Inspector(props) {
         //return true or false
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, slideShadows } });
     };
+
+    const shadowFeature = applyFilters('zolo.blocks.controls.reviewCarousel.shadow', [], props, 'zolo/review-carousel');
 
     return (
         <InspectorControls key="controls">
@@ -220,17 +222,9 @@ function Inspector(props) {
                                 }
                             />
 
-                            <ToggleControl
-                                label={__('Mask Shadow', 'zoloblocks-pro')}
-                                checked={enableShadow}
-                                onChange={(value) => {
-                                    setAttributes({
-                                        enableShadow: value,
-                                    });
-                                }}
-                            />
-
-                            {enableShadow && (
+                            {/* pro controls goes here */}
+                            {shadowFeature && shadowFeature.length > 0 && shadowFeature}
+                            {attributes?.enableShadow && (
                                 <ResRangeControl
                                     label={__('Shadow Range', 'zoloblocks')}
                                     controlName={SHADOW_RANGE}
