@@ -817,7 +817,8 @@ export const AdvancedOptions = (props) => {
                                     controlName={'transitionDuration'}
                                     requiredProps={requiredProps}
                                     min={0}
-                                    max={10000}
+                                    max={5000}
+                                    step={100}
                                     noUnits={true}
                                 />
                             </>
