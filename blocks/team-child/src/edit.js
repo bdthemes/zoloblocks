@@ -124,9 +124,10 @@ export default function Edit(props) {
                             />
                         )}
 
-                        {addDetailPageLink && preset ==='default' && (
+                        {addDetailPageLink && preset === 'default' && (
                             <div className="zolo-link-btn">
-                                <a className='zolo-external-link'
+                                <a
+                                    className="zolo-external-link"
                                     href={memberDetailPageLink && memberDetailPageLink.url}
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
@@ -138,8 +139,7 @@ export default function Edit(props) {
                     </div>
                     <div className="zolo-info-wrap">
                         <div className="zolo-content">
-
-                           {preset !== 'style-4' && (
+                            {preset !== 'style-4' && (
                                 <RichText
                                     className={`zolo-name`}
                                     value={memberName}
@@ -162,18 +162,18 @@ export default function Edit(props) {
                                 />
                             )}
 
-                             {preset === 'style-4' && (
+                            {preset === 'style-4' && (
                                 <div className="zolo-name-desi-wrap">
                                     <RichText
-                                    className={`zolo-name`}
-                                    value={memberName}
-                                    onChange={(name) => setAttributes({ memberName: name })}
-                                    placeholder={__('Name...', 'zoloblocks')}
-                                    allowedFormats={['core/bold', 'core/italic']}
+                                        className={`zolo-name`}
+                                        value={memberName}
+                                        onChange={(name) => setAttributes({ memberName: name })}
+                                        placeholder={__('Name...', 'zoloblocks')}
+                                        allowedFormats={['core/bold', 'core/italic']}
                                     />
-                                    {showDesignation && <span className='zolo-nameDg-separator'></span>}
+                                    {showDesignation && <span className="zolo-nameDg-separator"></span>}
                                     {showDesignation && (
-                                         <RichText
+                                        <RichText
                                             className="zolo-designation"
                                             value={memberDesignation}
                                             onChange={(designation) =>
@@ -186,8 +186,7 @@ export default function Edit(props) {
                                         />
                                     )}
                                 </div>
-                            
-                             )}
+                            )}
 
                             {showShortBio && (
                                 <RichText
@@ -202,9 +201,6 @@ export default function Edit(props) {
                                     allowedFormats={['core/bold', 'core/italic']}
                                 />
                             )}
-
-                            
-
                         </div>
 
                         <div className="zolo-social-and-link-wrap">
@@ -213,7 +209,8 @@ export default function Edit(props) {
                                     {socialProfiles &&
                                         socialProfiles.map((profile, index) => {
                                             return (
-                                                <a className='zolo-social-link'
+                                                <a
+                                                    className="zolo-social-link"
                                                     href={profile.link && profile.link.url}
                                                     key={index}
                                                     rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
@@ -226,9 +223,10 @@ export default function Edit(props) {
                                         })}
                                 </div>
                             )}
-                            {addDetailPageLink && preset !=='style-4' && preset !=='style-5' && preset !=='default' && (
+                            {addDetailPageLink && preset !== 'style-4' && preset !== 'style-5' && preset !== 'default' && (
                                 <div className="zolo-link-btn">
-                                    <a className='zolo-external-link'
+                                    <a
+                                        className="zolo-external-link"
                                         href={memberDetailPageLink && memberDetailPageLink.url}
                                         rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
                                         target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
