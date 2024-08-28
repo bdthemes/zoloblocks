@@ -106,11 +106,11 @@ export default function Inspector(props) {
     //social link
     const authorProfileLink = zoloParams.user_social_link;
     const authorLinks = Object.entries(authorProfileLink).map(([value, label]) => ({ value, label }));
-
+    const maskFeatures = applyFilters('zolo.blocks.controls.author.mask', [], props, 'zolo/author');
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/post-grid"
+                block="zolo/author"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -280,9 +280,8 @@ export default function Inspector(props) {
                                     controlName={AVATAR_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-
                                 <BoxShadowControl controlName={AVATAR_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                                <MaskControl controlName={AVATAR_MASK} requiredProps={requiredProps} />
+                                {maskFeatures && maskFeatures.length > 0 && maskFeatures}
                             </ZoloPanelBody>
                         )}
 
@@ -513,7 +512,7 @@ export default function Inspector(props) {
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
-                            block="zolo/post-category"
+                            block="zolo/author"
                         />
                     </>
                 }
