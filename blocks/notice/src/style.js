@@ -62,11 +62,12 @@ import {
     CLOSE_ICON_BOX_SHADOW,
     CLOSE_ICON_HOVER_BG,
     CLOSE_ICON_HOVER_BOX_SHADOW,
-
     STYLE3_ICON_BG_COLOR,
     STYLE3_ICON_SIZE,
     // STYLE3_ICON_RADIUS,
     STYLE3_ICON_OFFSET,
+    HIGHTLIGHT_BORDER_WIDTH,
+    HIGHTLIGHT_BORDER_HEIGHT,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -96,6 +97,7 @@ export default function Style({ props }) {
         showAfterDismiss,
         titleHoverColor,
         descHoverColor,
+        styleBorderColor,
     } = attributes;
 
     // item
@@ -499,9 +501,9 @@ export default function Style({ props }) {
         attributes,
         controlName: CLOSE_ICON_HOVER_BOX_SHADOW,
     });
-    
-    // style 3 
-    
+
+    // style 3
+
     const {
         backgroundStylesDesktop: style3IconBgColorDesk,
         backgroundStylesTab: style3IconBgColorTab,
@@ -541,7 +543,6 @@ export default function Style({ props }) {
     //     styleFor: 'border-radius',
     //     attributes,
     // });
-    
 
     const {
         desktopRangeStyle: style3IconOffsetDesk,
@@ -553,11 +554,33 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // Highlight Border
+
+    const {
+        desktopRangeStyle: highlightBorderWidthDesk,
+        tabRangeStyle: highlightBorderWidthTab,
+        mobRangeStyle: highlightBorderWidthMob,
+    } = generateResRangeStyle({
+        controlName: HIGHTLIGHT_BORDER_WIDTH,
+        property: '--zolo-hightlight-border-width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: highlightBorderHeightDesk,
+        tabRangeStyle: highlightBorderHeightTab,
+        mobRangeStyle: highlightBorderHeightMob,
+    } = generateResRangeStyle({
+        controlName: HIGHTLIGHT_BORDER_HEIGHT,
+        property: '--zolo-hightlight-border-height',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-      
+
         .${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-item {
             ${itemBgDesk}
             ${itemBorderDesk}
@@ -687,6 +710,22 @@ export default function Style({ props }) {
         ${closeIconHoverBoxShadow}
     }
 
+    ${
+        preset === 'style-4'
+            ? `
+                .${uniqueId}.wp-block-zolo-notice.style-4 .zolo-block-item::before {
+                    ${styleBorderColor ? `background: ${styleBorderColor};` : ''}
+                    ${highlightBorderWidthDesk}
+                    ${highlightBorderHeightDesk}
+                }
+                .${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon,
+                .${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon::before {
+                    ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
+                }
+            `
+            : ''
+    }
+
   	`;
 
     const tabletAllStyle = `
@@ -694,7 +733,7 @@ export default function Style({ props }) {
             ${itemBgTab}
             ${itemBorderTab}
             ${itemRadiusTab}
-            ${ itemPaddingTab}
+            ${itemPaddingTab}
             ${itemMarginTab}
         }
 
@@ -781,6 +820,17 @@ export default function Style({ props }) {
         ${closeIconHoverBgTab}
     }
 
+    ${
+        preset === 'style-4'
+            ? `
+            .${uniqueId}.wp-block-zolo-notice.style-4 .zolo-block-item::before {
+                ${highlightBorderWidthTab}
+                ${highlightBorderHeightTab}
+            }
+        `
+            : ''
+    }
+
 	`;
 
     const mobileAllStyle = `
@@ -807,15 +857,15 @@ export default function Style({ props }) {
 		}
 
          ${
-            preset === 'style-2'
-                ? `
+             preset === 'style-2'
+                 ? `
                     .zolo-block.wp-block-zolo-notice.${uniqueId} .zolo-block-item{
                         ${contentMobAlign}
                     }
 
                     `
-                : ''
-        } 
+                 : ''
+         } 
 
 		.${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-item .zolo-block-title{
 			${titleTypoMobile}
@@ -865,6 +915,18 @@ export default function Style({ props }) {
          ${animationBgMobStyle}
          ${animationBorderRadiusMob}
       }
+
+        ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.wp-block-zolo-notice.style-4 .zolo-block-item::before {
+                    ${highlightBorderWidthMob}
+                    ${highlightBorderHeightMob}
+                }
+                `
+                : ''
+        }
+
       .${uniqueId}.zolo-block.wp-block-zolo-notice.animation-style-1 .zolo-block-item:before {
           ${animationType === 'style-1' && animationWidthMob}
           ${animationType === 'style-1' && animationHeightMob}
