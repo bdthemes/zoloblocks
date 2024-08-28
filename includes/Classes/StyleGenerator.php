@@ -50,7 +50,7 @@ class StyleGenerator {
     public function particles_effects($block_content, $block) {
         if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
 
-            $zoloParticles = $block['attrs']['zoloParticles'] ?? false;
+            $zoloParticles = $block['attrs']['zoloParticles']['active'] ?? false;
             // print_r($zoloParticles);
             if ($zoloParticles) {
                 $particlesOptions = $block['attrs']['zoloParticles'] ?? [
