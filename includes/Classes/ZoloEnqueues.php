@@ -46,8 +46,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
+            add_action('wp_footer', [$this, 'background_parallax_implementation']);
         }
 
+        public function background_parallax_implementation() {
+            wp_enqueue_script('gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5', [], '3.12.5', true);
+            wp_enqueue_script('scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', 'gsap', '3.12.5', true);
+        }
 
         /**
          * Load Block Assets for both editor and frontend
@@ -206,6 +211,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // zolo popup
             wp_enqueue_script('zolo-popup-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js', [], ZOLO_VERSION, true);
+            wp_enqueue_script('zolo-background-parallax-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/parallax/parallax.js', [], ZOLO_VERSION, true);
+
         }
         /**
          * Load Block Editor Assets
