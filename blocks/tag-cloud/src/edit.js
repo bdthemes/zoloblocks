@@ -32,7 +32,7 @@ export default function Edit(props) {
 
   // preview image
   if (preview) {
-    return <img src={zoloParams.blocksPreview.postCategory} alt={__('Tag Cloud Preview', 'zoloblocks')}/>;
+    return <img src={zoloParams.blocksPreview.tagCloud} alt={__('Tag Cloud Preview', 'zoloblocks')}/>;
   }
 
   return (
