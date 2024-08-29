@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const counters = document.querySelectorAll(".zolo-social-count-wrap .counter-value");
+  const counters = document.querySelectorAll(".wp-block-zolo-social-count .counter-value");
 
   counters.forEach(counterElement => {
     const endValue = parseInt(counterElement.textContent.replace(/[^0-9.]/g, ""), 10);

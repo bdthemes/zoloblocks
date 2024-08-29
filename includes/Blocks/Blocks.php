@@ -369,6 +369,12 @@ return apply_filters(
             'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
             'frontend-scripts' => ['zolo-social-count-frontend'],
         ],
+        'social-count-child' => [
+            'name'             => 'social-count-child',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/social-count-child/block.json',
+            'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+            'frontend-scripts' =>false,
+        ],
         'post-comments'     => [
             'name'             => 'post-comments',
             'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-comments/block.json',

@@ -31,12 +31,12 @@ const Counter = ({endValue, duration = 3000}) => {
 
     // Divide the value by the matched unit's value and format it to 2 decimal places
     // Remove any unnecessary trailing zeros after the decimal point
-    const formattedNumber = (numericValue / matchingUnit.value)
+    const formattedNumber = (numericValue / matchingUnit?.value)
       .toFixed(2)
       .replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1");
 
     // Return the formatted number with the appropriate suffix
-    return formattedNumber + matchingUnit.suffix;
+    return formattedNumber + matchingUnit?.suffix;
   }
 
 
