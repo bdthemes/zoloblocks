@@ -28,6 +28,7 @@ const useParticlesInit = (panelProps) => {
             return false;
         }
     }
+
     const mainOptions = {
         ...(preset === 'hover_bubble' && {
             particles: {
@@ -72,6 +73,8 @@ const useParticlesInit = (panelProps) => {
                     direction: direction || 'none',
                 },
             },
+            //interactivity
+            ...(preset === 'dust_wind' && { interactivity: optionTwo?.interactivity }),
         }),
         //Flying Bubble
         ...(preset === 'flying_bubble' && {
@@ -136,6 +139,9 @@ const useParticlesInit = (panelProps) => {
                 move: {
                     ...optionFive?.move,
                     direction: direction || 'none',
+                },
+                line_linked: {
+                    enable: false,
                 },
             },
             //interactivity

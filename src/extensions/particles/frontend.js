@@ -171,17 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 retina_detect: true,
             };
 
-            // add default options
-            if (particleOptions === null || particleOptions === undefined) {
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        particleOptions:
-                          preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions,
-                    },
-                });
-            }
-            const optionData =preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
+            const optionData = preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
 
             try {
                 particlesJS(`zolo-particles-${particlesId}`, optionData);
