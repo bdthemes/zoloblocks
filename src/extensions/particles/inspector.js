@@ -4,9 +4,10 @@
 import { __ } from '@wordpress/i18n';
 import { ToggleControl, SelectControl, TextareaControl, Button } from '@wordpress/components';
 import Select2 from 'react-select';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import MultiColor from './multicolor';
 import { applyFilters } from '@wordpress/hooks';
+import useParticlesInit from './init';
 
 /**
  * Internal depencencies
@@ -17,11 +18,12 @@ import objAttributes from './attributes';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-
-    const { resMode, zoloParticles, uniqueId } = attributes;
+    const { resMode, zoloParticles, uniqueId, parentClasses } = attributes;
 
     const { active, colors, preset, particleOptions, toggleCustomOption } = zoloParticles;
     const { direction } = particleOptions;
+
+    const [isPreview, setIsPreview] = useState(false);
 
     const onChangeHandler = (select) => {
         switch (select) {
@@ -124,6 +126,32 @@ const Inspector = ({ panelProps }) => {
         setAttributes,
     };
 
+    //new code starts here
+    const handleTogglePreview = () => {
+        setIsPreview(!isPreview);
+        if (!isPreview) {
+          
+            useParticlesInit(panelProps);
+        } else {
+            // eslint-disable-next-line no-undef
+            const element = document.getElementById(`zolo-particles-${uniqueId}`);
+            if (element) {
+                element.innerHTML = '';
+            }
+        }
+    };
+
+    //update the particles
+    useEffect(() => {
+        if (isPreview) {
+            useParticlesInit(panelProps);
+        }
+    }, [zoloParticles]);
+
+
+
+
+
     // zolo.presets.particles;
     const presets = [
         { label: __('Dust Wind', 'zoloblocks'), value: 'dust_wind' },
@@ -171,6 +199,11 @@ const Inspector = ({ panelProps }) => {
                             ...zoloParticles,
                             active: false,
                             preset: 'dust_wind',
+                            particleOptions: {
+                                customOptions: {},
+                            },
+                            colors: [],
+                            toggleCustomOption: false,
                         },
                     });
                 }}
@@ -181,6 +214,18 @@ const Inspector = ({ panelProps }) => {
                             active: true,
                         },
                     });
+
+                    if (!active) {
+                        setAttributes({
+                            parentClasses: [...parentClasses, 'zolo-particles'],
+                        });
+                    } else {
+                        setAttributes({
+                            parentClasses: parentClasses.filter(function (e) {
+                                return e !== 'zolo-particles';
+                            }),
+                        });
+                    }
                 }}
             >
                 <SelectControl
@@ -303,17 +348,12 @@ const Inspector = ({ panelProps }) => {
                     />
                 )}
                 <Button
-                    isPrimary
+                    variant="primary"
                     onClick={() => {
-                        setAttributes({
-                            zoloParticles: {
-                                ...zoloParticles,
-                                active: false,
-                            },
-                        });
+                        handleTogglePreview();
                     }}
                 >
-                    {__('Deactivate', 'zoloblocks')}
+                    {isPreview ? __('Stop Preview', 'zoloblocks') : __('Preview', 'zoloblocks')}
                 </Button>
             </PopoverControl>
         </>
