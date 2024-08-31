@@ -2,25 +2,21 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, SelectControl, TextareaControl, Button } from '@wordpress/components';
+import { SelectControl, TextareaControl, Button } from '@wordpress/components';
 import Select2 from 'react-select';
 import { useEffect, useState } from '@wordpress/element';
 import MultiColor from './multicolor';
 import { applyFilters } from '@wordpress/hooks';
 import useParticlesInit from './init';
 
-/**
- * Internal depencencies
- */
-const { ZoloPanelBody, PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
+const {  PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
 
-import objAttributes from './attributes';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-    const { resMode, zoloParticles, uniqueId, parentClasses } = attributes;
+    const { zoloParticles, uniqueId, parentClasses } = attributes;
 
-    const { active, colors, preset, particleOptions, toggleCustomOption } = zoloParticles;
+    const { active, preset, particleOptions } = zoloParticles;
     const { direction } = particleOptions;
 
     const [isPreview, setIsPreview] = useState(false);
@@ -130,7 +126,7 @@ const Inspector = ({ panelProps }) => {
     const handleTogglePreview = () => {
         setIsPreview(!isPreview);
         if (!isPreview) {
-          
+
             useParticlesInit(panelProps);
         } else {
             // eslint-disable-next-line no-undef
@@ -180,17 +176,7 @@ const Inspector = ({ panelProps }) => {
                 // isPro={true}
                 isActive={active}
                 hasValue={
-                    // popoverHasAttrVal(blur) ||
-                    // popoverHasAttrVal(brightness, true, '100') ||
-                    // popoverHasAttrVal(contrast, true, '100') ||
-                    // popoverHasAttrVal(saturate, true, '100') ||
-                    // popoverHasAttrVal(hueRotate) ||
                     popoverHasAttrVal(active, true, false) ||
-                    // popoverHasAttrVal(particleOptions?.shapes?.length, 0, 0) ||
-                    // popoverHasAttrVal(particleOptions?.shapeSize, undefined, undefined) ||
-                    // popoverHasAttrVal(particleOptions?.direction, 'none', 'none') ||
-                    // popoverHasAttrVal(particleOptions?.customOptions, '', '') ||
-                    // popoverHasAttrVal(colors, [], [])
                     popoverHasAttrVal(preset, true, 'dust_wind')
                 }
                 onReset={() => {
@@ -347,13 +333,9 @@ const Inspector = ({ panelProps }) => {
                         }
                     />
                 )}
-                <Button
-                    variant="primary"
-                    onClick={() => {
-                        handleTogglePreview();
-                    }}
-                >
-                    {isPreview ? __('Stop Preview', 'zoloblocks') : __('Preview', 'zoloblocks')}
+
+                <Button className="zolo-action-button" variant="primary" onClick={handleTogglePreview}>
+                    {isPreview ? __('Stop Preview', 'zoloblocks-pro') : __('Preview', 'zoloblocks-pro')}
                 </Button>
             </PopoverControl>
         </>
