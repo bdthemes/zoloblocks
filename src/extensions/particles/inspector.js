@@ -194,6 +194,12 @@ const Inspector = ({ panelProps }) => {
                     });
                 }}
                 onChange={(v) => {
+                     setIsPreview(false);
+                      const element = document.getElementById(`zolo-particles-${uniqueId}`);
+                      if (element) {
+                          element.innerHTML = '';
+                      }
+
                     setAttributes({
                         zoloParticles: {
                             ...zoloParticles,
