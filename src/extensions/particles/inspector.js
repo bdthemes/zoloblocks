@@ -207,17 +207,17 @@ const Inspector = ({ panelProps }) => {
                         },
                     });
 
-                    if (!active) {
-                        setAttributes({
-                            parentClasses: [...parentClasses, 'zolo-particles'],
-                        });
-                    } else {
-                        setAttributes({
-                            parentClasses: parentClasses.filter(function (e) {
-                                return e !== 'zolo-particles';
-                            }),
-                        });
-                    }
+                    // if (!active) {
+                    //     setAttributes({
+                    //         parentClasses: [...parentClasses, 'zolo-particles'],
+                    //     });
+                    // } else {
+                    //     setAttributes({
+                    //         parentClasses: parentClasses.filter(function (e) {
+                    //             return e !== 'zolo-particles';
+                    //         }),
+                    //     });
+                    // }
                 }}
             >
                 <SelectControl
