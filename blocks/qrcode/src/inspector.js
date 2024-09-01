@@ -75,10 +75,10 @@ export default function Inspector(props) {
         setAttributes,
         objAttributes,
     };
-    const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [], props);
-    const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [], props);
-    const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [], props);
-    const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [], props);
+    const hookLinks = applyFilters('zolo.blocks.controls.qrcode.pageLinks', [], props, 'zolo/qrcode');
+    const hookStyles = applyFilters('zolo.blocks.controls.qrcode.styles', [], props, 'zolo/qrcode');
+    const hookLogo = applyFilters('zolo.blocks.controls.qrcode.logo', [], props, 'zolo/qrcode');
+    const hookLogoStyle = applyFilters('zolo.blocks.controls.qrcode.logoStyle', [], props, 'zolo/qrcode');
     return (
         <>
             <InspectorControls>

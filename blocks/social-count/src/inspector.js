@@ -1,6 +1,7 @@
-/**
- * Internal depencencies
- */
+import { InspectorControls } from '@wordpress/block-editor';
+import { SelectControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import objAttributes from './attributes';
 const {
     ResRangeControl,
     ColorControl,
@@ -16,17 +17,6 @@ const {
     ResGapControl,
     ZoloPanelBody,
 } = window.zoloModule;
-
-import Sortable from './sortable';
-
-/**
- * WordPress depencencies
- */
-import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-
-import objAttributes from './attributes';
 
 import {
     PRESETS,
@@ -61,7 +51,6 @@ function Inspector(props) {
     const {
         preset,
         resMode,
-        socialProfiles,
         iconColor,
         iconHoverColor,
         iconHoverBorderColor,
@@ -79,9 +68,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-    /**
-     * Preset
-     */
     const changePremade = (selected) => {
         setAttributes({ preset: selected });
     };
@@ -121,9 +107,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 max={200}
                             />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Social Profiles', 'zoloblocks')} panelProps={props}>
-                            <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }

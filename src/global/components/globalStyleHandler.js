@@ -505,7 +505,7 @@ export const GlobalStyleHanlder = (props) => {
             ${translateXStylesDesktop}
             ${translateYStylesDesktop}
             ${rotateStylesDesktop}
-            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : '--zolo-transform-perspective: 1000px;'}
+            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ''}
             ${scaleProportionally ? `${scaleStylesDesktop}` : ''}
             ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ''}
             ${skewXStylesDesktop}

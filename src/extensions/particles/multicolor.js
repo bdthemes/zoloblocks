@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Button, ColorPicker } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 
 const { ColorControl } = window.zoloModule;
 
@@ -43,21 +43,6 @@ const MultiColor = ({ propsMultiColor }) => {
                                 });
                             }}
                         />
-                        {/* <ColorPicker
-                            color={item.color}
-                            onChange={(v) => {
-                                const newItems = [...particleColors];
-                                newItems[index].color = v;
-                                setAttributes({
-                                    zoloParticles: {
-                                        ...zoloParticles,
-                                        colors: newItems,
-                                    },
-                                });
-                            }}
-                            enableAlpha={false}
-                            defaultValue="#000"
-                        /> */}
                     </div>
                 ))}
             <div className="repeater-label">

@@ -62,6 +62,7 @@ import {
     META_BOX_WRAP_PADDING,
     META_ARROW_SPACE,
     CAROUSEL_CONTAINER_PADDING,
+    SHADOW_RANGE,
 } from './constants';
 
 import {
@@ -158,6 +159,9 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+
+    const shadowFeature = applyFilters('zolo.blocks.controls.postCarousel.shadow', [], props, 'zolo/post-carousel');
 
     // const { rotate, stretch, depth, modifier, slideShadows } = coverFlowEffect;
 
@@ -275,6 +279,19 @@ function Inspector(props) {
                                     label={__('Show Reading Time', 'zoloblocks')}
                                     checked={showReadingTime}
                                     onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
+                                />
+                            )}
+                            {/* pro controls goes here */}
+                            {shadowFeature && shadowFeature.length > 0 && shadowFeature}
+                            {attributes?.enableShadow && (
+                                <ResRangeControl
+                                    label={__('Shadow Range', 'zoloblocks')}
+                                    controlName={SHADOW_RANGE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={1000}
+                                    step={1}
+                                    noUnits={true}
                                 />
                             )}
                         </ZoloPanelBody>
