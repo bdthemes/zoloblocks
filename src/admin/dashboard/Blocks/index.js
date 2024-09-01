@@ -1,17 +1,15 @@
 import apiFetch from '@wordpress/api-fetch';
-import { useCallback, useEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import blocks from './blocks.json';
 import categories from './categories';
 import SingleBlock from './single-block';
 
-import { applyFilters } from '@wordpress/hooks';
 import Notice from '../notice';
 
 const Blocks = () => {
     const [blockStates, setBlockStates] = useState([]);
-    const [blockStatus, setBlockStatus] = useState([]);
+    // const [blockStatus, setBlockStatus] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
@@ -19,15 +17,17 @@ const Blocks = () => {
     // Blocks Status
     useEffect(() => {
         apiFetch({
-            path: '/wp/v2/settings',
+            path: '/zolo/v1/blocks',
             method: 'GET',
         })
             .then((response) => {
-                const { zolo_blocks_settings } = response;
-                setBlockStatus(zolo_blocks_settings);
+                const { data } = response;
+                setBlockStates(data);
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);
+
+    // console.log('blockStates', blockStates);
 
     // set notice to false after 3 seconds
     useEffect(() => {
@@ -39,86 +39,65 @@ const Blocks = () => {
     }, [notice]);
 
     // set blocks list
-    useEffect(() => {
-        if (blocks.length > 0) {
-            setBlockStates(applyFilters('zoloblocks.dashboardBlocks', blocks));
-        }
-    }, [blocks]);
+    // useEffect(() => {
+    //     if (blocks.length > 0) {
+    //         setBlockStates(applyFilters('zoloblocks.dashboardBlocks', blocks));
+    //     }
+    // }, [blocks]);
 
     // update block setting
-    const updateStatus = useCallback(
-        (status, block) => {
-            const blocksToUpdate = blockStatus.map((blockState) => {
-                if (blockState.name === block) {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-                return blockState;
-            });
+    // const updateStatus = useCallback(
+    //     (status, block) => {
+    //         const blocksToUpdate = blockStatus.map((blockState) => {
+    //             if (blockState.name === block) {
+    //                 return {
+    //                     ...blockState,
+    //                     status,
+    //                 };
+    //             }
+    //             return blockState;
+    //         });
 
-            apiFetch({
-                path: '/wp/v2/settings',
-                method: 'POST',
-                data: {
-                    zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_blocks_settings: blocksToUpdate,
-                },
+    //         apiFetch({
+    //             path: '/wp/v2/settings',
+    //             method: 'POST',
+    //             data: {
+    //                 zolo_nonce: zoloBlocks.zolo_nonce,
+    //                 zolo_blocks_settings: blocksToUpdate,
+    //             },
+    //         })
+    //             .then((response) => {
+    //                 setBlockStatus(response.zolo_blocks_settings);
+    //             })
+    //             .catch((error) => console.error('API Fetch Error:', error));
+    //     },
+    //     [blockStatus]
+    // );
+
+    const updateStatus = (blockName) => {
+        const block = blockStatus.find((block) => block.name === blockName);
+        const status = !block.status;
+
+        apiFetch({
+            path: '/zolo/v1/blocks',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks.zolo_nonce,
+                name: blockName,
+                status: status,
+            },
+        })
+            .then((response) => {
+                setBlockStates(response.data);
+                console.log(response);
             })
-                .then((response) => {
-                    setBlockStatus(response.zolo_blocks_settings);
-                })
-                .catch((error) => console.error('API Fetch Error:', error));
-        },
-        [blockStatus]
-    );
+            .catch((error) => console.error('API Fetch Error:', error));
+    };
 
     // update block setting for all
-    const updateStatusForCategory = useCallback(
-        (status, category) => {
-            const blocksToUpdate = blockStatus.map((blockState) => {
-                if (category === 'all') {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-                if (category === 'others') {
-                    if (
-                        blockState.categories.some((category) =>
-                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                        )
-                    ) {
-                        return blockState;
-                    }
-                }
-
-                if (blockState.categories.some((cat) => cat === category)) {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-
-                return blockState;
-            });
-
-            apiFetch({
-                path: '/wp/v2/settings',
-                method: 'POST',
-                data: {
-                    zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_blocks_settings: blocksToUpdate,
-                },
-            })
-                .then((response) => {
-                    setBlockStatus(response.zolo_blocks_settings);
-                })
-                .catch((error) => console.error('API Fetch Error:', error));
-        },
-        [blockStatus]
-    );
+    const updateStatusForCategory = (status, category) => {
+        console.log('category', category);
+    };
 
     return (
         <>
@@ -174,19 +153,19 @@ const Blocks = () => {
                     <div className="zoloblocks-actions-btn">
                         <button
                             className="zolo-activated-btn"
-                            onClick={() => {
-                                updateStatusForCategory(true, blockCategory);
-                                setNotice(true);
-                            }}
+                            // onClick={() => {
+                            //     updateStatusForCategory(true, blockCategory);
+                            //     setNotice(true);
+                            // }}
                         >
                             {__('Activate All', 'zoloblocks')}
                         </button>
                         <button
                             className="zolo-deactivated-btn"
-                            onClick={() => {
-                                updateStatusForCategory(false, blockCategory);
-                                setNotice(true);
-                            }}
+                            // onClick={() => {
+                            //     updateStatusForCategory(false, blockCategory);
+                            //     setNotice(true);
+                            // }}
                         >
                             {__('Deactivate All', 'zoloblocks')}
                         </button>
@@ -247,33 +226,28 @@ const Blocks = () => {
                                     return blockState.title.toLowerCase().includes(search.toLowerCase());
                                 })
                                 .map((blockState, index) => {
-                                    const status = blockStatus?.filter((block) => {
-                                        return block.name === blockState.name;
-                                    });
-                                    if (status?.length > 0) {
-                                        const bName = blockState?.name.replace(/_/g, '-');
-                                        // remove zolo- from bName
-                                        const blockIcon = bName.replace('zolo-', '');
-
-                                        return (
-                                            <SingleBlock
-                                                key={index}
-                                                icon={blockIcon}
-                                                title={blockState.title}
-                                                value={status[0].status}
-                                                demo={blockState.demo || ''}
-                                                video={blockState.video || ''}
-                                                upcoming={blockState.upcoming}
-                                                onClick={() => {
-                                                    updateStatus(!status[0].status, blockState.name);
-                                                    setNotice(true);
-                                                }}
-                                                {...(blockState?.isPro && {
-                                                    isPro: true,
-                                                })}
-                                            />
-                                        );
+                                    // skip blocks if it is_child is true
+                                    if (blockState?.is_child) {
+                                        return null;
                                     }
+                                    return (
+                                        <SingleBlock
+                                            key={index}
+                                            icon={blockState?.name}
+                                            title={blockState?.title}
+                                            value={blockState?.status}
+                                            demo={blockState?.demo || ''}
+                                            video={blockState?.video || ''}
+                                            // upcoming={blockState.upcoming}
+                                            onClick={() => {
+                                                updateStatus(blockState?.name);
+                                                setNotice(true);
+                                            }}
+                                            {...(blockState?.isPro && {
+                                                isPro: true,
+                                            })}
+                                        />
+                                    );
                                 })}
                     </div>
 

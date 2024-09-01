@@ -119,20 +119,6 @@ const Dashboard = () => {
                     <div className="header-flex">
                         <div className="zolo-header-left">
                             <h2 className="zolo-page-header-title">{__('Dashboard', 'zoloblocks')}</h2>
-                            {/* <div className="zolo-search-bar">
-                                <input className="zoloblocks-search" type="text" placeholder={__('Search', 'zoloblocks')} />
-                                <button type="submit" className="zolo-search-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M14.75 14.75L12.1251 12.125M14 7.625C14 11.1458 11.1458 14 7.625 14C4.10418 14 1.25 11.1458 1.25 7.625C1.25 4.10418 4.10418 1.25 7.625 1.25C11.1458 1.25 14 4.10418 14 7.625Z"
-                                            stroke="#7E8383"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </button>
-                            </div> */}
                         </div>
                         <div className="zolo-header-right">
                             <div className="zolo-tabs-dropdown">

@@ -24,6 +24,7 @@ use Zolo\Form\FormAjax;
 use Zolo\Form\Recaptcha;
 use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
+use Zolo\API\BlocksV1;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -81,6 +82,9 @@ class ZoloBlocks_Loader {
 
         // Settings
         Settings::getInstance();
+
+        // Blocks
+        BlocksV1::getInstance();
 
         if ( is_admin() ) {
 

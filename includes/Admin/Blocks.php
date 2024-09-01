@@ -208,5 +208,10 @@ return apply_filters(
             'categories' => ['others'],
             'status'     => true,
         ],
+        [
+            'name'       => 'zolo_test',
+            'categories' => ['others'],
+            'status'     => false,
+        ],
     ]
 );

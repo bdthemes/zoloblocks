@@ -519,4 +519,11 @@ class ZoloHelpers {
 		return defined( 'WP_DEBUG' ) && WP_DEBUG ? 'Enabled' : 'Disabled';
 	}
 
+	/**
+	 * Zolo Blocks List 
+	 */
+	public static function zolo_blocks() {
+		return require trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/BlocksList.php';
+	}
+
 }

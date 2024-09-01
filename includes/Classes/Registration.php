@@ -1,7 +1,7 @@
 <?php
 
 namespace Zolo\Classes;
-
+use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 
 class Registration {
@@ -23,7 +23,7 @@ class Registration {
      * @return void
      */
     public function block_register() {
-        $blocks = $this::block_list();
+        $blocks = ZoloHelpers::zolo_blocks(); // Get Blocks List
         if (is_array($blocks) && count($blocks) > 0) {
             foreach ($blocks as $block) {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);
@@ -64,17 +64,6 @@ class Registration {
         }
 
         return $content;
-    }
-
-    /**
-     * Block List Function
-     *
-     * @since 0.0.1
-     *
-     * @return array
-     */
-    public static function block_list() {
-        return require trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
     }
 
     /**
