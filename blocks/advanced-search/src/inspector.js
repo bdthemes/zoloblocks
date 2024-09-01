@@ -179,7 +179,7 @@ function Inspector(props) {
                                   }
                               />
                           )}
-                          {preset === 'zolo-search-1' && <TextControl label={__('Placeholder Text', 'zoloblocks')} value={placeholder} onChange={(value) => setAttributes({ placeholder: value })} />}
+                          {preset === 'zolo-search-1' && <TextControl label={__('Placeholder', 'zoloblocks')} value={placeholder} onChange={(value) => setAttributes({ placeholder: value })} />}
                       </ZoloPanelBody>
                   </>
               }

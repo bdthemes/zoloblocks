@@ -146,16 +146,18 @@ function Inspector(props) {
                                 __unstableInputWidth="64px"
                                 placeholder="1"
                             />
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zoloblocks')}
-                                value={tabsLayout}
-                                onChange={(newTabsLayout) =>
-                                    setAttributes({
-                                        tabsLayout: newTabsLayout,
-                                    })
-                                }
-                                options={LAYOUTS}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout', 'zoloblocks')}
+                                    value={tabsLayout}
+                                    onChange={(newTabsLayout) =>
+                                        setAttributes({
+                                            tabsLayout: newTabsLayout,
+                                        })
+                                    }
+                                    options={LAYOUTS}
+                                />
+                            </div>
                             {tabsLayout === 'vertical' && (
                                 <SelectControl
                                     label={__('Verticle Style', 'zoloblocks')}
@@ -178,16 +180,18 @@ function Inspector(props) {
                             )}
 
                             {tabContentStyle === 'content-style-two' && showIcon && (
-                                <IconicBtnGroup
-                                    label={__('Direction', 'zoloblocks')}
-                                    value={contentDirection}
-                                    options={CONTENT_DIRECTIONS}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            contentDirection: v,
-                                        })
-                                    }
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Direction', 'zoloblocks')}
+                                        value={contentDirection}
+                                        options={CONTENT_DIRECTIONS}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                contentDirection: v,
+                                            })
+                                        }
+                                    />
+                                </div>
                             )}
                             <ToggleControl
                                 label={__('Show Icon', 'zoloblocks')}

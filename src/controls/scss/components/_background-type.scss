@@ -66,7 +66,7 @@
         transform: translateY(10px);
     }
     .components-input-control__container {
-        border-radius: 4px;
+        border-radius: 6px;
     }
 }
 
@@ -114,7 +114,7 @@
     height: 35px !important;
     min-height: 35px !important;
     border-color: #e9e9e9 !important;
-    border-radius: 4px !important;
+    border-radius: 6px !important;
 }
 // .components-input-control__container .components-input-control__backdrop:focus,
 // .components-input-control__container .components-input-control__input:focus {
@@ -140,7 +140,7 @@
 
 .components-number-control {
     .components-input-control__container {
-        width: auto !important;
+        // width: auto !important;
         input {
             padding-left: calc(10px) !important;
             padding-right: calc(10px) !important;

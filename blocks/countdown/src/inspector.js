@@ -133,7 +133,9 @@ function Inspector(props) {
                                 options={applyFilters('zolo.countdown.presets', PRESETS)}
                                 onChange={(preset) => onPresetChange(preset)}
                             />
-                            <BaseControl id="countdate-1" label={__('Timer End Date-Time', 'zoloblocks')}>
+                            <BaseControl id="countdate-1" label={__('Timer End Date-Time', 'zoloblocks')}
+                                className='zolo-flex-col-control'
+                            >
                                 <DateTimePicker
                                     id="countdate-1"
                                     currentDate={CountDate}
@@ -386,7 +388,7 @@ function Inspector(props) {
                                 )}
                                 {toggleSeparator && countSeparator === 'text' && (
                                     <TextControl
-                                        label={__('custom Separator', 'zoloblocks')}
+                                        label={__('custom', 'zoloblocks')}
                                         value={separatorItem}
                                         onChange={(v) => setAttributes({ separatorItem: v })}
                                     />

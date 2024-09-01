@@ -280,16 +280,18 @@ function Inspector(props) {
                                 <>
                                     {showFrontIcon && (
                                         <>
-                                            <IconicBtnGroup
-                                                label={__('Icon Type', 'zoloblocks')}
-                                                value={frontIconType}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        frontIconType: value,
-                                                    })
-                                                }
-                                                options={FLIPBOX_ICON_OPTIONS}
-                                            />
+                                           <div className='zolo-flex-row-control-tab'>
+                                                <IconicBtnGroup
+                                                    label={__('Icon Type', 'zoloblocks')}
+                                                    value={frontIconType}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            frontIconType: value,
+                                                        })
+                                                    }
+                                                    options={FLIPBOX_ICON_OPTIONS}
+                                                />
+                                           </div>
                                             {frontIconType === 'icon' && (
                                                 <ZoloIconPicker
                                                     label={__('Select Icon', 'zolo-block')}
@@ -299,7 +301,9 @@ function Inspector(props) {
                                             )}
                                             {frontIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zoloblocks')}>
+                                                    <BaseControl label={__('Image', 'zoloblocks')}
+                                                        className='zolo-flex-col-control'
+                                                    >
                                                         {frontIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={frontIconTypeImage && frontIconTypeImage.url}
@@ -354,7 +358,7 @@ function Inspector(props) {
                                                         )}
                                                     </BaseControl>
                                                     <ImageSizes
-                                                        label={__('Image Resolution', 'zoloblocks')}
+                                                        label={__('Resolution', 'zoloblocks')}
                                                         value={imageRes}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -383,11 +387,13 @@ function Inspector(props) {
                                         />
                                     )}
                                     {showFrontContent && (
-                                        <TextareaControl
-                                            label={__('Description', 'zoloblocks')}
-                                            value={frontContent}
-                                            onChange={(newText) => setAttributes({ frontContent: newText })}
-                                        />
+                                        <div className='zolo-flex-col-control'>
+                                            <TextareaControl
+                                                label={__('Description', 'zoloblocks')}
+                                                value={frontContent}
+                                                onChange={(newText) => setAttributes({ frontContent: newText })}
+                                            />
+                                        </div>
                                     )}
                                 </>
                             )}
@@ -395,16 +401,18 @@ function Inspector(props) {
                                 <>
                                     {showBackIcon && (
                                         <>
-                                            <IconicBtnGroup
-                                                label={__('Icon Type', 'zoloblocks')}
-                                                value={backIconType}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        backIconType: value,
-                                                    })
-                                                }
-                                                options={FLIPBOX_ICON_OPTIONS}
-                                            />
+                                            <div className='zolo-flex-row-control-tab'>
+                                                <IconicBtnGroup
+                                                    label={__('Icon Type', 'zoloblocks')}
+                                                    value={backIconType}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            backIconType: value,
+                                                        })
+                                                    }
+                                                    options={FLIPBOX_ICON_OPTIONS}
+                                                />
+                                            </div>
                                             {backIconType === 'icon' && (
                                                 <ZoloIconPicker
                                                     label={__('Select Icon', 'zolo-block')}
@@ -414,7 +422,9 @@ function Inspector(props) {
                                             )}
                                             {backIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zoloblocks')}>
+                                                    <BaseControl label={__('Image', 'zoloblocks')}
+                                                        className='zolo-flex-col-control'
+                                                    >
                                                         {backIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={backIconTypeImage && backIconTypeImage.url}
@@ -469,7 +479,7 @@ function Inspector(props) {
                                                         )}
                                                     </BaseControl>
                                                     <ImageSizes
-                                                        label={__('Image Resolution', 'zoloblocks')}
+                                                        label={__('Resolution', 'zoloblocks')}
                                                         value={imageRes}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -498,11 +508,13 @@ function Inspector(props) {
                                     )}
 
                                     {showBackContent && (
-                                        <TextareaControl
-                                            label={__('Description', 'zoloblocks')}
-                                            value={backContent}
-                                            onChange={(newText) => setAttributes({ backContent: newText })}
-                                        />
+                                        <div className='zolo-flex-col-control'>
+                                            <TextareaControl
+                                                label={__('Description', 'zoloblocks')}
+                                                value={backContent}
+                                                onChange={(newText) => setAttributes({ backContent: newText })}
+                                            />
+                                        </div>
                                     )}
                                     {showBackLinkBtn && (
                                         <>
@@ -563,16 +575,19 @@ function Inspector(props) {
                                 defaultVal={600}
                                 step={1}
                             />
-                            <IconicBtnGroup
-                                label={__('Trigger Type', 'zoloblocks')}
-                                value={triggerType}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        triggerType: value,
-                                    })
-                                }
-                                options={FLIP_TRIGGER_TYPE}
-                            />
+
+                            <div className='zolo-flex-row-control-tab'>
+                                <IconicBtnGroup
+                                    label={__('Trigger Type', 'zoloblocks')}
+                                    value={triggerType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            triggerType: value,
+                                        })
+                                    }
+                                    options={FLIP_TRIGGER_TYPE}
+                                />
+                            </div>
                             {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zoloblocks')}</p>}
                         </ZoloPanelBody>
                     </>

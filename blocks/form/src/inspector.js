@@ -200,7 +200,7 @@ function Inspector(props) {
                                 placeholder={__('Enter title..', 'zoloblocks')}
                             />
                             <SelectControl
-                                label={__('Notification Type', 'zoloblocks')}
+                                label={__('Notification', 'zoloblocks')}
                                 value={formSettings?.notificationType}
                                 options={NOTIFICATION_TYPES}
                                 onChange={(v) =>
@@ -292,51 +292,58 @@ function Inspector(props) {
                                 }
                                 options={MESSAGE_POS}
                             />
-                            <TextareaControl
-                                label={__('Success Message', 'zoloblocks')}
-                                value={submissionSettings?.successMessage}
-                                help={__('This message will be shown when the form is submitted successfully.', 'zoloblocks')}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        submissionSettings: {
-                                            ...submissionSettings,
-                                            successMessage: v,
-                                        },
-                                    })
-                                }
-                                placeholder={__('Enter message..', 'zoloblocks')}
-                                rows={2}
-                            />
-                            <TextareaControl
-                                label={__('Fail Message', 'zoloblocks')}
-                                value={submissionSettings?.failMessage}
-                                help={__('This message will be shown when the form submission fails.', 'zoloblocks')}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        submissionSettings: {
-                                            ...submissionSettings,
-                                            failMessage: v,
-                                        },
-                                    })
-                                }
-                                placeholder={__('Enter message..', 'zoloblocks')}
-                                rows={2}
-                            />
-                            <TextareaControl
-                                label={__('Validation Message', 'zoloblocks')}
-                                value={submissionSettings?.validationMessage}
-                                help={__('This message will be shown when the form validation fails.', 'zoloblocks')}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        submissionSettings: {
-                                            ...submissionSettings,
-                                            validationMessage: v,
-                                        },
-                                    })
-                                }
-                                placeholder={__('Enter message..', 'zoloblocks')}
-                                rows={2}
-                            />
+                            <div className='zolo-flex-col-control'>
+                                <TextareaControl
+                                    label={__('Success Message', 'zoloblocks')}
+                                    value={submissionSettings?.successMessage}
+                                    help={__('This message will be shown when the form is submitted successfully.', 'zoloblocks')}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            submissionSettings: {
+                                                ...submissionSettings,
+                                                successMessage: v,
+                                            },
+                                        })
+                                    }
+                                    placeholder={__('Enter message..', 'zoloblocks')}
+                                    rows={2}
+                                />
+                            </div>
+
+                            <div className='zolo-flex-col-control'>
+                                <TextareaControl
+                                    label={__('Fail Message', 'zoloblocks')}
+                                    value={submissionSettings?.failMessage}
+                                    help={__('This message will be shown when the form submission fails.', 'zoloblocks')}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            submissionSettings: {
+                                                ...submissionSettings,
+                                                failMessage: v,
+                                            },
+                                        })
+                                    }
+                                    placeholder={__('Enter message..', 'zoloblocks')}
+                                    rows={2}
+                                />
+                            </div>
+                            <div className='zolo-flex-col-control'>
+                                <TextareaControl
+                                    label={__('Validation Message', 'zoloblocks')}
+                                    value={submissionSettings?.validationMessage}
+                                    help={__('This message will be shown when the form validation fails.', 'zoloblocks')}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            submissionSettings: {
+                                                ...submissionSettings,
+                                                validationMessage: v,
+                                            },
+                                        })
+                                    }
+                                    placeholder={__('Enter message..', 'zoloblocks')}
+                                    rows={2}
+                                />
+                            </div>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Submit Button', 'zoloblocks')} panelProps={props}>
                             <TextControl

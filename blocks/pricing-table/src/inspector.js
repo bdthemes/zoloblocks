@@ -234,26 +234,30 @@ const Inspector = (props) => {
                             />
                             {(showBtn || showChatBtn) && (
                                 <>
-                                    <IconicBtnGroup
-                                        label={__('Buttons Position', 'zoloblocks')}
-                                        value={btnsPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                btnsPosition: value,
-                                            })
-                                        }
-                                        options={BTNS_POSITIONS}
-                                    />
-                                    <IconicBtnGroup
-                                        label={__('Buttons Direction', 'zoloblocks')}
-                                        value={btnsDirection}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                btnsDirection: value,
-                                            })
-                                        }
-                                        options={BTNS_DIRECTIONS}
-                                    />
+                                    <div className='zolo-flex-row-control-tab'>
+                                        <IconicBtnGroup
+                                            label={__('Button (PS)', 'zoloblocks')}
+                                            value={btnsPosition}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnsPosition: value,
+                                                })
+                                            }
+                                            options={BTNS_POSITIONS}
+                                        />
+                                    </div>
+                                    <div className='zolo-flex-row-control-tab'>
+                                        <IconicBtnGroup
+                                            label={__('Button (DR)', 'zoloblocks')}
+                                            value={btnsDirection}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnsDirection: value,
+                                                })
+                                            }
+                                            options={BTNS_DIRECTIONS}
+                                        />
+                                    </div>
                                 </>
                             )}
                         </ZoloPanelBody>
@@ -314,7 +318,9 @@ const Inspector = (props) => {
                                 options={HEADING}
                                 onChange={(selected) => setAttributes({ titleTagName: selected })}
                             />
+
                             <ToggleControl
+
                                 label={__('Show Description', 'zoloblocks')}
                                 checked={showDesc}
                                 onChange={(showDesc) => setAttributes({ showDesc })}
@@ -322,6 +328,7 @@ const Inspector = (props) => {
 
                             {showDesc && (
                                 <TextareaControl
+                                    className='zolo-flex-col-control'
                                     label={__('Description', 'zoloblocks')}
                                     value={descText}
                                     onChange={(descText) => setAttributes({ descText })}
@@ -397,6 +404,7 @@ const Inspector = (props) => {
 
                                 {showFeatureDesc && (
                                     <TextareaControl
+                                        className='zolo-flex-col-control'
                                         label={__('Description', 'zoloblocks')}
                                         value={featureDesc}
                                         onChange={(featureDesc) => setAttributes({ featureDesc })}

@@ -107,7 +107,9 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             {showPhoto && (
                                 <>
-                                    <BaseControl label={__('Photo', 'zoloblocks')}>
+                                    <BaseControl label={__('Photo', 'zoloblocks')}
+                                        className='zolo-flex-col-control'
+                                    >
                                         {memberPhoto ? (
                                             <ImageAvatar
                                                 imageUrl={memberPhoto && memberPhoto.url}
@@ -162,7 +164,7 @@ function Inspector(props) {
                                         )}
                                     </BaseControl>
                                     <ImageSizes
-                                        label={__('Photo Resolution', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={imageRes}
                                         onChange={(imageRes) =>
                                             setAttributes({
@@ -206,6 +208,7 @@ function Inspector(props) {
                             )}
                             {showTestimonialMessage && (
                                 <TextareaControl
+                                    className='zolo-flex-col-control'
                                     label={__('Testimonial Message', 'zoloblocks')}
                                     value={testimonialMessage}
                                     onChange={(bio) =>
@@ -217,24 +220,26 @@ function Inspector(props) {
                                 />
                             )}
                             {showRating && (
-                                <RangeControl
-                                    label={__('Rating', 'zoloblocks')}
-                                    value={rating}
-                                    onChange={(rating) =>
-                                        setAttributes({
-                                            rating: rating,
-                                        })
-                                    }
-                                    min={1}
-                                    max={5}
-                                    step={0.1}
-                                />
+                                <div className='zolo-flex-col-control'>
+                                    <RangeControl
+                                        label={__('Rating', 'zoloblocks')}
+                                        value={rating}
+                                        onChange={(rating) =>
+                                            setAttributes({
+                                                rating: rating,
+                                            })
+                                        }
+                                        min={1}
+                                        max={5}
+                                        step={0.1}
+                                    />
+                                </div>
                             )}
                         </ZoloPanelBody>
                         {addReviewerWebsiteLink && (
                             <ZoloPanelBody title={__('Reviewer Website', 'zoloblocks')} panelProps={props}>
                                 <LinkControl
-                                    label={__('Website Link', 'zoloblocks')}
+                                    label={__('Link', 'zoloblocks')}
                                     value={reviewerWebsiteLink}
                                     onChange={(link) =>
                                         setAttributes({

@@ -264,6 +264,7 @@ function Inspector(props) {
                                 noUnits={true}
                             />
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Speed', 'zoloblocks')}
                                 value={speed}
                                 onChange={(v) =>
@@ -331,6 +332,7 @@ function Inspector(props) {
                             {autoplay && (
                                 <Fragment>
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>

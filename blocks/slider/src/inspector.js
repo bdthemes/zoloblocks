@@ -106,6 +106,7 @@ const Inspector = (props) => {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Slider Options', 'zoloblocks')} panelProps={props}>
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Speed', 'zoloblocks')}
                                 value={speed}
                                 onChange={(v) =>
@@ -138,6 +139,7 @@ const Inspector = (props) => {
                             {autoplay && (
                                 <Fragment>
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>

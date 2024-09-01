@@ -230,21 +230,24 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zoloblocks')}
-                                value={layoutType}
-                                onChange={(selected) => setAttributes({ layoutType: selected })}
-                                options={[
-                                    {
-                                        value: 'grid',
-                                        label: __('Grid', 'zoloblocks'),
-                                    },
-                                    {
-                                        value: 'column',
-                                        label: __('Column', 'zoloblocks'),
-                                    },
-                                ]}
-                            />
+
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout Type', 'zoloblocks')}
+                                    value={layoutType}
+                                    onChange={(selected) => setAttributes({ layoutType: selected })}
+                                    options={[
+                                        {
+                                            value: 'grid',
+                                            label: __('Grid', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'column',
+                                            label: __('Column', 'zoloblocks'),
+                                        },
+                                    ]}
+                                />
+                            </div>
                             <ResCounterControl
                                 label={__('Grid Columns', 'zoloblocks')}
                                 controlName={GRID_COLUMNS}

@@ -187,7 +187,7 @@ function Inspector(props) {
                                 </div>
                             </div>
                             <ImageSizes
-                                label={__('Thumb Resolution', 'zoloblocks')}
+                                label={__('Resolution', 'zoloblocks')}
                                 value={imageSize}
                                 onChange={(value) => setAttributes({ imageSize: value })}
                             />
@@ -234,7 +234,7 @@ function Inspector(props) {
                                     }}
                                 />
                                 <SelectControl
-                                    label={__('Entrance Animation', 'zoloblocks')}
+                                    label={__('Animation', 'zoloblocks')}
                                     value={entranceAnimation}
                                     options={MPA_ANIMATIONS}
                                     onChange={(v) => {
@@ -532,16 +532,18 @@ function Inspector(props) {
                         )}
                         <ZoloPanelBody title={__('Overlay Background', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <NormalBGControl requiredProps={requiredProps} controlName={OVERLAY_BG_COLOR} noMainBGImg={true} />
-                            <SimpleRangeControl
-                                label={__('Blur', 'zoloblocks')}
-                                value={backdropFilterBlur}
-                                onChange={(filterBlur) =>
-                                    setAttributes({
-                                        backdropFilterBlur: filterBlur,
-                                    })
-                                }
-                                max={50}
-                            />
+                            <div className='zolo-flex-col-control'>
+                                <SimpleRangeControl
+                                    label={__('Blur', 'zoloblocks')}
+                                    value={backdropFilterBlur}
+                                    onChange={(filterBlur) =>
+                                        setAttributes({
+                                            backdropFilterBlur: filterBlur,
+                                        })
+                                    }
+                                    max={50}
+                                />
+                            </div>
                         </ZoloPanelBody>
                     </>
                 }

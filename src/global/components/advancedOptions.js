@@ -33,7 +33,7 @@ import {
     ICON_HPOSITIONS,
     VPOSITIONS,
     CONTENT_POSITIONS,
-    CONTENT_WIDTH
+    CONTENT_WIDTH,
 } from '../constants';
 
 const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
@@ -66,7 +66,6 @@ const resetAtt = (atts, setAttributes) => {
 export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps, block } = props;
     const panelProps = { attributes, setAttributes };
-
 
     const {
         responsiveness,
@@ -188,19 +187,21 @@ export const AdvancedOptions = (props) => {
                     }}
                 />
                 <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
-                    <SelectControl
-                        label={__('Position', 'zoloblocks')}
-                        options={CONTENT_POSITIONS}
-                        onChange={(v) =>
-                            setAttributes({
-                                position: {
-                                    ...position,
-                                    value: v,
-                                },
-                            })
-                        }
-                        value={position.value}
-                    />
+                    <div className="zolo-flex-row-control">
+                        <SelectControl
+                            label={__('Position', 'zoloblocks')}
+                            options={CONTENT_POSITIONS}
+                            onChange={(v) =>
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        value: v,
+                                    },
+                                })
+                            }
+                            value={position.value}
+                        />
+                    </div>
                     {(position.value === 'absolute' || position.value === 'fixed') && (
                         <>
                             <IconicBtnGroup
@@ -313,11 +314,13 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <BackgroundControl
-                        controlName={globalConfig.background.prefix || 'mainBg'}
-                        requiredProps={requiredProps}
-                        particles={particles}
-                    />
+                    <div className="zolo-flex-col-control">
+                        <BackgroundControl
+                            controlName={globalConfig.background.prefix || 'mainBg'}
+                            requiredProps={requiredProps}
+                            particles={particles}
+                        />
+                    </div>
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (

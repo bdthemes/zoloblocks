@@ -268,13 +268,13 @@ function Inspector(props) {
                                 <>
                                     {showNameField && (
                                         <TextControl
-                                            label={__('Placeholder name', 'zoloblocks')}
+                                            label={__('PH name', 'zoloblocks')}
                                             value={namePlaceholder}
                                             onChange={(value) => setAttributes({ namePlaceholder: value })}
                                         />
                                     )}
                                     <TextControl
-                                        label={__('Placeholder email', 'zoloblocks')}
+                                        label={__('PH email', 'zoloblocks')}
                                         value={placeholder}
                                         onChange={(value) => setAttributes({ placeholder: value })}
                                     />

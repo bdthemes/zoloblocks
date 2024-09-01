@@ -122,14 +122,6 @@ export default function Inspector(props) {
                                 options={applyFilters('zolo.author.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-
-                            {/* <ResAlignmentControl
-                                label={__('Meta Alignment', 'zoloblocks')}
-                                controlName={META_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            /> */}
-
                             <ToggleControl
                                 label={__('Show Avatar', 'zoloblocks')}
                                 checked={showAvatar}
@@ -161,7 +153,7 @@ export default function Inspector(props) {
                                 onChange={(showSocialLink) => setAttributes({ showSocialLink })}
                             />
                             {showSocialLink && (
-                                <BaseControl label={__('Social Links', 'zoloblocks')}>
+                                <BaseControl label={__('Social Links', 'zoloblocks')} className="zolo-flex-col-control">
                                     <Select2
                                         classNamePrefix="zolo-select"
                                         options={authorLinks}

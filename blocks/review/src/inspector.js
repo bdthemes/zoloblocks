@@ -68,7 +68,6 @@ import {
     DPL_MARGIN,
     DPL_ICON_SIZE,
     CONTENT_GAP,
-
     RW_BACKGROUND,
     RW_BORDER,
     RW_BORDER_RADIUS,
@@ -128,7 +127,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                          <SelectControl
+                            <SelectControl
                                 label={__('Style', 'zoloblocks')}
                                 value={stylePreset}
                                 options={applyFilters('zolo.review.stylePresets', STYLE_PRESETS)}
@@ -143,12 +142,14 @@ function Inspector(props) {
                                 }}
                             />
                             {stylePreset !== 'style-preset-2' && (
-                                <IconicBtnGroup
-                                    label={__('Layout Direction', 'zoloblocks')}
-                                    value={preset}
-                                    onChange={(selected) => setAttributes({ preset: selected })}
-                                    options={applyFilters('zolo.review.presets', PRESETS)}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Direction', 'zoloblocks')}
+                                        value={preset}
+                                        onChange={(selected) => setAttributes({ preset: selected })}
+                                        options={applyFilters('zolo.review.presets', PRESETS)}
+                                    />
+                                </div>
                             )}
 
                             <ToggleControl
@@ -209,7 +210,7 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             {showPhoto && (
                                 <>
-                                    <BaseControl label={__('Photo', 'zoloblocks')}>
+                                    <BaseControl label={__('Photo', 'zoloblocks')} className="zolo-flex-col-control">
                                         {memberPhoto ? (
                                             <ImageAvatar
                                                 imageUrl={memberPhoto && memberPhoto.url}
@@ -264,7 +265,7 @@ function Inspector(props) {
                                         )}
                                     </BaseControl>
                                     <ImageSizes
-                                        label={__('Photo Resolution', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={imageRes}
                                         onChange={(value) => setAttributes({ imageRes: value })}
                                     />
@@ -296,6 +297,7 @@ function Inspector(props) {
                             )}
                             {showTestimonialMessage && (
                                 <TextareaControl
+                                    className="zolo-flex-col-control"
                                     label={__('Review Text', 'zoloblocks')}
                                     value={testimonialMessage}
                                     onChange={(bio) =>
@@ -308,6 +310,7 @@ function Inspector(props) {
                             )}
                             {showRating && (
                                 <RangeControl
+                                    className="zolo-flex-col-control"
                                     label={__('Rating', 'zoloblocks')}
                                     value={rating}
                                     onChange={(rating) =>
@@ -338,7 +341,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                       {stylePreset === 'style-preset-2' && (
+                        {stylePreset === 'style-preset-2' && (
                             <ZoloPanelBody title={__('Review Warpper', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <BorderControl label={__('Border', 'zoloblocks')} controlName={RW_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
@@ -371,7 +374,11 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
-                                <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={CONTENT_BORDER}
+                                    requiredProps={requiredProps}
+                                />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zoloblocks')}
                                     controlName={CONTENT_BORDER_RADIUS}
@@ -471,7 +478,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
 
-                             <div className="zolo-custom-heading">{__('Separator Color', 'zoloblocks')}</div>
+                                <div className="zolo-custom-heading">{__('Separator Color', 'zoloblocks')}</div>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={separatorColor}
@@ -598,10 +605,14 @@ function Inspector(props) {
                                 max={200}
                             />
                             <CardDivider />
-                            
+
                             {stylePreset !== 'style-preset-2' && (
                                 <>
-                                    <BorderControl label={__('Border', 'zoloblocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={DPL_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
                                     <ResDimensionsControl
                                         label={__('Border Radius', 'zoloblocks')}
                                         controlName={DPL_BORDER_RADIUS}

@@ -69,15 +69,17 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                             }}
                                         />
                                         {DscToggle && preset !== 'zolo-list-style-1' && (
-                                            <TextareaControl
-                                                label={__('Description', 'zoloblocks')}
-                                                value={profile.desc}
-                                                onChange={(v) => {
-                                                    const newItems = [...deepCloneProfiles];
-                                                    newItems[index].desc = v;
-                                                    setAttributes({ listProfiles: newItems });
-                                                }}
-                                            />
+                                            <div className="zolo-flex-col-control">
+                                                <TextareaControl
+                                                    label={__('Description', 'zoloblocks')}
+                                                    value={profile.desc}
+                                                    onChange={(v) => {
+                                                        const newItems = [...deepCloneProfiles];
+                                                        newItems[index].desc = v;
+                                                        setAttributes({ listProfiles: newItems });
+                                                    }}
+                                                />
+                                            </div>
                                         )}
                                         {preset !== 'zolo-list-style-1' && (
                                             <ZoloIconPicker

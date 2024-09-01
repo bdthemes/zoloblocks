@@ -188,12 +188,14 @@ function Inspector(props) {
                                 </>
                             )}
                             {showDescription && (
-                                <TextareaControl
-                                    label={__('Description', 'zoloblocks')}
-                                    value={description}
-                                    onChange={(value) => setAttributes({ description: value })}
-                                    placeholder={__('description..', 'zoloblocks')}
-                                />
+                                <div className='zolo-flex-col-control'>
+                                    <TextareaControl
+                                        label={__('Description', 'zoloblocks')}
+                                        value={description}
+                                        onChange={(value) => setAttributes({ description: value })}
+                                        placeholder={__('description..', 'zoloblocks')}
+                                    />
+                                </div>
                             )}
                         </ZoloPanelBody>
                         {showBtn && (
