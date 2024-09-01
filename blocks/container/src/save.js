@@ -26,19 +26,19 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
+
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
-                    {renderHookBefore && renderHookBefore}
                     <InnerBlocks.Content />
-                    {renderHookAfter && renderHookAfter}
                 </div>
             ) : (
                 <>
-                    {renderHookBefore && renderHookBefore}
                     <InnerBlocks.Content />
-                    {renderHookAfter && renderHookAfter}
                 </>
             )}
+
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

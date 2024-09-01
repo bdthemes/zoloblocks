@@ -6,7 +6,7 @@ import Save from './save';
 import { variations } from './variations';
 import './editor.scss';
 import './style.scss';
-
+import deprecated from './deprecated';
 registerBlockType(metadata, {
     icon: {
         src: (
@@ -20,7 +20,7 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-
+    deprecated,
     attributes,
     variations,
     edit: Edit,
