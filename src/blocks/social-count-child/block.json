@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Social Count Child",
+    "name": "zolo/social-count-child",
+    "category": "zoloblocks",
+    "keywords": ["icon", "social", "social count"],
+    "description": "Single item block for social count",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "parent": ["zolo/social-count"],
+    "supports": {
+        "anchor": false,
+        "customClassName": false
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css"
+}
