@@ -234,7 +234,7 @@ const Inspector = (props) => {
                             />
                             {(showBtn || showChatBtn) && (
                                 <>
-                                    <div className='zolo-flex-row-control-tab'>
+                                    <div className="zolo-flex-row-control-tab">
                                         <IconicBtnGroup
                                             label={__('Button (PS)', 'zoloblocks')}
                                             value={btnsPosition}
@@ -246,7 +246,7 @@ const Inspector = (props) => {
                                             options={BTNS_POSITIONS}
                                         />
                                     </div>
-                                    <div className='zolo-flex-row-control-tab'>
+                                    <div className="zolo-flex-row-control-tab">
                                         <IconicBtnGroup
                                             label={__('Button (DR)', 'zoloblocks')}
                                             value={btnsDirection}
@@ -293,16 +293,18 @@ const Inspector = (props) => {
                                     max={180}
                                     step={1}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Position', 'zoloblocks')}
-                                    value={ribbonPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            ribbonPosition: value,
-                                        })
-                                    }
-                                    options={RIBBON_POSITIONS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Position', 'zoloblocks')}
+                                        value={ribbonPosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                ribbonPosition: value,
+                                            })
+                                        }
+                                        options={RIBBON_POSITIONS}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
 
@@ -320,7 +322,6 @@ const Inspector = (props) => {
                             />
 
                             <ToggleControl
-
                                 label={__('Show Description', 'zoloblocks')}
                                 checked={showDesc}
                                 onChange={(showDesc) => setAttributes({ showDesc })}
@@ -328,7 +329,7 @@ const Inspector = (props) => {
 
                             {showDesc && (
                                 <TextareaControl
-                                    className='zolo-flex-col-control'
+                                    className="zolo-flex-col-control"
                                     label={__('Description', 'zoloblocks')}
                                     value={descText}
                                     onChange={(descText) => setAttributes({ descText })}
@@ -404,7 +405,7 @@ const Inspector = (props) => {
 
                                 {showFeatureDesc && (
                                     <TextareaControl
-                                        className='zolo-flex-col-control'
+                                        className="zolo-flex-col-control"
                                         label={__('Description', 'zoloblocks')}
                                         value={featureDesc}
                                         onChange={(featureDesc) => setAttributes({ featureDesc })}

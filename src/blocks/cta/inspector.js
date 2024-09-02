@@ -188,7 +188,7 @@ function Inspector(props) {
                                 </>
                             )}
                             {showDescription && (
-                                <div className='zolo-flex-col-control'>
+                                <div className="zolo-flex-col-control">
                                     <TextareaControl
                                         label={__('Description', 'zoloblocks')}
                                         value={description}
@@ -213,16 +213,18 @@ function Inspector(props) {
                                     value={link}
                                     onChange={(value) => setAttributes({ link: value })}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Icon Status', 'zoloblocks')}
-                                    value={iconType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            iconType: value,
-                                        })
-                                    }
-                                    options={ICON_STATUS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Icon', 'zoloblocks')}
+                                        value={iconType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconType: value,
+                                            })
+                                        }
+                                        options={ICON_STATUS}
+                                    />
+                                </div>
                                 {iconType !== 'none' && (
                                     <Fragment>
                                         <ZoloIconPicker
@@ -236,16 +238,18 @@ function Inspector(props) {
                                         />
 
                                         {iconType !== 'iconOnly' && (
-                                            <IconicBtnGroup
-                                                label={__('Position', 'zoloblocks')}
-                                                value={iconPosition}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconPosition: value,
-                                                    })
-                                                }
-                                                options={ICON_POSITIONS}
-                                            />
+                                            <div className="zolo-flex-row-control-tab">
+                                                <IconicBtnGroup
+                                                    label={__('Position', 'zoloblocks')}
+                                                    value={iconPosition}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconPosition: value,
+                                                        })
+                                                    }
+                                                    options={ICON_POSITIONS}
+                                                />
+                                            </div>
                                         )}
                                     </Fragment>
                                 )}
@@ -266,16 +270,18 @@ function Inspector(props) {
                                     value={Slink}
                                     onChange={(value) => setAttributes({ Slink: value })}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Icon Status', 'zoloblocks')}
-                                    value={SiconType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            SiconType: value,
-                                        })
-                                    }
-                                    options={ICON_STATUS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Icon', 'zoloblocks')}
+                                        value={SiconType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                SiconType: value,
+                                            })
+                                        }
+                                        options={ICON_STATUS}
+                                    />
+                                </div>
                                 {SiconType !== 'none' && (
                                     <Fragment>
                                         <ZoloIconPicker
@@ -289,16 +295,18 @@ function Inspector(props) {
                                         />
 
                                         {SiconType !== 'iconOnly' && (
-                                            <IconicBtnGroup
-                                                label={__('Position', 'zoloblocks')}
-                                                value={SiconPosition}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        SiconPosition: value,
-                                                    })
-                                                }
-                                                options={ICON_POSITIONS}
-                                            />
+                                            <div className="zolo-flex-row-control-tab">
+                                                <IconicBtnGroup
+                                                    label={__('Position', 'zoloblocks')}
+                                                    value={SiconPosition}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            SiconPosition: value,
+                                                        })
+                                                    }
+                                                    options={ICON_POSITIONS}
+                                                />
+                                            </div>
                                         )}
                                     </Fragment>
                                 )}

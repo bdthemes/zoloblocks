@@ -491,19 +491,21 @@ function Inspector(props) {
                                     }
                                     value={titleObject.text}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Alignment', 'zoloblocks')}
-                                    value={titleObject.align}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            titleObject: {
-                                                ...titleObject,
-                                                align: v,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Alignment', 'zoloblocks')}
+                                        value={titleObject.align}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                titleObject: {
+                                                    ...titleObject,
+                                                    align: v,
+                                                },
+                                            })
+                                        }
+                                        options={DEFAULT_ALIGNS}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
                         {showSubTitle && (
@@ -520,19 +522,21 @@ function Inspector(props) {
                                     }
                                     value={subTitleObject.text}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Alignment', 'zoloblocks')}
-                                    value={subTitleObject.align}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            subTitleObject: {
-                                                ...subTitleObject,
-                                                align: v,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Alignment', 'zoloblocks')}
+                                        value={subTitleObject.align}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                subTitleObject: {
+                                                    ...subTitleObject,
+                                                    align: v,
+                                                },
+                                            })
+                                        }
+                                        options={DEFAULT_ALIGNS}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
                         {showLegend && (
@@ -550,19 +554,21 @@ function Inspector(props) {
                                     }
                                     options={POSITIONS}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Horizontal Alignment', 'zoloblocks')}
-                                    value={legendObject.horizontalAlign}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            legendObject: {
-                                                ...legendObject,
-                                                horizontalAlign: v,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Horizontal', 'zoloblocks')}
+                                        value={legendObject.horizontalAlign}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                legendObject: {
+                                                    ...legendObject,
+                                                    horizontalAlign: v,
+                                                },
+                                            })
+                                        }
+                                        options={DEFAULT_ALIGNS}
+                                    />
+                                </div>
                                 <ToggleControl
                                     label={__('Floating', 'zoloblocks')}
                                     checked={legendObject.floating}
@@ -674,19 +680,21 @@ function Inspector(props) {
                                     }
                                 />
                                 <CardDivider />
-                                <IconicBtnGroup
-                                    label={__('Theme', 'zoloblocks')}
-                                    value={tooltipObject.theme}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            tooltipObject: {
-                                                ...tooltipObject,
-                                                theme: v,
-                                            },
-                                        })
-                                    }
-                                    options={THEME_TYPES}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Theme', 'zoloblocks')}
+                                        value={tooltipObject.theme}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                tooltipObject: {
+                                                    ...tooltipObject,
+                                                    theme: v,
+                                                },
+                                            })
+                                        }
+                                        options={THEME_TYPES}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
                         {showGrid && (

@@ -144,16 +144,18 @@ function Inspector(props) {
                             {
                                 // If preset is not selected, show alignment control
                                 preset === 'style-4' && (
-                                    <IconicBtnGroup
-                                        label={__('Layout Direction', 'zoloblocks')}
-                                        value={fancyDirection}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                fancyDirection: value,
-                                            })
-                                        }
-                                        options={PRESETS_ALIGNMENT}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Direction', 'zoloblocks')}
+                                            value={fancyDirection}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    fancyDirection: value,
+                                                })
+                                            }
+                                            options={PRESETS_ALIGNMENT}
+                                        />
+                                    </div>
                                 )
                             }
                             <ToggleControl
@@ -198,16 +200,11 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={GRID_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
+                            <ResGapControl label={__('Gap', 'zoloblocks')} controlName={GRID_GAP} requiredProps={requiredProps} max={200} />
                         </ZoloPanelBody>
                         {imageToggle && (
                             <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
-                                <div className='zolo-flex-row-control-tab'>
+                                <div className="zolo-flex-row-control-tab">
                                     <IconicBtnGroup
                                         label={__('Type', 'zoloblocks')}
                                         value={mediaType}

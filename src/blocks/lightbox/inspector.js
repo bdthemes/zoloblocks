@@ -5,7 +5,7 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, TextareaControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
-import {applyFilters} from '@wordpress/hooks';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -106,7 +106,7 @@ export default function Edit(props) {
                         <>
                             <ZoloPanelBody title={__('Toggler', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                 <SelectControl
-                                    label={__('Select Light Box', 'zoloblocks')}
+                                    label={__('Type', 'zoloblocks')}
                                     value={lightboxType}
                                     onChange={(value) =>
                                         setAttributes({
@@ -118,7 +118,7 @@ export default function Edit(props) {
 
                                 {lightboxType === 'poster' && (
                                     <>
-                                        <BaseControl label={__('Poster Image', 'zoloblocks')}>
+                                        <BaseControl label={__('Poster Image', 'zoloblocks')} className="zolo-flex-col-control">
                                             {imagePoster ? (
                                                 <ImageAvatar
                                                     imageUrl={imagePoster && imagePoster.url}
@@ -168,7 +168,7 @@ export default function Edit(props) {
                                         </BaseControl>
 
                                         <ImageSizes
-                                            label={__('Image Resolution', 'zoloblocks')}
+                                            label={__('Resolution', 'zoloblocks')}
                                             value={imageSize}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -288,7 +288,7 @@ export default function Edit(props) {
 
                             <ZoloPanelBody title={__('Lightbox Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                 <SelectControl
-                                    label={__('Select Light Box Content', 'zoloblocks')}
+                                    label={__('Type', 'zoloblocks')}
                                     value={contentType}
                                     onChange={(value) =>
                                         setAttributes({
@@ -300,7 +300,7 @@ export default function Edit(props) {
 
                                 {contentType === 'image' && (
                                     <>
-                                        <BaseControl label={__('Image Source', 'zoloblocks')}>
+                                        <BaseControl label={__('Image Source', 'zoloblocks')} className="zolo-flex-col-control">
                                             {contentImage ? (
                                                 <ImageAvatar
                                                     imageUrl={contentImage && contentImage.url}
@@ -400,7 +400,7 @@ export default function Edit(props) {
                                 )}
 
                                 <TextControl
-                                    label={__('Content Caption', 'zoloblocks')}
+                                    label={__('Caption', 'zoloblocks')}
                                     value={contentCaption}
                                     onChange={(value) =>
                                         setAttributes({
@@ -555,8 +555,9 @@ export default function Edit(props) {
 
                                                             {enableSubHeading && (
                                                                 <>
-                                                                    <hr></hr>
-                                                                    <h3>{__('Button Sub Title', 'zoloblocks')}</h3>
+                                                                    <div className="zolo-custom-heading">
+                                                                        {__('Button Sub Title', 'zoloblocks')}
+                                                                    </div>
                                                                     <ColorControl
                                                                         label={__('Color', 'zoloblocks')}
                                                                         color={titleSubColor}

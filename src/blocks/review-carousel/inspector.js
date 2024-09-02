@@ -121,7 +121,6 @@ function Inspector(props) {
         navWidth,
     } = attributes;
 
-
     const requiredProps = {
         resMode,
         setAttributes,
@@ -279,6 +278,7 @@ function Inspector(props) {
                             {carouselEffect === 'coverflow' && (
                                 <>
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Rotate', 'zoloblocks')}
                                         value={coverFlowEffect.rotate}
                                         onChange={onChangeRotate}
@@ -286,11 +286,13 @@ function Inspector(props) {
                                         max={360}
                                     />
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Stretch', 'zoloblocks')}
                                         value={coverFlowEffect.stretch}
                                         onChange={onChangeStretch}
                                     />
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Depth', 'zoloblocks')}
                                         value={coverFlowEffect.depth}
                                         onChange={onChangeDepth}
@@ -298,6 +300,7 @@ function Inspector(props) {
                                         max={1000}
                                     />
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Modifier', 'zoloblocks')}
                                         value={coverFlowEffect.modifier}
                                         onChange={onChangeModifier}
