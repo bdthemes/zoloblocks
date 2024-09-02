@@ -306,3 +306,24 @@ span.block-separator {
         }
     }
 }
+
+.zolo-settings {
+    .zolo-settins-content {
+        .components-base-control {
+            margin-top: 20px;
+            select {
+                height: 40px;
+                min-height: 40px;
+                box-sizing: border-box;
+            }
+            .components-input-control__backdrop {
+                border-radius: 6px;
+                border: 1px solid #d6d6d6;
+                box-sizing: border-box;
+                &:focus {
+                    box-shadow: 0 0 0 1px var(--zolo-dashboard-brand-color);
+                }
+            }
+        }
+    } 
+}

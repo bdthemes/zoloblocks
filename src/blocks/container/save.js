@@ -5,8 +5,9 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Save = ({ attributes }) => {
     const panelProps = { attributes };
-        const shapeDivider = applyFilters('zolo.extensions.render.shapeDivider', [], panelProps);
-            const renderCursors = applyFilters('zolo.extensions.render.cursors', [], panelProps);
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth } = attributes;
 
@@ -25,21 +26,19 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
+
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
-                    {renderCursors && renderCursors}
-
-                    {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                     <InnerBlocks.Content />
                 </div>
             ) : (
                 <>
-                    {renderCursors && renderCursors}
-
-                    {shapeDivider && shapeDivider.length > 0 && shapeDivider}
                     <InnerBlocks.Content />
                 </>
             )}
+
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

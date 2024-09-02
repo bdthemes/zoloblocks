@@ -5,12 +5,14 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
 import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Save function
  */
 
-export default function save({ attributes }) {
+export default function save(props) {
+    const { attributes } = props;
     const {
         uniqueId,
         parentClasses,
@@ -28,7 +30,9 @@ export default function save({ attributes }) {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...blockProps}
@@ -42,6 +46,7 @@ export default function save({ attributes }) {
             // data-swiper-options={JSON.stringify(sliderOptions)}
             data-swiper-breakpoints={JSON.stringify(breakpoints)}
         >
+            {renderHookBefore && renderHookBefore}
             <div className="swiper">
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
@@ -70,6 +75,7 @@ export default function save({ attributes }) {
                     </div>
                 </Fragment>
             )}
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 }

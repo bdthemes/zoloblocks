@@ -71,10 +71,20 @@
     .components-base-control {
         margin-bottom: 16px !important;
     }
+    .components-range-control {
+        .components-base-control {
+            margin-bottom: 0 !important;
+        }
+    }
     .zb-counter-control {
         .components-base-control {
             margin-bottom: 0 !important;
         }
+    }
+
+    .zolo-tab-panel {
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 

@@ -268,13 +268,13 @@ function Inspector(props) {
                                 <>
                                     {showNameField && (
                                         <TextControl
-                                            label={__('Placeholder name', 'zoloblocks')}
+                                            label={__('PH name', 'zoloblocks')}
                                             value={namePlaceholder}
                                             onChange={(value) => setAttributes({ namePlaceholder: value })}
                                         />
                                     )}
                                     <TextControl
-                                        label={__('Placeholder email', 'zoloblocks')}
+                                        label={__('PH email', 'zoloblocks')}
                                         value={placeholder}
                                         onChange={(value) => setAttributes({ placeholder: value })}
                                     />
@@ -314,7 +314,7 @@ function Inspector(props) {
                         <>
                             {showLabels && (
                                 <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
-                                    {(preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5') && (
+                                    {preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5' && (
                                         <>
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -385,7 +385,7 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
-                                                {(preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5') && (
+                                                {preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5' && (
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={LABEL_BG}
@@ -407,7 +407,7 @@ function Inspector(props) {
                                                                 })
                                                             }
                                                         />
-                                                       {(preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5') && (
+                                                        {preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5' && (
                                                             <NormalBGControl
                                                                 requiredProps={requiredProps}
                                                                 controlName={LABEL_HOVER_BG_COLOR}
@@ -503,14 +503,14 @@ function Inspector(props) {
                                                     color={focusColor}
                                                     onChange={(color) => setAttributes({ focusColor: color })}
                                                 />
-                                                <ResRangeControl
+                                                {/* <ResRangeControl
                                                     label={__('Width', 'zoloblocks')}
                                                     controlName={FOCUS_BORDER_WIDTH}
                                                     requiredProps={requiredProps}
                                                     min={1}
                                                     max={10}
                                                     step={1}
-                                                />
+                                                /> */}
                                             </>
                                         )}
 

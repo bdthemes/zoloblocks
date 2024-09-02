@@ -68,60 +68,69 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <RangeControl
-                                label={__('Progress Percent', 'zoloblocks')}
-                                value={value}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, value: v },
-                                    })
-                                }
-                                min={0}
-                                max={100}
-                            />
-                            <RangeControl
-                                label={__('Progress Duration (s)', 'zoloblocks')}
-                                value={duration}
-                                onChange={(v) => setAttributes({ progressPie: { ...progressPie, duration: v } })}
-                                min={0}
-                                max={20}
-                            />
-                            <SimpleRangeControl
-                                label={__('Progress percent Size', 'zoloblocks')}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, size: v },
-                                    })
-                                }
-                                value={size}
-                                onReset={() =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, size: '' },
-                                    })
-                                }
-                                min={1}
-                                max={100}
-                                step={1}
-                                noUnits={true}
-                            />
-                            <SimpleRangeControl
-                                label={__('Progress Fill Size', 'zoloblocks')}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, fillSize: v },
-                                    })
-                                }
-                                value={fillSize}
-                                onReset={() =>
-                                    setAttributes({
-                                        progressPie: { ...progressPie, fillSize: '' },
-                                    })
-                                }
-                                min={1}
-                                max={100}
-                                step={1}
-                                noUnits={true}
-                            />
+                            <div className='zolo-flex-col-control'>
+                                <RangeControl
+                                    label={__('Progress Percent', 'zoloblocks')}
+                                    value={value}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, value: v },
+                                        })
+                                    }
+                                    min={0}
+                                    max={100}
+                                />
+                            </div>
+                            <div className='zolo-flex-col-control'>
+                                <RangeControl
+                                    label={__('Progress Duration (s)', 'zoloblocks')}
+                                    value={duration}
+                                    onChange={(v) => setAttributes({ progressPie: { ...progressPie, duration: v } })}
+                                    min={0}
+                                    max={20}
+                                />
+                            </div>
+
+                            <div className='zolo-flex-col-control'>
+                                <SimpleRangeControl
+                                    label={__('Progress percent Size', 'zoloblocks')}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, size: v },
+                                        })
+                                    }
+                                    value={size}
+                                    onReset={() =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, size: '' },
+                                        })
+                                    }
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            </div>
+                            <div className='zolo-flex-col-control'>
+                                <SimpleRangeControl
+                                    label={__('Progress Fill Size', 'zoloblocks')}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, fillSize: v },
+                                        })
+                                    }
+                                    value={fillSize}
+                                    onReset={() =>
+                                        setAttributes({
+                                            progressPie: { ...progressPie, fillSize: '' },
+                                        })
+                                    }
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            </div>
                             <ToggleControl
                                 label={__('Enable Label', 'zoloblocks')}
                                 checked={toggleLabel === undefined ? true : toggleLabel}

@@ -1,8 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         preset,
@@ -26,7 +28,9 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...blockProps}
@@ -34,6 +38,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (
@@ -85,6 +90,7 @@ const Save = ({ attributes }) => {
                     </div>
                 </div>
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

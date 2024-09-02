@@ -1,4 +1,4 @@
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 import React from 'react';
 
 import ApexCharts from 'react-apexcharts';

@@ -1,7 +1,8 @@
 import apiFetch from '@wordpress/api-fetch';
 import { BaseControl, Button, Modal, SelectControl, Tooltip } from '@wordpress/components';
 import { subscribe } from '@wordpress/data';
-import { createRoot, useEffect, useState } from '@wordpress/element';
+import {useEffect, useState } from '@wordpress/element';
+import { createRoot } from "react-dom/client"; // ?? todo: remove if @wordpress/element is updated
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 
@@ -285,6 +286,7 @@ function ZoloBlocksTemplateLibraryButton() {
             nonce: zoloParams?.nonce,
             data: {
                 action: 'zolo_demo_import',
+                security: zoloParams?.zolo_nonce,
                 json_file_url: jsonFile,
             },
             success: function (response) {

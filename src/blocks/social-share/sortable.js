@@ -78,11 +78,10 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                                 setAttributes({
                                                     socialMedia: newItems,
                                                 });
-
                                             }}
                                         />
                                         <TextControl
-                                            label={__('Custom Label', 'zoloblocks')}
+                                            label={__('Custom', 'zoloblocks')}
                                             value={profile.customLabel}
                                             onChange={(v) =>
                                                 setAttributes({
@@ -106,7 +105,6 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                                 });
                                             }}
                                         />
-
                                         <FormTokenField
                                             label="Has Tags"
                                             value={profile.tags}

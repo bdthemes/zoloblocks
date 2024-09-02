@@ -62,7 +62,7 @@ import {
     ICON_HOVER_LIST_MARGIN,
     ICON_LINKVERTICAL_ALIGN,
     //option
-    ITEM_ALIGNS_OPTION
+    ITEM_ALIGNS_OPTION,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
@@ -182,25 +182,27 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zoloblocks')}
-                                value={layout}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        layout: value,
-                                    })
-                                }
-                                options={[
-                                    {
-                                        label: __('Grid', 'zoloblocks'),
-                                        value: 'grid',
-                                    },
-                                    {
-                                        label: __('Flex', 'zoloblocks'),
-                                        value: 'flex',
-                                    },
-                                ]}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout Type', 'zoloblocks')}
+                                    value={layout}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            layout: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Grid', 'zoloblocks'),
+                                            value: 'grid',
+                                        },
+                                        {
+                                            label: __('Flex', 'zoloblocks'),
+                                            value: 'flex',
+                                        },
+                                    ]}
+                                />
+                            </div>
                             {layout === 'grid' && (
                                 <>
                                     <ResCounterControl
@@ -218,12 +220,12 @@ function Inspector(props) {
                                 </>
                             )}
 
-                            { (preset == 'zolo-list-style-1'   || ( preset == 'zolo-list-style-2' && layout=='grid')) && (
+                            {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
                                 <ResAlignmentControl
                                     label={__('Item Alignment', 'zoloblocks')}
                                     controlName={ITEM_ALIGNMENT}
                                     requiredProps={requiredProps}
-                                    alignOptions={layout==='flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
+                                    alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
                                 />
                             )}
                             {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
@@ -254,10 +256,12 @@ function Inspector(props) {
                                 <ZoloIconPicker
                                     label={__('Select Global Icon', 'zolo-blocks')}
                                     value={globalIcon}
-                                    onChange={(v)=>setAttributes({
-                                                ...globalIcon,
-                                                globalIcon:v
-                                             })}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            ...globalIcon,
+                                            globalIcon: v,
+                                        })
+                                    }
                                 />
                             )}
                         </ZoloPanelBody>

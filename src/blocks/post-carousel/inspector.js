@@ -62,6 +62,7 @@ import {
     META_BOX_WRAP_PADDING,
     META_ARROW_SPACE,
     CAROUSEL_CONTAINER_PADDING,
+    SHADOW_RANGE,
 } from './constants';
 
 import {
@@ -158,6 +159,9 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+
+    const shadowFeature = applyFilters('zolo.blocks.controls.postCarousel.shadow', [], props, 'zolo/post-carousel');
 
     // const { rotate, stretch, depth, modifier, slideShadows } = coverFlowEffect;
 
@@ -277,6 +281,19 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
                                 />
                             )}
+                            {/* pro controls goes here */}
+                            {shadowFeature && shadowFeature.length > 0 && shadowFeature}
+                            {attributes?.enableShadow && (
+                                <ResRangeControl
+                                    label={__('Shadow Range', 'zoloblocks')}
+                                    controlName={SHADOW_RANGE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={1000}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            )}
                         </ZoloPanelBody>
                         {(showTitle || showExcerpt) && (
                             <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
@@ -309,7 +326,7 @@ function Inspector(props) {
                                             step={1}
                                         />
                                         <TextControl
-                                            label={__(' Expansion Indicator', 'zoloblocks')}
+                                            label={__('EXP Indic', 'zoloblocks')}
                                             value={excerptindicator}
                                             onChange={(excerptindicator) => setAttributes({ excerptindicator })}
                                         />
@@ -392,6 +409,7 @@ function Inspector(props) {
                                 noUnits={true}
                             />
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Speed', 'zoloblocks')}
                                 value={speed}
                                 onChange={(v) =>
@@ -401,36 +419,45 @@ function Inspector(props) {
                                 }
                                 min={1}
                                 max={100}
-                                help={__('Speed: ', 'zoloblocks') + speed * 100 + 'ms'}
+                                help={__('Speed:', 'zoloblocks') + speed * 100 + 'ms'}
                             />
                             {carouselEffect === 'coverflow' && (
                                 <>
-                                    <RangeControl
-                                        label={__('Rotate', 'zoloblocks')}
-                                        value={coverFlowEffect.rotate}
-                                        onChange={onChangeRotate}
-                                        min={0}
-                                        max={360}
-                                    />
-                                    <RangeControl
-                                        label={__('Stretch', 'zoloblocks')}
-                                        value={coverFlowEffect.stretch}
-                                        onChange={onChangeStretch}
-                                    />
-                                    <RangeControl
-                                        label={__('Depth', 'zoloblocks')}
-                                        value={coverFlowEffect.depth}
-                                        onChange={onChangeDepth}
-                                        min={0}
-                                        max={1000}
-                                    />
-                                    <RangeControl
-                                        label={__('Modifier', 'zoloblocks')}
-                                        value={coverFlowEffect.modifier}
-                                        onChange={onChangeModifier}
-                                        min={0}
-                                        max={10}
-                                    />
+                                    <div className="zolo-flex-col-control">
+                                        <RangeControl
+                                            label={__('Rotate', 'zoloblocks')}
+                                            value={coverFlowEffect.rotate}
+                                            onChange={onChangeRotate}
+                                            min={0}
+                                            max={360}
+                                        />
+                                    </div>
+
+                                    <div className="zolo-flex-col-control">
+                                        <RangeControl
+                                            label={__('Stretch', 'zoloblocks')}
+                                            value={coverFlowEffect.stretch}
+                                            onChange={onChangeStretch}
+                                        />
+                                    </div>
+                                    <div className="zolo-flex-col-control">
+                                        <RangeControl
+                                            label={__('Depth', 'zoloblocks')}
+                                            value={coverFlowEffect.depth}
+                                            onChange={onChangeDepth}
+                                            min={0}
+                                            max={1000}
+                                        />
+                                    </div>
+                                    <div className="zolo-flex-col-control">
+                                        <RangeControl
+                                            label={__('Modifier', 'zoloblocks')}
+                                            value={coverFlowEffect.modifier}
+                                            onChange={onChangeModifier}
+                                            min={0}
+                                            max={10}
+                                        />
+                                    </div>
                                     <ToggleControl
                                         label={__('Shadow', 'zoloblocks')}
                                         checked={coverFlowEffect.slideShadows}
@@ -456,9 +483,11 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
                             {autoplay && (
                                 <Fragment>
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>
@@ -468,7 +497,7 @@ function Inspector(props) {
                                         }
                                         min={1}
                                         max={100}
-                                        help={__('Autoplay Dealy: ', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
                                     />
                                     <ToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}
@@ -557,9 +586,7 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={COLUMN_SHADOW} requiredProps={requiredProps} />
 
-                            <div className='zolo-custom-heading' >
-                                {__('Carousel Container', 'zoloblocks')}
-                            </div>
+                            <div className="zolo-custom-heading">{__('Carousel Container', 'zoloblocks')}</div>
 
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
@@ -589,7 +616,7 @@ function Inspector(props) {
                                 />
                                 {showThumbnail && (
                                     <SelectControl
-                                        label={__('Thumbnail Resolution', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={postQuery?.postThumbnail}
                                         options={THUMBNAIL_SIZE}
                                         onChange={(postThumbnail) =>
@@ -953,71 +980,63 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                                <BaseControl label={__('Avatar', 'zoloblocks')}>
-                                    <ResRangeControl
-                                        label={__('Size', 'zoloblocks')}
-                                        controlName={AVATAR_SIZE}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <BorderControl
-                                        label={__('Border', 'zoloblocks')}
-                                        controlName={AVATAR_BORDER}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Border Radius', 'zoloblocks')}
-                                        controlName={AVATAR_BORDER_RADIUS}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                </BaseControl>
+                                <div className="zolo-custom-heading">{__('Avatar', 'zoloblocks')}</div>
+                                <ResRangeControl label={__('Size', 'zoloblocks')} controlName={AVATAR_SIZE} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <div className="zolo-custom-heading">{__('Name', 'zoloblocks')}</div>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={NAME_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
 
-                                <CardDivider />
-                                <BaseControl label={__('Name', 'zoloblocks')}>
-                                    <TypographyDropdown
-                                        label={__('Typography', 'zoloblocks')}
-                                        typoPrefixConstant={NAME_TYPOGRAPHY}
-                                        requiredProps={requiredProps}
-                                    />
-
-                                    <TabPanelControl
-                                        normalComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Prefix Color', 'zoloblocks')}
-                                                    color={namePrefixColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            namePrefixColor: color,
-                                                        })
-                                                    }
-                                                />
-                                                <ColorControl
-                                                    label={__('Name Color', 'zoloblocks')}
-                                                    color={nameColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            nameColor: color,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                        hoverComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Name Hover Color', 'zoloblocks')}
-                                                    color={nameHoverColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            nameHoverColor: color,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                    />
-                                </BaseControl>
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Prefix Color', 'zoloblocks')}
+                                                color={namePrefixColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        namePrefixColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Name Color', 'zoloblocks')}
+                                                color={nameColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        nameColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Name Hover Color', 'zoloblocks')}
+                                                color={nameHoverColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        nameHoverColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                />
                             </ZoloPanelBody>
                         )}
 

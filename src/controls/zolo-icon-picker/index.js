@@ -1,4 +1,4 @@
-import { useState, useEffect, RawHTML } from '@wordpress/element';
+import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
 import { Modal, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -92,14 +92,16 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
     const [filterIcons, setFilterIcons] = useState([]);
     const [searchText, setSearchText] = useState('');
 
-    const allSvgItems = Object.keys(icons).map((key) => ({
-        label: icons[key].label,
-        svg: icons[key].svg,
-    }));
+    const allSvgItems = useMemo(() => {
+        return Object.keys(icons).map((key) => ({
+            label: icons[key].label,
+            svg: icons[key].svg,
+        }));
+    }, [icons]);
 
-    const solidCategory = allSvgItems.filter((item) => item.svg.solid);
-    const brandCategory = allSvgItems.filter((item) => item.svg.brands);
-    const regularCategory = allSvgItems.filter((item) => item.svg.regular);
+    const solidCategory = useMemo(() => allSvgItems.filter((item) => item.svg.solid), [allSvgItems]);
+    const brandCategory = useMemo(() => allSvgItems.filter((item) => item.svg.brands), [allSvgItems]);
+    const regularCategory = useMemo(() => allSvgItems.filter((item) => item.svg.regular), [allSvgItems]);
 
     useEffect(() => {
         let displayIcons = [];
@@ -116,11 +118,10 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         if (searchText) {
             displayIcons = displayIcons.filter((item) => item.label.toLowerCase().includes(searchText.toLowerCase()));
 
-            // check if icons found or not
             if (displayIcons.length === 0) {
                 displayIcons = [
                     {
-                        title: __('No Icons Found', 'zoloblocks'),
+                        label: __('No Icons Found', 'zoloblocks'),
                         svg: {
                             solid: {
                                 raw: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0C114.62 0 0 114.62 0 256s114.62 256 256 256 256-114.62 256-256S397.38 0 256 0zm0 480C132.48 480 32 379.52 32 256S132.48 32 256 32s224 100.48 224 224-100.48 224-224 224z"/><path d="M336 192H176a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm-16 64H192v-32h128z"/></svg>`,
@@ -132,7 +133,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         }
 
         setFilterIcons(displayIcons);
-    }, [category, allSvgItems, solidCategory, brandCategory, regularCategory, searchText]);
+    }, [category, solidCategory, brandCategory, regularCategory, allSvgItems, searchText]);
 
     return (
         <div className="zolo-icon-picker">
@@ -161,7 +162,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                     ))}
                             </div>
                             <p className="zolo-custom-icon">
-                                <strong>{__('Upcoming: ', 'zoloblocks')}</strong>
+                                <strong>{__('Upcoming:', 'zoloblocks')}</strong>
                                 {__('Custom Icons Option', 'zoloblocks')}
                             </p>
                         </div>
@@ -204,24 +205,22 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                                 iconCat = 'regular';
                                             }
 
-                                            return (
-                                                <>
-                                                    {item.title ? (
-                                                        <p className="zolo__not_found">{item.title}</p>
-                                                    ) : (
-                                                        <Button
-                                                            key={index}
-                                                            className={`single__icon ${value === item.svg[iconCat].raw ? 'active' : ''}`}
-                                                            onClick={() => {
-                                                                onChange(item.svg[iconCat].raw);
-                                                                setIconsPanel(false);
-                                                            }}
-                                                            title={item.label}
-                                                        >
-                                                            <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
-                                                        </Button>
-                                                    )}
-                                                </>
+                                            return item.title ? (
+                                                <p key={index} className="zolo__not_found">
+                                                    {item.title}
+                                                </p>
+                                            ) : (
+                                                <Button
+                                                    key={index}
+                                                    className={`single__icon ${value === item.svg[iconCat].raw ? 'active' : ''}`}
+                                                    onClick={() => {
+                                                        onChange(item.svg[iconCat].raw);
+                                                        setIconsPanel(false);
+                                                    }}
+                                                    title={item.label}
+                                                >
+                                                    <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
+                                                </Button>
                                             );
                                         })}
                                 </div>

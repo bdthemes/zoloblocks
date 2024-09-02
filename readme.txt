@@ -1,11 +1,11 @@
-=== ZoloBlocks - Page Builder Blocks for Gutenberg ===
+=== ZoloBlocks - Page Builder Blocks, Patterns, Ready Templates, Form Builder & Popup Builder for Gutenberg ===
 Contributors: bdthemes, selimmw
-Donate link: http://bdthemes.com/
-Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
+Donate link: http://zoloblocks.com/
+Tags: block editor, gutenberg blocks, gutenberg, wordpress blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,47 +13,70 @@ ZoloBlocks comes with a number of amazing custom Gutenberg blocks to extend the 
 
 == Description ==
 
-You need just one good reason to come back to Gutenberg Builder. And that reason is [**ZoloBlocks**](https://zoloblocks.com/).
+You only need one compelling reason to embrace Gutenberg Builder again: [**ZoloBlocks**](https://zoloblocks.com). This isn't just another block editor plugin—it's a game-changer that puts the power of premium page builders right at your fingertips. With ZoloBlocks, you get **40+ advanced blocks, 250+ pattern templates, 20+ extra editor options** for Gutenberg. This amazing plugin offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
 
-ZoloBlocks is the most advanced block editor plugin that rivals popular page builder plugins in terms of features, user interface, customizations, and ease of use. Built for Gutenberg, the plugin enhances how you should design your websites from scratch to perfection.
+Whether you're a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress block editor. Say goodbye to coding headaches and cumbersome page builders. ZoloBlocks replaces the need for slow and complicated page-builder plugins with fine-tuned website-building experience.
 
-Meet your page editor blocks, a good **30+** of them in a robust package.
+This plugin takes Gutenberg's capabilities to the next level, offering an all-in-one solution that is easy to use and offers advanced features.
 
-All blocks come with a detailed options panel and a range of customizations. ZoloBlocks lets you modify the layouts of your content to shape your desired landing page.
 
 https://www.youtube.com/watch?v=8kBMIL-4PZI
 
-Not just that, there’s more. The plugin also lets you seamlessly customize the appearance of each content down to each element, making it possible to get creative with your page content interface.
+== Key Features of ZoloBlocks ==
 
-ZoloBlocks promises the flexibility that you have been enjoying with page builders outside Gutenberg till now. But this time, it’s within Gutenberg. Made for solopreneurs and agencies alike, you will enjoy many benefits of ZoloBlocks-
+👍 40+ Advanced blocks for Gutenberg
+👍 250+ ready templates
+👍 One-click template import
+👍 15+ Creative blocks
+👍 8+ Useful extensions
+👍 Block editor personalization
+👍 Pattern import/export feature
+👍 Quick API setup for Map, reCaptcha, MailChimp, and more
+👍 A smooth and sleek dashboard experience
+👍 Instant settings sync
 
-== User-Friendly Interface 👍 ==
+We are continuously evolving ZoloBlocks. **Each update** brings a new dimension to your website-building experience. It is You who powered up with ZoloBlocks.
 
-WordPress is known for offering a very straightforward UI to keep it simple for users. ZoloBlocks sticks to the same principle and provides a robust interface with familiar options and their naming. The UI is neat and clean to make your page-building journey smooth and comfortable.
+== More Than 1-Step Ahead of Competition 🔥 ==
 
-== One Plugin, Many Blocks 🎁 ==
+With ZoloBlocks, you don’t just create your website, YOU OWN IT! With our **powerful block editor**, you can customize everything about the blocks. Whether it’s the layout style or font style, you have complete freedom over all elements.
 
-Aiming to let you grab the most number of features for Gutenberg, our plugin packs a growing number of block features. Ensuring the uniqueness and quality of blocks, ZoloBlocks outperforms the competition.
+What makes ZoloBlocks stand out is the level of detailing and a super smooth user experience.
 
-== Features and Customizations ==
+== Block Skins are Just Awesome 🎨 ==
 
-Talk about unique block features. Each ZoloBlocks block can accomplish a wide variety of interface designs with precise customizations for your content. You won't feel any lack in what you can customize here.
+While providing the best block editor experience, ZoloBlocks also adds more taste to your page style with **block skins**. Each block has its own set of skins to allow you to choose a unique style instantly. Moreover, you can customize the skins for better personalization.
 
-== Sleek Design ==
+== Wow, So Many Customizations? 😲 ==
 
-The plugin is tailored to look beautiful and deliver beautiful content designs at the same time. The neat and tidy design blends well with your workstation and makes you comfortable working on various web projects.
+We aim to give you the best of the best **page-building experience**. That’s why ZoloBlocks includes all the customizations you could ever have. All blocks come with a wide range of options. Not only padding and margin, but also you will find typography, box shadow, colors, text stroke, gradient, border, border radius, and so on.
 
-== Beginner Friendly Plugin 👩‍🏫 ==
+Even famous page builders bow down to this **design freedom** at ZoloBlocks.
 
-Made for ease of use, the plugin boosts the most stunning user interface across WordPress. You can master ZoloBlocks to design your website within a day. Fingers crossed 🤞!
+== One-Click Template Import 🪄 ==
 
-== Amazing Support ⛑ ==
+You open your page, then click on the ZoloBlocks Template Library icon, then choose a pattern template, and click it to import on your page. Only 4 steps are required to create your landing page almost instantly. That speed is a pride of our product. And you are free to choose from **250+ high-quality templates**. The numbers are going up fast.
 
-The team behind ZoloBlocks working diligently to bring you refreshing features every week. If you feel any hitch, [Contact support](https://bdthemes.com/support/) 💌 right away. We are happy to go the extra mile to make this plugin the best.
+== Creative Animations Transitions 🌠 ==
 
-== Pick Your Features ==
+What you were missing was quality animations and transitions. With our product, that worry is gone. Now you can enjoy custom transition effects such as entrance animations, **floating animations**, **transform effects**, **sticky elements**, **scroll effects**, **advanced content visibility** mode, and much more.
 
-ZoloBlocks is not about what we promise only, but everything you deserve. So, feel free to [**suggest features**](https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas) for this awesome plugin and taste it being developed in the next update. And we always remember to mention your name on the change log. Kachow!
+== Versatile Block Extensions 🧩 ==
+
+ZoloBlocks isn't just about blocks; it's about extending their functionality to new heights. With **8+ useful extensions**, you can add dynamic content, interactive elements, and advanced features that truly make your website stand out.
+
+== Advanced Customization for Developers 🧑‍💻 ==
+
+Not just for beginners; our product is a powerhouse for developers too. The plugin offers advanced customization options, including API integrations, dynamic content support, and **custom CSS fields**. These features allow developers to push the boundaries of what's possible within Gutenberg.
+
+== Instant Updates and Feature Additions 🎁 ==
+
+ZoloBlocks is a living, evolving plugin that continuously improves to meet market trends. Instant settings sync ensures that your preferences and customizations are **always up-to-date**. And our regular updates bring new features, blocks, and templates directly to your dashboard.
+
+== Optimized for Performance 🚀 ==
+
+One of the key challenges with page builders and block plugins is performance. Zolo Blocks is optimized to **deliver fast load times** and minimal impact on **site performance**. The lightweight code and efficient design ensure that your website remains speedy and responsive.
+So, are you ready to explore all the amazing Gutenberg block features by Zolo Blocks? Let’s get started-
 
 == Check Out All Feature Names And Patterns Below-==
 
@@ -100,6 +123,14 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 
 Still not happy? Don’t worry, more features coming very soon ….
 
+== Amazing Support ⛑ ==
+
+The team behind ZoloBlocks working diligently to bring you refreshing features every week. If you feel any hitch, [Contact support](https://bdthemes.com/support/) 💌 right away. We are happy to go the extra mile to make this plugin the best.
+
+== Pick Your Features ==
+
+ZoloBlocks is not about what we promise only, but everything you deserve. So, feel free to [**suggest features**](https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas) for this awesome plugin and taste it being developed in the next update. And we always remember to mention your name on the change log. Kachow!
+
 == Check out our other Addons 🧩 ==
 
 * **[Element Pack Lite](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - *Element Pack Lite Build responsive website from scratch with an all-rounder package for Elementor.*
@@ -128,10 +159,10 @@ Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builde
 - Activate the plugin
 
 = Installation via Zip file: =
-- Download ZoloBlocks block plugin zip file from WordPress
+- Download Zolo Blocks block plugin zip file from WordPress
 - Go to site Dashboard > Plugins > Add New > Upload Plugins
-- Select the ZoloBlocks zip file and proceed to install
-- Activate ZoloBlocks
+- Select the Zolo Blocks zip file and proceed to install
+- Activate Zolo Blocks
 
 https://youtu.be/WH-Afb6b4KQ
 
@@ -148,7 +179,7 @@ There are no requirement for upgrade notice.
 ZoloBlocks offers a range of features designed to enhance your web design experience. These includes customizable blocks, layouts, patterns,  drag-and-drop interface, advanced styling options, flexibility, responsiveness and more.
 
 = Does ZoloBlocks work with all WordPress themes? =
-Most certainly all WordPress themes are compatible with the ZoloBlocks framework as the plugin is built for maximum compatibility with WordPress itself.
+Most certainly all WordPress themes are compatible with the Zolo Blocks framework as the plugin is built for maximum compatibility with WordPress itself.
 
 = What if I update to the Premium version? =
 If you upgrade to the pro plugin version, you will unlock more unique features and customizations. Additionally, you will be able to receive personalized support from team BdThemes.
@@ -178,7 +209,7 @@ Of course. Please expect new features within the frequent plugin updates. Also, 
 The plugin has been developed to be used by all WordPress users, regardless of their freelancer-client relationship. And there are paid tiers of the plugin designed especially for giving out client-based web services.
 
 = Does the plugin require WordPress mastery? =
-No. In fact, it might be your first day at WordPress and you are using ZoloBlocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
+No. In fact, it might be your first day at WordPress and you are using Zolo Blocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
 
 = Will my site load slower if I install the plugin? =
 Absolutely no chance of slowing down your website. ZoloBlocks boosts a lightweight framework with only fresh green codes. Best thing can happen is that your site will get faster and more beautiful.
@@ -208,228 +239,162 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.2.2 - 30-07-2024 =
+= 1.4.0 - 24-8-2024 =
 
-### Fixed
+* Added: Lightbox block added
+* Added: Static social count block  added
+* Added: Recent Comments block added
+* Improved: Assets loading improved
+* Improved: Block scripts improved
 
-* Popup block issue fixed
-* Astra theme support issue fixed
-* Transform confilict with Entrance animation issue fixed
-* glitching issue fixed in marquee block (pro)
+= 1.3.3 - 18-8-2024 =
 
-### Improved
+* Fixed: Pricing Table custom width issue fixed
+* Fixed: Transform Elements width issue fixed
+* Fixed: Transition duration issue fixed in Transform extensions
+* Improved: Dashboard, Blocks scripts are improved
 
-* Form, Notice, Review, QR Code blocks improved
+= 1.3.2 - 14-8-2024 =
+
+* Added: Width feature has been added to the extra tab for every block
+* Fixed: Some minor issues are fixed
+
+= 1.3.1 - 12-8-2024 =
+
+* Fixed: Frontend multicolor issue fixed in Tag Cloud block (pro)
+* Fixed: File name case minor issue fixed
+
+= 1.3.0 - 12-8-2024 =
+
+* Added: Particles feature added
+* Added: Post Category block added
+* Added: Post Tag Cloud block added
+* Added: Maintenance mode feature added
+* Fixed: Appender button issue fixed to Tabs block
+* Fixed: Outline and border issue fixed to tabs block
+
+= 1.2.2 - 01-08-2024 =
+
+* Fixed: Popup block issue fixed
+* Fixed: Astra theme support issue fixed
+* Fixed: Transform confilict with Entrance animation issue fixed
+* Fixed: Glitching issue fixed in marquee block (pro)
+* Improved: Form, Notice, Review, QR Code blocks improved
 
 = 1.2.1 - 28-07-2024 =
 
-= Added =
-* Suffix and Prefix style controls added to QR Code block
-
-= Fixed =
-* Some minor issues are fixed
+* Added: Suffix and Prefix style controls added to QR Code block
+* Fixed: Some minor issues are fixed
 
 = 1.2.0 - 25-07-2024 =
 
-= Added =
-* QR Code block added
-* Shape Divider Added to Container Block
-
-= Fixed =
-* Transform issue fixed
-* Hover color issue fixed in Icon block
-* CLS issue fixed in Slider block and Post Carousel block
-* Subtitle Heading Tag issue fixed in Advanced Heading block
-
-= Improved =
-* Blocks scripts default values are improved
+* Added: QR Code block added
+* Added: Shape Divider Added to Container Block
+* Fixed: Transform issue fixed
+* Fixed: Hover color issue fixed in Icon block
+* Fixed: CLS issue fixed in Slider block and Post Carousel block
+* Fixed: Subtitle Heading Tag issue fixed in Advanced Heading block
+* Improved Blocks scripts default values are improved
 
 = 1.1.0 - 10-07-2024 =
 
-= Added =
-* Icon block added
-* Notice block added
-* Popup builder added
-* Text path block added
-* zIndex nagative value added
-* Theme fonts support added
-* Position sticky feature added
-* Box Shadow control added in Flipbox block
-
-= Fixed =
-
-* Entrance animation confilict with global link issue fixed in Advanced Icon Box
-* The map zoom in/out and draggble issue fixed in Google Map block
-* Floating label issue fixed in advanced search & newslatter block
-* Patterns save as favorite features added in Template Library
-* Image Uploading issue fixed in Advanced Image block
-* Separator color issue fixed in team grid block
-* Label issue fixed in Form block
-
-= Improved =
-
-* Transform Rotate reset control added in Transform features
-* Dynamic CSS Generation optimized
-* Template Library UI improved
+* Added: Icon block added
+* Added: Notice block added
+* Added: Popup builder added
+* Added: Text path block added
+* Added: zIndex nagative value added
+* Added: Theme fonts support added
+* Added: Position sticky feature added
+* Added: Box Shadow control added in Flipbox block
+* Fixed: Entrance animation confilict with global link issue fixed in Advanced Icon Box
+* Fixed: The map zoom in/out and draggble issue fixed in Google Map block
+* Fixed: Floating label issue fixed in advanced search & newslatter block
+* Fixed: Patterns save as favorite features added in Template Library
+* Fixed: Image Uploading issue fixed in Advanced Image block
+* Fixed: Separator color issue fixed in team grid block
+* Fixed: Label issue fixed in Form block
+* Improved: Transform Rotate reset control added in Transform features
+* Improved: Dynamic CSS Generation optimized
+* Improved: Template Library UI improved
 
 = 1.0.7 - 13-06-2024 =
 
-= Added =
-
-* progress pie block added
-* template library feature added
-* buttom spacing control added in Newsletter block
-
-= Fixed =
-
-* extra panel styling options not working issue fixed in the Social Share and Social Links block
-* container border issue fixed
-* alt text missing issue fixed in advanced image block
-
-### Improved
-
-* Default style improved in Advanced Search block
+* Added: Progress pie block added
+* Added: Template library feature added
+* Added: Buttom spacing control added in Newsletter block
+* Fixed: Extra panel styling options not working issue fixed in the Social Share and Social Links block
+* Fixed: Container border issue fixed
+* Fixed: Alt text missing issue fixed in advanced image block
+* Improved: Default style improved in Advanced Search block
 
 = 1.0.6 - 08-06-2024 =
 
-= Added =
-
-* position feature has been added to the extra tab for every block
-* alignment options has been added to the Social Share and Social Links block
-
-= Fixed =
-
-* rerendering issue fixed in charts block
-* preset 5 title issue fixed in counter block
-* tab auto scrolling issue fixed in Tabs block
-* preset 3 hover color issue fixed in post grid block
-* preset 3 hover color issue fixed in post carousel block
-* default style overwriting issue fixed in pricing table block
-* default style overwriting issue fixed in advanced button block
-* global style not working issue fixed in Social Share and Social Links block
-* button text multiline issue fixed in Advanced Search block & Newsletter block
-* separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
-* icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
-
-= Improved =
-
-* CSS compression override issue fixed for WP-Optimize plugin
-* typography control font-size increased 72 to 136 in counter block
-* author prefix text control added to post grid, post carousel and post list block
+* Added: Position feature has been added to the extra tab for every block
+* Added: Alignment options has been added to the Social Share and Social Links block
+* Fixed: Rerendering issue fixed in charts block
+* Fixed: Preset 5 title issue fixed in counter block
+* Fixed: Tab auto scrolling issue fixed in Tabs block
+* Fixed: Preset 3 hover color issue fixed in post grid block
+* Fixed: Preset 3 hover color issue fixed in post carousel block
+* Fixed: Default style overwriting issue fixed in pricing table block
+* Fixed: Default style overwriting issue fixed in advanced button block
+* Fixed: Global style not working issue fixed in Social Share and Social Links block
+* Fixed: Button text multiline issue fixed in Advanced Search block & Newsletter block
+* Fixed: Separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
+* Fixed: Icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
+* Improved: CSS compression override issue fixed for WP-Optimize plugin
+* Improved: Typography control font-size increased 72 to 136 in counter block
+* Improved: Author prefix text control added to post grid, post carousel and post list block
 
 = 1.0.5 - 29-05-2024 =
 
-= Fixed =
-
-* flex issue fixed in Editor for Container block
-* spacing issue fixed for preset 3 in Advanced Icon box
-* Source type input data loading issue fixed in Charts block
-* vertical align issue fixed in Advanced heading block
-* focus color issue fixed in Newsletter block
-* preset 4 responsive issue fixed in Newsletter block
-
-= Improved =
-
-* Block editing experience improved, you will be able to select, delete, and insert block easily.
-* Assets loading improved and cleanup
-* Charts block improved
-* Dashboard changelog improved
+* Fixed: Flex issue fixed in Editor for Container block
+* Fixed: Spacing issue fixed for preset 3 in Advanced Icon box
+* Fixed: Source type input data loading issue fixed in Charts block
+* Fixed: Vertical align issue fixed in Advanced heading block
+* Fixed: Focus color issue fixed in Newsletter block
+* Fixed: Preset 4 responsive issue fixed in Newsletter block
+* Improved: Block editing experience improved, you will be able to select, delete, and insert block easily.
+* Improved: Assets loading improved and cleanup
+* Improved: Charts block improved
+* Improved: Dashboard changelog improved
 
 = 1.0.4 - 18-05-2024 =
 
-= Added =
-
-* Hover background control added to Brand Grid block
-
-= Fixed =
-
-* Box Shadow hover issue fixed to Advanced Image block
-* Border hover color issue fixed to Advanced Image block
-* Alignment issue fixed to Advanced Search block
-* Overflow issue fixed to Brand Grid block
-* Vertical Alignment issue fixed to Business hours block
-* Content Vertical Alignment issue fixed to Counter block
-
-= Tweak =
-
-* Max Width control has been removed from image panel within Advanced Image block
-* Margin control has been removed from container panel within Advanced Image block
-* Margin control has been removed from container panel within Brand Grid block
-
-= Improved =
-
-* Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-* Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-* Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-* Title tag control shifted from style tab to basic tab in Advanced Icon Box
-* Default design improved in Counter block
+* Added: Hover background control added to Brand Grid block
+* Fixed: Box Shadow hover issue fixed to Advanced Image block
+* Fixed: Border hover color issue fixed to Advanced Image block
+* Fixed: Alignment issue fixed to Advanced Search block
+* Fixed: Overflow issue fixed to Brand Grid block
+* Fixed: Vertical Alignment issue fixed to Business hours block
+* Fixed: Content Vertical Alignment issue fixed to Counter block
+* Tweak: Max Width control has been removed from image panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Brand Grid block
+* Improved: Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+* Improved: Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+* Improved: Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+* Improved: Title tag control shifted from style tab to basic tab in Advanced Icon Box
+* Improved: Default design improved in Counter block
 
 = 1.0.4 - 18-05-2024 =
 
-= Added =
+* Added: Hover background control added to Brand Grid block
+* Fixed: Box Sizing item issue fixed to Charts block
+* Fixed: Box Shadow hover issue fixed to Advanced Image block
+* Fixed: Border hover color issue fixed to Advanced Image block
+* Fixed: Alignment issue fixed to Advanced Search block
+* Fixed: Overflow issue fixed to Brand Grid block
+* Fixed: Vertical Alignment issue fixed to Business hours block
+* Fixed: Content Vertical Alignment issue fixed to Counter block
+* Tweak: Max Width control has been removed from image panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Advanced Image block
+* Tweak: Margin control has been removed from container panel within Brand Grid block
+* Improved: Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+* Improved: Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+* Improved: Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+* Improved: Title tag control shifted from style tab to basic tab in Advanced Icon Box
+* Improved: Default design improved in Counter block
+* Improved: Default design improved in Charts block
 
-* Hover background control added to Brand Grid block
-
-= Fixed
-
-* Box Sizing item issue fixed to Charts block
-* Box Shadow hover issue fixed to Advanced Image block
-* Border hover color issue fixed to Advanced Image block
-* Alignment issue fixed to Advanced Search block
-* Overflow issue fixed to Brand Grid block
-* Vertical Alignment issue fixed to Business hours block
-* Content Vertical Alignment issue fixed to Counter block
-
-= Tweak
-
-* Max Width control has been removed from image panel within Advanced Image block
-* Margin control has been removed from container panel within Advanced Image block
-* Margin control has been removed from container panel within Brand Grid block
-
-= Improved
-
-* Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-* Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-* Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-* Title tag control shifted from style tab to basic tab in Advanced Icon Box
-* Default design improved in Counter block
-* Default design improved in Charts block
-
-
-= 1.0.2 - 06-05-2024 =
-
-= Added =
-
-* Preset 4 layout added to Review Grid
-* Custom gradients colors feature added to the background control
-
-= Improved =
-
-* Controls UI improved
-* Deprecated codes are removed
-* Style 2 layout design improved to Team Grid block
-
-= 1.0.1 - 27-04-2024 =
-
-= Added =
-
-* Style copy & paste feature added 🦄
-* Image width, height, max width options added to Advanced image block
-* Button typography, shadow, spacing control added to Advanced Search block
-
-
-= Fixed =
-
-* Row and column issue fixed to Countdown block
-* Focus color issue fixed to Advanced Search block
-* Arrow position issue fixed to Slider and Carousel Block
-
-= Improved =
-
-* Controls UI improved
-* Deprecated codes are removed
-* Theme colors and gradients palettes are improved
-
-= 1.0.0 - 22-04-2024 =
-
-* Initial Release
+Details [changelog here](https://feedback.zoloblocks.com/announcements)

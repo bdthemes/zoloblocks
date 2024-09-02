@@ -16,7 +16,7 @@ namespace Zolo\Helpers;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
@@ -25,20 +25,40 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class ZoloHelpers {
 	use SingletonTrait;
-
+	/**
+	 * ZoloHelpers constructor.
+	 */
+	private function __construct() {
+		add_filter('admin_body_class', [$this, 'zoloblocks_editor_body_class']);
+		add_filter('body_class', [$this, 'zoloblocks_frontend_body_class']);
+	}
+	public function zoloblocks_editor_body_class($classes) {
+		// Check if we are on editing screen in WordPress admin
+		if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') { // phpcs:ignore
+			$classes .= ' zolo-editor';
+		}
+		return $classes;
+	}
+	public function zoloblocks_frontend_body_class(array $classes) {
+		$new_class =  'zolo-frontend';
+		if ($new_class) {
+			$classes[] = $new_class;
+		}
+		return $classes;
+	}
 	/**
 	 * Filter Blocks
 	 */
-	public static function filter_blocks( $block ) {
-		return isset( $block['visibility'] ) ? $block['visibility'] : false;
+	public static function filter_blocks($block) {
+		return isset($block['visibility']) ? $block['visibility'] : false;
 	}
 
 	/**
 	 * array of object to string
 	 */
-	public static function array_column_from_json( $arr, $handle, $json = true ) {
-		$arr = $json ? json_decode( $arr, true ) : $arr;
-		$arr = array_column( $arr, $handle );
+	public static function array_column_from_json($arr, $handle, $json = true) {
+		$arr = $json ? json_decode($arr, true) : $arr;
+		$arr = array_column($arr, $handle);
 
 		return $arr;
 	}
@@ -57,19 +77,19 @@ class ZoloHelpers {
 	/**
 	 * check isset & not empty and return data
 	 */
-	public static function get_data( $arr, $key, $default = null ) {
-		return isset( $arr[ $key ] ) && ! empty( $arr[ $key ] ) ? $arr[ $key ] : $default;
+	public static function get_data($arr, $key, $default = null) {
+		return isset($arr[$key]) && ! empty($arr[$key]) ? $arr[$key] : $default;
 	}
 
 	/**
 	 * Is Gutenberg Editor
 	 */
-	public static function zolo_is_gutenberg_editor( $pagenow, $param ) {
-		if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'site-editor.php' ) {
+	public static function zolo_is_gutenberg_editor($pagenow, $param) {
+		if ($pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'site-editor.php') {
 			return true;
 		}
 
-		if ( $pagenow == 'themes.php' && ! empty( $param ) && str_contains( $param, 'gutenberg-edit-site' ) ) {
+		if ($pagenow == 'themes.php' && ! empty($param) && str_contains($param, 'gutenberg-edit-site')) {
 			return true;
 		}
 
@@ -82,20 +102,20 @@ class ZoloHelpers {
 	 * @param string $name file name.
 	 * @return false|string
 	 */
-	protected static function get_views_path( $name ) {
+	protected static function get_views_path($name) {
 		// Define the base path.
 		$paths = [
-			trailingslashit( ZOLO_DIR_PATH ) . 'views/' . $name . '.php',
+			trailingslashit(ZOLO_DIR_PATH) . 'views/' . $name . '.php',
 		];
 
 		// Check if ZOLO_PRO_DIR_PATH is defined and add it to the paths.
-		if ( defined( 'ZOLO_PRO_DIR_PATH' ) ) {
-			$paths[] = trailingslashit( ZOLO_PRO_DIR_PATH ) . 'views/' . $name . '.php';
+		if (defined('ZOLO_PRO_DIR_PATH')) {
+			$paths[] = trailingslashit(ZOLO_PRO_DIR_PATH) . 'views/' . $name . '.php';
 		}
 
 		// Iterate through the paths and return the first existing file.
-		foreach ( $paths as $path ) {
-			if ( file_exists( $path ) ) {
+		foreach ($paths as $path) {
+			if (file_exists($path)) {
 				return $path;
 			}
 		}
@@ -112,11 +132,11 @@ class ZoloHelpers {
 	 * @param array  $data
 	 * @return void
 	 */
-	public static function views( $name, $data = [] ) {
-		$__file = self::get_views_path( $name );
+	public static function views($name, $data = []) {
+		$__file = self::get_views_path($name);
 
-		extract( $data );
-		if ( is_readable( $__file ) ) {
+		extract($data);
+		if (is_readable($__file)) {
 			include $__file;
 		}
 	}
@@ -129,7 +149,7 @@ class ZoloHelpers {
 			],
 			'objects'
 		);
-		$post_types     = wp_list_pluck( $post_types, 'label', 'name' );
+		$post_types     = wp_list_pluck($post_types, 'label', 'name');
 		$excluded_types = apply_filters(
 			'zolo_exclude_post_type',
 			[
@@ -138,14 +158,14 @@ class ZoloHelpers {
 				'e-landing-page'    => 'Landing Page',
 			]
 		);
-		return array_diff_key( $post_types, $excluded_types );
+		return array_diff_key($post_types, $excluded_types);
 	}
 
 	public static function get_all_users() {
 		$users   = [];
-		$authors = get_users( apply_filters( 'zolo_author_arg', [] ) );
-		if ( ! empty( $authors ) ) {
-			foreach ( $authors as $user ) {
+		$authors = get_users(apply_filters('zolo_author_arg', []));
+		if (! empty($authors)) {
+			foreach ($authors as $user) {
 				$users[] = [
 					'value' => $user->ID,
 					'label' => $user->display_name,
@@ -156,26 +176,26 @@ class ZoloHelpers {
 	}
 
 	public static function get_taxonomies() {
-		$get_tax_object = get_taxonomies( [], 'objects' );
+		$get_tax_object = get_taxonomies([], 'objects');
 		$exclude_tax    = self::get_excluded_taxonomy();
-		foreach ( $exclude_tax as $_tax ) {
-			unset( $get_tax_object[ $_tax ] );
+		foreach ($exclude_tax as $_tax) {
+			unset($get_tax_object[$_tax]);
 		}
 		return $get_tax_object;
 	}
 
 	public static function get_all_taxonomy() {
 		$post_types     = self::get_post_types();
-		$taxonomies     = get_taxonomies( [], 'objects' );
+		$taxonomies     = get_taxonomies([], 'objects');
 		$all_taxonomies = [];
-		foreach ( $taxonomies as $taxonomy => $object ) {
+		foreach ($taxonomies as $taxonomy => $object) {
 			if (
-				! isset( $object->object_type[0] ) || ! in_array( $object->object_type[0], array_keys( $post_types ) )
-				|| in_array( $taxonomy, self::get_excluded_taxonomy() )
+				! isset($object->object_type[0]) || ! in_array($object->object_type[0], array_keys($post_types))
+				|| in_array($taxonomy, self::get_excluded_taxonomy())
 			) {
 				continue;
 			}
-			$all_taxonomies[ $taxonomy ] = self::get_terms_by_texonomy( $taxonomy );
+			$all_taxonomies[$taxonomy] = self::get_terms_by_texonomy($taxonomy);
 		}
 
 		return $all_taxonomies;
@@ -199,7 +219,7 @@ class ZoloHelpers {
 		);
 	}
 
-	public static function get_terms_by_texonomy( $cat = 'category' ) {
+	public static function get_terms_by_texonomy($cat = 'category') {
 		$terms = get_terms(
 			[
 				'taxonomy'   => $cat,
@@ -208,9 +228,9 @@ class ZoloHelpers {
 		);
 
 		$options = [];
-		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-			foreach ( $terms as $term ) {
-				$options[ $term->term_id ] = $term->name;
+		if (! empty($terms) && ! is_wp_error($terms)) {
+			foreach ($terms as $term) {
+				$options[$term->term_id] = $term->name;
 			}
 		}
 
@@ -224,14 +244,14 @@ class ZoloHelpers {
 	 * @param string $size
 	 * @return string
 	 */
-	public static function get_wrapper_class( $settings = [], $class_name = '' ) {
+	public static function get_wrapper_class($settings = [], $class_name = '') {
 		$wrap_class = '';
 
-		if ( isset( $settings['uniqueId'] ) ) {
+		if (isset($settings['uniqueId'])) {
 			$wrap_class .= $settings['uniqueId'];
 		}
 
-		if ( ! empty( $class_name ) ) {
+		if (! empty($class_name)) {
 			$wrap_class .= ' ' . $class_name;
 		}
 
@@ -245,9 +265,9 @@ class ZoloHelpers {
 	 * @param string $size
 	 * @return string
 	 */
-	public static function removeHtmlTagContents( $contant, $tags ) {
-		if ( is_array( $tags ) ) {
-			foreach ( $tags as $tag ) {
+	public static function removeHtmlTagContents($contant, $tags) {
+		if (is_array($tags)) {
+			foreach ($tags as $tag) {
 				$contant = preg_replace(
 					sprintf(
 						'/<%1$s\b[^>]*>(.*?)<\/%1$s>/is',
@@ -258,7 +278,7 @@ class ZoloHelpers {
 				);
 			}
 		} else {
-			$contant = preg_replace( '/<figure\b[^>]*>(.*?)<\/figure>/is', '', $contant );
+			$contant = preg_replace('/<figure\b[^>]*>(.*?)<\/figure>/is', '', $contant);
 		}
 
 		return $contant;
@@ -270,25 +290,25 @@ class ZoloHelpers {
 	 * @param int $max_pages
 	 * @return string
 	 */
-	public static function pagination( $max_pages ) {
+	public static function pagination($max_pages) {
 		global $paged;
 
-		if ( ! empty( get_query_var( 'page' ) ) || ! empty( get_query_var( 'paged' ) ) ) {
-			$paged = is_front_page() ? absint( get_query_var( 'page' ) ) : absint( get_query_var( 'paged' ) );
+		if (! empty(get_query_var('page')) || ! empty(get_query_var('paged'))) {
+			$paged = is_front_page() ? absint(get_query_var('page')) : absint(get_query_var('paged'));
 		} else {
 			$paged = 1;
 		}
 
-		if ( $max_pages > 1 ) {
+		if ($max_pages > 1) {
 			$big = 9999999;
 			return paginate_links(
 				[
-					'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+					'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
 					'format'    => '?paged=%#%',
 					'current'   => $paged,
 					'total'     => $max_pages,
-					'prev_text' => sprintf( '<span>%1$s</span>', __( 'prev', 'zoloblocks' ) ),
-					'next_text' => sprintf( '<span>%1$s</span>', __( 'next', 'zoloblocks' ) ),
+					'prev_text' => sprintf('<span>%1$s</span>', __('prev', 'zoloblocks')),
+					'next_text' => sprintf('<span>%1$s</span>', __('next', 'zoloblocks')),
 				]
 			);
 		}
@@ -301,11 +321,11 @@ class ZoloHelpers {
 	 * @param string $class
 	 * @return string
 	 */
-	public static function render_svg_html( $viewBox, $path ) {
+	public static function render_svg_html($viewBox, $path) {
 		return sprintf(
 			'<svg xmlns="https://www.w3.org/2000/svg" viewBox="%s" width="1em" height="1em" fill="currentColor"><path d="%s"></path></svg>',
-			esc_attr( $viewBox ),
-			esc_attr( $path )
+			esc_attr($viewBox),
+			esc_attr($path)
 		);
 	}
 
@@ -315,7 +335,7 @@ class ZoloHelpers {
 	 * @return array
 	 */
 	public static function wp_kses_allowed_svg() {
-		$defaults = wp_kses_allowed_html( 'post' );
+		$defaults = wp_kses_allowed_html('post');
 		$svg_args = [
 			'svg'   => [
 				'class'           => true,
@@ -326,16 +346,22 @@ class ZoloHelpers {
 				'width'           => true,
 				'height'          => true,
 				'viewbox'         => true,
+				'fill'            => true,
+				'stroke'          => true,
+				'stroke-width'    => true,
+				'stroke-linecap'  => true,
+				'stroke-linejoin' => true,
 			],
-			'g'     => [ 'fill' => true ],
-			'title' => [ 'title' => true ],
+			'g'     => ['fill' => true],
+			'title' => ['title' => true],
 			'path'  => [
-				'd'    => true,
-				'fill' => true,
+				'd'      => true,
+				'fill'   => true,
+				'stroke' => true,
 			],
 		];
 
-		return array_merge( $defaults, $svg_args );
+		return array_merge($defaults, $svg_args);
 	}
 
 	/**
@@ -348,7 +374,7 @@ class ZoloHelpers {
 		$global_settings = wp_get_global_settings();
 		$global_fonts    = $global_settings['typography']['fontFamilies'] ?? [];
 
-		if ( empty( $global_fonts ) ) {
+		if (empty($global_fonts)) {
 			return [];
 		}
 
@@ -357,39 +383,39 @@ class ZoloHelpers {
 		$final_fonts  = [];
 
 		// Check if theme fonts exist and are not empty
-		if ( isset( $global_fonts['theme'] ) && ! empty( $global_fonts['theme'] ) ) {
-			foreach ( $global_fonts['theme'] as $font ) {
-				if ( isset( $font['name'] ) ) {
+		if (isset($global_fonts['theme']) && ! empty($global_fonts['theme'])) {
+			foreach ($global_fonts['theme'] as $font) {
+				if (isset($font['name'])) {
 					$theme_fonts[] = $font['name'];
 				}
 			}
 		}
 
 		// Check if custom fonts exist and are not empty
-		if ( isset( $global_fonts['custom'] ) && ! empty( $global_fonts['custom'] ) ) {
-			foreach ( $global_fonts['custom'] as $font ) {
-				if ( isset( $font['name'] ) ) {
+		if (isset($global_fonts['custom']) && ! empty($global_fonts['custom'])) {
+			foreach ($global_fonts['custom'] as $font) {
+				if (isset($font['name'])) {
 					$custom_fonts[] = $font['name'];
 				}
 			}
 		}
 
 		// Merge theme and custom fonts into the final array
-		$final_fonts = array_merge( $theme_fonts, $custom_fonts );
+		$final_fonts = array_merge($theme_fonts, $custom_fonts);
 
 		// if any font in final_fonts array includes 'system' or 'System' keyword, then keep them at the top of the array
 		$system_fonts = array_filter(
 			$final_fonts,
-			function ( $font ) {
-				return strpos( $font, 'system' ) !== false || strpos( $font, 'System' ) !== false;
+			function ($font) {
+				return strpos($font, 'system') !== false || strpos($font, 'System') !== false;
 			}
 		);
 
 		// final fonts array including system fonts at the top
-		$final_fonts = array_merge( $system_fonts, array_diff( $final_fonts, $system_fonts ) );
+		$final_fonts = array_merge($system_fonts, array_diff($final_fonts, $system_fonts));
 
 		// remove duplicate fonts
-		$final_fonts = array_unique( $final_fonts );
+		$final_fonts = array_unique($final_fonts);
 
 		return $final_fonts;
 	}
@@ -397,25 +423,25 @@ class ZoloHelpers {
 	/**
 	 * Generate Style String
 	 */
-	public static function zolo_generate_style( $style ) {
+	public static function zolo_generate_style($style) {
 		$css = '';
-		if ( isset( $style['desktop'] ) && strlen( $style['desktop'] ) > 0 ) {
+		if (isset($style['desktop']) && strlen($style['desktop']) > 0) {
 			$css .= $style['desktop'];
 		}
-		if ( isset( $style['tab'] ) && strlen( $style['tab'] ) > 0 ) {
+		if (isset($style['tab']) && strlen($style['tab']) > 0) {
 			$css .= sprintf(
 				'@media all and (max-width: 1024px) {%1$s}',
 				$style['tab']
 			);
 		}
-		if ( isset( $style['mobile'] ) && strlen( $style['mobile'] ) > 0 ) {
+		if (isset($style['mobile']) && strlen($style['mobile']) > 0) {
 			$css .= sprintf(
 				'@media all and (max-width: 767px) {%1$s}',
 				$style['mobile']
 			);
 		}
 
-		if ( ! empty( $style['customCss'] ) && strlen( $style['customCss'] ) > 0 ) {
+		if (! empty($style['customCss']) && strlen($style['customCss']) > 0) {
 			$css .= $style['customCss'];
 		}
 
@@ -428,8 +454,8 @@ class ZoloHelpers {
 	 * @return string|null
 	 */
 	public static function ge_nonce_id() {
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		return isset( $_REQUEST['zolo_nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['zolo_nonce'] ) ) : null;
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return isset($_REQUEST['zolo_nonce']) ? sanitize_text_field(wp_unslash($_REQUEST['zolo_nonce'])) : null;
 	}
 
 	/**
@@ -448,12 +474,161 @@ class ZoloHelpers {
 	 * @param number $max_words .
 	 * @return string
 	 */
-	public static function wordcount( $phrase, $max_words ) {
-		$phrase_array = explode( ' ', $phrase );
-		if ( count( $phrase_array ) > $max_words && $max_words >= 0 ) {
-			$phrase = implode( ' ', array_slice( $phrase_array, 0, $max_words ) );
+	public static function wordcount($phrase, $max_words) {
+		$phrase_array = explode(' ', $phrase);
+		if (count($phrase_array) > $max_words && $max_words >= 0) {
+			$phrase = implode(' ', array_slice($phrase_array, 0, $max_words));
 		}
-		return strip_shortcodes( $phrase );
+		return strip_shortcodes($phrase);
+	}
+
+	/**
+	 * Hex color
+	 *
+	 * @param string $string .
+	 * @param number $steps .
+	 * @return false|string
+	 */
+	public static function strToHex($string, $steps = -10) {
+
+		if (empty($string)) {
+			return false;
+		}
+
+		$hex_output = sprintf('%s', substr(md5($string), 0, 6));
+
+		// Steps should be between -255 and 255. Negative = darker, positive = lighter.
+		$steps = max(-255, min(255, $steps));
+
+		// Split into three parts: R, G and B.
+		$color_parts = str_split($hex_output, 2);
+		$output      = '#';
+
+		foreach ($color_parts as $color) {
+			$color   = hexdec($color); // Convert to decimal.
+			$color   = max(0, min(255, $color + $steps)); // Adjust color.
+			$output .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT); // Make two char hex code.
+		}
+
+		return strToUpper($output);
+	}
+
+	/**
+	 * default get_option() default value check
+	 *
+	 * @param string $option settings field name
+	 * @param string $section the section name this field belongs to
+	 * @param string $default default text if it's not found
+	 *
+	 * @return mixed
+	 */
+	public static function zoloblocks_get_option($option, $section, $default = '') {
+
+		$options = get_option($section);
+		if (isset($options) && is_array($options)) {
+			foreach ($options as $key => $value) {
+				if ($value['name'] == $option) {
+					return $value['status'];
+				}
+			}
+		}
+		return $default;
+	}
+
+
+	/**
+	 * Get user role
+	 *
+	 * @param number $id .
+	 * @return mixed|null
+	 */
+	public static function get_user_role( $id ) {
+		$user = new \WP_User( $id );
+		return array_shift( $user->roles );
+	}
+
+	/**
+	 * Get social icon
+	 *
+	 * @param string $platform .
+	 * @return string|null
+	 */
+	public static function get_social_icon_svg( $platform ) {
+		switch ( $platform ) {
+			case 'email':
+				return '
+                <svg class="zolo-icon-email" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
+                    <path d="M3 7l9 6l9 -6"></path>
+                </svg>';
+			case 'url':
+				return '
+                <svg class="zolo-icon-facebook" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M21 12a9 9 0 1 0 -9.968 8.948"></path>
+                    <path d="M3.6 9h16.8"></path>
+                    <path d="M3.6 15h6.4"></path>
+                    <path d="M11.5 3a17.001 17.001 0 0 0 -1.886 13.802"></path>
+                    <path d="M12.5 3a16.982 16.982 0 0 1 2.549 8.01"></path>
+                    <path d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"></path>
+                </svg>';
+			case 'facebook':
+				return '
+				 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>';
+			case 'twitter':
+				return '
+					 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
+				';
+			case 'linkedin':
+				return '
+					<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 11l0 5" /><path d="M8 8l0 .01" /><path d="M12 16l0 -5" /><path d="M16 16v-3a2 2 0 0 0 -4 0" /></svg>
+				';
+			case 'github':
+				return '
+					<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+				';
+			case 'WordPress':
+				return '
+					 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-wordpress"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 9h3" /><path d="M4 9h2.5" /><path d="M11 9l3 11l4 -9" /><path d="M5.5 9l3.5 11l3 -7" /><path d="M18 11c.177 -.528 1 -1.364 1 -2.5c0 -1.78 -.776 -2.5 -1.875 -2.5c-.898 0 -1.125 .812 -1.125 1.429c0 1.83 2 2.058 2 3.571z" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+				';
+			case 'dribble':
+				return '
+					  <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-dribbble"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 3.6c5 6 7 10.5 7.5 16.2" /><path d="M6.4 19c3.5 -3.5 6 -6.5 14.5 -6.4" /><path d="M3.1 10.75c5 0 9.814 -.38 15.314 -5" /></svg>
+				';
+			default:
+				return null;
+		}
+	}
+
+	/**
+	 * Get taxonomy name
+	 *
+	 * @param string $postType .
+	 * @param string $taxonomyType .
+	 * @return string
+	 */
+	public static function get_taxonomy_name( $postType = '', $taxonomyType = 'category' ): string {
+		// Mapping of post types to their corresponding category taxonomies.
+		$categoryTaxonomyMap = [
+			'product' => 'product_cat',
+			'post'    => 'category',
+		];
+
+		// Mapping of post types to their corresponding tag taxonomies.
+		$tagTaxonomyMap = [
+			'product' => 'product_tag',
+			'post'    => 'post_tag',
+		];
+
+		// Determine which taxonomy map to use based on the $taxonomyType.
+		switch ( $taxonomyType ) {
+			case 'tag':
+				return $tagTaxonomyMap[ $postType ] ?? 'post_tag';
+			case 'category':
+			default:
+				return $categoryTaxonomyMap[ $postType ] ?? 'category';
+		}
 	}
 
 	/**

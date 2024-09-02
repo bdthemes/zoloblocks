@@ -1,11 +1,13 @@
 .wp-block-zolo-review-carousel {
     position: relative;
     box-sizing: border-box;
-
+    .swiper {
+        --review-carousel-mask-offset: 300px;
+    }
     &.default {
-       .swiper {
-         padding: 50px 0 0 ;
-       }
+        .swiper {
+            padding: 50px 0 0;
+        }
     }
 
     .swiper-pagination-bullet {
@@ -84,11 +86,13 @@
         }
     }
 
-    .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
         content: 'next';
     }
 
-    .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
         content: 'prev';
     }
 }

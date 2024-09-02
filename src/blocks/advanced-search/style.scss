@@ -89,9 +89,9 @@
   background-color: #2667ff;
 }
 
-.zolo-form-wrap {
+.zolo-advanced-search .zolo-form-wrap {
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   gap: var(--search-form-item-gap);
   position: relative;
 }
@@ -150,4 +150,13 @@
   padding: var(--search-btn-padding);
   margin: 6px;
   border-radius: var(--search-btn-radius);
+}
+
+@media (min-width: 768px) {
+  .zolo-advanced-search {
+    .zolo-form-wrap {
+      flex-direction: row;
+    }
+  }
+
 }

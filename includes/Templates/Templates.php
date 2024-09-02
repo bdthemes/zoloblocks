@@ -1,5 +1,6 @@
 <?php
 namespace Zolo\Templates;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -25,7 +26,7 @@ if( ! class_exists( 'Templates' ) ) {
             add_action('wp_ajax_zolo_demo_import', [$this, 'demo_import']);
             add_action('wp_ajax_nopriv_zolo_demo_import', [$this, 'demo_import']);
 
-            // update transient for the api 
+            // update transient for the api
             add_action('wp_ajax_zolo_demo_pull', [$this, 'update_transient']);
             add_action('wp_ajax_nopriv_zolo_demo_pull', [$this, 'update_transient']);
         }

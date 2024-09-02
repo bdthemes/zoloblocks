@@ -402,7 +402,9 @@ const Inspector = (props) => {
                             />
 
                             {styles === 'style-3' && (
-                                <BaseControl label={__('Background Image', 'zoloblocks')}>
+                                <BaseControl label={__('Background Image', 'zoloblocks')}
+                                    className='zolo-flex-col-control'
+                                >
                                     {presetBg ? (
                                         <ImageAvatar
                                             imageUrl={presetBg && presetBg.url}
@@ -442,7 +444,9 @@ const Inspector = (props) => {
                                                 </Button>
                                             )}
                                         />
+
                                     )}
+                                    
                                 </BaseControl>
                             )}
 

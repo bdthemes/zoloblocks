@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useSelect, dispatch } from '@wordpress/data';
 import { times } from 'lodash';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * External dependencies
@@ -52,6 +53,10 @@ const Edit = (props) => {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     // preview image
     if (preview) {
@@ -133,6 +138,7 @@ const Edit = (props) => {
                 `}
             </style>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
                     className={classnames(
@@ -215,6 +221,7 @@ const Edit = (props) => {
                         />
                     </div>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

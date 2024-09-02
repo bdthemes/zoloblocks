@@ -2,8 +2,10 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         preset,
         uniqueId,
@@ -21,10 +23,12 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), `${
-            preset && preset !== '' ? preset : ''
-        }`),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${preset && preset !== '' ? preset : ''}`),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...blockProps}
@@ -35,6 +39,7 @@ const Save = ({ attributes }) => {
             data-entranceanimation={entranceAnimation}
             data-showThumb={showLightboxThumb}
         >
+            {renderHookBefore && renderHookBefore}
             <div className={classnames(`zolo-image-gallery ${uniqueId} ${showLightbox ? 'zolo-gallery-lightbox' : ''}`)}>
                 {advancedGallery &&
                     advancedGallery.map((image, index) => {
@@ -75,26 +80,25 @@ const Save = ({ attributes }) => {
                                 {showCaption && preset !== 'style-2' && image.caption && <div className="zolo-title">{image.caption}</div>}
 
                                 {preset === 'style-2' && (
-                                      <div className='zolo-inner-item'>
-                                          <div className='zolo-content-wrap'>
-                                            {showTitle && (
-                                                <h4 className='zolo-subTitle'>design</h4>
-                                            )}
+                                    <div className="zolo-inner-item">
+                                        <div className="zolo-content-wrap">
+                                            {showTitle && <h4 className="zolo-subTitle">design</h4>}
                                             {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
-                                          </div>
-                                          {showLightbox && (
+                                        </div>
+                                        {showLightbox && (
                                             <div className="zolo-icon-wrap">
                                                 <span className="zolo-icon">
                                                     <DisplayZoloIcon icon={lightboxIcon} />
                                                 </span>
                                             </div>
-                                           )}
-                                      </div>
-                                    )}
+                                        )}
+                                    </div>
+                                )}
                             </DynamicTag>
                         );
                     })}
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

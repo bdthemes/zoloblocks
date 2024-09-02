@@ -106,6 +106,7 @@ const Inspector = (props) => {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Slider Options', 'zoloblocks')} panelProps={props}>
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Speed', 'zoloblocks')}
                                 value={speed}
                                 onChange={(v) =>
@@ -115,7 +116,7 @@ const Inspector = (props) => {
                                 }
                                 min={1}
                                 max={100}
-                                help={__('Default Speed: ', 'zoloblocks') + 8 * 100 + 'ms'}
+                                help={__('Default Speed:', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
@@ -138,6 +139,7 @@ const Inspector = (props) => {
                             {autoplay && (
                                 <Fragment>
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>
@@ -147,7 +149,7 @@ const Inspector = (props) => {
                                         }
                                         min={1}
                                         max={100}
-                                        help={__('Autoplay Dealy: ', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
                                     />
                                     <ToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}

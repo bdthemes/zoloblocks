@@ -3,15 +3,19 @@
  */
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
+
 import classnames from 'classnames';
 import { socialMediaInfo } from './constants';
-
+import { applyFilters } from '@wordpress/hooks';
 import { useBlockProps } from '@wordpress/block-editor';
 import { zoloArraysMergeIfUniqueValue } from '../../../src/helpers/helper';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const { uniqueId, parentClasses, preset, socialMedia, socialColor, socialText, layout } = attributes;
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     const socialMediaInfoFiltered = zoloArraysMergeIfUniqueValue(socialMedia, socialMediaInfo, 'value');
     return (
         <div
@@ -19,6 +23,7 @@ const Save = ({ attributes }) => {
                 className: classnames(`${preset} ${uniqueId} ${layout}`, classArrayToStr(parentClasses)),
             })}
         >
+            {renderHookBefore && renderHookBefore}
             {socialMediaInfoFiltered &&
                 socialMediaInfoFiltered.map((brand, index) => {
                     let socialName = Object.keys(brand.icon)[0];
@@ -43,6 +48,8 @@ const Save = ({ attributes }) => {
                         </div>
                     );
                 })}
+
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

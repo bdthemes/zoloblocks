@@ -7,9 +7,9 @@
       ".dci-button-allow, .dci-button-skip, .dci-button-disallow",
       function () {
         let nonce = $(this)
-            .closest(".dci-notice-data")
-            .find("[name='nonce']")
-            .val(),
+          .closest(".dci-notice-data")
+          .find("[name='nonce']")
+          .val(),
           dci_name = $(this)
             .closest(".dci-notice-data")
             .find("[name='dci_name']")
@@ -35,7 +35,6 @@
             allow_name: allow_name,
           },
           success: function (response) {
-            console.log(response);
             if (response.status == "success") {
               location.reload();
             } else {
@@ -48,9 +47,9 @@
 
     $(document).on("click", ".dci-global-notice .notice-dismiss", function () {
       let nonce = $(this)
-          .closest(".dci-notice-data")
-          .find("[name='nonce']")
-          .val(),
+        .closest(".dci-notice-data")
+        .find("[name='nonce']")
+        .val(),
         dci_name = $(this)
           .closest(".dci-notice-data")
           .find("[name='dci_name']")

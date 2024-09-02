@@ -1,13 +1,15 @@
-<?php 
+<?php
+
 namespace Zolo\Form;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit;
 }
 
-if( ! class_exists ( 'FormAjax' ) ) {
+if (! class_exists('FormAjax')) {
 
     /**
      * Class FormAjax
@@ -15,7 +17,7 @@ if( ! class_exists ( 'FormAjax' ) ) {
     class FormAjax {
 
         use SingletonTrait;
-        
+
         /**
          * Constructs a new instance of the FormAjax class.
          */
@@ -23,7 +25,7 @@ if( ! class_exists ( 'FormAjax' ) ) {
             add_action('wp_ajax_update_form_settings', [$this, 'update_form_settings']);
             add_action('wp_ajax_nopriv_update_form_settings', [$this, 'update_form_settings']);
         }
-    
+
         /**
          * Update form settings
          */
@@ -45,7 +47,7 @@ if( ! class_exists ( 'FormAjax' ) ) {
 
             global $wpdb;
             $table = $wpdb->prefix . 'zolo_form';
-            $form  = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE form_id = %d", $table, $formId));
+            $form  = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE form_id = %d", $table, $formId)); // phpcs:ignore
 
             $data = [
                 'form_settings'       => $formSettings,
@@ -57,12 +59,12 @@ if( ! class_exists ( 'FormAjax' ) ) {
             if (empty($formId)) {
                 $data['form_id']    = $formId;
                 $data['created_at'] = current_time('mysql');
-                $wpdb->insert($table, $data);
+                $wpdb->insert($table, $data); // phpcs:ignore
             } else {
-                $wpdb->update($table, $data, ['form_id' => $formId]);
+                $wpdb->update($table, $data, ['form_id' => $formId]); // phpcs:ignore
             }
-            
+
             echo wp_json_encode('Form settings updated');
         }
-     }
+    }
 }

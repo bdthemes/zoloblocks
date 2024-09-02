@@ -2,13 +2,19 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 
 // Save function
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition, reCaptcha } = attributes;
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     return (
         <div
@@ -17,6 +23,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             {messagePosition === 'form_top' && (
                 <div className={`zolo-form-msg ${messagePosition}`}>
                     <div className="zolo-form-msg-content">
@@ -99,6 +106,7 @@ const Save = ({ attributes }) => {
                     </button>
                 </div>
             )}
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

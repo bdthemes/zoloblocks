@@ -20,7 +20,7 @@ class StyleGenerator {
 
         // Generate Style on block render
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);
-        add_filter('render_block', [$this, 'cursors_effects'], 10, 2);
+        add_filter('render_block', [$this, 'particles_effects'], 10, 2);
 
         // Enqueue Dynamic Styles
         if (wp_is_block_theme()) {
@@ -44,17 +44,16 @@ class StyleGenerator {
 
     public function output_dynamic_styles() {
         if (!empty($this->dynamic_styles)) {
-            echo '<style id="zolo-block-inline-styles">' . $this->dynamic_styles . '</style>';
+            echo '<style id="zolo-block-inline-styles">' . $this->dynamic_styles . '</style>'; // phpcs:ignore
         }
     }
-
-    public function cursors_effects($block_content, $block) {
+    public function particles_effects($block_content, $block) {
         if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
 
-            $zoloCursors = $block['attrs']['zoloCursors'] ?? false;
-            // print_r($zoloCursors);
-            if ($zoloCursors) {
-                $cursorOptions = $block['attrs']['zoloCursors'] ?? [
+            $zoloParticles = $block['attrs']['zoloParticles']['active'] ?? false;
+            // print_r($zoloParticles);
+            if ($zoloParticles) {
+                $particlesOptions = $block['attrs']['zoloParticles'] ?? [
                     'active' => true,
                     'source' => 'default',
                     'preset' => 'style-1',
@@ -65,9 +64,9 @@ class StyleGenerator {
 
                 // Convert the heading animation to JSON string
                 // Convert the heading animation to JSON string
-                $cursorOptions = wp_json_encode($cursorOptions);
+                $particlesOptions = wp_json_encode($particlesOptions);
 
-                if (!empty($cursorOptions)) {
+                if (!empty($particlesOptions)) {
                     // Parse the block content as HTML
                     $dom = new \DOMDocument();
                     // Use explicit error handling to prevent warnings from causing issues
@@ -81,7 +80,7 @@ class StyleGenerator {
                         $existingClasses = $outerDiv->getAttribute('class');
 
                         // Add the animation attribute
-                        $outerDiv->setAttribute('data-cursors', $cursorOptions);
+                        $outerDiv->setAttribute('data-particles', $particlesOptions);
                         // Restore existing classes
                         if (!empty($existingClasses)) {
                             $outerDiv->setAttribute('class', $existingClasses);

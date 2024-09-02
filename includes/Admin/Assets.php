@@ -1,5 +1,7 @@
 <?php
+
 namespace Zolo\Admin;
+
 use Zolo\Traits\SingletonTrait;
 use Zolo\Helpers\ZoloHelpers;
 
@@ -8,11 +10,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if( ! class_exists( 'Assets' ) ) {
+if (! class_exists('Assets')) {
 
     /**
      * Assets Class
-     * 
+     *
      * @since 0.0.1
      */
     class Assets {
@@ -28,25 +30,25 @@ if( ! class_exists( 'Assets' ) ) {
 
             // blocks icons
             add_action('enqueue_block_editor_assets', [$this, 'zolo_blocks_icons'], 2);
-            add_action( 'admin_enqueue_scripts', [$this, 'zolo_blocks_icons'], 2 ); 
+            add_action('admin_enqueue_scripts', [$this, 'zolo_blocks_icons'], 2);
         }
-    
+
         /**
          * Enqueue block editor assets
          *
          * @return void
          */
         public function zolo_block_editor_assets() {
-                $zoloEditorWidth = get_option('zolo_editor_width', 1200);
-            ?>
-                <style>
-                    .editor-styles-wrapper .block-editor-block-list__layout.is-root-container> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-                        max-width: <?php echo esc_attr($zoloEditorWidth); ?>px !important;
-                    }
-                </style>
-            <?php
+            $zoloEditorWidth = get_option('zolo_editor_width', 1200);
+?>
+            <style>
+                .editor-styles-wrapper .block-editor-block-list__layout.is-root-container> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+                    max-width: <?php echo esc_attr($zoloEditorWidth); ?>px !important;
+                }
+            </style>
+<?php
         }
-    
+
         /**
          * Enqueues scripts and styles for the Zoloblocks admin area.
          *
@@ -56,15 +58,15 @@ if( ! class_exists( 'Assets' ) ) {
          * @param string $screen The current screen being displayed in the admin area.
          * @return void
          */
-        public function zolo_admin_enqueue_scripts( $screen ) {
-    
+        public function zolo_admin_enqueue_scripts($screen) {
+
             if ('toplevel_page_zoloblocks' !== $screen) {
                 return;
             }
 
             $dependencyFile = trailingslashit(ZOLO_DIR_PATH) . 'build/admin/index.asset.php';
 
-            if ( ! file_exists( $dependencyFile ) ) {
+            if (! file_exists($dependencyFile)) {
                 return;
             }
             $dependency = require_once $dependencyFile;
@@ -133,7 +135,7 @@ if( ! class_exists( 'Assets' ) ) {
                 ]
             );
 
-            wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', null, null, true);
+            // wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', null, null, true);
         }
 
         /**
@@ -141,7 +143,7 @@ if( ! class_exists( 'Assets' ) ) {
          *
          * @return void
          */
-        public function zolo_blocks_icons( $screen ) {
+        public function zolo_blocks_icons($screen) {
             // zoloModules
             $dep_file = ZOLO_DIR_PATH . 'build/blocks-icons/index.asset.php';
             $script_dependecy = file_exists($dep_file) ? include $dep_file : [
@@ -153,10 +155,8 @@ if( ! class_exists( 'Assets' ) ) {
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/blocks-icons/index.js',
                 $script_dependecy['dependencies'],
                 $script_dependecy['version'],
-                false 
+                false
             );
         }
     }
-    
 }
-

@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace Zolo\Form;
+
 use Zolo\Traits\SingletonTrait;
 
 
@@ -35,7 +37,7 @@ if (!class_exists('Form')) {
          * @param WP_Block $block The block object.
          * @return void
          */
-        public function render_zolo_form( $block_content, $block ) {
+        public function render_zolo_form($block_content, $block) {
             $zoloForm = $block['blockName'] ?? '';
 
             if ($zoloForm !== 'zolo/form') {
@@ -74,10 +76,10 @@ if (!class_exists('Form')) {
             // insert form settings and submission settings into database called zolo_form table check if formId does not exist in form_id column
             global $wpdb;
             $table_name = $wpdb->prefix . 'zolo_form';
-            $form_id    = $wpdb->get_var("SELECT form_id FROM $table_name WHERE form_id = '$formId'");
+            $form_id    = $wpdb->get_var("SELECT form_id FROM $table_name WHERE form_id = '$formId'"); // phpcs:ignore
 
             if ($form_id === NULL) {
-                $wpdb->insert(
+                $wpdb->insert( // phpcs:ignore
                     $table_name,
                     array(
                         'form_id'             => $formId,
@@ -88,7 +90,7 @@ if (!class_exists('Form')) {
                     )
                 );
             } else {
-                $wpdb->update(
+                $wpdb->update( // phpcs:ignore
                     $table_name,
                     array(
                         'form_id'             => $formId,                 // string
@@ -226,7 +228,7 @@ if (!class_exists('Form')) {
                         $successStatus = true;
 
                         // Insert form data into database called zolo_form table
-                        $wpdb->insert(
+                        $wpdb->insert( // phpcs:ignore
                             $table_name,
                             array(
                                 'form_id' => $formId,
@@ -243,9 +245,7 @@ if (!class_exists('Form')) {
 
                     // Return response
                     echo wp_json_encode(array('validationStatus' => $validationStatus, 'validationMessage' => $validationMessage, 'successStatus' => $successStatus, 'failStatus' => $failStatus, 'successMessage' => $successMessage, 'failMessage' => $failMessage));
-
                 }
-
             } else {
                 // Return error response
                 echo wp_json_encode(array('success' => false, 'error' => 'Form data not received'));
@@ -253,7 +253,5 @@ if (!class_exists('Form')) {
 
             wp_die();
         }
-
     }
 }
-
