@@ -7,8 +7,8 @@ const VideoSection = ({ title, description, videoInfo, buttons }) => {
                 <div className="zolo-welcome-video-container">
                     <iframe
                         width="100%"
-                        height="426"
-                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&mute=1`}
+                        height="415"
+                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&mute=1&rel=0`}
                         title={videoInfo.title || 'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes'}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

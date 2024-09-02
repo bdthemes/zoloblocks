@@ -630,4 +630,68 @@ class ZoloHelpers {
 				return $categoryTaxonomyMap[ $postType ] ?? 'category';
 		}
 	}
+
+	/**
+	 * Get Server Current PHP Version
+	 */
+	public static function get_php_version() {
+		return phpversion();
+	}
+
+	/**
+	 * Get Current WP Version
+	 */
+	public static function get_wp_version() {
+		return get_bloginfo( 'version' );
+	}
+
+	/**
+	 * Get Server Memory Limit Value
+	 */
+	public static function get_memory_limit() {
+		return ini_get( 'memory_limit' );
+	}
+	
+	/**
+	 * Get Server Max Upload Size
+	 */
+	public static function get_max_upload_size() {
+		return size_format( wp_max_upload_size() );
+	} 
+
+	/**
+	 * Get Server Max Post Size
+	 */
+	public static function get_max_post_size() {
+		return size_format( wp_max_upload_size() );
+	} 
+
+	/**
+	 * Get Server Max Execution Time
+	 */
+	public static function get_max_execution_time() {
+		return ini_get( 'max_execution_time' );
+	}
+
+	/**
+	 * Get Gzip Compression Status
+	 */
+	public static function get_gzip_status() {
+		return extension_loaded( 'zlib' ) ? 'Enabled' : 'Disabled';
+	} 
+
+	/**
+	 * Multisite Check
+	 */
+	public static function is_multisite() {
+		return is_multisite() ? 'Enabled' : 'Disabled';
+	}
+
+	/**
+	 * Debug Mode Check
+	 */
+	public static function is_debug_mode() {
+		return defined( 'WP_DEBUG' ) && WP_DEBUG ? 'Enabled' : 'Disabled';
+	}
+
 }

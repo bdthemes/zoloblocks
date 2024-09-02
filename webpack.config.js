@@ -1,96 +1,38 @@
+const defaultConfig = require('@wordpress/scripts/config/webpack.config.js');
 const path = require('path');
-let getFrontend = require('./src/frontend-config');
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-
-const plugins = defaultConfig.plugins.filter(
-    (plugin) => plugin.constructor.name !== 'MiniCssExtractPlugin' && plugin.constructor.name !== 'CleanWebpackPlugin'
-);
-
-const blocksFolder = path.resolve(__dirname, 'blocks');
-let frontendEntries = getFrontend(blocksFolder);
-
-const vendorLibraries = ['@vis.gl/react-google-maps', 'apexcharts', 'react-countup', 'react-compare-slider', 'uuid', 'webfontloader'];
-
-const editorVendorLibraries = [
-    '@codemirror/lang-css',
-    '@dnd-kit/core',
-    '@dnd-kit/sortable',
-    '@dnd-kit/utilities',
-    '@uiw/react-codemirror',
-    'bezier-easing-editor',
-    'classnames',
-    'react-google-autocomplete',
-    'react-select',
-    'react-multi-select-component',
-];
-
-let allEntries = {
-    ...frontendEntries,
-    ['build/dist']: './src/index.js',
-    ['build/admin']: './src/admin/index.js',
-    ['build/extensions/export-pattern']: './src/extensions/export-pattern/index.js',
-    ['build/extensions/import-pattern']: './src/extensions/import-pattern/index.js',
-    ['build/extensions/shape-divider']: './src/extensions/shape-divider/index.js',
-    ['build/extensions/particles']: './src/extensions/particles/index.js',
-    ['build/extensions/particles/frontend']: './src/extensions/particles/frontend.js',
-    ['build/template-library']: './src/template-library/index.js',
-    ['build/module']: {
-        import: path.resolve(__dirname, 'src/module-export.js'),
-        library: {
-            name: 'zoloModule',
-            type: 'window',
-        },
-    },
-};
-
 module.exports = {
     ...defaultConfig,
-    entry: allEntries,
-    output: {
-        path: path.resolve(__dirname),
-        filename: '[name]/index.js',
+    ...{
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, 'src/'),
+            },
+        },
     },
-    plugins: [
-        ...plugins,
-        new MiniCSSExtractPlugin({
-            filename: '[name]/style.css',
-        }),
-    ],
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    name: 'vendor-bundle',
-                    chunks: 'all',
-                    enforce: true,
-                    test: (module) => {
-                        return module.context && vendorLibraries.some((library) => module.context.includes(library));
-                    },
-                    filename: 'vendor-bundle/index.js',
-                },
-                // vendor: {
-                //     // Create separate bundle for each vendor library
-                //     test: (module) => {
-                //         return module.context && vendorLibraries.some((library) => module.context.includes(library));
-                //     },
-                //     name: (module) => {
-                //         const libName = vendorLibraries.find((library) => module.context.includes(library));
-                //         return libName ? `${libName.replace(/[^a-zA-Z0-9]/g, '-')}` : 'vendor-separate';
-                //     },
-                //     chunks: 'all',
-                //     enforce: true,
-                //     filename: 'vendor-bundle/[name]/index.js',
-                // },
-                editorVendor: {
-                    name: 'vendor-editor-bundle',
-                    chunks: 'all',
-                    enforce: true,
-                    test: (module) => {
-                        return module.context && editorVendorLibraries.some((library) => module.context.includes(library));
-                    },
-                    filename: 'vendor-editor-bundle/index.js',
-                },
+    entry: {
+        ...defaultConfig.entry(),
+        'admin/index': ['./src/admin/index.js'],
+        'animation/index': ['./src/animation/index.js'],
+        'extensions/export-pattern/index': ['./src/extensions/export-pattern/index.js'],
+        'extensions/import-pattern/index': ['./src/extensions/import-pattern/index.js'],
+        'extensions/shape-divider/index': ['./src/extensions/shape-divider/index.js'],
+        'extensions/particles/index': ['./src/extensions/particles/index.js'],
+        'extensions/particles/frontend': ['./src/extensions/particles/frontend.js'],
+        'template-library/index': ['./src/template-library/index.js'],
+        'editor-common/index': ['./src/editor-common/index.js'],
+        'common/index': ['./src/common/index.js'],
+        'modules/index': {
+            import: ['./src/modules/index.js'],
+            library: {
+                name: 'zoloModule',
+                type: 'window',
+            },
+        },
+        'blocks-icons/index': {
+            import: ['./src/blocks-icons/index.js'],
+            library: {
+                name: 'zoloIcons',
+                type: 'window',
             },
         },
     },

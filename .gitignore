@@ -12,10 +12,5 @@ tags*
 .log/
 .vscode/
 yarn.lock
-
-vendor-bundle/*
-vendor-editor-bundle/*
-dist/
-modules/
+composer.lock
 build/
-blocks/*/frontend

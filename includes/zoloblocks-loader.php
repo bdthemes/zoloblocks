@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zolo Blocks Loader.
  *
@@ -11,9 +10,24 @@ use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
-use Zolo\Admin\PostCategoryImage;
 use Zolo\Classes\ZoloAJAX;
+use Zolo\Admin\PostCategoryImage;
 use Zolo\Admin\Author;
+use Zolo\Classes\ZoloEnqueues;
+use Zolo\Classes\FontLoader;
+use Zolo\Classes\PostMeta;
+use Zolo\Admin\Dashboard;
+use Zolo\Admin\Assets;
+use Zolo\Admin\Settings;
+use Zolo\API\TemplatesV1;
+use Zolo\Templates\Templates;
+use Zolo\Popup\PopupBuilder;
+use Zolo\Form\Form;
+use Zolo\Form\FormAjax;
+use Zolo\Form\Recaptcha;
+use Zolo\Mailchimp\Mailchimp;
+use Zolo\Blocks\NoticeBlock;
+
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
     exit;
@@ -23,6 +37,7 @@ if (! defined('ABSPATH')) {
  * Zolo all file loader
  */
 class ZoloBlocks_Loader {
+
     use SingletonTrait;
 
     /**
@@ -47,41 +62,47 @@ class ZoloBlocks_Loader {
         StyleGenerator::getInstance();
         Registration::getInstance();
         ZoloAJAX::getInstance();
-        // require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloAjax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloEnqueues.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/FontLoader.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/PostMeta.php';
-
-        // Load Admin files
-        PostCategoryImage::getInstance();
-        Author::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
+        ZoloEnqueues::getInstance();
+        FontLoader::getInstance();
+        PostMeta::getInstance();
 
         // form
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Form.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Recaptcha.php';
+        Form::getInstance();
+        FormAjax::getInstance();
+        Recaptcha::getInstance();
+
+        // post category image
+        PostCategoryImage::getInstance();
+
+        // author
+        Author::getInstance();
 
         //mailchimp
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Mailchimp/Mailchimp.php';
+        Mailchimp::getInstance();
 
         // notice block
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Blocks/NoticeBlock.php';
+        NoticeBlock::getInstance();
 
         // popup
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Popup/PopupBuilder.php';
+        PopupBuilder::getInstance();
 
-        //templates
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Templates/Templates.php';
+        // Templates and Demo Import
+        TemplatesV1::getInstance();
+        Templates::getInstance();
 
-        if (is_admin()) {
-            // zolo blocks settings
-            $zoloSupportSVG = get_option('zolo_support_svg', false);
-            if ($zoloSupportSVG === '1') {
+        // Settings
+        Settings::getInstance();
+
+        if ( is_admin() ) {
+
+            // Support SVG
+            if (get_option('zolo_support_svg', false) === '1') {
                 require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/SupportSVG.php';
             }
+
+            // Admin Dashboard
+            Dashboard::getInstance();
+            Assets::getInstance();
         }
     }
 
@@ -92,15 +113,12 @@ class ZoloBlocks_Loader {
      */
     public function init_actions() {
         $theme_folder = get_template();
-
         if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
             if ('twentytwentytwo' === $theme_folder) {
-                // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-twenty-twenty-two-compatibility.php';
-            }
-        }
-
-        if ('astra' === $theme_folder) {
+            // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-twenty-twenty-two-compatibility.php';
+            } elseif ('astra' === $theme_folder) {
             // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
+            }
         }
     }
 

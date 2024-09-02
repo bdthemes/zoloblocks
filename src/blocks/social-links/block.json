@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Social Links",
+    "name": "zolo/social-links",
+    "category": "zoloblocks",
+    "keywords": ["icon", "social links", "social"],
+    "description": "Display accessible custom business social profiles",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css"
+}

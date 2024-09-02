@@ -2,14 +2,11 @@ import { ToggleControl } from '@wordpress/components';
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released= false }) => {
+const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = false, upcoming }) => {
     return (
-        <div className={`zolo-single-block ${value ? 'active' : ''} ${released ? '': 'upcoming'}`}>
-            {isPro && (
-                <div className="block-pro">
-                    <span>{__('Pro', 'zoloblocks')}</span>
-                </div>
-            )}
+        <div
+            className={`zolo-single-block ${value ? 'active' : ''} ${released ? '' : 'upcoming'} ${isPro ? 'ispro' : ''} ${upcoming ? 'upcoming' : ''}`}
+        >
             <div className="block-icon">
                 <RawHTML>{icon}</RawHTML>
             </div>
@@ -31,9 +28,20 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
                     )}
                 </div>
             </div>
-            <div className="block-switcher">
-                {released ? <ToggleControl checked={value} onChange={onClick} /> : <span className='zolo-badge-upcoming'>{__('Coming Soon', 'zoloblocks')}</span>}
+            <div className="block-badge-toggle-wrap">
+                {isPro && (
+                    <div className="block-pro">
+                        <span>{__('Pro', 'zoloblocks')}</span>
+                    </div>
+                )}
 
+                <div className="block-switcher">
+                    {released ? (
+                        <ToggleControl checked={value} onChange={onClick} />
+                    ) : (
+                        <span className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</span>
+                    )}
+                </div>
             </div>
         </div>
     );

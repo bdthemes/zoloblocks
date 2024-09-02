@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/
@@ -13,6 +12,7 @@
  * Requires PHP: 7.0
  *  License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ *
  */
 
 if (!defined('ABSPATH')) {
@@ -45,9 +45,7 @@ final class ZoloBlocks {
      * Constructor
      */
     public function __construct() {
-        //Define Zolo Constants
         $this->zolo_constants();
-
         if (!version_compare(ZOLO_WP_VERSION, '5.8', '>=')) {
             add_action('admin_notices', [Notice::class, 'zolo_check_wp_version']);
         } elseif (!version_compare(ZOLO_PHP_VERSION, '5.6', '>=')) {

@@ -21,8 +21,6 @@ $html = '';
 
 $wrapperId = $settings['zoloId'] ?? '';
 
-// var_dump($settings);
-
 ?>
 
 <div class="<?php echo esc_attr($wrapper_class); ?>" <?php if (!empty($wrapperId)) { ?> id="<?php echo esc_attr($wrapperId); ?>" <?php } ?>>

@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Post Grid",
+    "name": "zolo/post-grid",
+    "category": "zoloblocks",
+    "keywords": ["post", "post grid"],
+    "description": "Customizable dynamic grid for your website posts",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css"
+}

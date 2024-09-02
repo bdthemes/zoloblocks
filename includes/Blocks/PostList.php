@@ -24,13 +24,8 @@ class PostList extends PostBlock {
     }
 
     public function render($attributes) {
-
-        // var_dump($attributes);
-
-        $attributes = wp_parse_args($attributes, $this->get_default_attributes());
-
-        $postQuery = $attributes['postQuery'] ?? [];
-
+        $attributes   = wp_parse_args($attributes, $this->get_default_attributes());
+        $postQuery    = $attributes['postQuery'] ?? [];
         $post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($postQuery));
 
         ob_start();

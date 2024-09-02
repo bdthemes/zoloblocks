@@ -1,0 +1,164 @@
+.zolo-container-variation-picker {
+    // border: 2px dashed #e0e0e0;
+    // box-shadow: none !important;
+    // padding: 20px;
+
+    .components-placeholder {
+        box-shadow: none !important;
+        padding: 40px;
+        border: 1px solid #a7c1ff;
+    }
+
+    .components-placeholder__label {
+        align-items: center;
+        justify-content: center !important;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 26px;
+        font-weight: 500;
+        color: #2f2f37;
+        svg {
+            width: 40px;
+            height: 40px;
+            display: block;
+            path {
+                fill: #2567ff;
+            }
+        }
+    }
+
+    legend.components-placeholder__instructions {
+        text-align: center;
+    }
+
+    fieldset.components-placeholder__fieldset {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .block-editor-block-variation-picker__variation {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    button.components-button.block-editor-block-variation-picker__variation.is-secondary.has-icon {
+        background: #ffffff;
+        border: 1px solid #e8e8e8 !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+    }
+
+    .block-editor-block-variation-picker__variation path {
+        fill: #c9cacc !important;
+    }
+
+    .block-editor-block-variation-picker.has-many-variations .components-placeholder__fieldset {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: 15px;
+    }
+
+    .block-editor-block-variation-picker__variations.block-editor-block-variation-picker__variations {
+        justify-content: center !important;
+        display: grid !important;
+        grid-template-columns: repeat(6, 1fr) !important;
+        width: auto !important;
+        margin: 15px auto 0;
+        li {
+            width: 100% !important;
+            display: block !important;
+        }
+    }
+
+    .components-placeholder__instructions {
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 14px;
+        color: #6f6f79;
+    }
+}
+
+// block editor style
+
+.zolo-root-container.zolo-container-has-children {
+    .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks {
+        border: 0 !important;
+    }
+}
+
+.block-editor-block-list__block.wp-block-zolo-container {
+    display: flex;
+
+    &.zolo-container-has-children::before {
+        border: 0;
+    }
+
+    .block-list-appender.wp-block {
+        // width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.alignfull.zolo-root-container {
+        .zolo-container-inner-blocks-wrap {
+            display: flex;
+            // position: relative;
+            box-sizing: border-box;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+
+    & > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks,
+    & > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout,
+    & > .block-editor-inner-blocks,
+    & > .block-editor-inner-blocks > .block-editor-block-list__layout {
+        display: flex;
+        width: 100%;
+        height: auto;
+    }
+
+    .block-editor-block-list__layout {
+        .block-list-appender.wp-block {
+            button {
+                color: #a0a7ac;
+                font-size: 62px;
+                border: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        & > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+            width: 100%;
+        }
+    }
+}
+
+.editor-styles-wrapper .has-global-padding > .alignfull.wp-block-zolo-container.zolo-root-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-block-zolo-container {
+    &.backend {
+        &:not(.zolo-container-has-children) {
+            .block-editor-inner-blocks {
+                border: 1px dashed #e0e0e0;
+            }
+
+            .block-list-appender {
+                display: block !important;
+            }
+        }
+
+        .block-editor-button-block-appender {
+            height: 80px;
+        }
+    }
+}
