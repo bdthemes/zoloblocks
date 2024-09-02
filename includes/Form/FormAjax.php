@@ -30,32 +30,32 @@ if (! class_exists('FormAjax')) {
          * Update form settings
          */
         public function update_form_settings() {
-            if (!wp_verify_nonce($_POST['security'], 'zolo-nonce')) {
+
+            // Sanitize security field
+            $security = isset($_POST['security']) ? sanitize_text_field(wp_unslash($_POST['security'])) : ''; 
+            if (!wp_verify_nonce($security, 'zolo-nonce')) {
                 wp_send_json_error('Invalid nonce');
             }
-
-            // form settings data
-            $formId             = $_POST['formId'] ?? '';
-            $formSettings       = $_POST['formSettings'] ?? '';
-            $submissionSettings = $_POST['submissionSettings'] ?? '';
-            $validationRules    = $_POST['validationRules'] ?? '';
-
-            // serialize form settings
-            $formSettings       = maybe_serialize($formSettings);
-            $submissionSettings = maybe_serialize($submissionSettings);
-            $validationRules    = maybe_serialize($validationRules);
-
+        
+            // Sanitize and unslash form settings data
+            $formId = isset($_POST['formId']) ? sanitize_text_field(wp_unslash($_POST['formId'])) : '';
+        
+            // For serialized data, use a combination of wp_kses_post() and maybe_serialize()
+            $formSettings       = isset($_POST['formSettings']) ? sanitize_text_field(wp_unslash($_POST['formSettings'])) : '';
+            $submissionSettings = isset($_POST['submissionSettings']) ? sanitize_text_field(wp_unslash($_POST['submissionSettings'])) : '';
+            $validationRules    = isset($_POST['validationRules']) ? sanitize_text_field(wp_unslash($_POST['validationRules'])) : '';
+        
             global $wpdb;
             $table = $wpdb->prefix . 'zolo_form';
             $form  = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE form_id = %d", $table, $formId)); // phpcs:ignore
-
+        
             $data = [
                 'form_settings'       => $formSettings,
                 'submission_settings' => $submissionSettings,
                 'validation_rules'    => $validationRules,
                 'updated_at'          => current_time('mysql'),
             ];
-
+        
             if (empty($formId)) {
                 $data['form_id']    = $formId;
                 $data['created_at'] = current_time('mysql');
@@ -63,7 +63,7 @@ if (! class_exists('FormAjax')) {
             } else {
                 $wpdb->update($table, $data, ['form_id' => $formId]); // phpcs:ignore
             }
-
+        
             echo wp_json_encode('Form settings updated');
         }
     }
