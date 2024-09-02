@@ -394,6 +394,15 @@ h6 {
         }
     }
 
+    .zolo-dash-extensions {
+        .zolo-dash-analysis-bar {
+            background-color: #fcf2dc;
+            .zolo-dash-analysis-bar-fill {
+                background-color: var(--zolo-analysis-extensions-color);
+            }
+        }
+    }
+
     .zolo-dash-tparty-blocks {
         .zolo-dash-analysis-bar {
             background-color: #dcfff6;

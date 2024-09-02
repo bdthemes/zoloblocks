@@ -1,8 +1,8 @@
 import { BlockControls, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { Button, Dropdown, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { select } from '@wordpress/data';
-import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
+import classnames from 'classnames';
 const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
@@ -71,11 +71,11 @@ export default function RenderView({ attributes, clientId, className, setAttribu
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildren ? false : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
                     <>
-                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildren ? false : InnerBlocks.ButtonBlockAppender} />
                     </>
                 )}
                 {renderHookAfter && renderHookAfter}

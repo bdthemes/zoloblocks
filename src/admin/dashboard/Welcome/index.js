@@ -8,7 +8,15 @@ import { useEffect, useState } from '@wordpress/element';
 import classNames from 'classnames';
 
 const Welcome = () => {
+    const [blocks, setBlocks] = useState([]);
+    const [extensions, setExtensions] = useState([]);
+
     const [totalBlocks, setTotalBlocks] = useState(0);
+    const [activeBlocks, setActiveBlocks] = useState(0);
+
+    const [totalExtensions, setTotalExtensions] = useState(0);
+    const [activeExtensions, setActiveExtensions] = useState(0);
+
     // blocks data
     useEffect(() => {
         apiFetch({
@@ -16,41 +24,54 @@ const Welcome = () => {
             method: 'GET',
         })
             .then((response) => {
-                console.log('response', response);
-                // const { zolo_blocks_settings } = response;
-                // setBlockStatus(zolo_blocks_settings);
+                const { zolo_blocks_settings, zolo_extensions_settings } = response;
+                setBlocks(zolo_blocks_settings);
+                setExtensions(zolo_extensions_settings);
+                setTotalBlocks(parseInt(zolo_blocks_settings.length));
+                setTotalExtensions(parseInt(zolo_extensions_settings.length));
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);
+
+    useEffect(() => {
+        // count active blocks based on status is true
+        const activeBlocks = blocks.filter((block) => block.status === true);
+        setActiveBlocks(parseInt(activeBlocks.length));
+
+        // count active extensions based on status is true
+        const activeExtensions = extensions.filter((extension) => extension.status === true);
+        setActiveExtensions(parseInt(activeExtensions.length));
+    }, [blocks, totalBlocks]);
 
     return (
         <div className="zolo-welcome-page-wrap">
             <div className="zolo-dash-analysis-wrap">
                 <div className="zolo-dash-analysis">
-                    {/* Total Blocks Item */}
                     <div className="zolo-dash-analysis-item zolo-dash-total-blocks">
                         <div className="zolo-dash-analysis-top-info">
-                            <h3 className="zolo-dash-analysis-item-title">{__('Total Blocks', 'zoloblocks')}</h3>
+                            <h3 className="zolo-dash-analysis-item-title">{__('Total', 'zoloblocks')}</h3>
                             <span className="zolo-dash-analysis-item-value">
-                                {__('Total', 'zoloblocks')}: <strong>250</strong> {/* Ensure this value is dynamically set if needed */}
+                                {__('Total', 'zoloblocks')}: <strong>{totalBlocks + totalExtensions}</strong>
                             </span>
                         </div>
 
                         <div className="zolo-dash-analysis-bottom-info">
                             <div className="zolo-dash-analysis-bar">
-                                <div className="zolo-dash-analysis-bar-fill" style={{ width: '50%' }}></div>{' '}
-                                {/* Ensure this width is calculated dynamically if needed */}
+                                <div
+                                    className="zolo-dash-analysis-bar-fill"
+                                    style={{ width: `${((activeBlocks + activeExtensions) / (totalBlocks + totalExtensions)) * 100}%` }}
+                                ></div>
                             </div>
 
                             <div className="zolo-dash-analysis-bottom-content">
                                 <span className="zolo-bottom-content-value used">
                                     <span className="zolo-dot"></span>
-                                    {__('Used', 'zoloblocks')}: <strong>100</strong> {/* Ensure this value is dynamically set if needed */}
+                                    {__('Used', 'zoloblocks')}: <strong>{activeBlocks + activeExtensions}</strong>
                                 </span>
                                 <span className="zolo-bottom-content-value unused">
                                     <span className="zolo-dot"></span>
-                                    {__('Unused', 'zoloblocks')}: <strong>250</strong>{' '}
-                                    {/* Ensure this value is dynamically set if needed */}
+                                    {__('Unused', 'zoloblocks')}:{' '}
+                                    <strong>{totalBlocks + totalExtensions - (activeBlocks + activeExtensions)}</strong>
                                 </span>
                             </div>
                         </div>
@@ -59,111 +80,95 @@ const Welcome = () => {
                     {/* Core Blocks Item */}
                     <div className="zolo-dash-analysis-item zolo-dash-core-blocks">
                         <div className="zolo-dash-analysis-top-info">
-                            <h3 className="zolo-dash-analysis-item-title">{__('Core', 'zoloblocks')}</h3>
+                            <h3 className="zolo-dash-analysis-item-title">{__('Core Blocks', 'zoloblocks')}</h3>
                             <span className="zolo-dash-analysis-item-value">
-                                {__('Total', 'zoloblocks')}: <strong>250</strong> {/* Ensure this value is dynamically set if needed */}
+                                {__('Total', 'zoloblocks')}: <strong>{totalBlocks}</strong>
                             </span>
                         </div>
 
                         <div className="zolo-dash-analysis-bottom-info">
                             <div className="zolo-dash-analysis-bar">
-                                <div className="zolo-dash-analysis-bar-fill" style={{ width: '40%' }}></div>{' '}
-                                {/* Ensure this width is calculated dynamically if needed */}
+                                <div
+                                    className="zolo-dash-analysis-bar-fill"
+                                    style={{ width: `${(activeBlocks / totalBlocks) * 100}%` }}
+                                ></div>
                             </div>
 
                             <div className="zolo-dash-analysis-bottom-content">
                                 <span className="zolo-bottom-content-value used">
                                     <span className="zolo-dot"></span>
-                                    {__('Used', 'zoloblocks')}: <strong>27</strong> {/* Ensure this value is dynamically set if needed */}
+                                    {__('Used', 'zoloblocks')}: <strong>{activeBlocks}</strong>
                                 </span>
                                 <span className="zolo-bottom-content-value unused">
                                     <span className="zolo-dot"></span>
-                                    {__('Unused', 'zoloblocks')}: <strong>250</strong>
-                                    {/* Ensure this value is dynamically set if needed */}
+                                    {__('Unused', 'zoloblocks')}: <strong>{totalBlocks - activeBlocks}</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Extensions */}
+                    <div className="zolo-dash-analysis-item zolo-dash-extensions">
+                        <div className="zolo-dash-analysis-top-info">
+                            <h3 className="zolo-dash-analysis-item-title">{__('Extensions', 'zoloblocks')}</h3>
+                            <span className="zolo-dash-analysis-item-value">
+                                {__('Total', 'zoloblocks')}: <strong>{totalExtensions}</strong>
+                            </span>
+                        </div>
+
+                        <div className="zolo-dash-analysis-bottom-info">
+                            <div className="zolo-dash-analysis-bar">
+                                <div
+                                    className="zolo-dash-analysis-bar-fill"
+                                    style={{ width: `${totalExtensions > 0 ? (activeExtensions / totalExtensions) * 100 : 0}%` }}
+                                ></div>
+                            </div>
+
+                            <div className="zolo-dash-analysis-bottom-content">
+                                <span className="zolo-bottom-content-value used">
+                                    <span className="zolo-dot"></span>
+                                    {__('Used', 'zoloblocks')}: <strong>{activeExtensions}</strong>
+                                </span>
+                                <span className="zolo-bottom-content-value unused">
+                                    <span className="zolo-dot"></span>
+                                    {__('Unused', 'zoloblocks')}: <strong>{totalExtensions - activeExtensions}</strong>
                                 </span>
                             </div>
                         </div>
                     </div>
 
                     {/* 3rd Party Blocks Item */}
-                    <div className="zolo-dash-analysis-item zolo-dash-tparty-blocks">
+                    {/* <div className="zolo-dash-analysis-item zolo-dash-tparty-blocks">
                         <div className="zolo-dash-analysis-top-info">
                             <h3 className="zolo-dash-analysis-item-title">{__('3rd Party', 'zoloblocks')}</h3>
                             <span className="zolo-dash-analysis-item-value">
-                                {__('Total', 'zoloblocks')}: <strong>250</strong> {/* Ensure this value is dynamically set if needed */}
+                                {__('Total', 'zoloblocks')}: <strong>250</strong>
                             </span>
                         </div>
 
                         <div className="zolo-dash-analysis-bottom-info">
                             <div className="zolo-dash-analysis-bar">
-                                <div className="zolo-dash-analysis-bar-fill" style={{ width: '20%' }}></div>{' '}
-                                {/* Ensure this width is calculated dynamically if needed */}
+                                <div className="zolo-dash-analysis-bar-fill" style={{ width: '20%' }}></div>
                             </div>
 
                             <div className="zolo-dash-analysis-bottom-content">
                                 <span className="zolo-bottom-content-value used">
                                     <span className="zolo-dot"></span>
-                                    {__('Used', 'zoloblocks')}: <strong>25</strong> {/* Ensure this value is dynamically set if needed */}
+                                    {__('Used', 'zoloblocks')}: <strong>25</strong>
                                 </span>
                                 <span className="zolo-bottom-content-value unused">
                                     <span className="zolo-dot"></span>
                                     {__('Unused', 'zoloblocks')}: <strong>250</strong>
-                                    {/* Ensure this value is dynamically set if needed */}
                                 </span>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Active Blocks Item */}
-                    <div className="zolo-dash-analysis-item zolo-dash-active-blocks">
-                        <div className="zolo-dash-analysis-top-info">
-                            <h3 className="zolo-dash-analysis-item-title">{__('Active', 'zoloblocks')}</h3>
-                            <span className="zolo-dash-analysis-item-value">
-                                {__('Total', 'zoloblocks')}: <strong>250</strong> {/* Ensure this value is dynamically set if needed */}
-                            </span>
-                            <div className="zolo-dash-analysis-bottom-content">
-                                <span className="zolo-bottom-content-value core">
-                                    <span className="zolo-dot"></span>
-                                    {__('Core', 'zoloblocks')}: <strong>25</strong>
-                                    {/* Ensure this value is dynamically set if needed */}
-                                </span>
-                                <span className="zolo-bottom-content-value tdparty">
-                                    <span className="zolo-dot"></span>
-                                    {__('3rd Party', 'zoloblocks')}: <strong>250</strong>
-                                    {/* Ensure this value is dynamically set if needed */}
-                                </span>
-                                <span className="zolo-bottom-content-value extensions">
-                                    <span className="zolo-dot"></span>
-                                    {__('Extensions', 'zoloblocks')}: <strong>250</strong>
-                                    {/* Ensure this value is dynamically set if needed */}
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="zolo-dash-analysis-circle">
-                            <div className="zolo-pieContainer">
-                                <div className="zolo-pieBackground"></div>
-                                <div id="core" className="zolo-hold">
-                                    <div className="zolo-pie"></div>
-                                </div>
-                                <div id="tparty" className="zolo-hold">
-                                    <div className="zolo-pie"></div>
-                                </div>
-                                <div id="extensions" className="zolo-hold">
-                                    <div className="zolo-pie"></div>
-                                </div>
-                                <div className="zolo-innerCircle">
-                                    {/* <div class="content"><b>Data</b><br>from 16<sup>th</sup> April, 2014</div> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
             <div className="zolo-welcome-video-and-others-wrap">
                 <VideoSection
-                    title="Welcome to Zoloblocks"
+                    title={__('Welcome to Zoloblocks', 'zoloblocks')}
                     description={
                         <>
                             You now have the power to dominate in Gutenberg and show-off your web design skills! No experience needed, no
@@ -183,18 +188,6 @@ const Welcome = () => {
                         title: 'Zoloblocks Features Walkthrough - Get a Glance at the Features | BdThemes',
                         thumbnail: 'https://img.youtube.com/vi/jX4sIXG-9fo/maxresdefault.jpg',
                     }}
-                    // buttons={[
-                    //     {
-                    //         text: 'More Videos',
-                    //         link: '#',
-                    //         type: 'primary',
-                    //     },
-                    //     {
-                    //         text: 'Visit Our Website',
-                    //         link: 'https://zoloblocks.com',
-                    //         type: 'secondary',
-                    //     },
-                    // ]}
                 />
 
                 <div className="zolo-welcome-s-k-wrap zolo-system-req-wrap">

@@ -1,10 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -59,9 +59,9 @@ export default function Edit(props) {
                                     : ''
                             }`
                         )}
-                        href={link && link.url}
-                        rel={link && link.openInNewTab && 'noreferrer noopener'}
-                        target={link && link.openInNewTab && '_blank'}
+                        href={link?.url ? link.url : '#'}
+                        {...(link?.openInNewTab && { rel: 'noreferrer noopener' })}
+                        {...(link?.openInNewTab && { target: '_blank' })}
                         title={label}
                     >
                         {iconType !== 'iconOnly' && (

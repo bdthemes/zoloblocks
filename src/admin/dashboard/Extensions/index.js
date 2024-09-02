@@ -1,31 +1,32 @@
-import { useState, useEffect, useCallback } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import SingleBlock from './single-block';
 import extensions from './extensions.json';
-import categories from './categories';
+import SingleBlock from './single-block';
 
-import Notice from '../notice';
 import { applyFilters } from '@wordpress/hooks';
-
-let zoloExtensionsInitStatus;
-apiFetch({
-    path: '/wp/v2/settings',
-    method: 'GET',
-})
-    .then((response) => {
-        const { zolo_extensions_settings } = response;
-        zoloExtensionsInitStatus = zolo_extensions_settings;
-    })
-    .catch((error) => console.error('API Fetch Error:', error));
+import Notice from '../notice';
 
 const Extensions = () => {
     const [blockStates, setBlockStates] = useState([]);
-    const [blockStatus, setBlockStatus] = useState(zoloExtensionsInitStatus || []);
+    const [blockStatus, setBlockStatus] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
+
+    // set initial extension status
+    useEffect(() => {
+        apiFetch({
+            path: '/wp/v2/settings',
+            method: 'GET',
+        })
+            .then((response) => {
+                const { zolo_extensions_settings } = response;
+                setBlockStatus(zolo_extensions_settings);
+            })
+            .catch((error) => console.error('API Fetch Error:', error));
+    }, []);
 
     // set notice to false after 3 seconds
     useEffect(() => {
@@ -73,51 +74,51 @@ const Extensions = () => {
         [blockStatus]
     );
 
-    // update block setting for all
-    const updateStatusForCategory = useCallback(
-        (status, category) => {
-            const blocksToUpdate = blockStatus.map((blockState) => {
-                if (category === 'all') {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-                if (category === 'others') {
-                    if (
-                        blockState.categories.some((category) =>
-                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                        )
-                    ) {
-                        return blockState;
-                    }
-                }
+    // activate all extensions
+    const activateAllExtensions = (status) => {
+        const blocksToUpdate = blockStatus.map((blockState) => {
+            return {
+                ...blockState,
+                status,
+            };
+        });
 
-                if (blockState.categories.some((cat) => cat === category)) {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-
-                return blockState;
-            });
-
-            apiFetch({
-                path: '/wp/v2/settings',
-                method: 'POST',
-                data: {
-                    zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_extensions_settings: blocksToUpdate,
-                },
+        apiFetch({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks.zolo_nonce,
+                zolo_extensions_settings: blocksToUpdate,
+            },
+        })
+            .then((response) => {
+                setBlockStatus(response.zolo_extensions_settings);
             })
-                .then((response) => {
-                    setBlockStatus(response.zolo_extensions_settings);
-                })
-                .catch((error) => console.error('API Fetch Error:', error));
-        },
-        [blockStatus]
-    );
+            .catch((error) => console.error('API Fetch Error:', error));
+    };
+
+    // deactivate all extensions
+    const deactivateAllExtensions = (status) => {
+        const blocksToUpdate = blockStatus.map((blockState) => {
+            return {
+                ...blockState,
+                status,
+            };
+        });
+
+        apiFetch({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks.zolo_nonce,
+                zolo_extensions_settings: blocksToUpdate,
+            },
+        })
+            .then((response) => {
+                setBlockStatus(response.zolo_extensions_settings);
+            })
+            .catch((error) => console.error('API Fetch Error:', error));
+    };
 
     return (
         <>
@@ -175,7 +176,7 @@ const Extensions = () => {
                         <button
                             className="zolo-activated-btn"
                             onClick={() => {
-                                updateStatusForCategory(true, blockCategory);
+                                activateAllExtensions(true);
                                 setNotice(true);
                             }}
                         >
@@ -184,7 +185,7 @@ const Extensions = () => {
                         <button
                             className="zolo-deactivated-btn"
                             onClick={() => {
-                                updateStatusForCategory(false, blockCategory);
+                                deactivateAllExtensions(false);
                                 setNotice(true);
                             }}
                         >
@@ -192,56 +193,10 @@ const Extensions = () => {
                         </button>
                     </div>
                 </div>
-                <div className="blocks-filter-buttons">
-                    {categories &&
-                        categories.map((category, index) => {
-                            const totalBlocks = blockStates.filter((blockState) => {
-                                if (category.value === 'all') {
-                                    return true;
-                                }
-                                // calculate total blocks for others category (exclude slider, list, gallery, social, review)
-                                if (category.value === 'others') {
-                                    return !blockState.categories.some((category) =>
-                                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                                    );
-                                }
-                                return blockState.categories.some((cat) => cat === category.value);
-                            }).length;
-
-                            return (
-                                <button
-                                    key={index}
-                                    className={blockCategory === category.value ? 'filter-btn active' : 'filter-btn'}
-                                    onClick={() => setCategory(category.value)}
-                                >
-                                    <span className="zolo-category-wrap">
-                                        {category.icon && <span className="category-icon">{category.icon}</span>}
-                                        <span>{__(category.title, 'zoloblocks')}</span>
-                                    </span>
-                                    <span className="total-blocks">{totalBlocks}</span>
-                                </button>
-                            );
-                        })}
-                </div>
-                {/* <div className="zolo-sidebar-and-blocks-wrap"> */}
-
                 <div className="zoloblocks-grid">
                     <div className="zoloblocks-inner-grid">
                         {blockStates &&
                             blockStates
-                                .filter((blockState) => {
-                                    if (blockCategory === 'all') {
-                                        return true;
-                                    }
-
-                                    if (blockCategory === 'others') {
-                                        return !blockState.categories.some((category) =>
-                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                                        );
-                                    }
-
-                                    return blockState.categories.some((category) => category === blockCategory);
-                                })
                                 .filter((blockState) => {
                                     if (search === '') {
                                         return true;
@@ -278,26 +233,12 @@ const Extensions = () => {
                     {
                         // check if no block found on search
                         blockStates.length > 0 &&
-                            blockStates
-                                .filter((blockState) => {
-                                    if (blockCategory === 'all') {
-                                        return true;
-                                    }
-
-                                    if (blockCategory === 'others') {
-                                        return !blockState.categories.some((category) =>
-                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                                        );
-                                    }
-
-                                    return blockState.categories.some((category) => category === blockCategory);
-                                })
-                                .filter((blockState) => {
-                                    if (search === '') {
-                                        return true;
-                                    }
-                                    return blockState.title.toLowerCase().includes(search.toLowerCase());
-                                }).length === 0 && (
+                            blockStates.filter((blockState) => {
+                                if (search === '') {
+                                    return true;
+                                }
+                                return blockState.title.toLowerCase().includes(search.toLowerCase());
+                            }).length === 0 && (
                                 <div className="zolo-no-block-found">
                                     <img src={zoloBlocks.oops} alt="no zoloblocks found" />
 
@@ -328,7 +269,6 @@ const Extensions = () => {
                             )
                     }
                 </div>
-                {/* </div> */}
             </div>
         </>
     );

@@ -128,7 +128,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
                 );
 
                 wp_enqueue_script('particles-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/frontend/index.js', ['particles-js'], ZOLO_VERSION, true);
-                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
+                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style-index.css', [], ZOLO_VERSION);
             }
 
             // form validation
@@ -222,36 +222,6 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
                 return;
             }
 
-            // dist for all blocks
-            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
-            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
-                'dependencies' => [],
-                'version'      => ZOLO_VERSION
-            ];
-
-            wp_enqueue_script(
-                'zolo-block-editor-script',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/index.js',
-                $script_dependecy['dependencies'],
-                $script_dependecy['version'],
-                true
-            );
-
-            // editor vendor bundle
-            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-editor-bundle/index.asset.php';
-            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
-                'dependencies' => [],
-                'version'      => ZOLO_VERSION
-            ];
-
-            wp_enqueue_script(
-                'zolo-block-editor-dependency',
-                trailingslashit(ZOLO_ADMIN_URL) . 'vendor-editor-bundle/index.js',
-                $script_dependecy['dependencies'],
-                $script_dependecy['version'],
-                false
-            );
-
             // editor override css
             wp_enqueue_style(
                 'zolo-block-editor-override-style',
@@ -286,7 +256,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
                     ZOLO_VERSION,
                     true
                 );
-                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style.css', [], ZOLO_VERSION);
+                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style-index.css', [], ZOLO_VERSION);
 
                 // import shape divider
                 $import_particles_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/particles/index.asset.php';
