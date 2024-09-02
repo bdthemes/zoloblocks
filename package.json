@@ -30,16 +30,9 @@
         "@dnd-kit/utilities": "^3.2.2",
         "@uiw/react-codemirror": "^4.21.24",
         "@vis.gl/react-google-maps": "^0.9.0",
-<<<<<<< HEAD
         "@wordpress/editor": "^14.4.0",
         "@wordpress/plugins": "^7.4.0",
         "@wordpress/server-side-render": "^5.4.0",
-=======
-        "@wordpress/editor": "^14.2.0",
-        "@wordpress/plugins": "^7.2.0",
-        "@wordpress/server-side-render": "^4.30.0",
-        "acorn-import-assertions": "^1.9.0",
->>>>>>> main
         "apexcharts": "^3.41.0",
         "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
