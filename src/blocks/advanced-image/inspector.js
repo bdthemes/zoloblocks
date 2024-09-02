@@ -130,7 +130,9 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Image', 'zoloblocks')}>
+                            <BaseControl label={__('Image', 'zoloblocks')}
+                                className='zolo-flex-col-control'
+                            >
                                 {photo ? (
                                     <ImageAvatar
                                         imageUrl={photo && photo.url}
@@ -184,7 +186,9 @@ function Inspector(props) {
                             />
 
                             {layout === 'overlay' && (
-                                <BaseControl label={__('Content Position', 'zoloblocks')}>
+                                <BaseControl label={__('Content Position', 'zoloblocks')}
+                                    className='zolo-flex-col-control'
+                                >
                                     <AlignmentMatrixControl
                                         value={ocPosition}
                                         onChange={(v) => {
@@ -205,7 +209,7 @@ function Inspector(props) {
                                 }
                             />
                             <TextControl label={__('Alt Text', 'zoloblocks')} onChange={(v) => setAttributes({ imgAlt: v })} value={imgAlt } placeholder={__('Enter alt text', 'zoloblocks')} />
-                            <LinkControl label={__('Image Link', 'zoloblocks')} value={link} onChange={(value) => setAttributes({ link: value })} />
+                            <LinkControl label={__('Link', 'zoloblocks')} value={link} onChange={(value) => setAttributes({ link: value })} />
                             {layout === 'normal' && <ToggleControl label={__('Enable Caption', 'zoloblocks')} checked={showCaption} onChange={() => setAttributes({ showCaption: !showCaption })} />}
                         </ZoloPanelBody>
                         {layout === 'normal' && showCaption && (
@@ -249,16 +253,18 @@ function Inspector(props) {
                                     />
                                 </ZoloPanelBody>
                                 <ZoloPanelBody title={__('Description', 'zoloblocks')} panelProps={props}>
-                                    <TextareaControl
-                                        label={__('Text', 'zoloblocks')}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                description: v,
-                                            })
-                                        }
-                                        value={description}
-                                        placeholder={__('description text..', 'zoloblocks')}
-                                    />
+                                    <div className='zolo-flex-col-control'>
+                                        <TextareaControl
+                                            label={__('Text', 'zoloblocks')}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    description: v,
+                                                })
+                                            }
+                                            value={description}
+                                            placeholder={__('description text..', 'zoloblocks')}
+                                        />
+                                    </div>
                                     <IconicBtnGroup
                                         label={__('Visible On', 'zoloblocks')}
                                         value={descriptionVisibleOn}

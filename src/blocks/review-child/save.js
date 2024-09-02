@@ -1,8 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr } = window.zoloModule;
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         preset,
@@ -21,20 +23,29 @@ const Save = ({ attributes }) => {
         rating,
         zoloId,
         imageRes,
-        presetFourLayout
+        presetFourLayout,
     } = attributes;
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(uniqueId, 'swiper-slide',`${preset ? preset : ''}`, classArrayToStr(parentClasses), `${
-                    preset === 'style-3' ? presetFourLayout : ''
-                }`),
+                className: classnames(
+                    uniqueId,
+                    'swiper-slide',
+                    `${preset ? preset : ''}`,
+                    classArrayToStr(parentClasses),
+                    `${preset === 'style-3' ? presetFourLayout : ''}`
+                ),
             })}
             {...(zoloId && {
                 id: zoloId,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div className="zolo-item">
                 <div className="zolo-review-img-meta-wrap">
                     {showPhoto && (
@@ -69,18 +80,17 @@ const Save = ({ attributes }) => {
                                 </div>
                             ))}
 
-                            {showDesignation && preset !== 'style-3' && (
-                                <div className="zolo-designation">
-                                    <RichText.Content value={memberDesignation} />
-                                </div>
-                            )}
+                        {showDesignation && preset !== 'style-3' && (
+                            <div className="zolo-designation">
+                                <RichText.Content value={memberDesignation} />
+                            </div>
+                        )}
 
-                            {showRating && preset === 'style-3' && (
-                                <div className="zolo-review-icon">
-                                    <div className="zolo-rating-child" data-rating={rating}></div>
-                                </div>
-                            )}
-
+                        {showRating && preset === 'style-3' && (
+                            <div className="zolo-review-icon">
+                                <div className="zolo-rating-child" data-rating={rating}></div>
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -100,6 +110,7 @@ const Save = ({ attributes }) => {
                     </div>
                 </div>
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

@@ -357,7 +357,9 @@ function Inspector(props) {
 
                                     {iconType === 'image' && (
                                         <>
-                                            <BaseControl label={__('Image', 'zoloblocks')}>
+                                            <BaseControl label={__('Image', 'zoloblocks')}
+                                                className='zolo-flex-col-control'
+                                            >
                                                 {iconTypeImage ? (
                                                     <ImageAvatar
                                                         imageUrl={iconTypeImage && iconTypeImage.url}
@@ -434,16 +436,19 @@ function Inspector(props) {
                                 value={iconBoxTitle}
                                 placeholder={__('Title Goes Here..', 'zoloblocks')}
                             />
-                            <TextareaControl
-                                label={__('Description', 'zoloblocks')}
-                                value={iconBoxDescription}
-                                onChange={(desc) =>
-                                    setAttributes({
-                                        iconBoxDescription: desc,
-                                    })
-                                }
-                                placeholder={__('Description goes here..', 'zoloblocks')}
-                            />
+                            
+                            <div className='zolo-flex-col-control'>
+                                <TextareaControl
+                                    label={__('Description', 'zoloblocks')}
+                                    value={iconBoxDescription}
+                                    onChange={(desc) =>
+                                        setAttributes({
+                                            iconBoxDescription: desc,
+                                        })
+                                    }
+                                    placeholder={__('Description goes here..', 'zoloblocks')}
+                                />
+                            </div>
 
                             {showButton && showButtonText && (
                                 <>
@@ -461,7 +466,7 @@ function Inspector(props) {
                             )}
                             {showButton || globalLink ? (
                                 <LinkControl
-                                    label={__('Link URL', 'zoloblocks')}
+                                    label={__('URL', 'zoloblocks')}
                                     value={buttonLink}
                                     onChange={(value) =>
                                         setAttributes({

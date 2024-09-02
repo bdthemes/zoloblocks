@@ -60,13 +60,15 @@ function Inspector(props) {
                                 value={progressText}
                                 onChange={(v) => setAttributes({ progressText: v })}
                             />
-                            <RangeControl
-                                label={__('Progress Percentage', 'zoloblocks')}
-                                value={progressH}
-                                onChange={(v) => setAttributes({ progressH: v })}
-                                min={0}
-                                max={100}
-                            />
+                            <div className='zolo-flex-col-control'>
+                                <RangeControl
+                                    label={__('Progress Percentage', 'zoloblocks')}
+                                    value={progressH}
+                                    onChange={(v) => setAttributes({ progressH: v })}
+                                    min={0}
+                                    max={100}
+                                />
+                            </div>
                         </ZoloPanelBody>
                     </>
                 }

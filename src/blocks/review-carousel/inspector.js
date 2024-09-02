@@ -58,6 +58,7 @@ import {
     RCONTAINER_BRADIUS,
     RCONTAINER_BSHADOW,
     RCONTAINER_PADDING,
+    SHADOW_RANGE,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -101,7 +102,6 @@ function Inspector(props) {
         activeRatingColor,
         inactiveRatingColor,
         carouselEffect,
-
         coverFlowEffect,
         infiniteLoop,
         autoplay,
@@ -120,6 +120,7 @@ function Inspector(props) {
         navHoverBg,
         navWidth,
     } = attributes;
+
 
     const requiredProps = {
         resMode,
@@ -148,6 +149,8 @@ function Inspector(props) {
         //return true or false
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, slideShadows } });
     };
+
+    const shadowFeature = applyFilters('zolo.blocks.controls.reviewCarousel.shadow', [], props, 'zolo/review-carousel');
 
     return (
         <InspectorControls key="controls">
@@ -218,6 +221,20 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
+                            {/* pro controls goes here */}
+                            {shadowFeature && shadowFeature.length > 0 && shadowFeature}
+                            {attributes?.enableShadow && (
+                                <ResRangeControl
+                                    label={__('Shadow Range', 'zoloblocks')}
+                                    controlName={SHADOW_RANGE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={1000}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Carousel Options', 'zoloblocks')} panelProps={props}>
                             <SelectControl
@@ -247,6 +264,7 @@ function Inspector(props) {
                                 noUnits={true}
                             />
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Speed', 'zoloblocks')}
                                 value={speed}
                                 onChange={(v) =>
@@ -256,7 +274,7 @@ function Inspector(props) {
                                 }
                                 min={1}
                                 max={100}
-                                help={__('Speed: ', 'zoloblocks') + speed * 100 + 'ms'}
+                                help={__('Speed:', 'zoloblocks') + speed * 100 + 'ms'}
                             />
                             {carouselEffect === 'coverflow' && (
                                 <>
@@ -314,6 +332,7 @@ function Inspector(props) {
                             {autoplay && (
                                 <Fragment>
                                     <RangeControl
+                                        className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>
@@ -323,7 +342,7 @@ function Inspector(props) {
                                         }
                                         min={1}
                                         max={100}
-                                        help={__('Autoplay Dealy: ', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
                                     />
                                     <ToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}

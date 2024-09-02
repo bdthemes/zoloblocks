@@ -207,25 +207,27 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {imageToggle && (
                             <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
-                                <IconicBtnGroup
-                                    label={__('Media Type', 'zoloblocks')}
-                                    value={mediaType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            mediaType: value,
-                                        })
-                                    }
-                                    options={[
-                                        {
-                                            label: __('Text', 'zoloblocks'),
-                                            value: 'text',
-                                        },
-                                        {
-                                            label: __('Image', 'zoloblocks'),
-                                            value: 'image',
-                                        },
-                                    ]}
-                                />
+                                <div className='zolo-flex-row-control-tab'>
+                                    <IconicBtnGroup
+                                        label={__('Type', 'zoloblocks')}
+                                        value={mediaType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                mediaType: value,
+                                            })
+                                        }
+                                        options={[
+                                            {
+                                                label: __('Text', 'zoloblocks'),
+                                                value: 'text',
+                                            },
+                                            {
+                                                label: __('Image', 'zoloblocks'),
+                                                value: 'image',
+                                            },
+                                        ]}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
                     </Fragment>

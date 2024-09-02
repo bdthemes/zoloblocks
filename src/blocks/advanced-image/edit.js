@@ -5,6 +5,7 @@ import { useBlockProps, InnerBlocks, RichText, MediaPlaceholder, MediaUpload, Bl
 import { Button, ToolbarButton, ToolbarGroup, ResizableBox } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * External dependencies
@@ -57,6 +58,9 @@ export default function Edit(props) {
         photoMaskImage,
     } = attributes;
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -110,6 +114,7 @@ export default function Edit(props) {
                 </BlockControls>
             )}
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 {photo ? (
                     <DynamicTag
@@ -239,6 +244,7 @@ export default function Edit(props) {
                         />
                     </div>
                 )}
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

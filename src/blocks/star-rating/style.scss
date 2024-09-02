@@ -8,7 +8,7 @@
     --zolo-icon-img-radius: 6px;
     --zolo-icon-size: 26px;
     --zolo-icon-color: #1e7bff;
-    
+
     .start-rating-wrapper {
         display: flex;
     }
@@ -23,10 +23,10 @@
             flex-direction: column-reverse;
         }
         &.left {
-            flex-direction: row;
+            flex-direction: column;
         }
         &.right {
-            flex-direction: row-reverse;
+            flex-direction: column-reverse;
         }
     }
 
@@ -64,5 +64,17 @@
             display: block;
         }
     }
+}
 
+@media (min-width: 768px) {
+    .wp-block-zolo-star-rating {
+        .star-rating-inner {
+            &.left {
+                flex-direction: row;
+            }
+            &.right {
+                flex-direction: row-reverse;
+            }
+        }
+    }
 }

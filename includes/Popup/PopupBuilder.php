@@ -18,7 +18,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
     class PopupBuilder {
 
         use SingletonTrait;
-        
+
         /**
          * Constructor
          *
@@ -36,7 +36,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
             add_action('wp_head', [$this, 'load_popup_builder']);
             add_filter('allowed_block_types_all', [$this, 'handle_popup_block_visibility'], 10, 2);
         }
-    
+
         /**
          * Handle popup block visibility
          *
@@ -48,17 +48,17 @@ if( ! class_exists( 'PopupBuilder' ) ) {
             if ($editor_context->post->post_type !== 'zolo-popup') {
                 $all_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
                 $allowed_blocks = array_keys($all_blocks);
-    
+
                 if (in_array('zolo/popup-builder', $allowed_blocks)) {
                     $allowed_blocks = array_diff($allowed_blocks, ['zolo/popup-builder']);
                 }
-    
+
                 $allowed_block_types = array_values($allowed_blocks);
             }
-    
+
             return $allowed_block_types;
         }
-    
+
         /**
          * Register Zolo Popup post type
          *
@@ -81,7 +81,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 'not_found'          => __('No popups found.', 'zoloblocks'),
                 'not_found_in_trash' => __('No popups found in Trash.', 'zoloblocks'),
             ];
-    
+
             $args = [
                 'labels'             => $labels,
                 'description'        => __('Description.', 'zoloblocks'),
@@ -101,37 +101,37 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 'supports'           => ['title', 'editor', 'author', 'custom-fields'],
                 'menu_icon'          => 'dashicons-admin-page'
             ];
-    
+
             register_post_type('zolo-popup', $args);
-    
+
             // Register Popup meta fields
             register_post_meta('zolo-popup', 'zolo_popup_id', [
                 'show_in_rest' => true,
                 'single'       => true,
                 'type'         => 'string',
             ]);
-    
+
             register_post_meta('zolo-popup', 'zolo_popup_trigger', [
                 'show_in_rest' => true,
                 'single'       => true,
                 'type'         => 'string',
                 'default'      => 'onload'
             ]);
-    
+
             register_post_meta('zolo-popup', 'zolo_popup_enable_disable', [
                 'show_in_rest' => true,
                 'single'       => true,
                 'type'         => 'boolean',
                 'default'      => true
             ]);
-    
+
             register_post_meta('zolo-popup', 'zolo_popup_infinite_repeat', [
                 'show_in_rest' => true,
                 'single'       => true,
                 'type'         => 'boolean',
                 'default'      => true
             ]);
-    
+
             register_post_meta('zolo-popup', 'zolo_popup_repeat_num', [
                 'show_in_rest' => true,
                 'single'       => true,
@@ -139,7 +139,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 'default'      => 1
             ]);
         }
-    
+
         /**
          * Cookie for popup
          *
@@ -151,27 +151,27 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 'post_status'    => 'publish',
                 'posts_per_page' => -1,
             ];
-    
+
             $popups = new \WP_Query($args);
-    
+
             if ($popups->have_posts()) {
                 while ($popups->have_posts()) {
                     $popups->the_post();
-    
+
                     $popup_id = get_post_meta(get_the_ID(), 'zolo_popup_id', true);
                     $repeat_num = get_post_meta(get_the_ID(), 'zolo_popup_repeat_num', true);
                     $infinite_repeat = get_post_meta(get_the_ID(), 'zolo_popup_infinite_repeat', true);
-    
+
                     if ($infinite_repeat) {
                         $repeat_num = -1;
                     } else {
                         $repeat_num = intval($repeat_num);
                     }
-    
+
                     // Check the cookie for this popup
                     $cookie_name = 'zp_' . $popup_id;
                     $cookie_value = isset($_COOKIE[$cookie_name]) ? intval($_COOKIE[$cookie_name]) : 0;
-    
+
                     // Only increase the cookie value if it hasn't reached the maximum number of times
                     if ($cookie_value < $repeat_num || $repeat_num === -1) {
                         if ($repeat_num !== -1) {
@@ -180,10 +180,10 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                     }
                 }
             }
-    
+
             wp_reset_postdata();
         }
-    
+
         /**
          * Set custom columns for Zolo Popup
          *
@@ -195,10 +195,10 @@ if( ! class_exists( 'PopupBuilder' ) ) {
             $columns['zolo_popup_trigger'] = __('Trigger', 'zoloblocks');
             $columns['zolo_popup_enable_disable'] = __('Status', 'zoloblocks');
             $columns['date'] = __('Date', 'zoloblocks');
-    
+
             return $columns;
         }
-    
+
         /**
          * Custom Zolo Popup column
          *
@@ -211,7 +211,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 $trigger = get_post_meta($post_id, 'zolo_popup_trigger', true);
                 echo esc_html($trigger);
             }
-    
+
             if ('zolo_popup_enable_disable' === $column) {
                 $status = get_post_meta($post_id, 'zolo_popup_enable_disable', true) ? 'checked' : '';
                 $checked = $status ? 'switch-on' : 'switch-off';
@@ -220,7 +220,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 echo '</div>';
             }
         }
-    
+
         /**
          * Update Popup Status
          *
@@ -228,28 +228,28 @@ if( ! class_exists( 'PopupBuilder' ) ) {
          */
         public function update_popup_status() {
             check_ajax_referer('zolo-nonce', 'nonce');
-    
+
             if (empty($_POST['post_id'])) {
                 wp_send_json([
                     'status'  => 'error',
                     'message' => __('Post ID is missing!', 'zoloblocks'),
                 ]);
             }
-    
+
             $post_id = absint($_POST['post_id']);
             $status = get_post_meta($post_id, 'zolo_popup_enable_disable', true);
-    
+
             $status = $status ? false : true;
-    
+
             update_post_meta($post_id, 'zolo_popup_enable_disable', $status);
-    
+
             wp_send_json([
                 'status'    => 'success',
                 'message'   => __('Popup status updated!', 'zoloblocks'),
                 'new_value' => $status
             ]);
         }
-    
+
         /**
          * Load Editor assets
          *
@@ -261,10 +261,10 @@ if( ! class_exists( 'PopupBuilder' ) ) {
             if ('zolo-popup' !== $current_post_type) {
                 return;
             }
-    
+
             wp_enqueue_script('zolo-popup-builder-ajax', trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/assets/js/popup-builder.js', ['jquery'], ZOLO_VERSION, true);
             wp_enqueue_style('zolo-popup-builder-css', trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/assets/css/popup-builder.css', [], ZOLO_VERSION, 'all');
-    
+
             wp_localize_script(
                 'zolo-popup-builder-ajax',
                 'zoloPopup',
@@ -274,7 +274,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 ]
             );
         }
-    
+
         /**
          * Load Popup Builder
          *
@@ -286,40 +286,40 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                 'post_status'    => 'publish',
                 'posts_per_page' => -1,
             ];
-    
+
             $popups = new \WP_Query($args);
-    
+
             if ($popups->have_posts()) {
                 while ($popups->have_posts()) {
                     $popups->the_post();
-    
+
                     $meta_keys = [
                         'zolo_popup_id', 'zolo_popup_trigger', 'zolo_popup_enable_disable', 'zolo_popup_infinite_repeat', 'zolo_popup_repeat_num'
                     ];
-    
+
                     $popup_meta = [];
                     foreach ($meta_keys as $key) {
                         $popup_meta[$key] = get_post_meta(get_the_ID(), $key, true);
                     }
-    
+
                     $cookie_name = 'zp_' . $popup_meta['zolo_popup_id'];
                     $cookie_value = isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : 0;
-    
+
                     if ($popup_meta['zolo_popup_enable_disable']) {
                         $block_content = get_the_content();
                         $blocks = parse_blocks($block_content);
                         $styles = $this->process_blocks_recursively($blocks);
-    
+
                         if (!empty($styles)) {
                             $this->enqueue_popup_styles($styles);
                         }
-    
+
                         if ($popup_meta['zolo_popup_infinite_repeat']) {
                             $popup_meta['zolo_popup_repeat_num'] = -1;
                         } else {
                             $popup_meta['zolo_popup_repeat_num'] = intval($popup_meta['zolo_popup_repeat_num']);
                         }
-    
+
                         if ($popup_meta['zolo_popup_repeat_num'] === -1 || intval($cookie_value) < intval($popup_meta['zolo_popup_repeat_num'])) {
                             if ('onload' === $popup_meta['zolo_popup_trigger']) {
                                 the_content();
@@ -328,10 +328,10 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                     }
                 }
             }
-    
+
             wp_reset_postdata();
         }
-    
+
         /**
          * Process blocks recursively
          *
@@ -340,20 +340,20 @@ if( ! class_exists( 'PopupBuilder' ) ) {
          */
         private function process_blocks_recursively($blocks) {
             $styles = '';
-    
+
             foreach ($blocks as $block) {
                 if (isset($block['attrs']['zoloStyles'])) {
                     $styles .= ZoloHelpers::zolo_generate_style($block['attrs']['zoloStyles']);
                 }
-    
+
                 if (isset($block['innerBlocks']) && !empty($block['innerBlocks'])) {
                     $styles .= $this->process_blocks_recursively($block['innerBlocks']);
                 }
             }
-    
+
             return $styles;
         }
-    
+
         /**
          * Enqueue Popup Styles
          *

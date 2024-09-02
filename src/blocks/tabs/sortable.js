@@ -23,7 +23,6 @@ const Sortable = ({
     setActiveTabId,
     addNewTabStatus,
 }) => {
-
     const deepCloneTitles = cloneDeep(tabTitles);
 
     // add new tab
@@ -135,6 +134,7 @@ const Sortable = ({
                                         />
                                         {tab.hasDescription && (
                                             <TextareaControl
+                                                className="zolo-flex-col-control"
                                                 label={__('Description', 'zoloblocks')}
                                                 value={tab.description}
                                                 onChange={(v) => {

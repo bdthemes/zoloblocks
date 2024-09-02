@@ -71,16 +71,19 @@ function Inspector(props) {
                                 options={applyFilters('zolo.presets.TextPath', PATH_OPTION)}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
-                            <SimpleRangeControl
-                                label={__('Staring Points', 'zoloblocks')}
-                                onChange={(v) => setAttributes({ textPathSpoint: v })}
-                                value={textPathSpoint}
-                                onReset={() => setAttributes({ textPathSpoint: '' })}
-                                min={1}
-                                max={100}
-                                step={1}
-                                noUnits={true}
-                            />
+
+                            <div className="zolo-flex-col-control">
+                                <SimpleRangeControl
+                                    label={__('Staring Points', 'zoloblocks')}
+                                    onChange={(v) => setAttributes({ textPathSpoint: v })}
+                                    value={textPathSpoint}
+                                    onReset={() => setAttributes({ textPathSpoint: '' })}
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            </div>
                             <LinkControl
                                 label={__('URL', 'zoloblocks')}
                                 value={pathlink}
@@ -111,27 +114,31 @@ function Inspector(props) {
                                 max={1000}
                                 step={1}
                             />
+                            <div className="zolo-flex-col-control">
+                                <SimpleRangeControl
+                                    label={__('Rotate', 'zoloblocks')}
+                                    onChange={(v) => setAttributes({ textpathRotate: v })}
+                                    value={textpathRotate}
+                                    onReset={() => setAttributes({ textpathRotate: '' })}
+                                    min={1}
+                                    max={360}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            </div>
 
-                            <SimpleRangeControl
-                                label={__('Rotate', 'zoloblocks')}
-                                onChange={(v) => setAttributes({ textpathRotate: v })}
-                                value={textpathRotate}
-                                onReset={() => setAttributes({ textpathRotate: '' })}
-                                min={1}
-                                max={360}
-                                step={1}
-                                noUnits={true}
-                            />
-                            <SimpleRangeControl
-                                label={__('Text Length', 'zoloblocks')}
-                                onChange={(v) => setAttributes({ textpathLength: v })}
-                                value={textpathLength}
-                                onReset={() => setAttributes({ textpathLength: '' })}
-                                min={1}
-                                max={1000}
-                                step={1}
-                                noUnits={true}
-                            />
+                            <div className="zolo-flex-col-control">
+                                <SimpleRangeControl
+                                    label={__('Text Length', 'zoloblocks')}
+                                    onChange={(v) => setAttributes({ textpathLength: v })}
+                                    value={textpathLength}
+                                    onReset={() => setAttributes({ textpathLength: '' })}
+                                    min={1}
+                                    max={1000}
+                                    step={1}
+                                    noUnits={true}
+                                />
+                            </div>
 
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}

@@ -5,7 +5,7 @@ import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-edit
 
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 
 /**
@@ -28,7 +28,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset, layoutType),
     });
-
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     // column count
     const {
         desktopRangeStyle: deskColumns,
@@ -101,6 +103,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <InnerBlocks
                     allowedBlocks={['zolo/review-child']}
@@ -157,6 +160,7 @@ export default function Edit(props) {
                         {__('Add Review', 'zoloblocks')}
                     </button>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

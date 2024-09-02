@@ -4,38 +4,56 @@
  * Deactivate Feedback File
  */
 
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if (!function_exists('dci_deactivate_feedback')) {
-	function dci_deactivate_feedback($data) {
-		$api_endpoint = isset($data['api_endpoint']) ? $data['api_endpoint'] : false;
-		$public_key   = isset($data['public_key']) ? $data['public_key'] : false;
-		$product_id   = isset($data['product_id']) ? $data['product_id'] : false;
-		$dci_name     = isset($data['name']) ? $data['name'] : '';
-		$nonce        = isset($data['nonce']) ? $data['nonce'] : '';
-		$slug         = isset($data['slug']) ? $data['slug'] : '';
+if ( ! function_exists( 'dci_deactivate_feedback' ) ) {
+	function dci_deactivate_feedback( $data ) {
+		$api_endpoint = isset( $data['api_endpoint'] ) ? $data['api_endpoint'] : false;
+		$public_key   = isset( $data['public_key'] ) ? $data['public_key'] : false;
+		$product_id   = isset( $data['product_id'] ) ? $data['product_id'] : false;
+		$dci_name     = isset( $data['name'] ) ? $data['name'] : '';
+		$nonce        = isset( $data['nonce'] ) ? $data['nonce'] : '';
+		$slug         = isset( $data['slug'] ) ? $data['slug'] : '';
+
+		/**
+		 * If Core file name not match with Slug
+		 */
+		$core_file = $slug;
+
+		if ( false !== $data['core_file'] ) {
+			$core_file = $data['core_file'];
+		}
 
 		$deactivate_url = wp_nonce_url(
-			admin_url('plugins.php?action=deactivate&plugin=' . $slug . '/' . $slug . '.php'),
-			'deactivate-plugin_' . $slug . '/' . $slug . '.php'
+			admin_url( 'plugins.php?action=deactivate&plugin=' . $slug . '/' . $core_file . '.php' ),
+			'deactivate-plugin_' . $slug . '/' . $core_file . '.php'
 		);
 
-		$plugin_page_url = admin_url('plugins.php');
+		$plugin_page_url = admin_url( 'plugins.php' );
 
-?>
-		<div class="dci-feedback-wrapper" id="<?php echo esc_attr($slug); ?>" style="display:none;">
+		/**
+		 * If deactivate id not match with Slug
+		 */
+		$plugin_deactivate_id = $slug;
+
+		if ( false !== $data['plugin_deactivate_id'] ) {
+			$plugin_deactivate_id = $data['plugin_deactivate_id'];
+		}
+
+		?>
+		<div class="dci-feedback-wrapper" id="<?php echo esc_attr( $plugin_deactivate_id ); ?>" style="display:none;">
 			<div class="dci-feedback-card">
-				<h2><?php esc_html_e('Give feedback', 'data-collector-insights'); ?></h2>
-				<p><?php esc_html_e('Goodbyes are never easy. If you have a moment, please share your feedback on how we can improve.', 'data-collector-insights'); ?>
+				<h2><?php esc_html_e( 'Give feedback', 'data-collector-insights' ); ?></h2>
+				<p><?php esc_html_e( 'Goodbyes are never easy. If you have a moment, please share your feedback on how we can improve.', 'data-collector-insights' ); ?>
 				</p>
 				<form method="get" class="dci-notice-data">
-					<input type="hidden" name="nonce" value="<?php echo esc_html($nonce); ?>">
-					<input type="hidden" name="slug" value="<?php echo esc_html($slug); ?>">
-					<input type="hidden" name="product_id" value="<?php echo esc_html($product_id); ?>">
-					<input type="hidden" name="public_key" value="<?php echo esc_html($public_key); ?>">
-					<input type="hidden" name="api_endpoint" value="<?php echo esc_html($api_endpoint); ?>/deactivate">
+					<input type="hidden" name="nonce" value="<?php echo esc_html( $nonce ); ?>">
+					<input type="hidden" name="slug" value="<?php echo esc_html( $slug ); ?>">
+					<input type="hidden" name="product_id" value="<?php echo esc_html( $product_id ); ?>">
+					<input type="hidden" name="public_key" value="<?php echo esc_html( $public_key ); ?>">
+					<input type="hidden" name="api_endpoint" value="<?php echo esc_html( $api_endpoint ); ?>/deactivate">
 					<div class="dci-feedback-tabs">
 						<div class="checkbox-group">
 							<div class="checkbox">
@@ -43,12 +61,18 @@ if (!function_exists('dci_deactivate_feedback')) {
 									<input type="checkbox" class="checkbox-input" name="switching-domain" />
 									<span class="checkbox-tile">
 										<span class="checkbox-icon">
-											<svg width="192" height="192" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-												<path d="M16.4437 2.00021C14.9719 1.98733 13.5552 2.55719 12.4986 3.58488L12.4883 3.59504L11.6962 4.38801C11.3059 4.77876 11.3063 5.41192 11.697 5.80222C12.0878 6.19252 12.721 6.19216 13.1113 5.80141L13.8979 5.01386C14.5777 4.35511 15.4855 3.99191 16.4262 4.00014C17.3692 4.00839 18.2727 4.38923 18.9416 5.06286C19.6108 5.73671 19.9916 6.64971 19.9998 7.6056C20.008 8.55874 19.6452 9.47581 18.9912 10.1607L16.2346 12.9367C15.8688 13.3052 15.429 13.5897 14.9453 13.7714C14.4616 13.9531 13.945 14.0279 13.4304 13.9907C12.9159 13.9536 12.4149 13.8055 11.9616 13.5561C11.5083 13.3067 11.1129 12.9617 10.8027 12.5441C10.4734 12.1007 9.847 12.0083 9.40364 12.3376C8.96029 12.6669 8.86785 13.2933 9.19718 13.7367C9.67803 14.384 10.2919 14.9202 10.9975 15.3084C11.7032 15.6966 12.4838 15.9277 13.2866 15.9856C14.0893 16.0435 14.8949 15.9268 15.6486 15.6437C16.4022 15.3606 17.0861 14.9177 17.654 14.3457L20.4168 11.5635L20.429 11.551C21.4491 10.4874 22.0125 9.0642 21.9997 7.58834C21.987 6.11247 21.3992 4.69931 20.3607 3.65359C19.3221 2.60764 17.9155 2.01309 16.4437 2.00021Z" fill="#000000" />
-												<path d="M10.7134 8.01444C9.91064 7.95655 9.10506 8.0732 8.35137 8.35632C7.59775 8.63941 6.91382 9.08232 6.34597 9.65431L3.5831 12.4365L3.57097 12.449C2.5508 13.5126 1.98748 14.9358 2.00021 16.4117C2.01295 17.8875 2.60076 19.3007 3.6392 20.3464C4.67787 21.3924 6.08439 21.9869 7.55623 21.9998C9.02807 22.0127 10.4447 21.4428 11.5014 20.4151L11.5137 20.4029L12.3012 19.6099C12.6903 19.218 12.6881 18.5849 12.2962 18.1957C11.9043 17.8066 11.2712 17.8088 10.882 18.2007L10.1011 18.9871C9.42133 19.6452 8.51402 20.0081 7.57373 19.9999C6.63074 19.9916 5.72728 19.6108 5.05834 18.9371C4.38918 18.2633 4.00839 17.3503 4.00014 16.3944C3.99191 15.4412 4.35479 14.5242 5.00874 13.8393L7.76537 11.0633C8.13118 10.6948 8.57097 10.4103 9.05467 10.2286C9.53836 10.0469 10.0549 9.97215 10.5695 10.0093C11.0841 10.0464 11.585 10.1945 12.0383 10.4439C12.4917 10.6933 12.887 11.0383 13.1972 11.4559C13.5266 11.8993 14.1529 11.9917 14.5963 11.6624C15.0397 11.3331 15.1321 10.7067 14.8028 10.2633C14.3219 9.61599 13.708 9.07982 13.0024 8.69161C12.2968 8.30338 11.5161 8.07233 10.7134 8.01444Z" fill="#000000" />
+											<svg width="192" height="192" fill="currentColor" viewBox="0 0 24 24"
+												xmlns="http://www.w3.org/2000/svg">
+												<path
+													d="M16.4437 2.00021C14.9719 1.98733 13.5552 2.55719 12.4986 3.58488L12.4883 3.59504L11.6962 4.38801C11.3059 4.77876 11.3063 5.41192 11.697 5.80222C12.0878 6.19252 12.721 6.19216 13.1113 5.80141L13.8979 5.01386C14.5777 4.35511 15.4855 3.99191 16.4262 4.00014C17.3692 4.00839 18.2727 4.38923 18.9416 5.06286C19.6108 5.73671 19.9916 6.64971 19.9998 7.6056C20.008 8.55874 19.6452 9.47581 18.9912 10.1607L16.2346 12.9367C15.8688 13.3052 15.429 13.5897 14.9453 13.7714C14.4616 13.9531 13.945 14.0279 13.4304 13.9907C12.9159 13.9536 12.4149 13.8055 11.9616 13.5561C11.5083 13.3067 11.1129 12.9617 10.8027 12.5441C10.4734 12.1007 9.847 12.0083 9.40364 12.3376C8.96029 12.6669 8.86785 13.2933 9.19718 13.7367C9.67803 14.384 10.2919 14.9202 10.9975 15.3084C11.7032 15.6966 12.4838 15.9277 13.2866 15.9856C14.0893 16.0435 14.8949 15.9268 15.6486 15.6437C16.4022 15.3606 17.0861 14.9177 17.654 14.3457L20.4168 11.5635L20.429 11.551C21.4491 10.4874 22.0125 9.0642 21.9997 7.58834C21.987 6.11247 21.3992 4.69931 20.3607 3.65359C19.3221 2.60764 17.9155 2.01309 16.4437 2.00021Z"
+													fill="#000000" />
+												<path
+													d="M10.7134 8.01444C9.91064 7.95655 9.10506 8.0732 8.35137 8.35632C7.59775 8.63941 6.91382 9.08232 6.34597 9.65431L3.5831 12.4365L3.57097 12.449C2.5508 13.5126 1.98748 14.9358 2.00021 16.4117C2.01295 17.8875 2.60076 19.3007 3.6392 20.3464C4.67787 21.3924 6.08439 21.9869 7.55623 21.9998C9.02807 22.0127 10.4447 21.4428 11.5014 20.4151L11.5137 20.4029L12.3012 19.6099C12.6903 19.218 12.6881 18.5849 12.2962 18.1957C11.9043 17.8066 11.2712 17.8088 10.882 18.2007L10.1011 18.9871C9.42133 19.6452 8.51402 20.0081 7.57373 19.9999C6.63074 19.9916 5.72728 19.6108 5.05834 18.9371C4.38918 18.2633 4.00839 17.3503 4.00014 16.3944C3.99191 15.4412 4.35479 14.5242 5.00874 13.8393L7.76537 11.0633C8.13118 10.6948 8.57097 10.4103 9.05467 10.2286C9.53836 10.0469 10.0549 9.97215 10.5695 10.0093C11.0841 10.0464 11.585 10.1945 12.0383 10.4439C12.4917 10.6933 12.887 11.0383 13.1972 11.4559C13.5266 11.8993 14.1529 11.9917 14.5963 11.6624C15.0397 11.3331 15.1321 10.7067 14.8028 10.2633C14.3219 9.61599 13.708 9.07982 13.0024 8.69161C12.2968 8.30338 11.5161 8.07233 10.7134 8.01444Z"
+													fill="#000000" />
 											</svg>
 										</span>
-										<span class="checkbox-label"><?php esc_html_e('Switching Domain', 'data-collector-insights'); ?></span>
+										<span
+											class="checkbox-label"><?php esc_html_e( 'Switching Domain', 'data-collector-insights' ); ?></span>
 									</span>
 								</label>
 							</div>
@@ -57,14 +81,22 @@ if (!function_exists('dci_deactivate_feedback')) {
 									<input type="checkbox" class="checkbox-input" name="couldnt-understand" />
 									<span class="checkbox-tile">
 										<span class="checkbox-icon">
-											<svg width="192" height="192" fill="currentColor" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--emojione-monotone" preserveAspectRatio="xMidYMid meet">
-												<path d="M61.539 26.797C58.974 12.239 46.316 2 32.031 2c-1.73 0-3.482.15-5.246.461C10.471 5.338-.425 20.895 2.452 37.215C5.018 51.772 17.677 62.01 31.961 62.01c1.729 0 3.482-.15 5.244-.461c16.316-2.877 27.213-18.432 24.334-34.752M54.523 47.78c-4.213 6.016-10.518 10.031-17.752 11.307c-1.592.28-3.21.423-4.811.423c-13.351 0-24.726-9.559-27.047-22.729C2.281 21.848 12.288 7.556 27.22 4.923c1.591-.28 3.21-.423 4.812-.423c13.35 0 24.725 9.56 27.047 22.731c1.275 7.235-.343 14.533-4.556 20.549" fill="#000000"></path>
+											<svg width="192" height="192" fill="currentColor" viewBox="0 0 64 64"
+												xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+												aria-hidden="true" role="img" class="iconify iconify--emojione-monotone"
+												preserveAspectRatio="xMidYMid meet">
+												<path
+													d="M61.539 26.797C58.974 12.239 46.316 2 32.031 2c-1.73 0-3.482.15-5.246.461C10.471 5.338-.425 20.895 2.452 37.215C5.018 51.772 17.677 62.01 31.961 62.01c1.729 0 3.482-.15 5.244-.461c16.316-2.877 27.213-18.432 24.334-34.752M54.523 47.78c-4.213 6.016-10.518 10.031-17.752 11.307c-1.592.28-3.21.423-4.811.423c-13.351 0-24.726-9.559-27.047-22.729C2.281 21.848 12.288 7.556 27.22 4.923c1.591-.28 3.21-.423 4.812-.423c13.35 0 24.725 9.56 27.047 22.731c1.275 7.235-.343 14.533-4.556 20.549"
+													fill="#000000"></path>
 												<circle cx="42.383" cy="24.683" r="5" fill="#000000"></circle>
 												<circle cx="19.732" cy="28.676" r="4.999" fill="#000000"></circle>
-												<path d="M43.27 41.832c-5.766-1.549-12.049-.428-16.93 3.013c-1.205.87 1.053 4.028 2.252 3.153c3.223-2.268 8.352-3.835 13.66-2.432c1.422.376 2.535-3.309 1.018-3.734" fill="#000000"></path>
+												<path
+													d="M43.27 41.832c-5.766-1.549-12.049-.428-16.93 3.013c-1.205.87 1.053 4.028 2.252 3.153c3.223-2.268 8.352-3.835 13.66-2.432c1.422.376 2.535-3.309 1.018-3.734"
+													fill="#000000"></path>
 											</svg>
 										</span>
-										<span class="checkbox-label"><?php esc_html_e('Couldn\'t understand', 'data-collector-insights'); ?></span>
+										<span
+											class="checkbox-label"><?php esc_html_e( 'Couldn\'t understand', 'data-collector-insights' ); ?></span>
 									</span>
 								</label>
 							</div>
@@ -73,7 +105,10 @@ if (!function_exists('dci_deactivate_feedback')) {
 									<input type="checkbox" class="checkbox-input" name="found-a-better-plugin" />
 									<span class="checkbox-tile">
 										<span class="checkbox-icon">
-											<svg width="192" height="192" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1800 1800" enable-background="new 0 0 1800 1800" xml:space="preserve">
+											<svg width="192" height="192" fill="currentColor" version="1.1"
+												xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+												viewBox="0 0 1800 1800" enable-background="new 0 0 1800 1800"
+												xml:space="preserve">
 												<g>
 													<path fill="#333333" d="M900.114,54.882c-329.509,0-597.583,268.077-597.583,597.59c0,219.592,118.159,418.518,309.714,523.794
 		v152.835h-0.127v122.121h-0.172v185.238h172.682c3.58,60.518,53.924,108.656,115.315,108.656
@@ -108,7 +143,8 @@ if (!function_exists('dci_deactivate_feedback')) {
 												</g>
 											</svg>
 										</span>
-										<span class="checkbox-label"><?php esc_html_e('Found a better plugin', 'data-collector-insights'); ?></span>
+										<span
+											class="checkbox-label"><?php esc_html_e( 'Found a better plugin', 'data-collector-insights' ); ?></span>
 									</span>
 								</label>
 							</div>
@@ -117,12 +153,15 @@ if (!function_exists('dci_deactivate_feedback')) {
 									<input type="checkbox" class="checkbox-input" name="missing-a-specific-feature" />
 									<span class="checkbox-tile">
 										<span class="checkbox-icon">
-											<svg width="192" height="192" fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+											<svg width="192" height="192" fill="currentColor" version="1.1" id="Layer_1"
+												xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+												viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 												<path d="M499.5,385.4L308.9,57.2c-31.8-52.9-74.1-52.9-105.9,0L12.5,385.4c-31.8,52.9,0,95.3,63.5,95.3h360
 	C499.5,480.7,531.3,438.3,499.5,385.4z M298.4,438.3h-84.7v-84.7h84.7V438.3z M298.4,311.3h-84.7V120.7h84.7V311.3z" />
 											</svg>
 										</span>
-										<span class="checkbox-label"><?php esc_html_e('Missing a specific feature', 'data-collector-insights'); ?></span>
+										<span
+											class="checkbox-label"><?php esc_html_e( 'Missing a specific feature', 'data-collector-insights' ); ?></span>
 									</span>
 								</label>
 							</div>
@@ -131,7 +170,9 @@ if (!function_exists('dci_deactivate_feedback')) {
 									<input type="checkbox" class="checkbox-input" name="not-working" />
 									<span class="checkbox-tile">
 										<span class="checkbox-icon">
-											<svg width="192" height="192" fill="currentColor" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+											<svg width="192" height="192" fill="currentColor" version="1.1" id="_x32_"
+												xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+												viewBox="0 0 512 512" xml:space="preserve">
 												<g>
 													<path class="st0" d="M462.052,217.01c4.348-8.909,6.886-18.786,6.891-29.154c0-17.424-6.797-33.38-17.834-45.34
 		c1.336-5.135,2.079-10.771,2.079-16.89c0.004-22.403-10.964-42.247-28.006-54.396c-0.824-32.214-24.277-59.236-56.299-64.421
@@ -158,7 +199,8 @@ if (!function_exists('dci_deactivate_feedback')) {
 												</g>
 											</svg>
 										</span>
-										<span class="checkbox-label"><?php esc_html_e('Not working', 'data-collector-insights'); ?></span>
+										<span
+											class="checkbox-label"><?php esc_html_e( 'Not working', 'data-collector-insights' ); ?></span>
 									</span>
 								</label>
 							</div>
@@ -167,19 +209,23 @@ if (!function_exists('dci_deactivate_feedback')) {
 									<input type="checkbox" class="checkbox-input" name="others" />
 									<span class="checkbox-tile">
 										<span class="checkbox-icon">
-											<svg width="192" height="192" fill="currentColor" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
+											<svg width="192" height="192" fill="currentColor" viewBox="0 0 32 32" id="icon"
+												xmlns="http://www.w3.org/2000/svg">
 												<defs>
-												<style>
-													.dci-icon-others-1 {
-														fill: none;
-													}
-												</style>
+													<style>
+														.dci-icon-others-1 {
+															fill: none;
+														}
+													</style>
 												</defs>
-												<path d="M27.71,4.29a1,1,0,0,0-1.05-.23l-22,8a1,1,0,0,0,0,1.87l9.6,3.84,3.84,9.6A1,1,0,0,0,19,28h0a1,1,0,0,0,.92-.66l8-22A1,1,0,0,0,27.71,4.29ZM19,24.2l-2.79-7L21,12.41,19.59,11l-4.83,4.83L7.8,13,25.33,6.67Z" />
-												<rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="dci-icon-others-1" width="32" height="32" />
+												<path
+													d="M27.71,4.29a1,1,0,0,0-1.05-.23l-22,8a1,1,0,0,0,0,1.87l9.6,3.84,3.84,9.6A1,1,0,0,0,19,28h0a1,1,0,0,0,.92-.66l8-22A1,1,0,0,0,27.71,4.29ZM19,24.2l-2.79-7L21,12.41,19.59,11l-4.83,4.83L7.8,13,25.33,6.67Z" />
+												<rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;"
+													class="dci-icon-others-1" width="32" height="32" />
 											</svg>
 										</span>
-										<span class="checkbox-label"><?php esc_html_e('Others', 'data-collector-insights'); ?></span>
+										<span
+											class="checkbox-label"><?php esc_html_e( 'Others', 'data-collector-insights' ); ?></span>
 									</span>
 								</label>
 							</div>
@@ -187,26 +233,28 @@ if (!function_exists('dci_deactivate_feedback')) {
 					</div>
 					<div class="dci-feedback-comments">
 						<label>
-							<?php esc_html_e('What is the main reason for deactivating?', 'data-collector-insights'); ?>
+							<?php esc_html_e( 'What is the main reason for deactivating?', 'data-collector-insights' ); ?>
 						</label>
 						<textarea name="dci-feedback-input-comments" rows="4"></textarea>
 					</div>
 					<div class="dci-feedback-actions">
-						<a class="button" href="<?php echo esc_url($deactivate_url); ?>">
-							<?php esc_html_e('Skip & Deactivate', 'data-collector-insights'); ?>
+						<a class="button" href="<?php echo esc_url( $deactivate_url ); ?>">
+							<?php esc_html_e( 'Skip & Deactivate', 'data-collector-insights' ); ?>
 						</a>
 						<div>
-							<a class="button" href="<?php echo esc_url($plugin_page_url); ?>">
-								<?php esc_html_e('Cancel', 'data-collector-insights'); ?>
+							<a class="button" href="<?php echo esc_url( $plugin_page_url ); ?>">
+								<?php esc_html_e( 'Cancel', 'data-collector-insights' ); ?>
 							</a>
-							<button name="dci_status_sub_and_dea" value="skip" type="button" class="dci-feedback-submit-btn button button-secondary" data-deactivate-url="<?php echo esc_url($deactivate_url); ?>">
-								<?php esc_html_e('Submit & Deactivate', 'data-collector-insights'); ?>
+							<button name="dci_status_sub_and_dea" value="skip" type="button"
+								class="dci-feedback-submit-btn button button-secondary"
+								data-deactivate-url="<?php echo esc_url( $deactivate_url ); ?>">
+								<?php esc_html_e( 'Submit & Deactivate', 'data-collector-insights' ); ?>
 							</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-<?php
+		<?php
 	}
 }

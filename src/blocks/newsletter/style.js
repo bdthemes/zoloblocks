@@ -330,7 +330,7 @@ export default function Style({ props }) {
         mobRangeStyle: focusBorderWidthMob,
     } = generateResRangeStyle({
         controlName: FOCUS_BORDER_WIDTH,
-        property: 'outline-width',
+        property: 'border-width',
         attributes,
     });
 
@@ -385,7 +385,6 @@ export default function Style({ props }) {
         property: 'margin-right',
         attributes,
     });
-
 
     const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
         controlName: BUTTON_BOX_SHADOW,
@@ -498,14 +497,14 @@ export default function Style({ props }) {
 
       }
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-input:focus{
-        ${focusColor ? `outline-color: ${focusColor};` : ''}
+        ${focusColor ? `border-color: ${focusColor};` : ''}
         ${focusBorderWidthDesk}
         ${fieldHoverBoxShadowStyle}
       }
 
       ${
-         preset === 'zolo-newsletter-5'
-            ? `
+          preset === 'zolo-newsletter-5'
+              ? `
                 .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon-wrap{
                     ${inputBorderRadiusDesktop}
                 }
@@ -552,7 +551,7 @@ export default function Style({ props }) {
                     ${fieldIconColor ? `color: ${fieldIconColor};` : ''}
                 }
             `
-         : ''
+              : ''
       }
 
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-btn{
@@ -626,8 +625,8 @@ export default function Style({ props }) {
       }
 
       ${
-         preset === 'zolo-newsletter-5'
-            ? `
+          preset === 'zolo-newsletter-5'
+              ? `
                 .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon-wrap{
                     ${inputBorderRadiusTab}
                 }
@@ -649,7 +648,7 @@ export default function Style({ props }) {
                     ${focusStyle5BorderWidthTab}
                 }
             `
-         : ''
+              : ''
       }
 
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-btn{
@@ -692,7 +691,7 @@ export default function Style({ props }) {
 
      ${
          preset === 'zolo-newsletter-5'
-            ? `
+             ? `
                 .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-newsletter-5 .zolo-nl-field-icon-wrap{
                     ${inputBorderRadiusMob}
                 }
@@ -714,8 +713,8 @@ export default function Style({ props }) {
                     ${focusStyle5BorderWidthMob}
                 }
             `
-         : ''
-      }
+             : ''
+     }
 
       .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStylesMob}

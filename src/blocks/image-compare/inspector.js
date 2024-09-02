@@ -73,7 +73,10 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Before Image', 'zoloblocks')}>
+                            <BaseControl label={__('Before Image', 'zoloblocks')}
+                                className='zolo-flex-col-control'
+                            >
+                                
                                 {beforeImage ? (
                                     <ImageAvatar
                                         imageUrl={beforeImage?.url}
@@ -115,7 +118,9 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
-                            <BaseControl label={__('After Image', 'zoloblocks')}>
+                            <BaseControl label={__('After Image', 'zoloblocks')}
+                                className='zolo-flex-col-control'
+                            >
                                 {afterImage ? (
                                     <ImageAvatar
                                         imageUrl={afterImage?.url}
@@ -209,33 +214,37 @@ function Inspector(props) {
                                     }
                                 />
                             )}
-                            <RangeControl
-                                label={__('Initial Position', 'zoloblocks')}
-                                value={comparisonOptions?.initialPosition}
-                                onChange={(v) => {
-                                    setAttributes({
-                                        comparisonOptions: {
-                                            ...comparisonOptions,
-                                            initialPosition: v,
-                                        },
-                                    });
-                                }}
-                                min={0}
-                                max={100}
-                            />
-                            <IconicBtnGroup
-                                label={__('Direction', 'zoloblocks')}
-                                value={comparisonOptions?.slidePositon}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        comparisonOptions: {
-                                            ...comparisonOptions,
-                                            slidePositon: value,
-                                        },
-                                    })
-                                }
-                                options={SLIDE_POSITION}
-                            />
+                            <div className='zolo-flex-col-control'>
+                                <RangeControl
+                                    label={__('Initial Position', 'zoloblocks')}
+                                    value={comparisonOptions?.initialPosition}
+                                    onChange={(v) => {
+                                        setAttributes({
+                                            comparisonOptions: {
+                                                ...comparisonOptions,
+                                                initialPosition: v,
+                                            },
+                                        });
+                                    }}
+                                    min={0}
+                                    max={100}
+                                />
+                            </div>
+                            <div className='zolo-flex-row-control-tab'>
+                                <IconicBtnGroup
+                                    label={__('Direction', 'zoloblocks')}
+                                    value={comparisonOptions?.slidePositon}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            comparisonOptions: {
+                                                ...comparisonOptions,
+                                                slidePositon: value,
+                                            },
+                                        })
+                                    }
+                                    options={SLIDE_POSITION}
+                                />
+                            </div>
                         </ZoloPanelBody>
                         {comparisonOptions?.showLabels && (
                             <ZoloPanelBody title={__('Labels', 'zoloblocks')} panelProps={props}>

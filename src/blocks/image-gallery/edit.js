@@ -4,7 +4,7 @@
 import { useBlockProps, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 
 /**
@@ -19,20 +19,22 @@ import { useEffect } from 'react';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected, clientId } = props;
-    const { preview, preset, uniqueId, parentClasses, showCaption, showTitle, showLightbox, advancedGallery, lightboxIcon, imageSize } = attributes;
+    const { preview, preset, uniqueId, parentClasses, showCaption, showTitle, showLightbox, advancedGallery, lightboxIcon, imageSize } =
+        attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), `${
-            preset && preset !== '' ? preset : ''
-        }`),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${preset && preset !== '' ? preset : ''}`),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.imageGallery} alt={__('Gallery Preview', 'zoloblocks')} />;
     }
-
 
     return (
         <>
@@ -66,6 +68,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId}`}>
                     {advancedGallery ? (
@@ -86,22 +89,26 @@ export default function Edit(props) {
                                             </span>
                                         </a>
                                     )}
-                                    {showCaption &&  preset !== 'style-2' && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                    {showCaption && preset !== 'style-2' && image.caption && (
+                                        <div className="zolo-title">{image.caption}</div>
+                                    )}
 
                                     {preset === 'style-2' && (
-                                      <div className='zolo-inner-item'>
-                                          <div className='zolo-content-wrap'>
-                                             {showTitle && ( <h4 className='zolo-subTitle'>{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>)}
-                                             {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
-                                          </div>
-                                          {showLightbox && (
-                                            <a href="#" className="zolo-icon-wrap">
-                                                <span className="zolo-icon">
-                                                    <DisplayZoloIcon icon={lightboxIcon} />
-                                                </span>
-                                            </a>
-                                          )}
-                                      </div>
+                                        <div className="zolo-inner-item">
+                                            <div className="zolo-content-wrap">
+                                                {showTitle && (
+                                                    <h4 className="zolo-subTitle">{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>
+                                                )}
+                                                {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                            </div>
+                                            {showLightbox && (
+                                                <a href="#" className="zolo-icon-wrap">
+                                                    <span className="zolo-icon">
+                                                        <DisplayZoloIcon icon={lightboxIcon} />
+                                                    </span>
+                                                </a>
+                                            )}
+                                        </div>
                                     )}
                                 </div>
                             );
@@ -126,6 +133,7 @@ export default function Edit(props) {
                         </>
                     )}
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

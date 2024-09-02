@@ -78,7 +78,7 @@ const {
     AdvancedOptions,
     ResAlignmentControl,
     ZoloPanelBody,
-    IconicBtnGroup
+    IconicBtnGroup,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -188,10 +188,10 @@ function Inspector(props) {
                                 options={applyFilters('zolo.postList.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                                <ToggleControl
+                            <ToggleControl
                                 label={__('Show Feature Post', 'zoloblocks')}
                                 checked={showfeatureimg}
-                                onChange={(v) => setAttributes({ showfeatureimg:v })}
+                                onChange={(v) => setAttributes({ showfeatureimg: v })}
                             />
                             <ToggleControl
                                 label={__('Show Excerpt', 'zoloblocks')}
@@ -234,17 +234,20 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                           { ("style-1" ==preset || "style-3" ==preset) && (
-                             <IconicBtnGroup
-                                    label={__('Direction', 'zoloblocks')}
-                                    value={contentDirection}
-                                    options={CONTENT_DIRECTIONS}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            contentDirection: v,
-                                        })
-                                    }
-                                />)}
+                            {('style-1' == preset || 'style-3' == preset) && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Direction', 'zoloblocks')}
+                                        value={contentDirection}
+                                        options={CONTENT_DIRECTIONS}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                contentDirection: v,
+                                            })
+                                        }
+                                    />
+                                </div>
+                            )}
 
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
@@ -252,7 +255,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <SelectControl
@@ -279,7 +281,7 @@ function Inspector(props) {
                                 step={1}
                             />
                             <TextControl
-                                label={__('Expansion Indicator', 'zoloblocks')}
+                                label={__('Exp Indicator', 'zoloblocks')}
                                 value={excerptindicator}
                                 onChange={(excerptindicator) => setAttributes({ excerptindicator })}
                             />
@@ -296,15 +298,13 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                            {
-                                showMeta && (
-                                    <TextControl
-                                        label={__('Author Prefix', 'zoloblocks')}
-                                        value={authorPrefix}
-                                        onChange={(authorPrefix) => setAttributes({ authorPrefix })}
-                                    />
-                                )
-                            }
+                            {showMeta && (
+                                <TextControl
+                                    label={__('Author Prefix', 'zoloblocks')}
+                                    value={authorPrefix}
+                                    onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props}>
                             <QueryControl attributes={attributes} setAttributes={setAttributes} />
@@ -463,99 +463,98 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TabPanelControl
-                                    options={[
-                                        {
-                                            value: 'normal',
-                                            label: __('Normal', 'zoloblocks'),
-                                        },
-                                        {
-                                            value: 'hover',
-                                            label: __('Featured', 'zoloblocks'),
-                                        },
-                                    ]}
-                                    normalComponents={
-                                        <>
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zoloblocks')}
-                                                typoPrefixConstant={TITLE_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Margin', 'zoloblocks')}
-                                                controlName={TITLE_MARGIN}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <TabPanelControl
-                                                normalComponents={
-                                                    <>
-                                                        <ColorControl
-                                                            label={__('Title Color', 'zoloblocks')}
-                                                            color={titleColor}
-                                                            onChange={(color) =>
-                                                                setAttributes({
-                                                                    titleColor: color,
-                                                                })
-                                                            }
-                                                        />
-                                                    </>
-                                                }
-                                                hoverComponents={
-                                                    <>
-                                                        <ColorControl
-                                                            label={__('Title Hover Color', 'zoloblocks')}
-                                                            color={titleHoverColor}
-                                                            onChange={(color) =>
-                                                                setAttributes({
-                                                                    titleHoverColor: color,
-                                                                })
-                                                            }
-                                                        />
-                                                    </>
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zoloblocks')}
-                                                typoPrefixConstant={FTITLE_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <TabPanelControl
-                                                normalComponents={
-                                                    <>
-                                                        <ColorControl
-                                                            label={__('Color', 'zoloblocks')}
-                                                            color={ftitleColor}
-                                                            onChange={(color) =>
-                                                                setAttributes({
-                                                                    ftitleColor: color,
-                                                                })
-                                                            }
-                                                        />
-                                                    </>
-                                                }
-                                                hoverComponents={
-                                                    <>
-                                                        <ColorControl
-                                                            label={__('Hover Color', 'zoloblocks')}
-                                                            color={ftitleHoverColor}
-                                                            onChange={(color) =>
-                                                                setAttributes({
-                                                                    ftitleHoverColor: color,
-                                                                })
-                                                            }
-                                                        />
-                                                    </>
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
+                            <TabPanelControl
+                                options={[
+                                    {
+                                        value: 'normal',
+                                        label: __('Normal', 'zoloblocks'),
+                                    },
+                                    {
+                                        value: 'hover',
+                                        label: __('Featured', 'zoloblocks'),
+                                    },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={TITLE_MARGIN}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Title Color', 'zoloblocks')}
+                                                        color={titleColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                titleColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Title Hover Color', 'zoloblocks')}
+                                                        color={titleHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                titleHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            }
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={FTITLE_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={ftitleColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                ftitleColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Hover Color', 'zoloblocks')}
+                                                        color={ftitleHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                ftitleHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
                         </ZoloPanelBody>
-
 
                         {showExcerpt && (
                             <ZoloPanelBody title={__('Excerpt', 'zoloblocks')} stylePanel={true} panelProps={props}>

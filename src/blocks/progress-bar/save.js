@@ -1,23 +1,14 @@
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const { DisplayIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
+import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
+const Save = (props) => {
+    const { attributes } = props;
     const {
         uniqueId,
         preset,
         parentClasses,
-        image,
-        headingTag,
-        fancyTitle,
-        fancyListText,
-        fancyIcon,
-        imageToggle,
-        titleToggle,
-        textToggle,
-        iconToggle,
-        mediaType,
-        mediaText,
         zoloId,
         progressOffset,
     } = attributes;
@@ -25,6 +16,10 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
+
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     return (
         <div
@@ -36,9 +31,11 @@ const Save = ({ attributes }) => {
                 'data-progressoffset': progressOffset,
             })}
         >
+            {renderHookBefore && renderHookBefore}
             <div className="zolo-progress-bars-wrap">
                 <InnerBlocks.Content />
             </div>
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

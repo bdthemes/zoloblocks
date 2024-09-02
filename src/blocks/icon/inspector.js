@@ -102,7 +102,7 @@ export default function Inspector(props) {
                                 />
                                 {isLinkable && (
                                     <LinkControl
-                                        label={__('Icon Link', 'zoloblocks')}
+                                        label={__('Link', 'zoloblocks')}
                                         value={iconLink}
                                         onChange={(value) =>
                                             setAttributes({

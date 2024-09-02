@@ -146,16 +146,18 @@ function Inspector(props) {
                                 __unstableInputWidth="64px"
                                 placeholder="1"
                             />
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zoloblocks')}
-                                value={tabsLayout}
-                                onChange={(newTabsLayout) =>
-                                    setAttributes({
-                                        tabsLayout: newTabsLayout,
-                                    })
-                                }
-                                options={LAYOUTS}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout', 'zoloblocks')}
+                                    value={tabsLayout}
+                                    onChange={(newTabsLayout) =>
+                                        setAttributes({
+                                            tabsLayout: newTabsLayout,
+                                        })
+                                    }
+                                    options={LAYOUTS}
+                                />
+                            </div>
                             {tabsLayout === 'vertical' && (
                                 <SelectControl
                                     label={__('Verticle Style', 'zoloblocks')}
@@ -164,27 +166,32 @@ function Inspector(props) {
                                     onChange={(v) => onChangeVerticalPreset(v)}
                                 />
                             )}
-                            <SelectControl
-                                label={__('Content Style', 'zoloblocks')}
-                                value={tabContentStyle}
-                                options={CONTENT_STYLES}
-                                onChange={(newTabContentStyle) =>
-                                    setAttributes({
-                                        tabContentStyle: newTabContentStyle,
-                                    })
-                                }
-                            />
-                            {tabContentStyle === 'content-style-two' && (
-                                <IconicBtnGroup
-                                    label={__('Direction', 'zoloblocks')}
-                                    value={contentDirection}
-                                    options={CONTENT_DIRECTIONS}
-                                    onChange={(v) =>
+                            {showIcon && (
+                                <SelectControl
+                                    label={__('Content Style', 'zoloblocks')}
+                                    value={tabContentStyle}
+                                    options={CONTENT_STYLES}
+                                    onChange={(newTabContentStyle) =>
                                         setAttributes({
-                                            contentDirection: v,
+                                            tabContentStyle: newTabContentStyle,
                                         })
                                     }
                                 />
+                            )}
+
+                            {tabContentStyle === 'content-style-two' && showIcon && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Direction', 'zoloblocks')}
+                                        value={contentDirection}
+                                        options={CONTENT_DIRECTIONS}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                contentDirection: v,
+                                            })
+                                        }
+                                    />
+                                </div>
                             )}
                             <ToggleControl
                                 label={__('Show Icon', 'zoloblocks')}
@@ -221,24 +228,28 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Alignment', 'zoloblocks')} panelProps={props}>
-                            <ResAlignmentControl
-                                label={__('Tab Alignment', 'zoloblocks')}
-                                controlName={NAV_ITEMS_ALIGN}
-                                requiredProps={requiredProps}
-                                alignOptions={FLEX_HORIZONTAL_OPTIONS}
-                            />
+                            {tabsLayout === 'horizontal' && tabItemWidth !== 'tiw_justify' && (
+                                <ResAlignmentControl
+                                    label={__('Tab Alignment', 'zoloblocks')}
+                                    controlName={NAV_ITEMS_ALIGN}
+                                    requiredProps={requiredProps}
+                                    alignOptions={FLEX_HORIZONTAL_OPTIONS}
+                                />
+                            )}
                             <ResAlignmentControl
                                 label={__('Tab Content Alignment', 'zoloblocks')}
                                 controlName={NAV_CONTENT_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-                            <ResAlignmentControl
-                                label={__('Icon Alignment', 'zoloblocks')}
-                                controlName={NAV_ICON_ALIGN}
-                                requiredProps={requiredProps}
-                                alignOptions={FLEX_ALIGN_OPTIONS}
-                            />
+                            {showIcon && (
+                                <ResAlignmentControl
+                                    label={__('Icon Alignment', 'zoloblocks')}
+                                    controlName={NAV_ICON_ALIGN}
+                                    requiredProps={requiredProps}
+                                    alignOptions={FLEX_ALIGN_OPTIONS}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Spacing', 'zoloblocks')} panelProps={props}>
                             <ResRangeControl

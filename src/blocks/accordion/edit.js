@@ -5,6 +5,7 @@ import { useBlockProps, BlockControls, useInnerBlocksProps, InnerBlocks } from '
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { Button, ToolbarButton, ToolbarGroup, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * External dependencies
@@ -33,6 +34,9 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zoloblocks')} />;
     }
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     const acContainerRef = useRef(null);
     const acInstanceRef = useRef(null);
@@ -124,6 +128,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 {!delayedInit ? (
                     <>
@@ -138,6 +143,7 @@ export default function Edit(props) {
                 ) : (
                     <Spinner />
                 )}
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

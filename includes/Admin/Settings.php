@@ -1,5 +1,7 @@
 <?php
+
 namespace Zolo\Admin;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -7,11 +9,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if( ! class_exists( 'Settings' ) ) {
-    
+if (! class_exists('Settings')) {
+
     /**
      * Settings Class
-     * 
+     *
      * @since 0.0.1
      */
     class Settings {
@@ -25,7 +27,7 @@ if( ! class_exists( 'Settings' ) ) {
             add_action('rest_api_init', [$this, 'zolo_blocks_settings_init']);
             add_action('admin_init', [$this, 'update_settings_if_needed']);
         }
-    
+
         /**
          * Zolo Blocks Settings Endpoint
          */
@@ -153,17 +155,64 @@ if( ! class_exists( 'Settings' ) ) {
                 ]
             );
 
+            // register support maintenance mode
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_maintenance_mode',
+                [
+                    'type'             => 'boolean',
+                    'default'          => '',
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'boolean',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_coming_soon_mode',
+                [
+                    'type'             => 'boolean',
+                    'default'          => '',
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'boolean',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+            // register support maintenance mode template
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_maintenance_mode_template',
+                [
+                    'type'             => 'string',
+                    'default'          => false,
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             // smooth scroller
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_smooth_scroller',
                 [
-                    'type'              => 'boolean',
-                    'default'           => false,
-                    'show_in_rest'      => [
-                        'schema' => ['type' => 'boolean'],
-                    ],
-                    'sanitize_callback' => NULL,
+                    'type'             => 'boolean',
+                    'default'          => false,
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'boolean',
+                        ],
+                        'sanitize_callback' => NULL,
+                    ]
                 ]
             );
 
@@ -276,7 +325,7 @@ if( ! class_exists( 'Settings' ) ) {
                 ]
             );
         }
-    
+
         /**
          * Updates the settings if needed.
          *
@@ -308,7 +357,7 @@ if( ! class_exists( 'Settings' ) ) {
                 update_option('zolo_blocks_settings', $new_blocks);
             }
         }
-    
+
         /**
          * Retrieves the block list.
          *
@@ -319,11 +368,11 @@ if( ! class_exists( 'Settings' ) ) {
          */
         public static function block_list() {
             $blocks_file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Admin/Blocks.php';
-    
+
             if (file_exists($blocks_file)) {
                 return require $blocks_file ?: [];
             }
-            
+
             return [];
         }
 

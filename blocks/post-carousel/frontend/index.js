@@ -1,0 +1,1 @@
+window.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelectorAll(".wp-block-zolo-post-carousel");e.length>0&&e.forEach((e=>{const t=e.querySelector(".swiper"),o=e.dataset.settings,n=JSON.parse(o);new Swiper(t,n)}))}));

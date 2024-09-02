@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -39,11 +39,15 @@ export default function Edit(props) {
         [props.clientId]
     );
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockPros}>
+                {renderHookBefore && renderHookBefore}
                 <div className={classNames('zolo-popup-inner', popupType)}>
                     <InnerBlocks
                         templateLock={false}
@@ -134,6 +138,7 @@ export default function Edit(props) {
                         </button>
                     )}
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

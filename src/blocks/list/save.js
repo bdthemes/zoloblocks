@@ -7,10 +7,15 @@ import classnames from 'classnames';
 
 import { useBlockProps } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 
-const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon,globalIcon } = attributes;
-
+const Save = (props) => {
+    const { attributes } = props;
+    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon, globalIcon } =
+        attributes;
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
     return (
         <div
             {...useBlockProps.save({
@@ -20,7 +25,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-       
+            {renderHookBefore && renderHookBefore}
             {listProfiles &&
                 listProfiles.map((profile, index) => {
                     return (
@@ -36,7 +41,7 @@ const Save = ({ attributes }) => {
                                 <div className="zolo-list-icon-and-content-wrap">
                                     {iconToggle && preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-icon">
-                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon }/> : <DisplayZoloIcon icon={globalIcon}/>}   
+                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
                                         </div>
                                     )}
                                     {preset !== 'zolo-list-style-1' && (
@@ -58,7 +63,7 @@ const Save = ({ attributes }) => {
                                 <>
                                     {iconToggle && preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-icon">
-                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon }/> : <DisplayZoloIcon icon={globalIcon}/>} 
+                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
                                         </div>
                                     )}
                                     {preset !== 'zolo-list-style-1' && (
@@ -85,6 +90,7 @@ const Save = ({ attributes }) => {
                         </a>
                     );
                 })}
+            {renderHookAfter && renderHookAfter}
         </div>
     );
 };

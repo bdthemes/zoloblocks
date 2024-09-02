@@ -283,16 +283,25 @@ function Inspector(props) {
                                 />
                             )}
                             {sourceType == 'input' && (
-                                <TextareaControl
-                                    label={__('Enter chart data separated by commas', 'zoloblocks')}
-                                    placeholder={__(`Label, Value\nTeam A, 10\nTeam B, 15\nTeam C, 20\nTeam D, 5`, 'zoloblocks')}
-                                    value={chartInputData}
-                                    rows={10}
-                                    onChange={(value) => {
-                                        setAttributes({ chartInputData: value });
-                                        handleInputData(value);
-                                    }}
-                                />
+                                <div className="zolo-flex-col-control">
+                                    <TextareaControl
+                                        label={__('Enter chart data separated by commas', 'zoloblocks')}
+                                        placeholder={__(
+                                            `Label, Value
+                                            Team A, 10
+                                            Team B, 15
+                                            Team C, 20,
+                                            Team D, 5`,
+                                            'zoloblocks'
+                                        )}
+                                        value={chartInputData}
+                                        rows={10}
+                                        onChange={(value) => {
+                                            setAttributes({ chartInputData: value });
+                                            handleInputData(value);
+                                        }}
+                                    />
+                                </div>
                             )}
 
                             {zoloParams?.zolo_pro_status === 'active' && sourceType === 'google-spreadsheet' && (
@@ -339,17 +348,20 @@ function Inspector(props) {
                                         : ''
                                 }
                             />
-                            <SimpleRangeControl
-                                label={__('Height', 'zoloblocks')}
-                                value={chartHeight}
-                                onChange={(height) =>
-                                    setAttributes({
-                                        chartHeight: height,
-                                    })
-                                }
-                                min={200}
-                                max={1000}
-                            />
+
+                            <div className="zolo-flex-col-control">
+                                <SimpleRangeControl
+                                    label={__('Height', 'zoloblocks')}
+                                    value={chartHeight}
+                                    onChange={(height) =>
+                                        setAttributes({
+                                            chartHeight: height,
+                                        })
+                                    }
+                                    min={200}
+                                    max={1000}
+                                />
+                            </div>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} firstOpen={false} panelProps={props}>
                             <ToggleControl
@@ -563,34 +575,39 @@ function Inspector(props) {
                                         })
                                     }
                                 />
-                                <RangeControl
-                                    label={__('Offset X', 'zoloblocks')}
-                                    value={legendObject.offsetX}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            legendObject: {
-                                                ...legendObject,
-                                                offsetX: v,
-                                            },
-                                        })
-                                    }
-                                    min={-100}
-                                    max={100}
-                                />
-                                <RangeControl
-                                    label={__('Offset Y', 'zoloblocks')}
-                                    value={legendObject.offsetY}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            legendObject: {
-                                                ...legendObject,
-                                                offsetY: v,
-                                            },
-                                        })
-                                    }
-                                    min={-100}
-                                    max={100}
-                                />
+                                <div className="zolo-flex-col-control">
+                                    <RangeControl
+                                        label={__('Offset X', 'zoloblocks')}
+                                        value={legendObject.offsetX}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                legendObject: {
+                                                    ...legendObject,
+                                                    offsetX: v,
+                                                },
+                                            })
+                                        }
+                                        min={-100}
+                                        max={100}
+                                    />
+                                </div>
+
+                                <div className="zolo-flex-col-control">
+                                    <RangeControl
+                                        label={__('Offset Y', 'zoloblocks')}
+                                        value={legendObject.offsetY}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                legendObject: {
+                                                    ...legendObject,
+                                                    offsetY: v,
+                                                },
+                                            })
+                                        }
+                                        min={-100}
+                                        max={100}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
                         {showTooltip && (
@@ -762,7 +779,7 @@ function Inspector(props) {
                             <>
                                 <ZoloPanelBody title={__('Title', 'zoloblocks')} firstOpen={false} panelProps={props}>
                                     <ColorControl
-                                        label={__('Title Color', 'zoloblocks')}
+                                        label={__('Color', 'zoloblocks')}
                                         color={titleObject.style.color}
                                         onChange={(color) =>
                                             setAttributes({
@@ -776,23 +793,25 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <SimpleRangeControl
-                                        label={__('Title Font Size', 'zoloblocks')}
-                                        value={titleObject.style.fontSize}
-                                        onChange={(fontSize) =>
-                                            setAttributes({
-                                                titleObject: {
-                                                    ...titleObject,
-                                                    style: {
-                                                        ...titleObject.style,
-                                                        fontSize: fontSize,
+                                    <div className="zolo-flex-col-control">
+                                        <SimpleRangeControl
+                                            label={__('Font Size', 'zoloblocks')}
+                                            value={titleObject.style.fontSize}
+                                            onChange={(fontSize) =>
+                                                setAttributes({
+                                                    titleObject: {
+                                                        ...titleObject,
+                                                        style: {
+                                                            ...titleObject.style,
+                                                            fontSize: fontSize,
+                                                        },
                                                     },
-                                                },
-                                            })
-                                        }
-                                        min={0}
-                                        max={100}
-                                    />
+                                                })
+                                            }
+                                            min={0}
+                                            max={100}
+                                        />
+                                    </div>
                                 </ZoloPanelBody>
                             </>
                         )}
@@ -800,7 +819,7 @@ function Inspector(props) {
                             <>
                                 <ZoloPanelBody title={__('Sub Title', 'zoloblocks')} firstOpen={false} panelProps={props}>
                                     <ColorControl
-                                        label={__('Sub Title Color', 'zoloblocks')}
+                                        label={__('Color', 'zoloblocks')}
                                         color={subTitleObject.style.color}
                                         onChange={(color) =>
                                             setAttributes({
@@ -814,23 +833,25 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <SimpleRangeControl
-                                        label={__('Sub Title Font Size', 'zoloblocks')}
-                                        value={subTitleObject.style.fontSize}
-                                        onChange={(fontSize) =>
-                                            setAttributes({
-                                                subTitleObject: {
-                                                    ...subTitleObject,
-                                                    style: {
-                                                        ...subTitleObject.style,
-                                                        fontSize: fontSize,
+                                    <div className="zolo-flex-col-control">
+                                        <SimpleRangeControl
+                                            label={__('Font Size', 'zoloblocks')}
+                                            value={subTitleObject.style.fontSize}
+                                            onChange={(fontSize) =>
+                                                setAttributes({
+                                                    subTitleObject: {
+                                                        ...subTitleObject,
+                                                        style: {
+                                                            ...subTitleObject.style,
+                                                            fontSize: fontSize,
+                                                        },
                                                     },
-                                                },
-                                            })
-                                        }
-                                        min={0}
-                                        max={100}
-                                    />
+                                                })
+                                            }
+                                            min={0}
+                                            max={100}
+                                        />
+                                    </div>
                                 </ZoloPanelBody>
                             </>
                         )}

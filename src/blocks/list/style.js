@@ -292,7 +292,7 @@ const Style = ({ props }) => {
 
     const desktopAllStyle = `
 	  .wp-block-zolo-list.${uniqueId} {
-        ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridDeskstyle}, 1fr)`};
+        ${layout == 'flex' ? 'display:flex; flex-wrap: wrap' : `grid-template-columns: repeat(${listGridDeskstyle}, 1fr)`};
         ${listGapDeskstyle};
         ${desktopSingleAlign}
         ${layout=='flex' && desktopListAlign}

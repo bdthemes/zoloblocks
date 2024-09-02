@@ -141,12 +141,7 @@ span.zolo-pro-badge {
     background: red;
     margin-left: 10px;
 }
-
-.zolo-editor .zolo-block:not(.zolo-entrance-animation) {
-    transition: transform 0.3s ease-out;
-}
-.zolo-transform-wrapper,
-.zolo-editor .zolo-transform-animation {
+.zolo-transform-animation {
     :root {
         --zolo-transform-perspective: 1000px;
     }
@@ -157,6 +152,9 @@ span.zolo-pro-badge {
         scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
+}
+
+.zolo-editor .zolo-block:not(.zolo-entrance-animation) {
     transition: transform 0.3s ease-out;
 }
 
@@ -441,4 +439,17 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
 .zolo-custom-help-note {
     font-style: italic;
     color: rgb(117, 117, 117);
+}
+.zolo-frontend {
+    &.ast-single-post{
+        .entry-content a, .ast-comment-content a:not(.ast-comment-edit-reply-wrap a) {
+            text-decoration: unset;
+        }
+    }
+}
+
+.zolo-editor {
+    .editor-styles-wrapper .is-root-container a {
+        text-decoration: unset;
+    }
 }

@@ -234,26 +234,30 @@ const Inspector = (props) => {
                             />
                             {(showBtn || showChatBtn) && (
                                 <>
-                                    <IconicBtnGroup
-                                        label={__('Buttons Position', 'zoloblocks')}
-                                        value={btnsPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                btnsPosition: value,
-                                            })
-                                        }
-                                        options={BTNS_POSITIONS}
-                                    />
-                                    <IconicBtnGroup
-                                        label={__('Buttons Direction', 'zoloblocks')}
-                                        value={btnsDirection}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                btnsDirection: value,
-                                            })
-                                        }
-                                        options={BTNS_DIRECTIONS}
-                                    />
+                                    <div className='zolo-flex-row-control-tab'>
+                                        <IconicBtnGroup
+                                            label={__('Button (PS)', 'zoloblocks')}
+                                            value={btnsPosition}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnsPosition: value,
+                                                })
+                                            }
+                                            options={BTNS_POSITIONS}
+                                        />
+                                    </div>
+                                    <div className='zolo-flex-row-control-tab'>
+                                        <IconicBtnGroup
+                                            label={__('Button (DR)', 'zoloblocks')}
+                                            value={btnsDirection}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnsDirection: value,
+                                                })
+                                            }
+                                            options={BTNS_DIRECTIONS}
+                                        />
+                                    </div>
                                 </>
                             )}
                         </ZoloPanelBody>
@@ -314,7 +318,9 @@ const Inspector = (props) => {
                                 options={HEADING}
                                 onChange={(selected) => setAttributes({ titleTagName: selected })}
                             />
+
                             <ToggleControl
+
                                 label={__('Show Description', 'zoloblocks')}
                                 checked={showDesc}
                                 onChange={(showDesc) => setAttributes({ showDesc })}
@@ -322,6 +328,7 @@ const Inspector = (props) => {
 
                             {showDesc && (
                                 <TextareaControl
+                                    className='zolo-flex-col-control'
                                     label={__('Description', 'zoloblocks')}
                                     value={descText}
                                     onChange={(descText) => setAttributes({ descText })}
@@ -349,7 +356,7 @@ const Inspector = (props) => {
 
                             {sale && (
                                 <TextControl
-                                    label={__('Orginal Price', 'zoloblocks')}
+                                    label={__('Original Price', 'zoloblocks')}
                                     value={orginalPrice}
                                     onChange={(orginalPrice) => setAttributes({ orginalPrice })}
                                 />
@@ -397,6 +404,7 @@ const Inspector = (props) => {
 
                                 {showFeatureDesc && (
                                     <TextareaControl
+                                        className='zolo-flex-col-control'
                                         label={__('Description', 'zoloblocks')}
                                         value={featureDesc}
                                         onChange={(featureDesc) => setAttributes({ featureDesc })}
@@ -499,7 +507,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Description ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Description', 'zoloblocks')} </h3>
                                     </BaseControl>
 
                                     <TypographyDropdown
@@ -574,7 +582,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('PreFix ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Prefix', 'zoloblocks')} </h3>
                                     </BaseControl>
                                     <RangeResetControl
                                         label={__('Size', 'zoloblocks')}
@@ -599,7 +607,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Suffix ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Suffix', 'zoloblocks')} </h3>
                                     </BaseControl>
                                     <RangeResetControl
                                         label={__('Size', 'zoloblocks')}
@@ -624,7 +632,7 @@ const Inspector = (props) => {
                                 <>
                                     <Divider />
                                     <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Orginal Price ', 'zoloblocks')} </h3>
+                                        <h3 className="zolo-devider-title"> {__('Original Price', 'zoloblocks')} </h3>
                                     </BaseControl>
 
                                     <TypographyDropdown
@@ -733,7 +741,7 @@ const Inspector = (props) => {
 
                                             <Divider />
                                             <BaseControl>
-                                                <h3 className="zolo-devider-title"> {__('Description ', 'zoloblocks')} </h3>
+                                                <h3 className="zolo-devider-title"> {__('Description', 'zoloblocks')} </h3>
                                             </BaseControl>
 
                                             <TypographyDropdown
@@ -765,7 +773,7 @@ const Inspector = (props) => {
                                         <>
                                             <Divider />
                                             <BaseControl>
-                                                <h3 className="zolo-devider-title"> {__('Feature Lists ', 'zoloblocks')} </h3>
+                                                <h3 className="zolo-devider-title"> {__('Feature Lists', 'zoloblocks')} </h3>
                                             </BaseControl>
                                         </>
                                     )}

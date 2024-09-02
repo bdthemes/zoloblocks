@@ -8,9 +8,11 @@
  * Text Domain: zoloblocks
  * Description: A collection of custom Gutenberg blocks to design your webpages with ease.
  * Domain Path: /languages
- * License: GPL v2 or later
+ * Requires at least: 6.0
+ * Requires PHP: 7.0
+ *  License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * 
+ *
  */
 
 if (!defined('ABSPATH')) {
@@ -84,35 +86,3 @@ final class ZoloBlocks {
  * Initialize the ZoloBlocks
  */
 ZoloBlocks::get_instance();
-
-
-/**
- * SDK Integration
- */
-if (!function_exists('dci_plugin_zoloblocks')) {
-    function dci_plugin_zoloblocks() {
-
-        // Include DCI SDK.
-        require_once dirname(__FILE__) . '/dci/start.php';
-        wp_enqueue_style('dci-sdk-zolo', plugins_url('dci/assets/css/dci.css', __FILE__), array(), '1.3.0', 'all');
-
-        dci_dynamic_init(array(
-            'sdk_version'         => '1.2.0',
-            'product_id'          => 5,
-            'plugin_name'         => 'ZoloBlocks', // make simple, must not empty
-            'plugin_title'        => 'Love using ZoloBlocks? Congrats 🎉  ( Never miss an Important Update )',
-            'plugin_icon'         => plugins_url('/', __FILE__) . 'assets/images/zb-brand.svg',
-            'api_endpoint'        => 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
-            'slug'                => 'zoloblocks',
-            'menu'                => array(
-                'slug' => 'zoloblocks',
-            ),
-            'public_key'          => 'pk_gxu6BkkwuuRmL5TYa9TlkiRPMKluYB4b',
-            'is_premium'          => false,
-            'popup_notice'        => true,
-            'deactivate_feedback' => true,
-            'plugin_msg'          => '<p>Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.',
-        ));
-    }
-    add_action('admin_init', 'dci_plugin_zoloblocks');
-}

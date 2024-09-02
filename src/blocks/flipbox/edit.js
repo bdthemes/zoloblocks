@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, MediaPlaceholder } from '@wordpress/block-editor';
-
+import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import { useRef, useEffect } from '@wordpress/element';
 import classnames from 'classnames';
@@ -49,6 +49,10 @@ export default function Edit(props) {
         imageRes,
     } = attributes;
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.flipbox} alt={__('Flip Box Preview', 'zoloblocks')} />;
@@ -67,6 +71,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} flipboxRef={flipboxRef} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className={`zolo-flip-box_wrap zolo-flip-box_animation_style-${flipEffect}`}>
                     <div ref={flipboxRef} className={`zolo-flip-box_item zolo-flip-box_hover`}>
@@ -213,6 +218,7 @@ export default function Edit(props) {
                         </div>
                     </div>
                 </div>
+                {renderHookAfter && renderHookAfter}
             </div>
         </>
     );

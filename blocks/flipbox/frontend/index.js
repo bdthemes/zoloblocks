@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){const t=document.querySelectorAll(".zolo-flip-box_item");t.length>0&&t.forEach((function(t){"click"===t.dataset.triggertype&&t.addEventListener("click",(function(){t.classList.toggle("zolo-flip-box_active")}))}))}));

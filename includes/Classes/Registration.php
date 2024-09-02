@@ -41,7 +41,7 @@ class Registration {
                     $class = new $block['class'];
                     // register block with render callback
                     register_block_type($block_path . '/build/blocks/' . $block['name'], [
-                        'render_callback' => fn ($attributes, $content) => $this->render_callback($attributes, $content, $class),
+                        'render_callback' => fn($attributes, $content) => $this->render_callback($attributes, $content, $class),
                     ]);
                 } else {
                     // register block without render callback

@@ -1044,6 +1044,13 @@ export const CONTENT_POSITIONS = [
     { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
 ];
 
+export const CONTENT_WIDTH = [
+    { label: __('Default', 'zoloblocks'), value: 'default' },
+    { label: __('Full Width', 'zoloblocks'), value: 'full' },
+    { label: __('Inline (auto)', 'zoloblocks'), value: 'inline' },
+    { label: __('Custom', 'azoloblocks'), value: 'custom' },
+];
+
 export const OBJECT_FITS = [
     { label: __('None', 'zoloblocks'), value: 'none' },
     { label: __('Fill', 'zoloblocks'), value: 'fill' },
@@ -1258,3 +1265,15 @@ export const FLIP_ICON = (
         <path d="M12 2L22 12L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
+
+export const INCLUDE_BY=[
+  {label:__('Authors','zoloblocks'),value:'authors'},
+  {label: __('Terms','zoloblocks'),value:'terms'}
+]
+
+export const EXCLUDE_BY=[
+  {value:'authors'         , label: __('Authors', 'zoloblocks')},
+  {value:'current_post'    , label: __('Current Post', 'zoloblocks')},
+  {value:'manual_selection', label: __('Manual Selection', 'zoloblocks')},
+  {value:'terms'           , label: __('Terms', 'zoloblocks')},
+]

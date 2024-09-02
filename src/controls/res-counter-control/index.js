@@ -73,7 +73,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                             </div>
                             <p className="zb-counter-note">
                                 <strong>{__('Note: ', 'zoloblocks')}</strong>
-                                {noteText || __('maximum ', 'zoloblocks') + max + ' ' + __('minimum ') + min}
+                                {noteText || __('maximum', 'zoloblocks') + max + ' ' + __('minimum') + min}
                             </p>
                         </div>
                     </WithResDeviceBtn>
@@ -127,7 +127,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                         </div>
                         <p className="zb-counter-note">
                             <strong>{__('Note: ', 'zoloblock')}</strong>
-                            {noteText || __('maximum ', 'zoloblock') + max + ' ' + __('minimum ') + min}
+                            {noteText || __('maximum', 'zoloblock') + max + ' ' + __('minimum') + min}
                         </p>
                     </div>
                 </WithResDeviceBtn>
@@ -180,7 +180,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                         </div>
                         <p className="zb-counter-note">
                             <strong>{__('Note: ', 'zoloblock')}</strong>
-                            {noteText || __('maximum ', 'zoloblock') + max + ' ' + __('minimum ') + min}
+                            {noteText || __('maximum', 'zoloblock') + max + ' ' + __('minimum') + min}
                         </p>
                     </div>
                 </WithResDeviceBtn>

@@ -1,4 +1,4 @@
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import apiFetch from '@wordpress/api-fetch';
 import ZoloMarker from './marker';

@@ -116,26 +116,29 @@ function Inspector(props) {
                                     onChange={(v) => setAttributes({ placeholder: v })}
                                 />
                             )}
-
-                            <TextControl
-                                label={__('Email Validation Message', 'zoloblocks')}
-                                value={emailValidationMsg}
-                                onChange={(v) => setAttributes({ emailValidationMsg: v })}
-                                help={__('This message will be shown when the email is invalid', 'zoloblocks')}
-                                placeholder={__('Enter validation message..', 'zoloblocks')}
-                            />
-                            {isRequired && (
-                                <TextareaControl
-                                    label={__('Required Message', 'zoloblocks')}
-                                    help={__('This message will be shown when the field is required', 'zoloblocks')}
-                                    value={requiredMsg}
-                                    onChange={(v) =>
-                                        setState({
-                                            requiredMsg: v,
-                                        })
-                                    }
-                                    placeholder={__('Enter required message..', 'zoloblocks')}
+                            <div className='zolo-flex-col-control'>
+                                <TextControl
+                                    label={__('Email Validation Message', 'zoloblocks')}
+                                    value={emailValidationMsg}
+                                    onChange={(v) => setAttributes({ emailValidationMsg: v })}
+                                    help={__('This message will be shown when the email is invalid', 'zoloblocks')}
+                                    placeholder={__('Enter validation message..', 'zoloblocks')}
                                 />
+                            </div>
+                            {isRequired && (
+                                <div className='zolo-flex-col-control'>
+                                    <TextareaControl
+                                        label={__('Required Message', 'zoloblocks')}
+                                        help={__('This message will be shown when the field is required', 'zoloblocks')}
+                                        value={requiredMsg}
+                                        onChange={(v) =>
+                                            setState({
+                                                requiredMsg: v,
+                                            })
+                                        }
+                                        placeholder={__('Enter required message..', 'zoloblocks')}
+                                    />
+                                </div>
                             )}
                             {showIcon && preset !== 'style-3' && (
                                 <ZoloIconPicker

@@ -16,10 +16,11 @@ import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
+import {applyFilters} from '@wordpress/hooks';
 
 const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
-
+    const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
     const {
         [`${controlName}bg_hoverType`]: bg_hoverType,
 
@@ -195,7 +196,6 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                     });
                                                                 }}
                                                             />
-
                                                             {resMode === 'Desktop' && (
                                                                 <>
                                                                     <WithResDeviceBtn
@@ -505,7 +505,6 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                     )}
                                                                 </>
                                                             )}
-
                                                             {resMode === 'Tablet' && (
                                                                 <>
                                                                     <WithResDeviceBtn
@@ -815,7 +814,6 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                     )}
                                                                 </>
                                                             )}
-
                                                             {resMode === 'Mobile' && (
                                                                 <>
                                                                     <WithResDeviceBtn
@@ -1125,6 +1123,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                     )}
                                                                 </>
                                                             )}
+                                                            {backgroundParallax && backgroundParallax}
                                                         </>
                                                     )}
                                                 </>
@@ -1148,7 +1147,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                 <TextareaControl
                                                     help={
                                                         <>
-                                                            {__('Add your gradient color here. Get Sample ', 'zoloblocks')}
+                                                            {__('Add your gradient color here. Get Sample', 'zoloblocks')}
                                                             <a
                                                                 href="https://csspro.com/css-gradients/"
                                                                 target="_blank"
