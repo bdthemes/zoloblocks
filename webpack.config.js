@@ -12,7 +12,7 @@ module.exports = {
     entry: {
         ...defaultConfig.entry(),
         'admin/index': ['./src/admin/index.js'],
-        'animation/index': ['./src/animation/index.js'],
+        // 'animation/index': ['./src/animation/index.js'],
         'extensions/export-pattern/index': ['./src/extensions/export-pattern/index.js'],
         'extensions/import-pattern/index': ['./src/extensions/import-pattern/index.js'],
         'extensions/shape-divider/index': ['./src/extensions/shape-divider/index.js'],
