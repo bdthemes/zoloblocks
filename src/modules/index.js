@@ -7,6 +7,7 @@ export { default as BazierControl } from '../controls/bezier-control';
 export { default as BorderControl } from '../controls/border-control';
 export { default as BoxShadowControl } from '../controls/boxshadow-control';
 export { default as ColorControl } from '../controls/color-control';
+export { default as ColorControlAlt } from '../controls/color-control-alt';
 export { default as ContainerSidebarOpener } from '../controls/container-sidebar-opener';
 export { default as ResDimensionsControl } from '../controls/dimensions-control';
 export { default as DisplayZoloIcon } from '../controls/display-zolo-icon';
@@ -46,6 +47,8 @@ export { default as ZoloIconPicker } from '../controls/zolo-icon-picker';
 export { default as ZoloPanelBody } from '../controls/zolo-panelbody';
 export { AdvancedOptions } from '../global/components/advancedOptions';
 export { GlobalStyleHanlder } from '../global/components/globalStyleHandler';
+export { default as ResSelectControl } from '../controls/res-select-control';
+export { default as TabDynamicControl } from '../controls/tabdynamic-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -53,8 +56,6 @@ export { generateBorderAttributies, generateBorderStyle } from '../helpers/borde
 export { generateBoxShadowAttributies, generateBoxShadowStyles } from '../helpers/boxshadow-helper';
 export { generateDimensionAttributes, generateDimensionStyle } from '../helpers/dimension-helper';
 export { generateGapAttributes, generateGapStyle } from '../helpers/gap-helper';
-export { DynamicTag, classArrayToStr, handleUniqueId, hasVal, softMinifyCssStrings } from '../helpers/helper';
-
 export { generateMaskAttributes, generateMaskStyles } from '../helpers/mask-helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from '../helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from '../helpers/preview-btns-helper';
@@ -64,3 +65,18 @@ export { generateResRangeAttributies, generateResRangeStyle } from '../helpers/r
 export { generateTextShadowAttributies, generateTextShadowStyles } from '../helpers/textshadow-helper';
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
+export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
+
+
+export {
+    DynamicTag,
+    classArrayToStr,
+    handleUniqueId,
+    hasVal,
+    softMinifyCssStrings,
+    isEmpty,
+    strToHex,
+    getTaxonomies,
+    popoverHasAttrVal
+} from '../helpers/helper';
+
