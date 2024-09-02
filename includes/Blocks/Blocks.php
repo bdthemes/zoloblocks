@@ -389,5 +389,12 @@ return apply_filters(
             'frontend-scripts' => false,
             'class'            => '\Zolo\Blocks\BreadcrumbsBlock',
         ],
+        'post-timeline'     => [
+            'name'             => 'post-timeline',
+            'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-timeline/block.json',
+            'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+            'frontend-scripts' => false,
+            'class'            => '\Zolo\Blocks\PostTimeline',
+        ],
     ]
 );

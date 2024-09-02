@@ -69,6 +69,7 @@ import '../blocks/breadcrumbs/src';
 import '../blocks/social-count/src';
 import '../blocks/social-count-child/src';
 import '../blocks/post-comments/src';
+import '../blocks/post-timeline/src';
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';
