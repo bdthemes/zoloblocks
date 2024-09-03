@@ -20,6 +20,7 @@ import {
     THUMBNAIL_BORDER,
     THUMBNAIL_BORDER_RADIUS,
     THUMBNAIL_SPACING,
+    THUMBNAIL_WIDTH,
     //title
     TITLE_SPACING,
     TITLE_TEXT_SHADOW,
@@ -253,6 +254,16 @@ function Style({ props }) {
     } = generateResRangeStyle({
         controlName: THUMBNAIL_SPACING,
         property: 'margin-bottom',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: thumbWidthDesk,
+        tabRangeStyle: thumbWidthTab,
+        mobRangeStyle: thumbWidthMob,
+    } = generateResRangeStyle({
+        controlName: THUMBNAIL_WIDTH,
+        property: 'width',
         attributes,
     });
 
@@ -500,6 +511,7 @@ function Style({ props }) {
        .${uniqueId}.zolo-block.zolo-post-timeline-wrap .zolo-post-timeline-grid .zolo-post-image a img{
           ${thumbBorderDesk}
           ${thumbBorderRadiusDesk}
+          ${thumbWidthDesk};
        }
        .${uniqueId}.zolo-block.zolo-post-timeline-wrap .zolo-post-timeline-grid .zolo-post-title{
         ${titleSpacingDesk}
@@ -632,6 +644,7 @@ function Style({ props }) {
        .${uniqueId}.zolo-block.zolo-post-timeline-wrap .zolo-post-timeline-grid .zolo-post-image a img{
           ${thumbBorderTab}
           ${thumbBorderRadiusTab}
+          ${thumbWidthTab};
        }
        .${uniqueId}.zolo-block.zolo-post-timeline-wrap .zolo-post-timeline-grid .zolo-post-title{
         ${titleSpacingTab}
@@ -730,6 +743,7 @@ function Style({ props }) {
        .${uniqueId}.zolo-block.zolo-post-timeline-wrap .zolo-post-timeline-grid .zolo-post-image a img{
           ${thumbBorderMob}
           ${thumbBorderRadiusMob}
+          ${thumbWidthMob};
        }
        .${uniqueId}.zolo-block.zolo-post-timeline-wrap .zolo-post-timeline-grid .zolo-post-title{
         ${titleSpacingMob}

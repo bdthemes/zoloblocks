@@ -4,9 +4,9 @@
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-post-timeline';
 export const PRESETS = [
-    { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
-    { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
-    { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: false },
+    { label: __('Left', 'zoloblocks'), value: 'style-1' },
+    { label: __('Right', 'zoloblocks'), value: 'style-2' },
+    { label: __('Center (Pro)', 'zoloblocks'), value: 'style-3', disabled: false },
 ];
 export const LINE_STYLE = [
     { value: 'solid', label: __('Solid', 'zoloblocks') },
@@ -37,6 +37,7 @@ export const ITEM_SHADOW = 'itemShadow';
 export const THUMBNAIL_BORDER = 'thumbBorder';
 export const THUMBNAIL_BORDER_RADIUS = 'thumbBRadius';
 export const THUMBNAIL_SPACING = 'thumbSpacing';
+export const THUMBNAIL_WIDTH = 'thumbWidth';
 //title
 export const TITLE_SPACING = 'titleSpacing';
 export const TITLE_TEXT_SHADOW = 'titleTShadow';

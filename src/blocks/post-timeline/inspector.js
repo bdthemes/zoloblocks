@@ -25,6 +25,7 @@ import {
     THUMBNAIL_BORDER,
     THUMBNAIL_BORDER_RADIUS,
     THUMBNAIL_SPACING,
+    THUMBNAIL_WIDTH,
     //title
     TITLE_TEXT_SHADOW,
     TITLE_SPACING,
@@ -137,7 +138,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Styles', 'zoloblocks')}
+                                label={__('Directions', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.postTimeline.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
@@ -148,7 +149,7 @@ function Inspector(props) {
                                 onChange={(showStartEnd) => setAttributes({ showStartEnd })}
                             />
                             <ToggleControl
-                                label={__('Image', 'zoloblocks')}
+                                label={__('Thumbnail', 'zoloblocks')}
                                 checked={showThumbnail}
                                 onChange={(showThumbnail) => setAttributes({ showThumbnail })}
                             />
@@ -427,17 +428,16 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-
                                 <CardDivider />
                                 <ResRangeControl
-                                    label={__('Spacing', 'zoloblocks')}
-                                    controlName={THUMBNAIL_SPACING}
+                                    label={__('Size', 'zoloblocks')}
+                                    controlName={THUMBNAIL_WIDTH}
                                     requiredProps={requiredProps}
-                                    min={0}
-                                    max={50}
+                                    min={100}
+                                    max={1000}
                                     step={1}
                                 />
-                                <CardDivider />
+
                                 <SelectControl
                                     label={__('Resolution', 'zoloblocks')}
                                     value={postQuery?.postThumbnail}
@@ -447,6 +447,40 @@ function Inspector(props) {
                                             postQuery: { ...postQuery, postThumbnail },
                                         })
                                     }
+                                />
+                                <CardDivider />
+                                <ResRangeControl
+                                    label={__('Spacing', 'zoloblocks')}
+                                    controlName={THUMBNAIL_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={50}
+                                    step={1}
+                                />
+                            </ZoloPanelBody>
+                        )}
+
+                        {showDate && (
+                            <ZoloPanelBody title={__('Date', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={dateColor}
+                                    onChange={(dateColor) => setAttributes({ dateColor })}
+                                />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={DATE_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                    max={36}
+                                />
+                                <CardDivider />
+                                <ResRangeControl
+                                    label={__('Spacing', 'zoloblocks')}
+                                    controlName={DATE_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
                                 />
                             </ZoloPanelBody>
                         )}
@@ -530,32 +564,6 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-
-                        {showDate && (
-                            <ZoloPanelBody title={__('Date', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={dateColor}
-                                    onChange={(dateColor) => setAttributes({ dateColor })}
-                                />
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={DATE_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                    max={36}
-                                />
-                                <CardDivider />
-                                <ResRangeControl
-                                    label={__('Spacing', 'zoloblocks')}
-                                    controlName={DATE_SPACING}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
-                            </ZoloPanelBody>
-                        )}
-
                         {showMeta && (
                             <ZoloPanelBody title={__('Meta', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl

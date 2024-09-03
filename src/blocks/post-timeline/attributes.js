@@ -33,6 +33,7 @@ import {
     THUMBNAIL_BORDER,
     THUMBNAIL_BORDER_RADIUS,
     THUMBNAIL_SPACING,
+    THUMBNAIL_WIDTH,
     //title
     TITLE_SPACING,
     TITLE_TEXT_SHADOW,
@@ -151,6 +152,7 @@ const attributes = {
     ...generateBorderAttributies(THUMBNAIL_BORDER),
     ...generateDimensionAttributes(THUMBNAIL_BORDER_RADIUS),
     ...generateResRangeAttributies(THUMBNAIL_SPACING),
+    ...generateResRangeAttributies(THUMBNAIL_WIDTH),
     //title
     ...generateResRangeAttributies(TITLE_SPACING),
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
