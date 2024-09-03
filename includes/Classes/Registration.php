@@ -24,7 +24,12 @@ class Registration {
      */
     public function block_register() {
         $blocks = $this::block_list();
-        if (is_array($blocks) && count($blocks) > 0) {
+
+        // var_dump($blocks);
+
+        // wp_die(); 
+
+        if ( is_array($blocks) && count($blocks) > 0 ) {
             foreach ($blocks as $block) {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);
                 $admin_path = trailingslashit(ZOLO_ADMIN_URL);
@@ -38,14 +43,19 @@ class Registration {
 
                 //Check Render Class
                 if (isset($block['class'])) {
+
                     $class = new $block['class'];
-                    // register block with render callback
-                    register_block_type($block_path . '/build/blocks/' . $block['name'], [
-                        'render_callback' => fn($attributes, $content) => $this->render_callback($attributes, $content, $class),
-                    ]);
+
+                    if( file_exists( $block_path . '/build/blocks/' . $block['name']  ) ) {
+                        register_block_type( $block_path . '/build/blocks/' . $block['name'], [
+                            'render_callback' => fn($attributes, $content) => $this->render_callback($attributes, $content, $class),
+                        ] );
+                    }
+
                 } else {
-                    // register block without render callback
-                    register_block_type($block_path . '/build/blocks/' . $block['name']);
+                    if( file_exists( $block_path . '/build/blocks/' . $block['name'] ) ) {
+                        register_block_type( $block_path . '/build/blocks/' . $block['name'] );
+                    }
                 }
             }
         }

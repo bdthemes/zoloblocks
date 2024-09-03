@@ -261,9 +261,16 @@
         "upcoming": true
     },
     {
-        "title": "Post Tag Cloud",
+        "title": "Tag Cloud",
         "name": "zolo_tag_cloud",
-        "demo": "https://demo.zoloblocks.com/post-tag-cloud/",
+        "demo": "https://demo.zoloblocks.com/tag-cloud/",
+        "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
+        "categories": ["postCategory"]
+    },
+    {
+        "title": "Post Timeline",
+        "name": "zolo_timeline",
+        "demo": "https://demo.zoloblocks.com/post-timeline/",
         "video": "https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX",
         "categories": ["postCategory"]
     },

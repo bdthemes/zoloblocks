@@ -1,6 +1,6 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
+import classnames from 'classnames';
 
 /**
  * Internal Dependencies
@@ -46,9 +46,9 @@ const Save = (props) => {
                                 : ''
                         }`
                     )}
-                    href={link && link.url}
-                    rel={link && link.openInNewTab && 'noreferrer noopener'}
-                    target={link && link.openInNewTab && '_blank'}
+                    href={link?.url ? link.url : '#'}
+                    {...(link?.openInNewTab && { rel: 'noreferrer noopener' })}
+                    {...(link?.openInNewTab && { target: '_blank' })}
                     title={label}
                 >
                     {iconType !== 'iconOnly' && <RichText.Content tagName="span" className={`zolo-button-content`} value={label} />}
