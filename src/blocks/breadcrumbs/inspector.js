@@ -151,7 +151,7 @@ export default function Inspector(props) {
                                     />
                                     {homeBtnType === 'text' && (
                                         <TextControl
-                                            label={__('Custom Home Text', 'zoloblocks')}
+                                            label={__('Home Text', 'zoloblocks')}
                                             value={homeText}
                                             onChange={(homeText) => setAttributes({ homeText })}
                                         />

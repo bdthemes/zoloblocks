@@ -216,16 +216,18 @@ function Inspector(props) {
                         {hideIcon && (
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} panelProps={props}>
                                 <>
-                                    <IconicBtnGroup
-                                        label={__('Type', 'zoloblocks')}
-                                        value={iconType}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconType: value,
-                                            })
-                                        }
-                                        options={ICON_BOX_OPTIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Type', 'zoloblocks')}
+                                            value={iconType}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconType: value,
+                                                })
+                                            }
+                                            options={ICON_BOX_OPTIONS}
+                                        />
+                                    </div>
                                     {iconType === 'icon' && (
                                         <ZoloIconPicker
                                             label={__('Select Icon', 'zoloblocks')}
@@ -240,9 +242,7 @@ function Inspector(props) {
 
                                     {iconType === 'image' && (
                                         <>
-                                            <BaseControl label={__('Photo', 'zoloblocks')}
-                                                className='zolo-flex-col-control'
-                                            >
+                                            <BaseControl label={__('Photo', 'zoloblocks')} className="zolo-flex-col-control">
                                                 {iconTypeImage ? (
                                                     <ImageAvatar
                                                         imageUrl={iconTypeImage && iconTypeImage.url}

@@ -102,8 +102,8 @@ export const SEPARATOR_WIDTH = 'separatorWidth';
 
 // ribbon position options
 export const RIBBON_POSITIONS = [
-    { label: __('Top Left', 'zoloblocks'), value: 'top__left' },
-    { label: __('Top Right', 'zoloblocks'), value: 'top__right' },
+    { label: __('Left', 'zoloblocks'), value: 'top__left' },
+    { label: __('Right', 'zoloblocks'), value: 'top__right' },
 ];
 
 // buttons

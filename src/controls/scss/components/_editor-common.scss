@@ -242,7 +242,7 @@
     }
 
     .components-input-control__container {
-        width: calc(80px);
+        width: calc(90px);
     }
 
     .zolo-text-shadow {
@@ -255,7 +255,7 @@
     .zolo-text-stroke {
         .zolo-box-shadow-options {
             .components-input-control__container {
-                width: calc(80px) !important;
+                width: calc(90px) !important;
             }
         }
     }
@@ -268,7 +268,6 @@
             margin: 3px !important;
         }
     }
-
 }
 
 .zb-res-range-control-wrapper {
@@ -470,7 +469,7 @@ textarea[readonly] {
         display: flex;
         align-items: center;
         gap: 15px;
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .e1epgpqk10,
@@ -807,7 +806,7 @@ textarea[readonly] {
         .components-input-control__container {
             width: 100%;
         }
-    } 
+    }
     .zolo-flex-row-control {
         display: inline;
         .components-select-control {

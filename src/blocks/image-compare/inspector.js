@@ -73,10 +73,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Before Image', 'zoloblocks')}
-                                className='zolo-flex-col-control'
-                            >
-                                
+                            <BaseControl label={__('Before Image', 'zoloblocks')} className="zolo-flex-col-control">
                                 {beforeImage ? (
                                     <ImageAvatar
                                         imageUrl={beforeImage?.url}
@@ -118,9 +115,7 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
-                            <BaseControl label={__('After Image', 'zoloblocks')}
-                                className='zolo-flex-col-control'
-                            >
+                            <BaseControl label={__('After Image', 'zoloblocks')} className="zolo-flex-col-control">
                                 {afterImage ? (
                                     <ImageAvatar
                                         imageUrl={afterImage?.url}
@@ -214,7 +209,7 @@ function Inspector(props) {
                                     }
                                 />
                             )}
-                            <div className='zolo-flex-col-control'>
+                            <div className="zolo-flex-col-control">
                                 <RangeControl
                                     label={__('Initial Position', 'zoloblocks')}
                                     value={comparisonOptions?.initialPosition}
@@ -230,7 +225,7 @@ function Inspector(props) {
                                     max={100}
                                 />
                             </div>
-                            <div className='zolo-flex-row-control-tab'>
+                            <div className="zolo-flex-row-control-tab">
                                 <IconicBtnGroup
                                     label={__('Direction', 'zoloblocks')}
                                     value={comparisonOptions?.slidePositon}
@@ -273,33 +268,37 @@ function Inspector(props) {
                                     }
                                 />
                                 {comparisonOptions?.slidePositon === 'horizontal_direction' ? (
-                                    <IconicBtnGroup
-                                        label={__('Labels Position', 'zoloblocks')}
-                                        value={comparisonOptions?.HorizontalPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                comparisonOptions: {
-                                                    ...comparisonOptions,
-                                                    HorizontalPosition: value,
-                                                },
-                                            })
-                                        }
-                                        options={HOTIZONTAL_POSITIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Position', 'zoloblocks')}
+                                            value={comparisonOptions?.HorizontalPosition}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    comparisonOptions: {
+                                                        ...comparisonOptions,
+                                                        HorizontalPosition: value,
+                                                    },
+                                                })
+                                            }
+                                            options={HOTIZONTAL_POSITIONS}
+                                        />
+                                    </div>
                                 ) : (
-                                    <IconicBtnGroup
-                                        label={__('Labels Position', 'zoloblocks')}
-                                        value={comparisonOptions?.labelPositons}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                comparisonOptions: {
-                                                    ...comparisonOptions,
-                                                    labelPositons: value,
-                                                },
-                                            })
-                                        }
-                                        options={VERTICAL_POSITIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Position', 'zoloblocks')}
+                                            value={comparisonOptions?.labelPositons}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    comparisonOptions: {
+                                                        ...comparisonOptions,
+                                                        labelPositons: value,
+                                                    },
+                                                })
+                                            }
+                                            options={VERTICAL_POSITIONS}
+                                        />
+                                    </div>
                                 )}
                             </ZoloPanelBody>
                         )}

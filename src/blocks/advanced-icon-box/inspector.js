@@ -175,16 +175,18 @@ function Inspector(props) {
                             {
                                 // If preset is not selected, show alignment control
                                 preset === 'style-2' && (
-                                    <IconicBtnGroup
-                                        label={__('Layout Direction', 'zoloblocks')}
-                                        value={iconBoxDirection}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconBoxDirection: value,
-                                            })
-                                        }
-                                        options={PRESETS_ALIGNMENT}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Direction', 'zoloblocks')}
+                                            value={iconBoxDirection}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconBoxDirection: value,
+                                                })
+                                            }
+                                            options={PRESETS_ALIGNMENT}
+                                        />
+                                    </div>
                                 )
                             }
                             <ToggleControl
@@ -331,16 +333,18 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             {showMainIcon && (
                                 <>
-                                    <IconicBtnGroup
-                                        label={__('Icon Type', 'zoloblocks')}
-                                        value={iconType}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconType: value,
-                                            })
-                                        }
-                                        options={ICON_BOX_OPTIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Icon Type', 'zoloblocks')}
+                                            value={iconType}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconType: value,
+                                                })
+                                            }
+                                            options={ICON_BOX_OPTIONS}
+                                        />
+                                    </div>
                                     {iconType === 'icon' && (
                                         <Fragment>
                                             <ZoloIconPicker
@@ -357,9 +361,7 @@ function Inspector(props) {
 
                                     {iconType === 'image' && (
                                         <>
-                                            <BaseControl label={__('Image', 'zoloblocks')}
-                                                className='zolo-flex-col-control'
-                                            >
+                                            <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                                 {iconTypeImage ? (
                                                     <ImageAvatar
                                                         imageUrl={iconTypeImage && iconTypeImage.url}
@@ -436,8 +438,8 @@ function Inspector(props) {
                                 value={iconBoxTitle}
                                 placeholder={__('Title Goes Here..', 'zoloblocks')}
                             />
-                            
-                            <div className='zolo-flex-col-control'>
+
+                            <div className="zolo-flex-col-control">
                                 <TextareaControl
                                     label={__('Description', 'zoloblocks')}
                                     value={iconBoxDescription}
@@ -484,6 +486,7 @@ function Inspector(props) {
                                     onChange={(ribbonTitle) => setAttributes({ ribbonTitle })}
                                 />
                                 <RangeResetControl
+                                    className="zolo-flex-row-control"
                                     label={__('Horizontal Position', 'zoloblocks')}
                                     controlName={'ribbonXPosition'}
                                     requiredProps={requiredProps}
@@ -508,16 +511,18 @@ function Inspector(props) {
                                     max={180}
                                     step={1}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Position', 'zoloblocks')}
-                                    value={ribbonPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            ribbonPosition: value,
-                                        })
-                                    }
-                                    options={RIBBON_POSITIONS}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Position', 'zoloblocks')}
+                                        value={ribbonPosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                ribbonPosition: value,
+                                            })
+                                        }
+                                        options={RIBBON_POSITIONS}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
 

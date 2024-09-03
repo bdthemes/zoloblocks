@@ -142,16 +142,18 @@ function Inspector(props) {
                                 value={link}
                                 onChange={(value) => setAttributes({ link: value })}
                             />
-                            <IconicBtnGroup
-                                label={__('Icon Status', 'zoloblocks')}
-                                value={iconType}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        iconType: value,
-                                    })
-                                }
-                                options={ICON_STATUS}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Icon', 'zoloblocks')}
+                                    value={iconType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            iconType: value,
+                                        })
+                                    }
+                                    options={ICON_STATUS}
+                                />
+                            </div>
 
                             {iconType !== 'none' && (
                                 <Fragment>
@@ -175,19 +177,19 @@ function Inspector(props) {
                                                     iconAnimation !== undefined &&
                                                     iconAnimation !== 'undefined' &&
                                                     (preset === 'button-1' || preset === 'button-3'))) && (
-                                                    <>
-                                                        <IconicBtnGroup
-                                                            label={__('Icon Position', 'zoloblocks')}
-                                                            value={iconPosition}
-                                                            onChange={(value) =>
-                                                                setAttributes({
-                                                                    iconPosition: value,
-                                                                })
-                                                            }
-                                                            options={ICON_POSITIONS}
-                                                        />
-                                                    </>
-                                                )}
+                                                <>
+                                                    <IconicBtnGroup
+                                                        label={__('Icon Position', 'zoloblocks')}
+                                                        value={iconPosition}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconPosition: value,
+                                                            })
+                                                        }
+                                                        options={ICON_POSITIONS}
+                                                    />
+                                                </>
+                                            )}
                                         </>
                                     )}
                                 </Fragment>
@@ -284,7 +286,6 @@ function Inspector(props) {
                                             }
                                         />
                                         {preset !== 'button-1' && (
-
                                             <NormalBGControl
                                                 requiredProps={requiredProps}
                                                 controlName={BUTTON_HOVER_BG_COLOR}
