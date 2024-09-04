@@ -25,6 +25,7 @@ class PostTimeline extends PostBlock {
         'showReadingTime'  => true,
         'showDate'         => true,
         'showStartEnd'     => true,
+        'showThumbnail'    => true,
     ];
 
     /**
