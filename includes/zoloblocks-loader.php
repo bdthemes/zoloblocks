@@ -4,7 +4,6 @@
  *
  * @package Zolo
  */
-
 use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
