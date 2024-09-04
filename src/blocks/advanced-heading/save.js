@@ -1,6 +1,6 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
+import classnames from 'classnames';
 const { classArrayToStr, DynamicTag } = window.zoloModule;
 
 const Save = (props) => {
@@ -64,7 +64,7 @@ const Save = (props) => {
                         tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
-                        formattingControl={['bold', 'italic']}
+                        allowedFormats={['bold', 'italic']}
                     />
                 )}
 
@@ -73,7 +73,7 @@ const Save = (props) => {
                         tagName={enableTitleLink && titleLink ? 'a' : 'span'}
                         className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
                         value={titleText}
-                        formattingControl={['bold', 'italic']}
+                        allowedFormats={['bold', 'italic']}
                         {...(enableTitleLink && titleLink
                             ? {
                                   href: titleLink.url,
@@ -90,7 +90,7 @@ const Save = (props) => {
                         tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
-                        formattingControl={['bold', 'italic']}
+                        allowedFormats={['bold', 'italic']}
                     />
                 )}
 

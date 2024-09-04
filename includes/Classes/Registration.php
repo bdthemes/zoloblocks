@@ -25,10 +25,6 @@ class Registration {
     public function block_register() {
         $blocks = $this::block_list();
 
-        // var_dump($blocks);
-
-        // wp_die(); 
-
         if ( is_array($blocks) && count($blocks) > 0 ) {
             foreach ($blocks as $block) {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);
