@@ -366,8 +366,11 @@ const Style = ({ props }) => {
 			${brandPhotoBorderRadiusDesk}
 			${brandPhotoBoxShadow}
 			${brandPhotoDeskBGStyle}
-			${brandPhotoMaringDesk}
 			${photoBorderDesktop}
+		}
+
+		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image {
+			${brandPhotoMaringDesk}
 		}
         .${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-inner-content{
             ${brandContentDeskAlignStyle}
@@ -420,7 +423,7 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerTabBGStyle}
         }
-        .${uniqueId} .zb-brand-image img{
+        .${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingTab}
             ${tabImageWidth}
             ${brandPhotoBorderRadiusTab}
@@ -428,7 +431,10 @@ const Style = ({ props }) => {
             ${brandPhotoMarginTab}
             ${photoBorderTab}
         }
-        .${uniqueId} .zb-brand-inner-content{
+        .${uniqueId} .wp-block-zolo-brand-child .zb-brand-image{
+            ${brandPhotoMarginTab}
+        }
+        .${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-inner-content{
             ${brandContentTabAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
@@ -464,15 +470,19 @@ const Style = ({ props }) => {
             ${containerMarginMob}
             ${containerMobBGStyle}
         }
-        .${uniqueId} .zb-brand-image img{
+        .${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingMob}
             ${mobImageWidth}
             ${brandPhotoBorderRadiusMob}
             ${brandPhotoMobBGStyle}
-            ${brandPhotoMarginMob}
             ${photoBorderMob}
         }
-        .${uniqueId} .zb-brand-inner-content{
+
+        .${uniqueId} .wp-block-zolo-brand-child .zb-brand-image{
+            ${brandPhotoMarginMob}
+        }
+
+        .${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-inner-content{
             ${brandContentMobAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
