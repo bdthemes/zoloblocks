@@ -1,47 +1,44 @@
 .zolo-breadcrumbs-wrap {
+    .breadcrumb-items {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-	.breadcrumb-items {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
+    .breadcrumb-item a,
+    .breadcrumb-item {
+        align-items: center;
+        display: inline-flex;
+        gap: 6px;
+    }
 
-	.breadcrumb-item a,
-	.breadcrumb-item {
-		align-items: center;
-		display: inline-flex;
-		gap: 6px;
-	}
+    &.hide-home .breadcrumb-item.home {
+        display: none;
+    }
 
-	&.hide-home .breadcrumb-item.home {
-		display: none;
-	}
+    &.hide-current .breadcrumb-item.current,
+    &.hide-current .breadcrumb-item:nth-last-child(2) .separator {
+        display: none;
+    }
 
-	&.hide-current .breadcrumb-item.current,
-	&.hide-current .breadcrumb-item:nth-last-child(2) .separator {
-		display: none;
-	}
+    svg {
+        width: 1em;
+        height: 1em;
+        display: block;
+    }
 
-	svg {
-		width: 1em;
-		height: 1em;
-		display: block;
-	}
+    .name {
+        font-size: 16px;
+        color: #4c4c4e;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
 
-	.name {
-		font-size: 16px;
-		color: #4c4c4e;
-		text-decoration: none;
-		transition: color 0.3s;
-	}
-
-	.separator svg {
-		font-size: 18px;
-	}
-
+    .separator svg {
+        font-size: 18px;
+        fill: currentColor;
+    }
 }
-
-
