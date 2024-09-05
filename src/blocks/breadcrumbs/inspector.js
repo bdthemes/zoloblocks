@@ -133,25 +133,31 @@ export default function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                             /> */}
 
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Show/Hide Elements', 'zoloblocks')}
+                            </div>
                             <ToggleControl
-                                label={__('Show Home', 'zoloblocks')}
+                                label={__('Home', 'zoloblocks')}
                                 checked={showHome}
                                 onChange={(showHome) => setAttributes({ showHome })}
                             />
                             {showHome && (
                                 <>
-                                    <IconicBtnGroup
-                                        value={homeBtnType}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                homeBtnType: value,
-                                            })
-                                        }
-                                        options={HOME_BTN_OPTIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Custom', 'zoloblocks')}
+                                            value={homeBtnType}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    homeBtnType: value,
+                                                })
+                                            }
+                                            options={HOME_BTN_OPTIONS}
+                                        />
+                                    </div>
                                     {homeBtnType === 'text' && (
                                         <TextControl
-                                            label={__('Home Text', 'zoloblocks')}
+                                            label={__('Text', 'zoloblocks')}
                                             value={homeText}
                                             onChange={(homeText) => setAttributes({ homeText })}
                                         />
@@ -159,7 +165,7 @@ export default function Inspector(props) {
                                     {homeBtnType === 'icon' && (
                                         <>
                                             <ZoloIconPicker
-                                                label={__('Home Icon', 'zoloblocks')}
+                                                label={__('Icon', 'zoloblocks')}
                                                 value={homeIcon}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -175,13 +181,13 @@ export default function Inspector(props) {
                             )}
 
                             <ToggleControl
-                                label={__('Show Current', 'zoloblocks')}
+                                label={__('Current', 'zoloblocks')}
                                 checked={showCurrent}
                                 onChange={(showCurrent) => setAttributes({ showCurrent })}
                             />
 
                             <ToggleControl
-                                label={__('Show Separator', 'zoloblocks')}
+                                label={__('Separator', 'zoloblocks')}
                                 checked={showSeparator}
                                 onChange={(showSeparator) => setAttributes({ showSeparator })}
                             />
@@ -197,6 +203,8 @@ export default function Inspector(props) {
                                     }
                                 />
                             )}
+
+                            <CardDivider />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={ROW_ALIGNMENT}
@@ -209,20 +217,9 @@ export default function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ResGapControl
-                                label={__('Space Between', 'zoloblocks')}
-                                controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
                             <TabPanelControl
                                 normalComponents={
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={ITEM_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={itemColor}
@@ -232,11 +229,29 @@ export default function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={ITEM_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true} />
+
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={ITEM_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={ITEM_BORDER}
                                             requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={ITEM_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
                                         />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
@@ -244,15 +259,13 @@ export default function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={ITEM_PADDING}
+
+                                        <CardDivider />
+                                        <ResGapControl
+                                            label={__('Space Between', 'zoloblocks')}
+                                            controlName={COLUMNS_GAP}
                                             requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl
-                                            controlName={ITEM_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
+                                            max={200}
                                         />
                                     </>
                                 }
@@ -268,6 +281,7 @@ export default function Inspector(props) {
                                             }
                                         />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true} />
+                                        <CardDivider />
                                         <ColorControl
                                             label={__('Border Color', 'zoloblocks')}
                                             color={itemHoverBColor}
@@ -292,11 +306,6 @@ export default function Inspector(props) {
                                 <TabPanelControl
                                     normalComponents={
                                         <>
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zoloblocks')}
-                                                typoPrefixConstant={HOME_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                            />
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={homeColor}
@@ -306,21 +315,24 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={HOME_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
                                             <NormalBGControl requiredProps={requiredProps} controlName={HOME_BG} noMainBGImg={true} />
-                                            <BorderControl
-                                                label={__('Border', 'zoloblocks')}
-                                                controlName={HOME_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                controlName={HOME_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
+
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={HOME_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={HOME_BORDER}
                                                 requiredProps={requiredProps}
                                             />
                                             <BoxShadowControl
@@ -328,11 +340,18 @@ export default function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={HOME_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+
                                             {homeIcon && (
                                                 <>
                                                     <div className="zolo-custom-heading">{__('Icon', 'zoloblocks')}</div>
                                                     <ColorControl
-                                                        label={__('Icon Color', 'zoloblocks')}
+                                                        label={__('Color', 'zoloblocks')}
                                                         color={homeIconColor}
                                                         onChange={(color) =>
                                                             setAttributes({
@@ -341,12 +360,13 @@ export default function Inspector(props) {
                                                         }
                                                     />
                                                     <ResRangeControl
-                                                        label={__('Icon Size', 'zoloblocks')}
+                                                        label={__('Size', 'zoloblocks')}
                                                         controlName={HOME_ICON_SIZE}
                                                         requiredProps={requiredProps}
                                                         min={0}
                                                         max={50}
                                                     />
+                                                    <CardDivider />
                                                     <ResGapControl
                                                         label={__('Space Between', 'zoloblocks')}
                                                         controlName={HOME_ICON_SPACE}
@@ -369,6 +389,7 @@ export default function Inspector(props) {
                                                 }
                                             />
                                             <NormalBGControl requiredProps={requiredProps} controlName={HOME_HOVER_BG} noMainBGImg={true} />
+                                            <CardDivider />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
                                                 color={homeHoverBColor}
@@ -407,11 +428,6 @@ export default function Inspector(props) {
                                 <TabPanelControl
                                     normalComponents={
                                         <>
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zoloblocks')}
-                                                typoPrefixConstant={CURRENT_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                            />
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={currentColor}
@@ -421,27 +437,34 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={CURRENT_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
                                             <NormalBGControl requiredProps={requiredProps} controlName={CURRENT_BG} noMainBGImg={true} />
-                                            <BorderControl
-                                                label={__('Border', 'zoloblocks')}
-                                                controlName={CURRENT_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                controlName={CURRENT_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={CURRENT_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={CURRENT_BORDER}
                                                 requiredProps={requiredProps}
                                             />
                                             <BoxShadowControl
                                                 controlName={CURRENT_SHADOW}
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={CURRENT_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
                                             />
                                         </>
                                     }
@@ -461,6 +484,7 @@ export default function Inspector(props) {
                                                 controlName={CURRENT_HOVER_BG}
                                                 noMainBGImg={true}
                                             />
+                                            <CardDivider />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
                                                 color={currentHoverBColor}
@@ -485,13 +509,6 @@ export default function Inspector(props) {
                                 <TabPanelControl
                                     normalComponents={
                                         <>
-                                            <ResRangeControl
-                                                label={__('Icon Size', 'zoloblocks')}
-                                                controlName={SEP_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={50}
-                                            />
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={sepColor}
@@ -501,18 +518,16 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={SEP_SIZE}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={50}
+                                            />
+                                            <CardDivider />
                                             <NormalBGControl requiredProps={requiredProps} controlName={SEP_BG} noMainBGImg={true} />
-                                            <BorderControl
-                                                label={__('Border', 'zoloblocks')}
-                                                controlName={SEP_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                controlName={SEP_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
+
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={SEP_PADDING}
@@ -523,10 +538,22 @@ export default function Inspector(props) {
                                                 controlName={SEP_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={SEP_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
                                             <BoxShadowControl
                                                 controlName={SEP_SHADOW}
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={SEP_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
                                             />
                                         </>
                                     }
@@ -542,6 +569,7 @@ export default function Inspector(props) {
                                                 }
                                             />
                                             <NormalBGControl requiredProps={requiredProps} controlName={SEP_HOVER_BG} noMainBGImg={true} />
+                                            <CardDivider />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
                                                 color={sepHoverBColor}
