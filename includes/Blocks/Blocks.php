@@ -345,7 +345,7 @@ return apply_filters(
         'name'             => 'navmenu',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/navmenu/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
-        // 'frontend-scripts' => ['zolo-notice-frontend']
+        'frontend-scripts' => ['zolo-navmenu-frontend']
     ],
     'navmenu-item' => [
         'name'             => 'navmenu-item',

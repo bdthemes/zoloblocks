@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { Placeholder, Button } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
-import apiFetch from '@wordpress/api-fetch';
 import Inspector from './inspector';
 import './style.scss';
 import VariationPicker from './components/variation-picker';
@@ -11,8 +10,6 @@ import PatternPicker from './components/pattern-picker';
 import { closeSmall } from '@wordpress/icons';
 import NavMenuAppenderButton from './components/appender-button';
 import { select } from '@wordpress/data';
-
-import { applyFilters } from '@wordpress/hooks';
 
 // import style
 import Style from './style';
@@ -24,16 +21,19 @@ const { classArrayToStr } = window.zoloModule;
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
-    console.log('attributes', attributes);
     const [templateType, setTemplateType] = useState('');
     const [navMenuTemplates, setNavMenuTemplates] = useState([]);
     const [selectedVariation, setSelectedVariation] = useState();
+    const [toggleHamburger, setToggleHamburger] = useState(false);
+    const [activeMenu, setActiveMenu] = useState(false);
     const {
         uniqueId,
         preview,
         parentClasses,
         styles,
-        isVariationSelected
+        isVariationSelected,
+        resMode,
+        menuBreakpoint
     } = attributes;
 
     const CustomAppender = () => <NavMenuAppenderButton rootClientId={clientId} />;
@@ -74,8 +74,11 @@ const Edit = (props) => {
 
     //block wrapper class
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), {
+            [`menu-breakpoint-${menuBreakpoint}`]: menuBreakpoint
+        }),
     });
+
 
     const innerBlocksProps = useInnerBlocksProps(
         {
@@ -87,6 +90,18 @@ const Edit = (props) => {
             template: navMenuTemplates,
         }
     );
+
+    const handleHamburger = () => {
+        setToggleHamburger(!toggleHamburger);
+
+        if (!activeMenu) {
+            setActiveMenu(true);
+        } else {
+            setTimeout(() => {
+                setActiveMenu(false);
+            }, 1000);
+        }
+    };
 
     // preview image
     if (preview) {
@@ -171,7 +186,27 @@ const Edit = (props) => {
                         </>
                     ) : (
                         <>
-                            <ul {...innerBlocksProps}></ul>
+                            <button className="zolo-nav-menu-hamburger zolo-menu-toggler" aria-label="hamburger-icon" type='button' onClick={handleHamburger}>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={24} height={24} aria-hidden="true" focusable="false">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M1 10h30c0.552 0 1-0.448 1-1s-0.448-1-1-1h-30c-0.552 0-1 0.448-1 1s0.448 1 1 1z"></path>
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M31 15h-30c-0.552 0-1 0.448-1 1s0.448 1 1 1h30c0.552 0 1-0.448 1-1s-0.448-1-1-1z"></path>
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M31 22h-20c-0.552 0-1 0.448-1 1s0.448 1 1 1h20c0.552 0 1-0.448 1-1s-0.448-1-1-1z"></path>
+                                </svg>
+                            </button>
+                            <div className={classnames('zolo-navmenu-wrapper', { 'zolo-nav-menu-open': toggleHamburger, 'is-menu-active': activeMenu })}>
+                                <div class="zolo-nav-menu-sidebar-top">
+                                    <a class="zolo-nav-menu-sidebar-logo">
+                                        <img src="https://zoloblocks.com/wp-content/uploads/2023/12/Zoloblocks-logo-black-300x59.png" alt="site-logo" />
+                                    </a>
+                                        <button className="zolo-nav-menu-sidebar-close" aria-label="close" type='button' onClick={handleHamburger}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.131 16.8l9.034-9.034c0.312-0.312 0.312-0.819 0-1.131s-0.819-0.312-1.131 0l-9.034 9.034-9.034-9.034c-0.312-0.312-0.819-0.312-1.131 0s-0.312 0.819 0 1.131l9.034 9.034-9.034 9.034c-0.312 0.312-0.312 0.819 0 1.131 0.156 0.156 0.361 0.234 0.566 0.234s0.409-0.078 0.566-0.234l9.034-9.034 9.034 9.034c0.156 0.156 0.361 0.234 0.566 0.234s0.409-0.078 0.566-0.234c0.312-0.312 0.312-0.819 0-1.131l-9.034-9.034z"></path>
+                                            </svg>
+                                        </button>
+                                </div>
+                                <ul {...innerBlocksProps}></ul>
+                            </div>
+                            <div className={classnames('zolo-navmenu-overlay', { 'zolo-nav-menu-overlay-open': toggleHamburger })} onClick={handleHamburger}></div>
                         </>
                     )
                 }

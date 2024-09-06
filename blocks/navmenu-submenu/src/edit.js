@@ -6,9 +6,10 @@ import { dispatch, select } from '@wordpress/data';
 import './style.scss';
 
 const Edit = (props) => {
-    const { attributes, clientId } = props;
-    const { uniqueId, preview } = attributes;
-
+    const { attributes, clientId, context } = props;
+    const { uniqueId, preview, resMode } = attributes;
+    const { menuBreakpoint = null } = context;
+    
     const { replaceInnerBlocks, selectBlock } = dispatch('core/block-editor');
     const { getBlock } = select('core/block-editor');
 
@@ -29,7 +30,7 @@ const Edit = (props) => {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.heading} alt={__('Heading Preview', 'zoloblocks')} />;
+        return <img src={zoloParams.blocksPreview.heading} alt={__('Submenu Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -43,7 +44,7 @@ const Edit = (props) => {
                         const innerBlocks = getBlock(clientId)?.innerBlocks;
                         createBlocksFromInnerBlocksTemplate([navmenuItem]);
                         replaceInnerBlocks(clientId, [...innerBlocks, navmenuItem]);
-                        selectBlock(navmenuItem.clientId);
+                        selectBlock(navmenuItem?.clientId);
                     }}
                 >
                     {__('Add Menu Item', 'zoloblocks')}

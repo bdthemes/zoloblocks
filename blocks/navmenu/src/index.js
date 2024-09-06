@@ -17,4 +17,7 @@ registerBlockType(metadata, {
     attributes,
     edit: Edit,
     save: Save,
+    providesContext: {
+        'menuBreakpoint': "menuBreakpoint"
+    }
 });

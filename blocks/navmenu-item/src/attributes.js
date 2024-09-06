@@ -81,15 +81,6 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     // block attributes
-    isVariationSelected: {
-        type: 'boolean',
-        default: false,
-    },
-    menuBreakpoint: {
-        type: 'string',
-        default: 'tablet',
-    },
-
     navItemTextColor: {
         type: 'string',
     },

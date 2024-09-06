@@ -1,35 +1,86 @@
-.zolo-navmenu-item {
-    .zolo-navmenu-link {
-        text-decoration: none;
-    }
+.zolo-navmenu-wrapper {
+    .zolo-navmenu-item {
+        .zolo-navmenu-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    .zolo-navmenu-submenu-wrapper {
-        position: absolute;
-        width: 100%;
-        height: auto;
-        left: 0;
-        top: 100%;
-        visibility: hidden;
-        opacity: 0;
-        z-index: 10;
-        pointer-events: none;
-        box-sizing: border-box;
-        transition: all 0.4s ease;
+            .zolo-submenu-arrow {
+                border: none;
+                background: transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                cursor: pointer;
+                z-index: 9999;
 
-        & > .wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
-            top: 0;
-            left: 100%;
+                svg {
+                    color: inherit;
+                    fill: currentColor;
+                    font-size: inherit;
+                    width: 1em;
+                    height: 1em;
+                }
+            }
+        }
+
+        .zolo-navmenu-submenu-wrapper {
+            position: absolute;
             width: 100%;
+            height: auto;
+            left: 0;
+            top: 100%;
+            visibility: hidden;
+            height: 0;
+            opacity: 0;
+            z-index: 10;
+            pointer-events: none;
+            box-sizing: border-box;
+            transition: all 0.4s ease;
+
+            &>.wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
+                top: 0;
+                left: 100%;
+                width: 100%;
+            }
+        }
+
+        &.is-selected .zolo-navmenu-submenu-wrapper,
+        &.has-child-selected .zolo-navmenu-submenu-wrapper
+        {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: all;
+            height: auto;
+        }
+
+        &.zolo-navmenu-submenu-open > .zolo-navmenu-submenu-wrapper
+        {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: all;
+            height: auto;
+            position: relative;
+            top: unset;
+            left: unset;
+        }
+
+        &.has-megamenu {
+            position: static;
         }
     }
 
-    &:hover .zolo-navmenu-submenu-wrapper, &.is-selected .zolo-navmenu-submenu-wrapper, &.has-child-selected .zolo-navmenu-submenu-wrapper {
-        visibility: visible;
-        opacity: 1;
-        pointer-events: all;
-    }
-
-    &.has-megamenu{
-        position: static;
+    &:not(.is-menu-active) {
+        .zolo-navmenu-item {
+            &:hover {
+                &>.zolo-navmenu-submenu-wrapper {
+                    visibility: visible;
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
     }
 }

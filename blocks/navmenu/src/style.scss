@@ -1,3 +1,21 @@
+@mixin navmenuHide() {
+    width: 100%;
+    max-width: 400px;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px 0 rgba(255, 165, 0, 0);
+    overflow-x: hidden;
+    transition: left 0.6s cubic-bezier(0.6, 0.1, 0.68, 0.53);
+    background-color: #f7f7f7;
+    z-index: 10;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
 .wp-block-zolo-navmenu {
     .zolo-navmenu-menu {
         display: flex;
@@ -7,18 +25,185 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
+
         a {
             display: inline-block;
             color: #323239;
             transition: 0.3s ease;
+
             &:hover {
                 color: var(--zoloblocks-brand-color);
             }
         }
     }
+
     .wp-block-zolo-navmenu-item {
         position: relative;
         width: auto;
+
+        .zolo-navmenu-submenu-wrapper {
+            .zolo-navmenu-link {
+                padding: 0 10px;
+            }
+
+        }
+    }
+
+    .zolo-nav-menu-sidebar-top {
+        display: none;
+    }
+
+    .zolo-nav-menu-hamburger {
+        display: none;
+        width: 45px;
+        height: 45px;
+        padding: 8px;
+        background-color: transparent;
+        border-radius: 0.25rem;
+        position: relative;
+        z-index: 5;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.4s ease-in;
+
+        svg {
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+        }
+    }
+
+    &.menu-breakpoint-desktop {
+        .zolo-nav-menu-hamburger {
+            display: block;
+        }
+
+        .zolo-navmenu-wrapper {
+            @include navmenuHide();
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        &.menu-breakpoint-tablet {
+            .zolo-nav-menu-hamburger {
+                display: block;
+            }
+
+            .zolo-navmenu-wrapper {
+                @include navmenuHide();
+            }
+        }
+    }
+
+    @media all and (max-width: 767px) {
+        &.menu-breakpoint-mobile {
+            .zolo-nav-menu-hamburger {
+                display: block;
+            }
+
+            .zolo-navmenu-wrapper {
+                @include navmenuHide();
+            }
+        }
+    }
+
+    .zolo-navmenu-wrapper {
+        &.is-menu-active {
+            .zolo-navmenu-menu {
+                flex-direction: column;
+                align-items: flex-start;
+
+                .zolo-navmenu-item {
+                    width: 100%;
+                }
+
+                .zolo-navmenu-link {
+                    padding: 0 10px;
+                }
+            }
+
+            .zolo-navmenu-submenu-add-btn {
+                display: none;
+            }
+
+            .zolo-navmenu-item {
+                .zolo-navmenu-submenu-wrapper{
+                    position: relative;
+                    left: unset;
+                    top: unset;
+                    
+                    & >.wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
+                        position: relative;
+                        left: unset;
+                        top: unset;
+                    }
+                }
+            }
+
+            .zolo-nav-menu-sidebar-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+
+                .zolo-nav-menu-sidebar-logo{
+                    line-height: 1;
+
+                    img{
+                        display: block;
+                        width: 200px;
+                    }
+                }
+
+                .zolo-nav-menu-sidebar-close{
+                    padding: 8px;
+                    background-color: transparent;
+                    border-radius: 0.25rem;
+                    position: relative;
+                    z-index: 10;
+                    cursor: pointer;
+                    width: 45px;
+                    transition: all 0.4s ease-in;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+
+                    svg{
+                        width: 1em;
+                        height: 1em;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+
+        &.zolo-nav-menu-open {
+            left: 0;
+        }
+    }
+
+    .zolo-navmenu-overlay {
+        opacity: 0;
+        transition: all 0.4s ease-in;
+
+        &.zolo-nav-menu-overlay-open {
+            opacity: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 7;
+        }
+    }
+}
+
+.zolo-frontend{
+    .wp-block-zolo-navmenu{
+        .zolo-navmenu-wrapper{
+            &.is-menu-active {
+                z-index: 99999;
+            }
+        }
     }
 }
 
@@ -29,11 +214,28 @@
             margin: 0;
             height: auto;
             width: auto;
+
             button {
                 color: var(--zoloblocks-brand-color) !important;
                 border: 2px solid var(--zoloblocks-brand-color) !important;
                 border-radius: 6px !important;
                 box-shadow: none !important;
+            }
+        }
+    }
+
+    .zolo-navmenu-wrapper {
+        &.is-menu-active {
+            .zolo-navmenu-item{
+                .zolo-navmenu-submenu-wrapper{
+                    .wp-block-zolo-navmenu-submenu{
+                        &.is-selected{
+                            & > .zolo-navmenu-submenu-add-btn{
+                                display: block;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -48,23 +250,28 @@
             padding: 40px;
             align-items: center;
         }
+
         .components-placeholder__label {
             font-size: 24px;
             text-transform: capitalize;
             font-weight: 600;
+
             svg {
                 width: 40px;
                 height: 40px;
             }
         }
+
         .block-editor-block-variation-picker__variations {
             gap: 20px;
+
             li {
                 border: 1px solid #e5e5e5;
                 padding: 20px;
                 border-radius: 6px;
                 min-width: 150px;
                 transition: all 0.3s ease;
+
                 &:hover,
                 &.is-selected {
                     border-color: var(--zoloblocks-brand-color);
@@ -72,14 +279,17 @@
                 }
             }
         }
+
         .components-placeholder__instructions {
             font-size: 14px;
         }
+
         .components-placeholder__fieldset {
             margin-top: 20px;
             width: auto;
             justify-content: center;
         }
+
         .block-editor-block-variation-picker__variation-label {
             font-size: 14px;
             font-weight: 600;
