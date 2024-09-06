@@ -261,3 +261,21 @@ export const getTaxonomies=(postType, allTaxonomyList) =>{
   // Convert the Set to an array before returning
   return [...zoloTaxonomies];
 }
+
+
+// check is popover control has value
+ export const popoverHasAttrVal = (value, customCondition = false, customValue = null) => {
+     if (customCondition) {
+         if (value !== undefined && value !== null && value !== '' && value !== 0 && value != customValue) {
+             return true;
+         } else {
+             return false;
+         }
+     } else {
+         if (value !== undefined && value !== null && value !== '' && value !== 0) {
+             return true;
+         } else {
+             return false;
+         }
+     }
+ };

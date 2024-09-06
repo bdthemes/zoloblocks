@@ -1,27 +1,25 @@
-import { registerPlugin } from '@wordpress/plugins';
-import {createRoot} from 'react-dom/client';
-import { useState, useEffect } from '@wordpress/element';
-import { subscribe } from '@wordpress/data';
-import { Button, Modal, Tooltip, SelectControl, BaseControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import axios from 'axios';
 import apiFetch from '@wordpress/api-fetch';
-let root;
+import { BaseControl, Button, Modal, SelectControl, Tooltip } from '@wordpress/components';
+import { subscribe } from '@wordpress/data';
+import {useEffect, useState } from '@wordpress/element';
+import { createRoot } from "react-dom/client"; // ?? todo: remove if @wordpress/element is updated
+import { __ } from '@wordpress/i18n';
+import { registerPlugin } from '@wordpress/plugins';
 
 /**
  * Template Library Style
  */
-import './library.scss';
 import classNames from 'classnames';
+import './library.scss';
 
 /**
  * Internal dependencies
  */
-import PreLoader from './preloader';
-import Templates from './templates';
-import Pages from './pages';
 import FavoriteTemplates from './favorites';
+import Pages from './pages';
+import PreLoader from './preloader';
 import ProPopup from './pro-popup';
+import Templates from './templates';
 
 /**
  * Constants
@@ -110,7 +108,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
     // save favorite templates to database
     const saveFavTemplates = (templateID) => {
-        const newFavTemplates = favTemplates.includes(templateID)
+        const newFavTemplates = favTemplates?.includes(templateID)
             ? favTemplates.filter((fav) => fav !== templateID)
             : [...favTemplates, templateID];
 
@@ -126,7 +124,7 @@ function ZoloBlocksTemplateLibraryButton() {
     };
 
     useEffect(() => {
-        if (favTemplates.length > 0) {
+        if (favTemplates?.length > 0) {
             const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
             setFavTemplatesData(favTemplatesData);
         }
@@ -167,31 +165,50 @@ function ZoloBlocksTemplateLibraryButton() {
 
     const fetchTemplates = async () => {
         setLoading(true);
-        try {
-            const response = await axios.get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
+        apiFetch({
+            path: '/zolo/v1/templates',
+            method: 'GET',
+        }).then((response) => {
             const { data } = response;
             setAllTemplates(data);
             setTotal(data.length);
             localStorage.setItem('zoloblocks_templates', JSON.stringify(data));
-
             // find tags
             const allTags = data.map((template) => template.tags);
-
             // find top 5 tags based on frequency
             const tags = allTags.flat().reduce((acc, tag) => {
                 acc[tag] = (acc[tag] || 0) + 1;
                 return acc;
             }, {});
-
             const sortedTags = Object.keys(tags)
                 .sort((a, b) => tags[b] - tags[a])
                 .slice(0, 9);
             setTags(sortedTags);
             setLoading(false);
-        } catch (error) {
-            console.error(error);
-            setLoading(false);
-        }
+        });
+    };
+
+    const pullNewDemos = () => {
+        setLoading(true);
+        jQuery.ajax({
+            url: zoloParams?.ajaxurl,
+            type: 'POST',
+            nonce: zoloParams?.nonce,
+            data: {
+                action: 'zolo_demo_pull',
+            },
+            success: function (response) {
+                if (response.success) {
+                    fetchTemplates();
+                    setLoading(false);
+                } else {
+                    console.log('Error:', response.data);
+                }
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            },
+        });
     };
 
     /**
@@ -241,18 +258,19 @@ function ZoloBlocksTemplateLibraryButton() {
         const filteredTemplates = allTemplates.filter((template) => {
             return template.title.toLowerCase().includes(searchText.toLowerCase());
         });
+
         setTemplates(filteredTemplates.slice(0, number));
         setTotal(filteredTemplates.length);
 
         // search for favorite templates
-        if (activeTab === 'favorites' && favTemplates.length > 0) {
-            const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
-            const filteredFavTemplates = favTemplatesData.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
+        // if (activeTab === 'favorites' && favTemplates?.length > 0) {
+        //     const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
+        //     const filteredFavTemplates = favTemplatesData.filter((template) => {
+        //         return template.title.toLowerCase().includes(searchText.toLowerCase());
+        //     });
 
-            setFavTemplatesData(filteredFavTemplates);
-        }
+        //     setFavTemplatesData(filteredFavTemplates);
+        // }
     }, [searchText, activeTab]); // eslint-disable-line
 
     /**
@@ -265,6 +283,7 @@ function ZoloBlocksTemplateLibraryButton() {
         jQuery.ajax({
             url: zoloParams?.ajaxurl,
             type: 'POST',
+            nonce: zoloParams?.nonce,
             data: {
                 action: 'zolo_demo_import',
                 security: zoloParams?.zolo_nonce,
@@ -387,9 +406,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                             >
                                                 {tab.label}
 
-                                                {tab.value === 'favorites' && favTemplates.length > 0 && (
-                                                    <span className="fav-count">{favTemplates.length}</span>
-                                                )}
+                                                {/* {tab.value === 'favorites' && favTemplates?.length > 0 && (
+                                                    <span className="fav-count">{favTemplates?.length}</span>
+                                                )} */}
                                             </button>
                                         ))}
                                 </div>
@@ -407,7 +426,8 @@ function ZoloBlocksTemplateLibraryButton() {
                                             <button
                                                 className="sync-button"
                                                 onClick={() => {
-                                                    setPullDemos(!pullDemos);
+                                                    // setPullDemos(!pullDemos);
+                                                    pullNewDemos();
                                                     setActiveCat('all');
                                                     setSearchText('');
                                                 }}
@@ -506,7 +526,6 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             <g id="SVGRepo_bgCarrier" strokeWidth={0} />
                                                             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
                                                             <g id="SVGRepo_iconCarrier">
-                                                                {' '}
                                                                 <g
                                                                     fill="none"
                                                                     fillRule="evenodd"
@@ -515,10 +534,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                                                     strokeLinejoin="round"
                                                                     transform="matrix(0 1 1 0 2.5 2.5)"
                                                                 >
-                                                                    {' '}
-                                                                    <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />{' '}
-                                                                    <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />{' '}
-                                                                </g>{' '}
+                                                                    <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />
+                                                                    <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />
+                                                                </g>
                                                             </g>
                                                         </svg>
                                                     </button>
@@ -706,7 +724,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             </div>
                                                             <Tooltip
                                                                 text={
-                                                                    favTemplates.includes(template.id)
+                                                                    favTemplates?.includes(template.id)
                                                                         ? __('Remove from Favorite', 'zoloblocks')
                                                                         : __('Add to Favorite', 'zoloblocks')
                                                                 }
@@ -721,7 +739,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                                                         saveFavTemplates(template.id);
                                                                     }}
                                                                     className={
-                                                                        favTemplates.includes(template.id) ? 'fav-btn active' : 'fav-btn'
+                                                                        favTemplates?.includes(template.id) ? 'fav-btn active' : 'fav-btn'
                                                                     }
                                                                 >
                                                                     <svg viewBox="0 0 24 24" fill="currentColor" className="fav">

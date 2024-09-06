@@ -1,12 +1,14 @@
 {
     "name": "zoloblocks",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "To start developing, simply follow the steps:-",
-    "main": "Gruntfile.js",
+    "main": "index.js",
     "scripts": {
         "start": "wp-scripts start",
         "build": "wp-scripts build",
-        "packages-update": "wp-scripts packages-update"
+        "packages-update": "wp-scripts packages-update",
+        "make-pot": "wp i18n make-pot . languages/zoloblocks.pot --exclude=node_modules,build,vendor,assets",
+        "zip-plugin": "zip -r zoloblocks.zip . -x \"*.git*\" \"*.DS_Store*\" \"*.vscode*\" \"*.idea*\" \"*.github*\" \"*.gitignore*\" \"*.gitattributes*\" \"*.editorconfig*\" \"*.prettierrc*\" \"*.eslintrc*\" \"*.babelrc*\" \"*.distignore*\" \"*.stylelintrc*\" \"node_modules/*\" \"src/*\" \"*index.js.map\" \"*frontend.js.map\" \"*style-index.css.map\" \"composer.lock\" \"package.json\" \"package-lock.json\" \"README.md\" \"webpack.config.js\" \"*.phpcs.xml\""
     },
     "author": "BdThemes",
     "license": "ISC",
@@ -29,11 +31,10 @@
         "@dnd-kit/utilities": "^3.2.2",
         "@uiw/react-codemirror": "^4.21.24",
         "@vis.gl/react-google-maps": "^0.9.0",
-        "@wordpress/editor": "^14.2.0",
-        "@wordpress/plugins": "^7.2.0",
-        "@wordpress/server-side-render": "^4.30.0",
+        "@wordpress/editor": "^14.4.0",
+        "@wordpress/plugins": "^7.4.0",
+        "@wordpress/server-side-render": "^5.4.0",
         "apexcharts": "^3.41.0",
-        "axios": "^1.7.2",
         "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
         "cottonjs": "^1.3.6",
@@ -52,8 +53,8 @@
         "webfontloader": "^1.6.28"
     },
     "devDependencies": {
-        "@wordpress/api-fetch": "^6.50.0",
-        "@wordpress/prettier-config": "^3.10.0",
-        "@wordpress/scripts": "^27.4.0"
+        "@wordpress/api-fetch": "^7.4.0",
+        "@wordpress/prettier-config": "^4.4.0",
+        "@wordpress/scripts": "^27.9.0"
     }
 }

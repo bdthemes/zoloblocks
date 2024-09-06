@@ -252,7 +252,7 @@ const Settings = () => {
                             </svg>
                             <span>{__('Site Visibility', 'zoloblocks')}</span>
                         </div>
-                        <div
+                        {/* <div
                             className={`zolo-tab-button-item ${activeTab === 'theme-fonts' ? 'zolo-tab-active' : ''}`}
                             onClick={() => handleTabClick('theme-fonts')}
                         >
@@ -265,7 +265,7 @@ const Settings = () => {
                                 />
                             </svg>
                             <span>{__('Theme Fonts', 'zoloblocks')}</span>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="zolo-settings-tab-content">
                         {activeTab === 'editor-options' && (
@@ -434,32 +434,12 @@ const Settings = () => {
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
-                                        title={__('Load Google Fonts Locally', 'zoloblocks')}
-                                        released={false}
-                                        description={
-                                            <>
-                                                Enable this option to download Google Fonts and store them on your server. This can enhance
-                                                your website's speed and ensure compliance with GDPR laws.{' '}
-                                            </>
-                                        }
-                                    ></SettingBox>
-                                    <SettingBox
                                         title={__('Preload Local Fonts', 'zoloblocks')}
                                         released={false}
                                         description={
                                             <>
                                                 This option loads font files immediately on page load. Preloading local fonts can further
                                                 speed up your website.{' '}
-                                            </>
-                                        }
-                                    ></SettingBox>
-                                    <SettingBox
-                                        title={__('Allow Only Selected Fonts', 'zoloblocks')}
-                                        released={false}
-                                        description={
-                                            <>
-                                                ZoloBlocks offers over 1500 Google font options. Use this option to limit the number of
-                                                fonts shown in the block settings if the variety is overwhelming for your clients.
                                             </>
                                         }
                                     ></SettingBox>
@@ -472,7 +452,11 @@ const Settings = () => {
                                     <div className="zolo-settings-option-item">
                                         <div className="zolo-settins-content">
                                             <h2 className="zolo-settings-title">{__('Enable Coming Soon Mode', 'zoloblocks')}</h2>
-                                            <p className="zolo-settings-text">{__("If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.")} </p>
+                                            <p className="zolo-settings-text">
+                                                {__(
+                                                    "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code."
+                                                )}{' '}
+                                            </p>
                                             {!maintenanceMode && comingSoonMode && (
                                                 <SelectControl
                                                     label={__('Select Templates', 'zoloblocks')}
@@ -499,7 +483,11 @@ const Settings = () => {
                                     <div className="zolo-settings-option-item">
                                         <div className="zolo-settins-content">
                                             <h2 className="zolo-settings-title">{__('Enable Maintenance Mode', 'zoloblocks')}</h2>
-                                            <p className="zolo-settings-text">{__("Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.")} </p>
+                                            <p className="zolo-settings-text">
+                                                {__(
+                                                    'Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.'
+                                                )}{' '}
+                                            </p>
                                             {maintenanceMode && !comingSoonMode && (
                                                 <SelectControl
                                                     label={__('Select Templates', 'zoloblocks')}
@@ -522,22 +510,6 @@ const Settings = () => {
                                             }}
                                         />
                                     </div>
-                                </div>
-                            </div>
-                        )}
-                        {activeTab === 'theme-fonts' && (
-                            <div className="zolo-tab-content-item zolo-tab-content-active">
-                                <div className="zolo-settings-option-wrap">
-                                    <SettingBox
-                                        title={__('Font Families', 'zoloblocks')}
-                                        released={false}
-                                        description={
-                                            <>
-                                                ZoloBlocks offers over 1500 Google font options. Choose the fonts you want to use in your
-                                                FSE Typography settings.
-                                            </>
-                                        }
-                                    ></SettingBox>
                                 </div>
                             </div>
                         )}

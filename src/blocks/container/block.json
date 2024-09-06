@@ -1,0 +1,24 @@
+{
+    "apiVersion": 2,
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Container",
+    "name": "zolo/container",
+    "category": "zoloblocks",
+    "keywords": ["Container"],
+    "description": "Most advanced flexbox container for shaping your designs",
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 740
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": false
+    },
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css"
+}

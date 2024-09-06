@@ -1,66 +1,70 @@
 <?php
 
-/**
- * Zolo From
- */
-
 namespace Zolo\Form;
 
 use Zolo\Traits\SingletonTrait;
 
-class Zolo_Form_Ajax {
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
 
-    use SingletonTrait;
-
-    public function __construct() {
-        // hanlde ajax form submission
-        add_action('wp_ajax_update_form_settings', [$this, 'update_form_settings']);
-        add_action('wp_ajax_nopriv_update_form_settings', [$this, 'update_form_settings']);
-    }
+if (! class_exists('FormAjax')) {
 
     /**
-     * Update form settings
+     * Class FormAjax
      */
-    public function update_form_settings() {
-        // check nonce
-        if (! wp_verify_nonce($_POST['security'], 'zolo-nonce')) {
-            wp_send_json_error('Invalid nonce');
+    class FormAjax {
+
+        use SingletonTrait;
+
+        /**
+         * Constructs a new instance of the FormAjax class.
+         */
+        public function __construct() {
+            add_action('wp_ajax_update_form_settings', [$this, 'update_form_settings']);
+            add_action('wp_ajax_nopriv_update_form_settings', [$this, 'update_form_settings']);
         }
 
-        // form settings data
-        $formId             = $_POST['formId'] ?? '';
-        $formSettings       = $_POST['formSettings'] ?? '';
-        $submissionSettings = $_POST['submissionSettings'] ?? '';
-        $validationRules    = $_POST['validationRules'] ?? '';
+        /**
+         * Update form settings
+         */
+        public function update_form_settings() {
 
-        // serialize form settings
-        $formSettings       = maybe_serialize($formSettings);
-        $submissionSettings = maybe_serialize($submissionSettings);
-        $validationRules    = maybe_serialize($validationRules);
-
-        global $wpdb;
-        $table = $wpdb->prefix . 'zolo_form';
-
-        if (empty($formId)) {
-            $wpdb->insert($table, [ //phpcs:ignore
-                'form_id'             => $formId,
-                'form_settings'       => $formSettings,
-                'submission_settings' => $submissionSettings,
-                'validation_rules'    => $validationRules,
-                'created_at'          => current_time('mysql'),
-            ]);
-        } else {
-            $wpdb->update($table, [ //phpcs:ignore
+            // Sanitize security field
+            $security = isset($_POST['security']) ? sanitize_text_field(wp_unslash($_POST['security'])) : ''; 
+            if (!wp_verify_nonce($security, 'zolo-nonce')) {
+                wp_send_json_error('Invalid nonce');
+            }
+        
+            // Sanitize and unslash form settings data
+            $formId = isset($_POST['formId']) ? sanitize_text_field(wp_unslash($_POST['formId'])) : '';
+        
+            // For serialized data, use a combination of wp_kses_post() and maybe_serialize()
+            $formSettings       = isset($_POST['formSettings']) ? sanitize_text_field(wp_unslash($_POST['formSettings'])) : '';
+            $submissionSettings = isset($_POST['submissionSettings']) ? sanitize_text_field(wp_unslash($_POST['submissionSettings'])) : '';
+            $validationRules    = isset($_POST['validationRules']) ? sanitize_text_field(wp_unslash($_POST['validationRules'])) : '';
+        
+            global $wpdb;
+            $table = $wpdb->prefix . 'zolo_form';
+            $form  = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE form_id = %d", $table, $formId)); // phpcs:ignore
+        
+            $data = [
                 'form_settings'       => $formSettings,
                 'submission_settings' => $submissionSettings,
                 'validation_rules'    => $validationRules,
                 'updated_at'          => current_time('mysql'),
-            ], ['form_id' => $formId]);
+            ];
+        
+            if (empty($formId)) {
+                $data['form_id']    = $formId;
+                $data['created_at'] = current_time('mysql');
+                $wpdb->insert($table, $data); // phpcs:ignore
+            } else {
+                $wpdb->update($table, $data, ['form_id' => $formId]); // phpcs:ignore
+            }
+        
+            echo wp_json_encode('Form settings updated');
         }
-        // echo wp_send_json_success( 'Form settings updated');
-        echo wp_json_encode('Form settings updated');
     }
 }
-
-
-Zolo_Form_Ajax::getInstance();

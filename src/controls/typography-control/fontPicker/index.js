@@ -3,7 +3,6 @@
  */
 import { BaseControl } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
-import { __ } from '@wordpress/i18n';
 
 import WebFont from 'webfontloader';
 

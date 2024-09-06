@@ -33,7 +33,7 @@ import {
     ICON_HPOSITIONS,
     VPOSITIONS,
     CONTENT_POSITIONS,
-    CONTENT_WIDTH
+    CONTENT_WIDTH,
 } from '../constants';
 
 const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
@@ -66,7 +66,6 @@ const resetAtt = (atts, setAttributes) => {
 export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps, block } = props;
     const panelProps = { attributes, setAttributes };
-
 
     const {
         responsiveness,
@@ -126,6 +125,7 @@ export const AdvancedOptions = (props) => {
     const animationPanels = applyFilters('zolo.blocks.extraTab.animationPanels', [], block, panelProps);
     const cursorsPanel = applyFilters('zolo.extensions.controls.cursors', [], block, panelProps);
     const particles = applyFilters('zolo.extensions.controls.particles', [], block, panelProps);
+    const tilt = applyFilters('zolo.extensions.controls.tilt', [], block, panelProps);
 
     return (
         <>
@@ -149,7 +149,7 @@ export const AdvancedOptions = (props) => {
                     />
                 )}
                 <RangeResetControl
-                    label={__('Set Z Index ', 'zoloblocks')}
+                    label={__('Set Z Index', 'zoloblocks')}
                     controlName={'zIndex'}
                     requiredProps={requiredProps}
                     min={-100}
@@ -187,19 +187,21 @@ export const AdvancedOptions = (props) => {
                     }}
                 />
                 <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
-                    <SelectControl
-                        label={__('Position', 'zoloblocks')}
-                        options={CONTENT_POSITIONS}
-                        onChange={(v) =>
-                            setAttributes({
-                                position: {
-                                    ...position,
-                                    value: v,
-                                },
-                            })
-                        }
-                        value={position.value}
-                    />
+                    <div className="zolo-flex-row-control">
+                        <SelectControl
+                            label={__('Position', 'zoloblocks')}
+                            options={CONTENT_POSITIONS}
+                            onChange={(v) =>
+                                setAttributes({
+                                    position: {
+                                        ...position,
+                                        value: v,
+                                    },
+                                })
+                            }
+                            value={position.value}
+                        />
+                    </div>
                     {(position.value === 'absolute' || position.value === 'fixed') && (
                         <>
                             <IconicBtnGroup
@@ -312,11 +314,13 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    <BackgroundControl
-                        controlName={globalConfig.background.prefix || 'mainBg'}
-                        requiredProps={requiredProps}
-                        particles={particles}
-                    />
+                    <div className="zolo-flex-col-control">
+                        <BackgroundControl
+                            controlName={globalConfig.background.prefix || 'mainBg'}
+                            requiredProps={requiredProps}
+                            particles={particles}
+                        />
+                    </div>
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
@@ -370,6 +374,7 @@ export const AdvancedOptions = (props) => {
                 </>
             )}
             {cursorsPanel && cursorsPanel.length > 0 && cursorsPanel}
+            {tilt && tilt.length > 0 && tilt}
 
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <ToggleControl
@@ -815,7 +820,8 @@ export const AdvancedOptions = (props) => {
                                     controlName={'transitionDuration'}
                                     requiredProps={requiredProps}
                                     min={0}
-                                    max={10000}
+                                    max={5000}
+                                    step={100}
                                     noUnits={true}
                                 />
                             </>

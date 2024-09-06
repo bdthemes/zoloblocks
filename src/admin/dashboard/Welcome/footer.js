@@ -1,49 +1,15 @@
 import { __ } from '@wordpress/i18n';
 import SingleProduct from './single-product';
-
 const FooterWrapper = () => {
     return (
         <div className="zolo-welcome-footer-info-wrap">
             <div className="zolo-welcome-footer-info-item">
-                <div>
-                    <h2 className="zolo-welcome-footer-info-title">{__('Missing Any Feature?', 'zoloblocks')}</h2>
-                    <p className="zolo-welcome-footer-info-text">
-                        {__('You found a new feature for Zoloblock? Great! Please share with us so we can add it to the product.', 'zoloblocks')}
-                    </p>
-                    <p className="zolo-welcome-footer-info-text">
-                        {__('It might take a while to receive the features in the next updates.', 'zoloblocks')}
-                    </p>
-                </div>
-                <div>
-                    <a
-                        href="https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas/idea/new"
-                        target="_blank"
-                        className="zolo-welcome-page-btn zolo-secondary-btn"
-                    >
-                        {__('Request Feature', 'zoloblocks')}
-
-                        <svg
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 18 18"
-                            >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="1.5"
-                                d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"
-                            />
-                        </svg>
-                    </a>
-                </div>
-                <img src={zoloBlocks.idea} alt="Zolo Blocks Idea" />
-            </div>
-            <div className="zolo-welcome-footer-info-item">
                 <h2 className="zolo-welcome-footer-info-title">{__('Try Popular Addons by Us', 'zoloblocks')}</h2>
                 <p className="zolo-welcome-footer-info-text">
-                    {__('Want to give it a shot with our promising addon lineup for Elementor? We guarantee a solid user experience. Try and judge yourself.', 'zoloblocks')}
+                    {__(
+                        'Prime slider, Ultimate post kit, Ultimate store kit, Pixel gallery & live copy paste addons for Elementor is the best slider, blogs and eCommerce plugin for WordPress.',
+                        'zoloblocks'
+                    )}
                 </p>
                 <div className="zolo-welcome-footer-product-btn">
                     <SingleProduct
@@ -107,6 +73,37 @@ const FooterWrapper = () => {
                     />
                 </div>
                 <img src={zoloBlocks.product} alt="BDThemes Products" />
+            </div>
+            <div className="zolo-welcome-footer-info-item missing">
+                <div>
+                    <h2 className="zolo-welcome-footer-info-title">{__('Missing Any Feature?', 'zoloblocks')}</h2>
+                    <p className="zolo-welcome-footer-info-text">
+                        {__(
+                            "We're always striving to improve ZoloBlocks for the best. If there's a feature you think would enhance your experience or if you have any ideas for new blocks, we’d love to hear.",
+                            'zoloblocks'
+                        )}
+                    </p>
+                </div>
+                <div>
+                    <a
+                        href="https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas/idea/new"
+                        target="_blank"
+                        className="zolo-welcome-page-btn zolo-secondary-btn"
+                    >
+                        {__('Request Feature', 'zoloblocks')}
+
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                            <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="1.5"
+                                d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"
+                            />
+                        </svg>
+                    </a>
+                </div>
+                <img src={zoloBlocks.idea} alt="Zolo Blocks Idea" />
             </div>
         </div>
     );

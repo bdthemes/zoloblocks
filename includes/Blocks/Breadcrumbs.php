@@ -1,0 +1,698 @@
+<?php
+namespace Zolo\Blocks;
+
+use Zolo\Traits\SingletonTrait;
+
+if ( ! class_exists( Breadcrumbs::class ) ) :
+	/**
+	 * The Breadcrumbs class following WC_Breadcrumbs.
+	 */
+	class Breadcrumbs {
+		use SingletonTrait;
+
+		/**
+		 * Items.
+		 *
+		 * @var array
+		 */
+		protected $items = [];
+
+		/**
+		 * Arguments.
+		 *
+		 * @var array
+		 */
+		protected $args = [];
+
+		/**
+		 * Add item.
+		 *
+		 * @param string $name .
+		 * @param string $link .
+		 * @param array  $attrs .
+		 * @param array  $context .
+		 */
+		public function add_item( $name, $link = '', $attrs = [], $context = [] ) {
+			$item = apply_filters( 'zolo_breadcrumb_block_get_item', [ $name , $link, $attrs ], $context, $this );
+			if ( $item ) {
+				$this->items[] = $item;
+			}
+		}
+
+		/**
+		 * Create the breadcrumb items
+		 *
+		 * @return array
+		 */
+		public function generate() {
+			$conditionals = [
+				'is_home',
+				'is_404',
+				'is_attachment',
+				'is_single',
+				'is_page',
+				'is_post_type_archive',
+				'is_category',
+				'is_tag',
+				'is_author',
+				'is_date',
+				'is_tax',
+			];
+
+			$is_woocommerce_activated = $this->is_woocommerce_activated();
+			if ( $is_woocommerce_activated ) {
+				array_splice(
+					$conditionals,
+					4,
+					0,
+					[
+						'is_product_category',
+						'is_product_tag',
+						'is_shop',
+					]
+				);
+			}
+
+			if ( ( ! is_front_page() && ( ! $is_woocommerce_activated || ! ( is_post_type_archive() && intval( get_option( 'page_on_front' ) ) === wc_get_page_id( 'shop' ) ) ) ) || is_paged() ) {
+				$this->add_crumbs_front_page();
+
+				foreach ( $conditionals as $conditional ) {
+					if ( call_user_func( $conditional ) ) {
+						call_user_func( [ $this, 'add_crumbs_' . substr( $conditional, 3 ) ] );
+						break;
+					}
+				}
+
+				$this->search_trail();
+				$this->paged_trail();
+			}
+
+			$this->items = apply_filters( 'zolo_breadcrumb_block_get_items', $this->items, $this );
+
+			return $this->get_items();
+		}
+
+		/**
+		 * Get the breadcrumb items.
+		 *
+		 * @return array
+		 */
+		public function get_items() {
+			return $this->items;
+		}
+
+		/**
+		 * Reset the breadcrumb items.
+		 */
+		public function reset() {
+			$this->items = [];
+		}
+
+		/**
+		 * Marge the arguments with the defaults.
+		 *
+		 * @param array $args .
+		 * @return array
+		 */
+		public function parse_args( $args ) {
+			// Parse args.
+			$this->args = wp_parse_args(
+				$args,
+				[
+					'before'        => '',
+					'after'         => '',
+					'list_tag'      => 'ul',
+					'item_tag'      => 'li',
+					'item_before'   => '',
+					'item_after'    => '',
+					'separator'     => '',
+					'labels'        => [],
+					'showSeparator' => true,
+				]
+			);
+
+			return apply_filters( 'zolo_breadcrumb_block_get_args', $this->args );
+		}
+
+		/**
+		 * Get the breadcrumb.
+		 *
+		 * @param array $args .
+		 * @return array
+		 */
+		public function get_breadcrumb( $args = [] ) {
+			// Marge arguments with defaults.
+			$args = $this->parse_args( $args );
+
+			// Clear old items.
+			$this->reset();
+
+			// Generate the breadcrumbs.
+			$this->generate();
+
+			$breadcrumb = '';
+			$item_count = count( $this->items );
+
+			if ( 0 < $item_count ) {
+				$breadcrumb .= $args['before'];
+
+				$breadcrumb .= sprintf( '<%s class="breadcrumb-items">', tag_escape( $args['list_tag'] ) );
+
+				foreach ( $this->items as $key => $crumb ) {
+
+					// Item position.
+					$item_position = $key + 1;
+
+					$item = '';
+
+					if ( ! empty( $crumb[1] ) && $item_count !== $item_position ) {
+
+						// for home icon.
+						$homeIcon = '';
+						if ( ! empty( $crumb[2] ) ) {
+							$attrs = $crumb[2];
+							if ( 'home' === ( $attrs['rel'] ?? '' ) ) {
+								$homeIcon = $this->args['labels']['homeIcon'] ?? '';
+							}
+						}
+
+						$item .= sprintf( '<a href="%1$s" class="name">%3$s %2$s</a>', esc_url( $crumb[1] ), esc_html( $crumb[0] ), $homeIcon );
+					} else {
+						$item .= sprintf( '<span class="name">%1$s</span>', esc_html( $crumb[0] ) );
+					}
+
+					if ( $item_count !== $item_position && $args['showSeparator'] && $args['separator'] ) {
+							$item .= sprintf( '<span class="separator">%s</span>', $args['separator'] );
+					}
+
+					// Add list item classes.
+					$item_classes = [ 'breadcrumb-item' ];
+
+					if ( $item_count === $item_position ) {
+						$item_classes[] = 'current';
+					} elseif ( $item_count - 1 === $item_position ) {
+						$item_classes[] = 'parent';
+					}
+
+					// Create list item attributes.
+					$attributes = '';
+
+					if ( ! empty( $crumb[2] ) ) {
+						$attrs = $crumb[2];
+						if ( 'home' === ( $attrs['rel'] ?? '' ) ) {
+							$item_classes[] = 'home';
+							unset( $attrs['rel'] );
+						}
+
+						$attributes .= array_reduce(
+							array_keys( $attrs ),
+							function ( $carry, $key ) use ( $attrs ) {
+								return $carry . ' ' . $key . '="' . htmlspecialchars( $attrs[ $key ] ) . '"';
+							},
+							''
+						);
+					}
+
+					$attributes = sprintf( 'class="%1$s"%2$s', \implode( ' ', $item_classes ), $attributes );
+
+					// Build the list item.
+					$breadcrumb .= sprintf( '<%1$s %2$s>%3$s</%1$s>', tag_escape( $args['item_tag'] ), $attributes, $item );
+				}
+
+				// Close the ul list.
+				$breadcrumb .= sprintf( '</%s>', tag_escape( $args['list_tag'] ) );
+
+				// After.
+				$breadcrumb .= $args['after'];
+
+			}
+
+			// Allow filter the breadcrumb HTML.
+			return apply_filters( 'zolo_breadcrumb_block_get_breadcrumb', $breadcrumb, $args, $this );
+		}
+
+		/**
+		 * Front page.
+		 */
+		protected function add_crumbs_front_page() {
+			$home_label = $this->args['labels']['homeText'] ?? '';
+			$home_text  = apply_filters( 'zolo_breadcrumb_block_home_text', empty( $home_label ) ? __( 'Home', 'zoloblocks' ) : $home_label );
+			$this->add_item( $home_text, esc_url( user_trailingslashit( apply_filters( 'zolo_breadcrumb_block_home_url', home_url() ) ) ), [ 'rel' => 'home' ], [ 'type' => 'front_page' ] );
+		}
+
+		/**
+		 * Is home.
+		 */
+		protected function add_crumbs_home() {
+			$this->add_item( single_post_title( '', false ), '', [ 'aria-current' => 'page' ], [ 'type' => 'home' ] );
+		}
+
+		/**
+		 * 404.
+		 */
+		protected function add_crumbs_404() {
+			$this->add_item( __( 'Error 404', 'zoloblocks' ), '', [ 'aria-current' => 'page' ], [ 'type' => '404' ] );
+		}
+
+		/**
+		 * Attachment.
+		 */
+		protected function add_crumbs_attachment() {
+			global $post;
+
+			$this->add_crumbs_single( $post->post_parent, get_permalink( $post->post_parent ) );
+			$this->add_item(
+				get_the_title(),
+				get_permalink(),
+				[ 'aria-current' => 'page' ],
+				[
+					'type'   => 'attachment',
+					'object' => $post,
+				]
+			);
+		}
+
+		/**
+		 * Single post.
+		 *
+		 * @param int    $post_id   Post ID.
+		 * @param string $permalink Post permalink.
+		 */
+		protected function add_crumbs_single( $post_id = 0, $permalink = '' ) {
+			if ( ! $post_id ) {
+				global $post;
+			} else {
+				$post = get_post( $post_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			}
+
+			if ( ! $permalink ) {
+				$permalink = get_permalink( $post );
+			}
+
+			// Allow adding items at the start of the single item.
+			do_action( 'zolo_breadcrumb_block_single_prepend', $post, $this );
+
+			if ( 'product' === get_post_type( $post ) ) {
+				$this->prepend_shop_page();
+
+				$terms = wc_get_product_terms(
+					$post->ID,
+					'product_cat',
+					apply_filters(
+						'zolo_breadcrumb_block_product_terms_args',
+						[
+							'orderby' => 'parent',
+							'order'   => 'DESC',
+						]
+					)
+				);
+
+				if ( $terms ) {
+						$main_term = apply_filters( 'zolo_breadcrumb_block_main_term', $terms[0], $terms, 'product_cat' );
+						$this->term_ancestors( $main_term->term_id, 'product_cat' );
+						$this->add_item(
+							$main_term->name,
+							get_term_link( $main_term ),
+							false,
+							[
+								'type'   => 'term',
+								'object' => $main_term,
+							]
+						);
+				}
+			} elseif ( 'post' !== get_post_type( $post ) ) {
+				$post_type = get_post_type_object( get_post_type( $post ) );
+
+				// Allow the ability to remove the post type name from the breadcrumb.
+				if ( apply_filters( 'zolo_breadcrumb_block_add_post_type_name', true, $post, $this ) ) {
+					// If the post doesn't have a parent, get its hierarchy based off the post type.
+					if ( ! empty( $post_type->has_archive ) ) {
+						$this->add_item(
+							$post_type->labels->name,
+							get_post_type_archive_link( get_post_type( $post ) ),
+							false,
+							[
+								'type'   => 'post_type_archive',
+								'object' => $post_type,
+							]
+						);
+					}
+				}
+
+				// If the post has a parent, follow the parent.
+				$this->add_parent_crumbs( $post->post_parent );
+			} else {
+				$cats = get_the_category( $post );
+				if ( $cats ) {
+					$cat = apply_filters( 'zolo_breadcrumb_block_main_term', $cats[0], $cats, 'category' );
+					$this->term_ancestors( $cat->term_id, 'category' );
+					$this->add_item(
+						$cat->name,
+						get_term_link( $cat ),
+						false,
+						[
+							'type'   => 'term',
+							'object' => $cat,
+						]
+					);
+				}
+			}
+
+			// Allow adding items right before the current item.
+			// General hook.
+			do_action( 'zolo_breadcrumb_block_single', $post, $this );
+
+			// With post type name.
+			do_action( 'zolo_breadcrumb_block_single_' . $post->post_type, $post, $this );
+
+			$this->add_item(
+				get_the_title( $post ),
+				$permalink,
+				[ 'aria-current' => 'page' ],
+				[
+					'type'   => 'single',
+					'object' => $post,
+				]
+			);
+		}
+
+		/**
+		 * Product category.
+		 */
+		protected function add_crumbs_product_category() {
+			$current_term = $GLOBALS['wp_query']->get_queried_object();
+
+			$this->prepend_shop_page();
+			$this->term_ancestors( $current_term->term_id, 'product_cat' );
+			$this->add_item(
+				$current_term->name,
+				get_term_link( $current_term, 'product_cat' ),
+				false,
+				[
+					'type'   => 'term',
+					'object' => $current_term,
+				]
+			);
+		}
+
+		/**
+		 * Product tag.
+		 */
+		protected function add_crumbs_product_tag() {
+			$current_term = $GLOBALS['wp_query']->get_queried_object();
+
+			$this->prepend_shop_page();
+
+			/* translators: %s: product tag */
+			$this->add_item(
+				sprintf( __( 'Products tagged &ldquo;%s&rdquo;', 'zoloblocks' ), $current_term->name ),
+				get_term_link( $current_term, 'product_tag' ),
+				false,
+				[
+					'type'   => 'term',
+					'object' => $current_term,
+				]
+			);
+		}
+
+		/**
+		 * Shop breadcrumb.
+		 */
+		protected function add_crumbs_shop() {
+			if ( intval( get_option( 'page_on_front' ) ) === wc_get_page_id( 'shop' ) ) {
+				return;
+			}
+
+			$shop_page_id = wc_get_page_id( 'shop' );
+			$_name        = $shop_page_id ? get_the_title( $shop_page_id ) : '';
+
+			if ( ! $_name ) {
+				$product_post_type = get_post_type_object( 'product' );
+				$_name             = $product_post_type->labels->name;
+			}
+
+			$this->add_item( $_name, get_post_type_archive_link( 'product' ), false, [ 'type' => 'shop' ] );
+		}
+
+		/**
+		 * Prepend the shop page to shop breadcrumbs.
+		 */
+		protected function prepend_shop_page() {
+			$permalinks   = wc_get_permalink_structure();
+			$shop_page_id = wc_get_page_id( 'shop' );
+			$shop_page    = get_post( $shop_page_id );
+
+			// If permalinks contain the shop page in the URI prepend the breadcrumb with shop.
+			if ( $shop_page_id && $shop_page && isset( $permalinks['product_base'] ) && strstr( $permalinks['product_base'], '/' . $shop_page->post_name ) && intval( get_option( 'page_on_front' ) ) !== $shop_page_id ) {
+				$this->add_item(
+					get_the_title( $shop_page ),
+					get_permalink( $shop_page ),
+					false,
+					[
+						'type'   => 'shop',
+						'object' => $shop_page,
+					]
+				);
+			}
+		}
+
+		/**
+		 * Page.
+		 */
+		protected function add_crumbs_page() {
+			global $post;
+
+			// Add parent pages if any.
+			$this->add_parent_crumbs( $post->post_parent );
+
+			$this->add_item(
+				get_the_title(),
+				get_permalink(),
+				[ 'aria-current' => 'page' ],
+				[
+					'type'   => 'page',
+					'object' => $post,
+				]
+			);
+		}
+
+		/**
+		 * Add parent crumbs for page and other hierarchical post types.
+		 *
+		 * @param number $parent_id .
+		 * @return void
+		 */
+		protected function add_parent_crumbs( $parent_id ) {
+			if ( $parent_id ) {
+				$parent_crumbs = [];
+
+				while ( $parent_id ) {
+					$post = get_post( $parent_id );
+
+					// Ignore home page.
+					if ( 'page' === $post->post_type && $parent_id === intval( get_option( 'page_on_front' ) ) ) {
+						break;
+					}
+
+					$parent_crumbs[] = [
+						get_the_title( $post->ID ),
+						get_permalink( $post->ID ),
+						[
+							'type'   => 'page' === $post->post_type ? 'page' : 'post',
+							'object' => $post,
+						],
+					];
+
+					$parent_id = $post->post_parent;
+				}
+
+				$parent_crumbs = array_reverse( $parent_crumbs );
+
+				foreach ( $parent_crumbs as $crumb ) {
+					$this->add_item( $crumb[0], $crumb[1], false, $crumb[2] );
+				}
+			}
+		}
+
+		/**
+		 * Post type archive.
+		 */
+		protected function add_crumbs_post_type_archive() {
+			$post_type = get_post_type_object( get_post_type() );
+
+			if ( $post_type ) {
+				$this->add_item(
+					$post_type->labels->name,
+					get_post_type_archive_link( get_post_type() ),
+					false,
+					[
+						'type'   => 'post_type_archive',
+						'object' => $post_type,
+					]
+				);
+			}
+		}
+
+		/**
+		 * Category.
+		 */
+		protected function add_crumbs_category() {
+			$this_category = get_category( $GLOBALS['wp_query']->get_queried_object() );
+
+			if ( 0 !== intval( $this_category->parent ) ) {
+				$this->term_ancestors( $this_category->term_id, 'category' );
+			}
+
+			$this->add_item(
+				single_cat_title( '', false ),
+				get_category_link( $this_category->term_id ),
+				false,
+				[
+					'type'   => 'term',
+					'object' => $this_category,
+				]
+			);
+		}
+
+		/**
+		 * Tag.
+		 */
+		protected function add_crumbs_tag() {
+			$queried_object = $GLOBALS['wp_query']->get_queried_object();
+
+			$this->add_item(
+			/* translators: %s: tag name */
+				sprintf( __( 'Posts tagged &ldquo;%s&rdquo;', 'zoloblocks' ), single_tag_title( '', false ) ),
+				get_tag_link( $queried_object->term_id ),
+				false,
+				[
+					'type'   => 'term',
+					'object' => $queried_object,
+				]
+			);
+		}
+
+		/**
+		 * Add crumbs for date based archives.
+		 */
+		protected function add_crumbs_date() {
+			if ( is_year() || is_month() || is_day() ) {
+				$this->add_item( get_the_time( 'Y' ), get_year_link( get_the_time( 'Y' ) ), false, [ 'type' => 'date_year' ] );
+			}
+			if ( is_month() || is_day() ) {
+				$this->add_item( get_the_time( 'F' ), get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ), false, [ 'type' => 'date_month' ] );
+			}
+			if ( is_day() ) {
+				$this->add_item( get_the_time( 'd' ), '', false, [ 'type' => 'date_day' ] );
+			}
+		}
+
+		/**
+		 * Add crumbs for taxonomies.
+		 */
+		protected function add_crumbs_tax() {
+			$this_term = $GLOBALS['wp_query']->get_queried_object();
+			$taxonomy  = get_taxonomy( $this_term->taxonomy );
+
+			$this->add_item(
+				$taxonomy->labels->name,
+				'',
+				false,
+				[
+					'type'   => 'taxonomy',
+					'object' => $taxonomy,
+				]
+			);
+
+			if ( 0 !== intval( $this_term->parent ) ) {
+				$this->term_ancestors( $this_term->term_id, $this_term->taxonomy );
+			}
+
+			$this->add_item(
+				single_term_title( '', false ),
+				get_term_link( $this_term->term_id, $this_term->taxonomy ),
+				false,
+				[
+					'type'   => 'term',
+					'object' => $this_term,
+				]
+			);
+		}
+
+		/**
+		 * Add a breadcrumb for author archives.
+		 */
+		protected function add_crumbs_author() {
+			global $author;
+
+			$userdata = get_userdata( $author );
+
+			$this->add_item(
+			/* translators: %s: author name */
+				sprintf( __( 'Author: %s', 'zoloblocks' ), $userdata->display_name ),
+				'',
+				false,
+				[
+					'type'   => 'author',
+					'object' => $author,
+				]
+			);
+		}
+
+		/**
+		 * Add crumbs for a term.
+		 *
+		 * @param int    $term_id  Term ID.
+		 * @param string $taxonomy Taxonomy.
+		 */
+		protected function term_ancestors( $term_id, $taxonomy ) {
+			$ancestors = get_ancestors( $term_id, $taxonomy );
+			$ancestors = array_reverse( $ancestors );
+
+			foreach ( $ancestors as $ancestor ) {
+				$ancestor = get_term( $ancestor, $taxonomy );
+
+				if ( ! is_wp_error( $ancestor ) && $ancestor ) {
+					$this->add_item(
+						$ancestor->name,
+						get_term_link( $ancestor ),
+						false,
+						[
+							'type'   => 'term',
+							'object' => $ancestor,
+						]
+					);
+				}
+			}
+		}
+
+		/**
+		 * Add a breadcrumb for search results.
+		 */
+		protected function search_trail() {
+			if ( is_search() ) {
+				/* translators: %s: search term */
+				$this->add_item( sprintf( __( 'Search results for &ldquo;%s&rdquo;', 'zoloblocks' ), get_search_query() ), remove_query_arg( 'paged' ), false, [ 'type' => 'search' ] );
+			}
+		}
+
+		/**
+		 * Add a breadcrumb for pagination.
+		 */
+		protected function paged_trail() {
+			if ( get_query_var( 'paged' ) ) {
+				/* translators: %d: page number */
+				$this->add_item( sprintf( __( 'Page %d', 'zoloblocks' ), get_query_var( 'paged' ) ), '', false, [ 'type' => 'paged' ] );
+			}
+		}
+
+		/**
+		 * Check is woocommerce activated
+		 *
+		 * @return boolean
+		 */
+		public function is_woocommerce_activated() {
+			return class_exists( 'woocommerce' );
+		}
+	}
+endif;
