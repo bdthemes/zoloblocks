@@ -134,7 +134,7 @@ const Inspector = (props) => {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <ToggleGroup
-                                label={__('Menu Breakpoint', 'zoloblocks')}
+                                label={__('Breakpoint', 'zoloblocks')}
                                 value={attributes?.menuBreakpoint}
                                 onChange={(value) => setAttributes({ menuBreakpoint: value })}
                                 options={[
@@ -146,7 +146,7 @@ const Inspector = (props) => {
                             />
 
                             <ResAlignmentControl
-                                label={__('Nav Alignment', 'zoloblocks')}
+                                label={__('Alignment', 'zoloblocks')}
                                 controlName={NAV_MENU_ALIGNMENT}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
