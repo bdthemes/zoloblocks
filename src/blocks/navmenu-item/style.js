@@ -226,7 +226,7 @@ export default function Style({ props }) {
      */
     const desktopAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper{
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu{
             ${dropdownWrapBGDesk}
             ${dropdownWrapBorderDesk}
             ${dropdownWrapBorderRadiusDesk}
@@ -265,7 +265,7 @@ export default function Style({ props }) {
 	`;
     const tabletAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper{
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu{
             ${dropdownWrapBGTab}
             ${dropdownWrapBorderTab}
             ${dropdownWrapBorderRadiusTab}

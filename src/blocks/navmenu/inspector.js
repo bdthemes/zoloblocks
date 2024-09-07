@@ -1,7 +1,7 @@
 //wrodpress dependencies
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, __experimentalInputControl as InputControl, CardDivider } from '@wordpress/components';
-import { applyFilters } from '@wordpress/hooks';
+import { ToggleControl, SelectControl, __experimentalInputControl as InputControl, CardDivider, BaseControl } from '@wordpress/components';
+import { applyFilters, MediaUpload } from '@wordpress/hooks';
 
 import { __ } from '@wordpress/i18n';
 
@@ -23,6 +23,8 @@ const {
     ZoloPanelBody,
     ToggleGroup,
     ResSelectControl,
+    ImageAvatar,
+    ImageSizes,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -80,6 +82,12 @@ import {
     CLOSE_ICON_MARGIN,
     CLOSE_ICON_BOX_SHADOW,
     CLOSE_ICON_HOVER_BG,
+    MOBILE_MENU_WIDTH,
+    MOBILE_MENU_WRAP_BG,
+    MOBILE_MENU_WRAP_BORDER,
+    MOBILE_MENU_WRAP_BORDER_RADIUS,
+    MOBILE_MENU_WRAP_PADDING,
+    MOBILE_MENU_WRAP_BOX_SHADOW,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -104,6 +112,9 @@ const Inspector = (props) => {
         closeIconColor,
         closeIconHoverColor,
         closeIconBorderHoverColor,
+        brandPhoto,
+        imageRes,
+        humbergerIcon,
     } = attributes;
 
     const requiredProps = {
@@ -142,7 +153,69 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Mobile Menu Settings', 'zoloblocks')} panelProps={props}></ZoloPanelBody>
+                        <ZoloPanelBody title={__('Mobile Menu Settings', 'zoloblocks')} panelProps={props}>
+                            <BaseControl label={__('Logo', 'zoloblocks')} className="zolo-flex-col-control">
+                                {brandPhoto ? (
+                                    <ImageAvatar
+                                        imageUrl={brandPhoto && brandPhoto.url}
+                                        onDeleteImage={() =>
+                                            setAttributes({
+                                                brandPhoto: null,
+                                            })
+                                        }
+                                        imageId={brandPhoto && brandPhoto.id}
+                                        onEditImage={(media) =>
+                                            setAttributes({
+                                                brandPhoto: media,
+                                            })
+                                        }
+                                    />
+                                ) : (
+                                    <MediaUpload
+                                        onSelect={(media) => {
+                                            setAttributes({
+                                                brandPhoto: media,
+                                            });
+                                        }}
+                                        allowedTypes={['image']}
+                                        value={brandPhoto && brandPhoto.id}
+                                        render={({ open }) => (
+                                            <Button className="zolo-image-upload-btn" onClick={open}>
+                                                <svg
+                                                    width="24"
+                                                    height="24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fillRule="evenodd"
+                                                    clipRule="evenodd"
+                                                >
+                                                    <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                                </svg>
+                                                {__(' Upload Photo', 'zoloblocks')}
+                                            </Button>
+                                        )}
+                                    />
+                                )}
+                            </BaseControl>
+                            <ImageSizes
+                                label={__('Resolution', 'zoloblocks')}
+                                value={imageRes}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        imageRes: value,
+                                    })
+                                }
+                            />
+                            <CardDivider />
+                            <ZoloIconPicker
+                                label={__('Icon', 'zoloblocks')}
+                                value={humbergerIcon}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        humbergerIcon: value,
+                                    });
+                                }}
+                            />
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
@@ -415,6 +488,38 @@ const Inspector = (props) => {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Mobile Menu', 'zoloblocks')} panelProps={props}>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Wrapper', 'zoloblocks')}
+                            </div>
+                            <ResRangeControl
+                                label={__('Width', 'zoloblocks')}
+                                controlName={MOBILE_MENU_WIDTH}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={500}
+                                step={1}
+                            />
+                            <CardDivider />
+                            <NormalBGControl requiredProps={requiredProps} controlName={MOBILE_MENU_WRAP_BG} noMainBGImg={false} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={MOBILE_MENU_WRAP_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <CardDivider />
+                            <BorderControl
+                                label={__('Border', 'zoloblocks')}
+                                controlName={MOBILE_MENU_WRAP_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <BoxShadowControl controlName={MOBILE_MENU_WRAP_BOX_SHADOW} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={MOBILE_MENU_WRAP_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                             <TabPanelControl
                                 options={TAB_MOBILE}
                                 normalComponents={
@@ -424,16 +529,7 @@ const Inspector = (props) => {
                                             controlName={MB_LOGO_WIDTH}
                                             requiredProps={requiredProps}
                                             min={0}
-                                            max={500}
-                                            step={1}
-                                        />
-
-                                        <ResRangeControl
-                                            label={__('Height', 'zoloblocks')}
-                                            controlName={MB_LOGO_HEIGHT}
-                                            requiredProps={requiredProps}
-                                            min={0}
-                                            max={500}
+                                            max={300}
                                             step={1}
                                         />
 

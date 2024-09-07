@@ -40,6 +40,13 @@ export const SUB_MENU_BOX_SHADOW = 'subMenuBoxShadow';
 export const SUB_MENU_HOVER_BG = 'subMenuHoverBg';
 export const SUB_MENU_ACTIVE_BG = 'subMenuActiveBg';
 
+export const MOBILE_MENU_WIDTH = 'mobileMenuWidth';
+export const MOBILE_MENU_WRAP_BG = 'mobileMenuWrapBg';
+export const MOBILE_MENU_WRAP_BORDER = 'mobileMenuWrapBorder';
+export const MOBILE_MENU_WRAP_BORDER_RADIUS = 'mobileMenuWrapBorderRadius';
+export const MOBILE_MENU_WRAP_PADDING = 'mobileMenuWrapPadding';
+export const MOBILE_MENU_WRAP_BOX_SHADOW = 'mobileMenuWrapBoxShadow';
+
 export const MB_LOGO_WIDTH = 'mbLogoWidth';
 export const MB_LOGO_HEIGHT = 'mbLogoHeight';
 export const MB_LOGO_MARGIN = 'mbLogoMargin';

@@ -66,6 +66,12 @@ import {
     CLOSE_ICON_MARGIN,
     CLOSE_ICON_BOX_SHADOW,
     CLOSE_ICON_HOVER_BG,
+    MOBILE_MENU_WIDTH,
+    MOBILE_MENU_WRAP_BG,
+    MOBILE_MENU_WRAP_BORDER,
+    MOBILE_MENU_WRAP_BORDER_RADIUS,
+    MOBILE_MENU_WRAP_PADDING,
+    MOBILE_MENU_WRAP_BOX_SHADOW,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -641,6 +647,72 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    // MOBILE_MENU_WIDTH
+
+    const {
+        desktopRangeStyle: mobileMenuWidthDesk,
+        tabRangeStyle: mobileMenuWidthTab,
+        mobRangeStyle: mobileMenuWidthMob,
+    } = generateResRangeStyle({
+        controlName: MOBILE_MENU_WIDTH,
+        property: 'max-width',
+        attributes,
+    });
+
+    // MOBILE_MENU_WRAP_BG
+
+    const {
+        backgroundStylesDesktop: mobileMenuWrapBGDesk,
+        backgroundStylesTab: mobileMenuWrapBGTab,
+        backgroundStylesMobile: mobileMenuWrapBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: MOBILE_MENU_WRAP_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // MOBILE_MENU_WRAP_BORDER
+
+    const {
+        desktopBorderStyle: mobileMenuWrapBorderDesk,
+        tabBorderStyle: mobileMenuWrapBorderTab,
+        mobBorderStyle: mobileMenuWrapBorderMob,
+    } = generateBorderStyle({
+        controlName: MOBILE_MENU_WRAP_BORDER,
+        attributes,
+    });
+
+    // MOBILE_MENU_WRAP_BORDER_RADIUS
+
+    const {
+        dimensionStylesDesktop: mobileMenuWrapBorderRadiusDesk,
+        dimensionStylesTab: mobileMenuWrapBorderRadiusTab,
+        dimensionStylesMobile: mobileMenuWrapBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: MOBILE_MENU_WRAP_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // MOBILE_MENU_WRAP_PADDING
+
+    const {
+        dimensionStylesDesktop: mobileMenuWrapPaddingDesk,
+        dimensionStylesTab: mobileMenuWrapPaddingTab,
+        dimensionStylesMobile: mobileMenuWrapPaddingMob,
+    } = generateDimensionStyle({
+        controlName: MOBILE_MENU_WRAP_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // MOBILE_MENU_WRAP_BOX_SHADOW
+
+    const { boxShadowStyle: mobileMenuWrapBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: MOBILE_MENU_WRAP_BOX_SHADOW,
+        attributes,
+    });
+
     /**
      * Generate Alignment Class
      */
@@ -727,14 +799,13 @@ export default function Style({ props }) {
             border-color: ${subMenuBorderActiveColor ? subMenuBorderActiveColor : ''};
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-mobile-logo img{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-logo img{
             ${mbLogoWidthDesk}
-            ${mbLogoHeightDesk}
             ${mbLogoMarginDesk}
             ${mbLogoPaddingDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-nav-menu-hamburger{
             color: ${humburgerMenuColor ? humburgerMenuColor : ''};
             ${humburgerMenuIconSizeDesk}
             ${humburgerMenuBGDesk}
@@ -745,13 +816,13 @@ export default function Style({ props }) {
             ${humburgerMenuBoxShadowStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu:hover{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-nav-menu-hamburger:hover{
             color: ${humburgerMenuHoverColor ? humburgerMenuHoverColor : ''};
             ${humburgerMenuHoverBGDesk}
             border-color: ${humburgerMenuBorderHoverColor ? humburgerMenuBorderHoverColor : ''};
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-close{
             color: ${closeIconColor ? closeIconColor : ''};
             ${closeIconSizeDesk}
             ${closeIconBGDesk}
@@ -762,10 +833,19 @@ export default function Style({ props }) {
             ${closeIconBoxShadowStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon:hover{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-close:hover{
             ${closeIconHoverBGDesk}
             color: ${closeIconHoverColor ? closeIconHoverColor : ''};
             border-color: ${closeIconBorderHoverColor ? closeIconBorderHoverColor : ''};
+        }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.zolo-nav-menu-open {
+            ${mobileMenuWidthDesk}
+            ${mobileMenuWrapBGDesk}
+            ${mobileMenuWrapBorderDesk}
+            ${mobileMenuWrapBorderRadiusDesk}
+            ${mobileMenuWrapPaddingDesk}
+            ${mobileMenuWrapBoxShadowStyle}
         }
 
 	`;
@@ -826,14 +906,13 @@ export default function Style({ props }) {
             ${subMenuActiveBGTab}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-mobile-logo img{
-            ${mbLogoWidthDesk}
-            ${mbLogoHeightDesk}
-            ${mbLogoMarginDesk}
-            ${mbLogoPaddingDesk}
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-logo img{
+            ${mbLogoWidthTab}
+            ${mbLogoMarginTab}
+            ${mbLogoPaddingTab}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-nav-menu-hamburger{
             ${humburgerMenuIconSizeTab}
             ${humburgerMenuBGTab}
             ${humburgerMenuBorderTab}
@@ -843,7 +922,7 @@ export default function Style({ props }) {
             ${humburgerMenuBoxShadowStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-close{
             ${closeIconSizeTab}
             ${closeIconBGTab}
             ${closeIconBorderTab}
@@ -912,14 +991,13 @@ export default function Style({ props }) {
             ${subMenuActiveBGMob}
         }
         
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-mobile-logo img{
-            ${mbLogoWidthDesk}
-            ${mbLogoHeightDesk}
-            ${mbLogoMarginDesk}
-            ${mbLogoPaddingDesk}
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-logo img{
+            ${mbLogoWidthMob}
+            ${mbLogoMarginMob}
+            ${mbLogoPaddingMob}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-humburger-menu{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-nav-menu-hamburger{
             ${humburgerMenuIconSizeMob}
             ${humburgerMenuBGDesk}
             ${humburgerMenuBorderDesk}
@@ -929,7 +1007,7 @@ export default function Style({ props }) {
             ${humburgerMenuBoxShadowStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-close-icon{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-close{
             ${closeIconSizeMob}
             ${closeIconBGMob}
             ${closeIconBorderMob}

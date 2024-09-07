@@ -15,7 +15,6 @@
     scrollbar-width: none;
 }
 
-
 .wp-block-zolo-navmenu {
     .zolo-navmenu-menu {
         display: flex;
@@ -45,7 +44,6 @@
             .zolo-navmenu-link {
                 padding: 0 10px;
             }
-
         }
     }
 
@@ -55,9 +53,7 @@
 
     .zolo-nav-menu-hamburger {
         display: none;
-        width: 45px;
-        height: 45px;
-        padding: 8px;
+        padding: 10px;
         background-color: transparent;
         border-radius: 0.25rem;
         position: relative;
@@ -69,6 +65,7 @@
         svg {
             width: 1em;
             height: 1em;
+            display: block;
             fill: currentColor;
         }
     }
@@ -108,7 +105,7 @@
     }
 
     .zolo-navmenu-wrapper {
-        &.is-menu-active {
+        &.zolo-nav-menu-open {
             .zolo-navmenu-menu {
                 flex-direction: column;
                 align-items: flex-start;
@@ -127,12 +124,12 @@
             }
 
             .zolo-navmenu-item {
-                .zolo-navmenu-submenu-wrapper{
+                .zolo-navmenu-submenu-wrapper {
                     position: relative;
                     left: unset;
                     top: unset;
-                    
-                    & >.wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
+
+                    & > .wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
                         position: relative;
                         left: unset;
                         top: unset;
@@ -146,30 +143,29 @@
                 align-items: center;
                 padding: 10px;
 
-                .zolo-nav-menu-sidebar-logo{
+                .zolo-nav-menu-sidebar-logo {
                     line-height: 1;
 
-                    img{
+                    img {
                         display: block;
                         width: 200px;
                     }
                 }
-
-                .zolo-nav-menu-sidebar-close{
-                    padding: 8px;
+                .zolo-nav-menu-sidebar-close {
+                    padding: 10px;
                     background-color: transparent;
                     border-radius: 0.25rem;
                     position: relative;
                     z-index: 10;
                     cursor: pointer;
-                    width: 45px;
                     transition: all 0.4s ease-in;
                     border: 1px solid rgba(0, 0, 0, 0.2);
-
-                    svg{
+                    color: #323239;
+                    svg {
                         width: 1em;
                         height: 1em;
-                        display: inline-block;
+                        display: block;
+                        fill: currentColor;
                     }
                 }
             }
@@ -197,9 +193,9 @@
     }
 }
 
-.zolo-frontend{
-    .wp-block-zolo-navmenu{
-        .zolo-navmenu-wrapper{
+.zolo-frontend {
+    .wp-block-zolo-navmenu {
+        .zolo-navmenu-wrapper {
             &.is-menu-active {
                 z-index: 99999;
             }
@@ -226,11 +222,11 @@
 
     .zolo-navmenu-wrapper {
         &.is-menu-active {
-            .zolo-navmenu-item{
-                .zolo-navmenu-submenu-wrapper{
-                    .wp-block-zolo-navmenu-submenu{
-                        &.is-selected{
-                            & > .zolo-navmenu-submenu-add-btn{
+            .zolo-navmenu-item {
+                .zolo-navmenu-submenu-wrapper {
+                    .wp-block-zolo-navmenu-submenu {
+                        &.is-selected {
+                            & > .zolo-navmenu-submenu-add-btn {
                                 display: block;
                             }
                         }
