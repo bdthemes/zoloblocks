@@ -1277,3 +1277,8 @@ export const EXCLUDE_BY=[
   {value:'manual_selection', label: __('Manual Selection', 'zoloblocks')},
   {value:'terms'           , label: __('Terms', 'zoloblocks')},
 ]
+export const PAGINARION_TYPE=[
+  {label:  __('Default Pagination','zoloblocks'), value: 'normal'},
+  {label: __('Ajax Pagination','zoloblocks'), value: 'number'},
+  {label: __('Load More','zoloblocks'), value: 'button'}
+]

@@ -39,7 +39,8 @@ class PostGrid extends PostBlock {
             'settings'     => $attributes,
             'className'    => '',
             'post_results' => $post_results,
-            'class_object' => $this
+            'class_object' => $this,
+            'parentWrap'   => true
         ]);
         return ob_get_clean();
     }

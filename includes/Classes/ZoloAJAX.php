@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
+use Zolo\API\GetPostsV1;
 
 /**
  * ZoloAJAX
@@ -33,6 +34,51 @@ class ZoloAJAX {
 		add_action( 'wp_ajax_zolo_post_category', [ $this, 'get_post_categories' ] );
 		add_action( 'wp_ajax_zolo_author_ajax', [ $this, 'get_authors' ] );
 		add_action( 'wp_ajax_zolo_comments_ajax', [ $this, 'get_comments' ] );
+		add_action( 'wp_ajax_zolo_ajax_post_pagination', [ $this, 'zolo_post_pagination' ] );
+	}
+
+	/**
+	 * Post ajax pagination
+	 *
+	 * @return void
+	 */
+	public function zolo_post_pagination() {
+		if ( ! wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
+			wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks-pro' ) );
+		}
+		$pageNumber    = sanitize_text_field( wp_unslash( $_POST['pageNumber'] ?? '' ) );
+		$settings_json = sanitize_text_field( wp_unslash( $_POST['settings'] ?? '' ) );
+		$settings      = json_decode( $settings_json, true );
+		$postQuery     = $settings['postQuery'] ?? [];
+
+		if ( ! empty( $pageNumber ) ) {
+			$postQuery['pageNumber'] = $pageNumber;
+		}
+
+		$post_results = apply_filters( 'zolo_post_pagination_result', GetPostsV1::zolo_posts_query( $postQuery ) );
+
+		$data = $this->get_ajax_pagination_content( $post_results, $settings );
+		wp_send_json_success( $data );
+	}
+
+	/**
+	 * Post  ajax pagination content
+	 *
+	 * @param array $post_results .
+	 * @param array $settings .
+	 * @return false|string
+	 */
+	public function get_ajax_pagination_content( $post_results, $settings ) {
+		ob_start();
+		ZoloHelpers::views(
+			'post-grid',
+			[
+				'settings'     => $settings,
+				'post_results' => $post_results,
+				'parentWrap'   => false,
+			]
+		);
+		return ob_get_clean();
 	}
 
 	/**
