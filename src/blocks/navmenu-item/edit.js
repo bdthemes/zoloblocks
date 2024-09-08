@@ -17,13 +17,13 @@ import { useMergeRefs } from '@wordpress/compose';
 import useIsInvalidLink from './utils/use-invalid-link';
 import NavMenuAppenderButton from './components/appender-button';
 import { createBlock, createBlocksFromInnerBlocksTemplate } from '@wordpress/blocks';
-
+const { DisplayZoloIcon } = window.zoloModule;
 // import style
 import Style from './style';
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId, onReplace } = props;
-    const { uniqueId, preview, addSubmenu, url, label, id, kind, type } = attributes;
+    const { uniqueId, preview, addSubmenu, url, label, id, kind, type, subMenuIndicator } = attributes;
 
     const { selectPreviousBlock, replaceInnerBlocks, selectBlock } = useDispatch(blockEditorStore);
 
@@ -236,11 +236,11 @@ const Edit = (props) => {
                         onChange={(value) => setAttributes({ label: value })}
                         placeholder={__('Add Link', 'zoloblocks')}
                     />
-                    {
-                        attributes?.addSubmenu ? <button className="zolo-submenu-arrow" aria-label={__('Submenu Arrow', 'zoloblocks')}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fillRule="evenodd" clipRule="evenodd" d="M0 9.6c0-0.205 0.078-0.409 0.234-0.566 0.312-0.312 0.819-0.312 1.131 0l13.834 13.834 13.834-13.834c0.312-0.312 0.819-0.312 1.131 0s0.312 0.819 0 1.131l-14.4 14.4c-0.312 0.312-0.819 0.312-1.131 0l-14.4-14.4c-0.156-0.156-0.234-0.361-0.234-0.566z"></path></svg>
-                        </button> : null
-                    }
+                    {attributes?.addSubmenu ? (
+                        <button className="zolo-submenu-arrow" aria-label={__('Submenu Arrow', 'zoloblocks')}>
+                            <DisplayZoloIcon icon={subMenuIndicator} />
+                        </button>
+                    ) : null}
                 </a>
                 {addSubmenu ? <div {...innerBlocksProps}></div> : null}
             </li>

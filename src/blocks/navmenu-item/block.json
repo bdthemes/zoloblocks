@@ -7,7 +7,7 @@
     "description": "Build your own navigation menu.",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
-    "parent": ["zolo/navmenu", "zolo/navmenu-submenu"],
+    "parent": ["zolo/navmenu"],
     "example": {
         "attributes": {
             "preview": true

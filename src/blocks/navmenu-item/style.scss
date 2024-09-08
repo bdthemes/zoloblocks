@@ -7,6 +7,7 @@
             justify-content: space-between;
 
             .zolo-submenu-arrow {
+                --zolo-submenu-arrow-size: 16px;
                 border: none;
                 background: transparent;
                 display: flex;
@@ -15,13 +16,12 @@
                 padding: 5px;
                 cursor: pointer;
                 z-index: 9999;
-                color: currentColor;
                 svg {
                     color: inherit;
                     fill: currentColor;
                     font-size: inherit;
-                    width: 1em;
-                    height: 1em;
+                    width: var(--zolo-submenu-arrow-size);
+                    height: var(--zolo-submenu-arrow-size);
                     display: block;
                 }
             }

@@ -33,6 +33,15 @@ import {
     SUB_MENU_BOX_SHADOW,
     SUB_MENU_HOVER_BG,
     SUB_MENU_ACTIVE_BG,
+    SUB_MENU_INDICATOR_SIZE,
+    SUB_MENU_INDICATOR_BG,
+    SUB_MENU_INDICATOR_PADDING,
+    SUB_MENU_INDICATOR_MARGIN,
+    SUB_MENU_INDICATOR_BORDER,
+    SUB_MENU_INDICATOR_BORDER_RADIUS,
+    SUB_MENU_INDICATOR_BOX_SHADOW,
+    SUB_MENU_INDICATOR_HOVER_BG,
+    SUB_MENU_INDICATOR_ACTIVE_BG,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -40,8 +49,19 @@ import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
-    const { subMenuTextColor, subMenuTextHoverColor, subMenuTextActiveColor, subMenuBorderHoverColor, subMenuBorderActiveColor, uniqueId } =
-        attributes;
+    const {
+        subMenuTextColor,
+        subMenuTextHoverColor,
+        subMenuTextActiveColor,
+        subMenuBorderHoverColor,
+        subMenuBorderActiveColor,
+        uniqueId,
+        subMenuIconColor,
+        subMenuIconHoverColor,
+        subMenuIconHoverBorderColor,
+        subMenuIconActiveColor,
+        subMenuIconActiveBorderColor,
+    } = attributes;
 
     // generate Background
 
@@ -221,12 +241,97 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    const {
+        desktopRangeStyle: subMenuIndicatorSizeDesk,
+        tabRangeStyle: subMenuIndicatorSizeTab,
+        mobRangeStyle: subMenuIndicatorSizeMob,
+    } = generateResRangeStyle({
+        controlName: SUB_MENU_INDICATOR_SIZE,
+        property: '--zolo-submenu-arrow-size',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: subMenuIndicatorBGDesk,
+        backgroundStylesTab: subMenuIndicatorBGTab,
+        backgroundStylesMobile: subMenuIndicatorBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUB_MENU_INDICATOR_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: subMenuIndicatorPaddingDesk,
+        dimensionStylesTab: subMenuIndicatorPaddingTab,
+        dimensionStylesMobile: subMenuIndicatorPaddingMob,
+    } = generateDimensionStyle({
+        controlName: SUB_MENU_INDICATOR_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: subMenuIndicatorMarginDesk,
+        dimensionStylesTab: subMenuIndicatorMarginTab,
+        dimensionStylesMobile: subMenuIndicatorMarginMob,
+    } = generateDimensionStyle({
+        controlName: SUB_MENU_INDICATOR_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: subMenuIndicatorBorderDesk,
+        tabBorderStyle: subMenuIndicatorBorderTab,
+        mobBorderStyle: subMenuIndicatorBorderMob,
+    } = generateBorderStyle({
+        controlName: SUB_MENU_INDICATOR_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: subMenuIndicatorBorderRadiusDesk,
+        dimensionStylesTab: subMenuIndicatorBorderRadiusTab,
+        dimensionStylesMobile: subMenuIndicatorBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SUB_MENU_INDICATOR_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: subMenuIndicatorBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: SUB_MENU_INDICATOR_BOX_SHADOW,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: subMenuIndicatorHoverBGDesk,
+        backgroundStylesTab: subMenuIndicatorHoverBGTab,
+        backgroundStylesMobile: subMenuIndicatorHoverBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUB_MENU_INDICATOR_HOVER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: subMenuIndicatorActiveBGDesk,
+        backgroundStylesTab: subMenuIndicatorActiveBGTab,
+        backgroundStylesMobile: subMenuIndicatorActiveBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUB_MENU_INDICATOR_ACTIVE_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu{
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu,
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-megamenu {
             ${dropdownWrapBGDesk}
             ${dropdownWrapBorderDesk}
             ${dropdownWrapBorderRadiusDesk}
@@ -262,10 +367,43 @@ export default function Style({ props }) {
             border-color: ${subMenuBorderActiveColor ? subMenuBorderActiveColor : ''};
         }
 
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link .zolo-submenu-arrow {
+            ${subMenuIndicatorBGDesk}
+            ${subMenuIndicatorPaddingDesk}
+            ${subMenuIndicatorMarginDesk}
+            ${subMenuIndicatorBorderDesk}
+            ${subMenuIndicatorBorderRadiusDesk}
+            ${subMenuIndicatorBoxShadowStyle}
+        }
+
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link:hover .zolo-submenu-arrow {
+            ${subMenuIndicatorHoverBGDesk}
+        }
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link.active .zolo-submenu-arrow {
+            ${subMenuIndicatorActiveBGDesk}
+        }
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link .zolo-submenu-arrow svg{
+           ${subMenuIndicatorSizeDesk};
+            fill: ${subMenuIconColor ? subMenuIconColor : ''};
+        }
+
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link:hover .zolo-submenu-arrow svg{
+            fill: ${subMenuIconHoverColor ? subMenuIconHoverColor : ''};
+            border-color: ${subMenuIconHoverBorderColor ? subMenuIconHoverBorderColor : ''};
+            ${subMenuIndicatorHoverBGDesk}
+        }
+
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link.active .zolo-submenu-arrow svg{
+            fill: ${subMenuIconActiveColor ? subMenuIconActiveColor : ''};
+            border-color: ${subMenuIconActiveBorderColor ? subMenuIconActiveBorderColor : ''};
+            ${subMenuIndicatorActiveBGDesk}
+        }
+
 	`;
     const tabletAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu{
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu,
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-megamenu {
             ${dropdownWrapBGTab}
             ${dropdownWrapBorderTab}
             ${dropdownWrapBorderRadiusTab}
@@ -293,10 +431,27 @@ export default function Style({ props }) {
         .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item  .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
             ${subMenuActiveBGTab}
         }
+
+         .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link .zolo-submenu-arrow {
+            ${subMenuIndicatorBGTab}
+            ${subMenuIndicatorPaddingTab}
+            ${subMenuIndicatorMarginTab}
+            ${subMenuIndicatorBorderTab}
+            ${subMenuIndicatorBorderRadiusTab}
+        }
+
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link:hover .zolo-submenu-arrow {
+            ${subMenuIndicatorHoverBGTab}
+        }
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link.active .zolo-submenu-arrow {
+            ${subMenuIndicatorActiveBGTab}
+        }
+
   	`;
     const mobileAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item  .zolo-navmenu-submenu-wrapper{
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-navmenu-submenu,
+        .zolo-block.wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .wp-block-zolo-megamenu {
             ${dropdownWrapBGMob}
             ${dropdownWrapBorderMob}
             ${dropdownWrapBorderRadiusMob}
@@ -323,6 +478,21 @@ export default function Style({ props }) {
 
         .wp-block-zolo-navmenu .${uniqueId}.zolo-navmenu-item .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
             ${subMenuActiveBGMob}
+        }
+        
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link .zolo-submenu-arrow {
+            ${subMenuIndicatorBGMob}
+            ${subMenuIndicatorPaddingMob}
+            ${subMenuIndicatorMarginMob}
+            ${subMenuIndicatorBorderMob}
+            ${subMenuIndicatorBorderRadiusMob}
+        }
+
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link:hover .zolo-submenu-arrow {
+            ${subMenuIndicatorHoverBGMob}
+        }
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-wrapper .${uniqueId}.zolo-navmenu-item .zolo-navmenu-link.active .zolo-submenu-arrow {
+            ${subMenuIndicatorActiveBGMob}
         }
   	`;
 

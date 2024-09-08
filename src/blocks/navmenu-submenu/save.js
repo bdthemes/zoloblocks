@@ -1,12 +1,9 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 
-
 const Save = (props) => {
     const { attributes } = props;
-    const {
-        uniqueId,
-    } = attributes;
+    const { uniqueId } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId),

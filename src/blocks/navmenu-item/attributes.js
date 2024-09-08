@@ -27,6 +27,15 @@ import {
     SUB_MENU_BOX_SHADOW,
     SUB_MENU_HOVER_BG,
     SUB_MENU_ACTIVE_BG,
+    SUB_MENU_INDICATOR_SIZE,
+    SUB_MENU_INDICATOR_BG,
+    SUB_MENU_INDICATOR_PADDING,
+    SUB_MENU_INDICATOR_MARGIN,
+    SUB_MENU_INDICATOR_BORDER,
+    SUB_MENU_INDICATOR_BORDER_RADIUS,
+    SUB_MENU_INDICATOR_BOX_SHADOW,
+    SUB_MENU_INDICATOR_HOVER_BG,
+    SUB_MENU_INDICATOR_ACTIVE_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -76,6 +85,15 @@ const attributes = {
     ...generateBoxShadowAttributies(SUB_MENU_BOX_SHADOW),
     ...generateNormalBGAttributes(SUB_MENU_HOVER_BG),
     ...generateNormalBGAttributes(SUB_MENU_ACTIVE_BG),
+    ...generateResRangeAttributies(SUB_MENU_INDICATOR_SIZE),
+    ...generateNormalBGAttributes(SUB_MENU_INDICATOR_BG),
+    ...generateDimensionAttributes(SUB_MENU_INDICATOR_PADDING),
+    ...generateDimensionAttributes(SUB_MENU_INDICATOR_MARGIN),
+    ...generateBorderAttributies(SUB_MENU_INDICATOR_BORDER),
+    ...generateDimensionAttributes(SUB_MENU_INDICATOR_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(SUB_MENU_INDICATOR_BOX_SHADOW),
+    ...generateNormalBGAttributes(SUB_MENU_INDICATOR_HOVER_BG),
+    ...generateNormalBGAttributes(SUB_MENU_INDICATOR_ACTIVE_BG),
 
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -156,6 +174,27 @@ const attributes = {
         type: 'string',
     },
     kind: {
+        type: 'string',
+    },
+    subMenuIndicator: {
+        type: 'string',
+        default:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z" /></svg>',
+    },
+    subMenuIconColor: {
+        type: 'string',
+    },
+    subMenuIconHoverColor: {
+        type: 'string',
+    },
+    subMenuIconActiveColor: {
+        type: 'string',
+    },
+    subMenuIconHoverBorderColor: {
+        type: 'string',
+    },
+
+    subMenuIconActiveBorderColor: {
         type: 'string',
     },
 };

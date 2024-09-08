@@ -1,33 +1,99 @@
-//wrodpress dependencies
-import { InspectorControls } from '@wordpress/block-editor';
-
 import { __ } from '@wordpress/i18n';
-
+import objAttributes from './attributes';
+import { InspectorControls } from '@wordpress/block-editor';
+import { ToggleControl, CardDivider } from '@wordpress/components';
 const {
     HeaderTabs,
+    ResAlignmentControl,
+    ResRangeControl,
+    ColorControl,
+    BorderControl,
+    ResDimensionsControl,
+    TypographyDropdown,
+    TabPanelControl,
+    NormalBGControl,
+    BoxShadowControl,
+    LinkControl,
+    IconicBtnGroup,
     AdvancedOptions,
+    ZoloIconPicker,
     ZoloPanelBody,
     ToggleGroup,
-    ResSelectControl
+    ResSelectControl,
 } = window.zoloModule;
 
-import { desktop, tablet, mobile } from '@wordpress/icons';
-import objAttributes from './attributes';
+import {
+    DROPDOWN_WRAP_BG,
+    DROPDOWN_WRAP_BORDER,
+    DROPDOWN_WRAP_BORDER_RADIUS,
+    DROPDOWN_WRAP_PADDING,
+    DROPDOWN_WRAP_MARGIN,
+    DROPDOWN_WRAP_BOX_SHADOW,
+    DROPDOWN_WIDTH,
+    TAB_STATES,
+} from './constants';
+
+import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { add } from '@dnd-kit/utilities';
 
 const Inspector = (props) => {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, hasInnerBlocks, isNested } = props;
     const requiredProps = { attributes, setAttributes, resMode: attributes?.resMode, objAttributes };
-
+    const { resMode } = attributes;
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/megamenu"
+                block="zolo/navmenu-item"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <h5>Add Controls Here</h5>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Container', 'zoloblocks')}
+                            </div>
+                            <ResRangeControl
+                                label={__('Width', 'zoloblocks')}
+                                controlName={DROPDOWN_WIDTH}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={500}
+                                step={1}
+                            />
+                            <CardDivider />
+                        </ZoloPanelBody>
+                    </>
+                }
+                styleTab={
+                    <>
+                        <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <NormalBGControl requiredProps={requiredProps} controlName={DROPDOWN_WRAP_BG} noMainBGImg={false} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <CardDivider />
+
+                            <BorderControl
+                                label={__('Border', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <BoxShadowControl controlName={DROPDOWN_WRAP_BOX_SHADOW} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={DROPDOWN_WRAP_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                         </ZoloPanelBody>
                     </>
                 }
@@ -36,13 +102,8 @@ const Inspector = (props) => {
                         <AdvancedOptions
                             attributes={attributes}
                             setAttributes={setAttributes}
-                            requiredProps={{
-                                attributes,
-                                setAttributes,
-                                resMode: attributes?.resMode,
-                                objAttributes
-                            }}
-                            block="zolo/megamenu"
+                            requiredProps={requiredProps}
+                            block="zolo/advanced-heading"
                         />
                     </>
                 }

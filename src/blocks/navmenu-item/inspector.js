@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl, CardDivider } from '@wordpress/components';
 const {
     HeaderTabs,
     ResAlignmentControl,
@@ -39,6 +39,15 @@ import {
     SUB_MENU_ACTIVE_BG,
     TAB_STATES,
     DROPDOWN_WIDTH,
+    SUB_MENU_INDICATOR_SIZE,
+    SUB_MENU_INDICATOR_BG,
+    SUB_MENU_INDICATOR_PADDING,
+    SUB_MENU_INDICATOR_MARGIN,
+    SUB_MENU_INDICATOR_BORDER,
+    SUB_MENU_INDICATOR_BORDER_RADIUS,
+    SUB_MENU_INDICATOR_BOX_SHADOW,
+    SUB_MENU_INDICATOR_HOVER_BG,
+    SUB_MENU_INDICATOR_ACTIVE_BG,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -55,6 +64,13 @@ const Inspector = (props) => {
         subMenuBorderHoverColor,
         subMenuBorderActiveColor,
         addSubmenu,
+        subMenuIndicator,
+        submenuType,
+        subMenuIconColor,
+        subMenuIconHoverColor,
+        subMenuIconHoverBorderColor,
+        subMenuIconActiveColor,
+        subMenuIconActiveBorderColor,
     } = attributes;
     return (
         <InspectorControls key="controls">
@@ -84,127 +100,107 @@ const Inspector = (props) => {
                                 />
                             )}
                         </ZoloPanelBody>
+                        {addSubmenu && (
+                            <ZoloPanelBody title={__('Submenu Indicator', 'zoloblocks')} panelProps={props}>
+                                <ZoloIconPicker
+                                    label={__('Select', 'zoloblocks')}
+                                    value={subMenuIndicator}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            subMenuIndicator: value,
+                                        });
+                                    }}
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={
                     <>
                         {addSubmenu && (
                             <>
-                                <ZoloPanelBody title={__('Dropdown', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                    <ResRangeControl
-                                        label={__('Dropdown Width', 'zoloblocks')}
-                                        controlName={DROPDOWN_WIDTH}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={500}
-                                        step={1}
-                                    />
-                                    <NormalBGControl requiredProps={requiredProps} controlName={DROPDOWN_WRAP_BG} noMainBGImg={false} />
-                                    <BorderControl
-                                        label={__('Border', 'zoloblocks')}
-                                        controlName={DROPDOWN_WRAP_BORDER}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Border Radius', 'zoloblocks')}
-                                        controlName={DROPDOWN_WRAP_BORDER_RADIUS}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Padding', 'zoloblocks')}
-                                        controlName={DROPDOWN_WRAP_PADDING}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={false}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Margin', 'zoloblocks')}
-                                        controlName={DROPDOWN_WRAP_MARGIN}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={false}
-                                    />
-
-                                    <BoxShadowControl controlName={DROPDOWN_WRAP_BOX_SHADOW} requiredProps={requiredProps} />
-                                </ZoloPanelBody>
-                            </>
-                        )}
-                        {addSubmenu && (
-                            <>
-                                <ZoloPanelBody title={__('Dropdown Menu', 'zoloblocks')} panelProps={props}>
+                                <ZoloPanelBody title={__('Submenu Indicator', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                     <TabPanelControl
                                         options={TAB_STATES}
                                         normalComponents={
                                             <>
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
-                                                    color={subMenuTextColor}
+                                                    color={subMenuIconColor}
                                                     onChange={(value) =>
                                                         setAttributes({
-                                                            subMenuTextColor: value,
+                                                            subMenuIconColor: value,
                                                         })
                                                     }
                                                 />
-                                                <TypographyDropdown
-                                                    label={__('Typography', 'zoloblocks')}
-                                                    typoPrefixConstant={SUB_MENU_TYPOGRAPHY}
+
+                                                <ResRangeControl
+                                                    label={__('Size', 'zoloblocks')}
+                                                    controlName={SUB_MENU_INDICATOR_SIZE}
                                                     requiredProps={requiredProps}
-                                                    max={36}
+                                                    min={0}
+                                                    max={100}
+                                                    step={1}
                                                 />
+                                                <CardDivider />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
-                                                    controlName={SUB_MENU_BG}
+                                                    controlName={SUB_MENU_INDICATOR_BG}
                                                     noMainBGImg={false}
                                                 />
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={SUB_MENU_INDICATOR_PADDING}
+                                                    requiredProps={requiredProps}
+                                                    forBorderRadius={false}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={SUB_MENU_INDICATOR_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                    forBorderRadius={false}
+                                                />
+                                                <CardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
-                                                    controlName={SUB_MENU_BORDER}
+                                                    controlName={SUB_MENU_INDICATOR_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <BoxShadowControl
+                                                    controlName={SUB_MENU_INDICATOR_BOX_SHADOW}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
                                                     label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={SUB_MENU_BORDER_RADIUS}
+                                                    controlName={SUB_MENU_INDICATOR_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                     forBorderRadius={true}
                                                 />
-                                                <ResDimensionsControl
-                                                    label={__('Padding', 'zoloblocks')}
-                                                    controlName={SUB_MENU_PADDING}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={false}
-                                                />
-
-                                                <ResDimensionsControl
-                                                    label={__('Margin', 'zoloblocks')}
-                                                    controlName={SUB_MENU_MARGIN}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={false}
-                                                />
-
-                                                <BoxShadowControl controlName={SUB_MENU_BOX_SHADOW} requiredProps={requiredProps} />
                                             </>
                                         }
                                         hoverComponents={
                                             <>
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
-                                                    color={subMenuTextHoverColor}
+                                                    color={subMenuIconHoverColor}
                                                     onChange={(value) =>
                                                         setAttributes({
-                                                            subMenuTextHoverColor: value,
+                                                            subMenuIconHoverColor: value,
                                                         })
                                                     }
                                                 />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
-                                                    controlName={SUB_MENU_HOVER_BG}
+                                                    controlName={SUB_MENU_INDICATOR_HOVER_BG}
                                                     noMainBGImg={false}
                                                 />
+
                                                 <ColorControl
                                                     label={__('Border Color', 'zoloblocks')}
-                                                    color={subMenuBorderHoverColor}
+                                                    color={subMenuIconHoverBorderColor}
                                                     onChange={(value) =>
                                                         setAttributes({
-                                                            subMenuBorderHoverColor: value,
+                                                            subMenuIconHoverBorderColor: value,
                                                         })
                                                     }
                                                 />
@@ -214,24 +210,26 @@ const Inspector = (props) => {
                                             <>
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
-                                                    color={subMenuTextActiveColor}
+                                                    color={subMenuIconActiveColor}
                                                     onChange={(value) =>
                                                         setAttributes({
-                                                            subMenuTextActiveColor: value,
+                                                            subMenuIconActiveColor: value,
                                                         })
                                                     }
                                                 />
+
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
-                                                    controlName={SUB_MENU_ACTIVE_BG}
+                                                    controlName={SUB_MENU_INDICATOR_ACTIVE_BG}
                                                     noMainBGImg={false}
                                                 />
+
                                                 <ColorControl
                                                     label={__('Border Color', 'zoloblocks')}
-                                                    color={subMenuBorderActiveColor}
+                                                    color={subMenuIconActiveBorderColor}
                                                     onChange={(value) =>
                                                         setAttributes({
-                                                            subMenuBorderActiveColor: value,
+                                                            subMenuIconActiveBorderColor: value,
                                                         })
                                                     }
                                                 />

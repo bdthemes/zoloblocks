@@ -5,13 +5,11 @@ import Inspector from './inspector';
 import './style.scss';
 const { classArrayToStr } = window.zoloModule;
 
+import Style from './style';
+
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
-    const {
-        uniqueId,
-        preview,
-        parentClasses,
-    } = attributes;
+    const { uniqueId, preview, parentClasses } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames('zolo-megamenu', uniqueId, classArrayToStr(parentClasses)),
@@ -23,9 +21,7 @@ const Edit = (props) => {
         },
         {
             allowedBlocks: ['zolo/container'],
-            template: [
-                ['zolo/container'],
-            ],
+            template: [['zolo/container']],
         }
     );
 
@@ -37,6 +33,7 @@ const Edit = (props) => {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <Style props={props} />
             <div {...blockProps}>
                 <div {...innerBlocksProps}></div>
             </div>
