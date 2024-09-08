@@ -1,7 +1,7 @@
 //WordPress dependencies
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
 //external dependencies
 import classnames from 'classnames';
 //internal dependencies
@@ -79,7 +79,7 @@ const Edit = (props) => {
                             tagName={subTitleTag}
                             className="zolo-ah-subtitle"
                             value={subTitleText}
-                            formattingControl={['bold', 'italic']}
+                            allowedFormats={['bold', 'italic']}
                             onChange={(subTitleText) => setAttributes({ subTitleText })}
                         />
                     )}
@@ -88,7 +88,7 @@ const Edit = (props) => {
                             tagName={enableTitleLink && titleLink ? 'a' : 'span'}
                             className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
                             value={titleText}
-                            formattingControl={['bold', 'italic']}
+                            allowedFormats={['bold', 'italic']}
                             onChange={(titleText) => setAttributes({ titleText })}
                             {...(enableTitleLink && titleLink
                                 ? {
@@ -105,7 +105,7 @@ const Edit = (props) => {
                             tagName={subTitleTag}
                             className="zolo-ah-subtitle"
                             value={subTitleText}
-                            formattingControl={['bold', 'italic']}
+                            allowedFormats={['bold', 'italic']}
                             onChange={(subTitleText) => setAttributes({ subTitleText })}
                         />
                     )}
