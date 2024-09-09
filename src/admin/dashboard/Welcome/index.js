@@ -20,15 +20,16 @@ const Welcome = () => {
     // blocks data
     useEffect(() => {
         apiFetch({
-            path: '/wp/v2/settings',
+            path: '/zolo/v1/blocks',
             method: 'GET',
         })
             .then((response) => {
-                const { zolo_blocks_settings, zolo_extensions_settings } = response;
-                setBlocks(zolo_blocks_settings);
-                setExtensions(zolo_extensions_settings);
-                setTotalBlocks(parseInt(zolo_blocks_settings.length));
-                setTotalExtensions(parseInt(zolo_extensions_settings.length));
+                // console.log(response);
+                // const { zolo_blocks_settings, zolo_extensions_settings } = response;
+                // setBlocks(zolo_blocks_settings);
+                // setExtensions(zolo_extensions_settings);
+                // setTotalBlocks(parseInt(zolo_blocks_settings.length));
+                // setTotalExtensions(parseInt(zolo_extensions_settings.length));
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);

@@ -1,8 +1,8 @@
 <?php
 
 namespace Zolo\Admin;
-
 use Zolo\Traits\SingletonTrait;
+use Zolo\Helpers\ZoloHelpers;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -25,38 +25,53 @@ if (! class_exists('Settings')) {
          */
         public function __construct() {
             add_action('rest_api_init', [$this, 'zolo_blocks_settings_init']);
-            add_action('admin_init', [$this, 'update_settings_if_needed']);
+            add_action('admin_init', [$this, 'save_default_blocks']);
         }
 
         /**
          * Zolo Blocks Settings Endpoint
          */
         public function zolo_blocks_settings_init() {
-            register_setting(
-                'zolo_blocks_settings_group',
-                'zolo_blocks_settings',
+
+            register_rest_route( 
+                'zolo/v1', 
+                '/blocks', 
                 [
-                    'type'              => 'array',
-                    'default'           => $this::block_list(),
-                    'sanitize_callback' => NULL,
-                    'show_in_rest'      => [
-                        'schema' => [
-                            'type'  => 'array',
-                            'items' => [
-                                'type'       => 'object',
-                                'properties' => [
-                                    'name'       => ['type' => 'string'],
-                                    'categories' => [
-                                        'type'  => 'array',
-                                        'items' => ['type' => 'string'],
-                                    ],
-                                    'status'     => ['type' => 'boolean'],
-                                ],
-                            ],
-                        ],
-                    ],
-                ]
-            );
+                    'methods'  => ['GET', 'POST'],
+                    'callback' => [$this, 'handle_blocks_settings'],
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                ] 
+            ); 
+
+            // register_setting(
+            //     'zolo_blocks_settings_group',
+            //     'zolo_blocks_settings',
+            //     [
+            //         'type'              => 'array',
+            //         'default'           => $this::block_list(),
+            //         'sanitize_callback' => NULL,
+            //         'show_in_rest'      => [
+            //             'schema' => [
+            //                 'type'  => 'array',
+            //                 'items' => [
+            //                     'type'       => 'object',
+            //                     'properties' => [
+            //                         'name'       => ['type' => 'string'],
+            //                         'categories' => [
+            //                             'type'  => 'array',
+            //                             'items' => ['type' => 'string'],
+            //                         ],
+            //                         'status'     => ['type' => 'boolean'],
+            //                         'title'      => ['type' => 'string'],
+            //                         'is_child'   => ['type' => 'boolean']
+            //                     ],
+            //                 ],
+            //             ],
+            //         ],
+            //     ]
+            // );
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_extensions_settings',
@@ -327,34 +342,17 @@ if (! class_exists('Settings')) {
         }
 
         /**
-         * Updates the settings if needed.
-         *
-         * This method is responsible for updating the settings if there are any changes that need to be applied.
-         * It is called within the Zoloblocks plugin and is located in the Settings.php file.
-         *
-         * @since 1.0.0
+         * Handles the blocks settings.
+         * 
+         * This method is responsible for handling the blocks settings.
+         * 
+         * @param WP_REST_Request $request The request object.
          */
-        public function update_settings_if_needed() {
-            // Get the old and new blocks
-            $old_blocks = get_option('zolo_blocks_settings', []);
-            $new_blocks = $this::block_list();
-
-            // Check if there are any differences between the current and new blocks
-            $blocks_changed = $old_blocks !== $new_blocks;
-
-            if ($blocks_changed) {
-                // Preserve the status of existing blocks
-                foreach ($new_blocks as &$new_block) {
-                    foreach ($old_blocks as $old_block) {
-                        if ($new_block['name'] === $old_block['name']) {
-                            $new_block['status'] = $old_block['status'];
-                            break;
-                        }
-                    }
-                }
-
-                // Update the zolo_blocks_settings option
-                update_option('zolo_blocks_settings', $new_blocks);
+        public function handle_blocks_settings($request) {
+            if( $request->get_method() === 'GET' ) {
+                return $this->get_blocks(); 
+            } else {
+                return $this->update_blocks($request);
             }
         }
 
@@ -366,14 +364,55 @@ if (! class_exists('Settings')) {
          *
          * @return array The block list.
          */
-        public static function block_list() {
-            $blocks_file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Admin/Blocks.php';
+        public static function get_blocks() {
+            return get_option('zolo_blocks_settings', []);
+        }
 
-            if (file_exists($blocks_file)) {
-                return require $blocks_file ?: [];
+        /**
+         * Updates the block list.
+         *
+         * This method is responsible for updating the block list.
+         * It is a static method that can be called without instantiating the class.
+         *
+         * @param WP_REST_Request $request The request object.
+         * @return array The updated block list.
+         */
+        public function update_blocks($request) {
+            $nonce = $request->get_param('zolo_nonce'); 
+
+            if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
+                return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
             }
 
-            return [];
+            $block_names = $request->get_param( 'names' );
+            $single_block_name = filter_var( $request->get_param( 'name' ), FILTER_SANITIZE_STRING );
+            $active_status = filter_var( $request->get_param( 'status' ), FILTER_VALIDATE_BOOLEAN );
+
+            // Fetch existing blocks
+            $blocks = get_option( 'zolo_blocks_settings', [] );
+
+            // Determine if it's a single block or multiple blocks
+            if ( !empty( $single_block_name ) ) {
+                // Handle single block update
+                $block_names = [ sanitize_text_field( $single_block_name ) ];
+            } elseif ( is_array( $block_names ) ) {
+                // Sanitize all block names in the array
+                $block_names = array_map( 'sanitize_text_field', $block_names );
+            } else {
+                return new WP_Error( 'invalid_request', __( 'Invalid block name(s) provided.', 'zoloblocks' ), array( 'status' => 400 ) );
+            }
+
+            // Update the blocks' active status
+            foreach ( $blocks as &$block ) {
+                if ( in_array( $block['name'], $block_names ) ) {
+                    $block['status'] = $active_status;
+                }
+            }
+
+            // Update the option
+            update_option( 'zolo_blocks_settings', $blocks );
+
+            return rest_ensure_response( $blocks );
         }
 
         /**
@@ -392,6 +431,69 @@ if (! class_exists('Settings')) {
             }
 
             return [];
+        }
+
+        /**
+         * Default Block Settings
+         * 
+         * @return array
+         * 
+         */
+        public function save_default_blocks() {
+            $existing_blocks = get_option('zolo_blocks_settings', []);
+            $all_blocks = ZoloHelpers::get_zolo_blocks();
+
+            // remove all child blocks (is_child = true) from the list
+            $new_blocks = array_filter($all_blocks, function($block) {
+                return !isset($block['is_child']) || $block['is_child'] === false;
+            }); 
+        
+            // Temporary array to store the merged blocks
+            $merged_blocks = [];
+        
+            // Merge existing and new blocks
+            foreach ($new_blocks as $new_block) {
+                $found = false;
+        
+                foreach ($existing_blocks as $existing_block) {
+                    if ($existing_block['name'] === $new_block['name']) {
+                        // Merge the existing block with new data, but retain the status
+                        $merged_blocks[] = array_merge($new_block, ['status' => $existing_block['status']]);
+                        $found = true;
+                        break;
+                    }
+                }
+        
+                // If the block does not exist in the current options, add it
+                if (!$found) {
+                    $merged_blocks[] = $new_block;
+                }
+            }
+        
+            // Remove blocks that are no longer in the new list
+            foreach ($existing_blocks as $existing_block) {
+                $block_exists = false;
+        
+                foreach ($new_blocks as $new_block) {
+                    if ($new_block['name'] === $existing_block['name']) {
+                        $block_exists = true;
+                        break;
+                    }
+                }
+        
+                if (!$block_exists) {
+                    // If the block exists in existing_blocks but not in new_blocks, remove it from merged_blocks
+                    $key = array_search($existing_block['name'], array_column($merged_blocks, 'name'));
+                    if ($key !== false) {
+                        unset($merged_blocks[$key]);
+                    }
+                }
+            }
+        
+            // Re-index the array to ensure there are no gaps in keys
+            $merged_blocks = array_values($merged_blocks);
+        
+            update_option('zolo_blocks_settings', $merged_blocks);
         }
     }
 }

@@ -694,4 +694,14 @@ class ZoloHelpers {
 		return defined( 'WP_DEBUG' ) && WP_DEBUG ? 'Enabled' : 'Disabled';
 	}
 
+	/**
+	 * Get Zolo Blocks 
+	 */
+	public static function get_zolo_blocks() {
+		$blocks = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
+		if (file_exists($blocks)) {
+			return require $blocks;
+		}
+	}
+
 }
