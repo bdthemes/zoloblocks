@@ -85,6 +85,7 @@ function Inspector(props) {
         iconHColor,
         iconHBColor,
         imageRes,
+        itemBorderHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -262,7 +263,14 @@ function Inspector(props) {
                                     </>
                                 }
                                 hoverComponents={
-                                    <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG_HOVER} noMainBGImg={false} />
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG_HOVER} noMainBGImg={false} />
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-block')}
+                                            color={itemBorderHoverColor}
+                                            onChange={(v) => setAttributes({ itemBorderHoverColor: v })}
+                                        />
+                                    </>
                                 }
                             />
                         </ZoloPanelBody>
@@ -421,7 +429,7 @@ function Inspector(props) {
                         )}
                         {imageToggle && (
                             <ZoloPanelBody
-                                title={mediaType === 'image' ? __('Image', 'zolo-block') : __('Text', 'zolo-block')}
+                                title={mediaType === 'image' ? __('Media Image', 'zolo-block') : __('Media Text', 'zolo-block')}
                                 stylePanel={true}
                                 panelProps={props}
                             >

@@ -27,7 +27,16 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
 } from './constants';
-const { generateTypographyAttributes, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateNormalBGAttributes, generateResCounterAttributies, generateBoxShadowAttributies, generateGapAttributes } = window.zoloModule;
+const {
+    generateTypographyAttributes,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateResCounterAttributies,
+    generateBoxShadowAttributies,
+    generateGapAttributes,
+} = window.zoloModule;
 
 const attributes = {
     //Common Attributes
@@ -120,6 +129,11 @@ const attributes = {
     iconHBColor: {
         type: 'string',
     },
+
+    itemBorderHoverColor: {
+        type: 'string',
+    },
+
     ...generateResCounterAttributies(COLUMNS, {
         deskRange: 2,
         tabRange: 1,
