@@ -402,12 +402,12 @@ const Style = ({ props }) => {
         .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap {
             ${photoDeskWidth}
             ${photoDeskHeight}
+            ${photoDeskMargin}
         }
 		.zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoBoxShadow}
-			${photoDeskMargin}
 			${photoDeskPadding}
 			${photoDeskBGStyle}
             ${objectFit ? `object-fit: ${objectFit};` : ''}
@@ -478,11 +478,11 @@ const Style = ({ props }) => {
         .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap {
             ${photoTabWidth}
             ${photoTabHeight}
+            ${photoTabMargin}
         }
 		.zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
-			${photoTabMargin}
 			${photoTabPadding}
 			${photoTabBGStyle}
 		}
@@ -540,11 +540,11 @@ const Style = ({ props }) => {
         .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap {
             ${photoMobWidth}
             ${photoMobHeight}
+            ${photoMobMargin}
         }
 		.zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
-			${photoMobMargin}
 			${photoMobPadding}
 			${photoMobBGStyle}
 		}

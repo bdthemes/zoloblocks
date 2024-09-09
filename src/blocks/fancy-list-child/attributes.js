@@ -165,6 +165,11 @@ const attributes = {
         type: 'string',
         default: 'fancy-list-align-left',
     },
+
+    itemBorderHoverColor: {
+        type: 'string',
+    },
+
     // item
     ...generateNormalBGAttributes(ITEM_BG),
     ...generateNormalBGAttributes(ITEM_BG_HOVER),

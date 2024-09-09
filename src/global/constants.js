@@ -1266,10 +1266,10 @@ export const FLIP_ICON = (
     </svg>
 );
 
-export const INCLUDE_BY=[
-  {label:__('Authors','zoloblocks'),value:'authors'},
-  {label: __('Terms','zoloblocks'),value:'terms'}
-]
+export const INCLUDE_BY = [
+    { label: __('Authors', 'zoloblocks'), value: 'authors' },
+    { label: __('Terms', 'zoloblocks'), value: 'terms' },
+];
 
 export const EXCLUDE_BY=[
   {value:'authors'         , label: __('Authors', 'zoloblocks')},

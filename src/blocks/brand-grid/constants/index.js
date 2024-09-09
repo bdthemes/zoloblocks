@@ -8,9 +8,9 @@ export const BLOCK_PREFIX = 'brand-grid';
 
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zoloblocks'), value: 'zb-brand-style-1' },
-    { label: __('Preset 2', 'zoloblocks'), value: 'zb-brand-style-2' },
-    { label: __('Preset 3 (Pro)', 'zoloblocks'), value: 'zb-brand-style-3', disabled: true },
+    { label: __('Style 1', 'zoloblocks'), value: 'zb-brand-style-1' },
+    { label: __('Style 2', 'zoloblocks'), value: 'zb-brand-style-2' },
+    { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'zb-brand-style-3', disabled: true },
 ];
 
 // icon types
@@ -43,7 +43,6 @@ export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
 export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
-
 
 //  photo
 export const BRAND_PHOTO_BG = 'photoBackground';

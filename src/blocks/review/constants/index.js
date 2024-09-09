@@ -6,7 +6,6 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'review';
 
-
 // Style Presets
 export const STYLE_PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: '' },
@@ -85,7 +84,6 @@ export const RW_BORDER_RADIUS = 'rwBorderRadius';
 export const RW_BOX_SHADOW = 'rwBoxShadow';
 export const RW_MARGIN = 'rwMargin';
 export const RW_PADDING = 'ContentPadding';
-
 
 // name margin
 export const REVIEWER_NAME_MARGIN = 'NameMargin';

@@ -234,15 +234,17 @@
 
     .zolo-custom-heading {
         text-transform: uppercase;
-        font-weight: 600;
+        font-weight: 700;
         padding-top: 16px;
         margin: 0 0 16px;
         border-top: 1px solid #ebebf6;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.2px;
+        font-size: 11px;
     }
 
     .components-input-control__container {
         width: calc(90px);
+        flex: unset;
     }
 
     .zolo-text-shadow {
@@ -256,6 +258,7 @@
         .zolo-box-shadow-options {
             .components-input-control__container {
                 width: calc(90px) !important;
+                flex: unset;
             }
         }
     }

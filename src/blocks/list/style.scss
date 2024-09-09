@@ -30,6 +30,7 @@
         //     scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
         //     skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
         // transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
+        outline: none;
     }
     //test csss
     .zolo-list-icon-and-content-wrap,

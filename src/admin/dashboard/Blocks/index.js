@@ -25,6 +25,8 @@ const Blocks = () => {
             .then((response) => {
                 const { zolo_blocks_settings } = response;
                 setBlockStatus(zolo_blocks_settings);
+
+                console.log('zolo_blocks_settings', zolo_blocks_settings);
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);
