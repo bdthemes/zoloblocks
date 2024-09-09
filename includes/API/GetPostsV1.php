@@ -112,8 +112,13 @@ class GetPostsV1 {
 
 		// Handle pagination.
 		if ( $showPagination ) {
-			$_paged        = is_front_page() ? 'page' : 'paged';
-			$paged         = get_query_var( $_paged ) ? absint( get_query_var( $_paged ) ) : 1;
+			$_paged = is_front_page() ? 'page' : 'paged';
+			if ( get_query_var( $_paged ) ) {
+				$paged = absint( get_query_var( $_paged ) );
+			} else {
+				$paged = $data['pageNumber'] ?? 1;
+			}
+
 			$args['paged'] = $paged;
 
 			// Adjust offset if necessary.
@@ -141,6 +146,7 @@ class GetPostsV1 {
 		$results       = [];
 		$args          = self::zolo_get_post_args( $data );
 		$loop          = new \WP_Query( $args );
+		$paged         = ZoloHelpers::get_paged( $loop );
 		$postThumbnail = ! empty( $data['postThumbnail'] ) ? $data['postThumbnail'] : '';
 
 		if ( $loop->have_posts() ) {
@@ -174,6 +180,7 @@ class GetPostsV1 {
 		return [
 			'total_page' => $loop->max_num_pages,
 			'posts'      => $results,
+			'paged'      => $paged,
 		];
 	}
 

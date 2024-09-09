@@ -11,11 +11,7 @@ class Page extends Component {
         const classes = classnames(className, { current: isCurrent }, { dots: isDots });
         return (
             <a className={classes} onClick={() => onClick()}>
-                {pageKey === 'prev' && <span> prev </span>}
-
                 {__(children)}
-
-                {pageKey === 'next' && <span>next</span>}
             </a>
         );
     }

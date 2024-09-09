@@ -1271,9 +1271,15 @@ export const INCLUDE_BY = [
     { label: __('Terms', 'zoloblocks'), value: 'terms' },
 ];
 
-export const EXCLUDE_BY = [
-    { value: 'authors', label: __('Authors', 'zoloblocks') },
-    { value: 'current_post', label: __('Current Post', 'zoloblocks') },
-    { value: 'manual_selection', label: __('Manual Selection', 'zoloblocks') },
-    { value: 'terms', label: __('Terms', 'zoloblocks') },
-];
+export const EXCLUDE_BY=[
+  {value:'authors'         , label: __('Authors', 'zoloblocks')},
+  {value:'current_post'    , label: __('Current Post', 'zoloblocks')},
+  {value:'manual_selection', label: __('Manual Selection', 'zoloblocks')},
+  {value:'terms'           , label: __('Terms', 'zoloblocks')},
+]
+export const PAGINARION_TYPE=[
+  {label:  __('Default Pagination','zoloblocks'), value: 'normal'},
+  {label: __('Ajax Pagination','zoloblocks'), value: 'number'},
+  {label: __('Load More-Click','zoloblocks'), value: 'button'},
+  {label: __('Load More-Scroll','zoloblocks'), value: 'scroll'}
+]
