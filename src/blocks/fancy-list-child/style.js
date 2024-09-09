@@ -38,8 +38,19 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, titleColor, titleHColor, dscColor, desHcolor, iconColor, iconHColor, iconHBColor, mediaTextColor, mediaTextBgColor } =
-        attributes;
+    const {
+        uniqueId,
+        titleColor,
+        titleHColor,
+        dscColor,
+        desHcolor,
+        iconColor,
+        iconHColor,
+        iconHBColor,
+        mediaTextColor,
+        mediaTextBgColor,
+        itemBorderHoverColor,
+    } = attributes;
 
     // item
     const {
@@ -301,7 +312,7 @@ const Style = ({ props }) => {
 		}
          .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
             ${itemDeskBgHover}
-            
+            ${itemBorderHoverColor ? `border-color:${itemBorderHoverColor};` : ''}
 		}
 
         .wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
