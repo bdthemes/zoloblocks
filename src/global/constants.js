@@ -1280,5 +1280,6 @@ export const EXCLUDE_BY=[
 export const PAGINARION_TYPE=[
   {label:  __('Default Pagination','zoloblocks'), value: 'normal'},
   {label: __('Ajax Pagination','zoloblocks'), value: 'number'},
-  {label: __('Load More','zoloblocks'), value: 'button'}
+  {label: __('Load More-Click','zoloblocks'), value: 'button'},
+  {label: __('Load More-Scroll','zoloblocks'), value: 'scroll'}
 ]

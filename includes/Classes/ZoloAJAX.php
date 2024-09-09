@@ -50,28 +50,29 @@ class ZoloAJAX {
 		$settings_json = sanitize_text_field( wp_unslash( $_POST['settings'] ?? '' ) );
 		$settings      = json_decode( $settings_json, true );
 		$postQuery     = $settings['postQuery'] ?? [];
-
+		$blockName     = $settings['blockName'] ?? 'post-grid';
 		if ( ! empty( $pageNumber ) ) {
 			$postQuery['pageNumber'] = $pageNumber;
 		}
 
 		$post_results = apply_filters( 'zolo_post_pagination_result', GetPostsV1::zolo_posts_query( $postQuery ) );
 
-		$data = $this->get_ajax_pagination_content( $post_results, $settings );
+		$data = $this->get_ajax_pagination_content( $post_results, $settings, $blockName );
 		wp_send_json_success( $data );
 	}
 
 	/**
 	 * Post  ajax pagination content
 	 *
-	 * @param array $post_results .
-	 * @param array $settings .
+	 * @param array  $post_results .
+	 * @param array  $settings .
+	 * @param string $blockName .
 	 * @return false|string
 	 */
-	public function get_ajax_pagination_content( $post_results, $settings ) {
+	public function get_ajax_pagination_content( $post_results, $settings, $blockName ) {
 		ob_start();
 		ZoloHelpers::views(
-			'post-grid',
+			$blockName,
 			[
 				'settings'     => $settings,
 				'post_results' => $post_results,

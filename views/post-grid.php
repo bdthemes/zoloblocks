@@ -21,7 +21,7 @@ $metaSeparator = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparato
 $html          = '';
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
-<div <?php echo wp_kses_data( get_block_wrapper_attributes( [ 'class' => 'zolo-parent-post-grid-wrap' ] ) ); ?>
+<div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-attributes="<?php echo esc_attr( wp_json_encode( $settings ) ); ?>">
 	<?php endif; ?>
 

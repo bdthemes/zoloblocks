@@ -369,7 +369,6 @@ function Inspector(props) {
                   />
                 )}
 
-
               </ZoloPanelBody>
             )}
 
