@@ -656,12 +656,19 @@ function Inspector(props) {
                             </BaseControl>
                             {side === 'front' && (
                                 <>
+                                    <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
+                                    <CardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_BORDER}
                                         requiredProps={requiredProps}
                                     />
-
+                                    <BoxShadowControl
+                                        controlName={FRONT_ITEMS_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={false}
+                                    />
+                                    <CardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_ALIGNMENT}
@@ -675,22 +682,23 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
                                     />
-                                    <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
-                                    <BoxShadowControl
-                                        controlName={FRONT_ITEMS_SHADOW}
-                                        requiredProps={requiredProps}
-                                        enableTransition={false}
-                                    />
                                 </>
                             )}
                             {side === 'back' && (
                                 <>
+                                    <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
+                                    <CardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={BACK_ITEMS_BORDER}
                                         requiredProps={requiredProps}
                                     />
-
+                                    <BoxShadowControl
+                                        controlName={BACK_ITEMS_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={false}
+                                    />
+                                    <CardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={BACK_ITEMS_ALIGNMENT}
@@ -703,12 +711,6 @@ function Inspector(props) {
                                         controlName={BACK_ITEMS_VERTICAL_ALIGNMENT}
                                         requiredProps={requiredProps}
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
-                                    />
-                                    <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
-                                    <BoxShadowControl
-                                        controlName={BACK_ITEMS_SHADOW}
-                                        requiredProps={requiredProps}
-                                        enableTransition={false}
                                     />
                                 </>
                             )}
@@ -743,11 +745,33 @@ function Inspector(props) {
                                     <>
                                         {showFrontIcon && (
                                             <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={frontIconColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            frontIconColor: color,
+                                                        })
+                                                    }
+                                                />
                                                 <ResDimensionsControl
                                                     label={__('Size', 'zoloblocks')}
                                                     controlName={FRONT_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
+                                                <CardDivider />
+
+                                                <NormalBGControl
+                                                    requiredProps={requiredProps}
+                                                    controlName={FRONT_ICON_BG}
+                                                    noMainBGImg={false}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={FRONT_ICON_PADDING}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={FRONT_ICON_BORDER}
@@ -758,25 +782,6 @@ function Inspector(props) {
                                                     controlName={FRONT_ICON_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <ResDimensionsControl
-                                                    label={__('Padding', 'zoloblocks')}
-                                                    controlName={FRONT_ICON_PADDING}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={frontIconColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            frontIconColor: color,
-                                                        })
-                                                    }
-                                                />
-                                                <NormalBGControl
-                                                    requiredProps={requiredProps}
-                                                    controlName={FRONT_ICON_BG}
-                                                    noMainBGImg={false}
-                                                />
                                             </>
                                         )}
                                     </>
@@ -785,26 +790,6 @@ function Inspector(props) {
                                     <>
                                         {showBackIcon && (
                                             <>
-                                                <ResDimensionsControl
-                                                    label={__('Size', 'zoloblocks')}
-                                                    controlName={BACK_ICON_SIZE}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={BACK_ICON_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={BACK_ICON_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Padding', 'zoloblocks')}
-                                                    controlName={BACK_ICON_PADDING}
-                                                    requiredProps={requiredProps}
-                                                />
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
                                                     color={backIconColor}
@@ -814,10 +799,32 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                <ResDimensionsControl
+                                                    label={__('Size', 'zoloblocks')}
+                                                    controlName={BACK_ICON_SIZE}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
                                                     controlName={BACK_ICON_BG}
                                                     noMainBGImg={false}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={BACK_ICON_PADDING}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
+                                                <BorderControl
+                                                    label={__('Border', 'zoloblocks')}
+                                                    controlName={BACK_ICON_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    controlName={BACK_ICON_BORDER_RADIUS}
+                                                    requiredProps={requiredProps}
                                                 />
                                             </>
                                         )}
@@ -855,11 +862,6 @@ function Inspector(props) {
                                     <>
                                         {showFrontTitle && (
                                             <>
-                                                <TypographyDropdown
-                                                    label={__('Typography', 'zoloblocks')}
-                                                    typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
-                                                    requiredProps={requiredProps}
-                                                />
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
                                                     color={frontTitleColor}
@@ -869,6 +871,12 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
                                                 <ResDimensionsControl
                                                     label={__('Margin', 'zoloblocks')}
                                                     controlName={FRONT_TITLE_MARGIN}
@@ -880,11 +888,6 @@ function Inspector(props) {
                                 )}
                                 {side === 'back' && (
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={backTitleColor}
@@ -894,6 +897,12 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={BACK_TITLE_MARGIN}
@@ -992,56 +1001,59 @@ function Inspector(props) {
                                 </BaseControl>
                                 {side === 'back' && (
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={backLinkColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    backLinkColor: color,
-                                                })
-                                            }
-                                        />
-                                        <ColorControl
-                                            label={__('Hover Color', 'zoloblocks')}
-                                            color={backLinkHoverColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    backLinkHoverColor: color,
-                                                })
-                                            }
-                                        />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={BACK_LINK_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={BACK_LINK_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={BACK_LINK_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={backLinkColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                backLinkColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                    <TypographyDropdown
+                                                        label={__('Typography', 'zoloblocks')}
+                                                        typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={BACK_LINK_BG}
                                                         noMainBGImg={false}
                                                     />
+
+                                                    <ResDimensionsControl
+                                                        label={__('Padding', 'zoloblocks')}
+                                                        controlName={BACK_LINK_PADDING}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
+                                                    <BorderControl
+                                                        label={__('Border', 'zoloblocks')}
+                                                        controlName={BACK_LINK_BORDER}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={BACK_LINK_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                    />
                                                 </>
                                             }
                                             hoverComponents={
                                                 <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={backLinkHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                backLinkHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={BACK_LINK_HBG}
