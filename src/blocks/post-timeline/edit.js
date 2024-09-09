@@ -14,7 +14,19 @@ import Style from './styles';
 
 export default function Edit(props) {
   const {attributes, setAttributes, className, isSelected, clientId} = props;
-  const {preview, uniqueId, parentClasses, postQuery, preset, page, showStartEnd} = attributes;
+  const {
+    preview,
+    uniqueId,
+    parentClasses,
+    postQuery,
+    preset,
+    page,
+    showStartEnd,
+    paginationType,
+    previousText,
+    nextText,
+    loadMoreText
+  } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   const blockProps = useBlockProps({
@@ -95,7 +107,6 @@ export default function Edit(props) {
       <Style props={props}/>
       <div {...blockProps}>
         <SidebarOpener clientId={clientId}/>
-
         <div className="zolo-post-start-end-wrap">
           {showStartEnd && (
             <>
@@ -107,17 +118,21 @@ export default function Edit(props) {
             <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults}/>
           </div>
         </div>
-
       </div>
-      {postQuery?.showPagination && pageTotal > 1 && (
+      {(postQuery?.showPagination && pageTotal > 1) && (
         <div className={`zolo-pagination-wrap ${uniqueId}`}>
-          <Pagination
-            total={pageTotal}
-            current={page || 1}
-            prevText=""
-            nextText=""
-            onClickPage={(page) => setAttributes({page})}
-          />
+          {(paginationType === 'normal' || paginationType === 'number') && (
+            <Pagination
+              total={pageTotal}
+              current={page || 1}
+              prevText={previousText}
+              nextText={nextText}
+              onClickPage={(page) => setAttributes({page})}
+            />
+          )}
+          {paginationType === 'button' && (
+            <a className="zolo-pagination-button">{loadMoreText}</a>
+          )}
         </div>
       )}
     </>
