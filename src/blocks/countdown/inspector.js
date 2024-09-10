@@ -133,9 +133,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.countdown.presets', PRESETS)}
                                 onChange={(preset) => onPresetChange(preset)}
                             />
-                            <BaseControl id="countdate-1" label={__('Timer End Date-Time', 'zoloblocks')}
-                                className='zolo-flex-col-control'
-                            >
+                            <BaseControl id="countdate-1" label={__('Timer End Date-Time', 'zoloblocks')} className="zolo-flex-col-control">
                                 <DateTimePicker
                                     id="countdate-1"
                                     currentDate={CountDate}
@@ -217,25 +215,27 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zoloblocks')}
-                                value={layout}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        layout: value,
-                                    })
-                                }
-                                options={[
-                                    {
-                                        label: __('Flex', 'zoloblocks'),
-                                        value: 'flex',
-                                    },
-                                    {
-                                        label: __('Grid', 'zoloblocks'),
-                                        value: 'grid',
-                                    },
-                                ]}
-                            />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout Type', 'zoloblocks')}
+                                    value={layout}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            layout: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Flex', 'zoloblocks'),
+                                            value: 'flex',
+                                        },
+                                        {
+                                            label: __('Grid', 'zoloblocks'),
+                                            value: 'grid',
+                                        },
+                                    ]}
+                                />
+                            </div>
                             {layout === 'grid' && (
                                 <>
                                     <ResCounterControl
@@ -469,11 +469,7 @@ function Inspector(props) {
                                 typoPrefixConstant={DIGIT_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <BorderControl
-                                label={__('Border', 'zoloblocks')}
-                                controlName={COUNTNUM_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={COUNTNUM_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius')}
                                 controlName={COUNT_NUM_RADIUS}

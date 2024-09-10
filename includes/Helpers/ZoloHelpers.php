@@ -13,6 +13,7 @@
 
 namespace Zolo\Helpers;
 
+use mysql_xdevapi\Statement;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -25,6 +26,7 @@ if (! defined('ABSPATH')) {
  */
 class ZoloHelpers {
 	use SingletonTrait;
+
 	/**
 	 * ZoloHelpers constructor.
 	 */
@@ -40,7 +42,7 @@ class ZoloHelpers {
 		return $classes;
 	}
 	public function zoloblocks_frontend_body_class(array $classes) {
-		$new_class =  'zolo-frontend';
+		$new_class = 'zolo-frontend';
 		if ($new_class) {
 			$classes[] = $new_class;
 		}
@@ -287,28 +289,22 @@ class ZoloHelpers {
 	/**
 	 * Get Pagination
 	 *
-	 * @param int $max_pages
+	 * @param int    $max_pages .
+	 * @param array  $settings .
+	 * @param number $paged .
 	 * @return string
 	 */
-	public static function pagination($max_pages) {
-		global $paged;
-
-		if (! empty(get_query_var('page')) || ! empty(get_query_var('paged'))) {
-			$paged = is_front_page() ? absint(get_query_var('page')) : absint(get_query_var('paged'));
-		} else {
-			$paged = 1;
-		}
-
+	public static function pagination($max_pages, $settings, $paged) {
 		if ($max_pages > 1) {
 			$big = 9999999;
 			return paginate_links(
 				[
 					'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-					'format'    => '?paged=%#%',
+					'format'    => 'page/%#%/',
 					'current'   => $paged,
 					'total'     => $max_pages,
-					'prev_text' => sprintf('<span>%1$s</span>', __('prev', 'zoloblocks')),
-					'next_text' => sprintf('<span>%1$s</span>', __('next', 'zoloblocks')),
+					'prev_text' => $settings['paginationPreText'] ?? 'prev',
+					'next_text' => $settings['paginationNextText'] ?? 'next',
 				]
 			);
 		}
@@ -542,9 +538,9 @@ class ZoloHelpers {
 	 * @param number $id .
 	 * @return mixed|null
 	 */
-	public static function get_user_role( $id ) {
-		$user = new \WP_User( $id );
-		return array_shift( $user->roles );
+	public static function get_user_role($id) {
+		$user = new \WP_User($id);
+		return array_shift($user->roles);
 	}
 
 	/**
@@ -553,8 +549,8 @@ class ZoloHelpers {
 	 * @param string $platform .
 	 * @return string|null
 	 */
-	public static function get_social_icon_svg( $platform ) {
-		switch ( $platform ) {
+	public static function get_social_icon_svg($platform) {
+		switch ($platform) {
 			case 'email':
 				return '
                 <svg class="zolo-icon-email" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -608,7 +604,7 @@ class ZoloHelpers {
 	 * @param string $taxonomyType .
 	 * @return string
 	 */
-	public static function get_taxonomy_name( $postType = '', $taxonomyType = 'category' ): string {
+	public static function get_taxonomy_name($postType = '', $taxonomyType = 'category'): string {
 		// Mapping of post types to their corresponding category taxonomies.
 		$categoryTaxonomyMap = [
 			'product' => 'product_cat',
@@ -622,12 +618,12 @@ class ZoloHelpers {
 		];
 
 		// Determine which taxonomy map to use based on the $taxonomyType.
-		switch ( $taxonomyType ) {
+		switch ($taxonomyType) {
 			case 'tag':
-				return $tagTaxonomyMap[ $postType ] ?? 'post_tag';
+				return $tagTaxonomyMap[$postType] ?? 'post_tag';
 			case 'category':
 			default:
-				return $categoryTaxonomyMap[ $postType ] ?? 'category';
+				return $categoryTaxonomyMap[$postType] ?? 'category';
 		}
 	}
 
@@ -642,43 +638,43 @@ class ZoloHelpers {
 	 * Get Current WP Version
 	 */
 	public static function get_wp_version() {
-		return get_bloginfo( 'version' );
+		return get_bloginfo('version');
 	}
 
 	/**
 	 * Get Server Memory Limit Value
 	 */
 	public static function get_memory_limit() {
-		return ini_get( 'memory_limit' );
+		return ini_get('memory_limit');
 	}
-	
+
 	/**
 	 * Get Server Max Upload Size
 	 */
 	public static function get_max_upload_size() {
-		return size_format( wp_max_upload_size() );
-	} 
+		return size_format(wp_max_upload_size());
+	}
 
 	/**
 	 * Get Server Max Post Size
 	 */
 	public static function get_max_post_size() {
-		return size_format( wp_max_upload_size() );
-	} 
+		return size_format(wp_max_upload_size());
+	}
 
 	/**
 	 * Get Server Max Execution Time
 	 */
 	public static function get_max_execution_time() {
-		return ini_get( 'max_execution_time' );
+		return ini_get('max_execution_time');
 	}
 
 	/**
 	 * Get Gzip Compression Status
 	 */
 	public static function get_gzip_status() {
-		return extension_loaded( 'zlib' ) ? 'Enabled' : 'Disabled';
-	} 
+		return extension_loaded('zlib') ? 'Enabled' : 'Disabled';
+	}
 
 	/**
 	 * Multisite Check
@@ -691,11 +687,11 @@ class ZoloHelpers {
 	 * Debug Mode Check
 	 */
 	public static function is_debug_mode() {
-		return defined( 'WP_DEBUG' ) && WP_DEBUG ? 'Enabled' : 'Disabled';
+		return defined('WP_DEBUG') && WP_DEBUG ? 'Enabled' : 'Disabled';
 	}
 
 	/**
-	 * Get Zolo Blocks 
+	 * Get Zolo Blocks
 	 */
 	public static function get_zolo_blocks() {
 		$blocks = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
@@ -705,7 +701,7 @@ class ZoloHelpers {
 	}
 
 	/**
-	 * Get Zolo Extensions  
+	 * Get Zolo Extensions
 	 */
 	public static function get_zolo_extensions() {
 		$extensions = trailingslashit(ZOLO_DIR_PATH) . 'includes/Extensions/extensions.php';
@@ -728,4 +724,36 @@ class ZoloHelpers {
 		return $extensions;
 	}
 
+
+	/**
+	 * 	 * Get the paged Query.
+	 *
+	 * @param Object $query .
+	 * @return int .
+	 */
+	public static function get_paged($query) {
+
+		global $paged;
+
+		// Check the 'paged' query.
+		$queryPaged = $query->get('paged');
+
+		if (is_numeric($queryPaged)) {
+			return $queryPaged;
+		}
+
+		// Check the 'page' query.
+		$queryPage = $query->get('page');
+
+		if (is_numeric($queryPage)) {
+			return $queryPage;
+		}
+
+		// Check the $paged global?
+		if (is_numeric($paged)) {
+			return $paged;
+		}
+
+		return 0;
+	}
 }

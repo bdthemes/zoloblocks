@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Component } from '@wordpress/element';
 import Page from './page';
-
+import { __ } from '@wordpress/i18n';
 export default class Pagination extends Component {
     render() {
         const { total, current, prevText, nextText, baseClassName, onClickPage } = this.props;
@@ -23,7 +23,7 @@ export default class Pagination extends Component {
                 key: 'prev',
                 onClick: () => onClickPage(current - 1),
                 className: 'page-numbers prev',
-                text: prevText,
+                text: prevText||__('Prev','zoloblocks'),
             });
         }
 
@@ -68,7 +68,7 @@ export default class Pagination extends Component {
                 key: 'next',
                 onClick: () => onClickPage(current + 1),
                 className: 'page-numbers next',
-                text: nextText,
+                text: nextText||__('Next','zoloblocks'),
             });
         }
 

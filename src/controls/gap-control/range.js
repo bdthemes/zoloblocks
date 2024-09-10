@@ -32,6 +32,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                         <>
                             <div className="input-wrap">
                                 <RangeControl
+                                    className="zolo-flex-col-control"
                                     label={__('Row', 'zoloblocks')}
                                     value={rowGap}
                                     onChange={(v) =>
@@ -43,6 +44,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                                     max={max || 100}
                                 />
                                 <RangeControl
+                                    className="zolo-flex-col-control"
                                     label={__('Column', 'zoloblocks')}
                                     value={colGap}
                                     onChange={(v) =>

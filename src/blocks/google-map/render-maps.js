@@ -32,6 +32,7 @@ function GoogleMap({ attributes }) {
                         <Map
                             {...(mapStyleType === 'custom' && mapStyleCodes && { styles: JSON.parse(mapStyleCodes) })}
                             defaultZoom={zoom || 16}
+                            center={position}
                             defaultCenter={position}
                             language={language || 'en'}
                             {...((mapStyleType === 'default' || mapStyleType === undefined) && { mapId: mapId })}

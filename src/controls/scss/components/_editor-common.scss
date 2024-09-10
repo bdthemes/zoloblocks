@@ -234,15 +234,17 @@
 
     .zolo-custom-heading {
         text-transform: uppercase;
-        font-weight: 600;
+        font-weight: 700;
         padding-top: 16px;
         margin: 0 0 16px;
         border-top: 1px solid #ebebf6;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.2px;
+        font-size: 11px;
     }
 
     .components-input-control__container {
-        width: calc(80px);
+        width: calc(90px);
+        flex: unset;
     }
 
     .zolo-text-shadow {
@@ -255,7 +257,8 @@
     .zolo-text-stroke {
         .zolo-box-shadow-options {
             .components-input-control__container {
-                width: calc(80px) !important;
+                width: calc(90px) !important;
+                flex: unset;
             }
         }
     }
@@ -268,7 +271,6 @@
             margin: 3px !important;
         }
     }
-
 }
 
 .zb-res-range-control-wrapper {
@@ -470,7 +472,7 @@ textarea[readonly] {
         display: flex;
         align-items: center;
         gap: 15px;
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .e1epgpqk10,
@@ -807,7 +809,7 @@ textarea[readonly] {
         .components-input-control__container {
             width: 100%;
         }
-    } 
+    }
     .zolo-flex-row-control {
         display: inline;
         .components-select-control {

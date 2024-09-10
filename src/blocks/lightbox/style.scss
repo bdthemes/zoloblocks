@@ -1,0 +1,181 @@
+.zolo-play-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.zolo-play-btn svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+.zolo-lightbox-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Zolo Lightbox Button 1 */
+.zolo-lightbox-btn-1.zolo-play-btn {
+    background: transparent;
+    gap: 20px;
+    padding: 0;
+    flex-direction: row-reverse;
+    text-align: center;
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn .zolo-btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 15px;
+    color: #3b3b40;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn .zolo-btn-text small {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn svg {
+    z-index: 99;
+    position: relative;
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn .zolo-btn-icon {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #49494f;
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn .zolo-btn-icon::before {
+    width: 110%;
+    height: 0;
+    padding-bottom: 110%;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 1);
+    content: '';
+    position: absolute;
+    background: #2667ff;
+    transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn:hover .zolo-btn-icon::before {
+    transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn:hover .zolo-btn-icon {
+    transform: scale3d(1.1, 1.1, 1);
+    color: #fff;
+}
+
+.zolo-lightbox-btn-1.zolo-play-btn:hover .zolo-btn-text {
+    color: #2667ff;
+}
+
+/* Zolo Lightbox Button 2 */
+
+.zolo-lightbox-btn-2.zolo-play-btn {
+    border-radius: 50%;
+    padding: 20px;
+    background: #2667ff;
+    color: #fff;
+}
+
+.zolo-lightbox-btn-2.zolo-play-btn:before,
+.zolo-lightbox-btn-2.zolo-play-btn:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: rgba(38, 103, 255, 0.3);
+    animation: pulse 1.9s ease infinite;
+}
+
+.zolo-lightbox-btn-2.zolo-play-btn:after {
+    animation-delay: 0.2s;
+}
+
+.zolo-lightbox-btn-2.zolo-play-btn:hover {
+    background: #1654ed;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* lightbox poster style css  */
+
+.zolo-lightbox-poster .zolo-poster-img {
+    display: block;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.zolo-lightbox-poster {
+    position: relative;
+}
+
+.zolo-lightbox-poster .zolo-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+}
+
+.zolo-poster-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: middle;
+    transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.zolo-lightbox-poster:hover .zolo-poster-img img {
+    transform: scale(1.1);
+}
+
+.zolo-lightbox-content {
+    display: none;
+}
+
+.zolo-content-iframe {
+    width: 650px;
+    height: 450px;
+    border: none;
+}
+
+.wp-block-zolo-lightbox{
+    // text-decoration: none;
+    .zolo-play-btn {
+        outline: none;
+        text-decoration: none;
+    }
+}

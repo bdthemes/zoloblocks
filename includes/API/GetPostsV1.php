@@ -112,8 +112,13 @@ class GetPostsV1 {
 
 		// Handle pagination.
 		if ( $showPagination ) {
-			$_paged        = is_front_page() ? 'page' : 'paged';
-			$paged         = get_query_var( $_paged ) ? absint( get_query_var( $_paged ) ) : 1;
+			$_paged = is_front_page() ? 'page' : 'paged';
+			if ( get_query_var( $_paged ) ) {
+				$paged = absint( get_query_var( $_paged ) );
+			} else {
+				$paged = $data['pageNumber'] ?? 1;
+			}
+
 			$args['paged'] = $paged;
 
 			// Adjust offset if necessary.
@@ -141,6 +146,7 @@ class GetPostsV1 {
 		$results       = [];
 		$args          = self::zolo_get_post_args( $data );
 		$loop          = new \WP_Query( $args );
+		$paged         = ZoloHelpers::get_paged( $loop );
 		$postThumbnail = ! empty( $data['postThumbnail'] ) ? $data['postThumbnail'] : '';
 
 		if ( $loop->have_posts() ) {
@@ -149,22 +155,23 @@ class GetPostsV1 {
 				$loop->the_post();
 				$post_id = get_the_ID();
 
-				$content              = get_post_field( 'post_content', get_the_ID() );
-				$post                 = [];
-				$post['ID']           = $post_id;
-				$post['title']        = get_the_title();
-				$post['thumbnail']    = get_the_post_thumbnail( $post_id, $postThumbnail );
-				$post['permalink']    = get_permalink();
-				$post['excerpt']      = wp_strip_all_tags( get_the_excerpt() );
-				$post['content']      = wp_strip_all_tags( get_the_content() );
-				$post['date']         = get_the_date();
-				$post['reading_time'] = self::content_reading_time( $content );
-				$post['categories']   = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'] ?? 'post', 'category' ) );
-				$post['tags']         = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'] ?? 'post', 'tag' ) );
-				$post['author']       = get_the_author();
-				$post['author_link']  = get_the_author_link();
-				$post['avatar']       = get_avatar( get_the_author_meta( 'ID' ), 50 );
-				$results[]            = $post;
+				$content                = get_post_field( 'post_content', get_the_ID() );
+				$post                   = [];
+				$post['ID']             = $post_id;
+				$post['title']          = get_the_title();
+				$post['thumbnail']      = get_the_post_thumbnail( $post_id, $postThumbnail );
+				$post['permalink']      = get_permalink();
+				$post['excerpt']        = wp_strip_all_tags( get_the_excerpt() );
+				$post['content']        = wp_strip_all_tags( get_the_content() );
+				$post['date']           = get_the_date();
+				$post['reading_time']   = self::content_reading_time( $content );
+				$post['categories']     = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'] ?? 'post', 'category' ) );
+				$post['tags']           = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'] ?? 'post', 'tag' ) );
+				$post['author']         = get_the_author();
+				$post['author_link']    = get_the_author_link();
+				$post['avatar']         = get_avatar( get_the_author_meta( 'ID' ), 50 );
+				$post['comment_number'] = get_comments_number();
+				$results[]              = $post;
 			}
 
 			wp_reset_postdata();
@@ -173,6 +180,7 @@ class GetPostsV1 {
 		return [
 			'total_page' => $loop->max_num_pages,
 			'posts'      => $results,
+			'paged'      => $paged,
 		];
 	}
 

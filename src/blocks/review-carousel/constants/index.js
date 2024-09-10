@@ -11,7 +11,7 @@ export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Preset 3', 'zoloblocks'), value: 'default' },
-    { label: __('Preset 4 (Pro)', 'zoloblocks'), value: 'style-4', disabled: true },
+    { label: __('Preset 4 (Pro)', 'zoloblocks'), value: 'style-4', disabled: false },
 ];
 
 export const CAROUSEL_EFFECTS = [

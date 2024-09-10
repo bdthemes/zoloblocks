@@ -27,9 +27,6 @@ class Registration {
         $default_blocks = ZoloHelpers::get_zolo_blocks();
         $blocks = get_option('zolo_blocks_settings', $default_blocks);
 
-        // var_dump($blocks);
-        // wp_die(); 
-
         if (is_array($blocks) && count($blocks) > 0) {
             foreach ($blocks as $block) {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);

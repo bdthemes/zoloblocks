@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, TextControl, RangeControl, SelectControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -60,9 +60,10 @@ function Inspector(props) {
                                 value={progressText}
                                 onChange={(v) => setAttributes({ progressText: v })}
                             />
-                            <div className='zolo-flex-col-control'>
+                            <CardDivider />
+                            <div className="zolo-flex-col-control">
                                 <RangeControl
-                                    label={__('Progress Percentage', 'zoloblocks')}
+                                    label={__('Percentage', 'zoloblocks')}
                                     value={progressH}
                                     onChange={(v) => setAttributes({ progressH: v })}
                                     min={0}
@@ -84,17 +85,18 @@ function Inspector(props) {
                                 step={1}
                                 noUnits={false}
                             />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={ITEM_BRADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
+                            <CardDivider />
                             <NormalBGControl
                                 label={__('Background', 'zoloblocks')}
                                 controlName={PROGRESS_BG_COLOR}
                                 requiredProps={requiredProps}
                                 noMainBGImg={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={ITEM_BRADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -108,6 +110,7 @@ function Inspector(props) {
                                 typoPrefixConstant={TITLE_TYPO}
                                 requiredProps={requiredProps}
                             />
+                            <CardDivider />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_TITLE_MARGIN}
@@ -116,19 +119,20 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Value', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={PROGRESS_BAR_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
                             <NormalBGControl
                                 label={__('Background', 'zoloblocks')}
                                 controlName={PROGRESS_BAR_BG_COLOR}
                                 requiredProps={requiredProps}
                                 noMainBGImg={true}
                             />
+                            <CardDivider />
                             <BoxShadowControl controlName={PROGRESS_BSHADOW} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={PROGRESS_BAR_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Percentage', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
@@ -141,23 +145,28 @@ function Inspector(props) {
                                 typoPrefixConstant={PROGRESS_VALUE}
                                 requiredProps={requiredProps}
                             />
-                            {preset === 'style-5' && (
-                                <ResRangeControl
-                                    label={__('Gap', 'zoloblocks')}
-                                    controlName={PROGRESS_PERCENT_GAP}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                    noUnits={false}
-                                />
-                            )}
+                            <CardDivider />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_VALUE_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+
+                            {preset === 'style-5' && (
+                                <>
+                                    <CardDivider />
+                                    <ResRangeControl
+                                        label={__('Gap', 'zoloblocks')}
+                                        controlName={PROGRESS_PERCENT_GAP}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                        noUnits={false}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }

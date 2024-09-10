@@ -1,5 +1,7 @@
 <?php
+
 namespace Zolo\Popup;
+
 use Zolo\Traits\SingletonTrait;
 use Zolo\Helpers\ZoloHelpers;
 
@@ -8,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if( ! class_exists( 'PopupBuilder' ) ) {
+if (! class_exists('PopupBuilder')) {
 
     /**
      * Class PopupBuilder
@@ -45,7 +47,7 @@ if( ! class_exists( 'PopupBuilder' ) ) {
          * @return array
          */
         public function handle_popup_block_visibility($allowed_block_types, $editor_context) {
-            if ($editor_context->post->post_type !== 'zolo-popup') {
+            if (isset($editor_context->post->post_type) && $editor_context->post->post_type !== 'zolo-popup') {
                 $all_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
                 $allowed_blocks = array_keys($all_blocks);
 
@@ -294,7 +296,11 @@ if( ! class_exists( 'PopupBuilder' ) ) {
                     $popups->the_post();
 
                     $meta_keys = [
-                        'zolo_popup_id', 'zolo_popup_trigger', 'zolo_popup_enable_disable', 'zolo_popup_infinite_repeat', 'zolo_popup_repeat_num'
+                        'zolo_popup_id',
+                        'zolo_popup_trigger',
+                        'zolo_popup_enable_disable',
+                        'zolo_popup_infinite_repeat',
+                        'zolo_popup_repeat_num'
                     ];
 
                     $popup_meta = [];

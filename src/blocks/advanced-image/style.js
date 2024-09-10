@@ -6,7 +6,17 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateResAlignmentStyle, generateBorderStyle, generateDimensionStyle, generateTypographyStyles, generateMaskStyles, generateBoxShadowStyles, generateResRangeStyle, generateNormalBGControlStyles, GlobalStyleHanlder } = window.zoloModule;
+const {
+    generateResAlignmentStyle,
+    generateBorderStyle,
+    generateDimensionStyle,
+    generateTypographyStyles,
+    generateMaskStyles,
+    generateBoxShadowStyles,
+    generateResRangeStyle,
+    generateNormalBGControlStyles,
+    GlobalStyleHanlder,
+} = window.zoloModule;
 
 import {
     PHOTO_MASK,
@@ -40,7 +50,19 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, imgHoverBorder, captionColor, onOpacity, ohOpacity, ocPosition, headingColor, descriptionColor, separatorColor, separatorStyle, objectFit } = attributes;
+    const {
+        uniqueId,
+        imgHoverBorder,
+        captionColor,
+        onOpacity,
+        ohOpacity,
+        ocPosition,
+        headingColor,
+        descriptionColor,
+        separatorColor,
+        separatorStyle,
+        objectFit,
+    } = attributes;
 
     // Image Alignment
     const {
@@ -373,8 +395,10 @@ const Style = ({ props }) => {
             ${imgBorderStyles}
             ${imgBradiusDesk}
             ${imgBoxShadow}
-            ${DesktopHeight}
             ${objectFit && objectFit !== 'none' && `object-fit:${objectFit}`}
+        }
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img {
+            ${DesktopHeight}
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask:hover .zolo-img-wrap .zolo-img {
             border-color: ${imgHoverBorder};
@@ -448,7 +472,9 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStylesTab}
             ${imgBradiusTab}
-            ${TabHeight}
+        }
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img {
+           ${TabHeight}
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::before {
             ${overlayTabBGStyle}
@@ -507,7 +533,10 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStylesMob}
             ${imgBradiusMob}
-            ${MobHeight}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img {
+           ${MobHeight}
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::before {
             ${overlayMobBGStyle}

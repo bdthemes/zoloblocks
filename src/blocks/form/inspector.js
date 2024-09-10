@@ -282,6 +282,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
+
                             <IconicBtnGroup
                                 label={__('Message Position', 'zoloblocks')}
                                 value={messagePosition}
@@ -292,7 +293,7 @@ function Inspector(props) {
                                 }
                                 options={MESSAGE_POS}
                             />
-                            <div className='zolo-flex-col-control'>
+                            <div className="zolo-flex-col-control">
                                 <TextareaControl
                                     label={__('Success Message', 'zoloblocks')}
                                     value={submissionSettings?.successMessage}
@@ -310,7 +311,7 @@ function Inspector(props) {
                                 />
                             </div>
 
-                            <div className='zolo-flex-col-control'>
+                            <div className="zolo-flex-col-control">
                                 <TextareaControl
                                     label={__('Fail Message', 'zoloblocks')}
                                     value={submissionSettings?.failMessage}
@@ -327,7 +328,7 @@ function Inspector(props) {
                                     rows={2}
                                 />
                             </div>
-                            <div className='zolo-flex-col-control'>
+                            <div className="zolo-flex-col-control">
                                 <TextareaControl
                                     label={__('Validation Message', 'zoloblocks')}
                                     value={submissionSettings?.validationMessage}
@@ -378,16 +379,18 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
-                                    <IconicBtnGroup
-                                        label={__('Position', 'zoloblocks')}
-                                        value={iconPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconPosition: value,
-                                            })
-                                        }
-                                        options={ICON_HPOSITIONS}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Position', 'zoloblocks')}
+                                            value={iconPosition}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconPosition: value,
+                                                })
+                                            }
+                                            options={ICON_HPOSITIONS}
+                                        />
+                                    </div>
                                 </>
                             )}
                         </ZoloPanelBody>
@@ -469,7 +472,7 @@ function Inspector(props) {
                                 <NormalBGControl requiredProps={requiredProps} controlName={LABEL_BG} noMainBGImg={true} />
                             )}
                         </ZoloPanelBody>
-                        {showFieldIcon && preset !== 'style-3' &&(
+                        {showFieldIcon && preset !== 'style-3' && (
                             <ZoloPanelBody title={__('Field Icons', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
@@ -527,6 +530,7 @@ function Inspector(props) {
                                 onChange={(color) => setAttributes({ focusBorderColor: color })}
                             />
                             <RangeControl
+                                className="zolo-flex-col-control"
                                 label={__('Width', 'zoloblocks')}
                                 value={focusBorderWidth}
                                 onChange={(value) => setAttributes({ focusBorderWidth: value })}
