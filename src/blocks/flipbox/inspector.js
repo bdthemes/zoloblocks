@@ -79,6 +79,7 @@ import {
     BACK_LINK_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes, flipboxRef } = props;
@@ -176,24 +177,25 @@ function Inspector(props) {
                                     ))}
                                 </ButtonGroup>
                             </BaseControl>
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             {side === 'front' && (
                                 <>
                                     <ToggleControl
-                                        label={__('Show Icon', 'zoloblocks')}
+                                        label={__('Icon', 'zoloblocks')}
                                         checked={showFrontIcon}
                                         onChange={() => {
                                             setAttributes({ showFrontIcon: !showFrontIcon });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Title', 'zoloblocks')}
+                                        label={__('Title', 'zoloblocks')}
                                         checked={showFrontTitle}
                                         onChange={() => {
                                             setAttributes({ showFrontTitle: !showFrontTitle });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Description', 'zoloblocks')}
+                                        label={__('Description', 'zoloblocks')}
                                         checked={showFrontContent}
                                         onChange={() => {
                                             setAttributes({
@@ -206,21 +208,21 @@ function Inspector(props) {
                             {side === 'back' && (
                                 <>
                                     <ToggleControl
-                                        label={__('Show Icon', 'zoloblocks')}
+                                        label={__('Icon', 'zoloblocks')}
                                         checked={showBackIcon}
                                         onChange={() => {
                                             setAttributes({ showBackIcon: !showBackIcon });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Title', 'zoloblocks')}
+                                        label={__('Title', 'zoloblocks')}
                                         checked={showBackTitle}
                                         onChange={() => {
                                             setAttributes({ showBackTitle: !showBackTitle });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Description', 'zoloblocks')}
+                                        label={__('Description', 'zoloblocks')}
                                         checked={showBackContent}
                                         onChange={() => {
                                             setAttributes({
@@ -229,7 +231,7 @@ function Inspector(props) {
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Button', 'zoloblocks')}
+                                        label={__('Button', 'zoloblocks')}
                                         checked={showBackLinkBtn}
                                         onChange={() => {
                                             setAttributes({
@@ -239,7 +241,7 @@ function Inspector(props) {
                                     />
                                     {showBackLinkBtn && (
                                         <ToggleControl
-                                            label={__('Show Button Icon', 'zoloblocks')}
+                                            label={__('Button Icon', 'zoloblocks')}
                                             checked={showBackLinkBtnIcon}
                                             onChange={() => {
                                                 setAttributes({
@@ -252,7 +254,7 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Flipbox Content', 'zolo-block')} panelProps={props}>
+                        <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props}>
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
@@ -280,9 +282,10 @@ function Inspector(props) {
                                 <>
                                     {showFrontIcon && (
                                         <>
-                                           <div className='zolo-flex-row-control-tab'>
+                                            <div className="zolo-custom-heading">{__('Icon/Image', 'zoloblocks')}</div>
+                                            <div className="zolo-flex-row-control-tab">
                                                 <IconicBtnGroup
-                                                    label={__('Icon Type', 'zoloblocks')}
+                                                    label={__('Type', 'zoloblocks')}
                                                     value={frontIconType}
                                                     onChange={(value) =>
                                                         setAttributes({
@@ -291,7 +294,7 @@ function Inspector(props) {
                                                     }
                                                     options={FLIPBOX_ICON_OPTIONS}
                                                 />
-                                           </div>
+                                            </div>
                                             {frontIconType === 'icon' && (
                                                 <ZoloIconPicker
                                                     label={__('Select Icon', 'zolo-block')}
@@ -301,9 +304,7 @@ function Inspector(props) {
                                             )}
                                             {frontIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zoloblocks')}
-                                                        className='zolo-flex-col-control'
-                                                    >
+                                                    <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                                         {frontIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={frontIconTypeImage && frontIconTypeImage.url}
@@ -380,20 +381,26 @@ function Inspector(props) {
                                     )}
 
                                     {showFrontTitle && (
-                                        <TextControl
-                                            label={__('Title', 'zoloblocks')}
-                                            value={frontTitle}
-                                            onChange={(newText) => setAttributes({ frontTitle: newText })}
-                                        />
+                                        <>
+                                            <div className="zolo-custom-heading">{__('Title', 'zoloblocks')}</div>
+                                            <TextControl
+                                                label={__('Text', 'zoloblocks')}
+                                                value={frontTitle}
+                                                onChange={(newText) => setAttributes({ frontTitle: newText })}
+                                            />
+                                        </>
                                     )}
                                     {showFrontContent && (
-                                        <div className='zolo-flex-col-control'>
-                                            <TextareaControl
-                                                label={__('Description', 'zoloblocks')}
-                                                value={frontContent}
-                                                onChange={(newText) => setAttributes({ frontContent: newText })}
-                                            />
-                                        </div>
+                                        <>
+                                            <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
+                                            <div className="zolo-flex-col-control">
+                                                <TextareaControl
+                                                    label={__('Text', 'zoloblocks')}
+                                                    value={frontContent}
+                                                    onChange={(newText) => setAttributes({ frontContent: newText })}
+                                                />
+                                            </div>
+                                        </>
                                     )}
                                 </>
                             )}
@@ -401,9 +408,10 @@ function Inspector(props) {
                                 <>
                                     {showBackIcon && (
                                         <>
-                                            <div className='zolo-flex-row-control-tab'>
+                                            <div className="zolo-custom-heading">{__('Icon/Image', 'zoloblocks')}</div>
+                                            <div className="zolo-flex-row-control-tab">
                                                 <IconicBtnGroup
-                                                    label={__('Icon Type', 'zoloblocks')}
+                                                    label={__('Type', 'zoloblocks')}
                                                     value={backIconType}
                                                     onChange={(value) =>
                                                         setAttributes({
@@ -422,9 +430,7 @@ function Inspector(props) {
                                             )}
                                             {backIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zoloblocks')}
-                                                        className='zolo-flex-col-control'
-                                                    >
+                                                    <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                                         {backIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={backIconTypeImage && backIconTypeImage.url}
@@ -500,41 +506,48 @@ function Inspector(props) {
                                         </>
                                     )}
                                     {showBackTitle && (
-                                        <TextControl
-                                            label={__('Title', 'zoloblocks')}
-                                            value={backTitle}
-                                            onChange={(newText) => setAttributes({ backTitle: newText })}
-                                        />
+                                        <>
+                                            <div className="zolo-custom-heading">{__('Title', 'zoloblocks')}</div>
+                                            <TextControl
+                                                label={__('Text', 'zoloblocks')}
+                                                value={backTitle}
+                                                onChange={(newText) => setAttributes({ backTitle: newText })}
+                                            />
+                                        </>
                                     )}
 
                                     {showBackContent && (
-                                        <div className='zolo-flex-col-control'>
-                                            <TextareaControl
-                                                label={__('Description', 'zoloblocks')}
-                                                value={backContent}
-                                                onChange={(newText) => setAttributes({ backContent: newText })}
-                                            />
-                                        </div>
+                                        <>
+                                            <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
+                                            <div className="zolo-flex-col-control">
+                                                <TextareaControl
+                                                    label={__('Text', 'zoloblocks')}
+                                                    value={backContent}
+                                                    onChange={(newText) => setAttributes({ backContent: newText })}
+                                                />
+                                            </div>
+                                        </>
                                     )}
                                     {showBackLinkBtn && (
                                         <>
+                                            <div className="zolo-custom-heading">{__('Button', 'zoloblocks')}</div>
                                             <TextControl
-                                                label={__('Button Text', 'zoloblocks')}
+                                                label={__('Text', 'zoloblocks')}
                                                 value={buttonText}
                                                 onChange={(newText) => setAttributes({ buttonText: newText })}
                                             />
+                                            {showBackLinkBtnIcon && (
+                                                <ZoloIconPicker
+                                                    label={__('Icon', 'zolo-block')}
+                                                    value={buttonIcon}
+                                                    onChange={(v) => setAttributes({ buttonIcon: v })}
+                                                />
+                                            )}
                                             <LinkControl
                                                 label={__('URL', 'zoloblocks')}
                                                 value={link}
                                                 onChange={(value) => setAttributes({ link: value })}
                                             />
-                                            {showBackLinkBtnIcon && (
-                                                <ZoloIconPicker
-                                                    label={__('Select Icon', 'zolo-block')}
-                                                    value={buttonIcon}
-                                                    onChange={(v) => setAttributes({ buttonIcon: v })}
-                                                />
-                                            )}
                                         </>
                                     )}
                                 </>
@@ -542,6 +555,19 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('General Settings', 'zoloblocks')} panelProps={props}>
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Trigger Type', 'zoloblocks')}
+                                    value={triggerType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            triggerType: value,
+                                        })
+                                    }
+                                    options={FLIP_TRIGGER_TYPE}
+                                />
+                            </div>
+                            {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zoloblocks')}</p>}
                             <SelectControl
                                 label={__('Flip Effect', 'zoloblocks')}
                                 value={flipEffect}
@@ -550,6 +576,7 @@ function Inspector(props) {
                                     setAttributes({ flipEffect });
                                 }}
                             />
+                            <CardDivider />
                             <SelectControl
                                 label={__('Easing Type', 'zoloblocks')}
                                 value={flipEasingType}
@@ -575,26 +602,15 @@ function Inspector(props) {
                                 defaultVal={600}
                                 step={1}
                             />
-
-                            <div className='zolo-flex-row-control-tab'>
-                                <IconicBtnGroup
-                                    label={__('Trigger Type', 'zoloblocks')}
-                                    value={triggerType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            triggerType: value,
-                                        })
-                                    }
-                                    options={FLIP_TRIGGER_TYPE}
-                                />
-                            </div>
-                            {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zoloblocks')}</p>}
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Items', 'zolo-block')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('common', 'zoloblocks')}
+                            </div>
                             <ResRangeControl
                                 label={__('Height', 'zoloblocks')}
                                 controlName={FLIPBOX_HEIGHT}
@@ -608,11 +624,13 @@ function Inspector(props) {
                                 controlName={FLIPBOX_ITEMS_PADDING}
                                 requiredProps={requiredProps}
                             />
+                            <CardDivider />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={FLIPBOX_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                             />
+                            <CardDivider />
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
@@ -638,12 +656,19 @@ function Inspector(props) {
                             </BaseControl>
                             {side === 'front' && (
                                 <>
+                                    <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
+                                    <CardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_BORDER}
                                         requiredProps={requiredProps}
                                     />
-
+                                    <BoxShadowControl
+                                        controlName={FRONT_ITEMS_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={false}
+                                    />
+                                    <CardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_ALIGNMENT}
@@ -657,22 +682,23 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
                                     />
-                                    <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
-                                    <BoxShadowControl
-                                        controlName={FRONT_ITEMS_SHADOW}
-                                        requiredProps={requiredProps}
-                                        enableTransition={false}
-                                    />
                                 </>
                             )}
                             {side === 'back' && (
                                 <>
+                                    <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
+                                    <CardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={BACK_ITEMS_BORDER}
                                         requiredProps={requiredProps}
                                     />
-
+                                    <BoxShadowControl
+                                        controlName={BACK_ITEMS_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={false}
+                                    />
+                                    <CardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={BACK_ITEMS_ALIGNMENT}
@@ -685,12 +711,6 @@ function Inspector(props) {
                                         controlName={BACK_ITEMS_VERTICAL_ALIGNMENT}
                                         requiredProps={requiredProps}
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
-                                    />
-                                    <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
-                                    <BoxShadowControl
-                                        controlName={BACK_ITEMS_SHADOW}
-                                        requiredProps={requiredProps}
-                                        enableTransition={false}
                                     />
                                 </>
                             )}
@@ -725,11 +745,33 @@ function Inspector(props) {
                                     <>
                                         {showFrontIcon && (
                                             <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={frontIconColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            frontIconColor: color,
+                                                        })
+                                                    }
+                                                />
                                                 <ResDimensionsControl
                                                     label={__('Size', 'zoloblocks')}
                                                     controlName={FRONT_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
+                                                <CardDivider />
+
+                                                <NormalBGControl
+                                                    requiredProps={requiredProps}
+                                                    controlName={FRONT_ICON_BG}
+                                                    noMainBGImg={false}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={FRONT_ICON_PADDING}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={FRONT_ICON_BORDER}
@@ -740,25 +782,6 @@ function Inspector(props) {
                                                     controlName={FRONT_ICON_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <ResDimensionsControl
-                                                    label={__('Padding', 'zoloblocks')}
-                                                    controlName={FRONT_ICON_PADDING}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={frontIconColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            frontIconColor: color,
-                                                        })
-                                                    }
-                                                />
-                                                <NormalBGControl
-                                                    requiredProps={requiredProps}
-                                                    controlName={FRONT_ICON_BG}
-                                                    noMainBGImg={false}
-                                                />
                                             </>
                                         )}
                                     </>
@@ -767,26 +790,6 @@ function Inspector(props) {
                                     <>
                                         {showBackIcon && (
                                             <>
-                                                <ResDimensionsControl
-                                                    label={__('Size', 'zoloblocks')}
-                                                    controlName={BACK_ICON_SIZE}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={BACK_ICON_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={BACK_ICON_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Padding', 'zoloblocks')}
-                                                    controlName={BACK_ICON_PADDING}
-                                                    requiredProps={requiredProps}
-                                                />
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
                                                     color={backIconColor}
@@ -796,10 +799,32 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                <ResDimensionsControl
+                                                    label={__('Size', 'zoloblocks')}
+                                                    controlName={BACK_ICON_SIZE}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
                                                     controlName={BACK_ICON_BG}
                                                     noMainBGImg={false}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={BACK_ICON_PADDING}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
+                                                <BorderControl
+                                                    label={__('Border', 'zoloblocks')}
+                                                    controlName={BACK_ICON_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    controlName={BACK_ICON_BORDER_RADIUS}
+                                                    requiredProps={requiredProps}
                                                 />
                                             </>
                                         )}
@@ -837,11 +862,6 @@ function Inspector(props) {
                                     <>
                                         {showFrontTitle && (
                                             <>
-                                                <TypographyDropdown
-                                                    label={__('Typography', 'zoloblocks')}
-                                                    typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
-                                                    requiredProps={requiredProps}
-                                                />
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
                                                     color={frontTitleColor}
@@ -851,6 +871,12 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
                                                 <ResDimensionsControl
                                                     label={__('Margin', 'zoloblocks')}
                                                     controlName={FRONT_TITLE_MARGIN}
@@ -862,11 +888,6 @@ function Inspector(props) {
                                 )}
                                 {side === 'back' && (
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={backTitleColor}
@@ -876,6 +897,12 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={BACK_TITLE_MARGIN}
@@ -974,56 +1001,59 @@ function Inspector(props) {
                                 </BaseControl>
                                 {side === 'back' && (
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={backLinkColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    backLinkColor: color,
-                                                })
-                                            }
-                                        />
-                                        <ColorControl
-                                            label={__('Hover Color', 'zoloblocks')}
-                                            color={backLinkHoverColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    backLinkHoverColor: color,
-                                                })
-                                            }
-                                        />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={BACK_LINK_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={BACK_LINK_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={BACK_LINK_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={backLinkColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                backLinkColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                    <TypographyDropdown
+                                                        label={__('Typography', 'zoloblocks')}
+                                                        typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={BACK_LINK_BG}
                                                         noMainBGImg={false}
                                                     />
+
+                                                    <ResDimensionsControl
+                                                        label={__('Padding', 'zoloblocks')}
+                                                        controlName={BACK_LINK_PADDING}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
+                                                    <BorderControl
+                                                        label={__('Border', 'zoloblocks')}
+                                                        controlName={BACK_LINK_BORDER}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={BACK_LINK_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                    />
                                                 </>
                                             }
                                             hoverComponents={
                                                 <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={backLinkHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                backLinkHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={BACK_LINK_HBG}

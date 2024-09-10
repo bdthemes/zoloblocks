@@ -1,11 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from "@wordpress/block-editor";
-import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, } from "@wordpress/components";
-import { __ } from "@wordpress/i18n";
-import { Fragment } from "@wordpress/element";
-import { applyFilters } from "@wordpress/hooks";
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
@@ -49,7 +49,6 @@ import {
 } from './constants';
 
 export default function Inspector(props) {
-
     const { attributes, setAttributes } = props;
 
     const {
@@ -70,7 +69,7 @@ export default function Inspector(props) {
         attributes,
         setAttributes,
         objAttributes,
-    }
+    };
 
     return (
         <>
@@ -91,6 +90,7 @@ export default function Inspector(props) {
                                         })
                                     }
                                 />
+                                <CardDivider />
                                 <ToggleControl
                                     label={__('Linkable', 'zoloblocks')}
                                     checked={isLinkable}
@@ -111,6 +111,7 @@ export default function Inspector(props) {
                                         }
                                     />
                                 )}
+                                <CardDivider />
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={ICON_ALIGNMENT}
@@ -123,33 +124,6 @@ export default function Inspector(props) {
                     styleTab={
                         <>
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                <ResRangeControl
-                                    label={__('Icon Size', 'zoloblocks')}
-                                    controlName={ICON_SIZE}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                />
-
-                                <BorderControl label={__('Border', 'zoloblocks')} controlName={ICON_BORDER} requiredProps={requiredProps} />
-                                <ResRangeControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={ICON_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    controlName={ICON_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -163,18 +137,49 @@ export default function Inspector(props) {
                                                 }
                                             />
 
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={ICON_SIZE}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                            />
+
+                                            <CardDivider />
                                             <NormalBGControl controlName={ICON_BG_COLOR} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={ICON_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={ICON_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={ICON_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
                                             <BoxShadowControl
                                                 controlName={ICON_BOX_SHADOW}
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={ICON_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
                                             />
                                         </>
                                     }
                                     hoverComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Hover Color', 'zoloblocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={iconHover}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -182,9 +187,7 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
-
                                             <NormalBGControl controlName={ICON_HOVER_BG_COLOR} requiredProps={requiredProps} />
-
                                             <BoxShadowControl
                                                 controlName={ICON_HOVER_BOX_SHADOW}
                                                 requiredProps={requiredProps}

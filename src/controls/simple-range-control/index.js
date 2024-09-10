@@ -13,39 +13,41 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
     }
 
     return (
-        <div className="zb-res-range-control-wrapper">
-            {noUnits ? (
-                <>
-                    <div className="zb-units-wrapper">
-                        {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
-                    </div>
-                    <BaseControl label={label}>
-                        <RangeControl
-                            value={value}
-                            onChange={(val) => onChange(val)}
-                            min={min || 0}
-                            max={unit === '%' ? 100 : max || 100}
-                            step={step || 1}
-                        />
-                    </BaseControl>
-                </>
-            ) : (
-                <>
-                    <UnitsBtn selectedUnit={unit} unitTypes={units || defaultUnits} onClick={(sizeUnit) => onUnitChange(sizeUnit)}>
-                        {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
-                    </UnitsBtn>
+        <div className="zolo-flex-col-control">
+            <div className="zb-res-range-control-wrapper">
+                {noUnits ? (
+                    <>
+                        <div className="zb-units-wrapper">
+                            {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
+                        </div>
+                        <BaseControl label={label}>
+                            <RangeControl
+                                value={value}
+                                onChange={(val) => onChange(val)}
+                                min={min || 0}
+                                max={unit === '%' ? 100 : max || 100}
+                                step={step || 1}
+                            />
+                        </BaseControl>
+                    </>
+                ) : (
+                    <>
+                        <UnitsBtn selectedUnit={unit} unitTypes={units || defaultUnits} onClick={(sizeUnit) => onUnitChange(sizeUnit)}>
+                            {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
+                        </UnitsBtn>
 
-                    <BaseControl label={label}>
-                        <RangeControl
-                            value={value}
-                            onChange={(val) => onChange(val)}
-                            min={min || 0}
-                            max={unit === '%' ? 100 : max || 100}
-                            step={step || 1}
-                        />
-                    </BaseControl>
-                </>
-            )}
+                        <BaseControl label={label}>
+                            <RangeControl
+                                value={value}
+                                onChange={(val) => onChange(val)}
+                                min={min || 0}
+                                max={unit === '%' ? 100 : max || 100}
+                                step={step || 1}
+                            />
+                        </BaseControl>
+                    </>
+                )}
+            </div>
         </div>
     );
 };

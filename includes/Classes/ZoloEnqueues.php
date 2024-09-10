@@ -219,11 +219,12 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
          * @return void
          */
         public function editor_assets_loader() {
-            $extension_particles = ZoloHelpers::zoloblocks_get_option('zolo_particles_effects', 'zolo_extensions_settings', '1');
 
             if (!is_admin()) {
                 return;
             }
+
+            $extensions = ZoloHelpers::zolo_extensions();
 
             // editor override css
             wp_enqueue_style(
@@ -251,7 +252,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
                 false
             );
 
-            if ($extension_particles == '1') {
+            if ($extensions['particles'] === true) {
                 wp_enqueue_script(
                     'particles-js',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
@@ -274,10 +275,6 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
                     );
                 }
             }
-
-
-
-
 
             // Register Modules
             $modules_dep_path = ZOLO_DIR_PATH . 'build/module/index.asset.php';
@@ -334,8 +331,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
             );
 
             // block export extension
-            $enable_block_export = get_option('zolo_enable_block_export');
-            if ($enable_block_export === '1') {
+            if ($extensions['export-pattern'] === true) {
                 $dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/export-pattern/index.asset.php';
                 if (file_exists($dep_file)) {
                     $script_dependecy = include $dep_file;
@@ -351,8 +347,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
             }
 
             // import block pattern
-            $enable_block_import = get_option('zolo_enable_block_import');
-            if ($enable_block_import === '1') {
+            if ($extensions['import-pattern'] === true) {
                 $import_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/import-pattern/index.asset.php';
                 if (file_exists($import_dep_file)) {
                     $script_dependecy = include $import_dep_file;
@@ -368,16 +363,18 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
             }
 
             // import shape divider
-            $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
-            if (file_exists($import_shape_divider_file)) {
-                $script_dependecy = include $import_shape_divider_file;
-                wp_enqueue_script(
-                    'zolo-shape-divider-editor-script',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/index.js',
-                    $script_dependecy['dependencies'],
-                    ZOLO_VERSION,
-                    true
-                );
+            if($extensions['shape-divider'] === true) {
+                $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
+                if (file_exists($import_shape_divider_file)) {
+                    $script_dependecy = include $import_shape_divider_file;
+                    wp_enqueue_script(
+                        'zolo-shape-divider-editor-script',
+                        trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-divider/index.js',
+                        $script_dependecy['dependencies'],
+                        ZOLO_VERSION,
+                        true
+                    );
+                }
             }
 
 

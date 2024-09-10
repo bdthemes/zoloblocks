@@ -1,17 +1,17 @@
 import apiFetch from '@wordpress/api-fetch';
-import { useCallback, useEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
-import blocks from './blocks.json';
+import Notice from '../notice';
 import categories from './categories';
 import SingleBlock from './single-block';
 
-import { applyFilters } from '@wordpress/hooks';
-import Notice from '../notice';
+const removeChildBlocks = (blocks) => {
+    return blocks.filter((block) => !block.is_child);
+};
 
 const Blocks = () => {
     const [blockStates, setBlockStates] = useState([]);
-    const [blockStatus, setBlockStatus] = useState([]);
+    const [blocks, setBlocks] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
@@ -19,14 +19,11 @@ const Blocks = () => {
     // Blocks Status
     useEffect(() => {
         apiFetch({
-            path: '/wp/v2/settings',
+            path: '/zolo/v1/blocks',
             method: 'GET',
         })
             .then((response) => {
-                const { zolo_blocks_settings } = response;
-                setBlockStatus(zolo_blocks_settings);
-
-                console.log('zolo_blocks_settings', zolo_blocks_settings);
+                setBlocks(removeChildBlocks(response));
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);
@@ -40,87 +37,83 @@ const Blocks = () => {
         }
     }, [notice]);
 
-    // set blocks list
-    useEffect(() => {
-        if (blocks.length > 0) {
-            setBlockStates(applyFilters('zoloblocks.dashboardBlocks', blocks));
-        }
-    }, [blocks]);
-
     // update block setting
-    const updateStatus = useCallback(
-        (status, block) => {
-            const blocksToUpdate = blockStatus.map((blockState) => {
-                if (blockState.name === block) {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-                return blockState;
-            });
+    const updateStatus = (blockName) => {
+        const block = blocks.find((block) => block.name === blockName);
+        const status = !block.status;
 
-            apiFetch({
-                path: '/wp/v2/settings',
-                method: 'POST',
-                data: {
-                    zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_blocks_settings: blocksToUpdate,
-                },
+        apiFetch({
+            path: '/zolo/v1/blocks',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks?.zolo_nonce,
+                status: status,
+                name: blockName,
+            },
+        })
+            .then((response) => {
+                setBlocks(removeChildBlocks(response));
+                // set notice to true
+                setNotice(true);
             })
-                .then((response) => {
-                    setBlockStatus(response.zolo_blocks_settings);
-                })
-                .catch((error) => console.error('API Fetch Error:', error));
-        },
-        [blockStatus]
-    );
+            .catch((error) => console.error('API Fetch Error:', error));
+    };
 
     // update block setting for all
-    const updateStatusForCategory = useCallback(
-        (status, category) => {
-            const blocksToUpdate = blockStatus.map((blockState) => {
-                if (category === 'all') {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
-                if (category === 'others') {
-                    if (
-                        blockState.categories.some((category) =>
-                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                        )
-                    ) {
-                        return blockState;
-                    }
-                }
+    const activateAllBlocks = () => {
+        const inactiveBlocks = blocks.filter((block) => block.status === false);
 
-                if (blockState.categories.some((cat) => cat === category)) {
-                    return {
-                        ...blockState,
-                        status,
-                    };
-                }
+        if (inactiveBlocks.length === 0) {
+            return;
+        }
 
-                return blockState;
-            });
+        const blockNames = inactiveBlocks.map((block) => block.name);
 
-            apiFetch({
-                path: '/wp/v2/settings',
-                method: 'POST',
-                data: {
-                    zolo_nonce: zoloBlocks.zolo_nonce,
-                    zolo_blocks_settings: blocksToUpdate,
-                },
-            })
-                .then((response) => {
-                    setBlockStatus(response.zolo_blocks_settings);
-                })
-                .catch((error) => console.error('API Fetch Error:', error));
-        },
-        [blockStatus]
-    );
+        apiFetch({
+            path: '/zolo/v1/blocks',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks?.zolo_nonce,
+                status: true,
+                names: blockNames,
+            },
+        }).then((response) => {
+            setBlocks(removeChildBlocks(response));
+            // set category to all
+            setCategory('all');
+
+            // set notice to true
+            setNotice(true);
+        });
+    };
+
+    // update block setting for all
+    const deactivateAllBlocks = () => {
+        const activeBlocks = blocks.filter((block) => block.status === true);
+
+        if (activeBlocks.length === 0) {
+            return;
+        }
+
+        const blockNames = activeBlocks.map((block) => block.name);
+
+        apiFetch({
+            path: '/zolo/v1/blocks',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks?.zolo_nonce,
+                status: false,
+                names: blockNames,
+            },
+        }).then((response) => {
+            setBlocks(removeChildBlocks(response));
+            // set category to all
+            setCategory('all');
+
+            // set notice to true
+            setNotice(true);
+        });
+    };
 
     return (
         <>
@@ -174,22 +167,10 @@ const Blocks = () => {
                     </div>
 
                     <div className="zoloblocks-actions-btn">
-                        <button
-                            className="zolo-activated-btn"
-                            onClick={() => {
-                                updateStatusForCategory(true, blockCategory);
-                                setNotice(true);
-                            }}
-                        >
+                        <button className="zolo-activated-btn" onClick={activateAllBlocks}>
                             {__('Activate All', 'zoloblocks')}
                         </button>
-                        <button
-                            className="zolo-deactivated-btn"
-                            onClick={() => {
-                                updateStatusForCategory(false, blockCategory);
-                                setNotice(true);
-                            }}
-                        >
+                        <button className="zolo-deactivated-btn" onClick={deactivateAllBlocks}>
                             {__('Deactivate All', 'zoloblocks')}
                         </button>
                     </div>
@@ -197,19 +178,17 @@ const Blocks = () => {
                 <div className="blocks-filter-buttons">
                     {categories &&
                         categories.map((category, index) => {
-                            const totalBlocks = blockStates.filter((blockState) => {
+                            const totalBlocks = blocks.filter((block) => {
                                 if (category.value === 'all') {
                                     return true;
-                                }
-                                // calculate total blocks for others category (exclude slider, list, gallery, social, review)
-                                if (category.value === 'others') {
-                                    return !blockState.categories.some((category) =>
+                                } else if (category.value === 'others') {
+                                    // calculate total blocks for others category (exclude slider, list, gallery, social, review)
+                                    return !block.categories.some((category) =>
                                         ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                                     );
                                 }
-                                return blockState.categories.some((cat) => cat === category.value);
-                            }).length;
-
+                                return block.categories.some((cat) => cat === category.value);
+                            });
                             return (
                                 <button
                                     key={index}
@@ -220,87 +199,78 @@ const Blocks = () => {
                                         {category.icon && <span className="category-icon">{category.icon}</span>}
                                         <span>{__(category.title, 'zoloblocks')}</span>
                                     </span>
-                                    <span className="total-blocks">{totalBlocks}</span>
+                                    <span className="total-blocks">{totalBlocks.length}</span>
                                 </button>
                             );
                         })}
                 </div>
                 <div className="zoloblocks-grid">
                     <div className="zoloblocks-inner-grid">
-                        {blockStates &&
-                            blockStates
-                                .filter((blockState) => {
+                        {blocks &&
+                            blocks
+                                .filter((block) => {
                                     if (blockCategory === 'all') {
                                         return true;
                                     }
 
                                     if (blockCategory === 'others') {
-                                        return !blockState.categories.some((category) =>
+                                        return !block.categories.some((category) =>
                                             ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                                         );
                                     }
 
-                                    return blockState.categories.some((category) => category === blockCategory);
+                                    return block.categories.some((category) => category === blockCategory);
                                 })
-                                .filter((blockState) => {
+                                .filter((block) => {
                                     if (search === '') {
                                         return true;
                                     }
-                                    return blockState.title.toLowerCase().includes(search.toLowerCase());
+                                    return block.title.toLowerCase().includes(search.toLowerCase());
                                 })
-                                .map((blockState, index) => {
-                                    const status = blockStatus?.filter((block) => {
-                                        return block.name === blockState.name;
-                                    });
-                                    if (status?.length > 0) {
-                                        const bName = blockState?.name.replace(/_/g, '-');
-                                        // remove zolo- from bName
-                                        const blockIcon = bName.replace('zolo-', '');
-
-                                        return (
-                                            <SingleBlock
-                                                key={index}
-                                                icon={blockIcon}
-                                                title={blockState.title}
-                                                value={status[0].status}
-                                                demo={blockState.demo || ''}
-                                                video={blockState.video || ''}
-                                                upcoming={blockState.upcoming}
-                                                onClick={() => {
-                                                    updateStatus(!status[0].status, blockState.name);
-                                                    setNotice(true);
-                                                }}
-                                                {...(blockState?.isPro && {
-                                                    isPro: true,
-                                                })}
-                                            />
-                                        );
-                                    }
+                                .map((block, index) => {
+                                    return (
+                                        <SingleBlock
+                                            key={index}
+                                            icon={block?.name}
+                                            title={block?.title}
+                                            value={block?.status}
+                                            demo={block?.demo || ''}
+                                            video={block?.video || ''}
+                                            upcoming={block?.upcoming}
+                                            onClick={() => {
+                                                updateStatus(block?.name);
+                                                setNotice(true);
+                                            }}
+                                            {...(block?.isPro && {
+                                                isPro: true,
+                                            })}
+                                        />
+                                    );
                                 })}
                     </div>
 
                     {
                         // check if no block found on search
-                        blockStates.length > 0 &&
-                            blockStates
-                                .filter((blockState) => {
+                        blocks.length > 0 &&
+                            blocks
+                                .filter((block) => {
                                     if (blockCategory === 'all') {
                                         return true;
                                     }
 
                                     if (blockCategory === 'others') {
-                                        return !blockState.categories.some((category) =>
+                                        return !block.categories.some((category) =>
                                             ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                                         );
                                     }
 
-                                    return blockState.categories.some((category) => category === blockCategory);
+                                    return block.categories.some((category) => category === blockCategory);
                                 })
-                                .filter((blockState) => {
+                                .filter((block) => {
                                     if (search === '') {
                                         return true;
                                     }
-                                    return blockState.title.toLowerCase().includes(search.toLowerCase());
+                                    return block.title.toLowerCase().includes(search.toLowerCase());
                                 }).length === 0 && (
                                 <div className="zolo-no-block-found">
                                     <img src={zoloBlocks.oops} alt="no zoloblocks found" />
@@ -332,7 +302,6 @@ const Blocks = () => {
                             )
                     }
                 </div>
-                {/* </div> */}
             </div>
         </>
     );
