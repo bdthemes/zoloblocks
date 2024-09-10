@@ -1,15 +1,14 @@
 import { ToggleControl } from '@wordpress/components';
-import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = false, upcoming }) => {
+const { ExtensionIcons } = window?.zoloIcons;
+
+const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = true, upcoming }) => {
     return (
         <div
             className={`zolo-single-block ${value ? 'active' : ''} ${released ? '' : 'upcoming'} ${isPro ? 'ispro' : ''} ${upcoming ? 'upcoming' : ''}`}
         >
-            <div className="block-icon">
-                <RawHTML>{icon}</RawHTML>
-            </div>
+            <div className="block-icon">{ExtensionIcons[icon]}</div>
             <div className="block-info">
                 <span className="block-title" onClick={onClick}>
                     {title}
@@ -37,7 +36,13 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
 
                 <div className="block-switcher">
                     {released ? (
-                        <ToggleControl checked={value} onChange={onClick} />
+                        <>
+                            {isPro ? (
+                                <>{zoloBlocks?.has_pro === '1' ? <ToggleControl checked={value} onChange={onClick} /> : <div></div>}</>
+                            ) : (
+                                <ToggleControl checked={value} onChange={onClick} />
+                            )}
+                        </>
                     ) : (
                         <span className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</span>
                     )}
@@ -47,4 +52,4 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro
     );
 };
 
-export default SingleBlock;
+export default SingleExtension;

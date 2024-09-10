@@ -145,14 +145,14 @@ if (! class_exists('Assets')) {
          */
         public function zolo_blocks_icons($screen) {
             // zoloModules
-            $dep_file = ZOLO_DIR_PATH . 'build/blocks-icons/index.asset.php';
+            $dep_file = ZOLO_DIR_PATH . 'build/zolo-icons/index.asset.php';
             $script_dependecy = file_exists($dep_file) ? include $dep_file : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
             wp_enqueue_script(
                 'zoloblocks-icons-script',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/blocks-icons/index.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/zolo-icons/index.js',
                 $script_dependecy['dependencies'],
                 $script_dependecy['version'],
                 false

@@ -3,6 +3,7 @@
 namespace Zolo\Classes;
 
 use Zolo\Traits\SingletonTrait;
+use Zolo\Helpers\ZoloHelpers;
 
 class Registration {
     use SingletonTrait;
@@ -23,34 +24,29 @@ class Registration {
      * @return void
      */
     public function block_register() {
-        $blocks = $this::block_list();
+        $default_blocks = ZoloHelpers::get_zolo_blocks();
+        $blocks = get_option('zolo_blocks_settings', $default_blocks);
 
-        if ( is_array($blocks) && count($blocks) > 0 ) {
+        if (is_array($blocks) && count($blocks) > 0) {
             foreach ($blocks as $block) {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);
-                $admin_path = trailingslashit(ZOLO_ADMIN_URL);
-                $version    = ZOLO_VERSION;
+                $version = ZOLO_VERSION;
 
-                if (isset($block['pro']) && $block['pro'] === true) {
+                if (isset($block['is_pro']) && $block['is_pro'] === true && defined('ZOLO_PRO_DIR_PATH')) {
                     $block_path = trailingslashit(ZOLO_PRO_DIR_PATH);
-                    $admin_path = trailingslashit(ZOLO_PRO_ADMIN_URL);
-                    $version    = ZOLO_PRO_VERSION;
+                    $version = ZOLO_PRO_VERSION;
                 }
 
-                //Check Render Class
-                if (isset($block['class'])) {
+                $block_file = $block_path . '/build/blocks/' . $block['name'];
 
-                    $class = new $block['class'];
-
-                    if( file_exists( $block_path . '/build/blocks/' . $block['name']  ) ) {
-                        register_block_type( $block_path . '/build/blocks/' . $block['name'], [
-                            'render_callback' => fn($attributes, $content) => $this->render_callback($attributes, $content, $class),
-                        ] );
-                    }
-
-                } else {
-                    if( file_exists( $block_path . '/build/blocks/' . $block['name'] ) ) {
-                        register_block_type( $block_path . '/build/blocks/' . $block['name'] );
+                if (file_exists($block_file)) {
+                    if (isset($block['status']) && $block['status'] === true) {
+                        $render_callback = null;
+                        if (isset($block['class']) && class_exists($block['class'])) {
+                            $class = new $block['class'];
+                            $render_callback = fn($attributes, $content) => $this->render_callback($attributes, $content, $class);
+                        }
+                        register_block_type($block_file, ['render_callback' => $render_callback]);
                     }
                 }
             }
