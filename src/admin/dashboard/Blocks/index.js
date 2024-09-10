@@ -5,6 +5,10 @@ import Notice from '../notice';
 import categories from './categories';
 import SingleBlock from './single-block';
 
+const removeChildBlocks = (blocks) => {
+    return blocks.filter((block) => !block.is_child);
+};
+
 const Blocks = () => {
     const [blockStates, setBlockStates] = useState([]);
     const [blocks, setBlocks] = useState([]);
@@ -19,9 +23,7 @@ const Blocks = () => {
             method: 'GET',
         })
             .then((response) => {
-                setBlocks(response);
-
-                console.log('Blocks Status:', response);
+                setBlocks(removeChildBlocks(response));
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);
@@ -50,7 +52,7 @@ const Blocks = () => {
             },
         })
             .then((response) => {
-                setBlocks(response);
+                setBlocks(removeChildBlocks(response));
                 // set notice to true
                 setNotice(true);
             })
@@ -76,8 +78,7 @@ const Blocks = () => {
                 names: blockNames,
             },
         }).then((response) => {
-            setBlocks(response);
-
+            setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
 
@@ -105,8 +106,7 @@ const Blocks = () => {
                 names: blockNames,
             },
         }).then((response) => {
-            setBlocks(response);
-
+            setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
 

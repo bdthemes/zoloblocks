@@ -24,12 +24,19 @@ const Welcome = () => {
             method: 'GET',
         })
             .then((response) => {
-                // console.log(response);
-                // const { zolo_blocks_settings, zolo_extensions_settings } = response;
-                // setBlocks(zolo_blocks_settings);
-                // setExtensions(zolo_extensions_settings);
-                // setTotalBlocks(parseInt(zolo_blocks_settings.length));
-                // setTotalExtensions(parseInt(zolo_extensions_settings.length));
+                const blocks = response.filter((block) => !block.is_child);
+                setBlocks(blocks);
+                setTotalBlocks(parseInt(blocks.length));
+            })
+            .catch((error) => console.error('API Fetch Error:', error));
+
+        apiFetch({
+            path: '/zolo/v1/extensions',
+            method: 'GET',
+        })
+            .then((response) => {
+                setExtensions(response);
+                setTotalExtensions(parseInt(response.length));
             })
             .catch((error) => console.error('API Fetch Error:', error));
     }, []);

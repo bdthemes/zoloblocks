@@ -704,4 +704,28 @@ class ZoloHelpers {
 		}
 	}
 
+	/**
+	 * Get Zolo Extensions  
+	 */
+	public static function get_zolo_extensions() {
+		$extensions = trailingslashit(ZOLO_DIR_PATH) . 'includes/Extensions/extensions.php';
+		if (file_exists($extensions)) {
+			return require $extensions;
+		}
+	}
+
+	/**
+	 * Zolo Extension Status
+	 */
+	public static function zolo_extensions() {
+		$extension_options = get_option('zolo_extensions_settings');
+		$extensions = [];
+
+		foreach ($extension_options as $value) {
+			$extensions[$value['name']] = $value['status'];
+		}
+
+		return $extensions;
+	}
+
 }
