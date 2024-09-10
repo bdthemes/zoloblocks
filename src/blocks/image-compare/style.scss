@@ -14,11 +14,12 @@
         font-size: 16px;
         padding: 10px 20px;
         color: white;
-        border: 1px solid rgba(255, 255, 255, 0.20);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(15px);
         background-color: rgba(255, 255, 255, 0.09);
         text-transform: capitalize;
         display: inline-block;
+        overflow: hidden;
     }
 
     .image-item-One {
@@ -72,16 +73,16 @@
         }
     }
     &.vertical_direction {
-        .compare-slider-label{
-           &.v_center {
-             left: 50%;
-             transform: translateX(-50%);
-           }
-           &.v_top {
-             left: 0;
-           }
+        .compare-slider-label {
+            &.v_center {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &.v_top {
+                left: 0;
+            }
             &.v_bottom {
-               right: 0;
+                right: 0;
             }
         }
         .compare-slider-label-left {
@@ -106,5 +107,5 @@
                 border-top-right-radius: 0;
             }
         }
-    }   
+    }
 }
