@@ -39,13 +39,16 @@ const Edit = (props) => {
     const listItemRef = useRef(null);
     const [isInvalid, isDraft] = useIsInvalidLink(kind, type, id);
 
-    const { hasInnerBlocks, isNested, hasChildBlocks } = useSelect(
+    const { hasInnerBlocks, isNested, hasChildBlocks, currentPostType, currentPostId } = useSelect(
         (select) => {
             const { getBlockOrder, getBlockParents, getBlockName, getBlock } = select('core/block-editor');
+            const { getCurrentPostId, getCurrentPostType } = select('core/editor');
             return {
                 hasInnerBlocks: getBlockOrder(clientId).length > 0,
                 isNested: getBlockName(getBlockParents(clientId).at(-1)) === 'zolo/navmenu-submenu',
                 hasChildBlocks: getBlock(clientId)?.innerBlocks?.length > 0,
+                currentPostType: getCurrentPostType(),
+                currentPostId: getCurrentPostId(),
             };
         },
         [clientId]
@@ -64,8 +67,12 @@ const Edit = (props) => {
         className: classnames(uniqueId, 'zolo-navmenu-item', {
             'has-megamenu': attributes?.addSubmenu && attributes?.submenuType === 'megamenu',
             'has-submenu': attributes?.addSubmenu && attributes?.submenuType === 'dropdown',
+            'current-item': id === currentPostId && currentPostType === type,
         }),
         ref: useMergeRefs([listItemRef, setPopoverAnchor]),
+        'data-id': id,
+        'data-type': type,
+        'data-kind': kind,
     });
 
     const innerBlocksProps = useInnerBlocksProps(

@@ -10,6 +10,9 @@ const Save = (props) => {
             'has-megamenu': attributes?.addSubmenu && attributes?.submenuType === 'megamenu',
             'has-submenu': attributes?.addSubmenu && attributes?.submenuType === 'dropdown',
         }),
+        'data-id': id,
+        'data-type': type,
+        'data-kind': kind,
     });
 
     const innerBlocksProps = useInnerBlocksProps.save({
@@ -18,7 +21,7 @@ const Save = (props) => {
 
     return (
         <li {...blockProps}>
-            <a href={url} data-id={id} data-kind={kind} data-type={type} title={title} className="zolo-navmenu-link">
+            <a href={url} title={title} className="zolo-navmenu-link">
                 <RichText.Content tagName="span" value={title || label} />
                 {addSubmenu ? (
                     <button className="zolo-submenu-arrow" aria-label="Submenu Arrow">

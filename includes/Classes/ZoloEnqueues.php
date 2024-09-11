@@ -34,7 +34,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
 
             //change logo link
-            add_filter('render_block', [$this, 'change_nav_logo_link'], 10, 2);
+            add_filter('render_block', [$this, 'modify_nav_links'], 10, 2);
         }
 
         /**
@@ -496,11 +496,22 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
          * @since 1.4.0
          * @return blockMarkup
          */
-        public function change_nav_logo_link($block_content, $block) {
+        public function modify_nav_links($block_content, $block) {
             if ($block['blockName'] == 'zolo/navmenu') {
                 $tags = new \WP_HTML_Tag_Processor($block_content);
                 $tags->next_tag( array( 'tag_name' => 'a', 'class_name' => 'zolo-nav-menu-sidebar-logo' ) );
                 $tags->set_attribute( 'href', home_url());
+                $tags->get_updated_html();
+
+                return $tags;
+            }
+
+            if ($block['blockName'] == 'zolo/navmenu-item') {
+                $tags = new \WP_HTML_Tag_Processor($block_content);
+                $tags->next_tag( array( 'tag_name' => 'li', 'class_name' => 'zolo-navmenu-item' ) );
+                if ($tags->get_attribute( 'data-id' ) == get_the_ID() && $tags->get_attribute( 'data-type' ) == get_post_type() ) {
+                    $tags->add_class('current-item');
+                }
                 $tags->get_updated_html();
 
                 return $tags;
