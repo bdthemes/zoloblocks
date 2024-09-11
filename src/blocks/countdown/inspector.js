@@ -58,6 +58,7 @@ import {
 } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
+import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -133,7 +134,8 @@ function Inspector(props) {
                                 options={applyFilters('zolo.countdown.presets', PRESETS)}
                                 onChange={(preset) => onPresetChange(preset)}
                             />
-                            <BaseControl id="countdate-1" label={__('Timer End Date-Time', 'zoloblocks')} className="zolo-flex-col-control">
+                            <div className="zolo-custom-heading">{__('Timer End Date-Time', 'zoloblocks')}</div>
+                            <BaseControl id="countdate-1" className="zolo-flex-col-control">
                                 <DateTimePicker
                                     id="countdate-1"
                                     currentDate={CountDate}
@@ -141,8 +143,9 @@ function Inspector(props) {
                                     is12Hour
                                 />
                             </BaseControl>
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
-                                label={__('Shows Years', 'zoloblocks')}
+                                label={__('Years', 'zoloblocks')}
                                 checked={itemsVisibility?.years}
                                 onChange={() =>
                                     setAttributes({
@@ -154,7 +157,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Shows Months', 'zoloblocks')}
+                                label={__('Months', 'zoloblocks')}
                                 checked={itemsVisibility?.months}
                                 onChange={() =>
                                     setAttributes({
@@ -166,7 +169,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Shows Weeks', 'zoloblocks')}
+                                label={__('Weeks', 'zoloblocks')}
                                 checked={itemsVisibility?.weeks}
                                 onChange={() =>
                                     setAttributes({
@@ -178,7 +181,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Shows Days', 'zoloblocks')}
+                                label={__('Days', 'zoloblocks')}
                                 checked={itemsVisibility?.days}
                                 onChange={() =>
                                     setAttributes({
@@ -190,7 +193,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Shows Hours', 'zoloblocks')}
+                                label={__('Hours', 'zoloblocks')}
                                 checked={itemsVisibility?.hours}
                                 onChange={() =>
                                     setAttributes({
@@ -202,7 +205,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Shows Minutes', 'zoloblocks')}
+                                label={__('Minutes', 'zoloblocks')}
                                 checked={itemsVisibility?.minutes}
                                 onChange={() =>
                                     setAttributes({
@@ -376,7 +379,7 @@ function Inspector(props) {
                                 />
                                 {toggleSeparator && (
                                     <IconicBtnGroup
-                                        label={__('Separator Type', 'zoloblocks')}
+                                        label={__('Type', 'zoloblocks')}
                                         value={countSeparator}
                                         onChange={(value) =>
                                             setAttributes({
@@ -423,19 +426,8 @@ function Inspector(props) {
                                     />
                                 )}
 
-                                <ResDimensionsControl
-                                    label={__('Box Radius', 'zoloblocks')}
-                                    controlName={COUNT_BOX_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                    max={100}
-                                />
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={COUNT_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-
+                                <CardDivider />
+                                <NormalBGControl requiredProps={requiredProps} controlName={COUNT_BG} noOverlay={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
                                     controlName={ALLBOX_PADDING}
@@ -443,6 +435,25 @@ function Inspector(props) {
                                     forBorderRadius={false}
                                     max={100}
                                 />
+                                <CardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={COUNT_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <BoxShadowControl
+                                    label={__('Box Shadow', 'zoloblocks')}
+                                    controlName={BOX_SHADOW}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={COUNT_BOX_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                    max={100}
+                                />
+                                <CardDivider />
                                 <ResDimensionsControl
                                     label={__('Space Between', 'zoloblocks')}
                                     controlName={COUNTBOX_MARGIN}
@@ -450,12 +461,6 @@ function Inspector(props) {
                                     forBorderRadius={false}
                                     max={100}
                                 />
-                                <BoxShadowControl
-                                    label={__('Box Shadow', 'zoloblocks')}
-                                    controlName={BOX_SHADOW}
-                                    requiredProps={requiredProps}
-                                />
-                                <NormalBGControl requiredProps={requiredProps} controlName={COUNT_BG} noOverlay={true} />
                             </>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Number', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -469,13 +474,8 @@ function Inspector(props) {
                                 typoPrefixConstant={DIGIT_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={COUNTNUM_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius')}
-                                controlName={COUNT_NUM_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
+                            <CardDivider />
+                            <NormalBGControl requiredProps={requiredProps} controlName={COUNT_NUM_BG} noOverlay={true} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={COUNTNUM_PADDING}
@@ -483,8 +483,14 @@ function Inspector(props) {
                                 forBorderRadius={false}
                                 max={100}
                             />
-
-                            <NormalBGControl requiredProps={requiredProps} controlName={COUNT_NUM_BG} noOverlay={true} />
+                            <CardDivider />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={COUNTNUM_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius')}
+                                controlName={COUNT_NUM_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ResAlignmentControl
@@ -493,6 +499,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={LABEL_POSITION_OPTION}
                             />
+                            <CardDivider />
                             <ColorControl
                                 label={__('Color', 'zoloblocks')}
                                 color={labelColor}
@@ -503,6 +510,16 @@ function Inspector(props) {
                                 typoPrefixConstant={LABEL_TYPO}
                                 requiredProps={requiredProps}
                             />
+                            <CardDivider />
+                            <NormalBGControl requiredProps={requiredProps} controlName={COUNT_LABEL_BG} noOverlay={true} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={COUNTLABEL_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                                max={100}
+                            />
+                            <CardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={COUNTLABEL_BORDER}
@@ -514,13 +531,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={COUNTLABEL_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                                max={100}
-                            />
+                            <CardDivider />
                             <ResDimensionsControl
                                 label={__('Space Between', 'zoloblocks')}
                                 controlName={COUNTLABEL_MARGIN}
@@ -528,7 +539,6 @@ function Inspector(props) {
                                 forBorderRadius={false}
                                 max={100}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={COUNT_LABEL_BG} noOverlay={true} />
                         </ZoloPanelBody>
 
                         {presets === 'zolo-countdown-style-2' ||
@@ -546,15 +556,16 @@ function Inspector(props) {
                                             typoPrefixConstant={SEPARATOR_TYPO}
                                             requiredProps={requiredProps}
                                         />
+                                        <div className="zolo-custom-heading">{__('Spacing', 'zoloblocks')}</div>
                                         <ResRangeControl
-                                            label={__(' Horizontal Spacing', 'zoloblocks')}
+                                            label={__(' Horizontal', 'zoloblocks')}
                                             controlName={SEPERATR_SPACING}
                                             requiredProps={requiredProps}
                                             max={100}
                                             min={-100}
                                         />
                                         <ResRangeControl
-                                            label={__('Vertical Spacing', 'zoloblocks')}
+                                            label={__('Vertical', 'zoloblocks')}
                                             controlName={SEPARATOR_TOP_SPACING}
                                             requiredProps={requiredProps}
                                             max={100}

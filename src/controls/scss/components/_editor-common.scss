@@ -128,6 +128,9 @@
             border: 0 !important;
             margin-top: -2px;
         }
+        .components-base-control__field {
+            padding: 0;
+        }
     }
     .components-datetime__date {
         .components-truncate {
