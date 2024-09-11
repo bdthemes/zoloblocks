@@ -25,21 +25,6 @@ import {
     NAV_MENU_ITEM_BOX_SHADOW,
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
-    DROPDOWN_WRAP_BG,
-    DROPDOWN_WRAP_BORDER,
-    DROPDOWN_WRAP_BORDER_RADIUS,
-    DROPDOWN_WRAP_PADDING,
-    DROPDOWN_WRAP_MARGIN,
-    DROPDOWN_WRAP_BOX_SHADOW,
-    DROPDOWN_WIDTH,
-    SUB_MENU_BG,
-    SUB_MENU_BORDER,
-    SUB_MENU_BORDER_RADIUS,
-    SUB_MENU_PADDING,
-    SUB_MENU_MARGIN,
-    SUB_MENU_BOX_SHADOW,
-    SUB_MENU_HOVER_BG,
-    SUB_MENU_ACTIVE_BG,
     MB_LOGO_WIDTH,
     MB_LOGO_HEIGHT,
     MB_LOGO_MARGIN,
@@ -112,21 +97,6 @@ const attributes = {
     ...generateBoxShadowAttributies(NAV_MENU_ITEM_BOX_SHADOW),
     ...generateNormalBGAttributes(NAV_MENU_ITEM_HOVER_BG),
     ...generateNormalBGAttributes(NAV_MENU_ITEM_ACTIVE_BG),
-    ...generateNormalBGAttributes(DROPDOWN_WRAP_BG),
-    ...generateBorderAttributies(DROPDOWN_WRAP_BORDER),
-    ...generateDimensionAttributes(DROPDOWN_WRAP_BORDER_RADIUS),
-    ...generateDimensionAttributes(DROPDOWN_WRAP_PADDING),
-    ...generateDimensionAttributes(DROPDOWN_WRAP_MARGIN),
-    ...generateBoxShadowAttributies(DROPDOWN_WRAP_BOX_SHADOW),
-    ...generateResRangeAttributies(DROPDOWN_WIDTH),
-    ...generateNormalBGAttributes(SUB_MENU_BG),
-    ...generateBorderAttributies(SUB_MENU_BORDER),
-    ...generateDimensionAttributes(SUB_MENU_BORDER_RADIUS),
-    ...generateDimensionAttributes(SUB_MENU_PADDING),
-    ...generateDimensionAttributes(SUB_MENU_MARGIN),
-    ...generateBoxShadowAttributies(SUB_MENU_BOX_SHADOW),
-    ...generateNormalBGAttributes(SUB_MENU_HOVER_BG),
-    ...generateNormalBGAttributes(SUB_MENU_ACTIVE_BG),
 
     // Mobile
     ...generateResRangeAttributies(MB_LOGO_WIDTH),
@@ -192,26 +162,6 @@ const attributes = {
     },
 
     navItemBorderActiveColor: {
-        type: 'string',
-    },
-
-    subMenuTextColor: {
-        type: 'string',
-    },
-
-    subMenuHoverTextColor: {
-        type: 'string',
-    },
-
-    subMenuActiveTextColor: {
-        type: 'string',
-    },
-
-    subMenuBorderHoverColor: {
-        type: 'string',
-    },
-
-    subMenuBorderActiveColor: {
         type: 'string',
     },
 

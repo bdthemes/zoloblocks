@@ -39,12 +39,6 @@
     .wp-block-zolo-navmenu-item {
         position: relative;
         width: auto;
-
-        .zolo-navmenu-submenu-wrapper {
-            .zolo-navmenu-link {
-                padding: 0 10px;
-            }
-        }
     }
 
     .zolo-nav-menu-sidebar-top {
@@ -61,7 +55,7 @@
         border: 1px solid rgba(0, 0, 0, 0.2);
         cursor: pointer;
         transition: all 0.4s ease-in;
-
+        color: currentColor;
         svg {
             width: 1em;
             height: 1em;
@@ -204,22 +198,6 @@
 }
 
 .block-editor-block-list__block {
-    .zolo-navmenu-menu {
-        .block-list-appender.block-list-appender {
-            position: relative;
-            margin: 0;
-            height: auto;
-            width: auto;
-
-            button {
-                color: var(--zoloblocks-brand-color) !important;
-                border: 2px solid var(--zoloblocks-brand-color) !important;
-                border-radius: 6px !important;
-                box-shadow: none !important;
-            }
-        }
-    }
-
     .zolo-navmenu-wrapper {
         &.is-menu-active {
             .zolo-navmenu-item {
@@ -239,6 +217,45 @@
 
 // editor styles
 .zolo-editor {
+    .block-editor-block-list__block {
+        .zolo-navmenu-menu {
+            .block-list-appender.block-list-appender {
+                position: relative;
+                margin: 0;
+                height: auto;
+                width: auto;
+
+                button {
+                    color: var(--zoloblocks-brand-color) !important;
+                    border: 2px solid var(--zoloblocks-brand-color) !important;
+                    border-radius: 6px !important;
+                    box-shadow: none !important;
+                }
+            }
+        }
+        .submenu-type-megamenu {
+            .zolo-megamenu-content {
+                .block-list-appender.block-list-appender {
+                    width: 100%;
+                    margin: 10px;
+                    box-sizing: border-box;
+                    .block-editor-button-block-appender {
+                        height: auto;
+                    }
+                }
+                .block-editor-block-list__layout {
+                    background-color: #fff;
+                }
+            }
+            .zolo-nav-menu-item-appender-button {
+                width: 100%;
+                height: 50px;
+                box-sizing: border-box;
+                background: transparent;
+            }
+        }
+    }
+
     .zolo-navmenu-variation-picker {
         .components-placeholder {
             border: 1px solid #bebebe;
@@ -260,7 +277,6 @@
 
         .block-editor-block-variation-picker__variations {
             gap: 20px;
-
             li {
                 border: 1px solid #e5e5e5;
                 padding: 20px;
@@ -277,10 +293,11 @@
                     outline: 1px solid var(--zoloblocks-brand-color);
                 }
 
-                .block-editor-block-variation-picker__variation{
+                .block-editor-block-variation-picker__variation {
                     position: absolute;
                     width: 100%;
                     height: 100%;
+                    z-index: 99;
                 }
             }
         }
@@ -303,13 +320,6 @@
             width: 100%;
             text-align: center;
             text-wrap: nowrap;
-        }
-    }
-
-    .zolo-megamenu-content {
-        .block-list-appender.block-list-appender {
-            width: 100%;
-            margin: 10px;
         }
     }
 }

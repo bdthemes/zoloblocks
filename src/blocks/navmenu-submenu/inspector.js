@@ -125,18 +125,8 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
+                                        <CardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={SUB_MENU_BG} noMainBGImg={false} />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={SUB_MENU_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={SUB_MENU_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={SUB_MENU_PADDING}
@@ -150,8 +140,19 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={SUB_MENU_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
                                         <BoxShadowControl controlName={SUB_MENU_BOX_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={SUB_MENU_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
                                     </>
                                 }
                                 hoverComponents={

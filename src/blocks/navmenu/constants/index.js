@@ -22,24 +22,6 @@ export const NAV_MENU_ITEM_BOX_SHADOW = 'navItemBoxShadow';
 export const NAV_MENU_ITEM_HOVER_BG = 'navItemHoverBg';
 export const NAV_MENU_ITEM_ACTIVE_BG = 'navItemHoverBg';
 
-export const DROPDOWN_WRAP_BOX_SHADOW = 'dropdownWrapBoxShadow';
-export const DROPDOWN_WRAP_BG = 'dropdownWrapBg';
-export const DROPDOWN_WRAP_BORDER = 'dropdownWrapBorder';
-export const DROPDOWN_WRAP_BORDER_RADIUS = 'dropdownWrapBorderRadius';
-export const DROPDOWN_WRAP_PADDING = 'dropdownWrapPadding';
-export const DROPDOWN_WRAP_MARGIN = 'dropdownWrapMargin';
-export const DROPDOWN_WIDTH = 'dropdownWidth';
-
-export const SUB_MENU_BG = 'subMenuBg';
-export const SUB_MENU_BORDER = 'subMenuBorder';
-export const SUB_MENU_BORDER_RADIUS = 'subMenuBorderRadius';
-export const SUB_MENU_PADDING = 'subMenuPadding';
-export const SUB_MENU_MARGIN = 'subMenuMargin';
-export const SUB_MENU_BOX_SHADOW = 'subMenuBoxShadow';
-
-export const SUB_MENU_HOVER_BG = 'subMenuHoverBg';
-export const SUB_MENU_ACTIVE_BG = 'subMenuActiveBg';
-
 export const MOBILE_MENU_WIDTH = 'mobileMenuWidth';
 export const MOBILE_MENU_WRAP_BG = 'mobileMenuWrapBg';
 export const MOBILE_MENU_WRAP_BORDER = 'mobileMenuWrapBorder';

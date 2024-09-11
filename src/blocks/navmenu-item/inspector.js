@@ -101,7 +101,7 @@ const Inspector = (props) => {
                             )}
                         </ZoloPanelBody>
                         {addSubmenu && (
-                            <ZoloPanelBody title={__('Submenu Indicator', 'zoloblocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props}>
                                 <ZoloIconPicker
                                     label={__('Select', 'zoloblocks')}
                                     value={subMenuIndicator}
@@ -119,7 +119,7 @@ const Inspector = (props) => {
                     <>
                         {addSubmenu && (
                             <>
-                                <ZoloPanelBody title={__('Submenu Indicator', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                     <TabPanelControl
                                         options={TAB_STATES}
                                         normalComponents={

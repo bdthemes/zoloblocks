@@ -15,7 +15,8 @@
                 justify-content: center;
                 padding: 5px;
                 cursor: pointer;
-                z-index: 9999;
+                z-index: 99;
+                color: currentColor;
                 svg {
                     color: inherit;
                     fill: currentColor;
@@ -26,7 +27,11 @@
                 }
             }
         }
-
+        &.current-item {
+            a {
+                color: var(--zoloblocks-brand-color);
+            }
+        }
         .zolo-navmenu-submenu-wrapper {
             position: absolute;
             width: 100%;
@@ -55,7 +60,6 @@
             pointer-events: all;
             height: auto;
         }
-
         &.zolo-navmenu-submenu-open > .zolo-navmenu-submenu-wrapper {
             visibility: visible;
             opacity: 1;
@@ -65,7 +69,6 @@
             top: unset;
             left: unset;
         }
-
         &.has-megamenu {
             position: static;
         }

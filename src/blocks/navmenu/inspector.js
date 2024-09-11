@@ -45,21 +45,6 @@ import {
     NAV_MENU_ITEM_PADDING,
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
-    DROPDOWN_WRAP_BG,
-    DROPDOWN_WRAP_BORDER,
-    DROPDOWN_WRAP_BORDER_RADIUS,
-    DROPDOWN_WRAP_PADDING,
-    DROPDOWN_WRAP_MARGIN,
-    DROPDOWN_WRAP_BOX_SHADOW,
-    SUB_MENU_BG,
-    SUB_MENU_BORDER,
-    SUB_MENU_BORDER_RADIUS,
-    SUB_MENU_PADDING,
-    SUB_MENU_MARGIN,
-    SUB_MENU_BOX_SHADOW,
-    SUB_MENU_HOVER_BG,
-    SUB_MENU_ACTIVE_BG,
-    DROPDOWN_WIDTH,
     TAB_STATES,
     TAB_MOBILE,
     MB_LOGO_PADDING,
@@ -101,11 +86,6 @@ const Inspector = (props) => {
         navItemTextActiveColor,
         navItemBorderHoverColor,
         navItemBorderActiveColor,
-        subMenuTextColor,
-        subMenuTextHoverColor,
-        subMenuTextActiveColor,
-        subMenuBorderHoverColor,
-        subMenuBorderActiveColor,
         humburgerMenuColor,
         humburgerMenuHoverColor,
         humburgerMenuBorderHoverColor,
@@ -222,24 +202,25 @@ const Inspector = (props) => {
                     <>
                         <ZoloPanelBody title={__('Menu Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <NormalBGControl requiredProps={requiredProps} controlName={NAV_MENU_WRAP_BG} noMainBGImg={false} />
-                            <BorderControl
-                                label={__('Border', 'zoloblocks')}
-                                controlName={NAV_MENU_WRAP_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={NAV_MENU_WRAP_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={NAV_MENU_WRAP_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <CardDivider />
+                            <BorderControl
+                                label={__('Border', 'zoloblocks')}
+                                controlName={NAV_MENU_WRAP_BORDER}
+                                requiredProps={requiredProps}
+                            />
                             <BoxShadowControl controlName={NAV_MENU_WRAP_BOX_SHADOW} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={NAV_MENU_WRAP_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Menu Items', 'zoloblocks')} panelProps={props}>
@@ -263,26 +244,27 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
+                                        <CardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={NAV_MENU_ITEM_BG} noMainBGImg={false} />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={NAV_MENU_ITEM_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={NAV_MENU_ITEM_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={NAV_MENU_ITEM_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={NAV_MENU_ITEM_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
                                         <BoxShadowControl controlName={NAV_MENU_ITEM_PADDING} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={NAV_MENU_ITEM_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
                                     </>
                                 }
                                 hoverComponents={
@@ -389,7 +371,7 @@ const Inspector = (props) => {
                                             max={300}
                                             step={1}
                                         />
-
+                                        <CardDivider />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={MB_LOGO_PADDING}
@@ -416,28 +398,18 @@ const Inspector = (props) => {
                                             }
                                         />
                                         <ResRangeControl
-                                            label={__('Icon Size', 'zoloblocks')}
+                                            label={__('Size', 'zoloblocks')}
                                             controlName={HUMBURGER_MENU_ICON_SIZE}
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={100}
                                             step={1}
                                         />
+                                        <CardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={HUMBURGER_MENU_BG}
                                             noMainBGImg={false}
-                                        />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={HUMBURGER_MENU_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={HUMBURGER_MENU_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -451,7 +423,19 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
                                         <BoxShadowControl controlName={HUMBURGER_MENU_BOX_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={HUMBURGER_MENU_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
                                         <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
@@ -490,25 +474,15 @@ const Inspector = (props) => {
                                             }
                                         />
                                         <ResRangeControl
-                                            label={__('Icon Size', 'zoloblocks')}
+                                            label={__('Size', 'zoloblocks')}
                                             controlName={CLOSE_ICON_SIZE}
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={100}
                                             step={1}
                                         />
+                                        <CardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={false} />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={CLOSE_ICON_PADDING}
@@ -521,7 +495,20 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
                                         <BoxShadowControl controlName={CLOSE_ICON_BOX_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={CLOSE_ICON_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+
                                         <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}

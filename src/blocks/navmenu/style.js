@@ -31,21 +31,6 @@ import {
     NAV_MENU_ITEM_BOX_SHADOW,
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
-    DROPDOWN_WRAP_BG,
-    DROPDOWN_WRAP_BORDER,
-    DROPDOWN_WRAP_BORDER_RADIUS,
-    DROPDOWN_WRAP_PADDING,
-    DROPDOWN_WRAP_MARGIN,
-    DROPDOWN_WRAP_BOX_SHADOW,
-    DROPDOWN_WIDTH,
-    SUB_MENU_BG,
-    SUB_MENU_BORDER,
-    SUB_MENU_BORDER_RADIUS,
-    SUB_MENU_PADDING,
-    SUB_MENU_MARGIN,
-    SUB_MENU_BOX_SHADOW,
-    SUB_MENU_HOVER_BG,
-    SUB_MENU_ACTIVE_BG,
     MB_LOGO_WIDTH,
     MB_LOGO_HEIGHT,
     MB_LOGO_MARGIN,
@@ -85,11 +70,6 @@ export default function Style({ props }) {
         navItemTextActiveColor,
         navItemBorderHoverColor,
         navItemBorderActiveColor,
-        subMenuTextColor,
-        subMenuTextHoverColor,
-        subMenuTextActiveColor,
-        subMenuBorderHoverColor,
-        subMenuBorderActiveColor,
         uniqueId,
         humburgerMenuColor,
         humburgerMenuHoverColor,
@@ -250,183 +230,6 @@ export default function Style({ props }) {
         attributes,
         noMainBGImg: false,
     });
-
-    // DROPDOWN_WRAP_BG
-
-    const {
-        backgroundStylesDesktop: dropdownWrapBGDesk,
-        backgroundStylesTab: dropdownWrapBGTab,
-        backgroundStylesMobile: dropdownWrapBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: DROPDOWN_WRAP_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // DROPDOWN_WRAP_BORDER
-
-    const {
-        desktopBorderStyle: dropdownWrapBorderDesk,
-        tabBorderStyle: dropdownWrapBorderTab,
-        mobBorderStyle: dropdownWrapBorderMob,
-    } = generateBorderStyle({
-        controlName: DROPDOWN_WRAP_BORDER,
-        attributes,
-    });
-
-    // DROPDOWN_WRAP_BORDER_RADIUS
-    const {
-        dimensionStylesDesktop: dropdownWrapBorderRadiusDesk,
-        dimensionStylesTab: dropdownWrapBorderRadiusTab,
-        dimensionStylesMobile: dropdownWrapBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: DROPDOWN_WRAP_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // DROPDOWN_WRAP_PADDING
-
-    const {
-        dimensionStylesDesktop: dropdownWrapPaddingDesk,
-        dimensionStylesTab: dropdownWrapPaddingTab,
-        dimensionStylesMobile: dropdownWrapPaddingMob,
-    } = generateDimensionStyle({
-        controlName: DROPDOWN_WRAP_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    // DROPDOWN_WRAP_MARGIN
-
-    const {
-        dimensionStylesDesktop: dropdownWrapMarginDesk,
-        dimensionStylesTab: dropdownWrapMarginTab,
-        dimensionStylesMobile: dropdownWrapMarginMob,
-    } = generateDimensionStyle({
-        controlName: DROPDOWN_WRAP_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // DROPDOWN_WRAP_BOX_SHADOW
-
-    const { boxShadowStyle: dropdownWrapBoxShadowStyle } = generateBoxShadowStyles({
-        controlName: DROPDOWN_WRAP_BOX_SHADOW,
-        attributes,
-    });
-
-    // DROPDOWN_WIDTH
-
-    const {
-        desktopRangeStyle: dropdownSizeDesk,
-        tabRangeStyle: dropdownSizeTab,
-        mobRangeStyle: dropdownSizeMob,
-    } = generateResRangeStyle({
-        controlName: DROPDOWN_WIDTH,
-        property: 'min-width',
-        attributes,
-    });
-
-    // Generate Typography
-    const {
-        typoStylesDesktop: subMenuTypoDesktop,
-        typoStylesTab: subMenuTypoTab,
-        typoStylesMobile: subMenuTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: SUB_MENU_TYPOGRAPHY,
-        defaultFontSize: '',
-        attributes,
-    });
-
-    // SUB_MENU_BG
-
-    const {
-        backgroundStylesDesktop: subMenuBGDesk,
-        backgroundStylesTab: subMenuBGTab,
-        backgroundStylesMobile: subMenuBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: SUB_MENU_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // SUB_MENU_BORDER
-
-    const {
-        desktopBorderStyle: subMenuBorderDesk,
-        tabBorderStyle: subMenuBorderTab,
-        mobBorderStyle: subMenuBorderMob,
-    } = generateBorderStyle({
-        controlName: SUB_MENU_BORDER,
-        attributes,
-    });
-
-    // SUB_MENU_BORDER_RADIUS
-    const {
-        dimensionStylesDesktop: subMenuBorderRadiusDesk,
-        dimensionStylesTab: subMenuBorderRadiusTab,
-        dimensionStylesMobile: subMenuBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: SUB_MENU_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // SUB_MENU_PADDING
-
-    const {
-        dimensionStylesDesktop: subMenuPaddingDesk,
-        dimensionStylesTab: subMenuPaddingTab,
-        dimensionStylesMobile: subMenuPaddingMob,
-    } = generateDimensionStyle({
-        controlName: SUB_MENU_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    // SUB_MENU_MARGIN
-
-    const {
-        dimensionStylesDesktop: subMenuMarginDesk,
-        dimensionStylesTab: subMenuMarginTab,
-        dimensionStylesMobile: subMenuMarginMob,
-    } = generateDimensionStyle({
-        controlName: SUB_MENU_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // SUB_MENU_BOX_SHADOW
-
-    const { boxShadowStyle: subMenuBoxShadowStyle } = generateBoxShadowStyles({
-        controlName: SUB_MENU_BOX_SHADOW,
-        attributes,
-    });
-
-    // SUB_MENU_HOVER_BG
-    const {
-        backgroundStylesDesktop: subMenuHoverBGDesk,
-        backgroundStylesTab: subMenuHoverBGTab,
-        backgroundStylesMobile: subMenuHoverBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: SUB_MENU_HOVER_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // SUB_MENU_ACTIVE_BG
-
-    const {
-        backgroundStylesDesktop: subMenuActiveBGDesk,
-        backgroundStylesTab: subMenuActiveBGTab,
-        backgroundStylesMobile: subMenuActiveBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: SUB_MENU_ACTIVE_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
     // MOBILE LOGO
     const {
         desktopRangeStyle: mbLogoWidthDesk,
@@ -753,7 +556,7 @@ export default function Style({ props }) {
             color: ${navItemTextHoverColor ? navItemTextHoverColor : ''};
             border-color: ${navItemBorderHoverColor ? navItemBorderHoverColor : ''};
         }
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.active a{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.current-item a{
             ${itemActiveBGDesk}
             color: ${navItemTextActiveColor ? navItemTextActiveColor : ''};
             border-color: ${navItemBorderActiveColor ? navItemBorderActiveColor : ''};
@@ -761,42 +564,6 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
             ${btnDeskAlign}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-item .zolo-navmenu-submenu-wrapper{
-            ${dropdownWrapBGDesk}
-            ${dropdownWrapBorderDesk}
-            ${dropdownWrapBorderRadiusDesk}
-            ${dropdownWrapPaddingDesk}
-            ${dropdownWrapMarginDesk}
-            ${dropdownWrapBoxShadowStyle}
-            ${dropdownSizeDesk}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item {
-            ${subMenuMarginDesk}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item a{
-            color: ${subMenuTextColor ? subMenuTextColor : ''};
-            ${subMenuTypoDesktop}
-            ${subMenuBGDesk}
-            ${subMenuBorderDesk}
-            ${subMenuBorderRadiusDesk}
-            ${subMenuPaddingDesk}
-            ${subMenuBoxShadowStyle}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item a:hover{
-            color: ${subMenuTextHoverColor ? subMenuTextHoverColor : ''};
-            ${subMenuHoverBGDesk}
-            border-color: ${subMenuBorderHoverColor ? subMenuBorderHoverColor : ''};
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
-            color: ${subMenuTextActiveColor ? subMenuTextActiveColor : ''};
-            ${subMenuActiveBGDesk}
-            border-color: ${subMenuBorderActiveColor ? subMenuBorderActiveColor : ''};
         }
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-logo img{
@@ -869,41 +636,12 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a:hover{
             ${itemHoverBGTab}
         }
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.active a{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.current-item a{
             ${itemActiveBGTab}
         }
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
             ${btnTabAlign}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-item .zolo-navmenu-submenu-wrapper{
-            ${dropdownWrapBGTab}
-            ${dropdownWrapBorderTab}
-            ${dropdownWrapBorderRadiusTab}
-            ${dropdownWrapPaddingTab}
-            ${dropdownWrapMarginTab}
-            ${dropdownSizeTab}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item{
-            ${subMenuMarginTab}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item a{
-            ${subMenuTypoTab}
-            ${subMenuBGTab}
-            ${subMenuBorderTab}
-            ${subMenuBorderRadiusTab}
-            ${subMenuPaddingTab}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item a:hover{
-            ${subMenuHoverBGTab}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
-            ${subMenuActiveBGTab}
         }
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-logo img{
@@ -931,6 +669,14 @@ export default function Style({ props }) {
             ${closeIconMarginTab}
             ${closeIconBoxShadowStyle}
         }
+
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.zolo-nav-menu-open {
+            ${mobileMenuWidthTab}
+            ${mobileMenuWrapBGTab}
+            ${mobileMenuWrapBorderTab}
+            ${mobileMenuWrapBorderRadiusTab}
+            ${mobileMenuWrapPaddingTab}
+        }
        
   	`;
     const mobileAllStyle = `
@@ -954,7 +700,7 @@ export default function Style({ props }) {
             ${itemHoverBGMob}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.active a{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.current-item a{
             ${itemActiveBGMob}
         }
 
@@ -962,35 +708,6 @@ export default function Style({ props }) {
             ${btnMobAlign}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-item .zolo-navmenu-submenu-wrapper{
-            ${dropdownWrapBGMob}
-            ${dropdownWrapBorderMob}
-            ${dropdownWrapBorderRadiusMob}
-            ${dropdownWrapPaddingMob}
-            ${dropdownWrapMarginMob}
-            ${dropdownSizeMob}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item {
-            ${subMenuMarginMob}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item a{
-            ${subMenuTypoMob}
-            ${subMenuBGMob}
-            ${subMenuBorderMob}
-            ${subMenuBorderRadiusMob}
-            ${subMenuPaddingMob}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item a:hover{
-            ${subMenuHoverBGMob}
-        }
-
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .zolo-navmenu-item.active a{
-            ${subMenuActiveBGMob}
-        }
-        
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.is-menu-active .zolo-nav-menu-sidebar-top .zolo-nav-menu-sidebar-logo img{
             ${mbLogoWidthMob}
             ${mbLogoMarginMob}
@@ -1015,6 +732,14 @@ export default function Style({ props }) {
             ${closeIconPaddingMob}
             ${closeIconMarginMob}
             ${closeIconBoxShadowStyle}
+        }
+        
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.zolo-nav-menu-open {
+            ${mobileMenuWidthMob}
+            ${mobileMenuWrapBGMob}
+            ${mobileMenuWrapBorderMob}
+            ${mobileMenuWrapBorderRadiusMob}
+            ${mobileMenuWrapPaddingMob}
         }
   	`;
 

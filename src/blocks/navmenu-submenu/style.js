@@ -236,6 +236,10 @@ export default function Style({ props }) {
             ${dropdownSizeDesk}
         }
 
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-item {
+            ${subMenuMarginDesk}
+        }
+
         .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-link {
             color: ${subMenuTextColor ? subMenuTextColor : ''};
             ${subMenuTypoDesktop}
@@ -250,10 +254,9 @@ export default function Style({ props }) {
              color: ${subMenuTextHoverColor ? subMenuTextHoverColor : ''};
             ${subMenuHoverBGDesk}
             border-color: ${subMenuBorderHoverColor ? subMenuBorderHoverColor : ''};
-
         }
 
-        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-link.active {
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-item.current-item .zolo-navmenu-link {
             color: ${subMenuTextActiveColor ? subMenuTextActiveColor : ''};
             ${subMenuActiveBGDesk}
             border-color: ${subMenuBorderActiveColor ? subMenuBorderActiveColor : ''};
@@ -271,6 +274,10 @@ export default function Style({ props }) {
             ${dropdownSizeTab}
         }
 
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-item {
+            ${subMenuMarginTab}
+        }
+
         .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-link {
             ${subMenuTypoTab}
             ${subMenuBGTab}
@@ -283,7 +290,7 @@ export default function Style({ props }) {
             ${subMenuHoverBGTab}
         }
 
-        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-link.active {
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-item.current-item .zolo-navmenu-link  {
             ${subMenuActiveBGTab}
         }
 
@@ -299,6 +306,10 @@ export default function Style({ props }) {
             ${dropdownSizeMob}
         }
 
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-item {
+            ${subMenuMarginMob}
+        }
+
         .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-link {
             ${subMenuTypoMob}
             ${subMenuBGMob}
@@ -311,7 +322,7 @@ export default function Style({ props }) {
             ${subMenuHoverBGMob}
         }
 
-        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-link.active {
+        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-navmenu-submenu .zolo-navmenu-item.current-item .zolo-navmenu-link {
             ${subMenuActiveBGMob}
         }
   	`;
