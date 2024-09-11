@@ -57,7 +57,59 @@ if (! class_exists('Settings')) {
                     },
                 ] 
             ); 
-            
+
+            // register_setting(
+            //     'zolo_blocks_settings_group',
+            //     'zolo_blocks_settings',
+            //     [
+            //         'type'              => 'array',
+            //         'default'           => $this::block_list(),
+            //         'sanitize_callback' => NULL,
+            //         'show_in_rest'      => [
+            //             'schema' => [
+            //                 'type'  => 'array',
+            //                 'items' => [
+            //                     'type'       => 'object',
+            //                     'properties' => [
+            //                         'name'       => ['type' => 'string'],
+            //                         'categories' => [
+            //                             'type'  => 'array',
+            //                             'items' => ['type' => 'string'],
+            //                         ],
+            //                         'status'     => ['type' => 'boolean'],
+            //                         'title'      => ['type' => 'string'],
+            //                         'is_child'   => ['type' => 'boolean']
+            //                     ],
+            //                 ],
+            //             ],
+            //         ],
+            //     ]
+            // );
+            // register_setting(
+            //     'zolo_blocks_settings_group',
+            //     'zolo_extensions_settings',
+            //     [
+            //         'type'              => 'array',
+            //         'default'           => $this::extensions_list(),
+            //         'sanitize_callback' => NULL,
+            //         'show_in_rest'      => [
+            //             'schema' => [
+            //                 'type'  => 'array',
+            //                 'items' => [
+            //                     'type'       => 'object',
+            //                     'properties' => [
+            //                         'name'       => ['type' => 'string'],
+            //                         'categories' => [
+            //                             'type'  => 'array',
+            //                             'items' => ['type' => 'string'],
+            //                         ],
+            //                         'status'     => ['type' => 'boolean'],
+            //                     ],
+            //                 ],
+            //             ],
+            //         ],
+            //     ]
+            // );
             // favorite templates
             register_setting(
                 'zolo_blocks_settings_group',
@@ -452,7 +504,7 @@ if (! class_exists('Settings')) {
          */
         public function save_default_blocks() {
             $existing_blocks = get_option('zolo_blocks_settings', []);
-            $new_blocks = ZoloHelpers::get_zolo_blocks();
+            $all_blocks = ZoloHelpers::allowedFormats();
         
             // Temporary array to store the merged blocks
             $merged_blocks = [];

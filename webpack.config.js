@@ -28,8 +28,8 @@ module.exports = {
                 type: 'window',
             },
         },
-        'blocks-icons/index': {
-            import: ['./src/blocks-icons/index.js'],
+        'zolo-icons/index': {
+            import: ['./src/zolo-icons/index.js'],
             library: {
                 name: 'zoloIcons',
                 type: 'window',
