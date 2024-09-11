@@ -1,5 +1,7 @@
 <?php
+
 namespace Zolo\Classes;
+
 use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 use Zolo\Admin\Author;
@@ -9,7 +11,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if ( ! class_exists( 'ZoloEnqueues' ) ) {
+if (! class_exists('ZoloEnqueues')) {
 
     /**
      * The ZoloEnqueues class handles enqueuing scripts and styles for the Zolo theme.
@@ -360,7 +362,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
             }
 
             // import shape divider
-            if($extensions['shape-divider'] === true) {
+            if ($extensions['shape-divider'] === true) {
                 $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
                 if (file_exists($import_shape_divider_file)) {
                     $script_dependecy = include $import_shape_divider_file;
