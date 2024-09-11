@@ -390,6 +390,13 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/team-grid',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'team-child'     => [
+        'name'       => 'team-child',
+        'title'      => __('Team Grid', 'zolo-blocks'),
+        'categories' => ['list'],
+        'status'     => true,
+        'is_child'   => true,
+    ],
     'text-field'         => [
         'name'       => 'text-field',
         'title'      => __('Text Field', 'zolo-blocks'),
