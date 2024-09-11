@@ -103,21 +103,45 @@ const attributes = {
   postQuery: {
     type: 'object',
   },
+  showFilterTaxonomy: {
+    type: 'boolean',
+    default: false
+  },
+  postCategory: {
+    type: 'array',
+    default: []
+  },
+  postTaxonomy: {
+    type: 'string',
+    default: 'category'
+  },
+  taxonomyName: {
+    type: 'string',
+    default: 'Category'
+  },
+  tabCatId: {
+    type: 'array',
+    default: []
+  },
+  pageTotal:{
+    type:'number',
+    default: 1
+  },
   paginationType: {
     type: 'string',
     default: 'normal'
   },
   previousText: {
-    type:'string',
-    default:'Prev'
+    type: 'string',
+    default: 'Prev'
   },
-  nextText:{
-    type:'string',
-    default:'Next'
+  nextText: {
+    type: 'string',
+    default: 'Next'
   },
-  loadMoreText:{
-    type:'string',
-    default:'Load More'
+  loadMoreText: {
+    type: 'string',
+    default: 'Load More'
   },
   authorPrefix: {
     type: 'string',

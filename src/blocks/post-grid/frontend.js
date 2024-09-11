@@ -1,3 +1,19 @@
+//filter script
+document.addEventListener('DOMContentLoaded', () => {
+
+  const postFilterContentCache = new Map();
+
+  const handleFilterClick = async (event) => {
+
+  }
+
+  document.querySelectorAll('.wp-block-zolo-post-grid .zolo-post-filter-taxonomy a').forEach(anchor => {
+    anchor.addEventListener('click', handleFilterClick);
+  });
+
+});
+
+//pagination script.
 document.addEventListener('DOMContentLoaded', () => {
   // Declare globally
   const pageContentCache = new Map();

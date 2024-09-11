@@ -56,7 +56,7 @@ import {
   PAG_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
-import {DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE,PAGINARION_TYPE} from '../../../src/global/constants';
+import {DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, PAGINARION_TYPE} from '../../../src/global/constants';
 import {applyFilters} from '@wordpress/hooks';
 
 const {
@@ -77,6 +77,8 @@ const {
   ResAlignmentControl,
   ZoloPanelBody,
   ResGapControl,
+  getTaxonomies,
+  Select2AjaxControl
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -131,6 +133,12 @@ function Inspector(props) {
     previousText,
     nextText,
     loadMoreText,
+    //for filter
+    showFilterTaxonomy,
+    postCategory,
+    postTaxonomy,
+    taxonomyName
+
   } = attributes;
 
   const requiredProps = {
@@ -187,6 +195,16 @@ function Inspector(props) {
         break;
     }
   };
+
+//for only taxonomy filter
+  const zoloTaxonomies = getTaxonomies(postQuery?.postType || 'post', zoloParams.get_taxonomies);
+  let zoloTaxonomiesFilter = [
+    {
+      value: '',
+      label: __('Select Type', 'zoloblocks-pro'),
+    },
+    ...zoloTaxonomies,
+  ];
 
   return (
     <InspectorControls key="controls">
@@ -249,7 +267,7 @@ function Inspector(props) {
                 checked={postQuery?.showPagination}
                 onChange={(showPagination) =>
                   setAttributes({
-                    postQuery: {...postQuery, showPagination},
+                    postQuery: {...postQuery, showPagination}
                   })
                 }
               />
@@ -346,7 +364,7 @@ function Inspector(props) {
                   onChange={(paginationType) => setAttributes({paginationType})}
                 />
 
-                {(paginationType==='number'||paginationType==='normal') && (
+                {(paginationType === 'number' || paginationType === 'normal') && (
                   <>
                     <TextControl
                       label={__('Previous Text', 'zoloblocks')}
@@ -359,9 +377,9 @@ function Inspector(props) {
                       onChange={(nextText) => setAttributes({nextText})}
                     />
                   </>
-                ) }
+                )}
 
-                {paginationType==='button' &&(
+                {paginationType === 'button' && (
                   <TextControl
                     label={__('Load More Text', 'zoloblocks')}
                     value={loadMoreText}
@@ -394,6 +412,48 @@ function Inspector(props) {
             </ZoloPanelBody>
             <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props}>
               <QueryControl attributes={attributes} setAttributes={setAttributes}/>
+            </ZoloPanelBody>
+
+            <ZoloPanelBody title={__('Filter By Taxonomy', 'zoloblocks')} panelProps={props}>
+              <ToggleControl
+                label={__('Show Filter By Taxonomy', 'zoloblocks')}
+                checked={showFilterTaxonomy}
+                onChange={(showFilterTaxonomy) => setAttributes({showFilterTaxonomy})
+                }
+              />
+
+              {showFilterTaxonomy && (
+                <>
+                  <SelectControl
+                    label={__('Select Taxonomy For Filter', 'zoloblocks-pro')}
+                    value={postTaxonomy}
+                    onChange={(value) => {
+                      const tName = zoloTaxonomiesFilter.find((option) => option.value === value);
+                      setAttributes({postTaxonomy: value});
+                      setAttributes({taxonomyName: tName.label});
+                      if (postTaxonomy !== value) {
+                        setAttributes({postCategory: []});
+                      }
+                    }}
+                    options={zoloTaxonomiesFilter}
+                  />
+
+                  {postTaxonomy && (
+                    <div className="zolo-flex-col-control">
+                      <Select2AjaxControl
+                        label={__(`Select ${taxonomyName}`, 'zoloblocks-pro')}
+                        placeholder={__('Search...', 'zoloblocks-pro')}
+                        sourceName="taxonomy"
+                        sourceType={postTaxonomy}
+                        isMulti={true}
+                        value={postCategory || []}
+                        onChange={(postCategory) => setAttributes({postCategory})}
+                      />
+                    </div>
+                  )}
+                </>
+              )}
+
             </ZoloPanelBody>
           </>
         }

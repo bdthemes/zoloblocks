@@ -35,6 +35,41 @@ class ZoloAJAX {
         add_action('wp_ajax_zolo_author_ajax', [$this, 'get_authors']);
         add_action('wp_ajax_zolo_comments_ajax', [$this, 'get_comments']);
         add_action('wp_ajax_zolo_ajax_post_pagination', [$this, 'zolo_post_pagination']);
+        add_action( 'wp_ajax_zolo_get_cat_terms', [ $this, 'get_cat_terms' ] );
+    }
+
+    /**
+     * Get cat terms
+     *
+     * @return void
+     */
+    public function get_cat_terms() {
+        if ( ! wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
+            wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks-pro' ) );
+        }
+        $cat_ids_json = sanitize_text_field( wp_unslash( $_POST['catId'] ?? [] ) );
+        $cat_ids      = json_decode( $cat_ids_json, true );
+        $taxonomyName = sanitize_text_field( wp_unslash( $_POST['postTaxonomy'] ?? 'cateogry' ) );
+
+        // Validate and sanitize the input.
+        if ( ! is_array( $cat_ids ) ) {
+            $cat_ids = [];
+        }
+        $cat_ids = array_map( 'intval', $cat_ids );
+        $terms   = get_terms(
+            [
+                'taxonomy' => $taxonomyName,
+                'include'  => $cat_ids ,
+                'orderby'  => 'include',
+            ]
+        );
+        if ( ! empty( $terms ) ) {
+            wp_send_json(
+                [ 'results' => $terms ]
+            );
+        } else {
+            wp_send_json_error( 'no category terms found' );
+        }
     }
 
     /**

@@ -547,7 +547,7 @@ function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
-      .${uniqueId}.zolo-block.zolo-post-grid-wrap{
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
         grid-template-columns:repeat(${columnCountDesk}, 1fr);
         ${colGapDesk}
       }
@@ -782,7 +782,7 @@ function Style({ props }) {
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.zolo-block.zolo-post-grid-wrap{
+    .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
       grid-template-columns:repeat(${columnCountTab}, 1fr);
       ${colGapTab}
     }
@@ -915,7 +915,7 @@ function Style({ props }) {
   `;
 
     const mobileAllStyle = `
-      .${uniqueId}.zolo-block.zolo-post-grid-wrap{
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
         grid-template-columns:repeat(${columnCountMob}, 1fr);
         ${colGapMob}
       }
