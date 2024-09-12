@@ -275,10 +275,10 @@
 }
 
 .zoloblocks-grid .zoloblocks-inner-grid {
-    display: flex;
-    /* grid-template-columns: repeat(1, 1fr); */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 15px;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
 }
 
 .zolo-single-block {
@@ -340,6 +340,11 @@
     &.upcoming {
         background-color: transparent;
         pointer-events: none;
+        &.ispro {
+            .block-pro {
+                display: none;
+            }
+        }
     }
 }
 
@@ -347,10 +352,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin: 15px;
-    padding: 10px;
+    margin: 25px;
+    padding: 15px;
+    font-size: 12px;
     line-height: 1;
-    font-size: 10px;
     text-transform: uppercase;
     font-weight: 700;
     border-radius: 6px;
@@ -365,11 +370,21 @@
     pointer-events: none;
 }
 
+.zolo-single-block {
+    &.upcoming {
+        .zolo-badge-upcoming {
+            margin: 15px;
+            padding: 10px;
+            font-size: 10px;
+        }
+    }
+}
+
 .zolo-settings-option-item.upcoming {
     position: relative;
     .zolo-badge-upcoming {
         margin-top: 22px;
-        font-size: 14px;
+        font-size: 12px;
         padding: 16px 20px;
     }
 }
@@ -1041,6 +1056,9 @@ input.zoloblocks-search {
     .zoloblocks-actions-btn {
         display: flex;
     }
+    .zoloblocks-grid .zoloblocks-inner-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (min-width: 1024px) {
@@ -1061,5 +1079,11 @@ input.zoloblocks-search {
     }
     input.zoloblocks-search {
         padding: 13px 13px 13px 38px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .zoloblocks-grid .zoloblocks-inner-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
