@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 const SettingBox = ({ title = 'Option title', description = '', children, released = true }) => {
     return (
         <div className={`zolo-settings-option-item ${released ? '' : 'upcoming'}`}>
