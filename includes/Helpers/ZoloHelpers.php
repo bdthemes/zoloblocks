@@ -724,6 +724,14 @@ class ZoloHelpers {
 		return $extensions;
 	}
 
+	/**
+	 * Check zolo extension is enabled or not
+	 */
+	public static function is_extension_enabled($extension) {
+		$extensions = self::zolo_extensions();
+		return isset($extensions[$extension]) ? $extensions[$extension] : false;
+	}
+
 
 	/**
 	 * 	 * Get the paged Query.

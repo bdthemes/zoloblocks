@@ -26,13 +26,6 @@ if (! class_exists('ZoloEnqueues')) {
         use SingletonTrait;
 
         /**
-         * Extensions status
-         * 
-         * @var array
-         */
-        private $extensions_status = [];
-
-        /**
          * Constructor for the ZoloEnqueues class.
          */
         public function __construct() {
@@ -41,9 +34,6 @@ if (! class_exists('ZoloEnqueues')) {
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
-
-            // extensions status
-            $this->extensions_status = ZoloHelpers::zolo_extensions();
         }
 
 		/**
@@ -51,9 +41,9 @@ if (! class_exists('ZoloEnqueues')) {
 		 * 
 		 * @since 1.0.0
 		 */
-		private function is_extension_enabled($extension_name) {
-			return isset($this->extensions_status[$extension_name]) ? $this->extensions_status[$extension_name] : false;
-		}
+		// private function is_extension_enabled($extension_name) {
+		// 	return isset($this->extensions_status[$extension_name]) ? $this->extensions_status[$extension_name] : false;
+		// }
 
         /**
          * Load Block Assets for both editor and frontend
@@ -137,7 +127,7 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // particles js
-            if (has_block('zolo/container') && $this->is_extension_enabled('particles')) {
+            if (has_block('zolo/container') && ZoloHelpers::is_extension_enabled('particles')) {
                 wp_enqueue_script(
                     'particles-js',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
@@ -266,7 +256,7 @@ if (! class_exists('ZoloEnqueues')) {
                 false
             );
 
-            if ( $this->is_extension_enabled('particles') ) {
+            if ( ZoloHelpers::is_extension_enabled('particles') ) {
                 wp_enqueue_script(
                     'particles-js',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
@@ -344,8 +334,10 @@ if (! class_exists('ZoloEnqueues')) {
                 true
             );
 
+            //is_extension_enabled
+
             // block export extension
-            if ( $this->is_extension_enabled('export-pattern') ) {
+            if ( ZoloHelpers::is_extension_enabled('export-pattern') ) {
                 $dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/export-pattern/index.asset.php';
                 if (file_exists($dep_file)) {
                     $script_dependecy = include $dep_file;
@@ -361,7 +353,7 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // import block pattern
-            if ( $this->is_extension_enabled('import-pattern') ) {
+            if ( ZoloHelpers::is_extension_enabled('import-pattern') ) {
                 $import_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/import-pattern/index.asset.php';
                 if (file_exists($import_dep_file)) {
                     $script_dependecy = include $import_dep_file;
@@ -377,7 +369,7 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // import shape divider
-            if ( $this->is_extension_enabled('shape-divider') ) {
+            if ( ZoloHelpers::is_extension_enabled('shape-divider') ) {
                 $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
                 if (file_exists($import_shape_divider_file)) {
                     $script_dependecy = include $import_shape_divider_file;
