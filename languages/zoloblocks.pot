@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-12T10:38:03+00:00\n"
+"POT-Creation-Date: 2024-09-12T10:11:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: zoloblocks\n"
@@ -484,6 +484,7 @@ msgstr ""
 #: src/admin/dashboard/API-Settings/setting-panel.js:105
 #: src/admin/dashboard/Blocks/single-block.js:83
 #: src/admin/dashboard/Extensions/single-extension.js:47
+#: src/admin/dashboard/Settings/setting-box.js:9
 #: src/template-library/index.js:355
 msgid "Coming Soon"
 msgstr ""
@@ -688,42 +689,74 @@ msgstr ""
 msgid "File Generation"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:381
+#: src/admin/dashboard/Settings/index.js:371
+msgid "By default, ZoloBlocks loads CSS and JS inline on the page. If you prefer to generate separate CSS and JS files for ZoloBlocks components, enable this option. To understand the difference between generating CSS and JS inline versus in separate files, please read this  article."
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:377
 msgid "Asset Regeneration"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:398
+#: src/admin/dashboard/Settings/index.js:378
+msgid "If you're encountering issues with style, layout, color, or any other page element, use this option to regenerate the CSS and JavaScript assets. It can help resolve various asset-related problems."
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:391
 msgid "Move Title Top"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:403
+#: src/admin/dashboard/Settings/index.js:392
+msgid "Move the page title to the top to create a cleaner, more organized editor."
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:399
 msgid "Collapse Panels"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:413
+#: src/admin/dashboard/Settings/index.js:401
+msgid "Enable \"Collapse Panels\" to focus on one panel at a time by collapsing all others in your Blocks Settings except the one clicked. This simplifies your editing experience"
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:407
 msgid "Enable Templates Library"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:437
+#: src/admin/dashboard/Settings/index.js:408
+msgid "ZoloBlocks includes a rich library of page templates and block patterns. Accessible via the Templates button during page or post editing, you can manage the visibility of this button using this option."
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:428
 msgid "Preload Local Fonts"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:454
+#: src/admin/dashboard/Settings/index.js:430
+msgid "This option loads font files immediately on page load. Preloading local fonts can further speed up your website."
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:443
 msgid "Enable Coming Soon Mode"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:462
-#: src/admin/dashboard/Settings/index.js:493
+#: src/admin/dashboard/Settings/index.js:445
+msgid "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code."
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:452
+#: src/admin/dashboard/Settings/index.js:484
 msgid "Select Templates"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:463
-#: src/admin/dashboard/Settings/index.js:494
+#: src/admin/dashboard/Settings/index.js:453
+#: src/admin/dashboard/Settings/index.js:485
 msgid "`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`"
 msgstr ""
 
-#: src/admin/dashboard/Settings/index.js:485
+#: src/admin/dashboard/Settings/index.js:475
 msgid "Enable Maintenance Mode"
+msgstr ""
+
+#: src/admin/dashboard/Settings/index.js:477
+msgid "Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime."
 msgstr ""
 
 #: src/admin/dashboard/Welcome/blocks.js:9
@@ -813,58 +846,74 @@ msgstr ""
 msgid "Welcome to Zoloblocks"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:203
+#: src/admin/dashboard/Welcome/index.js:182
+msgid "You now have the power to dominate in Gutenberg and show-off your web design skills! No experience needed, no codes included. Just drag, drop, customize, and hit Publish. Enjoy! Learn about Zoloblocks by"
+msgstr ""
+
+#: src/admin/dashboard/Welcome/index.js:187
+msgid "Exploring Block"
+msgstr ""
+
+#: src/admin/dashboard/Welcome/index.js:189
+msgid "Videos here and from the"
+msgstr ""
+
+#: src/admin/dashboard/Welcome/index.js:191
+msgid "Homepage"
+msgstr ""
+
+#: src/admin/dashboard/Welcome/index.js:205
 msgid "System Requirement"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:219
+#: src/admin/dashboard/Welcome/index.js:221
 msgid "PHP Version"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:222
-#: src/admin/dashboard/Welcome/index.js:244
-#: src/admin/dashboard/Welcome/index.js:266
-#: src/admin/dashboard/Welcome/index.js:289
+#: src/admin/dashboard/Welcome/index.js:224
+#: src/admin/dashboard/Welcome/index.js:246
+#: src/admin/dashboard/Welcome/index.js:268
+#: src/admin/dashboard/Welcome/index.js:291
 msgid "Currently: "
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:241
+#: src/admin/dashboard/Welcome/index.js:243
 msgid "WordPress Version"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:263
+#: src/admin/dashboard/Welcome/index.js:265
 msgid "Memory Limit"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:286
+#: src/admin/dashboard/Welcome/index.js:288
 msgid "Memory post Limit"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:323
+#: src/admin/dashboard/Welcome/index.js:325
 msgid "Gzip Status"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:344
+#: src/admin/dashboard/Welcome/index.js:346
 msgid "Max Execution time"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:381
+#: src/admin/dashboard/Welcome/index.js:383
 msgid "Debug Mode"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:413
+#: src/admin/dashboard/Welcome/index.js:415
 msgid "Multisite"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:417
+#: src/admin/dashboard/Welcome/index.js:419
 msgid "Has Multisite"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:419
+#: src/admin/dashboard/Welcome/index.js:421
 msgid "No Multisite"
 msgstr ""
 
-#: src/admin/dashboard/Welcome/index.js:428
+#: src/admin/dashboard/Welcome/index.js:430
 msgid " If you have multiple addons like Zoloblocks so you need some more requirement some cases so make sure you added more memory for others addon too."
 msgstr ""
 

@@ -3,7 +3,7 @@ Contributors: bdthemes, selimmw
 Donate link: http://zoloblocks.com/
 Tags: block, blocks, gutenberg, gutenberg blocks, page builder
 Requires at least: 6.1
-Tested up to: 6.6.1
+Tested up to: 6.6.2
 Requires PHP: 7.4
 Stable tag: 1.4.0
 License: GPLv2 or later
@@ -252,7 +252,7 @@ https://youtu.be/WH-Afb6b4KQ
 
 == Upgrade Notice ==
 
-There are no requirement for upgrade notice. Just click the update button and updated the plugin. 
+There are no requirement for upgrade notice. Just click the update button and updated the plugin.
 
 == Frequently Asked Questions ==
 
@@ -320,13 +320,32 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.4.0 - 24-8-2024 =
+= 1.4.0 - 12-09-2024 =
 
-* Added: Lightbox block added
-* Added: Static social count block  added
-* Added: Recent Comments block added
-* Improved: Assets loading improved
-* Improved: Block scripts improved
+* Added: Author Block.
+* Added: Breadcrumbs Block.
+* Added: Lightbox Block.
+* Added: Post Category Block.
+* Added: Tag Cloud Block.
+* Added: Post Comments Block.
+* Added: Social Count Block.
+* Added: Recent Comments Block.
+* Added: Advanced Button hover background control.
+* Fixed: Review Grid Column issue.
+* Fixed: Star Rating responsive issue.
+* Fixed: Google Maps block editor issue.
+* Fixed: Astra theme style support issue with link underline.
+* Fixed: Multiple chart rendering issue on a single page.
+* Improved: Updated Dashboard.
+* Improved: Improved block scripts.
+* Improved: Optimized assets loading.
+* Improved: Enhanced Post Query system.
+* Improved: Optimized block controls UI.
+* Improved: Improved Pricing Block style.
+* Improved: Improved QR code block scripts.
+* Improved: Enhanced Button Block Preset style.
+* Improved: Removed line link from preset particles.
+* Improved: Added particles preview options to Editor.
 
 = 1.3.3 - 18-8-2024 =
 
@@ -397,85 +416,5 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 * Improved: Transform Rotate reset control added in Transform features
 * Improved: Dynamic CSS Generation optimized
 * Improved: Template Library UI improved
-
-= 1.0.7 - 13-06-2024 =
-
-* Added: Progress pie block added
-* Added: Template library feature added
-* Added: Button spacing control added in Newsletter block
-* Fixed: Extra panel styling options not working issue fixed in the Social Share and Social Links block
-* Fixed: Container border issue fixed
-* Fixed: Alt text missing issue fixed in advanced image block
-* Improved: Default style improved in Advanced Search block
-
-= 1.0.6 - 08-06-2024 =
-
-* Added: Position feature has been added to the extra tab for every block
-* Added: Alignment options has been added to the Social Share and Social Links block
-* Fixed: Rerendering issue fixed in charts block
-* Fixed: Preset 5 title issue fixed in counter block
-* Fixed: Tab auto scrolling issue fixed in Tabs block
-* Fixed: Preset 3 hover color issue fixed in post grid block
-* Fixed: Preset 3 hover color issue fixed in post carousel block
-* Fixed: Default style overwriting issue fixed in pricing table block
-* Fixed: Default style overwriting issue fixed in advanced button block
-* Fixed: Global style not working issue fixed in Social Share and Social Links block
-* Fixed: Button text multiline issue fixed in Advanced Search block & Newsletter block
-* Fixed: Separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
-* Fixed: Icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
-* Improved: CSS compression override issue fixed for WP-Optimize plugin
-* Improved: Typography control font-size increased 72 to 136 in counter block
-* Improved: Author prefix text control added to post grid, post carousel and post list block
-
-= 1.0.5 - 29-05-2024 =
-
-* Fixed: Flex issue fixed in Editor for Container block
-* Fixed: Spacing issue fixed for preset 3 in Advanced Icon box
-* Fixed: Source type input data loading issue fixed in Charts block
-* Fixed: Vertical align issue fixed in Advanced heading block
-* Fixed: Focus color issue fixed in Newsletter block
-* Fixed: Preset 4 responsive issue fixed in Newsletter block
-* Improved: Block editing experience improved, you will be able to select, delete, and insert block easily.
-* Improved: Assets loading improved and cleanup
-* Improved: Charts block improved
-* Improved: Dashboard changelog improved
-
-= 1.0.4 - 18-05-2024 =
-
-* Added: Hover background control added to Brand Grid block
-* Fixed: Box Shadow hover issue fixed to Advanced Image block
-* Fixed: Border hover color issue fixed to Advanced Image block
-* Fixed: Alignment issue fixed to Advanced Search block
-* Fixed: Overflow issue fixed to Brand Grid block
-* Fixed: Vertical Alignment issue fixed to Business hours block
-* Fixed: Content Vertical Alignment issue fixed to Counter block
-* Tweak: Max Width control has been removed from image panel within Advanced Image block
-* Tweak: Margin control has been removed from container panel within Advanced Image block
-* Tweak: Margin control has been removed from container panel within Brand Grid block
-* Improved: Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-* Improved: Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-* Improved: Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-* Improved: Title tag control shifted from style tab to basic tab in Advanced Icon Box
-* Improved: Default design improved in Counter block
-
-= 1.0.4 - 18-05-2024 =
-
-* Added: Hover background control added to Brand Grid block
-* Fixed: Box Sizing item issue fixed to Charts block
-* Fixed: Box Shadow hover issue fixed to Advanced Image block
-* Fixed: Border hover color issue fixed to Advanced Image block
-* Fixed: Alignment issue fixed to Advanced Search block
-* Fixed: Overflow issue fixed to Brand Grid block
-* Fixed: Vertical Alignment issue fixed to Business hours block
-* Fixed: Content Vertical Alignment issue fixed to Counter block
-* Tweak: Max Width control has been removed from image panel within Advanced Image block
-* Tweak: Margin control has been removed from container panel within Advanced Image block
-* Tweak: Margin control has been removed from container panel within Brand Grid block
-* Improved: Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-* Improved: Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-* Improved: Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-* Improved: Title tag control shifted from style tab to basic tab in Advanced Icon Box
-* Improved: Default design improved in Counter block
-* Improved: Default design improved in Charts block
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)

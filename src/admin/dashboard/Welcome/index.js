@@ -179,14 +179,16 @@ const Welcome = () => {
                     title={__('Welcome to Zoloblocks', 'zoloblocks')}
                     description={
                         <>
-                            You now have the power to dominate in Gutenberg and show-off your web design skills! No experience needed, no
-                            codes included. Just drag, drop, customize, and hit Publish. Enjoy! Learn about Zoloblocks by
+                            {__(
+                                'You now have the power to dominate in Gutenberg and show-off your web design skills! No experience needed, no codes included. Just drag, drop, customize, and hit Publish. Enjoy! Learn about Zoloblocks by',
+                                'zoloblocks'
+                            )}{' '}
                             <a href="https://youtu.be/jX4sIXG-9fo?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX" target="_blank">
-                                Exploring Block
+                                {__('Exploring Block', 'zoloblocks')}{' '}
                             </a>
-                            Videos here and from the
+                            {__('Videos here and from the', 'zoloblocks')}{' '}
                             <a href="https://zoloblocks.com/" target="_blank">
-                                Homepage
+                                {__('Homepage', 'zoloblocks')}
                             </a>
                             .
                         </>
@@ -424,7 +426,7 @@ const Welcome = () => {
 
                         <div className="zolo-system-note">
                             <p>
-                                <strong>Note:</strong>
+                                <strong>{__('Note:')}</strong>
                                 {__(
                                     ' If you have multiple addons like Zoloblocks so you need some more requirement some cases so make sure you added more memory for others addon too.',
                                     'zoloblocks'

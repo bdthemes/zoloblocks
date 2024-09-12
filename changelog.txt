@@ -14,8 +14,9 @@
 
 ### Fixed
 
-- Google Maps block editor issue.
+- Review Grid Column issue.
 - Star Rating responsive issue.
+- Google Maps block editor issue.
 - Astra theme style support issue with link underline.
 - Multiple chart rendering issue on a single page.
 
