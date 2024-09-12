@@ -2,39 +2,36 @@
 
 ### Added
 
-- Author Block added
-- Breadcrumbs block added
-- Lightbox block added
-- Post Category block added
-- Tag Cloud block added
-- Post commments block added
-- Social count block  added
-- Recent Comments block added
-- Advanced Button hover background control added
-- Google map block editor issue fixed
+- Author Block.
+- Breadcrumbs Block.
+- Lightbox Block.
+- Post Category Block.
+- Tag Cloud Block.
+- Post Comments Block.
+- Social Count Block.
+- Recent Comments Block.
+- Advanced Button hover background control.
+
+### Fixed
+
+- Google Maps block editor issue.
+- Star Rating responsive issue.
+- Astra theme style support issue with link underline.
+- Multiple chart rendering issue on a single page.
+
 
 ### Improved
 
-- Dashboard Updated
-- Assets loading improved
-- Block scripts improved
-- Line link remove from preset particles
-- particles preveiw options added to Editor
-- Optimized post block controls ui
-- QRcode block scripts improved
-- Post Query system improved
-- Pricing Block style improved
-- Button Block Preset style improved
-- Astra theme style support issue fixed link underline
-- Star rating responsive issue fixed
-- Multiple chart render in a single page issue fixed
-
-============ TODO ============
-add post grid pagination
-need to check advanced heading
-Dashboard pro feature need to badge enabled
-
-
+- Updated Dashboard.
+- Improved block scripts.
+- Optimized assets loading.
+- Enhanced Post Query system.
+- Optimized block controls UI.
+- Improved Pricing Block style.
+- Improved QR code block scripts.
+- Enhanced Button Block Preset style.
+- Removed line link from preset particles.
+- Added particles preview options to Editor.
 
 
 ### 1.3.3 [August 18, 2024]
