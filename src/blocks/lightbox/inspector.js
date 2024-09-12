@@ -306,7 +306,13 @@ export default function Edit(props) {
                                                     imageUrl={contentImage && contentImage.url}
                                                     onDeleteImage={() =>
                                                         setAttributes({
-                                                            contentImage: null,
+                                                            contentImage: {
+                                                                id: null,
+                                                                url: null,
+                                                                sizes: null,
+                                                                alt: null,
+                                                                caption: null,
+                                                            },
                                                         })
                                                     }
                                                     imageId={contentImage && contentImage.id}
@@ -652,20 +658,22 @@ export default function Edit(props) {
                                 </>
                             )}
 
-                            <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={false}>
-                                <ResRangeControl
-                                    label={__('Width', 'zoloblocks')}
-                                    controlName={CONTENT_WIDTH}
-                                    requiredProps={requiredProps}
-                                    max={1500}
-                                />
-                                <ResRangeControl
-                                    label={__('Height', 'zoloblocks')}
-                                    controlName={CONTENT_HEIGHT}
-                                    requiredProps={requiredProps}
-                                    max={1500}
-                                />
-                            </ZoloPanelBody>
+                            {contentType !== 'image' && (
+                                <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={false}>
+                                    <ResRangeControl
+                                        label={__('Width', 'zoloblocks')}
+                                        controlName={CONTENT_WIDTH}
+                                        requiredProps={requiredProps}
+                                        max={1500}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Height', 'zoloblocks')}
+                                        controlName={CONTENT_HEIGHT}
+                                        requiredProps={requiredProps}
+                                        max={1500}
+                                    />
+                                </ZoloPanelBody>
+                            )}
                         </>
                     }
                     advancedTab={

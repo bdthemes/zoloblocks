@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "wp-scripts start",
-        "build": "wp-scripts build",
+        "build": "wp-scripts build && npm run make-pot",
         "packages-update": "wp-scripts packages-update",
         "make-pot": "wp i18n make-pot . languages/zoloblocks.pot --exclude=node_modules,build,vendor,assets",
         "zip-plugin": "zip -r zoloblocks.zip . -x \"*.git*\" \"*.DS_Store*\" \"*.vscode*\" \"*.idea*\" \"*.github*\" \"*.gitignore*\" \"*.gitattributes*\" \"*.editorconfig*\" \"*.prettierrc*\" \"*.eslintrc*\" \"*.babelrc*\" \"*.distignore*\" \"*.stylelintrc*\" \"node_modules/*\" \"src/*\" \"*index.js.map\" \"*frontend.js.map\" \"*style-index.css.map\" \"composer.lock\" \"package.json\" \"package-lock.json\" \"README.md\" \"webpack.config.js\" \"*.phpcs.xml\""
