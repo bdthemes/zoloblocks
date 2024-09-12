@@ -10,11 +10,20 @@ const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeSty
     window.zoloModule;
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING } from './constants';
+import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING, CIRCLE_DURATION } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, textPathShow, textpathRotate, textPathColor, textPathHoverColor } = attributes;
+    const {
+        uniqueId,
+        textPathShow,
+        textpathRotate,
+        textPathColor,
+        textPathHoverColor,
+        textPathType,
+        textPathTypeCircle,
+        circleAnimationDuration,
+    } = attributes;
 
     const {
         desktopAlignStyle: textPathDeskAlignStyle,
@@ -75,6 +84,18 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
+
+        ${
+            textPathType === 'circle' && textPathTypeCircle === true
+                ? `
+                    .${uniqueId}.wp-block-zolo-text-path svg{
+                        animation: rotate-animation var(--text-path-circle-transition) infinite linear;
+                        ${circleAnimationDuration && `--text-path-circle-transition:${circleAnimationDuration.duration}ms`}
+                    }
+            `
+                : ''
+        }
+
         .${uniqueId}.wp-block-zolo-text-path  {
           ${textPathDeskAlignStyle}
         }

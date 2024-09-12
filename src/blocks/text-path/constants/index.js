@@ -13,6 +13,7 @@ export const TEXTPATH_SIZE = 'textPathSize';
 export const TEXT_PATH_STROKE = 'textPathStroke';
 export const TEXT_WORD_SPACING = 'textWordSpacing';
 export const PATH_TEXT_SPACING = 'textPathSpacing';
+export const CIRCLE_DURATION = 'circleDuration';
 
 export const PATH_OPTION = [
     {
