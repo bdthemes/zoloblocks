@@ -84,6 +84,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Background Parallax', 'zolo-blocks'),
         'status' => true,
         'is_pro' => true,
+        'released' => false,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
