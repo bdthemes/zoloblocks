@@ -77,11 +77,6 @@ return apply_filters(
             'name'       => 'zolo_cursor_effects',
             'categories' => ['social'],
             'status'     => true
-        ],
-        [
-            'name'       => 'zolo_cursor_efdfects',
-            'categories' => ['social'],
-            'status'     => true
-        ],
+        ]
     ]
 );
