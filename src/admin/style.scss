@@ -51,7 +51,7 @@
 }
 
 .toplevel_page_zoloblocks {
-    background-color: #f8fafc;
+    background-color: #f5f5f5;
     // .zolo-footer {
     //     right: 0;
     //     color: #50575e;
@@ -1082,7 +1082,13 @@ input.zoloblocks-search {
     }
 }
 
-@media (min-width: 1440px) {
+// @media (min-width: 1440px) {
+//     .zoloblocks-grid .zoloblocks-inner-grid {
+//         grid-template-columns: repeat(3, 1fr);
+//     }
+// }
+
+@media (min-width: 1640px) {
     .zoloblocks-grid .zoloblocks-inner-grid {
         grid-template-columns: repeat(3, 1fr);
     }
