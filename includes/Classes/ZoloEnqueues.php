@@ -32,8 +32,6 @@ if (! class_exists('ZoloEnqueues')) {
          * @var array
          */
 
-         * Constructor for the ZoloEnqueues class.
-         */
         public function __construct() {
             // block editor assets
             add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader'], 1);
