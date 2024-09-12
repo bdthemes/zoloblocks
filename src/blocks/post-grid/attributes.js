@@ -53,6 +53,12 @@ import {
   CONTENT_PADDING,
   META_ARROW_SPACE,
   META_BOX_WRAP_PADDING,
+  FILTER_BORDER,
+  FILTER_BORDER_RADIUS,
+  FILTER_MARGIN,
+  FILTER_ALIGN,
+  FILTER_PADDING,
+  FILTER_GAP
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -107,7 +113,7 @@ const attributes = {
     type: 'boolean',
     default: false
   },
-  postCategory: {
+  postTerms: {
     type: 'array',
     default: []
   },
@@ -119,12 +125,8 @@ const attributes = {
     type: 'string',
     default: 'Category'
   },
-  tabCatId: {
-    type: 'array',
-    default: []
-  },
-  pageTotal:{
-    type:'number',
+  pageTotal: {
+    type: 'number',
     default: 1
   },
   paginationType: {
@@ -299,6 +301,26 @@ const attributes = {
   pagSeparatorColor: {
     type: 'string',
   },
+  //filter taxonomy
+  filterColor: {
+    type: 'string',
+  },
+  filterBgColor: {
+    type: 'string',
+  },
+  filterBorderColor: {
+    type: 'string',
+  },
+  filterAColor: {
+    type: 'string',
+  },
+  filterABgColor: {
+    type: 'string',
+  },
+  filterABorderColor: {
+    type: 'string',
+  },
+
   ...generateDimensionAttributes(COLUMN_PADDING),
   ...generateNormalBGAttributes(COLUMN_BG),
   ...generateBorderAttributies(COLUMN_BORDER),
@@ -335,6 +357,15 @@ const attributes = {
 
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
+  //filter taxonomy
+  ...generateBorderAttributies(FILTER_BORDER),
+  ...generateDimensionAttributes(FILTER_BORDER_RADIUS),
+  ...generateDimensionAttributes(FILTER_MARGIN),
+  ...generateDimensionAttributes(FILTER_PADDING),
+  ...generateResAlignmentAttributies(FILTER_ALIGN),
+  ...generateGapAttributes(FILTER_GAP, {
+    defaultUnit: 'px',
+  }),
   // pagination
   ...generateBorderAttributies(PAG_BORDER),
   ...generateDimensionAttributes(PAG_BORDER_RADIUS),

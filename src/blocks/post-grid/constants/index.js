@@ -1,14 +1,15 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
+
 export const BLOCK_PREFIX = 'zolo-post-grid';
 export const PRESETS = [
-    { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
-    { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
-    { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
-    { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
-    { label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-5' },
+  {label: __('Style 1', 'zoloblocks'), value: 'style-1'},
+  {label: __('Style 2', 'zoloblocks'), value: 'style-2'},
+  {label: __('Style 3', 'zoloblocks'), value: 'style-3'},
+  {label: __('Style 4', 'zoloblocks'), value: 'style-4'},
+  {label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-5'},
 ];
 export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
@@ -49,6 +50,13 @@ export const AVATAR_SIZE = 'avatarSize';
 export const AVATAR_BORDER = 'avatarBorder';
 export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
 export const AVATAR_GAP = 'avatarGap';
+//filter taxonomy
+export const FILTER_BORDER = 'filterBorder';
+export const FILTER_BORDER_RADIUS = 'filterBRadius';
+export const FILTER_MARGIN = 'filterMargin';
+export const FILTER_PADDING = 'filterPadding';
+export const FILTER_ALIGN = 'filterAlign';
+export const FILTER_GAP = 'filterGap';
 
 // pagination
 export const PAG_BORDER = 'pagBorder';
@@ -65,3 +73,17 @@ export const META_ARROW_SPACE = 'metaArrowSpace';
 
 // content wrapper
 export const CONTENT_PADDING = 'contentPadding';
+
+export const createPreloader = () => {
+  const preloader = document.createElement('div');
+  preloader.classList.add('preloader');
+  preloader.innerHTML = `
+    <div class="container">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>`;
+  return preloader;
+};

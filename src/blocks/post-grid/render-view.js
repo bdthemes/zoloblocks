@@ -1,7 +1,8 @@
-import {RawHTML, useEffect, useState,useMemo} from '@wordpress/element';
+import {RawHTML, useEffect, useState, useMemo} from '@wordpress/element';
 import {__} from '@wordpress/i18n';
 import {Spinner} from "@wordpress/components";
 import apiFetch from '@wordpress/api-fetch';
+
 const {DynamicTag, DisplayZoloIcon} = window.zoloModule;
 
 let postContentCache = new Map();
@@ -28,37 +29,29 @@ function RenderView({attributes, setAttributes}) {
     showReadingTime,
     metaSeparator,
     authorPrefix,
-    postCategory,
+    postTerms,
     showFilterTaxonomy,
     postTaxonomy,
   } = attributes;
 
-
   const defaultAuthorPrefix = preset === 'style-5' ? __('By', 'zoloblocks') : __('Posted By', 'zoloblocks');
 
   //for filter taxonomy.
-  const tabArrayDefault = [{value: '*', label: 'All'}];
-  const [catIdArray, setCatIdArray] = useState([]);
-  const fetchCatData = async () => {
-    let catIdLists = [];
-
-    // Populate catIdLists with values from postCategory
-    if (postCategory.length > 0) {
-      catIdLists = postCategory.map(item => item.value);
-      setAttributes({tabCatId: catIdLists});
-    }
+  const filterAll = [{value: 'all', label: 'All'}];
+  const [filterArray, setFilterArray] = useState([]);
+  const fetchFilterData = async () => {
     const formData = new FormData();
-    formData.append('action', 'zolo_get_cat_terms');
+    formData.append('action', 'zolo_get_filter_terms');
     formData.append('zolo_nonce', zoloParams.zolo_nonce);
     formData.append('postTaxonomy', postTaxonomy);
-    formData.append('catId', JSON.stringify(catIdLists));
+    formData.append('filterTerms', JSON.stringify(postTerms));
     try {
-      const data = await apiFetch({
+      const response = await apiFetch({
         url: zoloParams?.ajaxurl,
         method: 'POST',
         body: formData,
       })
-      const results = data?.results || [];
+      const results = response?.data || [];
       return results.map((item) => ({
         value: item.term_id,
         label: item.name
@@ -69,24 +62,24 @@ function RenderView({attributes, setAttributes}) {
     }
   }
   useEffect(() => {
-    fetchCatData().then((tabLists) => {
-      setCatIdArray([...tabArrayDefault, ...tabLists]);
+    fetchFilterData().then((filterLists) => {
+      setFilterArray([...filterAll, ...filterLists]);
     });
-  }, [postCategory]);
+  }, [postTerms]);
 
   //for post results.
-  const [currentTab, setCurrentTab] = useState('*');
+  const [currentTab, setCurrentTab] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
   const [postResults, setPostResults] = useState([]);
   const [dataSuccess, setDataSuccess] = useState(true);
 
-  const dataFetch = async (catId = '') => {
+  const dataFetch = async (termId = '') => {
     setIsLoading(true);
     const apiData = {
       zolo_nonce: zoloParams.zolo_nonce,
       attributes: attributes,
       postQuery: postQuery,
-      postCategory: catId,
+      postTermId: termId,
       postTaxonomy: postTaxonomy
     };
     try {
@@ -94,8 +87,8 @@ function RenderView({attributes, setAttributes}) {
       if (response.success) {
         setPostResults([...response.data.posts]);
         setDataSuccess(response.success);
-        postContentCache.set(catId, [...response.data.posts]);
-        setAttributes({pageTotal:response.data.total_page});
+        postContentCache.set(termId, [...response.data.posts]);
+        setAttributes({pageTotal: response.data.total_page});
       } else {
         setPostResults([]);
         setDataSuccess(response.success);
@@ -108,34 +101,33 @@ function RenderView({attributes, setAttributes}) {
     }
   }
 
-  const handleTabClick = async (catId) => {
-    setCurrentTab(catId);
-    if (postContentCache.has(catId)) {
-      setPostResults([...postContentCache.get(catId)]);
+  const handleFilterClick = async (filterTermId) => {
+    setCurrentTab(filterTermId);
+    if (postContentCache.has(filterTermId)) {
+      setPostResults([...postContentCache.get(filterTermId)]);
       setIsLoading(false);
     } else {
-      dataFetch(catId);
+      dataFetch(filterTermId);
     }
   }
 
   useEffect(() => {
     dataFetch();
-  }, [JSON.stringify({ ...postQuery, showPagination: undefined })]);
+  }, [JSON.stringify({...postQuery, showPagination: undefined})]);
 
   return (
     <>
-
-      {catIdArray.length > 0 && showFilterTaxonomy && (
+      {filterArray.length > 0 && showFilterTaxonomy && (
         <div className="zolo-post-filter-taxonomy">
-          {catIdArray.map((cat) => (
+          {filterArray.map((term) => (
             <a href="#"
                onClick={(e) => {
                  e.preventDefault();
-                 handleTabClick(cat.value);
+                 handleFilterClick(term.value);
                }}
-               className={currentTab === cat.value ? 'current' : ''}
-               data-id={cat.value}>
-              {cat.label}
+               className={currentTab === term.value ? 'current' : ''}
+               data-id={term.value}>
+              {term.label}
             </a>
           ))}
         </div>
@@ -143,11 +135,9 @@ function RenderView({attributes, setAttributes}) {
 
 
       <div className="zolo-post-content-wrap">
-
         {isLoading &&
           (<div className="preloader"><Spinner/></div>)
         }
-
         {postResults.length > 0 &&
           postResults.map((post) => {
             const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
@@ -277,7 +267,6 @@ function RenderView({attributes, setAttributes}) {
             );
           })
         }
-
         {!dataSuccess && (
           <p>{__('No posts found.', 'zoloblocks')}</p>
         )}

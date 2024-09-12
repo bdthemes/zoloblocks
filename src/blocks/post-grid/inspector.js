@@ -44,6 +44,12 @@ import {
   META_ARROW_SPACE,
   CONTENT_PADDING,
   META_BOX_WRAP_PADDING,
+  FILTER_BORDER,
+  FILTER_BORDER_RADIUS,
+  FILTER_MARGIN,
+  FILTER_PADDING,
+  FILTER_ALIGN,
+  FILTER_GAP
 } from './constants';
 
 import {
@@ -54,6 +60,7 @@ import {
   READMORE_TYPOGRAPHY,
   NAME_TYPOGRAPHY,
   PAG_TYPOGRAPHY,
+  FILTER_TYPOGRAPHY
 } from './constants/typoPrefixConstant';
 
 import {DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, PAGINARION_TYPE} from '../../../src/global/constants';
@@ -135,10 +142,15 @@ function Inspector(props) {
     loadMoreText,
     //for filter
     showFilterTaxonomy,
-    postCategory,
+    postTerms,
     postTaxonomy,
-    taxonomyName
-
+    taxonomyName,
+    filterColor,
+    filterBgColor,
+    filterBorderColor,
+    filterAColor,
+    filterABgColor,
+    filterABorderColor
   } = attributes;
 
   const requiredProps = {
@@ -432,7 +444,7 @@ function Inspector(props) {
                       setAttributes({postTaxonomy: value});
                       setAttributes({taxonomyName: tName.label});
                       if (postTaxonomy !== value) {
-                        setAttributes({postCategory: []});
+                        setAttributes({postTerms: []});
                       }
                     }}
                     options={zoloTaxonomiesFilter}
@@ -446,8 +458,8 @@ function Inspector(props) {
                         sourceName="taxonomy"
                         sourceType={postTaxonomy}
                         isMulti={true}
-                        value={postCategory || []}
-                        onChange={(postCategory) => setAttributes({postCategory})}
+                        value={postTerms || []}
+                        onChange={(postTerms) => setAttributes({postTerms})}
                       />
                     </div>
                   )}
@@ -941,6 +953,122 @@ function Inspector(props) {
                 />
               </ZoloPanelBody>
             )}
+
+            {showFilterTaxonomy && (
+              <ZoloPanelBody title={__('Filter Taxonomy', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                <ResAlignmentControl
+                  label={__('Alignment', 'zoloblocks')}
+                  controlName={FILTER_ALIGN}
+                  requiredProps={requiredProps}
+                  alignOptions={DEFAULT_ALIGNS}
+                />
+                <ResGapControl
+                  label={__('Gap', 'zoloblocks')}
+                  controlName={FILTER_GAP}
+                  requiredProps={requiredProps}
+                  max={100}
+                />
+                <TypographyDropdown
+                  label={__('Typography', 'zoloblocks')}
+                  typoPrefixConstant={FILTER_TYPOGRAPHY}
+                  requiredProps={requiredProps}
+                />
+                <BorderControl label={__('Border', 'zoloblocks')} controlName={FILTER_BORDER}
+                               requiredProps={requiredProps}/>
+                <ResDimensionsControl
+                  label={__('Border Radius', 'zoloblocks')}
+                  controlName={FILTER_BORDER_RADIUS}
+                  requiredProps={requiredProps}
+                  forBorderRadius={true}
+                />
+                <ResDimensionsControl
+                  label={__('Padding', 'zoloblocks')}
+                  controlName={FILTER_PADDING}
+                  requiredProps={requiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Margin', 'zoloblocks')}
+                  controlName={FILTER_MARGIN}
+                  requiredProps={requiredProps}
+                />
+                <TabPanelControl
+                  options={[
+                    {
+                      value: 'normal',
+                      label: __('Normal', 'zoloblocks'),
+                    },
+                    {
+                      value: 'active',
+                      label: __('Active', 'zoloblocks'),
+                    },
+                  ]}
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={filterColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Background', 'zoloblocks')}
+                        color={filterBgColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterBgColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Border Color', 'zoloblocks')}
+                        color={filterBorderColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterBorderColor: color,
+                          })
+                        }
+                      />
+                    </>
+                  }
+
+                  activeComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={filterAColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterAColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Background', 'zoloblocks')}
+                        color={filterABgColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterABgColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Border Color', 'zoloblocks')}
+                        color={filterABorderColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterABorderColor: color,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                />
+              </ZoloPanelBody>
+            )}
+
             {postQuery?.showPagination && (
               <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
                 <ResAlignmentControl

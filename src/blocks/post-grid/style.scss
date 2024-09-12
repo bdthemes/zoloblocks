@@ -44,7 +44,8 @@
 			text-transform: capitalize;
 			cursor: pointer;
 
-			&.current {
+			&.current,
+			&:hover{
 				background-color: rgba(35, 37, 41, 0.098);
 				color: rgb(35, 37, 41);
 			}

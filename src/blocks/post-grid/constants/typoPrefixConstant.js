@@ -4,4 +4,6 @@ export const META_TYPOGRAPHY = 'metaTypo';
 export const CAT_TYPOGRAPHY = 'catTypo';
 export const READMORE_TYPOGRAPHY = 'readMoreTypo';
 export const NAME_TYPOGRAPHY = 'nameTypo';
+export const FILTER_TYPOGRAPHY = 'filterTypo';
 export const PAG_TYPOGRAPHY = 'pagTypo';
+

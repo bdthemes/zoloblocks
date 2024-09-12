@@ -15,9 +15,9 @@ $parentClasses = implode( ' ', $parentClasses );
 // add parent classes to wrapper class.
 $wrapper_class .= ' ' . $parentClasses;
 
-$wrapperId = $settings['zoloId'] ?? '';
-
+$wrapperId     = $settings['zoloId'] ?? '';
 $metaSeparator = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
+$filterTermId  = ! empty( $filterTermId ) ? $filterTermId : '';
 $html          = '';
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
@@ -31,24 +31,38 @@ $html          = '';
 			?>
 			id="<?php echo esc_attr( $wrapperId ); ?>" <?php } ?>>
 
-		<?php if ( ! empty( $settings['showFilterTaxonomy'] ) ) : ?>
-		<div class="zolo-post-filter-taxonomy">
-			<a href="#" data-id="*" class="current"><?php esc_html_e( 'All', 'zoloblocks-pro' ); ?></a>
-			<?php
-			$terms = get_terms(
-				[
-					'taxonomy' => $settings['postTaxonomy'] ?? 'category',
-					'include'  => $settings['tabCatId'] ?? [],
-					'orderby'  => 'include',
-				]
-			);
-			foreach ( $terms as $key => $term ) :
-				?>
-				<a href="#" class=""
-				   data-id="<?php echo esc_attr( $term->term_id ); ?>"><?php echo esc_html( $term->name ); ?></a>
-			<?php endforeach; ?>
-		</div>
-		<?php endif; ?>
+		<?php if ( ! empty( $settings['showFilterTaxonomy'] ) ) { ?>
+			<div class="zolo-post-filter-taxonomy">
+				<a href="#" data-id="all" class="
+					<?php
+					if ( ! empty( $parentWrap ) || 'all' == $filterTermId ) {
+						echo esc_attr( 'current' );}
+					?>
+				">
+					<?php esc_html_e( 'All', 'zoloblocks-pro' ); ?>
+				</a>
+
+				<?php
+				$terms = get_terms(
+					[
+						'taxonomy' => $settings['postTaxonomy'] ?? 'category',
+						'include'  => wp_list_pluck( $settings['postTerms'] ?? [], 'value' ),
+						'orderby'  => 'include',
+					]
+				);
+				foreach ( $terms as $key => $term ) :
+					?>
+					<a href="#" class="
+					<?php
+					if ( $filterTermId == $term->term_id ) {
+						echo esc_attr( 'current' );
+					}
+					?>
+					"
+					   data-id="<?php echo esc_attr( $term->term_id ); ?>"><?php echo esc_html( $term->name ); ?></a>
+				<?php endforeach; ?>
+			</div>
+		<?php } ?>
 
 		<div class="zolo-post-content-wrap">
 			<?php
