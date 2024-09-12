@@ -331,8 +331,9 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 * Added: Social Count Block.
 * Added: Recent Comments Block.
 * Added: Advanced Button hover background control.
-* Fixed: Google Maps block editor issue.
+* Fixed: Review Grid Column issue.
 * Fixed: Star Rating responsive issue.
+* Fixed: Google Maps block editor issue.
 * Fixed: Astra theme style support issue with link underline.
 * Fixed: Multiple chart rendering issue on a single page.
 * Improved: Updated Dashboard.
