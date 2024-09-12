@@ -368,24 +368,17 @@ const Settings = () => {
                                     <SettingBox
                                         title={__('File Generation', 'zoloblocks')}
                                         released={false}
-                                        description={
-                                            <>
-                                                By default, ZoloBlocks loads CSS and JS inline on the page. If you prefer to generate
-                                                separate CSS and JS files for ZoloBlocks components, enable this option. To understand the
-                                                difference between generating CSS and JS inline versus in separate files, please read this
-                                                article.
-                                            </>
-                                        }
+                                        description={__(
+                                            'By default, ZoloBlocks loads CSS and JS inline on the page. If you prefer to generate separate CSS and JS files for ZoloBlocks components, enable this option. To understand the difference between generating CSS and JS inline versus in separate files, please read this  article.',
+                                            'zoloblocks'
+                                        )}
                                     ></SettingBox>
                                     <SettingBox
                                         title={__('Asset Regeneration', 'zoloblocks')}
-                                        description={
-                                            <>
-                                                If you're encountering issues with style, layout, color, or any other page element, use this
-                                                option to regenerate the CSS and JavaScript assets. It can help resolve various
-                                                asset-related problems.
-                                            </>
-                                        }
+                                        description={__(
+                                            "If you're encountering issues with style, layout, color, or any other page element, use this option to regenerate the CSS and JavaScript assets. It can help resolve various asset-related problems.",
+                                            'zoloblocks'
+                                        )}
                                         released={false}
                                     ></SettingBox>
                                 </div>
@@ -396,28 +389,26 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
                                         title={__('Move Title Top', 'zoloblocks')}
-                                        description={<>Move the page title to the top to create a cleaner, more organized editor.</>}
+                                        description={__(
+                                            'Move the page title to the top to create a cleaner, more organized editor.',
+                                            'zoloblocks'
+                                        )}
                                         released={false}
                                     ></SettingBox>
                                     <SettingBox
                                         title={__('Collapse Panels', 'zoloblocks')}
                                         released={false}
-                                        description={
-                                            <>
-                                                Enable "Collapse Panels" to focus on one panel at a time by collapsing all others in your
-                                                Blocks Settings except the one clicked. This simplifies your editing experience.{' '}
-                                            </>
-                                        }
+                                        description={__(
+                                            'Enable "Collapse Panels" to focus on one panel at a time by collapsing all others in your Blocks Settings except the one clicked. This simplifies your editing experience',
+                                            'zoloblocks'
+                                        )}
                                     ></SettingBox>
                                     <SettingBox
                                         title={__('Enable Templates Library', 'zoloblocks')}
-                                        description={
-                                            <>
-                                                ZoloBlocks includes a rich library of page templates and block patterns. Accessible via the
-                                                Templates button during page or post editing, you can manage the visibility of this button
-                                                using this option.
-                                            </>
-                                        }
+                                        description={__(
+                                            'ZoloBlocks includes a rich library of page templates and block patterns. Accessible via the Templates button during page or post editing, you can manage the visibility of this button using this option.',
+                                            'zoloblocks'
+                                        )}
                                     >
                                         <ToggleControl
                                             checked={!!blockLibrary}
@@ -436,12 +427,10 @@ const Settings = () => {
                                     <SettingBox
                                         title={__('Preload Local Fonts', 'zoloblocks')}
                                         released={false}
-                                        description={
-                                            <>
-                                                This option loads font files immediately on page load. Preloading local fonts can further
-                                                speed up your website.{' '}
-                                            </>
-                                        }
+                                        description={__(
+                                            'This option loads font files immediately on page load. Preloading local fonts can further speed up your website.',
+                                            'zoloblocks'
+                                        )}
                                     ></SettingBox>
                                 </div>
                             </div>
@@ -454,8 +443,9 @@ const Settings = () => {
                                             <h2 className="zolo-settings-title">{__('Enable Coming Soon Mode', 'zoloblocks')}</h2>
                                             <p className="zolo-settings-text">
                                                 {__(
-                                                    "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code."
-                                                )}{' '}
+                                                    "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.",
+                                                    'zoloblocks'
+                                                )}
                                             </p>
                                             {!maintenanceMode && comingSoonMode && (
                                                 <SelectControl
@@ -485,8 +475,9 @@ const Settings = () => {
                                             <h2 className="zolo-settings-title">{__('Enable Maintenance Mode', 'zoloblocks')}</h2>
                                             <p className="zolo-settings-text">
                                                 {__(
-                                                    'Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.'
-                                                )}{' '}
+                                                    'Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.',
+                                                    'zoloblocks'
+                                                )}
                                             </p>
                                             {maintenanceMode && !comingSoonMode && (
                                                 <SelectControl
