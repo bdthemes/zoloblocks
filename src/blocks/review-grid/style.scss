@@ -4,10 +4,22 @@
     gap: 30px;
     grid-template-columns: repeat(1, 1fr);
 }
+
 .wp-block-zolo-review-grid.column {
-    gap: 30px;
-    column-count: 3;
+    &.column {
+        gap: 30px;
+        column-count: 3;
+        clear: both;
+        box-sizing: border-box;
+        .wp-block-zolo-review-child {
+            break-inside: avoid-column;
+            &.swiper-slide {
+                height: auto;
+            }
+        }
+    }
 }
+
 .wp-block-zolo-review-grid.column .swiper-slide + .swiper-slide {
     margin-top: 30px;
 }
@@ -27,5 +39,4 @@
     .wp-block-zolo-review-grid.grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
