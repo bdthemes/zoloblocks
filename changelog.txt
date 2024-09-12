@@ -1,15 +1,43 @@
-### 1.4.0 [August 24, 2024]
+### 1.4.0 [September 12, 2024]
 
 ### Added
 
+- Author Block added
+-breadcrumbs block added
 - Lightbox block added
-- Static social count block  added
+-Post Category block added
+-Tag Cloud block added
+-Post commments block added
+- social count block  added
 - Recent Comments block added
+- Advanced Button hover background control added
+- Google map block editor issue fixed
+Language file added
 
 ### Improved
-
+- Dashboard Updated
 - Assets loading improved
 - Block scripts improved
+-line link remove from preset particles
+- particles preveiw options added to Editor
+- optimized post block controls ui
+- QRcode block scripts improved
+- Post Query system improved
+- Pricing Block style improved
+- Button Block Preset style improved
+-astra theme style support issue fixed link underline
+-star rating responsive issue fixed
+- multiple chart render in a single page issue fixed
+
+============ TODO ============
+maybe tag Cloud block missing
+add post grid pagination
+need to check advanced heading
+need to fix lightbox image control options
+Dashboard pro feature need to badge enabled
+
+
+
 
 ### 1.3.3 [August 18, 2024]
 

@@ -376,6 +376,7 @@ function Inspector(props) {
                                         max={1500}
                                     />
                                     <CardDivider />
+                                    {cssFilters && cssFilters.length > 0 && cssFilters}
                                     <SelectControl
                                         label={__('Effect', 'zoloblocks')}
                                         value={hoverEffect}
@@ -387,7 +388,6 @@ function Inspector(props) {
                                     <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
                                 </>
                             )}
-                            {cssFilters && cssFilters.length > 0 && cssFilters}
 
                             {photoMaskImage === '' && (
                                 <TabPanelControl
@@ -406,6 +406,7 @@ function Inspector(props) {
                                                 max={1500}
                                             />
                                             <CardDivider />
+                                            {cssFilters && cssFilters.length > 0 && cssFilters}
                                             <SelectControl
                                                 label={__('Effect', 'zoloblocks')}
                                                 value={hoverEffect}

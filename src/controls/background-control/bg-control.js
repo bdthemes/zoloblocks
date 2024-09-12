@@ -1123,7 +1123,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                     )}
                                                                 </>
                                                             )}
-                                                            {backgroundParallax && backgroundParallax}
+                                                            {/* {backgroundParallax && backgroundParallax} */}
                                                         </>
                                                     )}
                                                 </>
