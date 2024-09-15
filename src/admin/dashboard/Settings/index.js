@@ -14,7 +14,6 @@ const Settings = () => {
     const [comingSoonMode, setComingSoonMode] = useState(false);
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
-    const [smoothScroller, setSmoothScroller] = useState(false);
     const [blockExport, setBlockExport] = useState(false);
     const [blockImport, setBlockImport] = useState(false);
     const [blockLibrary, setBlockLibrary] = useState(true);
@@ -46,7 +45,6 @@ const Settings = () => {
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
-            setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
             setBlockLibrary(response.zolo_enable_template_library);
@@ -71,7 +69,6 @@ const Settings = () => {
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
-            setSmoothScroller(response.zolo_smooth_scroller);
             setBlockExport(response.zolo_enable_block_export);
             setBlockImport(response.zolo_enable_block_import);
             setBlockLibrary(response.zolo_enable_template_library);
@@ -130,15 +127,6 @@ const Settings = () => {
             data: { zolo_maintenance_mode_template: value },
         });
     };
-
-    const updateSmoothScroller = (value) => {
-        updateSettings({
-            path: '/wp/v2/settings',
-            method: 'POST',
-            data: { zolo_smooth_scroller: value },
-        });
-    };
-
     const updateBlockExport = (value) => {
         updateSettings({
             path: '/wp/v2/settings',
@@ -308,29 +296,6 @@ const Settings = () => {
                                                 setNotice(true);
                                             }}
                                         />
-                                    </SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Smooth Scroller', 'zoloblocks')}
-                                        description={__(
-                                            'The Smooth Scroller feature enhances user experience by providing seamless, visually pleasing content navigation through animated transitions, ensuring a polished and user-friendly interface.',
-                                            'zoloblocks'
-                                        )}
-                                    >
-                                        {zoloBlocks.has_pro ? (
-                                            <ToggleControl
-                                                checked={!!smoothScroller}
-                                                onChange={() => {
-                                                    updateSmoothScroller(!smoothScroller);
-                                                    setNotice(true);
-                                                }}
-                                            />
-                                        ) : (
-                                            <>
-                                                <div className="zolo-pro-feature-wrapper">
-                                                    <span className="zolo-pro-badge"> {__('Pro', 'zoloblocks')}</span>
-                                                </div>
-                                            </>
-                                        )}
                                     </SettingBox>
                                     <SettingBox
                                         title={__('Enable Pattern Export', 'zoloblocks')}

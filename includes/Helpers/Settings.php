@@ -34,29 +34,29 @@ if (! class_exists('Settings')) {
          */
         public function zolo_blocks_settings_init() {
 
-            register_rest_route( 
-                'zolo/v1', 
-                '/blocks', 
+            register_rest_route(
+                'zolo/v1',
+                '/blocks',
                 [
                     'methods'  => ['GET', 'POST'],
                     'callback' => [$this, 'handle_blocks_settings'],
                     'permission_callback' => function () {
                         return current_user_can('manage_options');
                     },
-                ] 
-            ); 
+                ]
+            );
 
-            register_rest_route( 
-                'zolo/v1', 
-                '/extensions', 
+            register_rest_route(
+                'zolo/v1',
+                '/extensions',
                 [
                     'methods'  => ['GET', 'POST'],
                     'callback' => [$this, 'handle_extensions_settings'],
                     'permission_callback' => function () {
                         return current_user_can('manage_options');
                     },
-                ] 
-            ); 
+                ]
+            );
 
             // register_setting(
             //     'zolo_blocks_settings_group',
@@ -228,22 +228,6 @@ if (! class_exists('Settings')) {
                 ]
             );
 
-            // smooth scroller
-            register_setting(
-                'zolo_blocks_settings_group',
-                'zolo_smooth_scroller',
-                [
-                    'type'             => 'boolean',
-                    'default'          => false,
-                    'show_in_rest'     => [
-                        'schema' => [
-                            'type' => 'boolean',
-                        ],
-                        'sanitize_callback' => NULL,
-                    ]
-                ]
-            );
-
             // Enable google recaptcha
             register_setting(
                 'zolo_blocks_settings_group',
@@ -356,14 +340,14 @@ if (! class_exists('Settings')) {
 
         /**
          * Handles the blocks settings.
-         * 
+         *
          * This method is responsible for handling the blocks settings.
-         * 
+         *
          * @param WP_REST_Request $request The request object.
          */
         public function handle_blocks_settings($request) {
             if( $request->get_method() === 'GET' ) {
-                return $this->get_blocks(); 
+                return $this->get_blocks();
             } else {
                 return $this->update_blocks($request);
             }
@@ -371,14 +355,14 @@ if (! class_exists('Settings')) {
 
         /**
          * Handles the extensions settings.
-         * 
+         *
          * This method is responsible for handling the extensions settings.
-         * 
+         *
          * @param WP_REST_Request $request The request object.
          */
         public function handle_extensions_settings($request) {
             if( $request->get_method() === 'GET' ) {
-                return $this->get_extensions(); 
+                return $this->get_extensions();
             } else {
                 return $this->update_extensions($request);
             }
@@ -398,7 +382,7 @@ if (! class_exists('Settings')) {
 
         /**
          * Retrieves the extensions list.
-         * 
+         *
          * @return array The extensions list.
          */
         public static function get_extensions() {
@@ -415,7 +399,7 @@ if (! class_exists('Settings')) {
          * @return array The updated block list.
          */
         public function update_blocks($request) {
-            $nonce = $request->get_param('zolo_nonce'); 
+            $nonce = $request->get_param('zolo_nonce');
 
             if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
                 return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
@@ -454,12 +438,12 @@ if (! class_exists('Settings')) {
 
         /**
          * Updates the extensions list. // update_extensions
-         * 
+         *
          * @param WP_REST_Request $request The request object.
          * @return array The updated extensions list.
          */
         public function update_extensions($request) {
-            $nonce = $request->get_param('zolo_nonce'); 
+            $nonce = $request->get_param('zolo_nonce');
 
             if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
                 return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
@@ -498,21 +482,21 @@ if (! class_exists('Settings')) {
 
         /**
          * Default Block Settings
-         * 
+         *
          * @return array
-         * 
+         *
          */
         public function save_default_blocks() {
             $existing_blocks = get_option('zolo_blocks_settings', []);
             $all_blocks = ZoloHelpers::allowedFormats();
-        
+
             // Temporary array to store the merged blocks
             $merged_blocks = [];
-        
+
             // Merge existing and new blocks
             foreach ($new_blocks as $new_block) {
                 $found = false;
-        
+
                 foreach ($existing_blocks as $existing_block) {
                     if ($existing_block['name'] === $new_block['name']) {
                         // Merge the existing block with new data, but retain the status
@@ -521,24 +505,24 @@ if (! class_exists('Settings')) {
                         break;
                     }
                 }
-        
+
                 // If the block does not exist in the current options, add it
                 if (!$found) {
                     $merged_blocks[] = $new_block;
                 }
             }
-        
+
             // Remove blocks that are no longer in the new list
             foreach ($existing_blocks as $existing_block) {
                 $block_exists = false;
-        
+
                 foreach ($new_blocks as $new_block) {
                     if ($new_block['name'] === $existing_block['name']) {
                         $block_exists = true;
                         break;
                     }
                 }
-        
+
                 if (!$block_exists) {
                     // If the block exists in existing_blocks but not in new_blocks, remove it from merged_blocks
                     $key = array_search($existing_block['name'], array_column($merged_blocks, 'name'));
@@ -547,18 +531,18 @@ if (! class_exists('Settings')) {
                     }
                 }
             }
-        
+
             // Re-index the array to ensure there are no gaps in keys
             $merged_blocks = array_values($merged_blocks);
-        
+
             update_option('zolo_blocks_settings', $merged_blocks);
         }
 
         /**
          * Default Extensions Settings
-         * 
+         *
          * @return array
-         * 
+         *
          */
         public function save_default_extensions() {
             $existing_extensions = get_option('zolo_extensions_settings', []);
@@ -566,11 +550,11 @@ if (! class_exists('Settings')) {
 
             // Temporary array to store the merged blocks
             $merged_extensions = [];
-        
+
             // Merge existing and new blocks
             foreach ($new_extensions as $new_extension) {
                 $found = false;
-        
+
                 foreach ($existing_extensions as $existing_extension) {
                     if ($existing_extension['name'] === $new_extension['name']) {
                         // Merge the existing block with new data, but retain the status
@@ -579,24 +563,24 @@ if (! class_exists('Settings')) {
                         break;
                     }
                 }
-        
+
                 // If the extension does not exist in the current options, add it
                 if (!$found) {
                     $merged_extensions[] = $new_extension;
                 }
             }
-        
+
             // Remove blocks that are no longer in the new list
             foreach ($existing_extensions as $existing_extension) {
                 $extension_exists = false;
-        
+
                 foreach ($new_extensions as $new_extension) {
                     if ($new_extension['name'] === $existing_extension['name']) {
                         $extension_exists = true;
                         break;
                     }
                 }
-        
+
                 if (!$extension_exists) {
                     // If the block exists in existing_blocks but not in new_blocks, remove it from merged_blocks
                     $key = array_search($existing_extension['name'], array_column($merged_extensions, 'name'));
@@ -605,10 +589,10 @@ if (! class_exists('Settings')) {
                     }
                 }
             }
-        
+
             // Re-index the array to ensure there are no gaps in keys
             $merged_extensions = array_values($merged_extensions);
-        
+
             update_option('zolo_extensions_settings', $merged_extensions);
         }
     }
