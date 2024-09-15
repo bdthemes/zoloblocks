@@ -717,11 +717,27 @@ class ZoloHelpers {
 		$extension_options = get_option('zolo_extensions_settings');
 		$extensions = [];
 
-		foreach ($extension_options as $value) {
-			$extensions[$value['name']] = $value['status'];
+		if (is_array($extension_options)) {
+			foreach ($extension_options as $value) {
+				if (isset($value['name']) && isset($value['status'])) {
+					$name = sanitize_text_field($value['name']);
+					$status = sanitize_text_field($value['status']);
+
+					$extensions[$name] = $status;
+				}
+			}
 		}
 
 		return $extensions;
+	}
+
+
+	/**
+	 * Check zolo extension is enabled or not
+	 */
+	public static function is_extension_enabled($extension) {
+		$extensions = self::zolo_extensions();
+		return isset($extensions[$extension]) ? $extensions[$extension] : false;
 	}
 
 

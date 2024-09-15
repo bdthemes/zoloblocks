@@ -55,6 +55,14 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'smooth-scroller'          => [
+        'name'   => 'smooth-scroller',
+        'title'  => __('Smooth Scroller', 'zolo-blocks'),
+        'status' => true,
+        'is_pro' => true,
+        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
     'css-filters'          => [
         'name'   => 'css-filters',
         'title'  => __('CSS Filters', 'zolo-blocks'),
@@ -76,6 +84,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Background Parallax', 'zolo-blocks'),
         'status' => true,
         'is_pro' => true,
+        'released' => false,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],

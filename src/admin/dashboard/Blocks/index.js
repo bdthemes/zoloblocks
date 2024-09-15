@@ -241,7 +241,7 @@ const Blocks = () => {
                                                 updateStatus(block?.name);
                                                 setNotice(true);
                                             }}
-                                            {...(block?.isPro && {
+                                            {...(block?.is_pro && {
                                                 isPro: true,
                                             })}
                                         />

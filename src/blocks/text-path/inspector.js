@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl, SelectControl, ToggleControl } from '@wordpress/components';
+import { TextControl, SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -25,7 +25,15 @@ const {
 import objAttributes from './attributes';
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING, PATH_OPTION } from './constants';
+import {
+    TEXTPATH_ALIGN,
+    TEXTPATH_SIZE,
+    TEXT_PATH_STROKE,
+    TEXT_WORD_SPACING,
+    PATH_TEXT_SPACING,
+    PATH_OPTION,
+    CIRCLE_DURATION,
+} from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -42,6 +50,8 @@ function Inspector(props) {
         textpathRotate,
         textPathColor,
         textPathHoverColor,
+        textPathTypeCircle,
+        circleAnimationDuration,
     } = attributes;
 
     const requiredProps = {
@@ -71,6 +81,35 @@ function Inspector(props) {
                                 options={applyFilters('zolo.presets.TextPath', PATH_OPTION)}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
+
+                            {textPathType === 'circle' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Animation Circle', 'zoloblocks')}
+                                        checked={textPathTypeCircle}
+                                        onChange={() => setAttributes({ textPathTypeCircle: !textPathTypeCircle })}
+                                    />
+                                    {textPathTypeCircle && (
+                                        <SimpleRangeControl
+                                            label={__('Duration (ms)', 'zoloblocks-pro')}
+                                            value={circleAnimationDuration.duration}
+                                            onChange={(value) => {
+                                                setAttributes({
+                                                    circleAnimationDuration: {
+                                                        ...circleAnimationDuration,
+                                                        duration: value,
+                                                    },
+                                                });
+                                            }}
+                                            min={100}
+                                            step={100}
+                                            max={20000}
+                                            noUnits={true}
+                                        />
+                                    )}
+                                    <CardDivider />
+                                </>
+                            )}
 
                             <div className="zolo-flex-col-control">
                                 <SimpleRangeControl

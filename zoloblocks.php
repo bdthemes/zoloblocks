@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/
@@ -8,8 +9,8 @@
  * Text Domain: zoloblocks
  * Description: A collection of custom Gutenberg blocks to design your webpages with ease.
  * Domain Path: /languages
- * Requires at least: 6.0
- * Requires PHP: 7.0
+ * Requires at least: 6.1
+ * Requires PHP: 7.4
  *  License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  *

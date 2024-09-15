@@ -1,5 +1,6 @@
 :root {
     --width: 500px;
+    --text-path-circle-transition: 10000ms;
 }
 
 .wp-block-zolo-text-path {
@@ -15,5 +16,17 @@
     }
     a.zolo-textpath {
         text-decoration: none;
+    }
+
+    @keyframes rotate-animation {
+        0% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(180deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
