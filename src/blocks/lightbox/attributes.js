@@ -167,11 +167,11 @@ const attributes = {
         type: 'string',
         default: '',
     },
-    iconColor:{
+    iconColor: {
         type: 'string',
         default: '',
     },
-    iconHColor:{
+    iconHColor: {
         type: 'string',
         default: '',
     },
@@ -181,15 +181,14 @@ const attributes = {
     ...generateResAlignmentAttributies(BUTTON_ALIGN, { default: 'center' }),
     ...generateResAlignmentAttributies(ICON_ALIGN),
     ...generateNormalBGAttributes(POSTER_BG_COLOR),
-    ...generateBorderAttributies(ICON_BG_COLOR),
-    ...generateBorderAttributies(ICON_H_BG_COLOR),
+    ...generateNormalBGAttributes(ICON_BG_COLOR),
+    ...generateNormalBGAttributes(ICON_H_BG_COLOR),
     ...generateBorderAttributies(POSTER_BORDER),
     ...generateDimensionAttributes(POSTER_BORDER_RADIUS),
     ...generateDimensionAttributes(POSTER_PADDING),
     ...generateBoxShadowAttributies(POSTER_BOX_SHADOW),
     ...generateResRangeAttributies(CONTENT_WIDTH),
     ...generateResRangeAttributies(CONTENT_HEIGHT),
-
 
     ...generateNormalBGAttributes(HOVER_POSTER_BG_COLOR),
     ...generateDimensionAttributes(HOVER_POSTER_BORDER_RADIUS),

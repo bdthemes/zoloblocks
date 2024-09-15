@@ -1,5 +1,7 @@
 <?php
+
 namespace Zolo\Mailchimp;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -7,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if( ! class_exists( 'Mailchimp' ) ) {
+if (! class_exists('Mailchimp')) {
 
     /**
      * Class Mailchimp
@@ -18,7 +20,7 @@ if( ! class_exists( 'Mailchimp' ) ) {
     class Mailchimp {
 
         use SingletonTrait;
-    
+
         /**
          * Constructs a new instance of the Mailchimp class.
          */
@@ -26,7 +28,7 @@ if( ! class_exists( 'Mailchimp' ) ) {
             add_action('wp_ajax_zolo_subscribe_newsletter', [$this, 'subscription']);
             add_action('wp_ajax_nopriv_zolo_subscribe_newsletter', [$this, 'subscription']);
         }
-    
+
 
         /**
          * Subscription method for the Mailchimp class.
@@ -93,9 +95,11 @@ if( ! class_exists( 'Mailchimp' ) ) {
          */
         private function process_mailchimp($email, $fname, $api_key, $list_id, $success, $subscribed) {
             $phone = $lname = '';
-    
-            $api_endpoint = "https://{$datacentre}.api.mailchimp.com/3.0/";
-    
+
+            $api_endpoint = 'https://' . substr($api_key, strpos($api_key, '-') + 1) . '.api.mailchimp.com/3.0';
+            // print_r($api_endpoint);
+            // die;
+
             $body = apply_filters('zolo_newsletter_mailchimp_data', [
                 'email_address' => $email,
                 'merge_fields'  => [
@@ -110,7 +114,7 @@ if( ! class_exists( 'Mailchimp' ) ) {
                 'replace_interests' => false,
                 'send_welcome'      => false,
             ]);
-    
+
             $response = wp_remote_post("{$api_endpoint}/lists/{$list_id}/members", [
                 'headers'   => [
                     'Content-Type'  => 'application/json',
@@ -119,7 +123,7 @@ if( ! class_exists( 'Mailchimp' ) ) {
                 'body'      => wp_json_encode($body),
                 'sslverify' => false,
             ]);
-    
+
             if (is_wp_error($response)) {
                 wp_send_json([
                     'status'  => 'error',
@@ -128,7 +132,7 @@ if( ! class_exists( 'Mailchimp' ) ) {
             } else {
                 $result = json_decode(wp_remote_retrieve_body($response), true);
                 $response = [];
-    
+
                 if (isset($result['status']) && $result['status'] == 'subscribed') {
                     $response['status']  = 'success';
                     $response['message'] = $success;
@@ -139,11 +143,11 @@ if( ! class_exists( 'Mailchimp' ) ) {
                     $response['status']  = 'error';
                     $response['message'] = __('Can\'t process your request.', 'zoloblocks');
                 }
-    
+
                 wp_send_json($response);
             }
         }
-    
+
         /**
          * Sanitizes an array by removing any potentially harmful or unwanted elements.
          *
@@ -162,5 +166,3 @@ if( ! class_exists( 'Mailchimp' ) ) {
         }
     }
 }
-
-
