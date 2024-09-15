@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
@@ -17,6 +17,7 @@ import {
     ITEM_SHADOW,
     //meta
     META_SPACING,
+    AVATAR_HW_SIZE,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
     AVATAR_PADDING,
@@ -39,7 +40,7 @@ const {
     ResCounterControl,
     RangeResetControl,
     ResRangeControl,
-    TabDynamicControl,
+    TabPanelControl,
 } = window.zoloModule;
 export default function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -83,50 +84,68 @@ export default function Inspector(props) {
                             {/*  options={applyFilters('zolo.postCategory.presets', PRESETS)}*/}
                             {/*  onChange={(selected) => changePremade(selected)}*/}
                             {/*/>*/}
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Show/hide elements', 'zoloblocks')}
+                            </div>
+                            {showAuthor && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Title', 'zoloblocks')}
+                                        checked={showTitle}
+                                        onChange={(showTitle) => setAttributes({ showTitle })}
+                                    />
+
+                                    {showTitle && (
+                                        <>
+                                            <TextControl
+                                                label={__('Middle Text', 'zoloblocks')}
+                                                value={authorMiddleText}
+                                                onChange={(value) => setAttributes({ authorMiddleText: value })}
+                                            />
+                                            <CardDivider />
+                                        </>
+                                    )}
+                                </>
+                            )}
 
                             <ToggleControl
-                                label={__('Show Title', 'zoloblocks')}
-                                checked={showTitle}
-                                onChange={(showTitle) => setAttributes({ showTitle })}
-                            />
-                            <ToggleControl
-                                label={__('Show Date', 'zoloblocks')}
+                                label={__('Date', 'zoloblocks')}
                                 checked={showDate}
                                 onChange={(showDate) => setAttributes({ showDate })}
                             />
+
                             <ToggleControl
-                                label={__('Show Text', 'zoloblocks')}
-                                checked={showText}
-                                onChange={(showText) => setAttributes({ showText })}
-                            />
-                            {showText && (
-                                <RangeResetControl
-                                    label={__('Text Limit', 'zoloblocks')}
-                                    controlName={'textLimit'}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={100}
-                                    step={1}
-                                />
-                            )}
-                            <ToggleControl
-                                label={__('Show Author', 'zoloblocks')}
+                                label={__('Author', 'zoloblocks')}
                                 checked={showAuthor}
                                 onChange={(showAuthor) => setAttributes({ showAuthor })}
                             />
                             {showAuthor && (
                                 <>
-                                    <TextControl
-                                        label={__('Middle Text', 'zoloblocks')}
-                                        value={authorMiddleText}
-                                        onChange={(value) => setAttributes({ authorMiddleText: value })}
-                                    />
                                     <SelectControl
-                                        label={__('Avatar Size', 'zoloblocks')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={avatarSize}
                                         options={AVATAR_SIZE}
                                         onChange={(avatarSize) => setAttributes({ avatarSize })}
                                     />
+                                    <CardDivider />
+                                </>
+                            )}
+                            <ToggleControl
+                                label={__('Text', 'zoloblocks')}
+                                checked={showText}
+                                onChange={(showText) => setAttributes({ showText })}
+                            />
+                            {showText && (
+                                <>
+                                    <RangeResetControl
+                                        label={__('Limit', 'zoloblocks')}
+                                        controlName={'textLimit'}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    <CardDivider />
                                 </>
                             )}
                         </ZoloPanelBody>
@@ -161,28 +180,132 @@ export default function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={ITEM_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <CardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                            <BoxShadowControl controlName={ITEM_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={ITEM_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={ITEM_PADDING}
-                                requiredProps={requiredProps}
-                            />
-                            <BoxShadowControl controlName={ITEM_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
+                        {showAuthor && (
+                            <ZoloPanelBody title={__('Author', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Avatar', 'zoloblocks-pro'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Name/Title', 'zoloblocks-pro'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={AVATAR_HW_SIZE}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={200}
+                                                step={1}
+                                            />
+                                            <CardDivider />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={AVATAR_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={AVATAR_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={AVATAR_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl
+                                                controlName={AVATAR_SHADOW}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={AVATAR_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={authorColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        authorColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Hover Color', 'zoloblocks')}
+                                                color={authorHoverColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        authorHoverColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={AUTHOR_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
+
+                        {showDate && (
+                            <ZoloPanelBody title={__('Date', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={dateColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            dateColor: color,
+                                        })
+                                    }
+                                />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={DATE_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                                <CardDivider />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={DATE_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
+                            </ZoloPanelBody>
+                        )}
 
                         {showText && (
                             <ZoloPanelBody title={__('Text', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={TEXT_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                />
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={textColor}
@@ -192,102 +315,22 @@ export default function Inspector(props) {
                                         })
                                     }
                                 />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={TEXT_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                                <CardDivider />
+                                <ResRangeControl
+                                    label={__('Spacing', 'zoloblocks')}
+                                    controlName={META_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={500}
+                                    step={1}
+                                />
                             </ZoloPanelBody>
                         )}
-
-                        <ZoloPanelBody title={__('Meta', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Spacing', 'zoloblocks')}
-                                controlName={META_SPACING}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={500}
-                                step={1}
-                            />
-                            <TabDynamicControl
-                                names={['avatar', 'author-text', 'date']}
-                                avatar={
-                                    <>
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={AVATAR_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={AVATAR_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={AVATAR_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Margin', 'zoloblocks')}
-                                            controlName={AVATAR_MARGIN}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl
-                                            controlName={AVATAR_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                    </>
-                                }
-                                author-text={
-                                    <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={AUTHOR_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={authorColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    authorColor: color,
-                                                })
-                                            }
-                                        />
-                                        <ColorControl
-                                            label={__('Hover Color', 'zoloblocks')}
-                                            color={authorHoverColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    authorHoverColor: color,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                                date={
-                                    <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={DATE_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={dateColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    dateColor: color,
-                                                })
-                                            }
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Margin', 'zoloblocks')}
-                                            controlName={DATE_MARGIN}
-                                            requiredProps={requiredProps}
-                                        />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

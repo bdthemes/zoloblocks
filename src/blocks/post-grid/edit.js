@@ -1,8 +1,6 @@
 import {__} from '@wordpress/i18n';
 import {useBlockProps} from '@wordpress/block-editor';
 import {useEffect, useState} from '@wordpress/element';
-import apiFetch from '@wordpress/api-fetch';
-import {Spinner} from '@wordpress/components';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
@@ -24,7 +22,8 @@ export default function Edit(props) {
     paginationType,
     loadMoreText,
     previousText,
-    nextText
+    nextText,
+    pageTotal
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -49,51 +48,6 @@ export default function Edit(props) {
     }
   }, []);
 
-  const [postResults, setPostResults] = useState([]);
-  const [dataSuccess, setDataSuccess] = useState(true);
-  const [pageTotal, setPageTotal] = useState(0);
-
-  useEffect(() => {
-    let paginationLimit = 0;
-    paginationLimit = postQuery?.postPerPage;
-
-    const apiData = {
-      zolo_nonce: zoloParams.zolo_nonce,
-      attributes: attributes,
-      postQuery: postQuery,
-    };
-
-    apiFetch({
-      path: '/zolo/v1/posts',
-      method: 'POST',
-      data: apiData,
-    })
-      .then((response) => {
-        if (response.success) {
-          setPostResults([...response.data.posts]);
-          setPageTotal(response.data.total_page);
-          setDataSuccess(response.success);
-        } else {
-          setPostResults([]);
-          setPageTotal(0);
-          setDataSuccess(response.success);
-        }
-      })
-      .catch((error) => console.log(error));
-  }, [postQuery]);
-
-  if (Array.isArray(postResults) && postResults.length === 0) {
-    return [
-      isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>,
-      dataSuccess ? (
-        <div className="zolo-spinner">
-          <Spinner/>
-        </div>
-      ) : (
-        <p>{__('No posts found.', 'zoloblocks')}</p>
-      ),
-    ];
-  }
 
   // preview image
   if (preview) {
@@ -106,8 +60,9 @@ export default function Edit(props) {
       <Style props={props}/>
       <div {...blockProps}>
         <SidebarOpener clientId={clientId}/>
-        <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults}/>
+        <RenderView attributes={attributes} setAttributes={setAttributes}/>
       </div>
+
       {(postQuery?.showPagination && pageTotal > 1) && (
         <div className={`zolo-pagination-wrap ${uniqueId}`}>
           {(paginationType === 'normal' || paginationType === 'number') && (

@@ -61,6 +61,8 @@ function Style({ props }) {
         viewBtnIconHoverColor,
         itemBorderHoverColor,
         viewBtnHoverBorderColor,
+        countHoverBColor,
+        countHoverBgColor
     } = attributes;
     const {
         desktopRangeStyle: itemHeightDesk,
@@ -90,7 +92,7 @@ function Style({ props }) {
         attributes,
         noProperty: true,
         defaults: {
-            deskRange: 4,
+            deskRange: 3,
             tabRange: 2,
             mobRange: 1,
         },
@@ -343,6 +345,8 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-count {
           ${countHoverColor ? `color:${countHoverColor};` : ''}
+          ${countHoverBgColor ? `background-color:${countHoverBgColor};` : ''}
+          ${countHoverBColor ? `border-color:${countHoverBColor};` : ''}
       }
 
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{

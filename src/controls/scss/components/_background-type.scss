@@ -46,7 +46,6 @@
         gap: 8px;
         position: relative;
         z-index: 1;
-
     }
 
     .components-circular-option-picker__custom-clear-wrapper {
@@ -72,6 +71,18 @@
 
 .zolo-background-control-popover {
     z-index: 999;
+    .components-button.zolo-action-button.is-primary {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 4px;
+        justify-content: center;
+        background-color: #ebeaea;
+        color: #000;
+        border: 1px solid #ddd;
+        &:hover {
+            background-color: #ddd;
+        }
+    }
     .components-popover__content {
         padding: 15px;
         width: 270px;
@@ -126,13 +137,12 @@
 //    width: 100% !important;
 // }
 
-
 .e1epgpqk10 {
-    height: 2px !important; 
+    height: 2px !important;
 }
 
 .components-range-control__track {
-    height: 2px !important; 
+    height: 2px !important;
 }
 .components-range-control__thumb-wrapper {
     margin-top: 8px !important;

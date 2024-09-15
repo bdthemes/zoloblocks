@@ -98,7 +98,7 @@ const attributes = {
     ...generateResRangeAttributies(ITEM_HEIGHT),
     ...generateResRangeAttributies(TEXT_SPACING),
     ...generateResCounterAttributies(GRID_COLUMNS, {
-        deskRange: 4,
+        deskRange: 3,
         tabRange: 2,
         mobRange: 1,
     }),
@@ -126,6 +126,12 @@ const attributes = {
     },
     countHoverColor: {
         type: 'string',
+    },
+    countHoverBgColor: {
+      type: 'string',
+    },
+    countHoverBColor: {
+      type: 'string',
     },
     viewBtnColor: {
         type: 'string',

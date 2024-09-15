@@ -15,25 +15,20 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                     {video && (
                         <a href={video} target="_blank" rel="noopener noreferrer">
                             <span className="block-ex-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={12} height={14} viewBox="0 0 12 14" fill="none">
-                                    <path
-                                        d="M7.74414 1.45807V2.33307C7.74414 3.15802 7.74414 3.57051 8.0004 3.82679C8.25672 4.08307 8.66919 4.08307 9.49414 4.08307H10.3691"
-                                        stroke="#2667FF"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M1.33008 9.33284V4.66617C1.33008 3.01625 1.33008 2.19129 1.84264 1.67873C2.3552 1.16617 3.18016 1.16617 4.83008 1.16617H7.26351C7.50192 1.16617 7.62115 1.16617 7.72837 1.21057C7.83553 1.25497 7.91988 1.33928 8.08846 1.50788L10.3217 3.74112C10.4903 3.90972 10.5746 3.99403 10.619 4.10123C10.6634 4.20843 10.6634 4.32765 10.6634 4.56609V9.33284C10.6634 10.9827 10.6634 11.8077 10.1508 12.3203C9.63826 12.8328 8.81331 12.8328 7.16341 12.8328H4.83008C3.18016 12.8328 2.3552 12.8328 1.84264 12.3203C1.33008 11.8077 1.33008 10.9827 1.33008 9.33284Z"
-                                        stroke="#2667FF"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M3.66602 5.83307H8.33268M3.66602 7.87474H8.33268M3.66602 9.9164H6.09898"
-                                        stroke="#2667FF"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width={24}
+                                    height={24}
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="icon icon-tabler icons-tabler-outline icon-tabler-player-play"
+                                >
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M7 4v16l13 -8z" />
                                 </svg>
                             </span>
                             <span>{__('Video Tutorial', 'zoloblocks')}</span>
@@ -43,17 +38,22 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                     {demo && (
                         <a href={demo} target="_blank" rel="noopener noreferrer">
                             <span className="block-ex-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={12} height={12} viewBox="0 0 12 12" fill="none">
-                                    <path
-                                        d="M4.83008 6.71742C4.91268 6.85269 5.01074 6.98073 5.12419 7.0988C5.82857 7.83187 6.90219 7.9465 7.72201 7.44262C7.87391 7.34922 8.01706 7.23466 8.14761 7.0988L10.0373 5.13215C10.8721 4.26324 10.8721 2.85444 10.0373 1.98552C9.20234 1.1166 7.84871 1.11661 7.01379 1.98552L6.59758 2.4187"
-                                        stroke="#2667FF"
-                                        strokeLinecap="round"
-                                    />
-                                    <path
-                                        d="M5.39609 9.5824L4.9797 10.0157C4.14481 10.8846 2.79116 10.8846 1.95626 10.0157C1.12135 9.14676 1.12135 7.73801 1.95626 6.86908L3.84592 4.90243C4.68082 4.0335 6.03449 4.0335 6.86935 4.90243C6.98281 5.02044 7.08081 5.14848 7.16341 5.2837"
-                                        stroke="#2667FF"
-                                        strokeLinecap="round"
-                                    />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width={24}
+                                    height={24}
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="icon icon-tabler icons-tabler-outline icon-tabler-link"
+                                >
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M9 15l6 -6" />
+                                    <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                                    <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
                                 </svg>
                             </span>
                             <span>{__('Live Demo', 'zoloblocks')}</span>
