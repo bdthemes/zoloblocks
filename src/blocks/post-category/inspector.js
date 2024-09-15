@@ -82,6 +82,8 @@ export default function Inspector(props) {
         viewAllBtnIcon,
         viewBtnHoverBorderColor,
         itemBorderHoverColor,
+        countHoverBgColor,
+        countHoverBColor,
     } = attributes;
     const { enableMultipleBG } = postCategoryPro ?? {};
     const requiredProps = {
@@ -157,6 +159,47 @@ export default function Inspector(props) {
                                 />
                             )}
                         </ZoloPanelBody>
+
+                      {(viewAllBtn || showText) && (
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
+                          {showText &&(
+                            <>
+                              <InputControl
+                                label={__('Text Limit', 'zoloblocks')}
+                                value={itemTextLimit}
+                                onChange={(itemTextLimit) => setAttributes({itemTextLimit})}
+                                type="number"
+                                min={1}
+                                max={99}
+                                labelPosition="edge"
+                                __unstableInputWidth="64px"
+                              />
+                            </>
+
+                          )}
+
+                          {viewAllBtn && (
+                            <>
+                              <div className="zolo-custom-heading">{__('View All Button', 'zoloblocks')}</div>
+                              <TextControl
+                                label={__('Button Text', 'zoloblocks')}
+                                value={viewAllBtnText}
+                                onChange={(viewAllBtnText) => setAttributes({viewAllBtnText})}
+                              />
+                              <ZoloIconPicker
+                                label={__('Select Icon', 'zoloblocks')}
+                                value={viewAllBtnIcon}
+                                onChange={(value) => {
+                                  setAttributes({
+                                    viewAllBtnIcon: value,
+                                  });
+                                }}
+                              />
+                            </>
+                          )}
+                        </ZoloPanelBody>
+                      )}
+
                         <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
                             <ResCounterControl
                                 label={__('Column', 'zoloblocks')}
@@ -381,6 +424,24 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                          <ColorControl
+                                            label={__('Background', 'zoloblocks')}
+                                            color={countHoverBgColor}
+                                            onChange={(color) =>
+                                              setAttributes({
+                                                countHoverBgColor: color,
+                                              })
+                                            }
+                                          />
+                                          <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={countHoverBColor}
+                                            onChange={(color) =>
+                                              setAttributes({
+                                                countHoverBColor: color,
+                                              })
+                                            }
+                                          />
                                         </>
                                     }
                                 />
@@ -415,17 +476,6 @@ export default function Inspector(props) {
                                                 max={200}
                                                 step={1}
                                             />
-                                            <CardDivider />
-                                            <InputControl
-                                                label={__('Text Limit', 'zoloblocks')}
-                                                value={itemTextLimit}
-                                                onChange={(itemTextLimit) => setAttributes({ itemTextLimit })}
-                                                type="number"
-                                                min={1}
-                                                max={99}
-                                                labelPosition="edge"
-                                                __unstableInputWidth="64px"
-                                            />
                                         </>
                                     }
                                     hoverComponents={
@@ -447,21 +497,7 @@ export default function Inspector(props) {
 
                         {viewAllBtn && (
                             <ZoloPanelBody title={__('View All Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TextControl
-                                    label={__('Button Text', 'zoloblocks')}
-                                    value={viewAllBtnText}
-                                    onChange={(viewAllBtnText) => setAttributes({ viewAllBtnText })}
-                                />
-                                <ZoloIconPicker
-                                    label={__('Select Icon', 'zoloblocks')}
-                                    value={viewAllBtnIcon}
-                                    onChange={(value) => {
-                                        setAttributes({
-                                            viewAllBtnIcon: value,
-                                        });
-                                    }}
-                                />
-                                <CardDivider />
+
                                 <TabPanelControl
                                     normalComponents={
                                         <>
