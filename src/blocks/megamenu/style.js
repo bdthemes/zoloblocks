@@ -25,6 +25,7 @@ import {
     DROPDOWN_WRAP_MARGIN,
     DROPDOWN_WRAP_BOX_SHADOW,
     DROPDOWN_WIDTH,
+    DROPDOWN_WIDTH_OFFSET,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -109,7 +110,19 @@ export default function Style({ props }) {
         mobRangeStyle: dropdownSizeMob,
     } = generateResRangeStyle({
         controlName: DROPDOWN_WIDTH,
-        property: 'min-width',
+        property: 'width',
+        attributes,
+    });
+
+    // DROPDOWN_WIDTH_OFFSET
+
+    const {
+        desktopRangeStyle: dropdownOffsetDesk,
+        tabRangeStyle: dropdownOffsetTab,
+        mobRangeStyle: dropdownOffsetMob,
+    } = generateResRangeStyle({
+        controlName: DROPDOWN_WIDTH_OFFSET,
+        property: 'left',
         attributes,
     });
 
@@ -126,6 +139,7 @@ export default function Style({ props }) {
             ${dropdownWrapMarginDesk}
             ${dropdownWrapBoxShadowStyle}
             ${dropdownSizeDesk}
+            ${dropdownOffsetDesk}
         }
 
 	`;
@@ -138,6 +152,7 @@ export default function Style({ props }) {
             ${dropdownWrapPaddingTab}
             ${dropdownWrapMarginTab}
             ${dropdownSizeTab}
+            ${dropdownOffsetTab}
         }
 
 
@@ -151,6 +166,7 @@ export default function Style({ props }) {
             ${dropdownWrapPaddingMob}
             ${dropdownWrapMarginMob}
             ${dropdownSizeMob}
+            ${dropdownOffsetMob}
         }
   	`;
 

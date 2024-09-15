@@ -30,6 +30,7 @@ import {
     DROPDOWN_WRAP_MARGIN,
     DROPDOWN_WRAP_BOX_SHADOW,
     DROPDOWN_WIDTH,
+    DROPDOWN_WIDTH_OFFSET,
     TAB_STATES,
 } from './constants';
 
@@ -56,8 +57,16 @@ const Inspector = (props) => {
                                 label={__('Width', 'zoloblocks')}
                                 controlName={DROPDOWN_WIDTH}
                                 requiredProps={requiredProps}
-                                min={0}
-                                max={500}
+                                min={200}
+                                max={1200}
+                                step={1}
+                            />
+                            <ResRangeControl
+                                label={__('Offset', 'zoloblocks')}
+                                controlName={DROPDOWN_WIDTH_OFFSET}
+                                requiredProps={requiredProps}
+                                min={-500}
+                                max={1200}
                                 step={1}
                             />
                             <CardDivider />

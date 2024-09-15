@@ -19,6 +19,7 @@ import {
     DROPDOWN_WRAP_MARGIN,
     DROPDOWN_WRAP_BOX_SHADOW,
     DROPDOWN_WIDTH,
+    DROPDOWN_WIDTH_OFFSET,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -60,6 +61,7 @@ const attributes = {
     ...generateDimensionAttributes(DROPDOWN_WRAP_MARGIN),
     ...generateBoxShadowAttributies(DROPDOWN_WRAP_BOX_SHADOW),
     ...generateResRangeAttributies(DROPDOWN_WIDTH),
+    ...generateResRangeAttributies(DROPDOWN_WIDTH_OFFSET),
 
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
