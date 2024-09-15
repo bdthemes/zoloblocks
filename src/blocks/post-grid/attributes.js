@@ -53,6 +53,12 @@ import {
   CONTENT_PADDING,
   META_ARROW_SPACE,
   META_BOX_WRAP_PADDING,
+  FILTER_BORDER,
+  FILTER_BORDER_RADIUS,
+  FILTER_MARGIN,
+  FILTER_ALIGN,
+  FILTER_PADDING,
+  FILTER_GAP
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -103,21 +109,41 @@ const attributes = {
   postQuery: {
     type: 'object',
   },
+  showFilterTaxonomy: {
+    type: 'boolean',
+    default: false
+  },
+  postTerms: {
+    type: 'array',
+    default: []
+  },
+  postTaxonomy: {
+    type: 'string',
+    default: 'category'
+  },
+  taxonomyName: {
+    type: 'string',
+    default: 'Category'
+  },
+  pageTotal: {
+    type: 'number',
+    default: 1
+  },
   paginationType: {
     type: 'string',
     default: 'normal'
   },
   previousText: {
-    type:'string',
-    default:'Prev'
+    type: 'string',
+    default: 'Prev'
   },
-  nextText:{
-    type:'string',
-    default:'Next'
+  nextText: {
+    type: 'string',
+    default: 'Next'
   },
-  loadMoreText:{
-    type:'string',
-    default:'Load More'
+  loadMoreText: {
+    type: 'string',
+    default: 'Load More'
   },
   authorPrefix: {
     type: 'string',
@@ -275,6 +301,26 @@ const attributes = {
   pagSeparatorColor: {
     type: 'string',
   },
+  //filter taxonomy
+  filterColor: {
+    type: 'string',
+  },
+  filterBgColor: {
+    type: 'string',
+  },
+  filterBorderColor: {
+    type: 'string',
+  },
+  filterAColor: {
+    type: 'string',
+  },
+  filterABgColor: {
+    type: 'string',
+  },
+  filterABorderColor: {
+    type: 'string',
+  },
+
   ...generateDimensionAttributes(COLUMN_PADDING),
   ...generateNormalBGAttributes(COLUMN_BG),
   ...generateBorderAttributies(COLUMN_BORDER),
@@ -311,6 +357,15 @@ const attributes = {
 
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
+  //filter taxonomy
+  ...generateBorderAttributies(FILTER_BORDER),
+  ...generateDimensionAttributes(FILTER_BORDER_RADIUS),
+  ...generateDimensionAttributes(FILTER_MARGIN),
+  ...generateDimensionAttributes(FILTER_PADDING),
+  ...generateResAlignmentAttributies(FILTER_ALIGN),
+  ...generateGapAttributes(FILTER_GAP, {
+    defaultUnit: 'px',
+  }),
   // pagination
   ...generateBorderAttributies(PAG_BORDER),
   ...generateDimensionAttributes(PAG_BORDER_RADIUS),

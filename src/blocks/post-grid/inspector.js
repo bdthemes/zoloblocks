@@ -4,187 +4,470 @@ import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 
 import {
-    PRESETS,
-    GRID_COLUMNS,
-    COLUMNS_GAP,
-    THUMBNAIL_HEIGHT,
-    COLUMN_PADDING,
-    COLUMN_BG,
-    COLUMN_BORDER,
-    COLUMN_BORDER_RADIUS,
-    COLUMN_SHADOW,
-    THUMBNAIL_BORDER,
-    THUMBNAIL_BORDER_RADIUS,
-    THUMBNAIL_BOX_SHADOW,
-    THUMBNAIL_MARGIN,
-    THUMBNAIL_BG,
-    TITLE_MARGIN,
-    EXCERPT_MARGIN,
-    META_MARGIN,
-    CAT_GAP,
-    CAT_BORDER,
-    CAT_BORDER_RADIUS,
-    CAT_MARGIN,
-    CAT_PADDING,
-    READMORE_GAP,
-    READMORE_BORDER,
-    READMORE_BORDER_RADIUS,
-    READMORE_MARGIN,
-    READMORE_PADDING,
-    AVATAR_SIZE,
-    AVATAR_BORDER,
-    AVATAR_BORDER_RADIUS,
-    AVATAR_GAP,
-    PAG_BORDER,
-    PAG_BORDER_RADIUS,
-    PAG_MARGIN,
-    PAG_PADDING,
-    PAG_ALIGN,
-    META_SPACE,
-    META_ARROW_SPACE,
-    CONTENT_PADDING,
-    META_BOX_WRAP_PADDING,
+  PRESETS,
+  GRID_COLUMNS,
+  COLUMNS_GAP,
+  THUMBNAIL_HEIGHT,
+  COLUMN_PADDING,
+  COLUMN_BG,
+  COLUMN_BORDER,
+  COLUMN_BORDER_RADIUS,
+  COLUMN_SHADOW,
+  THUMBNAIL_BORDER,
+  THUMBNAIL_BORDER_RADIUS,
+  THUMBNAIL_BOX_SHADOW,
+  THUMBNAIL_MARGIN,
+  THUMBNAIL_BG,
+  TITLE_MARGIN,
+  EXCERPT_MARGIN,
+  META_MARGIN,
+  CAT_GAP,
+  CAT_BORDER,
+  CAT_BORDER_RADIUS,
+  CAT_MARGIN,
+  CAT_PADDING,
+  READMORE_GAP,
+  READMORE_BORDER,
+  READMORE_BORDER_RADIUS,
+  READMORE_MARGIN,
+  READMORE_PADDING,
+  AVATAR_SIZE,
+  AVATAR_BORDER,
+  AVATAR_BORDER_RADIUS,
+  AVATAR_GAP,
+  PAG_BORDER,
+  PAG_BORDER_RADIUS,
+  PAG_MARGIN,
+  PAG_PADDING,
+  PAG_ALIGN,
+  META_SPACE,
+  META_ARROW_SPACE,
+  CONTENT_PADDING,
+  META_BOX_WRAP_PADDING,
+  FILTER_BORDER,
+  FILTER_BORDER_RADIUS,
+  FILTER_MARGIN,
+  FILTER_PADDING,
+  FILTER_ALIGN,
+  FILTER_GAP
 } from './constants';
 
 import {
-    TITLE_TYPOGRAPHY,
-    EXCERPT_TYPOGRAPHY,
-    META_TYPOGRAPHY,
-    CAT_TYPOGRAPHY,
-    READMORE_TYPOGRAPHY,
-    NAME_TYPOGRAPHY,
-    PAG_TYPOGRAPHY,
+  TITLE_TYPOGRAPHY,
+  EXCERPT_TYPOGRAPHY,
+  META_TYPOGRAPHY,
+  CAT_TYPOGRAPHY,
+  READMORE_TYPOGRAPHY,
+  NAME_TYPOGRAPHY,
+  PAG_TYPOGRAPHY,
+  FILTER_TYPOGRAPHY
 } from './constants/typoPrefixConstant';
 
-import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, PAGINARION_TYPE } from '../../../src/global/constants';
-import { applyFilters } from '@wordpress/hooks';
+import {DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, PAGINARION_TYPE} from '../../../src/global/constants';
+import {applyFilters} from '@wordpress/hooks';
 
 const {
-    ResDimensionsControl,
-    QueryControl,
-    ResRangeControl,
-    RangeResetControl,
-    NormalBGControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    TabPanelControl,
-    ColorControl,
-    TypographyDropdown,
-    ResCounterControl,
-    AdvancedOptions,
-    ZoloIconPicker,
-    ResAlignmentControl,
-    ZoloPanelBody,
-    ResGapControl,
+  ResDimensionsControl,
+  QueryControl,
+  ResRangeControl,
+  RangeResetControl,
+  NormalBGControl,
+  BorderControl,
+  BoxShadowControl,
+  HeaderTabs,
+  TabPanelControl,
+  ColorControl,
+  TypographyDropdown,
+  ResCounterControl,
+  AdvancedOptions,
+  ZoloIconPicker,
+  ResAlignmentControl,
+  ZoloPanelBody,
+  ResGapControl,
+  getTaxonomies,
+  Select2AjaxControl
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
-    const {
-        preset,
-        resMode,
-        postQuery,
-        showThumbnail,
-        showTitle,
-        titleTag,
-        showExcerpt,
-        excerptindicator,
-        showReadMore,
-        readMoreBtnText,
-        showCategory,
-        showAuthor,
-        showMeta,
-        titleColor,
-        titleHoverColor,
-        excerptColor,
-        metaColor,
-        metaHColor,
-        metaArrowColor,
-        catBgColor,
-        catColor,
-        catBgHoverColor,
-        catHoverColor,
-        showReadmoreText,
-        showReadmoreIcon,
-        readMoreIcon,
-        readMoreBgColor,
-        readMoreColor,
-        readMoreIconColor,
-        readMoreBgHoverColor,
-        readMoreHoverColor,
-        readMoreIconHoverColor,
-        namePrefixColor,
-        nameColor,
-        nameHoverColor,
-        namePrefixHoverColor,
-        pagColor,
-        pagBgColor,
-        apagColor,
-        apagBgColor,
-        pagSeparatorColor,
-        metaSeparator,
-        authorPrefix,
-        // post meta
-        showReadingTime,
-        paginationType,
-        previousText,
-        nextText,
-        loadMoreText,
-    } = attributes;
+  const {attributes, setAttributes} = props;
+  const {
+    preset,
+    resMode,
+    postQuery,
+    showThumbnail,
+    showTitle,
+    titleTag,
+    showExcerpt,
+    excerptindicator,
+    showReadMore,
+    readMoreBtnText,
+    showCategory,
+    showAuthor,
+    showMeta,
+    titleColor,
+    titleHoverColor,
+    excerptColor,
+    metaColor,
+    metaHColor,
+    metaArrowColor,
+    catBgColor,
+    catColor,
+    catBgHoverColor,
+    catHoverColor,
+    showReadmoreText,
+    showReadmoreIcon,
+    readMoreIcon,
+    readMoreBgColor,
+    readMoreColor,
+    readMoreIconColor,
+    readMoreBgHoverColor,
+    readMoreHoverColor,
+    readMoreIconHoverColor,
+    namePrefixColor,
+    nameColor,
+    nameHoverColor,
+    namePrefixHoverColor,
+    pagColor,
+    pagBgColor,
+    apagColor,
+    apagBgColor,
+    pagSeparatorColor,
+    metaSeparator,
+    authorPrefix,
+    // post meta
+    showReadingTime,
+    paginationType,
+    previousText,
+    nextText,
+    loadMoreText,
+    //for filter
+    showFilterTaxonomy,
+    postTerms,
+    postTaxonomy,
+    taxonomyName,
+    filterColor,
+    filterBgColor,
+    filterBorderColor,
+    filterAColor,
+    filterABgColor,
+    filterABorderColor
+  } = attributes;
 
-    const requiredProps = {
-        resMode,
-        setAttributes,
-        attributes,
-        objAttributes,
-    };
+  const requiredProps = {
+    resMode,
+    setAttributes,
+    attributes,
+    objAttributes,
+  };
 
-    const changePremade = (selected) => {
-        setAttributes({ preset: selected });
-        switch (selected) {
-            case 'style-1':
-                setAttributes({
-                    showExcerpt: false,
-                    showReadMore: false,
-                    showThumbnail: true,
-                    zolo_gridColumnsRange: 3,
-                });
-                break;
-            case 'style-2':
-                setAttributes({
-                    showExcerpt: false,
-                    showReadMore: false,
-                    showThumbnail: true,
-                    zolo_gridColumnsRange: 3,
-                });
-                break;
-            case 'style-3':
-                setAttributes({
-                    showExcerpt: false,
-                    showReadMore: false,
-                    showThumbnail: true,
-                    zolo_gridColumnsRange: 3,
-                });
-                break;
-            case 'style-4':
-                setAttributes({
-                    showExcerpt: false,
-                    showReadMore: false,
-                    showThumbnail: true,
-                    zolo_gridColumnsRange: 2,
-                });
-                break;
-            case 'style-5':
-                setAttributes({
-                    showExcerpt: true,
-                    showReadMore: false,
-                    showThumbnail: true,
-                    zolo_gridColumnsRange: 3,
-                });
-                break;
-            default:
-                break;
+  const changePremade = (selected) => {
+    setAttributes({preset: selected});
+    switch (selected) {
+      case 'style-1':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3,
+        });
+        break;
+      case 'style-2':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3,
+        });
+        break;
+      case 'style-3':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3,
+        });
+        break;
+      case 'style-4':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 2,
+        });
+        break;
+      case 'style-5':
+        setAttributes({
+          showExcerpt: true,
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3,
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+//for only taxonomy filter
+  const zoloTaxonomies = getTaxonomies(postQuery?.postType || 'post', zoloParams.get_taxonomies);
+  let zoloTaxonomiesFilter = [
+    {
+      value: '',
+      label: __('Select Type', 'zoloblocks-pro'),
+    },
+    ...zoloTaxonomies,
+  ];
+
+  return (
+    <InspectorControls key="controls">
+      <HeaderTabs
+        block="zolo/post-grid"
+        attributes={attributes}
+        setAttributes={setAttributes}
+        generalTab={
+          <>
+            <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+              <SelectControl
+                label={__('Styles', 'zoloblocks')}
+                value={preset}
+                options={applyFilters('zolo.postGrid.presets', PRESETS)}
+                onChange={(selected) => changePremade(selected)}
+              />
+
+              <ToggleControl
+                label={__('Show Title', 'zoloblocks')}
+                checked={showTitle}
+                onChange={() => setAttributes({showTitle: !showTitle})}
+              />
+
+              <ToggleControl
+                label={__('Show Excerpt', 'zoloblocks')}
+                checked={showExcerpt}
+                onChange={() => setAttributes({showExcerpt: !showExcerpt})}
+              />
+
+              <ToggleControl
+                label={__('Show Read More Button', 'zoloblocks')}
+                checked={showReadMore}
+                onChange={() => setAttributes({showReadMore: !showReadMore})}
+              />
+
+              <ToggleControl
+                label={__('Show Category', 'zoloblocks')}
+                checked={showCategory}
+                onChange={() => setAttributes({showCategory: !showCategory})}
+              />
+              <ToggleControl
+                label={__('Show Author', 'zoloblocks')}
+                checked={showAuthor}
+                onChange={() => setAttributes({showAuthor: !showAuthor})}
+              />
+              <ToggleControl
+                label={__('Show Meta', 'zoloblocks')}
+                checked={showMeta}
+                onChange={() => setAttributes({showMeta: !showMeta})}
+              />
+              {showMeta && (
+                <ToggleControl
+                  label={__('Show Reading Time', 'zoloblocks')}
+                  checked={showReadingTime}
+                  onChange={() => setAttributes({showReadingTime: !showReadingTime})}
+                />
+              )}
+              <ToggleControl
+                label={__('Show Pagination', 'zoloblocks')}
+                checked={postQuery?.showPagination}
+                onChange={(showPagination) =>
+                  setAttributes({
+                    postQuery: {...postQuery, showPagination}
+                  })
+                }
+              />
+            </ZoloPanelBody>
+            <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
+              {showTitle && (
+                <>
+                  <SelectControl
+                    label={__('Title Tag', 'zoloblocks')}
+                    value={titleTag}
+                    options={HEADING}
+                    onChange={(titleTag) => setAttributes({titleTag})}
+                  />
+                  <RangeResetControl
+                    label={__('Title Words', 'zoloblocks')}
+                    controlName={'titleWords'}
+                    requiredProps={requiredProps}
+                    min={1}
+                    max={100}
+                    step={1}
+                  />
+                </>
+              )}
+              {showExcerpt && (
+                <>
+                  <RangeResetControl
+                    label={__('Excerpt Words', 'zoloblocks')}
+                    controlName={'excerptWords'}
+                    requiredProps={requiredProps}
+                    min={1}
+                    max={100}
+                    step={1}
+                  />
+                  <TextControl
+                    label={__('EXP Indic', 'zoloblocks')}
+                    value={excerptindicator}
+                    onChange={(excerptindicator) => setAttributes({excerptindicator})}
+                  />
+                </>
+              )}
+              {showMeta && showReadingTime && (
+                <TextControl
+                  label={__('Meta Separator', 'zoloblocks')}
+                  value={metaSeparator}
+                  onChange={(value) => setAttributes({metaSeparator: value})}
+                />
+              )}
+              {showAuthor && (
+                <TextControl
+                  label={__('Author Prefix', 'zoloblocks')}
+                  value={authorPrefix}
+                  onChange={(authorPrefix) => setAttributes({authorPrefix})}
+                />
+              )}
+            </ZoloPanelBody>
+
+            {showReadMore && (
+              <ZoloPanelBody title={__('Read More Button', 'zoloblocks')} panelProps={props}>
+                <ToggleControl
+                  label={__('Show Text', 'zoloblocks')}
+                  checked={showReadmoreText}
+                  onChange={(showReadmoreText) => setAttributes({showReadmoreText})}
+                />
+                <ToggleControl
+                  label={__('Show Icon', 'zoloblocks')}
+                  checked={showReadmoreIcon}
+                  onChange={(showReadmoreIcon) => setAttributes({showReadmoreIcon})}
+                />
+
+                {showReadmoreText && (
+                  <TextControl
+                    label={__('Button Text', 'zoloblocks')}
+                    value={readMoreBtnText}
+                    onChange={(readMoreBtnText) => setAttributes({readMoreBtnText})}
+                  />
+                )}
+
+                {showReadmoreIcon && (
+                  <ZoloIconPicker
+                    label={__('Read More Icon', 'zoloblocks')}
+                    value={readMoreIcon}
+                    onChange={(readMoreIcon) => setAttributes({readMoreIcon})}
+                  />
+                )}
+              </ZoloPanelBody>
+            )}
+
+            {postQuery?.showPagination && (
+              <ZoloPanelBody title={__('Pagination', 'zoloblocks')} panelProps={props}>
+                <SelectControl
+                  label={__('Pagination Type', 'zoloblocks')}
+                  value={paginationType}
+                  options={PAGINARION_TYPE}
+                  onChange={(paginationType) => setAttributes({paginationType})}
+                />
+
+                {(paginationType === 'number' || paginationType === 'normal') && (
+                  <>
+                    <TextControl
+                      label={__('Previous Text', 'zoloblocks')}
+                      value={previousText}
+                      onChange={(previousText) => setAttributes({previousText})}
+                    />
+                    <TextControl
+                      label={__('Next Text', 'zoloblocks')}
+                      value={nextText}
+                      onChange={(nextText) => setAttributes({nextText})}
+                    />
+                  </>
+                )}
+
+                {paginationType === 'button' && (
+                  <TextControl
+                    label={__('Load More Text', 'zoloblocks')}
+                    value={loadMoreText}
+                    onChange={(loadMoreText) => setAttributes({loadMoreText})}
+                  />
+                )}
+
+              </ZoloPanelBody>
+            )}
+
+            <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
+              <ResCounterControl
+                label={__('Column', 'zoloblocks')}
+                controlName={GRID_COLUMNS}
+                requiredProps={requiredProps}
+                min={1}
+                max={6}
+                defaults={{
+                  deskRange: 3,
+                  tabRange: 2,
+                  mobRange: 1,
+                }}
+              />
+              <ResGapControl
+                label={__('Gap', 'zoloblocks')}
+                controlName={COLUMNS_GAP}
+                requiredProps={requiredProps}
+                max={200}
+              />
+            </ZoloPanelBody>
+            <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props}>
+              <QueryControl attributes={attributes} setAttributes={setAttributes}/>
+            </ZoloPanelBody>
+
+            <ZoloPanelBody title={__('Filter By Taxonomy', 'zoloblocks')} panelProps={props}>
+              <ToggleControl
+                label={__('Show Filter By Taxonomy', 'zoloblocks')}
+                checked={showFilterTaxonomy}
+                onChange={(showFilterTaxonomy) => setAttributes({showFilterTaxonomy})
+                }
+              />
+
+              {showFilterTaxonomy && (
+                <>
+                  <SelectControl
+                    label={__('Select Taxonomy For Filter', 'zoloblocks-pro')}
+                    value={postTaxonomy}
+                    onChange={(value) => {
+                      const tName = zoloTaxonomiesFilter.find((option) => option.value === value);
+                      setAttributes({postTaxonomy: value});
+                      setAttributes({taxonomyName: tName.label});
+                      if (postTaxonomy !== value) {
+                        setAttributes({postTerms: []});
+                      }
+                    }}
+                    options={zoloTaxonomiesFilter}
+                  />
+
+                  {postTaxonomy && (
+                    <div className="zolo-flex-col-control">
+                      <Select2AjaxControl
+                        label={__(`Select ${taxonomyName}`, 'zoloblocks-pro')}
+                        placeholder={__('Search...', 'zoloblocks-pro')}
+                        sourceName="taxonomy"
+                        sourceType={postTaxonomy}
+                        isMulti={true}
+                        value={postTerms || []}
+                        onChange={(postTerms) => setAttributes({postTerms})}
+                      />
+                    </div>
+                  )}
+                </>
+              )}
+
+            </ZoloPanelBody>
+          </>
         }
     };
 
@@ -1011,6 +1294,221 @@ function Inspector(props) {
                             requiredProps={requiredProps}
                             block="zolo/post-grid"
                         />
+                      )}
+                    </>
+                  }
+                />
+              </ZoloPanelBody>
+            )}
+
+            {showFilterTaxonomy && (
+              <ZoloPanelBody title={__('Filter Taxonomy', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                <ResAlignmentControl
+                  label={__('Alignment', 'zoloblocks')}
+                  controlName={FILTER_ALIGN}
+                  requiredProps={requiredProps}
+                  alignOptions={DEFAULT_ALIGNS}
+                />
+                <ResGapControl
+                  label={__('Gap', 'zoloblocks')}
+                  controlName={FILTER_GAP}
+                  requiredProps={requiredProps}
+                  max={100}
+                />
+                <TypographyDropdown
+                  label={__('Typography', 'zoloblocks')}
+                  typoPrefixConstant={FILTER_TYPOGRAPHY}
+                  requiredProps={requiredProps}
+                />
+                <BorderControl label={__('Border', 'zoloblocks')} controlName={FILTER_BORDER}
+                               requiredProps={requiredProps}/>
+                <ResDimensionsControl
+                  label={__('Border Radius', 'zoloblocks')}
+                  controlName={FILTER_BORDER_RADIUS}
+                  requiredProps={requiredProps}
+                  forBorderRadius={true}
+                />
+                <ResDimensionsControl
+                  label={__('Padding', 'zoloblocks')}
+                  controlName={FILTER_PADDING}
+                  requiredProps={requiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Margin', 'zoloblocks')}
+                  controlName={FILTER_MARGIN}
+                  requiredProps={requiredProps}
+                />
+                <TabPanelControl
+                  options={[
+                    {
+                      value: 'normal',
+                      label: __('Normal', 'zoloblocks'),
+                    },
+                    {
+                      value: 'active',
+                      label: __('Active', 'zoloblocks'),
+                    },
+                  ]}
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={filterColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Background', 'zoloblocks')}
+                        color={filterBgColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterBgColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Border Color', 'zoloblocks')}
+                        color={filterBorderColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterBorderColor: color,
+                          })
+                        }
+                      />
+                    </>
+                  }
+
+                  activeComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={filterAColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterAColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Background', 'zoloblocks')}
+                        color={filterABgColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterABgColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Border Color', 'zoloblocks')}
+                        color={filterABorderColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            filterABorderColor: color,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                />
+              </ZoloPanelBody>
+            )}
+
+            {postQuery?.showPagination && (
+              <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                <ResAlignmentControl
+                  label={__('Alignment', 'zoloblocks')}
+                  controlName={PAG_ALIGN}
+                  requiredProps={requiredProps}
+                  alignOptions={DEFAULT_ALIGNS}
+                />
+                <TypographyDropdown
+                  label={__('Typography', 'zoloblocks')}
+                  typoPrefixConstant={PAG_TYPOGRAPHY}
+                  requiredProps={requiredProps}
+                />
+                <BorderControl label={__('Border', 'zoloblocks')} controlName={PAG_BORDER}
+                               requiredProps={requiredProps}/>
+                <ResDimensionsControl
+                  label={__('Border Radius', 'zoloblocks')}
+                  controlName={PAG_BORDER_RADIUS}
+                  requiredProps={requiredProps}
+                  forBorderRadius={true}
+                />
+                <ResDimensionsControl
+                  label={__('Padding', 'zoloblocks')}
+                  controlName={PAG_PADDING}
+                  requiredProps={requiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Margin', 'zoloblocks')}
+                  controlName={PAG_MARGIN}
+                  requiredProps={requiredProps}
+                />
+                <TabPanelControl
+                  options={[
+                    {
+                      value: 'normal',
+                      label: __('Normal', 'zoloblocks'),
+                    },
+                    {
+                      value: 'hover',
+                      label: __('Active', 'zoloblocks'),
+                    },
+                  ]}
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={pagColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            pagColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Background', 'zoloblocks')}
+                        color={pagBgColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            pagBgColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Separator', 'zoloblocks')}
+                        color={pagSeparatorColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            pagSeparatorColor: color,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                  hoverComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={apagColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            apagColor: color,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Background', 'zoloblocks')}
+                        color={apagBgColor}
+                        onChange={(color) =>
+                          setAttributes({
+                            apagBgColor: color,
+                          })
+                        }
+                      />
                     </>
                 }
             />

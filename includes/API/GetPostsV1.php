@@ -51,9 +51,9 @@ class GetPostsV1 {
 		}
 
 		$postQuery = $data['postQuery'];
-		// Check if postCategory is not empty and update postQuery if it exists.
-		if ( ! empty( $data['postCategory'] ) && isset( $data['postQuery'] ) ) {
-			$postQuery['postCategory'] = $data['postCategory'];
+		// Check if postTermId is not empty and update postQuery if it exists.
+		if ( ! empty( $data['postTermId'] ) && isset( $data['postQuery'] ) ) {
+			$postQuery['postTermId']   = $data['postTermId'];
 			$postQuery['postTaxonomy'] = $data['postTaxonomy'] ?? 'category';
 		}
 
@@ -102,11 +102,11 @@ class GetPostsV1 {
 		$args = self::get_terms_args( $args, $data );
 
 		// only for post tab.
-		if ( isset( $data['postCategory'] ) && '*' !== $data['postCategory'] ) {
+		if ( isset( $data['postTermId'] ) && 'all' !== $data['postTermId'] ) {
 			$args['tax_query'][] = [
 				'taxonomy' => $data['postTaxonomy'],
 				'field'    => 'term_id',
-				'terms'    => [ $data['postCategory'] ],
+				'terms'    => [ $data['postTermId'] ],
 			];
 		}
 

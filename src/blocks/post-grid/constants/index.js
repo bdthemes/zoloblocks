@@ -1,7 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
+
 export const BLOCK_PREFIX = 'zolo-post-grid';
 export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
@@ -49,6 +50,13 @@ export const AVATAR_SIZE = 'avatarSize';
 export const AVATAR_BORDER = 'avatarBorder';
 export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
 export const AVATAR_GAP = 'avatarGap';
+//filter taxonomy
+export const FILTER_BORDER = 'filterBorder';
+export const FILTER_BORDER_RADIUS = 'filterBRadius';
+export const FILTER_MARGIN = 'filterMargin';
+export const FILTER_PADDING = 'filterPadding';
+export const FILTER_ALIGN = 'filterAlign';
+export const FILTER_GAP = 'filterGap';
 
 // pagination
 export const PAG_BORDER = 'pagBorder';
@@ -65,3 +73,17 @@ export const META_ARROW_SPACE = 'metaArrowSpace';
 
 // content wrapper
 export const CONTENT_PADDING = 'contentPadding';
+
+export const createPreloader = () => {
+  const preloader = document.createElement('div');
+  preloader.classList.add('preloader');
+  preloader.innerHTML = `
+    <div class="container">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>`;
+  return preloader;
+};

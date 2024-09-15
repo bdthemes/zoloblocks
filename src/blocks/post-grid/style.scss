@@ -18,15 +18,68 @@
 	--zolo-link-btn-color: #494c56;
 	--zolo-link-btn-icon-size: 14px;
 	--zolo-img-height: clamp(21.875rem, 25vw, 18.75rem);
-	--zolo-author-name-color: #fff;
 	--zolo-dateTime-color: #36384a;
 	--zolo-content-padding: 25px 0 0;
 	--zolo-title-color: #111013;
 	--zolo-sDateTime-color: #000;
 	--zolo-category-color: #000;
-	display: grid;
-	grid-gap: var(--zolo-item-wrao-gap);
-	grid-template-columns: repeat(1, 1fr);
+
+	.zolo-post-filter-taxonomy {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 12px;
+		margin-bottom: 60px;
+
+		a {
+			display: inline-block;
+			font-size: 14px;
+			padding: 7px 20px;
+			border: 1px solid rgba(35, 37, 41, 0.098);
+			border-radius: 4px;
+			text-align: center;
+			white-space: nowrap;
+			color: rgba(35, 37, 41, 0.5);
+			transition: all ease 0.31s;
+			text-transform: capitalize;
+			cursor: pointer;
+
+			&.current,
+			&:hover{
+				background-color: rgba(35, 37, 41, 0.098);
+				color: rgb(35, 37, 41);
+			}
+
+			&:focus {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+
+	}
+
+	.zolo-post-content-wrap {
+		display: grid;
+		grid-gap: var(--zolo-item-wrao-gap);
+		grid-template-columns: repeat(1, 1fr);
+		position: relative;
+		.preloader {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: 0 auto;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			background: rgba(255, 255, 255, 0.9);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+		}
+	}
 
 	.zolo-post-item {
 		position: relative;
@@ -584,7 +637,7 @@
 	padding-top: 30px;
 
 	.zolo-pagination-button {
-		cursor:pointer;
+		cursor: pointer;
 		font-size: 13px;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
