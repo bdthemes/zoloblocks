@@ -169,28 +169,31 @@ const Inspector = (props) => {
                                 onChange={(selected) => changePremade(selected)}
                             />
 
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+
                             <ToggleControl
                                 label={__('Enable Heading Link', 'zoloblocks')}
                                 checked={enableTitleLink}
                                 onChange={() => setAttributes({ enableTitleLink: !enableTitleLink })}
                             />
-                            
+
                             <ToggleControl
-                                label={__('Show Sub Heading', 'zoloblocks')}
+                                label={__('Sub Heading', 'zoloblocks')}
                                 checked={showSubTitle}
                                 onChange={() => setAttributes({ showSubTitle: !showSubTitle })}
                             />
 
                             <ToggleControl
-                                label={__('Show Separator', 'zoloblocks')}
+                                label={__('Separator', 'zoloblocks')}
                                 checked={showSeparator}
                                 onChange={() => setAttributes({ showSeparator: !showSeparator })}
                             />
                             <ToggleControl
-                                label={__('Show Transparent Heading', 'zoloblocks')}
+                                label={__('Transparent Heading', 'zoloblocks')}
                                 checked={showTransparentTitle}
                                 onChange={() => setAttributes({ showTransparentTitle: !showTransparentTitle })}
                             />
+                            <CardDivider />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={TITLE_ALIGN}
@@ -198,25 +201,28 @@ const Inspector = (props) => {
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Heading', 'zoloblocks')} panelProps={props}>
                             <TextControl
-                                label={__('Main Heading', 'zoloblocks')}
+                                label={__('Text', 'zoloblocks')}
                                 value={titleText}
                                 onChange={(titleText) => setAttributes({ titleText })}
                             />
                             <SelectControl
-                                label={__('Heading Tag', 'zoloblocks')}
+                                label={__('Tag', 'zoloblocks')}
                                 options={HEADING}
                                 onChange={(value) => setAttributes({ titleTagName: value })}
                                 value={titleTagName}
                             />
                             {enableTitleLink && (
-                                <LinkControl
-                                    label={__('Link', 'zoloblocks')}
-                                    value={titleLink}
-                                    onChange={(value) => setAttributes({ titleLink: value })}
-                                    help={__('http://your-link.com', 'zoloblocks')}
-                                />
+                                <>
+                                    <CardDivider />
+                                    <LinkControl
+                                        label={__('Link', 'zoloblocks')}
+                                        value={titleLink}
+                                        onChange={(value) => setAttributes({ titleLink: value })}
+                                        help={__('http://your-link.com', 'zoloblocks')}
+                                    />
+                                </>
                             )}
                         </ZoloPanelBody>
                         {showSubTitle && (
@@ -227,36 +233,41 @@ const Inspector = (props) => {
                                     onChange={(subTitleText) => setAttributes({ subTitleText })}
                                 />
                                 <SelectControl
-                                    label={__('Select Tag', 'zoloblocks')}
+                                    label={__('Tag', 'zoloblocks')}
                                     options={HEADING}
                                     onChange={(value) => setAttributes({ subTitleTag: value })}
                                     value={subTitleTag}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Sub Heading Position', 'zoloblocks')}
-                                    value={subTitlePosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            subTitlePosition: value,
-                                        })
-                                    }
-                                    options={ST_POSITION}
-                                />
+                                <CardDivider />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Position', 'zoloblocks')}
+                                        value={subTitlePosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                subTitlePosition: value,
+                                            })
+                                        }
+                                        options={ST_POSITION}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
 
                         {showSeparator && (
                             <ZoloPanelBody title={__('Separator', 'zoloblocks')} panelProps={props}>
-                                <IconicBtnGroup
-                                    label={__('Separator Position', 'zoloblocks')}
-                                    value={separatorPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            separatorPosition: value,
-                                        })
-                                    }
-                                    options={ST_POSITION}
-                                />
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Position', 'zoloblocks')}
+                                        value={separatorPosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                separatorPosition: value,
+                                            })
+                                        }
+                                        options={ST_POSITION}
+                                    />
+                                </div>
                             </ZoloPanelBody>
                         )}
                         {showTransparentTitle && (
@@ -276,11 +287,13 @@ const Inspector = (props) => {
                                 />
 
                                 <SelectControl
-                                    label={__('Heading Tag', 'zoloblocks')}
+                                    label={__('Tag', 'zoloblocks')}
                                     options={HEADING}
                                     onChange={(value) => setAttributes({ transparentTag: value })}
                                     value={transparentTag}
                                 />
+
+                                <CardDivider />
 
                                 <ResRangeControl
                                     label={__('X Offset', 'zoloblocks')}
@@ -300,6 +313,15 @@ const Inspector = (props) => {
                                     step={1}
                                 />
 
+                                <RangeResetControl
+                                    label={__('Rotate', 'zoloblocks')}
+                                    controlName={'transparentTitleRotate'}
+                                    requiredProps={requiredProps}
+                                    min={-180}
+                                    max={180}
+                                    step={1}
+                                />
+
                                 <SelectControl
                                     label={__('Rotate Origin', 'zoloblocks')}
                                     value={transparentTitleRotateOrigin}
@@ -311,17 +333,10 @@ const Inspector = (props) => {
                                     }
                                 />
 
-                                <RangeResetControl
-                                    label={__('Rotate', 'zoloblocks')}
-                                    controlName={'transparentTitleRotate'}
-                                    requiredProps={requiredProps}
-                                    min={-180}
-                                    max={180}
-                                    step={1}
-                                />
+                                <CardDivider />
 
                                 <SelectControl
-                                    label={__('Hide At', 'zoloblocks')}
+                                    label={__('Hide Device', 'zoloblocks')}
                                     value={transparentTitleHide}
                                     options={TPT_HIDE}
                                     onChange={(transparentTitleHide) =>
@@ -338,12 +353,6 @@ const Inspector = (props) => {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Heading', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={TITLE_TYPOGRAPHY}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
                             {!enableTitleLink && (
                                 <>
                                     <ColorControl
@@ -371,12 +380,111 @@ const Inspector = (props) => {
                                                         })
                                                     }
                                                 />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+
+                                                <TextShadowControl
+                                                    controlName={TITLE_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={TITLE_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ColorControl
+                                                    label={__('Background', 'zoloblocks')}
+                                                    color={titleBgColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            titleBgColor: val,
+                                                        })
+                                                    }
+                                                />
+
+                                                {styles === 'style-3' && (
+                                                    <BaseControl
+                                                        label={__('Background Image', 'zoloblocks')}
+                                                        className="zolo-flex-col-control"
+                                                    >
+                                                        {presetBg ? (
+                                                            <ImageAvatar
+                                                                imageUrl={presetBg && presetBg.url}
+                                                                onDeleteImage={() =>
+                                                                    setAttributes({
+                                                                        presetBg: null,
+                                                                    })
+                                                                }
+                                                                imageId={presetBg && presetBg.id}
+                                                                onEditImage={(media) => {
+                                                                    setAttributes({
+                                                                        presetBg: media,
+                                                                    });
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <MediaUpload
+                                                                onSelect={(media) => {
+                                                                    setAttributes({
+                                                                        presetBg: media,
+                                                                    });
+                                                                }}
+                                                                allowedTypes={['image']}
+                                                                value={presetBg && presetBg.id}
+                                                                render={({ open }) => (
+                                                                    <Button className="zolo-image-upload-btn" onClick={open}>
+                                                                        <svg
+                                                                            width="24"
+                                                                            height="24"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            fillRule="evenodd"
+                                                                            clipRule="evenodd"
+                                                                        >
+                                                                            <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                                                        </svg>
+                                                                        {__(' Upload', 'zoloblocks')}
+                                                                    </Button>
+                                                                )}
+                                                            />
+                                                        )}
+                                                    </BaseControl>
+                                                )}
+
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={TITLE_PADDING}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={TITLE_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
+                                                <BorderControl
+                                                    label={__('Border', 'zoloblocks')}
+                                                    controlName={TITLE_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <BoxShadowControl controlName={TITLE_SHADOW} requiredProps={requiredProps} />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    controlName={TITLE_BORDER_RADIUS}
+                                                    requiredProps={requiredProps}
+                                                    forBorderRadius={true}
+                                                />
                                             </>
                                         }
                                         hoverComponents={
                                             <>
                                                 <ColorControl
-                                                    label={__('Hover Color', 'zoloblocks')}
+                                                    label={__('Color', 'zoloblocks')}
                                                     color={titleHoverColor}
                                                     onChange={(val) =>
                                                         setAttributes({
@@ -387,104 +495,12 @@ const Inspector = (props) => {
                                             </>
                                         }
                                     />
-                                    <CardDivider />
                                 </>
                             )}
-
-                            <ColorControl
-                                label={__('Background', 'zoloblocks')}
-                                color={titleBgColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        titleBgColor: val,
-                                    })
-                                }
-                            />
-
-                            {styles === 'style-3' && (
-                                <BaseControl label={__('Background Image', 'zoloblocks')}
-                                    className='zolo-flex-col-control'
-                                >
-                                    {presetBg ? (
-                                        <ImageAvatar
-                                            imageUrl={presetBg && presetBg.url}
-                                            onDeleteImage={() =>
-                                                setAttributes({
-                                                    presetBg: null,
-                                                })
-                                            }
-                                            imageId={presetBg && presetBg.id}
-                                            onEditImage={(media) => {
-                                                setAttributes({
-                                                    presetBg: media,
-                                                });
-                                            }}
-                                        />
-                                    ) : (
-                                        <MediaUpload
-                                            onSelect={(media) => {
-                                                setAttributes({
-                                                    presetBg: media,
-                                                });
-                                            }}
-                                            allowedTypes={['image']}
-                                            value={presetBg && presetBg.id}
-                                            render={({ open }) => (
-                                                <Button className="zolo-image-upload-btn" onClick={open}>
-                                                    <svg
-                                                        width="24"
-                                                        height="24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                    >
-                                                        <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-                                                    </svg>
-                                                    {__(' Upload', 'zoloblocks')}
-                                                </Button>
-                                            )}
-                                        />
-
-                                    )}
-                                    
-                                </BaseControl>
-                            )}
-
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
-
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={TITLE_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={TITLE_PADDING}
-                                requiredProps={requiredProps}
-                            />
-
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={TITLE_MARGIN}
-                                requiredProps={requiredProps}
-                            />
-
-                            <BoxShadowControl controlName={TITLE_SHADOW} requiredProps={requiredProps} />
-                            <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
 
                         {showSubTitle && (
                             <ZoloPanelBody title={__('Sub Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TypographyDropdown
-                                    label="Typography"
-                                    typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                    max={100}
-                                />
-
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={subTitleColor}
@@ -494,39 +510,11 @@ const Inspector = (props) => {
                                         })
                                     }
                                 />
-                                <ColorControl
-                                    label={__('Background', 'zoloblocks')}
-                                    color={subTitleBgColor}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            subTitleBgColor: val,
-                                        })
-                                    }
-                                />
-
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={SUBTITE_BORDER}
+                                <TypographyDropdown
+                                    label="Typography"
+                                    typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
-                                />
-
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={SUBTITLE_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={SUBTITLE_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    controlName={SUBTITLE_PADDING}
-                                    requiredProps={requiredProps}
+                                    max={100}
                                 />
 
                                 <TextShadowControl
@@ -539,6 +527,43 @@ const Inspector = (props) => {
                                     controlName={SUBTITLE_TEXT_STROKE}
                                     requiredProps={requiredProps}
                                     enableTransition={false}
+                                />
+
+                                <CardDivider />
+
+                                <ColorControl
+                                    label={__('Background', 'zoloblocks')}
+                                    color={subTitleBgColor}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            subTitleBgColor: val,
+                                        })
+                                    }
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={SUBTITLE_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={SUBTITLE_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <CardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={SUBTITE_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={SUBTITLE_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
                                 />
                             </ZoloPanelBody>
                         )}
@@ -554,6 +579,7 @@ const Inspector = (props) => {
                                         })
                                     }
                                 />
+                                <CardDivider />
                                 <ResRangeControl
                                     label={__('Width', 'zoloblocks')}
                                     requiredProps={requiredProps}
@@ -570,6 +596,7 @@ const Inspector = (props) => {
                                     max={100}
                                     step={1}
                                 />
+                                <CardDivider />
                                 <ResRangeControl
                                     label={__('Spacing', 'zoloblocks')}
                                     requiredProps={requiredProps}
@@ -583,13 +610,6 @@ const Inspector = (props) => {
 
                         {showTransparentTitle && (
                             <ZoloPanelBody title={__('Transparent Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TypographyDropdown
-                                    label="Typography"
-                                    typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                    max={300}
-                                />
-
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={tptColor}
@@ -599,6 +619,23 @@ const Inspector = (props) => {
                                         })
                                     }
                                 />
+                                <TypographyDropdown
+                                    label="Typography"
+                                    typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                    max={300}
+                                />
+                                <TextShadowControl controlName={TPT_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <TextStrokeControl controlName={TPT_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
+                                <RangeResetControl
+                                    label={__('Opacity', 'zoloblocks')}
+                                    controlName="tptOpacity"
+                                    requiredProps={requiredProps}
+                                    min={0.05}
+                                    max={1}
+                                    step={0.01}
+                                />
+                                <CardDivider />
                                 <ColorControl
                                     label={__('Background', 'zoloblocks')}
                                     color={tptBgColor}
@@ -619,27 +656,14 @@ const Inspector = (props) => {
                                     controlName={TPT_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-
+                                <CardDivider />
                                 <BorderControl label={__('Border', 'zoloblocks')} controlName={TPT_BORDER} requiredProps={requiredProps} />
-
+                                <BoxShadowControl controlName={TPT_SHADOW} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zoloblocks')}
                                     controlName={TPT_BORDER_RADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
-                                />
-
-                                <BoxShadowControl controlName={TPT_SHADOW} requiredProps={requiredProps} />
-                                <TextShadowControl controlName={TPT_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-
-                                <TextStrokeControl controlName={TPT_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
-                                <RangeResetControl
-                                    label={__('Opacity', 'zoloblocks')}
-                                    controlName="tptOpacity"
-                                    requiredProps={requiredProps}
-                                    min={0.05}
-                                    max={1}
-                                    step={0.01}
                                 />
                             </ZoloPanelBody>
                         )}
