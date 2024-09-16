@@ -2,7 +2,7 @@
 return apply_filters('zolo_extensions', [
     'cursors'          => [
         'name'   => 'cursors',
-        'title'  => __('Cursors Animation', 'zolo-blocks'),
+        'title'  => __('Cursors Animation', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://zoloblocks.com',
         'is_pro' => true,
@@ -10,7 +10,7 @@ return apply_filters('zolo_extensions', [
     ],
     'floating'          => [
         'name'   => 'floating',
-        'title'  => __('Floating Animation', 'zolo-blocks'),
+        'title'  => __('Floating Animation', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://zoloblocks.com',
         'is_pro' => true,
@@ -18,7 +18,7 @@ return apply_filters('zolo_extensions', [
     ],
     'entrance'          => [
         'name'   => 'entrance',
-        'title'  => __('Entrance Animation', 'zolo-blocks'),
+        'title'  => __('Entrance Animation', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://zoloblocks.com',
         'is_pro' => true,
@@ -26,7 +26,7 @@ return apply_filters('zolo_extensions', [
     ],
     'sticky'          => [
         'name'   => 'sticky',
-        'title'  => __('Sticky Position', 'zolo-blocks'),
+        'title'  => __('Sticky Position', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://zoloblocks.com',
         'is_pro' => true,
@@ -34,7 +34,7 @@ return apply_filters('zolo_extensions', [
     ],
     'parallax'          => [
         'name'   => 'parallax',
-        'title'  => __('Parallax Effect', 'zolo-blocks'),
+        'title'  => __('Parallax Effect', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://zoloblocks.com',
         'is_pro' => true,
@@ -42,14 +42,14 @@ return apply_filters('zolo_extensions', [
     ],
     'particles'          => [
         'name'   => 'particles',
-        'title'  => __('Particles Animation', 'zolo-blocks'),
+        'title'  => __('Particles Animation', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'tilt'          => [
         'name'   => 'tilt',
-        'title'  => __('Mouse Tilt', 'zolo-blocks'),
+        'title'  => __('Mouse Tilt', 'zoloblocks'),
         'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
@@ -57,15 +57,15 @@ return apply_filters('zolo_extensions', [
     ],
     'smooth-scroller'          => [
         'name'   => 'smooth-scroller',
-        'title'  => __('Smooth Scroller', 'zolo-blocks'),
-        'status' => true,
+        'title'  => __('Smooth Scroller', 'zoloblocks'),
+        'status' => false,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'css-filters'          => [
         'name'   => 'css-filters',
-        'title'  => __('CSS Filters', 'zolo-blocks'),
+        'title'  => __('CSS Filters', 'zoloblocks'),
         'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
@@ -73,7 +73,7 @@ return apply_filters('zolo_extensions', [
     ],
     'backdrop-filters'          => [
         'name'   => 'backdrop-filters',
-        'title'  => __('Backdrop Filters', 'zolo-blocks'),
+        'title'  => __('Backdrop Filters', 'zoloblocks'),
         'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
@@ -81,7 +81,7 @@ return apply_filters('zolo_extensions', [
     ],
     'background-parallax'          => [
         'name'   => 'background-parallax',
-        'title'  => __('Background Parallax', 'zolo-blocks'),
+        'title'  => __('Background Parallax', 'zoloblocks'),
         'status' => true,
         'is_pro' => true,
         'released' => false,
@@ -90,28 +90,28 @@ return apply_filters('zolo_extensions', [
     ],
     'export-pattern'          => [
         'name'   => 'export-pattern',
-        'title'  => __('Export Pattern', 'zolo-blocks'),
+        'title'  => __('Export Pattern', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'import-pattern'          => [
         'name'   => 'import-pattern',
-        'title'  => __('Import Pattern', 'zolo-blocks'),
+        'title'  => __('Import Pattern', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'shape-divider'          => [
         'name'   => 'shape-divider',
-        'title'  => __('Shape Divider', 'zolo-blocks'),
+        'title'  => __('Shape Divider', 'zoloblocks'),
         'status' => true,
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'dynamic-content'          => [
         'name'     => 'dynamic-content',
-        'title'    => __('Dynamic Content', 'zolo-blocks'),
+        'title'    => __('Dynamic Content', 'zoloblocks'),
         'status'   => true,
         'is_pro'   => true,
         'released' => false,
