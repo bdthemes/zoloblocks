@@ -37,7 +37,7 @@ export const CLOSED_TIMES_PADDING = 'closedTimePadding';
 
 export const PRESETOPTION = [
     { label: 'Preset 1', value: 'zolo-biz-hours-style-1' },
-    { label: 'preset 2', value: 'zolo-biz-hours-style-2' },
+    { label: 'Preset 2', value: 'zolo-biz-hours-style-2' },
 ];
 
 export const PANEL_OPTION = [

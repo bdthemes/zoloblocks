@@ -16,7 +16,7 @@ const Sortable = ({ features, setAttributes }) => {
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Feature', 'zoloblocks')}</div>
+                <div className="repeater-label">{__('Add a List', 'zoloblocks')}</div>
                 <Button
                     onClick={() => {
                         setAttributes({
