@@ -112,6 +112,7 @@ if (! class_exists('Assets')) {
                         'multi_site'         => ZoloHelpers::is_multisite(),
                         'debug_mode'         => ZoloHelpers::is_debug_mode(),
                     ],
+                    'zolo_counter'   => ZoloHelpers::zolo_blocks_extensions_count(),
                     'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                     'zolo_rest_url'  => esc_url_raw(rest_url('zolo/v1/settings')),
                     'plugin_version' => ZOLO_VERSION,

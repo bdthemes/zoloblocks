@@ -772,4 +772,27 @@ class ZoloHelpers {
 
 		return 0;
 	}
+
+	/**
+	 * Zolo Blocks and Extensions
+	 */
+	public static function zolo_blocks_extensions_count() {
+		// Get blocks and extensions settings
+		$blocks     = get_option('zolo_blocks_settings', self::get_zolo_blocks());
+		$extensions = get_option('zolo_extensions_settings', self::get_zolo_extensions());
+		
+		// Filter blocks and extensions
+		$total_blocks    = array_filter($blocks, fn($block) => !isset($block['is_child']) || !$block['is_child']);
+		$used_blocks     = array_filter($total_blocks, fn($block) => !empty($block['status']));
+		$used_extensions = array_filter($extensions, fn($extension) => !empty($extension['status']));
+
+		// Return counts
+		return [
+			'total'             => count($total_blocks) + count($extensions),
+			'total_blocks'      => count($total_blocks),
+			'used_blocks'       => count($used_blocks),
+			'total_extensions'  => count($extensions),
+			'used_extensions'   => count($used_extensions),
+		];
+	}
 }

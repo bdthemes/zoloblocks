@@ -3,53 +3,14 @@ import BlocksWrapper from './blocks';
 import FooterWrapper from './footer';
 import VideoSection from './video';
 
-import apiFetch from '@wordpress/api-fetch';
-import { useEffect, useState } from '@wordpress/element';
 import classNames from 'classnames';
 
 const Welcome = () => {
-    const [blocks, setBlocks] = useState([]);
-    const [extensions, setExtensions] = useState([]);
-
-    const [totalBlocks, setTotalBlocks] = useState(0);
-    const [activeBlocks, setActiveBlocks] = useState(0);
-
-    const [totalExtensions, setTotalExtensions] = useState(0);
-    const [activeExtensions, setActiveExtensions] = useState(0);
-
-    // blocks data
-    useEffect(() => {
-        apiFetch({
-            path: '/zolo/v1/blocks',
-            method: 'GET',
-        })
-            .then((response) => {
-                const blocks = response.filter((block) => !block.is_child);
-                setBlocks(blocks);
-                setTotalBlocks(parseInt(blocks.length));
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
-
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'GET',
-        })
-            .then((response) => {
-                setExtensions(response);
-                setTotalExtensions(parseInt(response.length));
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
-    }, []);
-
-    useEffect(() => {
-        // count active blocks based on status is true
-        const activeBlocks = blocks.filter((block) => block.status === true);
-        setActiveBlocks(parseInt(activeBlocks.length));
-
-        // count active extensions based on status is true
-        const activeExtensions = extensions.filter((extension) => extension.status === true);
-        setActiveExtensions(parseInt(activeExtensions.length));
-    }, [blocks, totalBlocks]);
+    const total = zoloBlocks?.zolo_counter['total'] || 0;
+    const totalBlocks = zoloBlocks?.zolo_counter['total_blocks'] || 0;
+    const activeBlocks = zoloBlocks?.zolo_counter['used_blocks'] || 0;
+    const totalExtensions = zoloBlocks?.zolo_counter['total_extensions'] || 0;
+    const activeExtensions = zoloBlocks?.zolo_counter['used_extensions'] || 0;
 
     return (
         <div className="zolo-welcome-page-wrap">
@@ -59,7 +20,7 @@ const Welcome = () => {
                         <div className="zolo-dash-analysis-top-info">
                             <h3 className="zolo-dash-analysis-item-title">{__('Total', 'zoloblocks')}</h3>
                             <span className="zolo-dash-analysis-item-value">
-                                {__('Total', 'zoloblocks')}: <strong>{totalBlocks + totalExtensions}</strong>
+                                {__('Total', 'zoloblocks')}: <strong>{total}</strong>
                             </span>
                         </div>
 
@@ -67,7 +28,7 @@ const Welcome = () => {
                             <div className="zolo-dash-analysis-bar">
                                 <div
                                     className="zolo-dash-analysis-bar-fill"
-                                    style={{ width: `${((activeBlocks + activeExtensions) / (totalBlocks + totalExtensions)) * 100}%` }}
+                                    style={{ width: `${((activeBlocks + activeExtensions) / total) * 100}%` }}
                                 ></div>
                             </div>
 
@@ -78,8 +39,7 @@ const Welcome = () => {
                                 </span>
                                 <span className="zolo-bottom-content-value unused">
                                     <span className="zolo-dot"></span>
-                                    {__('Unused', 'zoloblocks')}:{' '}
-                                    <strong>{totalBlocks + totalExtensions - (activeBlocks + activeExtensions)}</strong>
+                                    {__('Unused', 'zoloblocks')}: <strong>{total - (activeBlocks + activeExtensions)}</strong>
                                 </span>
                             </div>
                         </div>
