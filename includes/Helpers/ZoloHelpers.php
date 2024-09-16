@@ -694,9 +694,28 @@ class ZoloHelpers {
 	 * Get Zolo Blocks
 	 */
 	public static function get_zolo_blocks() {
-		$blocks = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
-		if (file_exists($blocks)) {
-			return require $blocks;
+		$blocks_path = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
+
+		if (file_exists($blocks_path)) {
+			$blocks = require $blocks_path;
+
+			if (is_array($blocks)) {
+				// sort blocks by title in ascending order except the block which name is 'container', it will be at the top
+				uasort(
+					$blocks,
+					function ($a, $b) {
+						if ($a['name'] === 'container') {
+							return -1;
+						}
+						if ($b['name'] === 'container') {
+							return 1;
+						}
+						return strcasecmp($a['title'], $b['title']);
+					}
+				); 
+			}
+
+			return $blocks;
 		}
 	}
 

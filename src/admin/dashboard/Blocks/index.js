@@ -84,6 +84,11 @@ const Blocks = () => {
         })
             .then((response) => {
                 setBlocks(removeChildBlocks(response));
+
+                // clear local storage cache
+                localStorage.removeItem('cachedBlocks');
+                localStorage.removeItem('blocksFetchTime');
+
                 // set notice to true
                 setNotice(true);
             })
@@ -113,6 +118,10 @@ const Blocks = () => {
             // set category to all
             setCategory('all');
 
+            // clear local storage cache
+            localStorage.removeItem('cachedBlocks');
+            localStorage.removeItem('blocksFetchTime');
+
             // set notice to true
             setNotice(true);
         });
@@ -140,6 +149,10 @@ const Blocks = () => {
             setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
+
+            // clear local storage cache
+            localStorage.removeItem('cachedBlocks');
+            localStorage.removeItem('blocksFetchTime');
 
             // set notice to true
             setNotice(true);

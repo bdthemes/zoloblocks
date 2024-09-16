@@ -20,7 +20,6 @@ const Extensions = () => {
                 path: '/zolo/v1/extensions',
                 method: 'GET',
             });
-            console.log('Fetching extensions');
             setExtensions(response);
 
             // Store the fetched data and timestamp in localStorage
@@ -80,6 +79,11 @@ const Extensions = () => {
         })
             .then((response) => {
                 setExtensions(response);
+
+                // delete cache
+                localStorage.removeItem('cachedExtensions');
+                localStorage.removeItem('extensionsFetchTime');
+
                 setNotice(true);
             })
             .catch((error) => console.error('API Fetch Error:', error));
@@ -106,6 +110,9 @@ const Extensions = () => {
         })
             .then((response) => {
                 setExtensions(response);
+                // delete cache
+                localStorage.removeItem('cachedExtensions');
+                localStorage.removeItem('extensionsFetchTime');
             })
             .catch((error) => console.error('API Fetch Error:', error));
     };
@@ -131,6 +138,9 @@ const Extensions = () => {
         })
             .then((response) => {
                 setExtensions(response);
+                // delete cache
+                localStorage.removeItem('cachedExtensions');
+                localStorage.removeItem('extensionsFetchTime');
             })
             .catch((error) => console.error('API Fetch Error:', error));
     };

@@ -39,8 +39,6 @@ const Dashboard = () => {
         }
     };
 
-    console.log('activeTab', activeTab);
-
     return (
         <div className="zolo-dashboard-wrapper">
             <div className="zolo-dashboard-sidebar">
