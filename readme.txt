@@ -322,9 +322,10 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 = 1.4.1 - 16-09-2024 =
 
+* List block linkable issue.
 * Fixed: Particles zIndex issue.
-* Fixed: Lightbox background color issue.
 * Fixed: Newsletter block API issue.
+* Fixed: Lightbox background color issue.
 * Fixed: Post Category block color issue.
 
 = 1.4.0 - 12-09-2024 =

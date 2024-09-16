@@ -90,6 +90,7 @@ function Inspector(props) {
         HoverIconColor,
         BorderHovColor,
         globalIcon,
+        isLinkable,
     } = attributes;
 
     const requiredProps = {
@@ -159,6 +160,8 @@ function Inspector(props) {
                                 options={applyFilters('zolo.list.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
+                            <ToggleControl label={__('Enable Link', 'zoloblocks')} checked={isLinkable} onChange={() => setAttributes({ isLinkable: !isLinkable })} />
+
                             {preset !== 'zolo-list-style-1' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>

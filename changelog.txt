@@ -6,6 +6,7 @@
 - Lightbox background color issue.
 - Newsletter block API issue.
 - Post Category block color issue.
+- List block linkable issue
 
 ### 1.4.0 [September 12, 2024]
 

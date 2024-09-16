@@ -8,27 +8,14 @@ import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
+
 const Save = (props) => {
     const { attributes } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        preset,
-        listProfiles,
-        zoloId,
-        iconToggle,
-        DscToggle,
-        titleToggle,
-        linkHoverIcon,
-        globalIcon,
-        isLinkable=false,
-    } = attributes;
+    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon, globalIcon } =
+        attributes;
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
-
-    const ContainerTag = isLinkable ? 'a' : 'div';
-
     return (
         <div
             {...useBlockProps.save({
@@ -41,19 +28,14 @@ const Save = (props) => {
             {renderHookBefore && renderHookBefore}
             {listProfiles &&
                 listProfiles.map((profile, index) => {
-                    const commonProps = {
-                        key: index,
-                        className: `zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`,
-                    };
-
-                    if (isLinkable) {
-                        commonProps.href = profile.link && profile.link.url;
-                        commonProps.target = profile.link && profile.link.openInNewTab ? '_blank' : undefined;
-                        commonProps.rel = profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined;
-                    }
-
                     return (
-                        <ContainerTag {...commonProps}>
+                        <a
+                            href={profile.link && profile.link.url}
+                            key={index}
+                            target={profile.link && profile.link.openInNewTab && '_blank'}
+                            rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                            className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
+                        >
                             {preset == 'zolo-list-style-1' && <RawHTML>{profile.text}</RawHTML>}
                             {preset == 'zolo-list-style-4' ? (
                                 <div className="zolo-list-icon-and-content-wrap">
@@ -100,12 +82,12 @@ const Save = (props) => {
                                     )}
                                 </>
                             )}
-                            {preset == 'zolo-list-style-4' && isLinkable && (
-                                <div className="zolo-list-hover-icon">
+                            {preset == 'zolo-list-style-4' && (
+                                <div class="zolo-list-hover-icon">
                                     <DisplayZoloIcon icon={linkHoverIcon} />
                                 </div>
                             )}
-                        </ContainerTag>
+                        </a>
                     );
                 })}
             {renderHookAfter && renderHookAfter}
@@ -114,4 +96,3 @@ const Save = (props) => {
 };
 
 export default Save;
-
