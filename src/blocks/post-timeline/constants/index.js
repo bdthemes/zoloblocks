@@ -6,7 +6,7 @@ export const BLOCK_PREFIX = 'zolo-post-timeline';
 export const PRESETS = [
     { label: __('Left', 'zoloblocks'), value: 'style-1' },
     { label: __('Right', 'zoloblocks'), value: 'style-2' },
-    { label: __('Center (Pro)', 'zoloblocks'), value: 'style-3', disabled: false },
+    { label: __('Center (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
 ];
 export const LINE_STYLE = [
     { value: 'solid', label: __('Solid', 'zoloblocks') },
