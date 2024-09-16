@@ -1,3 +1,12 @@
+### 1.4.1 [September 16, 2024]
+
+### Fixed
+
+- Particles zIndex issue.
+- Lightbox background color issue.
+- Newsletter block API issue.
+- Post Category block color issue.
+
 ### 1.4.0 [September 12, 2024]
 
 ### Added
