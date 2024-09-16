@@ -28,7 +28,6 @@ export default function Edit(props) {
   const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
   const appendBlock = () => {
     const newBlock = wp.blocks.createBlock('zolo/social-count-child', {});
-    console.log({childBlocks,newBlock,clientId});
     wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
   };
 

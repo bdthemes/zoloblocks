@@ -177,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         isLoading = false;
       }
-      console.log(pageContentCache);
     };
 
     const getPageLink = href => href.includes('admin-ajax.php') ? href.match(/admin-ajax.*/)?.[0] || '' : href.match(/\/page\/\d+\//)?.[0] || '';

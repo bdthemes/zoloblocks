@@ -5,7 +5,7 @@ require_once ZOLO_DIR_PATH . 'includes/Blocks/PostList.php';
 return apply_filters('zolo_blocks_list_data', [
     'container'          => [
         'name'       => 'container',
-        'title'      => __('Container', 'zolo-blocks'),
+        'title'      => __('Container', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://zoloblocks.com',
@@ -13,7 +13,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'accordion'          => [
         'name'       => 'accordion',
-        'title'      => __('Accordion', 'zolo-blocks'),
+        'title'      => __('Accordion', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/acordion',
@@ -21,14 +21,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'accordion-child'    => [
         'name'       => 'accordion-child',
-        'title'      => __('Accordion Child', 'zolo-blocks'),
+        'title'      => __('Accordion Child', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
     ],
     'advanced-button'    => [
         'name'       => 'advanced-button',
-        'title'      => __('Advanced Button', 'zolo-blocks'),
+        'title'      => __('Advanced Button', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/adavanced-button',
@@ -36,7 +36,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'advanced-heading'   => [
         'name'       => 'advanced-heading',
-        'title'      => __('Advanced Heading', 'zolo-blocks'),
+        'title'      => __('Advanced Heading', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/adavanced-heading',
@@ -44,7 +44,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'advanced-icon-box'  => [
         'name'       => 'advanced-icon-box',
-        'title'      => __('Advanced Icon Box', 'zolo-blocks'),
+        'title'      => __('Advanced Icon Box', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/advanced-icon-box',
@@ -52,7 +52,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'advanced-image'     => [
         'name'       => 'advanced-image',
-        'title'      => __('Advanced Image', 'zolo-blocks'),
+        'title'      => __('Advanced Image', 'zoloblocks'),
         'categories' => ['gallery'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/adavanced-image',
@@ -60,7 +60,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'advanced-search'    => [
         'name'       => 'advanced-search',
-        'title'      => __('Advanced Search', 'zolo-blocks'),
+        'title'      => __('Advanced Search', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/adavanced-search',
@@ -68,14 +68,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'brand-child'        => [
         'name'       => 'brand-child',
-        'title'      => __('Brand Child', 'zolo-blocks'),
+        'title'      => __('Brand Child', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'is_child'   => true,
     ],
     'brand-grid'         => [
         'name'       => 'brand-grid',
-        'title'      => __('Brand Grid', 'zolo-blocks'),
+        'title'      => __('Brand Grid', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/brand-grid',
@@ -83,7 +83,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'business-hour'      => [
         'name'       => 'business-hour',
-        'title'      => __('Business Hour', 'zolo-blocks'),
+        'title'      => __('Business Hour', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/business-hour',
@@ -91,7 +91,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'charts'             => [
         'name'       => 'charts',
-        'title'      => __('Charts', 'zolo-blocks'),
+        'title'      => __('Charts', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/charts',
@@ -99,7 +99,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'countdown'          => [
         'name'       => 'countdown',
-        'title'      => __('Countdown', 'zolo-blocks'),
+        'title'      => __('Countdown', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/countdown',
@@ -107,7 +107,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'counter'            => [
         'name'       => 'counter',
-        'title'      => __('Counter', 'zolo-blocks'),
+        'title'      => __('Counter', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/counter',
@@ -115,7 +115,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'cta'                => [
         'name'       => 'cta',
-        'title'      => __('CTA', 'zolo-blocks'),
+        'title'      => __('CTA', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/cta',
@@ -123,14 +123,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'email'              => [
         'name'       => 'email',
-        'title'      => __('Email', 'zolo-blocks'),
+        'title'      => __('Email', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
     ],
     'fancy-list'         => [
         'name'       => 'fancy-list',
-        'title'      => __('Fancy List', 'zolo-blocks'),
+        'title'      => __('Fancy List', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/fancy-list',
@@ -138,14 +138,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'fancy-list-child'   => [
         'name'       => 'fancy-list-child',
-        'title'      => __('Fancy List Child', 'zolo-blocks'),
+        'title'      => __('Fancy List Child', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'is_child'   => true,
     ],
     'flipbox'            => [
         'name'       => 'flipbox',
-        'title'      => __('Flipbox', 'zolo-blocks'),
+        'title'      => __('Flipbox', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/flipbox',
@@ -153,7 +153,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'form'               => [
         'name'       => 'form',
-        'title'      => __('Form', 'zolo-blocks'),
+        'title'      => __('Form', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/form',
@@ -161,7 +161,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'google-map'         => [
         'name'       => 'google-map',
-        'title'      => __('Google Map', 'zolo-blocks'),
+        'title'      => __('Google Map', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/google-map',
@@ -169,7 +169,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'icon' => [
         'name'       => 'icon',
-        'title'      => __('Icon', 'zolo-blocks'),
+        'title'      => __('Icon', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/icon',
@@ -177,7 +177,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'image-compare'      => [
         'name'       => 'image-compare',
-        'title'      => __('Image Compare', 'zolo-blocks'),
+        'title'      => __('Image Compare', 'zoloblocks'),
         'categories' => ['gallery'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/image-compare',
@@ -185,7 +185,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'image-gallery'      => [
         'name'       => 'image-gallery',
-        'title'      => __('Image Gallery', 'zolo-blocks'),
+        'title'      => __('Image Gallery', 'zoloblocks'),
         'categories' => ['gallery'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/image-gallery',
@@ -193,7 +193,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'list'               => [
         'name'       => 'list',
-        'title'      => __('List', 'zolo-blocks'),
+        'title'      => __('List', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/list',
@@ -201,7 +201,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'newsletter'         => [
         'name'       => 'newsletter',
-        'title'      => __('Newsletter', 'zolo-blocks'),
+        'title'      => __('Newsletter', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/newsletter',
@@ -209,7 +209,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'notice'             => [
         'name'       => 'notice',
-        'title'      => __('Notice', 'zolo-blocks'),
+        'title'      => __('Notice', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/notice',
@@ -217,7 +217,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'popup-builder'      => [
         'name'       => 'popup-builder',
-        'title'      => __('Popup Builder', 'zolo-blocks'),
+        'title'      => __('Popup Builder', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/popup-builder',
@@ -226,7 +226,7 @@ return apply_filters('zolo_blocks_list_data', [
     'post-carousel'      => [
         'name'       => 'post-carousel',
         'class'      => '\Zolo\Blocks\PostCarousel',
-        'title'      => __('Post Carousel', 'zolo-blocks'),
+        'title'      => __('Post Carousel', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-carousel',
@@ -235,7 +235,7 @@ return apply_filters('zolo_blocks_list_data', [
     'post-grid'          => [
         'name'       => 'post-grid',
         'class'      => '\Zolo\Blocks\PostGrid',
-        'title'      => __('Post Grid', 'zolo-blocks'),
+        'title'      => __('Post Grid', 'zoloblocks'),
         'categories' => ['postCategory', 'list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-grid',
@@ -244,7 +244,7 @@ return apply_filters('zolo_blocks_list_data', [
     'post-list'          => [
         'name'       => 'post-list',
         'class'      => '\Zolo\Blocks\PostList',
-        'title'      => __('Post List', 'zolo-blocks'),
+        'title'      => __('Post List', 'zoloblocks'),
         'categories' => ['postCategory', 'list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-list',
@@ -252,7 +252,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'pricing-table'      => [
         'name'       => 'pricing-table',
-        'title'      => __('Pricing Table', 'zolo-blocks'),
+        'title'      => __('Pricing Table', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/pricing-table',
@@ -260,7 +260,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'profile-card'       => [
         'name'       => 'profile-card',
-        'title'      => __('Profile Card', 'zolo-blocks'),
+        'title'      => __('Profile Card', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/profile-card',
@@ -268,7 +268,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'progress-bar'       => [
         'name'       => 'progress-bar',
-        'title'      => __('Progress Bar', 'zolo-blocks'),
+        'title'      => __('Progress Bar', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/progress-bar',
@@ -276,14 +276,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'progress-bar-child' => [
         'name'       => 'progress-bar-child',
-        'title'      => __('Progress Bar Child', 'zolo-blocks'),
+        'title'      => __('Progress Bar Child', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
     ],
     'progress-pie'       => [
         'name'       => 'progress-pie',
-        'title'      => __('Progress Pie', 'zolo-blocks'),
+        'title'      => __('Progress Pie', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/progress-pie',
@@ -291,7 +291,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'qrcode'             => [
         'name'       => 'qrcode',
-        'title'      => __('QR Code', 'zolo-blocks'),
+        'title'      => __('QR Code', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/qrcode',
@@ -299,7 +299,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'review'             => [
         'name'       => 'review',
-        'title'      => __('Review', 'zolo-blocks'),
+        'title'      => __('Review', 'zoloblocks'),
         'categories' => ['review'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/review',
@@ -307,7 +307,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'review-carousel'    => [
         'name'       => 'review-carousel',
-        'title'      => __('Review Carousel', 'zolo-blocks'),
+        'title'      => __('Review Carousel', 'zoloblocks'),
         'categories' => ['review', 'slider'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/reviw-carousel',
@@ -315,14 +315,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'review-child'       => [
         'name'       => 'review-child',
-        'title'      => __('Review Child', 'zolo-blocks'),
+        'title'      => __('Review Child', 'zoloblocks'),
         'categories' => ['review'],
         'status'     => true,
         'is_child'   => true,
     ],
     'review-grid'        => [
         'name'       => 'review-grid',
-        'title'      => __('Review Grid', 'zolo-blocks'),
+        'title'      => __('Review Grid', 'zoloblocks'),
         'categories' => ['review', 'list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/reviw-grid',
@@ -330,14 +330,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'slide'              => [
         'name'       => 'slide',
-        'title'      => __('Slide', 'zolo-blocks'),
+        'title'      => __('Slide', 'zoloblocks'),
         'categories' => ['slider'],
         'status'     => true,
         'is_child'   => true,
     ],
     'slider'             => [
         'name'       => 'slider',
-        'title'      => __('Slider', 'zolo-blocks'),
+        'title'      => __('Slider', 'zoloblocks'),
         'categories' => ['slider'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/slider',
@@ -345,7 +345,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'social-links'       => [
         'name'       => 'social-links',
-        'title'      => __('Social Links', 'zolo-blocks'),
+        'title'      => __('Social Links', 'zoloblocks'),
         'categories' => ['social'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/social-links',
@@ -353,7 +353,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'social-share'       => [
         'name'       => 'social-share',
-        'title'      => __('Social Share', 'zolo-blocks'),
+        'title'      => __('Social Share', 'zoloblocks'),
         'categories' => ['social'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/social-share',
@@ -361,7 +361,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'star-rating'        => [
         'name'       => 'star-rating',
-        'title'      => __('Star Rating', 'zolo-blocks'),
+        'title'      => __('Star Rating', 'zoloblocks'),
         'categories' => ['review'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/star-rating',
@@ -369,14 +369,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'tab'                => [
         'name'       => 'tab',
-        'title'      => __('Tab', 'zolo-blocks'),
+        'title'      => __('Tab', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
     ],
     'tabs'               => [
         'name'       => 'tabs',
-        'title'      => __('Tabs', 'zolo-blocks'),
+        'title'      => __('Tabs', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/tabs',
@@ -384,7 +384,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'team-grid'          => [
         'name'       => 'team-grid',
-        'title'      => __('Team Grid', 'zolo-blocks'),
+        'title'      => __('Team Grid', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/team-grid',
@@ -392,21 +392,21 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'team-child'     => [
         'name'       => 'team-child',
-        'title'      => __('Team Grid', 'zolo-blocks'),
+        'title'      => __('Team Grid', 'zoloblocks'),
         'categories' => ['list'],
         'status'     => true,
         'is_child'   => true,
     ],
     'text-field'         => [
         'name'       => 'text-field',
-        'title'      => __('Text Field', 'zolo-blocks'),
+        'title'      => __('Text Field', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
     ],
     'text-path'          => [
         'name'       => 'text-path',
-        'title'      => __('Text Path', 'zolo-blocks'),
+        'title'      => __('Text Path', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/text-path',
@@ -414,7 +414,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'textarea'           => [
         'name'       => 'textarea',
-        'title'      => __('Textarea', 'zolo-blocks'),
+        'title'      => __('Textarea', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
@@ -422,16 +422,25 @@ return apply_filters('zolo_blocks_list_data', [
     'post-category'      => [
         'name'       => 'post-category',
         'class'      => '\Zolo\Blocks\PostCategory',
-        'title'      => __('Post Category', 'zolo-blocks'),
+        'title'      => __('Post Category', 'zoloblocks'),
         'categories' => ['postCategory', 'list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-category',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'post-timeline'      => [
+        'name'       => 'post-timeline',
+        'class'      => '\Zolo\Blocks\PostTimeline',
+        'title'      => __('Post Timeline', 'zoloblocks'),
+        'categories' => ['list'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/post-timeline',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
     'tag-cloud'          => [
         'name'       => 'tag-cloud',
         'class'      => '\Zolo\Blocks\TagCloud',
-        'title'      => __('Tag Cloud', 'zolo-blocks'),
+        'title'      => __('Tag Cloud', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/tag-cloud',
@@ -440,7 +449,7 @@ return apply_filters('zolo_blocks_list_data', [
     'post-list'          => [
         'name'       => 'post-list',
         'class'      => '\Zolo\Blocks\PostList',
-        'title'      => __('Post List', 'zolo-blocks'),
+        'title'      => __('Post List', 'zoloblocks'),
         'categories' => ['postCategory', 'list'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-list',
@@ -448,7 +457,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'lightbox'           => [
         'name'       => 'lightbox',
-        'title'      => __('Lightbox', 'zolo-blocks'),
+        'title'      => __('Lightbox', 'zoloblocks'),
         'categories' => ['gallery'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/lightbox',
@@ -457,7 +466,7 @@ return apply_filters('zolo_blocks_list_data', [
     'author'             => [
         'name'       => 'author',
         'class'      => '\Zolo\Blocks\Author',
-        'title'      => __('Author', 'zolo-blocks'),
+        'title'      => __('Author', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/author',
@@ -465,7 +474,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'social-count'       => [
         'name'       => 'social-count',
-        'title'      => __('Social Count', 'zolo-blocks'),
+        'title'      => __('Social Count', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/social-count',
@@ -473,7 +482,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'social-count-child' => [
         'name'       => 'social-count-child',
-        'title'      => __('Social Count Child', 'zolo-blocks'),
+        'title'      => __('Social Count Child', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_child'   => true,
@@ -481,7 +490,7 @@ return apply_filters('zolo_blocks_list_data', [
     'post-comments'      => [
         'name'       => 'post-comments',
         'class'      => '\Zolo\Blocks\PostComments',
-        'title'      => __('Post Comments', 'zolo-blocks'),
+        'title'      => __('Post Comments', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-comments',
@@ -490,7 +499,7 @@ return apply_filters('zolo_blocks_list_data', [
     'breadcrumbs'        => [
         'name'       => 'breadcrumbs',
         'class'      => '\Zolo\Blocks\BreadcrumbsBlock',
-        'title'      => __('Breadcrumbs', 'zolo-blocks'),
+        'title'      => __('Breadcrumbs', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/breadcrumbs',
