@@ -15,7 +15,7 @@ Meet [**ZoloBlocks**](https://zoloblocks.com) - the best Gutenberg Blocks Editor
 
 Meet [**ZoloBlocks**](https://zoloblocks.com) - the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
 
-This isn't just another blocks plugin—it's a game-changer that puts the power of **premium page builder** plugins at your fingertips. With ZoloBlocks, you get **50+ advanced blocks**, **200+ pattern** templates, and **20+ extra editor options** for Gutenberg. This amazing plugin offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
+This isn't just another blocks plugin—it's a game-changer that puts the power of **premium page builder** plugins at your fingertips. With ZoloBlocks, you get **50+ advanced blocks**, **250+ pattern** templates, and **20+ extra editor options** for Gutenberg. This amazing plugin offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
 
 Whether a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress block editor. Say goodbye to coding headaches and cumbersome page builder plugins. Just replace the slow and complicated page-builder plugins with this fine-tuned website-builder plugin.
 
@@ -28,7 +28,7 @@ https://www.youtube.com/watch?v=8kBMIL-4PZI
 == Key Features of ZoloBlocks ==
 
 👍 **50+** Advanced blocks for Gutenberg
-👍 **200+** ready templates
+👍 **250+** ready templates
 👍 **One-click** template import
 👍 Impressive page builder & patterns for Gutenberg editor
 👍 **15+** Creative Gutenberg blocks
@@ -196,9 +196,52 @@ egulo baki short desciption box*
 
 == Pro Features and Blocks 👑 ==
 
-🔥 [**Data Tables**](https://demo.zoloblocks.com/data-table/) - *Enhance your data presentation with our versatile Data Tables block for Gutenberg. Craft clear and structured data tables effortlessly, ideal for comparisons, analytics, or product specifications.*
+👑 **Backdrop Filters**
 
-🔥 [**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot/) - *Get creative with new advanced interactive image hotspots. With Image Hotspot Block, effortlessly engage your audience by highlighting specific info areas of images with informative tooltips.*
+👑 **Background Parallax** *Coming soon 🧪*
+
+👑 **CSS Filters**
+
+👑 [**Cursors Animation**](https://demo.zoloblocks.com/cursor/)
+
+👑 [**Data Tables**](https://demo.zoloblocks.com/data-table/)
+
+👑 **Dynamic Content** *Coming soon 🧪*
+
+👑 [**Entrance Animation**](https://demo.zoloblocks.com/entrance-animation/)
+
+👑 **Export Pattern**
+
+👑 [**Heading Animation**](https://demo.zoloblocks.com/text-animation/)
+
+👑 [**Floating Animation**](https://demo.zoloblocks.com/floating-animation/)
+
+👑 [**Marquee**](https://demo.zoloblocks.com/marquee/)
+
+👑 [**Mouse Tilt**](https://demo.zoloblocks.com/tilt/)
+
+👑 [**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot/)
+
+👑 **Import Pattern**
+
+👑 **Parallax Effect**
+
+👑 [**Particles Animation**](https://demo.zoloblocks.com/particles/)
+
+👑 [**Post Tabs**](https://demo.zoloblocks.com/post-tab/)
+
+👑 **Smooth Scroller**
+
+👑 [**Shape Divider**](https://demo.zoloblocks.com/shape-divider/)
+
+👑 **Sticky Position**
+
+👑 [**Scroll Parallax**](https://demo.zoloblocks.com/scroll-parallax-animation/)
+
+👑 [**Unfold**](https://demo.zoloblocks.com/unfold/)
+
+👑 [**Text Highlight**](https://demo.zoloblocks.com/text-highlight/)
+
 
 == Still not happy? Pick Your Features ==
 
