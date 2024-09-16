@@ -9,7 +9,7 @@ import { cloneDeep } from 'lodash';
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const deepCloneProfiles = cloneDeep(listProfiles);
-    const { DscToggle, preset } = attributes;
+    const { DscToggle, preset, isLinkable } = attributes;
 
     return (
         <div className="sortable">
@@ -94,18 +94,19 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                                 }}
                                             />
                                         )}
-
-                                        <LinkControl
-                                            label={__('Link', 'zoloblocks')}
-                                            value={profile.link}
-                                            onChange={(value) => {
-                                                const newItems = [...deepCloneProfiles];
-                                                newItems[index].link = value;
-                                                setAttributes({
-                                                    listProfiles: newItems,
-                                                });
-                                            }}
-                                        />
+                                        {isLinkable && (
+                                            <LinkControl
+                                                label={__('Link', 'zoloblocks')}
+                                                value={profile.link}
+                                                onChange={(value) => {
+                                                    const newItems = [...deepCloneProfiles];
+                                                    newItems[index].link = value;
+                                                    setAttributes({
+                                                        listProfiles: newItems,
+                                                    });
+                                                }}
+                                            />
+                                        )}
                                     </PanelBody>
                                 </SortableItem>
                             </div>

@@ -133,7 +133,10 @@ const attributes = {
     BorderHovColor: {
         type: 'string',
     },
-
+    isLinkable: {
+        type: 'boolean',
+        default: false,
+    },
     listProfiles: {
         type: 'array',
         default: [
