@@ -6,22 +6,53 @@ import SingleExtension from './single-extension';
 
 import Notice from '../notice';
 
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+
 const Extensions = () => {
     const [extensions, setExtensions] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
 
-    // set initial extension status
+    const fetchExtensions = async () => {
+        try {
+            const response = await apiFetch({
+                path: '/zolo/v1/extensions',
+                method: 'GET',
+            });
+            console.log('Fetching extensions');
+            setExtensions(response);
+
+            // Store the fetched data and timestamp in localStorage
+            localStorage.setItem('cachedExtensions', JSON.stringify(response));
+            localStorage.setItem('extensionsFetchTime', Date.now().toString());
+        } catch (error) {
+            console.error('API Fetch Error:', error);
+        }
+    };
+
     useEffect(() => {
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'GET',
-        })
-            .then((response) => {
-                setExtensions(response);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
+        const cachedExtensions = localStorage.getItem('cachedExtensions');
+        const fetchTime = localStorage.getItem('extensionsFetchTime');
+        const now = Date.now();
+
+        if (cachedExtensions && fetchTime && now - parseInt(fetchTime) < CACHE_DURATION) {
+            // Use cached data if it's still valid
+            setExtensions(JSON.parse(cachedExtensions));
+        } else {
+            // Fetch new data if cache is expired or doesn't exist
+            fetchExtensions();
+        }
+
+        // Set up an interval to check for updates
+        const intervalId = setInterval(() => {
+            if (Date.now() - parseInt(localStorage.getItem('extensionsFetchTime') || '0') >= CACHE_DURATION) {
+                fetchExtensions();
+            }
+        }, CACHE_DURATION);
+
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
     }, []);
 
     // set notice to false after 3 seconds

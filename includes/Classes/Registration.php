@@ -40,7 +40,7 @@ class Registration {
                 $block_file = $block_path . '/build/blocks/' . $block['name'];
 
                 if (file_exists($block_file)) {
-                    if (isset($block['status']) && $block['status'] === true) {
+                    if (isset($block['status']) && $block['status'] !== false ) {
                         $render_callback = null;
                         if (isset($block['class']) && class_exists($block['class'])) {
                             $class = new $block['class'];
