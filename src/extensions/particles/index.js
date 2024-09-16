@@ -2,6 +2,7 @@ import { addFilter } from '@wordpress/hooks';
 import Inspector from './inspector.js';
 import Render from './render';
 import './style.scss';
+import Style from './style.js';
 import './attributes';
 
 addFilter('zolo.extensions.controls.particles', 'zolo/extensions/particles', (panels, block, panelProps) => {
@@ -16,3 +17,10 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/extensions/particles', (panels
     return panels;
 });
 
+
+
+addFilter('zolo.container.desktopAllStyle', 'zolo/extensions/particles/styles', (desktopAllStyle, props) => {
+    if (!props.attributes.zoloParticles.active) return desktopAllStyle;
+    const { particlesStyleDesktop } = Style(props);
+    return desktopAllStyle + particlesStyleDesktop;
+});

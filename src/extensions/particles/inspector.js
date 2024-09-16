@@ -9,7 +9,7 @@ import Select2 from 'react-select';
 import useParticlesInit from './init';
 import MultiColor from './multicolor';
 
-const { PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
+const { PopoverControl, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } = window.zoloModule;
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
@@ -221,6 +221,35 @@ const Inspector = ({ panelProps }) => {
                 </div>
                 {preset !== 'custom_options' && (
                     <>
+                        <div className="zolo-flex-row-control">
+                            <SelectControl
+                                label={__('Direction', 'zoloblocks')}
+                                value={direction}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        zoloParticles: {
+                                            ...zoloParticles,
+                                            particleOptions: {
+                                                ...particleOptions,
+                                                direction: value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                options={[
+                                    { label: __('None'), value: 'none' },
+                                    { label: __('Top'), value: 'top' },
+                                    { label: __('Top Right'), value: 'top-right' },
+                                    { label: __('Right'), value: 'right' },
+                                    { label: __('Bottom Right'), value: 'bottom-right' },
+                                    { label: __('Bottom'), value: 'bottom' },
+                                    { label: __('Bottom Left'), value: 'bottom-left' },
+                                    { label: __('Left'), value: 'left' },
+                                    { label: __('Top Left'), value: 'top-left' },
+                                ]}
+                            />
+                        </div>
+
                         <BaseControl className="zolo-flex-col-control">
                             <Select2
                                 isMulti
@@ -251,37 +280,30 @@ const Inspector = ({ panelProps }) => {
                                 }))}
                             />
                         </BaseControl>
-                        {/* <CardDivider /> */}
-                        <div className="zolo-flex-row-control">
-                            <SelectControl
-                                label={__('Direction', 'zoloblocks')}
-                                value={direction}
-                                onChange={(value) => {
-                                    setAttributes({
-                                        zoloParticles: {
-                                            ...zoloParticles,
-                                            particleOptions: {
-                                                ...particleOptions,
-                                                direction: value,
-                                            },
-                                        },
-                                    });
-                                }}
-                                options={[
-                                    { label: __('None'), value: 'none' },
-                                    { label: __('Top'), value: 'top' },
-                                    { label: __('Top Right'), value: 'top-right' },
-                                    { label: __('Right'), value: 'right' },
-                                    { label: __('Bottom Right'), value: 'bottom-right' },
-                                    { label: __('Bottom'), value: 'bottom' },
-                                    { label: __('Bottom Left'), value: 'bottom-left' },
-                                    { label: __('Left'), value: 'left' },
-                                    { label: __('Top Left'), value: 'top-left' },
-                                ]}
-                            />
-                        </div>
                         <SimpleRangeControl
-                            label={__('Shape Size', 'zoloblocks')}
+                            label={__('Z Index', 'zoloblocks')}
+                            onChange={(v) =>
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        zIndex: v,
+                                    },
+                                })
+                            }
+                            value={zoloParticles?.zIndex}
+                            onReset={() =>
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        zIndex: 0,
+                                    },
+                                })
+                            }
+                            noUnits={true}
+                        />
+                        <div className="zolo-custom-heading">{__('Shape', 'zoloblocks')}</div>
+                        <SimpleRangeControl
+                            label={__('Size', 'zoloblocks')}
                             onChange={(v) =>
                                 setAttributes({
                                     zoloParticles: {

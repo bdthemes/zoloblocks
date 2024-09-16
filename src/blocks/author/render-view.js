@@ -22,7 +22,6 @@ export default function RenderView({attributes}) {
         method: 'POST',
         body: formData,
       });
-      console.log({response});
       if (response.success) {
         setAuthorList(response.data.results);
       } else {

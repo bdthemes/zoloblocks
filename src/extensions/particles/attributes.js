@@ -14,6 +14,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/partic
                     particleOptions: {
                         customOptions: {},
                     },
+                    zIndex: 0,
                     colors: [],
                     toggleCustomOption: false,
                 },
