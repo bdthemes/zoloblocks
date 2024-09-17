@@ -363,7 +363,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.4.1 - 16-09-2024 =
+= 1.4.1 - 17-09-2024 =
 
 * List block linkable issue.
 * Fixed: Particles zIndex issue.
