@@ -365,7 +365,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 = 1.4.1 - 17-09-2024 =
 
-* List block linkable issue.
+* Fixed: List block linkable issue.
 * Fixed: Particles zIndex issue.
 * Fixed: Newsletter block API issue.
 * Fixed: Lightbox background color issue.
