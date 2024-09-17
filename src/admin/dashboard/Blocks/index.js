@@ -9,8 +9,6 @@ const removeChildBlocks = (blocks) => {
     return blocks.filter((block) => !block.is_child);
 };
 
-const CACHE_DURATION = 5 * 60 * 1000;
-
 const Blocks = () => {
     const [blockStates, setBlockStates] = useState([]);
     const [blocks, setBlocks] = useState([]);
@@ -26,37 +24,13 @@ const Blocks = () => {
             });
             const newBlocks = removeChildBlocks(response);
             setBlocks(newBlocks);
-
-            // Store the fetched data and timestamp in localStorage
-            localStorage.setItem('cachedBlocks', JSON.stringify(newBlocks));
-            localStorage.setItem('blocksFetchTime', Date.now().toString());
         } catch (error) {
             console.error('API Fetch Error:', error);
         }
     };
 
     useEffect(() => {
-        const cachedBlocks = localStorage.getItem('cachedBlocks');
-        const fetchTime = localStorage.getItem('blocksFetchTime');
-        const now = Date.now();
-
-        if (cachedBlocks && fetchTime && now - parseInt(fetchTime) < CACHE_DURATION) {
-            // Use cached data if it's still valid
-            setBlocks(JSON.parse(cachedBlocks));
-        } else {
-            // Fetch new data if cache is expired or doesn't exist
-            fetchBlocks();
-        }
-
-        // Set up an interval to check for updates
-        const intervalId = setInterval(() => {
-            if (Date.now() - parseInt(localStorage.getItem('blocksFetchTime') || '0') >= CACHE_DURATION) {
-                fetchBlocks();
-            }
-        }, CACHE_DURATION);
-
-        // Clean up the interval on component unmount
-        return () => clearInterval(intervalId);
+        fetchBlocks();
     }, []);
 
     // set notice to false after 3 seconds
@@ -84,11 +58,6 @@ const Blocks = () => {
         })
             .then((response) => {
                 setBlocks(removeChildBlocks(response));
-
-                // clear local storage cache
-                localStorage.removeItem('cachedBlocks');
-                localStorage.removeItem('blocksFetchTime');
-
                 // set notice to true
                 setNotice(true);
             })
@@ -117,11 +86,6 @@ const Blocks = () => {
             setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
-
-            // clear local storage cache
-            localStorage.removeItem('cachedBlocks');
-            localStorage.removeItem('blocksFetchTime');
-
             // set notice to true
             setNotice(true);
         });
@@ -149,11 +113,6 @@ const Blocks = () => {
             setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
-
-            // clear local storage cache
-            localStorage.removeItem('cachedBlocks');
-            localStorage.removeItem('blocksFetchTime');
-
             // set notice to true
             setNotice(true);
         });
