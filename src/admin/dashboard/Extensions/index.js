@@ -66,7 +66,15 @@ const Extensions = () => {
             return;
         }
 
-        const extensionNames = inactiveExtensions.map((extension) => extension.name);
+        const proExtensions = inactiveExtensions.filter((extension) => extension.is_pro === true);
+        let extensionNames = inactiveExtensions.map((extension) => extension.name);
+
+        if (proExtensions.length > 0) {
+            if (zoloBlocks?.has_pro !== '1') {
+                // remove pro extensions from the list
+                extensionNames = extensionNames.filter((extension) => !proExtensions.includes(extension)); // remove pro extensions
+            }
+        }
 
         apiFetch({
             path: '/zolo/v1/extensions',
@@ -91,7 +99,15 @@ const Extensions = () => {
             return;
         }
 
-        const extensionNames = activeExtensions.map((extension) => extension.name);
+        const proExtensions = activeExtensions.filter((extension) => extension.is_pro === true);
+        let extensionNames = activeExtensions.map((extension) => extension.name);
+
+        if (proExtensions.length > 0) {
+            if (zoloBlocks?.has_pro !== '1') {
+                // remove pro extensions from the list
+                extensionNames = extensionNames.filter((extension) => !proExtensions.includes(extension)); // remove pro extensions
+            }
+        }
 
         apiFetch({
             path: '/zolo/v1/extensions',
