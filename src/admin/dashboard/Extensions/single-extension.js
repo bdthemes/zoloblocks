@@ -1,12 +1,18 @@
 import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 
 const { ExtensionIcons } = window?.zoloIcons;
 
 const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = true, upcoming }) => {
     return (
         <div
-            className={`zolo-single-block ${value ? 'active' : ''} ${released ? '' : 'upcoming'} ${isPro ? 'ispro' : ''} ${upcoming ? 'upcoming' : ''}`}
+            className={classNames('zolo-single-block', {
+                active: `${isPro && zoloBlocks?.has_pro === '1' && !upcoming ? value : !isPro && !upcoming ? value : ''}`,
+                upcoming: !released,
+                ispro: isPro,
+                upcoming: upcoming,
+            })}
         >
             <div className="block-icon">{ExtensionIcons[icon]}</div>
             <div className="block-info">
