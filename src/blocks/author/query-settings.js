@@ -1,4 +1,4 @@
-import { SelectControl, __experimentalInputControl as InputControl, BaseControl } from '@wordpress/components';
+import { SelectControl, __experimentalInputControl as InputControl, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { ORDER_BY, USER_ROLE } from './constants';
@@ -24,6 +24,8 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 __unstableInputWidth="64px"
             />
 
+            <CardDivider />
+
             <BaseControl label={__('Role', 'zoloblocks')} className="zolo-flex-col-control">
                 <Select2
                     classNamePrefix="zolo-select"
@@ -46,6 +48,8 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                     onChange={(exclude) => setAttributes({ authorQuery: { ...authorQuery, exclude } })}
                 />
             </div>
+
+            <CardDivider />
 
             <SelectControl
                 label={__('Order By', 'zoloblocks')}
