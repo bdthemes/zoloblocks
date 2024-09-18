@@ -5,7 +5,7 @@ Tags: block, blocks, gutenberg, gutenberg blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.2
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -362,6 +362,11 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.4.2 - 18-09-2024 =
+
+* Fixed: List block Deprecated issue
+* Improved: control layout for Chart, Authors, Notice, and Review Grid blocks.
 
 = 1.4.1 - 17-09-2024 =
 
