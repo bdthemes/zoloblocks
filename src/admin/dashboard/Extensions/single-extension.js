@@ -5,13 +5,13 @@ import classNames from 'classnames';
 const { ExtensionIcons } = window?.zoloIcons;
 
 const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = true, upcoming }) => {
+
     return (
         <div
             className={classNames('zolo-single-block', {
                 active: `${isPro && zoloBlocks?.has_pro === '1' && !upcoming ? value : !isPro && !upcoming ? value : ''}`,
                 upcoming: !released,
                 ispro: isPro,
-                upcoming: upcoming,
             })}
         >
             <div className="block-icon">{ExtensionIcons[icon]}</div>
