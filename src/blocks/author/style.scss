@@ -1,171 +1,170 @@
 .zolo-author-wrap {
-	display: grid;
-	gap: 30px;
+    display: grid;
+    gap: 30px;
 
-	&.zolo-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
+    &.zolo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-	&.zolo-list {
-		grid-template-columns: repeat(1, 1fr);
-	}
+    &.zolo-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
-	.zolo-item {
-		position: relative;
-		border-radius: 10px;
-		transition: all .3s ease;
-		border: 1px solid #e9edf4;
-		background-color: #fff;
-	}
+    .zolo-item {
+        position: relative;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        border: 1px solid #e9edf4;
+        background-color: #fff;
+    }
 
-	.zolo-post-count {
-		position: absolute;
-		top: 0;
-		right: 0;
-		font-size: 12px;
-		color: #6d727d;
-		text-transform: capitalize;
-		line-height: 1;
-		padding: 6px 8px;
-		border-radius: 6px;
-		border: 1px solid #d8dbe0;
-	}
+    .zolo-post-count {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 12px;
+        color: #6d727d;
+        text-transform: capitalize;
+        line-height: 1;
+        padding: 6px 8px;
+        border-radius: 6px;
+        border: 1px solid #d8dbe0;
+    }
 
-	.zolo-content {
-		position: relative;
-		z-index: 1;
-		width: 100%;
-		box-sizing: border-box;
-	}
+    .zolo-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-	.zolo-name {
-		margin: 0 0 2px;
-	}
+    .zolo-name {
+        margin: 0 0 2px;
+    }
 
-	.zolo-name a {
-		display: inline-flex;
-		font-size: 18px;
-		font-weight: 600;
-		color: #2B2D42;
-		line-height: 1;
-		text-transform: capitalize;
-		transition: all .3s ease;
-		text-decoration: none;
-	}
+    .zolo-name a {
+        display: inline-flex;
+        font-size: 18px;
+        font-weight: 600;
+        color: #2b2d42;
+        line-height: 1;
+        text-transform: capitalize;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
 
-	.zolo-name a:hover {
-		color: #EF233C;
-	}
+    .zolo-name a:hover {
+        color: #ef233c;
+    }
 
-	.zolo-description {
-		font-size: 15px;
-		color: #8D99AE;
-		padding-top: 10px;
-	}
+    .zolo-description {
+        font-size: 15px;
+        color: #8d99ae;
+        padding-top: 10px;
+    }
 
-	.zolo-role {
-		font-size: 15px;
-		color: #8D99AE;
-	}
+    .zolo-role {
+        font-size: 15px;
+        color: #8d99ae;
+    }
 
-	.zolo-link {
-		display: inline-flex;
-		align-items: center;
-		margin-top: 15px;
-		gap: 10px;
-	}
+    .zolo-link {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 15px;
+        gap: 10px;
+    }
 
-	.zolo-link a {
-		color: #8D99AE;
-		transition: all .3s ease;
-	}
+    .zolo-link a {
+        color: #8d99ae;
+        transition: all 0.3s ease;
+    }
 
-	.zolo-link a svg {
-		width: 18px;
-		height: 18px;
-		display: block;
-	}
+    .zolo-link a svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+    }
 
-	.zolo-link a:hover {
-		color: #EF233C;
-	}
+    .zolo-link a:hover {
+        color: #ef233c;
+    }
 
-	&.zolo-grid .zolo-post-count {
-		margin: clamp(15px, 2.5vw, 30px);
-	}
+    &.zolo-grid .zolo-post-count {
+        margin: clamp(15px, 2.5vw, 30px);
+    }
 
-	&.zolo-grid .zolo-content {
-		text-align: center;
-	}
+    &.zolo-grid .zolo-content {
+        text-align: center;
+    }
 
-	&.zolo-grid .zolo-link {
-		justify-content: center;
-	}
+    &.zolo-grid .zolo-link {
+        justify-content: center;
+    }
 
-	&.zolo-grid .zolo-item {
-		padding: clamp(15px, 2.5vw, 30px);
-	}
+    &.zolo-grid .zolo-item {
+        padding: clamp(15px, 2.5vw, 30px);
+    }
 
-	&.zolo-grid .zolo-image {
-		margin: 35px 30px 20px 30px;
-		text-align: center;
-	}
+    &.zolo-grid .zolo-image {
+        margin: 35px 30px 20px 30px;
+        text-align: center;
+    }
 
-	.zolo-image a img {
-		vertical-align: middle;
-	}
+    .zolo-image a img {
+        vertical-align: middle;
+    }
 
+    &.zolo-grid .zolo-image a img {
+        width: 150px;
+        height: 150px;
+        max-width: unset;
+        border-radius: 100%;
+        object-fit: cover;
+    }
 
-	&.zolo-grid .zolo-image a img {
-		width: 150px;
-		height: 150px;
-		border-radius: 100%;
-		object-fit: cover;
-	}
+    &.zolo-list .zolo-item {
+        padding: clamp(12px, 1.5vw, 20px);
+        display: flex;
+        align-items: center;
+    }
 
-	&.zolo-list .zolo-item {
-		padding: clamp(12px, 1.5vw, 20px);
-		display: flex;
-		align-items: center;
-	}
+    &.zolo-list .zolo-image {
+        margin-right: clamp(15px, 1.8vw, 20px);
+    }
 
-	&.zolo-list .zolo-image {
-		margin-right: clamp(15px, 1.8vw, 20px);
-	}
+    &.zolo-list .zolo-image img {
+        height: clamp(70px, 8vw, 80px);
+        width: clamp(70px, 8vw, 80px);
+        min-width: clamp(70px, 8vw, 80px);
+        border-radius: 100%;
+    }
 
-	&.zolo-list .zolo-image img {
-		height: clamp(70px, 8vw, 80px);
-		width: clamp(70px, 8vw, 80px);
-		min-width: clamp(70px, 8vw, 80px);
-		border-radius: 100%;
-	}
+    &.zolo-list .zolo-post-count {
+        margin: clamp(10px, 1.5vw, 15px);
+    }
 
-	&.zolo-list .zolo-post-count {
-		margin: clamp(10px, 1.5vw, 15px);
-	}
-
-	&.zolo-list .zolo-link {
-		justify-content: left;
-	}
+    &.zolo-list .zolo-link {
+        justify-content: left;
+    }
 }
 
 @media (min-width: 768px) {
-	.zolo-author-wrap.zolo-grid {
-		grid-template-columns: repeat(3, 1fr);
-	}
+    .zolo-author-wrap.zolo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-	.zolo-author-wrap.zolo-list {
-		grid-template-columns: repeat(2, 1fr);
-	}
+    .zolo-author-wrap.zolo-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (min-width: 1024px) {
-	.zolo-author-wrap.zolo-grid {
-		grid-template-columns: repeat(4, 1fr);
-	}
+    .zolo-author-wrap.zolo-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
-	.zolo-author-wrap.zolo-list {
-		grid-template-columns: repeat(3, 1fr);
-	}
+    .zolo-author-wrap.zolo-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
-

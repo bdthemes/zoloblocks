@@ -415,7 +415,7 @@ const Style = ({ props }) => {
         .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-			color: ${addReviewerWebsiteLink ? nameLinkColor : nameColor};
+			color: ${nameColor};
 		}
 		.zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name:hover {
 			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};

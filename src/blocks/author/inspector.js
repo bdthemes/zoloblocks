@@ -256,61 +256,48 @@ export default function Inspector(props) {
 
                         {showAvatar && (
                             <ZoloPanelBody title={__('Avatar', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TabPanelControl
-                                    options={[
-                                        { label: __('Normal', 'zoloblocks'), value: 'normal' },
-                                        { label: __('Mask', 'zoloblocks'), value: 'hover' },
-                                    ]}
-                                    normalComponents={
-                                        <>
-                                            <ResRangeControl
-                                                label={__('Width', 'zoloblocks')}
-                                                controlName={AVATAR_IMG_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={200}
-                                                step={1}
-                                            />
-                                            <ResRangeControl
-                                                label={__('Hiight', 'zoloblocks')}
-                                                controlName={AVATAR_IMG_H_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={200}
-                                                step={1}
-                                            />
-                                            <CardDivider />
-                                            <ResDimensionsControl
-                                                label={__('Padding', 'zoloblocks')}
-                                                controlName={AVATAR_PADDING}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Margin', 'zoloblocks')}
-                                                controlName={AVATAR_MARGIN}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <CardDivider />
-                                            <BorderControl
-                                                label={__('Border', 'zoloblocks')}
-                                                controlName={AVATAR_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <BoxShadowControl
-                                                controlName={AVATAR_SHADOW}
-                                                requiredProps={requiredProps}
-                                                enableTransition={false}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                controlName={AVATAR_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={<>{maskFeatures && maskFeatures.length > 0 && maskFeatures}</>}
+                                <ResRangeControl
+                                    label={__('Width', 'zoloblocks')}
+                                    controlName={AVATAR_IMG_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={200}
+                                    step={1}
                                 />
+                                <ResRangeControl
+                                    label={__('Hiight', 'zoloblocks')}
+                                    controlName={AVATAR_IMG_H_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={200}
+                                    step={1}
+                                />
+                                <CardDivider />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={AVATAR_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={AVATAR_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
+                                <CardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <BoxShadowControl controlName={AVATAR_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={AVATAR_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+
+                                {maskFeatures && maskFeatures.length > 0 && maskFeatures}
                             </ZoloPanelBody>
                         )}
 
