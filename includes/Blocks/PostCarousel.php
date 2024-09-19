@@ -15,6 +15,7 @@ class PostCarousel extends PostBlock {
         'excerptindicator' => '...',
         'excerptWords'     => 15,
         'showReadMore'     => false,
+        'customNavIcon'    => true,
         'readMoreBtnText'  => 'Read More',
     ];
 

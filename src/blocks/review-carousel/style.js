@@ -558,7 +558,7 @@ const Style = ({ props }) => {
         mobRangeStyle: pagBottomSpacingMob,
     } = generateResRangeStyle({
         controlName: PAG_BOTTOM_SPACING,
-        property: 'bottom',
+        property: '--zolo-pagination-offset',
         attributes,
     });
 
@@ -774,7 +774,7 @@ const Style = ({ props }) => {
             ${pagSpacingDesktop}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
-            ${pagBottomSpacingDesktop.replace(/;/g, ' !important;')}
+            ${pagBottomSpacingDesktop}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -910,7 +910,7 @@ const Style = ({ props }) => {
             ${pagSpacingTab}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
-            ${pagBottomSpacingTab.replace(/;/g, ' !important;')}
+            ${pagBottomSpacingTab}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagTabWidth}
@@ -1031,7 +1031,7 @@ const Style = ({ props }) => {
             ${pagSpacingMob}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
-            ${pagBottomSpacingMob.replace(/;/g, ' !important;')}
+            ${pagBottomSpacingMob}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
 

@@ -369,10 +369,10 @@ function Inspector(props) {
                             />
                             <ToggleControl
                                 label={__('Show Pagination', 'zoloblocks')}
-                                checked={showPagination === undefined ? true : showPagination}
-                                onChange={(v) =>
+                                checked={showPagination}
+                                onChange={() =>
                                     setAttributes({
-                                        showPagination: v,
+                                        showPagination: !showPagination,
                                     })
                                 }
                             />
@@ -782,106 +782,104 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {showPagination && (
-                            <Fragment>
-                                <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                    <ResRangeControl
-                                        label={__('Space Between', 'zoloblocks')}
-                                        controlName={PAG_SPACING}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={100}
-                                    />
-                                    <ResRangeControl
-                                        label={__('Bottom Spacing', 'zoloblocks')}
-                                        controlName={PAG_BOTTOM_SPACING}
-                                        requiredProps={requiredProps}
-                                        min={-100}
-                                        max={100}
-                                    />
-                                    <TabPanelControl
-                                        options={[
-                                            {
-                                                value: 'normal',
-                                                label: __('Normal', 'zoloblocks'),
-                                            },
-                                            {
-                                                value: 'hover',
-                                                label: __('Active', 'zoloblocks'),
-                                            },
-                                        ]}
-                                        normalComponents={
-                                            <Fragment>
-                                                <ResRangeControl
-                                                    label={__('Width', 'zoloblocks')}
-                                                    controlName={PAG_WIDTH}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Height', 'zoloblocks')}
-                                                    controlName={PAG_HEIGHT}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={PAG_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={PAG_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={true}
-                                                />
-                                                <NormalBGControl
-                                                    label={__('Background', 'zoloblocks')}
-                                                    controlName={PAG_BG}
-                                                    requiredProps={requiredProps}
-                                                    noMainBGImg={true}
-                                                />
-                                            </Fragment>
-                                        }
-                                        hoverComponents={
-                                            <Fragment>
-                                                <ResRangeControl
-                                                    label={__('Width', 'zoloblocks')}
-                                                    controlName={APAG_WIDTH}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Height', 'zoloblocks')}
-                                                    controlName={APAG_HEIGHT}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={APAG_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={APAG_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={true}
-                                                />
-                                                <NormalBGControl
-                                                    label={__('Background', 'zoloblocks')}
-                                                    controlName={APAG_BG}
-                                                    requiredProps={requiredProps}
-                                                    noMainBGImg={true}
-                                                />
-                                            </Fragment>
-                                        }
-                                    />
-                                </ZoloPanelBody>
-                            </Fragment>
+                            <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ResRangeControl
+                                    label={__('Space Between', 'zoloblocks')}
+                                    controlName={PAG_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                />
+                                <ResRangeControl
+                                    label={__('Vertical Offset', 'zoloblocks')}
+                                    controlName={PAG_BOTTOM_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={-200}
+                                    max={200}
+                                />
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Normal', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Active', 'zoloblocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <Fragment>
+                                            <ResRangeControl
+                                                label={__('Width', 'zoloblocks')}
+                                                controlName={PAG_WIDTH}
+                                                requiredProps={requiredProps}
+                                                min={1}
+                                                max={100}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Height', 'zoloblocks')}
+                                                controlName={PAG_HEIGHT}
+                                                requiredProps={requiredProps}
+                                                min={1}
+                                                max={100}
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={PAG_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={PAG_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <NormalBGControl
+                                                label={__('Background', 'zoloblocks')}
+                                                controlName={PAG_BG}
+                                                requiredProps={requiredProps}
+                                                noMainBGImg={true}
+                                            />
+                                        </Fragment>
+                                    }
+                                    hoverComponents={
+                                        <Fragment>
+                                            <ResRangeControl
+                                                label={__('Width', 'zoloblocks')}
+                                                controlName={APAG_WIDTH}
+                                                requiredProps={requiredProps}
+                                                min={1}
+                                                max={100}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Height', 'zoloblocks')}
+                                                controlName={APAG_HEIGHT}
+                                                requiredProps={requiredProps}
+                                                min={1}
+                                                max={100}
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={APAG_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={APAG_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <NormalBGControl
+                                                label={__('Background', 'zoloblocks')}
+                                                controlName={APAG_BG}
+                                                requiredProps={requiredProps}
+                                                noMainBGImg={true}
+                                            />
+                                        </Fragment>
+                                    }
+                                />
+                            </ZoloPanelBody>
                         )}
                     </>
                 }
