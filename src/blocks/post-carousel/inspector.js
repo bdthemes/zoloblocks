@@ -1144,7 +1144,7 @@ function Inspector(props) {
                                                 controlName={NAV_OFFSET_HORIZONTAL}
                                                 requiredProps={requiredProps}
                                                 min={-100}
-                                                max={300}
+                                                max={500}
                                             />
                                         </Fragment>
                                     }
@@ -1224,11 +1224,11 @@ function Inspector(props) {
                                                     max={100}
                                                 />
                                                 <ResRangeControl
-                                                    label={__('Bottom Spacing', 'zoloblocks')}
+                                                    label={__('Vertical Offset', 'zoloblocks')}
                                                     controlName={PAG_BOTTOM_SPACING}
                                                     requiredProps={requiredProps}
-                                                    min={-100}
-                                                    max={100}
+                                                    min={-200}
+                                                    max={200}
                                                 />
                                             </Fragment>
                                         }

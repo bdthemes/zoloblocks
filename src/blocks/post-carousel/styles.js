@@ -620,7 +620,7 @@ function Style({ props }) {
         mobRangeStyle: pagBottomSpacingMob,
     } = generateResRangeStyle({
         controlName: PAG_BOTTOM_SPACING,
-        property: 'bottom',
+        property: '--zolo-pagination-offset',
         attributes,
     });
 
@@ -985,7 +985,7 @@ function Style({ props }) {
             ${pagSpacingDesktop}
         }
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination {
-            ${pagBottomSpacingDesktop.replace(/;/g, ' !important;')}
+            ${pagBottomSpacingDesktop}
         }
 
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -1170,7 +1170,7 @@ function Style({ props }) {
             ${pagSpacingTab}
         }
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination {
-            ${pagBottomSpacingTab.replace(/;/g, ' !important;')}
+            ${pagBottomSpacingTab}
         }
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagTabWidth}
@@ -1349,7 +1349,7 @@ function Style({ props }) {
             ${pagSpacingMob}
         }
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination {
-            ${pagBottomSpacingMob.replace(/;/g, ' !important;')}
+            ${pagBottomSpacingMob}
         }
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagMobWidth}

@@ -526,12 +526,14 @@
     }
 
     .swiper-pagination {
+        --zolo-pagination-offset: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: var(--zolo-pagination-gap);
         z-index: 11;
-        bottom: -50px !important;
+        bottom: 0 !important;
+        transform: translateY(var(--zolo-pagination-offset));
         .swiper-pagination-bullet {
             background-color: transparent;
             width: var(--zolo-pagination-size);
