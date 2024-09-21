@@ -529,6 +529,7 @@ export default function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
+		.${uniqueId}.wp-block-zolo-navmenu,
 		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
 			${buttonAlignmentDesktop}
 		}
@@ -618,6 +619,11 @@ export default function Style({ props }) {
 	`;
     const tabletAllStyle = `
 
+    	.${uniqueId}.wp-block-zolo-navmenu,
+		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
+			${buttonAlignmentTab}
+		}
+
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
             ${wrapBGTab}
             ${wrapBorderTab}
@@ -681,6 +687,11 @@ export default function Style({ props }) {
   	`;
     const mobileAllStyle = `
 
+        .${uniqueId}.wp-block-zolo-navmenu,
+		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
+			${buttonAlignmentMob}
+		}
+            
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
             ${wrapBGMob}
             ${wrapBorderMob}

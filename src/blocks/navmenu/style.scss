@@ -63,7 +63,6 @@
             fill: currentColor;
         }
     }
-
     &.menu-breakpoint-desktop {
         .zolo-nav-menu-hamburger {
             display: block;
@@ -184,6 +183,11 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 7;
         }
+    }
+    &.menu-breakpoint-desktop,
+    &.menu-breakpoint-tablet,
+    &.menu-breakpoint-mobile {
+        display: flex;
     }
 }
 
