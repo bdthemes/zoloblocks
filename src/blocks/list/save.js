@@ -14,6 +14,7 @@ const Save = (props) => {
         uniqueId,
         parentClasses,
         preset,
+        contentLayout,
         listProfiles,
         zoloId,
         iconToggle,
@@ -21,7 +22,7 @@ const Save = (props) => {
         titleToggle,
         linkHoverIcon,
         globalIcon,
-        isLinkable=false,
+        isLinkable = false,
     } = attributes;
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
@@ -32,7 +33,12 @@ const Save = (props) => {
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(preset, uniqueId, classArrayToStr(parentClasses)),
+                className: classnames(
+                    preset,
+                    preset !== 'zolo-list-style-1' ? contentLayout : '',
+                    uniqueId,
+                    classArrayToStr(parentClasses)
+                ),
             })}
             {...(zoloId && {
                 id: zoloId,
@@ -69,7 +75,7 @@ const Save = (props) => {
                                                     <RawHTML>{profile.text}</RawHTML>
                                                 </div>
                                             )}
-                                            {DscToggle && (
+                                            {DscToggle && contentLayout !== 'horizontal' && (
                                                 <span className="zolo-list-desc">
                                                     <RawHTML>{profile.desc}</RawHTML>
                                                 </span>
@@ -79,14 +85,35 @@ const Save = (props) => {
                                 </div>
                             ) : (
                                 <>
-                                    {iconToggle && preset !== 'zolo-list-style-1' && (
+                                    {iconToggle && preset !== 'zolo-list-style-1' && contentLayout !== 'horizontal' && (
                                         <div className="zolo-list-icon">
                                             {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
                                         </div>
                                     )}
+                                    {contentLayout === 'horizontal' && preset !== 'zolo-list-style-1' && (
+                                        <>
+                                            <div className="zolo-list-icon-title-wrap">
+                                                {iconToggle && (
+                                                    <div className="zolo-list-icon">
+                                                        {profile.icon ? (
+                                                            <DisplayZoloIcon icon={profile.icon} />
+                                                        ) : (
+                                                            <DisplayZoloIcon icon={globalIcon} />
+                                                        )}
+                                                    </div>
+                                                )}
+                                                {titleToggle && (
+                                                    <div className="zolo-list-title">
+                                                        <RawHTML>{profile.text}</RawHTML>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </>
+                                    )}
+
                                     {preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-content">
-                                            {titleToggle && (
+                                            {titleToggle && contentLayout !== 'horizontal' && (
                                                 <div className="zolo-list-title">
                                                     <RawHTML>{profile.text}</RawHTML>
                                                 </div>
@@ -100,10 +127,28 @@ const Save = (props) => {
                                     )}
                                 </>
                             )}
-                            {preset == 'zolo-list-style-4' && isLinkable && (
-                                <div className="zolo-list-hover-icon">
-                                    <DisplayZoloIcon icon={linkHoverIcon} />
-                                </div>
+                            {preset == 'zolo-list-style-4' && (
+                                <>
+                                    {contentLayout !== 'horizontal' && (
+                                        <div className="zolo-list-hover-icon">
+                                            <DisplayZoloIcon icon={linkHoverIcon} />
+                                        </div>
+                                    )}
+                                    {contentLayout === 'horizontal' && (
+                                        <>
+                                            <div className="zolo-list-desc-hover-icon">
+                                                {DscToggle && (
+                                                    <span className="zolo-list-desc">
+                                                        <RawHTML>{profile.desc}</RawHTML>
+                                                    </span>
+                                                )}
+                                                <div className="zolo-list-hover-icon">
+                                                    <DisplayZoloIcon icon={linkHoverIcon} />
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+                                </>
                             )}
                         </ContainerTag>
                     );
@@ -114,4 +159,3 @@ const Save = (props) => {
 };
 
 export default Save;
-
