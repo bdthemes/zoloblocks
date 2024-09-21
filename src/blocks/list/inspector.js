@@ -301,31 +301,67 @@ function Inspector(props) {
                                 max={100}
                                 min={1}
                             />
-                            <CardDivider />
-                            {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
-                                <ResAlignmentControl
-                                    label={__('Item Alignment', 'zoloblocks')}
-                                    controlName={ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
-                                />
-                            )}
-                            {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
-                                <ResAlignmentControl
-                                    label={__('Item Alignment', 'zoloblocks')}
-                                    controlName={ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={DEFAULT_ALIGNS}
-                                />
+                            {contentLayout !== 'horizontal' && preset !== 'zolo-list-style-1' && (
+                                <>
+                                    <CardDivider />
+                                    {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Vertical Alignment', 'zoloblocks')}
+                                            controlName={SINGLE_ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={FLEX_ALIGN_OPTIONS}
+                                        />
+                                    )}
+                                </>
                             )}
 
-                            {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
-                                <ResAlignmentControl
-                                    label={__('Item Vertical Alignment', 'zoloblocks')}
-                                    controlName={SINGLE_ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={FLEX_ALIGN_OPTIONS}
-                                />
+                            {preset === 'zolo-list-style-1' && (
+                                <>
+                                    {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Vertical Alignment', 'zoloblocks')}
+                                            controlName={SINGLE_ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={FLEX_ALIGN_OPTIONS}
+                                        />
+                                    )}
+                                </>
                             )}
 
                             {preset !== 'zolo-list-style-1' && (

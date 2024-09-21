@@ -150,6 +150,7 @@
         transform: translateY(-5px);
     }
     &.horizontal {
+        display: grid !important;
         grid-template-columns: unset !important;
         .zolo-list-item {
             display: flex;
