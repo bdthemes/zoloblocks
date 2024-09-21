@@ -149,4 +149,46 @@
     &.zolo-list-style-4 .zolo-list-item:hover {
         transform: translateY(-5px);
     }
+    &.horizontal {
+        grid-template-columns: unset !important;
+        .zolo-list-item {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .zolo-list-icon-title-wrap {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .zolo-list-icon {
+            margin-right: 30px;
+        }
+        .zolo-list-desc,
+        .zolo-list-title {
+            margin: 0;
+        }
+        .zolo-list-desc-hover-icon {
+            display: flex;
+            gap: 20px;
+        }
+        .zolo-list-icon-and-content-wrap {
+            align-items: center;
+        }
+        .zolo-list-desc-hover-icon,
+        .zolo-list-icon-and-content-wrap {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .wp-block-zolo-list {
+        &.horizontal {
+            .zolo-list-item {
+                flex-direction: row;
+            }
+        }
+    }
 }
