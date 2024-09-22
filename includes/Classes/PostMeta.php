@@ -1,13 +1,14 @@
 <?php
 namespace Zolo\Classes;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( ! class_exists( 'PostMeta' ) ) {
+if ( ! class_exists( 'PostMeta' ) ) {
 
 	/**
 	 * PostMeta class.
@@ -19,7 +20,7 @@ if( ! class_exists( 'PostMeta' ) ) {
 	class PostMeta {
 
 		use SingletonTrait;
-	
+
 		/**
 		 * Class constructor for the PostMeta class.
 		 *
@@ -27,9 +28,9 @@ if( ! class_exists( 'PostMeta' ) ) {
 		 * It initializes the object and sets up any necessary properties.
 		 */
 		public function __construct() {
-			add_filter('init', [ $this, 'register_meta']);
+			add_filter( 'init', [ $this, 'register_meta' ] );
 		}
-	
+
 		/**
 		 * Registers the meta for the PostMeta class.
 		 *
@@ -42,15 +43,26 @@ if( ! class_exists( 'PostMeta' ) ) {
 			register_meta(
 				'post',
 				'_zb_attr',
-				array(
+				[
 					'show_in_rest'  => true,
 					'single'        => true,
-					'auth_callback' => [$this, 'auth_callback'],
-				)
+					'auth_callback' => [ $this, 'auth_callback' ],
+				]
+			);
+
+			// for post format video link.
+			register_post_meta(
+				'post',
+				'zolo_post_video_link',
+				[
+					'show_in_rest' => true,
+					'single'       => true,
+					'type'         => 'string',
+				]
 			);
 		}
-	
-	
+
+
 		/**
 		 * Callback function for authentication.
 		 *
@@ -60,10 +72,7 @@ if( ! class_exists( 'PostMeta' ) ) {
 		 * @return void
 		 */
 		public function auth_callback() {
-			return current_user_can('edit_posts');
+			return current_user_can( 'edit_posts' );
 		}
 	}
 }
-
-
-

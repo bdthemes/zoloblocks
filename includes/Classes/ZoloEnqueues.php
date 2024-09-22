@@ -167,7 +167,7 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // Swiper Scripts and Styles
-            if (has_block('zolo/slider') || has_block('zolo/post-carousel') || has_block('zolo/review-carousel')) {
+            if (has_block('zolo/slider') || has_block('zolo/post-carousel') || has_block('zolo/review-carousel') || has_block('zolo/post-video-slider')) {
                 wp_enqueue_style(
                     'zolo-swiper-frontend-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
