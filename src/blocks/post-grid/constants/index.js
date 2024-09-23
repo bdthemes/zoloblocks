@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 
 export const BLOCK_PREFIX = 'zolo-post-grid';
 export const PRESETS = [
@@ -11,6 +11,16 @@ export const PRESETS = [
     { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
     { label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-5', disabled: true },
 ];
+
+export const POST_TITLE_ANIMATION = [
+    { label: __('Default', 'zoloblocks'), value: '' },
+    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: true },
+    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: true },
+    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: true },
+    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: true },
+    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: true },
+];
+
 export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
@@ -75,9 +85,9 @@ export const META_ARROW_SPACE = 'metaArrowSpace';
 export const CONTENT_PADDING = 'contentPadding';
 
 export const createPreloader = () => {
-  const preloader = document.createElement('div');
-  preloader.classList.add('preloader');
-  preloader.innerHTML = `
+    const preloader = document.createElement('div');
+    preloader.classList.add('preloader');
+    preloader.innerHTML = `
     <div class="container">
       <div class="dot"></div>
       <div class="dot"></div>
@@ -85,5 +95,5 @@ export const createPreloader = () => {
       <div class="dot"></div>
       <div class="dot"></div>
     </div>`;
-  return preloader;
+    return preloader;
 };
