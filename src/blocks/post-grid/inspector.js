@@ -5,6 +5,7 @@ import objAttributes from './attributes';
 
 import {
     PRESETS,
+    POST_TITLE_ANIMATION,
     GRID_COLUMNS,
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
@@ -92,6 +93,8 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        postTitleAnimation,
+        titleAnimationTypeBgColor,
         resMode,
         postQuery,
         showThumbnail,
@@ -233,7 +236,6 @@ function Inspector(props) {
                                 options={applyFilters('zolo.postGrid.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}
@@ -563,7 +565,7 @@ function Inspector(props) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Title Color', 'zoloblocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={titleColor}
                                                 onChange={(color) =>
                                                     setAttributes({
@@ -586,8 +588,15 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
+                                            <SelectControl
+                                                label={__('Animations', 'zoloblocks')}
+                                                value={postTitleAnimation}
+                                                options={applyFilters('zolo.postGrid.titleAnimation', POST_TITLE_ANIMATION)}
+                                                onChange={(postTitleAnimation) => setAttributes({ postTitleAnimation })}
+                                            />
+                                            <CardDivider />
                                             <ColorControl
-                                                label={__('Title Hover Color', 'zoloblocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={titleHoverColor}
                                                 onChange={(color) =>
                                                     setAttributes({
@@ -595,6 +604,21 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+
+                                            {postTitleAnimation === 'zolo-post-title-type-1' && (
+                                                <>
+                                                    <div className="zolo-custom-heading">{__('Animation Type', 'zoloblocks')}</div>
+                                                    <ColorControl
+                                                        label={__('Background', 'zoloblocks')}
+                                                        color={titleAnimationTypeBgColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                titleAnimationTypeBgColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )}
                                         </>
                                     }
                                 />
