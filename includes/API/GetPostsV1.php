@@ -153,7 +153,7 @@ class GetPostsV1 {
 		$results = [];
 		$args    = self::zolo_get_post_args( $data );
 
-		if ( 'current_post' === $data['postType'] ) {
+		if ( ! empty( $data['postType'] ) && 'current_post' === $data['postType'] ) {
 			$loop = new \WP_Query(
 				[
 					'post_type' => $data['currentPostType'] ?? '',
