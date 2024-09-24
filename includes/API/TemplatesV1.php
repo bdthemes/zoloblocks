@@ -42,7 +42,7 @@ class TemplatesV1 {
         $templates = get_transient($transient_key);
 
         if (empty($templates)) {
-            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/bdthemes/v1/template-manager?per_page=-1');
+            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
@@ -53,4 +53,6 @@ class TemplatesV1 {
         }
         wp_send_json_success($templates);
     }
+
+
 }

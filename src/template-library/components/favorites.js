@@ -2,7 +2,7 @@ import { Tooltip } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import ProPopup from './pro-popup';
+import ProPopup from '../pro-popup';
 
 const FavoriteTemplates = ({ templates, handleImportTemplate, handleFavTemplates }) => {
     // Pro Popup Modal
