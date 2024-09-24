@@ -74,26 +74,34 @@ class GetPostsV1 {
 	 */
 	public static function zolo_get_post_args( $data ) {
 		$showPagination = ! empty( $data['showPagination'] ) && $data['showPagination'] == 'true' ? true : false;
+		$postType       = $data['postType'] ?? 'post';
 		$args           = [
 			'post_status'    => 'publish',
-			'post_type'      => $data['postType'] ?? 'post',
 			'orderby'        => $data['postOrderby'] ?? 'date',
 			'order'          => $data['postOrder'] ?? 'desc',
 			'posts_per_page' => (int) isset( $data['postPerPage'] ) ? $data['postPerPage'] : 6,
 		];
 
-		// Set Exclude Post.
+		// for related posts.
+		if ( 'related_posts' === $postType && ! empty( $data['currentPostType'] ) ) {
+			$args['post_type'] = $data['currentPostType'];
+		} else {
+			$args['post_type'] = $postType;
+		}
 
+		// Set Exclude Post.
 		$current_post = [];
 		$exclude_by   = wp_list_pluck( $data['postExcludeBy'] ?? [], 'value' );
 
-		if ( in_array( 'current_post', $exclude_by, true ) && is_singular() ) {
-			$current_post = [ get_the_ID() ];
+		if ( in_array( 'current_post', $exclude_by, true ) ) {
+			$current_post = [ $data['currentPostId'] ?? '' ];
 		}
 
 		if ( in_array( 'manual_selection', $exclude_by, true ) ) {
 			$exclude_ids          = $data['postExclude'] ?? [];
 			$args['post__not_in'] = array_merge( $current_post, wp_list_pluck( $exclude_ids, 'value' ) );
+		} else {
+			$args['post__not_in'] = $current_post;
 		}
 
 		// Set Authors.
@@ -131,7 +139,6 @@ class GetPostsV1 {
 				$args['offset'] = $data['postOffset'];
 			}
 		}
-
 		return apply_filters( 'zolo_post_args', $args );
 	}
 
@@ -143,14 +150,23 @@ class GetPostsV1 {
 	 */
 	public static function zolo_posts_query( $data ) {
 
-		$results       = [];
-		$args          = self::zolo_get_post_args( $data );
-		$loop          = new \WP_Query( $args );
+		$results = [];
+		$args    = self::zolo_get_post_args( $data );
+
+		if ( 'current_post' === $data['postType'] ) {
+			$loop = new \WP_Query(
+				[
+					'post_type' => $data['currentPostType'] ?? '',
+					'p'         => $data['currentPostId'] ?? '',
+				]
+			);
+		} else {
+			$loop = new \WP_Query( $args );
+		}
+
 		$paged         = ZoloHelpers::get_paged( $loop );
 		$postThumbnail = ! empty( $data['postThumbnail'] ) ? $data['postThumbnail'] : '';
-
 		if ( $loop->have_posts() ) {
-
 			while ( $loop->have_posts() ) {
 				$loop->the_post();
 				$post_id = get_the_ID();
@@ -176,7 +192,6 @@ class GetPostsV1 {
 
 			wp_reset_postdata();
 		}
-
 		return [
 			'total_page' => $loop->max_num_pages,
 			'posts'      => $results,

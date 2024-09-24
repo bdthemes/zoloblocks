@@ -13,22 +13,20 @@ $parentClasses = $settings['parentClasses'] ?? [];
 // convert to string.
 $parentClasses = implode( ' ', $parentClasses );
 // add parent classes to wrapper class.
-$wrapper_class .= ' ' . $parentClasses;
-
-$html = '';
-$i    = 0;
-
-$metaSeparator = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
-
+$wrapper_class  .= ' ' . $parentClasses;
+$html            = '';
+$i               = 0;
+$metaSeparator   = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
 $wrapperId       = $settings['zoloId'] ?? '';
 $showFeaturedImg = $settings['showfeatureimg'] ?? true;
 $pagedNumber     = $post_results['paged'] ?? 1;
-$paginationType  = $settings['paginationType'] ?? 'normal'
+$paginationType  = $settings['paginationType'] ?? 'normal';
+$data_settings   = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $settings, array_keys( $class_object->get_default_attributes() ) ) : $settings;
 
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-attributes="<?php echo esc_attr( wp_json_encode( $settings ) ); ?>">
+	data-attributes="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>">
 	<?php endif; ?>
 
 	<div class="<?php echo esc_attr( $wrapper_class ); ?>"
