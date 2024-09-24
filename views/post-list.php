@@ -26,7 +26,10 @@ $data_settings   = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( 
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-attributes="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>">
+	<?php if ( 'normal' !== $paginationType ) { ?>
+	  data-attributes="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>"
+	<?php } ?>
+>
 	<?php endif; ?>
 
 	<div class="<?php echo esc_attr( $wrapper_class ); ?>"
