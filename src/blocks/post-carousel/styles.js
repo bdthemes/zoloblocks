@@ -106,6 +106,7 @@ function Style({ props }) {
         navHoverBorderColor,
         metaArrowColor,
         enableShadow,
+        titleAnimationTypeBgColor,
     } = attributes;
 
     const {
@@ -1001,6 +1002,10 @@ function Style({ props }) {
             ${apagBorderStyles}
             ${apagBorderRadiusDesktop}
             ${apagNormalBGStyle}
+        }
+
+        .${uniqueId}.zolo-block.zolo-post-title-type-1{
+            ${titleAnimationTypeBgColor ? `--zolo-post-title-type-primary-color:${titleAnimationTypeBgColor};` : ''}
         }
     `;
 

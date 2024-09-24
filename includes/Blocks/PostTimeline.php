@@ -17,6 +17,7 @@ class PostTimeline extends PostBlock {
 	 */
 	protected $default_block_attributes = [
 		'preset'           => 'style-1',
+		'postTitleAnimation' => '',
 		'thumbnailSize'    => '',
 		'showExcerpt'      => false,
 		'excerptindicator' => '...',

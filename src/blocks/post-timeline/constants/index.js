@@ -16,6 +16,15 @@ export const LINE_STYLE = [
     { value: 'groove', label: __('Groove', 'zoloblocks') },
 ];
 
+export const POST_TITLE_ANIMATION = [
+    { label: __('Default', 'zoloblocks'), value: '' },
+    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: true },
+    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: true },
+    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: true },
+    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: true },
+    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: true },
+];
+
 //timeline
 export const LINE_WIDTH = 'lineWidth';
 export const NUMBER_BG = 'numberBg';

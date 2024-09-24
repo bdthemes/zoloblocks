@@ -65,6 +65,7 @@ function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        titleAnimationTypeBgColor,
         uniqueId,
         //timeline
         lineStyle,
@@ -584,6 +585,10 @@ function Style({ props }) {
         ${apagColor ? `color:${apagColor};` : ''}
         ${apagBgColor ? `background-color:${apagBgColor};` : ''}
       }
+
+     .${uniqueId}.zolo-block.zolo-post-title-type-1{
+        ${titleAnimationTypeBgColor ? `--zolo-post-title-type-primary-color:${titleAnimationTypeBgColor};` : ''}
+     }
 
     `;
 

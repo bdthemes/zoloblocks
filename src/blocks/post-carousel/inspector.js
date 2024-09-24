@@ -6,6 +6,7 @@ import { RangeControl, Dropdown, Button } from '@wordpress/components';
 
 import {
     PRESETS,
+    POST_TITLE_ANIMATION,
     COLUMNS,
     COLUMNS_GAP,
     CAROUSEL_EFFECTS,
@@ -99,6 +100,8 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        postTitleAnimation,
+        titleAnimationTypeBgColor,
         resMode,
         postQuery,
         showThumbnail,
@@ -693,6 +696,13 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
+                                            <SelectControl
+                                                label={__('Animations', 'zoloblocks')}
+                                                value={postTitleAnimation}
+                                                options={applyFilters('zolo.postCarousel.titleAnimation', POST_TITLE_ANIMATION)}
+                                                onChange={(postTitleAnimation) => setAttributes({ postTitleAnimation })}
+                                            />
+                                            <CardDivider />
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={titleHoverColor}
@@ -702,6 +712,21 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+
+                                            {postTitleAnimation === 'zolo-post-title-type-1' && (
+                                                <>
+                                                    <div className="zolo-custom-heading">{__('Animation Type', 'zoloblocks')}</div>
+                                                    <ColorControl
+                                                        label={__('Background', 'zoloblocks')}
+                                                        color={titleAnimationTypeBgColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                titleAnimationTypeBgColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )}
                                         </>
                                     }
                                 />
