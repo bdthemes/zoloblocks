@@ -4,6 +4,7 @@
 
 - QR code block layout broken issue.
 - Post Grid block hover animation issue.
+- Post Timeline block the excerpt not showing to the frontend issue.
 
 ### Improved
 

@@ -367,6 +367,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 * Fixed: QR code block layout broken issue.
 * Fixed: Post Grid block hover animation issue.
+* Fixed: Post Timeline block the excerpt not showing to the frontend issue.
 * Improved: Optimized the Post Grid and Post Timeline blocks for improved efficiency and user experience
 
 = 1.4.3 - 24-09-2024 =
