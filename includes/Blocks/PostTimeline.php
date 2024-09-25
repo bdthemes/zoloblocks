@@ -16,21 +16,21 @@ class PostTimeline extends PostBlock {
 	 * @var array
 	 */
 	protected $default_block_attributes = [
-		'preset'           => 'style-1',
+		'preset'             => 'style-1',
 		'postTitleAnimation' => '',
-		'thumbnailSize'    => '',
-		'showExcerpt'      => false,
-		'excerptindicator' => '...',
-		'excerptWords'     => 15,
-		'showComment'      => true,
-		'showReadingTime'  => true,
-		'showDate'         => true,
-		'showStartEnd'     => true,
-		'showThumbnail'    => true,
-		'blockName'        => 'post-timeline',
-		'metaSeparator'    => '//',
-		'loadMoreText'     => 'Load More',
-		'paginationType'   => 'normal',
+		'thumbnailSize'      => '',
+		'showExcerpt'        => false,
+		'excerptindicator'   => '...',
+		'excerptWords'       => 15,
+		'showComment'        => true,
+		'showReadingTime'    => true,
+		'showDate'           => true,
+		'showStartEnd'       => true,
+		'showThumbnail'      => true,
+		'blockName'          => 'post-timeline',
+		'metaSeparator'      => '//',
+		'loadMoreText'       => 'Load More',
+		'paginationType'     => 'normal',
 	];
 
 	/**
@@ -50,13 +50,8 @@ class PostTimeline extends PostBlock {
 	 */
 	public function render( $attributes ) {
 
-		$attributes = wp_parse_args( $attributes, $this->get_default_attributes() );
-		$postQuery  = $attributes['postQuery'] ?? [];
-		// for related post.
-		if ( ! empty( $postQuery['currentPostType'] ) && 'related_posts' === $postQuery['postType'] ) {
-			$attributes['postQuery']['postType'] = $postQuery['currentPostType'];
-		}
-
+		$attributes   = wp_parse_args( $attributes, $this->get_default_attributes() );
+		$postQuery    = $attributes['postQuery'] ?? [];
 		$post_results = apply_filters( 'zolo_post_grid_results', GetPostsV1::zolo_posts_query( $postQuery ) );
 
 		ob_start();

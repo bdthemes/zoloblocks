@@ -2,7 +2,6 @@
 
 namespace Zolo\Blocks;
 
-use Zolo\Blocks\PostBlock;
 use Zolo\API\GetPostsV1;
 use Zolo\Helpers\ZoloHelpers;
 
@@ -29,14 +28,8 @@ class PostList extends PostBlock {
 	}
 
 	public function render( $attributes ) {
-		$attributes = wp_parse_args( $attributes, $this->get_default_attributes() );
-		$postQuery  = $attributes['postQuery'] ?? [];
-
-		// for related post.
-		if ( ! empty( $postQuery['currentPostType'] ) && 'related_posts' === $postQuery['postType'] ) {
-			$attributes['postQuery']['postType'] = $postQuery['currentPostType'];
-		}
-
+		$attributes   = wp_parse_args( $attributes, $this->get_default_attributes() );
+		$postQuery    = $attributes['postQuery'] ?? [];
 		$post_results = apply_filters( 'zolo_post_grid_results', GetPostsV1::zolo_posts_query( $postQuery ) );
 
 		ob_start();

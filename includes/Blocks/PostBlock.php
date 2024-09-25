@@ -13,6 +13,7 @@ abstract class PostBlock {
 	 */
 	protected static $default_attributes = [
 		'titleTag'      => 'h2',
+		'titleWords'    => '',
 		'showTitle'     => true,
 		'showThumbnail' => true,
 		'showAuthor'    => true,
