@@ -9,16 +9,22 @@ use Zolo\Helpers\ZoloHelpers;
 class PostGrid extends PostBlock {
 
 	protected $default_block_attributes = [
-		'preset'           => 'style-1',
-		'thumbnailSize'    => '',
-		'showExcerpt'      => false,
-		'excerptindicator' => '...',
-		'excerptWords'     => 15,
-		'showReadMore'     => false,
-		'readMoreBtnText'  => 'Read More',
-		'showReadmoreIcon' => false,
-		'authorPrefix'     => '',
-		'blockName'        => 'post-grid',
+		'preset'             => 'style-1',
+		'thumbnailSize'      => '',
+		'showExcerpt'        => false,
+		'excerptindicator'   => '...',
+		'excerptWords'       => 15,
+		'showReadMore'       => false,
+		'readMoreBtnText'    => 'Read More',
+		'showReadmoreIcon'   => false,
+		'authorPrefix'       => '',
+		'blockName'          => 'post-grid',
+		'metaSeparator'      => '//',
+		'loadMoreText'       => 'Load More',
+		'paginationType'     => 'normal',
+		'showFilterTaxonomy' => false,
+		'postTaxonomy'       => 'category',
+		'postTerms'          => [],
 	];
 
 	public function get_default_attributes() {
@@ -26,10 +32,12 @@ class PostGrid extends PostBlock {
 	}
 
 	public function render( $attributes ) {
-
 		$attributes = wp_parse_args( $attributes, $this->get_default_attributes() );
-
-		$postQuery = $attributes['postQuery'] ?? [];
+		$postQuery  = $attributes['postQuery'] ?? [];
+		// for related post.
+		if ( ! empty( $postQuery['currentPostType'] ) && 'related_posts' === $postQuery['postType'] ) {
+			$attributes['postQuery']['postType'] = $postQuery['currentPostType'];
+		}
 
 		$post_results = apply_filters( 'zolo_post_grid_results', GetPostsV1::zolo_posts_query( $postQuery ) );
 
