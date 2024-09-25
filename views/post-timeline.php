@@ -20,17 +20,18 @@ $parentClasses = $settings['parentClasses'] ?? [];
 $parentClasses = implode( ' ', $parentClasses );
 // add parent classes to wrapper class.
 $wrapper_class .= ' ' . $parentClasses;
-
-$metaSeparator = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '|';
-
-$html = '';
-
-$wrapperId = $settings['zoloId'] ?? '';
-
+$metaSeparator  = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '|';
+$html           = '';
+$paginationType = $settings['paginationType'] ?? 'normal';
+$wrapperId      = $settings['zoloId'] ?? '';
+$data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $settings, array_keys( $class_object->get_default_attributes() ) ) : $settings;
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-attributes="<?php echo esc_attr( wp_json_encode( $settings ) ); ?>">
+	<?php if ( 'normal' !== $paginationType ) { ?>
+		data-attributes="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>"
+	<?php } ?>
+>
 	<?php endif; ?>
 	<div class="<?php echo esc_attr( $wrapper_class ); ?>"
 		<?php

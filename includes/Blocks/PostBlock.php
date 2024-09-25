@@ -18,6 +18,10 @@ abstract class PostBlock {
 		'showAuthor'    => true,
 		'showMeta'      => true,
 		'showCategory'  => true,
+		'parentClasses' => [],
+		'postQuery'     => [],
+		'uniqueId'      => '',
+		'zoloId'        => '',
 	];
 
 	/**

@@ -212,7 +212,8 @@ function Inspector(props) {
     };
 
     //for only taxonomy filter
-    const zoloTaxonomies = getTaxonomies(postQuery?.postType || 'post', zoloParams.get_taxonomies);
+    let postType= postQuery?.postType === 'related_posts' ? postQuery?.currentPostType : postQuery?.postType;
+    const zoloTaxonomies = getTaxonomies(postType || 'post', zoloParams.get_taxonomies);
     let zoloTaxonomiesFilter = [
         {
             value: '',
