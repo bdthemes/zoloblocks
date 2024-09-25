@@ -14,8 +14,6 @@ const Settings = () => {
     const [comingSoonMode, setComingSoonMode] = useState(false);
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
-    const [blockExport, setBlockExport] = useState(false);
-    const [blockImport, setBlockImport] = useState(false);
     const [blockLibrary, setBlockLibrary] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
     const handleFetchError = (error) => {
@@ -45,8 +43,6 @@ const Settings = () => {
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
-            setBlockExport(response.zolo_enable_block_export);
-            setBlockImport(response.zolo_enable_block_import);
             setBlockLibrary(response.zolo_enable_template_library);
         } catch (error) {
             handleFetchError(error);
@@ -69,8 +65,6 @@ const Settings = () => {
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
-            setBlockExport(response.zolo_enable_block_export);
-            setBlockImport(response.zolo_enable_block_import);
             setBlockLibrary(response.zolo_enable_template_library);
             setNotice(true);
         } catch (error) {
@@ -127,22 +121,6 @@ const Settings = () => {
             data: { zolo_maintenance_mode_template: value },
         });
     };
-    const updateBlockExport = (value) => {
-        updateSettings({
-            path: '/wp/v2/settings',
-            method: 'POST',
-            data: { zolo_enable_block_export: value },
-        });
-    };
-
-    const updateBlockImport = (value) => {
-        updateSettings({
-            path: '/wp/v2/settings',
-            method: 'POST',
-            data: { zolo_enable_block_import: value },
-        });
-    };
-
     const updateBlockLibrary = (value) => {
         updateSettings({
             path: '/wp/v2/settings',
@@ -212,7 +190,7 @@ const Settings = () => {
                             </svg>
                             <span>{__('Editor Enhancements', 'zoloblocks')}</span>
                         </div>
-                        <div
+                        {/* <div
                             className={`zolo-tab-button-item ${activeTab === 'performance' ? 'zolo-tab-active' : ''}`}
                             onClick={() => handleTabClick('performance')}
                         >
@@ -225,7 +203,7 @@ const Settings = () => {
                                 />
                             </svg>
                             <span>{__('Performance', 'zoloblocks')}</span>
-                        </div>
+                        </div> */}
                         <div
                             className={`zolo-tab-button-item ${activeTab === 'site-visibility' ? 'zolo-tab-active' : ''}`}
                             onClick={() => handleTabClick('site-visibility')}
@@ -240,20 +218,6 @@ const Settings = () => {
                             </svg>
                             <span>{__('Site Visibility', 'zoloblocks')}</span>
                         </div>
-                        {/* <div
-                            className={`zolo-tab-button-item ${activeTab === 'theme-fonts' ? 'zolo-tab-active' : ''}`}
-                            onClick={() => handleTabClick('theme-fonts')}
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M2.8886 2.8886C4.26497 1.51224 6.31123 1 8.9 1H14.9C17.4888 1 19.535 1.51224 20.9114 2.8886C22.2878 4.26497 22.8 6.31123 22.8 8.9V14.9C22.8 17.4888 22.2878 19.535 20.9114 20.9114C19.535 22.2878 17.4888 22.8 14.9 22.8H8.9C6.31123 22.8 4.26497 22.2878 2.8886 20.9114C1.51224 19.535 1 17.4888 1 14.9V8.9C1 6.31123 1.51224 4.26497 2.8886 2.8886ZM4.1614 4.1614C3.28776 5.03503 2.8 6.48877 2.8 8.9V14.9C2.8 17.3112 3.28776 18.765 4.1614 19.6386C5.03503 20.5122 6.48877 21 8.9 21H14.9C17.3112 21 18.765 20.5122 19.6386 19.6386C20.5122 18.765 21 17.3112 21 14.9V8.9C21 6.48877 20.5122 5.03503 19.6386 4.1614C18.765 3.28776 17.3112 2.8 14.9 2.8H8.9C6.48877 2.8 5.03503 3.28776 4.1614 4.1614ZM11 8.55178C9.72907 8.6632 8.47392 9.01107 7.30155 9.5954C6.85668 9.81712 6.31631 9.63623 6.09458 9.19137C5.87286 8.74651 6.05374 8.20613 6.49861 7.98441C9.90142 6.2884 13.8987 6.2884 17.3015 7.98441C17.7464 8.20613 17.9273 8.74651 17.7056 9.19137C17.4838 9.63623 16.9435 9.81712 16.4986 9.5954C15.3262 9.01105 14.071 8.66317 12.8 8.55177V16.1999C12.8 16.697 12.3971 17.0999 11.9 17.0999C11.4029 17.0999 11 16.697 11 16.1999V8.55178Z"
-                                    fill="#4D4D4D"
-                                />
-                            </svg>
-                            <span>{__('Theme Fonts', 'zoloblocks')}</span>
-                        </div> */}
                     </div>
                     <div className="zolo-settings-tab-content">
                         {activeTab === 'editor-options' && (
@@ -293,33 +257,6 @@ const Settings = () => {
                                             checked={!!supportSVG}
                                             onChange={() => {
                                                 updateSVG(!supportSVG);
-                                                setNotice(true);
-                                            }}
-                                        />
-                                    </SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Pattern Export', 'zoloblocks')}
-                                        description={__(
-                                            'Enable the Pattern Export option to export your block(s) pattern in JSON format.',
-                                            'zoloblocks'
-                                        )}
-                                    >
-                                        <ToggleControl
-                                            checked={!!blockExport}
-                                            onChange={() => {
-                                                updateBlockExport(!blockExport);
-                                                setNotice(true);
-                                            }}
-                                        />
-                                    </SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Pattern Import', 'zoloblocks')}
-                                        description={__('Enable the Pattern Import option to import your block(s) pattern.', 'zoloblocks')}
-                                    >
-                                        <ToggleControl
-                                            checked={!!blockImport}
-                                            onChange={() => {
-                                                updateBlockImport(!blockImport);
                                                 setNotice(true);
                                             }}
                                         />
@@ -386,7 +323,7 @@ const Settings = () => {
                                 </div>
                             </div>
                         )}
-                        {activeTab === 'performance' && (
+                        {/* {activeTab === 'performance' && (
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
@@ -399,7 +336,7 @@ const Settings = () => {
                                     ></SettingBox>
                                 </div>
                             </div>
-                        )}
+                        )} */}
                         {activeTab === 'site-visibility' && (
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
