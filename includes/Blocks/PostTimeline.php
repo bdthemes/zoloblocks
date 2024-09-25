@@ -19,7 +19,7 @@ class PostTimeline extends PostBlock {
 		'preset'             => 'style-1',
 		'postTitleAnimation' => '',
 		'thumbnailSize'      => '',
-		'showExcerpt'        => false,
+		'showExcerpt'        => true,
 		'excerptindicator'   => '...',
 		'excerptWords'       => 15,
 		'showComment'        => true,
@@ -39,7 +39,7 @@ class PostTimeline extends PostBlock {
 	 * @return array|mixed
 	 */
 	public function get_default_attributes() {
-		return array_merge( parent::$default_attributes, $this->default_block_attributes );
+		return array_merge(parent::$default_attributes, $this->default_block_attributes);
 	}
 
 	/**
@@ -48,11 +48,11 @@ class PostTimeline extends PostBlock {
 	 * @param array $attributes .
 	 * @return false|string
 	 */
-	public function render( $attributes ) {
+	public function render($attributes) {
 
-		$attributes   = wp_parse_args( $attributes, $this->get_default_attributes() );
+		$attributes   = wp_parse_args($attributes, $this->get_default_attributes());
 		$postQuery    = $attributes['postQuery'] ?? [];
-		$post_results = apply_filters( 'zolo_post_grid_results', GetPostsV1::zolo_posts_query( $postQuery ) );
+		$post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($postQuery));
 
 		ob_start();
 		ZoloHelpers::views(
