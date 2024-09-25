@@ -265,16 +265,6 @@ function ZoloBlocksTemplateLibraryButton() {
 
         setTemplates(filteredTemplates.slice(0, number));
         setTotal(filteredTemplates.length);
-
-        // search for favorite templates
-        // if (activeTab === 'favorites' && favTemplates?.length > 0) {
-        //     const favTemplatesData = allTemplates.filter((template) => favTemplates.includes(template.id));
-        //     const filteredFavTemplates = favTemplatesData.filter((template) => {
-        //         return template.title.toLowerCase().includes(searchText.toLowerCase());
-        //     });
-
-        //     setFavTemplatesData(filteredFavTemplates);
-        // }
     }, [searchText, activeTab]); // eslint-disable-line
 
     /**
