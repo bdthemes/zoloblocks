@@ -156,7 +156,7 @@
             display: flex;
             justify-content: space-between;
             flex-direction: column;
-            gap: 30px;
+            gap: 15px;
         }
         .zolo-list-icon-title-wrap {
             display: flex;
@@ -164,7 +164,7 @@
             width: 100%;
         }
         .zolo-list-icon {
-            margin-right: 30px;
+            margin-right: 15px;
         }
         .zolo-list-desc,
         .zolo-list-title {
@@ -176,6 +176,7 @@
         }
         .zolo-list-icon-and-content-wrap {
             align-items: center;
+            gap: 0;
         }
         .zolo-list-desc-hover-icon,
         .zolo-list-icon-and-content-wrap {
