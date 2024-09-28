@@ -73,20 +73,20 @@ class GetPostsV1 {
 	 * @return mixed|null
 	 */
 	public static function zolo_get_post_args( $data ) {
-		$showPagination = ! empty( $data['showPagination'] ) && $data['showPagination'] == 'true' ? true : false;
-		$postType       = $data['postType'] ?? 'post';
-		$args           = [
+		$showPagination    = ! empty( $data['showPagination'] ) && $data['showPagination'] == 'true' ? true : false;
+		$postType          = $data['postType'] ?? 'post';
+		$args              = [
 			'post_status'    => 'publish',
 			'orderby'        => $data['postOrderby'] ?? 'date',
 			'order'          => $data['postOrder'] ?? 'desc',
 			'posts_per_page' => (int) isset( $data['postPerPage'] ) ? $data['postPerPage'] : 6,
 		];
+		$args['post_type'] = $postType;
 
 		// for related posts.
-		if ( 'related_posts' === $postType && ! empty( $data['currentPostType'] ) ) {
-			$args['post_type'] = $data['currentPostType'];
-		} else {
-			$args['post_type'] = $postType;
+		if ( 'related_posts' === $postType ) {
+			$queriedPostId     = get_queried_object_id();
+			$args['post_type'] = ! empty( $queriedPostId ) ? get_post_type( $queriedPostId ) : ( $data['currentPostType'] ?? '' );
 		}
 
 		// Set Exclude Post.
@@ -94,7 +94,8 @@ class GetPostsV1 {
 		$exclude_by   = wp_list_pluck( $data['postExcludeBy'] ?? [], 'value' );
 
 		if ( in_array( 'current_post', $exclude_by, true ) ) {
-			$current_post = [ $data['currentPostId'] ?? '' ];
+			$currentPostId = ! empty( get_the_ID() ) ? get_the_ID() : ( $data['currentPostId'] ?? '' );
+			$current_post  = [ $currentPostId ];
 		}
 
 		if ( in_array( 'manual_selection', $exclude_by, true ) ) {
