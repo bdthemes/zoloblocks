@@ -1,0 +1,12 @@
+.wp-block-zolo-post-title {
+    &.zolo-block {
+        margin: 0;
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+        font-weight: 700;
+        a {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 700;
+            display: inline-block;
+        }
+    }
+}
