@@ -1,162 +1,158 @@
 .zolo-advanced-search {
-  --search-form-label-gap: 10px;
-  --search-form-label-color: #48484b;
-  --search-input-padding: 15px 16px;
-  --search-input-border-width: 1px;
-  --search-input-border-color: #e7e7e7;
-  --search-input-border-style: solid;
-  --search-input-radius: 6px;
-  --search-input-color: #5e5e60;
-  --search-input-focus-color: #1c64f2;
-  --search-btn-padding: 16px 20px;
-  --search-btn-radius: 6px;
-  --search-btn-color: #fff;
-  --search-form-item-gap: 10px;
-  --search-btn-icon-gap: 8px;
+    --search-form-label-gap: 10px;
+    --search-form-label-color: #48484b;
+    --search-input-padding: 15px 16px;
+    --search-input-border-width: 1px;
+    --search-input-border-color: #e7e7e7;
+    --search-input-border-style: solid;
+    --search-input-radius: 6px;
+    --search-input-color: #5e5e60;
+    --search-input-focus-color: #1c64f2;
+    --search-btn-padding: 16px 20px;
+    --search-btn-radius: 6px;
+    --search-btn-color: #fff;
+    --search-form-item-gap: 10px;
+    --search-btn-icon-gap: 8px;
 }
 
 .zolo-advanced-search-control {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--search-form-label-gap);
-  width: 100%;
-  position: relative;
-  justify-content: center;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--search-form-label-gap);
+    width: 100%;
+    position: relative;
+    justify-content: center;
 }
 
 .zolo-form-label {
-  font-size: 14px;
-  color: var(--search-form-label-color);
-  text-transform: capitalize;
-  font-weight: 500;
-
+    font-size: 14px;
+    color: var(--search-form-label-color);
+    text-transform: capitalize;
+    font-weight: 500;
 }
 .zolo-advanced-search-control {
-  .zolo-form-input {
-    padding: var(--search-input-padding);
-    border-width: var(--search-input-border-width);
-    border-color: var(--search-input-border-color);
-    border-style: var(--search-input-border-style);
-    border-radius: var(--search-input-radius);
-    outline: none;
-    font-size: 15px;
-    transition: all .3s ease;
-    color: var(--search-input-color);
-    box-sizing: border-box;
-    background-color: transparent;
-    min-height: unset;
-    box-shadow: unset;
-    line-height: 1;
-  }
+    .zolo-form-input {
+        padding: var(--search-input-padding);
+        border-width: var(--search-input-border-width);
+        border-color: var(--search-input-border-color);
+        border-style: var(--search-input-border-style);
+        border-radius: var(--search-input-radius);
+        outline: none;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        color: var(--search-input-color);
+        box-sizing: border-box;
+        background-color: transparent;
+        min-height: unset;
+        height: auto;
+        box-shadow: unset;
+        line-height: 1;
+    }
 
-  .zolo-form-input:focus {
-      border-color: var(--search-input-focus-color);
-      outline-style: solid;
-      outline-width: 1px;
-      outline-color: var(--search-input-focus-color);
-  }
-  .zolo__display-icon svg {
-    width: 18px;
-    height: 18px;
-    display: block;
-    fill: #fff;
-  }
-
+    .zolo-form-input:focus {
+        border-color: var(--search-input-focus-color);
+        outline-style: solid;
+        outline-width: 1px;
+        outline-color: var(--search-input-focus-color);
+    }
+    .zolo__display-icon svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+        fill: #fff;
+    }
 }
-
 
 .zolo-form-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--search-btn-icon-gap);
-  padding: var(--search-btn-padding);
-  border: 0;
-  border-radius: var(--search-btn-radius);
-  font-size: 14px;
-  background-color: #3f8efc;
-  cursor: pointer;
-  color: var(--search-btn-color);
-  text-transform: uppercase;
-  transition: all .3s ease;
-  .zolo-form-btn-text {
-    text-wrap: nowrap !important;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--search-btn-icon-gap);
+    padding: var(--search-btn-padding);
+    border: 0;
+    border-radius: var(--search-btn-radius);
+    font-size: 14px;
+    background-color: #3f8efc;
+    cursor: pointer;
+    color: var(--search-btn-color);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    .zolo-form-btn-text {
+        text-wrap: nowrap !important;
+    }
 }
 
-
 .zolo-form-btn:hover {
-  background-color: #2667ff;
+    background-color: #2667ff;
 }
 
 .zolo-advanced-search .zolo-form-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: var(--search-form-item-gap);
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--search-form-item-gap);
+    position: relative;
 }
 
 .zolo-advanced-search-control {
-  width: 100%;
-  box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .zolo-form-submit-btn {
-  width: auto;
+    width: auto;
 }
 
 /* search form style 2,3 */
 
 .zolo-search-2 .zolo-form-label {
-  position: absolute;
-  transform: translateY(-50%);
-  background-color: #fff;
-  left: 9px;
-  padding: 0 6px;
-  border-radius: 6px;
+    position: absolute;
+    transform: translateY(-50%);
+    background-color: #fff;
+    left: 9px;
+    padding: 0 6px;
+    border-radius: 6px;
 }
 
 /* search form style 3 */
 
 .zolo-search-2 .zolo-form-label {
-  top: 50%;
-  cursor: text;
-  pointer-events: none;
-  font-weight: 400;
-  transition: all 0.2s ease-in-out;
+    top: 50%;
+    cursor: text;
+    pointer-events: none;
+    font-weight: 400;
+    transition: all 0.2s ease-in-out;
 }
 
 .zolo-search-2 .zolo-form-input:focus ~ .zolo-form-label,
 .zolo-search-2 .zolo-form-input:not(:placeholder-shown).zolo-form-input:not(:focus) ~ .zolo-form-label {
-  font-weight: 500;
-  top: 0;
-  background-color: #fff;
+    font-weight: 500;
+    top: 0;
+    background-color: #fff;
 }
 
 .zolo-search-2 .zolo-form-input::placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .zolo-search-button-style-2 .zolo-form-submit-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .zolo-search-button-style-2 .zolo-form-btn {
-  --search-btn-padding: 10px 12px;
-  --search-btn-radius: 3px;
-  padding: var(--search-btn-padding);
-  margin: 6px;
-  border-radius: var(--search-btn-radius);
+    --search-btn-padding: 10px 12px;
+    --search-btn-radius: 3px;
+    padding: var(--search-btn-padding);
+    margin: 6px;
+    border-radius: var(--search-btn-radius);
 }
 
 @media (min-width: 768px) {
-  .zolo-advanced-search {
-    .zolo-form-wrap {
-      flex-direction: row;
+    .zolo-advanced-search {
+        .zolo-form-wrap {
+            flex-direction: row;
+        }
     }
-  }
-
 }
