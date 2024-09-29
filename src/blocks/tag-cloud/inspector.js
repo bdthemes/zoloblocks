@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, RangeControl, TextareaControl } from '@wordpress/components';
+import { ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
@@ -67,16 +67,18 @@ export default function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <ToggleControl
+                                label={__('Count', 'zoloblocks')}
+                                checked={showCount}
+                                onChange={(showCount) => setAttributes({ showCount })}
+                            />
+                            <CardDivider />
                             <ResGapControl
                                 label={__('Gap', 'zoloblocks')}
                                 controlName={COLUMNS_GAP}
                                 requiredProps={requiredProps}
                                 max={100}
-                            />
-                            <ToggleControl
-                                label={__('Show Count', 'zoloblocks')}
-                                checked={showCount}
-                                onChange={(showCount) => setAttributes({ showCount })}
                             />
                         </ZoloPanelBody>
 
@@ -97,26 +99,27 @@ export default function Inspector(props) {
                                             <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={true} />
                                         )}
 
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={ITEM_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={ITEM_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={ITEM_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={ITEM_BORDER}
                                             requiredProps={requiredProps}
                                         />
                                         <BoxShadowControl
                                             controlName={ITEM_SHADOW}
                                             requiredProps={requiredProps}
                                             enableTransition={false}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={ITEM_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
                                         />
                                     </>
                                 }
@@ -130,6 +133,7 @@ export default function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
+                                        <CardDivider />
                                         <RangeControl
                                             className="zolo-flex-col-control"
                                             label={__('Opacity', 'zoloblocks')}
@@ -145,12 +149,6 @@ export default function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Name', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={NAME_TYPOGRAPHY}
-                                requiredProps={requiredProps}
-                            />
-
                             <TabPanelControl
                                 normalComponents={
                                     <>
@@ -162,6 +160,11 @@ export default function Inspector(props) {
                                                     nameColor: color,
                                                 })
                                             }
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={NAME_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
                                         />
                                     </>
                                 }
@@ -182,28 +185,6 @@ export default function Inspector(props) {
                         </ZoloPanelBody>
                         {showCount && (
                             <ZoloPanelBody title={__('Count', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={COUNT_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                />
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={COUNT_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={COUNT_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    controlName={COUNT_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-                                <BoxShadowControl controlName={COUNT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -216,6 +197,12 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={COUNT_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={countBgColor}
@@ -224,6 +211,29 @@ export default function Inspector(props) {
                                                         countBgColor: color,
                                                     })
                                                 }
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={COUNT_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={COUNT_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+
+                                            <BoxShadowControl
+                                                controlName={COUNT_SHADOW}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={COUNT_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
                                             />
                                         </>
                                     }
