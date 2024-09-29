@@ -504,5 +504,14 @@ return apply_filters('zolo_blocks_list_data', [
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/breadcrumbs',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
+    'post-title'        => [
+        'name'       => 'post-title',
+        'class'      => '\Zolo\Blocks\PostTitle',
+        'title'      => __('Post Title', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/post-title',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ]
 ]);

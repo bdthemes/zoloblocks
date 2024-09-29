@@ -1,0 +1,11 @@
+export const BLOCK_PREFIX = 'zolo-post-title';
+export const TITLE_ALIGN = 'titleAlign';
+export const TITLE_PADDING = 'titleMargin';
+export const TITLE_BG = 'titleBg';
+export const TITLE_BORDER = 'titleBorder'
+export const TITLE_BORDER_RADIUS = 'titleBRadius';
+export const TITLE_SHADOW = 'titleShadow';
+export const TITLE_HOVER_BG = 'titleHBg';
+export const TITLE_HOVER_BORDER = 'titleHBorder';
+export const TITLE_HOVER_BRADIUS = 'titleHBRadius';
+export const TITLE_HOVER_SHADOW = 'titleHShadow';
