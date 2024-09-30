@@ -127,6 +127,7 @@ function Inspector(props) {
 
     const [duotone, setDuotone] = useState(['#000000', '#ffffff']);
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -442,7 +443,12 @@ function Inspector(props) {
                                             />
                                         </>
                                     }
-                                    hoverComponents={<BoxShadowControl controlName={IMG_HBSHADOW} requiredProps={requiredProps} />}
+                                    hoverComponents={
+                                        <>
+                                            {cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}
+                                            <BoxShadowControl controlName={IMG_HBSHADOW} requiredProps={requiredProps}/>
+                                        </>
+                                    }
                                 />
                             )}
                         </ZoloPanelBody>
