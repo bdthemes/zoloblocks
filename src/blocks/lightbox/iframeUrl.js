@@ -4,37 +4,40 @@ const iframeUrl = (props) => {
 
     let videoUrl;
 
-    // // let videoUrl;
-    function get_youtube_viedo_Id(url) {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return match && match[2].length === 11 ? match[2] : null;
-    }
+        function get_youtube_video_id(url) {
+            const regExp = /^(?:.*(?:youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|&v=))([^#&?]{11}).*/;
+            const match = url.match(regExp);
+            return match ? match[1] : null; // Changed to match[1] to get the ID directly
+        }
 
+    // Function to extract Vimeo video ID
     function get_vimeo_video_id(url) {
         const regExp = /https:\/\/vimeo.com\/(\d+)/;
         const match = url.match(regExp);
         return match && match[1] ? match[1] : null;
     }
 
+    // Function to extract Google Map embed ID
     function get_google_map_id(url) {
         const regExp = /https:\/\/www.google.com\/maps\/embed\?pb=(.*)/;
         const match = url.match(regExp);
         return match && match[1] ? match[1] : null;
     }
 
-    // youtube video embed url
-    const youtubeVideoId = get_youtube_viedo_Id('http://www.youtube.com/watch?v=' + youtubeUrl + '');
+    // Handling YouTube video URL or embed code
+    const youtubeVideoId = get_youtube_video_id(youtubeUrl);
     if (contentType === 'youtube' && youtubeVideoId !== null) {
         videoUrl = `https://www.youtube.com/embed/${youtubeVideoId}`;
     }
-    const vimeoVideoId = get_vimeo_video_id(vimeoUrl);
 
-    if (contentType === 'vimeo') {
+    console.log('videoUrl', get_youtube_video_id(youtubeUrl));
+    // Handling Vimeo video URL
+    const vimeoVideoId = get_vimeo_video_id(vimeoUrl);
+    if (contentType === 'vimeo' && vimeoVideoId !== null) {
         videoUrl = `https://player.vimeo.com/video/${vimeoVideoId}`;
     }
 
-    //    // google map embed url
+    // Handling Google Map embed URL
     const googleMapId = get_google_map_id(googleMapUrl);
     if (contentType === 'googleMap' && googleMapId !== null) {
         videoUrl = `https://www.google.com/maps/embed?pb=${googleMapId}`;

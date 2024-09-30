@@ -1,14 +1,21 @@
 // document.addEventListener('DOMContentLoaded', () => {
-//     // Initialize FSLightbox with the option to hide thumbnails
-//     const lightbox = new FsLightbox({ showThumbsOnMount: false });
+//     const lightboxes = document.querySelectorAll('.wp-block-zolo-lightbox');
 
-//     // Event delegation to handle clicks on lightbox triggers
-//     document.body.addEventListener('click', (event) => {
-//         const trigger = event.target.closest('.lightbox-trigger');
-//         if (trigger) {
-//             event.preventDefault();
-//             lightbox.open(trigger.getAttribute('href'));
-//             refreshFsLightbox();
-//         }
-//     });
+//     if (lightboxes.length > 0) {
+//         lightboxes.forEach((lightbox) => {
+//             const anchorElement = lightbox.querySelector('a[data-fslightbox]');
+
+//             if (!anchorElement) return;
+
+//             const uniqueId = anchorElement.getAttribute('data-fslightbox');
+
+//             fsLightboxInstances[uniqueId].props.onOpen = function () {
+//                 lightbox.querySelector(`#${uniqueId}`).style.display = 'block';
+//             };
+
+//             fsLightboxInstances[uniqueId].props.onClose = function () {
+//                 lightbox.querySelector(`#${uniqueId}`).style.display = 'none';
+//             };
+//         });
+//     }
 // });
