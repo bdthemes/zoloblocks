@@ -97,7 +97,7 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         postTitleAnimation,
@@ -227,6 +227,10 @@ function Inspector(props) {
                 break;
         }
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -663,7 +667,24 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                {/* <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_BG} noMainBGImg={true} /> */}
+                                {cssFilters && cssFilters.length > 0 && (
+                                    <>
+                                        <TabPanelControl
+                                            options={[
+                                                {
+                                                    value: 'normal',
+                                                    label: __('Normal', 'zoloblocks'),
+                                                },
+                                                {
+                                                    value: 'hover',
+                                                    label: __('Hover', 'zoloblocks'),
+                                                },
+                                            ]}
+                                            normalComponents={<>{cssFilters}</>}
+                                            hoverComponents={<>{cssFiltersHover}</>}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
 

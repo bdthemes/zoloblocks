@@ -9,6 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
  * Internal depencencies
  */
 const {
+    TabPanelControl,
     ResRangeControl,
     ColorControl,
     TypographyDropdown,
@@ -57,6 +58,7 @@ function Inspector(props) {
         objAttributes,
     };
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -194,21 +196,21 @@ function Inspector(props) {
                                 </>
                             )}
                             <div className="zolo-flex-row-control-tab">
-                            <IconicBtnGroup
-                                label={__('Map Type', 'zoloblocks')}
-                                value={mapStyleType || 'default'}
-                                options={[
-                                    {
-                                        label: __('Default', 'zoloblocks'),
-                                        value: 'default',
-                                    },
-                                    {
-                                        label: __('Custom', 'zoloblocks'),
-                                        value: 'custom',
-                                    },
-                                ]}
-                                onChange={(mapStyleType) => setAttributes({ mapStyleType })}
-                            />
+                                <IconicBtnGroup
+                                    label={__('Map Type', 'zoloblocks')}
+                                    value={mapStyleType || 'default'}
+                                    options={[
+                                        {
+                                            label: __('Default', 'zoloblocks'),
+                                            value: 'default',
+                                        },
+                                        {
+                                            label: __('Custom', 'zoloblocks'),
+                                            value: 'custom',
+                                        },
+                                    ]}
+                                    onChange={(mapStyleType) => setAttributes({ mapStyleType })}
+                                />
                             </div>
                             {mapStyleType === 'default' && (
                                 <TextControl
@@ -240,7 +242,7 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Settings', 'zoloblocks')} panelProps={props}>
-                            <div className='zolo-flex-col-control'>
+                            <div className="zolo-flex-col-control">
                                 <RangeControl
                                     label={__('Zoom Level', 'zoloblocks')}
                                     help={__(
@@ -297,7 +299,24 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            {cssFilters && cssFilters.length > 0 && cssFilters}
+                            {cssFilters && cssFilters.length > 0 && (
+                                <>
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                value: 'normal',
+                                                label: __('Normal', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'hover',
+                                                label: __('Hover', 'zoloblocks'),
+                                            },
+                                        ]}
+                                        normalComponents={<>{cssFilters}</>}
+                                        hoverComponents={<>{cssFiltersHover}</>}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Marker Info', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
