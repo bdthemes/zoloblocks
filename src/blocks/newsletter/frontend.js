@@ -1,20 +1,37 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const newsLetter = document.querySelectorAll('.wp-block-zolo-newsletter');
+    const newsLetterForms = document.querySelectorAll('.wp-block-zolo-newsletter');
 
-    const createNotice = (node, data) => {
-        node.append(Object.assign(document.createElement('div'), data));
+    const createNotice = (form, message, status) => {
+        if (form?.nextElementSibling?.classList.contains('zolo-newsletter-message')) {
+            form.nextElementSibling.remove();
+        }
+
+        const noticeDiv = document.createElement('div');
+        noticeDiv.className = 'zolo-newsletter-message';
+        noticeDiv.innerHTML = `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text status-${status}">${message}</span>`;
+        form.append(noticeDiv);
     };
 
-    if (newsLetter.length > 0) {
-        newsLetter.forEach((form) => {
+    if (newsLetterForms.length > 0) {
+        newsLetterForms.forEach((form) => {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
-                const email = form.querySelector('#zolo-newsletter-email-field').value;
+
+                // Input Validation
+                const emailField = form.querySelector('#zolo-newsletter-email-field');
+                const email = emailField ? emailField.value.trim() : '';
                 let fname = '';
-                if (form.querySelector('#zolo-newsletter-name-field')) {
-                    fname = form.querySelector('#zolo-newsletter-name-field').value;
+                const nameField = form.querySelector('#zolo-newsletter-name-field');
+                if (nameField) {
+                    fname = nameField.value.trim();
                 }
-                const newsletterMsg = form.querySelector('.zolo-newsletter-form').dataset.settings;
+
+                if (!email) {
+                    createNotice(form, 'Please enter a valid email address.', 'error');
+                    return;
+                }
+
+                const newsletterMsg = form.querySelector('.zolo-newsletter-form')?.dataset.settings || '';
 
                 const data = new FormData();
                 data.append('email', email);
@@ -23,35 +40,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.append('action', 'zolo_subscribe_newsletter');
                 data.append('nonce', zoloSettings.zolo_nonce);
                 data.append('data', newsletterMsg);
+
+                // Send the AJAX request
                 fetch(zoloSettings.ajaxurl, {
                     method: 'POST',
                     body: data,
                     credentials: 'same-origin',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest', // Prevent CSRF attacks
+                    },
                 })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data) {
-                            if (form?.nextElementSibling?.classList.contains('zolo-newsletter-message')) {
-                                form.nextElementSibling.remove();
-                            }
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((responseData) => {
+                        if (responseData.status === 'success') {
+                            emailField.value = '';
+                            if (nameField) nameField.value = '';
 
-                            if (data.status == 'success') {
-                                form.querySelector('#zolo-newsletter-email-field').value = '';
-                                if (form.querySelector('#zolo-newsletter-name-field')) {
-                                    form.querySelector('#zolo-newsletter-name-field').value = '';
-                                }
-                            }
-                            createNotice(form, {
-                                innerHTML: `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text status-${data.status}">${data.message}</span>`,
-                                className: 'zolo-newsletter-message',
-                            });
+                            createNotice(form, responseData.message, 'success');
+                        } else {
+                            createNotice(form, responseData.message, 'error');
                         }
                     })
                     .catch((error) => {
-                        createNotice(form, {
-                            innerHTML: `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text status-${data.status}">${error}</span>`,
-                            className: 'zolo-newsletter-message',
-                        });
+                        createNotice(form, `An error occurred: ${error.message}`, 'error');
                     });
             });
         });
