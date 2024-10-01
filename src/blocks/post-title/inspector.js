@@ -48,7 +48,6 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs

@@ -82,7 +82,7 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         resMode,
@@ -177,6 +177,11 @@ function Inspector(props) {
                 break;
         }
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -489,6 +494,8 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
+                                        <CardDivider />
+                                        {cssFilters && cssFilters.length > 0 && cssFilters}
                                     </>
                                 }
                                 hoverComponents={

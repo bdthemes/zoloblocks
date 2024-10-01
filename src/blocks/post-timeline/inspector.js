@@ -79,7 +79,7 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         postTitleAnimation,
@@ -134,6 +134,10 @@ function Inspector(props) {
     const changePremade = (selected) => {
         setAttributes({ preset: selected });
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -459,18 +463,6 @@ function Inspector(props) {
 
                         {showThumbnail && (
                             <ZoloPanelBody title={__('Thumbnail', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={THUMBNAIL_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={THUMBNAIL_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <CardDivider />
                                 <ResRangeControl
                                     label={__('Size', 'zoloblocks')}
                                     controlName={THUMBNAIL_WIDTH}
@@ -491,6 +483,19 @@ function Inspector(props) {
                                     }
                                 />
                                 <CardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={THUMBNAIL_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={THUMBNAIL_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <CardDivider />
+
                                 <ResRangeControl
                                     label={__('Spacing', 'zoloblocks')}
                                     controlName={THUMBNAIL_SPACING}
@@ -499,6 +504,24 @@ function Inspector(props) {
                                     max={50}
                                     step={1}
                                 />
+                                {cssFilters && cssFilters.length > 0 && (
+                                    <>
+                                        <TabPanelControl
+                                            options={[
+                                                {
+                                                    value: 'normal',
+                                                    label: __('Normal', 'zoloblocks'),
+                                                },
+                                                {
+                                                    value: 'hover',
+                                                    label: __('Hover', 'zoloblocks'),
+                                                },
+                                            ]}
+                                            normalComponents={<>{cssFilters}</>}
+                                            hoverComponents={<>{cssFiltersHover}</>}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
 

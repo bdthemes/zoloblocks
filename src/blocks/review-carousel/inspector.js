@@ -85,7 +85,7 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         resMode,
@@ -150,6 +150,9 @@ function Inspector(props) {
     };
 
     const shadowFeature = applyFilters('zolo.blocks.controls.reviewCarousel.shadow', [], props, 'zolo/review-carousel');
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -509,6 +512,8 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
+                                <CardDivider />
+                                {cssFilters && cssFilters.length > 0 && cssFilters}
                             </ZoloPanelBody>
                         )}
                         {showName && (
