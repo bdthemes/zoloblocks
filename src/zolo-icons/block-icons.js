@@ -1,6 +1,6 @@
 const BlockIcons = {
     accordion: (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -9,7 +9,7 @@ const BlockIcons = {
         </svg>
     ),
     'advanced-button': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -18,7 +18,7 @@ const BlockIcons = {
         </svg>
     ),
     'advanced-heading': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -27,7 +27,7 @@ const BlockIcons = {
         </svg>
     ),
     'advanced-icon-box': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -36,7 +36,7 @@ const BlockIcons = {
         </svg>
     ),
     'advanced-image': (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -45,7 +45,7 @@ const BlockIcons = {
         </svg>
     ),
     'advanced-search': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -54,7 +54,7 @@ const BlockIcons = {
         </svg>
     ),
     author: (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -63,7 +63,7 @@ const BlockIcons = {
         </svg>
     ),
     breadcrumbs: (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -72,7 +72,7 @@ const BlockIcons = {
         </svg>
     ),
     'brand-grid': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -81,14 +81,14 @@ const BlockIcons = {
         </svg>
     ),
     'business-hour': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M5.476 12.6a6.777 6.777 0 0 0 6.77 6.77 6.777 6.777 0 0 0 6.77-6.77 6.777 6.777 0 0 0-6.77-6.77 6.777 6.777 0 0 0-6.77 6.77zm6.146-5.468v.597c0 .352.28.632.633.632.352 0 .633-.28.633-.632V7.14a5.504 5.504 0 0 1 4.835 4.854c-.045-.01-.1-.027-.145-.027h-.569a.629.629 0 0 0-.633.632c0 .353.28.633.633.633h.57c.054 0 .099-.018.153-.027a5.506 5.506 0 0 1-4.537 4.826v-.515a.629.629 0 0 0-.633-.633.629.629 0 0 0-.632.633V18.095a5.505 5.505 0 0 1-5.098-4.573c.018 0 .027.01.045.01h.57c.352 0 .632-.281.632-.633a.629.629 0 0 0-.632-.633h-.57s-.072.018-.117.027a5.51 5.51 0 0 1 4.871-5.152l-.009-.009z" />
             <path d="M10.646 13.523H12.4c.352 0 .632-.28.632-.633v-2.53a.629.629 0 0 0-.632-.633.629.629 0 0 0-.633.632v1.898h-1.12a.629.629 0 0 0-.633.633c0 .352.28.633.632.633z" />
             <path d="m12.698 3.219.515-.633a.36.36 0 1 0-.56-.452L11.623 3.4a.359.359 0 0 0 .017.479l1.193 1.21a.362.362 0 0 0 .516 0 .36.36 0 0 0 0-.514l-.624-.633c4.627.172 8.342 3.986 8.342 8.658 0 4.673-3.895 8.677-8.677 8.677-4.78 0-8.667-3.895-8.667-8.677a8.687 8.687 0 0 1 5.143-7.926.364.364 0 0 0 .18-.479.364.364 0 0 0-.479-.18A9.415 9.415 0 0 0 3 12.6c0 5.18 4.22 9.4 9.4 9.4 5.178 0 9.4-4.22 9.4-9.4 0-5.178-4.059-9.227-9.102-9.381z" />
         </svg>
     ),
     charts: (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -97,7 +97,7 @@ const BlockIcons = {
         </svg>
     ),
     container: (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -106,7 +106,7 @@ const BlockIcons = {
         </svg>
     ),
     countdown: (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -115,7 +115,7 @@ const BlockIcons = {
         </svg>
     ),
     counter: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_199_159)">
                 <path
                     fillRule="evenodd"
@@ -131,7 +131,7 @@ const BlockIcons = {
         </svg>
     ),
     cta: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -140,7 +140,7 @@ const BlockIcons = {
         </svg>
     ),
     'data-table': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -159,7 +159,7 @@ const BlockIcons = {
         </svg>
     ),
     'image-hotspot': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -204,7 +204,7 @@ const BlockIcons = {
         </svg>
     ),
     'fancy-list': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -213,7 +213,7 @@ const BlockIcons = {
         </svg>
     ),
     flipbox: (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#a)">
                 <path d="m21.924 10.553-.88-1.338a.427.427 0 0 0-.551-.144l-1.389.72a.415.415 0 0 0-.178.567c.11.212.364.288.568.178l.5-.262a3.238 3.238 0 0 1-1.728 1.558V6.708c0-.601-.407-1.126-1-1.27L7.25 3.034a1.33 1.33 0 0 0-1.11.237 1.28 1.28 0 0 0-.499 1.016v1.186c-1.44.482-2.16 1.515-2.498 2.252l-.372-.567a.422.422 0 0 0-.703.465l.88 1.338a.42.42 0 0 0 .55.136l1.39-.72a.415.415 0 0 0 .177-.567.415.415 0 0 0-.567-.178l-.5.254A3.275 3.275 0 0 1 5.632 6.37l-.05 10.711c0 .593.39 1.11.965 1.262l10.085 2.71c.11.033.228.042.338.042.28 0 .56-.093.788-.271.322-.246.508-.627.508-1.033v-7.087c1.49-.466 2.227-1.533 2.574-2.287l.372.568a.41.41 0 0 0 .356.186c.076 0 .161-.025.237-.068a.422.422 0 0 0 .119-.584v.034zM6.852 17.115v-2.167l1.837-2.405 4.09 5.766a.635.635 0 0 0 .517.271.586.586 0 0 0 .364-.118.638.638 0 0 0 .152-.89l-.982-1.388 1.685-1.745 2.455 2.727v2.684L6.852 17.107v.008zm10.118-1.837-1.718-1.905c-.407-.364-.983-.39-1.39-.077a.475.475 0 0 0-.067.06l-1.71 1.778-2.617-3.7a.936.936 0 0 0-.753-.415c-.28-.026-.55.127-.729.364l-1.1 1.448.034-6.74a6.297 6.297 0 0 1 1.058 0 .42.42 0 0 0 .457-.381.42.42 0 0 0-.38-.458 5.637 5.637 0 0 0-1.135 0v-.956h.033L17.004 6.75l-.017 5.385a6.283 6.283 0 0 1-.973-.008.42.42 0 0 0-.458.38.42.42 0 0 0 .381.458c.237.026.466.034.686.034.127 0 .237-.008.356-.017v2.32l-.009-.025z" />
                 <path d="M15.929 8.758a.626.626 0 0 0-.474-.762L9.18 6.506a.626.626 0 0 0-.762.474.626.626 0 0 0 .474.762l6.275 1.49c.05.008.101.017.144.017.288 0 .55-.195.618-.491zM14.303 9.85 9.485 8.673a.64.64 0 0 0-.77.466.64.64 0 0 0 .465.77l4.818 1.177a.64.64 0 0 0 .77-.466.64.64 0 0 0-.465-.77z" />
@@ -226,7 +226,7 @@ const BlockIcons = {
         </svg>
     ),
     form: (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -235,7 +235,7 @@ const BlockIcons = {
         </svg>
     ),
     'google-map': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -244,7 +244,7 @@ const BlockIcons = {
         </svg>
     ),
     icon: (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -253,7 +253,7 @@ const BlockIcons = {
         </svg>
     ),
     'image-compare': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="m13.632 12.304-1.273-1.273a.59.59 0 0 0-.834 0l-1.273 1.273a.59.59 0 0 0 0 .834l1.273 1.273c.23.23.604.23.834 0l1.273-1.273a.59.59 0 0 0 0-.834z"
                 fill="#fff"
@@ -262,7 +262,7 @@ const BlockIcons = {
         </svg>
     ),
     'image-gallery': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -271,7 +271,7 @@ const BlockIcons = {
         </svg>
     ),
     lightbox: (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.879 5.276C22.879 2.918 20.961 1 18.603 1C16.976 1 15.576 1.923 14.853 3.264H5.325C2.94 3.264 1 5.204 1 7.589V18.073C1 20.458 2.94 22.398 5.325 22.398H15.809C18.194 22.398 20.134 20.458 20.134 18.073V9.257C21.735 8.639 22.879 7.093 22.879 5.276ZM18.736 18.073C18.736 19.686 17.423 21 15.809 21H5.325C3.712 21 2.398 19.687 2.398 18.073V7.589C2.398 5.976 3.711 4.662 5.325 4.662H14.388C14.359 4.864 14.326 5.066 14.326 5.276C14.326 7.634 16.244 9.552 18.602 9.552C18.648 9.552 18.69 9.54 18.736 9.538V18.073ZM18.602 8.154C17.015 8.154 15.724 6.863 15.724 5.276C15.724 3.689 17.015 2.398 18.602 2.398C20.189 2.398 21.48 3.689 21.48 5.276C21.48 6.863 20.189 8.154 18.602 8.154Z" />
             <path d="M19.975 3.89503C19.78 3.70003 19.463 3.70003 19.268 3.89503L18.602 4.56103L17.936 3.89503C17.741 3.70003 17.424 3.70003 17.229 3.89503C17.034 4.09003 17.034 4.40703 17.229 4.60203L17.895 5.26803L17.229 5.93403C17.034 6.12903 17.034 6.44603 17.229 6.64103C17.327 6.73903 17.455 6.78703 17.583 6.78703C17.711 6.78703 17.839 6.73803 17.937 6.64103L18.603 5.97503L19.269 6.64103C19.367 6.73903 19.495 6.78703 19.623 6.78703C19.751 6.78703 19.879 6.73803 19.977 6.64103C20.172 6.44603 20.172 6.12903 19.977 5.93403L19.311 5.26803L19.977 4.60203C20.172 4.40703 20.172 4.09003 19.977 3.89503H19.975Z" />
             <path d="M5.70498 13.0101H12.5C12.831 13.0101 13.1 12.7411 13.1 12.4101V7.95205C13.1 7.62105 12.831 7.35205 12.5 7.35205H5.70498C5.37398 7.35205 5.10498 7.62105 5.10498 7.95205V12.4101C5.10498 12.7411 5.37398 13.0101 5.70498 13.0101ZM6.30498 8.55205H11.9V11.8111H6.30498V8.55205Z" />
@@ -280,7 +280,7 @@ const BlockIcons = {
         </svg>
     ),
     list: (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -289,7 +289,7 @@ const BlockIcons = {
         </svg>
     ),
     marquee: (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -298,13 +298,13 @@ const BlockIcons = {
         </svg>
     ),
     newsletter: (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M22.08 9.13004C21.97 8.85004 21.8 8.60004 21.56 8.41004L19.31 6.66004V4.71004C19.31 4.06004 18.78 3.53004 18.13 3.53004H15.28L12.46 1.35004C11.85 0.880039 11 0.880039 10.39 1.37004L7.74 3.53004H4.93C4.28 3.53004 3.75 4.06004 3.75 4.71004V6.70004L1.62 8.41004C1.22 8.73004 1 9.20004 1 9.71004V20.43C1 20.81 1.13 21.15 1.34 21.43C1.34 21.43 1.34 21.44 1.35 21.45C1.35 21.45 1.37 21.46 1.37 21.47C1.68 21.85 2.14 22.1 2.66 22.1H20.52C21.44 22.1 22.19 21.35 22.19 20.43V9.72004C22.19 9.51004 22.14 9.32004 22.07 9.13004H22.08ZM2.2 10.37L8.68 15.06L2.2 20.05V10.38V10.37ZM11.33 14.53C11.39 14.48 11.48 14.48 11.54 14.53L20.02 20.9H3.05L11.33 14.53ZM14.37 15.16L21 10.37V20.14L14.37 15.16ZM20.59 9.18004L19.3 10.11V8.17004L20.59 9.17004V9.18004ZM11.15 2.30004C11.32 2.16004 11.56 2.16004 11.73 2.30004L13.31 3.53004H9.64L11.14 2.31004L11.15 2.30004ZM7.94 4.72004C7.94 4.72004 7.95 4.72004 7.96 4.72004C7.96 4.72004 7.98 4.72004 7.99 4.72004H18.11V10.98L13.38 14.4L12.27 13.56C11.78 13.19 11.1 13.19 10.61 13.56L9.68 14.27L4.96 10.86L4.94 4.71004H7.95L7.94 4.72004ZM3.75 10.01L2.59 9.17004L3.75 8.24004V10.01Z" />
             <path d="M11.59 12.1101C12.44 12.1101 13.12 11.8701 13.18 11.8501C13.35 11.7901 13.43 11.6001 13.37 11.4301C13.31 11.2601 13.12 11.1801 12.95 11.2301C12.93 11.2301 10.67 12.0301 9.48996 10.5301C8.96996 9.8001 8.84996 8.7701 9.18996 7.9001C9.51996 7.0701 10.22 6.5001 11.17 6.3001C12.21 6.0701 13.12 6.3401 13.65 7.0101C14.15 7.6401 14.23 8.5201 13.87 9.3201C13.55 10.0201 13.12 10.2801 12.93 10.2001C12.68 10.1001 12.41 9.2401 13.17 7.2601C13.23 7.0901 13.15 6.9001 12.98 6.8401C12.81 6.7801 12.62 6.8601 12.56 7.0301C12.5 7.1901 12.46 7.3401 12.4 7.4901C12.05 7.2301 11.52 7.0301 10.79 7.1701C10.26 7.2801 9.84996 7.7601 9.70996 8.4501C9.55996 9.1501 9.70996 10.0501 10.34 10.5001C10.53 10.6401 10.8 10.7501 11.15 10.7501C11.45 10.7501 11.82 10.6601 12.26 10.4401C12.37 10.6101 12.51 10.7301 12.67 10.8001C13.28 11.0501 14.01 10.5601 14.45 9.5901C14.92 8.5601 14.8 7.4201 14.15 6.6001C13.45 5.7301 12.32 5.3901 11.03 5.6601C9.84996 5.9101 8.97996 6.6201 8.56996 7.6601C8.14996 8.7301 8.29996 10.0001 8.94996 10.9101C9.68996 11.8501 10.71 12.1001 11.56 12.1001L11.59 12.1101ZM10.73 9.9801C10.35 9.7101 10.26 9.0801 10.36 8.5901C10.43 8.2601 10.62 7.8801 10.94 7.8101C11.7 7.6601 12.08 8.0201 12.21 8.1901C12.04 8.8701 12.01 9.4101 12.07 9.8201C11.63 10.0601 11.1 10.2401 10.73 9.9801Z" />
         </svg>
     ),
     notice: (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -333,7 +333,7 @@ const BlockIcons = {
         </svg>
     ),
     'popup-builder': (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -342,13 +342,13 @@ const BlockIcons = {
         </svg>
     ),
     'post-carousel': (
-        <svg width={24} height={24} fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.412 22.057a.882.882 0 0 1-.884-.885c0-.49.394-.884.884-.884s.885.394.885.884-.395.885-.885.885zm0-.96s-.074.033-.074.075c0 .086.149.086.149 0a.073.073 0 0 0-.075-.074zM16.588 22.057a.882.882 0 0 1-.885-.885c0-.49.395-.884.885-.884s.885.394.885.884-.395.885-.885.885zm0-.96s-.075.033-.075.075c0 .086.15.086.15 0a.073.073 0 0 0-.075-.074zM11.995 22.782c-.885 0-1.61-.725-1.61-1.61 0-.884.725-1.609 1.61-1.609.884 0 1.609.725 1.609 1.61 0 .884-.725 1.609-1.61 1.609zM19.007 14.107H4.993A1.997 1.997 0 0 1 3 12.114V3.993C3 2.895 3.895 2 4.993 2h14.014C20.105 2 21 2.895 21 3.993v8.131a1.997 1.997 0 0 1-1.993 1.993v-.01zM4.993 3.599a.4.4 0 0 0-.394.394v8.131a.4.4 0 0 0 .394.395h14.014a.4.4 0 0 0 .394-.395V3.993a.4.4 0 0 0-.394-.394H4.993z" />
             <path d="M7.412 11.101a.787.787 0 0 1-.64-.32.798.798 0 0 1 .15-1.118l2.313-1.759a1.844 1.844 0 0 1 2.387.15l1.417 1.363a.242.242 0 0 0 .288.043L16.14 7.66a.808.808 0 0 1 1.109.245.808.808 0 0 1-.245 1.108l-2.857 1.823c-.756.415-1.63.309-2.216-.256l-1.418-1.364a.23.23 0 0 0-.309-.021l-2.312 1.758a.81.81 0 0 1-.48.16v-.01zM13.956 7.414c-.661 0-1.194-.533-1.194-1.194 0-.66.533-1.193 1.194-1.193.66 0 1.193.532 1.193 1.193s-.533 1.194-1.193 1.194zm0-1.599a.405.405 0 1 0 0 .81.405.405 0 0 0 0-.81zM18.88 17.57H5.11a.76.76 0 0 1-.756-.757.76.76 0 0 1 .756-.756h13.77a.76.76 0 0 1 .756.756.76.76 0 0 1-.757.757z" />
         </svg>
     ),
     'post-category': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -357,7 +357,7 @@ const BlockIcons = {
         </svg>
     ),
     'post-comments': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -366,7 +366,7 @@ const BlockIcons = {
         </svg>
     ),
     'tag-cloud': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -375,7 +375,7 @@ const BlockIcons = {
         </svg>
     ),
     'post-grid': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -384,7 +384,7 @@ const BlockIcons = {
         </svg>
     ),
     'post-list': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -413,7 +413,7 @@ const BlockIcons = {
         </svg>
     ),
     'post-tab': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -422,7 +422,7 @@ const BlockIcons = {
         </svg>
     ),
     'post-timeline': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -431,7 +431,7 @@ const BlockIcons = {
         </svg>
     ),
     'pricing-table': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_199_127)">
                 <path
                     fillRule="evenodd"
@@ -447,14 +447,14 @@ const BlockIcons = {
         </svg>
     ),
     'profile-card': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path d="M19.1296 1H4.87037C2.73148 1 1 2.73148 1 4.87037V19.1296C1 21.2685 2.73148 23 4.87037 23H19.1296C21.2685 23 23 21.2685 23 19.1296V4.87037C23 2.73148 21.2685 1 19.1296 1ZM21.3704 19.1296C21.3704 20.3519 20.3519 21.3704 19.1296 21.3704H4.87037C3.64815 21.3704 2.62963 20.3519 2.62963 19.1296V9.4537H7.00926C7.21296 12 9.35185 14.037 12 14.037C14.6481 14.037 16.787 12 16.9907 9.4537H21.3704V19.1296ZM7.92593 8.94445C7.92593 6.7037 9.75926 4.87037 12 4.87037C14.2407 4.87037 16.0741 6.7037 16.0741 8.94445C16.0741 9.14815 16.0741 9.25 16.0741 9.4537L14.2407 7.62037C13.7315 7.11111 12.9167 7.11111 12.5093 7.62037L11.3889 8.74074L11.1852 8.53704C10.6759 8.02778 9.96296 8.02778 9.4537 8.53704L8.02778 9.75926C7.92593 9.4537 7.92593 9.25 7.92593 8.94445ZM13.7315 12.6111C13.2222 12.8148 12.6111 13.0185 12 13.0185C10.3704 13.0185 9.0463 12.1019 8.43519 10.7778L10.1667 9.25C10.2685 9.14815 10.3704 9.14815 10.4722 9.25L13.7315 12.6111ZM14.6481 12L12 9.35185L13.1204 8.23148C13.2222 8.12963 13.3241 8.12963 13.4259 8.23148L15.7685 10.5741C15.463 11.1852 15.0556 11.5926 14.6481 12ZM21.3704 8.43519H16.9907C16.787 5.88889 14.6481 3.85185 12 3.85185C9.35185 3.85185 7.21296 5.88889 7.00926 8.43519H2.62963V4.87037C2.62963 3.64815 3.64815 2.62963 4.87037 2.62963H19.1296C20.3519 2.62963 21.3704 3.64815 21.3704 4.87037V8.43519Z" />
             <path d="M5.8889 15.5649C5.58334 15.5649 5.37964 15.7686 5.37964 16.0742C5.37964 16.3798 5.58334 16.5835 5.8889 16.5835H18.1111C18.4167 16.5835 18.6204 16.3798 18.6204 16.0742C18.6204 15.7686 18.4167 15.5649 18.1111 15.5649H5.8889Z" />
             <path d="M15.0557 18.6204H8.94456C8.63901 18.6204 8.4353 18.8241 8.4353 19.1296C8.4353 19.4352 8.63901 19.6389 8.94456 19.6389H15.0557C15.3612 19.6389 15.5649 19.4352 15.5649 19.1296C15.5649 18.8241 15.3612 18.6204 15.0557 18.6204Z" />
         </svg>
     ),
     'progress-bar': (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -463,7 +463,7 @@ const BlockIcons = {
         </svg>
     ),
     'progress-pie': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -472,7 +472,7 @@ const BlockIcons = {
         </svg>
     ),
     qrcode: (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -526,7 +526,7 @@ const BlockIcons = {
         </svg>
     ),
     review: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -535,7 +535,7 @@ const BlockIcons = {
         </svg>
     ),
     'review-carousel': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -544,7 +544,7 @@ const BlockIcons = {
         </svg>
     ),
     'review-grid': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_199_194)">
                 <g clipPath="url(#clip1_199_194)">
                     <path
@@ -565,7 +565,7 @@ const BlockIcons = {
         </svg>
     ),
     slider: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_199_140)">
                 <path
                     fillRule="evenodd"
@@ -581,7 +581,7 @@ const BlockIcons = {
         </svg>
     ),
     'social-count': (
-        <svg className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -590,12 +590,12 @@ const BlockIcons = {
         </svg>
     ),
     'social-links': (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path d="M14.7208 6.30414C13.8422 6.27746 13.0354 6.5976 12.4079 7.18453L10.857 8.66074C9.6199 9.83459 9.53026 11.7554 10.6508 13.0449C10.7853 13.1961 10.9736 13.2761 11.1618 13.2761C11.3142 13.2761 11.4756 13.2228 11.6011 13.1161C11.879 12.8759 11.9148 12.458 11.6728 12.1734C11.0184 11.4264 11.0722 10.3059 11.7983 9.62117L13.3492 8.14495C13.7078 7.79813 14.1649 7.62028 14.6939 7.62917C15.1959 7.64695 15.662 7.85149 16.0027 8.2161C16.6661 8.91863 16.675 9.98577 16.0385 10.7061L14.9987 11.8711C14.7566 12.1467 14.7835 12.5647 15.0614 12.8137C15.3393 13.0538 15.7696 13.0271 16.0117 12.7514L17.0515 11.5865C18.1542 10.3504 18.1273 8.50956 16.9888 7.30013C16.3971 6.66874 15.5993 6.31303 14.7297 6.28635L14.7208 6.30414ZM12.4975 10.9284C12.2196 11.1685 12.1838 11.5865 12.4258 11.8711C12.9906 12.5202 12.9458 13.4984 12.3182 14.0943L10.9198 15.4282C10.606 15.7305 10.1757 15.8728 9.74541 15.8728C9.30614 15.8639 8.90273 15.6772 8.59794 15.357C8.0242 14.7434 8.00628 13.8097 8.57104 13.1783L9.15374 12.5024C9.39579 12.2179 9.35993 11.7999 9.07306 11.5598C8.79516 11.3197 8.36486 11.3553 8.12281 11.6398L7.54908 12.3068C6.53608 13.454 6.55401 15.1525 7.61183 16.273C8.15867 16.851 8.90273 17.189 9.70058 17.2068C9.72748 17.2068 9.75437 17.2068 9.78126 17.2068C10.5522 17.2068 11.2784 16.9133 11.8342 16.3886L13.2326 15.0547C14.3801 13.9698 14.4608 12.1912 13.4299 10.9996C13.1878 10.7239 12.7575 10.6883 12.4796 10.9284H12.4975ZM21.0049 11.6487C20.8884 6.86438 16.944 3.00489 12.0941 3.00489C11.61 3.00489 11.1439 3.05825 10.6777 3.12939C10.2833 2.46243 9.56611 2 8.72344 2C7.47736 2 6.4554 3.00489 6.4554 4.24989C6.4554 4.49 6.50022 4.71232 6.57194 4.92574C4.90453 6.23299 3.7212 8.11828 3.32676 10.2881C2.57373 10.4215 2 11.0707 2 11.8622C2 12.6536 2.56477 13.2939 3.31779 13.4362C3.47916 14.3255 3.77499 15.197 4.19632 15.9973C5.7472 18.9053 8.77723 20.7194 12.0941 20.7194C12.3362 20.7194 12.5693 20.7016 12.8023 20.6839C13.1609 21.4575 13.9408 22 14.8552 22C16.1013 22 17.1233 20.9951 17.1233 19.7501C17.1233 19.5545 17.0874 19.3766 17.0426 19.1988C18.6472 18.1316 19.8754 16.5665 20.5119 14.7168C21.3456 14.6545 22 13.9698 22 13.1249C22 12.458 21.5876 11.8888 21.0049 11.6487ZM8.72344 2.89818C9.47647 2.89818 10.095 3.50289 10.095 4.25878C10.095 5.01467 9.48543 5.61939 8.72344 5.61939C7.96145 5.61939 7.35186 5.01467 7.35186 4.25878C7.35186 3.50289 7.96145 2.89818 8.72344 2.89818ZM3.61363 12.5736C3.21918 12.5736 2.89646 12.2534 2.89646 11.8622C2.89646 11.4709 3.21918 11.1507 3.61363 11.1507C4.00807 11.1507 4.33079 11.4709 4.33079 11.8622C4.33079 12.2534 4.00807 12.5736 3.61363 12.5736ZM14.8552 21.1107C14.1022 21.1107 13.4836 20.506 13.4836 19.7501C13.4836 18.9942 14.0932 18.3895 14.8552 18.3895C15.6172 18.3895 16.2268 18.9942 16.2268 19.7501C16.2268 20.506 15.6172 21.1107 14.8552 21.1107ZM16.6481 18.3984C16.2358 17.8648 15.5903 17.5091 14.8552 17.5091C13.6091 17.5091 12.5872 18.514 12.5872 19.759C12.5872 19.7768 12.5872 19.7857 12.5872 19.8035C12.4169 19.8124 12.2465 19.839 12.0762 19.839C9.09099 19.839 6.37472 18.2116 4.97624 15.5972C4.59973 14.8946 4.34872 14.1387 4.19632 13.3651C4.78799 13.1249 5.20932 12.5558 5.20932 11.8799C5.20932 11.2041 4.78799 10.6349 4.20529 10.3948C4.56387 8.52735 5.57687 6.89106 7.00224 5.73499C7.41461 6.21521 8.0242 6.51756 8.70551 6.51756C9.95159 6.51756 10.9736 5.51267 10.9736 4.26767C10.9736 4.17875 10.9556 4.08982 10.9467 4.00089C11.3142 3.94753 11.6907 3.91196 12.0762 3.91196C16.3971 3.91196 19.9292 7.32681 20.0905 11.5687C19.3375 11.7021 18.7638 12.3602 18.7638 13.1427C18.7638 13.7563 19.1134 14.281 19.6244 14.5478C19.0506 16.1218 18.0018 17.4647 16.6392 18.3984H16.6481ZM20.3864 13.8453C19.9919 13.8453 19.6692 13.5251 19.6692 13.1338C19.6692 12.7426 19.9919 12.4224 20.3864 12.4224C20.7808 12.4224 21.1035 12.7426 21.1035 13.1338C21.1035 13.5251 20.7808 13.8453 20.3864 13.8453Z" />
         </svg>
     ),
     'social-share': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -604,7 +604,7 @@ const BlockIcons = {
         </svg>
     ),
     'star-rating': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -613,7 +613,7 @@ const BlockIcons = {
         </svg>
     ),
     tabs: (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -622,7 +622,7 @@ const BlockIcons = {
         </svg>
     ),
     'team-grid': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_199_53)">
                 <path
                     fillRule="evenodd"
@@ -638,7 +638,7 @@ const BlockIcons = {
         </svg>
     ),
     'text-path': (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -647,7 +647,7 @@ const BlockIcons = {
         </svg>
     ),
     unfold: (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-b-icon" xmlns="http://www.w3.org/2000/svg">
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"

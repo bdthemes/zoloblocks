@@ -90,7 +90,7 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         postTitleAnimation,
@@ -212,7 +212,7 @@ function Inspector(props) {
     };
 
     //for only taxonomy filter
-    let postType= postQuery?.postType === 'related_posts' ? postQuery?.currentPostType : postQuery?.postType;
+    let postType = postQuery?.postType === 'related_posts' ? postQuery?.currentPostType : postQuery?.postType;
     const zoloTaxonomies = getTaxonomies(postType || 'post', zoloParams.get_taxonomies);
     let zoloTaxonomiesFilter = [
         {
@@ -221,7 +221,9 @@ function Inspector(props) {
         },
         ...zoloTaxonomies,
     ];
-
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -526,7 +528,6 @@ function Inspector(props) {
                                     />
                                 )}
                                 <CardDivider />
-
                                 <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_BG} noMainBGImg={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
@@ -557,6 +558,24 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
+                                {cssFilters && cssFilters.length > 0 && (
+                                    <>
+                                        <TabPanelControl
+                                            options={[
+                                                {
+                                                    value: 'normal',
+                                                    label: __('Normal', 'zoloblocks'),
+                                                },
+                                                {
+                                                    value: 'hover',
+                                                    label: __('Hover', 'zoloblocks'),
+                                                },
+                                            ]}
+                                            normalComponents={<>{cssFilters}</>}
+                                            hoverComponents={<>{cssFiltersHover}</>}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
 

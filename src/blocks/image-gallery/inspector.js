@@ -70,7 +70,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         resMode,
         preset,
@@ -98,6 +98,9 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -300,6 +303,8 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
+                                        <CardDivider />
+                                        {cssFilters && cssFilters.length > 0 && cssFilters}
                                     </>
                                 }
                                 hoverComponents={
@@ -314,6 +319,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
+                                        <CardDivider />
                                     </>
                                 }
                             />

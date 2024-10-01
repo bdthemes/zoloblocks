@@ -111,6 +111,15 @@ function Style({ props }) {
         titleAnimationTypeBgColor,
     } = attributes;
 
+    const { blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
+
     const {
         desktopRangeStyle: columnCountDesk,
         tabRangeStyle: columnCountTab,
@@ -880,6 +889,24 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-block.zolo-post-title-type-1{
         ${titleAnimationTypeBgColor ? `--zolo-post-title-type-primary-color:${titleAnimationTypeBgColor};` : ''}
+      }
+
+     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image{
+          filter:
+              blur(${blur}px)
+              brightness(${brightness}%)
+              contrast(${contrast}%)
+              saturate(${saturate}%)
+              hue-rotate(${hueRotate}deg)
+      }
+
+     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image:hover {
+          filter:
+              blur(${blurHover}px)
+              brightness(${brightnessHover}%)
+              contrast(${contrastHover}%)
+              saturate(${saturateHover}%)
+              hue-rotate(${hueRotateHover}deg)
       }
     `;
 

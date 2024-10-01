@@ -16,6 +16,15 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, markerInfoColor } = attributes;
 
+    const { blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
+
     const {
         desktopRangeStyle: deskHeight,
         tabRangeStyle: tabHeight,
@@ -59,6 +68,24 @@ const Style = ({ props }) => {
             color: ${markerInfoColor};
             ${infoDeskTypo}
         }
+     .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
+          filter:
+              blur(${blur}px)
+              brightness(${brightness}%)
+              contrast(${contrast}%)
+              saturate(${saturate}%)
+              hue-rotate(${hueRotate}deg)
+      }
+
+    .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper:hover {
+          filter:
+              blur(${blurHover}px)
+              brightness(${brightnessHover}%)
+              contrast(${contrastHover}%)
+              saturate(${saturateHover}%)
+              hue-rotate(${hueRotateHover}deg)
+    }
+
     `;
 
     const tabletAllStyle = `
