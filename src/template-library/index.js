@@ -38,6 +38,10 @@ const TABS = [
         value: 'pages',
     },
     {
+        label: __('Demos', 'zoloblocks'),
+        value: 'demos',
+    },
+    {
         label: __('Favorites', 'zoloblocks'),
         value: 'favorites',
     },
@@ -49,20 +53,28 @@ const TABS = [
 function ZoloBlocksTemplateLibraryButton() {
     const [isOpen, setIsOpen] = useState(false);
     const [pullDemos, setPullDemos] = useState(false);
+
     const [activeCat, setActiveCat] = useState('all');
     const [categories, setCategories] = useState([]);
+
+    // categories
+    const [patternCategories, setPatternCategories] = useState([]);
+
     const [activeTab, setActiveTab] = useState('patterns');
     const [searchText, setSearchText] = useState('');
 
     const [loading, setLoading] = useState(false);
 
-    const [allTemplates, setAllTemplates] = useState([]);
-
     const [number, setNumber] = useState(20);
-
     const [total, setTotal] = useState(0);
 
+    const [allTemplates, setAllTemplates] = useState([]);
     const [templates, setTemplates] = useState([]);
+
+    const [allPatterns, setAllPatterns] = useState([]);
+    const [patterns, setPatterns] = useState([]);
+
+    const [demos, setDemos] = useState([]);
     const [favTemplates, setFavTemplates] = useState([]);
     const [favTemplatesData, setFavTemplatesData] = useState([]);
 
@@ -134,39 +146,22 @@ function ZoloBlocksTemplateLibraryButton() {
         }
     }, [favTemplates, allTemplates]);
 
-    const LibraryButton = () => (
-        <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-                <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M4 4H9.22856L4.02857 9.27618L4 4ZM15.9048 11.1047L18 8.99999V9.00951C19.2953 10.1524 20 11.6476 20 13.2857C20 15.2476 19.2667 17.1333 18.0953 18.2095C16.7715 19.4 15.2 19.9809 13.2858 19.9809L4.02865 20V14.0857L14.1048 4H18.6953L6.22864 16.3333H13.2858C14.2191 16.3333 15.0286 16 15.6191 15.3809C16.2762 14.6952 16.6191 13.8666 16.6191 12.9619C16.6191 12.2476 16.2381 11.5619 15.9048 11.1047Z"
-                    fill="white"
-                />
-            </svg>
+    // Handle Patterns, Templates, Pages, Demos
+    useEffect(() => {
+        const patterns = allTemplates.filter((template) => template.template_type === 'patterns');
+        const templates = allTemplates.filter((template) => template.template_type === 'templates');
+        const pages = allTemplates.filter((template) => template.type === 'pages');
+        const demos = allTemplates.filter((template) => template.type === 'demos');
 
-            <span className="zolo-template-label">{__('Template Library', 'zoloblocks')}</span>
-        </Button>
-    );
+        setAllPatterns(patterns);
+        setPatterns(patterns);
+        setTemplates(templates);
+        setDemos(demos);
+    }, [allTemplates]);
 
-    const renderButton = (selector) => {
-        const libraryButton = document.createElement('div');
-        libraryButton.classList.add('zoloblocks-template-library-button');
-        selector.append(libraryButton);
-        createRoot(libraryButton).render(<LibraryButton />);
-    };
+    // console.log('patterns: ', patterns);
 
-    subscribe(() => {
-        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
-        const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-
-        const currentPostType = wp.data.select('core/editor').getCurrentPostType();
-
-        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
-            renderButton(toolbar);
-        }
-    });
-
+    // fetch templates
     const fetchTemplates = async () => {
         setLoading(true);
         apiFetch({
@@ -192,6 +187,7 @@ function ZoloBlocksTemplateLibraryButton() {
         });
     };
 
+    // pull new demos
     const pullNewDemos = () => {
         setLoading(true);
         jQuery.ajax({
@@ -239,21 +235,31 @@ function ZoloBlocksTemplateLibraryButton() {
             const categories = sortedCategories.map((category) => ({ label: category, value: category }));
             categories.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setCategories(categories);
+
+            // set pattern categories
+            const patternCategories = templates
+                .filter((template) => template.template_type === 'patterns')
+                .map((template) => template.categories);
+            const uniquePatternCategories = [...new Set(patternCategories.flat())];
+            const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
+            const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
+            patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+            setPatternCategories(patternCategoriesArray);
         }
     }, [allTemplates, number]);
 
-    // filter templates based on category
+    // Filter by Category
     useEffect(() => {
-        // filter templates based on category
-        const filteredTemplates = allTemplates.filter((template) => {
+        // filter patterns based on category
+        const filteredPatterns = allPatterns.filter((template) => {
             if (activeCat === 'all') {
                 return true;
             } else {
                 return template.categories.includes(activeCat);
             }
         });
-        setTemplates(filteredTemplates.slice(0, number));
-        setTotal(filteredTemplates.length);
+        setPatterns(filteredPatterns.slice(0, number));
+        setTotal(filteredPatterns.length);
     }, [activeCat]); // eslint-disable-line
 
     // filter templates based on search text
@@ -308,6 +314,39 @@ function ZoloBlocksTemplateLibraryButton() {
         });
     };
 
+    subscribe(() => {
+        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
+        const libraryButton = document.querySelector('.zoloblocks-template-library-button');
+
+        const currentPostType = wp.data.select('core/editor').getCurrentPostType();
+
+        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
+            renderButton(toolbar);
+        }
+    });
+
+    const LibraryButton = () => (
+        <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M4 4H9.22856L4.02857 9.27618L4 4ZM15.9048 11.1047L18 8.99999V9.00951C19.2953 10.1524 20 11.6476 20 13.2857C20 15.2476 19.2667 17.1333 18.0953 18.2095C16.7715 19.4 15.2 19.9809 13.2858 19.9809L4.02865 20V14.0857L14.1048 4H18.6953L6.22864 16.3333H13.2858C14.2191 16.3333 15.0286 16 15.6191 15.3809C16.2762 14.6952 16.6191 13.8666 16.6191 12.9619C16.6191 12.2476 16.2381 11.5619 15.9048 11.1047Z"
+                    fill="white"
+                />
+            </svg>
+
+            <span className="zolo-template-label">{__('Template Library', 'zoloblocks')}</span>
+        </Button>
+    );
+
+    const renderButton = (selector) => {
+        const libraryButton = document.createElement('div');
+        libraryButton.classList.add('zoloblocks-template-library-button');
+        selector.append(libraryButton);
+        createRoot(libraryButton).render(<LibraryButton />);
+    };
+
     return (
         <div className="zolo-demos-modal-wrapper">
             {isOpen && (
@@ -353,24 +392,29 @@ function ZoloBlocksTemplateLibraryButton() {
                             </div>
 
                             <div className="category-list">
-                                {categories &&
-                                    categories.length > 0 &&
-                                    categories.map((category) => (
-                                        <button
-                                            key={category.value}
-                                            className={classNames('single-category', { active: activeCat === category.value })}
-                                            onClick={() => setActiveCat(category.value)}
-                                        >
-                                            <span className="single-category-text">{category.label}</span>
-                                            <span className="single-category-count">
-                                                {allTemplates &&
-                                                    (category.value === 'all'
-                                                        ? allTemplates.length
-                                                        : allTemplates.filter((template) => template.categories.includes(category.label))
-                                                              .length)}
-                                            </span>
-                                        </button>
-                                    ))}
+                                {activeTab === 'patterns' && (
+                                    <>
+                                        {patternCategories &&
+                                            patternCategories.length > 0 &&
+                                            patternCategories.map((category) => (
+                                                <button
+                                                    key={category.value}
+                                                    className={classNames('single-category', { active: activeCat === category.value })}
+                                                    onClick={() => setActiveCat(category.value)}
+                                                >
+                                                    <span className="single-category-text">{category.label}</span>
+                                                    <span className="single-category-count">
+                                                        {allPatterns &&
+                                                            (category.value === 'all'
+                                                                ? allPatterns.length
+                                                                : allPatterns.filter((template) =>
+                                                                      template.categories.includes(category.label)
+                                                                  ).length)}
+                                                    </span>
+                                                </button>
+                                            ))}
+                                    </>
+                                )}
                             </div>
                         </div>
                         <div className="demos-container">
@@ -538,15 +582,15 @@ function ZoloBlocksTemplateLibraryButton() {
                             )}
                             {activeTab === 'patterns' && (
                                 <>
-                                    {templates && templates.length > 0 && (
+                                    {patterns && patterns.length > 0 && (
                                         <Patterns
-                                            templates={templates}
+                                            templates={patterns}
                                             handleImportTemplate={handleImportTemplate}
                                             saveFavTemplates={saveFavTemplates}
                                             favTemplates={favTemplates}
                                         />
                                     )}
-                                    {total > number && (
+                                    {patterns && patterns?.length > number && (
                                         <div className="load-more-btn-wrapper">
                                             <button
                                                 className="load-more-btn"

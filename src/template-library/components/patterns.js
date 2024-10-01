@@ -15,10 +15,10 @@ const Patterns = ({ templates, handleImportTemplate, saveFavTemplates, favTempla
                                 <img src={template.demo_preview} alt={template?.title} loading="lazy" decoding="async" />
                             )}
 
-                            {template?.demo_link && (
-                                <>
-                                    {template?.pro === '1' && zoloParams?.zolo_pro_status === 'inactive' && (
-                                        <div className="demo-actions-btn-wrap">
+                            <>
+                                {template?.status === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
+                                    <div className="demo-actions-btn-wrap">
+                                        {template?.demo_link && (
                                             <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
                                                 <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
                                                     {__('Demo', 'zoloblocks')}
@@ -43,14 +43,15 @@ const Patterns = ({ templates, handleImportTemplate, saveFavTemplates, favTempla
                                                     </svg>
                                                 </a>
                                             </Tooltip>
-                                            <ProPopup />
-                                        </div>
-                                    )}
-                                </>
-                            )}
+                                        )}
+
+                                        <ProPopup />
+                                    </div>
+                                )}
+                            </>
 
                             <div className="demo-actions-btn-wrap">
-                                {template?.pro === '1' ? (
+                                {template?.status === 'pro' ? (
                                     <>
                                         {
                                             // check if the user has ZoloBlocks Pro
@@ -194,8 +195,8 @@ const Patterns = ({ templates, handleImportTemplate, saveFavTemplates, favTempla
                                 </button>
                             </div>
                         </div>
-                        <span className={classNames('demo-badge', `${template?.pro === '1' ? 'pro' : 'free'}-badge`)}>
-                            {template?.pro === '1' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
+                        <span className={classNames('demo-badge', `${template?.status === 'pro' ? 'pro' : 'free'}-badge`)}>
+                            {template?.status === 'pro' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
                         </span>
                     </div>
                 );
