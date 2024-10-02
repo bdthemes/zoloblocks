@@ -7,7 +7,13 @@ import { __ } from '@wordpress/i18n';
  */
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-const Save = (props) => {
+import attributes from '../../attributes';
+
+const v1 = {
+    attributes: {
+        ...attributes,
+    },
+    save(props) {
     const { attributes } = props;
     const {
         uniqueId,
@@ -32,14 +38,11 @@ const Save = (props) => {
         textSubscribed,
         textError,
         showLabels,
-        provider,
     } = attributes;
     const newsletterMsg = {
         textSuccess,
         textError,
         textSubscribed,
-        //isnotempty provider ? provider : 'mailchimp',
-        provider: provider ? provider : 'mailchimp',
     };
 
     // filter hooks for render
@@ -186,6 +189,8 @@ const Save = (props) => {
             {renderHookAfter && renderHookAfter}
         </div>
     );
+}
+
 };
 
-export default Save;
+export default v1;
