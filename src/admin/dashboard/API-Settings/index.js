@@ -18,7 +18,6 @@ const ApiSettings = () => {
             },
         ]);
 
-console.log(webhooks);
     // error handling
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
@@ -265,11 +264,11 @@ console.log(webhooks);
                                 value={webhook.url}
                                 onChange={(value) => updateWebhookField(index, 'url', value)}
                             />
-                            {index > 0 && (
-                                <Button isDestructive onClick={() => removeWebhookField(index)}>
-                                    {__('Remove Webhook', 'zoloblocks')}
-                                </Button>
-                            )}
+                                {webhooks.length > 1 && (
+                            <Button isDestructive onClick={() => removeWebhookField(index)}>
+                                {__('Remove Webhook', 'zoloblocks')}
+                            </Button>
+                        )}
                         </div>
                     ))}
 
