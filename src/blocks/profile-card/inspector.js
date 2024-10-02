@@ -98,7 +98,7 @@ import { Fragment } from 'react';
 import Sortable from './sortable';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         resMode,
@@ -145,6 +145,9 @@ function Inspector(props) {
     };
 
     const deepCloneStatusItems = cloneDeep(statusItems);
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -621,6 +624,8 @@ function Inspector(props) {
                                         />
                                     </>
                                 )}
+                                <CardDivider />
+                                {cssFilters && cssFilters.length > 0 && cssFilters}
                             </ZoloPanelBody>
                         )}
 

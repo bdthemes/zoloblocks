@@ -65,9 +65,10 @@ const Style = ({ props }) => {
         // cssFilters: {},
     } = attributes;
 
-    const { blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
 
     const {
+        active: activeHover = false,
         blur: blurHover = 0,
         brightness: brightnessHover = 100,
         contrast: contrastHover = 100,
@@ -412,23 +413,38 @@ const Style = ({ props }) => {
             ${DesktopHeight}
         }
 
-       .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img{
-            filter:
-                blur(${blur}px)
-                brightness(${brightness}%)
-                contrast(${contrast}%)
-                saturate(${saturate}%)
-                hue-rotate(${hueRotate}deg)
+        ${
+            active
+                ? `
+                    .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img{
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+                : ''
         }
 
-        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img:hover {
-            filter:
-                blur(${blurHover}px)
-                brightness(${brightnessHover}%)
-                contrast(${contrastHover}%)
-                saturate(${saturateHover}%)
-                hue-rotate(${hueRotateHover}deg)
+        ${
+            activeHover
+                ? `
+                    .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img:hover {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+
+               `
+                : ''
         }
+
+
 
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask:hover .zolo-img-wrap .zolo-img {
             border-color: ${imgHoverBorder};

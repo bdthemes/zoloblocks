@@ -92,6 +92,8 @@ const Style = ({ props }) => {
         enableShadow,
     } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+
     // column count
     const {
         desktopRangeStyle: deskColumns,
@@ -809,6 +811,21 @@ const Style = ({ props }) => {
             `
                  : ''
          }
+
+        ${
+            active
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+                : ''
+        }
 	`;
 
     const tabletAllStyle = `
