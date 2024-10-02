@@ -127,7 +127,6 @@ if (! class_exists('Assets')) {
                     'captcha'        => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/captcha.svg',
                     'oops'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/oops.svg',
                     'mailchimp'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/mailchimp.svg',
-                    'webhook'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/webhook.svg',
                     'facebook'       => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/facebook.svg',
                     'instagram'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/instagram.svg',
                     'yelp'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/yelp.svg',

@@ -5,10 +5,6 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
-import { useState, useEffect } from '@wordpress/element';
-
-import apiFetch from '@wordpress/api-fetch';
-
 
 /**
  * Internal depencencies
@@ -110,12 +106,7 @@ function Inspector(props) {
         errorTextColor,
         subscribedTextColor,
         labelTextHoverColor,
-        provider,
-        selectedWebhook,
     } = attributes;
-
-    // const [webhooks, setWebhooks] = useState([]);
-    const [labels, setLabels] = useState([]);
 
     const requiredProps = {
         attributes,
@@ -123,30 +114,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-
-    useEffect(() => {
-        const fetchWebhooks = async () => {
-            try {
-                const settings = await apiFetch({ path: '/wp/v2/settings' });
-                const zoloWebhooks = settings.zolo_webhooks || [];
-                // setWebhooks(zoloWebhooks);
-                console.log('zoloWebhooks', zoloWebhooks);
-
-                // Extract labels from the webhooks
-                const extractedLabels = zoloWebhooks.map((webhook) => webhook.label);
-                console.log('extractedLabels', extractedLabels);
-                setLabels(extractedLabels);
-            } catch (error) {
-                console.error('Error fetching webhooks:', error);
-            }
-        };
-
-        fetchWebhooks();
-    }, []);
-
-
-
 
     return (
         <InspectorControls key="controls">
@@ -157,37 +124,6 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
-                                label={__('Provider', 'zoloblocks')}
-                                value={provider}
-                                options={[
-                                    {
-                                        label: __('Newsletter', 'zoloblocks'),
-                                        value: 'newsletter',
-                                    },
-                                    {
-                                        label: __('Webhook', 'zoloblocks'),
-                                        value: 'webhook',
-                                    },
-                                ]}
-                                onChange={(value) => {
-                                    setAttributes({
-                                        provider: value,
-                                    });
-                                }}
-                            />
-                            {provider === 'webhook' && (
-                                <SelectControl
-                                    label={__('Select Webhook', 'text-domain')}
-                                    value={selectedWebhook}
-                                    options={labels.map((label) => ({ label, value: label }))}
-                                    onChange={(selectedLabel) => {
-                                        setAttributes({
-                                            selectedWebhook: selectedLabel,
-                                        });
-                                    }}
-                                />
-                            )}
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}

@@ -5,15 +5,12 @@ import Edit from './edit';
 import Save from './save';
 import './style.scss';
 
-import deprecated from './deprecated';
-
 const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata, {
     icon: {
         src: BlockIcons['newsletter'],
     },
-    deprecated,
     attributes,
     edit: Edit,
     save: Save,
