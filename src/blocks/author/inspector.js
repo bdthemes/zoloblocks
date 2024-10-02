@@ -68,7 +68,7 @@ const {
     TextShadowControl,
 } = window.zoloModule;
 export default function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         authorQuery,
         resMode,
@@ -103,6 +103,10 @@ export default function Inspector(props) {
     const authorProfileLink = zoloParams.user_social_link;
     const authorLinks = Object.entries(authorProfileLink).map(([value, label]) => ({ value, label }));
     const maskFeatures = applyFilters('zolo.blocks.controls.author.mask', [], props, 'zolo/author');
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -298,6 +302,8 @@ export default function Inspector(props) {
                                 />
 
                                 {maskFeatures && maskFeatures.length > 0 && maskFeatures}
+                                <CardDivider />
+                                {cssFilters && cssFilters.length > 0 && cssFilters}
                             </ZoloPanelBody>
                         )}
 

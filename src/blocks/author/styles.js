@@ -67,6 +67,9 @@ const {
 function Style({ props }) {
     const { attributes, setAttributes } = props;
     const { uniqueId, nameColor, nameHoverColor, roleColor, descColor, countColor, linkColor, linkHoverColor } = attributes;
+
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+
     const {
         desktopAlignStyle: itemAlignDesk,
         tabAlignStyle: itemAlignTab,
@@ -535,6 +538,20 @@ function Style({ props }) {
         ${linkHoverColor ? `color:${linkHoverColor};` : ''}
       }
 
+      ${
+          active
+              ? `
+                .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image a img {
+                    filter:
+                        blur(${blur}px)
+                        brightness(${brightness}%)
+                        contrast(${contrast}%)
+                        saturate(${saturate}%)
+                        hue-rotate(${hueRotate}deg)
+                }
+             `
+              : ''
+      }
   `;
 
     const tabletAllStyle = `

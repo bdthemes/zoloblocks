@@ -82,7 +82,7 @@ import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         resMode,
         stylePreset,
@@ -117,6 +117,9 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -471,6 +474,8 @@ function Inspector(props) {
                                         />
                                     </>
                                 )}
+                                <CardDivider />
+                                {cssFilters && cssFilters.length > 0 && cssFilters}
                             </ZoloPanelBody>
                         )}
                         {showName && (
