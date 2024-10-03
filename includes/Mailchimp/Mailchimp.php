@@ -61,7 +61,7 @@ if (! class_exists('Mailchimp')) {
             $email = !empty($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
             $fname = !empty($_POST['fname']) ? sanitize_text_field(wp_unslash($_POST['fname'])) : '';
             $provider = !empty($_POST['provider']) ? sanitize_text_field(wp_unslash($_POST['provider'])) : '';
-            print_r($provider);
+            $selectedWebhook = !empty($_POST['selectedWebhook']) ? sanitize_text_field(wp_unslash($_POST['selectedWebhook'])) : '';
 
             $data = wp_parse_args($this->sanitize($data), [
                 'email'           => $email,
@@ -71,7 +71,7 @@ if (! class_exists('Mailchimp')) {
                 'mailchimpListID' => get_option('zolo_mailchimp_audience_id', false),
                 'textSuccess'     => __('Thank you for subscribing!', 'zoloblocks'),
                 'textSubscribed'  => __('You are already subscribed with us!', 'zoloblocks'),
-                'webhookURL'      => get_option('zolo_webhook_url', false),
+                'selectedWebhook' => $selectedWebhook,
             ]);
 
             if (!empty($data['mailchimpApiKey']) && !empty($data['mailchimpListID']) && $data['provider'] === 'mailchimp') {
@@ -79,7 +79,7 @@ if (! class_exists('Mailchimp')) {
                 return;
             }
             if ($data['provider'] === 'webhook') {
-                $this->process_webhook($data['email'], $data['fname']);
+                $this->process_webhook($data);
                 return;
             }
 
@@ -104,8 +104,6 @@ if (! class_exists('Mailchimp')) {
             $phone = $lname = '';
 
             $api_endpoint = 'https://' . substr($api_key, strpos($api_key, '-') + 1) . '.api.mailchimp.com/3.0';
-            // print_r($api_endpoint);
-            // die;
 
             $body = apply_filters('zolo_newsletter_mailchimp_data', [
                 'email_address' => $email,
@@ -162,18 +160,13 @@ if (! class_exists('Mailchimp')) {
          * @param string $fname The first name of the subscriber.
          * @return void
          */
-        private function process_webhook($email, $fname) {
-            $webhook_url =  $this->get_url_by_label('FluentCRM');
-            // print_r($webhook_url);
-            //
-            // $webhook_url = get_option('zolo_webhook_url', false);
-            // $webhook_url = 'https://dashboard.bdthemes.io/?fluentcrm=1&route=contact&hash=fd62cc34-828a-4954-bafa-3e9b13e77c74';
-
+        private function process_webhook($data) {
+            $webhook_url =  $this->get_url_by_label($data['selectedWebhook']);
             if (!empty($webhook_url)) {
                 $response = wp_remote_post($webhook_url, [
                     'body' => json_encode([
-                        'email' => $email,
-                        'fname' => $fname,
+                        'email' => $data['email'],
+                        'fname' => $data['fname'],
                     ]),
                 ]);
 
@@ -188,12 +181,15 @@ if (! class_exists('Mailchimp')) {
                     if (isset($result['success']) && $result['success'] == 'success') {
                         wp_send_json([
                             'success'  => true,
-                            'message' => $result['message'],
+                            'message' => $data['textSuccess'] ?? __('Thank you for subscribing!', 'zoloblocks'),
                         ]);
+                    } elseif (isset($result['status']) && $result['status'] == 400 && !isset($result['errors'])) {
+                        $response['status']  = 'warning';
+                        $response['message'] = "{$data['email']} {$data['textSubscribed']}";
                     } else {
                         wp_send_json([
                             'success'  => false,
-                            'message' => __('Can\'t process your request.', 'zoloblocks'),
+                            'message' => $data['textError'] ?? __('Can\'t process your request.', 'zoloblocks'),
                         ]);
                     }
                 }
@@ -216,9 +212,6 @@ if (! class_exists('Mailchimp')) {
             }
             return null; // Return null if no matching label is found
         }
-
-
-
 
         /**
          * Sanitizes an array by removing any potentially harmful or unwanted elements.

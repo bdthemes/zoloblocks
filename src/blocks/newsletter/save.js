@@ -33,13 +33,14 @@ const Save = (props) => {
         textError,
         showLabels,
         provider,
+        selectedWebhook,
     } = attributes;
     const newsletterMsg = {
         textSuccess,
         textError,
         textSubscribed,
-        //isnotempty provider ? provider : 'mailchimp',
         provider: provider ? provider : 'mailchimp',
+        selectedWebhook,
     };
 
     // filter hooks for render
