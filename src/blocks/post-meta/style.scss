@@ -1,0 +1,65 @@
+.wp-block-zolo-post-meta {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 14px;
+
+	.zolo-meta-info,
+	.zolo-meta-info > a {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 16px;
+		color: #3b3a41;
+		font-weight: 400;
+	}
+
+	.zolo-meta-info.terms .zolo-text {
+		display: inline;
+	}
+
+	.zolo-text {
+		color: currentColor;
+		text-decoration: none;
+		transition: color 0.3s ease;
+
+		&:hover {
+			color: #005cff;
+			text-decoration: underline;
+		}
+	}
+
+
+	.zolo-icon {
+		--zolo-meta-icon-size: 18px;
+
+		svg {
+			width: var(--zolo-meta-icon-size);
+			height: var(--zolo-meta-icon-size);
+			display: block;
+			color: currentColor;
+		}
+	}
+
+	/* meta style css here  */
+	.zolo-separator {
+		color: #005cff;
+	}
+
+	&.separator-dot {
+		.zolo-separator {
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			background-color: #005cff;
+		}
+	}
+
+	&.separator-line {
+		.zolo-separator {
+			width: 14px;
+			height: 2px;
+			background-color: #005cff;
+		}
+	}
+}
