@@ -1,5 +1,5 @@
 import apiFetch from '@wordpress/api-fetch';
-import { BaseControl, Button, Modal, SelectControl, Tooltip } from '@wordpress/components';
+import { Button, Modal, Tooltip } from '@wordpress/components';
 import { subscribe } from '@wordpress/data';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -15,6 +15,7 @@ import './library.scss';
 /**
  * Internal dependencies
  */
+import Demos from './components/demos';
 import FavoriteTemplates from './components/favorites';
 import Pages from './components/pages';
 import Patterns from './components/patterns';
@@ -53,53 +54,113 @@ const TABS = [
 function ZoloBlocksTemplateLibraryButton() {
     const [isOpen, setIsOpen] = useState(false);
     const [pullDemos, setPullDemos] = useState(false);
-
-    const [activeCat, setActiveCat] = useState('all');
-    const [categories, setCategories] = useState([]);
-
-    // categories
-    const [patternCategories, setPatternCategories] = useState([]);
-
     const [activeTab, setActiveTab] = useState('patterns');
     const [searchText, setSearchText] = useState('');
-
     const [loading, setLoading] = useState(false);
-
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
+
+    // Patterns
+    const [allPatterns, setAllPatterns] = useState([]);
+    const [patterns, setPatterns] = useState([]);
+    const [patternsType, setPatternsType] = useState('');
+    const [patternCategories, setPatternCategories] = useState([]);
+    const [activePatterCat, setActivePatternCat] = useState('all');
+
+    // Filter by Patterns Type
+    useEffect(() => {
+        const filteredPatterns = allPatterns.filter((template) => {
+            if (patternsType === 'free') {
+                return template?.status === 'free';
+            } else if (patternsType === 'pro') {
+                return template?.status === 'pro';
+            } else {
+                return true;
+            }
+        });
+        setPatterns(filteredPatterns.slice(0, number));
+        setTotal(filteredPatterns.length);
+    }, [patternsType]); // eslint-disable-line
+
+    // Filter by Category
+    useEffect(() => {
+        // filter patterns based on category
+        const filteredPatterns = allPatterns.filter((template) => {
+            if (activePatterCat === 'all') {
+                return true;
+            } else {
+                return template.categories.includes(activePatterCat);
+            }
+        });
+        setPatterns(filteredPatterns.slice(0, number));
+        setTotal(filteredPatterns.length);
+    }, [activePatterCat]); // eslint-disable-line
+
+    // Demos
+    const [allDemos, setAllDemos] = useState([]);
+    const [demos, setDemos] = useState([]);
+    const [demosType, setDemosType] = useState('');
+    const [demoCategories, setDemoCategories] = useState([]);
+    const [activeDemoCat, setActiveDemoCat] = useState('all');
+
+    // Filter by Demos Type
+    useEffect(() => {
+        const filteredDemos = allDemos.filter((template) => {
+            if (demosType === 'free') {
+                return template?.status === 'free';
+            } else if (demosType === 'pro') {
+                return template?.status === 'pro';
+            } else {
+                return true;
+            }
+        });
+        setDemos(filteredDemos.slice(0, number));
+        setTotal(filteredDemos.length);
+    }, [demosType]); // eslint-disable-line
+
+    // Filter by Category
+    useEffect(() => {
+        // filter patterns based on category
+        const filteredDemos = allDemos.filter((template) => {
+            if (activeDemoCat === 'all') {
+                return true;
+            } else {
+                return template.categories.includes(activeDemoCat);
+            }
+        });
+        setDemos(filteredDemos.slice(0, number));
+        setTotal(filteredDemos.length);
+    }, [activeDemoCat]); // eslint-disable-line
 
     const [allTemplates, setAllTemplates] = useState([]);
     const [templates, setTemplates] = useState([]);
 
-    const [allPatterns, setAllPatterns] = useState([]);
-    const [patterns, setPatterns] = useState([]);
-
-    const [demos, setDemos] = useState([]);
+    // others
     const [favTemplates, setFavTemplates] = useState([]);
     const [favTemplatesData, setFavTemplatesData] = useState([]);
 
     // tags
-    const [activeTag, setActiveTag] = useState('');
-    const [tags, setTags] = useState([]);
-    const sortTemplatesByTag = (tag) => {
-        setActiveTag(tag);
-        const filteredTemplates = allTemplates.filter((template) => template.tags.includes(tag));
-        setTemplates(filteredTemplates);
-    };
+    // const [activeTag, setActiveTag] = useState('');
+    // const [tags, setTags] = useState([]);
+    // const sortTemplatesByTag = (tag) => {
+    //     setActiveTag(tag);
+    //     const filteredTemplates = allTemplates.filter((template) => template.tags.includes(tag));
+    //     setTemplates(filteredTemplates);
+    // };
 
     // sorting
-    const [sortBy, setSortBy] = useState('newest');
-    const handleSortBy = (value) => {
-        setSortBy(value);
-        const sortedTemplates = templates.sort((a, b) => {
-            if (value === 'newest') {
-                return new Date(b.created) - new Date(a.created);
-            } else if (value === 'oldest') {
-                return new Date(a.created) - new Date(b.created);
-            }
-        });
-        setTemplates([...sortedTemplates]); // update the state
-    };
+    // const [sortBy, setSortBy] = useState('newest');
+    // const handleSortBy = (value) => {
+    //     setSortBy(value);
+    //     const sortedTemplates = templates.sort((a, b) => {
+    //         if (value === 'newest') {
+    //             return new Date(b.created) - new Date(a.created);
+    //         } else if (value === 'oldest') {
+    //             return new Date(a.created) - new Date(b.created);
+    //         }
+    //     });
+    //     setTemplates([...sortedTemplates]); // update the state
+    // };
 
     // fetch settings
     const fetchSettings = async (options) => {
@@ -148,18 +209,42 @@ function ZoloBlocksTemplateLibraryButton() {
 
     // Handle Patterns, Templates, Pages, Demos
     useEffect(() => {
-        const patterns = allTemplates.filter((template) => template.template_type === 'patterns');
-        const templates = allTemplates.filter((template) => template.template_type === 'templates');
-        const pages = allTemplates.filter((template) => template.type === 'pages');
-        const demos = allTemplates.filter((template) => template.type === 'demos');
+        const allItems = JSON.parse(localStorage.getItem('zoloblocks_templates'));
+
+        if (!allTemplates) {
+            return;
+        }
+
+        const patterns = allItems.filter((template) => template.template_type === 'patterns');
+        const templates = allItems.filter((template) => template.template_type === 'templates');
+        const pages = allItems.filter((template) => template.template_type === 'pages');
+        const demos = allItems.filter((template) => template.template_type === 'demos');
 
         setAllPatterns(patterns);
         setPatterns(patterns);
         setTemplates(templates);
         setDemos(demos);
-    }, [allTemplates]);
+        setAllDemos(demos);
 
-    // console.log('patterns: ', patterns);
+        // Categories
+        // set pattern categories
+        const patternCategories = patterns
+            .filter((template) => template.template_type === 'patterns')
+            .map((template) => template.categories);
+        const uniquePatternCategories = [...new Set(patternCategories.flat())];
+        const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
+        const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
+        patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+        setPatternCategories(patternCategoriesArray);
+
+        // set demo categories
+        const demoCategories = demos.filter((template) => template.template_type === 'demos').map((template) => template.categories);
+        const uniqueDemoCategories = [...new Set(demoCategories.flat())];
+        const sortedDemoCategories = uniqueDemoCategories.sort((a, b) => a.localeCompare(b));
+        const demoCategoriesArray = sortedDemoCategories.map((category) => ({ label: category, value: category }));
+        demoCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+        setDemoCategories(demoCategoriesArray);
+    }, [pullDemos]);
 
     // fetch templates
     const fetchTemplates = async () => {
@@ -169,20 +254,20 @@ function ZoloBlocksTemplateLibraryButton() {
             method: 'GET',
         }).then((response) => {
             const { data } = response;
-            setAllTemplates(data);
-            setTotal(data.length);
+            // setAllTemplates(data);
+            // setTotal(data.length);
             localStorage.setItem('zoloblocks_templates', JSON.stringify(data));
-            // find tags
-            const allTags = data.map((template) => template.tags);
-            // find top 5 tags based on frequency
-            const tags = allTags.flat().reduce((acc, tag) => {
-                acc[tag] = (acc[tag] || 0) + 1;
-                return acc;
-            }, {});
-            const sortedTags = Object.keys(tags)
-                .sort((a, b) => tags[b] - tags[a])
-                .slice(0, 9);
-            setTags(sortedTags);
+            // // find tags
+            // const allTags = data.map((template) => template.tags);
+            // // find top 5 tags based on frequency
+            // const tags = allTags.flat().reduce((acc, tag) => {
+            //     acc[tag] = (acc[tag] || 0) + 1;
+            //     return acc;
+            // }, {});
+            // const sortedTags = Object.keys(tags)
+            //     .sort((a, b) => tags[b] - tags[a])
+            //     .slice(0, 9);
+            // setTags(sortedTags);
             setLoading(false);
         });
     };
@@ -215,63 +300,26 @@ function ZoloBlocksTemplateLibraryButton() {
      * Fetch Templates
      */
     useEffect(() => {
+        // delete localStorage
+        localStorage.removeItem('zoloblocks_templates');
+
+        // fetch templates
         fetchTemplates();
     }, [pullDemos]);
 
-    // manage templates
-    useEffect(() => {
-        // get templates from local storage
-        const templates = JSON.parse(localStorage.getItem('zoloblocks_templates'));
-        if (templates) {
-            setTemplates(templates.slice(0, number));
-            // find unique categories
-            const allCategories = templates.map((template) => template.categories);
-            const uniqueCategories = [...new Set(allCategories.flat())];
-
-            // sort the categories alphabetically
-            const sortedCategories = uniqueCategories.sort((a, b) => a.localeCompare(b));
-
-            // create an array of objects with label and value and add all to the beginning
-            const categories = sortedCategories.map((category) => ({ label: category, value: category }));
-            categories.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setCategories(categories);
-
-            // set pattern categories
-            const patternCategories = templates
-                .filter((template) => template.template_type === 'patterns')
-                .map((template) => template.categories);
-            const uniquePatternCategories = [...new Set(patternCategories.flat())];
-            const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
-            const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
-            patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setPatternCategories(patternCategoriesArray);
-        }
-    }, [allTemplates, number]);
-
-    // Filter by Category
-    useEffect(() => {
-        // filter patterns based on category
-        const filteredPatterns = allPatterns.filter((template) => {
-            if (activeCat === 'all') {
-                return true;
-            } else {
-                return template.categories.includes(activeCat);
-            }
-        });
-        setPatterns(filteredPatterns.slice(0, number));
-        setTotal(filteredPatterns.length);
-    }, [activeCat]); // eslint-disable-line
-
     // filter templates based on search text
     useEffect(() => {
-        // filter templates based on search text
-        const filteredTemplates = allTemplates.filter((template) => {
+        const filteredPatterns = allPatterns.filter((template) => {
             return template.title.toLowerCase().includes(searchText.toLowerCase());
         });
 
-        setTemplates(filteredTemplates.slice(0, number));
-        setTotal(filteredTemplates.length);
+        console.log('filtered patterns:', patterns);
+
+        setPatterns(filteredPatterns);
     }, [searchText, activeTab]); // eslint-disable-line
+
+    // console.log('outer all patterns:', allPatterns);
+    console.log('outer patterns:', patterns);
 
     /**
      * Handle Import Template
@@ -383,12 +431,100 @@ function ZoloBlocksTemplateLibraryButton() {
                             </div>
                             <div className="demo-title-proFree-wrap">
                                 <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
-                                <div className="demo-proFree-btn">
-                                    <button className="demo-free-btn">{__('free', 'zoloblocks')}</button>
-                                    <Tooltip text={__('Coming Soon', 'zoloblocks')} placement="top">
-                                        <button className="demo-pro-btn">{__('pro', 'zoloblocks')}</button>
-                                    </Tooltip>
-                                </div>
+                                {activeTab === 'patterns' && (
+                                    <div className="demo-proFree-btn">
+                                        {patternsType !== '' && (
+                                            <Tooltip>
+                                                <button
+                                                    className="demo-pro-free-reset"
+                                                    onClick={() => {
+                                                        setPatternsType('');
+                                                    }}
+                                                >
+                                                    <svg
+                                                        className="w-6 h-6 text-gray-800 dark:text-white"
+                                                        aria-hidden="true"
+                                                        width={24}
+                                                        height={24}
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </Tooltip>
+                                        )}
+                                        <button
+                                            className="demo-free-btn"
+                                            onClick={() => {
+                                                setPatternsType('free');
+                                            }}
+                                        >
+                                            {__('free', 'zoloblocks')}
+                                        </button>
+                                        <button
+                                            className="demo-pro-btn"
+                                            onClick={() => {
+                                                setPatternsType('pro');
+                                            }}
+                                        >
+                                            {__('pro', 'zoloblocks')}
+                                        </button>
+                                    </div>
+                                )}
+                                {activeTab === 'demos' && (
+                                    <div className="demo-proFree-btn">
+                                        {demosType !== '' && (
+                                            <Tooltip>
+                                                <button
+                                                    className="demo-pro-free-reset"
+                                                    onClick={() => {
+                                                        setDemosType('');
+                                                    }}
+                                                >
+                                                    <svg
+                                                        className="w-6 h-6 text-gray-800 dark:text-white"
+                                                        aria-hidden="true"
+                                                        width={24}
+                                                        height={24}
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </Tooltip>
+                                        )}
+                                        <button
+                                            className="demo-free-btn"
+                                            onClick={() => {
+                                                setDemosType('free');
+                                            }}
+                                        >
+                                            {__('free', 'zoloblocks')}
+                                        </button>
+                                        <button
+                                            className="demo-pro-btn"
+                                            onClick={() => {
+                                                setDemosType('pro');
+                                            }}
+                                        >
+                                            {__('pro', 'zoloblocks')}
+                                        </button>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="category-list">
@@ -399,8 +535,10 @@ function ZoloBlocksTemplateLibraryButton() {
                                             patternCategories.map((category) => (
                                                 <button
                                                     key={category.value}
-                                                    className={classNames('single-category', { active: activeCat === category.value })}
-                                                    onClick={() => setActiveCat(category.value)}
+                                                    className={classNames('single-category', {
+                                                        active: activePatterCat === category.value,
+                                                    })}
+                                                    onClick={() => setActivePatternCat(category.value)}
                                                 >
                                                     <span className="single-category-text">{category.label}</span>
                                                     <span className="single-category-count">
@@ -408,6 +546,31 @@ function ZoloBlocksTemplateLibraryButton() {
                                                             (category.value === 'all'
                                                                 ? allPatterns.length
                                                                 : allPatterns.filter((template) =>
+                                                                      template.categories.includes(category.label)
+                                                                  ).length)}
+                                                    </span>
+                                                </button>
+                                            ))}
+                                    </>
+                                )}
+                                {activeTab === 'demos' && (
+                                    <>
+                                        {demoCategories &&
+                                            demoCategories.length > 0 &&
+                                            demoCategories.map((category) => (
+                                                <button
+                                                    key={category.value}
+                                                    className={classNames('single-category', {
+                                                        active: activeDemoCat === category.value,
+                                                    })}
+                                                    onClick={() => setActiveDemoCat(category.value)}
+                                                >
+                                                    <span className="single-category-text">{category.label}</span>
+                                                    <span className="single-category-count">
+                                                        {allDemos &&
+                                                            (category.value === 'all'
+                                                                ? allDemos.length
+                                                                : allDemos.filter((template) =>
                                                                       template.categories.includes(category.label)
                                                                   ).length)}
                                                     </span>
@@ -460,9 +623,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                             <button
                                                 className="sync-button"
                                                 onClick={() => {
-                                                    // setPullDemos(!pullDemos);
+                                                    setPullDemos(!pullDemos);
                                                     pullNewDemos();
-                                                    setActiveCat('all');
+                                                    // setActiveCat('all');
                                                     setSearchText('');
                                                 }}
                                             >
@@ -501,87 +664,90 @@ function ZoloBlocksTemplateLibraryButton() {
                                 </div>
                             </div>
                             {activeTab === 'patterns' && (
-                                <div className="zolo-secondary-head">
-                                    <div className="secondary-header-item">
-                                        <div className="secondary-item">
-                                            <SelectControl
-                                                label={__('Sort By :', 'zoloblocks')}
-                                                options={[
-                                                    { label: __('Newest', 'zoloblocks'), value: 'newest' },
-                                                    { label: __('Oldest', 'zoloblocks'), value: 'oldest' },
-                                                ]}
-                                                onChange={(v) => {
-                                                    handleSortBy(v);
-                                                }}
-                                                value={sortBy}
-                                            />
-                                        </div>
+                                <>
+                                    <div className="zolo-secondary-head">
+                                        <div className="secondary-header-item">
+                                            <div className="secondary-item">
+                                                {/* <SelectControl
+                                                    label={__('Sort By :', 'zoloblocks')}
+                                                    options={[
+                                                        { label: __('Newest', 'zoloblocks'), value: 'newest' },
+                                                        { label: __('Oldest', 'zoloblocks'), value: 'oldest' },
+                                                    ]}
+                                                    onChange={(v) => {
+                                                        handleSortBy(v);
+                                                    }}
+                                                    value={sortBy}
+                                                /> */}
+                                            </div>
 
-                                        <div className="secondary-item">
-                                            <BaseControl label={__('Popular Tags :', 'zoloblocks')} className="zolo-tags">
-                                                <div className="tags-wrap">
-                                                    <div className="tags-btn-wrap">
-                                                        {tags &&
-                                                            tags.length > 0 &&
-                                                            tags.map((tag) => (
-                                                                <button
-                                                                    key={tag}
-                                                                    className={classNames(
-                                                                        'single-tag',
-                                                                        `${activeTag === tag ? 'active' : ''}`
-                                                                    )}
-                                                                    onClick={() => sortTemplatesByTag(tag)}
-                                                                >
-                                                                    {
-                                                                        //make the first letter uppercase of each word in the tag
-                                                                        tag
-                                                                            .split(' ')
-                                                                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                                                                            .join(' ')
-                                                                    }
-                                                                </button>
-                                                            ))}
-                                                    </div>
-                                                    <button
-                                                        className={classNames('clear-tag', `${activeTag !== '' ? 'active' : ''}`)}
-                                                        onClick={() => {
-                                                            setActiveTag('');
-                                                            setTemplates(allTemplates);
-                                                        }}
-                                                    >
-                                                        <svg
-                                                            width="64px"
-                                                            height="64px"
-                                                            viewBox="0 0 21 21"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            fill="#2483ff"
-                                                            stroke="#2483ff"
+                                            <div className="secondary-item">
+                                                {/* <BaseControl label={__('Popular Tags :', 'zoloblocks')} className="zolo-tags">
+                                                    <div className="tags-wrap">
+                                                        <div className="tags-btn-wrap">
+                                                            {tags &&
+                                                                tags.length > 0 &&
+                                                                tags.map((tag) => (
+                                                                    <button
+                                                                        key={tag}
+                                                                        className={classNames(
+                                                                            'single-tag',
+                                                                            `${activeTag === tag ? 'active' : ''}`
+                                                                        )}
+                                                                        onClick={() => sortTemplatesByTag(tag)}
+                                                                    >
+                                                                        {
+                                                                            //make the first letter uppercase of each word in the tag
+                                                                            tag
+                                                                                .split(' ')
+                                                                                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                                                                .join(' ')
+                                                                        }
+                                                                    </button>
+                                                                ))}
+                                                        </div>
+                                                        <button
+                                                            className={classNames('clear-tag', `${activeTag !== '' ? 'active' : ''}`)}
+                                                            onClick={() => {
+                                                                setActiveTag('');
+                                                                setTemplates(allTemplates);
+                                                            }}
                                                         >
-                                                            <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                                                            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
-                                                            <g id="SVGRepo_iconCarrier">
+                                                            <svg
+                                                                width="64px"
+                                                                height="64px"
+                                                                viewBox="0 0 21 21"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                fill="#2483ff"
+                                                                stroke="#2483ff"
+                                                            >
+                                                                <g id="SVGRepo_bgCarrier" strokeWidth={0} />
                                                                 <g
-                                                                    fill="none"
-                                                                    fillRule="evenodd"
-                                                                    stroke="#000000"
+                                                                    id="SVGRepo_tracerCarrier"
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
-                                                                    transform="matrix(0 1 1 0 2.5 2.5)"
-                                                                >
-                                                                    <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />
-                                                                    <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />
+                                                                />
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <g
+                                                                        fill="none"
+                                                                        fillRule="evenodd"
+                                                                        stroke="#000000"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        transform="matrix(0 1 1 0 2.5 2.5)"
+                                                                    >
+                                                                        <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8" />
+                                                                        <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />
+                                                                    </g>
                                                                 </g>
-                                                            </g>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </BaseControl>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </BaseControl> */}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )}
-                            {activeTab === 'patterns' && (
-                                <>
+
                                     {patterns && patterns.length > 0 && (
                                         <Patterns
                                             templates={patterns}
@@ -590,6 +756,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                             favTemplates={favTemplates}
                                         />
                                     )}
+
                                     {patterns && patterns?.length > number && (
                                         <div className="load-more-btn-wrapper">
                                             <button
@@ -611,6 +778,14 @@ function ZoloBlocksTemplateLibraryButton() {
                                     templates={favTemplatesData}
                                     handleImportTemplate={handleImportTemplate}
                                     handleFavTemplates={saveFavTemplates}
+                                />
+                            )}
+                            {activeTab === 'demos' && (
+                                <Demos
+                                    templates={demos}
+                                    handleImportTemplate={handleImportTemplate}
+                                    saveFavTemplates={saveFavTemplates}
+                                    favTemplates={favTemplates}
                                 />
                             )}
 
