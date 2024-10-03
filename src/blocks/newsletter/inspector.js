@@ -149,6 +149,19 @@ function Inspector(props) {
 
     const validLabels = labels.filter((label) => label.trim() !== '');
 
+    // zolo.newsletter.providers;
+   const providers = [
+                {
+                    label: __('Mailchimp', 'zoloblocks'),
+                    value: 'newsletter',
+                },
+                {
+                    label: __('Webhook (Pro)', 'zoloblocks'),
+                    value: 'webhook',
+                    disabled: true,
+                },
+            ]
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -161,17 +174,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Provider', 'zoloblocks')}
                                 value={provider}
-                                options={[
-                                    {
-                                        label: __('Mailchimp', 'zoloblocks'),
-                                        value: 'newsletter',
-                                    },
-                                    {
-                                        label: __('Webhook (Pro)', 'zoloblocks'),
-                                        value: 'webhook',
-                                        // disabled: true,
-                                    },
-                                ]}
+                                options={applyFilters('zolo.newsletter.providers', providers)}
                                 onChange={(value) => {
                                     setAttributes({
                                         provider: value,
@@ -195,7 +198,7 @@ function Inspector(props) {
                                                 />
                                             ) : (
                                                 <p className="zolo-notice-error">
-                                                    {__('No Webhook Found. Please configure the webhook in the', 'zoloblocks')}{' '}
+                                                    {__('No Webhook URL Found. Please configure the webhook in the', 'zoloblocks')}{' '}
                                                     <a href={`${zoloSettings.home_url}/wp-admin/admin.php?page=zoloblocks#webhookSettings`}>
                                                         {__('ZoloBlocks settings', 'zoloblocks')}
                                                     </a>
