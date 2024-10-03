@@ -51,7 +51,6 @@ const DateMeta = ({post, meta}) => {
   ) : content;
 };
 
-
 const TimeMeta = ({post, meta}) => {
   const postDate = post?.date ? new Date(post.date) : null;
   const formattedTime = postDate
@@ -64,7 +63,6 @@ const TimeMeta = ({post, meta}) => {
     <span className="zolo-text">{formattedTime}</span>
   </>);
 };
-
 
 const TermsMeta = ({post, meta}) => {
   const categories = useSelect((select) => {
@@ -104,7 +102,6 @@ const TermsMeta = ({post, meta}) => {
   );
 };
 
-
 const CommentsMeta = ({post, meta}) => {
   const commentCount = post?.comment_count || 0;
   const commentsLabel = sprintf(__('%d Comments', 'zoloblocks'), commentCount);
@@ -126,9 +123,7 @@ const CommentsMeta = ({post, meta}) => {
   ) : content;
 };
 
-
 const MetaItem = ({meta, post}) => {
-
   const getMetaComponent = (type) => {
     switch (type) {
       case 'author':

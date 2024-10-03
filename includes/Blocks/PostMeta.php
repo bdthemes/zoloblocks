@@ -9,7 +9,6 @@ use Zolo\Helpers\ZoloHelpers;
  */
 class PostMeta {
 
-
 	/**
 	 * Default block attributes
 	 *

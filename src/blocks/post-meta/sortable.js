@@ -1,11 +1,9 @@
-import {SelectControl, ToggleControl} from "@wordpress/components";
+import {__} from '@wordpress/i18n';
+import {SelectControl, ToggleControl,Button, PanelBody} from "@wordpress/components";
 const {ZoloIconPicker, SortableControl, SortableItem, IconicBtnGroup, LinkControl} = window.zoloModule;
-const {__} = wp.i18n;
-const {Button, PanelBody, TextControl} = wp.components;
 import {cloneDeep} from 'lodash';
 import {META_TYPE, GET_TAXONOMIEX, ICON_TYPE} from "./constants";
 import {MetaIcon} from "./meta-icon";
-
 
 const taxonomiesArray = GET_TAXONOMIEX(zoloParams.get_taxonomies);
 
@@ -135,7 +133,6 @@ const Sortable = ({metaData, setAttributes}) => {
                         }}
                       />
                     )}
-
                   </PanelBody>
                 </SortableItem>
               </div>

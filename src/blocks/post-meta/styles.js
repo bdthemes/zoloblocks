@@ -160,15 +160,68 @@ function Style({props}) {
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
         ${textIndentDesk}
       }
-
     `;
 
   const tabletAllStyle = `
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block{
+        ${metaGapTab}
+        ${metaAlignTab}
+      }
 
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block.separator-dot .zolo-separator{
+        ${separatorSWidthTab}
+        ${separatorSHeightTab}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block.separator-line .zolo-separator{
+        ${separatorWidthTab}
+        ${separatorHeightTab}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info .zolo-icon svg{
+       ${iconSizeWidthTab}
+       ${iconSizeHeightTab}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info .zolo-text,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info .zolo-text .term-name{
+        ${textTypoTab}
+      }
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
+        ${textIndentTab}
+      }
     `;
 
   const mobileAllStyle = `
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block{
+        ${metaGapMob}
+        ${metaAlignMob}
+      }
 
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block.separator-dot .zolo-separator{
+        ${separatorSWidthMob}
+        ${separatorSHeightMob}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block.separator-line .zolo-separator{
+        ${separatorWidthMob}
+        ${separatorHeightMob}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info .zolo-icon svg{
+       ${iconSizeWidthMob}
+       ${iconSizeHeightMob}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info .zolo-text,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info .zolo-text .term-name{
+        ${textTypoMob}
+      }
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
+        ${textIndentMob}
+      }
   `;
 
   return (

@@ -1,5 +1,5 @@
 import {InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, TextControl, ToggleControl} from '@wordpress/components';
+import {SelectControl, TextControl} from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import objAttributes from './attributes';
 import {
@@ -87,7 +87,6 @@ function Inspector(props) {
                 ]}
                 onChange={(separatorStyle) => setAttributes({separatorStyle})}
               />
-
               {separatorStyle === 'separator-custom' && (
                 <TextControl
                   label={__('Separator', 'zoloblocks')}
@@ -95,7 +94,6 @@ function Inspector(props) {
                   onChange={(customSeparator) => setAttributes({customSeparator})}
                 />
               )}
-
               <ColorControl
                 label={__('Color', 'zoloblocks')}
                 color={separatorColor}
