@@ -220,11 +220,11 @@ const Style = ({ props }) => {
             ${DeskTextpathSpacing}
             ${DeskTextSpacing}
             ${textPathColor && `fill:${textPathColor}`}
-            
+
         }
         .${uniqueId}.wp-block-zolo-text-path tspan:hover {
             ${textPathHoverColor && `fill:${textPathHoverColor}`}
-        }  
+        }
         .${uniqueId}.wp-block-zolo-text-path .zolo-path{
             ${textPathShow && 'stroke:#2667ff'};
         }
@@ -241,7 +241,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
              ${imageMarginDesk}
         }
-        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image .zolo-img {
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
             ${DeskCircleImgHeight}
             ${DeskCircleImgWidth}
             ${imageDeskBGStyle}
@@ -276,10 +276,10 @@ const Style = ({ props }) => {
             ${TabTextSpacing}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
-            ${TabTextpathTypo}  
+            ${TabTextpathTypo}
             ${TabTextpathWidth}
         }
-   
+
     `;
 
     const mobileAllStyle = `
