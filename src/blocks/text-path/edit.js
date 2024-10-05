@@ -124,11 +124,11 @@ export default function Edit(props) {
 
             <Style props={props} />
             <div {...blockProps}>
-                {textPathType !== 'circle' && textPathType !== 'triangle' && textPathType !== 'rectangle' && textPathType !== 'polygon' && (
+                {textPathType !== 'circle' && (
                     <SvgComponentStyle />
                 )}
 
-                {textPathType === 'circle' || textPathType === 'triangle' || textPathType === 'rectangle' || textPathType === 'polygon' ? (
+                {textPathType === 'circle' && (
                     <div className="zolo-circle-path-wrap">
                         <SvgComponentStyle />
                         {showCircleImg && (
@@ -164,7 +164,7 @@ export default function Edit(props) {
                             </div>
                         )}
                     </div>
-                ) : null}
+                )}
             </div>
         </>
     );

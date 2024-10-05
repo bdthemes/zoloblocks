@@ -105,10 +105,7 @@ function Inspector(props) {
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
                             <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
-                            {(textPathType === 'circle' ||
-                                textPathType === 'triangle' ||
-                                textPathType === 'rectangle' ||
-                                textPathType === 'polygon') && (
+                            {(textPathType === 'circle') && (
                                 <ToggleControl
                                     label={__('Image', 'zoloblocks')}
                                     checked={showCircleImg}
@@ -202,7 +199,7 @@ function Inspector(props) {
                                 alignOptions={DEFAULT_ALIGNS}
                             />
                         </ZoloPanelBody>
-                        {showCircleImg && (
+                        {showCircleImg && (textPathType == 'circle') && (
                             <ZoloPanelBody title={__('Image', 'zoloblocks')} panelProps={props}>
                                 <BaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
                                     {circlePhoto ? (
@@ -210,7 +207,10 @@ function Inspector(props) {
                                             imageUrl={circlePhoto && circlePhoto.url}
                                             onDeleteImage={() =>
                                                 setAttributes({
-                                                    circlePhoto: null,
+                                                    circlePhoto: {
+                                                        id: '',
+                                                        url: '',
+                                                    }
                                                 })
                                             }
                                             imageId={circlePhoto && circlePhoto.id}
@@ -367,7 +367,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        {showCircleImg && (
+                        {textPathType === 'circle' && (
                             <>
                                 <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                                     <ResRangeControl

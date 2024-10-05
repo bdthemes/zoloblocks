@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }) => {
         return (
             <>
-                {textPathType !== 'circle' && textPathType !== 'triangle' && textPathType !== 'rectangle' && textPathType !== 'polygon' && (
+                {textPathType !== 'circle' && (
                     <SvgComponent uniqueId={uniqueid} pathType={textPathType}>
                         <text>
                             <textPath
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </text>
                     </SvgComponent>
                 )}
-                {textPathType === 'circle' || textPathType === 'triangle' || textPathType === 'rectangle' || textPathType === 'polygon' ? (
+                {textPathType === 'circle' && (
                     <>
                         <div className="zolo-circle-path-wrap">
                             <SvgComponent uniqueId={uniqueid} pathType={textPathType}>
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             )}
                         </div>
                     </>
-                ) : null}
+                )}
             </>
         );
     };
