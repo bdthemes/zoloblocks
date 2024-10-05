@@ -655,6 +655,10 @@ export default function Style({ props }) {
             ${iconSize}
         }
 
+        .${uniqueId}.zolo-block.wp-block-zolo-notice.style-4.info .zolo__display-icon::before {
+			${iconBorderRadiusDesktop}
+        }
+
 		.${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice.${preset} .zolo-block-icon-wrap svg {
             --zoloblocks-brand-color: ${iconColor ? iconColor : ''};
 		}
@@ -721,6 +725,7 @@ export default function Style({ props }) {
                 .${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon,
                 .${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-icon-wrap .zolo__display-icon::before {
                     ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
+                    
                 }
             `
             : ''
@@ -784,6 +789,10 @@ export default function Style({ props }) {
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
 		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-notice.style-4.info .zolo__display-icon::before {
+			${iconBorderRadiusTab}
+        }
 
 		.${uniqueId}.zolo-block.wp-block-zolo-notice.zolo-block-notice .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
@@ -888,6 +897,10 @@ export default function Style({ props }) {
 			${iconMarginMob}
             ${iconSizeMob}
 		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-notice.style-4.info .zolo__display-icon::before {
+			${iconBorderRadiusMob}
+        }
 
         .${uniqueId}.zolo-block.wp-block-zolo-notice .zolo-notice-dismiss svg {
             ${closeIconSizeWMob}

@@ -466,9 +466,7 @@ function Style({ props }) {
         ${itemBoxShadow}
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image{
-        ${avatarPaddingDesk}
         ${avatarMarginDesk}
-
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image a img{
         ${avatarBorderDesk}
@@ -476,6 +474,7 @@ function Style({ props }) {
         ${avatarBoxShadow}
         ${avatarImgSizeDesk}
         ${avatarImgHeightDesk}
+        ${avatarPaddingDesk}
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image,
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image::before {
@@ -577,7 +576,6 @@ function Style({ props }) {
       }
 
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image{
-        ${avatarPaddingTab}
         ${avatarMarginTab}
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image a img{
@@ -585,6 +583,7 @@ function Style({ props }) {
         ${avatarBorderRadiusTab}
         ${avatarImgSizeTab}
         ${avatarImgHeightTab}
+        ${avatarPaddingTab}
       }
 
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-name a{
@@ -652,7 +651,6 @@ function Style({ props }) {
         ${itemBorderRadiusMob}
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image{
-        ${avatarPaddingMob}
         ${avatarMarginMob}
       }
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-image a img{
@@ -660,6 +658,7 @@ function Style({ props }) {
         ${avatarBorderRadiusMob}
         ${avatarImgSizeMob}
         ${avatarImgHeightMob}
+        ${avatarPaddingMob}
       }
 
       .${uniqueId}.zolo-block.zolo-author-wrap .zolo-name a{

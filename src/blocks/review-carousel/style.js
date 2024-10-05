@@ -689,18 +689,20 @@ const Style = ({ props }) => {
 			${ratingIconDeskAlignStyle}
 		}
 
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap {
+       .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap {
             ${photoDeskWidth}
             ${photoDeskHeight}
             ${photoDeskMargin}
+      }
 
 		.${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
-			${photoBoxShadow}}
+			${photoBoxShadow}
 			${photoDeskPadding}
 			${photoDeskBGStyle}
 		}
+
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-review-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
