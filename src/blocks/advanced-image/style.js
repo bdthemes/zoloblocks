@@ -431,7 +431,7 @@ const Style = ({ props }) => {
         ${
             activeHover
                 ? `
-                    .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img:hover {
+                    .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-image-block-inner:hover .zolo-img {
                         filter:
                             blur(${blurHover}px)
                             brightness(${brightnessHover}%)
