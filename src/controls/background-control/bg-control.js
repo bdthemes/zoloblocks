@@ -34,6 +34,15 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
         [`${controlName}bgImageID`]: bgImageID,
         [`${controlName}bgImgAttachment`]: bgImgAttachment,
 
+        [`${controlName}bgVideoID`]: bgVideoID,
+        [`${controlName}bgVideoURL`]: bgVideoURL,
+        [`${controlName}backgroundVideoType`]: backgroundVideoType,
+        [`${controlName}backgroundVideoMuted`]: backgroundVideoMuted,
+        [`${controlName}backgroundVideoLoop`]: backgroundVideoLoop,
+        [`${controlName}backgroundVideoPlayOnce`]: backgroundVideoPlayOnce,
+
+
+
         [`${controlName}backgroundSize`]: backgroundSize,
         [`${controlName}bgImgCustomSize`]: bgImgCustomSize,
         [`${controlName}bgImgCustomSizeUnit`]: bgImgCustomSizeUnit,
@@ -103,6 +112,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
         [`hov_MOB${controlName}bgImgRepeat`]: hov_MOBbgImgRepeat,
     } = attributes;
 
+    // console.log([`${controlName}bgVideoID`]);
+console.log(attributes);
     return (
         <>
             <BaseControl>
@@ -123,6 +134,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                         <ButtonGroup>
                                             {BACKGROUND_TYPES.map(({ value, label }) => (
                                                 <Button
+                                                    key={value}
                                                     variant={backgroundType === value ? 'primary' : 'secondary'}
                                                     onClick={() =>
                                                         setAttributes({
@@ -1177,6 +1189,50 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                     }
                                                 />
                                             )}
+                                        </>
+                                    )}
+                                    {backgroundType === 'video' && (
+                                        <>
+                                            <MediaUpload
+                                                onSelect={({ url, id }) =>
+                                                    setAttributes({
+                                                        [`${controlName}bgVideoURL`]: url,
+                                                        [`${controlName}bgVideoID`]: id,
+                                                    })
+                                                }
+                                                allowedTypes={['video']}
+                                                type="video"
+                                                value={bgVideoID}
+                                                render={({ open }) => (
+                                                    <>
+                                                        <Button
+                                                            className="components-button"
+                                                            label={__('Upload Video', 'zoloblocks')}
+                                                            icon="format-video"
+                                                            onClick={open}
+                                                        />
+                                                        <span
+                                                            style={{
+                                                                padding: '10px 0',
+                                                                display: 'block',
+                                                            }}
+                                                        ></span>
+                                                    </>
+                                                )}
+                                            />
+
+                                            {/* {videoURL && (
+                                                <>
+                                                    <VideoAvatar
+                                                        videoUrl={videoURL}
+                                                        onDeleteVideo={() =>
+                                                            setAttributes({
+                                                                [`${controlName}videoURL`]: null,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )} */}
                                         </>
                                     )}
                                 </>

@@ -13,6 +13,7 @@ const BackgroundControl = ({
     noOverlayBGImg = false,
     noTransition = false,
     particles = false,
+    video = false,
 
 }) => {
     const { setAttributes, attributes } = requiredProps;
