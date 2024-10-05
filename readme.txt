@@ -377,6 +377,9 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 * Fixed: Maintenance mode issue fixed.
 * Fixed: Appender button issue fixed.
 * Fixed: Focus issue in Advanced Search & Newsletter blocks fixed.
+* Fixed: Photo height, width and margin issue in Review Carousel Block fixed.
+* Fixed: Photo padding control issue in Author block fixed.
+* Fixed: Icon Border Radius issue in Notice block (layout style 4) fixed.
 * Improved: Query refactoring and optimization for better performance.
 * Improved: Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud.
 * Improved: Improved container design.
