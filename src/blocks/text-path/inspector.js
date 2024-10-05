@@ -105,7 +105,7 @@ function Inspector(props) {
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
                             <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
-                            {(textPathType === 'circle') && (
+                            {textPathType === 'circle' && (
                                 <ToggleControl
                                     label={__('Image', 'zoloblocks')}
                                     checked={showCircleImg}
@@ -199,7 +199,7 @@ function Inspector(props) {
                                 alignOptions={DEFAULT_ALIGNS}
                             />
                         </ZoloPanelBody>
-                        {showCircleImg && (textPathType == 'circle') && (
+                        {showCircleImg && textPathType == 'circle' && (
                             <ZoloPanelBody title={__('Image', 'zoloblocks')} panelProps={props}>
                                 <BaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
                                     {circlePhoto ? (
@@ -210,7 +210,7 @@ function Inspector(props) {
                                                     circlePhoto: {
                                                         id: '',
                                                         url: '',
-                                                    }
+                                                    },
                                                 })
                                             }
                                             imageId={circlePhoto && circlePhoto.id}
@@ -371,14 +371,7 @@ function Inspector(props) {
                             <>
                                 <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                                     <ResRangeControl
-                                        label={__('Width', 'zoloblocks')}
-                                        controlName={CIRCLE_IMG_WIDTH}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={1000}
-                                    />
-                                    <ResRangeControl
-                                        label={__('Height', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={CIRCLE_IMG_HEIGHT}
                                         requiredProps={requiredProps}
                                         min={0}

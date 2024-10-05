@@ -125,7 +125,7 @@ const Style = ({ props }) => {
         tabRangeStyle: TabCircleImgWidth,
         mobRangeStyle: MobCircleImgWidth,
     } = generateResRangeStyle({
-        controlName: CIRCLE_IMG_WIDTH,
+        controlName: CIRCLE_IMG_HEIGHT,
         property: 'width',
         attributes,
     });
@@ -280,6 +280,15 @@ const Style = ({ props }) => {
             ${TabTextpathWidth}
         }
 
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
+            ${TabCircleImgHeight}
+            ${TabCircleImgWidth}
+            ${imageTabBGStyle}
+            ${imagePaddingTab}
+            ${imageBorderTab}
+            ${imageBorderRadiusTab}
+        }
+
     `;
 
     const mobileAllStyle = `
@@ -294,6 +303,14 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-text-path svg {
             ${MobTextpathTypo}
             ${MobTextpathWidth}
+        }
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
+            ${MobCircleImgHeight}
+            ${MobCircleImgWidth}
+            ${imageMobBGStyle}
+            ${imagePaddingMob}
+            ${imageBorderMob}
+            ${imageBorderRadiusMob}
         }
     `;
     return (
