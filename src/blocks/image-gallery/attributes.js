@@ -124,13 +124,13 @@ const attributes = {
     // Sub Title
     ...generateDimensionAttributes(TITLE_MARGIN),
 
-     // Content
-     ...generateBorderAttributies(CONTENT_BORDER),
-     ...generateNormalBGAttributes(CONTENT_BACKGROUND),
-     ...generateDimensionAttributes(CONTENT_MARGIN),
-     ...generateDimensionAttributes(CONTENT_PADDING),
-     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
-     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
+    // Content
+    ...generateBorderAttributies(CONTENT_BORDER),
+    ...generateNormalBGAttributes(CONTENT_BACKGROUND),
+    ...generateDimensionAttributes(CONTENT_MARGIN),
+    ...generateDimensionAttributes(CONTENT_PADDING),
+    ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
 
     // Zoom Icon
     ...generateDimensionAttributes(ZOOM_ICON_PADDING),
@@ -253,9 +253,9 @@ const attributes = {
     imageHoverBorderColor: {
         type: 'string',
     },
-    backdropFilterBlur:{
+    backdropFilterBlur: {
         type: 'string',
-    }
+    },
 };
 
 export default attributes;
