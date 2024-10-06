@@ -73,6 +73,7 @@ import {
     MOBILE_MENU_WRAP_BORDER_RADIUS,
     MOBILE_MENU_WRAP_PADDING,
     MOBILE_MENU_WRAP_BOX_SHADOW,
+    BREAKPOINT_OPTIONS,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -113,18 +114,15 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <ToggleGroup
-                                label={__('Breakpoint', 'zoloblocks')}
-                                value={attributes?.menuBreakpoint}
-                                onChange={(value) => setAttributes({ menuBreakpoint: value })}
-                                options={[
-                                    { value: 'desktop', label: 'Desktop', icon: desktop },
-                                    { value: 'tablet', label: 'Tablet', icon: tablet },
-                                    { value: 'mobile', label: 'Mobile', icon: mobile },
-                                ]}
-                                isDeselectable
-                            />
-
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Breakpoint', 'zoloblocks')}
+                                    value={attributes?.menuBreakpoint}
+                                    onChange={(value) => setAttributes({ menuBreakpoint: value })}
+                                    options={BREAKPOINT_OPTIONS}
+                                    isDeselectable
+                                />
+                            </div>
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={NAV_MENU_ALIGNMENT}
@@ -133,7 +131,7 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Mobile Menu Settings', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Offcanvas Settings', 'zoloblocks')} panelProps={props}>
                             <BaseControl label={__('Logo', 'zoloblocks')} className="zolo-flex-col-control">
                                 {brandPhoto ? (
                                     <ImageAvatar
@@ -185,9 +183,9 @@ const Inspector = (props) => {
                                     })
                                 }
                             />
-                            <CardDivider />
+                            <div className="zolo-custom-heading">{__('Humberger Icon', 'zoloblocks')}</div>
                             <ZoloIconPicker
-                                label={__('Icon', 'zoloblocks')}
+                                label={__('Select', 'zoloblocks')}
                                 value={humbergerIcon}
                                 onChange={(value) => {
                                     setAttributes({
@@ -326,7 +324,7 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Mobile Menu', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Offcanvas', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Wrapper', 'zoloblocks')}
                             </div>
