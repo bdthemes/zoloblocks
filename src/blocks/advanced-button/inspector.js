@@ -248,46 +248,20 @@ function Inspector(props) {
                                             forBorderRadius={false}
                                         />
                                         <CardDivider />
-                                        {preset === 'button-2' && (
-                                            <ColorControl
-                                                label={__('Border Color', 'zoloblocks')}
-                                                color={buttonTwoBorderColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonTwoBorderColor: value,
-                                                    })
-                                                }
-                                            />
-                                        )}
-
-                                        {preset !== 'button-2' && (
-                                            <BorderControl
-                                                label={__('Border', 'zoloblocks')}
-                                                controlName={BUTTON_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
-                                        )}
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={BUTTON_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
                                         {preset !== 'button-4' && preset !== 'button-6' && (
                                             <BoxShadowControl controlName={BUTTON_BOX_SHADOW} requiredProps={requiredProps} />
                                         )}
-                                        {preset !== 'button-2' && (
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                controlName={BUTTON_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
-                                        )}
-                                        {preset === 'button-2' && (
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                controlName={BUTTON_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                                min={0}
-                                                max={6}
-                                            />
-                                        )}
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={BUTTON_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
                                     </>
                                 }
                                 hoverComponents={
