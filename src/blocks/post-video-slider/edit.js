@@ -112,10 +112,12 @@ export default function Edit(props) {
 
   useEffect(() => {
     console.log("slider init before");
-    const timeoutId = setTimeout(() => {
-      if (!sliderRef.current || !thumbSliderRef.current || !mainSliderRef.current) return;
+    const initSwiper = () => {
+      if (!sliderRef.current || !thumbSliderRef.current || !mainSliderRef.current){
+        setTimeout(initSwiper, 100);
+        return;
+      }
       console.log("slider init after");
-
       const slider = sliderRef.current;
       const thumbsSlider = thumbSliderRef.current;
       const mainSlider = mainSliderRef.current;
@@ -163,21 +165,34 @@ export default function Edit(props) {
         true
       );
 
-      mainSwiper.on("slideChange", () => resetVideos(slider));
-
-      slider.querySelectorAll('.zolo-post-video-trigger').forEach(trigger => {
-        trigger.addEventListener('click', (event) => {
-          event.preventDefault();
-          handleVideoTrigger(trigger, slider);
-        });
+      const observer = new MutationObserver(() => {
+        const videoTriggers = slider.querySelectorAll('.zolo-post-video-trigger');
+        if (videoTriggers.length > 0) {
+          videoTriggers.forEach((trigger) => {
+            if (!trigger.dataset.listenerAttached) {  // Check to avoid duplicate listeners
+              console.log("Adding event listener for video trigger");
+              trigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                handleVideoTrigger(trigger, slider);
+              });
+              trigger.dataset.listenerAttached = true;  // Mark the trigger to prevent duplicate listeners
+            }
+          });
+        }
       });
 
-      setAttributes({sliderOptions: sliderSettings});
-    }, 4000);
+      // Start observing for child changes inside the slider
+      observer.observe(slider, { childList: true, subtree: true });
 
-    // Cleanup the timeout if the component unmounts before the timeout executes
-    return () => clearTimeout(timeoutId);
+      mainSwiper.on("slideChange", () => resetVideos(slider));
+      setAttributes({sliderOptions: sliderSettings});
+    };
+
+    initSwiper();
+
+    //return () => clearTimeout(timeoutId);
   }, [
+    uniqueId,
     sliderRef.current,
     thumbSliderRef.current,
     mainSliderRef.current,
