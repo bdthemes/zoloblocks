@@ -12,10 +12,10 @@ module.exports = {
     entry: {
         ...defaultConfig.entry(),
         'admin/index': ['./src/admin/index.js'],
-        // 'animation/index': ['./src/animation/index.js'],
         'extensions/export-pattern/index': ['./src/extensions/export-pattern/index.js'],
         'extensions/import-pattern/index': ['./src/extensions/import-pattern/index.js'],
         'extensions/shape-divider/index': ['./src/extensions/shape-divider/index.js'],
+        'extensions/background-video/index': ['./src/extensions/background-video/index.js'],
         'extensions/particles/index': ['./src/extensions/particles/index.js'],
         'extensions/particles/frontend': ['./src/extensions/particles/frontend.js'],
         'template-library/index': ['./src/template-library/index.js'],

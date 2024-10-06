@@ -17,12 +17,13 @@ import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
-import {applyFilters} from '@wordpress/hooks';
+import { applyFilters } from '@wordpress/hooks';
 
 const BGControl = (props) => {
     const { controlName, requiredProps, noMainBGImg, video } = props;
     const { setAttributes, attributes, resMode } = requiredProps;
     const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
+    const backgroundVideo = applyFilters('zolo.extensions.controls.backgroundVideo', [], requiredProps);
     const {
         [`${controlName}bg_hoverType`]: bg_hoverType,
 
@@ -38,12 +39,6 @@ const BGControl = (props) => {
 
         [`${controlName}bgVideoID`]: bgVideoID,
         [`${controlName}bgVideoURL`]: bgVideoURL,
-        [`${controlName}backgroundVideoType`]: backgroundVideoType,
-        [`${controlName}backgroundVideoMuted`]: backgroundVideoMuted,
-        [`${controlName}backgroundVideoLoop`]: backgroundVideoLoop,
-        [`${controlName}backgroundVideoPlayOnce`]: backgroundVideoPlayOnce,
-
-
 
         [`${controlName}backgroundSize`]: backgroundSize,
         [`${controlName}bgImgCustomSize`]: bgImgCustomSize,
@@ -114,8 +109,6 @@ const BGControl = (props) => {
         [`hov_MOB${controlName}bgImgRepeat`]: hov_MOBbgImgRepeat,
     } = attributes;
 
-    // console.log([`${controlName}bgVideoID`]);
-console.log(props);
     return (
         <>
             <BaseControl>
@@ -134,10 +127,7 @@ console.log(props);
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES
-                                               // include video option if video is enabled in the block
-                                                .filter(({ value }) => video ? true : value !== 'video')
-                                            .map(
+                                            {BACKGROUND_TYPES.filter(({ value }) => (video ? true : value !== 'video')).map(
                                                 ({ value, label }) => (
                                                     <Button
                                                         key={value}
@@ -1200,7 +1190,8 @@ console.log(props);
                                     )}
                                     {backgroundType === 'video' && (
                                         <>
-                                            <MediaUpload
+                                        {backgroundVideo && backgroundVideo}
+                                            {/* <MediaUpload
                                                 onSelect={({ url, id }) =>
                                                     setAttributes({
                                                         [`${controlName}bgVideoURL`]: url,
@@ -1240,7 +1231,7 @@ console.log(props);
                                                         }
                                                     />
                                                 </>
-                                            )}
+                                            )} */}
 
                                             {/* {videoURL && (
                                                 <>

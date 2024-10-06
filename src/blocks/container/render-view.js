@@ -7,8 +7,16 @@ const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth, advBtnBgbackgroundType } =
-        attributes;
+    const {
+        uniqueId,
+        containerWidthType,
+        contentWidthType,
+        isBlockRootParent,
+        parentClasses,
+        containerWidth,
+        advBtnBgbackgroundType,
+        advBtnBgbgVideoURL,
+    } = attributes;
     const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
@@ -29,35 +37,37 @@ export default function RenderView({ attributes, clientId, className, setAttribu
 const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
 const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
-if (advBtnBgbackgroundType === 'video') {
-    const videoMarkup = (
-        <div
-            className="zolo-background-video-container"
-            style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                width: '100%',
-                height: '100%',
-                overflow: 'hidden',
-            }}
-        >
-            <video
-                className="zolo-background-video-hosted zolo-html5-video"
-                loop={true}
-                muted={false}
-                playsInline
-                preload="auto"
-                autoPlay={true}
-                src="https://static.gopro.com/assets/blta2b8522e5372af40/blt1db3bdb627cc8cbc/66c8412d71186728a3aa3f14/03-hp-fraction-1280.mp4"
-                style={{ width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-            ></video>
-        </div>
-    );
+console.log(attributes);
 
-    // Insert the video markup into renderHookBefore
-    renderHookBefore.push(videoMarkup);
-}
+// if (advBtnBgbackgroundType === 'video') {
+//     const videoMarkup = (
+//         <div
+//             className="zolo-background-video-container"
+//             style={{
+//                 position: 'absolute',
+//                 top: '0',
+//                 left: '0',
+//                 width: '100%',
+//                 height: '100%',
+//                 overflow: 'hidden',
+//             }}
+//         >
+//             <video
+//                 className="zolo-background-video-hosted zolo-html5-video"
+//                 loop={true}
+//                 muted={false}
+//                 playsInline
+//                 preload="auto"
+//                 autoPlay={true}
+//                 src={advBtnBgbgVideoURL}
+//                 style={{ width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+//             ></video>
+//         </div>
+//     );
+
+//     // Insert the video markup into renderHookBefore
+//     renderHookBefore.push(videoMarkup);
+// }
 
 
 
