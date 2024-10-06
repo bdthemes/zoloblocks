@@ -2,10 +2,11 @@ import { MediaUpload } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Button, TextareaControl } from '@wordpress/components';
 
+const { ImageAvatar, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } = window.zoloModule;
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { backgroundVideo = {}, advBtnBgbackgroundType } = attributes;
-    const { id = '', url = '' } = backgroundVideo;
+    const { id = '', url = '', falbackImageID='', falbackImageURL='' } = backgroundVideo;
 
     // Only display if background type is video
     // if (advBtnBgbackgroundType !== 'video') return null;
@@ -15,6 +16,7 @@ const Inspector = ({ panelProps }) => {
         if (media && media.url && media.id) {
             setAttributes({
                 backgroundVideo: {
+                   ...backgroundVideo,
                     id: media.id,
                     url: media.url,
                 },
@@ -23,13 +25,16 @@ const Inspector = ({ panelProps }) => {
     };
 
     // Handle video URL change
-    const handleVideoUrlChange = (newUrl) => {
-        setAttributes({
-            backgroundVideo: {
-                ...backgroundVideo,
-                url: newUrl.trim(),
-            },
-        });
+    const handleImageSelect = (media) => {
+        if (media && media.url && media.id) {
+            setAttributes({
+                backgroundVideo: {
+                    ...backgroundVideo,
+                   falbackImageURL: media.url,
+                    falbackImageID: media.id,
+                },
+            });
+        }
     };
 
     return (
@@ -44,8 +49,56 @@ const Inspector = ({ panelProps }) => {
                     </Button>
                 )}
             />
-            {url && <TextareaControl label={__('Video URL', 'zoloblocks')} value={url} onChange={handleVideoUrlChange} />}
-            <p>{__('This is the video settings inspector', 'zoloblocks')}</p>
+            <MediaUpload
+                onSelect={handleImageSelect}
+                type="image"
+                value={falbackImageID}
+                render={({ open }) =>
+                    !falbackImageURL && (
+                        <>
+                            <Button
+                                className="zb-bg-control-img-btn components-button"
+                                label={__('Upload Image', 'zoloblocks')}
+                                icon="format-image"
+                                onClick={open}
+                            />
+                            <span
+                                style={{
+                                    padding: '10px 0',
+                                    display: 'block',
+                                }}
+                            ></span>
+                        </>
+                    )
+                }
+            />
+
+            {falbackImageURL && (
+                <>
+                    <ImageAvatar
+                        imageUrl={falbackImageURL}
+                        imageId={falbackImageID}
+                        onDeleteImage={() =>
+                            setAttributes({
+                                backgroundVideo: {
+                                    ...backgroundVideo,
+                                    falbackImageURL: '',
+                                    falbackImageID: '',
+                                },
+                            })
+                        }
+                        onEditImage={({ id, url }) => {
+                            setAttributes({
+                                backgroundVideo: {
+                                    ...backgroundVideo,
+                                    falbackImageURL: url,
+                                    falbackImageID: id,
+                                },
+                            });
+                        }}
+                    />
+                </>
+            )}
         </>
     );
 };

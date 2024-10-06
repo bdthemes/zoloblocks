@@ -3,7 +3,7 @@ import './attributes';
 // alert('background-video');
 import Inspector from './inspector.js';
 import Render from './render';
-// import Style from './style.js';
+import Style from './style.js';
 
 addFilter('zolo.extensions.controls.backgroundVideo', 'zolo/background-video', (panels, panelProps) => {
     if (
@@ -26,11 +26,11 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/background-video', (panels, pa
 });
 
 
-// addFilter('zolo.container.desktopAllStyle', 'zolo/background-video', (desktopAllStyle, props) => {
-//     if (props.attributes.shapeDivider) {
-//         const { shapeDividerDesktop } = Style(props);
-//         return desktopAllStyle + shapeDividerDesktop;
-//     }
-//     return desktopAllStyle;
-// });
+addFilter('zolo.slide.desktopAllStyle', 'zolo/background-video', (desktopAllStyle, props) => {
+    if (props.attributes.backgroundVideo) {
+        const { StyleBackgroundVideo } = Style(props);
+        return desktopAllStyle + StyleBackgroundVideo;
+    }
+    return desktopAllStyle;
+});
 
