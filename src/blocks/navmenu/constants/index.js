@@ -90,12 +90,17 @@ export const BREAKPOINT_OPTIONS = [
         value: 'desktop',
         label: __('Desktop', 'zoloblocks'),
         icon: (
-            <svg width={10} height={10} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none">
                 <path
-                    d="M4.64645 7.35355C4.84171 7.15829 5.15829 7.15829 5.35355 7.35355L7.14645 9.14645C7.46143 9.46143 7.23835 10 6.79289 10H3.20711C2.76165 10 2.53857 9.46143 2.85355 9.14645L4.64645 7.35355Z"
-                    fill="#1E1E1E"
+                    d="M20.5909 3H3.40909C2.63087 3 2 3.63087 2 4.40909V15.1909C2 15.9691 2.63087 16.6 3.40909 16.6H20.5909C21.3691 16.6 22 15.9691 22 15.1909V4.40909C22 3.63087 21.3691 3 20.5909 3Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
-                <rect x="0.5" y="1.5" width={9} height={6} rx={1} stroke="#1E1E1E" />
+                <path d="M9.85461 17.0366V20.6275" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14.1727 17.0366V20.6275" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M7.28186 21.1819H16.7182" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },
@@ -103,9 +108,21 @@ export const BREAKPOINT_OPTIONS = [
         value: 'tablet',
         label: __('Tablet', 'zoloblocks'),
         icon: (
-            <svg width={10} height={10} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1.5" y="0.5" width={7} height={9} rx={1} stroke="#1E1E1E" />
-                <circle cx={5} cy={8} r={1} fill="#1E1E1E" />
+            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M18.4273 2H5.93636C4.86694 2 4 2.86694 4 3.93636V20.0636C4 21.1331 4.86694 22 5.93636 22H18.4273C19.4967 22 20.3636 21.1331 20.3636 20.0636V3.93636C20.3636 2.86694 19.4967 2 18.4273 2Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M12.1818 19.6273C12.8646 19.6273 13.4182 19.0737 13.4182 18.3909C13.4182 17.7081 12.8646 17.1545 12.1818 17.1545C11.499 17.1545 10.9454 17.7081 10.9454 18.3909C10.9454 19.0737 11.499 19.6273 12.1818 19.6273Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeMiterlimit={10}
+                />
+                <path d="M19.9819 14.791H4.39099" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },
@@ -114,11 +131,19 @@ export const BREAKPOINT_OPTIONS = [
         value: 'mobile',
         label: __('Mobile', 'zoloblocks'),
         icon: (
-            <svg width={10} height={10} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2.5" y="0.5" width={5} height={9} rx={1} stroke="#1E1E1E" />
+            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none">
                 <path
-                    d="M7 1.08412C6.9572 1.59704 6.52662 2 6.00175 2H3.99825C3.47338 2 3.0428 1.59704 3 1.08412C3.15567 1.02963 3.32306 1 3.49738 1H6.50262C6.67694 1 6.84433 1.02963 7 1.08412Z"
-                    fill="#1E1E1E"
+                    d="M16.7273 2H7.86364C6.83438 2 6 2.83438 6 3.86364V20.1364C6 21.1656 6.83438 22 7.86364 22H16.7273C17.7565 22 18.5909 21.1656 18.5909 20.1364V3.86364C18.5909 2.83438 17.7565 2 16.7273 2Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M12.3 19.6273C12.9828 19.6273 13.5363 19.0737 13.5363 18.3909C13.5363 17.7081 12.9828 17.1545 12.3 17.1545C11.6171 17.1545 11.0636 17.7081 11.0636 18.3909C11.0636 19.0737 11.6171 19.6273 12.3 19.6273Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeMiterlimit={10}
                 />
             </svg>
         ),

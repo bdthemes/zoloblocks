@@ -1,6 +1,6 @@
 @mixin navmenuHide() {
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     position: fixed;
     top: 0;
     left: -100vw;
@@ -13,6 +13,7 @@
     z-index: 99;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    padding: 30px;
 }
 
 .wp-block-zolo-navmenu {
@@ -140,7 +141,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px;
+                margin-bottom: 20px;
 
                 .zolo-nav-menu-sidebar-logo {
                     line-height: 1;
@@ -190,11 +191,11 @@
             z-index: 7;
         }
     }
-    // &.menu-breakpoint-desktop,
-    // &.menu-breakpoint-tablet,
-    // &.menu-breakpoint-mobile {
-    //     display: flex;
-    // }
+    &.menu-breakpoint-desktop,
+    &.menu-breakpoint-tablet,
+    &.menu-breakpoint-mobile {
+        display: flex;
+    }
 }
 
 .zolo-frontend {

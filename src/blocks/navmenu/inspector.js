@@ -114,6 +114,15 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zoloblocks')}
+                                controlName={NAV_MENU_ALIGNMENT}
+                                requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
+                            />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Mobile Menu Settings', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-flex-row-control-tab">
                                 <IconicBtnGroup
                                     label={__('Breakpoint', 'zoloblocks')}
@@ -123,22 +132,17 @@ const Inspector = (props) => {
                                     isDeselectable
                                 />
                             </div>
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={NAV_MENU_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={TEXT_ALIGN_OPTIONS}
-                            />
-                        </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Offcanvas Settings', 'zoloblocks')} panelProps={props}>
-                            <BaseControl label={__('Logo', 'zoloblocks')} className="zolo-flex-col-control">
+                            <div className="zolo-custom-heading">{__('Logo', 'zoloblocks')}</div>
+                            <BaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
                                 {brandPhoto ? (
                                     <ImageAvatar
                                         imageUrl={brandPhoto && brandPhoto.url}
                                         onDeleteImage={() =>
                                             setAttributes({
-                                                brandPhoto: null,
+                                                brandPhoto: {
+                                                    id: '',
+                                                    url: '',
+                                                },
                                             })
                                         }
                                         imageId={brandPhoto && brandPhoto.id}
@@ -324,7 +328,7 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Offcanvas', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Mobile Menu', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Wrapper', 'zoloblocks')}
                             </div>

@@ -10,13 +10,16 @@
         .zolo-navmenu-submenu-add-btn {
             position: absolute;
             left: 0;
-            bottom: -55px;
-            width: 100%;
+            bottom: -50px;
             cursor: pointer;
             padding: 12px;
-            border: 1px solid #ddd;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
+            background: transparent;
+            color: var(--zoloblocks-brand-color) !important;
+            border: 2px solid var(--zoloblocks-brand-color) !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
         }
     }
 
