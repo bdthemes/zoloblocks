@@ -115,74 +115,34 @@
 	* Button Style: 02
 	*/
     &.button-2 {
-        // .zolo-button {
-        //     background-color: unset;
-        //     &::after {
-        //         border: 1px solid var(--zoloblocks-brand-color);
-        //         transition: transform 0.3s cubic-bezier(0.2, 1, 0.7, 1);
-        //         border-radius: 0px;
-        //         transform: scale3d(0.85, 0.65, 1);
-        //     }
-        //     &::before {
-        //         background-color: var(--zoloblocks-brand-color);
-        //         transition: transform 0.3s cubic-bezier(0.2, 1, 0.7, 1);
-        //     }
-
-        //     &::before,
-        //     &::after {
-        //         content: '';
-        //         position: absolute;
-        //         top: 0;
-        //         left: 0;
-        //         width: 100%;
-        //         height: 100%;
-        //         border-radius: var(--zoloblocks-button-border-radius);
-        //     }
-
-        //     &:hover {
-        //         &::before {
-        //             transform: scale3d(0.9, 0.8, 1);
-        //         }
-        //         &::after {
-        //             transform: scale3d(1, 1, 1);
-        //         }
-        //     }
-        // }
-
-        // after css update
         .zolo-button {
-            background-color: #2e0606;
-            border-radius: 0;
-            border: 2px solid #2e0606;
+            background-color: var(--zoloblocks-brand-color);
+            border-radius: 3px;
+            border: 2px solid var(--zoloblocks-brand-color);
             position: relative;
             transition: all 0.05s ease-out;
-            display: inline-block;
             text-overflow: ellipsis;
-            &:before {
-                /* background: transparent; */
+            &:before,
+            &::after {
+                position: absolute;
+                content: '';
                 border-radius: inherit;
                 border: inherit;
                 border-top-left-radius: 0;
+                transition: all 0.05s ease-out;
+            }
+            &:before {
                 border-top-right-radius: 0;
                 border-top-width: 0;
                 bottom: -2px;
-                content: '';
                 height: 5px;
                 left: -2px;
-                position: absolute;
-                transition: all 0.05s ease-out;
                 width: 100%;
             }
             &:after {
-                background: transparent;
-                border-radius: inherit;
-                border: inherit;
-                border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
                 border-left-width: 0;
-                content: '';
                 height: 100%;
-                position: absolute;
                 right: -2px;
                 top: -2px;
                 transition: all 0.05s ease-out;

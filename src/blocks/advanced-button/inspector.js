@@ -89,6 +89,7 @@ function Inspector(props) {
         presetSixStyle,
         presetSevenStyles,
         iconAnimation,
+        buttonTwoBorderColor,
     } = attributes;
 
     const requiredProps = {
@@ -247,31 +248,46 @@ function Inspector(props) {
                                             forBorderRadius={false}
                                         />
                                         <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={BUTTON_BORDER}
-                                            requiredProps={requiredProps}
-                                            hoverControl={
-                                                <ColorControl
-                                                    label={__('Border Color', 'zoloblocks')}
-                                                    color={borderHoverColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            borderHoverColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            }
-                                        />
+                                        {preset === 'button-2' && (
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={buttonTwoBorderColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonTwoBorderColor: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+
+                                        {preset !== 'button-2' && (
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={BUTTON_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                        )}
                                         {preset !== 'button-4' && preset !== 'button-6' && (
                                             <BoxShadowControl controlName={BUTTON_BOX_SHADOW} requiredProps={requiredProps} />
                                         )}
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={BUTTON_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+                                        {preset !== 'button-2' && (
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={BUTTON_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                        )}
+                                        {preset === 'button-2' && (
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={BUTTON_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                                min={0}
+                                                max={6}
+                                            />
+                                        )}
                                     </>
                                 }
                                 hoverComponents={
@@ -286,12 +302,24 @@ function Inspector(props) {
                                             }
                                         />
                                         {preset !== 'button-1' && (
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={BUTTON_HOVER_BG_COLOR}
-                                                noMainBGImg={false}
-                                            />
+                                            <>
+                                                <NormalBGControl
+                                                    requiredProps={requiredProps}
+                                                    controlName={BUTTON_HOVER_BG_COLOR}
+                                                    noMainBGImg={false}
+                                                />
+                                                <CardDivider />
+                                            </>
                                         )}
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={borderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    borderHoverColor: value,
+                                                })
+                                            }
+                                        />
                                         <BoxShadowControl
                                             controlName={BUTTON_HOVER_BOX_SHADOW}
                                             requiredProps={requiredProps}
@@ -412,28 +440,11 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        {preset !== '' && (
+                        {preset !== '' && preset !== 'button-2' && (
                             <ZoloPanelBody title={__('Preset Style', 'zoloblocks')} panelProps={props} stylePanel={true}>
                                 {preset === 'button-1' && (
                                     <Fragment>
                                         <NormalBGControl requiredProps={requiredProps} controlName={PT_BG} noMainBGImg={true} />
-                                    </Fragment>
-                                )}
-                                {preset === 'button-2' && (
-                                    <Fragment>
-                                        <NormalBGControl requiredProps={requiredProps} controlName={PTH_BG} noMainBGImg={true} />
-                                        <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={PT_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={PT_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
                                     </Fragment>
                                 )}
                                 {preset === 'button-3' && (
