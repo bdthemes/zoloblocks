@@ -67,6 +67,7 @@ const Style = ({ props }) => {
         presetFiveArrowColor,
     } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
     // column count
     const {
         desktopRangeStyle: deskColumns,
@@ -468,6 +469,20 @@ const Style = ({ props }) => {
                 }
 
             `
+                : ''
+        }
+        ${
+            active
+                ? `
+                    .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
                 : ''
         }
 	`;

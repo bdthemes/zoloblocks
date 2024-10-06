@@ -1,48 +1,60 @@
+### 1.4.5 [October 05, 2024]
+
+### Added
+- Post Title block introduced.
+- Image feature (Circle, Triangle, Rectangle, Polygon) added to the Text Path block.
+- Direction control added for circular paths in the Text Path block.
+- Color control added for text in the Text Path block.
+
+### Fixed
+- Typography Control reset issue resolved.
+- Maintenance mode issue fixed.
+- Appender button issue fixed.
+- Focus issue in Advanced Search & Newsletter blocks fixed.
+- Photo height, width and margin issue in Review Carousel Block fixed.
+- Photo padding control issue in Author block fixed.
+- Icon Border Radius issue in Notice block (layout style 4) fixed.
+
+### Improved
+- Query refactoring and optimization for better performance.
+- Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud.
+- Improved container design.
+
 ### 1.4.4 [September 25, 2024]
 
 ### Fixed
-
 - QR code block layout broken issue.
 - Post Grid block hover animation issue.
 - Post Timeline block the excerpt not showing to the frontend issue.
 
 ### Improved
-
 - Optimized the Post Grid and Post Timeline blocks for improved efficiency and user experience
 
 ### 1.4.3 [September 24, 2024]
 
 ### Added
-
 - List Block horizontal layout features.
 - List Block new presets (2, 3, 4) added.
 
 ### Fixed
-
 - Authors Block Avatar issue.
 - Review Block image issue.
 - Post & Review Carousel vertical offset issue.
 
 ### Improved
-
 - Optimized block controls UI.
-
-
 
 ### 1.4.2 [September 18, 2024]
 
 ### Fixed
-
 - List block Deprecated issue
 
 ### Improved
-
 - Improved control layout for Chart, Authors, Notice, and Review Grid blocks.
 
 ### 1.4.1 [September 17, 2024]
 
 ### Fixed
-
 - Particles zIndex issue.
 - Lightbox background color issue.
 - Newsletter block API issue.
@@ -52,7 +64,6 @@
 ### 1.4.0 [September 12, 2024]
 
 ### Added
-
 - Author Block.
 - Breadcrumbs Block.
 - Lightbox Block.
@@ -64,7 +75,6 @@
 - Advanced Button hover background control.
 
 ### Fixed
-
 - Review Grid Column issue.
 - Star Rating responsive issue.
 - Google Maps block editor issue.
@@ -73,7 +83,6 @@
 
 
 ### Improved
-
 - Updated Dashboard.
 - Improved block scripts.
 - Optimized assets loading.

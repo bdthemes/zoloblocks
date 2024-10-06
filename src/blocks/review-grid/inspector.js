@@ -61,7 +61,7 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         resMode,
@@ -88,6 +88,9 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
 
     const onPresetChange = (selected) => {
         setAttributes({ preset: selected });
@@ -346,6 +349,8 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
+                                <CardDivider />
+                                {cssFilters && cssFilters.length > 0 && cssFilters}
                             </ZoloPanelBody>
                         )}
                         {showName && (

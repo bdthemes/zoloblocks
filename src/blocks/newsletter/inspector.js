@@ -5,6 +5,9 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
+import { useState, useEffect } from '@wordpress/element';
+
+import apiFetch from '@wordpress/api-fetch';
 
 /**
  * Internal depencencies
@@ -106,7 +109,13 @@ function Inspector(props) {
         errorTextColor,
         subscribedTextColor,
         labelTextHoverColor,
+        provider,
+        selectedWebhook,
     } = attributes;
+
+    // const [webhooks, setWebhooks] = useState([]);
+    const [labels, setLabels] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const requiredProps = {
         attributes,
@@ -114,6 +123,44 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
+    const fetchWebhooks = async () => {
+        try {
+            const settings = await apiFetch({ path: '/wp/v2/settings' });
+            const zoloWebhooks = settings.zolo_webhooks || [];
+            // Extract labels from the webhooks
+            const extractedLabels = zoloWebhooks.map((webhook) => webhook.label);
+            setLabels(extractedLabels);
+            setAttributes({
+                selectedWebhook: extractedLabels[0],
+            });
+        } catch (error) {
+            console.error('Error fetching webhooks:', error);
+        }
+    };
+    useEffect(() => {
+        fetchWebhooks();
+        const delay = setTimeout(() => {
+            setIsLoading(false);
+        }, 500);
+
+        return () => clearTimeout(delay);
+    }, []);
+
+    const validLabels = labels.filter((label) => label.trim() !== '');
+
+    // zolo.newsletter.providers;
+   const providers = [
+                {
+                    label: __('Mailchimp', 'zoloblocks'),
+                    value: 'newsletter',
+                },
+                {
+                    label: __('Webhook (Pro)', 'zoloblocks'),
+                    value: 'webhook',
+                    disabled: true,
+                },
+            ]
 
     return (
         <InspectorControls key="controls">
@@ -124,6 +171,43 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <SelectControl
+                                label={__('Provider', 'zoloblocks')}
+                                value={provider}
+                                options={applyFilters('zolo.newsletter.providers', providers)}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        provider: value,
+                                    });
+                                }}
+                            />
+                            {provider === 'webhook' && (
+                                <>
+                                    {!isLoading ? (
+                                        <>
+                                            {validLabels.length > 0 ? (
+                                                <SelectControl
+                                                    label={__('Select Webhook', 'zoloblocks')}
+                                                    value={selectedWebhook}
+                                                    options={validLabels.map((label) => ({ label, value: label }))}
+                                                    onChange={(value) => {
+                                                        setAttributes({
+                                                            selectedWebhook: value,
+                                                        });
+                                                    }}
+                                                />
+                                            ) : (
+                                                <p className="zolo-notice-error">
+                                                    {__('No Webhook URL Found. Please configure the webhook in the', 'zoloblocks')}{' '}
+                                                    <a href={`${zoloSettings.home_url}/wp-admin/admin.php?page=zoloblocks#webhookSettings`}>
+                                                        {__('ZoloBlocks settings', 'zoloblocks')}
+                                                    </a>
+                                                </p>
+                                            )}
+                                        </>
+                                    ) : null}
+                                </>
+                            )}
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}

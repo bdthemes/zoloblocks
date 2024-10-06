@@ -4,6 +4,8 @@
 }
 
 .wp-block-zolo-text-path {
+    // --zolo-rotate-animation-50: 180deg;
+    // --zolo-rotate-animation-100: 360deg;
     svg {
         width: var(--width);
         max-width: 100%;
@@ -23,10 +25,26 @@
             transform: rotate(0deg);
         }
         50% {
-            transform: rotate(180deg);
+            transform: rotate(var(--zolo-rotate-animation-50));
         }
         100% {
-            transform: rotate(360deg);
+            transform: rotate(var(--zolo-rotate-animation-100));
+        }
+    }
+
+    .zolo-circle-path-wrap {
+        display: inline-block;
+        position: relative;
+    }
+    .zolo-circle-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .zolo-img {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
     }
 }

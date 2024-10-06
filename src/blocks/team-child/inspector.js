@@ -4,6 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -84,7 +85,7 @@ import {
 } from './constants/typoPrefixConstants';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         resMode,
         preset,
@@ -118,6 +119,10 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -345,6 +350,25 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         controlName={IMAGE_OVERLAY}
                                         noMainBGImg={true}
+                                    />
+                                </>
+                            )}
+
+                            {cssFilters && cssFilters.length > 0 && (
+                                <>
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                value: 'normal',
+                                                label: __('Normal', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'hover',
+                                                label: __('Hover', 'zoloblocks'),
+                                            },
+                                        ]}
+                                        normalComponents={<>{cssFilters}</>}
+                                        hoverComponents={<>{cssFiltersHover}</>}
                                     />
                                 </>
                             )}

@@ -50,6 +50,8 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+
     const {
         dimensionStylesDesktop: contentDeskPadding,
         dimensionStylesTab: contentTabPadding,
@@ -340,6 +342,21 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item .zb-brand-title-link.has-link:hover{
 			color:${labelHoverColor};
 		}
+
+       ${
+           active
+               ? `
+                    .${uniqueId}.wp-block-zolo-brand-child.zb-brand-item .zb-brand-image img  {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+                `
+               : ''
+       }
   	`;
 
     const tabletAllStyle = `

@@ -98,7 +98,7 @@ import { Fragment } from 'react';
 import Sortable from './sortable';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
         resMode,
@@ -146,6 +146,9 @@ function Inspector(props) {
 
     const deepCloneStatusItems = cloneDeep(statusItems);
 
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -165,9 +168,11 @@ function Inspector(props) {
                                     });
                                 }}
                             />
-
+                            <div className="zolo-custom-heading">
+                                <h2>{__('Show/Hide elements', 'zoloblocks')}</h2>
+                            </div>
                             <ToggleControl
-                                label={__('Show Badge', 'zoloblocks')}
+                                label={__('Badge', 'zoloblocks')}
                                 checked={showBadge}
                                 onChange={() =>
                                     setAttributes({
@@ -176,7 +181,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Photo', 'zoloblocks')}
+                                label={__('Photo', 'zoloblocks')}
                                 checked={showPhoto}
                                 onChange={() =>
                                     setAttributes({
@@ -185,7 +190,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Name', 'zoloblocks')}
+                                label={__('Name', 'zoloblocks')}
                                 checked={showName}
                                 onChange={() =>
                                     setAttributes({
@@ -194,7 +199,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Username', 'zoloblocks')}
+                                label={__('Username', 'zoloblocks')}
                                 checked={showUsername}
                                 onChange={() =>
                                     setAttributes({
@@ -203,7 +208,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Email', 'zoloblocks')}
+                                label={__('Email', 'zoloblocks')}
                                 checked={showEmail}
                                 onChange={() =>
                                     setAttributes({
@@ -212,7 +217,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Bio', 'zoloblocks')}
+                                label={__('Bio', 'zoloblocks')}
                                 checked={showBio}
                                 onChange={() =>
                                     setAttributes({
@@ -221,7 +226,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Status', 'zoloblocks')}
+                                label={__('Status', 'zoloblocks')}
                                 checked={showStatus}
                                 onChange={() =>
                                     setAttributes({
@@ -230,7 +235,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Follow Button', 'zoloblocks')}
+                                label={__('Follow Button', 'zoloblocks')}
                                 checked={showFollowButton}
                                 onChange={() =>
                                     setAttributes({
@@ -239,7 +244,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Social Profiles', 'zoloblocks')}
+                                label={__('Social Profiles', 'zoloblocks')}
                                 checked={showSocialProfiles}
                                 onChange={() =>
                                     setAttributes({
@@ -250,21 +255,26 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             {showBadge && (
-                                <TextControl
-                                    label={__('Badge Text', 'zoloblocks')}
-                                    value={badgeText}
-                                    onChange={(text) =>
-                                        setAttributes({
-                                            badgeText: text,
-                                        })
-                                    }
-                                    placeholder={__('Enter Badge Text', 'zoloblocks')}
-                                />
+                                <>
+                                    <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                        {__('Badge', 'zoloblocks')}
+                                    </div>
+                                    <TextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        value={badgeText}
+                                        onChange={(text) =>
+                                            setAttributes({
+                                                badgeText: text,
+                                            })
+                                        }
+                                        placeholder={__('Enter Badge Text', 'zoloblocks')}
+                                    />
+                                </>
                             )}
                             {showPhoto && (
                                 <>
-                                    <BaseControl label={__('Photo', 'zoloblocks')} className='zolo-flex-col-control'>
-
+                                    <div className="zolo-custom-heading">{__('Photo', 'zoloblocks')}</div>
+                                    <BaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
                                         {photo ? (
                                             <ImageAvatar
                                                 imageUrl={photo && photo.url}
@@ -330,53 +340,65 @@ function Inspector(props) {
                                 </>
                             )}
                             {showName && (
-                                <TextControl
-                                    label={__('Name', 'zoloblocks')}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            name: value,
-                                        })
-                                    }
-                                    value={name}
-                                    placeholder={__('Name..', 'zoloblocks')}
-                                />
+                                <>
+                                    <div className="zolo-custom-heading">{__('Name', 'zoloblocks')}</div>
+                                    <TextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                name: value,
+                                            })
+                                        }
+                                        value={name}
+                                        placeholder={__('Name..', 'zoloblocks')}
+                                    />
+                                </>
                             )}
                             {showUsername && (
-                                <TextControl
-                                    label={__('Username', 'zoloblocks')}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            username: value,
-                                        })
-                                    }
-                                    value={username}
-                                    placeholder={__('Username..', 'zoloblocks')}
-                                />
+                                <>
+                                    <div className="zolo-custom-heading">{__('Username', 'zoloblocks')}</div>
+                                    <TextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                username: value,
+                                            })
+                                        }
+                                        value={username}
+                                        placeholder={__('Username..', 'zoloblocks')}
+                                    />
+                                </>
                             )}
                             {showEmail && (
-                                <TextControl
-                                    label={__('Email', 'zoloblocks')}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            email: value,
-                                        })
-                                    }
-                                    value={email}
-                                    placeholder={__('Email..', 'zoloblocks')}
-                                />
+                                <>
+                                    <div className="zolo-custom-heading">{__('Email', 'zoloblocks')}</div>
+                                    <TextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                email: value,
+                                            })
+                                        }
+                                        value={email}
+                                        placeholder={__('Email..', 'zoloblocks')}
+                                    />
+                                </>
                             )}
                             {showBio && (
-                                <TextareaControl
-                                    className='zolo-flex-col-control'
-                                    label={__('Bio', 'zoloblocks')}
-                                    value={bio}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            bio: value,
-                                        })
-                                    }
-                                    placeholder={__('Bio..', 'zoloblocks')}
-                                />
+                                <>
+                                    <div className="zolo-custom-heading">{__('Bio', 'zoloblocks')}</div>
+                                    <TextareaControl
+                                        className="zolo-flex-col-control"
+                                        label={__('Text', 'zoloblocks')}
+                                        value={bio}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                bio: value,
+                                            })
+                                        }
+                                        placeholder={__('Bio..', 'zoloblocks')}
+                                    />
+                                </>
                             )}
                         </ZoloPanelBody>
                         {showStatus && (
@@ -456,30 +478,42 @@ function Inspector(props) {
                     <>
                         {preset !== 'style-1' && (
                             <ZoloPanelBody title={__('Header Area', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={HEADER_AREA_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
+                                <NormalBGControl requiredProps={requiredProps} controlName={HEADER_AREA_BG} noMainBGImg={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
                                     controlName={HEADER_AREA_PADDING}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                                <NormalBGControl requiredProps={requiredProps} controlName={HEADER_AREA_BG} noMainBGImg={true} />
+                                <CardDivider />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={HEADER_AREA_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
                             </ZoloPanelBody>
                         )}
 
                         {showBadge && (
                             <ZoloPanelBody title={__('Header Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={badgeColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            badgeColor: color,
+                                        })
+                                    }
+                                />
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={BADGE_TYPO}
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
+                                <CardDivider />
+                                <NormalBGControl requiredProps={requiredProps} controlName={BADGE_BG} noMainBGImg={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
                                     controlName={BADGE_PADDING}
@@ -495,7 +529,7 @@ function Inspector(props) {
                                         forBorderRadius={false}
                                     />
                                 )}
-
+                                <CardDivider />
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={HEADER_BADGE_BORDER}
@@ -507,16 +541,6 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={badgeColor}
-                                    onChange={(color) =>
-                                        setAttributes({
-                                            badgeColor: color,
-                                        })
-                                    }
-                                />
-                                <NormalBGControl requiredProps={requiredProps} controlName={BADGE_BG} noMainBGImg={true} />
                             </ZoloPanelBody>
                         )}
 
@@ -527,13 +551,6 @@ function Inspector(props) {
                             panelProps={props}
                         >
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={CONTENT_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={CONTENT_PADDING}
@@ -547,29 +564,32 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <CardDivider />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={CONTENT_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+
                             {preset === 'style-1' && (
-                                <ResDimensionsControl
-                                    label={__('Content Padding', 'zoloblocks')}
-                                    controlName={INNER_CONTENT_PADDING}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
+                                <>
+                                    <div className="zolo-custom-heading">{__('Content')}</div>
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={INNER_CONTENT_PADDING}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                </>
                             )}
                         </ZoloPanelBody>
 
                         {showPhoto && (
                             <ZoloPanelBody title={__('Photo', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl label={__('Size', 'zoloblocks')} controlName={PHOTO_SIZE} requiredProps={requiredProps} />
-                                {preset !== 'style-1' && (
-                                    <ResRangeControl
-                                        label={__('Vertical Offset', 'zoloblocks')}
-                                        controlName={PHOTO_VOFFSET}
-                                        requiredProps={requiredProps}
-                                        min={-250}
-                                        max={250}
-                                    />
-                                )}
-
+                                <CardDivider />
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={PHOTO_BORDER}
@@ -581,14 +601,31 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                {preset === 'style-1' && (
-                                    <ResDimensionsControl
-                                        label={__('Meta Wrap Margin', 'zoloblocks')}
-                                        controlName={META_WRAP_MARGIN}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={false}
-                                    />
+                                {preset !== 'style-1' && (
+                                    <>
+                                        <CardDivider />
+                                        <ResRangeControl
+                                            label={__('Vertical Offset', 'zoloblocks')}
+                                            controlName={PHOTO_VOFFSET}
+                                            requiredProps={requiredProps}
+                                            min={-250}
+                                            max={250}
+                                        />
+                                    </>
                                 )}
+                                {preset === 'style-1' && (
+                                    <>
+                                        <div className="zolo-custom-heading">{__('Meta Wrapper')}</div>
+                                        <ResDimensionsControl
+                                            label={__(' Margin', 'zoloblocks')}
+                                            controlName={META_WRAP_MARGIN}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                    </>
+                                )}
+                                <CardDivider />
+                                {cssFilters && cssFilters.length > 0 && cssFilters}
                             </ZoloPanelBody>
                         )}
 
@@ -608,6 +645,7 @@ function Inspector(props) {
                                     typoPrefixConstant={PROFILE_NAME}
                                     requiredProps={requiredProps}
                                 />
+                                <CardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={NAME_MARGIN}
@@ -634,6 +672,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     max={64}
                                 />
+                                <CardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={USERNAME_MARGIN}
@@ -660,6 +699,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
+                                <CardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={EMAIL_MARGIN}
@@ -686,6 +726,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
+                                <CardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={BIO_MARGIN}
@@ -697,8 +738,11 @@ function Inspector(props) {
 
                         {showStatus && (
                             <ZoloPanelBody title={__('Status', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                    {__('Number')}
+                                </div>
                                 <ColorControl
-                                    label={__('Number Color', 'zoloblocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={numberColor}
                                     onChange={(color) =>
                                         setAttributes({
@@ -707,14 +751,14 @@ function Inspector(props) {
                                     }
                                 />
                                 <TypographyDropdown
-                                    label={__('Number Typography', 'zoloblocks')}
+                                    label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={NUMBER_TYPO}
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
-                                <CardDivider />
+                                <div className="zolo-custom-heading">{__('Label')}</div>
                                 <ColorControl
-                                    label={__('Label Color', 'zoloblocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={labelColor}
                                     onChange={(color) =>
                                         setAttributes({
@@ -723,34 +767,24 @@ function Inspector(props) {
                                     }
                                 />
                                 <TypographyDropdown
-                                    label={__('Label Typography', 'zoloblocks')}
+                                    label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={LABEL_TYPO}
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
                                 <CardDivider />
-                                <ResRangeControl
-                                    label={__('Items Gap', 'zoloblocks')}
-                                    controlName={STATUS_GAP}
-                                    requiredProps={requiredProps}
-                                />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={STATUS_MARGIN}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
+                                <ResRangeControl label={__('Gap', 'zoloblocks')} controlName={STATUS_GAP} requiredProps={requiredProps} />
                             </ZoloPanelBody>
                         )}
 
                         {showFollowButton && (
                             <ZoloPanelBody title={__('Follow Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={BTN_TYPO}
-                                    requiredProps={requiredProps}
-                                    max={36}
-                                />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -763,22 +797,42 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={BTN_TYPO}
+                                                requiredProps={requiredProps}
+                                                max={36}
+                                            />
+                                            <CardDivider />
                                             <NormalBGControl requiredProps={requiredProps} controlName={FBTN_BG} noMainBGImg={false} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={FBTN_PADDING}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={FBTN_MARGIN}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                            <CardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={FBTN_BORDER}
                                                 requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl
+                                                controlName={FBTN_BOX_SHADOW}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
                                             />
                                             <ResDimensionsControl
                                                 label={__('Border Radius', 'zoloblocks')}
                                                 controlName={FBTN_BORDER_RADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
-                                            />
-                                            <BoxShadowControl
-                                                controlName={FBTN_BOX_SHADOW}
-                                                requiredProps={requiredProps}
-                                                enableTransition={false}
                                             />
                                         </>
                                     }
@@ -793,15 +847,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <ColorControl
-                                                label={__('Border Color', 'zoloblocks')}
-                                                color={btnHoverBorderColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        btnHoverBorderColor: color,
-                                                    })
-                                                }
-                                            />
+                                            <CardDivider />
                                             <NormalBGControl
                                                 requiredProps={requiredProps}
                                                 controlName={FBTN_HOVER_BG}
@@ -812,67 +858,23 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={btnHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        btnHoverBorderColor: color,
+                                                    })
+                                                }
+                                            />
                                         </>
                                     }
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    controlName={FBTN_PADDING}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={FBTN_MARGIN}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
                                 />
                             </ZoloPanelBody>
                         )}
 
                         {showSocialProfiles && (
                             <ZoloPanelBody title={__('Social Profiles', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <ResRangeControl
-                                    label={__('Icon Size', 'zoloblocks')}
-                                    controlName={ICONS_SIZE}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl
-                                    label={__('Icon Spacing', 'zoloblocks')}
-                                    controlName={ICONS_SPACING}
-                                    requiredProps={requiredProps}
-                                />
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={ICONS_BORDER}
-                                    requiredProps={requiredProps}
-                                    hoverControl={
-                                        <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={iconHoverBorderColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    iconHoverBorderColor: color,
-                                                })
-                                            }
-                                        />
-                                    }
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={ICONS_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zoloblocks')}
-                                    controlName={ICONS_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={ICONS_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -885,7 +887,40 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={ICONS_SIZE}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
                                             <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={ICONS_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={ICONS_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={ICONS_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={ICONS_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <ResRangeControl
+                                                label={__('Spacing', 'zoloblocks')}
+                                                controlName={ICONS_SPACING}
+                                                requiredProps={requiredProps}
+                                            />
                                         </>
                                     }
                                     hoverComponents={
@@ -904,6 +939,15 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 controlName={ICONS_HOVER_BG}
                                                 noMainBGImg={true}
+                                            />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={iconHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        iconHoverBorderColor: color,
+                                                    })
+                                                }
                                             />
                                         </>
                                     }
