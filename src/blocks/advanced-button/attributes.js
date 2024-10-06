@@ -210,6 +210,9 @@ const attributes = {
     iconAnimation: {
         type: 'string',
     },
+    buttonTwoBorderColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;
