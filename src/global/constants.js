@@ -743,6 +743,7 @@ export const BACKGROUND_TYPES = [
         label: __('Video', 'zoloblocks'),
         value: 'video',
         icon: 'video',
+        showFor: ['advBtnBg', 'slider'], // Show for both container and slider
     },
 ];
 

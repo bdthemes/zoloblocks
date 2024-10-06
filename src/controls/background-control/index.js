@@ -23,7 +23,7 @@ const BackgroundControl = ({
 
     return (
         <>
-            <BGControl controlName={controlName} requiredProps={requiredProps} noMainBGImg={noMainBGImg} noTransition={noTransition} />
+            <BGControl controlName={controlName} requiredProps={requiredProps} noMainBGImg={noMainBGImg} noTransition={noTransition} video={video} />
 
             {noOverlay === false && (
                 <>

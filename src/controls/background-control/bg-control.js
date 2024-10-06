@@ -8,6 +8,7 @@ import {
     TabPanel,
     TextareaControl,
     ToggleControl,
+    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
@@ -18,7 +19,8 @@ import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import {applyFilters} from '@wordpress/hooks';
 
-const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
+const BGControl = (props) => {
+    const { controlName, requiredProps, noMainBGImg, video } = props;
     const { setAttributes, attributes, resMode } = requiredProps;
     const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
     const {
@@ -113,7 +115,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
     } = attributes;
 
     // console.log([`${controlName}bgVideoID`]);
-console.log(attributes);
+console.log(props);
     return (
         <>
             <BaseControl>
@@ -132,19 +134,24 @@ console.log(attributes);
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    key={value}
-                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
+                                            {BACKGROUND_TYPES
+                                               // include video option if video is enabled in the block
+                                                .filter(({ value }) => video ? true : value !== 'video')
+                                            .map(
+                                                ({ value, label }) => (
+                                                    <Button
+                                                        key={value}
+                                                        variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                        onClick={() =>
+                                                            setAttributes({
+                                                                [`${controlName}backgroundType`]: value,
+                                                            })
+                                                        }
+                                                    >
+                                                        {label}
+                                                    </Button>
+                                                )
+                                            )}
                                         </ButtonGroup>
                                     </BaseControl>
 
@@ -1220,6 +1227,20 @@ console.log(attributes);
                                                     </>
                                                 )}
                                             />
+
+                                            {bgVideoURL && (
+                                                <>
+                                                    <TextareaControl
+                                                        label={__('Video URL', 'zoloblocks')}
+                                                        value={bgVideoURL}
+                                                        onChange={(newVal) =>
+                                                            setAttributes({
+                                                                [`${controlName}bgVideoURL`]: newVal,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )}
 
                                             {/* {videoURL && (
                                                 <>
