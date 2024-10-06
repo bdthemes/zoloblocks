@@ -6,14 +6,20 @@ import Render from './render';
 // import Style from './style.js';
 
 addFilter('zolo.extensions.controls.backgroundVideo', 'zolo/background-video', (panels, panelProps) => {
-    if (panelProps.attributes) {
+    if (
+        panelProps.attributes &&
+        (panelProps.attributes?.advBtnBgbackgroundType === 'video' || panelProps.attributes?.mainBgbackgroundType === 'video')
+    ) {
         panels.push(<Inspector key={`controls-background-video-${panelProps.attributes.uniqueId}`} panelProps={panelProps} />);
     }
     return panels;
 });
 
 addFilter('zolo.blocks.render.hook.before', 'zolo/background-video', (panels, panelProps) => {
-    if (panelProps.attributes.backgroundVideo && panelProps.attributes.advBtnBgbackgroundType === 'video') {
+    if (
+        panelProps.attributes.backgroundVideo &&
+        (panelProps.attributes?.advBtnBgbackgroundType === 'video' || panelProps.attributes?.mainBgbackgroundType === 'video')
+    ) {
         panels.push(<Render key={`render-background-video-${panelProps.attributes.uniqueId}`} panelProps={panelProps} />);
     }
     return panels;

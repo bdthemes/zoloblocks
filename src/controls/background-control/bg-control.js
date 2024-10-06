@@ -36,10 +36,6 @@ const BGControl = (props) => {
         [`${controlName}bgImageURL`]: bgImageURL,
         [`${controlName}bgImageID`]: bgImageID,
         [`${controlName}bgImgAttachment`]: bgImgAttachment,
-
-        [`${controlName}bgVideoID`]: bgVideoID,
-        [`${controlName}bgVideoURL`]: bgVideoURL,
-
         [`${controlName}backgroundSize`]: backgroundSize,
         [`${controlName}bgImgCustomSize`]: bgImgCustomSize,
         [`${controlName}bgImgCustomSizeUnit`]: bgImgCustomSizeUnit,
@@ -1254,18 +1250,21 @@ const BGControl = (props) => {
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    variant={hov_backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`hov_${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
+                                            {BACKGROUND_TYPES.filter(({ value }) => !(video && value === 'video')).map(
+                                                ({ value, label }) => (
+                                                    <Button
+                                                        key={value}
+                                                        variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                        onClick={() =>
+                                                            setAttributes({
+                                                                [`${controlName}backgroundType`]: value,
+                                                            })
+                                                        }
+                                                    >
+                                                        {label}
+                                                    </Button>
+                                                )
+                                            )}
                                         </ButtonGroup>
                                     </BaseControl>
 

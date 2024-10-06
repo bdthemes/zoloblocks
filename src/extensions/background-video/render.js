@@ -24,10 +24,11 @@ export default function Render({ panelProps }) {
                 <video
                     className="zolo-background-video-hosted zolo-html5-video"
                     loop={true}
-                    muted={false}
-                    // playsInline
-                    // preload="auto"
-                    autoPlay={true}
+                    muted={true}
+                    playsInline
+                    preload="auto"
+                    autoPlay={true} // This is the only attribute that is not in the attributes object
+
                     src={backgroundVideo?.url || ''}
                     style={{ width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
                 ></video>

@@ -319,7 +319,7 @@ export const AdvancedOptions = (props) => {
                             controlName={globalConfig.background.prefix || 'mainBg'}
                             requiredProps={requiredProps}
                             particles={particles}
-                            video={ block === 'zolo/container' ? true : false}
+                            video={ block === 'zolo/container' || block === 'zolo/slide' ? true : false}
                         />
                     </div>
                 </ZoloPanelBody>

@@ -8,7 +8,7 @@ const Inspector = ({ panelProps }) => {
     const { id = '', url = '' } = backgroundVideo;
 
     // Only display if background type is video
-    if (advBtnBgbackgroundType !== 'video') return null;
+    // if (advBtnBgbackgroundType !== 'video') return null;
 
     // Handle video selection
     const handleVideoSelect = (media) => {

@@ -3,7 +3,7 @@
  */
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
+import { addFilter, applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 const { classArrayToStr } = window.zoloModule;
@@ -74,12 +74,18 @@ export default function Edit(props) {
         }
     );
 
+    // filter hooks for render
+    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
+    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                {renderHookBefore}
                 <div {...innerBlocksProps} />
+                {renderHookAfter}
             </div>
         </>
     );
