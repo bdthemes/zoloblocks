@@ -284,6 +284,21 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+
+            //Enable video link.
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_enable_video_link',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
         }
 
         /**
