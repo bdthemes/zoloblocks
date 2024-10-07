@@ -1,5 +1,6 @@
 import {__} from '@wordpress/i18n';
-import {SelectControl, ToggleControl,Button, PanelBody} from "@wordpress/components";
+import {SelectControl, ToggleControl, Button, PanelBody} from "@wordpress/components";
+
 const {ZoloIconPicker, SortableControl, SortableItem, IconicBtnGroup, LinkControl} = window.zoloModule;
 import {cloneDeep} from 'lodash';
 import {META_TYPE, GET_TAXONOMIEX, ICON_TYPE} from "./constants";
@@ -95,17 +96,21 @@ const Sortable = ({metaData, setAttributes}) => {
                         options={taxonomiesArray}
                       />
                     )}
-                    <ToggleControl
-                      label={__('link', 'zoloblocks')}
-                      checked={meta?.link || false}
-                      onChange={(v) => {
-                        const newItems = [...deepCloneMetaData];
-                        newItems[index].link = v;
-                        setAttributes({
-                          metaData: newItems,
-                        });
-                      }}
-                    />
+
+                    {(meta?.type !== 'time' && meta?.type !== 'reading time') && (
+                      <ToggleControl
+                        label={__('link', 'zoloblocks')}
+                        checked={meta?.link || false}
+                        onChange={(v) => {
+                          const newItems = [...deepCloneMetaData];
+                          newItems[index].link = v;
+                          setAttributes({
+                            metaData: newItems,
+                          });
+                        }}
+                      />
+                    )}
+
                     <div className="zolo-flex-row-control-tab">
                       <IconicBtnGroup
                         label={__('Icon', 'zoloblocks')}

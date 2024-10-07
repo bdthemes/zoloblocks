@@ -90,6 +90,7 @@ class PostMeta {
 		$item_data = [];
 		switch ( $meta['type'] ) {
 			case 'author':
+                
 				$item_data['text'] = get_the_author_meta( 'display_name' );
 				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ( $meta['icon'] ?? '' ) : '';
 				if ( ! empty( $meta['link'] ) ) {
@@ -167,6 +168,14 @@ class PostMeta {
 				if ( ! empty( $meta['link'] ) ) {
 					$item_data['url'] = get_comments_link();
 				}
+				break;
+			case 'reading time':
+				$reading_speed     = 200;
+				$content           = get_the_content();
+				$word_count        = str_word_count( wp_strip_all_tags( $content ) );
+				$reading_time      = round( $word_count / $reading_speed );
+                $item_data['text'] = sprintf( __( '%d Min Read', 'zoloblocks' ), max( $reading_time, 1 ) );
+				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ( $meta['icon'] ?? '' ) : '';
 				break;
 		}
 

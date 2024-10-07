@@ -14,6 +14,7 @@ export const META_TYPE = [
   {label: __('Time', 'zoloblocks'), value: 'time'},
   {label: __('Terms', 'zoloblocks'), value: 'terms'},
   {label: __('Comments', 'zoloblocks'), value: 'comments'},
+  {label: __('Reading Time', 'zoloblocks'), value: 'reading time'},
 ]
 export const ICON_TYPE = [
   {label: __('None', 'zoloblocks'), value: 'none'},
@@ -38,4 +39,17 @@ export const GET_TAXONOMIEX = (taxonomies) => {
   });
 
   return allTaxonomies;
+};
+
+export const contentReadingTime = (content) => {
+  const readingSpeed = 200;
+
+  // Ensure the content is a string; otherwise, default to an empty string
+  const text = typeof content === 'string'
+    ? content.replace(/<!--[\s\S]*?-->/g, '').replace(/(<([^>]+)>)/gi, '') // Remove block comments and HTML tags
+    : '';
+
+  const wordCount = text.split(/\s+/).filter(word => word).length;
+  const readingTime = Math.round(wordCount / readingSpeed);
+  return Math.max(readingTime, 1);
 };

@@ -1,5 +1,6 @@
 import {__, sprintf} from '@wordpress/i18n';
 import {useSelect} from '@wordpress/data';
+import {contentReadingTime} from "./constants";
 
 const AuthorMeta = ({post, meta}) => {
   const authorId = post?.author;
@@ -123,6 +124,24 @@ const CommentsMeta = ({post, meta}) => {
   ) : content;
 };
 
+const ReadingTimeMeta = ({post, meta}) => {
+  const rawContent = useSelect(
+    (select) => post?.content ? select('core/editor').getEditedPostContent() : '',
+    [post?.content]
+  );
+  const readingTime = rawContent ? contentReadingTime(rawContent) : 0;
+  const readingTimeLabel = sprintf(__('%d Min Read', 'zoloblocks'), readingTime);
+
+  return  (
+    <>
+      {meta?.showIcon !== 'none' && (
+        <span className="zolo-icon" dangerouslySetInnerHTML={{__html: meta?.icon}}/>
+      )}
+      <span className="zolo-text">{readingTimeLabel}</span>
+    </>
+  );
+};
+
 const MetaItem = ({meta, post}) => {
   const getMetaComponent = (type) => {
     switch (type) {
@@ -136,6 +155,8 @@ const MetaItem = ({meta, post}) => {
         return <CommentsMeta post={post} meta={meta}/>;
       case 'terms':
         return <TermsMeta post={post} meta={meta}/>;
+      case 'reading time':
+        return <ReadingTimeMeta post={post} meta={meta}/>
       default:
         return null;
     }

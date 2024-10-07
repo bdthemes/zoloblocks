@@ -29,7 +29,7 @@ export default function Edit(props) {
     if (typeof metaData === 'undefined') {
       setAttributes({
         metaData: [
-          {id: 1, type: 'author', link: true, showIcon: 'icon', icon: MetaIcon.author},
+          {id: 1, type: 'author', link: true, showIcon: 'icon', icon: ''},
           {id: 2, type: 'date', link: true, showIcon: 'icon', icon: MetaIcon.date},
           {id: 3, type: 'time', link: false, showIcon: 'icon', icon: MetaIcon.time},
           {id: 5, type: 'terms', link: true, showIcon: 'icon', icon: MetaIcon.terms},
