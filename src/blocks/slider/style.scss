@@ -104,4 +104,8 @@
             display: block;
         }
     }
+
+    .zolo-bgv-hosted {
+        height: clamp(21.875rem, 50vw, 34.375rem);
+    }
 }
