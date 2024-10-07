@@ -6,7 +6,7 @@ const { ImageAvatar, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { backgroundVideo = {}, advBtnBgbackgroundType } = attributes;
-    const { id = '', url = '', falbackImageID='', falbackImageURL='' } = backgroundVideo;
+    const { id = '', url = '', falbackImageID = '', falbackImageURL = '' } = backgroundVideo;
 
     // Only display if background type is video
     // if (advBtnBgbackgroundType !== 'video') return null;
@@ -16,7 +16,7 @@ const Inspector = ({ panelProps }) => {
         if (media && media.url && media.id) {
             setAttributes({
                 backgroundVideo: {
-                   ...backgroundVideo,
+                    ...backgroundVideo,
                     id: media.id,
                     url: media.url,
                 },
@@ -30,7 +30,7 @@ const Inspector = ({ panelProps }) => {
             setAttributes({
                 backgroundVideo: {
                     ...backgroundVideo,
-                   falbackImageURL: media.url,
+                    falbackImageURL: media.url,
                     falbackImageID: media.id,
                 },
             });
@@ -44,9 +44,8 @@ const Inspector = ({ panelProps }) => {
                 allowedTypes={['video']}
                 value={id}
                 render={({ open }) => (
-                    <Button className="components-button" label={__('Upload Video', 'zoloblocks')} onClick={open}>
+                    <Button className="components-button zolo-bg-video-placeholder" label={__('Upload Video', 'zoloblocks')} onClick={open}>
                         <>
-
                             <video
                                 className="zolo-background-video"
                                 loop={true}
@@ -55,7 +54,7 @@ const Inspector = ({ panelProps }) => {
                                 currentTime={2}
                                 preload="none"
                                 autoPlay={true}
-                                src={backgroundVideo?.url || '' }
+                                src={backgroundVideo?.url || ''}
                             ></video>
                         </>
                     </Button>
