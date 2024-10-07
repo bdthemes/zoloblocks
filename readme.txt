@@ -5,7 +5,7 @@ Tags: block, blocks, gutenberg, gutenberg blocks, page builder
 Requires at least: 6.1
 Tested up to: 6.6.2
 Requires PHP: 7.4
-Stable tag: 1.4.5
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -366,6 +366,11 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.5.0 - 08-10-2024 =
+
+* Added: Background video feature added to Container and Slider child block.
+* Improved: Advanced Button preset 3 improved
 
 = 1.4.5 - 05-10-2024 =
 
