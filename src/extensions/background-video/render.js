@@ -26,11 +26,10 @@ export default function Render({ panelProps }) {
                     loop={true}
                     muted={true}
                     playsInline
-                    preload="auto"
+                    preload="none"
                     autoPlay={true} // This is the only attribute that is not in the attributes object
-
+                    poster={backgroundVideo?.falbackImageURL || ''}
                     src={backgroundVideo?.url || ''}
-                    style={{ width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
                 ></video>
             </div>
         </>

@@ -288,7 +288,8 @@ const Style = ({ props }) => {
      * Block Styles
      */
     const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-slider .swiper-slide {
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide,
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide .zolo-bgv-hosted {
             ${deskHeight}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-content-outer {
@@ -356,7 +357,8 @@ const Style = ({ props }) => {
         }
     `;
     const tabletAllStyle = `
-        .${uniqueId}.wp-block-zolo-slider .swiper-slide {
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide,
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide .zolo-bgv-hosted {
             ${tabHeight}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-content-outer {
@@ -400,7 +402,8 @@ const Style = ({ props }) => {
         }
     `;
     const mobileAllStyle = `
-        .${uniqueId}.wp-block-zolo-slider .swiper-slide {
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide,
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide .zolo-bgv-hosted {
             ${mobHeight}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-content-outer {
