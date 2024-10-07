@@ -578,3 +578,10 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 // post title animation type css end here
+
+
+.zolo-bgv-hosted {
+    object-fit: cover;
+    width: 100%;
+  height:  clamp(21.875rem, 50vw, 34.375rem)
+}

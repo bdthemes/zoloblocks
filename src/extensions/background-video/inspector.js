@@ -44,14 +44,29 @@ const Inspector = ({ panelProps }) => {
                 allowedTypes={['video']}
                 value={id}
                 render={({ open }) => (
-                    <Button className="components-button" label={__('Upload Video', 'zoloblocks')} icon="format-video" onClick={open}>
-                        {__('Upload Video', 'zoloblocks')}
+                    <Button className="components-button" label={__('Upload Video', 'zoloblocks')} onClick={open}>
+                        <>
+
+                            <video
+                                className="zolo-background-video"
+                                loop={true}
+                                muted={true}
+                                playsInline
+                                currentTime={2}
+                                preload="none"
+                                autoPlay={true}
+                                src={backgroundVideo?.url || '' }
+                            ></video>
+                        </>
                     </Button>
+                    // <Button className="components-button" label={__('Upload Video', 'zoloblocks')} icon="format-video" onClick={open}>
+                    //     {__('Upload Video', 'zoloblocks')}
+                    // </Button>
                 )}
             />
             <MediaUpload
                 onSelect={handleImageSelect}
-                type="image"
+                allowedTypes={['image']}
                 value={falbackImageID}
                 render={({ open }) =>
                     !falbackImageURL && (
