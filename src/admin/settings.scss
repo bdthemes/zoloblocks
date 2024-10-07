@@ -84,6 +84,7 @@ h3.zolo-setting-title {
         display: block;
         padding: 0;
         margin: 0;
+        border: 0;
     }
     .settings-popup {
         .modal-title {
@@ -106,7 +107,7 @@ h3.zolo-setting-title {
         }
         .components-text-control__input {
             height: 44px;
-            border-radius: 5px;
+            border-radius: 6px;
             border: 1px solid #eaeaec;
             box-sizing: border-box;
             &:focus {
@@ -118,7 +119,7 @@ h3.zolo-setting-title {
             font-weight: 500;
             border: 0;
             background-color: var(--zolo-dashboard-brand-color);
-            border-radius: 4px;
+            border-radius: 6px;
             color: #fff;
             font-weight: 600;
             font-size: 14px;
@@ -299,6 +300,57 @@ span.block-separator {
     &.upcoming {
         .help-docs {
             display: none;
+        }
+    }
+}
+.components-modal__content {
+    .zolo-webhook-add-btn,
+    .zolo-webhook-remove-btn {
+        height: auto;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        gap: 3px;
+        background: transparent !important;
+        color: #3f8efc !important;
+        border: 1px solid #3f8efc;
+        font-weight: 600;
+        text-transform: capitalize;
+        outline: none !important;
+        &:focus {
+            box-shadow: 0 0 0 1px #3f8efc !important;
+            border: 1px solid #3f8efc !important;
+        }
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            fill: transparent;
+        }
+    }
+
+    .zolo-webhook-remove-btn {
+        color: #ff4d4f !important;
+        border: 1px solid #ff4d4f;
+        &:focus {
+            box-shadow: 0 0 0 1px #ff4d4f !important;
+            border: 1px solid #ff4d4f !important;
+        }
+    }
+
+    .zolo-webhok-label-url-wrap {
+        background: #f8f8f8;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid #f0f0f0;
+        .components-base-control {
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }
