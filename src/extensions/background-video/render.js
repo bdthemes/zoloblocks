@@ -10,7 +10,7 @@ export default function Render({ panelProps }) {
     return (
         <>
             <div
-                className="zolo-background-video-container"
+                className={`zolo-bgv-container zolo-bgv-${uniqueId}`}
                 style={{
                     position: 'absolute',
                     top: '0',
@@ -20,9 +20,9 @@ export default function Render({ panelProps }) {
                     overflow: 'hidden',
                 }}
             >
-                {/* <div className="zolo-background-video-embed"></div> */}
+                {/* <div className="zolo-bgv-embed"></div> */}
                 <video
-                    className="zolo-background-video-hosted zolo-html5-video"
+                    className="zolo-bgv-hosted zolo-html5-video"
                     loop={true}
                     muted={true}
                     playsInline
