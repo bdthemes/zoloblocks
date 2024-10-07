@@ -8,6 +8,7 @@ import {
     TabPanel,
     TextareaControl,
     ToggleControl,
+    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
@@ -16,11 +17,13 @@ import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
-import {applyFilters} from '@wordpress/hooks';
+import { applyFilters } from '@wordpress/hooks';
 
-const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
+const BGControl = (props) => {
+    const { controlName, requiredProps, noMainBGImg, video } = props;
     const { setAttributes, attributes, resMode } = requiredProps;
     const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
+    const backgroundVideo = applyFilters('zolo.extensions.controls.backgroundVideo', [], requiredProps);
     const {
         [`${controlName}bg_hoverType`]: bg_hoverType,
 
@@ -33,7 +36,6 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
         [`${controlName}bgImageURL`]: bgImageURL,
         [`${controlName}bgImageID`]: bgImageID,
         [`${controlName}bgImgAttachment`]: bgImgAttachment,
-
         [`${controlName}backgroundSize`]: backgroundSize,
         [`${controlName}bgImgCustomSize`]: bgImgCustomSize,
         [`${controlName}bgImgCustomSizeUnit`]: bgImgCustomSizeUnit,
@@ -121,18 +123,21 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
+                                            {BACKGROUND_TYPES.filter(({ value }) => (video ? true : value !== 'video')).map(
+                                                ({ value, label }) => (
+                                                    <Button
+                                                        key={value}
+                                                        variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                        onClick={() =>
+                                                            setAttributes({
+                                                                [`${controlName}backgroundType`]: value,
+                                                            })
+                                                        }
+                                                    >
+                                                        {label}
+                                                    </Button>
+                                                )
+                                            )}
                                         </ButtonGroup>
                                     </BaseControl>
 
@@ -1179,6 +1184,65 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                             )}
                                         </>
                                     )}
+                                    {backgroundType === 'video' && (
+                                        <>
+                                        {backgroundVideo && backgroundVideo}
+                                            {/* <MediaUpload
+                                                onSelect={({ url, id }) =>
+                                                    setAttributes({
+                                                        [`${controlName}bgVideoURL`]: url,
+                                                        [`${controlName}bgVideoID`]: id,
+                                                    })
+                                                }
+                                                allowedTypes={['video']}
+                                                type="video"
+                                                value={bgVideoID}
+                                                render={({ open }) => (
+                                                    <>
+                                                        <Button
+                                                            className="components-button"
+                                                            label={__('Upload Video', 'zoloblocks')}
+                                                            icon="format-video"
+                                                            onClick={open}
+                                                        />
+                                                        <span
+                                                            style={{
+                                                                padding: '10px 0',
+                                                                display: 'block',
+                                                            }}
+                                                        ></span>
+                                                    </>
+                                                )}
+                                            />
+
+                                            {bgVideoURL && (
+                                                <>
+                                                    <TextareaControl
+                                                        label={__('Video URL', 'zoloblocks')}
+                                                        value={bgVideoURL}
+                                                        onChange={(newVal) =>
+                                                            setAttributes({
+                                                                [`${controlName}bgVideoURL`]: newVal,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )} */}
+
+                                            {/* {videoURL && (
+                                                <>
+                                                    <VideoAvatar
+                                                        videoUrl={videoURL}
+                                                        onDeleteVideo={() =>
+                                                            setAttributes({
+                                                                [`${controlName}videoURL`]: null,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )} */}
+                                        </>
+                                    )}
                                 </>
                             );
                         } else {
@@ -1186,18 +1250,21 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    variant={hov_backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`hov_${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
+                                            {BACKGROUND_TYPES.filter(({ value }) => !(video && value === 'video')).map(
+                                                ({ value, label }) => (
+                                                    <Button
+                                                        key={value}
+                                                        variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                        onClick={() =>
+                                                            setAttributes({
+                                                                [`${controlName}backgroundType`]: value,
+                                                            })
+                                                        }
+                                                    >
+                                                        {label}
+                                                    </Button>
+                                                )
+                                            )}
                                         </ButtonGroup>
                                     </BaseControl>
 

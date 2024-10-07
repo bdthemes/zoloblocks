@@ -80,6 +80,12 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
         [`${controlName}bgImageID`]: {
             type: 'number',
         },
+        [`${controlName}bgVideoURL`]: {
+            type: 'string',
+        },
+        [`${controlName}bgVideoID`]: {
+            type: 'number',
+        },
         [`${controlName}bgImgAttachment`]: {
             type: 'string',
         },

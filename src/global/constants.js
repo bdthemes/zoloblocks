@@ -739,6 +739,12 @@ export const BACKGROUND_TYPES = [
         value: 'gradient',
         icon: 'art',
     },
+    {
+        label: __('Video', 'zoloblocks'),
+        value: 'video',
+        icon: 'video',
+        showFor: ['advBtnBg', 'slider'], // Show for both container and slider
+    },
 ];
 
 export const BOX_SHADOW_TYPES = [
