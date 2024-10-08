@@ -34,6 +34,7 @@ export default function Edit(props) {
                     { id: 3, type: 'time', link: false, showIcon: 'icon', icon: MetaIcon.time },
                     { id: 5, type: 'terms', link: true, showIcon: 'icon', icon: MetaIcon.terms },
                     { id: 4, type: 'comments', link: true, showIcon: 'icon', icon: MetaIcon.comments },
+                    { id: 6, type: 'readingTime', link: true, showIcon: 'icon', icon: MetaIcon.readingTime },
                 ],
             });
         }

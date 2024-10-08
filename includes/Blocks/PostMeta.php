@@ -169,7 +169,7 @@ class PostMeta {
 					$item_data['url'] = get_comments_link();
 				}
 				break;
-			case 'reading time':
+			case 'readingTime':
 				$reading_speed     = 200;
 				$content           = get_the_content();
 				$word_count        = str_word_count( wp_strip_all_tags( $content ) );
