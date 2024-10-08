@@ -124,14 +124,12 @@ export default function Edit(props) {
 
             <Style props={props} />
             <div {...blockProps}>
-                {textPathType !== 'circle' && (
-                    <SvgComponentStyle />
-                )}
+                {textPathType !== 'circle' && <SvgComponentStyle />}
 
                 {textPathType === 'circle' && (
                     <div className="zolo-circle-path-wrap">
                         <SvgComponentStyle />
-                        {showCircleImg && (
+                        {showCircleImg && circlePhoto.url !== '' && (
                             <div className="zolo-circle-image">
                                 {circlePhoto ? (
                                     <img
