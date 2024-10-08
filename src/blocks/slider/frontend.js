@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Restart autoplay based on video duration
                         activeVideo.onended = () => {
                             this.autoplay.start();
-                            console.log('Autoplay restarted after video ended');
                         };
                     }
                 },
