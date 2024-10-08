@@ -101,7 +101,7 @@ const Edit = (props) => {
                     setActiveMenu(false);
                 }, 700);
             }
-        }, 300);
+        }, 500);
     };
 
     // preview image
