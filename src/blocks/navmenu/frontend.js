@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
        const sidebarClose = navmenu.querySelector('.zolo-nav-menu-sidebar-close');
        hamburger.addEventListener('click', (e) => {
            e.preventDefault();
-           navmenuWrapper.classList.toggle('zolo-nav-menu-open');
-           navmenuWrapper.classList.toggle('is-menu-active');
-           navmenuOverlay.classList.toggle('zolo-nav-menu-overlay-open');
+           if (!navmenuWrapper.classList.contains('is-menu-active')) {
+               navmenuWrapper.classList.add('zolo-nav-menu-open');
+               navmenuWrapper.classList.add('is-menu-active');
+               navmenuOverlay.classList.add('zolo-nav-menu-overlay-open');
+           }
        });
 
        const submenuArrow = navmenu.querySelectorAll('.zolo-submenu-arrow');
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
            })
            setTimeout(() => {
                navmenuWrapper.classList.remove('is-menu-active');
-           }, 1000);
+           }, 700);
        });
 
        submenuArrow.forEach((arrow) => {
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
            navmenuOverlay.classList.remove('zolo-nav-menu-overlay-open');
            setTimeout(() => {
                navmenuWrapper.classList.remove('is-menu-active');
-           }, 1000);
+           }, 700);
        })
    });
 });
