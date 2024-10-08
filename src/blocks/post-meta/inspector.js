@@ -141,7 +141,7 @@ function Inspector(props) {
                                 max={50}
                                 step={1}
                             />
-                            {metaData?.link && (
+                            {metaData?.some((item) => item.link) && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
                                     <ColorControl

@@ -52,7 +52,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={meta.id} id={meta.id}>
-                                    <PanelBody title={meta?.type || 'Title'} initialOpen={false}>
+                                    <PanelBody title={meta?.type ? meta.type.charAt(0).toUpperCase() + meta.type.slice(1) : 'Title'} initialOpen={false}>
                                         <SelectControl
                                             label={__('Type', 'zoloblocks')}
                                             value={meta?.type}
@@ -60,6 +60,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                             onChange={(v) => {
                                                 const newItems = [...deepCloneMetaData];
                                                 newItems[index].type = v;
+                                                newItems[index].icon = MetaIcon[meta?.type];
                                                 setAttributes({
                                                     metaData: newItems,
                                                 });
@@ -111,33 +112,33 @@ const Sortable = ({ metaData, setAttributes }) => {
                                             />
                                         )}
 
-                                        <div className="zolo-flex-row-control-tab">
-                                            <IconicBtnGroup
-                                                label={__('Icon', 'zoloblocks')}
-                                                value={meta?.showIcon || ''}
-                                                onChange={(v) => {
-                                                    const newItems = [...deepCloneMetaData];
-                                                    newItems[index].showIcon = v;
-                                                    setAttributes({
-                                                        metaData: newItems,
-                                                    });
-                                                }}
-                                                options={ICON_TYPE}
-                                            />
-                                        </div>
-                                        {meta?.showIcon === 'icon' && (
-                                            <ZoloIconPicker
-                                                label={__('Select Icon', 'zoloblocks')}
-                                                value={meta.icon}
-                                                onChange={(value) => {
-                                                    const newItems = [...deepCloneMetaData];
-                                                    newItems[index].icon = value;
-                                                    setAttributes({
-                                                        metaData: newItems,
-                                                    });
-                                                }}
-                                            />
-                                        )}
+                                        {/*<div className="zolo-flex-row-control-tab">*/}
+                                        {/*    <IconicBtnGroup*/}
+                                        {/*        label={__('Icon', 'zoloblocks')}*/}
+                                        {/*        value={meta?.showIcon || ''}*/}
+                                        {/*        onChange={(v) => {*/}
+                                        {/*            const newItems = [...deepCloneMetaData];*/}
+                                        {/*            newItems[index].showIcon = v;*/}
+                                        {/*            setAttributes({*/}
+                                        {/*                metaData: newItems,*/}
+                                        {/*            });*/}
+                                        {/*        }}*/}
+                                        {/*        options={ICON_TYPE}*/}
+                                        {/*    />*/}
+                                        {/*</div>*/}
+                                        {/*{meta?.showIcon === 'icon' && (*/}
+                                        {/*    <ZoloIconPicker*/}
+                                        {/*        label={__('Select Icon', 'zoloblocks')}*/}
+                                        {/*        value={meta.icon}*/}
+                                        {/*        onChange={(value) => {*/}
+                                        {/*            const newItems = [...deepCloneMetaData];*/}
+                                        {/*            newItems[index].icon = value;*/}
+                                        {/*            setAttributes({*/}
+                                        {/*                metaData: newItems,*/}
+                                        {/*            });*/}
+                                        {/*        }}*/}
+                                        {/*    />*/}
+                                        {/*)}*/}
                                     </PanelBody>
                                 </SortableItem>
                             </div>
