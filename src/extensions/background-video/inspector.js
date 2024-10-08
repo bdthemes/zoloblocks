@@ -39,7 +39,10 @@ const Inspector = ({ panelProps }) => {
 
     return (
         <>
-            <h3>{__('Select Video', 'zoloblocks')}</h3>
+            <label style={{ marginBottom: '10px', display: 'block' }} className="zolo-control-label">
+                {__('Select Video', 'zoloblocks')}
+            </label>
+
             <MediaUpload
                 onSelect={handleVideoSelect}
                 allowedTypes={['video']}
@@ -85,7 +88,9 @@ const Inspector = ({ panelProps }) => {
                     // </Button>
                 )}
             />
-            <h3>{__('Video Poster', 'zoloblocks')}</h3>
+            <label style={{ marginBottom: '10px', display: 'block' }} className="zolo-control-label">
+                {__('Video Poster', 'zoloblocks')}
+            </label>
             <MediaUpload
                 onSelect={handleImageSelect}
                 allowedTypes={['image']}

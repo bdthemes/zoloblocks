@@ -139,7 +139,7 @@ const BGControl = (props) => {
                                             {video && (
                                                 <Button
                                                     key="video"
-                                                    variant={backgroundType === 'custom' ? 'primary' : 'secondary'}
+                                                    variant={backgroundType === 'video' ? 'primary' : 'secondary'}
                                                     onClick={() =>
                                                         setAttributes({
                                                             [`${controlName}backgroundType`]: 'video',

@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </textPath>
                                 </text>
                             </SvgComponent>
-                            {showCircleImg && (
+                            {showCircleImg && circlePhoto.url !== '' && (
                                 <div className="zolo-circle-image">
                                     {circlePhoto && (
                                         <img
