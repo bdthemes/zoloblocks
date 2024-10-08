@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
        const navmenuWrapper = navmenu.querySelector('.zolo-navmenu-wrapper');
        const navmenuOverlay = navmenu.querySelector('.zolo-navmenu-overlay');
        const sidebarClose = navmenu.querySelector('.zolo-nav-menu-sidebar-close');
+       let timer;
        hamburger.addEventListener('click', (e) => {
            e.preventDefault();
-           if (!navmenuWrapper.classList.contains('is-menu-active')) {
+           if(timer) clearTimeout(timer);
+           timer = setTimeout(() => {
                navmenuWrapper.classList.add('zolo-nav-menu-open');
-               navmenuWrapper.classList.add('is-menu-active');
                navmenuOverlay.classList.add('zolo-nav-menu-overlay-open');
-           }
+               navmenuWrapper.classList.add('is-menu-active');
+           }, 500);
        });
 
        const submenuArrow = navmenu.querySelectorAll('.zolo-submenu-arrow');

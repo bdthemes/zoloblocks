@@ -89,17 +89,19 @@ const Edit = (props) => {
             template: navMenuTemplates,
         }
     );
-
+    let timer;
     const handleHamburger = () => {
-        setToggleHamburger(!toggleHamburger);
-
-        if (!activeMenu) {
-            setActiveMenu(true);
-        } else {
-            setTimeout(() => {
-                setActiveMenu(false);
-            }, 1000);
-        }
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+            setToggleHamburger(!toggleHamburger);
+            if (!activeMenu) {
+                setActiveMenu(true);
+            } else {
+                setTimeout(() => {
+                    setActiveMenu(false);
+                }, 700);
+            }
+        }, 300);
     };
 
     // preview image
