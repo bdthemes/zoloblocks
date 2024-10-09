@@ -1,8 +1,9 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { Button, TextareaControl, BaseControl } from '@wordpress/components';
+import { Button, TextareaControl, BaseControl, CardDivider } from '@wordpress/components';
+import { applyFilters } from '@wordpress/hooks';
 
-const { ImageAvatar} = window.zoloModule;
+const { ImageAvatar } = window.zoloModule;
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { backgroundVideo = {} } = attributes;
@@ -33,6 +34,8 @@ const Inspector = ({ panelProps }) => {
             });
         }
     };
+
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], undefined, panelProps);
 
     return (
         <>
@@ -118,6 +121,7 @@ const Inspector = ({ panelProps }) => {
                     />
                 )}
             </BaseControl>
+            {cssFilters && cssFilters.length > 0 && cssFilters}
         </>
     );
 };

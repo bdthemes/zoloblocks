@@ -1,80 +1,83 @@
 .zolo-panel-control {
-	.components-panel__row {
-		margin: 0;
-	}
+    .components-panel__row {
+        margin: 0;
+    }
 }
 
 .zb-image-avatar-control {
-	background-color: #ccc;
-	background-image: url('../../../assets/images/transparent.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 150px;
-	margin-bottom: 16px;
-	padding: 2px;
-	width: 100%;
-	border-radius: 6px;
-	background-position: center;
-	position: relative;
+    background-color: #ccc;
+    background-image: url('../../../assets/images/transparent.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    margin-bottom: 16px;
+    // padding: 2px;
+    width: 100%;
+    border-radius: 6px;
+    background-position: center;
+    position: relative;
 
-	.components-button.zolo-replace-btn {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		display: flex;
-		gap: 10px;
-		justify-content: center;
-		background: #f2f2f2bf;
-		border-radius: 0 0 6px 6px;
-		transition: 0.3s;
-		backdrop-filter: blur(2px);
-		&:hover {
-			background: #b6b6b6;
-			color: #fff;
-			svg path {
-				stroke: #fff;
-			}
-		}
+    .components-button.zolo-replace-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        background: #f2f2f2bf;
+        border-radius: 0 0 6px 6px;
+        transition: 0.3s;
+        backdrop-filter: blur(2px);
+        &:hover {
+            background: #b6b6b6;
+            color: #fff;
+            svg path {
+                stroke: #fff;
+            }
+        }
 
-		svg {
-			fill: none;
-		}
-	}
+        svg {
+            fill: none;
+        }
+    }
 
-	.zb-image-avatar-delete {
-		padding: 0 !important;
-		margin: 0px 8px !important;
-		position: absolute;
-		right: 0;
-		svg {
-			fill: none;
-			filter: drop-shadow(1px 1px 3px rgba(100, 100, 100, 1));
-			path {
-				stroke: #fef9f8;
-				transition: stroke .3s ease;
-			}
-			&:hover {
-				path {
-					stroke: #f00;
-				}
-			}
-		}
-	}
+    .zb-image-avatar-delete {
+        padding: 0 !important;
+        margin: 0px 8px !important;
+        position: absolute;
+        right: 0;
+        svg {
+            fill: none;
+            filter: drop-shadow(1px 1px 3px rgba(100, 100, 100, 1));
+            path {
+                stroke: #fef9f8;
+                transition: stroke 0.3s ease;
+            }
+            &:hover {
+                path {
+                    stroke: #f00;
+                }
+            }
+        }
+    }
+    .zolo-bgv-hosted {
+        border-radius: 6px;
+    }
 }
 
 .zb-bg-control-img-btn {
-	height: 130px;
-	width: 100%;
-	border-radius: 6px;
-	background-color: #f6f6f8;
-	border: 1px solid #e9e9e9;
+    height: 130px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #f6f6f8;
+    border: 1px solid #e9e9e9;
 }
 
 .zolo-image-upload-btn {
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	justify-content: center;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
 }

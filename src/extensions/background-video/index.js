@@ -25,12 +25,20 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/background-video', (panels, pa
     return panels;
 });
 
+// slider block
+addFilter('zolo.slide.desktopAllStyle', 'zolo/background-video', (desktopAllStyle, props) => {
+    if (props.attributes.backgroundVideo) {
+        const { StyleBackgroundVideo } = Style(props);
+        return desktopAllStyle + StyleBackgroundVideo;
+    }
+    return desktopAllStyle;
+});
 
-// addFilter('zolo.slide.desktopAllStyle', 'zolo/background-video', (desktopAllStyle, props) => {
-//     if (props.attributes.backgroundVideo) {
-//         const { StyleBackgroundVideo } = Style(props);
-//         return desktopAllStyle + StyleBackgroundVideo;
-//     }
-//     return desktopAllStyle;
-// });
-
+// container block
+addFilter('zolo.container.desktopAllStyle', 'zolo/background-video', (desktopAllStyle, props) => {
+    if (props.attributes.backgroundVideo) {
+        const { StyleBackgroundVideo } = Style(props);
+        return desktopAllStyle + StyleBackgroundVideo;
+    }
+    return desktopAllStyle;
+});
