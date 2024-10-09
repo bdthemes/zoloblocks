@@ -11,12 +11,12 @@ const ApiSettings = () => {
     const [secretKey, setSecretKey] = useState('');
     const [mailchimpKey, setMailchimpKey] = useState('');
     const [audienceID, setAudienceID] = useState('');
-        const [webhooks, setWebhooks] = useState([
-            {
-                label: '',
-                url: '',
-            },
-        ]);
+    const [webhooks, setWebhooks] = useState([
+        {
+            label: '',
+            url: '',
+        },
+    ]);
 
     // error handling
     const handleFetchError = (error) => {
@@ -119,54 +119,53 @@ const ApiSettings = () => {
         });
     };
 
-
     // Webhook
 
-        const updateWebhookField = (index, field, value) => {
-            const newWebhooks = webhooks.map((webhook, i) => {
-                if (i === index) {
-                    return {
-                        ...webhook,
-                        [field]: value,
-                    };
-                }
-                return webhook;
+    const updateWebhookField = (index, field, value) => {
+        const newWebhooks = webhooks.map((webhook, i) => {
+            if (i === index) {
+                return {
+                    ...webhook,
+                    [field]: value,
+                };
+            }
+            return webhook;
+        });
+
+        setWebhooks(newWebhooks);
+    };
+
+    const addNewWebhookField = () => {
+        setWebhooks([...webhooks, { label: '', url: '' }]);
+    };
+
+    const removeWebhookField = (index) => {
+        const newWebhooks = webhooks.filter((_, i) => i !== index);
+        setWebhooks(newWebhooks);
+    };
+
+    const onchangeWebhook = (webhooks) => {
+        // Map over the webhooks and create a new array with the necessary properties
+        const newWebhooks = webhooks.map((webhook) => ({
+            label: webhook?.label || '', // Ensure that label is always a string
+            url: webhook?.url || '', // Ensure that url is always a string
+        }));
+
+        // Make the API request to save the settings
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_webhooks: newWebhooks,
+            },
+        })
+            .then(({ zolo_webhooks }) => {
+                setWebhooks(zolo_webhooks); // Update state with the response
+            })
+            .catch((error) => {
+                console.error('Error saving webhooks:', error); // Handle any errors
             });
-
-            setWebhooks(newWebhooks);
-        };
-
-        const addNewWebhookField = () => {
-            setWebhooks([...webhooks, { label: '', url: '' }]);
-        };
-
-        const removeWebhookField = (index) => {
-            const newWebhooks = webhooks.filter((_, i) => i !== index);
-            setWebhooks(newWebhooks);
-        };
-
-     const onchangeWebhook = (webhooks) => {
-         // Map over the webhooks and create a new array with the necessary properties
-         const newWebhooks = webhooks.map((webhook) => ({
-             label: webhook?.label || '', // Ensure that label is always a string
-             url: webhook?.url || '', // Ensure that url is always a string
-         }));
-
-         // Make the API request to save the settings
-         fetchSettings({
-             path: '/wp/v2/settings',
-             method: 'POST',
-             data: {
-                 zolo_webhooks: newWebhooks,
-             },
-         })
-             .then(({ zolo_webhooks }) => {
-                 setWebhooks(zolo_webhooks); // Update state with the response
-             })
-             .catch((error) => {
-                 console.error('Error saving webhooks:', error); // Handle any errors
-             });
-     };
+    };
 
     return (
         <div className="zolo-settings-tab">
@@ -233,7 +232,7 @@ const ApiSettings = () => {
                     }}
                 >
                     {webhooks.map((webhook, index) => (
-                        <div key={index}>
+                        <div className="zolo-webhok-label-url-wrap" key={index}>
                             <TextControl
                                 label={__('Label', 'zoloblocks')}
                                 value={webhook.label}
@@ -244,16 +243,51 @@ const ApiSettings = () => {
                                 value={webhook.url}
                                 onChange={(value) => updateWebhookField(index, 'url', value)}
                             />
-                                {webhooks.length > 1 && (
-                            <Button isDestructive onClick={() => removeWebhookField(index)}>
-                                {__('Remove Webhook', 'zoloblocks')}
-                            </Button>
-                        )}
+                            {webhooks.length > 1 && (
+                                <Button className="zolo-webhook-remove-btn" isDestructive onClick={() => removeWebhookField(index)}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width={24}
+                                        height={24}
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="icon icon-tabler icons-tabler-outline icon-tabler-trash"
+                                    >
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M4 7l16 0" />
+                                        <path d="M10 11l0 6" />
+                                        <path d="M14 11l0 6" />
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                    {__('Remove', 'zoloblocks')}
+                                </Button>
+                            )}
                         </div>
                     ))}
 
-                    <Button isPrimary onClick={addNewWebhookField}>
-                        {__('Add Webhook', 'zoloblocks')}
+                    <Button className="zolo-webhook-add-btn" isPrimary onClick={addNewWebhookField}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+                        >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                        {__('Add', 'zoloblocks')}
                     </Button>
                 </SettingPanel>
                 <SettingPanel

@@ -14,8 +14,6 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         isBlockRootParent,
         parentClasses,
         containerWidth,
-        advBtnBgbackgroundType,
-        advBtnBgbgVideoURL,
     } = attributes;
     const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
@@ -36,40 +34,6 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     // filter hooks for render
 const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
 const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
-
-console.log(attributes);
-
-// if (advBtnBgbackgroundType === 'video') {
-//     const videoMarkup = (
-//         <div
-//             className="zolo-background-video-container"
-//             style={{
-//                 position: 'absolute',
-//                 top: '0',
-//                 left: '0',
-//                 width: '100%',
-//                 height: '100%',
-//                 overflow: 'hidden',
-//             }}
-//         >
-//             <video
-//                 className="zolo-background-video-hosted zolo-html5-video"
-//                 loop={true}
-//                 muted={false}
-//                 playsInline
-//                 preload="auto"
-//                 autoPlay={true}
-//                 src={advBtnBgbgVideoURL}
-//                 style={{ width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-//             ></video>
-//         </div>
-//     );
-
-//     // Insert the video markup into renderHookBefore
-//     renderHookBefore.push(videoMarkup);
-// }
-
-
 
     return (
         <>

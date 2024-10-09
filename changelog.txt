@@ -1,3 +1,20 @@
+### 1.5.1 [October 08, 2024]
+
+### Fixed
+- Slider navigation issue fixed.
+- TextPath image issue fixed.
+
+### Improved
+- Optimized block controls UI.
+
+### 1.5.0 [October 08, 2024]
+
+### Added
+- Background video feature added to Container and Slider child block.
+
+### Improved
+- Advanced Button preset 3 improved
+
 ### 1.4.5 [October 05, 2024]
 
 ### Added

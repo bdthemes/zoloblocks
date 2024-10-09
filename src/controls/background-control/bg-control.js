@@ -123,20 +123,31 @@ const BGControl = (props) => {
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.filter(({ value }) => (video ? true : value !== 'video')).map(
-                                                ({ value, label }) => (
-                                                    <Button
-                                                        key={value}
-                                                        variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                        onClick={() =>
-                                                            setAttributes({
-                                                                [`${controlName}backgroundType`]: value,
-                                                            })
-                                                        }
-                                                    >
-                                                        {label}
-                                                    </Button>
-                                                )
+                                            {BACKGROUND_TYPES.map(({ value, label }) => (
+                                                <Button
+                                                    key={value}
+                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                    onClick={() =>
+                                                        setAttributes({
+                                                            [`${controlName}backgroundType`]: value,
+                                                        })
+                                                    }
+                                                >
+                                                    {label}
+                                                </Button>
+                                            ))}
+                                            {video && (
+                                                <Button
+                                                    key="video"
+                                                    variant={backgroundType === 'video' ? 'primary' : 'secondary'}
+                                                    onClick={() =>
+                                                        setAttributes({
+                                                            [`${controlName}backgroundType`]: 'video',
+                                                        })
+                                                    }
+                                                >
+                                                    {__('Video', 'zoloblocks')}
+                                                </Button>
                                             )}
                                         </ButtonGroup>
                                     </BaseControl>
@@ -1186,7 +1197,7 @@ const BGControl = (props) => {
                                     )}
                                     {backgroundType === 'video' && (
                                         <>
-                                        {backgroundVideo && backgroundVideo}
+                                            {backgroundVideo && backgroundVideo}
                                             {/* <MediaUpload
                                                 onSelect={({ url, id }) =>
                                                     setAttributes({
