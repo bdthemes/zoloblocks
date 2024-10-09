@@ -487,6 +487,7 @@ if ( ! class_exists( 'ZoloEnqueues' ) ) {
                 'psBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/ps-brand.svg',
                 'upkBrand'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/upk-brand.svg',
                 'popupBg'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/popup-bg.svg',
+                'zoloLogo'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/zoloblocks-logo.png',
             ]);
         }
 

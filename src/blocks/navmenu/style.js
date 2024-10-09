@@ -90,6 +90,16 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopAlignStyle: humburgerAlignmentDesktop,
+        tabAlignStyle: humburgerAlignmentTab,
+        mobAlignStyle: humburgerAlignmentMob,
+    } = generateResAlignmentStyle({
+        controlName: NAV_MENU_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
+
     // generate Background
 
     // NAV_MENU_WRAP_BG
@@ -520,10 +530,22 @@ export default function Style({ props }) {
      * Generate Alignment Class
      */
 
-    const btnDeskAlign = `display: ${buttonAlignmentDesktop === 'text-align:justify;' ? 'flex' : ''};`;
-    const btnTabAlign = `display: ${buttonAlignmentTab === 'text-align:justify;' ? 'flex' : ''};`;
-    const btnMobAlign = `display: ${buttonAlignmentMob === 'text-align:justify;' ? 'flex' : ''};`;
-    // console.log('btnDeskAlign', btnDeskAlign);
+    const btnDeskAlign = `
+    display: ${buttonAlignmentDesktop === 'text-align:justify;' ? 'flex' : ''};
+    text-align: ${humburgerAlignmentDesktop === 'text-align:left' ? 'left' : ''};
+  `;
+
+    const btnTabAlign = `
+    display: ${buttonAlignmentTab === 'text-align:justify;' ? 'flex' : ''};
+    text-align: ${humburgerAlignmentTab === 'text-align:center' ? 'center' : ''};
+  `;
+
+    const btnMobAlign = `
+    display: ${buttonAlignmentMob === 'text-align:justify;' ? 'flex' : ''};
+    text-align: ${humburgerAlignmentMob === 'text-align:right' ? 'right' : ''};
+  `;
+
+    console.log('btnDeskAlign', btnDeskAlign);
 
     /**
      * All Style Combination
@@ -532,6 +554,7 @@ export default function Style({ props }) {
 		.${uniqueId}.wp-block-zolo-navmenu,
 		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
 			${buttonAlignmentDesktop}
+            ${humburgerAlignmentDesktop}
 		}
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
