@@ -1,15 +1,12 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { Button, TextareaControl } from '@wordpress/components';
+import { Button, TextareaControl, BaseControl } from '@wordpress/components';
 
-const { ImageAvatar, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } = window.zoloModule;
+const { ImageAvatar} = window.zoloModule;
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-    const { backgroundVideo = {}, advBtnBgbackgroundType } = attributes;
+    const { backgroundVideo = {} } = attributes;
     const { id = '', url = '', falbackImageID = '', falbackImageURL = '' } = backgroundVideo;
-
-    // Only display if background type is video
-    // if (advBtnBgbackgroundType !== 'video') return null;
 
     // Handle video selection
     const handleVideoSelect = (media) => {
@@ -39,84 +36,50 @@ const Inspector = ({ panelProps }) => {
 
     return (
         <>
-            <label style={{ marginBottom: '10px', display: 'block' }} className="zolo-control-label">
-                {__('Select Video', 'zoloblocks')}
-            </label>
-
-            <MediaUpload
-                onSelect={handleVideoSelect}
-                allowedTypes={['video']}
-                value={id}
-                render={({ open }) => (
-                    <Button className="components-button zolo-bg-video-placeholder" label={__('Upload Video', 'zoloblocks')} onClick={open}>
-                        <>
-                            {backgroundVideo?.url ? (
-                                <video
-                                    className="zolo-background-video"
-                                    loop={true}
-                                    muted={true}
-                                    playsInline
-                                    currentTime={2}
-                                    preload="none"
-                                    autoPlay={true}
-                                    src={backgroundVideo?.url || ''}
-                                ></video>
-                            ) : (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width={24}
-                                    height={24}
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="icon icon-tabler icons-tabler-outline icon-tabler-video-plus"
-                                >
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z" />
-                                    <path d="M3 6m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" />
-                                    <path d="M7 12l4 0" />
-                                    <path d="M9 10l0 4" />
+            <BaseControl label={__('Select Video', 'zoloblocks')} className="zolo-flex-col-control">
+                {id ? (
+                    <ImageAvatar
+                        imageUrl={backgroundVideo && backgroundVideo.url}
+                        onDeleteImage={() =>
+                            setAttributes({
+                                backgroundVideo: {
+                                    ...backgroundVideo,
+                                    id: '',
+                                    url: '',
+                                },
+                            })
+                        }
+                        allowedTypes={['video']}
+                        imageId={backgroundVideo && backgroundVideo.id}
+                        onEditImage={(media) => {
+                            setAttributes({
+                                backgroundVideo: {
+                                    ...backgroundVideo,
+                                    id: media.id,
+                                    url: media.url,
+                                },
+                            });
+                        }}
+                    />
+                ) : (
+                    <MediaUpload
+                        onSelect={handleVideoSelect}
+                        allowedTypes={['video']}
+                        value={id}
+                        render={({ open }) => (
+                            <Button className="zolo-image-upload-btn" onClick={open}>
+                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
+                                    <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                 </svg>
-                            )}
-                        </>
-                    </Button>
-                    // <Button className="components-button" label={__('Upload Video', 'zoloblocks')} icon="format-video" onClick={open}>
-                    //     {__('Upload Video', 'zoloblocks')}
-                    // </Button>
+                                {__(' Upload Video', 'zoloblocks')}
+                            </Button>
+                        )}
+                    />
                 )}
-            />
-            <label style={{ marginBottom: '10px', display: 'block' }} className="zolo-control-label">
-                {__('Video Poster', 'zoloblocks')}
-            </label>
-            <MediaUpload
-                onSelect={handleImageSelect}
-                allowedTypes={['image']}
-                value={falbackImageID}
-                render={({ open }) =>
-                    !falbackImageURL && (
-                        <>
-                            <Button
-                                className="zb-bg-control-img-btn components-button"
-                                label={__('Upload Image', 'zoloblocks')}
-                                icon="format-image"
-                                onClick={open}
-                            />
-                            <span
-                                style={{
-                                    padding: '10px 0',
-                                    display: 'block',
-                                }}
-                            ></span>
-                        </>
-                    )
-                }
-            />
+            </BaseControl>
 
-            {falbackImageURL && (
-                <>
+            <BaseControl label={__('Poster (optional)', 'zoloblocks')} className="zolo-flex-col-control">
+                {falbackImageURL ? (
                     <ImageAvatar
                         imageUrl={falbackImageURL}
                         imageId={falbackImageID}
@@ -139,8 +102,22 @@ const Inspector = ({ panelProps }) => {
                             });
                         }}
                     />
-                </>
-            )}
+                ) : (
+                    <MediaUpload
+                        onSelect={handleImageSelect}
+                        allowedTypes={['image']}
+                        value={falbackImageID}
+                        render={({ open }) => (
+                            <Button className="zolo-image-upload-btn" onClick={open}>
+                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
+                                    <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                </svg>
+                                {__(' Upload Image', 'zoloblocks')}
+                            </Button>
+                        )}
+                    />
+                )}
+            </BaseControl>
         </>
     );
 };

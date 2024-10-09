@@ -5,9 +5,23 @@ import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-const ImageAvatar = ({ imageUrl = '', imageId = null, onDeleteImage, onEditImage }) => {
+const ImageAvatar = ({ imageUrl = '', imageId = null, onDeleteImage, onEditImage, allowedTypes=['image'] }) => {
+        const isImage = allowedTypes.includes('image');
+
+
     return (
-        <div className="zb-image-avatar-control" style={{ backgroundImage: `url(${imageUrl})` }}>
+        <div className="zb-image-avatar-control" style={isImage && imageUrl ? { backgroundImage: `url(${imageUrl})` } : {}}>
+            {!isImage && (
+                <video
+                    class="zolo-bgv-hosted zolo-html5-video"
+                    loop="true"
+                    playsinline=""
+                    preload="none"
+                    autoplay=""
+                    poster=""
+                    src={imageUrl}
+                ></video>
+            )}
             <Button className="zb-image-avatar-delete" onClick={() => onDeleteImage()}>
                 <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -25,7 +39,7 @@ const ImageAvatar = ({ imageUrl = '', imageId = null, onDeleteImage, onEditImage
             <MediaUploadCheck>
                 <MediaUpload
                     onSelect={onEditImage}
-                    allowedTypes={['image']}
+                    allowedTypes={allowedTypes}
                     value={imageId}
                     render={({ open }) => (
                         <Button className="zolo-replace-btn" onClick={open}>
