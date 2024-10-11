@@ -1,7 +1,7 @@
-=== ZoloBlocks – Gutenberg Blocks, Page Builder & Patterns for Gutenberg Editor ===
-Contributors: bdthemes, selimmw
+=== ZoloBlocks – Gutenberg Blocks, Page Builder, Gutenberg Templates & Patterns for Gutenberg Editor ===
+Contributors: bdthemes, selimmw, abutalib, muhammadasik
 Donate link: http://zoloblocks.com/
-Tags: block, blocks, gutenberg, gutenberg blocks, page builder
+Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
 Requires at least: 6.1
 Tested up to: 6.6.2
 Requires PHP: 7.4
@@ -9,21 +9,19 @@ Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Meet [**ZoloBlocks**](https://zoloblocks.com) - the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
+Meet [**ZoloBlocks**](https://zoloblocks.com) – the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
 
 == Description ==
 
-Meet [**ZoloBlocks**](https://zoloblocks.com) - the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
+Meet [**ZoloBlocks**](https://zoloblocks.com) – the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
 
-This isn't just another blocks plugin—it's a game-changer that puts the power of **premium page builder** plugins at your fingertips. With ZoloBlocks, you get **50+ advanced blocks**, **250+ pattern** templates, and **20+ extra editor options** for Gutenberg. This amazing plugin offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
+This isn’t just another WordPress Gutenberg blocks plugin—it’s a game-changer that puts the power of premium page builder plugins at your fingertips. With ZoloBlocks, an ultimate WordPress Editor block plugin, you get **50+ advanced blocks**, **250+ pattern templates**, and **20+ extra editor options** for Gutenberg. This amazing Ultimate block plugin for Gutenberg offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
 
-Whether a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress block editor. Say goodbye to coding headaches and cumbersome page builder plugins. Just replace the slow and complicated page-builder plugins with this fine-tuned website-builder plugin.
+Whether you are a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress Gutenberg block editor. Say goodbye to coding headaches and cumbersome page builder plugins. Just replace the slow and complicated page-builder plugins with this fine-tuned website-builder plugin.
 
-Not only does ZoloBlocks take Gutenberg's capabilities to the next level, but it also offers an **all-in-one solution** that is easy to use and packs all advanced features.
+Not only does ZoloBlocks take Gutenberg’s capabilities to the next level, but also this Gutenberg plugin with dynamic multiple blocks offers an **all-in-one solution** that is easy to use and packs all advanced features.
 
 https://www.youtube.com/watch?v=8kBMIL-4PZI
-
-
 
 == Key Features of ZoloBlocks ==
 
@@ -39,15 +37,15 @@ https://www.youtube.com/watch?v=8kBMIL-4PZI
 👍 A smooth and **sleek dashboard** experience
 👍 Instant settings sync
 
+
 We are continuously evolving ZoloBlocks page builder & patterns each week. All new updates bring new dimensions to your website-building experience. It is You who powered up with ZoloBlocks.
-
-
 
 == More Than 1-Step Ahead of Competition 🔥==
 
-With ZoloBlocks, you don’t just create your website, YOU OWN IT! With our powerful block editor, you can customize everything about the blocks. Whether it’s the layout style or font style, you have complete freedom over all elements.
+With ZoloBlocks, you don’t just create your website, YOU OWN IT! With our powerful Ultimate block editor for Gutenberg, you can customize everything about the blocks. Whether it’s the layout style or font style, you have complete freedom over all elements.
 
 What makes ZoloBlocks stand out is the level of detailing and a super smooth user experience.
+
 
 == Block Skins are Just Awesome 🎨 ==
 
@@ -65,71 +63,69 @@ You open your page, then click on the ZoloBlocks Template Library icon, then cho
 
 == Creative Animations Transitions 🌠 ==
 
-What you were missing was quality **animations** and **transitions**. With our product, that worry is gone. Now you can enjoy custom transition effects such as entrance animations, floating animations, transform effects, sticky elements, scroll effects, content visibility mode, and much more.
+What you were missing was quality animations and transitions. With this Gutenberg dynamic block plugin, that worry is gone. Now you can enjoy custom transition effects such as entrance animations, floating animations, transform effects, sticky elements, scroll effects, content visibility mode, and much more.
 
 == Versatile Block Extensions 🧩 ==
 
-ZoloBlocks isn't just about the Gutenberg blocks; it's about extending their functionality to new heights. With **8+ useful extensions**, you can add **dynamic content**, **interactive elements**, and advanced features that truly make your website stand out.
+ZoloBlocks isn’t just about the Gutenberg blocks; it’s about extending their functionality to new heights. With **8+ useful extensions**, you can add **dynamic content**, **interactive elements**, and advanced features that truly make your website stand out.
 
 == Advanced Customization for Developers 🧑‍💻 ==
 
-Not just for beginners; our product is a powerhouse for developers too. The plugin offers advanced customization options, including API integrations, dynamic content support, and custom CSS fields. These features allow developers to push the boundaries of what's possible within Gutenberg.
+Not just for beginners; our product is a powerhouse for developers too. This best free Gutenberg block plugin offers advanced customization options, including API integrations, dynamic content support, and custom CSS fields. These features allow developers to push the boundaries of what’s possible within Gutenberg.
 
 == Instant Updates and Feature Additions 🎁 ==
 
-ZoloBlocks is a living, evolving plugin that continuously improves to meet market trends. Instant settings sync ensures that your preferences and customization are always up-to-date. And our regular updates bring new features, blocks, and templates directly to your dashboard.
+ZoloBlocks is a living, evolving best WordPress Gutenberg block plugin that continuously improves to meet market trends. Instant settings sync ensures that your preferences and customization are always up-to-date. And our regular updates bring new features, blocks, and templates directly to your dashboard.
 
 == Optimized for Performance 🚀 ==
 
-One of the key challenges with page builder and block plugins is performance. Zolo Blocks is optimized to deliver fast load times and minimal impact on site performance. The lightweight code and efficient design ensure that your website remains speedy and responsive.
+One of the key challenges with page builder and Gutenberg custom block plugins is performance. Zolo Blocks, a Gutenberg block editor plugin is optimized to deliver fast load times and minimal impact on site performance. The lightweight code and efficient design built with the ultimate Gutenberg custom block plugin ensure that your website remains speedy and responsive.
 
 So, are you ready to explore all the amazing Gutenberg blocks features by ZoloBlocks? Let’s get started-
 
-
 == Common Blocks for Any Website ==
 
-🆓 [**Accordion**](https://demo.zoloblocks.com/accordion/) - *Create collapsible sections and add any content and blocks within to show hidden content to your users.*
+🆓 [**Accordion**](https://demo.zoloblocks.com/accordion/) - *Create collapsible sections and add any content and WordPress Gutenberg blocks within to show hidden content to your users.*
 
-🆓 [**Advanced Button**](https://demo.zoloblocks.com/advanced-button/) - *Design fully customizable buttons with icons, gradients, hover effects, and animations to enhance interactivity.*
+🆓 [**Advanced Button**](https://demo.zoloblocks.com/advanced-button/) - *Design fully customizable buttons in Gutenberg blocks with icons, gradients, hover effects, and animations to enhance interactivity.*
 
-🆓 [**Advanced Heading**](https://demo.zoloblocks.com/advanced-heading/) - *Add highly customizable headings with unique transitions, advanced typography options, color gradients, and animations.*
+🆓 [**Advanced Heading**](https://demo.zoloblocks.com/advanced-heading/) - *Add highly customizable headings in Gutenberg blocks with unique transitions, advanced typography options, color gradients, and animations.*
 
-🆓 [**Advanced Icon Box**](https://demo.zoloblocks.com/advanced-icon-box/) - *Showcase icons and content in sleek, customizable boxes with various layouts, hover effects, and styling options.*
+🆓 [**Advanced Icon Box**](https://demo.zoloblocks.com/advanced-icon-box/) - *Showcase icons and content in sleek, customizable boxes with various layouts, hover effects, and styling options of WordPress addon.*
 
-🆓 [**Advanced Image**](https://demo.zoloblocks.com/advanced-image/) - *Display images with advanced features like hover effects, overlays, captions, and customizable styling for visual impact.*
+🆓 [**Advanced Image**](https://demo.zoloblocks.com/advanced-image/) - *Display images in Gutenberg blocks with advanced features like hover effects, overlays, captions, and customizable styling for visual impact.*
 
-🆓 [**Brand Grid**](https://demo.zoloblocks.com/brand-grid/) - *Display brand logos or partner icons in a responsive grid or carousel with customizable styling and effects.*
+🆓 [**Brand Grid**](https://demo.zoloblocks.com/brand-grid/) - *Display brand logos or partner icons in a responsive grid or carousel with customizable styling and effects inside Gutenberg blocks.*
 
 🆓 [**Business Hours**](https://demo.zoloblocks.com/business-hours/) - *Display business operating hours in an engaging format with personalized icons, layouts, and design options.*
 
-🆓 [**Call to action**](https://demo.zoloblocks.com/call-to-action/) - *Encourage users to take action with bold, effective, and custom call-to-action elements designed for maximum engagement.*
+🆓 [**Call to action**](https://demo.zoloblocks.com/call-to-action/) - *Encourage users to take action in Gutenberg blocks with bold, effective, and custom call-to-action elements designed for maximum engagement.*
 
-🆓 [**Container**](https://demo.zoloblocks.com/container) - *Take full control of your page layout with the best Container block. Lets you group content, add backgrounds, and create advanced grid-based layouts within your WordPress site.
-egulo baki short desciption box*
+🆓 [**Container**](https://demo.zoloblocks.com/container) - *Take full control of your page layout with the best Container block. Lets you group content, add backgrounds, and create advanced grid-based layouts within your WordPress Gutenberg blocks.*
 
-🆓 [**Charts**](https://demo.zoloblocks.com/charts/) - *Create interactive, responsive charts and graphs for visual data representation using multiple design and chart types.*
+🆓 [**Charts**](https://demo.zoloblocks.com/charts/) - *Create interactive, responsive charts and graphs for visual data representation using multiple designs and chart types offered by this dynamic Gutenberg block plugin.*
 
-🆓 [**Countdown**](https://demo.zoloblocks.com/countdown/) - *Add powerful display countdown timers to highlight limited-time offers, upcoming events, or promotions with ease.*
+🆓 [**Countdown**](https://demo.zoloblocks.com/countdown/) - *Add powerful display countdown timers to highlight limited-time offers, upcoming events, or promotions with ease using this advanced Gutenberg block plugin.*
 
 🆓 [**Counter**](https://demo.zoloblocks.com/counter/) - *Display animated number-based counters to highlight statistics or milestones with lots of layouts and effects.*
 
 🆓 [**Fancy list**](https://demo.zoloblocks.com/fancy-list/) - *Create better-looking lists with icons, images, and custom advanced styles to make text more attractive and engaging.*
 
-🆓 [**Flip Box**](https://demo.zoloblocks.com/flip-box/) - *The highly interactive flip box comes with front and back content, animations and customizable styling options.*
+🆓 [**Flip Box**](https://demo.zoloblocks.com/flip-box/) - *The highly interactive flip box comes with front and back content, animations and customizable styling options using Gutenberg blocks.*
 
-🆓 [**Form**](https://demo.zoloblocks.com/form/) - *Design attractive custom forms with fields, validation, and layout options to provide interactive user experience.*
+🆓 [**Form**](https://demo.zoloblocks.com/form/) - *Design attractive custom forms with fields, validation, and layout options to provide an interactive user experience.*
 
 🆓 [**Google Map**](https://demo.zoloblocks.com/google-map/) - *Integrate Google Maps with personalized markers, styles, and zooms to provide business location information on landing page.*
 
-🆓 [**Icon**](https://demo.zoloblocks.com/icon) - *Insert fully custom icons with flexible sizes, colors, and hover effects to create visually interactive elements.*
+🆓 [**Icon**](https://demo.zoloblocks.com/icon) - *Insert fully custom icons with flexible sizes, colors, and hover effects to create visually interactive elements inside Gutenberg blocksa.*
 
 🆓 [**Image Compare**](https://demo.zoloblocks.com/image-compare/) - *Showcase images in beautiful grid, masonry, or slider layouts with various hover effects and lightbox functionality.*
 
-🆓 [**Image Gallery**](https://demo.zoloblocks.com/image-galley/) - *Create stunning and customizable image galleries on your WordPress website. Showcase your photos, artwork, or product images in an elegant, engaging, and personalized layout.*
+🆓 [**Image Gallery**](https://demo.zoloblocks.com/image-galley/) - *Create stunning and customizable image galleries on your WordPress website with ZoloBlocks, the best block plugin for WordPress. Showcase your photos, artwork, or product images in an elegant, engaging, and personalized layout.*
 
-🆓 [**List**](https://demo.zoloblocks.com/list/) - *Create highly engaging lists with icons and links to improve readability and visual presentation.*
+🆓 [**List**](https://demo.zoloblocks.com/list/) - *Create highly engaging lists with icons and links to improve readability and visual presentation using the list feature of this advanced Gutenberg block plugin.*
 
-🆓 [**Lightbox**](https://demo.zoloblocks.com/lightbox) - *Open images, videos, or galleries in an epic-looking lightbox overlay for better viewing and interaction.*
+🆓 [**Lightbox**](https://demo.zoloblocks.com/lightbox) - *Open images, videos, or galleries in an epic-looking lightbox overlay for better viewing and interaction using Gutenberg blocks.*
 
 🆓 **Maintenance Mode** - *Display a templated maintenance mode page with branding, messages, and countdowns during site updates.*
 
@@ -137,7 +133,7 @@ egulo baki short desciption box*
 
 🆓 [**Progress Pie**](https://demo.zoloblocks.com/progress-pie) - *Display stats or completion percentages using attractive, animated pie charts with so many styles and colors.*
 
-🆓 [**Pricing Table**](https://demo.zoloblocks.com/pricing-table/) - *Create detailed, attractive, and tailored pricing tables with columns, highlight features, and attractive advanced stylings.*
+🆓 [**Pricing Table**](https://demo.zoloblocks.com/pricing-table/) - *Create detailed, attractive, and tailored pricing tables with columns, highlight features, and attractive advanced stylings in Gutenberg blocks.*
 
 🆓 [**Profile Card**](https://demo.zoloblocks.com/profile-card/) - *Showcase individual profiles or team members in attractive, customizable card layouts with social links and hover effects.*
 
@@ -145,13 +141,13 @@ egulo baki short desciption box*
 
 🆓 [**QR Code**](https://demo.zoloblocks.com/qr-code) - *Generate personalized QR codes that link to URLs, documents, or content, get better engagement with creativity.*
 
-🆓 [**Review**](https://demo.zoloblocks.com/review/) - *Display individual reviews in a customizable layout to build trust and provide social proof to the audience.*
+🆓 [**Review**](https://demo.zoloblocks.com/review/) - *Display individual reviews in a customizable layout to build trust and provide social proof to the audience using this WP Gutenberg block plugin.*
 
-🆓 [**Review Carousel**](https://demo.zoloblocks.com/review-carousel/) - *Showcase multiple reviews in an epic-looking carousel with selective animations, layouts, and coloring.*
+🆓 [**Review Carousel**](https://demo.zoloblocks.com/review-carousel/) - *Showcase multiple reviews in an epic-looking carousel with selective animations, layouts, and coloring in Gutenberg blocks.*
 
 🆓 [**Review Grid**](https://demo.zoloblocks.com/review-grid/) - *Present reviews in a grid layout with flexible customization options, creating improved and organized social proofs.*
 
-🆓 [**Slider**](https://demo.zoloblocks.com/slider/) - *Create better-looking sliders for images, videos, or content with flexible transition effects and layouts.*
+🆓 [**Slider**](https://demo.zoloblocks.com/slider/) - *Create better-looking sliders for images, videos, or content with flexible transition effects and layouts in Gutenberg blocks.*
 
 🆓 [**Social Links**](https://demo.zoloblocks.com/social-links/) - *Display social media links with creative icons and layouts to boost user engagement and brand visibility.*
 
@@ -159,27 +155,27 @@ egulo baki short desciption box*
 
 🆓 [**Star Rating**](https://demo.zoloblocks.com/star-rating/) - *Display star ratings to any content with custom sizes, colors, and alignment to highlight reviews or product quality.*
 
-🆓 [**Tabs**](https://demo.zoloblocks.com/tab/) - *Organize content into tabbed sections with customizable layouts, improving the user’s browsing and reading experience.*
+🆓 [**Tabs**](https://demo.zoloblocks.com/tab/) - *Organize content into tabbed sections with customizable layouts, improving the user’s browsing and reading experience using Gutenberg blocks.*
 
 🆓 [**Text Path**](https://demo.zoloblocks.com/text-path) - *Morph your text following a custom path or curve, adding creative and visually interesting effects to typography.*
 
 🆓 [**Team grid**](https://demo.zoloblocks.com/team-grid/) - *Showcase your team members in a grid format with customizable layouts, hover effects, and social links.*
 
-🆓 [**Advanced Search**](https://demo.zoloblocks.com/advanced-search/) - *Add advanced search functionality with personalized input fields, icons, and refined search results presentation.*
+🆓 [**Advanced Search**](https://demo.zoloblocks.com/advanced-search/) - *Add advanced search functionality in Gutenberg blocks with personalized input fields, icons, and refined search results presentation.*
 
 
 
 == Dedicated Blocks for Blog, News and Magazine ==
 
-🆓 [**Authors**](https://demo.zoloblocks.com/authors) - *Showcase author profiles that you can customize to display unique layouts with profile images, bios, and links.*
+🆓 [**Authors**](https://demo.zoloblocks.com/authors) - *Showcase author profiles that you can customize to display unique layouts with profile images, bios, and links in Gutenberg blocks.*
 
 🆓 [**Newsletter**](https://demo.zoloblocks.com/newsletter) - *Create an eye-catching newsletter sign-up form to boost subscriptions and grow your audience quickly.*
 
-🆓 [**Post Carousel**](https://demo.zoloblocks.com/post-carousel/) - *Display posts in a dynamic carousel layout, upgrading content presentation with sleek navigation, style, and animations.*
+🆓 [**Post Carousel**](https://demo.zoloblocks.com/post-carousel/) - *Display posts in a dynamic carousel layout, upgrading content presentation with sleek navigation, style, and animations using Gutenberg blocks.*
 
 🆓 [**Post Category**](https://demo.zoloblocks.com/post-category) - *Showcase post categories in creative grid or list layouts to improve content discovery and site navigation.*
 
-🆓 [**Post Grid**](https://demo.zoloblocks.com/post-grid/) - *Present blog posts in an attractive grid format with customizable columns, styles, and hover effects.*
+🆓 [**Post Grid**](https://demo.zoloblocks.com/post-grid/) - *Present blog posts in an attractive grid format with customizable columns, styles, and hover effects in Gutenberg blocks.*
 
 🆓 [**Post list**](https://demo.zoloblocks.com/post-list/) - *Display blog posts in a list format, with flexible layout, design, and sorting options for enhanced readability.*
 
@@ -200,9 +196,9 @@ egulo baki short desciption box*
 
 👑 **Backdrop Filters** - *Apply stunning glass-like visual effects with blur, brightness, contrast, etc. filters to create stylized background elements.*
 
-👑 **Background Parallax** *Coming soon 🧪*
+👑 **Background Parallax** *Coming soon 🧪* - 
 
-👑 **CSS Filters**
+👑 **CSS Filters** - 
 
 👑 [**Cursors Animation**](https://demo.zoloblocks.com/cursor/) - *Customize the user’s cursor with unique animations and interactive effects for a high dynamic browsing experience.*
 
@@ -212,7 +208,7 @@ egulo baki short desciption box*
 
 👑 [**Entrance Animation**](https://demo.zoloblocks.com/entrance-animation/) - *Add butter smooth entrance animations to elements for an upgraded, dynamic and engaging user experience.*
 
-👑 **Export Pattern**
+👑 **Export Pattern** - 
 
 👑 [**Heading Animation**](https://demo.zoloblocks.com/text-animation/) - *Add animated text with selective effects to catch user attention and make headlines or messages more engaging.*
 
@@ -224,27 +220,25 @@ egulo baki short desciption box*
 
 👑 [**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot/) - *Add interactive hotspots to images for an improved, engaging experience with detailed pop-up information.*
 
-👑 **Import Pattern**
+👑 **Import Pattern** - 
 
-👑 **Scroll Parallax** - *Add parallax animations to scrolling elements for creating a more dynamic and interactive user experience.*
+👑 [**Scroll Parallax**](https://demo.zoloblocks.com/scroll-parallax-animation/) - *Add parallax animations to scrolling elements for creating a more dynamic and interactive user experience.*
 
 👑 [**Particles Animation**](https://demo.zoloblocks.com/particles/) - *Add various particle animations to background elements, boosting the visual impact with dynamic effects.*
 
-👑 [**Post Tabs**](https://demo.zoloblocks.com/post-tab/) - *Organize posts into tabbed sections, allowing users to toggle through categories for improved content exploration.*
+👑 [**Post Tabs**](https://demo.zoloblocks.com/post-tab/) - *Organize posts into tabbed sections, allowing users to toggle through categories for improved content exploration using the Post Tabs feature of this WordPress Gutenberg addon.*
 
-👑 **Smooth Scroller**
+👑 **Smooth Scroller** -
 
-👑 [**Shape Divider**](https://demo.zoloblocks.com/shape-divider/) - *Insert stylish shape dividers between sections to upgrade your design with unique visual content breaks.*
+👑 [**Shape Divider**](https://demo.zoloblocks.com/shape-divider/) - *Insert stylish shape dividers between sections to upgrade your design with unique visual content breaks of this WP Gutenberg block plugin.*
 
-👑 **Sticky Position**
-
-👑 [**Scroll Parallax**](https://demo.zoloblocks.com/scroll-parallax-animation/)
+👑 **Sticky Position** - 
 
 👑 **Transform Effects** - *Add transformation effects like scale, rotate, or skew to boost visual appeal and interactivity of elements.*
 
 👑 [**Unfold**](https://demo.zoloblocks.com/unfold/) - *Add unfolding animations to elements, creating an engaging experience as content reveals itself interactively.*
 
-👑 [**Text Highlight**](https://demo.zoloblocks.com/text-highlight/) - *Highlight text with custom backgrounds, gradients, or animations to emphasize key points or important content.*
+👑 [**Text Highlight**](https://demo.zoloblocks.com/text-highlight/) - *Highlight text with custom backgrounds, gradients, or animations to emphasize key points or important content using this ultimate Gutenberg custom block plugin.*
 
 
 == Still not happy? Pick Your Features ==
@@ -443,75 +437,5 @@ Not at all. We have optimized all of these blocks for better performance.
 * Improved: Enhanced Button Block Preset style.
 * Improved: Removed line link from preset particles.
 * Improved: Added particles preview options to Editor.
-
-= 1.3.3 - 18-8-2024 =
-
-* Fixed: Pricing Table custom width issue fixed
-* Fixed: Transform Elements width issue fixed
-* Fixed: Transition duration issue fixed in Transform extensions
-* Improved: Dashboard, Blocks scripts are improved
-
-= 1.3.2 - 14-8-2024 =
-
-* Added: Width feature has been added to the extra tab for every block
-* Fixed: Some minor issues are fixed
-
-= 1.3.1 - 12-8-2024 =
-
-* Fixed: Frontend multi-color issue fixed in Tag Cloud block (pro)
-* Fixed: File name case minor issue fixed
-
-= 1.3.0 - 12-8-2024 =
-
-* Added: Particles feature added
-* Added: Post Category block added
-* Added: Post Tag Cloud block added
-* Added: Maintenance mode feature added
-* Fixed: Appender button issue fixed to Tabs block
-* Fixed: Outline and border issue fixed to tabs block
-
-= 1.2.2 - 01-08-2024 =
-
-* Fixed: Popup block issue fixed
-* Fixed: Astra theme support issue fixed
-* Fixed: Transform conflict with Entrance animation issue fixed
-* Fixed: Glitching issue fixed in marquee block (pro)
-* Improved: Form, Notice, Review, QR Code blocks improved
-
-= 1.2.1 - 28-07-2024 =
-
-* Added: Suffix and Prefix style controls added to QR Code block
-* Fixed: Some minor issues are fixed
-
-= 1.2.0 - 25-07-2024 =
-
-* Added: QR Code block added
-* Added: Shape Divider Added to Container Block
-* Fixed: Transform issue fixed
-* Fixed: Hover color issue fixed in Icon block
-* Fixed: CLS issue fixed in Slider block and Post Carousel block
-* Fixed: Subtitle Heading Tag issue fixed in Advanced Heading block
-* Improved Blocks scripts default values are improved
-
-= 1.1.0 - 10-07-2024 =
-
-* Added: Icon block added
-* Added: Notice block added
-* Added: Popup builder added
-* Added: Text path block added
-* Added: zIndex nagative value added
-* Added: Theme fonts support added
-* Added: Position sticky feature added
-* Added: Box Shadow control added in Flipbox block
-* Fixed: Entrance animation conflict with global link issue fixed in Advanced Icon Box
-* Fixed: The map zoom in/out and draggble issue fixed in Google Map block
-* Fixed: Floating label issue fixed in advanced search & newsletter block
-* Fixed: Patterns save as favorite features added in Template Library
-* Fixed: Image Uploading issue fixed in Advanced Image block
-* Fixed: Separator color issue fixed in team grid block
-* Fixed: Label issue fixed in Form block
-* Improved: Transform Rotate reset control added in Transform features
-* Improved: Dynamic CSS Generation optimized
-* Improved: Template Library UI improved
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)
