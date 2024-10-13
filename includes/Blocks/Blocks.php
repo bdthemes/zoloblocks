@@ -513,5 +513,22 @@ return apply_filters('zolo_blocks_list_data', [
         'status'     => true,
         'demo'       => 'https://demo.zoloblocks.com/post-title',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ]
+    ],
+    'post-query'           => [
+        'name'             => 'post-query',
+        'title'            => __('Post Query', 'zoloblocks'),
+        'render_available' => true,
+        'categories'       => ['others'],
+        'status'           => true,
+        'demo'             => 'https://demo.zoloblocks.com/post-query',
+        'video'            => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
+    'loop'               => [
+        'name'       => 'loop',
+        'title'      => __('Loop', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/loop',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
 ]);

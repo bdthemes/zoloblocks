@@ -18,6 +18,7 @@ use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
+use Zolo\API\PostQuery;
 use Zolo\API\TemplatesV1;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
@@ -64,6 +65,7 @@ class ZoloBlocks_Loader {
         ZoloEnqueues::getInstance();
         FontLoader::getInstance();
         PostMeta::getInstance();
+        PostQuery::getInstance();
 
         // form
         Form::getInstance();
