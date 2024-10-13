@@ -22,16 +22,7 @@ const attributes = {
             },
             responsiveControls: true,
         },
-    },
-    queryId: {
-        type: 'number'
-    },
-    query: {
-        type: 'object',
-        default: {
-            inherit: true
-        },
-    },
+    }
 };
 
 export default attributes;

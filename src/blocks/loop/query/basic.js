@@ -27,7 +27,7 @@ const BasicQuery = ({ query, setQuery }) => {
 
     return (
         <>
-            <ZoloPanelBody title={__('Post345', 'zoloblocks')} panelProps={{attributes, setAttributes}}>
+            <ZoloPanelBody title={__('Post', 'zoloblocks')} panelProps={{attributes, setAttributes}}>
                 <BaseControl label={__('Post Type', 'zoloblocks')} className="zolo-flex-col-control">
                     <Select2
                         classNamePrefix="zolo-select"

@@ -72,31 +72,21 @@ function Inspector(props) {
                                             tabs={[
                                                 {
                                                     name: 'basic',
-                                                    title: __('Basic Query', 'zoloblocks'),
-                                                },
-                                                {
-                                                    name: 'taxonomy',
-                                                    title: __('Taxonomy Query', 'zoloblocks'),
+                                                    title: __('Basic', 'zoloblocks'),
                                                 },
                                                 {
                                                     name: 'advanced',
-                                                    title: __('Advanced Query', 'zoloblocks'),
+                                                    title: __('Advanced', 'zoloblocks'),
                                                 },
                                             ]}
                                         >
                                             {(tab) => {
                                                 if ('basic' === tab.name) {
                                                     return (
-                                                        <BasicQuery
+                                                        <BasicQuery 
                                                             query={query}
                                                             setQuery={setQuery}
                                                         />
-                                                    )
-                                                }
-
-                                                if ('taxonomy' === tab.name) {
-                                                    return (
-                                                        <h4>Table</h4>
                                                     )
                                                 }
 
