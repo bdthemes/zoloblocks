@@ -235,21 +235,21 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             // // swiper only for editor
-            // wp_enqueue_style(
-            //     'zolo-swiper-editor-style',
-            //     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
-            //     [],
-            //     ZOLO_VERSION,
-            //     'all'
-            // );
+            wp_enqueue_style(
+                'zolo-swiper-editor-style',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
+                [],
+                ZOLO_VERSION,
+                'all'
+            );
 
-            // wp_enqueue_script(
-            //     'zolo-swiper-editor-script',
-            //     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
-            //     [],
-            //     ZOLO_VERSION,
-            //     false
-            // );
+            wp_enqueue_script(
+                'zolo-swiper-editor-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
+                [],
+                ZOLO_VERSION,
+                false
+            );
 
             if (ZoloHelpers::is_extension_enabled('particles')) {
 

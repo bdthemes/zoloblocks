@@ -6,7 +6,7 @@
     "keywords": ["brand child", "brand"],
     "description": "single child item for brand grid block",
     "parent": ["zolo/brand-grid"],
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "supports": {
         "anchor": false,

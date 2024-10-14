@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["Slide", "Slider", "Carousel"],
     "description": "Create instant slideshows in Gutenberg very easily",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

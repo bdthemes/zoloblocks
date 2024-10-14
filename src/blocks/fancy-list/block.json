@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["fancy", "fancy list"],
     "description": "Makes list type content with creative layouts and transitions",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {
