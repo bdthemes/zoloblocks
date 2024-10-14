@@ -29,7 +29,7 @@ import { add } from '@dnd-kit/utilities';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, addNewSlideBlock } = attributes;
+    const { uniqueId, parentClasses, addNewSlideBlock, showNavigation } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, parentClasses),
@@ -44,9 +44,52 @@ export default function Edit(props) {
         setAttributes({ addNewSlideBlock: !addNewSlideBlock });
     };
 
-        const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const deviceType = useSelect((select) => select('core/editor').getDeviceType());
+    const swiperRef = useRef(null);
+    const handlePrev = () => {
+        if (!swiperRef.current) return;
+        swiperRef.current.swiper.slidePrev();
+    };
+    const handleNext = () => {
+        if (!swiperRef.current) return;
+        swiperRef.current.swiper.slideNext();
+    };
+
+    useEffect(() => {
+        // Ensure the swiper element exists
+        if (!swiperRef.current) return;
+
+        // Define event handler functions
+        const handleSwiperProgress = (e) => {
+            const [swiper, progress] = e.detail;
+            // Handle progress here if needed
+        };
+
+        const handleSlideChange = (e) => {
+            const [swiper] = e.detail;
+            // Handle slide change here if needed
+        };
+
+        const handleSwiperInit = (e) => {
+            const [swiper] = e.detail;
+            swiper.update();
+        };
+
+        // Add event listeners
+        swiperRef.current.addEventListener('swiperprogress', handleSwiperProgress);
+        swiperRef.current.addEventListener('swiperslidechange', handleSlideChange);
+        swiperRef.current.addEventListener('swiperinit', handleSwiperInit);
+
+        // Cleanup event listeners when component updates or unmounts
+        return () => {
+            if (!swiperRef.current) return;
+            swiperRef.current.removeEventListener('swiperprogress', handleSwiperProgress);
+            swiperRef.current.removeEventListener('swiperslidechange', handleSlideChange);
+            swiperRef.current.removeEventListener('swiperinit', handleSwiperInit);
+        };
+    }, [attributes.slider]); // Depend on relevant attributes
 
     const innerBlocksProps = useInnerBlocksProps(
         {
@@ -81,21 +124,32 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <Swiper
                     key={JSON.parse(addNewSlideBlock)}
+                    ref={swiperRef}
                     modules={[A11y, Autoplay, Navigation, Pagination]}
                     spaceBetween={20}
                     observer={true}
                     observeParents={true}
-                    navigation={true}
+                    // navigation={true}
                     loop={true}
                     pagination={{ clickable: true }}
                     slidesPerView={1}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    }}
+                    // autoplay={{
+                    //     delay: 3000,
+                    //     disableOnInteraction: false,
+                    // }}
                     // slidesPerView={deviceType === 'Desktop' ? 3 : deviceType === 'Tablet' ? 2 : 1}
                 >
                     <div {...innerBlocksProps} />
+                    {showNavigation && (
+                        <>
+                            <div slot="navigation" className="zolo-swiper-button-prev" onClick={handlePrev}>
+                                Prev
+                            </div>
+                            <div slot="navigation" className="zolo-swiper-button-next" onClick={handleNext}>
+                                Next
+                            </div>
+                        </>
+                    )}
                 </Swiper>
             </div>
         </>
