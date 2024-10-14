@@ -51,6 +51,7 @@ import {
     APAG_BORDER,
     APAG_BORDER_RADIUS,
     APAG_BG,
+    PAGINATION_TYPES,
 } from './constants';
 
 const Inspector = (props) => {
@@ -66,6 +67,7 @@ const Inspector = (props) => {
         navHoverColor,
         navHoverBorderColor,
         showPagination,
+        paginationType,
         speed,
         sliderEffect,
         customNavIcon,
@@ -174,6 +176,19 @@ const Inspector = (props) => {
                                     })
                                 }
                             />
+
+                            {showPagination && (
+                                <SelectControl
+                                    label={__('Type', 'zoloblocks')}
+                                    value={paginationType || 'bullets'}
+                                    options={PAGINATION_TYPES}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            paginationType: value,
+                                        })
+                                    }
+                                />
+                            )}
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Effects', 'zoloblocks')} panelProps={props}>

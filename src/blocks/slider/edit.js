@@ -10,12 +10,11 @@ import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
-
 // Import Swiper core and required modules
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-
+const { DisplayZoloIcon } = window.zoloModule;
 /**
  * Edit function
  */
@@ -29,7 +28,17 @@ import { add } from '@dnd-kit/utilities';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, addNewSlideBlock, showNavigation } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        addNewSlideBlock,
+        showNavigation,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
+        showPagination,
+        paginationType,
+    } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, parentClasses),
@@ -131,7 +140,14 @@ export default function Edit(props) {
                     observeParents={true}
                     // navigation={true}
                     loop={true}
-                    pagination={{ clickable: true }}
+                    pagination={
+                        showPagination
+                            ? {
+                                  clickable: true,
+                                  type: paginationType || 'bullets',
+                              }
+                            : false
+                    }
                     slidesPerView={1}
                     // autoplay={{
                     //     delay: 3000,
@@ -142,11 +158,25 @@ export default function Edit(props) {
                     <div {...innerBlocksProps} />
                     {showNavigation && (
                         <>
-                            <div slot="navigation" className="zolo-swiper-button-prev" onClick={handlePrev}>
-                                Prev
-                            </div>
-                            <div slot="navigation" className="zolo-swiper-button-next" onClick={handleNext}>
-                                Next
+                            <div
+                                className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
+                            >
+                                {customNavIcon && (
+                                    <>
+                                        <div slot="navigation" className="swiper-nav-button swiper-zolo-prev" onClick={handlePrev}>
+                                            <DisplayZoloIcon icon={prevNavIcon} />
+                                        </div>
+                                        <div slot="navigation" className="swiper-nav-button swiper-zolo-next" onClick={handleNext}>
+                                            <DisplayZoloIcon icon={nextNavIcon} />
+                                        </div>
+                                    </>
+                                )}
+                                {!customNavIcon && (
+                                    <>
+                                        <div slot="navigation" className="swiper-nav-button swiper-button-prev" onClick={handlePrev}></div>
+                                        <div slot="navigation" className="swiper-nav-button swiper-button-next" onClick={handleNext}></div>
+                                    </>
+                                )}
                             </div>
                         </>
                     )}
