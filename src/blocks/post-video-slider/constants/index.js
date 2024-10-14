@@ -1,18 +1,18 @@
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 
 export const BLOCK_PREFIX = 'zolo-post-video-slider';
 
 export const POSITION_OPTIONS = [
-  {label: __('Center Center', 'zoloblocks'), value: 'zolo-center-center'},
-  {label: __('Center Left', 'zoloblocks'), value: 'zolo-center-left'},
-  {label: __('Center Right', 'zoloblocks'), value: 'zolo-center-right'},
-  {label: __('Bottom Left', 'zoloblocks'), value: 'zolo-bottom-left'},
-  {label: __('Bottom Right', 'zoloblocks'), value: 'zolo-bottom-right'},
+    { label: __('Center Center', 'zoloblocks'), value: 'zolo-center-center' },
+    { label: __('Center Left', 'zoloblocks'), value: 'zolo-center-left' },
+    { label: __('Center Right', 'zoloblocks'), value: 'zolo-center-right' },
+    { label: __('Bottom Left', 'zoloblocks'), value: 'zolo-bottom-left' },
+    { label: __('Bottom Right', 'zoloblocks'), value: 'zolo-bottom-right' },
 ];
 
 export const SLIDER_EFFECTS = [
-  {label: __('Slide', 'zoloblocks'), value: 'slide'},
-  {label: __('Fade', 'zoloblocks'), value: 'fade'},
+    { label: __('Slide', 'zoloblocks'), value: 'slide' },
+    { label: __('Fade', 'zoloblocks'), value: 'fade' },
 ];
 
 export const COLUMNS = 'sliderColumns';
@@ -40,6 +40,8 @@ export const CAT_MARGIN = 'catMargin';
 export const CAT_PADDING = 'catPading';
 
 // Navigation settings
+export const NAV_BTN_PADDING = 'navBtnPadding';
+export const NAV_BTN_MARGIN = 'navBtnMargin';
 export const NAV_WIDTH = 'navWidth';
 export const NAV_HEIGHT = 'navHeight';
 export const NAV_OFFSET_HORIZONTAL = 'navOffsetHorizontal';
@@ -55,9 +57,9 @@ export const THUMB_HEIGHT = 'thumbHeight';
 export const THUMB_BORDER = 'thumbBorder';
 export const THUMB_BORDER_RADIUS = 'thumbBRadius';
 export const LINE_HEIGHT = 'lineHeight';
-export const PLAY_BTN_SIZE = 'playBtnSize'
-export const PLAY_BTN_ICON_SIZE = 'playBtnIconSize'
-export const PLAY_BTN_BG = 'playBtnBg'
-export const PLAY_BTN_BORDER = 'playBtnBorder'
-export const PLAY_BTN_BORDER_RADIUS = 'playBtnBRadius'
-export const PLAY_BTN_HOVER_BG = 'playBtnHoverBg'
+export const PLAY_BTN_SIZE = 'playBtnSize';
+export const PLAY_BTN_ICON_SIZE = 'playBtnIconSize';
+export const PLAY_BTN_BG = 'playBtnBg';
+export const PLAY_BTN_BORDER = 'playBtnBorder';
+export const PLAY_BTN_BORDER_RADIUS = 'playBtnBRadius';
+export const PLAY_BTN_HOVER_BG = 'playBtnHoverBg';
