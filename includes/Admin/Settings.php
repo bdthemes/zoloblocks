@@ -48,6 +48,18 @@ if (! class_exists('Settings')) {
 
             register_rest_route(
                 'zolo/v1',
+                '/favorites',
+                [
+                    'methods'  => ['GET', 'POST'],
+                    'callback' => [$this, 'handle_favorites_settings'],
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                ]
+            );
+
+            register_rest_route(
+                'zolo/v1',
                 '/extensions',
                 [
                     'methods'  => ['GET', 'POST'],
@@ -59,21 +71,21 @@ if (! class_exists('Settings')) {
             );
 
             // favorite templates
-            register_setting(
-                'zolo_blocks_settings_group',
-                'zolo_favorite_templates',
-                [
-                    'type'              => 'array',
-                    'default'           => [],
-                    'sanitize_callback' => NULL,
-                    'show_in_rest'      => [
-                        'schema' => [
-                            'type'  => 'array',
-                            'items' => ['type' => 'number'],
-                        ],
-                    ],
-                ]
-            );
+            // register_setting(
+            //     'zolo_blocks_settings_group',
+            //     'zolo_favorite_templates',
+            //     [
+            //         'type'              => 'array',
+            //         'default'           => [],
+            //         'sanitize_callback' => NULL,
+            //         'show_in_rest'      => [
+            //             'schema' => [
+            //                 'type'  => 'array',
+            //                 'items' => ['type' => 'number'],
+            //             ],
+            //         ],
+            //     ]
+            // );
 
             // register zolo google api key setting
             register_setting(
@@ -301,6 +313,21 @@ if (! class_exists('Settings')) {
             }
         }
 
+         /**
+         * Handles the favorites settings.
+         *
+         * This method is responsible for handling the favorites settings.
+         *
+         * @param WP_REST_Request $request The request object.
+         */
+        public function handle_favorites_settings($request) {
+            if( $request->get_method() === 'GET' ) {
+                return $this->get_favorites();
+            } else {
+                return $this->update_favorites($request);
+            }
+        }
+
         /**
          * Handles the extensions settings.
          *
@@ -326,6 +353,15 @@ if (! class_exists('Settings')) {
          */
         public static function get_blocks() {
             return get_option('zolo_blocks_settings', []);
+        }
+
+         /**
+         * Retrieves the favorites list.
+         *
+         * @return array The favorites list.
+         */
+        public static function get_favorites() {
+            return get_option('zolo_favorites', []);
         }
 
         /**
@@ -382,6 +418,58 @@ if (! class_exists('Settings')) {
             update_option( 'zolo_blocks_settings', $blocks );
 
             return rest_ensure_response( $blocks );
+        }
+
+         /**
+         * Updates the favorites list.
+         *
+         * This method is responsible for updating the favorites list.
+         * It is a static method that can be called without instantiating the class.
+         *
+         * @param WP_REST_Request $request The request object.
+         * @return array The updated favorites list.
+         */
+        public function update_favorites($request) {
+            $nonce = $request->get_param('zolo_nonce');
+
+            if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
+                return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
+            }
+
+            $fav_id = $request->get_param( 'fav_id' ) ? intval( $request->get_param( 'fav_id' ) ) : '';
+            
+            // Fetch existing blocks
+            $fav_items = get_option( 'zolo_favorites', [] );
+
+            // if fav_id is not empty then add to favorite list else remove from favorite list
+            if ( !empty( $fav_id ) ) {
+
+                // check if it is already in favorite list or not
+                $fav_exists = false;
+                foreach ( $fav_items as $fav_item ) {
+                    if ( $fav_item === $fav_id ) {
+                        $fav_exists = true;
+                        break;
+                    }
+                }
+
+                // if not exists then add to favorite list else remove from favorite list
+                if ( !$fav_exists ) {
+                    $fav_items[] = $fav_id;
+                } else {
+                    $key = array_search( $fav_id, $fav_items );
+                    if ( $key !== false ) {
+                        unset( $fav_items[ $key ] );
+                    }
+                } 
+            } else {
+                return new WP_Error( 'invalid_request', __( 'Invalid favorite id provided.', 'zoloblocks' ), array( 'status' => 400 ) );
+            }
+
+            // Update the option
+            update_option( 'zolo_favorites', $fav_items );
+
+            return rest_ensure_response( $fav_items );
         }
 
         /**
