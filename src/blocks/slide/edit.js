@@ -21,6 +21,9 @@ import Inspector from './inspector';
 // import Style
 import Style from './style';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
 /**
  * Filter Slide Item block on Register
  * and pass the block as a child of swiper-slide
@@ -39,7 +42,7 @@ const zoloSlide = createHigherOrderComponent((BlockListBlock) => {
     };
 }, 'zoloSlide');
 
-addFilter('editor.BlockListBlock', 'zolo/slide', zoloSlide);
+// addFilter('editor.BlockListBlock', 'zolo/slide', zoloSlide);
 
 /**
  * Edit Function
@@ -82,11 +85,11 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <div {...blockProps}>
+            <SwiperSlide {...blockProps}>
                 {renderHookBefore}
                 <div {...innerBlocksProps} />
                 {renderHookAfter}
-            </div>
+            </SwiperSlide>
         </>
     );
 }

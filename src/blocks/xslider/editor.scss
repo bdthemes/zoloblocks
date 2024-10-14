@@ -1,0 +1,29 @@
+.wp-block-zolo-slider {
+    &.Tablet,
+    &.Mobile {
+        .swiper-wrapper {
+            display: flex;
+            width: auto;
+            overflow-x: scroll;
+            z-index: 11;
+            position: relative;
+            transform: unset !important;
+            padding-bottom: 20px;
+        }
+        // .swiper-slide {
+        //     margin-right: 30px !important;
+        // }
+    }
+    &.Tablet {
+        .swiper-slide {
+            width: 700px !important;
+            min-width: 700px;
+        }
+    }
+    &.Mobile {
+        .swiper-slide {
+            width: 290px !important;
+            min-width: 290px;
+        }
+    }
+}
