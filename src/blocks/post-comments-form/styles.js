@@ -498,10 +498,143 @@ function Style({props}) {
   `;
 
   const tabletAllStyle = `
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-count{
+     ${headingTypoTab}
+     ${headingSpaceTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-list{
+      ${commentSpaceTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-list .comment-body{
+     ${commentPaddingTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-list img.avatar{
+      ${avatarPaddingTab}
+      ${avatarBorderTab}
+      ${avatarBorderRadiusTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-author a{
+      ${authorTypoTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-metadata a{
+      ${metaTypoTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-content p{
+      ${messageTypoTab}
+    }
+   .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-link{
+    ${replyTypoTab}
+    ${replyPaddingTab}
+    ${replyBorderTab}
+    ${replyBorderRadiusTab}
+   }
+   .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-link:hover{
+    ${replyHBorderTab}
+    ${replyHBorderRadiusTab}
+   }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-title{
+     ${formHeadingTypoTab}
+     ${formHeadingBSpaceTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-title small a{
+     ${cancelTypoTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .logged-in-as,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .must-log-in,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .logged-in-as a{
+     ${formInfoTypoTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form{
+     ${inputSpaceTab}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #author,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #email,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #url,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form textarea#comment{
+      ${inputTypoTab}
+      ${inputPaddingTab}
+      ${inputMarginTab}
+      ${inputBorderTab}
+      ${inputBorderRadiusTab}
+    }
+
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #submit{
+      ${submitBtnTypoTab}
+      ${submitBtnPaddingTab}
+      ${submitBtnMarginTab}
+      ${submitBtnBorderTab}
+      ${submitBtnBRadiusTab}
+    }
 
   `;
   const mobileAllStyle = `
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-count{
+     ${headingTypoMob}
+     ${headingSpaceMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-list{
+      ${commentSpaceMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-list .comment-body{
+     ${commentPaddingMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-list img.avatar{
+      ${avatarPaddingMob}
+      ${avatarBorderMob}
+      ${avatarBorderRadiusMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-author a{
+      ${authorTypoMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-metadata a{
+      ${metaTypoMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-content p{
+      ${messageTypoMob}
+    }
+   .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-link{
+    ${replyTypoMob}
+    ${replyPaddingMob}
+    ${replyBorderMob}
+    ${replyBorderRadiusMob}
+   }
+   .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-link:hover{
+    ${replyHBorderMob}
+    ${replyHBorderRadiusMob}
+   }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-title{
+     ${formHeadingTypoMob}
+     ${formHeadingBSpaceMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .comment-reply-title small a{
+     ${cancelTypoMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .logged-in-as,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .must-log-in,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .logged-in-as a{
+     ${formInfoTypoMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form{
+     ${inputSpaceMob}
+    }
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #author,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #email,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #url,
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form textarea#comment{
+      ${inputTypoMob}
+      ${inputPaddingMob}
+      ${inputMarginMob}
+      ${inputBorderMob}
+      ${inputBorderRadiusMob}
+    }
 
+    .${uniqueId}.wp-block-zolo-post-comments-form.zolo-block .zolo-comment-form #submit{
+      ${submitBtnTypoMob}
+      ${submitBtnPaddingMob}
+      ${submitBtnMarginMob}
+      ${submitBtnBorderMob}
+      ${submitBtnBRadiusMob}
+    }
   `;
   return (
     <>
