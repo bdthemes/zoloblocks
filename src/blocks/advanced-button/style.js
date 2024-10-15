@@ -71,6 +71,7 @@ export default function Style({ props }) {
         presetFourStyles,
         presetSixStyle,
         presetSevenStyles,
+        buttonTwoBorderColor,
     } = attributes;
 
     // alignment
@@ -406,7 +407,16 @@ export default function Style({ props }) {
             ${normalDeskBGStyle}
             ${normalBoxShadowStyle}
 		}
-
+        ${
+            preset === 'button-2'
+                ? `
+            .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button {
+                border-color: ${buttonTwoBorderColor || ''};
+            }
+        `
+                : ''
+        }
+        
         .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
 			${hoverDeskBGStyle}
 		}

@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["gallery", "image gallery"],
     "description": "Neat and clean gallery block for your images",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

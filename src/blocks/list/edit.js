@@ -24,6 +24,7 @@ export default function Edit(props) {
         preview,
         uniqueId,
         preset,
+        contentLayout,
         layout,
         parentClasses,
         listProfiles,
@@ -37,7 +38,13 @@ export default function Edit(props) {
     const deepCloneProfiles = cloneDeep(listProfiles);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, preset, uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(
+            className,
+            preset,
+            preset !== 'zolo-list-style-1' ? contentLayout : '',
+            uniqueId,
+            classArrayToStr(parentClasses)
+        ),
     });
 
     // filter hooks for render
@@ -126,7 +133,7 @@ export default function Edit(props) {
                                                                 }}
                                                             />
                                                         )}
-                                                        {DscToggle && (
+                                                        {DscToggle && contentLayout !== 'horizontal' && (
                                                             <RichText
                                                                 tagName="div"
                                                                 className="zolo-list-desc"
@@ -143,7 +150,7 @@ export default function Edit(props) {
                                             </div>
                                         ) : (
                                             <>
-                                                {iconToggle && preset !== 'zolo-list-style-1' && (
+                                                {iconToggle && preset !== 'zolo-list-style-1' && contentLayout !== 'horizontal' && (
                                                     <div className="zolo-list-icon">
                                                         {profile.icon ? (
                                                             <DisplayZoloIcon icon={profile.icon} />
@@ -152,9 +159,38 @@ export default function Edit(props) {
                                                         )}
                                                     </div>
                                                 )}
+
+                                                {contentLayout === 'horizontal' && preset !== 'zolo-list-style-1' && (
+                                                    <>
+                                                        <div className="zolo-list-icon-title-wrap">
+                                                            {iconToggle && (
+                                                                <div className="zolo-list-icon">
+                                                                    {profile.icon ? (
+                                                                        <DisplayZoloIcon icon={profile.icon} />
+                                                                    ) : (
+                                                                        <DisplayZoloIcon icon={globalIcon} />
+                                                                    )}
+                                                                </div>
+                                                            )}
+                                                            {titleToggle && (
+                                                                <RichText
+                                                                    tagName="div"
+                                                                    className="zolo-list-title"
+                                                                    value={profile.text}
+                                                                    onChange={(v) => {
+                                                                        const newItems = [...deepCloneProfiles];
+                                                                        newItems[index].text = v;
+                                                                        setAttributes({ listProfiles: newItems });
+                                                                    }}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    </>
+                                                )}
+
                                                 {preset !== 'zolo-list-style-1' && (
                                                     <div className="zolo-list-content">
-                                                        {titleToggle && (
+                                                        {titleToggle && contentLayout !== 'horizontal' && (
                                                             <RichText
                                                                 tagName="div"
                                                                 className="zolo-list-title"
@@ -183,9 +219,34 @@ export default function Edit(props) {
                                             </>
                                         )}
                                         {preset == 'zolo-list-style-4' && (
-                                            <div class="zolo-list-hover-icon">
-                                                <DisplayZoloIcon icon={linkHoverIcon} />
-                                            </div>
+                                            <>
+                                                {contentLayout === 'horizontal' && (
+                                                    <>
+                                                        <div className="zolo-list-desc-hover-icon">
+                                                            {DscToggle && (
+                                                                <RichText
+                                                                    tagName="div"
+                                                                    className="zolo-list-desc"
+                                                                    value={profile.desc}
+                                                                    onChange={(v) => {
+                                                                        const newItems = [...deepCloneProfiles];
+                                                                        newItems[index].desc = v;
+                                                                        setAttributes({ listProfiles: newItems });
+                                                                    }}
+                                                                />
+                                                            )}
+                                                            <div class="zolo-list-hover-icon">
+                                                                <DisplayZoloIcon icon={linkHoverIcon} />
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )}
+                                                {contentLayout !== 'horizontal' && (
+                                                    <div class="zolo-list-hover-icon">
+                                                        <DisplayZoloIcon icon={linkHoverIcon} />
+                                                    </div>
+                                                )}
+                                            </>
                                         )}
                                     </div>
                                 )}

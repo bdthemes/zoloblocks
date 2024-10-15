@@ -108,6 +108,8 @@ function Style({ props }) {
         fcountBGColor,
     } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+
     // content align
     const {
         desktopAlignStyle: contetnAlignDesk,
@@ -803,6 +805,21 @@ function Style({ props }) {
       .${uniqueId}.zolo-pagination-wrap .page-numbers:hover {
         ${apagColor ? `color:${apagColor};` : ''}
         ${apagBgColor ? `background-color:${apagBgColor};` : ''}
+      }
+
+      ${
+          active
+              ? `
+                    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-image .wp-post-image {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+              : ''
       }
 
     `;

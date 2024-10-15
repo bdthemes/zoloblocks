@@ -1,631 +1,640 @@
-import {applyFilters} from '@wordpress/hooks';
+import { applyFilters } from '@wordpress/hooks';
 
 import {
-  GRID_COLUMNS,
-  COLUMNS_GAP,
-  THUMBNAIL_HEIGHT,
-  COLUMN_PADDING,
-  COLUMN_BG,
-  COLUMN_BORDER,
-  COLUMN_BORDER_RADIUS,
-  COLUMN_SHADOW,
-  THUMBNAIL_MARGIN,
-  THUMBNAIL_BG,
-  THUMBNAIL_BORDER,
-  THUMBNAIL_BORDER_RADIUS,
-  THUMBNAIL_BOX_SHADOW,
-  TITLE_MARGIN,
-  EXCERPT_MARGIN,
-  META_MARGIN,
-  CAT_GAP,
-  CAT_BORDER,
-  CAT_BORDER_RADIUS,
-  CAT_MARGIN,
-  CAT_PADDING,
-  READMORE_GAP,
-  READMORE_BORDER,
-  READMORE_BORDER_RADIUS,
-  READMORE_MARGIN,
-  READMORE_PADDING,
-  AVATAR_SIZE,
-  AVATAR_BORDER,
-  AVATAR_BORDER_RADIUS,
-  AVATAR_GAP,
-  PAG_BORDER,
-  PAG_BORDER_RADIUS,
-  PAG_MARGIN,
-  PAG_PADDING,
-  PAG_ALIGN,
-  META_SPACE,
-  META_ARROW_SPACE,
-  CONTENT_PADDING,
-  META_BOX_WRAP_PADDING,
-  FILTER_BORDER,
-  FILTER_BORDER_RADIUS,
-  FILTER_MARGIN,
-  FILTER_PADDING,
-  FILTER_ALIGN,
-  FILTER_GAP
+    GRID_COLUMNS,
+    COLUMNS_GAP,
+    THUMBNAIL_HEIGHT,
+    COLUMN_PADDING,
+    COLUMN_BG,
+    COLUMN_BORDER,
+    COLUMN_BORDER_RADIUS,
+    COLUMN_SHADOW,
+    THUMBNAIL_MARGIN,
+    THUMBNAIL_BG,
+    THUMBNAIL_BORDER,
+    THUMBNAIL_BORDER_RADIUS,
+    THUMBNAIL_BOX_SHADOW,
+    TITLE_MARGIN,
+    EXCERPT_MARGIN,
+    META_MARGIN,
+    CAT_GAP,
+    CAT_BORDER,
+    CAT_BORDER_RADIUS,
+    CAT_MARGIN,
+    CAT_PADDING,
+    READMORE_GAP,
+    READMORE_BORDER,
+    READMORE_BORDER_RADIUS,
+    READMORE_MARGIN,
+    READMORE_PADDING,
+    AVATAR_SIZE,
+    AVATAR_BORDER,
+    AVATAR_BORDER_RADIUS,
+    AVATAR_GAP,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
+    PAG_MARGIN,
+    PAG_PADDING,
+    PAG_ALIGN,
+    META_SPACE,
+    META_ARROW_SPACE,
+    CONTENT_PADDING,
+    META_BOX_WRAP_PADDING,
+    FILTER_BORDER,
+    FILTER_BORDER_RADIUS,
+    FILTER_MARGIN,
+    FILTER_PADDING,
+    FILTER_ALIGN,
+    FILTER_GAP,
 } from './constants';
 
 import {
-  TITLE_TYPOGRAPHY,
-  EXCERPT_TYPOGRAPHY,
-  META_TYPOGRAPHY,
-  CAT_TYPOGRAPHY,
-  READMORE_TYPOGRAPHY,
-  NAME_TYPOGRAPHY,
-  PAG_TYPOGRAPHY,
-  FILTER_TYPOGRAPHY
+    TITLE_TYPOGRAPHY,
+    EXCERPT_TYPOGRAPHY,
+    META_TYPOGRAPHY,
+    CAT_TYPOGRAPHY,
+    READMORE_TYPOGRAPHY,
+    NAME_TYPOGRAPHY,
+    PAG_TYPOGRAPHY,
+    FILTER_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
-  generateDimensionStyle,
-  generateResRangeStyle,
-  generateNormalBGControlStyles,
-  generateBorderStyle,
-  generateBoxShadowStyles,
-  generateTypographyStyles,
-  generateResCounterStyle,
-  GlobalStyleHanlder,
-  generateResAlignmentStyle,
-  generateGapStyle,
+    generateDimensionStyle,
+    generateResRangeStyle,
+    generateNormalBGControlStyles,
+    generateBorderStyle,
+    generateBoxShadowStyles,
+    generateTypographyStyles,
+    generateResCounterStyle,
+    GlobalStyleHanlder,
+    generateResAlignmentStyle,
+    generateGapStyle,
 } = window.zoloModule;
 
-function Style({props}) {
-  const {attributes, setAttributes} = props;
-  const {
-    preset,
-    uniqueId,
-    titleColor,
-    titleHoverColor,
-    excerptColor,
-    metaColor,
-    metaHColor,
-    metaArrowColor,
-    catBgColor,
-    catColor,
-    catBgHoverColor,
-    catHoverColor,
-    readMoreBgColor,
-    readMoreColor,
-    readMoreIconColor,
-    readMoreBgHoverColor,
-    readMoreHoverColor,
-    readMoreIconHoverColor,
-    namePrefixColor,
-    nameColor,
-    nameHoverColor,
-    namePrefixHoverColor,
-    pagColor,
-    pagBgColor,
-    apagColor,
-    apagBgColor,
-    pagSeparatorColor,
-    filterColor,
-    filterBgColor,
-    filterBorderColor,
-    filterAColor,
-    filterABgColor,
-    filterABorderColor
-  } = attributes;
+function Style({ props }) {
+    const { attributes, setAttributes } = props;
+    const {
+        preset,
+        uniqueId,
+        titleColor,
+        titleHoverColor,
+        excerptColor,
+        metaColor,
+        metaHColor,
+        metaArrowColor,
+        catBgColor,
+        catColor,
+        catBgHoverColor,
+        catHoverColor,
+        readMoreBgColor,
+        readMoreColor,
+        readMoreIconColor,
+        readMoreBgHoverColor,
+        readMoreHoverColor,
+        readMoreIconHoverColor,
+        namePrefixColor,
+        nameColor,
+        nameHoverColor,
+        namePrefixHoverColor,
+        pagColor,
+        pagBgColor,
+        apagColor,
+        apagBgColor,
+        pagSeparatorColor,
+        filterColor,
+        filterBgColor,
+        filterBorderColor,
+        filterAColor,
+        filterABgColor,
+        filterABorderColor,
+        titleAnimationTypeBgColor,
+    } = attributes;
 
-  const {
-    desktopRangeStyle: columnCountDesk,
-    tabRangeStyle: columnCountTab,
-    mobRangeStyle: columnCountMob,
-  } = generateResCounterStyle({
-    controlName: GRID_COLUMNS,
-    attributes,
-    noProperty: true,
-    defaults: {
-      deskRange: 3,
-      tabRange: 2,
-      mobRange: 1,
-    },
-  });
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
 
-  const {
-    gapStylesDesktop: colGapDesk,
-    gapStylesTab: colGapTab,
-    gapStylesMobile: colGapMob,
-  } = generateGapStyle({
-    controlName: COLUMNS_GAP,
-    attributes,
-  });
+    const {
+        desktopRangeStyle: columnCountDesk,
+        tabRangeStyle: columnCountTab,
+        mobRangeStyle: columnCountMob,
+    } = generateResCounterStyle({
+        controlName: GRID_COLUMNS,
+        attributes,
+        noProperty: true,
+        defaults: {
+            deskRange: 3,
+            tabRange: 2,
+            mobRange: 1,
+        },
+    });
 
-  const {
-    desktopRangeStyle: thumbnailHeightDesk,
-    tabRangeStyle: thumbnailHeightTab,
-    mobRangeStyle: thumbnailHeightMob,
-  } = generateResRangeStyle({
-    controlName: THUMBNAIL_HEIGHT,
-    property: 'height',
-    attributes,
-  });
+    const {
+        gapStylesDesktop: colGapDesk,
+        gapStylesTab: colGapTab,
+        gapStylesMobile: colGapMob,
+    } = generateGapStyle({
+        controlName: COLUMNS_GAP,
+        attributes,
+    });
 
-  //column
-  const {
-    dimensionStylesDesktop: columnDeskPadding,
-    dimensionStylesTab: columnTabPadding,
-    dimensionStylesMobile: columnMobPadding,
-  } = generateDimensionStyle({
-    controlName: COLUMN_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
-  const {
-    backgroundStylesDesktop: columnDeskBGStyle,
-    backgroundStylesTab: columnTabBGStyle,
-    backgroundStylesMobile: columnMobBGStyle,
-  } = generateNormalBGControlStyles({
-    controlName: COLUMN_BG,
-    attributes,
-    noMainBGImg: true,
-  });
+    const {
+        desktopRangeStyle: thumbnailHeightDesk,
+        tabRangeStyle: thumbnailHeightTab,
+        mobRangeStyle: thumbnailHeightMob,
+    } = generateResRangeStyle({
+        controlName: THUMBNAIL_HEIGHT,
+        property: 'height',
+        attributes,
+    });
 
-  const {
-    desktopBorderStyle: columnDeskBorderStyle,
-    tabBorderStyle: columnTabBorderStyle,
-    mobBorderStyle: columnMobBorderStyle,
-  } = generateBorderStyle({
-    controlName: COLUMN_BORDER,
-    attributes,
-  });
+    //column
+    const {
+        dimensionStylesDesktop: columnDeskPadding,
+        dimensionStylesTab: columnTabPadding,
+        dimensionStylesMobile: columnMobPadding,
+    } = generateDimensionStyle({
+        controlName: COLUMN_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: columnDeskBGStyle,
+        backgroundStylesTab: columnTabBGStyle,
+        backgroundStylesMobile: columnMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: COLUMN_BG,
+        attributes,
+        noMainBGImg: true,
+    });
 
-  const {
-    dimensionStylesDesktop: columnDeskBorderRadius,
-    dimensionStylesTab: columnTabBorderRadius,
-    dimensionStylesMobile: columnMobBorderRadius,
-  } = generateDimensionStyle({
-    controlName: COLUMN_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
+    const {
+        desktopBorderStyle: columnDeskBorderStyle,
+        tabBorderStyle: columnTabBorderStyle,
+        mobBorderStyle: columnMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: COLUMN_BORDER,
+        attributes,
+    });
 
-  const {boxShadowStyle: columnBoxShadow} = generateBoxShadowStyles({
-    attributes,
-    controlName: COLUMN_SHADOW,
-  });
+    const {
+        dimensionStylesDesktop: columnDeskBorderRadius,
+        dimensionStylesTab: columnTabBorderRadius,
+        dimensionStylesMobile: columnMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: COLUMN_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: thumbMarginDesk,
-    dimensionStylesTab: thumbMarginTab,
-    dimensionStylesMobile: thumbMarginMob,
-  } = generateDimensionStyle({
-    controlName: THUMBNAIL_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
+    const { boxShadowStyle: columnBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: COLUMN_SHADOW,
+    });
 
-  const {
-    backgroundStylesDesktop: thumbBgDesk,
-    backgroundStylesTab: thumbBgTab,
-    backgroundStylesMobile: thumbBgMob,
-  } = generateNormalBGControlStyles({
-    controlName: THUMBNAIL_BG,
-    attributes,
-    noMainBGImg: true,
-  });
+    const {
+        dimensionStylesDesktop: thumbMarginDesk,
+        dimensionStylesTab: thumbMarginTab,
+        dimensionStylesMobile: thumbMarginMob,
+    } = generateDimensionStyle({
+        controlName: THUMBNAIL_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-  const {
-    desktopBorderStyle: thumbBorderDesk,
-    tabBorderStyle: thumbBorderTab,
-    mobBorderStyle: thumbBorderMob,
-  } = generateBorderStyle({
-    controlName: THUMBNAIL_BORDER,
-    attributes,
-  });
+    const {
+        backgroundStylesDesktop: thumbBgDesk,
+        backgroundStylesTab: thumbBgTab,
+        backgroundStylesMobile: thumbBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: THUMBNAIL_BG,
+        attributes,
+        noMainBGImg: true,
+    });
 
-  const {
-    dimensionStylesDesktop: thumbBorderRadiusDesk,
-    dimensionStylesTab: thumbBorderRadiusTab,
-    dimensionStylesMobile: thumbBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: THUMBNAIL_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
+    const {
+        desktopBorderStyle: thumbBorderDesk,
+        tabBorderStyle: thumbBorderTab,
+        mobBorderStyle: thumbBorderMob,
+    } = generateBorderStyle({
+        controlName: THUMBNAIL_BORDER,
+        attributes,
+    });
 
-  const {boxShadowStyle: thumbBoxShadow} = generateBoxShadowStyles({
-    attributes,
-    controlName: THUMBNAIL_BOX_SHADOW,
-  });
+    const {
+        dimensionStylesDesktop: thumbBorderRadiusDesk,
+        dimensionStylesTab: thumbBorderRadiusTab,
+        dimensionStylesMobile: thumbBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: THUMBNAIL_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: titleTypoDesk,
-    typoStylesTab: titleTypoTab,
-    typoStylesMobile: titleTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: TITLE_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: titleMarginDesk,
-    dimensionStylesTab: titleMarginTab,
-    dimensionStylesMobile: titleMarginMob,
-  } = generateDimensionStyle({
-    controlName: TITLE_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  const {
-    typoStylesDesktop: excerptTypoDesk,
-    typoStylesTab: excerptTypoTab,
-    typoStylesMobile: excerptTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: EXCERPT_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: excerptMarginDesk,
-    dimensionStylesTab: excerptMarginTab,
-    dimensionStylesMobile: excerptMarginMob,
-  } = generateDimensionStyle({
-    controlName: EXCERPT_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
+    const { boxShadowStyle: thumbBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: THUMBNAIL_BOX_SHADOW,
+    });
 
-  const {
-    typoStylesDesktop: metaTypoDesk,
-    typoStylesTab: metaTypoTab,
-    typoStylesMobile: metaTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: META_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: metaMarginDesk,
-    dimensionStylesTab: metaMarginTab,
-    dimensionStylesMobile: metaMarginMob,
-  } = generateDimensionStyle({
-    controlName: META_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
+    const {
+        typoStylesDesktop: titleTypoDesk,
+        typoStylesTab: titleTypoTab,
+        typoStylesMobile: titleTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: titleMarginDesk,
+        dimensionStylesTab: titleMarginTab,
+        dimensionStylesMobile: titleMarginMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        typoStylesDesktop: excerptTypoDesk,
+        typoStylesTab: excerptTypoTab,
+        typoStylesMobile: excerptTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: EXCERPT_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: excerptMarginDesk,
+        dimensionStylesTab: excerptMarginTab,
+        dimensionStylesMobile: excerptMarginMob,
+    } = generateDimensionStyle({
+        controlName: EXCERPT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: catTypoDesk,
-    typoStylesTab: catTypoTab,
-    typoStylesMobile: catTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: CAT_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    desktopRangeStyle: catGapDesk,
-    tabRangeStyle: catGapTab,
-    mobRangeStyle: catGapMob,
-  } = generateResRangeStyle({
-    controlName: CAT_GAP,
-    property: 'gap',
-    attributes,
-  });
-  const {
-    desktopBorderStyle: catBorderDesk,
-    tabBorderStyle: catBorderTab,
-    mobBorderStyle: catBorderMob,
-  } = generateBorderStyle({
-    controlName: CAT_BORDER,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: catBorderRadiusDesk,
-    dimensionStylesTab: catBorderRadiusTab,
-    dimensionStylesMobile: catBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: CAT_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: catMarginDesk,
-    dimensionStylesTab: catMarginTab,
-    dimensionStylesMobile: catMarginMob,
-  } = generateDimensionStyle({
-    controlName: CAT_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: catPaddingDesk,
-    dimensionStylesTab: catPaddingTab,
-    dimensionStylesMobile: catPaddingMob,
-  } = generateDimensionStyle({
-    controlName: CAT_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
+    const {
+        typoStylesDesktop: metaTypoDesk,
+        typoStylesTab: metaTypoTab,
+        typoStylesMobile: metaTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: META_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: metaMarginDesk,
+        dimensionStylesTab: metaMarginTab,
+        dimensionStylesMobile: metaMarginMob,
+    } = generateDimensionStyle({
+        controlName: META_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: readMoreTypoDesk,
-    typoStylesTab: readMoreTypoTab,
-    typoStylesMobile: readMoreTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: READMORE_TYPOGRAPHY,
-    attributes,
-  });
+    const {
+        typoStylesDesktop: catTypoDesk,
+        typoStylesTab: catTypoTab,
+        typoStylesMobile: catTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: CAT_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        desktopRangeStyle: catGapDesk,
+        tabRangeStyle: catGapTab,
+        mobRangeStyle: catGapMob,
+    } = generateResRangeStyle({
+        controlName: CAT_GAP,
+        property: 'gap',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: catBorderDesk,
+        tabBorderStyle: catBorderTab,
+        mobBorderStyle: catBorderMob,
+    } = generateBorderStyle({
+        controlName: CAT_BORDER,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: catBorderRadiusDesk,
+        dimensionStylesTab: catBorderRadiusTab,
+        dimensionStylesMobile: catBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CAT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: catMarginDesk,
+        dimensionStylesTab: catMarginTab,
+        dimensionStylesMobile: catMarginMob,
+    } = generateDimensionStyle({
+        controlName: CAT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: catPaddingDesk,
+        dimensionStylesTab: catPaddingTab,
+        dimensionStylesMobile: catPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CAT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: readMoreGapDesk,
-    tabRangeStyle: readMoreGapTab,
-    mobRangeStyle: readMoreGapMob,
-  } = generateResRangeStyle({
-    controlName: READMORE_GAP,
-    property: 'gap',
-    attributes,
-  });
+    const {
+        typoStylesDesktop: readMoreTypoDesk,
+        typoStylesTab: readMoreTypoTab,
+        typoStylesMobile: readMoreTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: READMORE_TYPOGRAPHY,
+        attributes,
+    });
 
-  const {
-    desktopBorderStyle: readMoreBorderDesk,
-    tabBorderStyle: readMoreBorderTab,
-    mobBorderStyle: readMoreBorderMob,
-  } = generateBorderStyle({
-    controlName: READMORE_BORDER,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: readMoreBorderRadiusDesk,
-    dimensionStylesTab: readMoreBorderRadiusTab,
-    dimensionStylesMobile: readMoreBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: READMORE_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: readMoreMarginDesk,
-    dimensionStylesTab: readMoreMarginTab,
-    dimensionStylesMobile: readMoreMarginMob,
-  } = generateDimensionStyle({
-    controlName: READMORE_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: readMorePaddingDesk,
-    dimensionStylesTab: readMorePaddingTab,
-    dimensionStylesMobile: readMorePaddingMob,
-  } = generateDimensionStyle({
-    controlName: READMORE_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
+    const {
+        desktopRangeStyle: readMoreGapDesk,
+        tabRangeStyle: readMoreGapTab,
+        mobRangeStyle: readMoreGapMob,
+    } = generateResRangeStyle({
+        controlName: READMORE_GAP,
+        property: 'gap',
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: avatarWidthDesk,
-    tabRangeStyle: avatarWidthTab,
-    mobRangeStyle: avatarWidthMob,
-  } = generateResRangeStyle({
-    controlName: AVATAR_SIZE,
-    property: 'width',
-    attributes,
-  });
-  const {
-    desktopRangeStyle: avatarHeightDesk,
-    tabRangeStyle: avatarHeightTab,
-    mobRangeStyle: avatarHeightMob,
-  } = generateResRangeStyle({
-    controlName: AVATAR_SIZE,
-    property: 'height',
-    attributes,
-  });
-  const {
-    desktopBorderStyle: avatarBorderDesk,
-    tabBorderStyle: avatarBorderTab,
-    mobBorderStyle: avatarBorderMob,
-  } = generateBorderStyle({
-    controlName: AVATAR_BORDER,
-    attributes,
-  });
+    const {
+        desktopBorderStyle: readMoreBorderDesk,
+        tabBorderStyle: readMoreBorderTab,
+        mobBorderStyle: readMoreBorderMob,
+    } = generateBorderStyle({
+        controlName: READMORE_BORDER,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: readMoreBorderRadiusDesk,
+        dimensionStylesTab: readMoreBorderRadiusTab,
+        dimensionStylesMobile: readMoreBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: READMORE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: readMoreMarginDesk,
+        dimensionStylesTab: readMoreMarginTab,
+        dimensionStylesMobile: readMoreMarginMob,
+    } = generateDimensionStyle({
+        controlName: READMORE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: readMorePaddingDesk,
+        dimensionStylesTab: readMorePaddingTab,
+        dimensionStylesMobile: readMorePaddingMob,
+    } = generateDimensionStyle({
+        controlName: READMORE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: avatarBorderRadiusDesk,
-    dimensionStylesTab: avatarBorderRadiusTab,
-    dimensionStylesMobile: avatarBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: AVATAR_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
+    const {
+        desktopRangeStyle: avatarWidthDesk,
+        tabRangeStyle: avatarWidthTab,
+        mobRangeStyle: avatarWidthMob,
+    } = generateResRangeStyle({
+        controlName: AVATAR_SIZE,
+        property: 'width',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: avatarHeightDesk,
+        tabRangeStyle: avatarHeightTab,
+        mobRangeStyle: avatarHeightMob,
+    } = generateResRangeStyle({
+        controlName: AVATAR_SIZE,
+        property: 'height',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: avatarBorderDesk,
+        tabBorderStyle: avatarBorderTab,
+        mobBorderStyle: avatarBorderMob,
+    } = generateBorderStyle({
+        controlName: AVATAR_BORDER,
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: authorGapDesk,
-    tabRangeStyle: authorGapTab,
-    mobRangeStyle: authorGapMob,
-  } = generateResRangeStyle({
-    controlName: AVATAR_GAP,
-    property: 'gap',
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: avatarBorderRadiusDesk,
+        dimensionStylesTab: avatarBorderRadiusTab,
+        dimensionStylesMobile: avatarBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: AVATAR_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: nameTypoDesk,
-    typoStylesTab: nameTypoTab,
-    typoStylesMobile: nameTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: NAME_TYPOGRAPHY,
-    attributes,
-  });
+    const {
+        desktopRangeStyle: authorGapDesk,
+        tabRangeStyle: authorGapTab,
+        mobRangeStyle: authorGapMob,
+    } = generateResRangeStyle({
+        controlName: AVATAR_GAP,
+        property: 'gap',
+        attributes,
+    });
 
-  // Pagination
-  const {
-    desktopBorderStyle: pagBorderDesk,
-    tabBorderStyle: pagBorderTab,
-    mobBorderStyle: pagBorderMob,
-  } = generateBorderStyle({
-    controlName: PAG_BORDER,
-    attributes,
-  });
+    const {
+        typoStylesDesktop: nameTypoDesk,
+        typoStylesTab: nameTypoTab,
+        typoStylesMobile: nameTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: NAME_TYPOGRAPHY,
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: pagBorderRadiusDesk,
-    dimensionStylesTab: pagBorderRadiusTab,
-    dimensionStylesMobile: pagBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: PAG_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
+    // Pagination
+    const {
+        desktopBorderStyle: pagBorderDesk,
+        tabBorderStyle: pagBorderTab,
+        mobBorderStyle: pagBorderMob,
+    } = generateBorderStyle({
+        controlName: PAG_BORDER,
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: pagTypoDesk,
-    typoStylesTab: pagTypoTab,
-    typoStylesMobile: pagTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: PAG_TYPOGRAPHY,
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: pagBorderRadiusDesk,
+        dimensionStylesTab: pagBorderRadiusTab,
+        dimensionStylesMobile: pagBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: PAG_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    desktopAlignStyle: pagAlignDesk,
-    tabAlignStyle: pagAlignTab,
-    mobAlignStyle: pagAlignMob,
-  } = generateResAlignmentStyle({
-    controlName: PAG_ALIGN,
-    property: 'text-align',
-    attributes,
-  });
+    const {
+        typoStylesDesktop: pagTypoDesk,
+        typoStylesTab: pagTypoTab,
+        typoStylesMobile: pagTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: PAG_TYPOGRAPHY,
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: pagPaddingDesk,
-    dimensionStylesTab: pagPaddingTab,
-    dimensionStylesMobile: pagPaddingMob,
-  } = generateDimensionStyle({
-    controlName: PAG_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
+    const {
+        desktopAlignStyle: pagAlignDesk,
+        tabAlignStyle: pagAlignTab,
+        mobAlignStyle: pagAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: PAG_ALIGN,
+        property: 'text-align',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: pagMarginDesk,
-    dimensionStylesTab: pagMarginTab,
-    dimensionStylesMobile: pagMarginMob,
-  } = generateDimensionStyle({
-    controlName: PAG_MARGIN,
-    styleFor: 'padding',
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: pagPaddingDesk,
+        dimensionStylesTab: pagPaddingTab,
+        dimensionStylesMobile: pagPaddingMob,
+    } = generateDimensionStyle({
+        controlName: PAG_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  // post meta space
-  const {
-    desktopRangeStyle: metaSpaceDesk,
-    tabRangeStyle: metaSpaceTab,
-    mobRangeStyle: metaSpaceMob,
-  } = generateResRangeStyle({
-    controlName: META_SPACE,
-    property: 'gap',
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: pagMarginDesk,
+        dimensionStylesTab: pagMarginTab,
+        dimensionStylesMobile: pagMarginMob,
+    } = generateDimensionStyle({
+        controlName: PAG_MARGIN,
+        styleFor: 'padding',
+        attributes,
+    });
 
+    // post meta space
+    const {
+        desktopRangeStyle: metaSpaceDesk,
+        tabRangeStyle: metaSpaceTab,
+        mobRangeStyle: metaSpaceMob,
+    } = generateResRangeStyle({
+        controlName: META_SPACE,
+        property: 'gap',
+        attributes,
+    });
 
-  // post meta arrow space
-  const {
-    desktopRangeStyle: metaArrowSpaceDesk,
-    tabRangeStyle: metaArrowSpaceTab,
-    mobRangeStyle: metaArrowSpaceMob,
-  } = generateResRangeStyle({
-    controlName: META_ARROW_SPACE,
-    property: 'left',
-    attributes,
-  });
+    // post meta arrow space
+    const {
+        desktopRangeStyle: metaArrowSpaceDesk,
+        tabRangeStyle: metaArrowSpaceTab,
+        mobRangeStyle: metaArrowSpaceMob,
+    } = generateResRangeStyle({
+        controlName: META_ARROW_SPACE,
+        property: 'left',
+        attributes,
+    });
 
+    // post content wrapper
 
-  // post content wrapper
+    const {
+        dimensionStylesDesktop: contentPaddingDesk,
+        dimensionStylesTab: contentPaddingTab,
+        dimensionStylesMobile: contentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: contentPaddingDesk,
-    dimensionStylesTab: contentPaddingTab,
-    dimensionStylesMobile: contentPaddingMob,
-  } = generateDimensionStyle({
-    controlName: CONTENT_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
+    // post meta content wrapper
 
-  // post meta content wrapper
+    const {
+        dimensionStylesDesktop: metaBoxWrapPaddingDesk,
+        dimensionStylesTab: metaBoxWrapPaddingTab,
+        dimensionStylesMobile: metaBoxWrapPaddingMob,
+    } = generateDimensionStyle({
+        controlName: META_BOX_WRAP_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: metaBoxWrapPaddingDesk,
-    dimensionStylesTab: metaBoxWrapPaddingTab,
-    dimensionStylesMobile: metaBoxWrapPaddingMob,
-  } = generateDimensionStyle({
-    controlName: META_BOX_WRAP_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
+    //filter taxonomy
+    const {
+        gapStylesDesktop: filterGapDesk,
+        gapStylesTab: filterGapTab,
+        gapStylesMobile: filterGapMob,
+    } = generateGapStyle({
+        controlName: FILTER_GAP,
+        attributes,
+    });
+    const {
+        desktopBorderStyle: filterBorderDesk,
+        tabBorderStyle: filterBorderTab,
+        mobBorderStyle: filterBorderMob,
+    } = generateBorderStyle({
+        controlName: FILTER_BORDER,
+        attributes,
+    });
 
-  //filter taxonomy
-  const {
-    gapStylesDesktop: filterGapDesk,
-    gapStylesTab: filterGapTab,
-    gapStylesMobile: filterGapMob,
-  } = generateGapStyle({
-    controlName: FILTER_GAP,
-    attributes,
-  });
-  const {
-    desktopBorderStyle: filterBorderDesk,
-    tabBorderStyle: filterBorderTab,
-    mobBorderStyle: filterBorderMob,
-  } = generateBorderStyle({
-    controlName: FILTER_BORDER,
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: filterBorderRadiusDesk,
+        dimensionStylesTab: filterBorderRadiusTab,
+        dimensionStylesMobile: filterBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: FILTER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: filterBorderRadiusDesk,
-    dimensionStylesTab: filterBorderRadiusTab,
-    dimensionStylesMobile: filterBorderRadiusMob,
-  } = generateDimensionStyle({
-    controlName: FILTER_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
+    const {
+        typoStylesDesktop: filterTypoDesk,
+        typoStylesTab: filterTypoTab,
+        typoStylesMobile: filterTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FILTER_TYPOGRAPHY,
+        attributes,
+    });
 
-  const {
-    typoStylesDesktop: filterTypoDesk,
-    typoStylesTab: filterTypoTab,
-    typoStylesMobile: filterTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: FILTER_TYPOGRAPHY,
-    attributes,
-  });
+    const {
+        desktopAlignStyle: filterAlignDesk,
+        tabAlignStyle: filterAlignTab,
+        mobAlignStyle: filterAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: FILTER_ALIGN,
+        property: 'justify-content',
+        attributes,
+    });
 
-  const {
-    desktopAlignStyle: filterAlignDesk,
-    tabAlignStyle: filterAlignTab,
-    mobAlignStyle: filterAlignMob,
-  } = generateResAlignmentStyle({
-    controlName: FILTER_ALIGN,
-    property: 'justify-content',
-    attributes,
-  });
+    const {
+        dimensionStylesDesktop: filterPaddingDesk,
+        dimensionStylesTab: filterPaddingTab,
+        dimensionStylesMobile: filterPaddingMob,
+    } = generateDimensionStyle({
+        controlName: FILTER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-  const {
-    dimensionStylesDesktop: filterPaddingDesk,
-    dimensionStylesTab: filterPaddingTab,
-    dimensionStylesMobile: filterPaddingMob,
-  } = generateDimensionStyle({
-    controlName: FILTER_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
-
-  const {
-    dimensionStylesDesktop: filterMarginDesk,
-    dimensionStylesTab: filterMarginTab,
-    dimensionStylesMobile: filterMarginMob,
-  } = generateDimensionStyle({
-    controlName: FILTER_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  /**
-   * All Style Combination
-   */
-  const desktopAllStyle = `
+    const {
+        dimensionStylesDesktop: filterMarginDesk,
+        dimensionStylesTab: filterMarginTab,
+        dimensionStylesMobile: filterMarginMob,
+    } = generateDimensionStyle({
+        controlName: FILTER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    /**
+     * All Style Combination
+     */
+    const desktopAllStyle = `
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
         grid-template-columns:repeat(${columnCountDesk}, 1fr);
         ${colGapDesk}
@@ -656,39 +665,39 @@ function Style({props}) {
       }
 
       ${
-    preset === 'style-5'
-      ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image{
             ${thumbnailHeightDesk}
             ${thumbBorderRadiusDesk}
           }
 
         `
-      : ''
-  }
+              : ''
+      }
 
       ${
-    preset !== 'style-5'
-      ? `
+          preset !== 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image {
             ${thumbnailHeightDesk}
             ${thumbBorderRadiusDesk}
           }
 
         `
-      : ''
-  }
+              : ''
+      }
 
       ${
-    preset === 'style-5'
-      ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap::before{
             ${metaArrowColor ? `border-top-color:${metaArrowColor};` : ''}
             ${metaArrowSpaceDesk}
           }
         `
-      : ''
-  }
+              : ''
+      }
 
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-title{
         ${titleMarginDesk}
@@ -804,28 +813,28 @@ function Style({props}) {
       }
 
       ${
-    preset === 'style-3'
-      ? `
+          preset === 'style-3'
+              ? `
            .${uniqueId}.zolo-block.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name span{
               ${namePrefixHoverColor ? `color:${namePrefixHoverColor} !important;` : ''}
             }
 
         `
-      : ''
-  }
+              : ''
+      }
 
 
 
       ${
-    preset === 'style-5'
-      ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap {
             ${metaBoxWrapPaddingDesk}
           }
 
         `
-      : ''
-  }
+              : ''
+      }
 
       .${uniqueId}.zolo-pagination-wrap {
         ${pagAlignDesk}
@@ -879,10 +888,42 @@ function Style({props}) {
         ${filterABorderColor ? `border-color:${filterABorderColor};` : ''}
       }
 
+      .${uniqueId}.zolo-block.zolo-post-title-type-1{
+        ${titleAnimationTypeBgColor ? `--zolo-post-title-type-primary-color:${titleAnimationTypeBgColor};` : ''}
+      }
 
+      ${
+          active
+              ? `
+                    .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+              : ''
+      }
+
+      ${
+          activeHover
+              ? `
+                    .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image:hover {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+               `
+              : ''
+      }
     `;
 
-  const tabletAllStyle = `
+    const tabletAllStyle = `
     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
       grid-template-columns:repeat(${columnCountTab}, 1fr);
       ${colGapTab}
@@ -900,32 +941,38 @@ function Style({props}) {
     }
 
     ${
-    preset === 'style-5' ? `
+        preset === 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image{
           ${thumbnailHeightTab}
           ${thumbBorderRadiusTab}
         }
 
-      ` : ''
-  }
+      `
+            : ''
+    }
 
     ${
-    preset !== 'style-5' ? `
+        preset !== 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image {
           ${thumbnailHeightTab}
           ${thumbBorderRadiusTab}
         }
 
-      ` : ''
-  }
+      `
+            : ''
+    }
 
     ${
-    preset === 'style-5' ? `
+        preset === 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap::before{
           ${metaArrowSpaceTab}
         }
-      ` : ''
-  }
+      `
+            : ''
+    }
 
     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-title{
       ${titleMarginTab}
@@ -987,13 +1034,15 @@ function Style({props}) {
     }
 
     ${
-    preset === 'style-5' ? `
+        preset === 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap {
           ${metaBoxWrapPaddingTab}
         }
 
-      ` : ''
-  }
+      `
+            : ''
+    }
 
     .${uniqueId}.zolo-pagination-wrap {
       ${pagAlignTab}
@@ -1015,7 +1064,7 @@ function Style({props}) {
     }
   `;
 
-  const mobileAllStyle = `
+    const mobileAllStyle = `
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
         grid-template-columns:repeat(${columnCountMob}, 1fr);
         ${colGapMob}
@@ -1033,32 +1082,38 @@ function Style({props}) {
       }
 
       ${
-    preset === 'style-5' ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image{
             ${thumbnailHeightMob}
             ${thumbBorderRadiusMob}
           }
 
-        ` : ''
-  }
+        `
+              : ''
+      }
 
       ${
-    preset !== 'style-5' ? `
+          preset !== 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image {
             ${thumbnailHeightMob}
             ${thumbBorderRadiusMob}
           }
 
-        ` : ''
-  }
+        `
+              : ''
+      }
 
       ${
-    preset === 'style-5' ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap::before{
             ${metaArrowSpaceMob}
           }
-        ` : ''
-  }
+        `
+              : ''
+      }
 
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-title{
         ${titleMarginMob}
@@ -1120,13 +1175,15 @@ function Style({props}) {
       }
 
       ${
-    preset === 'style-5' ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap {
             ${metaBoxWrapPaddingMob}
           }
 
-        ` : ''
-  }
+        `
+              : ''
+      }
 
       .${uniqueId}.zolo-pagination-wrap {
         ${pagAlignMob}
@@ -1148,17 +1205,17 @@ function Style({props}) {
       }
     `;
 
-  return (
-    <>
-      <GlobalStyleHanlder
-        attributes={attributes}
-        setAttributes={setAttributes}
-        desktopAllStyle={applyFilters('zolo.postGrid.desktopAllStyle', desktopAllStyle, props)}
-        tabAllStyle={applyFilters('zolo.postGrid.tabletAllStyle', tabletAllStyle, props)}
-        mobileAllStyle={applyFilters('zolo.postGrid.mobileAllStyle', mobileAllStyle, props)}
-      />
-    </>
-  );
+    return (
+        <>
+            <GlobalStyleHanlder
+                attributes={attributes}
+                setAttributes={setAttributes}
+                desktopAllStyle={applyFilters('zolo.postGrid.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.postGrid.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.postGrid.mobileAllStyle', mobileAllStyle, props)}
+            />
+        </>
+    );
 }
 
 export default Style;

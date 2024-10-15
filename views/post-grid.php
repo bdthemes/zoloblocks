@@ -3,10 +3,16 @@
 use Zolo\Helpers\ZoloHelpers;
 
 $topclass = 'zolo-post-grid-wrap';
+
 if ( ! empty( $settings['preset'] ) ) {
-	$topclass .= ' zolo-post-' . $settings['preset'];
+    $topclass .= ' zolo-post-' . $settings['preset'];
 }
-$wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $topclass );
+
+if ( ! empty( $settings['postTitleAnimation'] ) ) {
+    $topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
+}
+
+$wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $topclass);
 
 // get parent classes.
 $parentClasses = $settings['parentClasses'] ?? [];
@@ -14,15 +20,20 @@ $parentClasses = $settings['parentClasses'] ?? [];
 $parentClasses = implode( ' ', $parentClasses );
 // add parent classes to wrapper class.
 $wrapper_class .= ' ' . $parentClasses;
+$wrapperId      = $settings['zoloId'] ?? '';
+$metaSeparator  = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
+$filterTermId   = ! empty( $filterTermId ) ? $filterTermId : '';
+$html           = '';
+$paginationType = $settings['paginationType'] ?? 'normal';
+$data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $settings, array_keys( $class_object->get_default_attributes() ) ) : $settings;
 
-$wrapperId     = $settings['zoloId'] ?? '';
-$metaSeparator = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
-$filterTermId  = ! empty( $filterTermId ) ? $filterTermId : '';
-$html          = '';
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-attributes="<?php echo esc_attr( wp_json_encode( $settings ) ); ?>">
+	<?php if ( 'normal' !== $paginationType || ! empty( $settings['showFilterTaxonomy'] ) ) { ?>
+		data-attributes="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>"
+	<?php } ?>
+>
 	<?php endif; ?>
 
 	<div class="<?php echo esc_attr( $wrapper_class ); ?>"

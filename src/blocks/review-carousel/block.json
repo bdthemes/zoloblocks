@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["review", "review carousel"],
     "description": "Show your customer reviews in animated carousels",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

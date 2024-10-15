@@ -34,6 +34,7 @@ import objAttributes from './attributes';
 
 import {
     PRESETS,
+    CONTENT_LAYOUT,
     LIST_COLUMN_COUNT,
     LIST_COLUMNS_GAP,
     SINGLE_ITEM_ALIGNMENT,
@@ -74,6 +75,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        contentLayout,
         resMode,
         listProfiles,
         dscColor,
@@ -145,6 +147,7 @@ function Inspector(props) {
                 break;
         }
     };
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -160,7 +163,12 @@ function Inspector(props) {
                                 options={applyFilters('zolo.list.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
-                            <ToggleControl label={__('Enable Link', 'zoloblocks')} checked={isLinkable} onChange={() => setAttributes({ isLinkable: !isLinkable })} />
+
+                            <ToggleControl
+                                label={__('Enable Link', 'zoloblocks')}
+                                checked={isLinkable}
+                                onChange={() => setAttributes({ isLinkable: !isLinkable })}
+                            />
 
                             {preset !== 'zolo-list-style-1' && (
                                 <>
@@ -184,41 +192,105 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
-                            <div className="zolo-flex-row-control-tab">
-                                <IconicBtnGroup
-                                    label={__('Type', 'zoloblocks')}
-                                    value={layout}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            layout: value,
-                                        })
-                                    }
-                                    options={[
-                                        {
-                                            label: __('Grid', 'zoloblocks'),
-                                            value: 'grid',
-                                        },
-                                        {
-                                            label: __('Flex', 'zoloblocks'),
-                                            value: 'flex',
-                                        },
-                                    ]}
-                                />
-                            </div>
-                            {layout === 'grid' && (
+                            {preset !== 'zolo-list-style-1' && (
                                 <>
-                                    <ResCounterControl
-                                        label={__('Column', 'zoloblocks')}
-                                        controlName={LIST_COLUMN_COUNT}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={10}
-                                        defaults={{
-                                            deskRange: 1,
-                                            tabRange: 1,
-                                            mobRange: 1,
-                                        }}
-                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Direction', 'zoloblocks')}
+                                            value={contentLayout}
+                                            onChange={(newTabsLayout) =>
+                                                setAttributes({
+                                                    contentLayout: newTabsLayout,
+                                                })
+                                            }
+                                            options={CONTENT_LAYOUT}
+                                        />
+                                    </div>
+                                    <CardDivider />
+                                </>
+                            )}
+
+                            {contentLayout !== 'horizontal' && preset !== 'zolo-list-style-1' && (
+                                <>
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Type', 'zoloblocks')}
+                                            value={layout}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    layout: value,
+                                                })
+                                            }
+                                            options={[
+                                                {
+                                                    label: __('Grid', 'zoloblocks'),
+                                                    value: 'grid',
+                                                },
+                                                {
+                                                    label: __('Flex', 'zoloblocks'),
+                                                    value: 'flex',
+                                                },
+                                            ]}
+                                        />
+                                    </div>
+                                    {layout === 'grid' && (
+                                        <>
+                                            <ResCounterControl
+                                                label={__('Column', 'zoloblocks')}
+                                                controlName={LIST_COLUMN_COUNT}
+                                                requiredProps={requiredProps}
+                                                min={1}
+                                                max={10}
+                                                defaults={{
+                                                    deskRange: 1,
+                                                    tabRange: 1,
+                                                    mobRange: 1,
+                                                }}
+                                            />
+                                        </>
+                                    )}
+                                </>
+                            )}
+
+                            {preset === 'zolo-list-style-1' && (
+                                <>
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Type', 'zoloblocks')}
+                                            value={layout}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    layout: value,
+                                                })
+                                            }
+                                            options={[
+                                                {
+                                                    label: __('Grid', 'zoloblocks'),
+                                                    value: 'grid',
+                                                },
+                                                {
+                                                    label: __('Flex', 'zoloblocks'),
+                                                    value: 'flex',
+                                                },
+                                            ]}
+                                        />
+                                    </div>
+                                    {layout === 'grid' && (
+                                        <>
+                                            <ResCounterControl
+                                                label={__('Column', 'zoloblocks')}
+                                                controlName={LIST_COLUMN_COUNT}
+                                                requiredProps={requiredProps}
+                                                min={1}
+                                                max={10}
+                                                defaults={{
+                                                    deskRange: 1,
+                                                    tabRange: 1,
+                                                    mobRange: 1,
+                                                }}
+                                            />
+                                        </>
+                                    )}
                                 </>
                             )}
 
@@ -229,31 +301,67 @@ function Inspector(props) {
                                 max={100}
                                 min={1}
                             />
-                            <CardDivider />
-                            {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
-                                <ResAlignmentControl
-                                    label={__('Item Alignment', 'zoloblocks')}
-                                    controlName={ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
-                                />
-                            )}
-                            {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
-                                <ResAlignmentControl
-                                    label={__('Item Alignment', 'zoloblocks')}
-                                    controlName={ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={DEFAULT_ALIGNS}
-                                />
+                            {contentLayout !== 'horizontal' && preset !== 'zolo-list-style-1' && (
+                                <>
+                                    <CardDivider />
+                                    {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Vertical Alignment', 'zoloblocks')}
+                                            controlName={SINGLE_ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={FLEX_ALIGN_OPTIONS}
+                                        />
+                                    )}
+                                </>
                             )}
 
-                            {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
-                                <ResAlignmentControl
-                                    label={__('Item Vertical Alignment', 'zoloblocks')}
-                                    controlName={SINGLE_ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={FLEX_ALIGN_OPTIONS}
-                                />
+                            {preset === 'zolo-list-style-1' && (
+                                <>
+                                    {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={layout === 'flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
+                                        <ResAlignmentControl
+                                            label={__('Item Alignment', 'zoloblocks')}
+                                            controlName={ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                    )}
+
+                                    {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
+                                        <ResAlignmentControl
+                                            label={__('Item Vertical Alignment', 'zoloblocks')}
+                                            controlName={SINGLE_ITEM_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={FLEX_ALIGN_OPTIONS}
+                                        />
+                                    )}
+                                </>
                             )}
 
                             {preset !== 'zolo-list-style-1' && (
@@ -277,7 +385,7 @@ function Inspector(props) {
                             <Sortable listProfiles={listProfiles} setAttributes={setAttributes} attributes={attributes} />
                         </ZoloPanelBody>
                         {preset == 'zolo-list-style-4' && (
-                            <ZoloPanelBody title={__('Link Hover Icon', 'zoloblocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Hover Icon', 'zoloblocks')} panelProps={props}>
                                 <ZoloIconPicker
                                     label={__('Icon', 'zoloblocks')}
                                     value={linkHoverIcon}
@@ -516,7 +624,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {preset == 'zolo-list-style-4' && (
-                            <ZoloPanelBody title={__('Link Hover Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Hover Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={HoverIconColor}

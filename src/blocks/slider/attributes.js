@@ -61,7 +61,7 @@ const attributes = {
     },
     autoplay: {
         type: 'boolean',
-        // default: false,
+        default: false,
     },
     autoplayDelay: {
         type: 'number',
@@ -73,11 +73,11 @@ const attributes = {
     },
     infiniteLoop: {
         type: 'boolean',
-        // default: false,
+        default: false,
     },
     showNavigation: {
         type: 'boolean',
-        // default: true,
+        default: true,
     },
     navColor: {
         type: 'string',
@@ -90,7 +90,7 @@ const attributes = {
     },
     showPagination: {
         type: 'boolean',
-        // default: false,
+        default: false,
     },
     paginationType: {
         type: 'string',
@@ -102,7 +102,7 @@ const attributes = {
     },
     speed: {
         type: 'number',
-        // default: 8
+        default: 8
     },
 
     sliderEffect: {
@@ -138,7 +138,7 @@ const attributes = {
 
     customNavIcon: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     prevNavIcon: {
         type: 'string',

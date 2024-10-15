@@ -7,9 +7,6 @@ import { __ } from '@wordpress/i18n';
  */
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-const formPreventDefault = (e) => {
-    e.preventDefault();
-};
 const Save = (props) => {
     const { attributes } = props;
     const {
@@ -35,11 +32,15 @@ const Save = (props) => {
         textSubscribed,
         textError,
         showLabels,
+        provider,
+        selectedWebhook,
     } = attributes;
     const newsletterMsg = {
         textSuccess,
         textError,
         textSubscribed,
+        provider: provider ? provider : 'mailchimp',
+        selectedWebhook,
     };
 
     // filter hooks for render

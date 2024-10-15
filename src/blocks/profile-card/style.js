@@ -92,6 +92,8 @@ const Style = ({ props }) => {
         iconHoverBorderColor,
     } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+
     // header area part
     const {
         dimensionStylesDesktop: headerAreaDeskBorderRadius,
@@ -231,7 +233,6 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
-
 
     const {
         dimensionStylesDesktop: innerContentPaddingDesk,
@@ -609,8 +610,8 @@ const Style = ({ props }) => {
      */
     const desktopAllStyle = `
         ${
-         preset !== 'style-1'
-            ? `
+            preset !== 'style-1'
+                ? `
                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
                     ${photoDeskWidth}
                     ${photoDeskHeight}
@@ -622,12 +623,12 @@ const Style = ({ props }) => {
                 }
         
             `
-            : ''
+                : ''
         }
 
         ${
             preset === 'style-1'
-               ? `
+                ? `
                    .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
                        ${photoDeskWidth}
                        ${photoDeskHeight}
@@ -635,7 +636,7 @@ const Style = ({ props }) => {
                        ${photoDeskBorderStyle}
                    }
                `
-               : ''
+                : ''
         }
 
 
@@ -663,8 +664,8 @@ const Style = ({ props }) => {
 		}
 
         ${
-         preset === 'style-1'
-            ? `
+            preset === 'style-1'
+                ? `
                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
                     ${badgeDeskMargin}
                 }
@@ -676,7 +677,7 @@ const Style = ({ props }) => {
                     ${innerContentPaddingDesk}
                 }
             `
-            : ''
+                : ''
         }
 
 		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
@@ -767,6 +768,21 @@ const Style = ({ props }) => {
 			${contentPaddingDesk}
 			${contentMarginDesk}
 		}
+
+        ${
+            active
+                ? `
+                    .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+                : ''
+        }
 	`;
 
     const tabletAllStyle = `
@@ -784,8 +800,8 @@ const Style = ({ props }) => {
 		}
 
          ${
-         preset === 'style-1'
-            ? `
+             preset === 'style-1'
+                 ? `
                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
                     ${badgeTabMargin}
                 }
@@ -796,8 +812,8 @@ const Style = ({ props }) => {
                     ${innerContentPaddingTab}
                 }
             `
-            : ''
-        }
+                 : ''
+         }
 
 		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
 
@@ -863,8 +879,8 @@ const Style = ({ props }) => {
 		}
 
         ${
-         preset !== 'style-1'
-            ? `
+            preset !== 'style-1'
+                ? `
                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
                    ${photoTabWidth}
                     ${photoTabHeight}
@@ -875,12 +891,12 @@ const Style = ({ props }) => {
                     ${photoTabOffset}
                 }
             `
-            : ''
+                : ''
         }
 
         ${
             preset === 'style-1'
-               ? `
+                ? `
                    .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
                       ${photoTabWidth}
                       ${photoTabHeight}
@@ -891,7 +907,7 @@ const Style = ({ props }) => {
                    ${metaWrapMarginTab}
                  }
                `
-               : ''
+                : ''
         }
 
 
@@ -921,8 +937,8 @@ const Style = ({ props }) => {
 		}
 
          ${
-         preset === 'style-1'
-            ? `
+             preset === 'style-1'
+                 ? `
                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-badge {
                     ${badgeMobMargin}
                 }
@@ -933,8 +949,8 @@ const Style = ({ props }) => {
                     ${innerContentPaddingMob}
                 }
             `
-            : ''
-        }
+                 : ''
+         }
 
 		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
 
@@ -1009,8 +1025,8 @@ const Style = ({ props }) => {
 		}
 
         ${
-         preset !== 'style-1'
-            ? `
+            preset !== 'style-1'
+                ? `
                 .zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-image img {
                     ${photoMobWidth}
                     ${photoMobHeight}
@@ -1021,12 +1037,12 @@ const Style = ({ props }) => {
                     ${photoMobOffset}
                 }
             `
-            : ''
+                : ''
         }
 
         ${
             preset === 'style-1'
-               ? `
+                ? `
                    .zolo-block.${uniqueId}.wp-block-zolo-profile-card.style-1 .zb-profile-image {
                         ${photoMobWidth}
                         ${photoMobHeight}
@@ -1034,7 +1050,7 @@ const Style = ({ props }) => {
                         ${photoMobBorderStyle}
                    }
                `
-               : ''
+                : ''
         }
 		.zolo-block.${uniqueId}.wp-block-zolo-profile-card .zb-profile-bottom-content {
 			${contentMobBGStyle}

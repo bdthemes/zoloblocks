@@ -5,43 +5,8 @@
     "category": "zoloblocks",
     "keywords": ["newsletter", "mailchimp", "zoloblocks"],
     "description": "Newsletter block for Zolo Blocks",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
-    "attributes": {
-        "displayType": {
-            "type": "string",
-            "default": "row"
-        },
-        "inputButtonGap": {
-            "type": "number",
-            "default": 10
-        },
-        "stackOnMobile": {
-            "type": "boolean",
-            "default": true
-        },
-        "textSuccess": {
-            "type": "string",
-            "default": "Thank you for subscribing!"
-        },
-        "textSubscribed": {
-            "type": "string",
-            "default": "You're already subscribed with us!"
-        },
-        "provider": {
-            "type": "string"
-        },
-        "mailchimpApiKey": {
-            "type": "string"
-        },
-        "mailchimpListID": {
-            "type": "string"
-        },
-        "textPosition": {
-            "type": "string",
-            "default": "left"
-        }
-    },
     "example": {
         "attributes": {
             "preview": true

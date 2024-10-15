@@ -5,6 +5,7 @@ import objAttributes from './attributes';
 
 import {
     PRESETS,
+    POST_TITLE_ANIMATION,
     GRID_COLUMNS,
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
@@ -89,9 +90,11 @@ const {
 } = window.zoloModule;
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const {
         preset,
+        postTitleAnimation,
+        titleAnimationTypeBgColor,
         resMode,
         postQuery,
         showThumbnail,
@@ -209,7 +212,8 @@ function Inspector(props) {
     };
 
     //for only taxonomy filter
-    const zoloTaxonomies = getTaxonomies(postQuery?.postType || 'post', zoloParams.get_taxonomies);
+    let postType = postQuery?.postType === 'related_posts' ? postQuery?.currentPostType : postQuery?.postType;
+    const zoloTaxonomies = getTaxonomies(postType || 'post', zoloParams.get_taxonomies);
     let zoloTaxonomiesFilter = [
         {
             value: '',
@@ -217,7 +221,9 @@ function Inspector(props) {
         },
         ...zoloTaxonomies,
     ];
-
+    // css filter
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -233,7 +239,6 @@ function Inspector(props) {
                                 options={applyFilters('zolo.postGrid.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}
@@ -523,7 +528,6 @@ function Inspector(props) {
                                     />
                                 )}
                                 <CardDivider />
-
                                 <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_BG} noMainBGImg={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
@@ -554,6 +558,24 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
+                                {cssFilters && cssFilters.length > 0 && (
+                                    <>
+                                        <TabPanelControl
+                                            options={[
+                                                {
+                                                    value: 'normal',
+                                                    label: __('Normal', 'zoloblocks'),
+                                                },
+                                                {
+                                                    value: 'hover',
+                                                    label: __('Hover', 'zoloblocks'),
+                                                },
+                                            ]}
+                                            normalComponents={<>{cssFilters}</>}
+                                            hoverComponents={<>{cssFiltersHover}</>}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
 
@@ -563,7 +585,7 @@ function Inspector(props) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Title Color', 'zoloblocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={titleColor}
                                                 onChange={(color) =>
                                                     setAttributes({
@@ -586,8 +608,15 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
+                                            <SelectControl
+                                                label={__('Animations', 'zoloblocks')}
+                                                value={postTitleAnimation}
+                                                options={applyFilters('zolo.postGrid.titleAnimation', POST_TITLE_ANIMATION)}
+                                                onChange={(postTitleAnimation) => setAttributes({ postTitleAnimation })}
+                                            />
+                                            <CardDivider />
                                             <ColorControl
-                                                label={__('Title Hover Color', 'zoloblocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={titleHoverColor}
                                                 onChange={(color) =>
                                                     setAttributes({
@@ -595,6 +624,21 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+
+                                            {postTitleAnimation === 'zolo-post-title-type-1' && (
+                                                <>
+                                                    <div className="zolo-custom-heading">{__('Animation Type', 'zoloblocks')}</div>
+                                                    <ColorControl
+                                                        label={__('Background', 'zoloblocks')}
+                                                        color={titleAnimationTypeBgColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                titleAnimationTypeBgColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )}
                                         </>
                                     }
                                 />

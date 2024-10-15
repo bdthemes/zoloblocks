@@ -44,7 +44,7 @@ class Registration {
                         $render_callback = null;
                         if (isset($block['class']) && class_exists($block['class'])) {
                             $class = new $block['class'];
-                            $render_callback = fn($attributes, $content) => $this->render_callback($attributes, $content, $class);
+                            $render_callback = fn($attributes, $content, $block) => $this->render_callback($attributes, $content, $block, $class);
                         }
                         register_block_type($block_file, ['render_callback' => $render_callback]);
                     }
@@ -60,9 +60,9 @@ class Registration {
      *
      * @return string
      */
-    public function render_callback($attributes, $content, $render) {
+    public function render_callback($attributes, $content, $block, $render) {
         if ($render !== false) {
-            return $render->render($attributes);
+            return $render->render($attributes,$content,$block);
         }
 
         return $content;

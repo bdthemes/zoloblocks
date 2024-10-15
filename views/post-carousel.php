@@ -6,6 +6,10 @@ $topclass = 'zolo-post-carousel wp-block-zolo-post-carousel';
 if (!empty($settings['preset'])) {
     $topclass .= ' zolo-post-' . $settings['preset'];
 }
+if ( ! empty( $settings['postTitleAnimation'] ) ) {
+    $topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
+}
+
 $wrapper_class = ZoloHelpers::get_wrapper_class($settings, $topclass);
 
 

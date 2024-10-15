@@ -9,7 +9,7 @@
         "image"
     ],
     "description": "Lightbox",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

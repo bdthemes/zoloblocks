@@ -13,18 +13,19 @@ const BackgroundControl = ({
     noOverlayBGImg = false,
     noTransition = false,
     particles = false,
+    video = false,
 
 }) => {
     const { setAttributes, attributes } = requiredProps;
 
-    const { [`${controlName}isBgOverlay`]: isBgOverlay } = attributes;
+    const { [`${controlName}isBgOverlay`]: isBgOverlay, mainBgbackgroundType, advBtnBgbackgroundType } = attributes;
     const backdropFilters = applyFilters('zolo.extensions.controls.backdropFilters', [], requiredProps);
 
     return (
         <>
-            <BGControl controlName={controlName} requiredProps={requiredProps} noMainBGImg={noMainBGImg} noTransition={noTransition} />
-
-            {noOverlay === false && (
+            <BGControl controlName={controlName} requiredProps={requiredProps} noMainBGImg={noMainBGImg} noTransition={noTransition} video={video} />
+        {
+            mainBgbackgroundType !== 'video' && advBtnBgbackgroundType !== 'video' && (
                 <>
                     <ToggleControl
                         label={__('Enable Overlay', 'zoloblocks')}
@@ -47,7 +48,10 @@ const BackgroundControl = ({
                     {particles && particles}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                 </>
-            )}
+
+            )
+        }
+
         </>
     );
 };

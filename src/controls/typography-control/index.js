@@ -12,8 +12,6 @@ import IconicBtnGroup from '../iconic-btn-group';
 
 import { prefix } from '../../global/constants';
 
-
-
 //block constant
 import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions } from './constant';
 
@@ -164,15 +162,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() => {
-                                                    setAttributes({
-                                                        [`${prefix}${typoPrefixConstant}FontSize`]:
-                                                            defaultFontSize ||
-                                                            (objAttributes[`${typoPrefixConstant}ZRPFontSize`] || {}).default,
-                                                    });
-                                                }}
-                                            />
+                                            {fontSize !== (objAttributes[`${typoPrefixConstant}ZRPFontSize`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}${typoPrefixConstant}FontSize`]: (
+                                                                objAttributes[`${typoPrefixConstant}ZRPFontSize`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
@@ -201,15 +201,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}TAB${typoPrefixConstant}FontSize`]: (
-                                                            objAttributes[`TAB${typoPrefixConstant}ZRPFontSize`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {TABfontSize !== (objAttributes[`TAB${typoPrefixConstant}ZRPFontSize`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}TAB${typoPrefixConstant}FontSize`]: (
+                                                                objAttributes[`TAB${typoPrefixConstant}ZRPFontSize`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
@@ -238,15 +240,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}MOB${typoPrefixConstant}FontSize`]: (
-                                                            objAttributes[`MOB${typoPrefixConstant}ZRPFontSize`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {MOBfontSize !== (objAttributes[`MOB${typoPrefixConstant}ZRPFontSize`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}MOB${typoPrefixConstant}FontSize`]: (
+                                                                objAttributes[`MOB${typoPrefixConstant}ZRPFontSize`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn label={__(' Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
@@ -277,15 +281,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}${typoPrefixConstant}LetterSpacing`]: (
-                                                            objAttributes[`${typoPrefixConstant}ZRPLetterSpacing`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {letterSpacing !== (objAttributes[`${typoPrefixConstant}ZRPLetterSpacing`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}${typoPrefixConstant}LetterSpacing`]: (
+                                                                objAttributes[`${typoPrefixConstant}ZRPLetterSpacing`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
@@ -318,15 +324,18 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}TAB${typoPrefixConstant}LetterSpacing`]: (
-                                                            objAttributes[`TAB${typoPrefixConstant}ZRPLetterSpacing`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {TABletterSpacing !==
+                                                (objAttributes[`TAB${typoPrefixConstant}ZRPLetterSpacing`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}TAB${typoPrefixConstant}LetterSpacing`]: (
+                                                                objAttributes[`TAB${typoPrefixConstant}ZRPLetterSpacing`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
@@ -359,15 +368,18 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}MOB${typoPrefixConstant}LetterSpacing`]: (
-                                                            objAttributes[`MOB${typoPrefixConstant}ZRPLetterSpacing`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {MOBletterSpacing !==
+                                                (objAttributes[`MOB${typoPrefixConstant}ZRPLetterSpacing`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}MOB${typoPrefixConstant}LetterSpacing`]: (
+                                                                objAttributes[`MOB${typoPrefixConstant}ZRPLetterSpacing`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
@@ -402,15 +414,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}${typoPrefixConstant}LineHeight`]: (
-                                                            objAttributes[`${typoPrefixConstant}ZRPLineHeight`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {lineHeight !== (objAttributes[`${typoPrefixConstant}ZRPLineHeight`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}${typoPrefixConstant}LineHeight`]: (
+                                                                objAttributes[`${typoPrefixConstant}ZRPLineHeight`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
@@ -443,15 +457,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}TAB${typoPrefixConstant}LineHeight`]: (
-                                                            objAttributes[`TAB${typoPrefixConstant}ZRPLineHeight`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {TABlineHeight !== (objAttributes[`TAB${typoPrefixConstant}ZRPLineHeight`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}TAB${typoPrefixConstant}LineHeight`]: (
+                                                                objAttributes[`TAB${typoPrefixConstant}ZRPLineHeight`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
@@ -484,15 +500,17 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                                 })
                                             }
                                         >
-                                            <ResetBtn
-                                                onReset={() =>
-                                                    setAttributes({
-                                                        [`${prefix}MOB${typoPrefixConstant}LineHeight`]: (
-                                                            objAttributes[`MOB${typoPrefixConstant}ZRPLineHeight`] || {}
-                                                        ).default,
-                                                    })
-                                                }
-                                            />
+                                            {MOBlineHeight !== (objAttributes[`MOB${typoPrefixConstant}ZRPLineHeight`] || {}).default && (
+                                                <ResetBtn
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            [`${prefix}MOB${typoPrefixConstant}LineHeight`]: (
+                                                                objAttributes[`MOB${typoPrefixConstant}ZRPLineHeight`] || {}
+                                                            ).default,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn

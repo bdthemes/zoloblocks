@@ -1,6 +1,7 @@
 <?php
 
 namespace Zolo\Admin;
+
 use Zolo\Traits\SingletonTrait;
 use Zolo\Helpers\ZoloHelpers;
 
@@ -62,6 +63,21 @@ if (! class_exists('Settings')) {
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_favorite_templates',
+                [
+                    'type'              => 'array',
+                    'default'           => [],
+                    'sanitize_callback' => NULL,
+                    'show_in_rest'      => [
+                        'schema' => [
+                            'type'  => 'array',
+                            'items' => ['type' => 'number'],
+                        ],
+                    ],
+                ]
+            );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_webhooks',
                 [
                     'type'              => 'array',
                     'default'           => [],
@@ -244,34 +260,6 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
-
-            // block export addon
-            register_setting(
-                'zolo_blocks_settings_group',
-                'zolo_enable_block_export',
-                [
-                    'type'              => 'boolean',
-                    'default'           => false,
-                    'show_in_rest'      => [
-                        'schema' => ['type' => 'boolean'],
-                    ],
-                    'sanitize_callback' => NULL,
-                ]
-            );
-
-            // block import addon
-            register_setting(
-                'zolo_blocks_settings_group',
-                'zolo_enable_block_import',
-                [
-                    'type'              => 'boolean',
-                    'default'           => false,
-                    'show_in_rest'      => [
-                        'schema' => ['type' => 'boolean'],
-                    ],
-                    'sanitize_callback' => NULL,
-                ]
-            );
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_enable_template_library',
@@ -294,7 +282,7 @@ if (! class_exists('Settings')) {
          * @param WP_REST_Request $request The request object.
          */
         public function handle_blocks_settings($request) {
-            if( $request->get_method() === 'GET' ) {
+            if ($request->get_method() === 'GET') {
                 return $this->get_blocks();
             } else {
                 return $this->update_blocks($request);
@@ -324,7 +312,7 @@ if (! class_exists('Settings')) {
          * @param WP_REST_Request $request The request object.
          */
         public function handle_extensions_settings($request) {
-            if( $request->get_method() === 'GET' ) {
+            if ($request->get_method() === 'GET') {
                 return $this->get_extensions();
             } else {
                 return $this->update_extensions($request);
@@ -373,39 +361,39 @@ if (! class_exists('Settings')) {
         public function update_blocks($request) {
             $nonce = $request->get_param('zolo_nonce');
 
-            if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
-                return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
+            if (! wp_verify_nonce($nonce, 'zolo-nonce')) {
+                return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
 
-            $block_names = $request->get_param( 'names' );
-            $single_block_name = filter_var( $request->get_param( 'name' ), FILTER_SANITIZE_STRING );
-            $active_status = filter_var( $request->get_param( 'status' ), FILTER_VALIDATE_BOOLEAN );
+            $block_names = $request->get_param('names');
+            $single_block_name = filter_var($request->get_param('name'), FILTER_SANITIZE_STRING);
+            $active_status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN);
 
             // Fetch existing blocks
-            $blocks = get_option( 'zolo_blocks_settings', [] );
+            $blocks = get_option('zolo_blocks_settings', []);
 
             // Determine if it's a single block or multiple blocks
-            if ( !empty( $single_block_name ) ) {
+            if (!empty($single_block_name)) {
                 // Handle single block update
-                $block_names = [ sanitize_text_field( $single_block_name ) ];
-            } elseif ( is_array( $block_names ) ) {
+                $block_names = [sanitize_text_field($single_block_name)];
+            } elseif (is_array($block_names)) {
                 // Sanitize all block names in the array
-                $block_names = array_map( 'sanitize_text_field', $block_names );
+                $block_names = array_map('sanitize_text_field', $block_names);
             } else {
-                return new WP_Error( 'invalid_request', __( 'Invalid block name(s) provided.', 'zoloblocks' ), array( 'status' => 400 ) );
+                return new WP_Error('invalid_request', __('Invalid block name(s) provided.', 'zoloblocks'), array('status' => 400));
             }
 
             // Update the blocks' active status
-            foreach ( $blocks as &$block ) {
-                if ( in_array( $block['name'], $block_names ) ) {
+            foreach ($blocks as &$block) {
+                if (in_array($block['name'], $block_names)) {
                     $block['status'] = $active_status;
                 }
             }
 
             // Update the option
-            update_option( 'zolo_blocks_settings', $blocks );
+            update_option('zolo_blocks_settings', $blocks);
 
-            return rest_ensure_response( $blocks );
+            return rest_ensure_response($blocks);
         }
 
         /**
@@ -469,39 +457,39 @@ if (! class_exists('Settings')) {
         public function update_extensions($request) {
             $nonce = $request->get_param('zolo_nonce');
 
-            if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
-                return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
+            if (! wp_verify_nonce($nonce, 'zolo-nonce')) {
+                return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
 
-            $extension_names = $request->get_param( 'names' );
-            $single_extension_name = filter_var( $request->get_param( 'name' ), FILTER_SANITIZE_STRING );
-            $active_status = filter_var( $request->get_param( 'status' ), FILTER_VALIDATE_BOOLEAN );
+            $extension_names = $request->get_param('names');
+            $single_extension_name = filter_var($request->get_param('name'), FILTER_SANITIZE_STRING);
+            $active_status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN);
 
             // Fetch existing blocks
-            $extensions = get_option( 'zolo_extensions_settings', [] );
+            $extensions = get_option('zolo_extensions_settings', []);
 
             // Determine if it's a single block or multiple blocks
-            if ( !empty( $single_extension_name ) ) {
+            if (!empty($single_extension_name)) {
                 // Handle single block update
-                $extension_names = [ sanitize_text_field( $single_extension_name ) ];
-            } elseif ( is_array( $extension_names ) ) {
+                $extension_names = [sanitize_text_field($single_extension_name)];
+            } elseif (is_array($extension_names)) {
                 // Sanitize all block names in the array
-                $extension_names = array_map( 'sanitize_text_field', $extension_names );
+                $extension_names = array_map('sanitize_text_field', $extension_names);
             } else {
-                return new WP_Error( 'invalid_request', __( 'Invalid block name(s) provided.', 'zoloblocks' ), array( 'status' => 400 ) );
+                return new WP_Error('invalid_request', __('Invalid block name(s) provided.', 'zoloblocks'), array('status' => 400));
             }
 
             // Update the blocks' active status
-            foreach ( $extensions as &$extension ) {
-                if ( in_array( $extension['name'], $extension_names ) ) {
+            foreach ($extensions as &$extension) {
+                if (in_array($extension['name'], $extension_names)) {
                     $extension['status'] = $active_status;
                 }
             }
 
             // Update the option
-            update_option( 'zolo_extensions_settings', $extensions );
+            update_option('zolo_extensions_settings', $extensions);
 
-            return rest_ensure_response( $extensions );
+            return rest_ensure_response($extensions);
         }
 
         /**

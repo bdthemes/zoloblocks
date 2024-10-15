@@ -738,7 +738,7 @@ export const BACKGROUND_TYPES = [
         label: __('Gradient', 'zoloblocks'),
         value: 'gradient',
         icon: 'art',
-    },
+    }
 ];
 
 export const BOX_SHADOW_TYPES = [

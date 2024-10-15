@@ -234,7 +234,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'all'
             );
 
-            // swiper only for editor
+            // // swiper only for editor
             wp_enqueue_style(
                 'zolo-swiper-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -251,7 +251,7 @@ if (! class_exists('ZoloEnqueues')) {
                 false
             );
 
-            if ( ZoloHelpers::is_extension_enabled('particles') ) {
+            if (ZoloHelpers::is_extension_enabled('particles')) {
 
                 wp_enqueue_script(
                     'particles-js',
@@ -333,7 +333,7 @@ if (! class_exists('ZoloEnqueues')) {
             //is_extension_enabled
 
             // block export extension
-            if ( ZoloHelpers::is_extension_enabled('export-pattern') ) {
+            if (ZoloHelpers::is_extension_enabled('export-pattern')) {
                 $dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/export-pattern/index.asset.php';
                 if (file_exists($dep_file)) {
                     $script_dependecy = include $dep_file;
@@ -349,7 +349,7 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // import block pattern
-            if ( ZoloHelpers::is_extension_enabled('import-pattern') ) {
+            if (ZoloHelpers::is_extension_enabled('import-pattern')) {
 
                 $import_dep_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/import-pattern/index.asset.php';
                 if (file_exists($import_dep_file)) {
@@ -366,7 +366,7 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // import shape divider
-            if ( ZoloHelpers::is_extension_enabled('shape-divider') ) {
+            if (ZoloHelpers::is_extension_enabled('shape-divider')) {
 
                 $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-divider/index.asset.php';
                 if (file_exists($import_shape_divider_file)) {
@@ -380,6 +380,21 @@ if (! class_exists('ZoloEnqueues')) {
                     );
                 }
             }
+            // import shape divider
+            // if (ZoloHelpers::is_extension_enabled('background-video')) {
+
+            $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/background-video/index.asset.php';
+            if (file_exists($import_shape_divider_file)) {
+                $script_dependecy = include $import_shape_divider_file;
+                wp_enqueue_script(
+                    'zolo-background-video-editor-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/background-video/index.js',
+                    $script_dependecy['dependencies'],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+            // }
 
 
             // template library

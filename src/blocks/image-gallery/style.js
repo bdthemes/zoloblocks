@@ -69,15 +69,16 @@ import { applyFilters } from '@wordpress/hooks';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
     const {
-      uniqueId,
-      headingColor,
-      TitleColor,
-      zoomIconColor,
-      zoomIconHoverColor,
-      zoomIconHoverBorderColor,
-      imageHoverBorderColor,
-      backdropFilterBlur,
+        uniqueId,
+        headingColor,
+        TitleColor,
+        zoomIconColor,
+        zoomIconHoverColor,
+        zoomIconHoverBorderColor,
+        imageHoverBorderColor,
+        backdropFilterBlur,
     } = attributes;
 
     // column count
@@ -576,6 +577,21 @@ export default function Style({ props }) {
             ${zoomIconHoverBoxShadow}
             ${zoomIconBgHoverDesk}
         }
+
+    ${
+        active
+            ? `
+                .wp-block-zolo-image-gallery .${uniqueId} .zolo-image-wrap img {
+                    filter:
+                        blur(${blur}px)
+                        brightness(${brightness}%)
+                        contrast(${contrast}%)
+                        saturate(${saturate}%)
+                        hue-rotate(${hueRotate}deg)
+                }
+             `
+            : ''
+    }
   	`;
 
     const tabletAllStyle = `

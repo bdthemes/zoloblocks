@@ -39,7 +39,6 @@
     }
     .components-button {
         color: #000;
-        font-weight: 400;
         font-size: 13px;
     }
 
@@ -333,6 +332,7 @@
     width: 100%;
     border-radius: 6px;
     background-color: #f2f2f2;
+    background-image: url('../../../assets/images/transparent.png');
 }
 
 // editor
@@ -896,12 +896,22 @@ textarea[readonly] {
     }
 }
 
-    .zolo-custom-heading {
-        text-transform: uppercase;
-        font-weight: 700;
-        padding-top: 16px;
-        margin: 0 0 16px;
-        border-top: 1px solid #ebebf6;
-        letter-spacing: 1.2px;
-        font-size: 11px;
+.zolo-custom-heading {
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-top: 16px;
+    margin: 0 0 16px;
+    border-top: 1px solid #ebebf6;
+    letter-spacing: 1.2px;
+    font-size: 11px;
+}
+
+.zolo-bg-video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        fill: transparent;
+        display: block;
     }
+}

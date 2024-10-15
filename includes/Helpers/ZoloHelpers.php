@@ -712,7 +712,7 @@ class ZoloHelpers {
 						}
 						return strcasecmp($a['title'], $b['title']);
 					}
-				); 
+				);
 			}
 
 			return $blocks;
@@ -799,7 +799,7 @@ class ZoloHelpers {
 		// Get blocks and extensions settings
 		$blocks     = get_option('zolo_blocks_settings', self::get_zolo_blocks());
 		$extensions = get_option('zolo_extensions_settings', self::get_zolo_extensions());
-		
+
 		// Filter blocks and extensions
 		$total_blocks    = array_filter($blocks, fn($block) => !isset($block['is_child']) || !$block['is_child']);
 		$used_blocks     = array_filter($total_blocks, fn($block) => !empty($block['status']));
@@ -814,4 +814,21 @@ class ZoloHelpers {
 			'used_extensions'   => count($used_extensions),
 		];
 	}
+
+    /**
+     *  Extract settings keys .
+     *
+     * @param array $settings .
+     * @param array $keys .
+     * @return array .
+     */
+    public static function extract_settings_keys( $settings, $keys ) {
+        $result = [];
+        foreach ( $keys as $key ) {
+            if ( isset( $settings[ $key ] ) ) {
+                $result[ $key ] = $settings[ $key ];
+            }
+        }
+        return $result;
+    }
 }

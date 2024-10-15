@@ -13,6 +13,18 @@ export const PRESETS = [
     { label: __('Preset 4', 'zoloblocks'), value: 'zolo-list-style-4' },
 ];
 
+// layouts
+export const CONTENT_LAYOUT = [
+    {
+        value: '',
+        label: __('Vertical', 'zoloblocks'),
+    },
+    {
+        value: 'horizontal',
+        label: __('Horizontal', 'zoloblocks'),
+    },
+];
+
 //Grid LIST
 export const LIST_COLUMN_COUNT = 'listColumnCount';
 export const LIST_COLUMNS_GAP = 'listColumnsGap';
@@ -48,7 +60,6 @@ export const ICON_VERTICAL_ALIGN = 'iconVerticalAlign';
 export const LIST_HOVER_ICON_SIZE = 'listHoverIconSize';
 export const ICON_HOVER_LIST_MARGIN = 'iconHoverListMargin';
 export const ICON_LINKVERTICAL_ALIGN = 'iconLinkVerticalAlign';
-
 
 export const ITEM_ALIGNS_OPTION = [
     {

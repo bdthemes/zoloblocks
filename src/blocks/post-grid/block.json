@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["post", "post grid"],
     "description": "Customizable dynamic grid for your website posts",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

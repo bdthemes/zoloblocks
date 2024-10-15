@@ -7,7 +7,14 @@ const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth } = attributes;
+    const {
+        uniqueId,
+        containerWidthType,
+        contentWidthType,
+        isBlockRootParent,
+        parentClasses,
+        containerWidth,
+    } = attributes;
     const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
@@ -25,8 +32,8 @@ export default function RenderView({ attributes, clientId, className, setAttribu
     });
 
     // filter hooks for render
-    const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
-    const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
+const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
+const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
     return (
         <>

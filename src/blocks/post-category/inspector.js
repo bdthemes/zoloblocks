@@ -160,45 +160,44 @@ export default function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                      {(viewAllBtn || showText) && (
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                          {showText &&(
-                            <>
-                              <InputControl
-                                label={__('Text Limit', 'zoloblocks')}
-                                value={itemTextLimit}
-                                onChange={(itemTextLimit) => setAttributes({itemTextLimit})}
-                                type="number"
-                                min={1}
-                                max={99}
-                                labelPosition="edge"
-                                __unstableInputWidth="64px"
-                              />
-                            </>
+                        {(viewAllBtn || showText) && (
+                            <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
+                                {showText && (
+                                    <>
+                                        <InputControl
+                                            label={__('Text Limit', 'zoloblocks')}
+                                            value={itemTextLimit}
+                                            onChange={(itemTextLimit) => setAttributes({ itemTextLimit })}
+                                            type="number"
+                                            min={1}
+                                            max={99}
+                                            labelPosition="edge"
+                                            __unstableInputWidth="64px"
+                                        />
+                                    </>
+                                )}
 
-                          )}
-
-                          {viewAllBtn && (
-                            <>
-                              <div className="zolo-custom-heading">{__('View All Button', 'zoloblocks')}</div>
-                              <TextControl
-                                label={__('Button Text', 'zoloblocks')}
-                                value={viewAllBtnText}
-                                onChange={(viewAllBtnText) => setAttributes({viewAllBtnText})}
-                              />
-                              <ZoloIconPicker
-                                label={__('Select Icon', 'zoloblocks')}
-                                value={viewAllBtnIcon}
-                                onChange={(value) => {
-                                  setAttributes({
-                                    viewAllBtnIcon: value,
-                                  });
-                                }}
-                              />
-                            </>
-                          )}
-                        </ZoloPanelBody>
-                      )}
+                                {viewAllBtn && (
+                                    <>
+                                        <div className="zolo-custom-heading">{__('View All Button', 'zoloblocks')}</div>
+                                        <TextControl
+                                            label={__('Button Text', 'zoloblocks')}
+                                            value={viewAllBtnText}
+                                            onChange={(viewAllBtnText) => setAttributes({ viewAllBtnText })}
+                                        />
+                                        <ZoloIconPicker
+                                            label={__('Select Icon', 'zoloblocks')}
+                                            value={viewAllBtnIcon}
+                                            onChange={(value) => {
+                                                setAttributes({
+                                                    viewAllBtnIcon: value,
+                                                });
+                                            }}
+                                        />
+                                    </>
+                                )}
+                            </ZoloPanelBody>
+                        )}
 
                         <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
                             <ResCounterControl
@@ -232,7 +231,7 @@ export default function Inspector(props) {
                                 normalComponents={
                                     <>
                                         <ResRangeControl
-                                            label={__('Item Height', 'zoloblocks')}
+                                            label={__('Height', 'zoloblocks')}
                                             controlName={ITEM_HEIGHT}
                                             requiredProps={requiredProps}
                                             min={0}
@@ -335,11 +334,6 @@ export default function Inspector(props) {
                             <TabPanelControl
                                 normalComponents={
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={NAME_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={nameColor}
@@ -348,6 +342,11 @@ export default function Inspector(props) {
                                                     nameColor: color,
                                                 })
                                             }
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={NAME_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
                                         />
                                     </>
                                 }
@@ -424,24 +423,24 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                          <ColorControl
-                                            label={__('Background', 'zoloblocks')}
-                                            color={countHoverBgColor}
-                                            onChange={(color) =>
-                                              setAttributes({
-                                                countHoverBgColor: color,
-                                              })
-                                            }
-                                          />
-                                          <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={countHoverBColor}
-                                            onChange={(color) =>
-                                              setAttributes({
-                                                countHoverBColor: color,
-                                              })
-                                            }
-                                          />
+                                            <ColorControl
+                                                label={__('Background', 'zoloblocks')}
+                                                color={countHoverBgColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        countHoverBgColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={countHoverBColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        countHoverBColor: color,
+                                                    })
+                                                }
+                                            />
                                         </>
                                     }
                                 />
@@ -497,7 +496,6 @@ export default function Inspector(props) {
 
                         {viewAllBtn && (
                             <ZoloPanelBody title={__('View All Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-
                                 <TabPanelControl
                                     normalComponents={
                                         <>

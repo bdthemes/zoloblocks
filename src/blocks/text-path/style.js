@@ -6,11 +6,37 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, generateTextStrokeStyles, GlobalStyleHanlder } =
-    window.zoloModule;
+const {
+    generateResAlignmentStyle,
+    generateTextStrokeStyles,
+    generateNormalBGControlStyles,
+    generateBorderStyle,
+    generateResCounterStyle,
+    generateResRangeStyle,
+    generateDimensionStyle,
+    generateBoxShadowStyles,
+    generateTypographyStyles,
+    generateGapStyle,
+    GlobalStyleHanlder,
+} = window.zoloModule;
 
 import { TEXTPATHTYPO } from './constants/typoPrefixConstant';
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING, CIRCLE_DURATION } from './constants';
+import {
+    TEXTPATH_ALIGN,
+    TEXTPATH_SIZE,
+    TEXT_PATH_STROKE,
+    TEXT_WORD_SPACING,
+    PATH_TEXT_SPACING,
+    CIRCLE_DURATION,
+    CIRCLE_IMG_HEIGHT,
+    CIRCLE_IMG_WIDTH,
+    CIRCLE_IMAGE_BACKGROUND,
+    CIRCLE_IMAGE_PADDING,
+    CIRCLE_IMAGE_MARGIN,
+    CIRCLE_IMAGE_BORDER,
+    CIRCLE_IMAGE_BOX_SHADOW,
+    CIRCLE_IMAGE_BORDER_RADIUS,
+} from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -23,7 +49,11 @@ const Style = ({ props }) => {
         textPathType,
         textPathTypeCircle,
         circleAnimationDuration,
+        direction,
+        pathColor,
     } = attributes;
+
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
 
     const {
         desktopAlignStyle: textPathDeskAlignStyle,
@@ -79,12 +109,98 @@ const Style = ({ props }) => {
         property: 'letter-spacing',
         attributes,
     });
+    // Image
+    const {
+        desktopRangeStyle: DeskCircleImgHeight,
+        tabRangeStyle: TabCircleImgHeight,
+        mobRangeStyle: MobCircleImgHeight,
+    } = generateResRangeStyle({
+        controlName: CIRCLE_IMG_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: DeskCircleImgWidth,
+        tabRangeStyle: TabCircleImgWidth,
+        mobRangeStyle: MobCircleImgWidth,
+    } = generateResRangeStyle({
+        controlName: CIRCLE_IMG_HEIGHT,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: imageBorderDesk,
+        tabBorderStyle: imageBorderTab,
+        mobBorderStyle: imageBorderMob,
+    } = generateBorderStyle({
+        controlName: CIRCLE_IMAGE_BORDER,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: imageDeskBGStyle,
+        backgroundStylesTab: imageTabBGStyle,
+        backgroundStylesMobile: imageMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CIRCLE_IMAGE_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: imageBorderRadiusDesk,
+        dimensionStylesTab: imageBorderRadiusTab,
+        dimensionStylesMobile: imageBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CIRCLE_IMAGE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: imagePaddingDesk,
+        dimensionStylesTab: imagePaddingTab,
+        dimensionStylesMobile: imagePaddingMob,
+    } = generateDimensionStyle({
+        controlName: CIRCLE_IMAGE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: imageMarginDesk,
+        dimensionStylesTab: imageMarginTab,
+        dimensionStylesMobile: imageMarginMob,
+    } = generateDimensionStyle({
+        controlName: CIRCLE_IMAGE_MARGIN,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const { boxShadowStyle: imageBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CIRCLE_IMAGE_BOX_SHADOW,
+    });
+
+    const directionStyle = circleAnimationDuration.direction === 'clockwise' ? 1 : -1;
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
 
+        ${
+            circleAnimationDuration.direction
+                ? `
+                .${uniqueId}.wp-block-zolo-text-path {
+                    --zolo-rotate-animation-50: ${180 * directionStyle}deg;
+                    --zolo-rotate-animation-100: ${360 * directionStyle}deg;
+                }
+                `
+                : ''
+        }
         ${
             textPathType === 'circle' && textPathTypeCircle === true
                 ? `
@@ -104,11 +220,11 @@ const Style = ({ props }) => {
             ${DeskTextpathSpacing}
             ${DeskTextSpacing}
             ${textPathColor && `fill:${textPathColor}`}
-            
+
         }
         .${uniqueId}.wp-block-zolo-text-path tspan:hover {
             ${textPathHoverColor && `fill:${textPathHoverColor}`}
-        }  
+        }
         .${uniqueId}.wp-block-zolo-text-path .zolo-path{
             ${textPathShow && 'stroke:#2667ff'};
         }
@@ -116,6 +232,37 @@ const Style = ({ props }) => {
             ${DesktopTextpathTypo}
             ${textpathRotate && `rotate:${textpathRotate}deg`};
             ${DeskTextpathWidth}
+        }
+
+        .${uniqueId}.wp-block-zolo-text-path .zolo-path {
+            ${pathColor && `stroke:${pathColor}`}
+        }
+
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
+             ${imageMarginDesk}
+        }
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
+            ${DeskCircleImgHeight}
+            ${DeskCircleImgWidth}
+            ${imageDeskBGStyle}
+            ${imagePaddingDesk}
+            ${imageBorderDesk}
+            ${imageBorderRadiusDesk}
+            ${imageBoxShadow}
+        }
+        ${
+            active
+                ? `
+                     .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image .zolo-img {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+                `
+                : ''
         }
     `;
 
@@ -129,10 +276,19 @@ const Style = ({ props }) => {
             ${TabTextSpacing}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
-            ${TabTextpathTypo}  
+            ${TabTextpathTypo}
             ${TabTextpathWidth}
         }
-   
+
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
+            ${TabCircleImgHeight}
+            ${TabCircleImgWidth}
+            ${imageTabBGStyle}
+            ${imagePaddingTab}
+            ${imageBorderTab}
+            ${imageBorderRadiusTab}
+        }
+
     `;
 
     const mobileAllStyle = `
@@ -147,6 +303,14 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-text-path svg {
             ${MobTextpathTypo}
             ${MobTextpathWidth}
+        }
+        .${uniqueId}.wp-block-zolo-text-path .zolo-circle-image {
+            ${MobCircleImgHeight}
+            ${MobCircleImgWidth}
+            ${imageMobBGStyle}
+            ${imagePaddingMob}
+            ${imageBorderMob}
+            ${imageBorderRadiusMob}
         }
     `;
     return (
