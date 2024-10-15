@@ -22,8 +22,7 @@ export default function RenderView({attributes}) {
 
             <footer className="comment-meta">
               <div className="comment-author vcard">
-                <img alt="" src="http://0.gravatar.com/avatar/988b380df559b1f75b71fdaa28463873?s=200&amp;d=mm&amp;r=g"
-                     srcSet="http://0.gravatar.com/avatar/988b380df559b1f75b71fdaa28463873?s=400&amp;d=mm&amp;r=g 2x"
+                <img alt="avatar" src="https://2.gravatar.com/avatar/20ec7e03797c09e0f5b952b6d8823d81?s=250&d=mm&r=g"
                      className="avatar avatar-200 photo" height="200" width="200" decoding="async"/>
                 <b className="fn">
                   <a onClick={event => event.preventDefault()} href="http://null.test/author/admin/"
