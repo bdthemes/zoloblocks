@@ -24,6 +24,10 @@ export default function save(props) {
         prevNavIcon,
         nextNavIcon,
         zoloId,
+        paginationType,
+        pagiPosition,
+        navPosition,
+        progressDirection,
     } = attributes;
 
     // Block Props
@@ -47,7 +51,9 @@ export default function save(props) {
             data-swiper-breakpoints={JSON.stringify(breakpoints)}
         >
             {renderHookBefore && renderHookBefore}
-            <div className="swiper">
+            <div
+                className={`swiper ${showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
+            >
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
@@ -55,7 +61,9 @@ export default function save(props) {
             {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
             {(showNavigation || showNavigation === undefined) && (
                 <Fragment>
-                    <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>
+                    <div
+                        className={`swiper-navigation-wrap ${navPosition ? `zolo-nav-ps-${navPosition}` : ''} ${customNavIcon ? 'zolo-custom-nav' : ''}`}
+                    >
                         {customNavIcon && (
                             <>
                                 <div className="swiper-nav-button swiper-zolo-prev">

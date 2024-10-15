@@ -7,8 +7,14 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-const { generateResRangeStyle, generateDimensionStyle, generateBorderStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
-    window.zoloModule;
+const {
+    generateResRangeStyle,
+    generateDimensionStyle,
+    generateBorderStyle,
+    generateNormalBGControlStyles,
+    GlobalStyleHanlder,
+    generateTypographyStyles,
+} = window.zoloModule;
 
 // Constants
 import {
@@ -22,6 +28,7 @@ import {
     NAV_BG,
     NAV_HOVER_BG,
     NAV_ICON_SIZE,
+    PAGI_MARGIN,
     PAG_WIDTH,
     PAG_HEIGHT,
     PAG_BORDER,
@@ -36,9 +43,11 @@ import {
     APAG_BG,
 } from './constants';
 
+import { PAGI_FRACTIONS_TYPO } from './constants/typoPrefixConstants';
+
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, navColor, navHoverColor, navHoverBorderColor } = attributes;
+    const { uniqueId, navColor, navHoverColor, navHoverBorderColor, pagiFractionCurrentColor, pagiFractionColor } = attributes;
 
     // slider height
     const {
@@ -165,6 +174,26 @@ const Style = ({ props }) => {
     });
 
     // Pagination
+
+    const {
+        typoStylesDesktop: pagiFractionTypoDesk,
+        typoStylesTab: pagiFractionTypoTab,
+        typoStylesMobile: pagiFractionTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: PAGI_FRACTIONS_TYPO,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: pagiDeskMargin,
+        dimensionStylesTab: pagiTabMargin,
+        dimensionStylesMobile: pagiMobMargin,
+    } = generateDimensionStyle({
+        controlName: PAGI_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     const {
         desktopRangeStyle: pagDeskWidth,
         tabRangeStyle: pagTabWidth,
@@ -185,15 +214,15 @@ const Style = ({ props }) => {
         attributes,
     });
 
-     const {
-         desktopRangeStyle: pagBottomSpacingDesktop,
-         tabRangeStyle: pagBottomSpacingTab,
-         mobRangeStyle: pagBottomSpacingMob,
-     } = generateResRangeStyle({
-         controlName: PAG_VERTICAL_OFFSET,
-         property: 'bottom',
-         attributes,
-     });
+    const {
+        desktopRangeStyle: pagBottomSpacingDesktop,
+        tabRangeStyle: pagBottomSpacingTab,
+        mobRangeStyle: pagBottomSpacingMob,
+    } = generateResRangeStyle({
+        controlName: PAG_VERTICAL_OFFSET,
+        property: 'bottom',
+        attributes,
+    });
 
     const {
         desktopBorderStyle: pagBorderStyles,
@@ -335,10 +364,14 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
             ${pagBottomSpacingDesktop}
+            ${pagiDeskMargin}
+            ${pagSpacingDesktop}
+            ${pagiFractionTypoDesk}
+            ${pagiFractionColor ? `color: ${pagiFractionColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets {
-            ${pagSpacingDesktop}
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination .swiper-pagination-current {
+            ${pagiFractionCurrentColor ? `color: ${pagiFractionCurrentColor};` : ''}
         }
 
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -384,6 +417,9 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
             ${pagBottomSpacingTab}
+            ${pagiTabMargin}
+            ${pagSpacingTab}
+            ${pagiFractionTypoTab}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagTabWidth}
@@ -391,7 +427,6 @@ const Style = ({ props }) => {
             ${pagBorderStylesTab}
             ${pagBorderRadiusTab}
             ${pagNormalBGStyleTab}
-            ${pagSpacingTab}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagTabWidth}
@@ -427,16 +462,20 @@ const Style = ({ props }) => {
             ${cnavMobSize}
             ${cnavMobHSize}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
-           ${pagBottomSpacingMob}
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
+            ${pagBottomSpacingMob}
+            ${pagiMobMargin}
+            ${pagSpacingMob}
+            ${pagiFractionTypoMob}
         }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagMobWidth}
             ${pagMobHeight}
             ${pagBorderStylesMob}
             ${pagBorderRadiusMob}
             ${pagNormalBGStyleMob}
-            ${pagSpacingMob}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagMobWidth}

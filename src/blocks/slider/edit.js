@@ -38,6 +38,9 @@ export default function Edit(props) {
         nextNavIcon,
         showPagination,
         paginationType,
+        navPosition,
+        pagiPosition,
+        progressDirection,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -132,6 +135,7 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <Swiper
+                    className={`${showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
                     key={JSON.parse(addNewSlideBlock)}
                     ref={swiperRef}
                     modules={[A11y, Autoplay, Navigation, Pagination]}
@@ -159,7 +163,7 @@ export default function Edit(props) {
                     {showNavigation && (
                         <>
                             <div
-                                className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
+                                className={`swiper-navigation-wrap ${navPosition ? `zolo-nav-ps-${navPosition}` : ''} ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                             >
                                 {customNavIcon && (
                                     <>

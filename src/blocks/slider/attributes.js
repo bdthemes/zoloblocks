@@ -1,8 +1,13 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateDimensionAttributes, generateBorderAttributies, generateNormalBGAttributes } =
-    window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateDimensionAttributes,
+    generateBorderAttributies,
+    generateNormalBGAttributes,
+    generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
     SLIDER_HEIGHT,
@@ -22,12 +27,15 @@ import {
     PAG_BG,
     PAG_SPACING,
     PAG_VERTICAL_OFFSET,
+    PAGI_MARGIN,
     APAG_WIDTH,
     APAG_HEIGHT,
     APAG_BORDER,
     APAG_BORDER_RADIUS,
     APAG_BG,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstants';
 
 const attributes = {
     // global attributes
@@ -75,6 +83,12 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+
+    navPosition: {
+        type: 'string',
+        default: 'center-center',
+    },
+
     showNavigation: {
         type: 'boolean',
         default: true,
@@ -92,17 +106,31 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    pagiFractionColor: {
+        type: 'string',
+    },
+    pagiFractionCurrentColor: {
+        type: 'string',
+    },
     paginationType: {
         type: 'string',
         default: 'bullets',
+    },
+    progressDirection: {
+        type: 'string',
+        default: 'top',
     },
     dynamicBullets: {
         type: 'boolean',
         default: false,
     },
+    pagiPosition: {
+        type: 'string',
+        default: 'bottom-center',
+    },
     speed: {
         type: 'number',
-        default: 8
+        default: 8,
     },
 
     sliderEffect: {
@@ -152,6 +180,7 @@ const attributes = {
     },
 
     // pagination
+    ...generateDimensionAttributes(PAGI_MARGIN),
     ...generateResRangeAttributies(PAG_WIDTH),
     ...generateResRangeAttributies(PAG_HEIGHT),
     ...generateBorderAttributies(PAG_BORDER),
@@ -165,6 +194,7 @@ const attributes = {
     ...generateBorderAttributies(APAG_BORDER),
     ...generateDimensionAttributes(APAG_BORDER_RADIUS),
     ...generateNormalBGAttributes(APAG_BG),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 };
 
 export default attributes;
