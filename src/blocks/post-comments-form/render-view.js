@@ -1,8 +1,10 @@
 import {__} from '@wordpress/i18n';
+
 export default function RenderView({attributes}) {
   const {
     showCommentTitle,
     showCommentCount,
+    showForm,
     commentFormTitle,
     cancelReply,
     loginAsText,
@@ -48,32 +50,34 @@ export default function RenderView({attributes}) {
         </li>
       </ul>
 
-      <div id="respond" className="comment-respond">
-        <h3 id="reply-title" className="comment-reply-title">
-          {commentFormTitle}
-          <small><a onClick={(event) => event.preventDefault()} id="cancel-comment-reply-link"
-                    href="#">{cancelReply}</a></small>
-        </h3>
+      {showForm && (
+        <div id="respond" className="comment-respond">
+          <h3 id="reply-title" className="comment-reply-title">
+            {commentFormTitle}
+            <small><a onClick={(event) => event.preventDefault()} id="cancel-comment-reply-link"
+                      href="#">{cancelReply}</a></small>
+          </h3>
 
-        <form action="#" method="post" id="commentform" className="zolo-comment-form">
-          <p className="logged-in-as">
-            {loginAsText}
-            <a onClick={event => event.preventDefault()} href="#">{__(' admin.', 'zoloblocks')}</a>
-            <a onClick={event => event.preventDefault()} href="#">{logoutText}</a>
-          </p>
+          <form action="#" method="post" id="commentform" className="zolo-comment-form">
+            <p className="logged-in-as">
+              {loginAsText}
+              <a onClick={event => event.preventDefault()} href="#">{__(' admin.', 'zoloblocks')}</a>
+              <a onClick={event => event.preventDefault()} href="#">{logoutText}</a>
+            </p>
 
-          <div className="zolo-form-group">
+            <div className="zolo-form-group">
             <textarea id="comment" name="comment" cols="45" rows="6"
                       placeholder={__('Comment', 'zoloblocks')}></textarea>
-          </div>
+            </div>
 
-          <p className="form-submit wp-block-button">
-            <input name="submit" type="submit" id="submit" className="submit wp-element-button" value={submitBtnText}/>
-          </p>
+            <p className="form-submit wp-block-button">
+              <input name="submit" type="submit" id="submit" className="submit wp-element-button"
+                     value={submitBtnText}/>
+            </p>
 
-        </form>
-      </div>
-
+          </form>
+        </div>
+      )}
     </>
   )
     ;

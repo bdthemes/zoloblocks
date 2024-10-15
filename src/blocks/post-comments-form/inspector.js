@@ -65,6 +65,7 @@ export default function Inspector(props) {
     resMode,
     showCommentTitle,
     showCommentCount,
+    showForm,
     commentFormTitle,
     cancelReply,
     submitBtnText,
@@ -133,6 +134,11 @@ export default function Inspector(props) {
                   onChange={(showCommentCount) => setAttributes({showCommentCount})}
                 />
               )}
+              <ToggleControl
+                label={__('Show Comment Form', 'zoloblocks')}
+                checked={showForm}
+                onChange={(showForm) => setAttributes({showForm})}
+              />
 
               <CardDivider/>
               <TextControl

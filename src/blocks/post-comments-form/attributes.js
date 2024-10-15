@@ -77,6 +77,10 @@ const attributes = {
     type: 'boolean',
     default: true,
   },
+  showForm:{
+    type:'boolean',
+    default:true
+  },
   commentTitle: {
     type: 'string',
     default: 'Comments'
