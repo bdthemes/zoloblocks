@@ -1198,60 +1198,6 @@ const BGControl = (props) => {
                                     {backgroundType === 'video' && (
                                         <>
                                             {backgroundVideo && backgroundVideo}
-                                            {/* <MediaUpload
-                                                onSelect={({ url, id }) =>
-                                                    setAttributes({
-                                                        [`${controlName}bgVideoURL`]: url,
-                                                        [`${controlName}bgVideoID`]: id,
-                                                    })
-                                                }
-                                                allowedTypes={['video']}
-                                                type="video"
-                                                value={bgVideoID}
-                                                render={({ open }) => (
-                                                    <>
-                                                        <Button
-                                                            className="components-button"
-                                                            label={__('Upload Video', 'zoloblocks')}
-                                                            icon="format-video"
-                                                            onClick={open}
-                                                        />
-                                                        <span
-                                                            style={{
-                                                                padding: '10px 0',
-                                                                display: 'block',
-                                                            }}
-                                                        ></span>
-                                                    </>
-                                                )}
-                                            />
-
-                                            {bgVideoURL && (
-                                                <>
-                                                    <TextareaControl
-                                                        label={__('Video URL', 'zoloblocks')}
-                                                        value={bgVideoURL}
-                                                        onChange={(newVal) =>
-                                                            setAttributes({
-                                                                [`${controlName}bgVideoURL`]: newVal,
-                                                            })
-                                                        }
-                                                    />
-                                                </>
-                                            )} */}
-
-                                            {/* {videoURL && (
-                                                <>
-                                                    <VideoAvatar
-                                                        videoUrl={videoURL}
-                                                        onDeleteVideo={() =>
-                                                            setAttributes({
-                                                                [`${controlName}videoURL`]: null,
-                                                            })
-                                                        }
-                                                    />
-                                                </>
-                                            )} */}
                                         </>
                                     )}
                                 </>
@@ -1261,7 +1207,7 @@ const BGControl = (props) => {
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.filter(({ value }) => !(video && value === 'video')).map(
+                                            {BACKGROUND_TYPES.map(
                                                 ({ value, label }) => (
                                                     <Button
                                                         key={value}

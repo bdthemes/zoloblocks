@@ -113,7 +113,7 @@ function Inspector(props) {
                                 label={__('Content Spacing', 'zoloblocks')}
                                 controlName={TITLE_GAP}
                                 requiredProps={requiredProps}
-                                min={1}
+                                min={0}
                                 max={100}
                                 step={1}
                             />

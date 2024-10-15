@@ -1,4 +1,4 @@
-import { RangeControl, Button } from '@wordpress/components';
+import { RangeControl, Button, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import UnitBtn from '../unit-btn';
 // import WithResDeviceBtn from './res-device-btn';
 
@@ -52,17 +52,28 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                             </div>
 
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                <RangeControl
-                                    value={desktopRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}${controlName}Range`]: val,
-                                        })
-                                    }
-                                    min={min || 0}
-                                    max={sizeUnit === '%' ? 100 : max || 100}
-                                    step={step || 1}
-                                />
+                                <div className="zolo-input-range-wrapper">
+                                    <RangeControl
+                                        value={desktopRange}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                [`${prefix}${controlName}Range`]: val,
+                                            })
+                                        }
+                                        min={min || 0}
+                                        max={sizeUnit === '%' ? 100 : max || 100}
+                                        step={step || 1}
+                                        withInputField={false}
+                                    />
+                                    <NumberControl
+                                        value={desktopRange}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                            })
+                                        }
+                                    />
+                                </div>
                             </WithResDeviceBtn>
                         </>
                     )}
@@ -81,17 +92,28 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 )}
                             </div>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                <RangeControl
-                                    value={tabRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}TAB${controlName}Range`]: val,
-                                        })
-                                    }
-                                    min={min || 0}
-                                    max={TABsizeUnit === '%' ? 100 : max || 100}
-                                    step={step || 1}
-                                />
+                                <div className="zolo-input-range-wrapper">
+                                    <RangeControl
+                                        value={tabRange}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                [`${prefix}TAB${controlName}Range`]: val,
+                                            })
+                                        }
+                                        min={min || 0}
+                                        max={TABsizeUnit === '%' ? 100 : max || 100}
+                                        step={step || 1}
+                                        withInputField={false}
+                                    />
+                                    <NumberControl
+                                        value={tabRange}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                            })
+                                        }
+                                    />
+                                </div>
                             </WithResDeviceBtn>
                         </>
                     )}
@@ -110,7 +132,8 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 )}
                             </div>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                <RangeControl
+                                 <div className="zolo-input-range-wrapper">
+                                    <RangeControl
                                     value={mobRange}
                                     onChange={(val) =>
                                         setAttributes({
@@ -120,7 +143,17 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     min={min || 0}
                                     max={MOBsizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
+                                    withInputField={false}
                                 />
+                                <NumberControl
+                                    value={mobRange}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                        })
+                                    }
+                                />
+                                </div>
                             </WithResDeviceBtn>
                         </>
                     )}
@@ -150,7 +183,8 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                             </UnitsBtn>
 
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                <RangeControl
+                                 <div className="zolo-input-range-wrapper">
+                                    <RangeControl
                                     value={desktopRange}
                                     onChange={(val) => {
                                         setAttributes({
@@ -160,7 +194,17 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     min={min || 0}
                                     max={sizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
+                                    withInputField={false}
                                 />
+                                <NumberControl
+                                    value={desktopRange}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                        })
+                                    }
+                                />
+                                </div>
                             </WithResDeviceBtn>
                         </>
                     )}
@@ -187,7 +231,8 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 )}
                             </UnitsBtn>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                <RangeControl
+                                 <div className="zolo-input-range-wrapper">
+                                    <RangeControl
                                     value={tabRange}
                                     onChange={(val) =>
                                         setAttributes({
@@ -197,7 +242,17 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     min={min || 0}
                                     max={TABsizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
+                                    withInputField={false}
                                 />
+                                <NumberControl
+                                    value={tabRange}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                        })
+                                    }
+                                />
+                                </div>
                             </WithResDeviceBtn>
                         </>
                     )}
@@ -224,7 +279,8 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 )}
                             </UnitsBtn>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                <RangeControl
+                                  <div className="zolo-input-range-wrapper">
+                                    <RangeControl
                                     value={mobRange}
                                     onChange={(val) =>
                                         setAttributes({
@@ -234,7 +290,17 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     min={min || 0}
                                     max={MOBsizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
+                                    withInputField={false}
                                 />
+                                <NumberControl
+                                    value={mobRange}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                        })
+                                    }
+                                />
+                                </div>
                             </WithResDeviceBtn>
                         </>
                     )}

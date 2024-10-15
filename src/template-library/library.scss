@@ -20,7 +20,7 @@
 .zolo-library-open-button {
     background-color: #dee7ff;
     gap: 0.5rem;
-    margin:0 0.5rem;
+    margin: 0 0.5rem;
     order: 1 !important;
     color: #2667ff;
     font-weight: 700;
@@ -847,6 +847,14 @@
             font-size: 18px !important;
         }
     }
+
+    button.demo-pro-free-reset {
+        background: none !important;
+        padding: 0 !important;
+        svg {
+            width: 15px !important;
+        }
+    }
 }
 
 // zolo pro modal css start
@@ -860,7 +868,6 @@
         padding: 40px;
         margin: 0;
         text-align: center;
-
     }
     .components-modal__header {
         padding: 0;
@@ -998,7 +1005,6 @@
                         width: 700px;
                     }
                 }
-
             }
         }
     }

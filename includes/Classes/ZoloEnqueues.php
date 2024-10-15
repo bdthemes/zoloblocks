@@ -234,7 +234,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'all'
             );
 
-            // swiper only for editor
+            // // swiper only for editor
             wp_enqueue_style(
                 'zolo-swiper-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',

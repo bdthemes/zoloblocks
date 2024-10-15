@@ -360,6 +360,11 @@ function Inspector(props) {
                                             chartHeight: height,
                                         })
                                     }
+                                    onReset={() =>
+                                        setAttributes({
+                                            chartHeight: undefined,
+                                        })
+                                    }
                                     min={200}
                                     max={1000}
                                 />
@@ -833,6 +838,17 @@ function Inspector(props) {
                                             }
                                             min={0}
                                             max={100}
+                                            onReset={() =>
+                                                setAttributes({
+                                                    titleObject: {
+                                                        ...titleObject,
+                                                        style: {
+                                                            ...titleObject.style,
+                                                            fontSize: undefined,
+                                                        },
+                                                    },
+                                                })
+                                            }
                                         />
                                     </div>
                                 </ZoloPanelBody>
@@ -873,6 +889,17 @@ function Inspector(props) {
                                             }
                                             min={0}
                                             max={100}
+                                            onReset={() =>
+                                                setAttributes({
+                                                    subTitleObject: {
+                                                        ...subTitleObject,
+                                                        style: {
+                                                            ...subTitleObject.style,
+                                                            fontSize: undefined,
+                                                        },
+                                                    },
+                                                })
+                                            }
                                         />
                                     </div>
                                 </ZoloPanelBody>

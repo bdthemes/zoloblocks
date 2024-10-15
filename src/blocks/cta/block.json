@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["button", "call to action", "cta"],
     "description": "To design unique and engaging landing CTAs",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

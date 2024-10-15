@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["newsletter", "mailchimp", "zoloblocks"],
     "description": "Newsletter block for Zolo Blocks",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

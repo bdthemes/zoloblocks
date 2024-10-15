@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["google", "map", "google map"],
     "description": "Show your live business location with Maps",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

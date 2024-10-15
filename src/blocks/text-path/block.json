@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["zolo", "text", "textpath"],
     "description": "A simple text path  block",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

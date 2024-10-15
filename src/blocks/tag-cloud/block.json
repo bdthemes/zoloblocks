@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["post", "post tag", "tag","tag cloud"],
     "description": "Customizable dynamic tag for your website post tag cloud",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

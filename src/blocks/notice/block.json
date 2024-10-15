@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["alert", "notice"],
     "description": "Make stunning content with the notice block",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

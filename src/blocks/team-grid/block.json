@@ -6,7 +6,7 @@
     "category": "zoloblocks",
     "keywords": ["team", "team grid"],
     "description": "Display your team members with custom design layout",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {
