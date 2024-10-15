@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                   series={chartType === 'pie' || chartType === 'donut' ? pieChartData.series : barChartData.series}
                                   type={chartType}
                                   width={'100%'}
-                                  height={chartHeight}
+                                  height={chartHeight !== undefined ? chartHeight : 300}
                               />
                           );
             } catch (error) {

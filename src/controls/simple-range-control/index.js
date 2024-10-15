@@ -1,4 +1,4 @@
-import { RangeControl, BaseControl } from '@wordpress/components';
+import { RangeControl, BaseControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 
@@ -21,13 +21,18 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                             {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
                         </div>
                         <BaseControl label={label}>
-                            <RangeControl
-                                value={value}
-                                onChange={(val) => onChange(val)}
-                                min={min || 0}
-                                max={unit === '%' ? 100 : max || 100}
-                                step={step || 1}
-                            />
+                            <div className="zolo-input-range-wrapper">
+                                <RangeControl
+                                    value={value}
+                                    onChange={(val) => onChange(val)}
+                                    min={min || 0}
+                                    max={unit === '%' ? 100 : max || 100}
+                                    step={step || 1}
+                                    withInputField={false}
+                                />
+
+                                <NumberControl value={value} onChange={(val) => onChange(val ? Number(val) : undefined)} />
+                            </div>
                         </BaseControl>
                     </>
                 ) : (
@@ -37,13 +42,17 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                         </UnitsBtn>
 
                         <BaseControl label={label}>
-                            <RangeControl
-                                value={value}
-                                onChange={(val) => onChange(val)}
-                                min={min || 0}
-                                max={unit === '%' ? 100 : max || 100}
-                                step={step || 1}
-                            />
+                            <div className="zolo-input-range-wrapper">
+                                <RangeControl
+                                    value={value}
+                                    onChange={(val) => onChange(val)}
+                                    min={min || 0}
+                                    max={unit === '%' ? 100 : max || 100}
+                                    step={step || 1}
+                                    withInputField={false}
+                                />
+                                <NumberControl value={value} onChange={(val) => onChange(val ? Number(val) : undefined)} />
+                            </div>
                         </BaseControl>
                     </>
                 )}

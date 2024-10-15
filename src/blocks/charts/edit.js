@@ -289,7 +289,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <ApexCharts options={renderOptions()} series={renderSeries()} type={chartType} width={'100%'} height={chartHeight} />
+                <ApexCharts options={renderOptions()} series={renderSeries()} type={chartType} width={'100%'} height={chartHeight !== undefined ? chartHeight: 300} />
                 {renderHookAfter && renderHookAfter}
             </div>
         </>
