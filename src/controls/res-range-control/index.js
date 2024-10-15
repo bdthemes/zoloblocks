@@ -69,7 +69,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                         value={desktopRange}
                                         onChange={(val) =>
                                             setAttributes({
-                                                [`${prefix}${controlName}Range`]: Number(val),
+                                                [`${prefix}${controlName}Range`]: Number(val) || undefined,
                                             })
                                         }
                                     />
@@ -109,7 +109,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                         value={tabRange}
                                         onChange={(val) =>
                                             setAttributes({
-                                                [`${prefix}TAB${controlName}Range`]: Number(val),
+                                                [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
                                             })
                                         }
                                     />
@@ -149,7 +149,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     value={mobRange}
                                     onChange={(val) =>
                                         setAttributes({
-                                            [`${prefix}MOB${controlName}Range`]: Number(val),
+                                            [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
                                         })
                                     }
                                 />
@@ -191,7 +191,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                             [`${prefix}${controlName}Range`]: val,
                                         });
                                     }}
-                                    min={min || 0 || undefined}
+                                    min={min || 0}
                                     max={sizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
                                     withInputField={false}
@@ -200,7 +200,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     value={desktopRange}
                                     onChange={(val) =>
                                         setAttributes({
-                                            [`${prefix}${controlName}Range`]: Number(val),
+                                            [`${prefix}${controlName}Range`]: Number(val) || undefined,
                                         })
                                     }
                                 />
@@ -248,7 +248,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     value={tabRange}
                                     onChange={(val) =>
                                         setAttributes({
-                                            [`${prefix}TAB${controlName}Range`]: Number(val),
+                                            [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
                                         })
                                     }
                                 />
@@ -296,7 +296,7 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     value={mobRange}
                                     onChange={(val) =>
                                         setAttributes({
-                                            [`${prefix}MOB${controlName}Range`]: Number(val),
+                                            [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
                                         })
                                     }
                                 />
