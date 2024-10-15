@@ -8,7 +8,7 @@ const Save = (props) => {
     const {
         uniqueId,
         parentClasses,
-        chartHeight,
+        chartHeight ,
         zoloId,
         chartType,
         showTitle,
@@ -45,7 +45,7 @@ const Save = (props) => {
     const chartOptions = {
         chartType,
         showTitle,
-        chartHeight,
+        chartHeight : chartHeight ? chartHeight : 300,
         showSubTitle,
         showLegend,
         showTooltip,
