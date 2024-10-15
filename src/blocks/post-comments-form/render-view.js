@@ -21,7 +21,6 @@ export default function RenderView({attributes}) {
       <ul className="zolo-comment-list">
         <li className="comment byuser comment-author-admin bypostauthor even thread-even depth-1">
           <div className="comment-body">
-
             <footer className="comment-meta">
               <div className="comment-author vcard">
                 <img alt="avatar" src="https://2.gravatar.com/avatar/20ec7e03797c09e0f5b952b6d8823d81?s=250&d=mm&r=g"
@@ -33,7 +32,7 @@ export default function RenderView({attributes}) {
                 <span className="says">says:</span>
               </div>
               <div className="comment-metadata">
-                <a onClick={event => event.preventDefault()} href="#">March 25, 2020 at 10:04 am</a>&nbsp;
+                <a onClick={event => event.preventDefault()} href="#">October 15, 2024 at 10:04 am</a>&nbsp;
                 <a onClick={event => event.preventDefault()} className="comment-edit-link" href="#">Edit</a>
               </div>
             </footer>
@@ -54,8 +53,10 @@ export default function RenderView({attributes}) {
         <div id="respond" className="comment-respond">
           <h3 id="reply-title" className="comment-reply-title">
             {commentFormTitle}
-            <small><a onClick={(event) => event.preventDefault()} id="cancel-comment-reply-link"
-                      href="#">{cancelReply}</a></small>
+            <small>
+              <a onClick={(event) => event.preventDefault()} id="cancel-comment-reply-link"
+                 href="#">{cancelReply}</a>
+            </small>
           </h3>
 
           <form action="#" method="post" id="commentform" className="zolo-comment-form">
