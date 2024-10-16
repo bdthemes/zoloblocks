@@ -275,8 +275,9 @@ const attributes = {
     },
     carouselEffect: {
         type: 'string',
-        default: 'slide',
+        default: 'fade',
     },
+
     customNavIcon: {
         type: 'boolean',
         default: true,

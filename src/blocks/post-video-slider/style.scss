@@ -44,15 +44,17 @@
     }
 
     .zolo-post-category a {
-        background-color: #f7f7f7;
+        background-color: #ffffff87;
         padding: 6px 10px;
-        border-radius: 3px;
+        border-radius: 6px;
         font-size: 14px;
         text-transform: capitalize;
         text-decoration: none;
-        color: #000;
+        color: #000000;
         display: inline-block;
         transition: 0.3s ease;
+        backdrop-filter: blur(10px);
+        font-weight: 500;
     }
 
     .zolo-post-category a:hover {
@@ -61,8 +63,9 @@
 
     .zolo-post-title {
         margin: 0 0 20px;
-        font-size: clamp(20px, 2.5vw, 30px);
+        font-size: clamp(20px, 2.5vw, 32px);
         color: #f5f5f5;
+        font-weight: 700;
     }
 
     .zolo-post-title a {
@@ -215,6 +218,10 @@
         text-align: right;
     }
 
+    &.zolo-center-right .swiper-navigation-wrap {
+        left: 0;
+    }
+
     .zolo-video-button a {
         background-color: rgba(255, 255, 255, 0.69);
         padding: 14px;
@@ -255,6 +262,12 @@
         cursor: pointer;
         border: 1px solid #f8f8f8;
         transition: 0.3s ease;
+        font-size: 15px;
+        width: auto;
+        &::before,
+        &::after {
+            font-size: inherit;
+        }
     }
 
     .swiper-nav-button:hover {

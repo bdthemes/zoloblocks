@@ -140,7 +140,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Content Position', 'zoloblocks')}
+                                label={__('Content', 'zoloblocks')}
                                 value={contentPosition}
                                 options={POSITION_OPTIONS}
                                 onChange={(contentPosition) => setAttributes({ contentPosition })}

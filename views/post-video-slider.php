@@ -56,10 +56,17 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		$html .= '</div>';
 
 		$html .= '<div class="zolo-post-content">';
+		$html .= '<div data-swiper-parallax-x="-200" data-swiper-parallax-duration="700">';
 		$html .= require __DIR__ . '/post-partials/meta/categories.php';
-		$html .= require __DIR__ . '/post-partials/title.php';
-		$html .= require __DIR__ . '/post-partials/content.php';
+		$html .= '</div>';
 
+		$html .= '<div data-swiper-parallax-x="-150" data-swiper-parallax-duration="800">';
+		$html .= require __DIR__ . '/post-partials/title.php';
+		$html .= '</div>';
+		$html .= '<div data-swiper-parallax-x="-100" data-swiper-parallax-duration="900">';
+		$html .= require __DIR__ . '/post-partials/content.php';
+		$html .= '</div>';
+		$html .= '<div data-swiper-parallax-x="-80" data-swiper-parallax-duration="1000">';
 		$html .= '<div class="zolo-post-meta" >';
 		$html .= require __DIR__ . '/post-partials/meta/author-video-slider.php';
 		if ( ! empty( $settings['showAuthor'] ) && ! empty( $settings['showDate'] ) ) {
@@ -68,6 +75,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		if ( ! empty( $settings['showDate'] ) ) {
 			$html .= require __DIR__ . '/post-partials/meta/date.php';
 		}
+		$html .= '</div>';
 		$html .= '</div>';
 		$html .= '</div>';
 

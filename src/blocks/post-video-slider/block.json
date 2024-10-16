@@ -3,7 +3,7 @@
     "title": "Post Video Slider",
     "name": "zolo/post-video-slider",
     "category": "zoloblocks",
-    "keywords": ["post", "post slider","video slider","gallery slider"],
+    "keywords": ["post", "post slider", "video slider", "gallery slider"],
     "description": "Showcase posts in this dynamic carousel slider block",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
