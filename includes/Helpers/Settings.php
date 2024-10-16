@@ -59,7 +59,7 @@ if (! class_exists('Settings')) {
                 ]
             );
 
-            favorite templates
+            // favorite templates
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_favorite_templates',
