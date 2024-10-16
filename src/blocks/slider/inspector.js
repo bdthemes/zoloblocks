@@ -34,8 +34,10 @@ import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
-    NAV_WIDTH,
-    NAV_HEIGHT,
+    // NAV_WIDTH,
+    // NAV_HEIGHT,
+    NAV_PADDING,
+    NAV_MARGIN,
     NAV_BORDER,
     NAV_BORDER_RADIUS,
     NAV_BG,
@@ -341,7 +343,7 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
-                                            <ResRangeControl
+                                            {/* <ResRangeControl
                                                 label={__('Width', 'zoloblocks')}
                                                 controlName={NAV_WIDTH}
                                                 requiredProps={requiredProps}
@@ -360,9 +362,20 @@ const Inspector = (props) => {
                                                     { label: 'em', value: 'em' },
                                                     { label: 'vh', value: 'vh' },
                                                 ]}
+                                            /> */}
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={NAV_PADDING}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={NAV_MARGIN}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
                                             />
                                             <CardDivider />
-
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={NAV_BORDER}
@@ -441,12 +454,6 @@ const Inspector = (props) => {
 
                                                 {paginationType === 'bullets' && (
                                                     <>
-                                                        <NormalBGControl
-                                                            label={__('Background', 'zoloblocks')}
-                                                            controlName={PAG_BG}
-                                                            requiredProps={requiredProps}
-                                                            noMainBGImg={true}
-                                                        />
                                                         <ResRangeControl
                                                             label={__('Width', 'zoloblocks')}
                                                             controlName={PAG_WIDTH}
@@ -461,15 +468,24 @@ const Inspector = (props) => {
                                                             min={1}
                                                             max={100}
                                                         />
+                                                        <CardDivider />
+                                                        <NormalBGControl
+                                                            label={__('Background', 'zoloblocks')}
+                                                            controlName={PAG_BG}
+                                                            requiredProps={requiredProps}
+                                                            noMainBGImg={true}
+                                                        />
                                                     </>
                                                 )}
+                                                {paginationType !== 'progressbar' && (
+                                                    <ResDimensionsControl
+                                                        label={__('Margin', 'zoloblocks')}
+                                                        controlName={PAGI_MARGIN}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={false}
+                                                    />
+                                                )}
 
-                                                <ResDimensionsControl
-                                                    label={__('Margin', 'zoloblocks')}
-                                                    controlName={PAGI_MARGIN}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={false}
-                                                />
                                                 {paginationType === 'bullets' && (
                                                     <>
                                                         <CardDivider />
@@ -486,22 +502,48 @@ const Inspector = (props) => {
                                                         />
                                                     </>
                                                 )}
+                                                {paginationType !== 'progressbar' && (
+                                                    <>
+                                                        <CardDivider />
+                                                        <ResRangeControl
+                                                            label={__('Space Between', 'zoloblocks')}
+                                                            controlName={PAG_SPACING}
+                                                            requiredProps={requiredProps}
+                                                            min={0}
+                                                            max={100}
+                                                        />
+                                                    </>
+                                                )}
 
-                                                <CardDivider />
-                                                <ResRangeControl
-                                                    label={__('Space Between', 'zoloblocks')}
-                                                    controlName={PAG_SPACING}
-                                                    requiredProps={requiredProps}
-                                                    min={0}
-                                                    max={100}
-                                                />
-                                                {/* <ResRangeControl
-                                                    label={__('Vertical Offset', 'zoloblocks')}
-                                                    controlName={PAG_VERTICAL_OFFSET}
-                                                    requiredProps={requiredProps}
-                                                    min={-100}
-                                                    max={100}
-                                                /> */}
+                                                {paginationType === 'progressbar' && (
+                                                    <>
+                                                        <ResRangeControl
+                                                            label={__('Height', 'zoloblocks')}
+                                                            controlName={PAG_HEIGHT}
+                                                            requiredProps={requiredProps}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+                                                        <NormalBGControl
+                                                            label={__('Background', 'zoloblocks')}
+                                                            controlName={PAG_BG}
+                                                            requiredProps={requiredProps}
+                                                            noMainBGImg={true}
+                                                        />
+                                                        <CardDivider />
+                                                        <BorderControl
+                                                            label={__('Border', 'zoloblocks')}
+                                                            controlName={PAG_BORDER}
+                                                            requiredProps={requiredProps}
+                                                        />
+                                                        <ResDimensionsControl
+                                                            label={__('Border Radius', 'zoloblocks')}
+                                                            controlName={PAG_BORDER_RADIUS}
+                                                            requiredProps={requiredProps}
+                                                            forBorderRadius={true}
+                                                        />
+                                                    </>
+                                                )}
                                             </Fragment>
                                         }
                                         hoverComponents={
@@ -521,12 +563,6 @@ const Inspector = (props) => {
                                                 )}
                                                 {paginationType === 'bullets' && (
                                                     <>
-                                                        <NormalBGControl
-                                                            label={__('Background', 'zoloblocks')}
-                                                            controlName={APAG_BG}
-                                                            requiredProps={requiredProps}
-                                                            noMainBGImg={true}
-                                                        />
                                                         <ResRangeControl
                                                             label={__('Width', 'zoloblocks')}
                                                             controlName={APAG_WIDTH}
@@ -543,6 +579,13 @@ const Inspector = (props) => {
                                                         />
 
                                                         <CardDivider />
+                                                        <NormalBGControl
+                                                            label={__('Background', 'zoloblocks')}
+                                                            controlName={APAG_BG}
+                                                            requiredProps={requiredProps}
+                                                            noMainBGImg={true}
+                                                        />
+                                                        <CardDivider />
                                                         <BorderControl
                                                             label={__('Border', 'zoloblocks')}
                                                             controlName={APAG_BORDER}
@@ -555,6 +598,15 @@ const Inspector = (props) => {
                                                             forBorderRadius={true}
                                                         />
                                                     </>
+                                                )}
+
+                                                {paginationType === 'progressbar' && (
+                                                    <NormalBGControl
+                                                        label={__('Background', 'zoloblocks')}
+                                                        controlName={APAG_BG}
+                                                        requiredProps={requiredProps}
+                                                        noMainBGImg={true}
+                                                    />
                                                 )}
                                             </Fragment>
                                         }

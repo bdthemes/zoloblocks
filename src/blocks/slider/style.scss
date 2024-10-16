@@ -44,6 +44,7 @@
         margin: var(--zolo-pagination-margin);
         &.swiper-pagination-progressbar {
             margin: 0;
+            overflow: hidden;
         }
         .swiper-pagination-bullet {
             background-color: transparent;

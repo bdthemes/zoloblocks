@@ -21,8 +21,10 @@ import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
-    NAV_WIDTH,
-    NAV_HEIGHT,
+    // NAV_WIDTH,
+    // NAV_HEIGHT,
+    NAV_PADDING,
+    NAV_MARGIN,
     NAV_BORDER,
     NAV_BORDER_RADIUS,
     NAV_BG,
@@ -47,7 +49,16 @@ import { PAGI_FRACTIONS_TYPO } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, navColor, navHoverColor, navHoverBorderColor, pagiFractionCurrentColor, pagiFractionColor } = attributes;
+    const {
+        uniqueId,
+        navColor,
+        navHoverColor,
+        navHoverBorderColor,
+        pagiFractionCurrentColor,
+        pagiFractionColor,
+        paginationType,
+        navPosition,
+    } = attributes;
 
     // slider height
     const {
@@ -82,24 +93,23 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Navigation
     const {
-        desktopRangeStyle: navDeskWidth,
-        tabRangeStyle: navTabWidth,
-        mobRangeStyle: navMobWidth,
-    } = generateResRangeStyle({
-        controlName: NAV_WIDTH,
-        property: 'width',
+        dimensionStylesDesktop: navDeskMargin,
+        dimensionStylesTab: navTabMargin,
+        dimensionStylesMobile: navMobMargin,
+    } = generateDimensionStyle({
+        controlName: NAV_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
     const {
-        desktopRangeStyle: navDeskHeight,
-        tabRangeStyle: navTabHeight,
-        mobRangeStyle: navMobHeight,
-    } = generateResRangeStyle({
-        controlName: NAV_HEIGHT,
-        property: 'height',
+        dimensionStylesDesktop: navDeskPadding,
+        dimensionStylesTab: navTabPadding,
+        dimensionStylesMobile: navMobPadding,
+    } = generateDimensionStyle({
+        controlName: NAV_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
@@ -335,9 +345,29 @@ const Style = ({ props }) => {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
-            ${navDeskWidth}
-            ${navDeskHeight}
+            ${navDeskPadding}
         }
+
+        ${
+            navPosition !== 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-navigation-wrap {
+                        ${navDeskMargin}
+                    }
+                 `
+                : ''
+        }
+
+        ${
+            navPosition === 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .zolo-nav-ps-center-center .swiper-nav-button {
+                        ${navDeskMargin}
+                    }
+                 `
+                : ''
+        }
+            
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover,
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
             ${navHoverBGStyle}
@@ -388,6 +418,25 @@ const Style = ({ props }) => {
             ${apagBorderRadiusDesktop}
             ${apagNormalBGStyle}
         }
+
+        ${
+            paginationType === 'progressbar'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar {
+                        ${pagDeskHeight}
+                        ${pagBorderStyles}
+                        ${pagBorderRadiusDesktop}
+                        ${pagNormalBGStyle}
+                    }
+                    
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+                        ${apagNormalBGStyle}
+                    }
+                 `
+                : ''
+        }
+        
+
     `;
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-slider .swiper-slide,
@@ -399,12 +448,32 @@ const Style = ({ props }) => {
             ${contentPaddingTab}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
-            ${navTabWidth}
-            ${navTabHeight}
             ${navBorderStylesTab}
             ${navBorderRadiusTab}
             ${navNormalBGStyleTab}
+            ${navTabPadding}
         }
+
+        ${
+            navPosition !== 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-navigation-wrap {
+                        ${navTabMargin}
+                    }
+                 `
+                : ''
+        }
+
+        ${
+            navPosition === 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .zolo-nav-ps-center-center .swiper-nav-button {
+                        ${navTabMargin}
+                    }
+                 `
+                : ''
+        }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleTab}
         }
@@ -435,6 +504,23 @@ const Style = ({ props }) => {
             ${apagBorderRadiusTab}
             ${apagNormalBGStyleTab}
         }
+
+        ${
+            paginationType === 'progressbar'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar {
+                        ${pagTabHeight}
+                        ${pagBorderStylesTab}
+                        ${pagBorderRadiusTab}
+                        ${pagNormalBGStyleTab}
+                    }
+                    
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+                        ${apagNormalBGStyleTab}
+                    }
+                 `
+                : ''
+        }
     `;
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-slider .swiper-slide,
@@ -446,12 +532,32 @@ const Style = ({ props }) => {
             ${contentPaddingMob}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
-            ${navMobWidth}
-            ${navMobHeight}
             ${navBorderStylesMob}
             ${navBorderRadiusMob}
             ${navNormalBGStyleMob}
+            ${navMobPadding}
         }
+
+        ${
+            navPosition !== 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-navigation-wrap {
+                        ${navMobMargin}
+                    }
+                 `
+                : ''
+        }
+
+        ${
+            navPosition === 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .zolo-nav-ps-center-center .swiper-nav-button {
+                        ${navMobMargin}
+                    }
+                 `
+                : ''
+        }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleMob}
         }
@@ -483,6 +589,23 @@ const Style = ({ props }) => {
             ${apagBorderStylesMob}
             ${apagBorderRadiusMob}
             ${apagNormalBGStyleMob}
+        }
+
+        ${
+            paginationType === 'progressbar'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar {
+                        ${pagMobHeight}
+                        ${pagBorderStylesMob}
+                        ${pagBorderRadiusMob}
+                        ${pagNormalBGStyleMob}
+                    }
+                    
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+                        ${apagNormalBGStyleMob}
+                    }
+                 `
+                : ''
         }
     `;
 
