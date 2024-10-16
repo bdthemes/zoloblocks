@@ -67,6 +67,15 @@ const Style = ({ props }) => {
     } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
+
     // content
     const {
         desktopAlignStyle: reviewContentDeskAlignStyle,
@@ -475,6 +484,21 @@ const Style = ({ props }) => {
                             hue-rotate(${hueRotate}deg)
                     }
              `
+                : ''
+        }
+
+        ${
+            activeHover
+                ? `
+                    .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item:hover .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+                `
                 : ''
         }
 	`;
