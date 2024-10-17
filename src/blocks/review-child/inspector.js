@@ -99,6 +99,7 @@ function Inspector(props) {
 
     // css filter
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -344,8 +345,25 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                <CardDivider />
-                                {cssFilters && cssFilters.length > 0 && cssFilters}
+
+                                {cssFilters && cssFilters.length > 0 && (
+                                    <>
+                                        <TabPanelControl
+                                            options={[
+                                                {
+                                                    value: 'normal',
+                                                    label: __('Normal', 'zoloblocks'),
+                                                },
+                                                {
+                                                    value: 'hover',
+                                                    label: __('Hover', 'zoloblocks'),
+                                                },
+                                            ]}
+                                            normalComponents={<>{cssFilters}</>}
+                                            hoverComponents={<>{cssFiltersHover}</>}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
                         {showName && (
