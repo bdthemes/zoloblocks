@@ -68,6 +68,20 @@ const attributes = {
     // block attributes
     sliderOptions: {
         type: 'object',
+        default:{
+            speed: 800,
+            autoplay: false,
+            autoplayDelay: 3000,
+            pauseOnMouseEnter: false,
+            loop: false,
+            navigation: true,
+            navPosition: 'center-center',
+            effect: 'slide',
+            pagination: true,
+            paginationType: 'bullets',
+            progressDirection: 'top',
+
+        }
     },
     autoplay: {
         type: 'boolean',

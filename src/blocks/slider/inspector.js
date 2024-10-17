@@ -4,7 +4,6 @@
 const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { RangeControl, ToggleControl, SelectControl, CardDivider } = wp.components;
-const { Fragment } = wp.element;
 /**
  * Internal dependencies
  */
@@ -68,27 +67,43 @@ const Inspector = (props) => {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
+        // autoplay,
+        // autoplayDelay,
+        // pauseOnMouseEnter,
         infiniteLoop,
         showNavigation,
         navColor,
         navHoverColor,
         navHoverBorderColor,
         showPagination,
-        paginationType,
-        speed,
+        // paginationType,
+        // speed,
         sliderEffect,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        navPosition,
-        pagiPosition,
-        progressDirection,
+        // navPosition,
+        // pagiPosition,
+        // progressDirection,
         pagiFractionColor,
         pagiFractionCurrentColor,
+        sliderOptions,
     } = attributes;
+
+    const {
+        speed = 800,
+        autoplay = false,
+        autoplayDelay = 3000,
+        pauseOnMouseEnter = false,
+        loop = false,
+        navigation = true,
+        navPosition = 'center-center',
+        effect = 'slide',
+        pagination = true,
+        paginationType = 'bullets',
+        pagiPosition = 'center-center',
+        progressDirection = 'top',
+    } = sliderOptions;
 
     const requiredProps = {
         resMode,
@@ -104,7 +119,7 @@ const Inspector = (props) => {
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Height', 'zoloblocks')}
@@ -121,7 +136,10 @@ const Inspector = (props) => {
                                 value={speed}
                                 onChange={(v) =>
                                     setAttributes({
-                                        speed: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            speed: v,
+                                        },
                                     })
                                 }
                                 min={1}
@@ -131,10 +149,13 @@ const Inspector = (props) => {
                             <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
-                                checked={infiniteLoop}
+                                checked={loop}
                                 onChange={() =>
                                     setAttributes({
-                                        infiniteLoop: !infiniteLoop,
+                                       sliderOptions: {
+                                            ...sliderOptions,
+                                            loop: !loop,
+                                        },
                                     })
                                 }
                             />
@@ -143,19 +164,25 @@ const Inspector = (props) => {
                                 checked={autoplay}
                                 onChange={() =>
                                     setAttributes({
-                                        autoplay: !autoplay,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            autoplay: !autoplay,
+                                        },
                                     })
                                 }
                             />
                             {autoplay && (
-                                <Fragment>
+                                <>
                                     <RangeControl
                                         className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>
                                             setAttributes({
-                                                autoplayDelay: v,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    autoplayDelay: v,
+                                                },
                                             })
                                         }
                                         min={1}
@@ -167,27 +194,36 @@ const Inspector = (props) => {
                                         checked={pauseOnMouseEnter}
                                         onChange={() =>
                                             setAttributes({
-                                                pauseOnMouseEnter: !pauseOnMouseEnter,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    pauseOnMouseEnter: !pauseOnMouseEnter,
+                                                },
                                             })
                                         }
                                     />
-                                </Fragment>
+                                </>
                             )}
                             <ToggleControl
                                 label={__('Show Navigation', 'zoloblocks')}
-                                checked={showNavigation === undefined ? true : showNavigation}
-                                onChange={(v) =>
+                                checked={navigation || false}
+                                onChange={() =>
                                     setAttributes({
-                                        showNavigation: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            navigation: !navigation,
+                                        },
                                     })
                                 }
                             />
                             <ToggleControl
                                 label={__('Show Pagination', 'zoloblocks')}
-                                checked={showPagination}
+                                checked={pagination || false}
                                 onChange={() =>
                                     setAttributes({
-                                        showPagination: !showPagination,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            pagination: !pagination,
+                                        },
                                     })
                                 }
                             />
@@ -196,17 +232,20 @@ const Inspector = (props) => {
                         <ZoloPanelBody title={__('Effects', 'zoloblocks')} panelProps={props}>
                             <SelectControl
                                 label={__('Select Effect', 'zoloblocks')}
-                                value={sliderEffect}
+                                value={effect}
                                 options={SLIDER_EFFECTS}
                                 onChange={(v) => {
                                     setAttributes({
-                                        sliderEffect: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            effect: v,
+                                        },
                                     });
                                 }}
                             />
                         </ZoloPanelBody>
 
-                        {(showNavigation || showNavigation === undefined) && (
+                        {navigation && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
                                     <SelectControl
@@ -254,7 +293,7 @@ const Inspector = (props) => {
                                 </ZoloPanelBody>
                             </>
                         )}
-                        {showPagination && (
+                        {pagination && (
                             <>
                                 <ZoloPanelBody title={__('Pagination', 'zoloblocks')} panelProps={props}>
                                     <SelectControl
@@ -263,18 +302,24 @@ const Inspector = (props) => {
                                         options={PAGINATION_TYPES}
                                         onChange={(value) =>
                                             setAttributes({
-                                                paginationType: value,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    paginationType: value,
+                                                },
                                             })
                                         }
                                     />
                                     {paginationType !== 'progressbar' && (
                                         <SelectControl
                                             label={__('Positions', 'zoloblocks')}
-                                            value={pagiPosition || 'bullets'}
+                                            value={pagiPosition || 'center-center'}
                                             options={PAGI_POSITIONS}
                                             onChange={(value) =>
                                                 setAttributes({
-                                                    pagiPosition: value,
+                                                    sliderOptions: {
+                                                        ...sliderOptions,
+                                                        pagiPosition: value,
+                                                    },
                                                 })
                                             }
                                         />
@@ -286,7 +331,10 @@ const Inspector = (props) => {
                                                 value={progressDirection}
                                                 onChange={(value) =>
                                                     setAttributes({
-                                                        progressDirection: value,
+                                                        sliderOptions: {
+                                                            ...sliderOptions,
+                                                            progressDirection: value,
+                                                        },
                                                     })
                                                 }
                                                 options={PROGRESS_DIRECTIONS}
@@ -296,10 +344,10 @@ const Inspector = (props) => {
                                 </ZoloPanelBody>
                             </>
                         )}
-                    </Fragment>
+                    </>
                 }
                 styleTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Max Width', 'zoloblocks')}
@@ -319,7 +367,7 @@ const Inspector = (props) => {
                             <ZoloPanelBody title={__('Navigation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
-                                        <Fragment>
+                                        <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={navColor}
@@ -381,13 +429,13 @@ const Inspector = (props) => {
                                                 controlName={NAV_BORDER}
                                                 requiredProps={requiredProps}
                                                 hoverControl={
-                                                    <Fragment>
+                                                    <>
                                                         <ColorControl
                                                             label={__('Border Color', 'zoloblocks')}
                                                             color={navHoverBorderColor}
                                                             onChange={(color) => setAttributes({ navHoverBorderColor: color })}
                                                         />
-                                                    </Fragment>
+                                                    </>
                                                 }
                                             />
                                             <ResDimensionsControl
@@ -396,10 +444,10 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
-                                        </Fragment>
+                                        </>
                                     }
                                     hoverComponents={
-                                        <Fragment>
+                                        <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={navHoverColor}
@@ -411,13 +459,13 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
-                                        </Fragment>
+                                        </>
                                     }
                                 />
                             </ZoloPanelBody>
                         )}
                         {showPagination && (
-                            <Fragment>
+                            <>
                                 <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                     <TabPanelControl
                                         options={[
@@ -431,7 +479,7 @@ const Inspector = (props) => {
                                             },
                                         ]}
                                         normalComponents={
-                                            <Fragment>
+                                            <>
                                                 {paginationType === 'fraction' && (
                                                     <>
                                                         <ColorControl
@@ -544,10 +592,10 @@ const Inspector = (props) => {
                                                         />
                                                     </>
                                                 )}
-                                            </Fragment>
+                                            </>
                                         }
                                         hoverComponents={
-                                            <Fragment>
+                                            <>
                                                 {paginationType === 'fraction' && (
                                                     <>
                                                         <ColorControl
@@ -608,13 +656,13 @@ const Inspector = (props) => {
                                                         noMainBGImg={true}
                                                     />
                                                 )}
-                                            </Fragment>
+                                            </>
                                         }
                                     />
                                 </ZoloPanelBody>
-                            </Fragment>
+                            </>
                         )}
-                    </Fragment>
+                    </>
                 }
                 advancedTab={
                     <>

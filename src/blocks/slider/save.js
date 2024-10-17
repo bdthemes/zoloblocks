@@ -18,17 +18,29 @@ export default function save(props) {
         parentClasses,
         sliderOptions,
         breakpoints,
-        showPagination,
-        showNavigation,
+        // pagination,
+        // navigation,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
         zoloId,
-        paginationType,
-        pagiPosition,
+        // paginationType,
+        // pagiPosition,
         navPosition,
-        progressDirection,
+        // progressDirection,
     } = attributes;
+
+    const { pagination = false, navigation = false,
+        paginationType = 'bullets',
+        pagiPosition = 'center-center',
+        progressDirection = 'top',
+        effect = 'slide',
+        speed = 800,
+        autoplay = false,
+        autoplayDelay = 3000,
+        pauseOnMouseEnter = false,
+        loop = false,
+    } = sliderOptions;
 
     // Block Props
     const blockProps = useBlockProps.save({
@@ -52,14 +64,14 @@ export default function save(props) {
         >
             {renderHookBefore && renderHookBefore}
             <div
-                className={`swiper ${showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
+                className={`swiper ${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
             >
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
             </div>
-            {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
-            {(showNavigation || showNavigation === undefined) && (
+            {pagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
+            {(navigation || navigation === undefined) && (
                 <Fragment>
                     <div
                         className={`swiper-navigation-wrap ${navPosition ? `zolo-nav-ps-${navPosition}` : ''} ${customNavIcon ? 'zolo-custom-nav' : ''}`}

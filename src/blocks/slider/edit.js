@@ -11,7 +11,32 @@ import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
 // Import Swiper core and required modules
-import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
+import {
+    A11y,
+    Autoplay,
+    Controller,
+    EffectCoverflow,
+    EffectCube,
+    EffectFade,
+    EffectFlip,
+    EffectCreative,
+    EffectCards,
+    HashNavigation,
+    History,
+    Keyboard,
+    Lazy,
+    Mousewheel,
+    Navigation,
+    Pagination,
+    Parallax,
+    Scrollbar,
+    Thumbs,
+    Virtual,
+    Zoom,
+    FreeMode,
+    Grid,
+    Manipulation,
+} from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 const { DisplayZoloIcon } = window.zoloModule;
@@ -36,12 +61,31 @@ export default function Edit(props) {
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        showPagination,
-        paginationType,
-        navPosition,
-        pagiPosition,
-        progressDirection,
+        // pagination,
+        // paginationType,
+        // navPosition,
+        // pagiPosition,
+        // progressDirection,
+        // effect,
+        // speed,
+        // autoplay,
+        sliderOptions,
     } = attributes;
+
+        const {
+            speed = 800,
+            autoplay = false,
+            autoplayDelay = 3000,
+            pauseOnMouseEnter = false,
+            loop = false,
+            navigation = true,
+            navPosition = 'center-center',
+            effect = 'slide',
+            pagination = true,
+            paginationType = 'bullets',
+            pagiPosition = 'center-center',
+            progressDirection = 'top',
+        } = sliderOptions;
 
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, parentClasses),
@@ -69,39 +113,39 @@ export default function Edit(props) {
         swiperRef.current.swiper.slideNext();
     };
 
-    useEffect(() => {
-        // Ensure the swiper element exists
-        if (!swiperRef.current) return;
+    // useEffect(() => {
+    //     // Ensure the swiper element exists
+    //     if (!swiperRef.current) return;
 
-        // Define event handler functions
-        const handleSwiperProgress = (e) => {
-            const [swiper, progress] = e.detail;
-            // Handle progress here if needed
-        };
+    //     // Define event handler functions
+    //     const handleSwiperProgress = (e) => {
+    //         const [swiper, progress] = e.detail;
+    //         // Handle progress here if needed
+    //     };
 
-        const handleSlideChange = (e) => {
-            const [swiper] = e.detail;
-            // Handle slide change here if needed
-        };
+    //     const handleSlideChange = (e) => {
+    //         const [swiper] = e.detail;
+    //         // Handle slide change here if needed
+    //     };
 
-        const handleSwiperInit = (e) => {
-            const [swiper] = e.detail;
-            swiper.update();
-        };
+    //     const handleSwiperInit = (e) => {
+    //         const [swiper] = e.detail;
+    //         swiper.update();
+    //     };
 
-        // Add event listeners
-        swiperRef.current.addEventListener('swiperprogress', handleSwiperProgress);
-        swiperRef.current.addEventListener('swiperslidechange', handleSlideChange);
-        swiperRef.current.addEventListener('swiperinit', handleSwiperInit);
+    //     // Add event listeners
+    //     swiperRef.current.addEventListener('swiperprogress', handleSwiperProgress);
+    //     swiperRef.current.addEventListener('swiperslidechange', handleSlideChange);
+    //     swiperRef.current.addEventListener('swiperinit', handleSwiperInit);
 
-        // Cleanup event listeners when component updates or unmounts
-        return () => {
-            if (!swiperRef.current) return;
-            swiperRef.current.removeEventListener('swiperprogress', handleSwiperProgress);
-            swiperRef.current.removeEventListener('swiperslidechange', handleSlideChange);
-            swiperRef.current.removeEventListener('swiperinit', handleSwiperInit);
-        };
-    }, [attributes.slider]); // Depend on relevant attributes
+    //     // Cleanup event listeners when component updates or unmounts
+    //     return () => {
+    //         if (!swiperRef.current) return;
+    //         swiperRef.current.removeEventListener('swiperprogress', handleSwiperProgress);
+    //         swiperRef.current.removeEventListener('swiperslidechange', handleSlideChange);
+    //         swiperRef.current.removeEventListener('swiperinit', handleSwiperInit);
+    //     };
+    // }, [JSON.stringify(attributes)]); // Depend on relevant attributes
 
     const innerBlocksProps = useInnerBlocksProps(
         {
@@ -135,28 +179,45 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <Swiper
-                    className={`${showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
-                    key={JSON.parse(addNewSlideBlock)}
+                    className={`${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
+                    key={`${addNewSlideBlock}${paginationType}${navPosition}${pagiPosition}${progressDirection}${effect}`}
                     ref={swiperRef}
-                    modules={[A11y, Autoplay, Navigation, Pagination]}
+                    modules={[
+                        A11y,
+                        Autoplay,
+                        Navigation,
+                        Pagination,
+                        EffectCoverflow,
+                        EffectCube,
+                        EffectFade,
+                        EffectFlip,
+                        EffectCreative,
+                        EffectCards,
+                    ]}
                     spaceBetween={20}
                     observer={true}
                     observeParents={true}
                     // navigation={true}
-                    loop={true}
+                    loop={loop}
                     pagination={
-                        showPagination
+                        pagination
                             ? {
                                   clickable: true,
                                   type: paginationType || 'bullets',
                               }
                             : false
                     }
+                    effect={effect}
                     slidesPerView={1}
-                    // autoplay={{
-                    //     delay: 3000,
-                    //     disableOnInteraction: false,
-                    // }}
+                    speed={speed || 800}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay || 3,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
                     // slidesPerView={deviceType === 'Desktop' ? 3 : deviceType === 'Tablet' ? 2 : 1}
                 >
                     <div {...innerBlocksProps} />
