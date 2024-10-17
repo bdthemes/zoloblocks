@@ -1,11 +1,12 @@
 import {__} from '@wordpress/i18n';
 import {getPostMetaFieldValue,videoLinkRender} from "./helpers";
 
-function ThumbItem({postResults}) {
+function ThumbItem({postResults,attributes}) {
+  const {postQuery: {postType}} = attributes;
   return [
     postResults.length > 0 &&
     postResults.map((post) => {
-      const videoLink = getPostMetaFieldValue(post?.ID, 'zolo_post_video_link');
+      const videoLink = getPostMetaFieldValue(post?.ID, 'zolo_post_video_link',postType);
       const videoSource = videoLink ? videoLinkRender(videoLink) : false;
       return (
         <div className="zolo-item swiper-slide">

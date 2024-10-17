@@ -51,15 +51,19 @@ if ( ! class_exists( 'PostMeta' ) ) {
 			);
 
 			// for post format video link.
-			register_post_meta(
-				'post',
-				'zolo_post_video_link',
-				[
-					'show_in_rest' => true,
-					'single'       => true,
-					'type'         => 'string',
-				]
-			);
+			$post_types = apply_filters( 'zolo_post_video_link_post_types', [ 'post', 'page' ] );
+
+			foreach ( $post_types as $post_type ) {
+				register_post_meta(
+					$post_type,
+					'zolo_post_video_link',
+					[
+						'show_in_rest' => true,
+						'single'       => true,
+						'type'         => 'string',
+					]
+				);
+			}
 		}
 
 
@@ -69,7 +73,7 @@ if ( ! class_exists( 'PostMeta' ) ) {
 		 * This function is used as a callback for authentication purposes.
 		 * It is called within the "PostMeta" class.
 		 *
-		 * @return void
+		 * @return boolean
 		 */
 		public function auth_callback() {
 			return current_user_can( 'edit_posts' );
