@@ -67,24 +67,12 @@ const Inspector = (props) => {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        // autoplay,
-        // autoplayDelay,
-        // pauseOnMouseEnter,
-        infiniteLoop,
-        showNavigation,
         navColor,
         navHoverColor,
         navHoverBorderColor,
-        showPagination,
-        // paginationType,
-        // speed,
-        sliderEffect,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        // navPosition,
-        // pagiPosition,
-        // progressDirection,
         pagiFractionColor,
         pagiFractionCurrentColor,
         sliderOptions,
@@ -142,8 +130,9 @@ const Inspector = (props) => {
                                         },
                                     })
                                 }
-                                min={1}
-                                max={100}
+                                min={100}
+                                step={100}
+                                max={3000}
                                 help={__('Default Speed:', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
                             <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
@@ -254,7 +243,10 @@ const Inspector = (props) => {
                                         options={NAV_POSITIONS}
                                         onChange={(value) =>
                                             setAttributes({
-                                                navPosition: value,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    navPosition: value,
+                                                },
                                             })
                                         }
                                     />
@@ -363,7 +355,7 @@ const Inspector = (props) => {
                                 forBorderRadius={false}
                             />
                         </ZoloPanelBody>
-                        {showNavigation && (
+                        {navigation && (
                             <ZoloPanelBody title={__('Navigation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
@@ -391,26 +383,6 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
-                                            {/* <ResRangeControl
-                                                label={__('Width', 'zoloblocks')}
-                                                controlName={NAV_WIDTH}
-                                                requiredProps={requiredProps}
-                                                min={1}
-                                                max={100}
-                                            />
-                                            <ResRangeControl
-                                                label={__('Height', 'zoloblocks')}
-                                                controlName={NAV_HEIGHT}
-                                                requiredProps={requiredProps}
-                                                min={1}
-                                                max={100}
-                                                units={[
-                                                    { label: 'px', value: 'px' },
-                                                    { label: '%', value: '%' },
-                                                    { label: 'em', value: 'em' },
-                                                    { label: 'vh', value: 'vh' },
-                                                ]}
-                                            /> */}
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={NAV_PADDING}
@@ -464,7 +436,7 @@ const Inspector = (props) => {
                                 />
                             </ZoloPanelBody>
                         )}
-                        {showPagination && (
+                        {pagination && (
                             <>
                                 <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                     <TabPanelControl

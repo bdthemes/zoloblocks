@@ -57,18 +57,9 @@ export default function Edit(props) {
         uniqueId,
         parentClasses,
         addNewSlideBlock,
-        showNavigation,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        // pagination,
-        // paginationType,
-        // navPosition,
-        // pagiPosition,
-        // progressDirection,
-        // effect,
-        // speed,
-        // autoplay,
         sliderOptions,
     } = attributes;
 
@@ -112,41 +103,6 @@ export default function Edit(props) {
         if (!swiperRef.current) return;
         swiperRef.current.swiper.slideNext();
     };
-
-    // useEffect(() => {
-    //     // Ensure the swiper element exists
-    //     if (!swiperRef.current) return;
-
-    //     // Define event handler functions
-    //     const handleSwiperProgress = (e) => {
-    //         const [swiper, progress] = e.detail;
-    //         // Handle progress here if needed
-    //     };
-
-    //     const handleSlideChange = (e) => {
-    //         const [swiper] = e.detail;
-    //         // Handle slide change here if needed
-    //     };
-
-    //     const handleSwiperInit = (e) => {
-    //         const [swiper] = e.detail;
-    //         swiper.update();
-    //     };
-
-    //     // Add event listeners
-    //     swiperRef.current.addEventListener('swiperprogress', handleSwiperProgress);
-    //     swiperRef.current.addEventListener('swiperslidechange', handleSlideChange);
-    //     swiperRef.current.addEventListener('swiperinit', handleSwiperInit);
-
-    //     // Cleanup event listeners when component updates or unmounts
-    //     return () => {
-    //         if (!swiperRef.current) return;
-    //         swiperRef.current.removeEventListener('swiperprogress', handleSwiperProgress);
-    //         swiperRef.current.removeEventListener('swiperslidechange', handleSlideChange);
-    //         swiperRef.current.removeEventListener('swiperinit', handleSwiperInit);
-    //     };
-    // }, [JSON.stringify(attributes)]); // Depend on relevant attributes
-
     const innerBlocksProps = useInnerBlocksProps(
         {
             className: `swiper-wrapper`,
@@ -194,11 +150,11 @@ export default function Edit(props) {
                         EffectCreative,
                         EffectCards,
                     ]}
-                    spaceBetween={20}
+                    // spaceBetween={20}
                     observer={true}
                     observeParents={true}
-                    // navigation={true}
                     loop={loop}
+
                     pagination={
                         pagination
                             ? {
@@ -215,13 +171,14 @@ export default function Edit(props) {
                             ? {
                                   delay: autoplayDelay || 3,
                                   disableOnInteraction: false,
+                                  pauseOnMouseEnter: pauseOnMouseEnter || false,
                               }
                             : false
                     }
                     // slidesPerView={deviceType === 'Desktop' ? 3 : deviceType === 'Tablet' ? 2 : 1}
                 >
                     <div {...innerBlocksProps} />
-                    {showNavigation && (
+                    {navigation && (
                         <>
                             <div
                                 className={`swiper-navigation-wrap ${navPosition ? `zolo-nav-ps-${navPosition}` : ''} ${customNavIcon ? 'zolo-custom-nav' : ''}`}

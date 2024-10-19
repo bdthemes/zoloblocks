@@ -34,11 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const defaultOptions = {
-            navigation: { nextEl, prevEl },
+            // navigation: { nextEl, prevEl },
             loop: loop || false,
-            autoplay: autoplay ? { delay: autoplayDelay || 3000, pauseOnMouseEnter: pauseOnMouseEnter || false } : false,
+            autoplay: autoplay ? { delay: autoplayDelay || 3, pauseOnMouseEnter: pauseOnMouseEnter || false } : false,
             speed: speed || 800,
             effect: effect || 'slide',
+            navigation: navigation ?  {
+                nextEl: '.swiper-zolo-next',
+                prevEl: '.swiper-zolo-prev',
+            } : false,
+            pagination: pagination ? { el: '.swiper-pagination', type: paginationType || 'bullets', clickable: true } : false,
             on: {
                 init() {
                     const firstVideo = this.slides[0].querySelector('video.zolo-html5-video');
@@ -80,6 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const mergedOptions = { ...defaultOptions, ...sliderOptions };
 
         // Initialize Swiper
-        new Swiper(sliderSelector, mergedOptions);
+        new Swiper(sliderSelector, defaultOptions);
     });
 });

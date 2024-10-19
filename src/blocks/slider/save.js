@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-const { Fragment } = wp.element;
+const {  } = wp.element;
 import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
@@ -17,30 +17,19 @@ export default function save(props) {
         uniqueId,
         parentClasses,
         sliderOptions,
-        breakpoints,
-        // pagination,
-        // navigation,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
         zoloId,
-        // paginationType,
-        // pagiPosition,
-        navPosition,
-        // progressDirection,
     } = attributes;
 
-    const { pagination = false, navigation = false,
+    const { pagination = true, navigation = true,
         paginationType = 'bullets',
         pagiPosition = 'center-center',
+        navPosition = 'center-center',
         progressDirection = 'top',
-        effect = 'slide',
-        speed = 800,
-        autoplay = false,
-        autoplayDelay = 3000,
-        pauseOnMouseEnter = false,
-        loop = false,
     } = sliderOptions;
+
 
     // Block Props
     const blockProps = useBlockProps.save({
@@ -59,8 +48,6 @@ export default function save(props) {
                 Object.keys(sliderOptions).length > 1 && {
                     'data-swiper-options': JSON.stringify(sliderOptions),
                 })}
-            // data-swiper-options={JSON.stringify(sliderOptions)}
-            data-swiper-breakpoints={JSON.stringify(breakpoints)}
         >
             {renderHookBefore && renderHookBefore}
             <div
@@ -69,10 +56,10 @@ export default function save(props) {
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
+            {pagination && (<div className="swiper-pagination"></div>)}
             </div>
-            {pagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
-            {(navigation || navigation === undefined) && (
-                <Fragment>
+            {navigation && (
+                <>
                     <div
                         className={`swiper-navigation-wrap ${navPosition ? `zolo-nav-ps-${navPosition}` : ''} ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                     >
@@ -93,7 +80,7 @@ export default function save(props) {
                             </>
                         )}
                     </div>
-                </Fragment>
+                </>
             )}
             {renderHookAfter && renderHookAfter}
         </div>
