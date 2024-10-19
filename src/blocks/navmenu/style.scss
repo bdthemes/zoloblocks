@@ -25,6 +25,7 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
+        position: relative;
 
         a {
             display: inline-block;
@@ -260,9 +261,9 @@
                         height: auto;
                     }
                 }
-                .block-editor-block-list__layout {
-                    background-color: #fff;
-                }
+                // .block-editor-block-list__layout {
+                //     background-color: #fff;
+                // }
             }
             .zolo-nav-menu-item-appender-button {
                 width: 100%;

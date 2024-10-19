@@ -202,7 +202,7 @@ const Inspector = (props) => {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Menu Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <NormalBGControl requiredProps={requiredProps} controlName={NAV_MENU_WRAP_BG} noMainBGImg={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}

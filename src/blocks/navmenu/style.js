@@ -557,7 +557,7 @@ export default function Style({ props }) {
             ${humburgerAlignmentDesktop}
 		}
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper {
             ${wrapBGDesk}
             ${wrapBorderDesk}
             ${wrapBorderRadiusDesk}
@@ -565,7 +565,7 @@ export default function Style({ props }) {
             ${wrapBoxShadowStyle}
         }
 
-         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a{
+         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item .zolo-navmenu-link {
             color: ${navItemTextColor ? navItemTextColor : ''};
             ${menuTypoDesktop}
             ${itemBGDesk}
@@ -575,7 +575,7 @@ export default function Style({ props }) {
             ${itemBoxShadowStyle}
         }
 
-         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a:hover{
+         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item .zolo-navmenu-link:hover{
             ${itemHoverBGDesk}
             color: ${navItemTextHoverColor ? navItemTextHoverColor : ''};
             border-color: ${navItemBorderHoverColor ? navItemBorderHoverColor : ''};
@@ -647,14 +647,14 @@ export default function Style({ props }) {
 			${buttonAlignmentTab}
 		}
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper {
             ${wrapBGTab}
             ${wrapBorderTab}
             ${wrapBorderRadiusTab}
             ${wrapPaddingTab}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item .zolo-navmenu-link{
             ${menuTypoTab}
             ${itemBGTab}
             ${itemBorderTab}
@@ -662,7 +662,7 @@ export default function Style({ props }) {
             ${itemPaddingTab}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a:hover{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item .zolo-navmenu-link:hover{
             ${itemHoverBGTab}
         }
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item.current-item a{
@@ -715,14 +715,14 @@ export default function Style({ props }) {
 			${buttonAlignmentMob}
 		}
             
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper {
             ${wrapBGMob}
             ${wrapBorderMob}
             ${wrapBorderRadiusMob}
             ${wrapPaddingMob}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item .zolo-navmenu-link{
             ${menuTypoMob}
             ${itemBGMob}
             ${itemBorderMob}
@@ -730,7 +730,7 @@ export default function Style({ props }) {
             ${itemPaddingMob}
         }
 
-        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item a:hover{
+        .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu .zolo-navmenu-item .zolo-navmenu-link:hover{
             ${itemHoverBGMob}
         }
 
