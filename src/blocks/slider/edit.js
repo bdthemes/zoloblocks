@@ -53,30 +53,22 @@ import { add } from '@dnd-kit/utilities';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        addNewSlideBlock,
-        customNavIcon,
-        prevNavIcon,
-        nextNavIcon,
-        sliderOptions,
-    } = attributes;
+    const { uniqueId, parentClasses, addNewSlideBlock, customNavIcon, prevNavIcon, nextNavIcon, sliderOptions } = attributes;
 
-        const {
-            speed = 800,
-            autoplay = false,
-            autoplayDelay = 3000,
-            pauseOnMouseEnter = false,
-            loop = false,
-            navigation = true,
-            navPosition = 'center-center',
-            effect = 'slide',
-            pagination = true,
-            paginationType = 'bullets',
-            pagiPosition = 'center-center',
-            progressDirection = 'top',
-        } = sliderOptions;
+    const {
+        speed = 800,
+        autoplay = false,
+        autoplayDelay = 3000,
+        pauseOnMouseEnter = false,
+        loop = false,
+        navigation = true,
+        navPosition = 'center-center',
+        effect = 'slide',
+        pagination = true,
+        paginationType = 'bullets',
+        pagiPosition = 'bottom-center',
+        progressDirection = 'top',
+    } = sliderOptions;
 
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, parentClasses),
@@ -154,7 +146,6 @@ export default function Edit(props) {
                     observer={true}
                     observeParents={true}
                     loop={loop}
-
                     pagination={
                         pagination
                             ? {
@@ -185,10 +176,18 @@ export default function Edit(props) {
                             >
                                 {customNavIcon && (
                                     <>
-                                        <div slot="navigation" className="swiper-nav-button swiper-zolo-prev" onClick={handlePrev}>
+                                        <div
+                                            slot="navigation"
+                                            className="swiper-nav-button swiper-zolo-prev swiper-button-prev"
+                                            onClick={handlePrev}
+                                        >
                                             <DisplayZoloIcon icon={prevNavIcon} />
                                         </div>
-                                        <div slot="navigation" className="swiper-nav-button swiper-zolo-next" onClick={handleNext}>
+                                        <div
+                                            slot="navigation"
+                                            className="swiper-nav-button swiper-zolo-next swiper-button-next"
+                                            onClick={handleNext}
+                                        >
                                             <DisplayZoloIcon icon={nextNavIcon} />
                                         </div>
                                     </>

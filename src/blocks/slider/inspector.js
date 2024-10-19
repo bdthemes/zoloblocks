@@ -89,7 +89,7 @@ const Inspector = (props) => {
         effect = 'slide',
         pagination = true,
         paginationType = 'bullets',
-        pagiPosition = 'center-center',
+        pagiPosition = 'bottom-center',
         progressDirection = 'top',
     } = sliderOptions;
 
@@ -141,7 +141,7 @@ const Inspector = (props) => {
                                 checked={loop}
                                 onChange={() =>
                                     setAttributes({
-                                       sliderOptions: {
+                                        sliderOptions: {
                                             ...sliderOptions,
                                             loop: !loop,
                                         },

@@ -16,8 +16,10 @@
     --zolo-navigation-margin: 0 clamp(1.25rem, 6vw, 3.125rem);
     --zolo-navigation-icon-size: 20px;
 
-    .swiper-slide {
-        height: var(--zolo-slider-height);
+    .swiper {
+        .swiper-slide {
+            height: var(--zolo-slider-height);
+        }
     }
 
     .swiper-content-outer {
@@ -33,6 +35,15 @@
 
     .swiper-pagination-bullet {
         margin: 0 !important;
+    }
+
+    .zolo-custom-nav {
+        .swiper-button-next,
+        .swiper-button-prev {
+            &::after {
+                content: none;
+            }
+        }
     }
 
     .swiper-pagination {
@@ -61,6 +72,9 @@
                 height: 12px;
                 background-color: var(--zoloblocks-brand-color);
             }
+        }
+        .swiper-pagination-progressbar-fill {
+            background: var(--zoloblocks-brand-color);
         }
     }
 

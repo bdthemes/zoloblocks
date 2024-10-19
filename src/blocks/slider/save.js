@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-const {  } = wp.element;
+const {} = wp.element;
 import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
@@ -13,23 +13,16 @@ import { applyFilters } from '@wordpress/hooks';
 
 export default function save(props) {
     const { attributes } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        sliderOptions,
-        customNavIcon,
-        prevNavIcon,
-        nextNavIcon,
-        zoloId,
-    } = attributes;
+    const { uniqueId, parentClasses, sliderOptions, customNavIcon, prevNavIcon, nextNavIcon, zoloId } = attributes;
 
-    const { pagination = true, navigation = true,
+    const {
+        pagination = true,
+        navigation = true,
         paginationType = 'bullets',
-        pagiPosition = 'center-center',
+        pagiPosition = 'bottom-center',
         navPosition = 'center-center',
         progressDirection = 'top',
     } = sliderOptions;
-
 
     // Block Props
     const blockProps = useBlockProps.save({
@@ -56,7 +49,7 @@ export default function save(props) {
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
-            {pagination && (<div className="swiper-pagination"></div>)}
+                {pagination && <div className="swiper-pagination"></div>}
             </div>
             {navigation && (
                 <>
@@ -65,10 +58,10 @@ export default function save(props) {
                     >
                         {customNavIcon && (
                             <>
-                                <div className="swiper-nav-button swiper-zolo-prev">
+                                <div className="swiper-nav-button swiper-zolo-prev swiper-button-prev">
                                     <DisplayZoloIcon icon={prevNavIcon} />
                                 </div>
-                                <div className="swiper-nav-button swiper-zolo-next">
+                                <div className="swiper-nav-button swiper-zolo-next swiper-button-next">
                                     <DisplayZoloIcon icon={nextNavIcon} />
                                 </div>
                             </>

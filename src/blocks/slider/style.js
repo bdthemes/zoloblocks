@@ -49,16 +49,10 @@ import { PAGI_FRACTIONS_TYPO } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        navColor,
-        navHoverColor,
-        navHoverBorderColor,
-        pagiFractionCurrentColor,
-        pagiFractionColor,
-        paginationType,
-        navPosition,
-    } = attributes;
+    const { uniqueId, navColor, navHoverColor, navHoverBorderColor, pagiFractionCurrentColor, pagiFractionColor, sliderOptions } =
+        attributes;
+
+    const { paginationType = 'bullets', navPosition = 'bottom-center' } = sliderOptions;
 
     // slider height
     const {
