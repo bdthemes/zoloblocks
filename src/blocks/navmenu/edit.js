@@ -235,7 +235,7 @@ const Edit = (props) => {
                         >
                             <div className="zolo-nav-menu-sidebar-top">
                                 <a className="zolo-nav-menu-sidebar-logo">
-                                    {brandPhoto ? (
+                                    {brandPhoto.id ? (
                                         <>
                                             <img
                                                 src={

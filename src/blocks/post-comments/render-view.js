@@ -26,7 +26,6 @@ export default function RenderView({attributes}) {
         method: 'POST',
         body: formData,
       });
-      console.log({response});
       if (response.success) {
         setCommentResults(response.data.results);
       } else {

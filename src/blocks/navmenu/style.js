@@ -545,8 +545,6 @@ export default function Style({ props }) {
     text-align: ${humburgerAlignmentMob === 'text-align:right' ? 'right' : ''};
   `;
 
-    console.log('btnDeskAlign', btnDeskAlign);
-
     /**
      * All Style Combination
      */
@@ -706,7 +704,7 @@ export default function Style({ props }) {
             ${mobileMenuWrapBorderRadiusTab}
             ${mobileMenuWrapPaddingTab}
         }
-       
+
   	`;
     const mobileAllStyle = `
 
@@ -714,7 +712,7 @@ export default function Style({ props }) {
 		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
 			${buttonAlignmentMob}
 		}
-            
+
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper {
             ${wrapBGMob}
             ${wrapBorderMob}
@@ -767,7 +765,7 @@ export default function Style({ props }) {
             ${closeIconMarginMob}
             ${closeIconBoxShadowStyle}
         }
-        
+
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper.zolo-nav-menu-open {
             ${mobileMenuWidthMob}
             ${mobileMenuWrapBGMob}
