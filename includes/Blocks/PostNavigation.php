@@ -20,10 +20,13 @@ class PostNavigation {
 	 * @var string[]
 	 */
 	protected $default_block_attributes = [
-		'showRelatedPost'  => false,
-		'selectedTaxonomy' => '',
-		'previousPost'     => 'Previous Post',
-		'nextPost'         => 'Next Post',
+		'showCategoryBased' => false,
+		'selectedTaxonomy'  => '',
+		'showImage'         => true,
+		'showTitle'         => true,
+		'showBtn'           => true,
+		'previousPost'      => 'Previous Post',
+		'nextPost'          => 'Next Post',
 	];
 
 	/**
@@ -45,8 +48,8 @@ class PostNavigation {
 		$prev_post          = get_previous_post();
 		$next_post          = get_next_post();
 
-		$showRelatedPost = $this->settings['showRelatedPost'] ?? false;
-		if ( $showRelatedPost ) {
+		$showCategoryBased = $this->settings['showCategoryBased'] ?? false;
+		if ( $showCategoryBased ) {
 			$taxonomy = $this->settings['selectedTaxonomy'] ?? '';
 			if ( ! empty( $taxonomy ) ) {
 				$prev_post = get_previous_post( true, '', $taxonomy );
@@ -70,45 +73,77 @@ class PostNavigation {
 	 * @return string|void|null
 	 */
 	public function render_content( $post, $type ) {
+		if ( ! is_object( $post ) || empty( $post->ID ) ) {
+			return;
+		}
 		$text             = 'next' == $type ? ( $this->settings['nextPost'] ?? '' ) : ( $this->settings['previousPost'] ?? '' );
 		$wrapClass        = 'next' == $type ? 'zolo-post-next' : 'zolo-post-prev';
 		$placeholderImage = trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg';
+		$previousIcon     = $this->settings['previousPostIcon'] ?? '<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M5 12l14 0"/>
+                  <path d="M5 12l6 6"/>
+                  <path d="M5 12l6 -6"/>
+                </svg>';
+		$nextIcon         = $this->settings['nextPostIcon'] ?? ' <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M5 12l14 0"/>
+                  <path d="M13 18l6 -6"/>
+                  <path d="M13 6l6 6"/>
+                </svg>';
 		ob_start();
 		?>
 		<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>"
 		   class="zolo-item <?php echo esc_attr( $wrapClass ); ?>">
-			<div class="zolo-image-wrap">
-				<?php if ( has_post_thumbnail( $post->ID ) ) { ?>
-					<?php echo get_the_post_thumbnail( $post->ID, 'thumbnail' ); ?>
-				<?php } else { ?>
-					<img src="<?php echo esc_url( $placeholderImage ); ?>"
-						 alt="<?php echo esc_html( $post->post_title ); ?>">
-				<?php } ?>
-			</div>
+			<?php if ( ! empty( $this->settings['showImage'] ) ) : ?>
+				<div class="zolo-image-wrap">
+					<?php if ( has_post_thumbnail( $post->ID ) ) { ?>
+						<?php echo get_the_post_thumbnail( $post->ID, ( $this->settings['thumbnailSize'] ?? 'thumbnail' ) ); ?>
+					<?php } else { ?>
+						<img src="<?php echo esc_url( $placeholderImage ); ?>"
+							 alt="<?php echo esc_html( $post->post_title ); ?>">
+					<?php } ?>
+				</div>
+			<?php endif; ?>
+
 			<div class="zolo-content-wrap">
-				<span class="zolo-nav-text">
-				<span><?php echo esc_html( $text ); ?></span>
-				<?php if ( 'next' == $type ) { ?>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-						 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						 class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-						<path d="M5 12l14 0"></path>
-						<path d="M13 18l6 -6"></path>
-						<path d="M13 6l6 6"></path>
-					</svg>
-				<?php } else { ?>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-						 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						 class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
-					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-					<path d="M5 12l14 0"></path>
-					<path d="M5 12l6 6"></path>
-					<path d="M5 12l6 -6"></path>
-				  </svg>
-				<?php } ?>
-				</span>
-				<h2 class="zolo-pos-nav-title"><?php echo esc_html( $post->post_title ); ?></h2>
+				<?php if ( ! empty( $this->settings['showBtn'] ) ) : ?>
+					<span class="zolo-nav-text">
+						<span><?php echo esc_html( $text ); ?></span>
+						<?php
+						if ( 'next' == $type ) {
+							echo wp_kses( $nextIcon, ZoloHelpers::wp_kses_allowed_svg() );
+						} else {
+							echo wp_kses( $previousIcon, ZoloHelpers::wp_kses_allowed_svg() );
+						}
+						?>
+					</span>
+				<?php endif; ?>
+				<?php if ( ! empty( $this->settings['showTitle'] ) ) : ?>
+					<h2 class="zolo-pos-nav-title"><?php echo esc_html( $post->post_title ); ?></h2>
+				<?php endif; ?>
 			</div>
 		</a>
 		<?php

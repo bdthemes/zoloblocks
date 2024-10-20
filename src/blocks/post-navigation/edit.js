@@ -1,6 +1,5 @@
 import {__} from '@wordpress/i18n';
 import {useBlockProps} from '@wordpress/block-editor';
-import {useEffect, useState} from '@wordpress/element';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
@@ -9,7 +8,7 @@ const {classArrayToStr, SidebarOpener} = window.zoloModule;
 import Style from './styles';
 export default function Edit(props) {
   const {attributes, setAttributes, className, isSelected, clientId} = props;
-  const {preview, uniqueId, parentClasses, commentQuery, preset} = attributes;
+  const {preview, uniqueId, parentClasses} = attributes;
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   const blockProps = useBlockProps({
     className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
