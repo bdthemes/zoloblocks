@@ -62,7 +62,19 @@ const Style = ({ props }) => {
         separatorColor,
         separatorStyle,
         objectFit,
+        // cssFilters: {},
     } = attributes;
+
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
 
     // Image Alignment
     const {
@@ -400,6 +412,40 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img {
             ${DesktopHeight}
         }
+
+        ${
+            active
+                ? `
+                    .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img{
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+                : ''
+        }
+
+        ${
+            activeHover
+                ? `
+                    .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-image-block-inner:hover .zolo-img {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+
+               `
+                : ''
+        }
+
+
+
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask:hover .zolo-img-wrap .zolo-img {
             border-color: ${imgHoverBorder};
             ${imgHBoxShadow}

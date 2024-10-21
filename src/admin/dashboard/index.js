@@ -16,7 +16,7 @@ const Dashboard = () => {
     // const [activeTab, setActiveTab] = useState(TABS[0].value);
     const getInitialStateFromURLQuery = () => {
         const hash = window.location.hash.slice(1); // Remove the '#' at the start
-        return hash;
+        return hash || 'welcome';
     };
     const [activeTab, setActiveTab] = useState(getInitialStateFromURLQuery);
 

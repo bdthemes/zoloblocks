@@ -67,6 +67,15 @@ const Style = ({ props }) => {
         presetFiveArrowColor,
     } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
     // column count
     const {
         desktopRangeStyle: deskColumns,
@@ -468,6 +477,35 @@ const Style = ({ props }) => {
                 }
 
             `
+                : ''
+        }
+        ${
+            active
+                ? `
+                    .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+                : ''
+        }
+
+        ${
+            activeHover
+                ? `
+                    .${uniqueId}.wp-block-zolo-review-grid .zolo-item:hover .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+                `
                 : ''
         }
 	`;

@@ -123,6 +123,14 @@ const attributes = {
     ...generateDimensionAttributes(INPUT_BORDER_RADIUS),
 
     //Block specific Attributes
+    provider: {
+        type: 'string',
+        default: 'mailchimp',
+    },
+    selectedWebhook: {
+        type: 'string',
+        default: '',
+    },
     preset: {
         type: 'string',
         default: 'zolo-newsletter-1',

@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
+import { PanelBody, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -38,18 +38,19 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} panelProps={props} stylePanel={true}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={SLIDE_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <CardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={SLIDE_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={SLIDE_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
                             />
                         </ZoloPanelBody>
                     </>

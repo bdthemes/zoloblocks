@@ -40,6 +40,12 @@ import {
     META_ARROW_SPACE,
     CONTENT_PADDING,
     META_BOX_WRAP_PADDING,
+    FILTER_BORDER,
+    FILTER_BORDER_RADIUS,
+    FILTER_MARGIN,
+    FILTER_PADDING,
+    FILTER_ALIGN,
+    FILTER_GAP,
 } from './constants';
 
 import {
@@ -50,6 +56,7 @@ import {
     READMORE_TYPOGRAPHY,
     NAME_TYPOGRAPHY,
     PAG_TYPOGRAPHY,
+    FILTER_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
@@ -95,7 +102,24 @@ function Style({ props }) {
         apagColor,
         apagBgColor,
         pagSeparatorColor,
+        filterColor,
+        filterBgColor,
+        filterBorderColor,
+        filterAColor,
+        filterABgColor,
+        filterABorderColor,
+        titleAnimationTypeBgColor,
     } = attributes;
+
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
 
     const {
         desktopRangeStyle: columnCountDesk,
@@ -506,18 +530,16 @@ function Style({ props }) {
         attributes,
     });
 
-
     // post meta arrow space
-        const {
-          desktopRangeStyle: metaArrowSpaceDesk,
-          tabRangeStyle: metaArrowSpaceTab,
-          mobRangeStyle: metaArrowSpaceMob,
-      } = generateResRangeStyle({
-          controlName: META_ARROW_SPACE,
-          property: 'left',
-          attributes,
-      });
-
+    const {
+        desktopRangeStyle: metaArrowSpaceDesk,
+        tabRangeStyle: metaArrowSpaceTab,
+        mobRangeStyle: metaArrowSpaceMob,
+    } = generateResRangeStyle({
+        controlName: META_ARROW_SPACE,
+        property: 'left',
+        attributes,
+    });
 
     // post content wrapper
 
@@ -534,20 +556,86 @@ function Style({ props }) {
     // post meta content wrapper
 
     const {
-      dimensionStylesDesktop: metaBoxWrapPaddingDesk,
-      dimensionStylesTab: metaBoxWrapPaddingTab,
-      dimensionStylesMobile: metaBoxWrapPaddingMob,
-  } = generateDimensionStyle({
-      controlName: META_BOX_WRAP_PADDING,
-      styleFor: 'padding',
-      attributes,
-  });
+        dimensionStylesDesktop: metaBoxWrapPaddingDesk,
+        dimensionStylesTab: metaBoxWrapPaddingTab,
+        dimensionStylesMobile: metaBoxWrapPaddingMob,
+    } = generateDimensionStyle({
+        controlName: META_BOX_WRAP_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
+    //filter taxonomy
+    const {
+        gapStylesDesktop: filterGapDesk,
+        gapStylesTab: filterGapTab,
+        gapStylesMobile: filterGapMob,
+    } = generateGapStyle({
+        controlName: FILTER_GAP,
+        attributes,
+    });
+    const {
+        desktopBorderStyle: filterBorderDesk,
+        tabBorderStyle: filterBorderTab,
+        mobBorderStyle: filterBorderMob,
+    } = generateBorderStyle({
+        controlName: FILTER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: filterBorderRadiusDesk,
+        dimensionStylesTab: filterBorderRadiusTab,
+        dimensionStylesMobile: filterBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: FILTER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: filterTypoDesk,
+        typoStylesTab: filterTypoTab,
+        typoStylesMobile: filterTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FILTER_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: filterAlignDesk,
+        tabAlignStyle: filterAlignTab,
+        mobAlignStyle: filterAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: FILTER_ALIGN,
+        property: 'justify-content',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: filterPaddingDesk,
+        dimensionStylesTab: filterPaddingTab,
+        dimensionStylesMobile: filterPaddingMob,
+    } = generateDimensionStyle({
+        controlName: FILTER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: filterMarginDesk,
+        dimensionStylesTab: filterMarginTab,
+        dimensionStylesMobile: filterMarginMob,
+    } = generateDimensionStyle({
+        controlName: FILTER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-      .${uniqueId}.zolo-block.zolo-post-grid-wrap{
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
         grid-template-columns:repeat(${columnCountDesk}, 1fr);
         ${colGapDesk}
       }
@@ -732,7 +820,7 @@ function Style({ props }) {
             }
 
         `
-          : ''
+              : ''
       }
 
 
@@ -779,10 +867,64 @@ function Style({ props }) {
         ${apagBgColor ? `background-color:${apagBgColor};` : ''}
       }
 
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-filter-taxonomy{
+        ${filterAlignDesk}
+        ${filterMarginDesk}
+        ${filterGapDesk}
+      }
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-filter-taxonomy a{
+        ${filterBorderDesk}
+        ${filterBorderRadiusDesk}
+        ${filterTypoDesk}
+        ${filterPaddingDesk}
+        ${filterColor ? `color:${filterColor};` : ''}
+        ${filterBgColor ? `background-color:${filterBgColor};` : ''}
+        ${filterBorderColor ? `border-color:${filterBorderColor};` : ''}
+      }
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-filter-taxonomy a.current,
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-filter-taxonomy a:hover{
+        ${filterAColor ? `color:${filterAColor};` : ''}
+        ${filterABgColor ? `background-color:${filterABgColor};` : ''}
+        ${filterABorderColor ? `border-color:${filterABorderColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-block.zolo-post-title-type-1{
+        ${titleAnimationTypeBgColor ? `--zolo-post-title-type-primary-color:${titleAnimationTypeBgColor};` : ''}
+      }
+
+      ${
+          active
+              ? `
+                    .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+              : ''
+      }
+
+      ${
+          activeHover
+              ? `
+                    .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image:hover {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+               `
+              : ''
+      }
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.zolo-block.zolo-post-grid-wrap{
+    .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
       grid-template-columns:repeat(${columnCountTab}, 1fr);
       ${colGapTab}
     }
@@ -799,31 +941,37 @@ function Style({ props }) {
     }
 
     ${
-      preset === 'style-5' ? `
+        preset === 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image{
           ${thumbnailHeightTab}
           ${thumbBorderRadiusTab}
         }
 
-      ` : ''
+      `
+            : ''
     }
 
     ${
-      preset !== 'style-5' ? `
+        preset !== 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image {
           ${thumbnailHeightTab}
           ${thumbBorderRadiusTab}
         }
 
-      ` : ''
+      `
+            : ''
     }
 
     ${
-      preset === 'style-5' ? `
+        preset === 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap::before{
           ${metaArrowSpaceTab}
         }
-      ` : ''
+      `
+            : ''
     }
 
     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-title{
@@ -886,12 +1034,14 @@ function Style({ props }) {
     }
 
     ${
-      preset === 'style-5' ? `
+        preset === 'style-5'
+            ? `
         .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap {
           ${metaBoxWrapPaddingTab}
         }
 
-      ` : ''
+      `
+            : ''
     }
 
     .${uniqueId}.zolo-pagination-wrap {
@@ -915,7 +1065,7 @@ function Style({ props }) {
   `;
 
     const mobileAllStyle = `
-      .${uniqueId}.zolo-block.zolo-post-grid-wrap{
+      .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-content-wrap{
         grid-template-columns:repeat(${columnCountMob}, 1fr);
         ${colGapMob}
       }
@@ -932,31 +1082,37 @@ function Style({ props }) {
       }
 
       ${
-        preset === 'style-5' ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image .wp-post-image{
             ${thumbnailHeightMob}
             ${thumbBorderRadiusMob}
           }
 
-        ` : ''
+        `
+              : ''
       }
 
       ${
-        preset !== 'style-5' ? `
+          preset !== 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-image {
             ${thumbnailHeightMob}
             ${thumbBorderRadiusMob}
           }
 
-        ` : ''
+        `
+              : ''
       }
 
       ${
-        preset === 'style-5' ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap::before{
             ${metaArrowSpaceMob}
           }
-        ` : ''
+        `
+              : ''
       }
 
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-title{
@@ -1019,12 +1175,14 @@ function Style({ props }) {
       }
 
       ${
-        preset === 'style-5' ? `
+          preset === 'style-5'
+              ? `
           .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-meta-wrap {
             ${metaBoxWrapPaddingMob}
           }
 
-        ` : ''
+        `
+              : ''
       }
 
       .${uniqueId}.zolo-pagination-wrap {

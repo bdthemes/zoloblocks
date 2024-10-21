@@ -55,10 +55,11 @@ import {
 import {} from '../../../src/global/constants';
 
 import { DAYS_TYPO, TIMES_TYPO, CLOSED_DAYS_TYPO, CLOSED_TIMES_TYPO } from './constants/typoPrefixConstant';
+import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, preset, businessList, dayColor, CloseddayColor, timeColor, timeclosedColor,separatColor } = attributes;
+    const { resMode, preset, businessList, dayColor, CloseddayColor, timeColor, timeclosedColor, separatColor } = attributes;
 
     const requiredProps = {
         attributes,
@@ -96,6 +97,27 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            {preset == 'zolo-biz-hours-style-1' && (
+                                <NormalBGControl
+                                    requiredProps={requiredProps}
+                                    controlName={BUSINESS_ITEM_BG}
+                                    noOverlay={false}
+                                    noMainBGImg={false}
+                                />
+                            )}
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={BUSINESS_ITEM_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={BUSINESS_ITEM_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <CardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={BUSINESS_ITEM_BORDER}
@@ -108,28 +130,10 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={BUSINESS_ITEM_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('padding', 'zoloblocks')}
-                                controlName={BUSINESS_ITEM_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
+                            <CardDivider />
                             <ResRangeControl label={__('Gap', 'zoloblocks')} controlName={ITEM_GAP} requiredProps={requiredProps} />
-                            {preset == 'zolo-biz-hours-style-1' ? (
-                                <NormalBGControl
-                                    requiredProps={requiredProps}
-                                    controlName={BUSINESS_ITEM_BG}
-                                    noOverlay={false}
-                                    noMainBGImg={false}
-                                />
-                            ) : (
+
+                            {preset === 'zolo-biz-hours-style-2' && (
                                 <TabPanelControl
                                     options={PANEL_OPTION}
                                     normalComponents={
@@ -158,12 +162,6 @@ function Inspector(props) {
                                 options={DAYS_OPTION}
                                 normalComponents={
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={DAYS_TYPO}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={dayColor}
@@ -173,35 +171,38 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={DAYS_TYPO}
+                                            requiredProps={requiredProps}
+                                            max={36}
+                                        />
 
+                                        <CardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={DAYS_BG}
                                             noOverlay={false}
                                             noMainBGImg={true}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={DAYS_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={DAYS_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={DAYS_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
                                     </>
                                 }
                                 hoverComponents={
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={CLOSED_DAYS_TYPO}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={CloseddayColor}
@@ -211,7 +212,13 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={CLOSED_DAYS_TYPO}
+                                            requiredProps={requiredProps}
+                                            max={36}
+                                        />
+                                        <CardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={CLOSED_DAYS_BG}
@@ -219,16 +226,17 @@ function Inspector(props) {
                                             noMainBGImg={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CLOSED_DAYS_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={CLOSED_DAYS_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
+                                        />
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={CLOSED_DAYS_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
                                         />
                                     </>
                                 }
@@ -238,12 +246,6 @@ function Inspector(props) {
                             <TabPanelControl
                                 normalComponents={
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={TIMES_TYPO}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={timeColor}
@@ -253,7 +255,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                         <ColorControl
+                                        <ColorControl
                                             label={__('Separator Color', 'zolo-blocks')}
                                             color={separatColor}
                                             onChange={(value) =>
@@ -262,34 +264,39 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={TIMES_TYPO}
+                                            requiredProps={requiredProps}
+                                            max={36}
+                                        />
+
+                                        <CardDivider />
+
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={TIMES_BG}
                                             noOverlay={false}
                                             noMainBGImg={true}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={TIMES_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={TIMES_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={TIMES_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
                                     </>
                                 }
                                 hoverComponents={
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={CLOSED_TIMES_TYPO}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={timeclosedColor}
@@ -299,6 +306,13 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={CLOSED_TIMES_TYPO}
+                                            requiredProps={requiredProps}
+                                            max={36}
+                                        />
+                                        <CardDivider />
 
                                         <NormalBGControl
                                             requiredProps={requiredProps}
@@ -307,16 +321,17 @@ function Inspector(props) {
                                             noMainBGImg={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CLOSED_TIMES_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={CLOSED_TIMES_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
+                                        />
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={CLOSED_TIMES_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
                                         />
                                     </>
                                 }

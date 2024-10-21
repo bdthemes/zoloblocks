@@ -694,9 +694,28 @@ class ZoloHelpers {
 	 * Get Zolo Blocks
 	 */
 	public static function get_zolo_blocks() {
-		$blocks = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
-		if (file_exists($blocks)) {
-			return require $blocks;
+		$blocks_path = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
+
+		if (file_exists($blocks_path)) {
+			$blocks = require $blocks_path;
+
+			if (is_array($blocks)) {
+				// sort blocks by title in ascending order except the block which name is 'container', it will be at the top
+				uasort(
+					$blocks,
+					function ($a, $b) {
+						if ($a['name'] === 'container') {
+							return -1;
+						}
+						if ($b['name'] === 'container') {
+							return 1;
+						}
+						return strcasecmp($a['title'], $b['title']);
+					}
+				);
+			}
+
+			return $blocks;
 		}
 	}
 
@@ -717,11 +736,27 @@ class ZoloHelpers {
 		$extension_options = get_option('zolo_extensions_settings');
 		$extensions = [];
 
-		foreach ($extension_options as $value) {
-			$extensions[$value['name']] = $value['status'];
+		if (is_array($extension_options)) {
+			foreach ($extension_options as $value) {
+				if (isset($value['name']) && isset($value['status'])) {
+					$name = sanitize_text_field($value['name']);
+					$status = sanitize_text_field($value['status']);
+
+					$extensions[$name] = $status;
+				}
+			}
 		}
 
 		return $extensions;
+	}
+
+
+	/**
+	 * Check zolo extension is enabled or not
+	 */
+	public static function is_extension_enabled($extension) {
+		$extensions = self::zolo_extensions();
+		return isset($extensions[$extension]) ? $extensions[$extension] : false;
 	}
 
 
@@ -756,4 +791,44 @@ class ZoloHelpers {
 
 		return 0;
 	}
+
+	/**
+	 * Zolo Blocks and Extensions
+	 */
+	public static function zolo_blocks_extensions_count() {
+		// Get blocks and extensions settings
+		$blocks     = get_option('zolo_blocks_settings', self::get_zolo_blocks());
+		$extensions = get_option('zolo_extensions_settings', self::get_zolo_extensions());
+
+		// Filter blocks and extensions
+		$total_blocks    = array_filter($blocks, fn($block) => !isset($block['is_child']) || !$block['is_child']);
+		$used_blocks     = array_filter($total_blocks, fn($block) => !empty($block['status']));
+		$used_extensions = array_filter($extensions, fn($extension) => !empty($extension['status']));
+
+		// Return counts
+		return [
+			'total'             => count($total_blocks) + count($extensions),
+			'total_blocks'      => count($total_blocks),
+			'used_blocks'       => count($used_blocks),
+			'total_extensions'  => count($extensions),
+			'used_extensions'   => count($used_extensions),
+		];
+	}
+
+    /**
+     *  Extract settings keys .
+     *
+     * @param array $settings .
+     * @param array $keys .
+     * @return array .
+     */
+    public static function extract_settings_keys( $settings, $keys ) {
+        $result = [];
+        foreach ( $keys as $key ) {
+            if ( isset( $settings[ $key ] ) ) {
+                $result[ $key ] = $settings[ $key ];
+            }
+        }
+        return $result;
+    }
 }

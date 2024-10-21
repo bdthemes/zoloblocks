@@ -6,7 +6,7 @@ export const BLOCK_PREFIX = 'zolo-post-timeline';
 export const PRESETS = [
     { label: __('Left', 'zoloblocks'), value: 'style-1' },
     { label: __('Right', 'zoloblocks'), value: 'style-2' },
-    { label: __('Center (Pro)', 'zoloblocks'), value: 'style-3', disabled: false },
+    { label: __('Center (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
 ];
 export const LINE_STYLE = [
     { value: 'solid', label: __('Solid', 'zoloblocks') },
@@ -14,6 +14,15 @@ export const LINE_STYLE = [
     { value: 'dotted', label: __('Dotted', 'zoloblocks') },
     { value: 'double', label: __('Double', 'zoloblocks') },
     { value: 'groove', label: __('Groove', 'zoloblocks') },
+];
+
+export const POST_TITLE_ANIMATION = [
+    { label: __('Default', 'zoloblocks'), value: '' },
+    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: true },
+    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: true },
+    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: true },
+    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: true },
+    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: true },
 ];
 
 //timeline

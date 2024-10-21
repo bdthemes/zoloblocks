@@ -6,6 +6,7 @@ const { SortableControl, SortableItem, ColorControl } = window.zoloModule;
 const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl, ToggleControl, TextareaControl } = wp.components;
 import { cloneDeep } from 'lodash';
+import { CardDivider } from '@wordpress/components';
 
 const Sortable = ({ businessList, setAttributes }) => {
     const deepCloneProfiles = cloneDeep(businessList);
@@ -64,9 +65,9 @@ const Sortable = ({ businessList, setAttributes }) => {
                                                 });
                                             }}
                                         />
-
+                                        <CardDivider />
                                         <ToggleControl
-                                            label={__('Show working Day', 'zolo-block')}
+                                            label={__('Working Day', 'zolo-block')}
                                             checked={profile.toggleworkday}
                                             onChange={() => {
                                                 const newProfile = { ...profile };

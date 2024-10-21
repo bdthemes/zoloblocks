@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["progress", "progess pie"],
     "description": "Display animated progress pie for quick stats",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

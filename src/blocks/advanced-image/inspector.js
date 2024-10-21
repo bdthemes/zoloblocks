@@ -127,6 +127,7 @@ function Inspector(props) {
 
     const [duotone, setDuotone] = useState(['#000000', '#ffffff']);
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -376,6 +377,7 @@ function Inspector(props) {
                                         max={1500}
                                     />
                                     <CardDivider />
+                                    {cssFilters && cssFilters.length > 0 && cssFilters}
                                     <SelectControl
                                         label={__('Effect', 'zoloblocks')}
                                         value={hoverEffect}
@@ -387,7 +389,6 @@ function Inspector(props) {
                                     <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
                                 </>
                             )}
-                            {cssFilters && cssFilters.length > 0 && cssFilters}
 
                             {photoMaskImage === '' && (
                                 <TabPanelControl
@@ -406,16 +407,7 @@ function Inspector(props) {
                                                 max={1500}
                                             />
                                             <CardDivider />
-                                            <SelectControl
-                                                label={__('Effect', 'zoloblocks')}
-                                                value={hoverEffect}
-                                                options={HOVER_EFFECTS}
-                                                onChange={(v) => {
-                                                    setAttributes({ hoverEffect: v });
-                                                }}
-                                            />
-                                            <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
-                                            <CardDivider />
+
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={IMG_BORDER}
@@ -439,9 +431,26 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
+                                            <CardDivider />
+                                            <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
+                                            {cssFilters && cssFilters.length > 0 && cssFilters}
                                         </>
                                     }
-                                    hoverComponents={<BoxShadowControl controlName={IMG_HBSHADOW} requiredProps={requiredProps} />}
+                                    hoverComponents={
+                                        <>
+                                            <SelectControl
+                                                label={__('Effect', 'zoloblocks')}
+                                                value={hoverEffect}
+                                                options={HOVER_EFFECTS}
+                                                onChange={(v) => {
+                                                    setAttributes({ hoverEffect: v });
+                                                }}
+                                            />
+                                            <CardDivider />
+                                            <BoxShadowControl controlName={IMG_HBSHADOW} requiredProps={requiredProps} />
+                                            {cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}
+                                        </>
+                                    }
                                 />
                             )}
                         </ZoloPanelBody>

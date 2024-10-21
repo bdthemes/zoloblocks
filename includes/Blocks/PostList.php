@@ -2,7 +2,6 @@
 
 namespace Zolo\Blocks;
 
-use Zolo\Blocks\PostBlock;
 use Zolo\API\GetPostsV1;
 use Zolo\Helpers\ZoloHelpers;
 
@@ -18,6 +17,10 @@ class PostList extends PostBlock {
 		'showCount'        => false,
 		'showFeatureimg'   => true,
 		'blockName'        => 'post-list',
+		'metaSeparator'    => '//',
+		'showReadingTime'  => false,
+		'loadMoreText'     => 'Load More',
+		'paginationType'   => 'normal',
 	];
 
 	public function get_default_attributes() {

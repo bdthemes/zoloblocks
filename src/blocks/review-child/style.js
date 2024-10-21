@@ -66,6 +66,16 @@ const Style = ({ props }) => {
         presetFiveArrowColor,
     } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
+
     // content
     const {
         desktopAlignStyle: reviewContentDeskAlignStyle,
@@ -415,7 +425,7 @@ const Style = ({ props }) => {
         .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-			color: ${addReviewerWebsiteLink ? nameLinkColor : nameColor};
+			color: ${nameColor};
 		}
 		.zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name:hover {
 			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
@@ -459,6 +469,36 @@ const Style = ({ props }) => {
                     --zolo-style-4-meta-content-bg-color: ${presetFiveArrowColor};
                 }
             `
+                : ''
+        }
+
+        ${
+            active
+                ? `
+                    .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+             `
+                : ''
+        }
+
+        ${
+            activeHover
+                ? `
+                    .zolo-block.${uniqueId}.wp-block-zolo-review-child .zolo-item:hover .zolo-image-wrap .zolo-img {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+                `
                 : ''
         }
 	`;

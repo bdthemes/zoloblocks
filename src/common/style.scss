@@ -116,6 +116,50 @@ button[class*='editor-block-list-item-zolo'] {
     }
 }
 
+.block-editor-block-icon:has(.zolo-e-icon) {
+    path {
+        fill: #2667ff;
+    }
+}
+
+.components-autocomplete__popover,
+.block-editor-block-inspector,
+.block-editor-block-toolbar {
+    .block-editor-block-icon:has(.zolo-e-icon) {
+        position: relative;
+        path {
+            fill: currentColor;
+        }
+    }
+    .block-editor-block-icon:has(.zolo-e-icon):before {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTAwIDUwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggY2xhc3M9InN0MCIgZmlsbD0iI0ZGRkZGRiIgZD0iTTI1MCwwTDI1MCwwYzEzOC4xLDAsMjUwLDExMS45LDI1MCwyNTB2MGMwLDEzOC4xLTExMS45LDI1MC0yNTAsMjUwaDBDMTExLjksNTAwLDAsMzg4LjEsMCwyNTB2MA0KCUMwLDExMS45LDExMS45LDAsMjUwLDB6Ii8+DQo8Zz4NCgk8cG9seWdvbiBwb2ludHM9IjEwMy4yLDIyNi41IDIzMS44LDk2LjYgMTAyLjUsOTYuNiAJIi8+DQoJPHBhdGggZD0iTTM2NC42LDE4Mi43bC01MC44LDUwLjhjNy41LDguNCwxNi40LDIxLjksMTYuNCwzNGMwLDE0LjUtNS44LDI2LjYtMTUuMSwzNi4yYy05LDkuMy0yMC44LDEzLjktMzQuNywxMy45SDE2OS45DQoJCUwzOTQuNyw5Ni42SDI5MC45TDEwMy4xLDI4My41djEyMC43bDcxLjYtMC41aDEwNS41YzM3LjEsMCw2OC0xMS41LDkzLjctMzQuNGMyNS4xLTIyLjksMzcuOC02MC40LDM3LjgtOTYNCgkJQzQxMS43LDIzNS44LDM5Mi43LDIwNC4xLDM2NC42LDE4Mi43TDM2NC42LDE4Mi43TDM2NC42LDE4Mi43TDM2NC42LDE4Mi43eiIvPg0KPC9nPg0KPC9zdmc+DQo=);
+        background-size: 100%;
+        content: '';
+        left: 14px;
+        position: absolute;
+        top: -5px;
+        z-index: 1;
+        border: 1px solid #494a51;
+        border-radius: 50%;
+        padding: 5px;
+    }
+}
+.block-editor-block-inspector,
+.block-editor-block-toolbar {
+    .block-editor-block-icon:has(.zolo-e-icon) {
+        opacity: 0.8;
+        path {
+            fill: #2667ff;
+        }
+    }
+}
+
+.components-autocomplete__popover {
+    .zolo-e-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
 /**
  * Zolo Blocks Dropdown Controls Style
  */
@@ -476,4 +520,99 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     .editor-styles-wrapper .is-root-container a {
         text-decoration: unset;
     }
+}
+
+// post title animation type css start here
+
+.zolo-post-title-type-1,
+.zolo-post-title-type-2,
+.zolo-post-title-type-3,
+.zolo-post-title-type-4,
+.zolo-post-title-type-5 {
+    .zolo-post-title {
+        a {
+            background-repeat: no-repeat;
+            transition:
+                background-size 0.3s,
+                color 0.2s !important;
+            display: inline;
+
+            background-position: 0 100%;
+            background-size: 0 100%;
+            div {
+                display: inline;
+            }
+        }
+    }
+}
+
+.zolo-post-title-type-1 {
+    --zolo-post-title-type-primary-color: #000;
+    .zolo-post-title {
+        a {
+            background-image: linear-gradient(var(--zolo-post-title-type-primary-color), var(--zolo-post-title-type-primary-color));
+            background-position: 0 100%;
+            background-size: 0 100%;
+            &:hover {
+                background-size: 100% 100%;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.zolo-post-title-type-2,
+.zolo-post-title-type-3,
+.zolo-post-title-type-4,
+.zolo-post-title-type-5 {
+    .zolo-post-title {
+        a {
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 0% 100%;
+            background-size: 0% 2px;
+            &:hover {
+                background-size: 100% 2px;
+            }
+        }
+    }
+}
+
+.zolo-post-title-type-3 {
+    .zolo-post-title {
+        a {
+            background-position: 50% 100%;
+        }
+    }
+}
+
+.zolo-post-title-type-4 {
+    .zolo-post-title {
+        a {
+            background-position: 0% 0;
+        }
+    }
+}
+
+.zolo-post-title-type-5 {
+    .zolo-post-title {
+        a {
+            background-position: 50% 0%;
+        }
+    }
+}
+// post title animation type css end here
+
+.zolo-bgv-hosted {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.zolo-bg-video-placeholder {
+    height: 130px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #f6f6f8;
+    border: 1px solid #e9e9e9;
+    margin-bottom: 16px;
 }

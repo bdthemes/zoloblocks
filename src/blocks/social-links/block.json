@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["icon", "social links", "social"],
     "description": "Display accessible custom business social profiles",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

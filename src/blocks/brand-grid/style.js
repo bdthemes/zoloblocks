@@ -57,6 +57,7 @@ const Style = ({ props }) => {
     const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, contentHorizontalPosition, contentVerticalPosition } =
         attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
     // column count
     const {
         desktopRangeStyle: columnCountDeskstyle,
@@ -403,6 +404,21 @@ const Style = ({ props }) => {
 		.${uniqueId} .zb-brand-item .zb-brand-title-link.has-link:hover{
             ${labelHoverColor ? `color:${labelHoverColor};` : ''}
 		}
+
+        ${
+            active
+                ? `
+                    .${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img  {
+                        filter:
+                            blur(${blur}px)
+                            brightness(${brightness}%)
+                            contrast(${contrast}%)
+                            saturate(${saturate}%)
+                            hue-rotate(${hueRotate}deg)
+                    }
+                `
+                : ''
+        }
     `;
 
     const tabletAllStyle = `

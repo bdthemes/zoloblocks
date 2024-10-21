@@ -51,9 +51,9 @@ class GetPostsV1 {
 		}
 
 		$postQuery = $data['postQuery'];
-		// Check if postCategory is not empty and update postQuery if it exists.
-		if ( ! empty( $data['postCategory'] ) && isset( $data['postQuery'] ) ) {
-			$postQuery['postCategory'] = $data['postCategory'];
+		// Check if postTermId is not empty and update postQuery if it exists.
+		if ( ! empty( $data['postTermId'] ) && isset( $data['postQuery'] ) ) {
+			$postQuery['postTermId']   = $data['postTermId'];
 			$postQuery['postTaxonomy'] = $data['postTaxonomy'] ?? 'category';
 		}
 
@@ -73,27 +73,36 @@ class GetPostsV1 {
 	 * @return mixed|null
 	 */
 	public static function zolo_get_post_args( $data ) {
-		$showPagination = ! empty( $data['showPagination'] ) && $data['showPagination'] == 'true' ? true : false;
-		$args           = [
+		$showPagination    = ! empty( $data['showPagination'] ) && $data['showPagination'] == 'true' ? true : false;
+		$postType          = $data['postType'] ?? 'post';
+		$args              = [
 			'post_status'    => 'publish',
-			'post_type'      => $data['postType'] ?? 'post',
 			'orderby'        => $data['postOrderby'] ?? 'date',
 			'order'          => $data['postOrder'] ?? 'desc',
 			'posts_per_page' => (int) isset( $data['postPerPage'] ) ? $data['postPerPage'] : 6,
 		];
+		$args['post_type'] = $postType;
+
+		// for related posts.
+		if ( 'related_posts' === $postType ) {
+			$queriedPostId     = get_queried_object_id();
+			$args['post_type'] = ! empty( $queriedPostId ) ? get_post_type( $queriedPostId ) : ( $data['currentPostType'] ?? '' );
+		}
 
 		// Set Exclude Post.
-
 		$current_post = [];
 		$exclude_by   = wp_list_pluck( $data['postExcludeBy'] ?? [], 'value' );
 
-		if ( in_array( 'current_post', $exclude_by, true ) && is_singular() ) {
-			$current_post = [ get_the_ID() ];
+		if ( in_array( 'current_post', $exclude_by, true ) ) {
+			$currentPostId = ! empty( get_the_ID() ) ? get_the_ID() : ( $data['currentPostId'] ?? '' );
+			$current_post  = [ $currentPostId ];
 		}
 
 		if ( in_array( 'manual_selection', $exclude_by, true ) ) {
 			$exclude_ids          = $data['postExclude'] ?? [];
 			$args['post__not_in'] = array_merge( $current_post, wp_list_pluck( $exclude_ids, 'value' ) );
+		} else {
+			$args['post__not_in'] = $current_post;
 		}
 
 		// Set Authors.
@@ -102,11 +111,11 @@ class GetPostsV1 {
 		$args = self::get_terms_args( $args, $data );
 
 		// only for post tab.
-		if ( isset( $data['postCategory'] ) && '*' !== $data['postCategory'] ) {
+		if ( isset( $data['postTermId'] ) && 'all' !== $data['postTermId'] ) {
 			$args['tax_query'][] = [
 				'taxonomy' => $data['postTaxonomy'],
 				'field'    => 'term_id',
-				'terms'    => [ $data['postCategory'] ],
+				'terms'    => [ $data['postTermId'] ],
 			];
 		}
 
@@ -131,7 +140,6 @@ class GetPostsV1 {
 				$args['offset'] = $data['postOffset'];
 			}
 		}
-
 		return apply_filters( 'zolo_post_args', $args );
 	}
 
@@ -143,14 +151,23 @@ class GetPostsV1 {
 	 */
 	public static function zolo_posts_query( $data ) {
 
-		$results       = [];
-		$args          = self::zolo_get_post_args( $data );
-		$loop          = new \WP_Query( $args );
+		$results = [];
+		$args    = self::zolo_get_post_args( $data );
+
+		if ( ! empty( $data['postType'] ) && 'current_post' === $data['postType'] ) {
+			$loop = new \WP_Query(
+				[
+					'post_type' => $data['currentPostType'] ?? '',
+					'p'         => $data['currentPostId'] ?? '',
+				]
+			);
+		} else {
+			$loop = new \WP_Query( $args );
+		}
+
 		$paged         = ZoloHelpers::get_paged( $loop );
 		$postThumbnail = ! empty( $data['postThumbnail'] ) ? $data['postThumbnail'] : '';
-
 		if ( $loop->have_posts() ) {
-
 			while ( $loop->have_posts() ) {
 				$loop->the_post();
 				$post_id = get_the_ID();
@@ -176,7 +193,6 @@ class GetPostsV1 {
 
 			wp_reset_postdata();
 		}
-
 		return [
 			'total_page' => $loop->max_num_pages,
 			'posts'      => $results,

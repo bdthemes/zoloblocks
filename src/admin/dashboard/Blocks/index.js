@@ -16,16 +16,21 @@ const Blocks = () => {
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
 
-    // Blocks Status
+    const fetchBlocks = async () => {
+        try {
+            const response = await apiFetch({
+                path: '/zolo/v1/blocks',
+                method: 'GET',
+            });
+            const newBlocks = removeChildBlocks(response);
+            setBlocks(newBlocks);
+        } catch (error) {
+            console.error('API Fetch Error:', error);
+        }
+    };
+
     useEffect(() => {
-        apiFetch({
-            path: '/zolo/v1/blocks',
-            method: 'GET',
-        })
-            .then((response) => {
-                setBlocks(removeChildBlocks(response));
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
+        fetchBlocks();
     }, []);
 
     // set notice to false after 3 seconds
@@ -81,7 +86,6 @@ const Blocks = () => {
             setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
-
             // set notice to true
             setNotice(true);
         });
@@ -109,7 +113,6 @@ const Blocks = () => {
             setBlocks(removeChildBlocks(response));
             // set category to all
             setCategory('all');
-
             // set notice to true
             setNotice(true);
         });
@@ -241,7 +244,7 @@ const Blocks = () => {
                                                 updateStatus(block?.name);
                                                 setNotice(true);
                                             }}
-                                            {...(block?.isPro && {
+                                            {...(block?.is_pro && {
                                                 isPro: true,
                                             })}
                                         />

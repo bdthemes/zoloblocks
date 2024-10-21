@@ -335,6 +335,8 @@ function Inspector(props) {
                                 </>
                             )}
 
+                            <CardDivider />
+
                             <SelectControl
                                 label={__('Chart Type', 'zoloblocks')}
                                 value={chartType}
@@ -358,14 +360,22 @@ function Inspector(props) {
                                             chartHeight: height,
                                         })
                                     }
+                                    onReset={() =>
+                                        setAttributes({
+                                            chartHeight: undefined,
+                                        })
+                                    }
                                     min={200}
                                     max={1000}
                                 />
                             </div>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('show/hide elements', 'zoloblocks')}
+                            </div>
                             <ToggleControl
-                                label={__('Show Title', 'zoloblocks')}
+                                label={__('Title', 'zoloblocks')}
                                 checked={showTitle}
                                 onChange={() =>
                                     setAttributes({
@@ -374,7 +384,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show sub Title', 'zoloblocks')}
+                                label={__('sub Title', 'zoloblocks')}
                                 checked={showSubTitle}
                                 onChange={() =>
                                     setAttributes({
@@ -383,7 +393,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Legend', 'zoloblocks')}
+                                label={__('Legend', 'zoloblocks')}
                                 checked={showLegend}
                                 onChange={() =>
                                     setAttributes({
@@ -392,7 +402,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Tooltip', 'zoloblocks')}
+                                label={__('Tooltip', 'zoloblocks')}
                                 checked={showTooltip}
                                 onChange={() =>
                                     setAttributes({
@@ -401,7 +411,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Grid', 'zoloblocks')}
+                                label={__('Grid', 'zoloblocks')}
                                 checked={showGrid}
                                 onChange={() =>
                                     setAttributes({
@@ -410,7 +420,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Toolbar', 'zoloblocks')}
+                                label={__('Toolbar', 'zoloblocks')}
                                 checked={showToolbar}
                                 onChange={() =>
                                     setAttributes({
@@ -421,7 +431,7 @@ function Inspector(props) {
                             {showToolbar && (
                                 <>
                                     <ToggleControl
-                                        label={__('Show Download', 'zoloblocks')}
+                                        label={__('Download', 'zoloblocks')}
                                         checked={showDownload}
                                         onChange={() =>
                                             setAttributes({
@@ -430,7 +440,7 @@ function Inspector(props) {
                                         }
                                     />
                                     <ToggleControl
-                                        label={__('Show Zoom', 'zoloblocks')}
+                                        label={__('Zoom', 'zoloblocks')}
                                         checked={showZoom}
                                         onChange={() =>
                                             setAttributes({
@@ -439,7 +449,7 @@ function Inspector(props) {
                                         }
                                     />
                                     <ToggleControl
-                                        label={__('Show ZoomIn', 'zoloblocks')}
+                                        label={__('Zoom In', 'zoloblocks')}
                                         checked={showZoomIn}
                                         onChange={() =>
                                             setAttributes({
@@ -448,7 +458,7 @@ function Inspector(props) {
                                         }
                                     />
                                     <ToggleControl
-                                        label={__('Show ZoomOut', 'zoloblocks')}
+                                        label={__('Zoom Out', 'zoloblocks')}
                                         checked={showZoomOut}
                                         onChange={() =>
                                             setAttributes({
@@ -457,7 +467,7 @@ function Inspector(props) {
                                         }
                                     />
                                     <ToggleControl
-                                        label={__('Show Pan', 'zoloblocks')}
+                                        label={__('Pan', 'zoloblocks')}
                                         checked={showPanel}
                                         onChange={() =>
                                             setAttributes({
@@ -466,7 +476,7 @@ function Inspector(props) {
                                         }
                                     />
                                     <ToggleControl
-                                        label={__('Show Reset', 'zoloblocks')}
+                                        label={__('Reset', 'zoloblocks')}
                                         checked={showReset}
                                         onChange={() =>
                                             setAttributes({
@@ -491,6 +501,7 @@ function Inspector(props) {
                                     }
                                     value={titleObject.text}
                                 />
+                                <CardDivider />
                                 <div className="zolo-flex-row-control-tab">
                                     <IconicBtnGroup
                                         label={__('Alignment', 'zoloblocks')}
@@ -522,6 +533,7 @@ function Inspector(props) {
                                     }
                                     value={subTitleObject.text}
                                 />
+                                <CardDivider />
                                 <div className="zolo-flex-row-control-tab">
                                     <IconicBtnGroup
                                         label={__('Alignment', 'zoloblocks')}
@@ -569,6 +581,7 @@ function Inspector(props) {
                                         options={DEFAULT_ALIGNS}
                                     />
                                 </div>
+                                <CardDivider />
                                 <ToggleControl
                                     label={__('Floating', 'zoloblocks')}
                                     checked={legendObject.floating}
@@ -618,6 +631,9 @@ function Inspector(props) {
                         )}
                         {showTooltip && (
                             <ZoloPanelBody title={__('Tooltip', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                                <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                    {__('show/hide elements', 'zoloblocks')}
+                                </div>
                                 <ToggleControl
                                     label={__('Enabled', 'zoloblocks')}
                                     checked={tooltipObject.enabled}
@@ -699,8 +715,11 @@ function Inspector(props) {
                         )}
                         {showGrid && (
                             <ZoloPanelBody title={__('Grid', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                                <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                    {__('show/hide elements', 'zoloblocks')}
+                                </div>
                                 <ToggleControl
-                                    label={__('Show Grid X', 'zoloblocks')}
+                                    label={__('Grid X', 'zoloblocks')}
                                     checked={showGridX}
                                     onChange={() =>
                                         setAttributes({
@@ -709,7 +728,7 @@ function Inspector(props) {
                                     }
                                 />
                                 <ToggleControl
-                                    label={__('Show Grid Y', 'zoloblocks')}
+                                    label={__('Grid Y', 'zoloblocks')}
                                     checked={showGridY}
                                     onChange={() =>
                                         setAttributes({
@@ -724,13 +743,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Charts', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={CHART_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={CHART_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CHART_BG_COLOR} noMainBGImg={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={CHART_PADDING}
@@ -743,8 +756,15 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CHART_BG_COLOR} noMainBGImg={false} />
+                            <CardDivider />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={CHART_BORDER} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={CHART_BOX_SHADOW} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={CHART_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Colors', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                             <ColorControl
@@ -818,6 +838,17 @@ function Inspector(props) {
                                             }
                                             min={0}
                                             max={100}
+                                            onReset={() =>
+                                                setAttributes({
+                                                    titleObject: {
+                                                        ...titleObject,
+                                                        style: {
+                                                            ...titleObject.style,
+                                                            fontSize: undefined,
+                                                        },
+                                                    },
+                                                })
+                                            }
                                         />
                                     </div>
                                 </ZoloPanelBody>
@@ -858,6 +889,17 @@ function Inspector(props) {
                                             }
                                             min={0}
                                             max={100}
+                                            onReset={() =>
+                                                setAttributes({
+                                                    subTitleObject: {
+                                                        ...subTitleObject,
+                                                        style: {
+                                                            ...subTitleObject.style,
+                                                            fontSize: undefined,
+                                                        },
+                                                    },
+                                                })
+                                            }
                                         />
                                     </div>
                                 </ZoloPanelBody>

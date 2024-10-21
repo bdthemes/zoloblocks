@@ -24,6 +24,7 @@ export default function Edit(props) {
         parentClasses,
         postQuery,
         preset,
+        postTitleAnimation,
         preview,
         resMode,
         slideItems,
@@ -50,6 +51,7 @@ export default function Edit(props) {
             className,
             `${uniqueId} zolo-post-carousel zolo-post-${preset}`,
             classArrayToStr(parentClasses),
+            postTitleAnimation,
             `${resMode !== 'Desktop' ? resMode : ''}`
         ),
     });

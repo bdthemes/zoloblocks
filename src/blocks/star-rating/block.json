@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["rating", "star rating"],
     "description": "Creates customizable star ratings for any type of content",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

@@ -132,7 +132,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Others', 'zoloblocks'),
+        title: __('Creative', 'zoloblocks'),
     },
 ]);
 export default categories;

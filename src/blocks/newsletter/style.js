@@ -478,7 +478,9 @@ export default function Style({ props }) {
         ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ''}
 
       }
-      .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-input:focus + .zolo-form-label {
+      .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-input:focus ~ .zolo-form-label, 
+      .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-input:not(:placeholder-shown).zolo-form-input:not(:focus) ~ .zolo-form-label
+      {
         ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ''}
         ${labelHoverDeskBGStyle}
 

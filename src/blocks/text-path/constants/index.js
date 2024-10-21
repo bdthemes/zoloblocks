@@ -13,6 +13,15 @@ export const TEXTPATH_SIZE = 'textPathSize';
 export const TEXT_PATH_STROKE = 'textPathStroke';
 export const TEXT_WORD_SPACING = 'textWordSpacing';
 export const PATH_TEXT_SPACING = 'textPathSpacing';
+export const CIRCLE_DURATION = 'circleDuration';
+export const CIRCLE_IMG_HEIGHT = 'circleImgHeight';
+export const CIRCLE_IMG_WIDTH = 'circleImgWidth';
+export const CIRCLE_IMAGE_BACKGROUND = 'circleImageBackground';
+export const CIRCLE_IMAGE_PADDING = 'circleImagePadding';
+export const CIRCLE_IMAGE_MARGIN = 'circleImageMargin';
+export const CIRCLE_IMAGE_BORDER = 'circleImageBorder';
+export const CIRCLE_IMAGE_BOX_SHADOW = 'circleImageBoxShadow';
+export const CIRCLE_IMAGE_BORDER_RADIUS = 'circleImageBorderRadius';
 
 export const PATH_OPTION = [
     {

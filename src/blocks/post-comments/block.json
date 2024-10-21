@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["post", "comments", "post comments","post comments"],
     "description": "Customizable dynamic post comment for your website comments",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

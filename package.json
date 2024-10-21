@@ -6,6 +6,7 @@
     "scripts": {
         "start": "wp-scripts start",
         "build": "wp-scripts build",
+        "build-zolo": "wp-scripts build && npm run make-pot",
         "packages-update": "wp-scripts packages-update",
         "make-pot": "wp i18n make-pot . languages/zoloblocks.pot --exclude=node_modules,build,vendor,assets",
         "zip-plugin": "zip -r zoloblocks.zip . -x \"*.git*\" \"*.DS_Store*\" \"*.vscode*\" \"*.idea*\" \"*.github*\" \"*.gitignore*\" \"*.gitattributes*\" \"*.editorconfig*\" \"*.prettierrc*\" \"*.eslintrc*\" \"*.babelrc*\" \"*.distignore*\" \"*.stylelintrc*\" \"node_modules/*\" \"src/*\" \"*index.js.map\" \"*frontend.js.map\" \"*style-index.css.map\" \"composer.lock\" \"package.json\" \"package-lock.json\" \"README.md\" \"webpack.config.js\" \"*.phpcs.xml\""
@@ -34,7 +35,7 @@
         "@wordpress/editor": "^14.4.0",
         "@wordpress/plugins": "^7.4.0",
         "@wordpress/server-side-render": "^5.4.0",
-        "apexcharts": "^3.41.0",
+        "apexcharts": "^3.53.0",
         "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
         "cottonjs": "^1.3.6",
@@ -49,6 +50,7 @@
         "react-multi-select-component": "^4.3.4",
         "react-qrcode-logo": "^3.0.0",
         "react-select": "^5.8.0",
+        "swiper": "^11.1.14",
         "uuid": "^9.0.1",
         "webfontloader": "^1.6.28"
     },

@@ -63,71 +63,74 @@ h3.zolo-setting-title {
         }
     }
 }
-.components-modal__frame {
-    border-radius: 10px;
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 10px;
-    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-    --tw-ring-offset-shadow: 0 0 #0000;
-    --tw-ring-shadow: 0 0 #0000;
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
-    overflow: inherit;
-}
-.components-modal__content {
-    margin-top: 0;
-    padding: 50px 40px;
-}
-.components-modal__header {
-    display: block;
-    padding: 0;
-    margin: 0;
-}
-.settings-popup {
-    .modal-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin: 0 0 10px;
+.toplevel_page_zoloblocks {
+    .components-modal__frame {
+        border-radius: 10px;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 10px;
+        --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+        overflow: inherit;
     }
-    .modal-description {
-        margin: 0 0 15px;
-        font-size: 14px;
-        color: #6d6c7d;
+    .components-modal__content {
+        margin-top: 0;
+        padding: 50px 40px;
     }
-    .components-base-control {
-        margin-bottom: 20px;
-    }
-    .components-base-control__label {
-        font-size: 12px;
-        font-weight: 600;
-        color: #393944;
-    }
-    .components-text-control__input {
-        height: 44px;
-        border-radius: 5px;
-        border: 1px solid #eaeaec;
-        box-sizing: border-box;
-        &:focus {
-            box-shadow: 0 0 0 1px var(--zolo-dashboard-brand-color);
-        }
-    }
-    .settings-save-btn {
-        padding: 12px 20px;
-        font-weight: 500;
+    .components-modal__header {
+        display: block;
+        padding: 0;
+        margin: 0;
         border: 0;
-        background-color: var(--zolo-dashboard-brand-color);
-        border-radius: 4px;
-        color: #fff;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: 0.3s ease;
-        &:focus {
-            box-shadow: 0 0 0 1px var(--zolo-dashboard-brand-color);
+    }
+    .settings-popup {
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 10px;
         }
-        &:hover {
-            background-color: #2667ff;
+        .modal-description {
+            margin: 0 0 15px;
+            font-size: 14px;
+            color: #6d6c7d;
+        }
+        .components-base-control {
+            margin-bottom: 20px;
+        }
+        .components-base-control__label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #393944;
+        }
+        .components-text-control__input {
+            height: 44px;
+            border-radius: 6px;
+            border: 1px solid #eaeaec;
+            box-sizing: border-box;
+            &:focus {
+                box-shadow: 0 0 0 1px var(--zolo-dashboard-brand-color);
+            }
+        }
+        .settings-save-btn {
+            padding: 12px 20px;
+            font-weight: 500;
+            border: 0;
+            background-color: var(--zolo-dashboard-brand-color);
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            &:focus {
+                box-shadow: 0 0 0 1px var(--zolo-dashboard-brand-color);
+            }
+            &:hover {
+                background-color: #2667ff;
+            }
         }
     }
 }
@@ -293,6 +296,65 @@ span.block-separator {
     }
 }
 
+.zolo-single-setting {
+    &.upcoming {
+        .help-docs {
+            display: none;
+        }
+    }
+}
+.components-modal__content {
+    .zolo-webhook-add-btn,
+    .zolo-webhook-remove-btn {
+        height: auto;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        gap: 3px;
+        background: transparent !important;
+        color: #3f8efc !important;
+        border: 1px solid #3f8efc;
+        font-weight: 600;
+        text-transform: capitalize;
+        outline: none !important;
+        &:focus {
+            box-shadow: 0 0 0 1px #3f8efc !important;
+            border: 1px solid #3f8efc !important;
+        }
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            fill: transparent;
+        }
+    }
+
+    .zolo-webhook-remove-btn {
+        color: #ff4d4f !important;
+        border: 1px solid #ff4d4f;
+        &:focus {
+            box-shadow: 0 0 0 1px #ff4d4f !important;
+            border: 1px solid #ff4d4f !important;
+        }
+    }
+
+    .zolo-webhok-label-url-wrap {
+        background: #f8f8f8;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid #f0f0f0;
+        .components-base-control {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
 @media (min-width: 1024px) {
     .zolo-settings-tabs-wrap {
         .zolo-tab-button-item {
@@ -325,5 +387,5 @@ span.block-separator {
                 }
             }
         }
-    } 
+    }
 }

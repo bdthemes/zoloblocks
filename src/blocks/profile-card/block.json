@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["Profile", "Card"],
     "description": "For showcasing team member profiles with style",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

@@ -36,29 +36,6 @@ if (! class_exists('PopupBuilder')) {
             add_action('wp_ajax_nopriv_zolo_update_popup_status', [$this, 'update_popup_status']);
             add_action('admin_enqueue_scripts', [$this, 'editor_enqueue_scripts']);
             add_action('wp_head', [$this, 'load_popup_builder']);
-            add_filter('allowed_block_types_all', [$this, 'handle_popup_block_visibility'], 10, 2);
-        }
-
-        /**
-         * Handle popup block visibility
-         *
-         * @param array $allowed_block_types
-         * @param object $editor_context
-         * @return array
-         */
-        public function handle_popup_block_visibility($allowed_block_types, $editor_context) {
-            if (isset($editor_context->post->post_type) && $editor_context->post->post_type !== 'zolo-popup') {
-                $all_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
-                $allowed_blocks = array_keys($all_blocks);
-
-                if (in_array('zolo/popup-builder', $allowed_blocks)) {
-                    $allowed_blocks = array_diff($allowed_blocks, ['zolo/popup-builder']);
-                }
-
-                $allowed_block_types = array_values($allowed_blocks);
-            }
-
-            return $allowed_block_types;
         }
 
         /**

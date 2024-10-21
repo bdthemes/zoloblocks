@@ -64,17 +64,19 @@ export default function RenderView({ attributes }) {
 
     return (
         <>
-            {isLoading ? (
-                <div className="preloader">
-                    <Spinner />
-                </div>
-            ) : catResults.length > 0 ? (
-                catResults.map((cat, index) => (
-                    <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />
-                ))
-            ) : (
-                <p>No items found.</p>
-            )}
+          {isLoading && (
+              <div className="preloader">
+                  <Spinner />
+              </div>
+          )}
+
+          {!isLoading && catResults.length === 0 ? (
+            <p>No post category found.</p>
+          ) : (
+              catResults.map((cat, index) => (
+                  <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />
+              ))
+          )}
         </>
     );
 }

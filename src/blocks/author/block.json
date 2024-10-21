@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["author", "post author"],
     "description": "Customizable dynamic author for your website author",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

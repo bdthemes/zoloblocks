@@ -1,10 +1,33 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies, generateTextStrokeAttributies } =
-    window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateTypographyAttributes,
+    generateResAlignmentAttributies,
+    generateTextStrokeAttributies,
+    generateNormalBGAttributes,
+    generateDimensionAttributes,
+    generateBorderAttributies,
+    generateBoxShadowAttributies,
+} = window.zoloModule;
 
-import { TEXTPATH_ALIGN, TEXTPATH_SIZE, TEXT_PATH_STROKE, TEXT_WORD_SPACING, PATH_TEXT_SPACING } from './constants';
+import {
+    TEXTPATH_ALIGN,
+    TEXTPATH_SIZE,
+    TEXT_PATH_STROKE,
+    TEXT_WORD_SPACING,
+    PATH_TEXT_SPACING,
+    CIRCLE_DURATION,
+    CIRCLE_IMG_HEIGHT,
+    CIRCLE_IMG_WIDTH,
+    CIRCLE_IMAGE_BACKGROUND,
+    CIRCLE_IMAGE_PADDING,
+    CIRCLE_IMAGE_MARGIN,
+    CIRCLE_IMAGE_BORDER,
+    CIRCLE_IMAGE_BOX_SHADOW,
+    CIRCLE_IMAGE_BORDER_RADIUS,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -40,6 +63,33 @@ const attributes = {
     ...generateTextStrokeAttributies(TEXT_PATH_STROKE),
     ...generateResRangeAttributies(TEXT_WORD_SPACING),
     ...generateResRangeAttributies(PATH_TEXT_SPACING),
+    ...generateResRangeAttributies(CIRCLE_DURATION),
+    ...generateResRangeAttributies(CIRCLE_IMG_HEIGHT),
+    ...generateResRangeAttributies(CIRCLE_IMG_WIDTH),
+
+    ...generateDimensionAttributes(CIRCLE_IMAGE_PADDING),
+    ...generateDimensionAttributes(CIRCLE_IMAGE_MARGIN),
+    ...generateNormalBGAttributes(CIRCLE_IMAGE_BACKGROUND),
+    ...generateBorderAttributies(CIRCLE_IMAGE_BORDER),
+    ...generateBoxShadowAttributies(CIRCLE_IMAGE_BOX_SHADOW),
+    ...generateDimensionAttributes(CIRCLE_IMAGE_BORDER_RADIUS),
+
+    circlePhoto: {
+        type: 'object',
+        default: {
+            id: '',
+            url: zoloPlaceholders?.zbBrand,
+            alt: '',
+        },
+    },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
+    circlePhotoTitle: {
+        type: 'string',
+        default: 'zoloblocks',
+    },
 
     textpathContent: {
         type: 'string',
@@ -74,6 +124,28 @@ const attributes = {
     },
     textPathHoverColor: {
         type: 'string',
+    },
+
+    pathColor: {
+        type: 'string',
+    },
+
+    textPathTypeCircle: {
+        type: 'boolean',
+        default: false,
+    },
+
+    showCircleImg: {
+        type: 'boolean',
+        default: false,
+    },
+
+    circleAnimationDuration: {
+        type: 'object',
+        default: {
+            duration: 10000,
+            direction: 'clockwise',
+        },
     },
 };
 
