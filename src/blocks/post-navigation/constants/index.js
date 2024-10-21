@@ -1,24 +1,34 @@
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 //get all public taxonomy list
 export const GET_TAXONOMIEX = (taxonomies) => {
-  const allTaxonomies = [
-    {
-      value: '',
-      label: __('Select Type', 'zoloblocks'),
-    },
-  ];
-  // Add public taxonomies to the array
-  Object.values(taxonomies).forEach((taxonomy) => {
-    if (taxonomy.public) {
-      allTaxonomies.push({
-        value: taxonomy.name,
-        label: taxonomy.label,
-      });
-    }
-  });
+    const allTaxonomies = [
+        {
+            value: '',
+            label: __('Select Type', 'zoloblocks'),
+        },
+    ];
+    // Add public taxonomies to the array
+    Object.values(taxonomies).forEach((taxonomy) => {
+        if (taxonomy.public) {
+            allTaxonomies.push({
+                value: taxonomy.name,
+                label: taxonomy.label,
+            });
+        }
+    });
 
-  return allTaxonomies;
+    return allTaxonomies;
 };
+
+export const POST_TITLE_ANIMATION = [
+    { label: __('Default', 'zoloblocks'), value: '' },
+    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: false },
+    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: false },
+    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: false },
+    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: false },
+    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: false },
+];
+
 //title
 export const TITLE_MARGIN = 'titleMargin';
 //image

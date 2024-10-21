@@ -1,125 +1,200 @@
 .wp-block-zolo-post-navigation {
-	background-color: #fff;
-	padding: clamp(15px, 1.8vw, 20px);
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: clamp(30px, 7vw, 100px);
-	position: relative;
+    background-color: #fff;
+    padding: clamp(15px, 1.8vw, 30px);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(30px, 7vw, 100px);
+    position: relative;
+    box-sizing: border-box;
 
-	&::before {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		content: "";
-		width: 1px;
-		height: 50%;
-		background-color: #ddd;
-		left: 50%;
-	}
+    &::before {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        content: '';
+        width: 1px;
+        height: 50%;
+        background-color: #ddd;
+        left: 50%;
+    }
 
-	.zolo-item {
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		gap: 20px;
-		flex-direction: row-reverse;
+    .zolo-item {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        &:hover {
+            .zolo-image-wrap {
+                img {
+                    transform: scale(1.1);
+                }
+            }
 
-		&:hover {
-			.zolo-image-wrap {
-				img {
-					transform: scale(1.1);
-				}
-			}
+            .zolo-pos-nav-title {
+                color: #006aff;
+            }
 
-			.zolo-pos-nav-title {
-				color: #006aff;
-			}
+            &.zolo-post-next,
+            &.zolo-post-prev {
+                .zolo-nav-text {
+                    svg {
+                        transform: rotate(0);
+                    }
+                }
+            }
+        }
 
-			&.zolo-post-next,
-			&.zolo-post-prev {
-				.zolo-nav-text {
-					svg {
-						transform: rotate(0);
-					}
-				}
-			}
-		}
+        &.zolo-post-next {
+            text-align: right;
 
-		&.zolo-post-next {
-			text-align: right;
+            .zolo-nav-text {
+                svg {
+                    transform: rotate(-45deg);
+                }
+            }
+        }
 
-			.zolo-nav-text {
-				svg {
-					transform: rotate(-45deg);
-				}
-			}
-		}
+        &.zolo-post-prev {
+            .zolo-nav-text {
+                flex-direction: row-reverse;
 
-		&.zolo-post-prev {
-			.zolo-nav-text {
-				flex-direction: row-reverse;
+                svg {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+    .zolo-content-wrap {
+        width: 100%;
+    }
 
-				svg {
-					transform: rotate(45deg);
-				}
-			}
-		}
-	}
+    .zolo-image-wrap {
+        overflow: hidden;
+        border-radius: 6px;
+        display: none;
+        width: 180px;
 
-	.zolo-image-wrap {
-		overflow: hidden;
-		border-radius: 6px;
-		display: none;
+        img {
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+    }
+    .zolo-nav-text {
+        font-size: clamp(10px, 0.8vw, 12px);
+        color: #006aff;
+        margin-bottom: clamp(10px, 1vw, 12px);
+        display: inline-block;
+        background-color: #ecf4ff;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
 
-		img {
-			width: 170px;
-			height: auto;
-			vertical-align: middle;
-			transition: transform 0.3s ease;
-		}
-	}
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+            transition: transform 0.3s ease;
+            path {
+                fill: currentColor;
+            }
+        }
+    }
 
-	.zolo-nav-text {
-		font-size: clamp(10px, 0.8vw, 12px);
-		color: #006aff;
-		margin-bottom: clamp(10px, 1vw, 15px);
-		display: inline-block;
-		background-color: #ecf4ff;
-		padding: 6px 10px;
-		border-radius: 6px;
-		font-weight: 700;
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-
-		svg {
-			width: 18px;
-			height: 18px;
-			display: block;
-			transition: transform 0.3s ease;
-		}
-	}
-
-	.zolo-pos-nav-title {
-		margin: 0;
-		font-size: clamp(14px, 2vw, 18px);
-		color: #2f2f35;
-		transition: color 0.3s ease;
-	}
+    .zolo-pos-nav-title {
+        margin: 0;
+        font-size: clamp(15px, 2vw, 22px);
+        color: #2f2f35;
+        transition: color 0.3s ease;
+        font-weight: 600;
+        line-height: 1.5;
+    }
 }
 
 @media (min-width: 768px) {
-	.wp-block-zolo-post-navigation {
-		.zolo-image-wrap {
-			display: block;
-		}
+    .wp-block-zolo-post-navigation {
+        .zolo-image-wrap {
+            display: block;
+        }
 
-		.zolo-item {
-			&.zolo-post-next {
-				text-align: left;
-			}
-		}
-	}
+        .zolo-item {
+            &.zolo-post-next {
+                text-align: left;
+            }
+        }
+    }
+}
+
+// post title animation type css start here
+
+.zolo-post-title-type-1,
+.zolo-post-title-type-2,
+.zolo-post-title-type-3,
+.zolo-post-title-type-4,
+.zolo-post-title-type-5 {
+    .zolo-pos-nav-title {
+        background-repeat: no-repeat;
+        transition:
+            background-size 0.3s,
+            color 0.2s !important;
+        display: inline;
+
+        background-position: 0 100%;
+        background-size: 0 100%;
+    }
+}
+
+.zolo-post-title-type-1 {
+    --zolo-post-title-type-primary-color: #000;
+    .zolo-pos-nav-title {
+        background-image: linear-gradient(var(--zolo-post-title-type-primary-color), var(--zolo-post-title-type-primary-color));
+        background-position: 0 100%;
+        background-size: 0 100%;
+        &:hover {
+            background-size: 100% 100%;
+            color: #fff;
+        }
+    }
+}
+
+.zolo-post-title-type-2,
+.zolo-post-title-type-3,
+.zolo-post-title-type-4,
+.zolo-post-title-type-5 {
+    .zolo-pos-nav-title {
+        background-image: linear-gradient(currentColor, currentColor);
+        background-position: 0% 100%;
+        background-size: 0% 2px;
+        &:hover {
+            background-size: 100% 2px;
+        }
+    }
+}
+
+.zolo-post-title-type-3 {
+    .zolo-pos-nav-title {
+        background-position: 50% 100%;
+    }
+}
+
+.zolo-post-title-type-4 {
+    .zolo-pos-nav-title {
+        background-position: 0% 0;
+    }
+}
+
+.zolo-post-title-type-5 {
+    .zolo-pos-nav-title {
+        background-position: 50% 0%;
+    }
 }

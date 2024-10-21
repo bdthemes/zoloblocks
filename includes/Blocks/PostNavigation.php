@@ -21,6 +21,7 @@ class PostNavigation {
 	 */
 	protected $default_block_attributes = [
 		'showCategoryBased' => false,
+		'postTitleAnimation' => '',
 		'selectedTaxonomy'  => '',
 		'showImage'         => true,
 		'showTitle'         => true,
@@ -40,7 +41,8 @@ class PostNavigation {
 			return '';
 		}
 		$this->settings     = wp_parse_args( $attributes, $this->default_block_attributes );
-		$wrapper_class      = trim( ZoloHelpers::get_wrapper_class( $this->settings, '' ) . ' ' . implode( ' ', $this->settings['parentClasses'] ?? [] ) );
+		$wrapper_class      = trim( ZoloHelpers::get_wrapper_class( $this->settings, '' ) . ' ' . implode( ' ', $this->settings['parentClasses'] ?? [] ) . ' ' . $this->settings['postTitleAnimation'] );
+
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => esc_attr( $wrapper_class ) ] );
 		$prev_post          = get_previous_post();
 		$next_post          = get_next_post();
@@ -127,16 +129,18 @@ class PostNavigation {
 
 			<div class="zolo-content-wrap">
 				<?php if ( ! empty( $this->settings['showBtn'] ) ) : ?>
-					<span class="zolo-nav-text">
-						<span><?php echo esc_html( $text ); ?></span>
-						<?php
-						if ( 'next' == $type ) {
-							echo wp_kses( $nextIcon, ZoloHelpers::wp_kses_allowed_svg() );
-						} else {
-							echo wp_kses( $previousIcon, ZoloHelpers::wp_kses_allowed_svg() );
-						}
-						?>
-					</span>
+					<div class="zolo-nav-wrap">
+						<span class="zolo-nav-text">
+							<span><?php echo esc_html( $text ); ?></span>
+							<?php
+							if ( 'next' == $type ) {
+								echo wp_kses( $nextIcon, ZoloHelpers::wp_kses_allowed_svg() );
+							} else {
+								echo wp_kses( $previousIcon, ZoloHelpers::wp_kses_allowed_svg() );
+							}
+							?>
+						</span>
+					</div>
 				<?php endif; ?>
 				<?php if ( ! empty( $this->settings['showTitle'] ) ) : ?>
 					<h2 class="zolo-pos-nav-title"><?php echo esc_html( $post->post_title ); ?></h2>
