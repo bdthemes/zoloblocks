@@ -17,6 +17,7 @@
                 cursor: pointer;
                 z-index: 99;
                 color: currentColor;
+                pointer-events: none;
                 svg {
                     color: inherit;
                     fill: currentColor;
@@ -44,7 +45,10 @@
             z-index: 10;
             pointer-events: none;
             box-sizing: border-box;
-            transition: all 0.4s ease;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.44, 0.82, 0.63, 1);
+            text-align: -webkit-auto;
+            text-align: auto;
 
             & > .wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
                 top: 0;
@@ -81,6 +85,7 @@
                     visibility: visible;
                     opacity: 1;
                     pointer-events: all;
+                    transform: translateY(0);
                 }
             }
         }

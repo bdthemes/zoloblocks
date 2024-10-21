@@ -7,6 +7,7 @@ import './style.scss';
 import MetaItem from './meta-item';
 import Style from './styles';
 import { MetaIcon } from './meta-icon';
+import { __ } from '@wordpress/i18n';
 
 const { classArrayToStr, SidebarOpener } = window.zoloModule;
 export default function Edit(props) {
