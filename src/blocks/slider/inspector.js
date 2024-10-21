@@ -15,6 +15,7 @@ const {
     ResDimensionsControl,
     TabPanelControl,
     NormalBGControl,
+    SimpleRangeControl,
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
@@ -86,12 +87,47 @@ const Inspector = (props) => {
         loop = false,
         navigation = true,
         navPosition = 'center-center',
-        effect = 'slide',
         pagination = true,
         paginationType = 'bullets',
         pagiPosition = 'bottom-center',
         progressDirection = 'top',
+        effect = 'slide', // slide, fade, cube, coverflow, flip, creative, cards
+
+        cardsEffect = {
+            slideShadows: true,
+            rotate: true,
+            perSlideRotate: 2,
+            perSlideOffset: 8,
+        },
+        coverflowEffect = {
+            slideShadows: true,
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            scale: 1,
+            modifier: 1,
+            // shadowOffset: 20,
+            // shadowScale: 0.94,
+        },
+        cubeEffect = {
+            slideShadows: true,
+            shadow: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+        },
+        creativePreset = 'preset1',
+        fadeEffect = {
+            crossfade: false,
+        },
+        flipEffect = {
+            slideShadows: true,
+            limitRotation: true,
+            // shadowOffset: 20,
+            // shadowScale: 0.94,
+        },
     } = sliderOptions;
+
+    console.log('sliderOptions', sliderOptions);
 
     const requiredProps = {
         resMode,
@@ -232,6 +268,366 @@ const Inspector = (props) => {
                                     });
                                 }}
                             />
+
+                            {/* { label: __('Cube', 'zoloblocks'), value: 'cube' },
+                                { label: __('Coverflow', 'zoloblocks'), value: 'coverflow' },
+                                { label: __('Flip', 'zoloblocks'), value: 'flip' },  */}
+
+                            {effect === 'cube' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Shadow', 'zoloblocks')}
+                                        checked={cubeEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <ToggleControl
+                                        label={__('Cube Shadow', 'zoloblocks')}
+                                        checked={cubeEffect?.shadow || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadow: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Offset (px)', 'zoloblocks')}
+                                        value={cubeEffect?.shadowOffset || 20}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowOffset: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowOffset: 20,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Scale', 'zoloblocks')}
+                                        value={cubeEffect?.shadowScale || 0.94}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowScale: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowScale: 0.94,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        noUnits={true}
+                                    />
+                                </>
+                            )}
+                            {effect === 'fade' && (
+                                <>
+                                    <ToggleControl
+                                        label="Crossfade"
+                                        checked={fadeEffect?.crossfade || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    fadeEffect: {
+                                                        ...fadeEffect,
+                                                        crossfade: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
+
+                            {effect === 'flip' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Slide Shadows', 'zoloblocks')}
+                                        checked={flipEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                options: {
+                                                    ...options,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Offset (px)', 'zoloblocks')}
+                                        value={flipEffect?.shadowOffset || 20}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowOffset: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowOffset: 20,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Scale', 'zoloblocks')}
+                                        value={flipEffect?.shadowScale || 0.94}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowScale: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowScale: 0.94,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        noUnits={true}
+                                    />
+                                </>
+                            )}
+                            {effect === 'coverflow' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Slide Shadows', 'zoloblocks')}
+                                        checked={coverflowEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Rotate', 'zoloblocks')}
+                                        value={coverflowEffect?.rotate || 50}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        rotate: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        rotate: 50,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={-360}
+                                        max={360}
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Stretch', 'zoloblocks')}
+                                        value={coverflowEffect?.stretch || 0}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        stretch: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={-360}
+                                        max={360}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        stretch: 0,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+
+                                    <SimpleRangeControl
+                                        label={__('Depth', 'zoloblocks')}
+                                        value={coverflowEffect?.depth || 100}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        depth: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1000}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        depth: 100,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+
+                                    <SimpleRangeControl
+                                        label={__('Shadow Scale', 'zoloblocks')}
+                                        value={coverflowEffect?.shadowScale || 1}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        shadowScale: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        shadowScale: 1,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Modifier', 'zoloblocks')}
+                                        value={coverflowEffect?.modifier || 1}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        modifier: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        modifier: 1,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
 
                         {navigation && (

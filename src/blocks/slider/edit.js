@@ -63,7 +63,40 @@ export default function Edit(props) {
         loop = false,
         navigation = true,
         navPosition = 'center-center',
-        effect = 'slide',
+        effect = 'slide', // slide, fade, cube, coverflow, flip, creative, cards
+
+        cardsEffect = {
+            slideShadows: true,
+            rotate: true,
+            perSlideRotate: 2,
+            perSlideOffset: 8,
+        },
+        coverflowEffect = {
+            slideShadows: true,
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            scale: 1,
+            modifier: 1,
+            // shadowOffset: 20,
+            // shadowScale: 0.94,
+        },
+        cubeEffect = {
+            slideShadows: false,
+            shadow: false,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+        },
+        creativePreset = 'preset1',
+        fadeEffect = {
+            crossfade: false,
+        },
+        flipEffect = {
+            slideShadows: true,
+            limitRotation: true,
+            // shadowOffset: 20,
+            // shadowScale: 0.94,
+        },
         pagination = true,
         paginationType = 'bullets',
         pagiPosition = 'bottom-center',
@@ -128,7 +161,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <Swiper
                     className={`${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
-                    key={`${addNewSlideBlock}${paginationType}${navPosition}${pagiPosition}${progressDirection}${effect}`}
+                    key={`${addNewSlideBlock}${paginationType}${navPosition}${pagiPosition}${progressDirection}${JSON.stringify(sliderOptions)}`}
                     ref={swiperRef}
                     modules={[
                         A11y,
@@ -154,7 +187,14 @@ export default function Edit(props) {
                               }
                             : false
                     }
+                    // effect={effect}
                     effect={effect}
+                    coverflowEffect={effect === 'coverflow' ? coverflowEffect : {}}
+                    cubeEffect={effect === 'cube' ? cubeEffect : {}}
+                    cardsEffect={effect === 'cards' ? cardsEffect : {}}
+                    // creativeEffect={effect === 'creative' ? creativePresets[creativePreset] : {}}
+                    fadeEffect={effect === 'fade' ? fadeEffect : {}}
+                    flipEffect={effect === 'flip' ? flipEffect : {}}
                     slidesPerView={1}
                     speed={speed || 800}
                     autoplay={
