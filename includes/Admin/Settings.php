@@ -298,9 +298,6 @@ if (! class_exists('Settings')) {
             );
         }
 
-
-
-
         /**
          * Handles the blocks settings.
          *
@@ -313,6 +310,21 @@ if (! class_exists('Settings')) {
                 return $this->get_blocks();
             } else {
                 return $this->update_blocks($request);
+            }
+        }
+
+        /**
+         * Handles the demos settings.
+         * 
+         * This method is responsible for handling the demos settings.
+         * 
+         * @param WP_REST_Request $request The request object.
+         */
+        public function handle_demos_settings($request) {
+            if ($request->get_method() === 'GET') {
+                return $this->get_demos();
+            } else {
+                return $this->update_demos($request);
             }
         }
 

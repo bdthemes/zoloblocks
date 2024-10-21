@@ -5,6 +5,10 @@ import classNames from 'classnames';
 import ProPopup from './pro-popup';
 
 const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTemplate }) => {
+    console.log('favIds', favIds);
+
+    console.log('templates', templates);
+
     return (
         <div className="zolo-demos-wrapper">
             {templates &&
