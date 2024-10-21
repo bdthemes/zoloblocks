@@ -7,21 +7,30 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-const { generateResRangeStyle, generateDimensionStyle, generateBorderStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
-    window.zoloModule;
+const {
+    generateResRangeStyle,
+    generateDimensionStyle,
+    generateBorderStyle,
+    generateNormalBGControlStyles,
+    GlobalStyleHanlder,
+    generateTypographyStyles,
+} = window.zoloModule;
 
 // Constants
 import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
-    NAV_WIDTH,
-    NAV_HEIGHT,
+    // NAV_WIDTH,
+    // NAV_HEIGHT,
+    NAV_PADDING,
+    NAV_MARGIN,
     NAV_BORDER,
     NAV_BORDER_RADIUS,
     NAV_BG,
     NAV_HOVER_BG,
     NAV_ICON_SIZE,
+    PAGI_MARGIN,
     PAG_WIDTH,
     PAG_HEIGHT,
     PAG_BORDER,
@@ -36,9 +45,14 @@ import {
     APAG_BG,
 } from './constants';
 
+import { PAGI_FRACTIONS_TYPO } from './constants/typoPrefixConstants';
+
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, navColor, navHoverColor, navHoverBorderColor } = attributes;
+    const { uniqueId, navColor, navHoverColor, navHoverBorderColor, pagiFractionCurrentColor, pagiFractionColor, sliderOptions } =
+        attributes;
+
+    const { paginationType = 'bullets', navPosition = 'bottom-center' } = sliderOptions;
 
     // slider height
     const {
@@ -73,24 +87,23 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Navigation
     const {
-        desktopRangeStyle: navDeskWidth,
-        tabRangeStyle: navTabWidth,
-        mobRangeStyle: navMobWidth,
-    } = generateResRangeStyle({
-        controlName: NAV_WIDTH,
-        property: 'width',
+        dimensionStylesDesktop: navDeskMargin,
+        dimensionStylesTab: navTabMargin,
+        dimensionStylesMobile: navMobMargin,
+    } = generateDimensionStyle({
+        controlName: NAV_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
     const {
-        desktopRangeStyle: navDeskHeight,
-        tabRangeStyle: navTabHeight,
-        mobRangeStyle: navMobHeight,
-    } = generateResRangeStyle({
-        controlName: NAV_HEIGHT,
-        property: 'height',
+        dimensionStylesDesktop: navDeskPadding,
+        dimensionStylesTab: navTabPadding,
+        dimensionStylesMobile: navMobPadding,
+    } = generateDimensionStyle({
+        controlName: NAV_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
@@ -165,6 +178,26 @@ const Style = ({ props }) => {
     });
 
     // Pagination
+
+    const {
+        typoStylesDesktop: pagiFractionTypoDesk,
+        typoStylesTab: pagiFractionTypoTab,
+        typoStylesMobile: pagiFractionTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: PAGI_FRACTIONS_TYPO,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: pagiDeskMargin,
+        dimensionStylesTab: pagiTabMargin,
+        dimensionStylesMobile: pagiMobMargin,
+    } = generateDimensionStyle({
+        controlName: PAGI_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     const {
         desktopRangeStyle: pagDeskWidth,
         tabRangeStyle: pagTabWidth,
@@ -185,15 +218,15 @@ const Style = ({ props }) => {
         attributes,
     });
 
-     const {
-         desktopRangeStyle: pagBottomSpacingDesktop,
-         tabRangeStyle: pagBottomSpacingTab,
-         mobRangeStyle: pagBottomSpacingMob,
-     } = generateResRangeStyle({
-         controlName: PAG_VERTICAL_OFFSET,
-         property: 'bottom',
-         attributes,
-     });
+    const {
+        desktopRangeStyle: pagBottomSpacingDesktop,
+        tabRangeStyle: pagBottomSpacingTab,
+        mobRangeStyle: pagBottomSpacingMob,
+    } = generateResRangeStyle({
+        controlName: PAG_VERTICAL_OFFSET,
+        property: 'bottom',
+        attributes,
+    });
 
     const {
         desktopBorderStyle: pagBorderStyles,
@@ -306,9 +339,29 @@ const Style = ({ props }) => {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
-            ${navDeskWidth}
-            ${navDeskHeight}
+            ${navDeskPadding}
         }
+
+        ${
+            navPosition !== 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-navigation-wrap {
+                        ${navDeskMargin}
+                    }
+                 `
+                : ''
+        }
+
+        ${
+            navPosition === 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .zolo-nav-ps-center-center .swiper-nav-button {
+                        ${navDeskMargin}
+                    }
+                 `
+                : ''
+        }
+            
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover,
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
             ${navHoverBGStyle}
@@ -335,10 +388,14 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
             ${pagBottomSpacingDesktop}
+            ${pagiDeskMargin}
+            ${pagSpacingDesktop}
+            ${pagiFractionTypoDesk}
+            ${pagiFractionColor ? `color: ${pagiFractionColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets {
-            ${pagSpacingDesktop}
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination .swiper-pagination-current {
+            ${pagiFractionCurrentColor ? `color: ${pagiFractionCurrentColor};` : ''}
         }
 
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -355,6 +412,25 @@ const Style = ({ props }) => {
             ${apagBorderRadiusDesktop}
             ${apagNormalBGStyle}
         }
+
+        ${
+            paginationType === 'progressbar'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar {
+                        ${pagDeskHeight}
+                        ${pagBorderStyles}
+                        ${pagBorderRadiusDesktop}
+                        ${pagNormalBGStyle}
+                    }
+                    
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+                        ${apagNormalBGStyle}
+                    }
+                 `
+                : ''
+        }
+        
+
     `;
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-slider .swiper-slide,
@@ -366,12 +442,32 @@ const Style = ({ props }) => {
             ${contentPaddingTab}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
-            ${navTabWidth}
-            ${navTabHeight}
             ${navBorderStylesTab}
             ${navBorderRadiusTab}
             ${navNormalBGStyleTab}
+            ${navTabPadding}
         }
+
+        ${
+            navPosition !== 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-navigation-wrap {
+                        ${navTabMargin}
+                    }
+                 `
+                : ''
+        }
+
+        ${
+            navPosition === 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .zolo-nav-ps-center-center .swiper-nav-button {
+                        ${navTabMargin}
+                    }
+                 `
+                : ''
+        }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleTab}
         }
@@ -384,6 +480,9 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
             ${pagBottomSpacingTab}
+            ${pagiTabMargin}
+            ${pagSpacingTab}
+            ${pagiFractionTypoTab}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagTabWidth}
@@ -391,7 +490,6 @@ const Style = ({ props }) => {
             ${pagBorderStylesTab}
             ${pagBorderRadiusTab}
             ${pagNormalBGStyleTab}
-            ${pagSpacingTab}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagTabWidth}
@@ -399,6 +497,23 @@ const Style = ({ props }) => {
             ${apagBorderStylesTab}
             ${apagBorderRadiusTab}
             ${apagNormalBGStyleTab}
+        }
+
+        ${
+            paginationType === 'progressbar'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar {
+                        ${pagTabHeight}
+                        ${pagBorderStylesTab}
+                        ${pagBorderRadiusTab}
+                        ${pagNormalBGStyleTab}
+                    }
+                    
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+                        ${apagNormalBGStyleTab}
+                    }
+                 `
+                : ''
         }
     `;
     const mobileAllStyle = `
@@ -411,12 +526,32 @@ const Style = ({ props }) => {
             ${contentPaddingMob}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
-            ${navMobWidth}
-            ${navMobHeight}
             ${navBorderStylesMob}
             ${navBorderRadiusMob}
             ${navNormalBGStyleMob}
+            ${navMobPadding}
         }
+
+        ${
+            navPosition !== 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-navigation-wrap {
+                        ${navMobMargin}
+                    }
+                 `
+                : ''
+        }
+
+        ${
+            navPosition === 'center-center'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .zolo-nav-ps-center-center .swiper-nav-button {
+                        ${navMobMargin}
+                    }
+                 `
+                : ''
+        }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleMob}
         }
@@ -427,16 +562,20 @@ const Style = ({ props }) => {
             ${cnavMobSize}
             ${cnavMobHSize}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
-           ${pagBottomSpacingMob}
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
+            ${pagBottomSpacingMob}
+            ${pagiMobMargin}
+            ${pagSpacingMob}
+            ${pagiFractionTypoMob}
         }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagMobWidth}
             ${pagMobHeight}
             ${pagBorderStylesMob}
             ${pagBorderRadiusMob}
             ${pagNormalBGStyleMob}
-            ${pagSpacingMob}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagMobWidth}
@@ -444,6 +583,23 @@ const Style = ({ props }) => {
             ${apagBorderStylesMob}
             ${apagBorderRadiusMob}
             ${apagNormalBGStyleMob}
+        }
+
+        ${
+            paginationType === 'progressbar'
+                ? `
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar {
+                        ${pagMobHeight}
+                        ${pagBorderStylesMob}
+                        ${pagBorderRadiusMob}
+                        ${pagNormalBGStyleMob}
+                    }
+                    
+                    .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+                        ${apagNormalBGStyleMob}
+                    }
+                 `
+                : ''
         }
     `;
 
