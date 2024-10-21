@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["beaf", "footer slider", "image compare"],
     "description": "Slide to compare between two images side by side",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

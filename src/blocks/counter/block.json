@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["counter", "advanced counter box"],
     "description": "Add engaging counter numbers to display various stats",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

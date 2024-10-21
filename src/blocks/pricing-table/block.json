@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["pricing", "pricing table"],
     "description": "Creates beautiful product/service pricing tables",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

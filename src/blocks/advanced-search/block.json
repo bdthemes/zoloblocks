@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["search", "advanced search", "ajax search", "zolo", "zoloblocks"],
     "description": "Provide users with a dynamic search feature",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

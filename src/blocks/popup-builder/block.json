@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Popup Builder",
     "name": "zolo/popup-builder",
@@ -16,7 +16,8 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": ["wide", "full"],
+        "zolo-popup" : true
     },
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",

@@ -6,7 +6,7 @@
     "keywords": ["team", "team member"],
     "description": "Single item block for the team block",
     "parent": ["zolo/team-grid"],
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "supports": {
         "anchor": false,

@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["icon", "advanced icon box"],
     "description": "Make stunning content with the icon box block",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

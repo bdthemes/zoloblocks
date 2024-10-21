@@ -2,7 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
-import { RangeControl } from '@wordpress/components';
+import { RangeControl, __experimentalNumberControl as NumberControl} from '@wordpress/components';
 
 const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min = null, max = null }) => {
     const { label, setAttributes, forBorderRadius, controlName, isLinked } = neededProps;
@@ -56,17 +56,30 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
             <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
                 <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
-                        <RangeControl
-                            value={
-                                parseInt(dimensions.top) ||
-                                parseInt(dimensions.right) ||
-                                parseInt(dimensions.bottom) ||
-                                parseInt(dimensions.left) ||
-                                null
-                            }
-                            onChange={(value) => setLinkedDimensions(value.toString())}
-                            max={max || 100}
-                        />
+                        <div className="zolo-input-range-wrapper">
+                            <RangeControl
+                                value={
+                                    parseInt(dimensions.top) ||
+                                    parseInt(dimensions.right) ||
+                                    parseInt(dimensions.bottom) ||
+                                    parseInt(dimensions.left) ||
+                                    null
+                                }
+                                onChange={(value) => setLinkedDimensions(value.toString())}
+                                max={max || 100}
+                                withInputField={false}
+                            />
+                            <NumberControl
+                                value={
+                                    parseInt(dimensions.top) ||
+                                    parseInt(dimensions.right) ||
+                                    parseInt(dimensions.bottom) ||
+                                    parseInt(dimensions.left) ||
+                                    null
+                                }
+                                onChange={(value) => setLinkedDimensions(value.toString())}
+                            />
+                        </div>
                     )}
                     {!isLinked && (
                         <>
