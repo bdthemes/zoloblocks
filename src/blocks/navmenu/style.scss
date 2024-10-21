@@ -1,0 +1,343 @@
+@mixin navmenuHide() {
+    width: 100%;
+    max-width: 300px;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px 0 rgba(255, 165, 0, 0);
+    overflow-x: hidden;
+    transition: left 0.3s ease-out;
+    background-color: #f7f7f7;
+    z-index: 99;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 30px;
+}
+
+.wp-block-zolo-navmenu {
+    .zolo-navmenu-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        position: relative;
+
+        a {
+            display: inline-block;
+            color: #323239;
+            transition: 0.3s ease;
+            &:hover {
+                color: var(--zoloblocks-brand-color);
+            }
+        }
+    }
+
+    .wp-block-zolo-navmenu-item {
+        position: relative;
+        width: auto;
+    }
+
+    .zolo-nav-menu-sidebar-top {
+        display: none;
+    }
+
+    .zolo-nav-menu-hamburger {
+        display: none;
+        padding: 10px;
+        background-color: transparent;
+        border-radius: 0.25rem;
+        position: relative;
+        z-index: 5;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.4s ease-in;
+        color: currentColor;
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+            fill: currentColor;
+        }
+    }
+    &.menu-breakpoint-desktop {
+        .zolo-nav-menu-hamburger {
+            display: inline-block;
+        }
+
+        .zolo-navmenu-wrapper {
+            @include navmenuHide();
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        &.menu-breakpoint-tablet {
+            .zolo-nav-menu-hamburger {
+                display: inline-block;
+            }
+
+            .zolo-navmenu-wrapper {
+                @include navmenuHide();
+            }
+        }
+    }
+
+    @media all and (max-width: 767px) {
+        &.menu-breakpoint-mobile {
+            .zolo-nav-menu-hamburger {
+                display: inline-block;
+            }
+
+            .zolo-navmenu-wrapper {
+                @include navmenuHide();
+            }
+        }
+    }
+
+    .zolo-navmenu-wrapper {
+        &.is-menu-active {
+            .zolo-navmenu-menu {
+                flex-direction: column;
+                align-items: flex-start;
+                background: inherit;
+                box-shadow: inherit;
+
+                .wp-block-zolo-navmenu-submenu {
+                    background: inherit !important;
+                    box-shadow: inherit !important;
+                }
+
+                .zolo-navmenu-item {
+                    width: 100%;
+                }
+
+                .zolo-navmenu-link {
+                    padding: 0 10px;
+                }
+            }
+
+            .zolo-navmenu-submenu-add-btn {
+                display: none;
+            }
+
+            .zolo-navmenu-item {
+                .zolo-navmenu-submenu-wrapper {
+                    position: relative;
+                    left: unset;
+                    top: unset;
+
+                    & > .wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
+                        position: relative;
+                        left: unset;
+                        top: unset;
+                    }
+                }
+            }
+
+            .zolo-nav-menu-sidebar-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+
+                .zolo-nav-menu-sidebar-logo {
+                    line-height: 1;
+
+                    img {
+                        display: block;
+                        width: 180px;
+                    }
+                }
+                .zolo-nav-menu-sidebar-close {
+                    padding: 4px;
+                    background-color: transparent;
+                    border-radius: 0.25rem;
+                    position: relative;
+                    z-index: 10;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in;
+                    // border: 1px solid rgba(0, 0, 0, 0.2);
+                    color: #323239;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin: 15px;
+                    color: #323239;
+                    box-shadow: none;
+                    svg {
+                        width: 1em;
+                        height: 1em;
+                        display: block;
+                        fill: currentColor;
+                    }
+                }
+            }
+        }
+
+        &.zolo-nav-menu-open {
+            left: 0;
+        }
+    }
+
+    .zolo-navmenu-overlay {
+        opacity: 0;
+        transition: all 0.4s ease-in;
+
+        &.zolo-nav-menu-overlay-open {
+            opacity: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 7;
+        }
+    }
+    // &.menu-breakpoint-desktop,
+    // &.menu-breakpoint-tablet,
+    // &.menu-breakpoint-mobile {
+    //     display: flex;
+    // }
+}
+
+.zolo-frontend {
+    .wp-block-zolo-navmenu {
+        .zolo-navmenu-wrapper {
+            &.is-menu-active {
+                z-index: 99999;
+            }
+        }
+    }
+}
+
+.block-editor-block-list__block {
+    .zolo-navmenu-wrapper {
+        &.is-menu-active {
+            .zolo-navmenu-item {
+                .zolo-navmenu-submenu-wrapper {
+                    .wp-block-zolo-navmenu-submenu {
+                        &.is-selected {
+                            & > .zolo-navmenu-submenu-add-btn {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// editor styles
+.zolo-editor {
+    .block-editor-block-list__block {
+        .zolo-navmenu-menu {
+            .block-list-appender.block-list-appender {
+                position: relative;
+                margin: 0;
+                height: auto;
+                width: auto;
+
+                button {
+                    color: var(--zoloblocks-brand-color) !important;
+                    border: 2px solid var(--zoloblocks-brand-color) !important;
+                    border-radius: 6px !important;
+                    box-shadow: none !important;
+                }
+            }
+        }
+        .submenu-type-megamenu {
+            .zolo-megamenu-content {
+                .block-list-appender.block-list-appender {
+                    width: 100%;
+                    margin: 10px;
+                    box-sizing: border-box;
+                    .block-editor-button-block-appender {
+                        height: auto;
+                    }
+                }
+                // .block-editor-block-list__layout {
+                //     background-color: #fff;
+                // }
+            }
+            .zolo-nav-menu-item-appender-button {
+                width: 100%;
+                height: 50px;
+                box-sizing: border-box;
+                background: transparent;
+            }
+        }
+    }
+
+    .zolo-navmenu-variation-picker {
+        .components-placeholder {
+            border: 1px solid #bebebe;
+            box-shadow: none;
+            padding: 40px;
+            align-items: center;
+        }
+
+        .components-placeholder__label {
+            font-size: 24px;
+            text-transform: capitalize;
+            font-weight: 600;
+
+            svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .block-editor-block-variation-picker__variations {
+            gap: 20px;
+            li {
+                border: 1px solid #e5e5e5;
+                padding: 20px;
+                border-radius: 6px;
+                min-width: 200px;
+                min-height: 100px;
+                transition: all 0.3s ease;
+                position: relative;
+                flex-direction: column-reverse;
+
+                &:hover,
+                &.is-selected {
+                    border-color: var(--zoloblocks-brand-color);
+                    outline: 1px solid var(--zoloblocks-brand-color);
+                }
+
+                .block-editor-block-variation-picker__variation {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 99;
+                }
+            }
+        }
+
+        .components-placeholder__instructions {
+            font-size: 14px;
+        }
+
+        .components-placeholder__fieldset {
+            margin-top: 20px;
+            width: auto;
+            justify-content: center;
+        }
+
+        .block-editor-block-variation-picker__variation-label {
+            font-size: 14px;
+            font-weight: 600;
+            position: absolute;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-wrap: nowrap;
+        }
+    }
+}

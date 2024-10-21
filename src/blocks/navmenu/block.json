@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Navmenu",
+    "name": "zolo/navmenu",
+    "category": "zoloblocks",
+    "keywords": ["menu", "navmenu", "navigation", "navigation-menu", "megamenu", "mega-menu"],
+    "description": "Build your own navigation menu.",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 400
+    },
+    "supports": {
+        "anchor": false,
+        "align": ["wide", "full"],
+        "customClassName": false
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
+}
