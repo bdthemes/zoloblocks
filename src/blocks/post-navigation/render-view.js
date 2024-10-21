@@ -1,6 +1,6 @@
 import {__} from '@wordpress/i18n';
-
 const {DisplayZoloIcon} = window.zoloModule;
+
 export default function RenderView({attributes}) {
   const {
     showImage,
@@ -62,7 +62,6 @@ export default function RenderView({attributes}) {
             />
           </div>
         )}
-
         <div className="zolo-content-wrap">
           {showBtn && (
             <span className="zolo-nav-text">

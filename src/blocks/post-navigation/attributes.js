@@ -1,9 +1,6 @@
 import {
   //Image
   THUMBNAIL_HEIGHT,
-  THUMBNAIL_BG,
-  THUMBNAIL_PADDING,
-  THUMBNAIL_MARGIN,
   THUMBNAIL_BORDER,
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
@@ -25,11 +22,9 @@ const {
   generateBoxShadowAttributies,
   generateTypographyAttributes,
   generateResRangeAttributies,
-  generateNormalBGAttributes
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
-import {COLUMN_BG} from "@/blocks/post-grid/constants";
 
 const attributes = {
   //Global Attributes
@@ -91,30 +86,30 @@ const attributes = {
   nextPostIcon: {
     type: 'string',
   },
-  thumbnailSize:{
-    type:'string',
+  thumbnailSize: {
+    type: 'string',
   },
   ...generateTypographyAttributes(Object.values(typographyObjs)),
   //thumbnail
   ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
-  ...generateNormalBGAttributes(THUMBNAIL_BG),
-  ...generateDimensionAttributes(THUMBNAIL_PADDING),
-  ...generateDimensionAttributes(THUMBNAIL_MARGIN),
   ...generateBorderAttributies(THUMBNAIL_BORDER),
   ...generateDimensionAttributes(THUMBNAIL_BRADIUS),
   ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
   //title
   ...generateDimensionAttributes(TITLE_MARGIN),
-
-
   //button
   ...generateDimensionAttributes(BTN_PADDING),
   ...generateDimensionAttributes(BTN_MARGIN),
   ...generateBorderAttributies(BTN_BORDER),
   ...generateDimensionAttributes(BTN_BORDER_RADIUS),
-
-
-  //submit btn
+  //title
+  titleColor: {
+    type: 'string'
+  },
+  titleHoverColor: {
+    type: 'string'
+  },
+  //prev/next btn
   btnColor: {
     type: 'string'
   },

@@ -1,5 +1,4 @@
 import {applyFilters} from '@wordpress/hooks';
-
 import {
   TITLE_TYPOGRAPHY,
   BTN_TYPOGRAPHY,
@@ -10,9 +9,6 @@ import {
   TITLE_MARGIN,
   //thumbnail
   THUMBNAIL_HEIGHT,
-  THUMBNAIL_BG,
-  THUMBNAIL_PADDING,
-  THUMBNAIL_MARGIN,
   THUMBNAIL_BORDER,
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
@@ -22,7 +18,6 @@ import {
   BTN_MARGIN,
   BTN_BORDER,
 } from './constants';
-import {AVATAR_SHADOW} from "@/blocks/post-comments-form/constants";
 
 const {
   generateResRangeStyle,

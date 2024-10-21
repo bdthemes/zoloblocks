@@ -32,16 +32,13 @@ class PostNavigation {
 	/**
 	 * Post navigation block frontend.
 	 *
-	 * @param array  $attributes .
-	 * @param string $content .
-	 * @param object $block .
+	 * @param array $attributes .
 	 * @return false|string
 	 */
-	public function render( $attributes, $content, $block ) {
-		if ( empty( $block->context['postId'] ) ) {
+	public function render( $attributes ) {
+		if ( ! is_singular() ) {
 			return '';
 		}
-		$post_id            = $block->context['postId'];
 		$this->settings     = wp_parse_args( $attributes, $this->default_block_attributes );
 		$wrapper_class      = trim( ZoloHelpers::get_wrapper_class( $this->settings, '' ) . ' ' . implode( ' ', $this->settings['parentClasses'] ?? [] ) );
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => esc_attr( $wrapper_class ) ] );
@@ -76,8 +73,8 @@ class PostNavigation {
 		if ( ! is_object( $post ) || empty( $post->ID ) ) {
 			return;
 		}
-		$text             = 'next' == $type ? ( $this->settings['nextPost'] ?? '' ) : ( $this->settings['previousPost'] ?? '' );
-		$wrapClass        = 'next' == $type ? 'zolo-post-next' : 'zolo-post-prev';
+		$text             = 'next' === $type ? ( $this->settings['nextPost'] ?? '' ) : ( $this->settings['previousPost'] ?? '' );
+		$wrapClass        = 'next' === $type ? 'zolo-post-next' : 'zolo-post-prev';
 		$placeholderImage = trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg';
 		$previousIcon     = $this->settings['previousPostIcon'] ?? '<svg
                   xmlns="http://www.w3.org/2000/svg"

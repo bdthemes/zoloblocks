@@ -23,15 +23,12 @@ export const GET_TAXONOMIEX = (taxonomies) => {
 export const TITLE_MARGIN = 'titleMargin';
 //image
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
-export const THUMBNAIL_BG = 'thumbBg';
-export const THUMBNAIL_PADDING = 'thumbPadding';
-export const THUMBNAIL_MARGIN = 'thumbMargin';
 export const THUMBNAIL_BORDER = 'thumbBorder';
 export const THUMBNAIL_BRADIUS = 'thumbBRadius';
 export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
 
 //button
-export const BTN_PADDING = 'sbtnPadding';
-export const BTN_MARGIN = 'sbtnMargin';
-export const BTN_BORDER = 'sbtnBorder';
-export const BTN_BORDER_RADIUS = 'sbtnBRadius';
+export const BTN_PADDING = 'btnPadding';
+export const BTN_MARGIN = 'btnMargin';
+export const BTN_BORDER = 'btnBorder';
+export const BTN_BORDER_RADIUS = 'btnBRadius';

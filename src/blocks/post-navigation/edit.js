@@ -6,6 +6,7 @@ import RenderView from './render-view';
 import './style.scss';
 const {classArrayToStr, SidebarOpener} = window.zoloModule;
 import Style from './styles';
+
 export default function Edit(props) {
   const {attributes, setAttributes, className, isSelected, clientId} = props;
   const {preview, uniqueId, parentClasses} = attributes;
@@ -13,7 +14,6 @@ export default function Edit(props) {
   const blockProps = useBlockProps({
     className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
   });
-
 
   // preview image
   if (preview) {

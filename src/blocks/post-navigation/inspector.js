@@ -60,7 +60,6 @@ export default function Inspector(props) {
     //title
     titleColor,
     titleHoverColor,
-
     //prev/next button
     previousPostIcon,
     nextPostIcon,
