@@ -12,9 +12,6 @@ import {
     TITLE_MARGIN,
     //thumbnail
     THUMBNAIL_HEIGHT,
-    THUMBNAIL_BG,
-    THUMBNAIL_PADDING,
-    THUMBNAIL_MARGIN,
     THUMBNAIL_BORDER,
     THUMBNAIL_BRADIUS,
     THUMBNAIL_BOX_SHADOW,
@@ -23,7 +20,6 @@ import {
     BTN_BORDER_RADIUS,
     BTN_MARGIN,
     BTN_BORDER,
-    POST_TITLE_ANIMATION,
 } from './constants';
 
 import { THUMBNAIL_SIZE } from '@/global/constants';
