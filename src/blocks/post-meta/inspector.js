@@ -30,8 +30,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-    console.log('metaData', metaData);
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs

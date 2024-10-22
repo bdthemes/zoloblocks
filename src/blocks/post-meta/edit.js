@@ -10,6 +10,7 @@ import { MetaIcon } from './meta-icon';
 import { __ } from '@wordpress/i18n';
 
 const { classArrayToStr, SidebarOpener } = window.zoloModule;
+
 export default function Edit(props) {
     const {
         attributes,
@@ -27,7 +28,7 @@ export default function Edit(props) {
     });
 
     useEffect(() => {
-        if (typeof metaData === 'undefined') {
+        if (!Array.isArray(metaData)) {
             setAttributes({
                 metaData: [
                     { id: 1, type: 'author', link: true, showIcon: 'icon', icon: MetaIcon.author },
@@ -39,7 +40,7 @@ export default function Edit(props) {
                 ],
             });
         }
-    }, []);
+    }, [metaData, setAttributes]);
 
     // Preview image rendering
     if (preview) {
@@ -55,15 +56,18 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
 
-                {metaData &&
+                {Array.isArray(metaData) && metaData.length > 0 ? (
                     metaData.map((meta, index) => (
-                        <>
-                            <MetaItem key={meta.id} meta={meta} post={post} />
+                        <React.Fragment key={meta.id}>
+                            <MetaItem meta={meta} post={post} />
                             {index < metaData.length - 1 && (
                                 <span className="zolo-separator">{separatorStyle === 'separator-custom' && customSeparator}</span>
                             )}
-                        </>
-                    ))}
+                        </React.Fragment>
+                    ))
+                ) : (
+                    <p>{__('No metadata available', 'zoloblocks')}</p>
+                )}
             </div>
         </>
     );
