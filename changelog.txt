@@ -20,7 +20,7 @@
 - Improve Slider Block
 - Template library improved
 - Range control improved
-- CSS filter and 
+- CSS filter and
 
 ### 1.5.1 [October 08, 2024]
 
