@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl, SelectControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { TextControl, SelectControl, ToggleControl, CardDivider, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -13,8 +13,6 @@ const {
     ResDimensionsControl,
     BorderControl,
     BoxShadowControl,
-    MediaUpload,
-    Button,
     ImageAvatar,
     ImageSizes,
     ResRangeControl,
@@ -202,24 +200,35 @@ function Inspector(props) {
                         {showCircleImg && textPathType == 'circle' && (
                             <ZoloPanelBody title={__('Image', 'zoloblocks')} panelProps={props}>
                                 <BaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
-                                    {circlePhoto ? (
-                                        <ImageAvatar
-                                            imageUrl={circlePhoto && circlePhoto.url}
-                                            onDeleteImage={() =>
-                                                setAttributes({
-                                                    circlePhoto: {
-                                                        id: '',
-                                                        url: '',
-                                                    },
-                                                })
-                                            }
-                                            imageId={circlePhoto && circlePhoto.id}
-                                            onEditImage={(media) =>
-                                                setAttributes({
-                                                    circlePhoto: media,
-                                                })
-                                            }
-                                        />
+                                    {circlePhoto?.id ? (
+                                        <>
+                                            <ImageAvatar
+                                                imageUrl={circlePhoto && circlePhoto.url}
+                                                onDeleteImage={() =>
+                                                    setAttributes({
+                                                        circlePhoto: {
+                                                            id: '',
+                                                            url: '',
+                                                        },
+                                                    })
+                                                }
+                                                imageId={circlePhoto && circlePhoto.id}
+                                                onEditImage={(media) =>
+                                                    setAttributes({
+                                                        circlePhoto: media,
+                                                    })
+                                                }
+                                            />
+                                            <ImageSizes
+                                                label={__('Resolution', 'zoloblocks')}
+                                                value={imageRes}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        imageRes: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
                                     ) : (
                                         <MediaUpload
                                             onSelect={(media) => {
@@ -246,15 +255,6 @@ function Inspector(props) {
                                         />
                                     )}
                                 </BaseControl>
-                                <ImageSizes
-                                    label={__('Resolution', 'zoloblocks')}
-                                    value={imageRes}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            imageRes: value,
-                                        })
-                                    }
-                                />
                             </ZoloPanelBody>
                         )}
                     </>

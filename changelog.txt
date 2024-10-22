@@ -1,3 +1,27 @@
+### 1.6.0 [October 24, 2024]
+
+### Added
+- Navmenu block added
+- Post meta block added
+- TextPath image issue fixed.
+
+### Fixed
+- Slider navigation issue fixed.
+- Text path image select control issue fixed
+- Spectra block compatibility issue fixed
+
+### Improved
+- Slider navigation issue fixed.
+- TextPath image issue fixed.
+
+### Improved
+- Optimized block controls UI.
+- Improved video controls
+- Improve Slider Block
+- Template library improved
+- Range control improved
+- CSS filter and 
+
 ### 1.5.1 [October 08, 2024]
 
 ### Fixed

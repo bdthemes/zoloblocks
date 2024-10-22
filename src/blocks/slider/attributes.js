@@ -13,6 +13,8 @@ import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
+    // NAV_WIDTH,
+    // NAV_HEIGHT,
     NAV_PADDING,
     NAV_MARGIN,
     NAV_BORDER,
@@ -86,19 +88,6 @@ const attributes = {
     // block attributes
     sliderOptions: {
         type: 'object',
-        // default: {
-        //     speed: 800,
-        //     autoplay: false,
-        //     autoplayDelay: 3000,
-        //     pauseOnMouseEnter: false,
-        //     loop: false,
-        //     navigation: true,
-        //     navPosition: 'center-center',
-        //     effect: 'slide',
-        //     pagination: true,
-        //     paginationType: 'bullets',
-        //     progressDirection: 'top',
-        // },
     },
     navColor: {
         type: 'string',

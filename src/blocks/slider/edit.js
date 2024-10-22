@@ -101,7 +101,7 @@ export default function Edit(props) {
         paginationType = 'bullets',
         pagiPosition = 'bottom-center',
         progressDirection = 'top',
-    } = sliderOptions;
+    } = sliderOptions || {};
 
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, parentClasses),

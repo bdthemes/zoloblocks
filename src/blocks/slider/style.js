@@ -50,7 +50,7 @@ const Style = ({ props }) => {
     const { uniqueId, navColor, navHoverColor, navHoverBorderColor, pagiFractionCurrentColor, pagiFractionColor, sliderOptions } =
         attributes;
 
-    const { paginationType = 'bullets', navPosition = 'bottom-center' } = sliderOptions;
+    const { paginationType = 'bullets', navPosition = 'bottom-center' } = sliderOptions || {};
 
     // slider height
     const {
