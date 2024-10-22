@@ -146,8 +146,6 @@ export const PAGI_POSITIONS = [
 ];
 
 // Navigation settings
-// export const NAV_WIDTH = 'navWidth';
-// export const NAV_HEIGHT = 'navHeight';
 export const NAV_PADDING = 'navPadding';
 export const NAV_MARGIN = 'navMargin';
 export const NAV_BORDER = 'navBorder';

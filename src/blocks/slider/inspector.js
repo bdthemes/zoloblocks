@@ -34,8 +34,6 @@ import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
-    // NAV_WIDTH,
-    // NAV_HEIGHT,
     NAV_PADDING,
     NAV_MARGIN,
     NAV_BORDER,
@@ -127,7 +125,6 @@ const Inspector = (props) => {
         },
     } = sliderOptions;
 
-    console.log('sliderOptions', sliderOptions);
 
     const requiredProps = {
         resMode,

@@ -21,8 +21,6 @@ import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
-    // NAV_WIDTH,
-    // NAV_HEIGHT,
     NAV_PADDING,
     NAV_MARGIN,
     NAV_BORDER,
@@ -361,7 +359,7 @@ const Style = ({ props }) => {
                  `
                 : ''
         }
-            
+
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover,
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
             ${navHoverBGStyle}
@@ -422,14 +420,14 @@ const Style = ({ props }) => {
                         ${pagBorderRadiusDesktop}
                         ${pagNormalBGStyle}
                     }
-                    
+
                     .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
                         ${apagNormalBGStyle}
                     }
                  `
                 : ''
         }
-        
+
 
     `;
     const tabletAllStyle = `
@@ -508,7 +506,7 @@ const Style = ({ props }) => {
                         ${pagBorderRadiusTab}
                         ${pagNormalBGStyleTab}
                     }
-                    
+
                     .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
                         ${apagNormalBGStyleTab}
                     }
@@ -594,7 +592,7 @@ const Style = ({ props }) => {
                         ${pagBorderRadiusMob}
                         ${pagNormalBGStyleMob}
                     }
-                    
+
                     .${uniqueId}.wp-block-zolo-slider .swiper-pagination.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
                         ${apagNormalBGStyleMob}
                     }
