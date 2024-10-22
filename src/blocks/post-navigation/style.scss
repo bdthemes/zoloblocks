@@ -1,24 +1,11 @@
 .wp-block-zolo-post-navigation {
-    background-color: #fff;
-    padding: clamp(15px, 1.8vw, 30px);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: clamp(30px, 7vw, 100px);
+    gap: 30px;
     position: relative;
     box-sizing: border-box;
-
-    &::before {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        content: '';
-        width: 1px;
-        height: 50%;
-        background-color: #ddd;
-        left: 50%;
-    }
 
     .zolo-item {
         text-decoration: none;
@@ -39,34 +26,17 @@
             .zolo-pos-nav-title {
                 color: #006aff;
             }
-
-            &.zolo-post-next,
-            &.zolo-post-prev {
-                .zolo-nav-text {
-                    svg {
-                        transform: rotate(0);
-                    }
-                }
-            }
         }
 
         &.zolo-post-next {
-            text-align: right;
-
-            .zolo-nav-text {
-                svg {
-                    transform: rotate(-45deg);
-                }
+            .zolo-content-wrap {
+                text-align: right;
             }
         }
 
         &.zolo-post-prev {
             .zolo-nav-text {
                 flex-direction: row-reverse;
-
-                svg {
-                    transform: rotate(45deg);
-                }
             }
         }
     }
@@ -90,16 +60,14 @@
     .zolo-nav-text {
         font-size: clamp(10px, 0.8vw, 12px);
         color: #006aff;
-        margin-bottom: clamp(10px, 1vw, 12px);
         display: inline-block;
-        background-color: #ecf4ff;
+        border: 1px solid rgba(26, 25, 26, 0.11);
         padding: 6px 10px;
         border-radius: 6px;
         font-weight: 700;
         display: inline-flex;
         align-items: center;
         gap: 6px;
-
         svg {
             width: 1em;
             height: 1em;
@@ -112,12 +80,16 @@
     }
 
     .zolo-pos-nav-title {
-        margin: 0;
-        font-size: clamp(15px, 2vw, 22px);
+        margin: clamp(10px, 1vw, 12px) 0 0;
+        font-size: clamp(15px, 2vw, 18px);
         color: #2f2f35;
         transition: color 0.3s ease;
-        font-weight: 600;
-        line-height: 1.5;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-inline-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 }
 
@@ -147,7 +119,7 @@
         transition:
             background-size 0.3s,
             color 0.2s !important;
-        display: inline;
+        // display: inline;
 
         background-position: 0 100%;
         background-size: 0 100%;

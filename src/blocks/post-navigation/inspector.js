@@ -10,6 +10,7 @@ import {
     GET_TAXONOMIEX,
     //title
     TITLE_MARGIN,
+    POST_TITLE_ANIMATION,
     //thumbnail
     THUMBNAIL_HEIGHT,
     THUMBNAIL_BORDER,
@@ -63,6 +64,7 @@ export default function Inspector(props) {
         btnBgColor,
         btnHoverColor,
         btnBgHoverColor,
+        btnBorderHoverColor,
     } = attributes;
     const requiredProps = {
         resMode,
@@ -88,11 +90,11 @@ export default function Inspector(props) {
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>
-                            <ToggleControl
+                            {/* <ToggleControl
                                 label={__('Post Image', 'zoloblocks')}
                                 checked={showImage}
                                 onChange={(showImage) => setAttributes({ showImage })}
-                            />
+                            /> */}
                             <ToggleControl
                                 label={__('Post Title', 'zoloblocks')}
                                 checked={showTitle}
@@ -154,7 +156,7 @@ export default function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {showImage && (
+                        {/* {showImage && (
                             <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Size', 'zoloblocks')}
@@ -208,10 +210,10 @@ export default function Inspector(props) {
                                     </>
                                 )}
                             </ZoloPanelBody>
-                        )}
+                        )} */}
 
                         {showTitle && (
-                            <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Title', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -240,9 +242,9 @@ export default function Inspector(props) {
                                     hoverComponents={
                                         <>
                                             <SelectControl
-                                                label={__('Animation', 'zoloblocks')}
+                                                label={__('Animations', 'zoloblocks')}
                                                 value={postTitleAnimation}
-                                                options={POST_TITLE_ANIMATION}
+                                                options={applyFilters('zolo.postNavigation.titleAnimation', POST_TITLE_ANIMATION)}
                                                 onChange={(postTitleAnimation) => setAttributes({ postTitleAnimation })}
                                             />
                                             <ColorControl
@@ -345,6 +347,16 @@ export default function Inspector(props) {
                                                 onChange={(value) =>
                                                     setAttributes({
                                                         btnBgHoverColor: value,
+                                                    })
+                                                }
+                                            />
+
+                                            <ColorControl
+                                                label={__('Border', 'zoloblocks')}
+                                                color={btnBorderHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        btnBorderHoverColor: value,
                                                     })
                                                 }
                                             />

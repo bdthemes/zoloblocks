@@ -22,11 +22,11 @@ export const GET_TAXONOMIEX = (taxonomies) => {
 
 export const POST_TITLE_ANIMATION = [
     { label: __('Default', 'zoloblocks'), value: '' },
-    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: false },
-    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: false },
-    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: false },
-    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: false },
-    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: false },
+    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: true },
+    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: true },
+    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: true },
+    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: true },
+    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: true },
 ];
 
 //title

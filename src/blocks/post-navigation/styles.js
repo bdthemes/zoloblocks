@@ -36,6 +36,7 @@ function Style({ props }) {
         btnBgColor,
         btnHoverColor,
         btnBgHoverColor,
+        btnBorderHoverColor,
         postTitleAnimation,
         titleAnimationTypeBgColor,
     } = attributes;
@@ -165,6 +166,7 @@ function Style({ props }) {
     .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-nav-text:hover{
       ${btnHoverColor ? `color:${btnHoverColor};` : ''}
       ${btnBgHoverColor ? `background-color:${btnBgHoverColor};` : ''}
+        ${btnBorderHoverColor ? `border-color:${btnBorderHoverColor};` : ''}
     }
     .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-image-wrap{
       ${thumbWidthtDesk}
