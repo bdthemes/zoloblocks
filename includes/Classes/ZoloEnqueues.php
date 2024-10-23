@@ -198,6 +198,16 @@ if (! class_exists('ZoloEnqueues')) {
                 );
             }
 
+            // spline viewer
+            if (has_block('zolo/spline-viewer')) {
+                wp_enqueue_script(
+                    'zolo-spline-viewer',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/spline/spline.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
             // social share Scripts and Styles
             if (has_block('zolo/social-share')) {
                 wp_enqueue_script('zolo-social-share-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);
@@ -253,6 +263,8 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 false
             );
+
+
 
             if (ZoloHelpers::is_extension_enabled('particles')) {
 
@@ -515,15 +527,15 @@ if (! class_exists('ZoloEnqueues')) {
 
         /**
          * change_logo_link
-         * 
+         *
          * @since 1.4.0
          * @return blockMarkup
          */
         public function modify_nav_links($block_content, $block) {
             if ($block['blockName'] == 'zolo/navmenu') {
                 $tags = new \WP_HTML_Tag_Processor($block_content);
-                $tags->next_tag( array( 'tag_name' => 'a', 'class_name' => 'zolo-nav-menu-sidebar-logo' ) );
-                $tags->set_attribute( 'href', home_url());
+                $tags->next_tag(array('tag_name' => 'a', 'class_name' => 'zolo-nav-menu-sidebar-logo'));
+                $tags->set_attribute('href', home_url());
                 $tags->get_updated_html();
 
                 return $tags;
@@ -531,8 +543,8 @@ if (! class_exists('ZoloEnqueues')) {
 
             if ($block['blockName'] == 'zolo/navmenu-item') {
                 $tags = new \WP_HTML_Tag_Processor($block_content);
-                $tags->next_tag( array( 'tag_name' => 'li', 'class_name' => 'zolo-navmenu-item' ) );
-                if ($tags->get_attribute( 'data-id' ) == get_the_ID() && $tags->get_attribute( 'data-type' ) == get_post_type() ) {
+                $tags->next_tag(array('tag_name' => 'li', 'class_name' => 'zolo-navmenu-item'));
+                if ($tags->get_attribute('data-id') == get_the_ID() && $tags->get_attribute('data-type') == get_post_type()) {
                     $tags->add_class('current-item');
                 }
                 $tags->get_updated_html();
