@@ -1,26 +1,21 @@
 ### 1.6.0 [October 24, 2024]
 
-### Added
-- Navmenu block added
-- Post meta block added
-- TextPath image issue fixed.
+#### New Features
+- **NavMenu Block**: Introduced a fully customizable navigation menu block.
+- **Post Meta Block**: Added a block to display post metadata.
 
-### Fixed
-- Slider navigation issue fixed.
-- Text path image select control issue fixed
-- Spectra block compatibility issue fixed
+#### Enhancements
+- **Block Controls UI**: Optimized the overall user interface for block controls, improving the user experience.
+- **Video Controls**: Enhanced video block controls for smoother interaction and functionality.
+- **Slider Block**: Refined the Slider Block for better performance and usability.
+- **Template Library**: Improved the organization and accessibility of templates in the library.
+- **Range Control**: Upgraded the range control for more precise adjustments.
+- **CSS and Backdrop Filters**: Enhanced filter controls for more creative flexibility.
 
-### Improved
-- Slider navigation issue fixed.
-- TextPath image issue fixed.
+#### Bug Fixes
+- **TextPath Image Control**: Fixed the issue with image selection in the TextPath block.
+- **Spectra Block Compatibility**: Fixed compatibility issues with Spectra blocks.
 
-### Improved
-- Optimized block controls UI.
-- Improved video controls
-- Improve Slider Block
-- Template library improved
-- Range control improved
-- CSS filter and
 
 ### 1.5.1 [October 08, 2024]
 
