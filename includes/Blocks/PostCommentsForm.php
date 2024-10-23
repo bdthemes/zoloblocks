@@ -83,36 +83,42 @@ class PostCommentsForm {
 	 * @return string|void|null
 	 */
 	public function render_content( $post_id ) {
+		$post_type = get_post_type( $post_id );
 
-		$comments = get_comments(
-			[
-				'post_id' => $post_id,
-				'status'  => 'approve',
-			]
-		);
+		// Only display comment form for post types that have comment support.
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			$comments = get_comments(
+				[
+					'post_id' => $post_id,
+					'status'  => 'approve',
+				]
+			);
 
-		$comment_list = wp_list_comments(
-			[
-				'per_page'          => 10,
-				'avatar_size'       => 100,
-				'reverse_top_level' => false,
-				'echo'              => false,
-			],
-			$comments
-		);
+			$comment_list = wp_list_comments(
+				[
+					'per_page'          => 10,
+					'avatar_size'       => 100,
+					'reverse_top_level' => false,
+					'echo'              => false,
+				],
+				$comments
+			);
 
-		if ( ! empty( $comment_list ) ) {
-			$comment_list = '<ul class="zolo-comment-list">' . $comment_list . '</ul>';
+			if ( ! empty( $comment_list ) ) {
+				$comment_list = '<ul class="zolo-comment-list">' . $comment_list . '</ul>';
+			}
+
+			if ( ! empty( $this->settings['showForm'] ) ) {
+				ob_start();
+				comment_form( $this->get_comment_args(), $post_id );
+				$comment_form  = ob_get_clean();
+				$comment_list .= $comment_form;
+			}
+
+			return $comment_list;
 		}
 
-		if ( ! empty( $this->settings['showForm'] ) ) {
-			ob_start();
-			comment_form( $this->get_comment_args(), $post_id );
-			$comment_form  = ob_get_clean();
-			$comment_list .= $comment_form;
-		}
-
-		return $comment_list;
+		return '';
 	}
 
 	/**
