@@ -32,17 +32,9 @@ export default function Edit(props) {
         preview,
         uniqueId,
         parentClasses,
-        showTitle,
-        title,
-        titleTag,
-        titlePosition,
-        rating,
-        showIcon,
-        iconType,
-        icon,
-        iconTypeImage,
-        imageRes,
-    } = attributes;
+       source,
+       styles,
+    } = attributes || {};
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -75,8 +67,12 @@ export default function Edit(props) {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <Spline
-                    style={{ width: '200px', height: '200px', margin: '0 auto' }}
-                    scene="https://prod.spline.design/UwLAGbIVFWtK7opf/scene.splinecode"
+                    style={{
+                        width: styles?.width || '100%',
+                        height: styles?.height || '100%',
+                        margin: styles?.margin || '0 auto',
+                    }}
+                    scene={source}
                 />
                 {renderHookAfter && renderHookAfter}
             </div>

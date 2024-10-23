@@ -62,8 +62,17 @@ const attributes = {
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateNormalBGAttributes(ICON_BG),
 
-    rating: {
-        type: 'number',
+    source: {
+        type: 'string',
+        default: 'https://prod.spline.design/UwLAGbIVFWtK7opf/scene.splinecode',
+    },
+    styles:{
+        type: 'object',
+        default: {
+            width: '200px',
+            height: '200px',
+            margin: '0 auto',
+        },
     },
     showTitle: {
         type: 'boolean',

@@ -8,17 +8,9 @@ const Save = (props) => {
     const {
         uniqueId,
         parentClasses,
-        showTitle,
-        title,
-        titleTag,
-        rating,
-        titlePosition,
         zoloId,
-        showIcon,
-        iconType,
-        icon,
-        iconTypeImage,
-        imageRes,
+        source,
+        styles
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -38,15 +30,15 @@ const Save = (props) => {
             <spline-viewer
             className="zolo-spline-loader zolo-loadnow"
                 style={{
-                    width: '600px',
-                    height: '400px',
+                    width: styles?.width || '100%',
+                    height: styles?.height || '100%',
+                    margin: styles?.margin || '0 auto',
                     display: 'block',
                     position: 'relative',
                     overflow: 'hidden',
-                    margin: '0 auto',
                     padding: '0',
                 }}
-                url="https://prod.spline.design/UwLAGbIVFWtK7opf/scene.splinecode"
+                url={source}
             ></spline-viewer>
             {renderHookAfter && renderHookAfter}
         </div>

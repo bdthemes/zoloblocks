@@ -25,6 +25,7 @@ const {
     ResDimensionsControl,
     BorderControl,
     NormalBGControl,
+    SimpleRangeControl
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -42,6 +43,7 @@ import {
     ICON_BG,
 } from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
+import { TextareaControl } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -62,6 +64,8 @@ function Inspector(props) {
         imageRes,
         objectFit,
         iconColor,
+        source,
+        styles,
     } = attributes;
 
     const requiredProps = {
@@ -74,17 +78,63 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/star-rating"
+                block="zolo/spline-viewer"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
-                                label={__('Star Title', 'zoloblocks')}
-                                checked={showTitle}
-                                onChange={() => setAttributes({ showTitle: !showTitle })}
+                            <TextareaControl
+                                label={__('Source URL', 'zoloblocks')}
+                                value={source}
+                                onChange={(v) => setAttributes({ source: v })}
+                                placeholder={__('Enter source URL', 'zoloblocks')}
+
+                            />
+                            <SimpleRangeControl
+                                label={__('Width', 'zoloblocks')}
+                                value={styles?.width || 200}
+                                onChange={(width) =>
+                                    setAttributes({
+                                        styles: {
+                                            ...styles,
+                                            width,
+                                        },
+                                    })
+                                }
+                                onReset={() =>
+                                    setAttributes({
+                                        styles: {
+                                            ...styles,
+                                            width: 200,
+                                        },
+                                    })
+                                }
+                                min={0}
+                                max={1000}
+                            />
+                            <SimpleRangeControl
+                                label={__('Height', 'zoloblocks')}
+                                value={styles?.height || 200}
+                                onChange={(height) =>
+                                    setAttributes({
+                                        styles: {
+                                            ...styles,
+                                            height,
+                                        },
+                                    })
+                                }
+                                onReset={() =>
+                                    setAttributes({
+                                        styles: {
+                                            ...styles,
+                                            height: 200,
+                                        },
+                                    })
+                                }
+                                min={0}
+                                max={1000}
                             />
                             <ToggleControl
                                 label={__('Icon', 'zoloblocks')}
@@ -342,7 +392,7 @@ function Inspector(props) {
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
-                            block="zolo/star-rating"
+                            block="zolo/spline-viewer"
                         />
                     </>
                 }
