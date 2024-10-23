@@ -22,7 +22,7 @@ export default function save(props) {
         pagiPosition = 'bottom-center',
         navPosition = 'center-center',
         progressDirection = 'top',
-    } = sliderOptions;
+    } = sliderOptions || {};
 
     // Block Props
     const blockProps = useBlockProps.save({

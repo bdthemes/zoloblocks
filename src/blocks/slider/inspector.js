@@ -123,7 +123,7 @@ const Inspector = (props) => {
             // shadowOffset: 20,
             // shadowScale: 0.94,
         },
-    } = sliderOptions;
+    } = sliderOptions || {};
 
 
     const requiredProps = {
