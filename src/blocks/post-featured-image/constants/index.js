@@ -1,34 +1,8 @@
-import {__} from '@wordpress/i18n';
-//get all public taxonomy list
-export const GET_TAXONOMIEX = (taxonomies) => {
-  const allTaxonomies = [
-    {
-      value: '',
-      label: __('Select Type', 'zoloblocks'),
-    },
-  ];
-  // Add public taxonomies to the array
-  Object.values(taxonomies).forEach((taxonomy) => {
-    if (taxonomy.public) {
-      allTaxonomies.push({
-        value: taxonomy.name,
-        label: taxonomy.label,
-      });
-    }
-  });
-
-  return allTaxonomies;
-};
-//title
-export const TITLE_MARGIN = 'titleMargin';
 //image
+export const THUMBNAIL_ALIGN = 'thumbAlign';
+export const THUMBNAIL_WIDTH = 'thumbWidth';
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
 export const THUMBNAIL_BORDER = 'thumbBorder';
 export const THUMBNAIL_BRADIUS = 'thumbBRadius';
 export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
-
-//button
-export const BTN_PADDING = 'btnPadding';
-export const BTN_MARGIN = 'btnMargin';
-export const BTN_BORDER = 'btnBorder';
-export const BTN_BORDER_RADIUS = 'btnBRadius';
+export const THUMBNAIL_HOVER_SHADOW = 'thumbHShadow'

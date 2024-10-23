@@ -1,30 +1,22 @@
 import {applyFilters} from '@wordpress/hooks';
-import {
-  TITLE_TYPOGRAPHY,
-  BTN_TYPOGRAPHY,
-} from './constants/typoPrefixConstant';
 
 import {
-  //title
-  TITLE_MARGIN,
   //thumbnail
+  THUMBNAIL_ALIGN,
+  THUMBNAIL_WIDTH,
   THUMBNAIL_HEIGHT,
   THUMBNAIL_BORDER,
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
-  //submit btn
-  BTN_PADDING,
-  BTN_BORDER_RADIUS,
-  BTN_MARGIN,
-  BTN_BORDER,
+  THUMBNAIL_HOVER_SHADOW
 } from './constants';
 
 const {
+  generateResAlignmentStyle,
   generateResRangeStyle,
   generateDimensionStyle,
   generateBorderStyle,
   generateBoxShadowStyles,
-  generateTypographyStyles,
   GlobalStyleHanlder
 } = window.zoloModule;
 
@@ -32,33 +24,27 @@ function Style({props}) {
   const {attributes, setAttributes} = props;
   const {
     uniqueId,
-    titleColor,
-    titleHoverColor,
-    //button
-    btnColor,
-    btnBgColor,
-    btnHoverColor,
-    btnBgHoverColor
   } = attributes;
 
-  const {
-    typoStylesDesktop: titleTypoDesk,
-    typoStylesTab: titleTypoTab,
-    typoStylesMobile: titleTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: TITLE_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: titleMarginDesk,
-    dimensionStylesTab: titleMarginTab,
-    dimensionStylesMobile: titleMarginMob,
-  } = generateDimensionStyle({
-    controlName: TITLE_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
   //thumbnail
+  const {
+    desktopAlignStyle: thumbAlignDesk,
+    tabAlignStyle: thumbAlignTab,
+    mobAlignStyle: thumbAlignMob,
+  } = generateResAlignmentStyle({
+    controlName: THUMBNAIL_ALIGN,
+    property: 'text-align',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: thumbWidthDesk,
+    tabRangeStyle: thumbWidthTab,
+    mobRangeStyle: thumbWidthMob,
+  } = generateResRangeStyle({
+    controlName: THUMBNAIL_WIDTH,
+    property: 'width',
+    attributes,
+  });
   const {
     desktopRangeStyle: thumbHeightDesk,
     tabRangeStyle: thumbHeightTab,
@@ -89,7 +75,10 @@ function Style({props}) {
     attributes,
     controlName: THUMBNAIL_BOX_SHADOW,
   });
-
+  const {boxShadowStyle: thumbHoverBoxShadow} = generateBoxShadowStyles({
+    attributes,
+    controlName: THUMBNAIL_HOVER_SHADOW,
+  });
   const {
     active = false,
     blur = 0,
@@ -107,81 +96,22 @@ function Style({props}) {
     hueRotate: hueRotateHover = 0,
   } = attributes?.cssFiltersHover || {};
 
-  //button
-  const {
-    typoStylesDesktop: btnTypoDesk,
-    typoStylesTab: btnTypoTab,
-    typoStylesMobile: btnTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: BTN_TYPOGRAPHY,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: btnPaddingDesk,
-    dimensionStylesTab: btnPaddingTab,
-    dimensionStylesMobile: btnPaddingMob,
-  } = generateDimensionStyle({
-    controlName: BTN_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: btnMarginDesk,
-    dimensionStylesTab: btnMarginTab,
-    dimensionStylesMobile: btnMarginMob,
-  } = generateDimensionStyle({
-    controlName: BTN_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  const {
-    desktopBorderStyle: btnBorderDesk,
-    tabBorderStyle: btnBorderTab,
-    mobBorderStyle: btnBorderMob,
-  } = generateBorderStyle({
-    controlName: BTN_BORDER,
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: btnBRadiusDesk,
-    dimensionStylesTab: btnBRadiusTab,
-    dimensionStylesMobile: btnBRadiusMob,
-  } = generateDimensionStyle({
-    controlName: BTN_BORDER_RADIUS,
-    styleFor: 'border-radius',
-    attributes,
-  });
 
   const desktopAllStyle = `
-    .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-pos-nav-title{
-     ${titleTypoDesk}
-     ${titleMarginDesk}
-     ${titleColor ? `color:${titleColor};` : ''}
-    }
-    .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-pos-nav-title:hover{
-      ${titleHoverColor ? `color:${titleHoverColor};` : ''}
-    }
-    .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-nav-text{
-      ${btnTypoDesk}
-      ${btnPaddingDesk}
-      ${btnMarginDesk}
-      ${btnBorderDesk}
-      ${btnBRadiusDesk}
-      ${btnColor ? `color:${btnColor};` : ''}
-      ${btnBgColor ? `background-color:${btnBgColor};` : ''}
-    }
-    .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-nav-text:hover{
-      ${btnHoverColor ? `color:${btnHoverColor};` : ''}
-      ${btnBgHoverColor ? `background-color:${btnBgHoverColor};` : ''}
-    }
-    .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-image-wrap{
+    .${uniqueId}.zolo-block.wp-block-zolo-post-featured-image{
+      ${thumbAlignDesk}
+      ${thumbWidthDesk}
       ${thumbHeightDesk}
       ${thumbBorderDesk}
       ${thumbBRadiusDesk}
       ${thumbBoxShadow}
     }
+     .${uniqueId}.zolo-block.wp-block-zolo-post-featured-image:hover{
+      ${thumbHoverBoxShadow}
+     }
+
      ${active ? `
-        .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-image-wrap img {
+        .${uniqueId}.zolo-block.wp-block-zolo-post-featured-image img {
             filter:
                 blur(${blur}px)
                 brightness(${brightness}%)
@@ -192,7 +122,7 @@ function Style({props}) {
    ` : ''}
 
       ${activeHover ? `
-          .${uniqueId}.zolo-block.wp-block-zolo-post-navigation .zolo-image-wrap img:hover {
+          .${uniqueId}.zolo-block.wp-block-zolo-post-featured-image img:hover {
               filter:
                   blur(${blurHover}px)
                   brightness(${brightnessHover}%)
@@ -204,20 +134,31 @@ function Style({props}) {
   `;
 
   const tabletAllStyle = `
-
-
+    .${uniqueId}.zolo-block.wp-block-zolo-post-featured-image{
+      ${thumbAlignTab}
+      ${thumbWidthTab}
+      ${thumbHeightTab}
+      ${thumbBorderTab}
+      ${thumbBRadiusTab}
+    }
   `;
   const mobileAllStyle = `
-
+    .${uniqueId}.zolo-block.wp-block-zolo-post-featured-image{
+      ${thumbAlignMob}
+      ${thumbWidthMob}
+      ${thumbHeightMob}
+      ${thumbBorderMob}
+      ${thumbBRadiusMob}
+    }
   `;
   return (
     <>
       <GlobalStyleHanlder
         attributes={attributes}
         setAttributes={setAttributes}
-        desktopAllStyle={applyFilters('zolo.postNavigation.desktopAllStyle', desktopAllStyle, props)}
-        tabAllStyle={applyFilters('zolo.postNavigation.tabletAllStyle', tabletAllStyle, props)}
-        mobileAllStyle={applyFilters('zolo.postNavigation.mobileAllStyle', mobileAllStyle, props)}
+        desktopAllStyle={applyFilters('zolo.postFeaturedImage.desktopAllStyle', desktopAllStyle, props)}
+        tabAllStyle={applyFilters('zolo.postFeaturedImage.tabletAllStyle', tabletAllStyle, props)}
+        mobileAllStyle={applyFilters('zolo.postFeaturedImage.mobileAllStyle', mobileAllStyle, props)}
       />
     </>
   );

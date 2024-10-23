@@ -17,7 +17,7 @@ export default function Edit(props) {
 
   // preview image
   if (preview) {
-    return <img src={zoloParams?.blocksPreview?.postNavigation} alt={__('Post Navigation', 'zoloblocks')}/>;
+    return <img src={zoloParams?.blocksPreview?.postFeaturedImage} alt={__('Post Featured Image', 'zoloblocks')}/>;
   }
 
   return (
@@ -26,7 +26,7 @@ export default function Edit(props) {
       <Style props={props}/>
       <div {...blockProps}>
         <SidebarOpener clientId={clientId}/>
-        <RenderView attributes={attributes} setAttributes={setAttributes}/>
+        <RenderView props={props} />
       </div>
     </>
   );

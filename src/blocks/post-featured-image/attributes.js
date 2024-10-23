@@ -1,30 +1,24 @@
 import {
   //Image
+  THUMBNAIL_ALIGN,
+  THUMBNAIL_WIDTH,
   THUMBNAIL_HEIGHT,
   THUMBNAIL_BORDER,
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
-  //title
-  TITLE_MARGIN,
-  //submit btn
-  BTN_PADDING,
-  BTN_MARGIN,
-  BTN_BORDER,
-  BTN_BORDER_RADIUS
+  THUMBNAIL_HOVER_SHADOW
 } from './constants';
 
 /**
  * Internal dependencies
  */
 const {
+  generateResAlignmentAttributies,
   generateBorderAttributies,
   generateDimensionAttributes,
   generateBoxShadowAttributies,
-  generateTypographyAttributes,
   generateResRangeAttributies,
 } = window.zoloModule;
-
-import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
   //Global Attributes
@@ -53,74 +47,31 @@ const attributes = {
     },
   },
   // block attributes
-  showImage: {
-    type: 'boolean',
-    default: true
-  },
-  showTitle: {
-    type: 'boolean',
-    default: true
-  },
-  showBtn: {
-    type: 'boolean',
-    default: true
-  },
-  showCategoryBased: {
+  isLink: {
     type: 'boolean',
     default: false
   },
-  selectedTaxonomy: {
-    type: 'string'
+  linkTarget: {
+    type: 'boolean',
+    default: false
   },
-  previousPost: {
-    type: 'string',
-    default: 'Previous Post'
-  },
-  previousPostIcon: {
-    type: 'string',
-  },
-  nextPost: {
-    type: 'string',
-    default: 'Next Post'
-  },
-  nextPostIcon: {
+  linkRel: {
     type: 'string',
   },
   thumbnailSize: {
     type: 'string',
   },
-  ...generateTypographyAttributes(Object.values(typographyObjs)),
+  useFirstImageFromPost: {
+    type: 'boolean',
+    default: false
+  },
   //thumbnail
+  ...generateResAlignmentAttributies(THUMBNAIL_ALIGN),
+  ...generateResRangeAttributies(THUMBNAIL_WIDTH),
   ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
   ...generateBorderAttributies(THUMBNAIL_BORDER),
   ...generateDimensionAttributes(THUMBNAIL_BRADIUS),
   ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
-  //title
-  ...generateDimensionAttributes(TITLE_MARGIN),
-  //button
-  ...generateDimensionAttributes(BTN_PADDING),
-  ...generateDimensionAttributes(BTN_MARGIN),
-  ...generateBorderAttributies(BTN_BORDER),
-  ...generateDimensionAttributes(BTN_BORDER_RADIUS),
-  //title
-  titleColor: {
-    type: 'string'
-  },
-  titleHoverColor: {
-    type: 'string'
-  },
-  //prev/next btn
-  btnColor: {
-    type: 'string'
-  },
-  btnBgColor: {
-    type: 'string'
-  },
-  btnHoverColor: {
-    type: 'string'
-  },
-  btnBgHoverColor: {
-    type: 'string'
-  }
+  ...generateBoxShadowAttributies(THUMBNAIL_HOVER_SHADOW),
 };
 export default attributes;

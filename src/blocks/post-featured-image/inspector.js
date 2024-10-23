@@ -1,72 +1,43 @@
 import {__} from '@wordpress/i18n';
 import {InspectorControls} from '@wordpress/block-editor';
-import {ToggleControl, TextControl, CardDivider, SelectControl} from '@wordpress/components';
+import {ToggleControl, CardDivider, SelectControl, TextControl} from '@wordpress/components';
 import objAttributes from './attributes';
 import {applyFilters} from "@wordpress/hooks";
 
 import {
-  TITLE_TYPOGRAPHY,
-  BTN_TYPOGRAPHY,
-} from './constants/typoPrefixConstant';
-
-import {
-  GET_TAXONOMIEX,
-  //title
-  TITLE_MARGIN,
   //thumbnail
+  THUMBNAIL_ALIGN,
+  THUMBNAIL_WIDTH,
   THUMBNAIL_HEIGHT,
-  THUMBNAIL_BG,
-  THUMBNAIL_PADDING,
-  THUMBNAIL_MARGIN,
   THUMBNAIL_BORDER,
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
-  //submit btn
-  BTN_PADDING,
-  BTN_BORDER_RADIUS,
-  BTN_MARGIN,
-  BTN_BORDER,
+  THUMBNAIL_HOVER_SHADOW
 } from './constants';
 
-import {THUMBNAIL_SIZE} from "@/global/constants";
+import {FLEX_HORIZONTAL_OPTIONS, THUMBNAIL_SIZE} from "@/global/constants";
 
 const {
   ResDimensionsControl,
   BorderControl,
   BoxShadowControl,
   HeaderTabs,
-  ColorControl,
-  TypographyDropdown,
   AdvancedOptions,
   ZoloPanelBody,
   TabPanelControl,
   ResRangeControl,
-  NormalBGControl,
-  ZoloIconPicker
+  ResAlignmentControl
 } = window.zoloModule;
 export default function Inspector(props) {
   const {attributes, setAttributes, block} = props;
   const {
     resMode,
-    showImage,
-    showTitle,
-    showBtn,
-    showCategoryBased,
-    selectedTaxonomy,
-    previousPost,
-    nextPost,
+    isLink,
+    linkTarget,
+    linkRel,
+    useFirstImageFromPost,
     //thumbnail
     thumbnailSize,
-    //title
-    titleColor,
-    titleHoverColor,
-    //prev/next button
-    previousPostIcon,
-    nextPostIcon,
-    btnColor,
-    btnBgColor,
-    btnHoverColor,
-    btnBgHoverColor
   } = attributes;
   const requiredProps = {
     resMode,
@@ -75,7 +46,6 @@ export default function Inspector(props) {
     objAttributes,
   };
 
-  const taxonomiesArray = GET_TAXONOMIEX(zoloParams.get_taxonomies);
   // css filter
   const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
   const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
@@ -89,257 +59,109 @@ export default function Inspector(props) {
         generalTab={
           <>
             <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-
               <div className="zolo-custom-heading" style={{border: 0, paddingTop: 0}}>
                 {__('Show/hide elements', 'zoloblocks')}
               </div>
               <ToggleControl
-                label={__('Show Post Image', 'zoloblocks')}
-                checked={showImage}
-                onChange={(showImage) => setAttributes({showImage})}
+                label={__('Link to Post', 'zoloblocks')}
+                checked={isLink}
+                onChange={(isLink) => setAttributes({isLink})}
               />
-              <ToggleControl
-                label={__('Show Post Title', 'zoloblocks')}
-                checked={showTitle}
-                onChange={(showTitle) => setAttributes({showTitle})}
-              />
-              <ToggleControl
-                label={__('Show Prev/Next Button', 'zoloblocks')}
-                checked={showBtn}
-                onChange={(showBtn) => setAttributes({showBtn})}
-              />
-              <ToggleControl
-                label={__('Category Based', 'zoloblocks')}
-                checked={showCategoryBased}
-                onChange={(showCategoryBased) => setAttributes({showCategoryBased})}
-              />
-
-              {showCategoryBased && (
+              {isLink && (
                 <>
-                  <CardDivider/>
-                  <SelectControl
-                    label={__('Taxonomies', 'zoloblocks')}
-                    value={selectedTaxonomy}
-                    options={taxonomiesArray}
-                    onChange={(selectedTaxonomy) => setAttributes({selectedTaxonomy})}
+                  <ToggleControl
+                    label={__('Open in new tab', 'zoloblocks')}
+                    onChange={(value) => setAttributes({linkTarget: value ? '_blank' : '_self'})}
+                    checked={linkTarget === '_blank'}
+                  />
+                  <TextControl
+                    label={__('Link rel', 'zoloblocks')}
+                    value={linkRel}
+                    onChange={(linkRel) => setAttributes({linkRel})}
                   />
                 </>
               )}
+              <CardDivider/>
+              <ToggleControl
+                label={__('Image From Post Content', 'zoloblocks')}
+                checked={useFirstImageFromPost}
+                onChange={(useFirstImageFromPost) => setAttributes({useFirstImageFromPost})}
+                help={__("Enable 'Use first image from post content' if no featured image is set.", 'zoloblocks')}
+              />
+              <CardDivider/>
+              <SelectControl
+                label={__('Resolution', 'zoloblocks')}
+                value={thumbnailSize}
+                options={THUMBNAIL_SIZE}
+                onChange={(thumbnailSize) => setAttributes({thumbnailSize})}
+              />
+              <ResAlignmentControl
+                label={__('Alignment', 'zoloblocks')}
+                controlName={THUMBNAIL_ALIGN}
+                requiredProps={requiredProps}
+                alignOptions={FLEX_HORIZONTAL_OPTIONS}
+              />
             </ZoloPanelBody>
-
-            {showBtn && (
-              <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                <div className="zolo-custom-heading" style={{border: 0, paddingTop: 0}}>
-                  {__('Prev/Next Button', 'zoloblocks')}
-                </div>
-                <TextControl
-                  label={__('Previous Post', 'zoloblocks')}
-                  value={previousPost}
-                  onChange={(previousPost) => setAttributes({previousPost})}
-                />
-                <ZoloIconPicker
-                  label={__('Previous Post Icon', 'zoloblocks')}
-                  value={previousPostIcon}
-                  onChange={(previousPostIcon) => setAttributes({previousPostIcon})}
-                />
-                <TextControl
-                  label={__('Next Post', 'zoloblocks')}
-                  value={nextPost}
-                  onChange={(nextPost) => setAttributes({nextPost})}
-                />
-                <ZoloIconPicker
-                  label={__('Next Post Icon', 'zoloblocks')}
-                  value={nextPostIcon}
-                  onChange={(nextPostIcon) => setAttributes({nextPostIcon})}
-                />
-              </ZoloPanelBody>
-            )}
           </>
         }
         styleTab={
           <>
-            {showImage && (
-              <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                <ResRangeControl
-                  label={__('Height', 'zoloblocks')}
-                  controlName={THUMBNAIL_HEIGHT}
-                  requiredProps={requiredProps}
-                  min={0}
-                  max={150}
-                  step={1}
-                />
+            <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
 
-                <SelectControl
-                  label={__('Resolution', 'zoloblocks')}
-                  value={thumbnailSize}
-                  options={THUMBNAIL_SIZE}
-                  onChange={(thumbnailSize) => setAttributes({thumbnailSize})}
-                />
-
-                <CardDivider/>
-                <BorderControl
-                  label={__('Border', 'zoloblocks')}
-                  controlName={THUMBNAIL_BORDER}
-                  requiredProps={requiredProps}
-                />
-                <ResDimensionsControl
-                  label={__('Border Radius', 'zoloblocks')}
-                  controlName={THUMBNAIL_BRADIUS}
-                  requiredProps={requiredProps}
-                  forBorderRadius={true}
-                />
-                <BoxShadowControl
-                  controlName={THUMBNAIL_BOX_SHADOW}
-                  requiredProps={requiredProps}
-                  enableTransition={false}
-                />
-                {cssFilters && cssFilters.length > 0 && (
+              <TabPanelControl
+                normalComponents={
                   <>
-                    <TabPanelControl
-                      options={[
-                        {
-                          value: 'normal',
-                          label: __('Normal', 'zoloblocks'),
-                        },
-                        {
-                          value: 'hover',
-                          label: __('Hover', 'zoloblocks'),
-                        },
-                      ]}
-                      normalComponents={<>{cssFilters}</>}
-                      hoverComponents={<>{cssFiltersHover}</>}
+                    <ResRangeControl
+                      label={__('Width', 'zoloblocks')}
+                      controlName={THUMBNAIL_WIDTH}
+                      requiredProps={requiredProps}
+                      min={0}
+                      max={2000}
+                      step={1}
                     />
+                    <ResRangeControl
+                      label={__('Height', 'zoloblocks')}
+                      controlName={THUMBNAIL_HEIGHT}
+                      requiredProps={requiredProps}
+                      min={0}
+                      max={1000}
+                      step={1}
+                    />
+                    <CardDivider/>
+                    <BorderControl
+                      label={__('Border', 'zoloblocks')}
+                      controlName={THUMBNAIL_BORDER}
+                      requiredProps={requiredProps}
+                    />
+                    <ResDimensionsControl
+                      label={__('Border Radius', 'zoloblocks')}
+                      controlName={THUMBNAIL_BRADIUS}
+                      requiredProps={requiredProps}
+                      forBorderRadius={true}
+                    />
+                    <BoxShadowControl
+                      controlName={THUMBNAIL_BOX_SHADOW}
+                      requiredProps={requiredProps}
+                      enableTransition={false}
+                    />
+                    <CardDivider/>
+                    {cssFilters && cssFilters.length > 0 && cssFilters}
                   </>
-                )}
-              </ZoloPanelBody>
-            )}
+                }
+                hoverComponents={
+                  <>
+                    <BoxShadowControl
+                      controlName={THUMBNAIL_HOVER_SHADOW}
+                      requiredProps={requiredProps}
+                      enableTransition={false}
+                    />
+                    <CardDivider/>
+                    {cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}
+                  </>
+                }
+              />
 
-            {showTitle && (
-              <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                <TabPanelControl
-                  normalComponents={
-                    <>
-                      <ColorControl
-                        label={__('Color', 'zoloblocks')}
-                        color={titleColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            titleColor: color,
-                          })
-                        }
-                      />
-                      <TypographyDropdown
-                        label={__('Typography', 'zoloblocks')}
-                        typoPrefixConstant={TITLE_TYPOGRAPHY}
-                        requiredProps={requiredProps}
-                      />
-                      <CardDivider/>
-                      <ResDimensionsControl
-                        label={__('Margin', 'zoloblocks')}
-                        controlName={TITLE_MARGIN}
-                        requiredProps={requiredProps}
-                      />
-                    </>
-                  }
-                  hoverComponents={
-                    <>
-                      <ColorControl
-                        label={__('Color', 'zoloblocks')}
-                        color={titleHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            titleHoverColor: color,
-                          })
-                        }
-                      />
-                    </>
-                  }
-                />
-              </ZoloPanelBody>
-            )}
-
-            {showBtn && (
-              <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                <TabPanelControl
-                  normalComponents={
-                    <>
-                      <ColorControl
-                        label={__('Color', 'zoloblocks')}
-                        color={btnColor}
-                        onChange={(value) =>
-                          setAttributes({
-                            btnColor: value,
-                          })
-                        }
-                      />
-                      <TypographyDropdown
-                        label={__('Typography', 'zoloblocks')}
-                        typoPrefixConstant={BTN_TYPOGRAPHY}
-                        requiredProps={requiredProps}
-                        max={36}
-                      />
-                      <CardDivider/>
-                      <ColorControl
-                        label={__('Background', 'zoloblocks')}
-                        color={btnBgColor}
-                        onChange={(value) =>
-                          setAttributes({
-                            btnBgColor: value,
-                          })
-                        }
-                      />
-                      <ResDimensionsControl
-                        label={__('Padding', 'zoloblocks')}
-                        controlName={BTN_PADDING}
-                        requiredProps={requiredProps}
-                      />
-                      <ResDimensionsControl
-                        label={__('Margin', 'zoloblocks')}
-                        controlName={BTN_MARGIN}
-                        requiredProps={requiredProps}
-                      />
-                      <CardDivider/>
-                      <BorderControl
-                        label={__('Border', 'zoloblocks')}
-                        controlName={BTN_BORDER}
-                        requiredProps={requiredProps}
-                      />
-                      <ResDimensionsControl
-                        label={__('Border Radius', 'zoloblocks')}
-                        controlName={BTN_BORDER_RADIUS}
-                        requiredProps={requiredProps}
-                        forBorderRadius={true}
-                      />
-
-                    </>
-                  }
-                  hoverComponents={
-                    <>
-                      <ColorControl
-                        label={__('Color', 'zoloblocks')}
-                        color={btnHoverColor}
-                        onChange={(value) =>
-                          setAttributes({
-                            btnHoverColor: value,
-                          })
-                        }
-                      />
-                      <ColorControl
-                        label={__('Background', 'zoloblocks')}
-                        color={btnBgHoverColor}
-                        onChange={(value) =>
-                          setAttributes({
-                            btnBgHoverColor: value,
-                          })
-                        }
-                      />
-                    </>
-                  }
-                />
-              </ZoloPanelBody>
-
-            )}
-
+            </ZoloPanelBody>
           </>
         }
         advancedTab={
@@ -348,7 +170,7 @@ export default function Inspector(props) {
               attributes={attributes}
               setAttributes={setAttributes}
               requiredProps={requiredProps}
-              block="zolo/post-navigation"
+              block="zolo/post-featured-image"
             />
           </>
         }
