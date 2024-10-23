@@ -14,7 +14,7 @@ import './library.scss';
 /**
  * Internal dependencies
  */
-import Templates from './components/templates';
+import PageTemplateLoader from './page-template-loader';
 import PreLoader from './preloader';
 import TemplatesLoader from './template-loader';
 
@@ -62,6 +62,47 @@ function ZoloBlocksTemplateLibraryButton() {
      * Page Templates: Templates (Pro, Free)
      * =====
      */
+    const [allPageTemplates, setAllPageTemplates] = useState([]);
+    const [pageTemplates, setPageTemplates] = useState([]);
+    const [pageTemplatesType, setPageTemplatesType] = useState('');
+    const [pageTemplateCategories, setPageTemplateCategories] = useState([]);
+    const [activePageTemplateCat, setActivePageTemplateCat] = useState('all');
+
+    useEffect(() => {
+        apiFetch({
+            path: '/zolo/v1/page-templates',
+            method: 'GET',
+        }).then((response) => {
+            if (!response) {
+                return;
+            }
+            const { data } = response;
+
+            if (!data) {
+                return;
+            }
+
+            // convert object to array
+            const allAvailablePagesTemplates = Object.entries(data).map(([key, value]) => {
+                return {
+                    title: key,
+                    pages: value,
+                };
+            });
+
+            setAllPageTemplates(allAvailablePagesTemplates);
+
+            // set page template categories
+            const pageTemplateCategories = allAvailablePagesTemplates.map((template) => template.title);
+            const sortedPageTemplateCategories = pageTemplateCategories.sort((a, b) => a.localeCompare(b));
+            const pageTemplateCategoriesArray = sortedPageTemplateCategories.map((category) => ({ label: category, value: category }));
+            pageTemplateCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+            setPageTemplateCategories(pageTemplateCategoriesArray);
+
+            // set page templates
+            setPageTemplates(allAvailablePagesTemplates);
+        });
+    }, []);
 
     /**
      * =====
@@ -688,8 +729,6 @@ function ZoloBlocksTemplateLibraryButton() {
         createRoot(libraryButton).render(<LibraryButton />);
     };
 
-    console.log('all:', allTemplates);
-
     return (
         <div className="zolo-demos-modal-wrapper">
             {isOpen && (
@@ -777,7 +816,7 @@ function ZoloBlocksTemplateLibraryButton() {
                             )
                         }
                         {activeTab === 'templates' && (
-                            <Templates
+                            <PageTemplateLoader
                                 TABS={TABS}
                                 activeTab={activeTab}
                                 setActiveTab={setActiveTab}
@@ -787,6 +826,18 @@ function ZoloBlocksTemplateLibraryButton() {
                                 setPullDemos={setPullDemos}
                                 pullNewDemos={pullNewDemos}
                                 setIsOpen={setIsOpen}
+                                number={number}
+                                setNumber={setNumber}
+                                loading={loading}
+                                handleImportTemplate={handleImportTemplate}
+                                type={pageTemplatesType}
+                                setType={setPageTemplatesType}
+                                categories={pageTemplateCategories}
+                                activeCat={activePageTemplateCat}
+                                setActiveCat={setActivePageTemplateCat}
+                                allItems={allPageTemplates}
+                                items={pageTemplates}
+                                setItems={setPageTemplates}
                             />
                         )}
                         {activeTab === 'pages' && (
