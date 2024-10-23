@@ -46,7 +46,7 @@
             pointer-events: none;
             box-sizing: border-box;
             transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.44, 0.82, 0.63, 1);
+            transition: 0.3s ease-out 1s;
             text-align: -webkit-auto;
             text-align: auto;
 
@@ -78,6 +78,16 @@
         }
     }
 
+    &.zolo-nav-menu-open {
+        .zolo-navmenu-item {
+            .zolo-navmenu-link {
+                .zolo-submenu-arrow {
+                    pointer-events: all;
+                }
+            }
+        }
+    }
+
     &:not(.is-menu-active) {
         .zolo-navmenu-item {
             &:hover {
@@ -86,6 +96,7 @@
                     opacity: 1;
                     pointer-events: all;
                     transform: translateY(0);
+                    transition: 0.3s ease-out;
                 }
             }
         }
