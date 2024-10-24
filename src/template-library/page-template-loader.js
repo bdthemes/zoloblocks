@@ -3,6 +3,8 @@ import { __ } from '@wordpress/i18n';
 
 import classNames from 'classnames';
 
+import InnerPageTemplate from './inner-page-template';
+
 const PageTemplateLoader = ({
     TABS,
     activeTab,
@@ -45,10 +47,6 @@ const PageTemplateLoader = ({
             itemText = 'Patterns';
             break;
     }
-
-    // const lengthV = allItems?.filter((template) => template?.title?.includes(category.label))?.pages?.length;
-
-    console.log('categories', categories);
 
     return (
         <>
@@ -219,7 +217,7 @@ const PageTemplateLoader = ({
                     </div>
                 </div>
 
-                {items && items.length > 0 && <div>Templates are hre</div>}
+                {items && items.length > 0 && <InnerPageTemplate templates={items} handleImportTemplate={handleImportTemplate} />}
 
                 {items && items?.length > number && (
                     <div className="load-more-btn-wrapper">

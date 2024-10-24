@@ -10,6 +10,7 @@ import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/
  * Template Library Style
  */
 import './library.scss';
+import './page-templates.scss';
 
 /**
  * Internal dependencies

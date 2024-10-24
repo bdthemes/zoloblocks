@@ -1,0 +1,52 @@
+.zolo-pages-preview-container {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    padding: 20px;
+    z-index: 9;
+
+    img {
+        max-width: 100%;
+    }
+
+    .pages-list {
+        display: flex;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .all-pages {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .single-page {
+        width: 100%;
+        height: 400px;
+        box-sizing: border-box;
+        position: relative;
+        border: 4px solid #ffffff;
+        padding: 4px;
+        background: #fff;
+    }
+
+    .single-page img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .single-page.active {
+        border-color: #2567ff;
+    }
+
+    .pages-list-and-action {
+        max-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}
