@@ -17,11 +17,11 @@ const {
     generateBorderStyle,
 } = window.zoloModule;
 
-import { WIDTH, HEIGHT} from './constants';
+import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId} = attributes;
+    const { uniqueId } = attributes;
     // Star Rating Style
     const {
         desktopRangeStyle: deskWidth,
@@ -42,10 +42,25 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // alignment
+    const {
+        desktopAlignStyle: alignmentDesktop,
+        tabAlignStyle: alignmentTab,
+        mobAlignStyle: alignmentMob,
+    } = generateResAlignmentStyle({
+        controlName: ALIGNMENT,
+        property: 'justify-content',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
+        .${uniqueId} {
+        display: flex;
+            ${alignmentDesktop}
+        }
         .${uniqueId} .zolo-spline-loader {
             ${deskWidth}
             ${deskHeight}
@@ -53,6 +68,9 @@ const Style = ({ props }) => {
         `;
 
     const tabletAllStyle = `
+        .${uniqueId} {
+            ${alignmentTab}
+        }
     .${uniqueId} .zolo-spline-loader {
             ${tabWidth}
             ${tabHeight}
@@ -60,9 +78,13 @@ const Style = ({ props }) => {
         `;
 
     const mobileAllStyle = `
+            .${uniqueId} {
+            ${alignmentMob}
+        }
     .${uniqueId} .zolo-spline-loader {
             ${mobWidth}
             ${mobHeight}
+            ${alignmentMob}
         }
          `;
 

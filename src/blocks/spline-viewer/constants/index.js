@@ -8,5 +8,6 @@ export const BLOCK_PREFIX = 'spline-viewer';
 
 export const WIDTH = 'width';
 export const HEIGHT = 'height';
+export const ALIGNMENT = 'alignment';
 
 

@@ -15,7 +15,6 @@ const Save = (props) => {
     } = attributes || {};
 
     const {loading, loadingAnimType } = options || {};
-    console.log(options);
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),

@@ -1,14 +1,9 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateResAlignmentAttributies } = window.zoloModule;
 
-import {
-    WIDTH,
-    HEIGHT,
-} from './constants';
+import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
 
 
 const attributes = {
@@ -40,6 +35,7 @@ const attributes = {
     // Generators
     ...generateResRangeAttributies(WIDTH),
     ...generateResRangeAttributies(HEIGHT),
+    ...generateResAlignmentAttributies(ALIGNMENT),
 
     source: {
         type: 'string',
@@ -49,7 +45,7 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
-    options:{
+    options: {
         type: 'object',
     },
 };
