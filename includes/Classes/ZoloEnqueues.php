@@ -59,7 +59,15 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 true
             );
-
+            if (is_admin()) {
+                wp_enqueue_script(
+                    'zolo-spline-viewer',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/spline/spline.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
                 'ajaxurl'                 => admin_url('admin-ajax.php'),

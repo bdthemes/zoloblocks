@@ -10,6 +10,7 @@ import {applyFilters} from '@wordpress/hooks';
  */
 import classnames from 'classnames';
 import Spline from '@splinetool/react-spline';
+import { useSelect } from '@wordpress/data';
 
 /**
  * Internal depencencies
@@ -28,13 +29,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        preview,
-        uniqueId,
-        parentClasses,
-       source,
-       styles,
-    } = attributes || {};
+    const { preview, uniqueId, parentClasses, source, options, hint } = attributes || {};
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -45,6 +40,9 @@ export default function Edit(props) {
             clientId,
         });
     }, []);
+    const deviceType = useSelect((select) => select('core/editor').getDeviceType());
+
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
@@ -66,14 +64,13 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <Spline
-                    style={{
-                        width: styles?.width || '100%',
-                        height: styles?.height || '100%',
-                        margin: styles?.margin || '0 auto',
-                    }}
-                    scene={source}
-                />
+                <div className='zolo-spline-loader'>
+                <spline-viewer
+                    key={JSON.stringify(hint)}
+                    url={source}
+                    {...(hint && { hint: 'true' })}
+                ></spline-viewer>
+                </div>
                 {renderHookAfter && renderHookAfter}
             </div>
         </>

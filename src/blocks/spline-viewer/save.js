@@ -10,8 +10,12 @@ const Save = (props) => {
         parentClasses,
         zoloId,
         source,
-        styles
-    } = attributes;
+        options,
+        hint,
+    } = attributes || {};
+
+    const {loading, loadingAnimType } = options || {};
+    console.log(options);
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -27,22 +31,24 @@ const Save = (props) => {
             })}
         >
             {renderHookBefore && renderHookBefore}
-            <spline-viewer
-            className="zolo-spline-loader zolo-loadnow"
-                style={{
-                    width: styles?.width || '100%',
-                    height: styles?.height || '100%',
-                    margin: styles?.margin || '0 auto',
-                    display: 'block',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    padding: '0',
-                }}
-                url={source}
-            ></spline-viewer>
+            {/* <spline-viewer className="zolo-spline-loader zolo-loadnow" url={source} {...(hint && { hint: 'true' })}></spline-viewer> */}
+            <div className="zolo-spline-loader zolo-loadnow">
+                <spline-viewer url={source}
+                {...(hint && { hint: 'true' })}
+                {
+                    ...options && {
+                        ...loading && {
+                            'loading-anim': "true",
+                            'loading-anim-type': loadingAnimType,
+                        },
+                    }
+                }
+                ></spline-viewer>
+            </div>
             {renderHookAfter && renderHookAfter}
         </div>
     );
 };
 
 export default Save;
+
