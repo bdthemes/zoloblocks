@@ -14,7 +14,6 @@ import objAttributes from './attributes';
 
 import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
 import { TextareaControl } from '@wordpress/components';
-import { HEADING, FLEX_ALIGNS, ICON_STATUS } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;

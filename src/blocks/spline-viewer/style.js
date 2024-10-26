@@ -9,12 +9,8 @@ import { applyFilters } from '@wordpress/hooks';
  */
 const {
     generateResAlignmentStyle,
-    generateTypographyStyles,
     generateResRangeStyle,
     GlobalStyleHanlder,
-    generateNormalBGControlStyles,
-    generateDimensionStyle,
-    generateBorderStyle,
 } = window.zoloModule;
 
 import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
@@ -22,7 +18,6 @@ import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId } = attributes;
-    // Star Rating Style
     const {
         desktopRangeStyle: deskWidth,
         tabRangeStyle: tabWidth,

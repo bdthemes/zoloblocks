@@ -9,13 +9,11 @@ import {applyFilters} from '@wordpress/hooks';
  * External dependencies
  */
 import classnames from 'classnames';
-import Spline from '@splinetool/react-spline';
-import { useSelect } from '@wordpress/data';
 
 /**
  * Internal depencencies
  */
-const { handleUniqueId, StarRating, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -40,7 +38,6 @@ export default function Edit(props) {
             clientId,
         });
     }, []);
-    const deviceType = useSelect((select) => select('core/editor').getDeviceType());
 
 
 
