@@ -15,7 +15,7 @@ import './page-templates.scss';
 /**
  * Internal dependencies
  */
-import PageTemplateLoader from './page-template-loader';
+import PageTemplateLoader from './page-templates';
 import PreLoader from './preloader';
 import TemplatesLoader from './template-loader';
 

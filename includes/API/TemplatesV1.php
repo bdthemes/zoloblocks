@@ -121,6 +121,7 @@ class TemplatesV1 {
                         'json_file'    => $value['json_file'],
                         'demo_preview' => $value['demo_preview'],
                         'status'       => $value['status'],
+                        'demo_link'    => $value['demo_link'],
                     ];
                 }
             }

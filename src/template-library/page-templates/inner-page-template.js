@@ -1,8 +1,6 @@
 import SinglePageTemplate from './single-page-template';
 
 const InnerPageTemplate = ({ templates, handleImportTemplate }) => {
-    // console.log(templates);
-
     return (
         <div className="zolo-demos-wrapper zolo-pages-templates">
             {templates &&
