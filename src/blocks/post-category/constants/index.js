@@ -1,21 +1,22 @@
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-post-category';
 export const PRESETS = [
-  {label: __('Style 1', 'zoloblocks'), value: 'style-1'},
-  { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
+    { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
+    { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
 ];
 export const CAT_ORDER_BY = [
-  {value: 'name', label: __('Name', 'zoloblocks')},
-  {value: 'post_date', label: __('Date', 'zoloblocks')},
-  {value: 'post_title', label: __('Title', 'zoloblocks')},
-  {value: 'menu_order', label: __('Menu Order', 'zoloblocks')},
-  {value: 'rand', label: __('Random', 'zoloblocks')},
-]
+    { value: 'name', label: __('Name', 'zoloblocks') },
+    { value: 'post_date', label: __('Date', 'zoloblocks') },
+    { value: 'post_title', label: __('Title', 'zoloblocks') },
+    { value: 'menu_order', label: __('Menu Order', 'zoloblocks') },
+    { value: 'rand', label: __('Random', 'zoloblocks') },
+];
 export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
-export const ITEM_HEIGHT='itemHeight';
-export const ITEM_TEXT_ALIGN='itemTextAlign';
-export const TEXT_SPACING='textSpacing';
+export const ITEM_HEIGHT = 'itemHeight';
+export const ITEM_TEXT_ALIGN = 'itemTextAlign';
+export const TEXT_SPACING = 'textSpacing';
 //count
 export const COUNT_PADDING = 'countPadding';
 export const COUNT_BG = 'countBg';
@@ -35,4 +36,13 @@ export const VIEW_BTN_PADDING = 'viewBtnPadding';
 export const VIEW_BTN_BORDER = 'viewBtnBorder';
 export const VIEW_BTN_BORDER_RADIUS = 'viewBtnBRadius';
 export const VIEW_BTN_SHADOW = 'viewBtnShadow';
-export const THUMBNAIL_OVERLAY_BG = 'thumbnailOverly'
+export const THUMBNAIL_OVERLAY_BG = 'thumbnailOverly';
+
+//cat name
+export const CAT_NAME_BG = 'catNameBg';
+export const CAT_NAME_PADDING = 'catNamePadding';
+export const CAT_NAME_BORDER = 'catNameBorder';
+export const CAT_NAME_SHADOW = 'catNameShadow';
+export const CAT_NAME_BORDER_RADIUS = 'catNameBRadius';
+export const CAT_NAME_HOVER_BG = 'catNameHoverBg';
+export const CAT_NAME_HOVER_SHADOW = 'catNameHoverShadow';
