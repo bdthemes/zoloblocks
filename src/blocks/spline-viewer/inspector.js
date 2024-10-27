@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -13,7 +13,6 @@ const { ResRangeControl, HeaderTabs, AdvancedOptions, ZoloPanelBody, ResAlignmen
 import objAttributes from './attributes';
 
 import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
-import { TextareaControl } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -38,12 +37,14 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <TextareaControl
-                                label={__('Source URL', 'zoloblocks')}
-                                value={source}
-                                onChange={(v) => setAttributes({ source: v })}
-                                placeholder={__('Enter source URL', 'zoloblocks')}
-                            />
+                            <div className="zolo-flex-col-control">
+                                <TextControl
+                                    label={__('Source URL', 'zoloblocks')}
+                                    value={source}
+                                    onChange={(v) => setAttributes({ source: v })}
+                                    placeholder={__('Enter source URL', 'zoloblocks')}
+                                />
+                            </div>
                             <ResRangeControl
                                 label={__('Width', 'zoloblocks')}
                                 controlName={WIDTH}
