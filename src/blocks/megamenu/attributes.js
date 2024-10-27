@@ -65,5 +65,9 @@ const attributes = {
 
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    megamenuLayoutType: {
+        type: 'string',
+        default: 'fullwidth',
+    }
 };
 export default attributes;

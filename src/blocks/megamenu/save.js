@@ -10,7 +10,7 @@ const Save = (props) => {
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames('zolo-megamenu', uniqueId, classArrayToStr(parentClasses)),
+        className: classnames('zolo-megamenu', uniqueId, classArrayToStr(parentClasses), { [`megamenu-layout-${attributes.megamenuLayoutType}`]: attributes?.megamenuLayoutType }),
     });
 
     const innerBlocksProps = useInnerBlocksProps.save(

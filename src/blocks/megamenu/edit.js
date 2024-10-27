@@ -12,7 +12,7 @@ const Edit = (props) => {
     const { uniqueId, preview, parentClasses } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames('zolo-megamenu', uniqueId, classArrayToStr(parentClasses)),
+        className: classnames('zolo-megamenu', uniqueId, classArrayToStr(parentClasses), { [`megamenu-layout-${attributes.megamenuLayoutType}`]: attributes?.megamenuLayoutType }),
     });
 
     const innerBlocksProps = useInnerBlocksProps(
