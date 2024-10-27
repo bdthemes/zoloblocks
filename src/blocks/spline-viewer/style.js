@@ -54,7 +54,8 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId} {
         display: flex;
-            ${alignmentDesktop}
+        aspect-ratio: auto;
+        ${alignmentDesktop}
         }
         .${uniqueId} .zolo-spline-loader {
             ${deskWidth}

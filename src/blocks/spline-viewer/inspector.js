@@ -18,7 +18,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const { resMode, source, options, hint } = attributes || {};
 
-    const { loading, loadingAnimType } = options || {};
+    const { loading, loadingAnimType = 'spinner-big-dark' } = options || {};
 
     const requiredProps = {
         attributes,
@@ -36,7 +36,6 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <div className="zolo-flex-col-control">
                                 <TextControl
                                     label={__('Source URL', 'zoloblocks')}
@@ -147,7 +146,6 @@ function Inspector(props) {
                                     label={__('Loading Animation', 'zoloblocks')}
                                     value={loadingAnimType}
                                     options={[
-                                        { label: 'None', value: 'none' },
                                         { label: 'Spinner Small Dark', value: 'spinner-small-dark' },
                                         { label: 'Spinner Small Light', value: 'spinner-small-light' },
                                         { label: 'Spinner Big Dark', value: 'spinner-big-dark' },
