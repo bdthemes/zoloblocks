@@ -15,7 +15,11 @@ const Save = (props) => {
     } = attributes || {};
 
     const {loading, loadingAnimType } = options || {};
-
+    function extractSplineUrl(input) {
+        // Regular expression to match a URL pattern starting with "https://prod.spline.design/"
+        const match = input.match(/https:\/\/prod\.spline\.design\/[^"\s]+/);
+        return match ? match[0] : null; // Return the URL if found, otherwise null
+    }
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
@@ -31,7 +35,7 @@ const Save = (props) => {
         >
             {renderHookBefore && renderHookBefore}
             <div className="zolo-spline-loader zolo-loadnow">
-                <spline-viewer url={source}
+                <spline-viewer url={extractSplineUrl(source)}
                 {...(hint && { hint: 'true' })}
                 {
                     ...options && {
