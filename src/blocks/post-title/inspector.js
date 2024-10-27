@@ -51,7 +51,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/post-list"
+                block="zolo/post-title"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
