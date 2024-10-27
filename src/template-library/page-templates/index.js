@@ -28,6 +28,9 @@ const PageTemplateLoader = ({
     allItems,
     items,
     setItems,
+    // favorites
+    favIds,
+    handleFavTemplate,
 }) => {
     let itemText = '';
     switch (activeTab) {
@@ -217,7 +220,14 @@ const PageTemplateLoader = ({
                     </div>
                 </div>
 
-                {items && items.length > 0 && <InnerPageTemplate templates={items} handleImportTemplate={handleImportTemplate} />}
+                {items && items.length > 0 && (
+                    <InnerPageTemplate
+                        templates={items}
+                        handleImportTemplate={handleImportTemplate}
+                        favIds={favIds}
+                        handleFavTemplate={handleFavTemplate}
+                    />
+                )}
 
                 {items && items?.length > number && (
                     <div className="load-more-btn-wrapper">

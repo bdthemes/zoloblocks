@@ -839,6 +839,9 @@ function ZoloBlocksTemplateLibraryButton() {
                                 allItems={allPageTemplates}
                                 items={pageTemplates}
                                 setItems={setPageTemplates}
+                                // fav templates
+                                favIds={favIds}
+                                handleFavTemplate={handleFavTemplate}
                             />
                         )}
                         {activeTab === 'pages' && (
