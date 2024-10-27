@@ -1,0 +1,12 @@
+export const CONTENT_ALIGN = 'contentAlign';
+export const CONTENT_PADDING = 'contentPadding';
+export const CONTENT_BG = 'contentBg';
+export const CONTENT_BORDER = 'contentBorder';
+export const CONTENT_BORDER_RADIUS = 'contentBRadius';
+export const CONTENT_SHADOW = 'contentShadow';
+export const CONTENT_HOVER_BG = 'contentHBg';
+export const CONTENT_HOVER_BORDER = 'contentHBorder';
+export const CONTENT_HOVER_BRADIUS = 'contentHBRadius';
+export const CONTENT_HOVER_SHADOW = 'contentHShadow';
+export const CONTENT_TEXT_SHADOW = 'contentTextShadow';
+export const CONTENT_TEXT_STROKE = 'contentTextStroke';
