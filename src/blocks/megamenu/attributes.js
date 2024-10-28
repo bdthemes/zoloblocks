@@ -68,6 +68,11 @@ const attributes = {
     megamenuLayoutType: {
         type: 'string',
         default: 'fullwidth',
-    }
+    },
+
+    megamenuCustomDirection: {
+        type: 'string',
+        default: 'right',
+    },
 };
 export default attributes;

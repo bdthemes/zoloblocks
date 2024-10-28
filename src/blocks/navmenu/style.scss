@@ -203,6 +203,56 @@
     // &.menu-breakpoint-mobile {
     //     display: flex;
     // }
+
+    // mega menu full width css here
+
+    .wp-block-zolo-megamenu {
+        --zolo-megamenu-custom-offset: 0;
+        transform: translateX(var(--zolo-megamenu-custom-offset));
+        .zolo-megamenu-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        &.megamenu-layout-fullwidth {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            right: 0;
+            width: 100vw !important;
+            transform: translateX(-50%);
+        }
+    }
+
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom) {
+        width: auto !important;
+    }
+
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom.direction-left) {
+        left: 0;
+    }
+
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom.direction-right) {
+        right: 0;
+        left: unset;
+    }
+
+    .has-megamenu:has(.megamenu-layout-custom) {
+        position: relative !important;
+    }
+
+    .is-menu-active {
+        .wp-block-zolo-megamenu {
+            &.megamenu-layout-fullwidth {
+                position: unset;
+                width: 100%;
+                transform: unset;
+            }
+        }
+    }
 }
 
 .zolo-frontend {
