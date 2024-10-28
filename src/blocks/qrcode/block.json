@@ -4,7 +4,7 @@
     "name": "zolo/qrcode",
     "category": "zoloblocks",
     "keywords": ["qr", "qr code"],
-    "description": "QR Code Blocks",
+    "description": "Generate customized, branded QR codes for links or text.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

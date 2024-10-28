@@ -4,7 +4,7 @@
     "name": "zolo/advanced-heading",
     "category": "zoloblocks",
     "keywords": ["heading", "advanced heading"],
-    "description": "Maximizing heading styles with content & transitions",
+    "description": "Use advanced headings for impactful text design.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

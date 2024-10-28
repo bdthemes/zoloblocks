@@ -4,7 +4,7 @@
     "name": "zolo/newsletter",
     "category": "zoloblocks",
     "keywords": ["newsletter", "mailchimp", "zoloblocks"],
-    "description": "Newsletter block for Zolo Blocks",
+    "description": "Build and manage newsletters to engage and grow subscribers.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
