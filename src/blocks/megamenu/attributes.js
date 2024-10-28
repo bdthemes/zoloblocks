@@ -72,7 +72,7 @@ const attributes = {
 
     megamenuCustomDirection: {
         type: 'string',
-        default: 'left',
+        default: 'right',
     },
 };
 export default attributes;
