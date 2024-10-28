@@ -75,6 +75,7 @@ const Inspector = (props) => {
                                             onChange={(value) => setAttributes({ megamenuCustomDirection: value })}
                                             options={[
                                                 { value: 'left', label: __('Left', 'zoloblocks') },
+                                                { value: 'center', label: __('Center', 'zoloblocks') },
                                                 { value: 'right', label: __('Right', 'zoloblocks') },
                                             ]}
                                             isDeselectable
@@ -86,7 +87,7 @@ const Inspector = (props) => {
                                         controlName={DROPDOWN_WIDTH}
                                         requiredProps={requiredProps}
                                         min={200}
-                                        max={1200}
+                                        max={600}
                                         step={1}
                                     />
 
@@ -94,8 +95,8 @@ const Inspector = (props) => {
                                         label={__('Offset', 'zoloblocks')}
                                         controlName={DROPDOWN_WIDTH_OFFSET}
                                         requiredProps={requiredProps}
-                                        min={-500}
-                                        max={500}
+                                        min={-100}
+                                        max={100}
                                         step={1}
                                     />
                                 </>
