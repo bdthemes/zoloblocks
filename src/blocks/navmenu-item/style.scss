@@ -42,11 +42,11 @@
             visibility: hidden;
             height: 0;
             opacity: 0;
-            z-index: 10;
+            z-index: 999;
             pointer-events: none;
             box-sizing: border-box;
             transform: translateY(10px);
-            transition: 0.3s ease-out 1s;
+            transition: 0.3s ease-out;
             text-align: -webkit-auto;
             text-align: auto;
 
@@ -96,7 +96,6 @@
                     opacity: 1;
                     pointer-events: all;
                     transform: translateY(0);
-                    transition: 0.3s ease-out;
                 }
             }
         }
