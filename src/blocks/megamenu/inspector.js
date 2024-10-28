@@ -50,26 +50,56 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                            {/* <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Container', 'zoloblocks')}
+                            </div> */}
+                            <div className="zolo-flex-col-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout Type', 'zoloblocks')}
+                                    value={attributes?.megamenuLayoutType}
+                                    onChange={(value) => setAttributes({ megamenuLayoutType: value })}
+                                    options={[
+                                        { value: 'defualt', label: __('Defualt', 'zoloblocks') },
+                                        { value: 'fullwidth', label: __('Fullwidth', 'zoloblocks') },
+                                        { value: 'custom', label: __('Custom', 'zoloblocks') },
+                                    ]}
+                                    isDeselectable
+                                />
                             </div>
-                            <ResRangeControl
-                                label={__('Width', 'zoloblocks')}
-                                controlName={DROPDOWN_WIDTH}
-                                requiredProps={requiredProps}
-                                min={200}
-                                max={1200}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Offset', 'zoloblocks')}
-                                controlName={DROPDOWN_WIDTH_OFFSET}
-                                requiredProps={requiredProps}
-                                min={-500}
-                                max={1200}
-                                step={1}
-                            />
-                            <CardDivider />
+                            {attributes?.megamenuLayoutType === 'custom' && (
+                                <>
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Directions', 'zoloblocks')}
+                                            value={attributes?.megamenuCustomDirection}
+                                            onChange={(value) => setAttributes({ megamenuCustomDirection: value })}
+                                            options={[
+                                                { value: 'left', label: __('Left', 'zoloblocks') },
+                                                { value: 'right', label: __('Right', 'zoloblocks') },
+                                            ]}
+                                            isDeselectable
+                                        />
+                                    </div>
+
+                                    <ResRangeControl
+                                        label={__('Width', 'zoloblocks')}
+                                        controlName={DROPDOWN_WIDTH}
+                                        requiredProps={requiredProps}
+                                        min={200}
+                                        max={1200}
+                                        step={1}
+                                    />
+
+                                    <ResRangeControl
+                                        label={__('Offset', 'zoloblocks')}
+                                        controlName={DROPDOWN_WIDTH_OFFSET}
+                                        requiredProps={requiredProps}
+                                        min={-500}
+                                        max={500}
+                                        step={1}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }
@@ -83,12 +113,12 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <ResDimensionsControl
+                            {/* <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={DROPDOWN_WRAP_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
-                            />
+                            /> */}
                             <CardDivider />
 
                             <BorderControl
