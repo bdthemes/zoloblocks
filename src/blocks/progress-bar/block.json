@@ -4,7 +4,7 @@
     "name": "zolo/progress-bar",
     "category": "zoloblocks",
     "keywords": ["progress", "progress bar"],
-    "description": "Display animated progress bar for quick stats",
+    "description": "Show progress with animated bars for milestones or stats.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
