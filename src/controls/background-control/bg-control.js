@@ -17,7 +17,10 @@ import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
+import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
+
+// const { PopoverControl } = window.zoloModule;
 
 const BGControl = (props) => {
     const { controlName, requiredProps, noMainBGImg, video } = props;
@@ -213,933 +216,960 @@ const BGControl = (props) => {
                                                                 }}
                                                             />
                                                             {resMode === 'Desktop' && (
-                                                                <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={bgImgPos}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Center', 'zoloblocks'),
-                                                                                    value: 'center center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Left', 'zoloblocks'),
-                                                                                    value: 'center left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Right', 'zoloblocks'),
-                                                                                    value: 'center right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Center', 'zoloblocks'),
-                                                                                    value: 'top center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Left', 'zoloblocks'),
-                                                                                    value: 'top left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Right', 'zoloblocks'),
-                                                                                    value: 'top right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Center', 'zoloblocks'),
-                                                                                    value: 'bottom center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Left', 'zoloblocks'),
-                                                                                    value: 'bottom left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Right', 'zoloblocks'),
-                                                                                    value: 'bottom right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Custom', 'zoloblocks'),
-                                                                                    value: 'custom',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(bgImgPos) =>
-                                                                                setAttributes({
-                                                                                    [`${controlName}bgImgPos`]: bgImgPos,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    {bgImgPos === 'custom' && (
+                                                                <PopoverControl
+                                                                    label={__('Advanced Options', 'zoloblocks')}
+                                                                    children={
                                                                         <>
-                                                                            <UnitBtn
-                                                                                selectedUnit={bgImgcustomPosXUnit}
-                                                                                unitTypes={[
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
+                                                                                <SelectControl
+                                                                                    value={bgImgPos}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Center', 'zoloblocks'),
+                                                                                            value: 'center center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Left', 'zoloblocks'),
+                                                                                            value: 'center left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Right', 'zoloblocks'),
+                                                                                            value: 'center right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Center', 'zoloblocks'),
+                                                                                            value: 'top center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Left', 'zoloblocks'),
+                                                                                            value: 'top left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Right', 'zoloblocks'),
+                                                                                            value: 'top right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Center', 'zoloblocks'),
+                                                                                            value: 'bottom center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Left', 'zoloblocks'),
+                                                                                            value: 'bottom left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Right', 'zoloblocks'),
+                                                                                            value: 'bottom right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Custom', 'zoloblocks'),
+                                                                                            value: 'custom',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(bgImgPos) =>
+                                                                                        setAttributes({
+                                                                                            [`${controlName}bgImgPos`]: bgImgPos,
+                                                                                        })
+                                                                                    }
+                                                                                />
+                                                                            </WithResDeviceBtn>
+                                                                            {bgImgPos === 'custom' && (
+                                                                                <>
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={bgImgcustomPosXUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(bgImgcustomPosXUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`${controlName}bgImgcustomPosXUnit`]:
+                                                                                                    bgImgcustomPosXUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('X Position', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={bgImgcustomPosX}
+                                                                                            min={-2000}
+                                                                                            max={2000}
+                                                                                            onChange={(bgImgcustomPosX) =>
+                                                                                                setAttributes({
+                                                                                                    [`${controlName}bgImgcustomPosX`]:
+                                                                                                        bgImgcustomPosX,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={bgImgcustomPosYUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(bgImgcustomPosYUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`${controlName}bgImgcustomPosYUnit`]:
+                                                                                                    bgImgcustomPosYUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('Y Position', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={bgImgcustomPosY}
+                                                                                            min={-2000}
+                                                                                            max={2000}
+                                                                                            step={bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
+                                                                                            onChange={(bgImgcustomPosY) =>
+                                                                                                setAttributes({
+                                                                                                    [`${controlName}bgImgcustomPosY`]:
+                                                                                                        bgImgcustomPosY,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+                                                                                </>
+                                                                            )}
+
+                                                                            <SelectControl
+                                                                                label={__('Attachment', 'zoloblocks')}
+                                                                                value={bgImgAttachment}
+                                                                                options={[
                                                                                     {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
+                                                                                        label: __('Default', 'zoloblocks'),
+                                                                                        value: '',
                                                                                     },
                                                                                     {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
+                                                                                        label: __('Scroll', 'zoloblocks'),
+                                                                                        value: 'scroll',
                                                                                     },
                                                                                     {
-                                                                                        label: '%',
-                                                                                        value: '%',
+                                                                                        label: __('Fixed', 'zoloblocks'),
+                                                                                        value: 'fixed',
                                                                                     },
                                                                                 ]}
-                                                                                onClick={(bgImgcustomPosXUnit) =>
+                                                                                onChange={(bgImgAttachment) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}bgImgcustomPosXUnit`]:
-                                                                                            bgImgcustomPosXUnit,
+                                                                                        [`${controlName}bgImgAttachment`]: bgImgAttachment,
                                                                                     })
                                                                                 }
                                                                             />
-
+                                                                            {bgImgAttachment === 'fixed' && (
+                                                                                <p
+                                                                                    style={{
+                                                                                        marginTop: '-10px',
+                                                                                        paddingBottom: '10px',
+                                                                                    }}
+                                                                                >
+                                                                                    <i>Note: Attachment Fixed works only on desktop.</i>
+                                                                                </p>
+                                                                            )}
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                label={__('Repeat', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
-                                                                                <RangeControl
-                                                                                    value={bgImgcustomPosX}
-                                                                                    min={-2000}
-                                                                                    max={2000}
-                                                                                    onChange={(bgImgcustomPosX) =>
+                                                                                <SelectControl
+                                                                                    value={bgImgRepeat}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('No-repeat', 'zoloblocks'),
+                                                                                            value: 'no-repeat',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat', 'zoloblocks'),
+                                                                                            value: 'repeat',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat-x', 'zoloblocks'),
+                                                                                            value: 'repeat-x',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat-y', 'zoloblocks'),
+                                                                                            value: 'repeat-y',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(bgImgRepeat) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}bgImgcustomPosX`]:
-                                                                                                bgImgcustomPosX,
+                                                                                            [`${controlName}bgImgRepeat`]: bgImgRepeat,
+                                                                                        })
+                                                                                    }
+                                                                                />
+                                                                            </WithResDeviceBtn>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Size', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
+                                                                                <SelectControl
+                                                                                    value={backgroundSize}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Auto', 'zoloblocks'),
+                                                                                            value: 'auto',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Cover', 'zoloblocks'),
+                                                                                            value: 'cover',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Contain', 'zoloblocks'),
+                                                                                            value: 'contain',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Custom', 'zoloblocks'),
+                                                                                            value: 'custom',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(backgroundSize) =>
+                                                                                        setAttributes({
+                                                                                            [`${controlName}backgroundSize`]:
+                                                                                                backgroundSize,
                                                                                         })
                                                                                     }
                                                                                 />
                                                                             </WithResDeviceBtn>
 
-                                                                            <UnitBtn
-                                                                                selectedUnit={bgImgcustomPosYUnit}
-                                                                                unitTypes={[
-                                                                                    {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
-                                                                                    },
-                                                                                    {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
-                                                                                    },
-                                                                                    {
-                                                                                        label: '%',
-                                                                                        value: '%',
-                                                                                    },
-                                                                                ]}
-                                                                                onClick={(bgImgcustomPosYUnit) =>
-                                                                                    setAttributes({
-                                                                                        [`${controlName}bgImgcustomPosYUnit`]:
-                                                                                            bgImgcustomPosYUnit,
-                                                                                    })
-                                                                                }
-                                                                            />
+                                                                            {backgroundSize === 'custom' && (
+                                                                                <>
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={bgImgCustomSizeUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(bgImgCustomSizeUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`${controlName}bgImgCustomSizeUnit`]:
+                                                                                                    bgImgCustomSizeUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
-                                                                                <RangeControl
-                                                                                    value={bgImgcustomPosY}
-                                                                                    min={-2000}
-                                                                                    max={2000}
-                                                                                    step={bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
-                                                                                    onChange={(bgImgcustomPosY) =>
-                                                                                        setAttributes({
-                                                                                            [`${controlName}bgImgcustomPosY`]:
-                                                                                                bgImgcustomPosY,
-                                                                                        })
-                                                                                    }
-                                                                                />
-                                                                            </WithResDeviceBtn>
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('Width', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={bgImgCustomSize}
+                                                                                            min={0}
+                                                                                            max={bgImgCustomSizeUnit === 'px' ? 2000 : 100}
+                                                                                            step={bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
+                                                                                            onChange={(bgImgCustomSize) =>
+                                                                                                setAttributes({
+                                                                                                    [`${controlName}bgImgCustomSize`]:
+                                                                                                        bgImgCustomSize,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+                                                                                </>
+                                                                            )}
                                                                         </>
-                                                                    )}
-
-                                                                    <SelectControl
-                                                                        label={__('Attachment', 'zoloblocks')}
-                                                                        value={bgImgAttachment}
-                                                                        options={[
-                                                                            {
-                                                                                label: __('Default', 'zoloblocks'),
-                                                                                value: '',
-                                                                            },
-                                                                            {
-                                                                                label: __('Scroll', 'zoloblocks'),
-                                                                                value: 'scroll',
-                                                                            },
-                                                                            {
-                                                                                label: __('Fixed', 'zoloblocks'),
-                                                                                value: 'fixed',
-                                                                            },
-                                                                        ]}
-                                                                        onChange={(bgImgAttachment) =>
-                                                                            setAttributes({
-                                                                                [`${controlName}bgImgAttachment`]: bgImgAttachment,
-                                                                            })
-                                                                        }
-                                                                    />
-
-                                                                    {bgImgAttachment === 'fixed' && (
-                                                                        <p
-                                                                            style={{
-                                                                                marginTop: '-10px',
-                                                                                paddingBottom: '10px',
-                                                                            }}
-                                                                        >
-                                                                            <i>Note: Attachment Fixed works only on desktop.</i>
-                                                                        </p>
-                                                                    )}
-
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={bgImgRepeat}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('No-repeat', 'zoloblocks'),
-                                                                                    value: 'no-repeat',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat', 'zoloblocks'),
-                                                                                    value: 'repeat',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat-x', 'zoloblocks'),
-                                                                                    value: 'repeat-x',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat-y', 'zoloblocks'),
-                                                                                    value: 'repeat-y',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(bgImgRepeat) =>
-                                                                                setAttributes({
-                                                                                    [`${controlName}bgImgRepeat`]: bgImgRepeat,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={backgroundSize}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Auto', 'zoloblocks'),
-                                                                                    value: 'auto',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Cover', 'zoloblocks'),
-                                                                                    value: 'cover',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Contain', 'zoloblocks'),
-                                                                                    value: 'contain',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Custom', 'zoloblocks'),
-                                                                                    value: 'custom',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(backgroundSize) =>
-                                                                                setAttributes({
-                                                                                    [`${controlName}backgroundSize`]: backgroundSize,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    {backgroundSize === 'custom' && (
-                                                                        <>
-                                                                            <UnitBtn
-                                                                                selectedUnit={bgImgCustomSizeUnit}
-                                                                                unitTypes={[
-                                                                                    {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
-                                                                                    },
-                                                                                    {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
-                                                                                    },
-                                                                                    {
-                                                                                        label: '%',
-                                                                                        value: '%',
-                                                                                    },
-                                                                                ]}
-                                                                                onClick={(bgImgCustomSizeUnit) =>
-                                                                                    setAttributes({
-                                                                                        [`${controlName}bgImgCustomSizeUnit`]:
-                                                                                            bgImgCustomSizeUnit,
-                                                                                    })
-                                                                                }
-                                                                            />
-
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
-                                                                                <RangeControl
-                                                                                    value={bgImgCustomSize}
-                                                                                    min={0}
-                                                                                    max={bgImgCustomSizeUnit === 'px' ? 2000 : 100}
-                                                                                    step={bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
-                                                                                    onChange={(bgImgCustomSize) =>
-                                                                                        setAttributes({
-                                                                                            [`${controlName}bgImgCustomSize`]:
-                                                                                                bgImgCustomSize,
-                                                                                        })
-                                                                                    }
-                                                                                />
-                                                                            </WithResDeviceBtn>
-                                                                        </>
-                                                                    )}
-                                                                </>
+                                                                    }
+                                                                />
                                                             )}
                                                             {resMode === 'Tablet' && (
-                                                                <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={TABbgImgPos}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Center', 'zoloblocks'),
-                                                                                    value: 'center center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Left', 'zoloblocks'),
-                                                                                    value: 'center left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Right', 'zoloblocks'),
-                                                                                    value: 'center right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Center', 'zoloblocks'),
-                                                                                    value: 'top center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Left', 'zoloblocks'),
-                                                                                    value: 'top left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Right', 'zoloblocks'),
-                                                                                    value: 'top right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Center', 'zoloblocks'),
-                                                                                    value: 'bottom center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Left', 'zoloblocks'),
-                                                                                    value: 'bottom left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Right', 'zoloblocks'),
-                                                                                    value: 'bottom right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Custom', 'zoloblocks'),
-                                                                                    value: 'custom',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(TABbgImgPos) =>
-                                                                                setAttributes({
-                                                                                    [`TAB${controlName}bgImgPos`]: TABbgImgPos,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    {TABbgImgPos === 'custom' && (
+                                                                <PopoverControl
+                                                                    label={__('Advanced Options', 'zoloblocks')}
+                                                                    children={
                                                                         <>
-                                                                            <UnitBtn
-                                                                                selectedUnit={TABbgImgcustomPosXUnit}
-                                                                                unitTypes={[
-                                                                                    {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
-                                                                                    },
-                                                                                    {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
-                                                                                    },
-                                                                                    {
-                                                                                        label: '%',
-                                                                                        value: '%',
-                                                                                    },
-                                                                                ]}
-                                                                                onClick={(TABbgImgcustomPosXUnit) =>
-                                                                                    setAttributes({
-                                                                                        [`TAB${controlName}bgImgcustomPosXUnit`]:
-                                                                                            TABbgImgcustomPosXUnit,
-                                                                                    })
-                                                                                }
-                                                                            />
-
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                label={__('Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
-                                                                                <RangeControl
-                                                                                    value={TABbgImgcustomPosX}
-                                                                                    min={0}
-                                                                                    max={TABbgImgcustomPosXUnit === 'px' ? 2000 : 100}
-                                                                                    onChange={(TABbgImgcustomPosX) =>
+                                                                                <SelectControl
+                                                                                    value={TABbgImgPos}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Center', 'zoloblocks'),
+                                                                                            value: 'center center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Left', 'zoloblocks'),
+                                                                                            value: 'center left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Right', 'zoloblocks'),
+                                                                                            value: 'center right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Center', 'zoloblocks'),
+                                                                                            value: 'top center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Left', 'zoloblocks'),
+                                                                                            value: 'top left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Right', 'zoloblocks'),
+                                                                                            value: 'top right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Center', 'zoloblocks'),
+                                                                                            value: 'bottom center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Left', 'zoloblocks'),
+                                                                                            value: 'bottom left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Right', 'zoloblocks'),
+                                                                                            value: 'bottom right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Custom', 'zoloblocks'),
+                                                                                            value: 'custom',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(TABbgImgPos) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}bgImgcustomPosX`]:
-                                                                                                TABbgImgcustomPosX,
+                                                                                            [`TAB${controlName}bgImgPos`]: TABbgImgPos,
                                                                                         })
                                                                                     }
                                                                                 />
                                                                             </WithResDeviceBtn>
 
-                                                                            <UnitBtn
-                                                                                selectedUnit={TABbgImgcustomPosYUnit}
-                                                                                unitTypes={[
+                                                                            {TABbgImgPos === 'custom' && (
+                                                                                <>
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={TABbgImgcustomPosXUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(TABbgImgcustomPosXUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`TAB${controlName}bgImgcustomPosXUnit`]:
+                                                                                                    TABbgImgcustomPosXUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('X Position', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={TABbgImgcustomPosX}
+                                                                                            min={0}
+                                                                                            max={
+                                                                                                TABbgImgcustomPosXUnit === 'px' ? 2000 : 100
+                                                                                            }
+                                                                                            onChange={(TABbgImgcustomPosX) =>
+                                                                                                setAttributes({
+                                                                                                    [`TAB${controlName}bgImgcustomPosX`]:
+                                                                                                        TABbgImgcustomPosX,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={TABbgImgcustomPosYUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(TABbgImgcustomPosYUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`TAB${controlName}bgImgcustomPosYUnit`]:
+                                                                                                    TABbgImgcustomPosYUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('Y Position', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={TABbgImgcustomPosY}
+                                                                                            min={0}
+                                                                                            max={
+                                                                                                TABbgImgcustomPosYUnit === 'px' ? 2000 : 100
+                                                                                            }
+                                                                                            step={TABbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
+                                                                                            onChange={(TABbgImgcustomPosY) =>
+                                                                                                setAttributes({
+                                                                                                    [`TAB${controlName}bgImgcustomPosY`]:
+                                                                                                        TABbgImgcustomPosY,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+                                                                                </>
+                                                                            )}
+
+                                                                            <SelectControl
+                                                                                label={__('Attachment')}
+                                                                                value={bgImgAttachment}
+                                                                                options={[
                                                                                     {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
+                                                                                        label: __('Default', 'zoloblocks'),
+                                                                                        value: '',
                                                                                     },
                                                                                     {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
+                                                                                        label: __('Scroll', 'zoloblocks'),
+                                                                                        value: 'scroll',
                                                                                     },
                                                                                     {
-                                                                                        label: '%',
-                                                                                        value: '%',
+                                                                                        label: __('Fixed', 'zoloblocks'),
+                                                                                        value: 'fixed',
                                                                                     },
                                                                                 ]}
-                                                                                onClick={(TABbgImgcustomPosYUnit) =>
+                                                                                onChange={(bgImgAttachment) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgcustomPosYUnit`]:
-                                                                                            TABbgImgcustomPosYUnit,
+                                                                                        [`${controlName}bgImgAttachment`]: bgImgAttachment,
                                                                                     })
                                                                                 }
                                                                             />
 
+                                                                            {bgImgAttachment === 'fixed' && (
+                                                                                <p
+                                                                                    style={{
+                                                                                        marginTop: '-10px',
+                                                                                        paddingBottom: '10px',
+                                                                                    }}
+                                                                                >
+                                                                                    <i>Note: Attachment Fixed works only on desktop.</i>
+                                                                                </p>
+                                                                            )}
+
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                label={__('Repeat', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
-                                                                                <RangeControl
-                                                                                    value={TABbgImgcustomPosY}
-                                                                                    min={0}
-                                                                                    max={TABbgImgcustomPosYUnit === 'px' ? 2000 : 100}
-                                                                                    step={TABbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
-                                                                                    onChange={(TABbgImgcustomPosY) =>
+                                                                                <SelectControl
+                                                                                    value={TABbgImgRepeat}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('No-repeat', 'zoloblocks'),
+                                                                                            value: 'no-repeat',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat', 'zoloblocks'),
+                                                                                            value: 'repeat',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat-x', 'zoloblocks'),
+                                                                                            value: 'repeat-x',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat-y', 'zoloblocks'),
+                                                                                            value: 'repeat-y',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(TABbgImgRepeat) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}bgImgcustomPosY`]:
-                                                                                                TABbgImgcustomPosY,
+                                                                                            [`TAB${controlName}bgImgRepeat`]:
+                                                                                                TABbgImgRepeat,
                                                                                         })
                                                                                     }
                                                                                 />
                                                                             </WithResDeviceBtn>
+
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Size', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
+                                                                                <SelectControl
+                                                                                    value={TABbackgroundSize}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Auto', 'zoloblocks'),
+                                                                                            value: 'auto',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Cover', 'zoloblocks'),
+                                                                                            value: 'cover',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Contain', 'zoloblocks'),
+                                                                                            value: 'contain',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Custom', 'zoloblocks'),
+                                                                                            value: 'custom',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(TABbackgroundSize) =>
+                                                                                        setAttributes({
+                                                                                            [`TAB${controlName}backgroundSize`]:
+                                                                                                TABbackgroundSize,
+                                                                                        })
+                                                                                    }
+                                                                                />
+                                                                            </WithResDeviceBtn>
+
+                                                                            {TABbackgroundSize === 'custom' && (
+                                                                                <>
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={TABbgImgCustomSizeUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(TABbgImgCustomSizeUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`TAB${controlName}bgImgCustomSizeUnit`]:
+                                                                                                    TABbgImgCustomSizeUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('Width', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={TABbgImgCustomSize}
+                                                                                            min={0}
+                                                                                            max={
+                                                                                                TABbgImgCustomSizeUnit === 'px' ? 2000 : 100
+                                                                                            }
+                                                                                            step={TABbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
+                                                                                            onChange={(TABbgImgCustomSize) =>
+                                                                                                setAttributes({
+                                                                                                    [`TAB${controlName}bgImgCustomSize`]:
+                                                                                                        TABbgImgCustomSize,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+                                                                                </>
+                                                                            )}
                                                                         </>
-                                                                    )}
-
-                                                                    <SelectControl
-                                                                        label={__('Attachment')}
-                                                                        value={bgImgAttachment}
-                                                                        options={[
-                                                                            {
-                                                                                label: __('Default', 'zoloblocks'),
-                                                                                value: '',
-                                                                            },
-                                                                            {
-                                                                                label: __('Scroll', 'zoloblocks'),
-                                                                                value: 'scroll',
-                                                                            },
-                                                                            {
-                                                                                label: __('Fixed', 'zoloblocks'),
-                                                                                value: 'fixed',
-                                                                            },
-                                                                        ]}
-                                                                        onChange={(bgImgAttachment) =>
-                                                                            setAttributes({
-                                                                                [`${controlName}bgImgAttachment`]: bgImgAttachment,
-                                                                            })
-                                                                        }
-                                                                    />
-
-                                                                    {bgImgAttachment === 'fixed' && (
-                                                                        <p
-                                                                            style={{
-                                                                                marginTop: '-10px',
-                                                                                paddingBottom: '10px',
-                                                                            }}
-                                                                        >
-                                                                            <i>Note: Attachment Fixed works only on desktop.</i>
-                                                                        </p>
-                                                                    )}
-
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={TABbgImgRepeat}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('No-repeat', 'zoloblocks'),
-                                                                                    value: 'no-repeat',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat', 'zoloblocks'),
-                                                                                    value: 'repeat',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat-x', 'zoloblocks'),
-                                                                                    value: 'repeat-x',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat-y', 'zoloblocks'),
-                                                                                    value: 'repeat-y',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(TABbgImgRepeat) =>
-                                                                                setAttributes({
-                                                                                    [`TAB${controlName}bgImgRepeat`]: TABbgImgRepeat,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={TABbackgroundSize}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Auto', 'zoloblocks'),
-                                                                                    value: 'auto',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Cover', 'zoloblocks'),
-                                                                                    value: 'cover',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Contain', 'zoloblocks'),
-                                                                                    value: 'contain',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Custom', 'zoloblocks'),
-                                                                                    value: 'custom',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(TABbackgroundSize) =>
-                                                                                setAttributes({
-                                                                                    [`TAB${controlName}backgroundSize`]: TABbackgroundSize,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    {TABbackgroundSize === 'custom' && (
-                                                                        <>
-                                                                            <UnitBtn
-                                                                                selectedUnit={TABbgImgCustomSizeUnit}
-                                                                                unitTypes={[
-                                                                                    {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
-                                                                                    },
-                                                                                    {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
-                                                                                    },
-                                                                                    {
-                                                                                        label: '%',
-                                                                                        value: '%',
-                                                                                    },
-                                                                                ]}
-                                                                                onClick={(TABbgImgCustomSizeUnit) =>
-                                                                                    setAttributes({
-                                                                                        [`TAB${controlName}bgImgCustomSizeUnit`]:
-                                                                                            TABbgImgCustomSizeUnit,
-                                                                                    })
-                                                                                }
-                                                                            />
-
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
-                                                                                <RangeControl
-                                                                                    value={TABbgImgCustomSize}
-                                                                                    min={0}
-                                                                                    max={TABbgImgCustomSizeUnit === 'px' ? 2000 : 100}
-                                                                                    step={TABbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
-                                                                                    onChange={(TABbgImgCustomSize) =>
-                                                                                        setAttributes({
-                                                                                            [`TAB${controlName}bgImgCustomSize`]:
-                                                                                                TABbgImgCustomSize,
-                                                                                        })
-                                                                                    }
-                                                                                />
-                                                                            </WithResDeviceBtn>
-                                                                        </>
-                                                                    )}
-                                                                </>
+                                                                    }
+                                                                />
                                                             )}
                                                             {resMode === 'Mobile' && (
-                                                                <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={MOBbgImgPos}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Center', 'zoloblocks'),
-                                                                                    value: 'center center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Left', 'zoloblocks'),
-                                                                                    value: 'center left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Center Right', 'zoloblocks'),
-                                                                                    value: 'center right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Center', 'zoloblocks'),
-                                                                                    value: 'top center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Left', 'zoloblocks'),
-                                                                                    value: 'top left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Top Right', 'zoloblocks'),
-                                                                                    value: 'top right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Center', 'zoloblocks'),
-                                                                                    value: 'bottom center',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Left', 'zoloblocks'),
-                                                                                    value: 'bottom left',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Bottom Right', 'zoloblocks'),
-                                                                                    value: 'bottom right',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Custom', 'zoloblocks'),
-                                                                                    value: 'custom',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(MOBbgImgPos) =>
-                                                                                setAttributes({
-                                                                                    [`MOB${controlName}bgImgPos`]: MOBbgImgPos,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    {MOBbgImgPos === 'custom' && (
+                                                                <PopoverControl
+                                                                    label={__('Advanced Options', 'zoloblocks')}
+                                                                    children={
                                                                         <>
-                                                                            <UnitBtn
-                                                                                selectedUnit={MOBbgImgcustomPosXUnit}
-                                                                                unitTypes={[
-                                                                                    {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
-                                                                                    },
-                                                                                    {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
-                                                                                    },
-                                                                                    {
-                                                                                        label: '%',
-                                                                                        value: '%',
-                                                                                    },
-                                                                                ]}
-                                                                                onClick={(MOBbgImgcustomPosXUnit) =>
-                                                                                    setAttributes({
-                                                                                        [`MOB${controlName}bgImgcustomPosXUnit`]:
-                                                                                            MOBbgImgcustomPosXUnit,
-                                                                                    })
-                                                                                }
-                                                                            />
-
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                label={__('Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
-                                                                                <RangeControl
-                                                                                    value={MOBbgImgcustomPosX}
-                                                                                    min={0}
-                                                                                    max={MOBbgImgcustomPosXUnit === 'px' ? 2000 : 100}
-                                                                                    onChange={(MOBbgImgcustomPosX) =>
+                                                                                <SelectControl
+                                                                                    value={MOBbgImgPos}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Center', 'zoloblocks'),
+                                                                                            value: 'center center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Left', 'zoloblocks'),
+                                                                                            value: 'center left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Center Right', 'zoloblocks'),
+                                                                                            value: 'center right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Center', 'zoloblocks'),
+                                                                                            value: 'top center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Left', 'zoloblocks'),
+                                                                                            value: 'top left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Top Right', 'zoloblocks'),
+                                                                                            value: 'top right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Center', 'zoloblocks'),
+                                                                                            value: 'bottom center',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Left', 'zoloblocks'),
+                                                                                            value: 'bottom left',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Bottom Right', 'zoloblocks'),
+                                                                                            value: 'bottom right',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Custom', 'zoloblocks'),
+                                                                                            value: 'custom',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(MOBbgImgPos) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}bgImgcustomPosX`]:
-                                                                                                MOBbgImgcustomPosX,
+                                                                                            [`MOB${controlName}bgImgPos`]: MOBbgImgPos,
                                                                                         })
                                                                                     }
                                                                                 />
                                                                             </WithResDeviceBtn>
 
-                                                                            <UnitBtn
-                                                                                selectedUnit={MOBbgImgcustomPosYUnit}
-                                                                                unitTypes={[
+                                                                            {MOBbgImgPos === 'custom' && (
+                                                                                <>
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={MOBbgImgcustomPosXUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(MOBbgImgcustomPosXUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`MOB${controlName}bgImgcustomPosXUnit`]:
+                                                                                                    MOBbgImgcustomPosXUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('X Position', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={MOBbgImgcustomPosX}
+                                                                                            min={0}
+                                                                                            max={
+                                                                                                MOBbgImgcustomPosXUnit === 'px' ? 2000 : 100
+                                                                                            }
+                                                                                            onChange={(MOBbgImgcustomPosX) =>
+                                                                                                setAttributes({
+                                                                                                    [`MOB${controlName}bgImgcustomPosX`]:
+                                                                                                        MOBbgImgcustomPosX,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={MOBbgImgcustomPosYUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(MOBbgImgcustomPosYUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`MOB${controlName}bgImgcustomPosYUnit`]:
+                                                                                                    MOBbgImgcustomPosYUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('Y Position', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={MOBbgImgcustomPosY}
+                                                                                            min={0}
+                                                                                            max={
+                                                                                                MOBbgImgcustomPosYUnit === 'px' ? 2000 : 100
+                                                                                            }
+                                                                                            step={MOBbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
+                                                                                            onChange={(MOBbgImgcustomPosY) =>
+                                                                                                setAttributes({
+                                                                                                    [`MOB${controlName}bgImgcustomPosY`]:
+                                                                                                        MOBbgImgcustomPosY,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+                                                                                </>
+                                                                            )}
+
+                                                                            <SelectControl
+                                                                                label={__('Attachment', 'zoloblocks')}
+                                                                                value={bgImgAttachment}
+                                                                                options={[
                                                                                     {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
+                                                                                        label: __('Default', 'zoloblocks'),
+                                                                                        value: '',
                                                                                     },
                                                                                     {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
+                                                                                        label: __('Scroll', 'zoloblocks'),
+                                                                                        value: 'scroll',
                                                                                     },
                                                                                     {
-                                                                                        label: '%',
-                                                                                        value: '%',
+                                                                                        label: __('Fixed', 'zoloblocks'),
+                                                                                        value: 'fixed',
                                                                                     },
                                                                                 ]}
-                                                                                onClick={(MOBbgImgcustomPosYUnit) =>
+                                                                                onChange={(bgImgAttachment) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgcustomPosYUnit`]:
-                                                                                            MOBbgImgcustomPosYUnit,
+                                                                                        [`${controlName}bgImgAttachment`]: bgImgAttachment,
                                                                                     })
                                                                                 }
                                                                             />
 
+                                                                            {bgImgAttachment === 'fixed' && (
+                                                                                <p
+                                                                                    style={{
+                                                                                        marginTop: '-10px',
+                                                                                        paddingBottom: '10px',
+                                                                                    }}
+                                                                                >
+                                                                                    <i>Note: Attachment Fixed works only on desktop.</i>
+                                                                                </p>
+                                                                            )}
+
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                label={__('Repeat', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
-                                                                                <RangeControl
-                                                                                    value={MOBbgImgcustomPosY}
-                                                                                    min={0}
-                                                                                    max={MOBbgImgcustomPosYUnit === 'px' ? 2000 : 100}
-                                                                                    step={MOBbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
-                                                                                    onChange={(MOBbgImgcustomPosY) =>
+                                                                                <SelectControl
+                                                                                    value={MOBbgImgRepeat}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('No-repeat', 'zoloblocks'),
+                                                                                            value: 'no-repeat',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat', 'zoloblocks'),
+                                                                                            value: 'repeat',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat-x', 'zoloblocks'),
+                                                                                            value: 'repeat-x',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Repeat-y', 'zoloblocks'),
+                                                                                            value: 'repeat-y',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(MOBbgImgRepeat) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}bgImgcustomPosY`]:
-                                                                                                MOBbgImgcustomPosY,
+                                                                                            [`MOB${controlName}bgImgRepeat`]:
+                                                                                                MOBbgImgRepeat,
                                                                                         })
                                                                                     }
                                                                                 />
                                                                             </WithResDeviceBtn>
+
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Size', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
+                                                                                <SelectControl
+                                                                                    value={MOBbackgroundSize}
+                                                                                    options={[
+                                                                                        {
+                                                                                            label: __('Default', 'zoloblocks'),
+                                                                                            value: '',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Auto', 'zoloblocks'),
+                                                                                            value: 'auto',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Cover', 'zoloblocks'),
+                                                                                            value: 'cover',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Contain', 'zoloblocks'),
+                                                                                            value: 'contain',
+                                                                                        },
+                                                                                        {
+                                                                                            label: __('Custom', 'zoloblocks'),
+                                                                                            value: 'custom',
+                                                                                        },
+                                                                                    ]}
+                                                                                    onChange={(MOBbackgroundSize) =>
+                                                                                        setAttributes({
+                                                                                            [`MOB${controlName}backgroundSize`]:
+                                                                                                MOBbackgroundSize,
+                                                                                        })
+                                                                                    }
+                                                                                />
+                                                                            </WithResDeviceBtn>
+
+                                                                            {MOBbackgroundSize === 'custom' && (
+                                                                                <>
+                                                                                    <UnitBtn
+                                                                                        selectedUnit={MOBbgImgCustomSizeUnit}
+                                                                                        unitTypes={[
+                                                                                            {
+                                                                                                label: 'px',
+                                                                                                value: 'px',
+                                                                                            },
+                                                                                            {
+                                                                                                label: 'em',
+                                                                                                value: 'em',
+                                                                                            },
+                                                                                            {
+                                                                                                label: '%',
+                                                                                                value: '%',
+                                                                                            },
+                                                                                        ]}
+                                                                                        onClick={(MOBbgImgCustomSizeUnit) =>
+                                                                                            setAttributes({
+                                                                                                [`MOB${controlName}bgImgCustomSizeUnit`]:
+                                                                                                    MOBbgImgCustomSizeUnit,
+                                                                                            })
+                                                                                        }
+                                                                                    />
+
+                                                                                    <WithResDeviceBtn
+                                                                                        requiredProps={requiredProps}
+                                                                                        label={__('Width', 'zoloblocks')}
+                                                                                        noResetBtn={true}
+                                                                                    >
+                                                                                        <RangeControl
+                                                                                            value={MOBbgImgCustomSize}
+                                                                                            min={0}
+                                                                                            max={
+                                                                                                MOBbgImgCustomSizeUnit === 'px' ? 2000 : 100
+                                                                                            }
+                                                                                            step={MOBbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
+                                                                                            onChange={(MOBbgImgCustomSize) =>
+                                                                                                setAttributes({
+                                                                                                    [`MOB${controlName}bgImgCustomSize`]:
+                                                                                                        MOBbgImgCustomSize,
+                                                                                                })
+                                                                                            }
+                                                                                        />
+                                                                                    </WithResDeviceBtn>
+                                                                                </>
+                                                                            )}
                                                                         </>
-                                                                    )}
-
-                                                                    <SelectControl
-                                                                        label={__('Attachment', 'zoloblocks')}
-                                                                        value={bgImgAttachment}
-                                                                        options={[
-                                                                            {
-                                                                                label: __('Default', 'zoloblocks'),
-                                                                                value: '',
-                                                                            },
-                                                                            {
-                                                                                label: __('Scroll', 'zoloblocks'),
-                                                                                value: 'scroll',
-                                                                            },
-                                                                            {
-                                                                                label: __('Fixed', 'zoloblocks'),
-                                                                                value: 'fixed',
-                                                                            },
-                                                                        ]}
-                                                                        onChange={(bgImgAttachment) =>
-                                                                            setAttributes({
-                                                                                [`${controlName}bgImgAttachment`]: bgImgAttachment,
-                                                                            })
-                                                                        }
-                                                                    />
-
-                                                                    {bgImgAttachment === 'fixed' && (
-                                                                        <p
-                                                                            style={{
-                                                                                marginTop: '-10px',
-                                                                                paddingBottom: '10px',
-                                                                            }}
-                                                                        >
-                                                                            <i>Note: Attachment Fixed works only on desktop.</i>
-                                                                        </p>
-                                                                    )}
-
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={MOBbgImgRepeat}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('No-repeat', 'zoloblocks'),
-                                                                                    value: 'no-repeat',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat', 'zoloblocks'),
-                                                                                    value: 'repeat',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat-x', 'zoloblocks'),
-                                                                                    value: 'repeat-x',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Repeat-y', 'zoloblocks'),
-                                                                                    value: 'repeat-y',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(MOBbgImgRepeat) =>
-                                                                                setAttributes({
-                                                                                    [`MOB${controlName}bgImgRepeat`]: MOBbgImgRepeat,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
-                                                                        <SelectControl
-                                                                            value={MOBbackgroundSize}
-                                                                            options={[
-                                                                                {
-                                                                                    label: __('Default', 'zoloblocks'),
-                                                                                    value: '',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Auto', 'zoloblocks'),
-                                                                                    value: 'auto',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Cover', 'zoloblocks'),
-                                                                                    value: 'cover',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Contain', 'zoloblocks'),
-                                                                                    value: 'contain',
-                                                                                },
-                                                                                {
-                                                                                    label: __('Custom', 'zoloblocks'),
-                                                                                    value: 'custom',
-                                                                                },
-                                                                            ]}
-                                                                            onChange={(MOBbackgroundSize) =>
-                                                                                setAttributes({
-                                                                                    [`MOB${controlName}backgroundSize`]: MOBbackgroundSize,
-                                                                                })
-                                                                            }
-                                                                        />
-                                                                    </WithResDeviceBtn>
-
-                                                                    {MOBbackgroundSize === 'custom' && (
-                                                                        <>
-                                                                            <UnitBtn
-                                                                                selectedUnit={MOBbgImgCustomSizeUnit}
-                                                                                unitTypes={[
-                                                                                    {
-                                                                                        label: 'px',
-                                                                                        value: 'px',
-                                                                                    },
-                                                                                    {
-                                                                                        label: 'em',
-                                                                                        value: 'em',
-                                                                                    },
-                                                                                    {
-                                                                                        label: '%',
-                                                                                        value: '%',
-                                                                                    },
-                                                                                ]}
-                                                                                onClick={(MOBbgImgCustomSizeUnit) =>
-                                                                                    setAttributes({
-                                                                                        [`MOB${controlName}bgImgCustomSizeUnit`]:
-                                                                                            MOBbgImgCustomSizeUnit,
-                                                                                    })
-                                                                                }
-                                                                            />
-
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
-                                                                                <RangeControl
-                                                                                    value={MOBbgImgCustomSize}
-                                                                                    min={0}
-                                                                                    max={MOBbgImgCustomSizeUnit === 'px' ? 2000 : 100}
-                                                                                    step={MOBbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
-                                                                                    onChange={(MOBbgImgCustomSize) =>
-                                                                                        setAttributes({
-                                                                                            [`MOB${controlName}bgImgCustomSize`]:
-                                                                                                MOBbgImgCustomSize,
-                                                                                        })
-                                                                                    }
-                                                                                />
-                                                                            </WithResDeviceBtn>
-                                                                        </>
-                                                                    )}
-                                                                </>
+                                                                    }
+                                                                />
                                                             )}
-                                                            {/* {backgroundParallax && backgroundParallax} */}
                                                         </>
                                                     )}
                                                 </>
@@ -1195,11 +1225,7 @@ const BGControl = (props) => {
                                             )}
                                         </>
                                     )}
-                                    {backgroundType === 'video' && (
-                                        <>
-                                            {backgroundVideo && backgroundVideo}
-                                        </>
-                                    )}
+                                    {backgroundType === 'video' && <>{backgroundVideo && backgroundVideo}</>}
                                 </>
                             );
                         } else {
@@ -1207,21 +1233,19 @@ const BGControl = (props) => {
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(
-                                                ({ value, label }) => (
-                                                    <Button
-                                                        key={value}
-                                                        variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                        onClick={() =>
-                                                            setAttributes({
-                                                                [`${controlName}backgroundType`]: value,
-                                                            })
-                                                        }
-                                                    >
-                                                        {label}
-                                                    </Button>
-                                                )
-                                            )}
+                                            {BACKGROUND_TYPES.map(({ value, label }) => (
+                                                <Button
+                                                    key={value}
+                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                    onClick={() =>
+                                                        setAttributes({
+                                                            [`${controlName}backgroundType`]: value,
+                                                        })
+                                                    }
+                                                >
+                                                    {label}
+                                                </Button>
+                                            ))}
                                         </ButtonGroup>
                                     </BaseControl>
 
