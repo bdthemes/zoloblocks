@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Navmenu",
+    "title": "Nav Menu",
     "name": "zolo/navmenu",
     "category": "zoloblocks",
     "keywords": ["menu", "navmenu", "navigation", "navigation-menu", "megamenu", "mega-menu"],
