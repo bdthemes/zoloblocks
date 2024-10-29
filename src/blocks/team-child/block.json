@@ -4,7 +4,7 @@
     "name": "zolo/team-child",
     "category": "zoloblocks",
     "keywords": ["team", "team member"],
-    "description": "Single item block for the team block",
+    "description": "Add team members to the Team Grid layout.",
     "parent": ["zolo/team-grid"],
     "apiVersion": 3,
     "textdomain": "zoloblocks",

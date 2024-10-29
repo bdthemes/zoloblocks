@@ -54,10 +54,19 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, contentHorizontalPosition, contentVerticalPosition } =
+    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, contentHorizontalPosition, contentVerticalPosition, preset } =
         attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
+
     // column count
     const {
         desktopRangeStyle: columnCountDeskstyle,
@@ -357,6 +366,14 @@ const Style = ({ props }) => {
             ${containerDeskBGHStyle}
 		}
 
+        ${
+            preset === 'zb-brand-basic-style'
+                ? `.${uniqueId} .zb-brand-item:hover {
+			      	${containerDeskBGHStyle}
+			    }`
+                : ''
+        }
+        
         .${uniqueId} .zb-brand-item, .${uniqueId} .zb-brand-content{
             ${containerBorderRadiusDesk}
 		}
@@ -417,6 +434,22 @@ const Style = ({ props }) => {
                             hue-rotate(${hueRotate}deg)
                     }
                 `
+                : ''
+        }
+
+        ${
+            activeHover && preset === 'zb-brand-basic-style'
+                ? `
+                    .${uniqueId} .wp-block-zolo-brand-child:hover .zb-brand-image img {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+
+       `
                 : ''
         }
     `;

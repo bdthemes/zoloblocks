@@ -21,6 +21,13 @@ import {
     VIEW_BTN_BORDER_RADIUS,
     VIEW_BTN_SHADOW,
     THUMBNAIL_OVERLAY_BG,
+    CAT_NAME_BG,
+    CAT_NAME_PADDING,
+    CAT_NAME_BORDER,
+    CAT_NAME_SHADOW,
+    CAT_NAME_BORDER_RADIUS,
+    CAT_NAME_HOVER_BG,
+    CAT_NAME_HOVER_SHADOW,
 } from './constants';
 
 /**
@@ -128,10 +135,10 @@ const attributes = {
         type: 'string',
     },
     countHoverBgColor: {
-      type: 'string',
+        type: 'string',
     },
     countHoverBColor: {
-      type: 'string',
+        type: 'string',
     },
     viewBtnColor: {
         type: 'string',
@@ -167,7 +174,12 @@ const attributes = {
     viewBtnHoverBorderColor: {
         type: 'string',
     },
-    ...generateNormalBGAttributes(THUMBNAIL_OVERLAY_BG),
+
+    //cat name
+    catNameHoverBColor: {
+        type: 'string',
+    },
+    ...generateNormalBGAttributes(CAT_NAME_BG),
     //item
     ...generateDimensionAttributes(ITEM_PADDING),
     ...generateNormalBGAttributes(ITEM_BG),
@@ -187,5 +199,14 @@ const attributes = {
     ...generateBorderAttributies(VIEW_BTN_BORDER),
     ...generateDimensionAttributes(VIEW_BTN_BORDER_RADIUS),
     ...generateBoxShadowAttributies(VIEW_BTN_SHADOW),
+
+    //cat name
+    ...generateDimensionAttributes(CAT_NAME_PADDING),
+    ...generateNormalBGAttributes(CAT_NAME_BG),
+    ...generateBorderAttributies(CAT_NAME_BORDER),
+    ...generateDimensionAttributes(CAT_NAME_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CAT_NAME_SHADOW),
+    ...generateNormalBGAttributes(CAT_NAME_HOVER_BG),
+    ...generateBoxShadowAttributies(CAT_NAME_HOVER_SHADOW),
 };
 export default attributes;

@@ -4,7 +4,7 @@
     "name": "zolo/tab",
     "category": "zoloblocks",
     "keywords": ["tab"],
-    "description": "Single item block for tabs block",
+    "description": "Add sections within Tabs for organized content.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/tabs"],

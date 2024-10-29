@@ -4,7 +4,7 @@
     "name": "zolo/list",
     "category": "zoloblocks",
     "keywords": ["list", "footer List"],
-    "description": "Best for creating link type and list type content",
+    "description": "Design customizable lists with creative transitions and styles.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

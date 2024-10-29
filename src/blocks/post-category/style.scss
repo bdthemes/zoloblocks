@@ -13,11 +13,9 @@
         font-size: 13px;
         color: #fff;
         background: rgba(255, 255, 255, 0.3);
-        border-radius: 3px;
+        border-radius: 6px;
         transition: all 0.3s ease;
-		padding:5px 12px;
-        //width: 30px;
-        //height: 30px;
+        padding: 5px 12px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -29,7 +27,7 @@
         padding: 20px;
         border-radius: 8px;
         text-decoration: none !important;
-		overflow: hidden;
+        overflow: hidden;
     }
 
     .zolo-content {
@@ -47,9 +45,14 @@
         margin-bottom: 0 !important;
     }
 
+    .zolo-category-img {
+        height: 100%;
+        width: 100%;
+    }
+
     .zolo-category-img img {
         width: 100%;
-        height: 300px;
+        height: 100%;
         object-fit: cover;
         vertical-align: middle;
     }
@@ -58,7 +61,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        // gap: 30px;
     }
 
     &.zolo-category-style-2 .zolo-category-item {
@@ -101,7 +103,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-		background:linear-gradient(45deg, rgba(0,0,0,0.4), transparent);
+        background: linear-gradient(45deg, rgba(0, 0, 0, 0.4), transparent);
         z-index: 11;
     }
 
@@ -114,10 +116,10 @@
     &.zolo-category-style-2 .zolo-category-link {
         transform: translateY(45px);
         transition:
-            transform 0.3s cubic-bezier(0.53, 0.98, 0.76, 1.06),
-            opacity 0.3s cubic-bezier(0.53, 0.98, 0.76, 1.06),
+            transform 0.3s ease-out,
+            opacity 0.3s ease-out,
             visiblility,
-            0.3s cubic-bezier(0.53, 0.98, 0.76, 1.06);
+            0.3s ease-out;
     }
 
     &.zolo-category-style-2 .zolo-category-link {
@@ -129,7 +131,7 @@
     .zolo-category-link {
         background-color: #ddd;
         padding: 10px;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: space-between;
         font-size: 14px;
@@ -137,7 +139,7 @@
         font-weight: 600;
         gap: 5px;
         color: #29272e;
-        border-radius: 3px;
+        border-radius: 6px;
         .zolo__display-icon svg {
             width: 1em;
             height: 1em;
@@ -168,5 +170,51 @@
 
     &.zolo-category-style-1 .zolo-category-bottom-content .zolo-category-link {
         margin-top: 15px;
+    }
+
+    &.zolo-category-style-3 {
+        .zolo-category-item {
+            min-height: 300px;
+            padding: 0;
+            transform: scale(1) translateZ(0);
+            transition: transform 0.28s ease;
+            &:hover {
+                transform: scale(0.9) translateZ(0);
+                .zolo-category-count {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: scale(1);
+                }
+                .zolo-category-name {
+                    color: #fff;
+                    background-color: var(--zoloblocks-brand-color);
+                }
+            }
+        }
+
+        .zolo-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+        }
+        .zolo-category-name {
+            background-color: #ffffff;
+            color: #292935;
+            font-size: 18px;
+            padding: 10px 15px;
+            line-height: 1;
+            border-radius: 6px;
+            transition: all 0.28s ease;
+        }
+        .zolo-category-count {
+            background: #000000;
+            padding: 10px 17px;
+            border-radius: 50%;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.5);
+        }
     }
 }
