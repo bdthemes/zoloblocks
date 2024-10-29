@@ -521,7 +521,34 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/breadcrumbs',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'navmenu'         => [
+    'post-title'        => [
+        'name'       => 'post-title',
+        'class'      => '\Zolo\Blocks\PostTitle',
+        'title'      => __('Post Title', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/post-title',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
+    'post-comments-form'        => [
+        'name'       => 'post-comments-form',
+        'class'      => '\Zolo\Blocks\PostCommentsForm',
+        'title'      => __('Post Comments Form', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/post-comments-form',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
+    'post-navigation'        => [
+        'name'       => 'post-navigation',
+        'class'      => '\Zolo\Blocks\PostNavigation',
+        'title'      => __('Post Navigation', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/post-navigation',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
+      'navmenu'         => [
         'name'        => 'navmenu',
         'title'       => __('Nav Menu', 'zolo-blocks'),
         'categories'  => ['others'],
@@ -553,15 +580,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https: //demo.zoloblocks.com/megamenu',
         'video' => 'https: //youtu.be/8kBMIL-4PZI?list = PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'post-title' => [
-        'name' => 'post-title',
-        'class' => '\Zolo\Blocks\PostTitle',
-        'title' => __('Post Title', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/post-title',
-        'video' => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ],
+
     'post-meta' => [
         'name' => 'post-meta',
         'class' => '\Zolo\Blocks\PostMeta',
