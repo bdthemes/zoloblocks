@@ -1,17 +1,16 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
  */
 import Inspector from './inspector';
 
-import { VariationPicker } from './variations';
 import RenderView from './render-view';
+import { VariationPicker } from './variations';
 
 // import style
 import Style from './style';
