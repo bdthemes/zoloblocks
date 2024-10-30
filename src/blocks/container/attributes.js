@@ -4,14 +4,14 @@
 const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
 
 import {
-    CONTAINER_WIDTH,
     CONTAINER_GAP,
+    CONTAINER_WIDTH,
     CONTENT_WIDTH,
-    MIN_HEIGHT,
-    FLEX_DIRECTION,
-    FLEX_WRAP,
-    FLEX_JUSTIFY,
     FLEX_ALIGN,
+    FLEX_DIRECTION,
+    FLEX_JUSTIFY,
+    FLEX_WRAP,
+    MIN_HEIGHT,
 } from './constants';
 
 const attributes = {
@@ -65,6 +65,21 @@ const attributes = {
         type: 'string',
         default: 'alignwide',
     },
+
+    // test object
+    testObject: {
+        type: 'object',
+        default: {
+            dataOne: 'test',
+            ...generateResRangeAttributies('TEST_WIDTH', {}, true),
+        },
+    },
+    ...generateResRangeAttributies('TEST_HEIGHT'),
+    test: {
+        type: 'string',
+        default: '',
+    },
+
     // container gap
     ...generateGapAttributes(CONTAINER_GAP, {
         defaultRange: 20,

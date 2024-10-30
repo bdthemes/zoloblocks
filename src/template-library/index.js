@@ -688,8 +688,6 @@ function ZoloBlocksTemplateLibraryButton() {
         createRoot(libraryButton).render(<LibraryButton />);
     };
 
-    console.log('all:', allTemplates);
-
     return (
         <div className="zolo-demos-modal-wrapper">
             {isOpen && (
