@@ -4,7 +4,7 @@
     "name": "zolo/accordion",
     "category": "zoloblocks",
     "keywords": ["Accordion"],
-    "description": "Creates all types of accordion-type content easily",
+    "description": "Organize content with collapsible, easy-to-navigate sections.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

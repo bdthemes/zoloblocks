@@ -130,7 +130,7 @@ export default function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/post-grid"
+                block="zolo/post-category"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={

@@ -4,7 +4,7 @@
     "name": "zolo/charts",
     "category": "zoloblocks",
     "keywords": ["charts", "zolo"],
-    "description": "Creative chart stats to display various data dynamically",
+    "description": "Add dynamic, vibrant charts for clear data representation.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

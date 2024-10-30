@@ -5,7 +5,7 @@
     "name": "zolo/team-grid",
     "category": "zoloblocks",
     "keywords": ["team", "team grid"],
-    "description": "Display your team members with custom design layout",
+    "description": "Showcase your team with customizable grid layout options.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

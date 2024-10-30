@@ -23,26 +23,26 @@ const Inspector = ({ panelProps }) => {
         shapeDivider.top.type !== 'stilt' &&
         shapeDivider.top.type !== 'opacityTilt';
 
-        const toggleInvertBottom =
+    const toggleInvertBottom =
         shapeDivider.bottom.type !== 'wavebrush' && shapeDivider.bottom.type !== 'opacityFan' && shapeDivider.bottom.type !== 'wavepattern';
 
-        const showFlipTop =
-            shapeDivider.top.type !== 'book' &&
-            shapeDivider.top.type !== 'arrow' &&
-            shapeDivider.top.type !== 'curve' &&
-            shapeDivider.top.type !== 'split' &&
-            shapeDivider.top.type !== 'waves' &&
-            shapeDivider.top.type !== 'triangle' &&
-            shapeDivider.top.type !== 'opacityFan';
+    const showFlipTop =
+        shapeDivider.top.type !== 'book' &&
+        shapeDivider.top.type !== 'arrow' &&
+        shapeDivider.top.type !== 'curve' &&
+        shapeDivider.top.type !== 'split' &&
+        shapeDivider.top.type !== 'waves' &&
+        shapeDivider.top.type !== 'triangle' &&
+        shapeDivider.top.type !== 'opacityFan';
 
-        const showFlipBottom =
-            shapeDivider.bottom.type !== 'book' &&
-            shapeDivider.bottom.type !== 'arrow' &&
-            shapeDivider.bottom.type !== 'curve' &&
-            shapeDivider.bottom.type !== 'split' &&
-            shapeDivider.bottom.type !== 'waves' &&
-            shapeDivider.bottom.type !== 'triangle' &&
-            shapeDivider.bottom.type !== 'opacityFan';
+    const showFlipBottom =
+        shapeDivider.bottom.type !== 'book' &&
+        shapeDivider.bottom.type !== 'arrow' &&
+        shapeDivider.bottom.type !== 'curve' &&
+        shapeDivider.bottom.type !== 'split' &&
+        shapeDivider.bottom.type !== 'waves' &&
+        shapeDivider.bottom.type !== 'triangle' &&
+        shapeDivider.bottom.type !== 'opacityFan';
 
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
