@@ -548,7 +548,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/post-navigation',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-      'navmenu'         => [
+    'navmenu'         => [
         'name'        => 'navmenu',
         'title'       => __('Nav Menu', 'zolo-blocks'),
         'categories'  => ['others'],
@@ -563,6 +563,7 @@ return apply_filters('zolo_blocks_list_data', [
         'status'      => true,
         'demo'        => 'https: //demo.zoloblocks.com/navmenu-item',
         'video'       => 'https: //youtu.be/8kBMIL-4PZI?list = PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+        'is_child' => true,
     ],
     'navmenu-submenu' => [
         'name' => 'navmenu-submenu',
@@ -571,6 +572,7 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'demo' => 'https: //demo.zoloblocks.com/navmenu-submenu',
         'video' => 'https: //youtu.be/8kBMIL-4PZI?list = PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+        'is_child' => true,
     ],
     'megamenu' => [
         'name' => 'megamenu',
@@ -579,6 +581,7 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'demo' => 'https: //demo.zoloblocks.com/megamenu',
         'video' => 'https: //youtu.be/8kBMIL-4PZI?list = PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+        'is_child' => true,
     ],
 
     'post-meta' => [
