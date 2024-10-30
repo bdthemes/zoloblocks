@@ -354,17 +354,26 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-= 1.6.0 - 24-10-2024 =
+Here’s the changelog reformatted to match your requested style:
+
+---
+
+= 1.6.0 - 30-10-2024 =
 
 * Added: Introduced a fully customizable navigation menu block.
-* Added: Added a block to display post metadata.
-* Improved: Optimized the overall user interface for block controls, improving the user experience.
-* Improved: Enhanced video block controls for smoother interaction and functionality.
-* Improved: Refined the Slider Block for better performance and usability.
+* Added: Added a block to display post metadata (e.g., author, date, and categories).
+* Added: Added a block to display interactive 3D Spline scenes.
+* Added: Added a block for easy navigation between posts.
+* Added: Introduced a customizable comments form block.
+* Added: Added a preset for creating brand grids.
+* Improved: Optimized the user interface for block controls for a better experience.
+* Improved: Enhanced video block controls for smoother interactions.
+* Improved: Refined the Slider Block for improved performance and usability.
 * Improved: Improved the organization and accessibility of templates in the library.
 * Improved: Upgraded the range control for more precise adjustments.
-* Improved: Enhanced filter controls for more creative flexibility.
-* Fixed: Resolved the issue with image selection in the TextPath block.
+* Improved: Enhanced filter controls for greater creative flexibility.
+* Improved: Moved background controls to a popover for a cleaner layout.
+* Fixed: Resolved an issue with image selection in the TextPath block.
 * Fixed: Addressed compatibility issues with Spectra blocks.
 
 = 1.5.1 - 08-10-2024 =
