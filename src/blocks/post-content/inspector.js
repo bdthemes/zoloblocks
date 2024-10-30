@@ -15,10 +15,19 @@ import {
   CONTENT_HOVER_BORDER,
   CONTENT_HOVER_BRADIUS,
   CONTENT_HOVER_SHADOW,
+  //image
+  THUMBNAIL_WIDTH,
+  THUMBNAIL_HEIGHT,
+  THUMBNAIL_BORDER,
+  THUMBNAIL_BRADIUS,
+  THUMBNAIL_BOX_SHADOW,
+  THUMBNAIL_HOVER_SHADOW,
 } from './constants';
 
 import {CONTENT_TYPOGRAPHY} from './constants/typoPrefixConstant';
 import {TEXT_ALIGN_OPTIONS} from '../../../src/global/constants';
+import Sortable from './sortable';
+import {applyFilters} from "@wordpress/hooks";
 
 const {
   TextShadowControl,
@@ -34,11 +43,19 @@ const {
   ResAlignmentControl,
   AdvancedOptions,
   ZoloPanelBody,
+  ResRangeControl
 } = window.zoloModule;
 
 function Inspector(props) {
-  const {attributes, setAttributes} = props;
-  const {resMode, inheritThemeLayout, contentColor, contentHoverColor} = attributes;
+  const {attributes, setAttributes, block} = props;
+  const {
+    resMode,
+    inheritThemeLayout,
+    styleTags,
+    contentColor,
+    contentHoverColor,
+    thumbnailBorderHColor
+  } = attributes;
 
   const requiredProps = {
     resMode,
@@ -46,6 +63,10 @@ function Inspector(props) {
     attributes,
     objAttributes,
   };
+  // css filter
+  const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+  const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
+
   return (
     <InspectorControls key="controls">
       <HeaderTabs
@@ -71,11 +92,14 @@ function Inspector(props) {
                 alignOptions={TEXT_ALIGN_OPTIONS}
               />
             </ZoloPanelBody>
+            <ZoloPanelBody title={__('Style Tag', 'zoloblocks')} panelProps={props}>
+              <Sortable styleTags={styleTags} setAttributes={setAttributes}/>
+            </ZoloPanelBody>
           </>
         }
         styleTab={
           <>
-            <ZoloPanelBody title={__('Title', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+            <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
               <TabPanelControl
                 options={[
                   {
@@ -164,6 +188,76 @@ function Inspector(props) {
                 }
               />
             </ZoloPanelBody>
+
+            {styleTags?.some((item) => item.type === 'image') && (
+              <ZoloPanelBody title={__('Image', 'zoloblocks')} panelProps={props}>
+                <TabPanelControl
+                  normalComponents={
+                    <>
+                      <ResRangeControl
+                        label={__('Width', 'zoloblocks')}
+                        controlName={THUMBNAIL_WIDTH}
+                        requiredProps={requiredProps}
+                        min={0}
+                        max={2000}
+                        step={1}
+                      />
+                      <ResRangeControl
+                        label={__('Height', 'zoloblocks')}
+                        controlName={THUMBNAIL_HEIGHT}
+                        requiredProps={requiredProps}
+                        min={0}
+                        max={1000}
+                        step={1}
+                      />
+                      <CardDivider/>
+                      <BorderControl
+                        label={__('Border', 'zoloblocks')}
+                        controlName={THUMBNAIL_BORDER}
+                        requiredProps={requiredProps}
+                      />
+                      <ResDimensionsControl
+                        label={__('Border Radius', 'zoloblocks')}
+                        controlName={THUMBNAIL_BRADIUS}
+                        requiredProps={requiredProps}
+                        forBorderRadius={true}
+                      />
+                      <BoxShadowControl
+                        controlName={THUMBNAIL_BOX_SHADOW}
+                        requiredProps={requiredProps}
+                        enableTransition={false}
+                      />
+                      <CardDivider/>
+                      {cssFilters && cssFilters.length > 0 && cssFilters}
+                    </>
+                  }
+                  hoverComponents={
+                    <>
+                      <ColorControl
+                        label={__('Border Color', 'zoloblocks')}
+                        color={thumbnailBorderHColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            thumbnailBorderHColor: value,
+                          })
+                        }
+                      />
+                      <BoxShadowControl
+                        controlName={THUMBNAIL_HOVER_SHADOW}
+                        requiredProps={requiredProps}
+                        enableTransition={false}
+                      />
+                      <CardDivider/>
+                      {cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}
+                    </>
+                  }
+                />
+              </ZoloPanelBody>
+            )}
+            {styleTags?.some((item) => item.type === 'title') && (
+              <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
+              </ZoloPanelBody>
+            )}
           </>
         }
         advancedTab={

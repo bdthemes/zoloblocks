@@ -2,7 +2,6 @@ import {applyFilters} from '@wordpress/hooks';
 import {
   CONTENT_ALIGN,
   CONTENT_PADDING,
-  CONTENT_MARGIN,
   CONTENT_BG,
   CONTENT_BORDER,
   CONTENT_BORDER_RADIUS,
@@ -13,6 +12,13 @@ import {
   CONTENT_HOVER_SHADOW,
   CONTENT_TEXT_SHADOW,
   CONTENT_TEXT_STROKE,
+  //image
+  THUMBNAIL_WIDTH,
+  THUMBNAIL_HEIGHT,
+  THUMBNAIL_BORDER,
+  THUMBNAIL_BRADIUS,
+  THUMBNAIL_BOX_SHADOW,
+  THUMBNAIL_HOVER_SHADOW,
 } from './constants';
 
 import {CONTENT_TYPOGRAPHY} from './constants/typoPrefixConstant';
@@ -27,11 +33,19 @@ const {
   generateTypographyStyles,
   GlobalStyleHanlder,
   generateResAlignmentStyle,
+  generateResRangeStyle
 } = window.zoloModule;
 
 function Style({props}) {
   const {attributes, setAttributes} = props;
-  const {uniqueId, inheritThemeLayout, contentColor, contentHoverColor} = attributes;
+  const {
+    uniqueId,
+    inheritThemeLayout,
+    styleTags,
+    contentColor,
+    contentHoverColor,
+    thumbnailBorderHColor
+  } = attributes;
 
   const {
     desktopAlignStyle: contentAlignDesk,
@@ -140,6 +154,67 @@ function Style({props}) {
     controlName: CONTENT_HOVER_SHADOW,
   });
 
+  //image style
+  const {
+    desktopRangeStyle: thumbWidthDesk,
+    tabRangeStyle: thumbWidthTab,
+    mobRangeStyle: thumbWidthMob,
+  } = generateResRangeStyle({
+    controlName: THUMBNAIL_WIDTH,
+    property: 'width',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: thumbHeightDesk,
+    tabRangeStyle: thumbHeightTab,
+    mobRangeStyle: thumbHeightMob,
+  } = generateResRangeStyle({
+    controlName: THUMBNAIL_HEIGHT,
+    property: 'height',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: thumbBorderDesk,
+    tabBorderStyle: thumbBorderTab,
+    mobBorderStyle: thumbBorderMob,
+  } = generateBorderStyle({
+    controlName: THUMBNAIL_BORDER,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: thumbBRadiusDesk,
+    dimensionStylesTab: thumbBRadiusTab,
+    dimensionStylesMobile: thumbBRadiusMob,
+  } = generateDimensionStyle({
+    controlName: THUMBNAIL_BRADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {boxShadowStyle: thumbBoxShadow} = generateBoxShadowStyles({
+    attributes,
+    controlName: THUMBNAIL_BOX_SHADOW,
+  });
+  const {boxShadowStyle: thumbHoverBoxShadow} = generateBoxShadowStyles({
+    attributes,
+    controlName: THUMBNAIL_HOVER_SHADOW,
+  });
+  const {
+    active = false,
+    blur = 0,
+    brightness = 100,
+    contrast = 100,
+    saturate = 100,
+    hueRotate = 0
+  } = attributes?.cssFilters || {};
+  const {
+    active: activeHover = false,
+    blur: blurHover = 0,
+    brightness: brightnessHover = 100,
+    contrast: contrastHover = 100,
+    saturate: saturateHover = 100,
+    hueRotate: hueRotateHover = 0,
+  } = attributes?.cssFiltersHover || {};
+
   /**
    * All Style Combination
    */
@@ -174,15 +249,93 @@ function Style({props}) {
             ${contentHoverBoxShadow}
             ${contentHoverColor ? `color:${contentHoverColor};` : ''}
         }
+        ${styleTags?.some((item) => item.type === 'image') ? `
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
+            ${thumbWidthDesk}
+            ${thumbHeightDesk}
+            ${thumbBorderDesk}
+            ${thumbBRadiusDesk}
+            ${thumbBoxShadow}
+          }
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block img:hover{
+           ${thumbHoverBoxShadow}
+           ${thumbnailBorderHColor ? `border-color: ${thumbnailBorderHColor};` : ''}
+          }
+           ${active ? `
+               .${uniqueId}.wp-block-zolo-post-content.zolo-block img {
+                  filter:
+                      blur(${blur}px)
+                      brightness(${brightness}%)
+                      contrast(${contrast}%)
+                      saturate(${saturate}%)
+                      hue-rotate(${hueRotate}deg)
+                }
+            ` : ''}
+
+             ${activeHover ? `
+                .${uniqueId}.wp-block-zolo-post-content.zolo-block img:hover {
+                    filter:
+                        blur(${blurHover}px)
+                        brightness(${brightnessHover}%)
+                        contrast(${contrastHover}%)
+                        saturate(${saturateHover}%)
+                        hue-rotate(${hueRotateHover}deg)
+                }
+            ` : ''}
+
+        ` : ''}
     `;
 
   const tabletAllStyle = `
-
-
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+          ${contentAlignTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+            ${contentPaddingTab}
+            ${contentBGTab}
+            ${contentBorderTab}
+            ${contentBorderRadiusTab}
+            ${contentTypoTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
+            ${contentHoverBGTab}
+            ${contentHoverBorderTab}
+            ${contentHoverBRadiusTab}
+        }
+        ${styleTags?.some((item) => item.type === 'image') ? `
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
+            ${thumbWidthTab}
+            ${thumbHeightTab}
+            ${thumbBorderTab}
+            ${thumbBRadiusTab}
+          }
+        ` : ''}
     `;
 
   const mobileAllStyle = `
-
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+          ${contentAlignMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+            ${contentPaddingMob}
+            ${contentBGMob}
+            ${contentBorderMob}
+            ${contentBorderRadiusMob}
+            ${contentTypoMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
+            ${contentHoverBGMob}
+            ${contentHoverBorderMob}
+            ${contentHoverBRadiusMob}
+        }
+        ${styleTags?.some((item) => item.type === 'image') ? `
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
+            ${thumbWidthMob}
+            ${thumbHeightMob}
+            ${thumbBorderMob}
+            ${thumbBRadiusMob}
+          }
+        ` : ''}
   `;
 
   return (

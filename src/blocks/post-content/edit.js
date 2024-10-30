@@ -7,9 +7,10 @@ import './style.scss';
 const {classArrayToStr, SidebarOpener} = window.zoloModule;
 
 import Style from './styles';
+import {useEffect} from "@wordpress/element";
 
 export default function Edit(props) {
-  const {attributes, setAttributes, className, isSelected, clientId, context: {postType, postId}} = props;
+  const {attributes, setAttributes, className, isSelected, clientId} = props;
   const {
     preview,
     uniqueId,

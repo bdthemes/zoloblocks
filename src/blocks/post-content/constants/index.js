@@ -1,3 +1,11 @@
+import {__} from "@wordpress/i18n";
+
+export const TAGS_LIST = [
+  {label: __('Image', 'zoloblocks'), value: 'image'},
+  {label: __('Title', 'zoloblocks'), value: 'title'},
+  {label: __('Link', 'zoloblocks'), value: 'link'},
+];
+
 export const CONTENT_ALIGN = 'contentAlign';
 export const CONTENT_PADDING = 'contentPadding';
 export const CONTENT_BG = 'contentBg';
@@ -10,3 +18,11 @@ export const CONTENT_HOVER_BRADIUS = 'contentHBRadius';
 export const CONTENT_HOVER_SHADOW = 'contentHShadow';
 export const CONTENT_TEXT_SHADOW = 'contentTextShadow';
 export const CONTENT_TEXT_STROKE = 'contentTextStroke';
+
+//image
+export const THUMBNAIL_WIDTH = 'thumbWidth';
+export const THUMBNAIL_HEIGHT = 'thumbHeight';
+export const THUMBNAIL_BORDER = 'thumbBorder';
+export const THUMBNAIL_BRADIUS = 'thumbBRadius';
+export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
+export const THUMBNAIL_HOVER_SHADOW = 'thumbHShadow'

@@ -10,6 +10,7 @@ const {
   generateNormalBGAttributes,
   generateTypographyAttributes,
   generateResAlignmentAttributies,
+  generateResRangeAttributies
 } = window.zoloModule;
 
 import {
@@ -25,6 +26,13 @@ import {
   CONTENT_HOVER_SHADOW,
   CONTENT_TEXT_SHADOW,
   CONTENT_TEXT_STROKE,
+  //image
+  THUMBNAIL_WIDTH,
+  THUMBNAIL_HEIGHT,
+  THUMBNAIL_BORDER,
+  THUMBNAIL_BRADIUS,
+  THUMBNAIL_BOX_SHADOW,
+  THUMBNAIL_HOVER_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -56,6 +64,13 @@ const attributes = {
     },
   },
   // block attributes
+  styleTags: {
+    type: 'array',
+    default:[
+      {id: 1, type: 'image'},
+      {id: 2, type: 'title'},
+    ]
+  },
   inheritThemeLayout: {
     type: 'boolean',
     default: false,
@@ -65,6 +80,9 @@ const attributes = {
   },
   contentHoverColor: {
     type: 'string',
+  },
+  thumbnailBorderHColor:{
+    type:'string',
   },
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
@@ -80,6 +98,13 @@ const attributes = {
   ...generateBoxShadowAttributies(CONTENT_HOVER_SHADOW),
   ...generateTextShadowAttributies(CONTENT_TEXT_SHADOW),
   ...generateTextStrokeAttributies(CONTENT_TEXT_STROKE),
+  //image
+  ...generateResRangeAttributies(THUMBNAIL_WIDTH),
+  ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
+  ...generateBorderAttributies(THUMBNAIL_BORDER),
+  ...generateDimensionAttributes(THUMBNAIL_BRADIUS),
+  ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
+  ...generateBoxShadowAttributies(THUMBNAIL_HOVER_SHADOW),
 };
 
 export default attributes;
