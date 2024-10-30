@@ -1,20 +1,26 @@
-### 1.6.0 [October 24, 2024]
+### 1.6.0 [October 30, 2024]
 
 #### New Features
-- **NavMenu Block**: Introduced a fully customizable navigation menu block.
-- **Post Meta Block**: Added a block to display post metadata.
+- NavMenu Block: Introduced a fully customizable navigation menu block for easy site navigation.
+- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
+- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
+- Post Navigation Block: Added a block to enable easy navigation between posts.
+- Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
 
 #### Enhancements
-- **Block Controls UI**: Optimized the overall user interface for block controls, improving the user experience.
-- **Video Controls**: Enhanced video block controls for smoother interaction and functionality.
-- **Slider Block**: Refined the Slider Block for better performance and usability.
-- **Template Library**: Improved the organization and accessibility of templates in the library.
-- **Range Control**: Upgraded the range control for more precise adjustments.
-- **CSS and Backdrop Filters**: Enhanced filter controls for more creative flexibility.
+- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
+- Video Controls: Improved the video block controls for smoother interactions and functionality.
+- Slider Block: Refined the Slider Block for improved performance and usability.
+- Template Library: Enhanced the organization and accessibility of templates within the library.
+- Range Control: Upgraded the range control for more precise and responsive adjustments.
+- CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
+- Background Controls: Background controls have been moved to a popover for a cleaner layout.
+
 
 #### Bug Fixes
-- **TextPath Image Control**: Fixed the issue with image selection in the TextPath block.
-- **Spectra Block Compatibility**: Fixed compatibility issues with Spectra blocks.
+- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
+- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
 
 
 ### 1.5.1 [October 08, 2024]
