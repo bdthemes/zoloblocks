@@ -2,9 +2,13 @@ import SettingBox from './setting-box';
 import Notice from '../notice';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, Button } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 const { zoloBlocks } = window;
+
+
+
+
 
 const Settings = () => {
     const [notice, setNotice] = useState(false);
@@ -140,6 +144,10 @@ const Settings = () => {
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
+    };
+    const createNewPage = () => {
+        // window.location.href = `/wp-admin/post-new.php?post_type=page&template=${maintenanceModeTemplate}`;
+        window.location.href = `/wp-admin/post-new.php?post_type=page`;
     };
 
     return (
@@ -336,17 +344,22 @@ const Settings = () => {
                                                 )}
                                             </p>
                                             {!maintenanceMode && comingSoonMode && (
-                                                <SelectControl
-                                                    label={__('Select Templates', 'zoloblocks')}
-                                                    help={__(
-                                                        '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                        'zoloblocks'
-                                                    )}
-                                                    value={maintenanceModeTemplate}
-                                                    options={templates}
-                                                    onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                    __nextHasNoMarginBottom
-                                                />
+                                                <>
+                                                    <SelectControl
+                                                        label={__('Select Templates', 'zoloblocks')}
+                                                        help={__(
+                                                            '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                            'zoloblocks'
+                                                        )}
+                                                        value={maintenanceModeTemplate}
+                                                        options={templates}
+                                                        onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                        __nextHasNoMarginBottom
+                                                    />
+                                                    <Button variant="primary" onClick={createNewPage}>
+                                                        {__('Create New Page', 'zoloblocks')}
+                                                    </Button>
+                                                </>
                                             )}
                                         </div>
                                         <ToggleControl
@@ -368,17 +381,22 @@ const Settings = () => {
                                                 )}
                                             </p>
                                             {maintenanceMode && !comingSoonMode && (
-                                                <SelectControl
-                                                    label={__('Select Templates', 'zoloblocks')}
-                                                    help={__(
-                                                        '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                        'zoloblocks'
-                                                    )}
-                                                    value={maintenanceModeTemplate}
-                                                    options={templates}
-                                                    onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                    __nextHasNoMarginBottom
-                                                />
+                                                <>
+                                                    <SelectControl
+                                                        label={__('Select Templates', 'zoloblocks')}
+                                                        help={__(
+                                                            '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                            'zoloblocks'
+                                                        )}
+                                                        value={maintenanceModeTemplate}
+                                                        options={templates}
+                                                        onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                        __nextHasNoMarginBottom
+                                                    />
+                                                    <Button variant="primary" onClick={createNewPage}>
+                                                        {__('Create New Page', 'zoloblocks')}
+                                                    </Button>
+                                                </>
                                             )}
                                         </div>
                                         <ToggleControl
