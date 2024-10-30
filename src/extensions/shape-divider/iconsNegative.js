@@ -18,11 +18,7 @@ const ICONS_NEGATIVE = {
         </svg>
     ),
     curveasym: (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
             <path d="M0,58.4V0h1000v100C479-80,0,58.4,0,58.4z" />
         </svg>
     ),

@@ -16,7 +16,7 @@ export default function RenderView({ attributes }) {
             </li>
             <li className="breadcrumb-item parent">
                 <a href="#" className="name">
-                    Demo Parent
+                    Item Parent
                 </a>
                 {showSeparator && (
                     <span className="separator">
@@ -25,7 +25,7 @@ export default function RenderView({ attributes }) {
                 )}
             </li>
             <li className="breadcrumb-item current">
-                <span className="name">Demo Current</span>
+                <span className="name">Item Current</span>
             </li>
         </ul>
     );

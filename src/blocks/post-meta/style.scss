@@ -1,0 +1,51 @@
+.wp-block-zolo-post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    .zolo-meta-info,
+    .zolo-meta-info > a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 16px;
+        color: #3b3a41;
+        font-weight: 400;
+        text-decoration: none;
+    }
+
+    .zolo-meta-info.terms .zolo-text {
+        display: inline;
+    }
+
+    .zolo-icon {
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+            color: currentColor;
+        }
+    }
+
+    .zolo-separator {
+        color: #005cff;
+    }
+
+    &.separator-dot {
+        .zolo-separator {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #005cff;
+        }
+    }
+
+    &.separator-line {
+        .zolo-separator {
+            width: 14px;
+            height: 2px;
+            background-color: #005cff;
+        }
+    }
+}

@@ -4,7 +4,7 @@
     "name": "zolo/star-rating",
     "category": "zoloblocks",
     "keywords": ["rating", "star rating"],
-    "description": "Creates customizable star ratings for any type of content",
+    "description": "Add star ratings to build credibility with visual feedback.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

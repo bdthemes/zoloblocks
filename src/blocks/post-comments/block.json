@@ -3,8 +3,8 @@
     "title": "Post Comments",
     "name": "zolo/post-comments",
     "category": "zoloblocks",
-    "keywords": ["post", "comments", "post comments","post comments"],
-    "description": "Customizable dynamic post comment for your website comments",
+    "keywords": ["post", "comments", "post comments", "post comments"],
+    "description": "Enable custom comments for increased engagement on posts.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

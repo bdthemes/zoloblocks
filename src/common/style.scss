@@ -484,6 +484,29 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     font-style: italic;
     color: rgb(117, 117, 117);
 }
+
+.zolo-editor {
+    .zolo-navmenu-variation-picker {
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+
+        .zolo-navmenu-variation-picker-back {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+    }
+
+    .zolo-navmenu-placeholder {
+        position: relative;
+        .zolo-navmenu-placeholder-skip-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+    }
+}
 .zolo-frontend {
     &.ast-single-post {
         .entry-content a,

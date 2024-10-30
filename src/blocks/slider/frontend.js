@@ -8,6 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const prevEl = slider.querySelector('.swiper-button-prev');
         const videos = slider.querySelectorAll('video.zolo-html5-video');
 
+        const {
+            speed = 800,
+            autoplay = false,
+            autoplayDelay = 3000,
+            pauseOnMouseEnter = false,
+            loop = false,
+            navigation = true,
+            navPosition = 'center-center',
+            effect = 'slide',
+            pagination = true,
+            paginationType = 'bullets',
+            pagiPosition = 'center-center',
+            progressDirection = 'top',
+        } = sliderOptions;
+
         // Initialize all videos
         videos.forEach((video) => {
             Object.assign(video, {
@@ -19,14 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const defaultOptions = {
-            navigation: { nextEl, prevEl },
-            loop: false,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            speed: 800,
-            effect: 'slide',
+            // navigation: { nextEl, prevEl },
+            loop: loop || false,
+            autoplay: autoplay
+                ? { delay: autoplayDelay || 3, disableOnInteraction: false, pauseOnMouseEnter: pauseOnMouseEnter || false }
+                : false,
+            speed: speed || 800,
+            effect: effect || 'slide',
+            navigation: navigation
+                ? {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                  }
+                : false,
+            pagination: pagination ? { el: '.swiper-pagination', type: paginationType || 'bullets', clickable: true } : false,
             on: {
                 init() {
                     const firstVideo = this.slides[0].querySelector('video.zolo-html5-video');
@@ -68,6 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const mergedOptions = { ...defaultOptions, ...sliderOptions };
 
         // Initialize Swiper
-        new Swiper(sliderSelector, mergedOptions);
+        new Swiper(sliderSelector, defaultOptions);
     });
 });
