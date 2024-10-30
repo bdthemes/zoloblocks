@@ -169,6 +169,22 @@ function ZoloBlocksTemplateLibraryButton() {
         setTotal(filteredDemos.length);
     }, [activeDemoCat]); // eslint-disable-line
 
+    useEffect(() => {
+        const subscribeBtn = subscribe(() => {
+            const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
+            const libraryButton = document.querySelector('.zoloblocks-template-library-button');
+            const currentPostType = wp.data.select('core/editor').getCurrentPostType();
+
+            if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
+                renderButton(toolbar);
+            }
+        });
+
+        return () => {
+            subscribeBtn();
+        };
+    }, []);
+
     // Filter by Tags
     const sortDemosByTag = (tag) => {
         setActiveDemoTag(tag);
@@ -502,17 +518,6 @@ function ZoloBlocksTemplateLibraryButton() {
             },
         });
     };
-
-    subscribe(() => {
-        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
-        const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-
-        const currentPostType = wp.data.select('core/editor').getCurrentPostType();
-
-        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
-            renderButton(toolbar);
-        }
-    });
 
     const LibraryButton = () => (
         <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
