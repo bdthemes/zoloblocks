@@ -571,4 +571,12 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/post-meta',
         'video' => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'table-of-content' => [
+        'name' => 'table-of-content',
+        'title' => __('Table of Content', 'zolo-blocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'demo' => 'https: //demo.zoloblocks.com/table-of-content',
+        'video' => 'https: //youtu.be/8kBMIL-4PZI?list = PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ]
 ]);
