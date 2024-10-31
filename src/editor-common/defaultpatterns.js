@@ -7,8 +7,6 @@ const updateCorePatternsSetting = async () => {
         if (zolo_disable_core_patterns !== undefined) {
             wp.data.dispatch('core/preferences').set('core', 'enableChoosePatternModal', !zolo_disable_core_patterns);
         }
-
-        console.log('Settings retrieved and applied successfully.');
     } catch (error) {
         console.error('API Fetch Error:', error);
     }

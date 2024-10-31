@@ -138,11 +138,6 @@ const Settings = () => {
             method: 'POST',
             data: { zolo_disable_core_patterns: value },
         });
-        // // console.log(value);
-        // if (value) {
-        //     wp.data.dispatch('core/preferences').set('core', 'enableChoosePatternModal', false);
-        // }
-        // alert('Core Patterns are disabled');
     };
 
     useEffect(() => {
@@ -159,8 +154,6 @@ const Settings = () => {
     };
     const createNewPage = () => {
         setModalNewPage(true);
-
-        // window.location.href = `/wp-admin/post-new.php?post_type=page&template=${maintenanceModeTemplate}`;
     };
 
     return (
