@@ -269,6 +269,18 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_disable_core_patterns',
+                [
+                    'type'              => 'boolean',
+                    'default'           => true,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
 
             // zolo webhooks
             register_setting(
@@ -316,7 +328,7 @@ if (! class_exists('Settings')) {
             }
         }
 
-         /**
+        /**
          * Handles the favorites settings.
          *
          * This method is responsible for handling the favorites settings.
@@ -324,7 +336,7 @@ if (! class_exists('Settings')) {
          * @param WP_REST_Request $request The request object.
          */
         public function handle_favorites_settings($request) {
-            if( $request->get_method() === 'GET' ) {
+            if ($request->get_method() === 'GET') {
                 return $this->get_favorites();
             } else {
                 return $this->update_favorites($request);
@@ -358,7 +370,7 @@ if (! class_exists('Settings')) {
             return get_option('zolo_blocks_settings', []);
         }
 
-         /**
+        /**
          * Retrieves the favorites list.
          *
          * @return array The favorites list.
@@ -423,7 +435,7 @@ if (! class_exists('Settings')) {
             return rest_ensure_response($blocks);
         }
 
-         /**
+        /**
          * Updates the favorites list.
          *
          * This method is responsible for updating the favorites list.
@@ -435,44 +447,44 @@ if (! class_exists('Settings')) {
         public function update_favorites($request) {
             $nonce = $request->get_param('zolo_nonce');
 
-            if ( ! wp_verify_nonce( $nonce, 'zolo-nonce' ) ) {
-                return new WP_Error( 'invalid_request', __( 'Invalid request.', 'zoloblocks' ), array( 'status' => 400 ) );
+            if (! wp_verify_nonce($nonce, 'zolo-nonce')) {
+                return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
 
-            $fav_id = $request->get_param( 'fav_id' ) ? intval( $request->get_param( 'fav_id' ) ) : '';
-            
+            $fav_id = $request->get_param('fav_id') ? intval($request->get_param('fav_id')) : '';
+
             // Fetch existing blocks
-            $fav_items = get_option( 'zolo_favorites', [] );
+            $fav_items = get_option('zolo_favorites', []);
 
             // if fav_id is not empty then add to favorite list else remove from favorite list
-            if ( !empty( $fav_id ) ) {
+            if (!empty($fav_id)) {
 
                 // check if it is already in favorite list or not
                 $fav_exists = false;
-                foreach ( $fav_items as $fav_item ) {
-                    if ( $fav_item === $fav_id ) {
+                foreach ($fav_items as $fav_item) {
+                    if ($fav_item === $fav_id) {
                         $fav_exists = true;
                         break;
                     }
                 }
 
                 // if not exists then add to favorite list else remove from favorite list
-                if ( !$fav_exists ) {
+                if (!$fav_exists) {
                     $fav_items[] = $fav_id;
                 } else {
-                    $key = array_search( $fav_id, $fav_items );
-                    if ( $key !== false ) {
-                        unset( $fav_items[ $key ] );
+                    $key = array_search($fav_id, $fav_items);
+                    if ($key !== false) {
+                        unset($fav_items[$key]);
                     }
-                } 
+                }
             } else {
-                return new WP_Error( 'invalid_request', __( 'Invalid favorite id provided.', 'zoloblocks' ), array( 'status' => 400 ) );
+                return new WP_Error('invalid_request', __('Invalid favorite id provided.', 'zoloblocks'), array('status' => 400));
             }
 
             // Update the option
-            update_option( 'zolo_favorites', $fav_items );
+            update_option('zolo_favorites', $fav_items);
 
-            return rest_ensure_response( $fav_items );
+            return rest_ensure_response($fav_items);
         }
 
         /**
