@@ -1,3 +1,5 @@
+import {__} from "@wordpress/i18n";
+
 /**
  * Internal dependencies
  */
@@ -33,9 +35,13 @@ import {
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
   THUMBNAIL_HOVER_SHADOW,
+  //heading
+  HEADING_TEXT_SHADOW,
+  HEADING_TEXT_STROKE
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
+import {TITLE_TEXT_SHADOW, TITLE_TEXT_STROKE} from "@/blocks/advanced-heading/constants";
 
 const attributes = {
   //Global Attributes
@@ -66,14 +72,29 @@ const attributes = {
   // block attributes
   styleTags: {
     type: 'array',
-    default:[
+    default: [
       {id: 1, type: 'image'},
-      {id: 2, type: 'title'},
+      {
+        id: 2, type: 'heading', hTags: [
+          {label: __('H1', 'zoloblocks'), value: 'h1'},
+          {label: __('H2', 'zoloblocks'), value: 'h2'},
+          {label: __('H3', 'zoloblocks'), value: 'h3'},
+          {label: __('H4', 'zoloblocks'), value: 'h4'},
+          {label: __('H5', 'zoloblocks'), value: 'h5'},
+          {label: __('H6', 'zoloblocks'), value: 'h6'},
+        ]
+      },
     ]
   },
   inheritThemeLayout: {
     type: 'boolean',
     default: false,
+  },
+  headingTags: {
+    type: 'array',
+    default: [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+    ]
   },
   contentColor: {
     type: 'string',
@@ -81,8 +102,20 @@ const attributes = {
   contentHoverColor: {
     type: 'string',
   },
-  thumbnailBorderHColor:{
-    type:'string',
+  thumbnailBorderHColor: {
+    type: 'string',
+  },
+  headingHoverColor: {
+    type: 'string',
+  },
+  headingColor: {
+    type: 'string',
+  },
+  linkHoverColor: {
+    type: 'string',
+  },
+  linkColor: {
+    type: 'string',
   },
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
@@ -105,6 +138,9 @@ const attributes = {
   ...generateDimensionAttributes(THUMBNAIL_BRADIUS),
   ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
   ...generateBoxShadowAttributies(THUMBNAIL_HOVER_SHADOW),
+  //heading
+  ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
 };
 
 export default attributes;

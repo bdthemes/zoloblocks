@@ -2,10 +2,17 @@ import {__} from "@wordpress/i18n";
 
 export const TAGS_LIST = [
   {label: __('Image', 'zoloblocks'), value: 'image'},
-  {label: __('Title', 'zoloblocks'), value: 'title'},
+  {label: __('Heading', 'zoloblocks'), value: 'heading'},
   {label: __('Link', 'zoloblocks'), value: 'link'},
 ];
-
+export const HEADING_TAGS = [
+  {label: __('H1', 'zoloblocks'), value: 'h1'},
+  {label: __('H2', 'zoloblocks'), value: 'h2'},
+  {label: __('H3', 'zoloblocks'), value: 'h3'},
+  {label: __('H4', 'zoloblocks'), value: 'h4'},
+  {label: __('H5', 'zoloblocks'), value: 'h5'},
+  {label: __('H6', 'zoloblocks'), value: 'h6'},
+]
 export const CONTENT_ALIGN = 'contentAlign';
 export const CONTENT_PADDING = 'contentPadding';
 export const CONTENT_BG = 'contentBg';
@@ -26,3 +33,6 @@ export const THUMBNAIL_BORDER = 'thumbBorder';
 export const THUMBNAIL_BRADIUS = 'thumbBRadius';
 export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
 export const THUMBNAIL_HOVER_SHADOW = 'thumbHShadow'
+//heading
+export const HEADING_TEXT_SHADOW='headingShadow';
+export const HEADING_TEXT_STROKE='headingStroke';

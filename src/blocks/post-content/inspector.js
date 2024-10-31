@@ -22,9 +22,12 @@ import {
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
   THUMBNAIL_HOVER_SHADOW,
+  //heading
+  HEADING_TEXT_SHADOW,
+  HEADING_TEXT_STROKE
 } from './constants';
 
-import {CONTENT_TYPOGRAPHY} from './constants/typoPrefixConstant';
+import {CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY,LINK_TYPOGRAPHY} from './constants/typoPrefixConstant';
 import {TEXT_ALIGN_OPTIONS} from '../../../src/global/constants';
 import Sortable from './sortable';
 import {applyFilters} from "@wordpress/hooks";
@@ -52,9 +55,14 @@ function Inspector(props) {
     resMode,
     inheritThemeLayout,
     styleTags,
+    headingTags,
     contentColor,
     contentHoverColor,
-    thumbnailBorderHColor
+    thumbnailBorderHColor,
+    headingColor,
+    headingHoverColor,
+    linkColor,
+    linkHoverColor
   } = attributes;
 
   const requiredProps = {
@@ -190,7 +198,7 @@ function Inspector(props) {
             </ZoloPanelBody>
 
             {styleTags?.some((item) => item.type === 'image') && (
-              <ZoloPanelBody title={__('Image', 'zoloblocks')} panelProps={props}>
+              <ZoloPanelBody title={__('Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
                 <TabPanelControl
                   normalComponents={
                     <>
@@ -254,10 +262,90 @@ function Inspector(props) {
                 />
               </ZoloPanelBody>
             )}
-            {styleTags?.some((item) => item.type === 'title') && (
-              <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
+
+            {styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0 && (
+              <ZoloPanelBody title={__('Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                <TypographyDropdown
+                  label={__('Typography', 'zoloblocks')}
+                  typoPrefixConstant={HEADING_TYPOGRAPHY}
+                  requiredProps={requiredProps}
+                  max={200}
+                />
+                <TextShadowControl controlName={HEADING_TEXT_SHADOW} requiredProps={requiredProps}
+                                   enableTransition={false}/>
+                <TextStrokeControl controlName={HEADING_TEXT_STROKE} requiredProps={requiredProps}
+                                   enableTransition={false}/>
+                <TabPanelControl
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={headingColor}
+                        onChange={(val) =>
+                          setAttributes({
+                            headingColor: val,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                  hoverComponents={
+                    <>
+                      <ColorControl
+                        label={__('Hover Color', 'zoloblocks')}
+                        color={headingHoverColor}
+                        onChange={(val) =>
+                          setAttributes({
+                            headingHoverColor: val,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                />
               </ZoloPanelBody>
             )}
+
+            {styleTags?.some((item) => item.type === 'link') && headingTags.length > 0 && (
+              <ZoloPanelBody title={__('Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                <TypographyDropdown
+                  label={__('Typography', 'zoloblocks')}
+                  typoPrefixConstant={LINK_TYPOGRAPHY}
+                  requiredProps={requiredProps}
+                  max={200}
+                />
+                <TabPanelControl
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Color', 'zoloblocks')}
+                        color={linkColor}
+                        onChange={(val) =>
+                          setAttributes({
+                            linkColor: val,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                  hoverComponents={
+                    <>
+                      <ColorControl
+                        label={__('Hover Color', 'zoloblocks')}
+                        color={linkHoverColor}
+                        onChange={(val) =>
+                          setAttributes({
+                            linkHoverColor: val,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                />
+              </ZoloPanelBody>
+
+            )}
+
           </>
         }
         advancedTab={

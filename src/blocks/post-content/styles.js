@@ -19,9 +19,12 @@ import {
   THUMBNAIL_BRADIUS,
   THUMBNAIL_BOX_SHADOW,
   THUMBNAIL_HOVER_SHADOW,
+  //heading
+  HEADING_TEXT_STROKE,
+  HEADING_TEXT_SHADOW
 } from './constants';
 
-import {CONTENT_TYPOGRAPHY} from './constants/typoPrefixConstant';
+import {CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, LINK_TYPOGRAPHY} from './constants/typoPrefixConstant';
 
 const {
   generateTextShadowStyles,
@@ -42,9 +45,14 @@ function Style({props}) {
     uniqueId,
     inheritThemeLayout,
     styleTags,
+    headingTags,
     contentColor,
     contentHoverColor,
-    thumbnailBorderHColor
+    thumbnailBorderHColor,
+    headingColor,
+    headingHoverColor,
+    linkColor,
+    linkHoverColor
   } = attributes;
 
   const {
@@ -72,9 +80,9 @@ function Style({props}) {
   });
 
   const {
-    desktopTextStrokeStyle: contentTextStrokeStyle,
-    tabTextStrokeStyle: tabTitleTextStrokeStyle,
-    mobTextStrokeStyle: mobTitleTextStrokeStyle,
+    desktopTextStrokeStyle: contentTextStrokeDesk,
+    tabTextStrokeStyle: contentTextStrokeTab,
+    mobTextStrokeStyle: contentTextStrokeMob,
   } = generateTextStrokeStyles({
     attributes,
     controlName: CONTENT_TEXT_STROKE,
@@ -214,6 +222,38 @@ function Style({props}) {
     saturate: saturateHover = 100,
     hueRotate: hueRotateHover = 0,
   } = attributes?.cssFiltersHover || {};
+  //heading
+  const {
+    typoStylesDesktop: headingTypoDesk,
+    typoStylesTab: headingTypoTab,
+    typoStylesMobile: headingTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: HEADING_TYPOGRAPHY,
+    attributes,
+  });
+
+  const {textShadowStyle: headingTextShadowStyle} = generateTextShadowStyles({
+    attributes,
+    controlName: HEADING_TEXT_SHADOW,
+  });
+
+  const {
+    desktopTextStrokeStyle: headingTextStrokeDesk,
+    tabTextStrokeStyle: headingTextStrokeTab,
+    mobTextStrokeStyle: headingTextStrokeMob,
+  } = generateTextStrokeStyles({
+    attributes,
+    controlName: HEADING_TEXT_STROKE,
+  });
+  //link
+  const {
+    typoStylesDesktop: linkTypoDesk,
+    typoStylesTab: linkTypoTab,
+    typoStylesMobile: linkTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: LINK_TYPOGRAPHY,
+    attributes,
+  });
 
   /**
    * All Style Combination
@@ -240,7 +280,7 @@ function Style({props}) {
             ${contentTypoDesk}
             ${contentColor ? `color:${contentColor};` : ''}
             ${contentTextShadowStyle}
-            ${contentTextStrokeStyle}
+            ${contentTextStrokeDesk}
         }
         .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
             ${contentHoverBGDesk}
@@ -284,6 +324,32 @@ function Style({props}) {
             ` : ''}
 
         ` : ''}
+
+        ${styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0 ? `
+            ${headingTags.map((tag) => `
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag},
+             .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
+              ${headingTypoDesk}
+              ${headingTextShadowStyle}
+              ${headingTextStrokeDesk}
+              ${headingColor ? `color:${headingColor};` : ''}
+            }
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag}:hover,
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading:hover{
+              ${headingHoverColor ? `color:${headingHoverColor};` : ''}
+            }
+            `).join('')}
+        ` : ''}
+
+        ${styleTags?.some((item) => item.type === 'link') ? `
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoDesk}
+            ${linkColor ? `color:${linkColor};` : ''}
+          }
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
+           ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
+          }
+        ` : ''}
     `;
 
   const tabletAllStyle = `
@@ -296,6 +362,7 @@ function Style({props}) {
             ${contentBorderTab}
             ${contentBorderRadiusTab}
             ${contentTypoTab}
+            ${contentTextStrokeTab}
         }
         .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
             ${contentHoverBGTab}
@@ -310,6 +377,20 @@ function Style({props}) {
             ${thumbBRadiusTab}
           }
         ` : ''}
+         ${styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0 ? `
+            ${headingTags.map((tag) => `
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag},
+             .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
+              ${headingTypoTab}
+              ${headingTextStrokeTab}
+            }
+            `).join('')}
+        ` : ''}
+         ${styleTags?.some((item) => item.type === 'link') ? `
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoTab}
+          }
+        ` : ''}
     `;
 
   const mobileAllStyle = `
@@ -322,6 +403,7 @@ function Style({props}) {
             ${contentBorderMob}
             ${contentBorderRadiusMob}
             ${contentTypoMob}
+            ${contentTextStrokeMob}
         }
         .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
             ${contentHoverBGMob}
@@ -334,6 +416,20 @@ function Style({props}) {
             ${thumbHeightMob}
             ${thumbBorderMob}
             ${thumbBRadiusMob}
+          }
+        ` : ''}
+        ${styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0 ? `
+            ${headingTags.map((tag) => `
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag},
+             .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
+              ${headingTypoMob}
+              ${headingTextStrokeMob}
+            }
+            `).join('')}
+        ` : ''}
+        ${styleTags?.some((item) => item.type === 'link') ? `
+          .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoMob}
           }
         ` : ''}
   `;
