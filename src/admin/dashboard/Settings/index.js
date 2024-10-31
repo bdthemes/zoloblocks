@@ -2,7 +2,7 @@ import SettingBox from './setting-box';
 import Notice from '../notice';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl, SelectControl, Button } from '@wordpress/components';
+import { ToggleControl, SelectControl, Button , Modal} from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 const { zoloBlocks } = window;
 
@@ -20,6 +20,7 @@ const Settings = () => {
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
+    const [modalNewPage, setModalNewPage] = useState(false);
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
@@ -146,9 +147,11 @@ const Settings = () => {
         setActiveTab(tab);
     };
     const createNewPage = () => {
+        setModalNewPage(true);
+
         // window.location.href = `/wp-admin/post-new.php?post_type=page&template=${maintenanceModeTemplate}`;
-        window.location.href = `/wp-admin/post-new.php?post_type=page`;
     };
+
 
     return (
         <>
@@ -413,6 +416,46 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
+            {modalNewPage && (
+                <Modal
+                    className="zolo-maintenance-modal"
+                    onRequestClose={() => setModalNewPage(false)}
+                    shouldCloseOnClickOutside={true}
+                    shouldCloseOnEsc={true}
+                    isOpen={modalNewPage}
+                    isDismissible={false}
+                    title={__('Create New Page', 'zoloblocks')}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    <div className="zolo-modal-content">
+                        <div className="zolo-modal-header">
+                            <h2>{__('Create New Page', 'zoloblocks')}</h2>
+                            <span
+                                className="zolo-modal-close"
+                                onClick={() => {
+                                    setModalNewPage(false);
+                                }}
+                            >
+                                &times;
+                            </span>
+                        </div>
+                        <div className="zolo-modal-body">
+                            <iframe
+                                src={`/wp-admin/post-new.php?post_type=page&template=${maintenanceModeTemplate}`}
+                                className="zolo-modal-iframe"
+                                style={{
+                                    width: '100%',
+                                    height: '80vh',
+                                    border: 'none',
+                                }}
+                            ></iframe>
+                        </div>
+                    </div>
+                </Modal>
+            )}
         </>
     );
 };
