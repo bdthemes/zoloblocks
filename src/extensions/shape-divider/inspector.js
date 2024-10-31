@@ -1,4 +1,4 @@
-const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody } = window.zoloModule;
+const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody, ThumbsControl } = window.zoloModule;
 import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 import { __ } from '@wordpress/i18n';
@@ -50,9 +50,9 @@ const Inspector = ({ panelProps }) => {
                 options={TB_POSITION}
                 normalComponents={
                     <>
-                        <SelectControl
-                            label={__('Type', 'zoloblocks')}
+                        <ThumbsControl
                             value={shapeDivider.top.type}
+                            options={SHAPE_DIVIDER}
                             onChange={(value) =>
                                 setAttributes({
                                     shapeDivider: {
@@ -64,7 +64,6 @@ const Inspector = ({ panelProps }) => {
                                     },
                                 })
                             }
-                            options={SHAPE_DIVIDER}
                         />
 
                         {shapeDivider?.top?.type !== 'none' && (
@@ -152,9 +151,9 @@ const Inspector = ({ panelProps }) => {
                 }
                 hoverComponents={
                     <>
-                        <SelectControl
-                            label={__('Type', 'zoloblocks')}
+                        <ThumbsControl
                             value={shapeDivider.bottom.type}
+                            options={SHAPE_DIVIDER}
                             onChange={(value) =>
                                 setAttributes({
                                     shapeDivider: {
@@ -166,9 +165,7 @@ const Inspector = ({ panelProps }) => {
                                     },
                                 })
                             }
-                            options={SHAPE_DIVIDER}
                         />
-
                         {shapeDivider.bottom.type === 'none' ? (
                             <></>
                         ) : (
