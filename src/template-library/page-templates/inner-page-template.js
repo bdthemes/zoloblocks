@@ -6,6 +6,8 @@ const InnerPageTemplate = ({ templates, handleImportTemplate, favIds, handleFavT
             {templates &&
                 templates?.length > 0 &&
                 templates.map((template, index) => {
+                    const pages = template?.pages;
+
                     return (
                         <SinglePageTemplate
                             key={index}
@@ -13,6 +15,7 @@ const InnerPageTemplate = ({ templates, handleImportTemplate, favIds, handleFavT
                             handleImportTemplate={handleImportTemplate}
                             favIds={favIds}
                             handleFavTemplate={handleFavTemplate}
+                            isPro={pages && pages.length > 0 && pages.some((page) => page?.status === 'pro')}
                         />
                     );
                 })}

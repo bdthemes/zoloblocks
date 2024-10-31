@@ -1,7 +1,6 @@
 import { Tooltip } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import classNames from 'classnames';
 import ProPopup from '../pro-popup';
 
 const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTemplate, favIds, handleFavTemplate }) => {
@@ -244,9 +243,6 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                                 </button>
                                             </div>
                                         </div>
-                                        <span className={classNames('demo-badge', `${template?.status === 'pro' ? 'pro' : 'free'}-badge`)}>
-                                            {template?.status === 'pro' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
-                                        </span>
                                     </div>
                                 );
                             })}

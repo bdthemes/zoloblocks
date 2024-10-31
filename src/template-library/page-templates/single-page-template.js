@@ -1,9 +1,9 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
+import classNames from 'classnames';
 import PagesPreview from './pages-preview';
 
-const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate }) => {
+const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate, isPro }) => {
     const pages = template?.pages;
     const [pagesPanel, setPagesPanel] = useState(false);
 
@@ -34,6 +34,10 @@ const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavT
                         </span>
                     </div>
                 </div>
+
+                <span className={classNames('demo-badge', `${isPro ? 'pro' : 'free'}-badge`)}>
+                    {isPro ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
+                </span>
             </div>
             {pagesPanel && (
                 <PagesPreview

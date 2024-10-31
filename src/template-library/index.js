@@ -105,6 +105,34 @@ function ZoloBlocksTemplateLibraryButton() {
         });
     }, []);
 
+    // filter page templates based on category
+    useEffect(() => {
+        const filteredPageTemplates = allPageTemplates?.filter((template) => {
+            if (activePageTemplateCat === 'all') {
+                return true;
+            } else {
+                return template.title === activePageTemplateCat;
+            }
+        });
+        setPageTemplates(filteredPageTemplates);
+    }, [activePageTemplateCat]); // eslint-disable
+
+    // filter page templates based on page template type
+    useEffect(() => {
+        const filteredPageTemplates = allPageTemplates?.filter((template) => {
+            const pages = template?.pages;
+
+            if (pageTemplatesType === 'free') {
+                return pages && pages.length > 0 && pages.some((page) => page?.status === 'free');
+            } else if (pageTemplatesType === 'pro') {
+                return pages && pages.length > 0 && pages.some((page) => page?.status === 'pro');
+            } else {
+                return true;
+            }
+        });
+        setPageTemplates(filteredPageTemplates);
+    }, [pageTemplatesType]); // eslint-disable
+
     /**
      * =====
      * Patterns Type: Patterns (Pro, Free)
@@ -653,6 +681,15 @@ function ZoloBlocksTemplateLibraryButton() {
             setFavItems(filteredFavs);
         } else {
             setFavItems(allFavItems); // Reset to all favorites if no search text
+        }
+
+        if (searchText !== '' && activeTab === 'templates') {
+            const filteredPageTemplates = allPageTemplates?.filter((template) => {
+                return template.title.toLowerCase().includes(searchText.toLowerCase());
+            });
+            setPageTemplates(filteredPageTemplates);
+        } else {
+            setPageTemplates(allPageTemplates); // Reset to all page templates if no search text
         }
     }, [searchText, activeTab, allPatterns, number, allDemos]); // eslint-disable-line
 
