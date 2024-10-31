@@ -60,11 +60,11 @@ const TableOfContents = ({blockProp}) => {
 
 
   if (headers.length === 0) {
-    return <div className="rttpg-message">{__('No header found')}</div>;
+    return <div className="zolo-message">{__('No header found')}</div>;
   }
 
   return (
-    <ListTag className={`${listStyle}-list`}>
+    <ListTag className="zolo-toc-list">
       {parseList(formatHeaders(headers, allowedHeading, getHeaderLevel), ListTag)}
     </ListTag>
   );
