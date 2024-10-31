@@ -4,12 +4,59 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ccc;
-    padding: 20px;
+    background: #edf0f4;
+    padding: 30px;
     z-index: 9;
 
-    img {
-        max-width: 100%;
+    .zolo-demos-wrapper {
+        padding: 0 !important;
+        .footer-left {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    .header {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+        img {
+            max-width: 100%;
+        }
+        .close-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 0;
+            padding: 8px 10px;
+            font-size: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #000;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: 0.3s ease;
+            svg {
+                width: 18px;
+                height: 18px;
+                display: block;
+            }
+            &:hover {
+                background: #e0e0e0;
+            }
+        }
+    }
+
+    .zolo-demos-wrapper {
+        column-count: 1 !important;
     }
 
     .pages-list {
@@ -48,5 +95,38 @@
         max-height: 100vh;
         overflow-x: hidden;
         overflow-y: scroll;
+    }
+}
+
+.zolo-pages-templates {
+    .single-demo {
+        .demo-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .photos-group {
+        .single-page-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .zolo-pages-preview-container {
+        .zolo-demos-wrapper {
+            column-count: 2 !important;
+        }
+    }
+}
+@media (min-width: 1440px) {
+    .zolo-pages-preview-container {
+        .zolo-demos-wrapper {
+            column-count: 3 !important;
+        }
     }
 }

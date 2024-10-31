@@ -1,4 +1,5 @@
 import { useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 const PagesWrapper = ({ pages, title }) => {
     const [panel, setPanel] = useState(false);
@@ -24,7 +25,7 @@ const PagesWrapper = ({ pages, title }) => {
                             console.log(panel);
                         }}
                     >
-                        Back
+                        {__('Back', 'zolo-blocks')}
                     </button>
                     <div className="zolo-inner-pages">
                         {pages &&
