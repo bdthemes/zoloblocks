@@ -2,13 +2,9 @@ import SettingBox from './setting-box';
 import Notice from '../notice';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl, SelectControl, Button , Modal} from '@wordpress/components';
+import { ToggleControl, SelectControl, Button, Modal } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 const { zoloBlocks } = window;
-
-
-
-
 
 const Settings = () => {
     const [notice, setNotice] = useState(false);
@@ -19,6 +15,7 @@ const Settings = () => {
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
+    const [disableCorePatterns, setDisableCorePatterns] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
     const [modalNewPage, setModalNewPage] = useState(false);
     const handleFetchError = (error) => {
@@ -49,6 +46,7 @@ const Settings = () => {
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
+            setDisableCorePatterns(response.zolo_disable_core_patterns);
         } catch (error) {
             handleFetchError(error);
         }
@@ -71,6 +69,7 @@ const Settings = () => {
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
+            setDisableCorePatterns(response.zolo_disable_core_patterns);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -133,6 +132,18 @@ const Settings = () => {
             data: { zolo_enable_template_library: value },
         });
     };
+    const updateDisableCorePatterns = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_disable_core_patterns: value },
+        });
+        // // console.log(value);
+        // if (value) {
+        //     wp.data.dispatch('core/preferences').set('core', 'enableChoosePatternModal', false);
+        // }
+        // alert('Core Patterns are disabled');
+    };
 
     useEffect(() => {
         if (notice) {
@@ -151,7 +162,6 @@ const Settings = () => {
 
         // window.location.href = `/wp-admin/post-new.php?post_type=page&template=${maintenanceModeTemplate}`;
     };
-
 
     return (
         <>
@@ -313,6 +323,21 @@ const Settings = () => {
                                             checked={!!blockLibrary}
                                             onChange={() => {
                                                 updateBlockLibrary(!blockLibrary);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
+                                        title={__('Disable Core starter patterns', 'zoloblocks')}
+                                        description={__(
+                                            'Disable the core starter patterns in the block inserter when creating a new page.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ToggleControl
+                                            checked={!!disableCorePatterns}
+                                            onChange={() => {
+                                                updateDisableCorePatterns(!disableCorePatterns);
                                                 setNotice(true);
                                             }}
                                         />
