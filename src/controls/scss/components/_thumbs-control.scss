@@ -1,0 +1,17 @@
+.zolo-thumbs-control{
+    display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    &.zolo-thumbs-control-2{
+     grid-template-columns: repeat(2, 1fr);
+    }
+
+    .zolo-thumbs-control-item{
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+        &.zolo-thumbs-active{
+            border: 3px solid #0073aa;
+        }
+    }
+}

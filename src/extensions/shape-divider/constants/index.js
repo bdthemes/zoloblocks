@@ -1,8 +1,7 @@
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-shape-block';
-
-//settings tab
-
+import ICONS from '../icons';
+// Settings tab
 export const TB_POSITION = [
     {
         value: 'normal',
@@ -14,86 +13,38 @@ export const TB_POSITION = [
     },
 ];
 
-export const SHAPE_DIVIDER = [
-    {
-        label: __('None', 'zoloblocks'),
-        value: 'none',
-    },
-    {
-        label: __('Arrow', 'zoloblocks'),
-        value: 'arrow',
-    },
-    {
-        label: __('Book', 'zoloblocks'),
-        value: 'book',
-    },
-    {
-        label: __('Clouds', 'zoloblocks'),
-        value: 'clouds',
-    },
-    {
-        label: __('Curve', 'zoloblocks'),
-        value: 'curve',
-    },
-    {
-        label: __('Curve Asymmetrical', 'zoloblocks'),
-        value: 'curveasym',
-    },
-    {
-        label: __('Drops', 'zoloblocks'),
-        value: 'drops',
-    },
-    {
-        label: __('Mountains', 'zoloblocks'),
-        value: 'mountains',
-    },
-    {
-        label: __('Opacity', 'zoloblocks'),
-        value: 'opacityFan',
-    },
-    {
-        label: __('Opacity Tilt', 'zoloblocks'),
-        value: 'opacityTilt',
-    },
-    {
-        label: __('Pyramids', 'zoloblocks'),
-        value: 'pyramids',
-    },
-    {
-        label: __('Semi Circle', 'zoloblocks'),
-        value: 'split',
-    },
-    {
-        label: __('Semi Circle Asymmetrical', 'zoloblocks'),
-        value: 'stilt',
-    },
-    {
-        label: __('Triangle', 'zoloblocks'),
-        value: 'triangle',
-    },
-    {
-        label: __('Triangle Asymmetrical', 'zoloblocks'),
-        value: 'triangleAsy',
-    },
-    {
-        label: __('Waves', 'zoloblocks'),
-        value: 'waves',
-    },
-    // {
-    //     label: __('Waves Brush', 'zoloblocks'),
-    //     value: 'wavebrush',
-    // },
-    // {
-    //     label: __('Wave Pattern', 'zoloblocks'),
-    //     value: 'wavepattern',
-    // },
-    // {
-    //     label: __('Zigzag', 'zoloblocks'),
-    //     value: 'zigzag',
-    // },
+// Common shape divider options
+const SHAPE_OPTIONS = [
+    { label: 'None', value: 'none', icon: '' },
+    { label: 'Arrow', value: 'arrow', icon: 'arrow' },
+    { label: 'Book', value: 'book', icon: 'book' },
+    { label: 'Clouds', value: 'clouds', icon: 'clouds' },
+    { label: 'Curve', value: 'curve', icon: 'curve' },
+    { label: 'Curve Asymmetrical', value: 'curveasym', icon: 'curveasym' },
+    { label: 'Drops', value: 'drops', icon: 'drops' },
+    { label: 'Mountains', value: 'mountains', icon: 'mountains' },
+    { label: 'Opacity', value: 'opacityFan', icon: 'opacityFan' },
+    { label: 'Opacity Tilt', value: 'opacityTilt', icon: 'opacityTilt' },
+    { label: 'Pyramids', value: 'pyramids', icon: 'pyramids' },
+    { label: 'Semi Circle', value: 'split', icon: 'split' },
+    { label: 'Semi Circle Asymmetrical', value: 'stilt', icon: 'stilt' },
+    { label: 'Triangle', value: 'triangle', icon: 'triangle' },
+    { label: 'Triangle Asymmetrical', value: 'triangleAsy', icon: 'triangleAsy' },
+    { label: 'Waves', value: 'waves', icon: 'waves' },
 ];
 
-// style tab
+// Helper function to map shape options with icon sources
+const mapShapeOptions = (iconSource) =>
+    SHAPE_OPTIONS.map(({ label, value, icon }) => ({
+        label: __(label, 'zoloblocks'),
+        value,
+        image: iconSource[icon] || '',
+    }));
+
+// Shape divider arrays with appropriate icons
+export const SHAPE_DIVIDER = mapShapeOptions(ICONS);
+
+// Style tab constants
 export const TOP_WIDTH_SHAPE = 'topWidthShape';
 export const TOP_HEIGHT_SHAPE = 'topHeightShape';
 export const BOTTOM_WIDTH_SHAPE = 'bottomWidthShape';
