@@ -4,7 +4,7 @@
     "name": "zolo/profile-card",
     "category": "zoloblocks",
     "keywords": ["Profile", "Card"],
-    "description": "For showcasing team member profiles with style",
+    "description": "Display team profiles with an interactive, engaging layout.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

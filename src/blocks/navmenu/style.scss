@@ -129,6 +129,7 @@
                     position: relative;
                     left: unset;
                     top: unset;
+                    transform: unset;
 
                     & > .wp-block-zolo-navmenu-submenu .zolo-navmenu-submenu-wrapper {
                         position: relative;
@@ -198,11 +199,73 @@
             z-index: 7;
         }
     }
-    // &.menu-breakpoint-desktop,
-    // &.menu-breakpoint-tablet,
-    // &.menu-breakpoint-mobile {
-    //     display: flex;
-    // }
+    // mega menu full width css here
+
+    .wp-block-zolo-megamenu {
+        --zolo-megamenu-custom-offset: 0;
+        // background-color: #f1f1f1;
+        z-index: 9999;
+        transform: translateX(var(--zolo-megamenu-custom-offset));
+        .zolo-megamenu-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        &.megamenu-layout-fullwidth {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            right: 0;
+            width: 100vw !important;
+            transform: translateX(-50%);
+        }
+    }
+
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom) {
+        width: auto !important;
+    }
+
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom.direction-left) {
+        left: 0;
+    }
+
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom.direction-right) {
+        right: 0;
+        left: unset;
+    }
+    .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom.direction-center) {
+        left: 50%;
+        transform: translateY(10px) translateX(-50%);
+    }
+
+    .zolo-navmenu-wrapper:not(.is-menu-active)
+        .zolo-navmenu-item:hover
+        > .zolo-navmenu-submenu-wrapper:has(.megamenu-layout-custom.direction-center) {
+        transform: translateY(0) translateX(-50%);
+    }
+
+    .has-megamenu:has(.megamenu-layout-custom) {
+        position: relative !important;
+    }
+
+    .is-menu-active {
+        .wp-block-zolo-megamenu {
+            .zolo-megamenu-content {
+                flex-direction: unset;
+            }
+            &.megamenu-layout-fullwidth {
+                position: unset !important;
+                width: 100% !important;
+                transform: unset !important;
+            }
+            &.megamenu-layout-custom {
+                width: 100% !important;
+            }
+        }
+    }
 }
 
 .zolo-frontend {

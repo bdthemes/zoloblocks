@@ -4,7 +4,7 @@
     "name": "zolo/social-links",
     "category": "zoloblocks",
     "keywords": ["icon", "social links", "social"],
-    "description": "Display accessible custom business social profiles",
+    "description": "Add social links to enhance connectivity with your audience.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

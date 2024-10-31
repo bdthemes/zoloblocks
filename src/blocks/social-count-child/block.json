@@ -4,7 +4,7 @@
     "name": "zolo/social-count-child",
     "category": "zoloblocks",
     "keywords": ["icon", "social", "social count"],
-    "description": "Single item block for social count",
+    "description": "Display individual social counts with flexible design.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/social-count"],

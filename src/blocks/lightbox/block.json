@@ -3,12 +3,8 @@
     "title": "Lightbox",
     "name": "zolo/lightbox",
     "category": "zoloblocks",
-    "keywords": [
-        "lightbox",
-        "gallery",
-        "image"
-    ],
-    "description": "Lightbox",
+    "keywords": ["lightbox", "gallery", "image"],
+    "description": "Create customizable lightboxes for media content.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
@@ -20,13 +16,9 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": [
-            "wide",
-            "full"
-        ]
+        "align": ["wide", "full"]
     },
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",
     "viewScript": "file:./frontend.js"
-
 }

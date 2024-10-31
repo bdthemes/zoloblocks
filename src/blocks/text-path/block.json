@@ -4,7 +4,7 @@
     "name": "zolo/text-path",
     "category": "zoloblocks",
     "keywords": ["zolo", "text", "textpath"],
-    "description": "A simple text path  block",
+    "description": "Create interactive text paths for visually engaging effects.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

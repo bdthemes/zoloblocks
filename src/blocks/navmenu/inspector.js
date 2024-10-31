@@ -1,6 +1,13 @@
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, __experimentalInputControl as InputControl, CardDivider, BaseControl, Button } from '@wordpress/components';
+import {
+    ToggleControl,
+    SelectControl,
+    __experimentalInputControl as InputControl,
+    CardDivider,
+    BaseControl,
+    Button,
+} from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 
 import { __ } from '@wordpress/i18n';

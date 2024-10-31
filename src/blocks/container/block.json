@@ -5,7 +5,7 @@
     "name": "zolo/container",
     "category": "zoloblocks",
     "keywords": ["Container"],
-    "description": "Most advanced flexbox container for shaping your designs",
+    "description": "Design flexible layouts using responsive flexbox containers.",
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

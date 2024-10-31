@@ -1,0 +1,10 @@
+export const HEADING_TYPOGRAPHY = 'headingTypo';
+export const AUTHOR_TYPOGRAPHY = 'authorTypo';
+export const META_TYPOGRAPHY = 'metaTypo';
+export const MESSAGE_TYPOGRAPHY = 'messageTypo';
+export const REPLY_TYPOGRAPHY = 'replyTypo';
+export const FORMH_TYPOGRAPHY='formHTypo';
+export const CANCEL_TYPOGRAPHY='cancelTypo';
+export const FORMINFO_TYPOGRAPHY='formInfoTypo';
+export const INPUT_TYPOGRAPHY = 'inputTypo';
+export const SUBMITBTN_TYPOGRAPHY = 'submitTypo';

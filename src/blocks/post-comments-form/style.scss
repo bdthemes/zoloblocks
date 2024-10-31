@@ -1,0 +1,112 @@
+.wp-block-zolo-post-comments-form {
+	--zolo-avatar-size: 50px;
+	--zolo-meta-spacing: 15px;
+	--zolo-form-item-gap: 20px;
+	--zolo-meta-bottom-content-spacing: calc(
+		var(--zolo-avatar-size) + var(--zolo-meta-spacing)
+	);
+	background-color: #fff;
+	padding: clamp(30px, 3vw, 40px);
+	border-radius: 10px;
+
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.zolo-comment-count {
+		margin-bottom: 10px;
+		font-weight: 600;
+	}
+
+	.zolo-comment-list {
+		margin-bottom: 30px;
+
+		.comment-meta {
+			.says {
+				display: none;
+			}
+		}
+
+		.comment-body {
+			overflow: visible;
+			margin: 0;
+			position: relative;
+			padding: 25px 25px 25px 65px;
+			transition: all .3s linear;
+			display: block;
+			border-bottom: 0;
+
+			img.avatar {
+				position: absolute;
+				left: 0;
+				top: 24px;
+				border: 0;
+				width: var(--zolo-avatar-size);
+				height: auto;
+				border-radius: 50%;
+				box-sizing: border-box;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		.children {
+			margin-left: var(--zolo-meta-bottom-content-spacing);
+		}
+	}
+
+	//form css
+	.comment-reply-title {
+		font-size: 20px;
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 0 30px;
+	}
+
+	#cancel-comment-reply-link {
+		font-size: 18px;
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.3s ease;
+	}
+
+	.zolo-comment-form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--zolo-form-item-gap);
+
+		.zolo-form-group-control {
+			display: flex;
+			gap: var(--zolo-form-item-gap);
+			flex-wrap: wrap;
+		}
+
+		.zolo-form-group {
+			flex: 1;
+			min-width: 150px;
+		}
+
+		.zolo-form-group #author,
+		.zolo-form-group #email,
+		.zolo-form-group #url,
+		.zolo-form-group textarea#comment {
+			width: 100%;
+			border: 1px solid #ddd;
+			border-radius: 6px;
+			padding: 15px;
+			outline: none;
+			box-sizing: border-box;
+		}
+
+		p {
+			margin: 0;
+		}
+
+	}
+}

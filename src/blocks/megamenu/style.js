@@ -122,7 +122,7 @@ export default function Style({ props }) {
         mobRangeStyle: dropdownOffsetMob,
     } = generateResRangeStyle({
         controlName: DROPDOWN_WIDTH_OFFSET,
-        property: 'left',
+        property: '--zolo-megamenu-custom-offset',
         attributes,
     });
 

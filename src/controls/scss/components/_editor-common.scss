@@ -915,3 +915,51 @@ textarea[readonly] {
         display: block;
     }
 }
+
+.zolo-background-control-popover {
+    .zolo-popup-flex-row-control {
+        .components-base-control,
+        .components-input-control__container {
+            width: 100%;
+        }
+    }
+
+    .zolo-popup-flex-row-control,
+    .zolo-flex-pop-row-control {
+        margin-bottom: 8px;
+    }
+    .zolo-popup-flex-row-control {
+        &:nth-last-child(1) {
+            margin-bottom: 0;
+        }
+    }
+
+    .zolo-popup-flex-row-control .zb-deive-wrapper,
+    .zolo-flex-pop-row-control {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        flex-direction: row;
+    }
+
+    .zolo-popup-flex-row-control .zb-label-header,
+    .zolo-flex-pop-row-control .components-flex-item {
+        width: var(--zolo-flex-row-control-label-width);
+    }
+
+    .zolo-flex-pop-row-control .components-input-control__container {
+        width: 100%;
+        flex: unset;
+    }
+
+    .components-button-group {
+        margin-bottom: 16px;
+        margin-top: 10px;
+        .components-button.is-small {
+            font-size: 12px;
+            height: 30px;
+            font-weight: 500;
+        }
+    }
+}
