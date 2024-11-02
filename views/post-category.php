@@ -15,7 +15,7 @@ $parentClasses = implode( ' ', $parentClasses );
 $wrapper_class .= ' ' . $parentClasses;
 $wrapperId      = $settings['zoloId'] ?? '';
 // view all button icon.
-$viewAllBtnIcon = $settings['viewAllBtnIcon'] ?? '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-10 10" /><path d="M8 7l9 0l0 9" /></svg>';
+$viewAllBtnIcon = $settings['viewAllBtnIcon'] ?? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z" /></svg>';
 $viewAllBtnIcon = '<div class="zolo__display-icon">' . $viewAllBtnIcon . '</div>';
 ?>
 
@@ -35,7 +35,7 @@ $viewAllBtnIcon = '<div class="zolo__display-icon">' . $viewAllBtnIcon . '</div>
 			?>
 			<a class="zolo-category-item" href="<?php echo esc_url( $category->link ); ?>"
 				style="<?php echo ! empty( $settings['postCategoryPro']['enableMultipleBG'] ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : ''; ?>">
-				<?php if ( ! empty( $settings['showImage'] ) && ! empty( $category->image ) && 'style-2' === $settings['preset'] ) : ?>
+				<?php if ( ! empty( $settings['showImage'] ) && ! empty( $category->image ) && ( 'style-2' === $settings['preset'] || 'style-3' === $settings['preset'] ) ) : ?>
 					<div class="zolo-category-img"><img src="<?php echo esc_url( $category->image ); ?>"
 							alt="<?php echo esc_html( $category->name ); ?>"></div>
 				<?php endif; ?>
@@ -45,6 +45,7 @@ $viewAllBtnIcon = '<div class="zolo__display-icon">' . $viewAllBtnIcon . '</div>
 						<span class="zolo-category-count"><?php echo esc_html( $category->count ); ?></span>
 					<?php endif; ?>
 				</div>
+				
 				<div class="zolo-category-bottom-content">
 					<?php if ( ! empty( $settings['showText'] ) && ! empty( $category->description ) ) : ?>
 						<p class="zolo-category-text">

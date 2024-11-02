@@ -4,8 +4,8 @@
     "name": "zolo/countdown",
     "category": "zoloblocks",
     "keywords": ["countdown", "timer", "clock"],
-    "description": "Creates event, offer, and promo countdown timer",
-    "apiVersion": 2,
+    "description": "Create event countdowns to add urgency and boost engagement.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

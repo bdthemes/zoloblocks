@@ -3,9 +3,9 @@
     "title": "Tag Cloud",
     "name": "zolo/tag-cloud",
     "category": "zoloblocks",
-    "keywords": ["post", "post tag", "tag","tag cloud"],
-    "description": "Customizable dynamic tag for your website post tag cloud",
-    "apiVersion": 2,
+    "keywords": ["post", "post tag", "tag", "tag cloud"],
+    "description": "Add customizable tag clouds to enhance navigation and SEO.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

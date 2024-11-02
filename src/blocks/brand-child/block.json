@@ -4,9 +4,9 @@
     "name": "zolo/brand-child",
     "category": "zoloblocks",
     "keywords": ["brand child", "brand"],
-    "description": "single child item for brand grid block",
+    "description": "Showcase individual brands within the Brand Grid.",
     "parent": ["zolo/brand-grid"],
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "supports": {
         "anchor": false,

@@ -197,7 +197,7 @@ function Inspector(props) {
                                 controlName={COLUMNS}
                                 requiredProps={requiredProps}
                                 min={1}
-                                max={3}
+                                max={6}
                                 defaults={{
                                     deskRange: 2,
                                     tabRange: 1,

@@ -4,8 +4,8 @@
     "name": "zolo/social-count",
     "category": "zoloblocks",
     "keywords": ["icon", "social", "social count"],
-    "description": "Display accessible custom business social profiles",
-    "apiVersion": 2,
+    "description": "Display social follower counts with customizable styling.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

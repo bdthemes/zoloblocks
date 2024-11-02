@@ -564,6 +564,12 @@ function Inspector(props) {
                                         })
                                     }
                                     max={50}
+                                    onReset={() =>
+                                        setAttributes({
+                                            backdropFilterBlur: 0,
+                                        })
+                                    }
+
                                 />
                             </div>
                         </ZoloPanelBody>

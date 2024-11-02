@@ -4,8 +4,8 @@
     "name": "zolo/post-grid",
     "category": "zoloblocks",
     "keywords": ["post", "post grid"],
-    "description": "Customizable dynamic grid for your website posts",
-    "apiVersion": 2,
+    "description": "Arrange posts in dynamic grids for organized content display.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

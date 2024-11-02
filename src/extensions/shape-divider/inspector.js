@@ -1,4 +1,4 @@
-const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody } = window.zoloModule;
+const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody, ThumbsControl } = window.zoloModule;
 import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 import { __ } from '@wordpress/i18n';
@@ -23,26 +23,26 @@ const Inspector = ({ panelProps }) => {
         shapeDivider.top.type !== 'stilt' &&
         shapeDivider.top.type !== 'opacityTilt';
 
-        const toggleInvertBottom =
+    const toggleInvertBottom =
         shapeDivider.bottom.type !== 'wavebrush' && shapeDivider.bottom.type !== 'opacityFan' && shapeDivider.bottom.type !== 'wavepattern';
 
-        const showFlipTop =
-            shapeDivider.top.type !== 'book' &&
-            shapeDivider.top.type !== 'arrow' &&
-            shapeDivider.top.type !== 'curve' &&
-            shapeDivider.top.type !== 'split' &&
-            shapeDivider.top.type !== 'waves' &&
-            shapeDivider.top.type !== 'triangle' &&
-            shapeDivider.top.type !== 'opacityFan';
+    const showFlipTop =
+        shapeDivider.top.type !== 'book' &&
+        shapeDivider.top.type !== 'arrow' &&
+        shapeDivider.top.type !== 'curve' &&
+        shapeDivider.top.type !== 'split' &&
+        shapeDivider.top.type !== 'waves' &&
+        shapeDivider.top.type !== 'triangle' &&
+        shapeDivider.top.type !== 'opacityFan';
 
-        const showFlipBottom =
-            shapeDivider.bottom.type !== 'book' &&
-            shapeDivider.bottom.type !== 'arrow' &&
-            shapeDivider.bottom.type !== 'curve' &&
-            shapeDivider.bottom.type !== 'split' &&
-            shapeDivider.bottom.type !== 'waves' &&
-            shapeDivider.bottom.type !== 'triangle' &&
-            shapeDivider.bottom.type !== 'opacityFan';
+    const showFlipBottom =
+        shapeDivider.bottom.type !== 'book' &&
+        shapeDivider.bottom.type !== 'arrow' &&
+        shapeDivider.bottom.type !== 'curve' &&
+        shapeDivider.bottom.type !== 'split' &&
+        shapeDivider.bottom.type !== 'waves' &&
+        shapeDivider.bottom.type !== 'triangle' &&
+        shapeDivider.bottom.type !== 'opacityFan';
 
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
@@ -50,9 +50,9 @@ const Inspector = ({ panelProps }) => {
                 options={TB_POSITION}
                 normalComponents={
                     <>
-                        <SelectControl
-                            label={__('Type', 'zoloblocks')}
+                        <ThumbsControl
                             value={shapeDivider.top.type}
+                            options={SHAPE_DIVIDER}
                             onChange={(value) =>
                                 setAttributes({
                                     shapeDivider: {
@@ -64,7 +64,6 @@ const Inspector = ({ panelProps }) => {
                                     },
                                 })
                             }
-                            options={SHAPE_DIVIDER}
                         />
 
                         {shapeDivider?.top?.type !== 'none' && (
@@ -152,9 +151,9 @@ const Inspector = ({ panelProps }) => {
                 }
                 hoverComponents={
                     <>
-                        <SelectControl
-                            label={__('Type', 'zoloblocks')}
+                        <ThumbsControl
                             value={shapeDivider.bottom.type}
+                            options={SHAPE_DIVIDER}
                             onChange={(value) =>
                                 setAttributes({
                                     shapeDivider: {
@@ -166,9 +165,7 @@ const Inspector = ({ panelProps }) => {
                                     },
                                 })
                             }
-                            options={SHAPE_DIVIDER}
                         />
-
                         {shapeDivider.bottom.type === 'none' ? (
                             <></>
                         ) : (

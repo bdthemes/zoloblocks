@@ -4,8 +4,8 @@
     "name": "zolo/post-category",
     "category": "zoloblocks",
     "keywords": ["post", "post category", "category"],
-    "description": "Customizable dynamic category for your website post category",
-    "apiVersion": 2,
+    "description": "Customize and organize post categories for easy navigation.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

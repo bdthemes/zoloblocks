@@ -4,8 +4,8 @@
     "name": "zolo/notice",
     "category": "zoloblocks",
     "keywords": ["alert", "notice"],
-    "description": "Make stunning content with the notice block",
-    "apiVersion": 2,
+    "description": "Create custom-styled notices for key site messages",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

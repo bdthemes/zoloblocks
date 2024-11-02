@@ -3,9 +3,9 @@
     "title": "Post Timeline",
     "name": "zolo/post-timeline",
     "category": "zoloblocks",
-    "keywords": ["post", "post timeline","timeline"],
-    "description": "Customizable dynamic post timeline for your website posts",
-    "apiVersion": 2,
+    "keywords": ["post", "post timeline", "timeline"],
+    "description": "Visualize content history with customizable timelines.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

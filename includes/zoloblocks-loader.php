@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Zolo Blocks Loader.
  *
  * @package Zolo
  */
+
 use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
@@ -94,7 +96,7 @@ class ZoloBlocks_Loader {
         // Settings
         Settings::getInstance();
 
-        if ( is_admin() ) {
+        if (is_admin()) {
 
             // Support SVG
             if (get_option('zolo_support_svg', false) === '1') {
@@ -116,9 +118,9 @@ class ZoloBlocks_Loader {
         $theme_folder = get_template();
         if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
             if ('twentytwentytwo' === $theme_folder) {
-            // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-twenty-twenty-two-compatibility.php';
+                // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-twenty-twenty-two-compatibility.php';
             } elseif ('astra' === $theme_folder) {
-            // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
+                // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
             }
         }
     }

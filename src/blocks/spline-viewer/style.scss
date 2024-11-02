@@ -1,0 +1,13 @@
+.wp-block-zolo-spline-viewer {
+    display: flex;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+
+    .zolo-spline-loader{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // height: 100vh;
+        width: 100%;
+    }
+}

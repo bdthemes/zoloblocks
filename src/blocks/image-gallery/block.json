@@ -4,8 +4,8 @@
     "name": "zolo/image-gallery",
     "category": "zoloblocks",
     "keywords": ["gallery", "image gallery"],
-    "description": "Neat and clean gallery block for your images",
-    "apiVersion": 2,
+    "description": "Design responsive image galleries with consistent site design.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

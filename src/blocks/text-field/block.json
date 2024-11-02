@@ -4,8 +4,8 @@
     "name": "zolo/text-field",
     "category": "zoloblocks",
     "keywords": ["zolo", "text", "field"],
-    "description": "This text field is provided by ZoloBlocks",
-    "apiVersion": 2,
+    "description": "Customizable text fields for forms or surveys.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/form"],
     "example": {

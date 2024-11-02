@@ -34,6 +34,7 @@ import {
     GRID_COLUMNS,
     GRID_GAP,
     LINK_TYPES,
+    LINK_TYPES_BASIC,
     CONTAINER_HEIGHT,
     CONTAINER_BG,
     CONTAINER_H_BG,
@@ -90,6 +91,7 @@ function Inspector(props) {
 
     // css filter
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -101,7 +103,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Animations', 'zoloblocks')}
+                                label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.brandGrid.presets', PRESETS)}
                                 onChange={(value) =>
@@ -111,22 +113,26 @@ function Inspector(props) {
                                 }
                             />
                             <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
-                                label={__('Brand Name', 'zoloblocks')}
-                                checked={brandNameVisible}
-                                onChange={() => setAttributes({ brandNameVisible: !brandNameVisible })}
-                            />
-                            <ToggleControl
-                                label={__('Brand Label', 'zoloblocks')}
-                                checked={brandLabelVisible}
-                                onChange={() => setAttributes({ brandLabelVisible: !brandLabelVisible })}
-                            />
+                            {preset !== 'zb-brand-basic-style' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Brand Name', 'zoloblocks')}
+                                        checked={brandNameVisible}
+                                        onChange={() => setAttributes({ brandNameVisible: !brandNameVisible })}
+                                    />
+                                    <ToggleControl
+                                        label={__('Brand Label', 'zoloblocks')}
+                                        checked={brandLabelVisible}
+                                        onChange={() => setAttributes({ brandLabelVisible: !brandLabelVisible })}
+                                    />
+                                </>
+                            )}
                             <ToggleControl
                                 label={__('Enable Logo Link', 'zoloblocks')}
                                 checked={enableLogoLink}
                                 onChange={() => setAttributes({ enableLogoLink: !enableLogoLink })}
                             />
-                            {enableLogoLink && (
+                            {enableLogoLink && preset !== 'zb-brand-basic-style' && (
                                 <div className="zolo-flex-row-control-tab">
                                     <IconicBtnGroup
                                         label={__('Link', 'zoloblocks')}
@@ -140,29 +146,48 @@ function Inspector(props) {
                                     />
                                 </div>
                             )}
-                            <div className="zolo-custom-heading">{__('Content Alignment', 'zoloblocks')}</div>
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
-                            <div className="zolo-flex-row-control-tab">
-                                <IconicBtnGroup
-                                    label={__('Horizontal', 'zoloblocks')}
-                                    value={contentHorizontalPosition}
-                                    onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
-                                    options={FLEX_HORIZONTAL_OPTIONS}
-                                />
-                            </div>
-                            <div className="zolo-flex-row-control-tab">
-                                <IconicBtnGroup
-                                    label={__('Vertical', 'zoloblocks')}
-                                    value={contentVerticalPosition}
-                                    onChange={(value) => setAttributes({ contentVerticalPosition: value })}
-                                    options={FLEX_ALIGN_OPTIONS}
-                                />
-                            </div>
+
+                            {enableLogoLink && preset === 'zb-brand-basic-style' && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Link', 'zoloblocks')}
+                                        value={logoLinkType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                logoLinkType: value,
+                                            })
+                                        }
+                                        options={LINK_TYPES_BASIC}
+                                    />
+                                </div>
+                            )}
+                            {preset !== 'zb-brand-basic-style' && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Content Alignment', 'zoloblocks')}</div>
+                                    <ResAlignmentControl
+                                        label={__('Alignment', 'zoloblocks')}
+                                        controlName={CONTENT_ALIGNMENT}
+                                        requiredProps={requiredProps}
+                                        alignOptions={DEFAULT_ALIGNS}
+                                    />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Horizontal', 'zoloblocks')}
+                                            value={contentHorizontalPosition}
+                                            onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
+                                            options={FLEX_HORIZONTAL_OPTIONS}
+                                        />
+                                    </div>
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Vertical', 'zoloblocks')}
+                                            value={contentVerticalPosition}
+                                            onChange={(value) => setAttributes({ contentVerticalPosition: value })}
+                                            options={FLEX_ALIGN_OPTIONS}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
                             <ResCounterControl
@@ -236,17 +261,21 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            {/* <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} /> */}
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                                min={0}
-                                max={200}
-                            />
-                        </ZoloPanelBody>
+                        {preset !== 'zb-brand-basic-style' && (
+                            <>
+                                <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                    {/* <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} /> */}
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={CONTENT_PADDING}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                        min={0}
+                                        max={200}
+                                    />
+                                </ZoloPanelBody>
+                            </>
+                        )}
                         <ZoloPanelBody title={__('Photo', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Size', 'zoloblocks')}
@@ -284,123 +313,161 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <CardDivider />
-                            {cssFilters && cssFilters.length > 0 && cssFilters}
+                            {preset !== 'zb-brand-basic-style' && (
+                                <>
+                                    <CardDivider />
+                                    {cssFilters && cssFilters.length > 0 && cssFilters}
+                                </>
+                            )}
+                            {preset === 'zb-brand-basic-style' && (
+                                <>
+                                    {cssFilters && cssFilters.length > 0 && (
+                                        <>
+                                            <TabPanelControl
+                                                options={[
+                                                    {
+                                                        value: 'normal',
+                                                        label: __('Normal', 'zoloblocks'),
+                                                    },
+                                                    {
+                                                        value: 'hover',
+                                                        label: __('Hover', 'zoloblocks'),
+                                                    },
+                                                ]}
+                                                normalComponents={<>{cssFilters}</>}
+                                                hoverComponents={<>{cssFiltersHover}</>}
+                                            />
+                                        </>
+                                    )}
+                                </>
+                            )}
                         </ZoloPanelBody>
-                        {brandNameVisible && (
-                            <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                {!(enableLogoLink && logoLinkType == 'logo__title') && (
-                                    <ColorControl
-                                        label={__('Color', 'zoloblocks')}
-                                        color={nameColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                nameColor: value,
-                                            })
-                                        }
-                                    />
+                        {preset !== 'zb-brand-basic-style' && (
+                            <>
+                                {brandNameVisible && (
+                                    <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                        {!(enableLogoLink && logoLinkType == 'logo__title') && (
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={nameColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        nameColor: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <TextStrokeControl
+                                            controlName={TITLE_TEXT_STROKE}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={TITLE_MARGIN}
+                                            requiredProps={requiredProps}
+                                        />
+                                        {enableLogoLink && logoLinkType == 'logo__title' && (
+                                            <TabPanelControl
+                                                normalComponents={
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={nameColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    nameColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                }
+                                                hoverComponents={
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={nameHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    nameHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                }
+                                            />
+                                        )}
+                                    </ZoloPanelBody>
                                 )}
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={TITLE_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                />
-                                <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
-                                <CardDivider />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={TITLE_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                {enableLogoLink && logoLinkType == 'logo__title' && (
-                                    <TabPanelControl
-                                        normalComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={nameColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            nameColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                        hoverComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={nameHoverColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            nameHoverColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                    />
+                                {brandLabelVisible && (
+                                    <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                        {!(enableLogoLink && logoLinkType == 'logo__label') && (
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={labelColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        labelColor: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={LINK_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                            max={36}
+                                        />
+                                        <TextStrokeControl
+                                            controlName={LINK_TEXT_STROKE}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={LINK_MARGIN}
+                                            requiredProps={requiredProps}
+                                        />
+                                        {enableLogoLink && logoLinkType == 'logo__label' && (
+                                            <TabPanelControl
+                                                normalComponents={
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={labelColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    labelColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                }
+                                                hoverComponents={
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={labelHoverColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    labelHoverColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                }
+                                            />
+                                        )}
+                                    </ZoloPanelBody>
                                 )}
-                            </ZoloPanelBody>
-                        )}
-                        {brandLabelVisible && (
-                            <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                {!(enableLogoLink && logoLinkType == 'logo__label') && (
-                                    <ColorControl
-                                        label={__('Color', 'zoloblocks')}
-                                        color={labelColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                labelColor: value,
-                                            })
-                                        }
-                                    />
-                                )}
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={LINK_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                    max={36}
-                                />
-                                <TextStrokeControl controlName={LINK_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
-                                <CardDivider />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={LINK_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                {enableLogoLink && logoLinkType == 'logo__label' && (
-                                    <TabPanelControl
-                                        normalComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={labelColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            labelColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                        hoverComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zoloblocks')}
-                                                    color={labelHoverColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            labelHoverColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                    />
-                                )}
-                            </ZoloPanelBody>
+                            </>
                         )}
                     </>
                 }

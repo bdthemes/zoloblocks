@@ -38,6 +38,9 @@ if (! class_exists('ZoloEnqueues')) {
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
+
+            //change logo link
+            add_filter('render_block', [$this, 'modify_nav_links'], 10, 2);
         }
 
         /**
@@ -56,7 +59,15 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 true
             );
-
+            if (is_admin()) {
+                wp_enqueue_script(
+                    'zolo-spline-viewer',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/spline/spline.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
                 'ajaxurl'                 => admin_url('admin-ajax.php'),
@@ -195,6 +206,16 @@ if (! class_exists('ZoloEnqueues')) {
                 );
             }
 
+            // spline viewer
+            if (has_block('zolo/spline-viewer')) {
+                wp_enqueue_script(
+                    'zolo-spline-viewer',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/spline/spline.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
             // social share Scripts and Styles
             if (has_block('zolo/social-share')) {
                 wp_enqueue_script('zolo-social-share-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);
@@ -234,7 +255,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'all'
             );
 
-            // swiper only for editor
+            // // swiper only for editor
             wp_enqueue_style(
                 'zolo-swiper-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -250,6 +271,8 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 false
             );
+
+
 
             if (ZoloHelpers::is_extension_enabled('particles')) {
 
@@ -506,7 +529,38 @@ if (! class_exists('ZoloEnqueues')) {
                 'psBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/ps-brand.svg',
                 'upkBrand'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/upk-brand.svg',
                 'popupBg'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/popup-bg.svg',
+                'zoloLogo'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/zoloblocks-logo.png',
             ]);
+        }
+
+        /**
+         * change_logo_link
+         *
+         * @since 1.4.0
+         * @return blockMarkup
+         */
+        public function modify_nav_links($block_content, $block) {
+            if ($block['blockName'] == 'zolo/navmenu') {
+                $tags = new \WP_HTML_Tag_Processor($block_content);
+                $tags->next_tag(array('tag_name' => 'a', 'class_name' => 'zolo-nav-menu-sidebar-logo'));
+                $tags->set_attribute('href', home_url());
+                $tags->get_updated_html();
+
+                return $tags;
+            }
+
+            if ($block['blockName'] == 'zolo/navmenu-item') {
+                $tags = new \WP_HTML_Tag_Processor($block_content);
+                $tags->next_tag(array('tag_name' => 'li', 'class_name' => 'zolo-navmenu-item'));
+                if ($tags->get_attribute('data-id') == get_the_ID() && $tags->get_attribute('data-type') == get_post_type()) {
+                    $tags->add_class('current-item');
+                }
+                $tags->get_updated_html();
+
+                return $tags;
+            }
+
+            return $block_content;
         }
     }
 }

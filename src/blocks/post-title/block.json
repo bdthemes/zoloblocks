@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["post", "post title","title"],
     "description": "Dynamic post title for any landing page in WordPress",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "usesContext": [ "postId", "postType" ],
     "example": {

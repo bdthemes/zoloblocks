@@ -4,8 +4,8 @@
     "name": "zolo/advanced-search",
     "category": "zoloblocks",
     "keywords": ["search", "advanced search", "ajax search", "zolo", "zoloblocks"],
-    "description": "Provide users with a dynamic search feature",
-    "apiVersion": 2,
+    "description": "Add a flexible search box for improved navigation.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

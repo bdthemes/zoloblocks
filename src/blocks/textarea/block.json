@@ -4,8 +4,8 @@
     "name": "zolo/textarea",
     "category": "zoloblocks",
     "keywords": ["zolo", "message", "textarea"],
-    "description": "A simple text field block for Form Block",
-    "apiVersion": 2,
+    "description": "Capture messages seamlessly within the Form block.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/form"],
     "example": {

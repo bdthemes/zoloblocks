@@ -4,8 +4,8 @@
     "name": "zolo/breadcrumbs",
     "category": "zoloblocks",
     "keywords": ["breadcrumbs", "breadcrumb"],
-    "description": "Breadcrumbs block description ",
-    "apiVersion": 2,
+    "description": "Add clean breadcrumbs for better UX and SEO support.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

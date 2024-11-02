@@ -4,8 +4,8 @@
     "name": "zolo/advanced-image",
     "category": "zoloblocks",
     "keywords": ["image", "photo", "advanced image", "media", "zolo"],
-    "description": "Advanced image customizations in Gutenberg",
-    "apiVersion": 2,
+    "description": "Add responsive, advanced features to enhance image presentations.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

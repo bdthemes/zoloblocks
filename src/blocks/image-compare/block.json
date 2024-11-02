@@ -4,8 +4,8 @@
     "name": "zolo/image-compare",
     "category": "zoloblocks",
     "keywords": ["beaf", "footer slider", "image compare"],
-    "description": "Slide to compare between two images side by side",
-    "apiVersion": 2,
+    "description": "Compare images side-by-side with a responsive slider.",
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

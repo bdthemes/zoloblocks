@@ -48,7 +48,9 @@ export { default as ZoloPanelBody } from '../controls/zolo-panelbody';
 export { AdvancedOptions } from '../global/components/advancedOptions';
 export { GlobalStyleHanlder } from '../global/components/globalStyleHandler';
 export { default as ResSelectControl } from '../controls/res-select-control';
+export { default as ThumbsControl } from '../controls/thumbs-control';
 export { default as TabDynamicControl } from '../controls/tabdynamic-control';
+export { default as ToggleGroup } from '../controls/toggle-group';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';

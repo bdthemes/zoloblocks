@@ -4,8 +4,8 @@
     "name": "zolo/fancy-list-child",
     "category": "zoloblocks",
     "keywords": ["fancy", "fancy list"],
-    "description": "Single child block for Fancy list block",
-    "apiVersion": 2,
+    "description": "Add items to Fancy List for cohesive presentation.",
+    "apiVersion": 3,
     "parent": ["zolo/fancy-list"],
     "textdomain": "zoloblocks",
     "example": {
