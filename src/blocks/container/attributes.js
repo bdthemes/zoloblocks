@@ -4,14 +4,14 @@
 const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
 
 import {
-    CONTAINER_WIDTH,
     CONTAINER_GAP,
+    CONTAINER_WIDTH,
     CONTENT_WIDTH,
-    MIN_HEIGHT,
-    FLEX_DIRECTION,
-    FLEX_WRAP,
-    FLEX_JUSTIFY,
     FLEX_ALIGN,
+    FLEX_DIRECTION,
+    FLEX_JUSTIFY,
+    FLEX_WRAP,
+    MIN_HEIGHT,
 } from './constants';
 
 const attributes = {

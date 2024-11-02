@@ -1,8 +1,56 @@
 import { Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
 import classNames from 'classnames';
 
-const Templates = ({ TABS, activeTab, setActiveTab, searchText, setSearchText, pullDemos, setPullDemos, pullNewDemos, setIsOpen }) => {
+import InnerPageTemplate from './inner-page-template';
+
+const PageTemplateLoader = ({
+    TABS,
+    activeTab,
+    setActiveTab,
+    searchText,
+    setSearchText,
+    pullDemos,
+    setPullDemos,
+    pullNewDemos,
+    setIsOpen,
+    number,
+    setNumber,
+    loading,
+    handleImportTemplate,
+    // specific to items
+    type,
+    setType,
+    categories,
+    activeCat,
+    setActiveCat,
+    allItems,
+    items,
+    setItems,
+    // favorites
+    favIds,
+    handleFavTemplate,
+}) => {
+    let itemText = '';
+    switch (activeTab) {
+        case 'pages':
+            itemText = 'Pages';
+            break;
+        case 'demos':
+            itemText = 'Demos';
+            break;
+        case 'templates':
+            itemText = 'Templates';
+            break;
+        case 'favorites':
+            itemText = 'Favorites Items';
+            break;
+        default:
+            itemText = 'Patterns';
+            break;
+    }
+
     return (
         <>
             <div className="categories">
@@ -30,12 +78,68 @@ const Templates = ({ TABS, activeTab, setActiveTab, searchText, setSearchText, p
                 <div className="demo-title-proFree-wrap">
                     <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                     <div className="demo-proFree-btn">
-                        <button className="demo-free-btn">{__('free', 'zoloblocks')}</button>
-                        <button className="demo-pro-btn">{__('pro', 'zoloblocks')}</button>
+                        {type !== '' && (
+                            <Tooltip>
+                                <button
+                                    className="demo-pro-free-reset"
+                                    onClick={() => {
+                                        setType('');
+                                    }}
+                                >
+                                    <svg
+                                        className="w-6 h-6 text-gray-800 dark:text-white"
+                                        aria-hidden="true"
+                                        width={24}
+                                        height={24}
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"
+                                        />
+                                    </svg>
+                                </button>
+                            </Tooltip>
+                        )}
+                        <button
+                            className="demo-free-btn"
+                            onClick={() => {
+                                setType('free');
+                            }}
+                        >
+                            {__('free', 'zoloblocks')}
+                        </button>
+                        <button
+                            className="demo-pro-btn"
+                            onClick={() => {
+                                setType('pro');
+                            }}
+                        >
+                            {__('pro', 'zoloblocks')}
+                        </button>
                     </div>
                 </div>
 
-                <div className="category-list"></div>
+                <div className="category-list">
+                    {categories &&
+                        categories?.length > 0 &&
+                        categories?.map((category) => (
+                            <button
+                                key={category?.value}
+                                className={classNames('single-category', {
+                                    active: activeCat === category?.value,
+                                })}
+                                onClick={() => setActiveCat(category?.value)}
+                            >
+                                <span className="single-category-text">{category?.label}</span>
+                                {category?.value === 'all' && <span className="single-category-count">{allItems && allItems?.length}</span>}
+                            </button>
+                        ))}
+                </div>
             </div>
             <div className="demos-container">
                 <div className="zolo-dm-head">
@@ -55,11 +159,7 @@ const Templates = ({ TABS, activeTab, setActiveTab, searchText, setSearchText, p
                             TABS.map((tab) => (
                                 <button
                                     key={tab.value}
-                                    className={classNames(
-                                        'single-tab',
-                                        { active: activeTab === tab.value },
-                                        { fav: tab.value === 'favorites' }
-                                    )}
+                                    className={classNames('single-tab', { active: activeTab === tab.value })}
                                     onClick={() => setActiveTab(tab.value)}
                                 >
                                     {tab.label}
@@ -119,13 +219,35 @@ const Templates = ({ TABS, activeTab, setActiveTab, searchText, setSearchText, p
                         </div>
                     </div>
                 </div>
-                <div className="zolo-templates">
-                    <h2 className="title">{__('Templates', 'zoloblocks')}</h2>
-                    <p>{__('Coming soon...', 'zoloblocks')}</p>
-                </div>
+
+                {items && items.length > 0 && (
+                    <InnerPageTemplate
+                        templates={items}
+                        handleImportTemplate={handleImportTemplate}
+                        favIds={favIds}
+                        handleFavTemplate={handleFavTemplate}
+                    />
+                )}
+
+                {items && items?.length > number && (
+                    <div className="load-more-btn-wrapper">
+                        <button
+                            className="load-more-btn"
+                            onClick={() => {
+                                setNumber(number + 20);
+                            }}
+                        >
+                            {__('Load More', 'zoloblocks')}
+                        </button>
+                    </div>
+                )}
+                {items?.length === 0 && !loading && (
+                    <div className="no-found-item">
+                        <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
+                    </div>
+                )}
             </div>
         </>
     );
 };
-
-export default Templates;
+export default PageTemplateLoader;

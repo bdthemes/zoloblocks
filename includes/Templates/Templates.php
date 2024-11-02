@@ -29,6 +29,10 @@ if( ! class_exists( 'Templates' ) ) {
             // update transient for the api
             add_action('wp_ajax_zolo_demo_pull', [$this, 'update_transient']);
             add_action('wp_ajax_nopriv_zolo_demo_pull', [$this, 'update_transient']);
+
+            // update transient for the demos api
+            add_action('wp_ajax_zolo_demo_template_pull', [$this, 'update_demos_transient']);
+            add_action('wp_ajax_nopriv_zolo_demo_template_pull', [$this, 'update_demos_transient']);
         }
 
         /**
@@ -151,6 +155,41 @@ if( ! class_exists( 'Templates' ) ) {
 
             // Fetch latest templates from external server
             $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
+            $body     = wp_remote_retrieve_body($response);
+            $data     = json_decode($body, true);
+
+            $templates = [];
+
+            // Set transient if data is available
+            if (!empty($data)) {
+                $templates = $data ?? [];
+                set_transient($transient_key, $templates, 7 * DAY_IN_SECONDS);
+            }
+
+            // Immediately update data in REST API endpoint
+            wp_send_json_success([
+                'status'  => 'success',
+                'message' => __('Templates pulled and REST API updated successfully!', 'zoloblocks'),
+                'data'    => $templates,
+            ]);
+        }
+        /**
+         * Updates the transient for the Demo API.
+         *
+         * This method is responsible for updating the transient for the API.
+         * It is located in the `Templates.php` file within the `zoloblocks/includes/Templates` directory.
+         * The method is public and can be accessed from other parts of the codebase.
+         *
+         * @since 1.0.0
+         */
+        public function update_demos_transient() {
+            $transient_key = 'zolo_demos';
+
+            // Delete old transient
+            delete_transient($transient_key);
+
+            // Fetch latest templates from external server
+            $response = wp_remote_get('https://demo.zoloblocks.com/wp-json/template-manager/v1/zolo');
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
