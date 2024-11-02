@@ -37,6 +37,13 @@ import {
     VIEW_BTN_PADDING,
     VIEW_BTN_SHADOW,
     THUMBNAIL_OVERLAY_BG,
+    CAT_NAME_BG,
+    CAT_NAME_PADDING,
+    CAT_NAME_BORDER,
+    CAT_NAME_SHADOW,
+    CAT_NAME_BORDER_RADIUS,
+    CAT_NAME_HOVER_BG,
+    CAT_NAME_HOVER_SHADOW,
 } from './constants';
 
 const {
@@ -84,6 +91,7 @@ export default function Inspector(props) {
         itemBorderHoverColor,
         countHoverBgColor,
         countHoverBColor,
+        catNameHoverBColor,
     } = attributes;
     const { enableMultipleBG } = postCategoryPro ?? {};
     const requiredProps = {
@@ -109,13 +117,20 @@ export default function Inspector(props) {
                     showImage: true,
                 });
                 break;
+            case 'style-3':
+                setAttributes({
+                    viewAllBtn: false,
+                    showText: false,
+                    showImage: true,
+                });
+                break;
         }
     };
     const multipleBgControl = applyFilters('zolo.blocks.postCategory.style.controls.multipleBg', [], props);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/post-grid"
+                block="zolo/post-category"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -143,13 +158,14 @@ export default function Inspector(props) {
                                 />
                             )}
 
-                            {preset === 'style-2' && (
-                                <ToggleControl
-                                    label={__('Image', 'zoloblocks')}
-                                    checked={showImage}
-                                    onChange={(showImage) => setAttributes({ showImage })}
-                                />
-                            )}
+                            {preset === 'style-2' ||
+                                (preset === 'style-3' && (
+                                    <ToggleControl
+                                        label={__('Image', 'zoloblocks')}
+                                        checked={showImage}
+                                        onChange={(showImage) => setAttributes({ showImage })}
+                                    />
+                                ))}
 
                             {preset === 'style-1' && (
                                 <ToggleControl
@@ -348,6 +364,40 @@ export default function Inspector(props) {
                                             typoPrefixConstant={NAME_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
+
+                                        {preset === 'style-3' && (
+                                            <>
+                                                <CardDivider />
+                                                <NormalBGControl
+                                                    requiredProps={requiredProps}
+                                                    controlName={CAT_NAME_BG}
+                                                    noMainBGImg={true}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    controlName={CAT_NAME_PADDING}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <CardDivider />
+                                                <BorderControl
+                                                    label={__('Border', 'zoloblocks')}
+                                                    controlName={CAT_NAME_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <BoxShadowControl
+                                                    controlName={CAT_NAME_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    controlName={CAT_NAME_BORDER_RADIUS}
+                                                    requiredProps={requiredProps}
+                                                    forBorderRadius={true}
+                                                />
+                                            </>
+                                        )}
                                     </>
                                 }
                                 hoverComponents={
@@ -361,6 +411,28 @@ export default function Inspector(props) {
                                                 })
                                             }
                                         />
+
+                                        {preset === 'style-3' && (
+                                            <>
+                                                <NormalBGControl
+                                                    requiredProps={requiredProps}
+                                                    controlName={CAT_NAME_HOVER_BG}
+                                                    noMainBGImg={true}
+                                                />
+                                                <CardDivider />
+                                                <ColorControl
+                                                    label={__('Border Color', 'zoloblocks')}
+                                                    color={catNameHoverBColor}
+                                                    onChange={(color) => setAttributes({ catNameHoverBColor: color })}
+                                                />
+
+                                                <BoxShadowControl
+                                                    controlName={CAT_NAME_HOVER_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                            </>
+                                        )}
                                     </>
                                 }
                             />

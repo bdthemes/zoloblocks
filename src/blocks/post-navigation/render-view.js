@@ -1,0 +1,48 @@
+import { __ } from '@wordpress/i18n';
+const { DisplayZoloIcon } = window.zoloModule;
+
+export default function RenderView({ attributes }) {
+    const { showImage, showTitle, showBtn, previousPost, previousPostIcon, nextPost, nextPostIcon } = attributes;
+
+    return (
+        <>
+            <a onClick={(event) => event.preventDefault()} href="#" className="zolo-item zolo-post-prev">
+                {showImage && (
+                    <div className="zolo-image-wrap">
+                        <img src={zoloPlaceholders.placeholder} alt={__('image Placeholder', 'zoloblocks')} />
+                    </div>
+                )}
+                <div className="zolo-content-wrap">
+                    {showBtn && (
+                        <div className="zolo-nav-wrap">
+                            <span className="zolo-nav-text">
+                                <span>{previousPost}</span>
+                                {previousPostIcon && <DisplayZoloIcon icon={previousPostIcon} />}
+                            </span>
+                        </div>
+                    )}
+                    {showTitle && <h2 className="zolo-pos-nav-title">Demo Post One</h2>}
+                </div>
+            </a>
+
+            <a href="#" className="zolo-item zolo-post-next">
+                {showImage && (
+                    <div className="zolo-image-wrap">
+                        <img src={zoloPlaceholders.placeholder} alt={__('image Placeholder', 'zoloblocks')} />
+                    </div>
+                )}
+                <div className="zolo-content-wrap">
+                    {showBtn && (
+                        <div className="zolo-nav-wrap">
+                            <span className="zolo-nav-text">
+                                <span>{nextPost}</span>
+                                {nextPostIcon && <DisplayZoloIcon icon={nextPostIcon} />}
+                            </span>
+                        </div>
+                    )}
+                    {showTitle && <h2 className="zolo-pos-nav-title">Demo Post Two</h2>}
+                </div>
+            </a>
+        </>
+    );
+}

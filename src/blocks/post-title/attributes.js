@@ -66,7 +66,7 @@ const attributes = {
         default: '',
     },
     isLink: {
-        type: 'string',
+        type: 'boolean',
         default: false,
     },
     linkTarget: {
