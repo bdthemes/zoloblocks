@@ -79,14 +79,14 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/acordion',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'spline-viewer'          => [
-        'name'   => 'spline-viewer',
-        'title'  => __('Spline Viewer', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
-        'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ],
+    // 'spline-viewer'          => [
+    //     'name'   => 'spline-viewer',
+    //     'title'  => __('Spline Viewer', 'zoloblocks'),
+    //     'status' => false,
+    //     'is_pro' => true,
+    //     'demo'   => 'https://demo.zoloblocks.com/acordion',
+    //     'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    // ],
     'background-parallax'          => [
         'name'   => 'background-parallax',
         'title'  => __('Background Parallax', 'zoloblocks'),
