@@ -327,9 +327,9 @@ if (! class_exists('Settings')) {
 
         /**
          * Handles the demos settings.
-         * 
+         *
          * This method is responsible for handling the demos settings.
-         * 
+         *
          * @param WP_REST_Request $request The request object.
          */
         public function handle_demos_settings($request) {
@@ -339,7 +339,7 @@ if (! class_exists('Settings')) {
                 return $this->update_demos($request);
             }
         }
-
+        /**
          * Handles the favorites settings.
          *
          * This method is responsible for handling the favorites settings.
