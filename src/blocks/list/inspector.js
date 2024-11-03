@@ -368,7 +368,7 @@ function Inspector(props) {
                                 <>
                                     <CardDivider />
                                     <ZoloIconPicker
-                                        label={__('Global Icon', 'zolo-blocks')}
+                                        label={__('Global Icon', 'zoloblocks')}
                                         value={globalIcon}
                                         onChange={(v) =>
                                             setAttributes({

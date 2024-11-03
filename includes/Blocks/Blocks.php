@@ -310,7 +310,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Review Carousel', 'zoloblocks'),
         'categories' => ['review', 'slider'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/reviw-carousel',
+        'demo' => 'https://demo.zoloblocks.com/review-carousel',
         'video' => 'https://www.youtube.com/watch?v=bbldiWYdCkk&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'review-child' => [
@@ -325,7 +325,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Review Grid', 'zoloblocks'),
         'categories' => ['review', 'list'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/reviw-grid',
+        'demo' => 'https://demo.zoloblocks.com/review-grid',
         'video' => 'https://www.youtube.com/watch?v=Vt04o7SKgUQ&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'slide' => [
@@ -550,7 +550,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'navmenu'         => [
         'name'        => 'navmenu',
-        'title'       => __('Nav Menu', 'zolo-blocks'),
+        'title'       => __('Nav Menu', 'zoloblocks'),
         'categories'  => ['others'],
         'status'      => true,
         'demo'        => 'https: //demo.zoloblocks.com/navmenu',
@@ -558,7 +558,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'navmenu-item'    => [
         'name'        => 'navmenu-item',
-        'title'       => __('Nav Menu Item', 'zolo-blocks'),
+        'title'       => __('Nav Menu Item', 'zoloblocks'),
         'categories'  => ['others'],
         'status'      => true,
         'demo'        => 'https: //demo.zoloblocks.com/navmenu-item',
@@ -567,7 +567,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'navmenu-submenu' => [
         'name' => 'navmenu-submenu',
-        'title' => __('Nav Menu Submenu', 'zolo-blocks'),
+        'title' => __('Nav Menu Submenu', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https: //demo.zoloblocks.com/navmenu-submenu',
@@ -576,7 +576,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'megamenu' => [
         'name' => 'megamenu',
-        'title' => __('Mega Menu', 'zolo-blocks'),
+        'title' => __('Mega Menu', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https: //demo.zoloblocks.com/megamenu',
