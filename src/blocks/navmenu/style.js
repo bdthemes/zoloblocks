@@ -643,6 +643,7 @@ export default function Style({ props }) {
     	.${uniqueId}.wp-block-zolo-navmenu,
 		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
 			${buttonAlignmentTab}
+            ${humburgerAlignmentTab}
 		}
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper {
@@ -711,6 +712,7 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-navmenu,
 		.${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-menu {
 			${buttonAlignmentMob}
+            ${humburgerAlignmentMob}
 		}
 
         .${uniqueId}.wp-block-zolo-navmenu .zolo-navmenu-wrapper {

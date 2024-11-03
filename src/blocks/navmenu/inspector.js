@@ -214,12 +214,12 @@ const Inspector = (props) => {
                     <>
                         <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <NormalBGControl requiredProps={requiredProps} controlName={NAV_MENU_WRAP_BG} noMainBGImg={false} />
-                            <ResDimensionsControl
+                            {/* <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={NAV_MENU_WRAP_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
-                            />
+                            /> */}
                             <CardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
