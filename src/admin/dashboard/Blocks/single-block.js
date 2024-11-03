@@ -3,7 +3,9 @@ import { __ } from '@wordpress/i18n';
 
 const { BlockIcons } = window?.zoloIcons;
 
+// console.log(zoloIcons);
 const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video = '', isPro = false }) => {
+
     return (
         <div className={`zolo-single-block ${value ? 'active' : ''} ${isPro ? 'ispro' : ''} ${upcoming ? 'upcoming' : ''}`}>
             <div className="block-icon">{BlockIcons[icon]}</div>
