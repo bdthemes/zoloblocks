@@ -294,7 +294,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('QR Code', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/qrcode',
+        'demo' => 'https://demo.zoloblocks.com/qr-code',
         'video' => 'https://www.youtube.com/watch?v=oo-_u4WkNGk&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'review' => [
