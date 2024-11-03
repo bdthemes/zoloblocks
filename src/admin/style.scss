@@ -434,6 +434,15 @@ input.zoloblocks-search,
     }
 }
 
+.zolo-single-block {
+    .block-icon {
+        svg {
+            path {
+                fill: var(--zolo-dashboard-brand-color);
+            }
+        }
+    }
+}
 .zolo-single-block.active {
     .block-icon {
         background-color: #e4ecff;

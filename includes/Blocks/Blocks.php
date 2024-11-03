@@ -16,7 +16,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Accordion', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/acordion',
+        'demo' => 'https://demo.zoloblocks.com/accordion',
         'video' => 'https://www.youtube.com/watch?v=LQO2oZ7Sg14&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'accordion-child' => [
