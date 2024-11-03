@@ -31,7 +31,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Advanced Button', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/adavanced-button',
+        'demo' => 'https://demo.zoloblocks.com/advanced-button',
         'video' => 'https://www.youtube.com/watch?v=KFKnRqxOKEo&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'advanced-heading' => [
@@ -39,7 +39,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Advanced Heading', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/adavanced-heading',
+        'demo' => 'https://demo.zoloblocks.com/advanced-heading',
         'video' => 'https://www.youtube.com/watch?v=7Kz7g_hQvgI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'advanced-icon-box' => [
@@ -55,7 +55,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Advanced Image', 'zoloblocks'),
         'categories' => ['gallery'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/adavanced-image',
+        'demo' => 'https://demo.zoloblocks.com/advanced-image',
         'video' => 'https://www.youtube.com/watch?v=Oze-RM3Ke1U&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'advanced-search' => [
@@ -63,7 +63,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Advanced Search', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/adavanced-search',
+        'demo' => 'https://demo.zoloblocks.com/advanced-search',
         'video' => 'https://www.youtube.com/watch?v=2qikAspGriQ&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'brand-child' => [
