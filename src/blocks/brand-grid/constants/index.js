@@ -11,7 +11,8 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'zb-brand-style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'zb-brand-style-2' },
     { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'zb-brand-style-3', disabled: true },
-    { label: __('Basic', 'zoloblocks'), value: 'zb-brand-basic-style', disabled: false },
+    // { label: __('Basic', 'zoloblocks'), value: 'zb-brand-basic-style'},
+    { label: __('Basic', 'zoloblocks'), value: 'zb-brand-basic-style' },
 ];
 
 // icon types
