@@ -171,6 +171,13 @@
             }
         }
     }
+    // Style basic preset css
+    &.zb-brand-basic-style {
+        .zb-brand-content {
+            display: none !important;
+        }
+
+    }
 }
 
 /* Demo style 1 & style 2 css  */
