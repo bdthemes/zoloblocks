@@ -3,7 +3,7 @@
     "title": "Spline Viewer",
     "name": "zolo/spline-viewer",
     "category": "zoloblocks",
-    "keywords": ["Spline", "Viewer"],
+    "keywords": ["Spline", "Viewer", "3D", "Curve", "Path", "Animation"],
     "description": "A block to display a 3D spline viewer",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

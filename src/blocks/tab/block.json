@@ -3,7 +3,7 @@
     "title": "Tab",
     "name": "zolo/tab",
     "category": "zoloblocks",
-    "keywords": ["tab"],
+    "keywords": ["tab", "tabs", "section", "content", "accordion"],
     "description": "Add sections within Tabs for organized content.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

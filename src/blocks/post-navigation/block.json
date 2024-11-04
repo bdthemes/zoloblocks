@@ -3,11 +3,11 @@
     "title": "Post Navigation",
     "name": "zolo/post-navigation",
     "category": "zoloblocks",
-    "keywords": ["post", "navigation", "post navigation"],
+    "keywords": ["post", "navigation", "next", "previous", "dynamic", "content", "pagination", "single", "archive"],
     "description": "Customizable dynamic post navigation block for your website single page",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
-    "usesContext": [ "postId", "postType" ],
+    "usesContext": ["postId", "postType"],
     "example": {
         "attributes": {
             "preview": true

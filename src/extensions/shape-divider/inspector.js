@@ -92,7 +92,6 @@ const Inspector = ({ panelProps }) => {
                                     label={__('Height', 'zoloblocks')}
                                     controlName={TOP_HEIGHT_SHAPE}
                                     requiredProps={requiredProps}
-                                    max={300}
                                 />
 
                                 {showFlipTop && (
@@ -151,21 +150,23 @@ const Inspector = ({ panelProps }) => {
                 }
                 hoverComponents={
                     <>
-                        <ThumbsControl
-                            value={shapeDivider.bottom.type}
-                            options={SHAPE_DIVIDER}
-                            onChange={(value) =>
-                                setAttributes({
-                                    shapeDivider: {
-                                        ...shapeDivider,
-                                        bottom: {
-                                            ...shapeDivider.bottom,
-                                            type: value,
+                        <div className="zolo-shape-thumbs-bottom">
+                            <ThumbsControl
+                                value={shapeDivider.bottom.type}
+                                options={SHAPE_DIVIDER}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        shapeDivider: {
+                                            ...shapeDivider,
+                                            bottom: {
+                                                ...shapeDivider.bottom,
+                                                type: value,
+                                            },
                                         },
-                                    },
-                                })
-                            }
-                        />
+                                    })
+                                }
+                            />
+                        </div>
                         {shapeDivider.bottom.type === 'none' ? (
                             <></>
                         ) : (

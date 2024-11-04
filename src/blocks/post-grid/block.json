@@ -3,7 +3,7 @@
     "title": "Post Grid",
     "name": "zolo/post-grid",
     "category": "zoloblocks",
-    "keywords": ["post", "post grid"],
+    "keywords": ["post", "grid", "layout", "content", "organize", "display", "blog", "magazine"],
     "description": "Arrange posts in dynamic grids for organized content display.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

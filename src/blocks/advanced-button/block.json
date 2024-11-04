@@ -3,7 +3,7 @@
     "title": "Advanced Button",
     "name": "zolo/advanced-button",
     "category": "zoloblocks",
-    "keywords": ["button", "advanced button"],
+    "keywords": ["button", "advanced", "cta", "link", "transition", "animation"],
     "description": "Use stylish button transitions for enhanced engagement.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

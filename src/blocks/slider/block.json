@@ -3,7 +3,7 @@
     "title": "Slider",
     "name": "zolo/slider",
     "category": "zoloblocks",
-    "keywords": ["Slide", "Slider", "Carousel"],
+    "keywords": ["Slide", "Slider", "Carousel", "Image", "Content"],
     "description": "Create immersive image sliders directly in Gutenberg editor.",
     "apiVersion": 2,
     "textdomain": "zoloblocks",

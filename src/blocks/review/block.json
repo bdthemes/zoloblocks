@@ -3,7 +3,7 @@
     "title": "Review",
     "name": "zolo/review",
     "category": "zoloblocks",
-    "keywords": ["Rating", "Review"],
+    "keywords": ["Rating", "Review", "Feedback", "Testimonial", "Stars"],
     "description": "Show structured reviews to build trust in your offerings.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
