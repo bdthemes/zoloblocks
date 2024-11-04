@@ -1031,14 +1031,14 @@ export const CONTENT_WIDTH_TYPES = [
 ];
 
 export const OVERFLOWS = [
+    { label: __('Default', 'zoloblocks'), value: 'visible' },
     { label: __('Auto', 'zoloblocks'), value: 'auto' },
-    { label: __('Visible', 'zoloblocks'), value: 'visible' },
     { label: __('Hidden', 'zoloblocks'), value: 'hidden' },
     { label: __('Scroll', 'zoloblocks'), value: 'scroll' },
     { label: __('Clip', 'zoloblocks'), value: 'clip' },
 ];
 export const CONTENT_POSITIONS = [
-    { label: __('Select Position', 'zoloblocks'), value: '' },
+    { label: __('Default', 'zoloblocks'), value: '' },
     { label: __('Relative', 'zoloblocks'), value: 'relative' },
     { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
     { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
