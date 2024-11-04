@@ -3,11 +3,14 @@
     "title": "Table of Content",
     "name": "zolo/table-of-content",
     "category": "zoloblocks",
-    "keywords": ["table", "content","table content"],
+    "keywords": [
+        "table",
+        "content",
+        "table content"
+    ],
     "description": "Dynamic table of content block for any landing page in WordPress",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
-    "usesContext": [ "postId", "postType" ],
     "example": {
         "attributes": {
             "preview": true
@@ -17,7 +20,10 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",

@@ -1,96 +1,68 @@
-// Import dependencies
-import { select } from '@wordpress/data';
+export const supportedHeaders = [
+  "core/heading",
+  "zolo/advanced-heading",
+  "essential-blocks/heading",
+];
 
-// Generate anchor from text and id
-export const generateAnchor = (text = '', id = 0) => {
-  let anchorText =
-    `${id ? `${id}-` : ''}` +
-    text
-      .toString()
-      .toLowerCase()
-      .replace(/( |<.+?>|&nbsp;)/g, '-');
-  anchorText = encodeURIComponent(
-    anchorText.replace(/[^\w\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF\s-]/g, ''),
-  );
-  return anchorText;
-};
+export function isZoloBlocksAHeading(block) {
+  return block.name === "zolo/advanced-heading";
+}
 
-// Check if a header is an advanced heading
-export const isAdvancedHeading = (header) => header.level === undefined;
+export function isCoreHeading(block) {
+  return block.name === "core/heading";
+}
 
-// Get header level, adjusting for advanced headings
-export const getHeaderLevel = (header) =>
-  isAdvancedHeading(header) ? header.titleLevel : header.level;
+export function isEbHeading(block) {
+  return block.name === "essential-blocks/heading";
+}
 
-// Get header content, adjusting for advanced headings
-export const getHeaderContent = (header) =>
-  isAdvancedHeading(header) ? header.title : header.content;
+export const createHierarchy = (formattedHeaders, currentHeader) => {
+  const lastIndex = formattedHeaders.length - 1;
 
-// Recursively retrieve all child heading blocks
-export const getAllChildHeadingBlocks = (parentBlock) => {
-  let childs = [];
-  parentBlock.innerBlocks.forEach((childBlock) => {
-    if (['zolo/advanced-heading', 'core/heading'].includes(childBlock.name)) {
-      childs.push(childBlock);
-    }
-    if (childBlock.innerBlocks.length > 0) {
-      childs.push(...getAllChildHeadingBlocks(childBlock));
-    }
-  });
-  return childs;
-};
-
-export const getsHeadingBlocks = () => {
-  const targetBlocks = [];
-  const allBlocks = select('core/block-editor').getBlocks();
-
-  allBlocks.forEach((block) => {
-    if (['zolo/advanced-heading', 'core/heading'].includes(block.name)) {
-      targetBlocks.push(block);
-    } else if (block.innerBlocks.length > 0) {
-      targetBlocks.push(...getAllChildHeadingBlocks(block));
-    }
-  });
-  return targetBlocks;
-};
-
-// Create hierarchical structure for headers
-export const createHierarchy = (formattedHeaders, currentHeader, getHeaderLevelFn) => {
-  let lastIndex = formattedHeaders.length - 1;
-  if (
-    formattedHeaders.length === 0 ||
-    getHeaderLevelFn(formattedHeaders[0]) === getHeaderLevelFn(currentHeader)
-  ) {
+  if (formattedHeaders.length === 0 || formattedHeaders[0].level === currentHeader.level) {
     formattedHeaders.push({ ...currentHeader });
-  } else if (getHeaderLevelFn(formattedHeaders[lastIndex]) < getHeaderLevelFn(currentHeader)) {
+  } else if (formattedHeaders[lastIndex].level < currentHeader.level) {
     if (!formattedHeaders[lastIndex].children) {
-      formattedHeaders[lastIndex].children = [
-        { ...currentHeader },
-      ];
-    } else createHierarchy(formattedHeaders[lastIndex].children, currentHeader, getHeaderLevelFn);
+      formattedHeaders[lastIndex].children = [{ ...currentHeader }];
+    } else {
+      createHierarchy(formattedHeaders[lastIndex].children, currentHeader);
+    }
   }
 };
 
-// Filter and format headers into a hierarchical structure
-export const formatHeaders = (allHeaders, allowedHeading, getHeaderLevelFn) => {
-  let formattedHeaders = [];
+export const formatHeaders = (allHeaders, allowedHeading) => {
+  const formattedHeaders = [];
   allHeaders
-    .filter((header) => allowedHeading[`h${getHeaderLevelFn(header)}`])
-    .forEach((header) => createHierarchy(formattedHeaders, header, getHeaderLevelFn));
-  console.log({formattedHeaders});
+    .filter((header) => allowedHeading[`h${header.level}`])
+    .forEach((header) => createHierarchy(formattedHeaders, header));
   return formattedHeaders;
 };
 
-export const parseList = (list,ListTag) =>
+export const parseList = (list, ListTag = 'ul') =>
   list.map((item) => (
     <li key={item.anchor}>
       <a href={`#${item.anchor}`}>
-        {getHeaderContent(item).replace(/(<.+?>)/g, '')}
+        {item.content.replace(/(<.+?>)/g, '')}
       </a>
       {item.children && (
         <ListTag className="child-list">
-          {parseList(item.children)}
+          {parseList(item.children, ListTag)}
         </ListTag>
       )}
     </li>
   ));
+
+export function parseTocSlug(slug) {
+  if (!slug) return slug;
+
+  return slug
+    .toString()
+    .toLowerCase()
+    .replace(/&(amp;|mdash;)/g, "")
+    .replace(/[\u2013\u2014]/g, "")
+    .replace(/&nbsp;/gi, "-")
+    .replace(/\s+/g, "-")
+    .replace(/[&\/\\#,^!+()$~%.'":*?<>{}@‘’”“]/g, "")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
+}

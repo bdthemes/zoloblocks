@@ -1,4 +1,17 @@
-export const BLOCK_PREFIX = 'zolo-post-title';
+import {__} from '@wordpress/i18n';
+
+export const HEADING_TAGS = [
+  {label: __('H1', 'zoloblocks'), value: 'h1'},
+  {label: __('H2', 'zoloblocks'), value: 'h2'},
+  {label: __('H3', 'zoloblocks'), value: 'h3'},
+  {label: __('H4', 'zoloblocks'), value: 'h4'},
+  {label: __('H5', 'zoloblocks'), value: 'h5'},
+  {label: __('H6', 'zoloblocks'), value: 'h6'},
+]
+export const LIST_STYLE = [
+  {label: __('Ordered List', 'zoloblocks'), value: 'ol'},
+  {label: __('Unordered List', 'zoloblocks'), value: 'ul'}
+]
 export const TITLE_ALIGN = 'titleAlign';
 export const TITLE_PADDING = 'titlePadding';
 export const TITLE_MARGIN = 'titleMargin';

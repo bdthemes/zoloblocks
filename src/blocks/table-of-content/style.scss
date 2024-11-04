@@ -1,12 +1,76 @@
-.wp-block-zolo-post-title {
-    &.zolo-block {
-        margin: 0;
-        font-size: clamp(1.5rem, 4vw, 2.25rem);
-        font-weight: 700;
-        a {
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
-            font-weight: 700;
-            display: inline-block;
-        }
-    }
+.wp-block-zolo-table-of-content {
+	border: 1px solid #EFEFEF;
+	margin-bottom: 30px;
+
+	&.collapsed .zolo-toc-content {
+		display: none;
+	}
+
+	.zolo-toc-toggle-btn {
+		transition: transform 0.3s ease;
+	}
+
+	&.collapsed .zolo-toc-toggle-btn svg {
+		transform: rotate(180deg);
+	}
+
+	.zolo-toc-heading {
+		background: #FFFFFF;
+		color: #000;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 14px 30px;
+		align-items: center;
+		border-top: none !important;
+		border-left: none !important;
+		border-right: none !important;
+	}
+
+	.zolo-toc-content {
+		background-color: #f9fafb;
+		padding: 25px 30px;
+		font-size: 17px;
+		border-top: 1px solid #EFEFEF;
+
+
+		ul {
+			padding: 0;
+			margin: 0 0 0 18px;
+
+			li {
+				margin: 0.25em 0;
+			}
+		}
+
+		ol {
+
+			counter-reset: listitem;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				position: relative;
+				padding-left: 1.3em;
+				margin: 0.25em 0;
+
+				&::before {
+					position: absolute;
+					left: 0;
+					counter-increment: listitem;
+					content: counters(listitem, ".") ".";
+					background: none !important;
+				}
+
+			}
+
+			ol li {
+				padding-left: 2.3em;
+			}
+		}
+
+	}
+
 }

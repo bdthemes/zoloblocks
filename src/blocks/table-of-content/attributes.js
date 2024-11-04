@@ -1,3 +1,5 @@
+import {__} from '@wordpress/i18n';
+
 /**
  * Internal dependencies
  */
@@ -57,9 +59,36 @@ const attributes = {
     },
   },
   // block attributes
-  tableOfContent: {
+  showHeading: {
+    type: 'boolean',
+    default: true
+  },
+  showCollapsible: {
+    type: 'boolean',
+    default: true
+  },
+  isCollapsed: {
+    type: 'boolean',
+    default: true
+  },
+  headingText: {
     type: 'string',
-    default: ''
+    default: 'Table of Contents'
+  },
+  headers: {
+    type: "array",
+    default: [],
+  },
+  headingTags: {
+    type: 'array',
+    default: [
+      {label: __('H1', 'zoloblocks'), value: 'h1'},
+      {label: __('H2', 'zoloblocks'), value: 'h2'},
+      {label: __('H3', 'zoloblocks'), value: 'h3'},
+      {label: __('H4', 'zoloblocks'), value: 'h4'},
+      {label: __('H5', 'zoloblocks'), value: 'h5'},
+      {label: __('H6', 'zoloblocks'), value: 'h6'},
+    ]
   },
   allowedHeading: {
     type: "object",
@@ -72,9 +101,9 @@ const attributes = {
       h6: true,
     },
   },
-  listStyle:{
-    type:'string',
-    default:'ol'
+  listStyle: {
+    type: 'string',
+    default: 'ol'
   },
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
