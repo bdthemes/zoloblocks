@@ -65,7 +65,7 @@ const attributes = {
   },
   showCollapsible: {
     type: 'boolean',
-    default: true
+    default: false
   },
   isCollapsed: {
     type: 'boolean',
