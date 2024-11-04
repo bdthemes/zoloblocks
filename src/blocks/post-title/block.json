@@ -3,11 +3,11 @@
     "title": "Post Title",
     "name": "zolo/post-title",
     "category": "zoloblocks",
-    "keywords": ["post", "post title","title"],
+    "keywords": ["post", "title", "heading", "dynamic", "content", "page", "single", "archive"],
     "description": "Dynamic post title for any landing page in WordPress",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
-    "usesContext": [ "postId", "postType" ],
+    "usesContext": ["postId", "postType"],
     "example": {
         "attributes": {
             "preview": true

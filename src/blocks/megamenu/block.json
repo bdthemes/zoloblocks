@@ -3,7 +3,7 @@
     "title": "Mega Menu",
     "name": "zolo/megamenu",
     "category": "zoloblocks",
-    "keywords": ["menu", "navmenu", "navigation", "navigation-menu", "megamenu", "mega-menu"],
+    "keywords": ["menu", "navmenu", "navigation", "megamenu", "dropdown", "submenu", "subnav"],
     "description": "Mega menu block for gutenberg.",
     "apiVersion": 2,
     "textdomain": "zoloblocks",

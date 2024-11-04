@@ -3,7 +3,7 @@
     "title": "Notice",
     "name": "zolo/notice",
     "category": "zoloblocks",
-    "keywords": ["alert", "notice"],
+    "keywords": ["alert", "notice", "message", "warning", "info"],
     "description": "Create custom-styled notices for key site messages",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

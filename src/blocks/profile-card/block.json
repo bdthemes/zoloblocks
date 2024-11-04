@@ -3,7 +3,7 @@
     "title": "Profile Card",
     "name": "zolo/profile-card",
     "category": "zoloblocks",
-    "keywords": ["Profile", "Card"],
+    "keywords": ["Profile", "Card", "Team", "Member", "Avatar"],
     "description": "Display team profiles with an interactive, engaging layout.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

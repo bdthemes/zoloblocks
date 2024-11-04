@@ -3,7 +3,7 @@
     "title": "Advanced Search",
     "name": "zolo/advanced-search",
     "category": "zoloblocks",
-    "keywords": ["search", "advanced search", "ajax search", "zolo", "zoloblocks"],
+    "keywords": ["search", "advanced", "ajax", "filter", "navigation"],
     "description": "Add a flexible search box for improved navigation.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

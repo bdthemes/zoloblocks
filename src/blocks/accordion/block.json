@@ -3,7 +3,7 @@
     "title": "Accordion",
     "name": "zolo/accordion",
     "category": "zoloblocks",
-    "keywords": ["Accordion"],
+    "keywords": ["Accordion", "Collapse", "Expand", "faq", "toggle"],
     "description": "Organize content with collapsible, easy-to-navigate sections.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

@@ -4,7 +4,7 @@
     "title": "Container",
     "name": "zolo/container",
     "category": "zoloblocks",
-    "keywords": ["Container"],
+    "keywords": ["Container", "Flexbox", "Layout", "Grid", "Responsive"],
     "description": "Design flexible layouts using responsive flexbox containers.",
     "textdomain": "zoloblocks",
     "example": {

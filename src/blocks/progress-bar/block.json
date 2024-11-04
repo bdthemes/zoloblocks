@@ -3,7 +3,7 @@
     "title": "Progress Bar",
     "name": "zolo/progress-bar",
     "category": "zoloblocks",
-    "keywords": ["progress", "progress bar"],
+    "keywords": ["progress", "bar", "milestone", "stats", "animated", "loading", "percentage", "completion"],
     "description": "Show progress with animated bars for milestones or stats.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

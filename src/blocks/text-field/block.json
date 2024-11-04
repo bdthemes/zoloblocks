@@ -3,7 +3,7 @@
     "title": "Text Field",
     "name": "zolo/text-field",
     "category": "zoloblocks",
-    "keywords": ["zolo", "text", "field"],
+    "keywords": ["zolo", "text", "field", "input", "form", "survey"],
     "description": "Customizable text fields for forms or surveys.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

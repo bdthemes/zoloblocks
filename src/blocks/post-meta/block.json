@@ -3,11 +3,27 @@
     "title": "Post Meta",
     "name": "zolo/post-meta",
     "category": "zoloblocks",
-    "keywords": ["post", "post meta"],
+    "keywords": [
+        "post",
+        "meta",
+        "information",
+        "details",
+        "author",
+        "date",
+        "time",
+        "category",
+        "tag",
+        "comment",
+        "edit",
+        "link",
+        "permalink",
+        "type",
+        "id"
+    ],
     "description": "Dynamic post meta for side editor single page in WordPress",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
-    "usesContext": [ "postId", "postType" ],
+    "usesContext": ["postId", "postType"],
     "example": {
         "attributes": {
             "preview": true

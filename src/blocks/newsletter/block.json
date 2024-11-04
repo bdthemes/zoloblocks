@@ -3,7 +3,7 @@
     "title": "Newsletter",
     "name": "zolo/newsletter",
     "category": "zoloblocks",
-    "keywords": ["newsletter", "mailchimp", "zoloblocks"],
+    "keywords": ["newsletter", "mailchimp", "subscribe", "signup", "form"],
     "description": "Build and manage newsletters to engage and grow subscribers.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

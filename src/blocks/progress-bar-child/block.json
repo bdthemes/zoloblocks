@@ -3,7 +3,7 @@
     "title": "Progress Bar Item",
     "name": "zolo/progress-bar-child",
     "category": "zoloblocks",
-    "keywords": ["progress bar", "bar", "progress"],
+    "keywords": ["progress", "bar", "milestone", "stats", "animated", "loading", "percentage", "completion"],
     "description": "Add individual progress elements to progress bar.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
