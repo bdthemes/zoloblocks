@@ -39,6 +39,8 @@ import {
     LIST_HOVER_ICON_SIZE,
     ICON_HOVER_LIST_MARGIN,
     ICON_LINKVERTICAL_ALIGN,
+    //title
+    H_TTITLE_WIDTH,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -86,6 +88,9 @@ const attributes = {
     ...generateResRangeAttributies(LIST_HOVER_ICON_SIZE),
     ...generateDimensionAttributes(ICON_HOVER_LIST_MARGIN),
     ...generateResAlignmentAttributies(ICON_LINKVERTICAL_ALIGN),
+
+    //title
+    ...generateResRangeAttributies(H_TTITLE_WIDTH),
 
     //item
     ...generateResAlignmentAttributies(ITEM_ALIGNMENT),
