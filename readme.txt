@@ -357,7 +357,7 @@ Not at all. We have optimized all of these blocks for better performance.
 = 2.0.0 - 05-11-2024 =
 
 **New Features:**
-- NavMenu Block: Introduced a fully customizable navigation menu block for easy site navigation.
+- Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
 - Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
 - Featured Image Block: Added a block to display featured image to the single page
 - Spline Viewer Block: Added a block to display interactive 3D Spline scenes.

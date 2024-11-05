@@ -486,21 +486,21 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
 }
 
 .zolo-editor {
-    .zolo-navmenu-variation-picker {
+    .zolo-navigation-variation-picker {
         position: relative;
         width: 100%;
         box-sizing: border-box;
 
-        .zolo-navmenu-variation-picker-back {
+        .zolo-navigation-variation-picker-back {
             position: absolute;
             right: 20px;
             top: 20px;
         }
     }
 
-    .zolo-navmenu-placeholder {
+    .zolo-navigation-placeholder {
         position: relative;
-        .zolo-navmenu-placeholder-skip-button {
+        .zolo-navigation-placeholder-skip-button {
             position: absolute;
             right: 20px;
             top: 20px;

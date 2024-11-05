@@ -1,0 +1,48 @@
+.zolo-navigation-submenu-wrapper {
+    .wp-block-zolo-navigation-submenu {
+        position: relative;
+        padding: 20px;
+        min-width: 200px;
+        z-index: 99;
+        background-color: #fff;
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+        .zolo-navigation-submenu-add-btn {
+            position: absolute;
+            left: 0;
+            bottom: -50px;
+            cursor: pointer;
+            padding: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            background: transparent;
+            color: var(--zoloblocks-brand-color) !important;
+            border: 2px solid var(--zoloblocks-brand-color) !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .zolo-navigation-item {
+        margin-bottom: 15px;
+        &:nth-last-child(1) {
+            margin-bottom: 0;
+        }
+        a {
+            color: #2f2f33;
+            width: 100%;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-weight: 400;
+            &:hover {
+                color: var(--zoloblocks-brand-color);
+            }
+        }
+    }
+
+    .zolo-navigation-submenu-items {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+}
