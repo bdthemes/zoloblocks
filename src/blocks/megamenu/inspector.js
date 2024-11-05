@@ -44,7 +44,7 @@ const Inspector = (props) => {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/navmenu-item"
+                block="zolo/navigation-item"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
