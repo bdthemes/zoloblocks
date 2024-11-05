@@ -459,9 +459,10 @@
             .demo-preview {
                 &::before {
                     opacity: 1;
+                    height: 100%;
                 }
                 img {
-                    transform: scale(1.05);
+                    transform: scale(1.03);
                 }
             }
             .demo-btn {
@@ -498,13 +499,15 @@
         &::before {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(45, 49, 67, 0.48);
+            height: 0;
+            background: linear-gradient(360deg, #0d121e70, transparent);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition:
+                opacity 0.3s,
+                height 0.3s;
             z-index: 1;
         }
         img {
@@ -609,7 +612,7 @@
         margin: 0;
         font-size: 16px;
         font-weight: 500;
-        color: #44444a;
+        color: #232329;
         transition: color 0.3s;
     }
 
