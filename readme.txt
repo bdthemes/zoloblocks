@@ -5,7 +5,7 @@ Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg 
 Requires at least: 6.1
 Tested up to: 6.6.2
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -354,29 +354,31 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-= 1.6.0 - 30-10-2024 =
+= 2.0.0 - 05-11-2024 =
 
 **New Features:**
-- Introduced a fully customizable navigation menu block.
-- Added a Post Meta block to display post metadata (e.g., author, date, categories).
-- Introduced a Featured Image block for displaying featured images on single pages.
-- Added a block for displaying interactive 3D Spline scenes.
-- Created a block for easy navigation between posts.
-- Introduced a customizable comments form block.
-- Added a preset for creating brand grids.
+- NavMenu Block: Introduced a fully customizable navigation menu block for easy site navigation.
+- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
+- Featured Image Block: Added a block to display featured image to the single page
+- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
+- Post Navigation Block: Added a block to enable easy navigation between posts.
+- Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
 
 **Improvements:**
-- Optimized the user interface for block controls to enhance user experience.
-- Enhanced video block controls for smoother interactions.
-- Refined the Slider Block for improved performance and usability.
-- Improved the organization and accessibility of templates in the library.
-- Upgraded the range control for more precise adjustments.
-- Enhanced filter controls for greater creative flexibility.
-- Moved background controls to a popover for a cleaner layout.
+- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
+- Video Controls: Improved the video block controls for smoother interactions and functionality.
+- Slider Block: Refined the Slider Block for improved performance and usability.
+- Template Library: Enhanced the organization and accessibility of templates within the library.
+- Range Control: Upgraded the range control for more precise and responsive adjustments.
+- CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
+- Background Controls: Background controls have been moved to a popover for a cleaner layout.
+
 
 **Fixes:**
-- Resolved an issue with image selection in the TextPath block.
-- Addressed compatibility issues with Spectra blocks.
+- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
+- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
+
 
 = 1.5.1 - 08-10-2024 =
 
