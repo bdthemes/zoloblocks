@@ -149,11 +149,11 @@ const attributes = {
         type: 'string',
     },
 
-    navItemHoverTextColor: {
+    navItemTextHoverColor: {
         type: 'string',
     },
 
-    navItemActiveTextColor: {
+    navItemTextActiveColor: {
         type: 'string',
     },
 
