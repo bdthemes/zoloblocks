@@ -377,7 +377,7 @@ const Settings = () => {
                                                         onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
                                                         __nextHasNoMarginBottom
                                                     />
-                                                    <Button variant="primary" onClick={createNewPage}>
+                                                    <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
                                                         {__('Create New Page', 'zoloblocks')}
                                                     </Button>
                                                 </>

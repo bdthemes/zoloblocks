@@ -279,9 +279,10 @@ span.block-separator {
         border-radius: 6px;
         padding: 20px 15px;
         background: #3f8efc;
+        font-weight: 600;
         transition: background 0.3s ease;
         &:hover {
-            background: #2271e0;
+            background: #1872f0;
         }
     }
 }
