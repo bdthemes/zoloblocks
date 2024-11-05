@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
@@ -17,7 +16,6 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ResGapControl,
-    generateResRangeStyle,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -55,7 +53,6 @@ function Inspector(props) {
         FlexDirectionZRPAlign,
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
-        testObject,
     } = attributes;
 
     const requiredProps = {
@@ -82,25 +79,6 @@ function Inspector(props) {
     else if (resMode === 'Mobile') justifyContentOptions = isRowDirectionMob;
     justifyContentOptions ? (justifyContentOptions = FLEX_JUSTIFIES_ROW) : (justifyContentOptions = FLEX_JUSTIFIES);
 
-    // const spline = applyFilters('zolo.extensions.controls.splineViewer', [], panelProps);
-
-    // console.log('testObject', testObject);
-
-    const {
-        desktopRangeStyle: testDeskWidth,
-        tabRangeStyle: testTabWidth,
-        mobRangeStyle: testMobWidth,
-    } = generateResRangeStyle({
-        controlName: 'TEST_WIDTH',
-        property: 'width',
-        attributes,
-        object: true,
-        objectName: 'testObject',
-    });
-
-    console.log('testDeskWidth', testDeskWidth);
-
-    // console.log('attributes: ', attributes);
 
     return (
         <InspectorControls key="controls">
@@ -110,35 +88,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('Test', 'zoloblocks')} panelProps={props} firstOpen={false}>
-                            <TextControl
-                                label={__('Test Object', 'zoloblocks')}
-                                value={testObject?.dataOne}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        testObject: { ...testObject, dataOne: value },
-                                    })
-                                }
-                            />
-                            <ResRangeControl
-                                label={__('Test Width', 'zoloblocks')}
-                                controlName="TEST_WIDTH"
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={2000}
-                                object={true}
-                                objectName="testObject"
-                            />
-                        </ZoloPanelBody>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={false}>
-                            <ResRangeControl
-                                label={__('Test Height', 'zoloblocks')}
-                                controlName="TEST_HEIGHT"
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={2000}
-                            />
-
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup

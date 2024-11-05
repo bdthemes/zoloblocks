@@ -65,21 +65,6 @@ const attributes = {
         type: 'string',
         default: 'alignwide',
     },
-
-    // test object
-    testObject: {
-        type: 'object',
-        default: {
-            dataOne: 'test',
-            ...generateResRangeAttributies('TEST_WIDTH', {}, true),
-        },
-    },
-    ...generateResRangeAttributies('TEST_HEIGHT'),
-    test: {
-        type: 'string',
-        default: '',
-    },
-
     // container gap
     ...generateGapAttributes(CONTAINER_GAP, {
         defaultRange: 20,
