@@ -10,6 +10,10 @@
 
     .zolo-demos-wrapper {
         padding: 0 !important;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+        columns: unset !important;
         .footer-left {
             width: 100%;
             box-sizing: border-box;
@@ -120,14 +124,14 @@
 @media (min-width: 768px) {
     .zolo-pages-preview-container {
         .zolo-demos-wrapper {
-            column-count: 2 !important;
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }
 @media (min-width: 1440px) {
     .zolo-pages-preview-container {
         .zolo-demos-wrapper {
-            column-count: 3 !important;
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 }

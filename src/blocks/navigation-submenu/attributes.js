@@ -85,11 +85,11 @@ const attributes = {
         type: 'string',
     },
 
-    subMenuHoverTextColor: {
+    subMenuTextHoverColor: {
         type: 'string',
     },
 
-    subMenuActiveTextColor: {
+    subMenuTextActiveColor: {
         type: 'string',
     },
 
