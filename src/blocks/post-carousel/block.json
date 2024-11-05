@@ -3,8 +3,8 @@
     "title": "Post Carousel",
     "name": "zolo/post-carousel",
     "category": "zoloblocks",
-    "keywords": ["post", "post carousel"],
-    "description": "Showcase posts in this dynamic carousel slider block",
+    "keywords": ["post", "carousel", "slider", "feature", "highlight", "news"],
+    "description": "Feature posts in an interactive, customizable carousel.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

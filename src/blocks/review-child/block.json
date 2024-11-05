@@ -4,8 +4,8 @@
     "name": "zolo/review-child",
     "category": "zoloblocks",
     "parent": ["zolo/review-grid"],
-    "keywords": ["Rating", "Review"],
-    "description": "single item block for review block",
+    "keywords": ["Rating", "Review", "Feedback", "Testimonial", "Stars"],
+    "description": "Display individual reviews within the Review block.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "supports": {

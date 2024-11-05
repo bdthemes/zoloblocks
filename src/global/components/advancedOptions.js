@@ -36,11 +36,13 @@ import {
     CONTENT_WIDTH,
 } from '../constants';
 
+import { popoverHasAttrVal } from '../../helpers/helper';
+
 const hasValCheck = (att, attributes, customCondition = false, customValue = null) => {
     const { [`zolo_${att}Range`]: deskAtt, [`zolo_TAB${att}Range`]: tabAtt, [`zolo_MOB${att}Range`]: mobAtt } = attributes;
 
     // Define a helper function to check the value
-    const hasAttrVal = (value) => {
+    const popoverHasAttrVal = (value) => {
         if (customCondition) {
             return value !== undefined && value !== null && value !== '' && value !== 0 && value != customValue;
         } else {
@@ -49,7 +51,7 @@ const hasValCheck = (att, attributes, customCondition = false, customValue = nul
     };
 
     // Check if any of the attribute values meet the condition
-    if (hasAttrVal(deskAtt) || hasAttrVal(tabAtt) || hasAttrVal(mobAtt)) {
+    if (popoverHasAttrVal(deskAtt) || popoverHasAttrVal(tabAtt) || popoverHasAttrVal(mobAtt)) {
         return true;
     } else {
         return false;
@@ -186,7 +188,35 @@ export const AdvancedOptions = (props) => {
                         setAttributes({ overflow: v });
                     }}
                 />
-                <PopoverControl label={__('Position', 'zoloblocks')} icon={TRANSLATE_ICON}>
+                <PopoverControl
+                    label={__('Position', 'zoloblocks')}
+                    icon={TRANSLATE_ICON}
+                    onReset={() =>
+                        setAttributes({
+                            position: {
+                                value: '',
+                                horizontalOrientation: {
+                                    direction: 'left',
+                                    offset: undefined,
+                                    unit: 'px',
+                                },
+                                verticalOrientation: {
+                                    direction: 'top',
+                                    offset: undefined,
+                                    unit: 'px',
+                                },
+                            },
+                        })
+                    }
+                    hasValue={
+                        popoverHasAttrVal(position.value, true, 'static') ||
+                        popoverHasAttrVal(position.verticalOrientation.direction, true, 'top') ||
+                        popoverHasAttrVal(position.horizontalOrientation.direction, true, 'left') ||
+                        popoverHasAttrVal(position.verticalOrientation.unit, true, 'px') ||
+                        popoverHasAttrVal(position.horizontalOrientation.unit, true, 'px')
+
+                    }
+                >
                     <div className="zolo-flex-row-control">
                         <SelectControl
                             label={__('Position', 'zoloblocks')}
@@ -319,7 +349,7 @@ export const AdvancedOptions = (props) => {
                             controlName={globalConfig.background.prefix || 'mainBg'}
                             requiredProps={requiredProps}
                             particles={particles}
-                            video={ block === 'zolo/container' || block === 'zolo/slide' ? true : false}
+                            video={block === 'zolo/container' || block === 'zolo/slide' ? true : false}
                         />
                     </div>
                 </ZoloPanelBody>

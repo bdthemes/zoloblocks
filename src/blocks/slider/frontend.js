@@ -4,9 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     zoloSliders.forEach((slider) => {
         const sliderSelector = slider.querySelector('.swiper');
         const sliderOptions = JSON.parse(slider.dataset?.swiperOptions || '{}');
-        const nextEl = slider.querySelector('.swiper-button-next');
-        const prevEl = slider.querySelector('.swiper-button-prev');
         const videos = slider.querySelectorAll('video.zolo-html5-video');
+
+        const {
+            speed = 800,
+            autoplay = false,
+            autoplayDelay = 3000,
+            pauseOnMouseEnter = false,
+            loop = false,
+            navigation = true,
+            effect = 'slide',
+            pagination = true,
+            paginationType = 'bullets',
+        } = sliderOptions;
 
         // Initialize all videos
         videos.forEach((video) => {
@@ -19,14 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const defaultOptions = {
-            navigation: { nextEl, prevEl },
-            loop: false,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            speed: 800,
-            effect: 'slide',
+            // navigation: { nextEl, prevEl },
+            loop: loop || false,
+            autoplay: autoplay
+                ? { delay: autoplayDelay || 3, disableOnInteraction: false, pauseOnMouseEnter: pauseOnMouseEnter || false }
+                : false,
+            speed: speed || 800,
+            effect: effect || 'slide',
+            navigation: navigation
+                ? {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                  }
+                : false,
+            pagination: pagination ? { el: '.swiper-pagination', type: paginationType || 'bullets', clickable: true } : false,
             on: {
                 init() {
                     const firstVideo = this.slides[0].querySelector('video.zolo-html5-video');
@@ -63,11 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
             },
         };
-
-        // Merge options with sliderOptions
-        const mergedOptions = { ...defaultOptions, ...sliderOptions };
-
         // Initialize Swiper
-        new Swiper(sliderSelector, mergedOptions);
+        new Swiper(sliderSelector, defaultOptions);
     });
 });

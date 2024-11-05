@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, abutalib, muhammadasik
 Donate link: http://zoloblocks.com/
 Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
 Requires at least: 6.1
-Tested up to: 6.6.2
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.5.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,9 +196,9 @@ So, are you ready to explore all the amazing Gutenberg blocks features by ZoloBl
 
 👑 **Backdrop Filters** - *Apply stunning glass-like visual effects with blur, brightness, contrast, etc. filters to create stylized background elements.*
 
-👑 **Background Parallax** *Coming soon 🧪* - 
+👑 **Background Parallax** *Coming soon 🧪* -
 
-👑 **CSS Filters** - 
+👑 **CSS Filters** -
 
 👑 [**Cursors Animation**](https://demo.zoloblocks.com/cursor/) - *Customize the user’s cursor with unique animations and interactive effects for a high dynamic browsing experience.*
 
@@ -208,7 +208,7 @@ So, are you ready to explore all the amazing Gutenberg blocks features by ZoloBl
 
 👑 [**Entrance Animation**](https://demo.zoloblocks.com/entrance-animation/) - *Add butter smooth entrance animations to elements for an upgraded, dynamic and engaging user experience.*
 
-👑 **Export Pattern** - 
+👑 **Export Pattern** -
 
 👑 [**Heading Animation**](https://demo.zoloblocks.com/text-animation/) - *Add animated text with selective effects to catch user attention and make headlines or messages more engaging.*
 
@@ -220,7 +220,7 @@ So, are you ready to explore all the amazing Gutenberg blocks features by ZoloBl
 
 👑 [**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot/) - *Add interactive hotspots to images for an improved, engaging experience with detailed pop-up information.*
 
-👑 **Import Pattern** - 
+👑 **Import Pattern** -
 
 👑 [**Scroll Parallax**](https://demo.zoloblocks.com/scroll-parallax-animation/) - *Add parallax animations to scrolling elements for creating a more dynamic and interactive user experience.*
 
@@ -232,7 +232,7 @@ So, are you ready to explore all the amazing Gutenberg blocks features by ZoloBl
 
 👑 [**Shape Divider**](https://demo.zoloblocks.com/shape-divider/) - *Insert stylish shape dividers between sections to upgrade your design with unique visual content breaks of this WP Gutenberg block plugin.*
 
-👑 **Sticky Position** - 
+👑 **Sticky Position** -
 
 👑 **Transform Effects** - *Add transformation effects like scale, rotate, or skew to boost visual appeal and interactivity of elements.*
 
@@ -354,6 +354,32 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+= 2.0.0 - 05-11-2024 =
+
+**New Features:**
+- NavMenu Block: Introduced a fully customizable navigation menu block for easy site navigation.
+- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
+- Featured Image Block: Added a block to display featured image to the single page
+- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
+- Post Navigation Block: Added a block to enable easy navigation between posts.
+- Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
+
+**Improvements:**
+- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
+- Video Controls: Improved the video block controls for smoother interactions and functionality.
+- Slider Block: Refined the Slider Block for improved performance and usability.
+- Template Library: Enhanced the organization and accessibility of templates within the library.
+- Range Control: Upgraded the range control for more precise and responsive adjustments.
+- CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
+- Background Controls: Background controls have been moved to a popover for a cleaner layout.
+- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
+
+**Fixes:**
+- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
+- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
+
+
 = 1.5.1 - 08-10-2024 =
 
 * Fixed: Slider navigation issue.
@@ -362,51 +388,51 @@ Not at all. We have optimized all of these blocks for better performance.
 
 = 1.5.0 - 08-10-2024 =
 
-* Added: Background video feature added to Container and Slider child block.
-* Improved: Advanced Button preset 3 improved
+* Added: Background video feature added to Container and Slider child blocks.
+* Improved: Advanced Button preset 3 updated.
 
 = 1.4.5 - 05-10-2024 =
 
 * Added: Post Title block introduced.
-* Added: Image feature (Circle, Triangle, Rectangle, Polygon) added to the Text Path block.
-* Added: Direction control added for circular paths in the Text Path block.
-* Added: Color control added for text in the Text Path block.
+* Added: Image feature (Circle, Triangle, Rectangle, Polygon) for the TextPath block.
+* Added: Direction control for circular paths in the TextPath block.
+* Added: Color control for text in the TextPath block.
 * Fixed: Typography Control reset issue resolved.
-* Fixed: Maintenance mode issue fixed.
+* Fixed: Maintenance mode issue resolved.
 * Fixed: Appender button issue fixed.
-* Fixed: Focus issue in Advanced Search & Newsletter blocks fixed.
-* Fixed: Photo height, width and margin issue in Review Carousel Block fixed.
-* Fixed: Photo padding control issue in Author block fixed.
-* Fixed: Icon Border Radius issue in Notice block (layout style 4) fixed.
-* Improved: Query refactoring and optimization for better performance.
-* Improved: Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud.
-* Improved: Improved container design.
+* Fixed: Focus issue in Advanced Search & Newsletter blocks.
+* Fixed: Photo height, width, and margin issues in Review Carousel Block.
+* Fixed: Photo padding control issue in the Author block.
+* Fixed: Icon Border Radius issue in Notice block (layout style 4).
+* Improved: Refactored and optimized query for better performance.
+* Improved: Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud blocks.
+* Improved: Container block design updated.
 
 = 1.4.4 - 25-09-2024 =
 
-* Fixed: QR code block layout broken issue.
+* Fixed: QR code block layout issue.
 * Fixed: Post Grid block hover animation issue.
-* Fixed: Post Timeline block the excerpt not showing to the frontend issue.
-* Improved: Optimized the Post Grid and Post Timeline blocks for improved efficiency and user experience
+* Fixed: Post Timeline block excerpt not displaying on the frontend.
+* Improved: Optimized Post Grid and Post Timeline blocks for efficiency and better user experience.
 
 = 1.4.3 - 24-09-2024 =
 
-* Added: List Block horizontal layout features.
-* Added: List Block new presets (2, 3, 4) added.
-* Fixed: Authors Block Avatar issue.
+* Added: Horizontal layout features to List Block.
+* Added: New List Block presets (2, 3, 4).
+* Fixed: Authors Block avatar issue.
 * Fixed: Review Block image issue.
 * Fixed: Post & Review Carousel vertical offset issue.
 * Improved: Optimized block controls UI.
 
 = 1.4.2 - 18-09-2024 =
 
-* Fixed: List block Deprecated issue
-* Improved: control layout for Chart, Authors, Notice, and Review Grid blocks.
+* Fixed: List block deprecated issue.
+* Improved: Control layout for Chart, Authors, Notice, and Review Grid blocks.
 
 = 1.4.1 - 17-09-2024 =
 
 * Fixed: List block linkable issue.
-* Fixed: Particles zIndex issue.
+* Fixed: Particles z-index issue.
 * Fixed: Newsletter block API issue.
 * Fixed: Lightbox background color issue.
 * Fixed: Post Category block color issue.
@@ -422,20 +448,20 @@ Not at all. We have optimized all of these blocks for better performance.
 * Added: Social Count Block.
 * Added: Recent Comments Block.
 * Added: Advanced Button hover background control.
-* Fixed: Review Grid Column issue.
+* Fixed: Review Grid column issue.
 * Fixed: Star Rating responsive issue.
 * Fixed: Google Maps block editor issue.
-* Fixed: Astra theme style support issue with link underline.
+* Fixed: Astra theme link underline style support issue.
 * Fixed: Multiple chart rendering issue on a single page.
-* Improved: Updated Dashboard.
-* Improved: Improved block scripts.
-* Improved: Optimized assets loading.
+* Improved: Dashboard UI updated.
+* Improved: Block scripts optimized.
+* Improved: Optimized asset loading.
 * Improved: Enhanced Post Query system.
-* Improved: Optimized block controls UI.
-* Improved: Improved Pricing Block style.
-* Improved: Improved QR code block scripts.
-* Improved: Enhanced Button Block Preset style.
+* Improved: Block controls UI optimized.
+* Improved: Pricing Block design refined.
+* Improved: QR code block scripts updated.
+* Improved: Button Block preset styles enhanced.
 * Improved: Removed line link from preset particles.
-* Improved: Added particles preview options to Editor.
+* Improved: Added particles preview options to the editor.
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)

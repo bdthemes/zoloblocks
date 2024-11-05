@@ -4,7 +4,6 @@
 const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { RangeControl, ToggleControl, SelectControl, CardDivider } = wp.components;
-const { Fragment } = wp.element;
 /**
  * Internal dependencies
  */
@@ -16,9 +15,12 @@ const {
     ResDimensionsControl,
     TabPanelControl,
     NormalBGControl,
+    SimpleRangeControl,
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
+    IconicBtnGroup,
+    TypographyDropdown,
 } = window.zoloModule;
 
 // objAttributes
@@ -32,8 +34,8 @@ import {
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
-    NAV_WIDTH,
-    NAV_HEIGHT,
+    NAV_PADDING,
+    NAV_MARGIN,
     NAV_BORDER,
     NAV_BORDER_RADIUS,
     NAV_BG,
@@ -51,27 +53,78 @@ import {
     APAG_BORDER,
     APAG_BORDER_RADIUS,
     APAG_BG,
+    PAGINATION_TYPES,
+    PAGI_MARGIN,
+    NAV_POSITIONS,
+    PAGI_POSITIONS,
+    PROGRESS_DIRECTIONS,
 } from './constants';
+
+import { PAGI_FRACTIONS_TYPO } from './constants/typoPrefixConstants';
 
 const Inspector = (props) => {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
-        infiniteLoop,
-        showNavigation,
         navColor,
         navHoverColor,
         navHoverBorderColor,
-        showPagination,
-        speed,
-        sliderEffect,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
+        pagiFractionColor,
+        pagiFractionCurrentColor,
+        sliderOptions,
     } = attributes;
+
+    const {
+        speed = 800,
+        autoplay = false,
+        autoplayDelay = 3000,
+        pauseOnMouseEnter = false,
+        loop = false,
+        navigation = true,
+        navPosition = 'center-center',
+        pagination = true,
+        paginationType = 'bullets',
+        pagiPosition = 'bottom-center',
+        progressDirection = 'top',
+        effect = 'slide', // slide, fade, cube, coverflow, flip, creative, cards
+
+        cardsEffect = {
+            slideShadows: true,
+            rotate: true,
+            perSlideRotate: 2,
+            perSlideOffset: 8,
+        },
+        coverflowEffect = {
+            slideShadows: true,
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            scale: 1,
+            modifier: 1,
+            // shadowOffset: 20,
+            // shadowScale: 0.94,
+        },
+        cubeEffect = {
+            slideShadows: true,
+            shadow: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+        },
+        creativePreset = 'preset1',
+        fadeEffect = {
+            crossfade: false,
+        },
+        flipEffect = {
+            slideShadows: true,
+            limitRotation: true,
+            // shadowOffset: 20,
+            // shadowScale: 0.94,
+        },
+    } = sliderOptions || {};
+
 
     const requiredProps = {
         resMode,
@@ -87,7 +140,7 @@ const Inspector = (props) => {
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Height', 'zoloblocks')}
@@ -104,20 +157,27 @@ const Inspector = (props) => {
                                 value={speed}
                                 onChange={(v) =>
                                     setAttributes({
-                                        speed: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            speed: v,
+                                        },
                                     })
                                 }
-                                min={1}
-                                max={100}
+                                min={100}
+                                step={100}
+                                max={3000}
                                 help={__('Default Speed:', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
                             <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
-                                checked={infiniteLoop}
+                                checked={loop}
                                 onChange={() =>
                                     setAttributes({
-                                        infiniteLoop: !infiniteLoop,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            loop: !loop,
+                                        },
                                     })
                                 }
                             />
@@ -126,19 +186,25 @@ const Inspector = (props) => {
                                 checked={autoplay}
                                 onChange={() =>
                                     setAttributes({
-                                        autoplay: !autoplay,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            autoplay: !autoplay,
+                                        },
                                     })
                                 }
                             />
                             {autoplay && (
-                                <Fragment>
+                                <>
                                     <RangeControl
                                         className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>
                                             setAttributes({
-                                                autoplayDelay: v,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    autoplayDelay: v,
+                                                },
                                             })
                                         }
                                         min={1}
@@ -150,27 +216,36 @@ const Inspector = (props) => {
                                         checked={pauseOnMouseEnter}
                                         onChange={() =>
                                             setAttributes({
-                                                pauseOnMouseEnter: !pauseOnMouseEnter,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    pauseOnMouseEnter: !pauseOnMouseEnter,
+                                                },
                                             })
                                         }
                                     />
-                                </Fragment>
+                                </>
                             )}
                             <ToggleControl
                                 label={__('Show Navigation', 'zoloblocks')}
-                                checked={showNavigation === undefined ? true : showNavigation}
-                                onChange={(v) =>
+                                checked={navigation || false}
+                                onChange={() =>
                                     setAttributes({
-                                        showNavigation: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            navigation: !navigation,
+                                        },
                                     })
                                 }
                             />
                             <ToggleControl
                                 label={__('Show Pagination', 'zoloblocks')}
-                                checked={showPagination}
+                                checked={pagination || false}
                                 onChange={() =>
                                     setAttributes({
-                                        showPagination: !showPagination,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            pagination: !pagination,
+                                        },
                                     })
                                 }
                             />
@@ -179,21 +254,398 @@ const Inspector = (props) => {
                         <ZoloPanelBody title={__('Effects', 'zoloblocks')} panelProps={props}>
                             <SelectControl
                                 label={__('Select Effect', 'zoloblocks')}
-                                value={sliderEffect}
+                                value={effect}
                                 options={SLIDER_EFFECTS}
                                 onChange={(v) => {
                                     setAttributes({
-                                        sliderEffect: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            effect: v,
+                                        },
                                     });
                                 }}
                             />
+
+                            {/* { label: __('Cube', 'zoloblocks'), value: 'cube' },
+                                { label: __('Coverflow', 'zoloblocks'), value: 'coverflow' },
+                                { label: __('Flip', 'zoloblocks'), value: 'flip' },  */}
+
+                            {effect === 'cube' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Shadow', 'zoloblocks')}
+                                        checked={cubeEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <ToggleControl
+                                        label={__('Cube Shadow', 'zoloblocks')}
+                                        checked={cubeEffect?.shadow || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadow: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Offset (px)', 'zoloblocks')}
+                                        value={cubeEffect?.shadowOffset || 20}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowOffset: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowOffset: 20,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Scale', 'zoloblocks')}
+                                        value={cubeEffect?.shadowScale || 0.94}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowScale: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    cubeEffect: {
+                                                        ...cubeEffect,
+                                                        shadowScale: 0.94,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        noUnits={true}
+                                    />
+                                </>
+                            )}
+                            {effect === 'fade' && (
+                                <>
+                                    <ToggleControl
+                                        label="Crossfade"
+                                        checked={fadeEffect?.crossfade || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    fadeEffect: {
+                                                        ...fadeEffect,
+                                                        crossfade: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
+
+                            {effect === 'flip' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Slide Shadows', 'zoloblocks')}
+                                        checked={flipEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                options: {
+                                                    ...options,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Offset (px)', 'zoloblocks')}
+                                        value={flipEffect?.shadowOffset || 20}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowOffset: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowOffset: 20,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Shadow Scale', 'zoloblocks')}
+                                        value={flipEffect?.shadowScale || 0.94}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowScale: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    flipEffect: {
+                                                        ...flipEffect,
+                                                        shadowScale: 0.94,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        noUnits={true}
+                                    />
+                                </>
+                            )}
+                            {effect === 'coverflow' && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Slide Shadows', 'zoloblocks')}
+                                        checked={coverflowEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Rotate', 'zoloblocks')}
+                                        value={coverflowEffect?.rotate || 50}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        rotate: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        rotate: 50,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={-360}
+                                        max={360}
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Stretch', 'zoloblocks')}
+                                        value={coverflowEffect?.stretch || 0}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        stretch: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={-360}
+                                        max={360}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        stretch: 0,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+
+                                    <SimpleRangeControl
+                                        label={__('Depth', 'zoloblocks')}
+                                        value={coverflowEffect?.depth || 100}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        depth: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1000}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        depth: 100,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+
+                                    <SimpleRangeControl
+                                        label={__('Shadow Scale', 'zoloblocks')}
+                                        value={coverflowEffect?.shadowScale || 1}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        shadowScale: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        shadowScale: 1,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                    <SimpleRangeControl
+                                        label={__('Modifier', 'zoloblocks')}
+                                        value={coverflowEffect?.modifier || 1}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        modifier: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.01}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        modifier: 1,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
 
-                        {(showNavigation || showNavigation === undefined) && (
+                        {navigation && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
+                                    <SelectControl
+                                        label={__('Positions', 'zoloblocks')}
+                                        value={navPosition || 'bullets'}
+                                        options={NAV_POSITIONS}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    navPosition: value,
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <CardDivider />
                                     <ToggleControl
-                                        label={__('Custom Navigation Icons', 'zoloblocks')}
+                                        label={__('Custom Icons', 'zoloblocks')}
                                         checked={customNavIcon}
                                         onChange={() =>
                                             setAttributes({
@@ -226,10 +678,61 @@ const Inspector = (props) => {
                                 </ZoloPanelBody>
                             </>
                         )}
-                    </Fragment>
+                        {pagination && (
+                            <>
+                                <ZoloPanelBody title={__('Pagination', 'zoloblocks')} panelProps={props}>
+                                    <SelectControl
+                                        label={__('Type', 'zoloblocks')}
+                                        value={paginationType || 'bullets'}
+                                        options={PAGINATION_TYPES}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    paginationType: value,
+                                                },
+                                            })
+                                        }
+                                    />
+                                    {paginationType !== 'progressbar' && (
+                                        <SelectControl
+                                            label={__('Positions', 'zoloblocks')}
+                                            value={pagiPosition || 'center-center'}
+                                            options={PAGI_POSITIONS}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    sliderOptions: {
+                                                        ...sliderOptions,
+                                                        pagiPosition: value,
+                                                    },
+                                                })
+                                            }
+                                        />
+                                    )}
+                                    {paginationType === 'progressbar' && (
+                                        <div className="zolo-flex-row-control-tab">
+                                            <IconicBtnGroup
+                                                label={__('Direction', 'zoloblocks')}
+                                                value={progressDirection}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        sliderOptions: {
+                                                            ...sliderOptions,
+                                                            progressDirection: value,
+                                                        },
+                                                    })
+                                                }
+                                                options={PROGRESS_DIRECTIONS}
+                                            />
+                                        </div>
+                                    )}
+                                </ZoloPanelBody>
+                            </>
+                        )}
+                    </>
                 }
                 styleTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Max Width', 'zoloblocks')}
@@ -245,11 +748,11 @@ const Inspector = (props) => {
                                 forBorderRadius={false}
                             />
                         </ZoloPanelBody>
-                        {showNavigation && (
+                        {navigation && (
                             <ZoloPanelBody title={__('Navigation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
-                                        <Fragment>
+                                        <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={navColor}
@@ -273,40 +776,31 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
-                                            <ResRangeControl
-                                                label={__('Width', 'zoloblocks')}
-                                                controlName={NAV_WIDTH}
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={NAV_PADDING}
                                                 requiredProps={requiredProps}
-                                                min={1}
-                                                max={100}
+                                                forBorderRadius={false}
                                             />
-                                            <ResRangeControl
-                                                label={__('Height', 'zoloblocks')}
-                                                controlName={NAV_HEIGHT}
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={NAV_MARGIN}
                                                 requiredProps={requiredProps}
-                                                min={1}
-                                                max={100}
-                                                units={[
-                                                    { label: 'px', value: 'px' },
-                                                    { label: '%', value: '%' },
-                                                    { label: 'em', value: 'em' },
-                                                    { label: 'vh', value: 'vh' },
-                                                ]}
+                                                forBorderRadius={false}
                                             />
                                             <CardDivider />
-
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={NAV_BORDER}
                                                 requiredProps={requiredProps}
                                                 hoverControl={
-                                                    <Fragment>
+                                                    <>
                                                         <ColorControl
                                                             label={__('Border Color', 'zoloblocks')}
                                                             color={navHoverBorderColor}
                                                             onChange={(color) => setAttributes({ navHoverBorderColor: color })}
                                                         />
-                                                    </Fragment>
+                                                    </>
                                                 }
                                             />
                                             <ResDimensionsControl
@@ -315,10 +809,10 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
-                                        </Fragment>
+                                        </>
                                     }
                                     hoverComponents={
-                                        <Fragment>
+                                        <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={navHoverColor}
@@ -330,13 +824,13 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
-                                        </Fragment>
+                                        </>
                                     }
                                 />
                             </ZoloPanelBody>
                         )}
-                        {showPagination && (
-                            <Fragment>
+                        {pagination && (
+                            <>
                                 <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                     <TabPanelControl
                                         options={[
@@ -350,98 +844,190 @@ const Inspector = (props) => {
                                             },
                                         ]}
                                         normalComponents={
-                                            <Fragment>
-                                                <NormalBGControl
-                                                    label={__('Background', 'zoloblocks')}
-                                                    controlName={PAG_BG}
-                                                    requiredProps={requiredProps}
-                                                    noMainBGImg={true}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Width', 'zoloblocks')}
-                                                    controlName={PAG_WIDTH}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Height', 'zoloblocks')}
-                                                    controlName={PAG_HEIGHT}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <CardDivider />
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={PAG_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={PAG_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={true}
-                                                />
+                                            <>
+                                                {paginationType === 'fraction' && (
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={pagiFractionColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    pagiFractionColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                        <TypographyDropdown
+                                                            label={__('Typography', 'zoloblocks')}
+                                                            typoPrefixConstant={PAGI_FRACTIONS_TYPO}
+                                                            requiredProps={requiredProps}
+                                                        />
+                                                        <CardDivider />
+                                                    </>
+                                                )}
 
-                                                <CardDivider />
-                                                <ResRangeControl
-                                                    label={__('Space Between', 'zoloblocks')}
-                                                    controlName={PAG_SPACING}
-                                                    requiredProps={requiredProps}
-                                                    min={0}
-                                                    max={100}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Vertical Offset', 'zoloblocks')}
-                                                    controlName={PAG_VERTICAL_OFFSET}
-                                                    requiredProps={requiredProps}
-                                                    min={-100}
-                                                    max={100}
-                                                />
-                                            </Fragment>
+                                                {paginationType === 'bullets' && (
+                                                    <>
+                                                        <ResRangeControl
+                                                            label={__('Width', 'zoloblocks')}
+                                                            controlName={PAG_WIDTH}
+                                                            requiredProps={requiredProps}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+                                                        <ResRangeControl
+                                                            label={__('Height', 'zoloblocks')}
+                                                            controlName={PAG_HEIGHT}
+                                                            requiredProps={requiredProps}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+                                                        <CardDivider />
+                                                        <NormalBGControl
+                                                            label={__('Background', 'zoloblocks')}
+                                                            controlName={PAG_BG}
+                                                            requiredProps={requiredProps}
+                                                            noMainBGImg={true}
+                                                        />
+                                                    </>
+                                                )}
+                                                {paginationType !== 'progressbar' && (
+                                                    <ResDimensionsControl
+                                                        label={__('Margin', 'zoloblocks')}
+                                                        controlName={PAGI_MARGIN}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={false}
+                                                    />
+                                                )}
+
+                                                {paginationType === 'bullets' && (
+                                                    <>
+                                                        <CardDivider />
+                                                        <BorderControl
+                                                            label={__('Border', 'zoloblocks')}
+                                                            controlName={PAG_BORDER}
+                                                            requiredProps={requiredProps}
+                                                        />
+                                                        <ResDimensionsControl
+                                                            label={__('Border Radius', 'zoloblocks')}
+                                                            controlName={PAG_BORDER_RADIUS}
+                                                            requiredProps={requiredProps}
+                                                            forBorderRadius={true}
+                                                        />
+                                                    </>
+                                                )}
+                                                {paginationType !== 'progressbar' && (
+                                                    <>
+                                                        <CardDivider />
+                                                        <ResRangeControl
+                                                            label={__('Space Between', 'zoloblocks')}
+                                                            controlName={PAG_SPACING}
+                                                            requiredProps={requiredProps}
+                                                            min={0}
+                                                            max={100}
+                                                        />
+                                                    </>
+                                                )}
+
+                                                {paginationType === 'progressbar' && (
+                                                    <>
+                                                        <ResRangeControl
+                                                            label={__('Height', 'zoloblocks')}
+                                                            controlName={PAG_HEIGHT}
+                                                            requiredProps={requiredProps}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+                                                        <NormalBGControl
+                                                            label={__('Background', 'zoloblocks')}
+                                                            controlName={PAG_BG}
+                                                            requiredProps={requiredProps}
+                                                            noMainBGImg={true}
+                                                        />
+                                                        <CardDivider />
+                                                        <BorderControl
+                                                            label={__('Border', 'zoloblocks')}
+                                                            controlName={PAG_BORDER}
+                                                            requiredProps={requiredProps}
+                                                        />
+                                                        <ResDimensionsControl
+                                                            label={__('Border Radius', 'zoloblocks')}
+                                                            controlName={PAG_BORDER_RADIUS}
+                                                            requiredProps={requiredProps}
+                                                            forBorderRadius={true}
+                                                        />
+                                                    </>
+                                                )}
+                                            </>
                                         }
                                         hoverComponents={
-                                            <Fragment>
-                                                <NormalBGControl
-                                                    label={__('Background', 'zoloblocks')}
-                                                    controlName={APAG_BG}
-                                                    requiredProps={requiredProps}
-                                                    noMainBGImg={true}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Width', 'zoloblocks')}
-                                                    controlName={APAG_WIDTH}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <ResRangeControl
-                                                    label={__('Height', 'zoloblocks')}
-                                                    controlName={APAG_HEIGHT}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={100}
-                                                />
-                                                <CardDivider />
-                                                <BorderControl
-                                                    label={__('Border', 'zoloblocks')}
-                                                    controlName={APAG_BORDER}
-                                                    requiredProps={requiredProps}
-                                                />
-                                                <ResDimensionsControl
-                                                    label={__('Border Radius', 'zoloblocks')}
-                                                    controlName={APAG_BORDER_RADIUS}
-                                                    requiredProps={requiredProps}
-                                                    forBorderRadius={true}
-                                                />
-                                            </Fragment>
+                                            <>
+                                                {paginationType === 'fraction' && (
+                                                    <>
+                                                        <ColorControl
+                                                            label={__('Color', 'zoloblocks')}
+                                                            color={pagiFractionCurrentColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    pagiFractionCurrentColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
+                                                {paginationType === 'bullets' && (
+                                                    <>
+                                                        <ResRangeControl
+                                                            label={__('Width', 'zoloblocks')}
+                                                            controlName={APAG_WIDTH}
+                                                            requiredProps={requiredProps}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+                                                        <ResRangeControl
+                                                            label={__('Height', 'zoloblocks')}
+                                                            controlName={APAG_HEIGHT}
+                                                            requiredProps={requiredProps}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+
+                                                        <CardDivider />
+                                                        <NormalBGControl
+                                                            label={__('Background', 'zoloblocks')}
+                                                            controlName={APAG_BG}
+                                                            requiredProps={requiredProps}
+                                                            noMainBGImg={true}
+                                                        />
+                                                        <CardDivider />
+                                                        <BorderControl
+                                                            label={__('Border', 'zoloblocks')}
+                                                            controlName={APAG_BORDER}
+                                                            requiredProps={requiredProps}
+                                                        />
+                                                        <ResDimensionsControl
+                                                            label={__('Border Radius', 'zoloblocks')}
+                                                            controlName={APAG_BORDER_RADIUS}
+                                                            requiredProps={requiredProps}
+                                                            forBorderRadius={true}
+                                                        />
+                                                    </>
+                                                )}
+
+                                                {paginationType === 'progressbar' && (
+                                                    <NormalBGControl
+                                                        label={__('Background', 'zoloblocks')}
+                                                        controlName={APAG_BG}
+                                                        requiredProps={requiredProps}
+                                                        noMainBGImg={true}
+                                                    />
+                                                )}
+                                            </>
                                         }
                                     />
                                 </ZoloPanelBody>
-                            </Fragment>
+                            </>
                         )}
-                    </Fragment>
+                    </>
                 }
                 advancedTab={
                     <>

@@ -3,8 +3,8 @@
     "title": "Review Carousel",
     "name": "zolo/review-carousel",
     "category": "zoloblocks",
-    "keywords": ["review", "review carousel"],
-    "description": "Show your customer reviews in animated carousels",
+    "keywords": ["review", "carousel", "feedback", "testimonial", "slider", "stars"],
+    "description": "Display reviews in an interactive carousel format.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

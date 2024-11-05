@@ -3,8 +3,8 @@
     "title": "Social Share",
     "name": "zolo/social-share",
     "category": "zoloblocks",
-    "keywords": ["icon", "social share", "social"],
-    "description": "Adds sharable social media links for the audience",
+    "keywords": ["icon", "share", "social", "connect", "twitter", "facebook", "instagram", "linkedin"],
+    "description": "Add social links to encourage content sharing.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

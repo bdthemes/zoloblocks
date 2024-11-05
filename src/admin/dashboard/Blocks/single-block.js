@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 const { BlockIcons } = window?.zoloIcons;
 
+// console.log(zoloIcons);
 const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video = '', isPro = false }) => {
     const [proPanel, setProPanel] = useState(false);
 

@@ -3,8 +3,8 @@
     "title": "Progress Pie",
     "name": "zolo/progress-pie",
     "category": "zoloblocks",
-    "keywords": ["progress", "progess pie"],
-    "description": "Display animated progress pie for quick stats",
+    "keywords": ["progress", "pie", "milestone", "stats", "animated", "loading", "percentage", "completion"],
+    "description": "Show progress with animated pies for data visualization.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

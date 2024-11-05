@@ -3,8 +3,8 @@
     "title": "Counter",
     "name": "zolo/counter",
     "category": "zoloblocks",
-    "keywords": ["counter", "advanced counter box"],
-    "description": "Add engaging counter numbers to display various stats",
+    "keywords": ["counter", "advanced", "metric", "achievement", "number", "box", "list", "count"],
+    "description": " Display interactive counters for key metrics or achievements.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

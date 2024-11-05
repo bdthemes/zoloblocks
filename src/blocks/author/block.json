@@ -3,8 +3,8 @@
     "title": "Authors",
     "name": "zolo/author",
     "category": "zoloblocks",
-    "keywords": ["author", "post author"],
-    "description": "Customizable dynamic author for your website author",
+    "keywords": ["author", "post", "profile", "bio", "avatar"],
+    "description": "Present author profiles with customizable layouts and details.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

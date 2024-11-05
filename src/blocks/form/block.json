@@ -3,8 +3,8 @@
     "title": "Form",
     "name": "zolo/form",
     "category": "zoloblocks",
-    "keywords": ["form", "zolo"],
-    "description": "Very flexible and dynamic form builder for Gutenberg",
+    "keywords": ["form", "input", "field", "data", "collection", "survey"],
+    "description": "Create dynamic forms with customizable fields for data collection.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

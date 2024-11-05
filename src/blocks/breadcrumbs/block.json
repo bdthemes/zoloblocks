@@ -3,8 +3,8 @@
     "title": "Breadcrumbs",
     "name": "zolo/breadcrumbs",
     "category": "zoloblocks",
-    "keywords": ["breadcrumbs", "breadcrumb"],
-    "description": "Breadcrumbs block description ",
+    "keywords": ["breadcrumbs", "breadcrumb", "navigation", "path", "trail"],
+    "description": "Add clean breadcrumbs for better UX and SEO support.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

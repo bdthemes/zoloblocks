@@ -1,7 +1,32 @@
+### 2.0.0 [November 05, 2024]
+
+#### New Features
+- NavMenu Block: Introduced a fully customizable navigation menu block for easy site navigation.
+- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
+- Featured Image Block: Added a block to display featured image to the single page
+- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
+- Post Navigation Block: Added a block to enable easy navigation between posts.
+- Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
+
+#### Enhancements
+- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
+- Video Controls: Improved the video block controls for smoother interactions and functionality.
+- Slider Block: Refined the Slider Block for improved performance and usability.
+- Template Library: Enhanced the organization and accessibility of templates within the library.
+- Range Control: Upgraded the range control for more precise and responsive adjustments.
+- Background Controls: Background controls have been moved to a popover for a cleaner layout.
+- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
+- Create New Page: Added a button to the site visibility settings to quickly create a page for maintenance mode.
+
+#### Bug Fixes
+- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
+- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
+
 ### 1.5.1 [October 08, 2024]
 
 ### Fixed
-- Slider navigation issue fixed.
+- Slider navigation issue fixed.u4
 - TextPath image issue fixed.
 
 ### Improved

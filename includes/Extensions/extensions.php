@@ -44,7 +44,7 @@ return apply_filters('zolo_extensions', [
         'name'   => 'particles',
         'title'  => __('Particles Animation', 'zoloblocks'),
         'status' => false,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/particles/',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'tilt'          => [
@@ -52,7 +52,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Mouse Tilt', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/tilt',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'smooth-scroller'          => [
@@ -60,7 +60,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Smooth Scroller', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/smooth-scroller',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'css-filters'          => [
@@ -68,7 +68,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('CSS Filters', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/css-filters',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'backdrop-filters'          => [
@@ -76,37 +76,38 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Backdrop Filters', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/backdrop-filters',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+
     'background-parallax'          => [
         'name'   => 'background-parallax',
         'title'  => __('Background Parallax', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
         'released' => false,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/background-parallax',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'export-pattern'          => [
         'name'   => 'export-pattern',
         'title'  => __('Export Pattern', 'zoloblocks'),
         'status' => false,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/export-pattern',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'import-pattern'          => [
         'name'   => 'import-pattern',
         'title'  => __('Import Pattern', 'zoloblocks'),
         'status' => false,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/import-pattern',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'shape-divider'          => [
         'name'   => 'shape-divider',
         'title'  => __('Shape Divider', 'zoloblocks'),
         'status' => false,
-        'demo'   => 'https://demo.zoloblocks.com/acordion',
+        'demo'   => 'https://demo.zoloblocks.com/shape-divider',
         'video'  => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'dynamic-content'          => [
@@ -115,7 +116,7 @@ return apply_filters('zolo_extensions', [
         'status'   => false,
         'is_pro'   => true,
         'released' => false,
-        'demo'     => 'https://demo.zoloblocks.com/acordion',
+        'demo'     => 'https://demo.zoloblocks.com/dynamic-content',
         'video'    => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ]
 ]);

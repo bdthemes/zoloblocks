@@ -3,8 +3,8 @@
     "title": "Fancy list",
     "name": "zolo/fancy-list",
     "category": "zoloblocks",
-    "keywords": ["fancy", "fancy list"],
-    "description": "Makes list type content with creative layouts and transitions",
+    "keywords": ["fancy", "list", "feature", "service", "icon", "image"],
+    "description": "Design visually engaging lists with creative layouts.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

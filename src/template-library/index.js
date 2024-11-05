@@ -10,11 +10,12 @@ import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/
  * Template Library Style
  */
 import './library.scss';
+import './page-templates.scss';
 
 /**
  * Internal dependencies
  */
-import Templates from './components/templates';
+import PageTemplateLoader from './page-templates';
 import PreLoader from './preloader';
 import TemplatesLoader from './template-loader';
 
@@ -56,6 +57,81 @@ function ZoloBlocksTemplateLibraryButton() {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
+
+    /**
+     * =====
+     * Page Templates: Templates (Pro, Free)
+     * =====
+     */
+    const [allPageTemplates, setAllPageTemplates] = useState([]);
+    const [pageTemplates, setPageTemplates] = useState([]);
+    const [pageTemplatesType, setPageTemplatesType] = useState('');
+    const [pageTemplateCategories, setPageTemplateCategories] = useState([]);
+    const [activePageTemplateCat, setActivePageTemplateCat] = useState('all');
+
+    useEffect(() => {
+        apiFetch({
+            path: '/zolo/v1/page-templates',
+            method: 'GET',
+        }).then((response) => {
+            if (!response) {
+                return;
+            }
+            const { data } = response;
+
+            if (!data) {
+                return;
+            }
+
+            // convert object to array
+            const allAvailablePagesTemplates = Object.entries(data).map(([key, value]) => {
+                return {
+                    title: key,
+                    pages: value,
+                };
+            });
+
+            setAllPageTemplates(allAvailablePagesTemplates);
+
+            // set page template categories
+            const pageTemplateCategories = allAvailablePagesTemplates.map((template) => template.title);
+            const sortedPageTemplateCategories = pageTemplateCategories.sort((a, b) => a.localeCompare(b));
+            const pageTemplateCategoriesArray = sortedPageTemplateCategories.map((category) => ({ label: category, value: category }));
+            pageTemplateCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+            setPageTemplateCategories(pageTemplateCategoriesArray);
+
+            // set page templates
+            setPageTemplates(allAvailablePagesTemplates);
+        });
+    }, []);
+
+    // filter page templates based on category
+    useEffect(() => {
+        const filteredPageTemplates = allPageTemplates?.filter((template) => {
+            if (activePageTemplateCat === 'all') {
+                return true;
+            } else {
+                return template.title === activePageTemplateCat;
+            }
+        });
+        setPageTemplates(filteredPageTemplates);
+    }, [activePageTemplateCat]); // eslint-disable
+
+    // filter page templates based on page template type
+    useEffect(() => {
+        const filteredPageTemplates = allPageTemplates?.filter((template) => {
+            const pages = template?.pages;
+
+            if (pageTemplatesType === 'free') {
+                return pages && pages.length > 0 && pages.some((page) => page?.status === 'free');
+            } else if (pageTemplatesType === 'pro') {
+                return pages && pages.length > 0 && pages.some((page) => page?.status === 'pro');
+            } else {
+                return true;
+            }
+        });
+        setPageTemplates(filteredPageTemplates);
+    }, [pageTemplatesType]); // eslint-disable
 
     /**
      * =====
@@ -234,6 +310,22 @@ function ZoloBlocksTemplateLibraryButton() {
         setDemos(filteredDemos.slice(0, number));
         setTotal(filteredDemos.length);
     }, [activeDemoCat]); // eslint-disable-line
+
+    useEffect(() => {
+        const subscribeBtn = subscribe(() => {
+            const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
+            const libraryButton = document.querySelector('.zoloblocks-template-library-button');
+            const currentPostType = wp.data.select('core/editor').getCurrentPostType();
+
+            if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
+                renderButton(toolbar);
+            }
+        });
+
+        return () => {
+            subscribeBtn();
+        };
+    }, []);
 
     // Filter by Tags
     const sortDemosByTag = (tag) => {
@@ -606,6 +698,15 @@ function ZoloBlocksTemplateLibraryButton() {
         } else {
             setFavItems(allFavItems); // Reset to all favorites if no search text
         }
+
+        if (searchText !== '' && activeTab === 'templates') {
+            const filteredPageTemplates = allPageTemplates?.filter((template) => {
+                return template.title.toLowerCase().includes(searchText.toLowerCase());
+            });
+            setPageTemplates(filteredPageTemplates);
+        } else {
+            setPageTemplates(allPageTemplates); // Reset to all page templates if no search text
+        }
     }, [searchText, activeTab, allPatterns, number, allDemos]); // eslint-disable-line
 
     /**
@@ -648,17 +749,6 @@ function ZoloBlocksTemplateLibraryButton() {
             },
         });
     };
-
-    subscribe(() => {
-        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
-        const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-
-        const currentPostType = wp.data.select('core/editor').getCurrentPostType();
-
-        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
-            renderButton(toolbar);
-        }
-    });
 
     const LibraryButton = () => (
         <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
@@ -769,7 +859,7 @@ function ZoloBlocksTemplateLibraryButton() {
                             )
                         }
                         {activeTab === 'templates' && (
-                            <Templates
+                            <PageTemplateLoader
                                 TABS={TABS}
                                 activeTab={activeTab}
                                 setActiveTab={setActiveTab}
@@ -779,6 +869,21 @@ function ZoloBlocksTemplateLibraryButton() {
                                 setPullDemos={setPullDemos}
                                 pullNewDemos={pullNewDemos}
                                 setIsOpen={setIsOpen}
+                                number={number}
+                                setNumber={setNumber}
+                                loading={loading}
+                                handleImportTemplate={handleImportTemplate}
+                                type={pageTemplatesType}
+                                setType={setPageTemplatesType}
+                                categories={pageTemplateCategories}
+                                activeCat={activePageTemplateCat}
+                                setActiveCat={setActivePageTemplateCat}
+                                allItems={allPageTemplates}
+                                items={pageTemplates}
+                                setItems={setPageTemplates}
+                                // fav templates
+                                favIds={favIds}
+                                handleFavTemplate={handleFavTemplate}
                             />
                         )}
                         {activeTab === 'pages' && (

@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Post Featured Image",
+    "name": "zolo/post-featured-image",
+    "category": "zoloblocks",
+    "keywords": ["post", "image", "featured", "thumbnail", "media", "single", "dynamic", "archive"],
+    "description": "Customizable dynamic post featured image block for your website single page",
+    "apiVersion": 2,
+    "textdomain": "zoloblocks",
+    "usesContext": ["postId", "postType"],
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css"
+}

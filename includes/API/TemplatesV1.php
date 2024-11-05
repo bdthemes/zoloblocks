@@ -108,7 +108,6 @@ class TemplatesV1 {
                 $templates = $data ?? [];
                 set_transient('zolo_templates', $templates, 7 * DAY_IN_SECONDS);
             }
-
         }
 
         $templates = [];
@@ -121,6 +120,7 @@ class TemplatesV1 {
                         'json_file'    => $value['json_file'],
                         'demo_preview' => $value['demo_preview'],
                         'status'       => $value['status'],
+                        'demo_link'    => $value['demo_link'],
                     ];
                 }
             }

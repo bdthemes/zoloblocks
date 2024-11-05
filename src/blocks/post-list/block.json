@@ -3,8 +3,8 @@
     "title": "Post List",
     "name": "zolo/post-list",
     "category": "zoloblocks",
-    "keywords": ["post", "post list"],
-    "description": "Dynamic post list for any landing page in WordPress",
+    "keywords": ["post", "list", "archive", "filter", "navigation", "content", "display", "blog", "magazine"],
+    "description": "Display customizable post lists to optimize content visibility.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

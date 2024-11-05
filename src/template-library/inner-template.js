@@ -5,10 +5,6 @@ import classNames from 'classnames';
 import ProPopup from './pro-popup';
 
 const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTemplate }) => {
-    console.log('favIds', favIds);
-
-    console.log('templates', templates);
-
     return (
         <div className="zolo-demos-wrapper">
             {templates &&
@@ -60,7 +56,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                         <>
                                             {
                                                 // check if the user has ZoloBlocks Pro
-                                                zoloParams?.zolo_pro_status === 'active' ? (
+                                                zoloParams?.zolo_pro_status === 'active' && (
                                                     <>
                                                         {template?.demo_link && (
                                                             <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
@@ -114,10 +110,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                                             </button>
                                                         </Tooltip>
                                                     </>
-                                                ) : (
-                                                    <ProPopup />
-                                                )
-                                            }
+                                                )}
                                         </>
                                     ) : (
                                         <>

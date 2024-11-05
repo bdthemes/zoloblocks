@@ -4,8 +4,8 @@
     "title": "Popup Builder",
     "name": "zolo/popup-builder",
     "category": "zoloblocks",
-    "keywords": ["Popup Builder"],
-    "description": "build a site-wide popup.",
+    "keywords": ["Popup", "Modal", "Lightbox", "Promotion", "Lead", "Form", "builder", "subscribe"],
+    "description": "Build customized popups for leads or promotional announcements.",
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {
@@ -17,7 +17,7 @@
         "anchor": false,
         "customClassName": false,
         "align": ["wide", "full"],
-        "zolo-popup" : true
+        "zolo-popup": true
     },
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",

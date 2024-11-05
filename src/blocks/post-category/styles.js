@@ -23,6 +23,13 @@ import {
     VIEW_BTN_SHADOW,
     VIEW_BTN_PADDING,
     THUMBNAIL_OVERLAY_BG,
+    CAT_NAME_BG,
+    CAT_NAME_PADDING,
+    CAT_NAME_BORDER,
+    CAT_NAME_SHADOW,
+    CAT_NAME_BORDER_RADIUS,
+    CAT_NAME_HOVER_BG,
+    CAT_NAME_HOVER_SHADOW,
 } from './constants';
 
 import { NAME_TYPOGRAPHY, TEXT_TYPOGRAPHY, COUNT_TYPOGRAPHY, VIEW_BTN_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -62,7 +69,8 @@ function Style({ props }) {
         itemBorderHoverColor,
         viewBtnHoverBorderColor,
         countHoverBColor,
-        countHoverBgColor
+        countHoverBgColor,
+        catNameHoverBColor,
     } = attributes;
     const {
         desktopRangeStyle: itemHeightDesk,
@@ -213,6 +221,7 @@ function Style({ props }) {
         styleFor: 'padding',
         attributes,
     });
+
     const {
         backgroundStylesDesktop: countBGDesk,
         backgroundStylesTab: countBGTab,
@@ -283,6 +292,70 @@ function Style({ props }) {
         attributes,
         controlName: VIEW_BTN_SHADOW,
     });
+
+    //cat name
+
+    // background
+    const {
+        backgroundStylesDesktop: catNameBGDesk,
+        backgroundStylesTab: catNameBGTab,
+        backgroundStylesMobile: catNameBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: CAT_NAME_BG,
+        attributes,
+    });
+
+    // padding
+    const {
+        dimensionStylesDesktop: catNamePaddingDesk,
+        dimensionStylesTab: catNamePaddingTab,
+        dimensionStylesMobile: catNamePaddingMob,
+    } = generateDimensionStyle({
+        controlName: CAT_NAME_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // border
+    const {
+        desktopBorderStyle: catNameBorderDesk,
+        tabBorderStyle: catNameBorderTab,
+        mobBorderStyle: catNameBorderMob,
+    } = generateBorderStyle({
+        controlName: CAT_NAME_BORDER,
+        attributes,
+    });
+
+    // border radius
+    const {
+        dimensionStylesDesktop: catNameBorderRadiusDesk,
+        dimensionStylesTab: catNameBorderRadiusTab,
+        dimensionStylesMobile: catNameBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CAT_NAME_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: catNameBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CAT_NAME_SHADOW,
+    });
+
+    const {
+        backgroundStylesDesktop: catNameHoverBGDesk,
+        backgroundStylesTab: catNameHoverBGTab,
+        backgroundStylesMobile: catNameHoverBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: CAT_NAME_HOVER_BG,
+        attributes,
+    });
+
+    const { boxShadowStyle: catNameHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CAT_NAME_HOVER_SHADOW,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.zolo-block.zolo-post-category-wrap{
           grid-template-columns:repeat(${columnCountDesk}, 1fr);
@@ -295,6 +368,7 @@ function Style({ props }) {
           ${itemBorderDesk}
           ${itemBorderRadiusDesk}
           ${itemBoxShadow}
+          
         }
 
         ${
@@ -318,6 +392,16 @@ function Style({ props }) {
                 : ''
         }
 
+        ${
+            preset === 'style-3'
+                ? `
+                .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-3 .zolo-content {
+                  ${itemPaddingDesk}
+                }
+              `
+                : ''
+        }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img:before{
         ${thumbnailOverlayBGDesk}
       }
@@ -333,6 +417,25 @@ function Style({ props }) {
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name {
         ${nameTypoDesk}
         ${nameColor ? `color:${nameColor};` : ''}
+      }
+
+      ${
+          preset === 'style-3'
+              ? `
+                  .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name {
+                      ${catNameBGDesk}
+                      ${catNamePaddingDesk}
+                      ${catNameBorderDesk}
+                      ${catNameBorderRadiusDesk}
+                      ${catNameBoxShadow}
+                  }
+                  .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-name {
+                      ${catNameHoverBGDesk}
+                      ${catNameHoverBoxShadow}
+                      ${catNameHoverBColor ? `border-color:${catNameHoverBColor};` : ''}
+                  }
+              `
+              : ''
       }
 
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-name {
@@ -419,12 +522,39 @@ function Style({ props }) {
               : ''
       }
 
+      ${
+          preset === 'style-3'
+              ? `
+                .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-3 .zolo-content {
+                  ${itemPaddingTab}
+                }
+              `
+              : ''
+      }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
         ${itemBorderRadiusTab}
       }
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
         ${nameTypoTab}
       }
+
+      ${
+          preset === 'style-3'
+              ? `
+                  .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name {
+                      ${catNameBGTab}
+                      ${catNamePaddingTab}
+                      ${catNameBorderTab}
+                      ${catNameBorderRadiusTab}
+                  }
+                  .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-name {
+                      ${catNameHoverBGTab}
+                  }
+              `
+              : ''
+      }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text{
         ${textTypoTab}
         ${textSpacingTab}
@@ -454,6 +584,7 @@ function Style({ props }) {
         ${itemBGMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
+
       }
 
       ${
@@ -477,12 +608,39 @@ function Style({ props }) {
               : ''
       }
 
+      ${
+          preset === 'style-3'
+              ? `
+                .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-3 .zolo-content {
+                  ${itemPaddingMob}
+                }
+              `
+              : ''
+      }
+
        .${uniqueId}.zolo-block.zolo-post-category-wrap.zolo-category-style-2 .zolo-category-img{
         ${itemBorderRadiusMob}
        }
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name{
         ${nameTypoMob}
       }
+
+      ${
+          preset === 'style-3'
+              ? `
+                  .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-name {
+                      ${catNameBGMob}
+                      ${catNamePaddingMob}
+                      ${catNameBorderMob}
+                      ${catNameBorderRadiusMob}
+                  }
+                  .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item:hover .zolo-category-name {
+                      ${catNameHoverBGMob}
+                  }
+              `
+              : ''
+      }
+
       .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-text {
         ${textTypoMob}
         ${textSpacingMob}

@@ -61,6 +61,9 @@ export const LIST_HOVER_ICON_SIZE = 'listHoverIconSize';
 export const ICON_HOVER_LIST_MARGIN = 'iconHoverListMargin';
 export const ICON_LINKVERTICAL_ALIGN = 'iconLinkVerticalAlign';
 
+//Title
+export const H_TTITLE_WIDTH = 'hTitleWidth';
+
 export const ITEM_ALIGNS_OPTION = [
     {
         label: 'Left',

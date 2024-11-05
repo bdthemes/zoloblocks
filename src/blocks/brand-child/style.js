@@ -48,9 +48,17 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor } = attributes;
+    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, preset } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
 
     const {
         dimensionStylesDesktop: contentDeskPadding,
@@ -307,6 +315,16 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-content{
             ${containerDeskBGHStyle}
 		}
+
+        ${
+            preset === 'zb-brand-basic-style'
+                ? `.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover {
+			      	${containerDeskBGHStyle}
+			    }`
+                : ''
+        }
+
+
 		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}
 			${deskImageWidth}
@@ -357,6 +375,22 @@ const Style = ({ props }) => {
                 `
                : ''
        }
+
+        ${
+            activeHover && preset === 'zb-brand-basic-style'
+                ? `
+                     .${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-image img {
+                        filter:
+                            blur(${blurHover}px)
+                            brightness(${brightnessHover}%)
+                            contrast(${contrastHover}%)
+                            saturate(${saturateHover}%)
+                            hue-rotate(${hueRotateHover}deg)
+                    }
+
+       `
+                : ''
+        }
   	`;
 
     const tabletAllStyle = `

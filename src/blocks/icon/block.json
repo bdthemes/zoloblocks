@@ -3,8 +3,8 @@
     "title": "Icon",
     "name": "zolo/icon",
     "category": "zoloblocks",
-    "keywords": ["icon"],
-    "description": "Make stunning content with the icon box block",
+    "keywords": ["icon", "feature", "service", "list"],
+    "description": "Add custom icons to enhance visual appeal and functionality.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

@@ -4,8 +4,8 @@
     "icon": "grid-view",
     "name": "zolo/team-grid",
     "category": "zoloblocks",
-    "keywords": ["team", "team grid"],
-    "description": "Display your team members with custom design layout",
+    "keywords": ["team", "grid", "member", "avatar", "profile", "bio", "position", "social"],
+    "description": "Showcase your team with customizable grid layout options.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {

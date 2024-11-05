@@ -273,6 +273,18 @@ span.block-separator {
         text-transform: uppercase;
         font-weight: 500;
     }
+
+    .zolo-create-new-page-btn {
+        margin: 20px 0 0;
+        border-radius: 6px;
+        padding: 20px 15px;
+        background: #3f8efc;
+        font-weight: 600;
+        transition: background 0.3s ease;
+        &:hover {
+            background: #1872f0;
+        }
+    }
 }
 
 .zolo-settings {
