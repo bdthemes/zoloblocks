@@ -3,7 +3,7 @@ Contributors: bdthemes, selimmw, abutalib, muhammadasik
 Donate link: http://zoloblocks.com/
 Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
 Requires at least: 6.1
-Tested up to: 6.6.2
+Tested up to: 6.7
 Requires PHP: 7.4
 Stable tag: 2.0.0
 License: GPLv2 or later

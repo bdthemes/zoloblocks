@@ -17,6 +17,7 @@
 - Range Control: Upgraded the range control for more precise and responsive adjustments.
 - Background Controls: Background controls have been moved to a popover for a cleaner layout.
 - Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
+- Create New Page: Added a button to the site visibility settings to quickly create a page for maintenance mode.
 
 #### Bug Fixes
 - TextPath Image Control: Fixed the issue with image selection in the TextPath block.
@@ -25,7 +26,7 @@
 ### 1.5.1 [October 08, 2024]
 
 ### Fixed
-- Slider navigation issue fixed.
+- Slider navigation issue fixed.u4
 - TextPath image issue fixed.
 
 ### Improved
