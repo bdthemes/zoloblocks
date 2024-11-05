@@ -1,4 +1,4 @@
-### 1.6.0 [October 30, 2024]
+### 2.0.0 [November 05, 2024]
 
 #### New Features
 - NavMenu Block: Introduced a fully customizable navigation menu block for easy site navigation.
