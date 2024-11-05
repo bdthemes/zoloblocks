@@ -12,29 +12,17 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    ResRangeControl,
-    ColorControl,
-    BorderControl,
-    ResDimensionsControl,
-    TextShadowControl,
-    TextStrokeControl,
-    TypographyDropdown,
-    TabPanelControl,
-    ZoloIconPicker,
-    BoxShadowControl,
     HeaderTabs,
-    IconicBtnGroup,
-    NormalBGControl,
-    ImageAvatar,
-    ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
-    ImageSizes,
 } = window.zoloModule;
+
 import usePostQuery from './usePostQuery';
 
 import objAttributes from './attributes';
 import BasicQuery from './query/basic';
+import Filters from './query/filters';
+import AdvancedQuery from './query/advanced';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -72,15 +60,15 @@ function Inspector(props) {
                                             tabs={[
                                                 {
                                                     name: 'basic',
-                                                    title: __('Basic Query', 'zoloblocks'),
+                                                    title: __('Basic', 'zoloblocks'),
                                                 },
                                                 {
-                                                    name: 'taxonomy',
-                                                    title: __('Taxonomy Query', 'zoloblocks'),
+                                                    name: 'filters',
+                                                    title: __('Filters', 'zoloblocks'),
                                                 },
                                                 {
                                                     name: 'advanced',
-                                                    title: __('Advanced Query', 'zoloblocks'),
+                                                    title: __('Advanced', 'zoloblocks'),
                                                 },
                                             ]}
                                         >
@@ -90,19 +78,27 @@ function Inspector(props) {
                                                         <BasicQuery
                                                             query={query}
                                                             setQuery={setQuery}
+                                                            attributes={attributes}
+                                                            setAttributes={setAttributes}
                                                         />
                                                     )
                                                 }
 
-                                                if ('taxonomy' === tab.name) {
+                                                if ('filters' === tab.name) {
                                                     return (
-                                                        <h4>Table</h4>
+                                                        <Filters 
+                                                            query={query}
+                                                            setQuery={setQuery}
+                                                        />
                                                     )
                                                 }
 
                                                 if ('advanced' === tab.name) {
                                                     return (
-                                                        <h4>Advanced</h4>
+                                                        <AdvancedQuery 
+                                                            query={query}
+                                                            setQuery={setQuery}
+                                                        />
                                                     )
                                                 }
                                             }}

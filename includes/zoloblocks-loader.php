@@ -29,6 +29,7 @@ use Zolo\Form\FormAjax;
 use Zolo\Form\Recaptcha;
 use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
+use Zolo\LoopBuilder\LoopBuilder;
 
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
@@ -88,6 +89,9 @@ class ZoloBlocks_Loader {
 
         // popup
         PopupBuilder::getInstance();
+
+        // Loop Builder
+        LoopBuilder::getInstance();
 
         // Templates and Demo Import
         TemplatesV1::getInstance();

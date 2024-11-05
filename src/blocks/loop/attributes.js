@@ -22,6 +22,9 @@ const attributes = {
             },
             responsiveControls: true,
         },
+    },
+    ref: {
+        type: 'number'
     }
 };
 

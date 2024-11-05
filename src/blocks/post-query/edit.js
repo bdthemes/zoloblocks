@@ -49,7 +49,11 @@ export default function Edit(props) {
         ),
     });
 
-    const innerBlocksProps = useInnerBlocksProps();
+    const innerBlocksProps = useInnerBlocksProps({}, {
+        template: [
+            ['zolo/loop', {}],
+        ],
+    });
 
     const { postsPerPage } = useSelect(
         (select) => {
@@ -112,6 +116,31 @@ export default function Edit(props) {
         }
     };
 
+    const fetchPosts = async (query) => {
+        try {
+            setIsLoading(true);
+    
+            const response = await apiFetch({
+                path: '/zolo/v1/post-query',
+                method: 'POST',
+                data: query, // Send query data in the body for POST
+            });
+    
+            if(response){
+                setPosts(response);
+            }
+
+            setIsLoading(false);
+            
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    
+
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -119,7 +148,7 @@ export default function Edit(props) {
             if (inherit) {
                 await getInheritPosts();
             } else {
-                setIsLoading(false); // Set loading to false if no valid query type
+                await fetchPosts(query);
             }
         };
 
@@ -161,12 +190,12 @@ export default function Edit(props) {
     }
 
     const blockContext = {
-        queryLoopContext: {
-            posts,
-            queryId,
-        }
+        posts,
+        queryId,
     }
+    console.log(blockContext);
     
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}

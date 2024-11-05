@@ -1,16 +1,17 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Post Query",
-    "name": "zolo/post-query",
+    "title": "Loop",
+    "name": "zolo/loop",
     "category": "zoloblocks",
     "keywords": [
         "query",
         "post",
-        "post query",
-        "query builder",
+        "repeater",
+        "loop",
         "loop builder"
     ],
-    "description": "Query your posts",
+    "parent": ["zolo/post-query"],
+    "description": "Loop your content",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {
@@ -20,8 +21,8 @@
         "viewportWidth": 400
     },
     "usesContext": [
-        "templateSlug",
-        "previewPostType"
+        "posts",
+        "queryId"
     ],
     "supports": {
         "anchor": false,

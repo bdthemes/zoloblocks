@@ -31,14 +31,11 @@ const {
     ZoloPanelBody,
     ImageSizes,
 } = window.zoloModule;
-import usePostQuery from './usePostQuery';
 
 import objAttributes from './attributes';
-import BasicQuery from './query/basic';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const [query, setQuery] = usePostQuery(attributes, setAttributes);
 
     const {
         resMode,
@@ -60,46 +57,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <ToggleControl
-                                label={__('Inherit query from template', 'zoloblocks')}
-                                checked={query?.inherit}
-                                onChange={(value) => setQuery({ inherit: value })}
-                            />
-                            {
-                                !query?.inherit && (
-                                    <>
-                                        <TabPanel
-                                            tabs={[
-                                                {
-                                                    name: 'basic',
-                                                    title: __('Basic', 'zoloblocks'),
-                                                },
-                                                {
-                                                    name: 'advanced',
-                                                    title: __('Advanced', 'zoloblocks'),
-                                                },
-                                            ]}
-                                        >
-                                            {(tab) => {
-                                                if ('basic' === tab.name) {
-                                                    return (
-                                                        <BasicQuery 
-                                                            query={query}
-                                                            setQuery={setQuery}
-                                                        />
-                                                    )
-                                                }
-
-                                                if ('advanced' === tab.name) {
-                                                    return (
-                                                        <h4>Advanced</h4>
-                                                    )
-                                                }
-                                            }}
-                                        </TabPanel>
-                                    </>
-                                )
-                            }
+                            <h6>{__('Inherit query from template', 'zoloblocks')}</h6>
                         </ZoloPanelBody>
                     </>
                 }
