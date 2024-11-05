@@ -88,6 +88,10 @@ export const generateResRangeStyle = ({
         desktopUnit = tabUnit = mobUnit = '';
     } else if (unitCustomTxt) {
         desktopUnit = tabUnit = mobUnit = unitCustomTxt;
+    } else {
+        desktopUnit = desktopUnit === undefined ? 'px' : desktopUnit;
+        tabUnit = tabUnit === undefined ? 'px' : tabUnit;
+        mobUnit = mobUnit === undefined ? 'px' : mobUnit;
     }
 
     const desktopRangeStyle =
