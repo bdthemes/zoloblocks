@@ -90,27 +90,6 @@ export const generateResRangeStyle = ({
         desktopUnit = tabUnit = mobUnit = unitCustomTxt;
     }
 
-    // console.log('object status: ', object);
-    // console.log('objectName: ', objectName);
-
-    // const objectDesktopRange = object ? [objectName]?.[`${prefix}${controlName}Range`] : '';
-    // console.log('object Value: ', attributes?.[objectName]?.[`${prefix}${controlName}Range`]);
-    // console.log('attrs: ', attributes);
-    // console.log('attrs: ', attributes?.['testObject']);
-
-    // if (object) {
-    //     return {
-    //         [objectName]: {
-    //             desktopRange,
-    //             tabRange,
-    //             mobRange,
-    //             desktopUnit,
-    //             tabUnit,
-    //             mobUnit,
-    //         },
-    //     };
-    // }
-
     const desktopRangeStyle =
         desktopRange !== undefined && desktopRange !== '' && desktopRange !== 'undefined'
             ? (noProperty ? '' : property + ':') +

@@ -20,11 +20,15 @@ const ResRangeControl = ({
     objectName = '',
 }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
-    const {
-        [`${prefix}${controlName}Range`]: desktopRange,
-        [`${prefix}TAB${controlName}Range`]: tabRange,
-        [`${prefix}MOB${controlName}Range`]: mobRange,
-    } = attributes;
+    // const {
+    //     [`${prefix}${controlName}Range`]: desktopRange,
+    //     [`${prefix}TAB${controlName}Range`]: tabRange,
+    //     [`${prefix}MOB${controlName}Range`]: mobRange,
+    // } = attributes;
+
+    const desktopRange = object ? attributes?.[objectName][`${prefix}${controlName}Range`] : attributes?.[`${prefix}${controlName}Range`];
+    const tabRange = object ? attributes?.[objectName][`${prefix}TAB${controlName}Range`] : attributes?.[`${prefix}TAB${controlName}Range`];
+    const mobRange = object ? attributes?.[objectName][`${prefix}MOB${controlName}Range`] : attributes?.[`${prefix}MOB${controlName}Range`];
 
     // const { testObject } = attributes;
 
@@ -34,9 +38,14 @@ const ResRangeControl = ({
     let defaultUnits;
 
     if (!noUnits) {
-        sizeUnit = attributes[`${prefix}${controlName}Unit`];
-        TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
-        MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
+        // sizeUnit = attributes[`${prefix}${controlName}Unit`];
+        // TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
+        // MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
+
+        sizeUnit = object ? attributes?.[objectName][`${prefix}${controlName}Unit`] : attributes?.[`${prefix}${controlName}Unit`];
+        TABsizeUnit = object ? attributes?.[objectName][`${prefix}TAB${controlName}Unit`] : attributes?.[`${prefix}TAB${controlName}Unit`];
+        MOBsizeUnit = object ? attributes?.[objectName][`${prefix}MOB${controlName}Unit`] : attributes?.[`${prefix}MOB${controlName}Unit`];
+
         defaultUnits = [
             { label: 'px', value: 'px' },
             { label: 'em', value: 'em' },
@@ -53,9 +62,7 @@ const ResRangeControl = ({
                     {resMode == 'Desktop' && (
                         <>
                             <div className="zb-units-wrapper">
-                                {((desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0) ||
-                                    (attributes?.[objectName]?.[`${prefix}${controlName}Range`] !== undefined &&
-                                        attributes?.[objectName]?.[`${prefix}${controlName}Range`] !== '')) && (
+                                {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             if (object) {
@@ -77,7 +84,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}${controlName}Range`] : desktopRange}
+                                        value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -97,7 +104,7 @@ const ResRangeControl = ({
                                         withInputField={false}
                                     />
                                     <NumberControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}${controlName}Range`] : desktopRange}
+                                        value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -120,9 +127,7 @@ const ResRangeControl = ({
                     {resMode == 'Tablet' && (
                         <>
                             <div className="zb-units-wrapper">
-                                {((tabRange !== undefined && tabRange !== '' && tabRange !== 0) ||
-                                    (attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] !== undefined &&
-                                        attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] !== '')) && (
+                                {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             if (object) {
@@ -143,7 +148,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] : tabRange}
+                                        value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -163,7 +168,7 @@ const ResRangeControl = ({
                                         withInputField={false}
                                     />
                                     <NumberControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] : tabRange}
+                                        value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -186,9 +191,7 @@ const ResRangeControl = ({
                     {resMode == 'Mobile' && (
                         <>
                             <div className="zb-units-wrapper">
-                                {((mobRange !== undefined && mobRange !== '' && mobRange !== 0) ||
-                                    (attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] !== undefined &&
-                                        attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] !== '')) && (
+                                {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             if (object) {
@@ -209,7 +212,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] : mobRange}
+                                        value={mobRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -229,7 +232,7 @@ const ResRangeControl = ({
                                         withInputField={false}
                                     />
                                     <NumberControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] : mobRange}
+                                        value={mobRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -254,7 +257,7 @@ const ResRangeControl = ({
                     {resMode == 'Desktop' && (
                         <>
                             <UnitsBtn
-                                selectedUnit={object ? attributes?.[objectName]?.[`${prefix}${controlName}Unit`] : sizeUnit}
+                                selectedUnit={sizeUnit}
                                 unitTypes={units || defaultUnits}
                                 onClick={(sizeUnit) => {
                                     if (object) {
@@ -270,9 +273,7 @@ const ResRangeControl = ({
                                     }
                                 }}
                             >
-                                {((desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0) ||
-                                    (attributes?.[objectName]?.[`${prefix}${controlName}Range`] !== undefined &&
-                                        attributes?.[objectName]?.[`${prefix}${controlName}Range`] !== '')) && (
+                                {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             if (object) {
@@ -294,7 +295,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}${controlName}Range`] : desktopRange}
+                                        value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -314,7 +315,7 @@ const ResRangeControl = ({
                                         withInputField={false}
                                     />
                                     <NumberControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}${controlName}Range`] : desktopRange}
+                                        value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -337,7 +338,7 @@ const ResRangeControl = ({
                     {resMode == 'Tablet' && (
                         <>
                             <UnitsBtn
-                                selectedUnit={object ? attributes?.[objectName]?.[`${prefix}TAB${controlName}Unit`] : TABsizeUnit}
+                                selectedUnit={TABsizeUnit}
                                 unitTypes={units || defaultUnits}
                                 onClick={(TABsizeUnit) => {
                                     if (object) {
@@ -353,9 +354,7 @@ const ResRangeControl = ({
                                     }
                                 }}
                             >
-                                {((tabRange !== undefined && tabRange !== '' && tabRange !== 0) ||
-                                    (attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] !== undefined &&
-                                        attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] !== '')) && (
+                                {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             if (object) {
@@ -376,7 +375,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] : tabRange}
+                                        value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -396,7 +395,7 @@ const ResRangeControl = ({
                                         withInputField={false}
                                     />
                                     <NumberControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}TAB${controlName}Range`] : tabRange}
+                                        value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -419,7 +418,7 @@ const ResRangeControl = ({
                     {resMode == 'Mobile' && (
                         <>
                             <UnitsBtn
-                                selectedUnit={object ? attributes?.[objectName]?.[`${prefix}MOB${controlName}Unit`] : MOBsizeUnit}
+                                selectedUnit={MOBsizeUnit}
                                 unitTypes={units || defaultUnits}
                                 onClick={(MOBsizeUnit) => {
                                     if (object) {
@@ -435,9 +434,7 @@ const ResRangeControl = ({
                                     }
                                 }}
                             >
-                                {((mobRange !== undefined && mobRange !== '' && mobRange !== 0) ||
-                                    (attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] !== undefined &&
-                                        attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] !== '')) && (
+                                {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             if (object) {
@@ -458,7 +455,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] : mobRange}
+                                        value={mobRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
@@ -478,7 +475,7 @@ const ResRangeControl = ({
                                         withInputField={false}
                                     />
                                     <NumberControl
-                                        value={object ? attributes?.[objectName]?.[`${prefix}MOB${controlName}Range`] : mobRange}
+                                        value={mobRange}
                                         onChange={(val) => {
                                             if (object) {
                                                 setAttributes({
