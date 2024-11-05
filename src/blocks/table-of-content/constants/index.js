@@ -12,6 +12,10 @@ export const LIST_STYLE = [
   {label: __('Ordered List', 'zoloblocks'), value: 'ol'},
   {label: __('Unordered List', 'zoloblocks'), value: 'ul'}
 ]
+export const STICKY_POSITION = [
+  {label: __('Left', 'zoloblocks'), value: 'left'},
+  {label: __('Right', 'zoloblocks'), value: 'right'}
+]
 export const TITLE_ALIGN = 'titleAlign';
 export const TITLE_PADDING = 'titlePadding';
 export const TITLE_MARGIN = 'titleMargin';

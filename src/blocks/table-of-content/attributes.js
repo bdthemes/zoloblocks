@@ -58,6 +58,7 @@ const attributes = {
       responsiveControls: true,
     },
   },
+
   // block attributes
   showHeading: {
     type: 'boolean',
@@ -70,6 +71,14 @@ const attributes = {
   isCollapsed: {
     type: 'boolean',
     default: true
+  },
+  showSticky: {
+    type: 'boolean',
+    default: false
+  },
+  stickyPosition: {
+    type: 'string',
+    default: 'left'
   },
   headingText: {
     type: 'string',

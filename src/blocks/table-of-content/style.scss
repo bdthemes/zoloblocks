@@ -8,6 +8,13 @@
 
 	.zolo-toc-toggle-btn {
 		transition: transform 0.3s ease;
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 	&.collapsed .zolo-toc-toggle-btn svg {
@@ -34,6 +41,22 @@
 		font-size: 17px;
 		border-top: 1px solid #EFEFEF;
 
+		.zolo-toc-list {
+			a {
+				text-decoration: none;
+
+				&:focus {
+					outline: none;
+					box-shadow: none;
+				}
+			}
+
+			li.active > {
+				a {
+					color: red;
+				}
+			}
+		}
 
 		ul {
 			padding: 0;
@@ -71,6 +94,63 @@
 			}
 		}
 
+	}
+
+	&.content-visible {
+		visibility: visible;
+	}
+
+	&.content-hidden {
+		background-color: transparent !important;
+		border: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		visibility: hidden !important;
+	}
+
+	&.position-left.sticky-content {
+		position: fixed;
+		top: 25%;
+		z-index: 999;
+		left: 0;
+	}
+
+	&.position-right.sticky-content {
+		position: fixed;
+		top: 25%;
+		z-index: 999;
+		left: auto;
+		right: 0;
+	}
+
+	&.sticky-content {
+		max-width: 510px;
+	}
+
+	&.position-right .zolo-toc-open {
+		right: 0;
+		left: auto;
+		transform-origin: right top;
+		transform: rotate(90deg) translate(100%, 0);
+	}
+
+	.zolo-toc-open {
+		left: 0;
+		position: absolute;
+		top: 0;
+		text-transform: none;
+		transform: rotate(90deg);
+		transform-origin: bottom left;
+	}
+
+	&.content-visible .zolo-toc-open {
+		display: none;
+		visibility: hidden;
+	}
+
+	&.content-hidden .zolo-toc-open {
+		display: inline-block;
+		visibility: visible;
 	}
 
 }

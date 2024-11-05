@@ -18,7 +18,7 @@ import {
   TITLE_HOVER_BG,
   TITLE_HOVER_BORDER,
   TITLE_HOVER_BRADIUS,
-  TITLE_HOVER_SHADOW,
+  TITLE_HOVER_SHADOW, STICKY_POSITION,
 } from './constants';
 
 import {TITLE_TYPOGRAPHY} from './constants/typoPrefixConstant';
@@ -47,6 +47,8 @@ function Inspector(props) {
     showHeading,
     showCollapsible,
     isCollapsed,
+    showSticky,
+    stickyPosition,
     headingText,
     headingTags,
     listStyle,
@@ -82,12 +84,27 @@ function Inspector(props) {
                 checked={showCollapsible}
                 onChange={(showCollapsible) => setAttributes({showCollapsible})}
               />
-
               {showCollapsible && (
                 <ToggleControl
                   label={__('Collapsed Initially', 'zoloblocks')}
                   checked={isCollapsed}
                   onChange={(isCollapsed) => setAttributes({isCollapsed})}
+                />
+              )}
+
+              <ToggleControl
+                label={__('Sticky Content', 'zoloblocks')}
+                checked={showSticky}
+                onChange={(showSticky) => setAttributes({showSticky})}
+                help={__('Sitcky content visible only frontend', 'zoloblcoks')}
+              />
+
+              {showSticky && (
+                <SelectControl
+                  label={__('Sticky Position', 'zoloblocks')}
+                  value={stickyPosition}
+                  options={STICKY_POSITION}
+                  onChange={(stickyPosition) => setAttributes({stickyPosition})}
                 />
               )}
 

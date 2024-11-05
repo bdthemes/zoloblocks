@@ -4,14 +4,16 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const tableOfContent = {
 
-    init: function () {
-      this.addLinkInContent()
-      this.toggleCollapse()
+    init() {
+      this.addLinkInContent();
+      this.toggleCollapse();
+      this.scrollToTargetElement();
+      this.stickyContentShow();
+      this.stickyContentHide();
     },
 
-    addLinkInContent: () => {
+    addLinkInContent() {
       const tocWrapper = document.querySelector(".wp-block-zolo-table-of-content");
-
       if (!tocWrapper) return null;
 
       const headers = JSON.parse(tocWrapper.getAttribute("data-headers") || "[]");
@@ -36,26 +38,84 @@ window.addEventListener("DOMContentLoaded", function () {
         });
       });
     },
-    toggleCollapse: () => {
+    toggleCollapse() {
       const tocWrapper = document.querySelector(".wp-block-zolo-table-of-content");
-      const tocToggleBtn = tocWrapper.querySelector('.zolo-toc-toggle-btn');
+      if (!tocWrapper) return;
 
-      if (tocToggleBtn && tocWrapper) {
-        const isInitiallyCollapsed = tocWrapper.getAttribute('data-collapsed') === 'false';
-        if (isInitiallyCollapsed) {
-          tocToggleBtn.classList.add('collapsed');
-        } else {
-          tocToggleBtn.classList.remove('collapsed');
-        }
+      const tocToggleBtn = tocWrapper.querySelector(".zolo-toc-toggle-btn");
+      if (!tocToggleBtn) return;
 
-        tocToggleBtn.addEventListener('click', () => {
-          const isCollapsed = tocWrapper.getAttribute('data-collapsed') === 'true';
-          tocWrapper.setAttribute('data-collapsed', !isCollapsed);
-          tocWrapper.classList.toggle('collapsed', isCollapsed);
+      const isInitiallyCollapsed = tocWrapper.getAttribute("data-collapsed") === "false";
+      tocWrapper.classList.toggle("collapsed", isInitiallyCollapsed);
+
+      tocToggleBtn.addEventListener("click", () => {
+        const isCollapsed = tocWrapper.classList.contains("collapsed");
+        tocWrapper.classList.toggle("collapsed", !isCollapsed);
+        tocWrapper.setAttribute("data-collapsed", !isCollapsed);
+      });
+
+    },
+    scrollToTargetElement() {
+      const tocLinks = document.querySelectorAll(".wp-block-zolo-table-of-content a");
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+          const hash = this.hash;
+          if (hash !== "") {
+            event.preventDefault();
+
+            // Remove active class from all links
+            tocLinks.forEach(link => link.closest('li').classList.remove('active'));
+
+            // Add active class to the clicked link's parent <li>
+            this.closest('li').classList.add('active');
+
+            const targetElement = document.querySelector(hash);
+
+            if (targetElement) {
+              const offset = 150; // Adjust for fixed header or spacing
+              const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+              const offsetPosition = elementPosition - offset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+
+              // Add and remove the 'active' class for the target element
+              targetElement.classList.add('active');
+              setTimeout(() => {
+                targetElement.classList.remove('active');
+              }, 800);
+            }
+          }
         });
-      }
+      });
+    },
+    stickyContentHide() {
+      document.querySelectorAll(".zolo-toc-close").forEach((crossButton) => {
+        crossButton.addEventListener("click", () => {
+          const container = crossButton.closest(".wp-block-zolo-table-of-content");
+          if (container) {
+            container.classList.add("content-hidden");
+            container.classList.remove("content-visible");
+          }
+        });
+      });
+    },
 
+    stickyContentShow() {
+      document.querySelectorAll(".zolo-toc-open").forEach((headerButton) => {
+        headerButton.addEventListener("click", () => {
+          const container = headerButton.closest(".wp-block-zolo-table-of-content");
+          if (container) {
+            container.classList.remove("content-hidden");
+            container.classList.add("content-visible");
+          }
+        });
+      });
     }
+
 
   }
 

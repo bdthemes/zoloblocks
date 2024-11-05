@@ -44,7 +44,7 @@ export default function Edit(props) {
 
   // preview image
   if (preview) {
-    return <img src={zoloParams.blocksPreview?.tableOfContent} alt={__('Post Title', 'zoloblocks')}/>;
+    return <img src={zoloParams.blocksPreview?.tableOfContent} alt={__('Table of Content', 'zoloblocks')}/>;
   }
 
   return (
@@ -63,11 +63,10 @@ export default function Edit(props) {
             />
             {showCollapsible && (
               <button className="zolo-toc-toggle-btn" onClick={toggleCollapse}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                     className="icon icon-tabler icons-tabler-outline icon-tabler-caret-down">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M6 10l6 6l6 -6h-12"/>
+                <svg width="1em" height="1em" aria-hidden="true" className="e-font-icon-svg e-fas-chevron-up" viewBox="0 0 448 512"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"></path>
                 </svg>
               </button>
             )}
