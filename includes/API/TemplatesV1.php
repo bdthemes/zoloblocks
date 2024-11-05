@@ -55,7 +55,7 @@ class TemplatesV1 {
         $templates     = get_transient($transient_key);
 
         if (empty($templates)) {
-            $response = wp_remote_get('https=>//templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
+            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
@@ -77,7 +77,7 @@ class TemplatesV1 {
         $demos         = get_transient($transient_key);
 
         if (empty($demos)) {
-            $response = wp_remote_get('https=>//demo.zoloblocks.com/wp-json/template-manager/v1/zolo');
+            $response = wp_remote_get('https://demo.zoloblocks.com/wp-json/template-manager/v1/zolo');
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
@@ -100,7 +100,7 @@ class TemplatesV1 {
 
         // check if the transient is empty
         if (empty($data)) {
-            $response = wp_remote_get('https=>//templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
+            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
