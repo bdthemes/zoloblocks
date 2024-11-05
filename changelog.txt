@@ -15,13 +15,12 @@
 - Slider Block: Refined the Slider Block for improved performance and usability.
 - Template Library: Enhanced the organization and accessibility of templates within the library.
 - Range Control: Upgraded the range control for more precise and responsive adjustments.
-- CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
 - Background Controls: Background controls have been moved to a popover for a cleaner layout.
+- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
 
 #### Bug Fixes
 - TextPath Image Control: Fixed the issue with image selection in the TextPath block.
 - Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
-
 
 ### 1.5.1 [October 08, 2024]
 
