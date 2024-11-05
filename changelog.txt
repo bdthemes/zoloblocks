@@ -18,7 +18,6 @@
 - CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
 - Background Controls: Background controls have been moved to a popover for a cleaner layout.
 
-
 #### Bug Fixes
 - TextPath Image Control: Fixed the issue with image selection in the TextPath block.
 - Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
