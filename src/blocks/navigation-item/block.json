@@ -1,13 +1,13 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Mega Menu",
-    "name": "zolo/megamenu",
+    "title": "Navigation Item",
+    "name": "zolo/navigation-item",
     "category": "zoloblocks",
-    "keywords": ["menu", "navigation", "navigation", "megamenu", "dropdown", "submenu", "subnav"],
-    "description": "Mega menu block for gutenberg.",
+    "keywords": ["menu", "navigation", "navigation", "dropdown", "submenu", "subnav", "megamenu", "mega"],
+    "description": "Build your own navigation menu.",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
-    "parent": ["zolo/navigation-item"],
+    "parent": ["zolo/navigation"],
     "example": {
         "attributes": {
             "preview": true

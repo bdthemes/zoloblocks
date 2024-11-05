@@ -775,7 +775,7 @@ const BlockIcons = {
         </svg>
     ),
 
-    navmenu: (
+    navigation: (
         <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
@@ -824,7 +824,7 @@ const BlockIcons = {
             />
         </svg>
     ),
-    'navmenu-submenu': (
+    'navigation-submenu': (
         <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
             <path
                 fillRule="evenodd"
