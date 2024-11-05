@@ -1102,6 +1102,80 @@ input.zoloblocks-search {
     }
 }
 
+// zolo pro modal css start
+.zolo-pro-modal {
+    min-width: 450px;
+    border-radius: 6px;
+    box-shadow: none;
+
+    .components-modal__content {
+        padding: 40px;
+        margin: 0;
+        text-align: center;
+    }
+    .components-modal__header {
+        padding: 0;
+        margin: 0;
+        height: auto;
+        margin: 10px;
+        width: auto;
+        right: 0;
+        left: unset;
+        .components-button {
+            padding: 0;
+            min-width: none;
+            margin: 0;
+            left: 0;
+            svg {
+                color: #a3a7b1;
+            }
+            &:hover {
+                svg {
+                    color: #f00;
+                }
+            }
+        }
+    }
+    .zolo-pro-modal-desc {
+        margin: 10px 0 30px;
+        font-size: 18px;
+        color: #4e4e55;
+        max-width: 430px;
+    }
+
+    .zolo-pro-modal-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .zolo-pro-modal-btn {
+        text-decoration: none;
+        background-color: #ffe9e9;
+        padding: 12px 20px;
+        display: inline-block;
+        color: #f00;
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 6px;
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+        &:focus {
+            outline: 2px solid rgba(255, 156, 156, 0.98) !important;
+        }
+        &:hover {
+            background-color: #f00;
+            color: #fff;
+        }
+    }
+}
+
 @media (min-width: 768px) {
     .zolo-header {
         .zolo-search-bar {

@@ -5,11 +5,18 @@ import classNames from 'classnames';
 const { ExtensionIcons } = window?.zoloIcons;
 
 const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = true, upcoming }) => {
+    console.log('value', value);
 
     return (
         <div
             className={classNames('zolo-single-block', {
-                active: `${isPro && zoloBlocks?.has_pro === '1' && !upcoming ? value : !isPro && !upcoming ? value : ''}`,
+                // active: `${
+                //     isPro &&
+                //     zoloBlocks?.has_pro === '1' &&
+                //     !upcoming ? value : !isPro &&
+                //     !upcoming ? value : ''
+                // }`,
+                active: value && !upcoming && isPro ? zoloBlocks?.has_pro === '1' : value && !upcoming && !isPro,
                 upcoming: !released,
                 ispro: isPro,
             })}

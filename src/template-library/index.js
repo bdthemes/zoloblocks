@@ -500,34 +500,6 @@ function ZoloBlocksTemplateLibraryButton() {
 
             setAllTemplates(data);
 
-            // set all patterns
-            const patterns = data?.filter((template) => template.template_type === 'patterns');
-            setAllPatterns(patterns);
-            setPatterns(patterns);
-
-            // set pattern categories
-            const patternCategories = patterns
-                ?.filter((template) => template.template_type === 'patterns')
-                .map((template) => template.categories);
-            const uniquePatternCategories = [...new Set(patternCategories?.flat())];
-            const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
-            const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
-            patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setPatternCategories(patternCategoriesArray);
-
-            // patterns tags
-            const allPatternTags = patterns?.map((template) => template.tags);
-            // find top 5 tags based on frequency
-            const patternTags = allPatternTags?.flat().reduce((acc, tag) => {
-                acc[tag] = (acc[tag] || 0) + 1;
-                return acc;
-            }, {});
-
-            const sortedPatternTags = Object.keys(patternTags)
-                .sort((a, b) => patternTags[b] - patternTags[a])
-                .slice(0, 9);
-            setPatternTags(sortedPatternTags);
-
             // set all pages
             const pages = data?.filter((template) => template.template_type === 'pages');
             setAllPages(pages);
@@ -575,8 +547,36 @@ function ZoloBlocksTemplateLibraryButton() {
             // add demos to all templates
             setAllTemplates((prev) => [...prev, ...data]);
 
+            // set all patterns
+            const patterns = data?.filter((template) => template.template_type === 'patterns');
+            setAllPatterns(patterns);
+            setPatterns(patterns);
+
+            // set pattern categories
+            const patternCategories = patterns
+                ?.filter((template) => template.template_type === 'patterns')
+                .map((template) => template.categories);
+            const uniquePatternCategories = [...new Set(patternCategories?.flat())];
+            const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
+            const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
+            patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
+            setPatternCategories(patternCategoriesArray);
+
+            // patterns tags
+            const allPatternTags = patterns?.map((template) => template.tags);
+            // find top 5 tags based on frequency
+            const patternTags = allPatternTags?.flat().reduce((acc, tag) => {
+                acc[tag] = (acc[tag] || 0) + 1;
+                return acc;
+            }, {});
+
+            const sortedPatternTags = Object.keys(patternTags)
+                .sort((a, b) => patternTags[b] - patternTags[a])
+                .slice(0, 9);
+            setPatternTags(sortedPatternTags);
+
             // set all demos
-            const demos = data;
+            const demos = data?.filter((template) => template.template_type === 'demos');
             setAllDemos(demos);
             setDemos(demos);
 
