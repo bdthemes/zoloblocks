@@ -1,0 +1,417 @@
+@mixin navigationHide() {
+    width: 100%;
+    max-width: 300px;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px 0 rgba(255, 165, 0, 0);
+    overflow-x: hidden;
+    transition: left 0.3s ease-out;
+    background-color: #f7f7f7;
+    z-index: 99;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 30px;
+}
+
+.wp-block-zolo-navigation {
+    .zolo-navigation-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        position: relative;
+
+        a {
+            display: inline-block;
+            color: #323239;
+            transition: 0.3s ease;
+            &:hover {
+                color: var(--zoloblocks-brand-color);
+            }
+        }
+    }
+
+    .wp-block-zolo-navigation-item {
+        position: relative;
+        width: auto;
+    }
+
+    .zolo-navigation-sidebar-top {
+        display: none;
+    }
+
+    .zolo-navigation-hamburger {
+        display: none;
+        padding: 10px;
+        background-color: transparent;
+        border-radius: 0.25rem;
+        position: relative;
+        z-index: 5;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.4s ease-in;
+        color: currentColor;
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+            fill: currentColor;
+        }
+    }
+    &.menu-breakpoint-desktop {
+        .zolo-navigation-hamburger {
+            display: inline-block;
+        }
+
+        .zolo-navigation-wrapper {
+            @include navigationHide();
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        &.menu-breakpoint-tablet {
+            .zolo-navigation-hamburger {
+                display: inline-block;
+            }
+
+            .zolo-navigation-wrapper {
+                @include navigationHide();
+            }
+        }
+    }
+
+    @media all and (max-width: 767px) {
+        &.menu-breakpoint-mobile {
+            .zolo-navigation-hamburger {
+                display: inline-block;
+            }
+
+            .zolo-navigation-wrapper {
+                @include navigationHide();
+            }
+        }
+    }
+
+    .zolo-navigation-wrapper {
+        &.is-menu-active {
+            .zolo-navigation-menu {
+                flex-direction: column;
+                align-items: flex-start;
+                background: inherit;
+                box-shadow: inherit;
+
+                .wp-block-zolo-navigation-submenu {
+                    background: inherit !important;
+                    box-shadow: inherit !important;
+                }
+
+                .zolo-navigation-item {
+                    width: 100%;
+                }
+
+                .zolo-navigation-link {
+                    padding: 0 10px;
+                }
+            }
+
+            .zolo-navigation-submenu-add-btn {
+                display: none;
+            }
+
+            .zolo-navigation-item {
+                .zolo-navigation-submenu-wrapper {
+                    position: relative;
+                    left: unset;
+                    top: unset;
+                    transform: unset;
+
+                    & > .wp-block-zolo-navigation-submenu .zolo-navigation-submenu-wrapper {
+                        position: relative;
+                        left: unset;
+                        top: unset;
+                    }
+                }
+            }
+
+            .zolo-navigation-sidebar-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+
+                .zolo-navigation-sidebar-logo {
+                    line-height: 1;
+
+                    img {
+                        display: block;
+                        width: 180px;
+                    }
+                }
+                .zolo-navigation-sidebar-close {
+                    padding: 4px;
+                    background-color: transparent;
+                    border-radius: 0.25rem;
+                    position: relative;
+                    z-index: 10;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in;
+                    // border: 1px solid rgba(0, 0, 0, 0.2);
+                    color: #323239;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin: 15px;
+                    color: #323239;
+                    box-shadow: none;
+                    svg {
+                        width: 1em;
+                        height: 1em;
+                        display: block;
+                        fill: currentColor;
+                    }
+                }
+            }
+        }
+
+        &.zolo-navigation-open {
+            left: 0;
+        }
+    }
+
+    .zolo-navigation-overlay {
+        opacity: 0;
+        transition: all 0.4s ease-in;
+
+        &.zolo-navigation-overlay-open {
+            opacity: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 7;
+        }
+    }
+    // mega menu full width css here
+
+    .wp-block-zolo-megamenu {
+        --zolo-megamenu-custom-offset: 0;
+        z-index: 9999;
+        transform: translateX(var(--zolo-megamenu-custom-offset));
+        &.megamenu-layout-fullwidth {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            right: 0;
+            width: 100vw !important;
+            transform: translateX(-50%);
+            .zolo-megamenu-content {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .zolo-navigation-submenu-wrapper:has(.megamenu-layout-custom) {
+        width: auto !important;
+    }
+
+    .zolo-navigation-submenu-wrapper:has(.megamenu-layout-custom.direction-left) {
+        left: 0;
+    }
+
+    .zolo-navigation-submenu-wrapper:has(.megamenu-layout-custom.direction-right) {
+        right: 0;
+        left: unset;
+    }
+    .zolo-navigation-submenu-wrapper:has(.megamenu-layout-custom.direction-center) {
+        left: 50%;
+        transform: translateY(10px) translateX(-50%);
+    }
+
+    .zolo-navigation-wrapper:not(.is-menu-active)
+        .zolo-navigation-item:hover
+        > .zolo-navigation-submenu-wrapper:has(.megamenu-layout-custom.direction-center) {
+        transform: translateY(0) translateX(-50%);
+    }
+
+    .has-megamenu:has(.megamenu-layout-custom) {
+        position: relative !important;
+    }
+
+    .is-menu-active {
+        .wp-block-zolo-megamenu {
+            .zolo-megamenu-content {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+            &.megamenu-layout-fullwidth {
+                position: unset !important;
+                width: 100% !important;
+                transform: unset !important;
+            }
+            &.megamenu-layout-custom {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+.zolo-frontend {
+    .wp-block-zolo-navigation {
+        .zolo-navigation-wrapper {
+            &.is-menu-active {
+                z-index: 99999;
+            }
+        }
+    }
+}
+
+.block-editor-block-list__block {
+    .zolo-navigation-wrapper {
+        &.is-menu-active {
+            .zolo-navigation-item {
+                .zolo-navigation-submenu-wrapper {
+                    .wp-block-zolo-navigation-submenu {
+                        &.is-selected {
+                            & > .zolo-navigation-submenu-add-btn {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// editor styles
+.zolo-editor {
+    .block-editor-block-list__block {
+        .zolo-navigation-menu {
+            .block-list-appender.block-list-appender {
+                position: relative;
+                margin: 0;
+                height: auto;
+                width: auto;
+
+                button {
+                    color: var(--zoloblocks-brand-color) !important;
+                    border: 2px solid var(--zoloblocks-brand-color) !important;
+                    border-radius: 6px !important;
+                    box-shadow: none !important;
+                }
+            }
+        }
+        .submenu-type-megamenu {
+            .zolo-megamenu-content {
+                .block-list-appender.block-list-appender {
+                    width: 100%;
+                    margin: 10px;
+                    box-sizing: border-box;
+                    .block-editor-button-block-appender {
+                        height: auto;
+                    }
+                }
+                // .block-editor-block-list__layout {
+                //     background-color: #fff;
+                // }
+            }
+            .zolo-navigation-item-appender-button {
+                width: 100%;
+                height: 50px;
+                box-sizing: border-box;
+                background: transparent;
+            }
+        }
+    }
+
+    .zolo-navigation-variation-picker {
+        .components-placeholder {
+            border: 1px solid #bebebe;
+            box-shadow: none;
+            padding: 40px;
+            align-items: center;
+        }
+
+        .components-placeholder__label {
+            font-size: 24px;
+            text-transform: capitalize;
+            font-weight: 600;
+
+            svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .block-editor-block-variation-picker__variations {
+            gap: 20px;
+            li {
+                border: 1px solid #e5e5e5;
+                padding: 20px;
+                border-radius: 6px;
+                min-width: 200px;
+                min-height: 100px;
+                transition: all 0.3s ease;
+                position: relative;
+                flex-direction: column-reverse;
+
+                &:hover,
+                &.is-selected {
+                    border-color: var(--zoloblocks-brand-color);
+                    outline: 1px solid var(--zoloblocks-brand-color);
+                }
+
+                .block-editor-block-variation-picker__variation {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 99;
+                }
+            }
+        }
+
+        .components-placeholder__instructions {
+            font-size: 14px;
+        }
+
+        .components-placeholder__fieldset {
+            margin-top: 20px;
+            width: auto;
+            justify-content: center;
+        }
+
+        .block-editor-block-variation-picker__variation-label {
+            font-size: 14px;
+            font-weight: 600;
+            position: absolute;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-wrap: nowrap;
+        }
+    }
+}
+
+.zolo-root-container {
+    .wp-block-zolo-navigation {
+        .has-megamenu {
+            .megamenu-layout-fullwidth {
+                .zolo-megamenu-content {
+                    align-items: center;
+                }
+            }
+        }
+    }
+}

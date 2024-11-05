@@ -3,7 +3,7 @@
     "title": "Tabs",
     "name": "zolo/tabs",
     "category": "zoloblocks",
-    "keywords": ["tab", "tabs"],
+    "keywords": ["tab", "tabs", "section", "content", "accordion"],
     "description": "Add interactive tabs for organized content navigation.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

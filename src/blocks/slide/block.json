@@ -3,7 +3,7 @@
     "title": "Slide",
     "name": "zolo/slide",
     "category": "zoloblocks",
-    "keywords": ["Slide", "Slider", "Carousel"],
+    "keywords": ["Slide", "Slider", "Carousel", "Image", "Content"],
     "description": "Customize individual slides within the Slider block.",
     "apiVersion": 2,
     "textdomain": "zoloblocks",

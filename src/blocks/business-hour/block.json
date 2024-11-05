@@ -3,7 +3,7 @@
     "title": "Business Hours",
     "name": "zolo/business-hour",
     "category": "zoloblocks",
-    "keywords": ["business", "business hour", "hour"],
+    "keywords": ["business", "hour", "time", "schedule", "opening", "closing"],
     "description": "Display business hours with visually customizable options.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

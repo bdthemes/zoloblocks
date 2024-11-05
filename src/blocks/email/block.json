@@ -3,7 +3,7 @@
     "title": "Email",
     "name": "zolo/email",
     "category": "zoloblocks",
-    "keywords": ["zolo", "email", "mail"],
+    "keywords": ["zolo", "email", "mail", "contact", "newsletter"],
     "description": "Email input field for newsletter sign-ups or contacts.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

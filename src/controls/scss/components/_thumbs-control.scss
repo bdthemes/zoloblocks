@@ -1,17 +1,63 @@
-.zolo-thumbs-control{
+.zolo-thumbs-control {
     display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    &.zolo-thumbs-control-2{
-     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    &.zolo-thumbs-control-2 {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .zolo-thumbs-control-item{
+    .zolo-thumbs-control-item {
         display: inline-block;
-        margin-right: 10px;
         cursor: pointer;
-        &.zolo-thumbs-active{
-            border: 3px solid #0073aa;
+        border: 1px solid #ededed;
+        padding: 0 10px;
+        border-radius: 6px;
+        background: transparent;
+        height: 40px;
+        position: relative;
+        transition:
+            border 0.3s,
+            box-shadow 0.3s;
+        svg {
+            position: absolute;
+            right: 0;
+            path,
+            polygon {
+                fill: #3f8efc;
+            }
+        }
+        &:first-child {
+            span {
+                display: block;
+                font-size: 12px;
+                color: #3f3f48;
+            }
+        }
+        span {
+            display: none;
+        }
+        &.zolo-thumbs-active,
+        &:hover {
+            border-color: #3f8efc;
+            box-shadow: 0 0 0 1px #3f8efc;
+            span {
+                color: #3f8efc;
+            }
+        }
+    }
+}
+
+.zolo-shape-thumbs-top {
+    .zolo-thumbs-control-item {
+        svg {
+            top: 0;
+        }
+    }
+}
+.zolo-shape-thumbs-bottom {
+    .zolo-thumbs-control-item {
+        svg {
+            transform: rotate(180deg);
+            bottom: 0;
         }
     }
 }

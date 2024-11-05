@@ -42,7 +42,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                             {template?.demo_preview && (
                                                 <img src={template.demo_preview} alt={template?.title} loading="lazy" decoding="async" />
                                             )}
-                                            {/* 
+                                            {/*
                                             <>
                                                 {template?.status === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
                                                     <div className="demo-actions-btn-wrap">

@@ -315,7 +315,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-content{
             ${containerDeskBGHStyle}
 		}
-        
+
         ${
             preset === 'zb-brand-basic-style'
                 ? `.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover {
@@ -323,7 +323,7 @@ const Style = ({ props }) => {
 			    }`
                 : ''
         }
-        
+
 
 		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}

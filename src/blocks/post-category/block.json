@@ -3,7 +3,7 @@
     "title": "Post Category",
     "name": "zolo/post-category",
     "category": "zoloblocks",
-    "keywords": ["post", "post category", "category"],
+    "keywords": ["post", "category", "taxonomy", "filter", "navigation", "archive", "list"],
     "description": "Customize and organize post categories for easy navigation.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

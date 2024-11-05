@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, abutalib, muhammadasik
 Donate link: http://zoloblocks.com/
 Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
 Requires at least: 6.1
-Tested up to: 6.6.2
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -354,27 +354,31 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-Here’s the changelog reformatted to match your requested style:
+= 2.0.0 - 05-11-2024 =
 
----
+**New Features:**
+- Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
+- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
+- Featured Image Block: Added a block to display featured image to the single page
+- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
+- Post Navigation Block: Added a block to enable easy navigation between posts.
+- Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
 
-= 1.6.0 - 30-10-2024 =
+**Improvements:**
+- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
+- Video Controls: Improved the video block controls for smoother interactions and functionality.
+- Slider Block: Refined the Slider Block for improved performance and usability.
+- Template Library: Enhanced the organization and accessibility of templates within the library.
+- Range Control: Upgraded the range control for more precise and responsive adjustments.
+- CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
+- Background Controls: Background controls have been moved to a popover for a cleaner layout.
+- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
 
-* Added: Introduced a fully customizable navigation menu block.
-* Added: Added a block to display post metadata (e.g., author, date, and categories).
-* Added: Added a block to display interactive 3D Spline scenes.
-* Added: Added a block for easy navigation between posts.
-* Added: Introduced a customizable comments form block.
-* Added: Added a preset for creating brand grids.
-* Improved: Optimized the user interface for block controls for a better experience.
-* Improved: Enhanced video block controls for smoother interactions.
-* Improved: Refined the Slider Block for improved performance and usability.
-* Improved: Improved the organization and accessibility of templates in the library.
-* Improved: Upgraded the range control for more precise adjustments.
-* Improved: Enhanced filter controls for greater creative flexibility.
-* Improved: Moved background controls to a popover for a cleaner layout.
-* Fixed: Resolved an issue with image selection in the TextPath block.
-* Fixed: Addressed compatibility issues with Spectra blocks.
+**Fixes:**
+- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
+- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
+
 
 = 1.5.1 - 08-10-2024 =
 

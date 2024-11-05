@@ -8,7 +8,7 @@ const MegamenuAppenderButton = ({ rootClientId }) => {
     const container = createBlock('zolo/container', { variationStatus: true });
     return (
         <Button
-            className="zolo-nav-menu-item-appender-button"
+            className="zolo-navigation-item-appender-button"
             onClick={() => {
                 insertBlock(container, 0, rootClientId)
             }}

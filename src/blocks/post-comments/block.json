@@ -3,7 +3,7 @@
     "title": "Post Comments",
     "name": "zolo/post-comments",
     "category": "zoloblocks",
-    "keywords": ["post", "comments", "post comments", "post comments"],
+    "keywords": ["post", "comments", "comments", "discussion", "engagement", "interaction"],
     "description": "Enable custom comments for increased engagement on posts.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

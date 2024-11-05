@@ -3,7 +3,7 @@
     "title": "Team Child",
     "name": "zolo/team-child",
     "category": "zoloblocks",
-    "keywords": ["team", "team member"],
+    "keywords": ["team", "member", "avatar", "profile", "bio", "position", "social"],
     "description": "Add team members to the Team Grid layout.",
     "parent": ["zolo/team-grid"],
     "apiVersion": 3,

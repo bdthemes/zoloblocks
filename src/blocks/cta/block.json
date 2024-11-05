@@ -3,7 +3,7 @@
     "title": "Call to Action",
     "name": "zolo/cta",
     "category": "zoloblocks",
-    "keywords": ["button", "call to action", "cta"],
+    "keywords": ["button", "cta", "action", "link", "conversion", "call"],
     "description": "Design compelling CTAs to boost user engagement and conversions.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

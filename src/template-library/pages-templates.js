@@ -25,7 +25,7 @@ const PagesWrapper = ({ pages, title }) => {
                             console.log(panel);
                         }}
                     >
-                        {__('Back', 'zolo-blocks')}
+                        {__('Back', 'zoloblocks')}
                     </button>
                     <div className="zolo-inner-pages">
                         {pages &&

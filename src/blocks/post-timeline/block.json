@@ -3,7 +3,7 @@
     "title": "Post Timeline",
     "name": "zolo/post-timeline",
     "category": "zoloblocks",
-    "keywords": ["post", "post timeline", "timeline"],
+    "keywords": ["post", "timeline", "history", "content", "date", "event", "story", "chronology"],
     "description": "Visualize content history with customizable timelines.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
