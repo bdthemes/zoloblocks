@@ -160,6 +160,15 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/post-comments-form',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'post-navigation'        => [
+        'name'       => 'post-navigation',
+        'class'      => '\Zolo\Blocks\PostNavigation',
+        'title'      => __('Post Navigation', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'demo'       => 'https://demo.zoloblocks.com/post-navigation',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
     'flipbox' => [
         'name' => 'flipbox',
         'title' => __('Flipbox', 'zoloblocks'),
