@@ -114,9 +114,10 @@
 
     .photos-group {
         .single-page-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: none;
+            &:first-child {
+                display: block;
+            }
         }
     }
 }

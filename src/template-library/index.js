@@ -475,7 +475,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedFavTags = Object.keys(favTags)
                 .sort((a, b) => favTags[b] - favTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setFavTags(sortedFavTags);
         } else {
             setAllFavItems([]);
@@ -523,7 +523,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedPageTags = Object.keys(pageTags)
                 .sort((a, b) => pageTags[b] - pageTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setPageTags(sortedPageTags);
 
             // stop loading
@@ -572,7 +572,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedPatternTags = Object.keys(patternTags)
                 .sort((a, b) => patternTags[b] - patternTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setPatternTags(sortedPatternTags);
 
             // set all demos
@@ -598,9 +598,8 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedDemoTags = Object.keys(demoTags)
                 .sort((a, b) => demoTags[b] - demoTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setDemoTags(sortedDemoTags);
-
             // stop loading
             setLoading(false);
         });
