@@ -22,7 +22,6 @@ const PagesWrapper = ({ pages, title }) => {
                         onClick={() => {
                             setPanel(!panel);
 
-                            console.log(panel);
                         }}
                     >
                         {__('Back', 'zoloblocks')}
