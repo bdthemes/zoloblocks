@@ -1,325 +1,224 @@
-import { applyFilters } from '@wordpress/hooks';
+import {applyFilters} from '@wordpress/hooks';
 import {
-    TITLE_ALIGN,
-    TITLE_PADDING,
-    TITLE_MARGIN,
-    TITLE_BG,
-    TITLE_BORDER,
-    TITLE_BORDER_RADIUS,
-    TITLE_SHADOW,
-    TITLE_HOVER_BG,
-    TITLE_HOVER_BORDER,
-    TITLE_HOVER_BRADIUS,
-    TITLE_HOVER_SHADOW,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
+  //box
+  BOX_PADDING,
+  BOX_SEPARATOR_WIDTH,
+  BOX_MIN_HEIGHT,
+  BOX_MAX_WIDTH,
+  BOX_BORDER,
+  BOX_BORDER_RADIUS,
+  BOX_SHADOW,
+  //header
+  HEADER_BG,
+  HEADER_ICON_SIZE,
+  //list
+  LIST_MARKER_SIZE
 } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import {HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY} from './constants/typoPrefixConstant';
 
 const {
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
-    generateDimensionStyle,
-    generateNormalBGControlStyles,
-    generateBorderStyle,
-    generateBoxShadowStyles,
-    generateTypographyStyles,
-    GlobalStyleHanlder,
-    generateResAlignmentStyle,
+  generateTextShadowStyles,
+  generateTextStrokeStyles,
+  generateDimensionStyle,
+  generateNormalBGControlStyles,
+  generateBorderStyle,
+  generateBoxShadowStyles,
+  generateTypographyStyles,
+  GlobalStyleHanlder,
+  generateResAlignmentStyle,
+  generateResRangeStyle,
 } = window.zoloModule;
 
-function Style({ props }) {
-    const { attributes, setAttributes } = props;
-    const { uniqueId, titleColor, titleHoverColor, isLink } = attributes;
+function Style({props}) {
+  const {attributes, setAttributes} = props;
+  const {
+    uniqueId,
+    //box
+    boxBgColor,
+    boxSeparatorColor,
+    //header
+    headerColor,
+    headerIconColor,
+    //list
+    listColor,
+    listHoverColor,
+    listActiveColor,
+    listMarkerColor
+  } = attributes;
 
-    const {
-        desktopAlignStyle: titleAlignDesk,
-        tabAlignStyle: titleAlignTab,
-        mobAlignStyle: titleAlignMob,
-    } = generateResAlignmentStyle({
-        controlName: TITLE_ALIGN,
-        property: 'text-align',
-        attributes,
-    });
+  //box
+  const {
+    dimensionStylesDesktop: boxPaddingDesk,
+    dimensionStylesTab: boxPaddingTab,
+    dimensionStylesMobile: boxPaddingMob,
+  } = generateDimensionStyle({
+    controlName: BOX_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: boxSWidthDesk,
+    tabRangeStyle: boxSWidthTab,
+    mobRangeStyle: boxSWidthMob,
+  } = generateResRangeStyle({
+    controlName: BOX_SEPARATOR_WIDTH,
+    property: 'border-top-width',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: boxMaxWidthDesk,
+    tabRangeStyle: boxMaxWidthTab,
+    mobRangeStyle: boxMaxWidthMob,
+  } = generateResRangeStyle({
+    controlName: BOX_MAX_WIDTH,
+    property: 'max-width',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: boxMinHeightDesk,
+    tabRangeStyle: boxMinHeightTab,
+    mobRangeStyle: boxMinHeightMob,
+  } = generateResRangeStyle({
+    controlName: BOX_MIN_HEIGHT,
+    property: 'min-height',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: boxBorderDesk,
+    tabBorderStyle: boxBorderTab,
+    mobBorderStyle: boxBorderMob,
+  } = generateBorderStyle({
+    controlName: BOX_BORDER,
+    attributes,
+  });
 
-    const {
-        typoStylesDesktop: titleTypoDesk,
-        typoStylesTab: titleTypoTab,
-        typoStylesMobile: titleTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: TITLE_TYPOGRAPHY,
-        attributes,
-    });
+  const {
+    dimensionStylesDesktop: boxBorderRadiusDesk,
+    dimensionStylesTab: boxBorderRadiusTab,
+    dimensionStylesMobile: boxBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: BOX_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {boxShadowStyle: boxShadow} = generateBoxShadowStyles({
+    attributes,
+    controlName: BOX_SHADOW,
+  });
 
-    const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
-        attributes,
-        controlName: TITLE_TEXT_SHADOW,
-    });
 
-    const {
-        desktopTextStrokeStyle: titleTextStrokeStyle,
-        tabTextStrokeStyle: tabTitleTextStrokeStyle,
-        mobTextStrokeStyle: mobTitleTextStrokeStyle,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: TITLE_TEXT_STROKE,
-    });
+  //header
+  const {
+    typoStylesDesktop: headerTypoDesk,
+    typoStylesTab: headerTypoTab,
+    typoStylesMobile: headerTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: HEADER_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    backgroundStylesDesktop: headerBGDesk,
+    backgroundStylesTab: headerBGTab,
+    backgroundStylesMobile: headerBGMob,
+  } = generateNormalBGControlStyles({
+    controlName: HEADER_BG,
+    attributes,
+    noMainBGImg: true,
+  });
+  const {
+    desktopRangeStyle: headerIconSizeDesk,
+    tabRangeStyle: headerIconSizeTab,
+    mobRangeStyle: headerIconSizeMob,
+  } = generateResRangeStyle({
+    controlName: HEADER_ICON_SIZE,
+    property: 'font-size',
+    attributes,
+  });
+  //list
+  const {
+    typoStylesDesktop: listTypoDesk,
+    typoStylesTab: listTypoTab,
+    typoStylesMobile: listTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: LIST_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    desktopRangeStyle: listMarkerSizeDesk,
+    tabRangeStyle: listMarkerSizeTab,
+    mobRangeStyle: listMarkerSizeMob,
+  } = generateResRangeStyle({
+    controlName: LIST_MARKER_SIZE,
+    property: 'font-size',
+    attributes,
+  });
 
-    const {
-        dimensionStylesDesktop: titlePaddingDesk,
-        dimensionStylesTab: titlePaddingTab,
-        dimensionStylesMobile: titlePaddingMob,
-    } = generateDimensionStyle({
-        controlName: TITLE_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
 
-    const {
-        dimensionStylesDesktop: titleMarginDesk,
-        dimensionStylesTab: titleMarginTab,
-        dimensionStylesMobile: titleMarginMob,
-    } = generateDimensionStyle({
-        controlName: TITLE_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        backgroundStylesDesktop: titleBGDesk,
-        backgroundStylesTab: titleBGTab,
-        backgroundStylesMobile: titleBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: TITLE_BG,
-        attributes,
-        noMainBGImg: true,
-    });
-    const {
-        desktopBorderStyle: titleBorderDesk,
-        tabBorderStyle: titleBorderTab,
-        mobBorderStyle: titleBorderMob,
-    } = generateBorderStyle({
-        controlName: TITLE_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: titleBorderRadiusDesk,
-        dimensionStylesTab: titleBorderRadiusTab,
-        dimensionStylesMobile: titleBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: TITLE_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-    const { boxShadowStyle: titleBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: TITLE_SHADOW,
-    });
-
-    const {
-        backgroundStylesDesktop: titleHoverBGDesk,
-        backgroundStylesTab: titleHoverBGTab,
-        backgroundStylesMobile: titleHoverBGMob,
-    } = generateNormalBGControlStyles({
-        controlName: TITLE_HOVER_BG,
-        attributes,
-        noMainBGImg: true,
-    });
-    const {
-        desktopBorderStyle: titleHoverBorderDesk,
-        tabBorderStyle: titleHoverBorderTab,
-        mobBorderStyle: titleHoverBorderMob,
-    } = generateBorderStyle({
-        controlName: TITLE_HOVER_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: titleHoverBRadiusDesk,
-        dimensionStylesTab: titleHoverBRadiusTab,
-        dimensionStylesMobile: titleHoverBRadiusMob,
-    } = generateDimensionStyle({
-        controlName: TITLE_HOVER_BRADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-    const { boxShadowStyle: titleHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: TITLE_HOVER_SHADOW,
-    });
-
-    /**
-     * All Style Combination
-     */
-    const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-          ${titleAlignDesk}
-          ${titleMarginDesk}
-        }
-        ${
-            !isLink
-                ? `
-                    .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-                      ${titlePaddingDesk}
-                      ${titleBGDesk}
-                      ${titleBorderDesk}
-                      ${titleBorderRadiusDesk}
-                      ${titleBoxShadow}
-                      ${titleTypoDesk}
-                      ${titleColor ? `color:${titleColor};` : ''}
-                      ${titleTextShadowStyle}
-                      ${titleTextStrokeStyle}
-                    }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block:hover{
-                    ${titleHoverBGDesk}
-                    ${titleHoverBorderDesk}
-                    ${titleHoverBRadiusDesk}
-                    ${titleHoverBoxShadow}
-                    ${titleHoverColor ? `color:${titleHoverColor};` : ''}
-                  }
-                  `
-                : ''
-        }
-
-        ${
-            isLink
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a{
-                    ${titlePaddingDesk}
-                    ${titleBGDesk}
-                    ${titleBorderDesk}
-                    ${titleBorderRadiusDesk}
-                    ${titleBoxShadow}
-                    ${titleTypoDesk}
-                    ${titleColor ? `color:${titleColor};` : ''}
-                    ${titleTextShadowStyle}
-                    ${titleTextStrokeStyle}
-                   }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a:hover{
-                    ${titleHoverBGDesk}
-                    ${titleHoverBorderDesk}
-                    ${titleHoverBRadiusDesk}
-                    ${titleHoverBoxShadow}
-                    ${titleHoverColor ? `color:${titleHoverColor};` : ''}
-                  }
-              `
-                : ''
-        }
-    `;
-
-    const tabletAllStyle = `
-
-        .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-          ${titleAlignTab}
-          ${titleMarginTab}
-        }
-
-        ${
-            !isLink
-                ? `
-                    .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-                      ${titleTypoTab}
-                      ${titlePaddingTab}
-                      ${titleBGTab}
-                      ${titleBorderTab}
-                      ${titleBorderRadiusTab}
-                      ${tabTitleTextStrokeStyle}
-                    }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block:hover{
-                      ${titleHoverBGTab}
-                      ${titleHoverBorderTab}
-                      ${titleHoverBRadiusTab}
-                  }
-                  `
-                : ''
-        }
-
-        ${
-            isLink
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a{
-                      ${titleTypoTab}
-                      ${titlePaddingTab}
-                      ${titleBGTab}
-                      ${titleBorderTab}
-                      ${titleBorderRadiusTab}
-                      ${tabTitleTextStrokeStyle}
-                   }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a:hover{
-                      ${titleHoverBGTab}
-                      ${titleHoverBorderTab}
-                      ${titleHoverBRadiusTab}
-                  }
-              `
-                : ''
-        }
-    `;
-
-    const mobileAllStyle = `
-        .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-          ${titleAlignMob}
-          ${titleMarginMob}
-        }
-        ${
-            !isLink
-                ? `
-                    .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-                      ${titleTypoMob}
-                      ${titlePaddingMob}
-                      ${titleBGMob}
-                      ${titleBorderMob}
-                      ${titleBorderRadiusMob}
-                      ${mobTitleTextStrokeStyle}
-                    }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block:hover{
-                      ${titleHoverBGMob}
-                      ${titleHoverBorderMob}
-                      ${titleHoverBRadiusMob}
-                  }
-                  `
-                : ''
-        }
-
-        ${
-            isLink
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a{
-                      ${titleTypoMob}
-                      ${titlePaddingMob}
-                      ${titleBGMob}
-                      ${titleBorderMob}
-                      ${titleBorderRadiusMob}
-                      ${mobTitleTextStrokeStyle}
-                   }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a:hover{
-                      ${titleHoverBGMob}
-                      ${titleHoverBorderMob}
-                      ${titleHoverBRadiusMob}
-                  }
-              `
-                : ''
-        }
+  /**
+   * All Style Combination
+   */
+  const desktopAllStyle = `
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block{
+      ${boxMaxWidthDesk}
+      ${boxMinHeightDesk}
+      ${boxBorderDesk}
+      ${boxBorderRadiusDesk}
+      ${boxShadow}
+      ${boxBgColor ? `background-color:${boxBgColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-heading,
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content{
+     ${boxPaddingDesk}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content{
+      ${boxSWidthDesk}
+      ${boxSeparatorColor ? `border-top-color:${boxSeparatorColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
+      ${headerBGDesk}
+      ${headerTypoDesk}
+      ${headerColor ? `color:${headerColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading svg{
+      ${headerIconSizeDesk}
+      ${headerIconColor ? `fill:${headerIconColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list a{
+     ${listTypoDesk}
+     ${listColor ? `color:${listColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list a:hover{
+      ${listHoverColor ? `color:${listHoverColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li.active> a{
+     ${listActiveColor ? `color:${listActiveColor};` : ''}
+    }
+   .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
+     ${listMarkerColor ? `color:${listMarkerColor};` : ''}
+     ${listMarkerSizeDesk}
+   }
   `;
 
-    return (
-        <>
-            <GlobalStyleHanlder
-                attributes={attributes}
-                setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.tableOfContent.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.tableOfContent.tabAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.tableOfContent.mobileAllStyle', mobileAllStyle, props)}
-            />
-        </>
-    );
+  const tabletAllStyle = `
+
+    `;
+
+  const mobileAllStyle = `
+
+  `;
+
+  return (
+    <>
+      <GlobalStyleHanlder
+        attributes={attributes}
+        setAttributes={setAttributes}
+        desktopAllStyle={applyFilters('zolo.tableOfContent.desktopAllStyle', desktopAllStyle, props)}
+        tabAllStyle={applyFilters('zolo.tableOfContent.tabAllStyle', tabletAllStyle, props)}
+        mobileAllStyle={applyFilters('zolo.tableOfContent.mobileAllStyle', mobileAllStyle, props)}
+      />
+    </>
+  );
 }
 
 export default Style;

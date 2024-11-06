@@ -3,8 +3,14 @@ import {
   isCoreHeading,
   isZoloBlocksAHeading,
   isEbHeading,
+  isGutenverseHeading,
+  isKadenceHeading,
+  isQubelyHeading,
+  isStackableHeading,
+  isStackableHeader,
+  isOtterHeading,
   parseTocSlug,
-  supportedHeaders
+  supportedHeaders, isGutenKitHeading,
 } from "@/blocks/table-of-content/helper";
 
 function getArrayFromBlocks(headerBlocks) {
@@ -13,8 +19,7 @@ function getArrayFromBlocks(headerBlocks) {
   if (headerBlocks.length > 0) {
     headerBlocks.forEach((block) => {
       let header = {};
-
-      if (isCoreHeading(block)) {
+      if (isCoreHeading(block) || isKadenceHeading(block) || isQubelyHeading(block)) {
         header = {
           level: parseInt(block.attributes.level),
           content: block.attributes.content,
@@ -31,6 +36,38 @@ function getArrayFromBlocks(headerBlocks) {
           level: parseInt(block.attributes.tagName[1]),
           content: block.attributes.content,
           anchor: parseTocSlug(block.attributes.content)
+        };
+      } else if (isGutenverseHeading(block)) {
+        header = {
+          level: parseInt(block.attributes.titleTag[1]),
+          content: block.attributes.text + ' ' + block.attributes.focusText,
+          anchor: parseTocSlug(block.attributes.text + block.attributes.focusText)
+        };
+      }else if(isGutenKitHeading(block)){
+        header = {
+          level: parseInt(block.attributes.htmlTag[1]),
+          content: block.attributes.content,
+          anchor: parseTocSlug(block.attributes.content)
+        };
+      } else if (isStackableHeader(block)) {
+        if (block.attributes.showTitle) {
+          header = {
+            level: parseInt(block.attributes.titleTag[1]),
+            content: block.attributes.title,
+            anchor: parseTocSlug(block.attributes.title),
+          };
+        }
+      } else if (isStackableHeading(block)) {
+        header = {
+          level: parseInt(block.attributes.titleTag[1]),
+          content: block.attributes.title,
+          anchor: parseTocSlug(block.attributes.title),
+        };
+      } else if (isOtterHeading(block)) {
+        header = {
+          level: parseInt(block.attributes.tag[1]),
+          content: block.attributes.content,
+          anchor: parseTocSlug(block.attributes.content),
         };
       }
       headerList.push(header);

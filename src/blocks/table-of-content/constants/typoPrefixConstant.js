@@ -1,3 +1,4 @@
-export const TITLE_TYPOGRAPHY = 'titleTypo';
+export const HEADER_TYPOGRAPHY = 'headerTypo';
+export const LIST_TYPOGRAPHY = 'listTypo';
 
 

@@ -12,22 +12,21 @@ const {
   generateNormalBGAttributes,
   generateTypographyAttributes,
   generateResAlignmentAttributies,
+  generateResRangeAttributies,
 } = window.zoloModule;
 
 import {
-  TITLE_ALIGN,
-  TITLE_PADDING,
-  TITLE_MARGIN,
-  TITLE_BG,
-  TITLE_BORDER,
-  TITLE_BORDER_RADIUS,
-  TITLE_SHADOW,
-  TITLE_HOVER_BG,
-  TITLE_HOVER_BORDER,
-  TITLE_HOVER_BRADIUS,
-  TITLE_HOVER_SHADOW,
-  TITLE_TEXT_SHADOW,
-  TITLE_TEXT_STROKE,
+  //box
+  BOX_PADDING,
+  BOX_SEPARATOR_WIDTH,
+  BOX_MIN_HEIGHT,
+  BOX_MAX_WIDTH,
+  BOX_BORDER,
+  BOX_BORDER_RADIUS,
+  BOX_SHADOW,
+  //header
+  HEADER_BG,
+  HEADER_ICON_SIZE
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -116,19 +115,30 @@ const attributes = {
   },
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-  ...generateResAlignmentAttributies(TITLE_ALIGN),
-  ...generateDimensionAttributes(TITLE_PADDING),
-  ...generateDimensionAttributes(TITLE_MARGIN),
-  ...generateNormalBGAttributes(TITLE_BG),
-  ...generateBorderAttributies(TITLE_BORDER),
-  ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(TITLE_SHADOW),
-  ...generateNormalBGAttributes(TITLE_HOVER_BG),
-  ...generateBorderAttributies(TITLE_HOVER_BORDER),
-  ...generateDimensionAttributes(TITLE_HOVER_BRADIUS),
-  ...generateBoxShadowAttributies(TITLE_HOVER_SHADOW),
-  ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
-  ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+  //box
+  ...generateDimensionAttributes(BOX_PADDING),
+  ...generateResRangeAttributies(BOX_SEPARATOR_WIDTH),
+  ...generateResRangeAttributies(BOX_MIN_HEIGHT),
+  ...generateResRangeAttributies(BOX_MAX_WIDTH),
+  ...generateBorderAttributies(BOX_BORDER),
+  ...generateDimensionAttributes(BOX_BORDER_RADIUS),
+  ...generateBoxShadowAttributies(BOX_SHADOW),
+  //header
+
+  ...generateNormalBGAttributes(HEADER_BG),
+  ...generateResRangeAttributies(HEADER_ICON_SIZE),
+  boxBgColor: {
+    type: 'string'
+  },
+  boxSeparatorColor: {
+    type: 'string'
+  },
+  headerColor: {
+    type: 'string'
+  },
+  headerIconColor: {
+    type: 'string'
+  },
 };
 
 export default attributes;

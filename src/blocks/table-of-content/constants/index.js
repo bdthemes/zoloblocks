@@ -16,16 +16,18 @@ export const STICKY_POSITION = [
   {label: __('Left', 'zoloblocks'), value: 'left'},
   {label: __('Right', 'zoloblocks'), value: 'right'}
 ]
-export const TITLE_ALIGN = 'titleAlign';
-export const TITLE_PADDING = 'titlePadding';
-export const TITLE_MARGIN = 'titleMargin';
-export const TITLE_BG = 'titleBg';
-export const TITLE_BORDER = 'titleBorder';
-export const TITLE_BORDER_RADIUS = 'titleBRadius';
-export const TITLE_SHADOW = 'titleShadow';
-export const TITLE_HOVER_BG = 'titleHBg';
-export const TITLE_HOVER_BORDER = 'titleHBorder';
-export const TITLE_HOVER_BRADIUS = 'titleHBRadius';
-export const TITLE_HOVER_SHADOW = 'titleHShadow';
-export const TITLE_TEXT_SHADOW = 'titleTextShadow';
-export const TITLE_TEXT_STROKE = 'titleTextStroke';
+//box
+export const BOX_PADDING = 'boxPadding';
+export const BOX_SEPARATOR_WIDTH = 'boxSWidth';
+export const BOX_MIN_HEIGHT = 'boxMHeight';
+export const BOX_MAX_WIDTH = 'boxMWidth';
+export const BOX_BORDER = 'boxBorder';
+export const BOX_BORDER_RADIUS = 'boxBRadius';
+export const BOX_SHADOW = 'boxShadow';
+//header
+export const HEADER_BG = 'headerBg';
+export const HEADER_ICON_SIZE = 'headerIconSize';
+//list
+export const LIST_MARKER_SIZE = 'headerIconSize';
+
+
