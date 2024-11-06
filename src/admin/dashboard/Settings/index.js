@@ -5,7 +5,6 @@ import { useState, useEffect, useCallback } from '@wordpress/element';
 import { ToggleControl, SelectControl, Button, Modal } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 const { zoloBlocks } = window;
-
 const Settings = () => {
     const [notice, setNotice] = useState(false);
     const [editorWidth, setEditorWidth] = useState(1200);
@@ -477,7 +476,7 @@ const Settings = () => {
                         </div>
                         <div className="zolo-modal-body">
                             <iframe
-                                src={`/wp-admin/post-new.php?post_type=page&template=${maintenanceModeTemplate}`}
+                                src={`${zoloBlocks?.site_url}/wp-admin/post-new.php?post_type=page`}
                                 className="zolo-modal-iframe"
                             ></iframe>
                         </div>
