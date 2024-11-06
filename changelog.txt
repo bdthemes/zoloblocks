@@ -1,4 +1,4 @@
-### 2.0.0 [November 05, 2024]
+### 2.0.0 [November 06, 2024]
 
 #### New Features
 - Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.

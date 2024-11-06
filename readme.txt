@@ -354,7 +354,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-= 2.0.0 - 05-11-2024 =
+= 2.0.0 - 06-11-2024 =
 
 **New Features:**
 - Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
