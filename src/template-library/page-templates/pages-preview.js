@@ -3,7 +3,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ProPopup from '../pro-popup';
 
-const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTemplate, favIds, handleFavTemplate }) => {
+const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTemplate, favIds, handleFavTemplate, templateName }) => {
     const [activePage, setActivePage] = useState(0);
     return (
         <>
@@ -30,7 +30,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                             </svg>
                             {__('Back', 'zoloblocks')}
                         </button>
-                        <h2>{__('Pages', 'zoloblocks')}</h2>
+                        <h2>{templateName ? templateName : __('Pages Preview', 'zoloblocks')}</h2>
                     </div>
                     <div className="zolo-demos-wrapper">
                         {templates &&
