@@ -3,7 +3,7 @@
     "title": "Form",
     "name": "zolo/form",
     "category": "zoloblocks",
-    "keywords": ["form", "zolo"],
+    "keywords": ["form", "input", "field", "data", "collection", "survey"],
     "description": "Create dynamic forms with customizable fields for data collection.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

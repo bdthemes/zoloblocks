@@ -3,7 +3,7 @@
     "title": "Fancy list Child",
     "name": "zolo/fancy-list-child",
     "category": "zoloblocks",
-    "keywords": ["fancy", "fancy list"],
+    "keywords": ["fancy", "list", "feature", "service", "icon", "image"],
     "description": "Add items to Fancy List for cohesive presentation.",
     "apiVersion": 3,
     "parent": ["zolo/fancy-list"],

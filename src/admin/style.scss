@@ -76,6 +76,53 @@
             padding-left: 60px;
         }
     }
+
+    // site visibility create a new page modal css here
+    .zolo-maintenance-modal {
+        &.zolo-sv-create-new-page-modal {
+            max-width: 100%;
+            height: 100%;
+            max-height: 100%;
+            --zolo-modal-header-height: 70px;
+            .components-modal__content {
+                padding: 0;
+            }
+            .zolo-modal-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #f0f0f0;
+                padding: 20px;
+                z-index: 99;
+                position: relative;
+                height: var(--zolo-modal-header-height);
+                .zolo-modal-head-title {
+                    margin: 0;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+                .zolo-modal-close {
+                    cursor: pointer;
+                    padding: 10px;
+                    color: #000000;
+                    transition: color 0.3s ease;
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                        display: block;
+                    }
+                    &:hover {
+                        color: #f00;
+                    }
+                }
+            }
+            .zolo-modal-iframe {
+                height: calc(100vh - var(--zolo-modal-header-height));
+                width: 100%;
+                border: 0;
+            }
+        }
+    }
 }
 
 .zolo-dashboard-container {
@@ -434,6 +481,15 @@ input.zoloblocks-search,
     }
 }
 
+.zolo-single-block {
+    .block-icon {
+        svg {
+            path {
+                fill: var(--zolo-dashboard-brand-color);
+            }
+        }
+    }
+}
 .zolo-single-block.active {
     .block-icon {
         background-color: #e4ecff;
@@ -1042,6 +1098,80 @@ input.zoloblocks-search {
         }
         .zolo-search-bar {
             position: relative;
+        }
+    }
+}
+
+// zolo pro modal css start
+.zolo-pro-modal {
+    min-width: 450px;
+    border-radius: 6px;
+    box-shadow: none;
+
+    .components-modal__content {
+        padding: 40px;
+        margin: 0;
+        text-align: center;
+    }
+    .components-modal__header {
+        padding: 0;
+        margin: 0;
+        height: auto;
+        margin: 10px;
+        width: auto;
+        right: 0;
+        left: unset;
+        .components-button {
+            padding: 0;
+            min-width: none;
+            margin: 0;
+            left: 0;
+            svg {
+                color: #a3a7b1;
+            }
+            &:hover {
+                svg {
+                    color: #f00;
+                }
+            }
+        }
+    }
+    .zolo-pro-modal-desc {
+        margin: 10px 0 30px;
+        font-size: 18px;
+        color: #4e4e55;
+        max-width: 430px;
+    }
+
+    .zolo-pro-modal-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .zolo-pro-modal-btn {
+        text-decoration: none;
+        background-color: #ffe9e9;
+        padding: 12px 20px;
+        display: inline-block;
+        color: #f00;
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 6px;
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+        &:focus {
+            outline: 2px solid rgba(255, 156, 156, 0.98) !important;
+        }
+        &:hover {
+            background-color: #f00;
+            color: #fff;
         }
     }
 }

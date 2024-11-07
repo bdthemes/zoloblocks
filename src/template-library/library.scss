@@ -415,6 +415,7 @@
         box-sizing: border-box;
         min-height: 100vh;
         position: relative;
+        overflow-x: hidden;
 
         .zolo-templates {
             display: flex;
@@ -459,9 +460,10 @@
             .demo-preview {
                 &::before {
                     opacity: 1;
+                    height: 100%;
                 }
                 img {
-                    transform: scale(1.05);
+                    transform: scale(1.03);
                 }
             }
             .demo-btn {
@@ -488,7 +490,7 @@
     }
 
     .demo-preview {
-        border-bottom: 1px solid #f4f4f4;
+        // border-bottom: 1px solid #f4f4f4;
         position: relative;
         overflow: hidden;
         min-height: 160px;
@@ -498,13 +500,15 @@
         &::before {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(45, 49, 67, 0.48);
+            height: 0;
+            background: linear-gradient(360deg, rgba(13, 18, 30, 0.67), transparent);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition:
+                opacity 0.3s,
+                height 0.3s;
             z-index: 1;
         }
         img {
@@ -513,6 +517,7 @@
             // object-fit: cover;
             vertical-align: middle;
             transition: transform 0.3s;
+            // mask-image: linear-gradient(to top, #ffffff00 0%, #000000 40%);
         }
         .image-overlay-content {
             position: absolute;
@@ -597,6 +602,11 @@
 
     .demo-footer {
         padding: 20px;
+        // position: absolute;
+        // bottom: 0;
+        // left: 0;
+        // right: 0;
+        // z-index: 99;
         .footer-left {
             display: flex;
             align-items: center;
@@ -609,7 +619,7 @@
         margin: 0;
         font-size: 16px;
         font-weight: 500;
-        color: #44444a;
+        color: #232329;
         transition: color 0.3s;
     }
 
@@ -699,7 +709,7 @@
     .secondary-header-item {
         display: none;
         align-items: center;
-        justify-content: space-between;
+        // justify-content: space-between;
         margin: 30px;
         gap: 20px;
         background-color: #fff;
@@ -707,8 +717,12 @@
         padding: 20px;
         border-radius: 6px;
         flex-direction: row;
+        overflow: hidden;
 
         .secondary-item {
+            &.zolo-tp-tags-item {
+                width: 100%;
+            }
             .components-base-control__field {
                 margin: 0;
             }
@@ -758,13 +772,16 @@
         .tags-wrap {
             display: flex;
             gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            justify-content: space-between;
             .tags-btn-wrap {
                 display: flex;
                 align-items: center;
                 gap: 4px;
-                mask-image: linear-gradient(to right, #000 50%, rgba(0, 0, 0, 0.078) 100%);
+                mask-image: linear-gradient(to right, #000 80%, rgba(0, 0, 0, 0.078) 100%);
                 flex-wrap: nowrap;
-                width: 350px;
+                max-width: 700px;
                 overflow: hidden;
             }
             .single-tag {
@@ -858,7 +875,6 @@
 }
 
 // zolo pro modal css start
-
 .zolo-pro-modal {
     min-width: 450px;
     border-radius: 6px;
@@ -870,20 +886,26 @@
         text-align: center;
     }
     .components-modal__header {
-        padding: 0;
-        margin: 0;
-        height: auto;
-        margin: 10px;
-        width: auto;
+        position: absolute;
+        top: 0;
         right: 0;
         left: unset;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        height: auto;
         .components-button {
-            padding: 0;
-            min-width: none;
+            padding: 20px !important;
+            min-width: unset !important;
             margin: 0;
             left: 0;
+            width: unset !important;
+            height: unset;
             svg {
                 color: #a3a7b1;
+                width: 20px;
+                height: 20px;
+                display: block;
             }
             &:hover {
                 svg {
@@ -999,10 +1021,13 @@
                     .components-input-control__label {
                         display: block;
                     }
+                    .components-base-control__label {
+                        min-width: max-content;
+                    }
                 }
                 .tags-wrap {
                     .tags-btn-wrap {
-                        width: 700px;
+                        max-width: 100%;
                     }
                 }
             }

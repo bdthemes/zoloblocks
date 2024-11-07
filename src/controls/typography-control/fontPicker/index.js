@@ -1,9 +1,9 @@
 /**
  * WordPress dependencies
  */
-import { BaseControl } from '@wordpress/components';
+import { BaseControl, Tooltip } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
-
+import { __ } from '@wordpress/i18n';
 import WebFont from 'webfontloader';
 
 /**
@@ -43,6 +43,7 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
     });
 
     const allFonts = zoloAvailableFonts.concat(fonts);
+    const fontExists = allFonts.some((font) => font.label === value);
 
     const onChangeValue = (select) => {
         let selectedFont = select.label;
@@ -72,16 +73,33 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
 
     return (
         <BaseControl label={label} id={id} help={help} className={className}>
-            <Select2
-                name="zb-select-font"
-                classNamePrefix="zolo"
-                value={{
-                    value: (value || '').replace(/\s+/g, '-'),
-                    label: value,
-                }}
-                onChange={onChangeValue}
-                options={allFonts}
-            />
+            {fontExists ? (
+                <Select2
+                    name="zb-select-font"
+                    classNamePrefix="zolo"
+                    value={{
+                        value: (value || '').replace(/\s+/g, '-'),
+                        label: value,
+                    }}
+                    onChange={onChangeValue}
+                    options={allFonts}
+                />
+            ): (
+                <Tooltip text={__('The selected font is not available in the theme. Please add it from the theme settings.', 'zoloblocks')}>
+                    <span className="zolo-tooltip-icon zolo-font-missing">
+                        <Select2
+                            name="zb-select-font"
+                            classNamePrefix="zolo"
+                            value={{
+                                value: (value || '').replace(/\s+/g, '-'),
+                                label: value,
+                            }}
+                            onChange={onChangeValue}
+                            options={allFonts}
+                        />
+                    </span>
+                </Tooltip>
+            )}
         </BaseControl>
     );
 };

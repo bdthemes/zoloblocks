@@ -4,7 +4,7 @@
     "title": "Popup Builder",
     "name": "zolo/popup-builder",
     "category": "zoloblocks",
-    "keywords": ["Popup Builder"],
+    "keywords": ["Popup", "Modal", "Lightbox", "Promotion", "Lead", "Form", "builder", "subscribe"],
     "description": "Build customized popups for leads or promotional announcements.",
     "textdomain": "zoloblocks",
     "example": {

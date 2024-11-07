@@ -416,11 +416,11 @@ export const FLEX_ALIGNS = [
         label: 'Stretch',
         value: 'stretch',
         icon: (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.86999 15.69L7.87 8.88" stroke="#4D4D4D" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M4.03003 3.96997L4.03003 20.51" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M20.51 3.96997L20.51 20.51" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M16.67 15.69L16.67 8.88" stroke="#4D4D4D" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+                <path d="M8.00001 15.27L16.39 15.27" stroke="#4D4D4D" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8.00001 9.27002L16.39 9.27002" stroke="#4D4D4D" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M20.51 4.03003L3.97001 4.03003" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M20.51 20.51L3.97001 20.51" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
     },
@@ -738,7 +738,7 @@ export const BACKGROUND_TYPES = [
         label: __('Gradient', 'zoloblocks'),
         value: 'gradient',
         icon: 'art',
-    }
+    },
 ];
 
 export const BOX_SHADOW_TYPES = [
@@ -1031,14 +1031,14 @@ export const CONTENT_WIDTH_TYPES = [
 ];
 
 export const OVERFLOWS = [
+    { label: __('Default', 'zoloblocks'), value: 'visible' },
     { label: __('Auto', 'zoloblocks'), value: 'auto' },
-    { label: __('Visible', 'zoloblocks'), value: 'visible' },
     { label: __('Hidden', 'zoloblocks'), value: 'hidden' },
     { label: __('Scroll', 'zoloblocks'), value: 'scroll' },
     { label: __('Clip', 'zoloblocks'), value: 'clip' },
 ];
 export const CONTENT_POSITIONS = [
-    { label: __('Select Position', 'zoloblocks'), value: '' },
+    { label: __('Default', 'zoloblocks'), value: '' },
     { label: __('Relative', 'zoloblocks'), value: 'relative' },
     { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
     { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
@@ -1271,15 +1271,15 @@ export const INCLUDE_BY = [
     { label: __('Terms', 'zoloblocks'), value: 'terms' },
 ];
 
-export const EXCLUDE_BY=[
-  {value:'authors'         , label: __('Authors', 'zoloblocks')},
-  {value:'current_post'    , label: __('Current Post', 'zoloblocks')},
-  {value:'manual_selection', label: __('Manual Selection', 'zoloblocks')},
-  {value:'terms'           , label: __('Terms', 'zoloblocks')},
-]
-export const PAGINARION_TYPE=[
-  {label:  __('Default Pagination','zoloblocks'), value: 'normal'},
-  {label: __('Ajax Pagination','zoloblocks'), value: 'number'},
-  {label: __('Load More-Click','zoloblocks'), value: 'button'},
-  {label: __('Load More-Scroll','zoloblocks'), value: 'scroll'}
-]
+export const EXCLUDE_BY = [
+    { value: 'authors', label: __('Authors', 'zoloblocks') },
+    { value: 'current_post', label: __('Current Post', 'zoloblocks') },
+    { value: 'manual_selection', label: __('Manual Selection', 'zoloblocks') },
+    { value: 'terms', label: __('Terms', 'zoloblocks') },
+];
+export const PAGINARION_TYPE = [
+    { label: __('Default Pagination', 'zoloblocks'), value: 'normal' },
+    { label: __('Ajax Pagination', 'zoloblocks'), value: 'number' },
+    { label: __('Load More-Click', 'zoloblocks'), value: 'button' },
+    { label: __('Load More-Scroll', 'zoloblocks'), value: 'scroll' },
+];

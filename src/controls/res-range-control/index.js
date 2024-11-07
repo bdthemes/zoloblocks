@@ -1,19 +1,36 @@
-import { RangeControl, Button, __experimentalNumberControl as NumberControl } from '@wordpress/components';
-import UnitBtn from '../unit-btn';
+import { __experimentalNumberControl as NumberControl, RangeControl } from '@wordpress/components';
 // import WithResDeviceBtn from './res-device-btn';
 
-import WithResDeviceBtn from '../with-res-device-btn';
-import UnitsBtn from '../units-btn';
-import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
+import ResetBtn from '../reset-btn';
+import UnitsBtn from '../units-btn';
+import WithResDeviceBtn from '../with-res-device-btn';
 
-const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, min, max, step, noUnits }) => {
+const ResRangeControl = ({
+    label,
+    help = '',
+    controlName,
+    units,
+    requiredProps,
+    min,
+    max,
+    step,
+    noUnits,
+    object = false,
+    objectName = '',
+}) => {
     const { attributes, setAttributes, resMode } = requiredProps;
-    const {
-        [`${prefix}${controlName}Range`]: desktopRange,
-        [`${prefix}TAB${controlName}Range`]: tabRange,
-        [`${prefix}MOB${controlName}Range`]: mobRange,
-    } = attributes;
+    // const {
+    //     [`${prefix}${controlName}Range`]: desktopRange,
+    //     [`${prefix}TAB${controlName}Range`]: tabRange,
+    //     [`${prefix}MOB${controlName}Range`]: mobRange,
+    // } = attributes;
+
+    const desktopRange = object ? attributes?.[objectName][`${prefix}${controlName}Range`] : attributes?.[`${prefix}${controlName}Range`];
+    const tabRange = object ? attributes?.[objectName][`${prefix}TAB${controlName}Range`] : attributes?.[`${prefix}TAB${controlName}Range`];
+    const mobRange = object ? attributes?.[objectName][`${prefix}MOB${controlName}Range`] : attributes?.[`${prefix}MOB${controlName}Range`];
+
+    // const { testObject } = attributes;
 
     let sizeUnit;
     let TABsizeUnit;
@@ -21,9 +38,14 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
     let defaultUnits;
 
     if (!noUnits) {
-        sizeUnit = attributes[`${prefix}${controlName}Unit`];
-        TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
-        MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
+        // sizeUnit = attributes[`${prefix}${controlName}Unit`];
+        // TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
+        // MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
+
+        sizeUnit = object ? attributes?.[objectName][`${prefix}${controlName}Unit`] : attributes?.[`${prefix}${controlName}Unit`];
+        TABsizeUnit = object ? attributes?.[objectName][`${prefix}TAB${controlName}Unit`] : attributes?.[`${prefix}TAB${controlName}Unit`];
+        MOBsizeUnit = object ? attributes?.[objectName][`${prefix}MOB${controlName}Unit`] : attributes?.[`${prefix}MOB${controlName}Unit`];
+
         defaultUnits = [
             { label: 'px', value: 'px' },
             { label: 'em', value: 'em' },
@@ -43,9 +65,17 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
-                                            setAttributes({
-                                                [`${prefix}${controlName}Range`]: '',
-                                            });
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}${controlName}Range`]: '',
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}${controlName}Range`]: '' });
+                                            }
                                         }}
                                     />
                                 )}
@@ -55,11 +85,19 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
                                         value={desktopRange}
-                                        onChange={(val) =>
-                                            setAttributes({
-                                                [`${prefix}${controlName}Range`]: val,
-                                            })
-                                        }
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}${controlName}Range`]: val,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}${controlName}Range`]: val });
+                                            }
+                                        }}
                                         min={min || 0}
                                         max={sizeUnit === '%' ? 100 : max || 100}
                                         step={step || 1}
@@ -67,11 +105,19 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     />
                                     <NumberControl
                                         value={desktopRange}
-                                        onChange={(val) =>
-                                            setAttributes({
-                                                [`${prefix}${controlName}Range`]: Number(val) || undefined,
-                                            })
-                                        }
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) || undefined });
+                                            }
+                                        }}
                                     />
                                 </div>
                             </WithResDeviceBtn>
@@ -84,9 +130,17 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
-                                            setAttributes({
-                                                [`${prefix}TAB${controlName}Range`]: '',
-                                            });
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}TAB${controlName}Range`]: '',
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: '' });
+                                            }
                                         }}
                                     />
                                 )}
@@ -95,11 +149,19 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
                                         value={tabRange}
-                                        onChange={(val) =>
-                                            setAttributes({
-                                                [`${prefix}TAB${controlName}Range`]: val,
-                                            })
-                                        }
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}TAB${controlName}Range`]: val,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val });
+                                            }
+                                        }}
                                         min={min || 0}
                                         max={TABsizeUnit === '%' ? 100 : max || 100}
                                         step={step || 1}
@@ -107,11 +169,19 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                     />
                                     <NumberControl
                                         value={tabRange}
-                                        onChange={(val) =>
-                                            setAttributes({
-                                                [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
-                                            })
-                                        }
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) || undefined });
+                                            }
+                                        }}
                                     />
                                 </div>
                             </WithResDeviceBtn>
@@ -124,35 +194,59 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                                 {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
-                                            setAttributes({
-                                                [`${prefix}MOB${controlName}Range`]: '',
-                                            });
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}MOB${controlName}Range`]: '',
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: '' });
+                                            }
                                         }}
                                     />
                                 )}
                             </div>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                 <div className="zolo-input-range-wrapper">
+                                <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                    value={mobRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}MOB${controlName}Range`]: val,
-                                        })
-                                    }
-                                    min={min || 0}
-                                    max={MOBsizeUnit === '%' ? 100 : max || 100}
-                                    step={step || 1}
-                                    withInputField={false}
-                                />
-                                <NumberControl
-                                    value={mobRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
-                                        })
-                                    }
-                                />
+                                        value={mobRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}MOB${controlName}Range`]: val,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val });
+                                            }
+                                        }}
+                                        min={min || 0}
+                                        max={MOBsizeUnit === '%' ? 100 : max || 100}
+                                        step={step || 1}
+                                        withInputField={false}
+                                    />
+                                    <NumberControl
+                                        value={mobRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) || undefined });
+                                            }
+                                        }}
+                                    />
                                 </div>
                             </WithResDeviceBtn>
                         </>
@@ -165,45 +259,77 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                             <UnitsBtn
                                 selectedUnit={sizeUnit}
                                 unitTypes={units || defaultUnits}
-                                onClick={(sizeUnit) =>
-                                    setAttributes({
-                                        [`${prefix}${controlName}Unit`]: sizeUnit,
-                                    })
-                                }
+                                onClick={(sizeUnit) => {
+                                    if (object) {
+                                        setAttributes({
+                                            ...attributes,
+                                            [objectName]: {
+                                                ...attributes[objectName],
+                                                [`${prefix}${controlName}Unit`]: sizeUnit,
+                                            },
+                                        });
+                                    } else {
+                                        setAttributes({ [`${prefix}${controlName}Unit`]: sizeUnit });
+                                    }
+                                }}
                             >
                                 {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
-                                            setAttributes({
-                                                [`${prefix}${controlName}Range`]: '',
-                                            });
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}${controlName}Range`]: '',
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}${controlName}Range`]: '' });
+                                            }
                                         }}
                                     />
                                 )}
                             </UnitsBtn>
 
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                 <div className="zolo-input-range-wrapper">
+                                <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                    value={desktopRange}
-                                    onChange={(val) => {
-                                        setAttributes({
-                                            [`${prefix}${controlName}Range`]: val,
-                                        });
-                                    }}
-                                    min={min || 0}
-                                    max={sizeUnit === '%' ? 100 : max || 100}
-                                    step={step || 1}
-                                    withInputField={false}
-                                />
-                                <NumberControl
-                                    value={desktopRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}${controlName}Range`]: Number(val) || undefined,
-                                        })
-                                    }
-                                />
+                                        value={desktopRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}${controlName}Range`]: val,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}${controlName}Range`]: val });
+                                            }
+                                        }}
+                                        min={min || 0}
+                                        max={sizeUnit === '%' ? 100 : max || 100}
+                                        step={step || 1}
+                                        withInputField={false}
+                                    />
+                                    <NumberControl
+                                        value={desktopRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) || undefined });
+                                            }
+                                        }}
+                                    />
                                 </div>
                             </WithResDeviceBtn>
                         </>
@@ -214,44 +340,76 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                             <UnitsBtn
                                 selectedUnit={TABsizeUnit}
                                 unitTypes={units || defaultUnits}
-                                onClick={(TABsizeUnit) =>
-                                    setAttributes({
-                                        [`${prefix}TAB${controlName}Unit`]: TABsizeUnit,
-                                    })
-                                }
+                                onClick={(TABsizeUnit) => {
+                                    if (object) {
+                                        setAttributes({
+                                            ...attributes,
+                                            [objectName]: {
+                                                ...attributes[objectName],
+                                                [`${prefix}TAB${controlName}Unit`]: TABsizeUnit,
+                                            },
+                                        });
+                                    } else {
+                                        setAttributes({ [`${prefix}TAB${controlName}Unit`]: TABsizeUnit });
+                                    }
+                                }}
                             >
                                 {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
-                                            setAttributes({
-                                                [`${prefix}TAB${controlName}Range`]: '',
-                                            });
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}TAB${controlName}Range`]: '',
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: '' });
+                                            }
                                         }}
                                     />
                                 )}
                             </UnitsBtn>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                 <div className="zolo-input-range-wrapper">
+                                <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                    value={tabRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}TAB${controlName}Range`]: val,
-                                        })
-                                    }
-                                    min={min || 0}
-                                    max={TABsizeUnit === '%' ? 100 : max || 100}
-                                    step={step || 1}
-                                    withInputField={false}
-                                />
-                                <NumberControl
-                                    value={tabRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
-                                        })
-                                    }
-                                />
+                                        value={tabRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}TAB${controlName}Range`]: val,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val });
+                                            }
+                                        }}
+                                        min={min || 0}
+                                        max={TABsizeUnit === '%' ? 100 : max || 100}
+                                        step={step || 1}
+                                        withInputField={false}
+                                    />
+                                    <NumberControl
+                                        value={tabRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) || undefined });
+                                            }
+                                        }}
+                                    />
                                 </div>
                             </WithResDeviceBtn>
                         </>
@@ -262,44 +420,76 @@ const ResRangeControl = ({ label, help = '', controlName, units, requiredProps, 
                             <UnitsBtn
                                 selectedUnit={MOBsizeUnit}
                                 unitTypes={units || defaultUnits}
-                                onClick={(MOBsizeUnit) =>
-                                    setAttributes({
-                                        [`${prefix}MOB${controlName}Unit`]: MOBsizeUnit,
-                                    })
-                                }
+                                onClick={(MOBsizeUnit) => {
+                                    if (object) {
+                                        setAttributes({
+                                            ...attributes,
+                                            [objectName]: {
+                                                ...attributes[objectName],
+                                                [`${prefix}MOB${controlName}Unit`]: MOBsizeUnit,
+                                            },
+                                        });
+                                    } else {
+                                        setAttributes({ [`${prefix}MOB${controlName}Unit`]: MOBsizeUnit });
+                                    }
+                                }}
                             >
                                 {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
-                                            setAttributes({
-                                                [`${prefix}MOB${controlName}Range`]: '',
-                                            });
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}MOB${controlName}Range`]: '',
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: '' });
+                                            }
                                         }}
                                     />
                                 )}
                             </UnitsBtn>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
-                                  <div className="zolo-input-range-wrapper">
+                                <div className="zolo-input-range-wrapper">
                                     <RangeControl
-                                    value={mobRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}MOB${controlName}Range`]: val,
-                                        })
-                                    }
-                                    min={min || 0}
-                                    max={MOBsizeUnit === '%' ? 100 : max || 100}
-                                    step={step || 1}
-                                    withInputField={false}
-                                />
-                                <NumberControl
-                                    value={mobRange}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
-                                        })
-                                    }
-                                />
+                                        value={mobRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}MOB${controlName}Range`]: val,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val });
+                                            }
+                                        }}
+                                        min={min || 0}
+                                        max={MOBsizeUnit === '%' ? 100 : max || 100}
+                                        step={step || 1}
+                                        withInputField={false}
+                                    />
+                                    <NumberControl
+                                        value={mobRange}
+                                        onChange={(val) => {
+                                            if (object) {
+                                                setAttributes({
+                                                    ...attributes,
+                                                    [objectName]: {
+                                                        ...attributes[objectName],
+                                                        [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                                    },
+                                                });
+                                            } else {
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) || undefined });
+                                            }
+                                        }}
+                                    />
                                 </div>
                             </WithResDeviceBtn>
                         </>

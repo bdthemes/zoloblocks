@@ -62,6 +62,7 @@ import {
     LIST_HOVER_ICON_SIZE,
     ICON_HOVER_LIST_MARGIN,
     ICON_LINKVERTICAL_ALIGN,
+    H_TTITLE_WIDTH,
     //option
     ITEM_ALIGNS_OPTION,
 } from './constants';
@@ -206,6 +207,20 @@ function Inspector(props) {
                                             options={CONTENT_LAYOUT}
                                         />
                                     </div>
+                                    <CardDivider />
+                                </>
+                            )}
+
+                            {contentLayout === 'horizontal' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Width', 'zoloblocks')}
+                                        controlName={H_TTITLE_WIDTH}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        unit="%"
+                                    />
                                     <CardDivider />
                                 </>
                             )}
@@ -368,7 +383,7 @@ function Inspector(props) {
                                 <>
                                     <CardDivider />
                                     <ZoloIconPicker
-                                        label={__('Global Icon', 'zolo-blocks')}
+                                        label={__('Global Icon', 'zoloblocks')}
                                         value={globalIcon}
                                         onChange={(v) =>
                                             setAttributes({

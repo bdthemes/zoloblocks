@@ -115,6 +115,7 @@ if (! class_exists('Assets')) {
                     'zolo_counter'   => ZoloHelpers::zolo_blocks_extensions_count(),
                     'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                     'zolo_rest_url'  => esc_url_raw(rest_url('zolo/v1/settings')),
+                    'site_url'       =>  esc_url_raw(site_url()),
                     'plugin_version' => ZOLO_VERSION,
                     'has_pro'        => defined('ZOLO_PRO_VERSION'),
                     'logo'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/logo.svg',

@@ -251,7 +251,7 @@ const TemplatesLoader = ({
                                 />
                             </div>
 
-                            <div className="secondary-item">
+                            <div className="secondary-item zolo-tp-tags-item">
                                 <BaseControl label={__('Popular Tags :', 'zoloblocks')} className="zolo-tags">
                                     <div className="tags-wrap">
                                         <div className="tags-btn-wrap">

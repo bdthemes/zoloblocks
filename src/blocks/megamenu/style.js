@@ -131,7 +131,7 @@ export default function Style({ props }) {
      */
     const desktopAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-megamenu {
+        .zolo-block.wp-block-zolo-navigation .zolo-navigation-submenu-wrapper .${uniqueId}.wp-block-zolo-megamenu {
             ${dropdownWrapBGDesk}
             ${dropdownWrapBorderDesk}
             ${dropdownWrapBorderRadiusDesk}
@@ -145,7 +145,7 @@ export default function Style({ props }) {
 	`;
     const tabletAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-megamenu  {
+        .zolo-block.wp-block-zolo-navigation .zolo-navigation-submenu-wrapper .${uniqueId}.wp-block-zolo-megamenu  {
             ${dropdownWrapBGTab}
             ${dropdownWrapBorderTab}
             ${dropdownWrapBorderRadiusTab}
@@ -159,7 +159,7 @@ export default function Style({ props }) {
   	`;
     const mobileAllStyle = `
 
-        .zolo-block.wp-block-zolo-navmenu .zolo-navmenu-submenu-wrapper .${uniqueId}.wp-block-zolo-megamenu  {
+        .zolo-block.wp-block-zolo-navigation .zolo-navigation-submenu-wrapper .${uniqueId}.wp-block-zolo-megamenu  {
             ${dropdownWrapBGMob}
             ${dropdownWrapBorderMob}
             ${dropdownWrapBorderRadiusMob}
@@ -175,9 +175,9 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.navmenu.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.navmenu.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.navmenu.mobileAllStyle', mobileAllStyle, props)}
+                desktopAllStyle={applyFilters('zolo.navigation.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.navigation.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.navigation.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

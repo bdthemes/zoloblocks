@@ -256,7 +256,7 @@ function Inspector(props) {
                                             }
                                         />
                                         <ColorControl
-                                            label={__('Separator Color', 'zolo-blocks')}
+                                            label={__('Separator Color', 'zoloblocks')}
                                             color={separatColor}
                                             onChange={(value) =>
                                                 setAttributes({

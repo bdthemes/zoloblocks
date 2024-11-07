@@ -3,7 +3,7 @@
     "title": "Google Map",
     "name": "zolo/google-map",
     "category": "zoloblocks",
-    "keywords": ["google", "map", "google map"],
+    "keywords": ["google", "map", "location", "embed", "iframe"],
     "description": "Embed Google Maps with customizable settings for easy access.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

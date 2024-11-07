@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 
 // Block Prefix
-export const BLOCK_PREFIX = 'navmenu';
+export const BLOCK_PREFIX = 'navigation';
 export const DROPDOWN_WRAP_BOX_SHADOW = 'dropdownWrapBoxShadow';
 export const DROPDOWN_WRAP_BG = 'dropdownWrapBg';
 export const DROPDOWN_WRAP_BORDER = 'dropdownWrapBorder';

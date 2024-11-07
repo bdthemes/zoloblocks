@@ -3,7 +3,7 @@
     "title": "Charts",
     "name": "zolo/charts",
     "category": "zoloblocks",
-    "keywords": ["charts", "zolo"],
+    "keywords": ["charts", "graph", "data", "visualization", "analytics"],
     "description": "Add dynamic, vibrant charts for clear data representation.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

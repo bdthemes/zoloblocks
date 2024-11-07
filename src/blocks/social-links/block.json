@@ -3,7 +3,7 @@
     "title": "Social Links",
     "name": "zolo/social-links",
     "category": "zoloblocks",
-    "keywords": ["icon", "social links", "social"],
+    "keywords": ["icon", "links", "social", "connect", "share", "follow", "twitter", "facebook", "instagram", "youtube"],
     "description": "Add social links to enhance connectivity with your audience.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

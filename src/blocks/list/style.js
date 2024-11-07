@@ -47,6 +47,8 @@ import {
     LIST_HOVER_ICON_SIZE,
     ICON_HOVER_LIST_MARGIN,
     ICON_LINKVERTICAL_ALIGN,
+    //title
+    H_TTITLE_WIDTH,
 } from './constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -55,6 +57,7 @@ import { applyFilters } from '@wordpress/hooks';
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
+        contentLayout,
         preset,
         uniqueId,
         dscColor,
@@ -67,7 +70,6 @@ const Style = ({ props }) => {
         HoverIconColor,
         iconToggle,
         BorderHovColor,
-        
     } = attributes;
 
     //desc
@@ -205,7 +207,7 @@ const Style = ({ props }) => {
         mobAlignStyle: mobListAlign,
     } = generateResAlignmentStyle({
         controlName: ITEM_ALIGNMENT,
-        property: layout =='flex' ? 'justify-content' : 'text-align',
+        property: layout == 'flex' ? 'justify-content' : 'text-align',
         attributes,
     });
 
@@ -286,6 +288,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // title
+    const {
+        desktopRangeStyle: desktopHTitleWidth,
+        tabRangeStyle: tabHTitleWidth,
+        mobRangeStyle: mobHTitleWidth,
+    } = generateResRangeStyle({
+        controlName: H_TTITLE_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -295,11 +308,11 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex; flex-wrap: wrap' : `grid-template-columns: repeat(${listGridDeskstyle}, 1fr)`};
         ${listGapDeskstyle};
         ${desktopSingleAlign}
-        ${layout=='flex' && desktopListAlign}
+        ${layout == 'flex' && desktopListAlign}
       }
 	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout=='grid' && desktopListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4')  && layout=='grid' && desktopListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && desktopListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && desktopListAlign};
         ${DesktopListRadius}
         ${desktopListBorder}
         ${DesktopListP}
@@ -366,17 +379,29 @@ const Style = ({ props }) => {
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
         ${DesktopIconHoMargin}  
     }
+
+    ${
+        contentLayout === 'horizontal'
+            ? `
+                .wp-block-zolo-list.${uniqueId}.horizontal .zolo-list-icon-title-wrap,
+                .wp-block-zolo-list.${uniqueId}.horizontal .zolo-list-icon-and-content-wrap {
+                   ${desktopHTitleWidth}
+                }
+            `
+            : ''
+    }
+
   	`;
     const tabletAllStyle = `
     .wp-block-zolo-list.${uniqueId} {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridTabStyle}, 1fr)`};
         ${listGapTabStyle};
         ${tabSingleAlign}
-        ${layout=='flex' && tabListAlign}
+        ${layout == 'flex' && tabListAlign}
       }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2')&& layout=='grid' && tabListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4')&& layout=='grid' && tabListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && tabListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && tabListAlign};
         ${TabListRadius}
         ${tabListBorder}
         ${TabListp}
@@ -425,6 +450,17 @@ const Style = ({ props }) => {
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
         ${TabIconHoMargin}
     }
+
+    ${
+        contentLayout === 'horizontal'
+            ? `
+                .wp-block-zolo-list.${uniqueId}.horizontal .zolo-list-icon-title-wrap,
+                .wp-block-zolo-list.${uniqueId}.horizontal .zolo-list-icon-and-content-wrap {
+                   ${tabHTitleWidth}
+                }
+            `
+            : ''
+    }
   		
 	`;
 
@@ -433,11 +469,11 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridMobStyle}, 1fr)`};
         ${listGapMobStyle};
         ${mobSingleAlign}
-        ${layout=='flex' && mobListAlign}
+        ${layout == 'flex' && mobListAlign}
     }
 	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item { 
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout=='grid'  && mobListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout=='grid' && mobListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && mobListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && mobListAlign};
         ${MobListRadius}
         ${mobListBorder}
         ${MobListp}
@@ -481,6 +517,17 @@ const Style = ({ props }) => {
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
         ${MobIconHoMargin}
+    }
+        
+    ${
+        contentLayout === 'horizontal'
+            ? `
+                .wp-block-zolo-list.${uniqueId}.horizontal .zolo-list-icon-title-wrap,
+                .wp-block-zolo-list.${uniqueId}.horizontal .zolo-list-icon-and-content-wrap {
+                   ${mobHTitleWidth}
+                }
+            `
+            : ''
     }
   	`;
     return (

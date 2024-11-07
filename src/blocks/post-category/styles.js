@@ -221,6 +221,7 @@ function Style({ props }) {
         styleFor: 'padding',
         attributes,
     });
+
     const {
         backgroundStylesDesktop: countBGDesk,
         backgroundStylesTab: countBGTab,

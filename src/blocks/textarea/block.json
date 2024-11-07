@@ -3,7 +3,7 @@
     "title": "Message",
     "name": "zolo/textarea",
     "category": "zoloblocks",
-    "keywords": ["zolo", "message", "textarea"],
+    "keywords": ["zolo", "message", "textarea", "form", "input", "survey"],
     "description": "Capture messages seamlessly within the Form block.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
