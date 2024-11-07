@@ -58,7 +58,7 @@ const TemplatesLoader = ({
     }
 
 const categoryTypes = ['demos_category', 'templates_category', 'pages_category', 'patterns_category'];
-
+// const al
     return (
         <>
             <div className="categories">
@@ -134,7 +134,7 @@ const categoryTypes = ['demos_category', 'templates_category', 'pages_category',
 
                 <div className="category-list">
                     {categories &&
-                        categories?.length > 0 &&
+                        categories?.length > 0 && activeTab !== 'favorites' &&
                         categories?.map((category) => (
                             <button
                                 key={category?.value}

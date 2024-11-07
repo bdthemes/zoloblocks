@@ -462,6 +462,10 @@ function ZoloBlocksTemplateLibraryButton() {
             const uniqueFavCategories = [...new Set(favCategories?.flat())];
             const sortedFavCategories = uniqueFavCategories.sort((a, b) => a.localeCompare(b));
             const favCategoriesArray = sortedFavCategories.map((category) => ({ label: category, value: category }));
+            const index = favCategoriesArray.findIndex((category) => category.value === 'Demos');
+            if (index > -1) {
+                favCategoriesArray.splice(index, 1);
+            }
             favCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setFavCategories(favCategoriesArray);
 
