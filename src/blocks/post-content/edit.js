@@ -51,7 +51,7 @@ export default function Edit(props) {
                                 'zoloblocks'
                             )}
                         </p>
-                        <h2 className="zolo-heading">{__('Post Global Heading', 'zoloblocks')}</h2>
+                        <h2 className="zolo-heading">{__('Post Global Heading Content', 'zoloblocks')}</h2>
                     </>
                 )}
                 <p>
