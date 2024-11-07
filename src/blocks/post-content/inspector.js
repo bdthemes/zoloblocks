@@ -116,6 +116,95 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <TabPanelControl
+                                options={[
+                                    {
+                                        value: 'normal',
+                                        label: __('Normal', 'zoloblocks'),
+                                    },
+                                    {
+                                        value: 'hover',
+                                        label: __('Hover', 'zoloblocks'),
+                                    },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={contentColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    contentColor: color,
+                                                })
+                                            }
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={CONTENT_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <TextShadowControl
+                                            controlName={CONTENT_TEXT_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <TextStrokeControl
+                                            controlName={CONTENT_TEXT_STROKE}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <CardDivider />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={true} />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={CONTENT_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={CONTENT_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl controlName={CONTENT_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={CONTENT_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={contentHoverColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    contentHoverColor: color,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_HOVER_BG} noMainBGImg={true} />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={CONTENT_HOVER_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl controlName={CONTENT_HOVER_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={CONTENT_HOVER_BRADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
                         {styleTags?.some((item) => item.type === 'image') && (
                             <ZoloPanelBody title={__('Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
@@ -230,96 +319,6 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <TabPanelControl
-                                options={[
-                                    {
-                                        value: 'normal',
-                                        label: __('Normal', 'zoloblocks'),
-                                    },
-                                    {
-                                        value: 'hover',
-                                        label: __('Hover', 'zoloblocks'),
-                                    },
-                                ]}
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={contentColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    contentColor: color,
-                                                })
-                                            }
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={CONTENT_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <TextShadowControl
-                                            controlName={CONTENT_TEXT_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                        <TextStrokeControl
-                                            controlName={CONTENT_TEXT_STROKE}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                        <CardDivider />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={true} />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={CONTENT_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={CONTENT_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl controlName={CONTENT_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CONTENT_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={contentHoverColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    contentHoverColor: color,
-                                                })
-                                            }
-                                        />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_HOVER_BG} noMainBGImg={true} />
-                                        <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={CONTENT_HOVER_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl controlName={CONTENT_HOVER_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CONTENT_HOVER_BRADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
 
                         {styleTags?.some((item) => item.type === 'link') && headingTags.length > 0 && (
                             <ZoloPanelBody title={__('Link', 'zoloblocks')} stylePanel={true} panelProps={props}>

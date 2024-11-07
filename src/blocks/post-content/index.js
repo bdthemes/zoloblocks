@@ -7,7 +7,7 @@ const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata, {
     icon: {
-        src: BlockIcons['post-title'],
+        src: BlockIcons['post-content'],
     },
     attributes,
     edit: Edit,
