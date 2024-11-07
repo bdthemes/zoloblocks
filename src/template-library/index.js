@@ -171,7 +171,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (activePatternCat === 'all') {
                 return true;
             } else {
-                return template.categories.includes(activePatternCat);
+                return template.patterns_category.includes(activePatternCat);
             }
         });
         setPatterns(filteredPatterns);
@@ -237,7 +237,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (activePageCat === 'all') {
                 return true;
             } else {
-                return template.categories.includes(activePageCat);
+                return template.pages_category.includes(activePageCat);
             }
         });
         setPages(filteredPages.slice(0, number));
@@ -304,7 +304,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (activeDemoCat === 'all') {
                 return true;
             } else {
-                return template.categories.includes(activeDemoCat);
+                return template.demos_category.includes(activeDemoCat);
             }
         });
         setDemos(filteredDemos.slice(0, number));
@@ -553,14 +553,14 @@ function ZoloBlocksTemplateLibraryButton() {
             setPatterns(patterns);
 
             // set pattern categories
-            const patternCategories = patterns
-                ?.filter((template) => template.template_type === 'patterns')
+            const patternCategories = patterns?.filter((template) => template.template_type === 'patterns')
                 .map((template) => template.patterns_category);
             const uniquePatternCategories = [...new Set(patternCategories?.flat())];
             const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
             const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
             patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setPatternCategories(patternCategoriesArray);
+
 
             // patterns tags
             const allPatternTags = patterns?.map((template) => template.tags);

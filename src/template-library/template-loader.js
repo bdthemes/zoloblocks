@@ -57,6 +57,8 @@ const TemplatesLoader = ({
             break;
     }
 
+const categoryTypes = ['demos_category', 'templates_category', 'pages_category', 'patterns_category'];
+
     return (
         <>
             <div className="categories">
@@ -146,7 +148,9 @@ const TemplatesLoader = ({
                                     {allItems &&
                                         (category?.value === 'all'
                                             ? allItems?.length
-                                            : allItems?.filter((template) => template?.categories?.includes(category.label))?.length)}
+                                            : allItems?.filter((template) =>
+                                                  categoryTypes.some((type) => template[type]?.includes(category.label))
+                                              )?.length)}
                                 </span>
                             </button>
                         ))}
