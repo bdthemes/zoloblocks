@@ -68,7 +68,7 @@ export { generateTextShadowAttributies, generateTextShadowStyles } from '../help
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
-
+export {manageSingleBlock} from '../helpers/manage-single-block';
 
 export {
     DynamicTag,
@@ -79,6 +79,6 @@ export {
     isEmpty,
     strToHex,
     getTaxonomies,
-    popoverHasAttrVal
+    popoverHasAttrVal,
 } from '../helpers/helper';
 
