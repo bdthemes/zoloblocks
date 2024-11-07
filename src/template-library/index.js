@@ -506,7 +506,7 @@ function ZoloBlocksTemplateLibraryButton() {
             setPages(pages);
 
             // set page categories
-            const pageCategories = pages?.filter((template) => template.template_type === 'pages').map((template) => template.categories);
+            const pageCategories = pages?.filter((template) => template.template_type === 'pages').map((template) => template.pages_category);
             const uniquePageCategories = [...new Set(pageCategories?.flat())];
             const sortedPageCategories = uniquePageCategories.sort((a, b) => a.localeCompare(b));
             const pageCategoriesArray = sortedPageCategories.map((category) => ({ label: category, value: category }));
@@ -555,7 +555,7 @@ function ZoloBlocksTemplateLibraryButton() {
             // set pattern categories
             const patternCategories = patterns
                 ?.filter((template) => template.template_type === 'patterns')
-                .map((template) => template.categories);
+                .map((template) => template.patterns_category);
             const uniquePatternCategories = [...new Set(patternCategories?.flat())];
             const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
             const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
@@ -581,7 +581,7 @@ function ZoloBlocksTemplateLibraryButton() {
             setDemos(demos);
 
             // set demo categories
-            const demoCategories = demos?.filter((template) => template.template_type === 'demos').map((template) => template.categories);
+            const demoCategories = demos?.filter((template) => template.template_type === 'demos').map((template) => template.demos_category);
             const uniqueDemoCategories = [...new Set(demoCategories?.flat())];
             const sortedDemoCategories = uniqueDemoCategories.sort((a, b) => a.localeCompare(b));
             const demoCategoriesArray = sortedDemoCategories.map((category) => ({ label: category, value: category }));
