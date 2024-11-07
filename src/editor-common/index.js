@@ -7,3 +7,7 @@ import './unregister';
 
 // form editor script
 import './form';
+
+import './defaultpatterns';
+
+

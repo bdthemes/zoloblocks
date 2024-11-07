@@ -56,7 +56,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                         <>
                                             {
                                                 // check if the user has ZoloBlocks Pro
-                                                zoloParams?.zolo_pro_status === 'active' ? (
+                                                zoloParams?.zolo_pro_status === 'active' && (
                                                     <>
                                                         {template?.demo_link && (
                                                             <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
@@ -110,10 +110,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                                             </button>
                                                         </Tooltip>
                                                     </>
-                                                ) : (
-                                                    <ProPopup />
-                                                )
-                                            }
+                                                )}
                                         </>
                                     ) : (
                                         <>

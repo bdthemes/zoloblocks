@@ -37,7 +37,7 @@ const ZBCopyPasteStyles = () => {
         registerShortcut({
             name: 'zolo/copy',
             category: 'block',
-            description: __('Copy the selected block(s).', 'zolo-blocks'),
+            description: __('Copy the selected block(s).', 'zoloblocks'),
             keyCombination: {
                 modifier: 'primaryShift',
                 character: 'y',
@@ -47,7 +47,7 @@ const ZBCopyPasteStyles = () => {
         registerShortcut({
             name: 'zolo/paste',
             category: 'block',
-            description: __('Paste the selected block(s).', 'zolo-blocks'),
+            description: __('Paste the selected block(s).', 'zoloblocks'),
             keyCombination: {
                 modifier: 'primaryShift',
                 character: 'u',
@@ -250,8 +250,8 @@ const ZBCopyPasteStyles = () => {
     });
     return (
         <>
-            <PluginBlockSettingsMenuItem icon={SettingsIcons.copy} label={__('Copy Styles', 'zolo-blocks')} onClick={copyStylesHandler} />
-            <PluginBlockSettingsMenuItem icon={SettingsIcons.paste} label={__('Paste Styles', 'zolo-blocks')} onClick={pasteStylesHandler} />
+            <PluginBlockSettingsMenuItem icon={SettingsIcons.copy} label={__('Copy Styles', 'zoloblocks')} onClick={copyStylesHandler} />
+            <PluginBlockSettingsMenuItem icon={SettingsIcons.paste} label={__('Paste Styles', 'zoloblocks')} onClick={pasteStylesHandler} />
         </>
     );
 };

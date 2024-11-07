@@ -3,7 +3,7 @@
     "title": "List",
     "name": "zolo/list",
     "category": "zoloblocks",
-    "keywords": ["list", "footer List"],
+    "keywords": ["list", "footer", "menu", "nav", "navigation", "unordered", "ordered", "bullets", "numbers"],
     "description": "Design customizable lists with creative transitions and styles.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

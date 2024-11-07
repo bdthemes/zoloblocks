@@ -3,7 +3,7 @@
     "title": "Lightbox",
     "name": "zolo/lightbox",
     "category": "zoloblocks",
-    "keywords": ["lightbox", "gallery", "image"],
+    "keywords": ["lightbox", "gallery", "image", "video", "media", "modal", "popup"],
     "description": "Create customizable lightboxes for media content.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

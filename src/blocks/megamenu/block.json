@@ -3,11 +3,11 @@
     "title": "Mega Menu",
     "name": "zolo/megamenu",
     "category": "zoloblocks",
-    "keywords": ["menu", "navmenu", "navigation", "navigation-menu", "megamenu", "mega-menu"],
+    "keywords": ["menu", "navigation", "navigation", "megamenu", "dropdown", "submenu", "subnav"],
     "description": "Mega menu block for gutenberg.",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
-    "parent": ["zolo/navmenu-item"],
+    "parent": ["zolo/navigation-item"],
     "example": {
         "attributes": {
             "preview": true

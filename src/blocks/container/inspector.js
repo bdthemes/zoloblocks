@@ -2,42 +2,48 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions, ZoloPanelBody, ResGapControl } =
-    window.zoloModule;
+const {
+    ResRangeControl,
+    HeaderTabs,
+    IconicBtnGroup,
+    ResAlignmentControl,
+    AdvancedOptions,
+    ZoloPanelBody,
+    ResGapControl,
+} = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
-    CONTAINER_WIDTH,
     CONTAINER_GAP,
+    CONTAINER_WIDTH,
     CONTENT_WIDTH,
-    MIN_HEIGHT,
-    FLEX_DIRECTION,
-    FLEX_WRAP,
-    FLEX_JUSTIFY,
     FLEX_ALIGN,
+    FLEX_DIRECTION,
+    FLEX_JUSTIFY,
+    FLEX_WRAP,
+    MIN_HEIGHT,
 } from './constants';
 
 import {
-    FLEX_DIRECTIONS,
+    CONTENT_WIDTH_TYPES,
     FLEX_ALIGNS,
+    FLEX_ALIGNS_ROW,
+    FLEX_DIRECTIONS,
     FLEX_JUSTIFIES,
+    FLEX_JUSTIFIES_ROW,
     FLEX_WRAPS,
     WIDTH_TYPES,
-    CONTENT_WIDTH_TYPES,
-    FLEX_ALIGNS_ROW,
-    FLEX_JUSTIFIES_ROW,
 } from '../../../src/global/constants';
 
 function Inspector(props) {
-
-    const { attributes, setAttributes, name} = props;
-        const panelProps = { attributes, setAttributes };
+    const { attributes, setAttributes, name } = props;
+    const panelProps = { attributes, setAttributes };
 
     const {
         containerWidthType,
@@ -56,7 +62,7 @@ function Inspector(props) {
         objAttributes,
     };
     const shapeDividerControls = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
-    
+
     const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
     const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';
@@ -73,6 +79,7 @@ function Inspector(props) {
     else if (resMode === 'Mobile') justifyContentOptions = isRowDirectionMob;
     justifyContentOptions ? (justifyContentOptions = FLEX_JUSTIFIES_ROW) : (justifyContentOptions = FLEX_JUSTIFIES);
 
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -81,7 +88,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={false}>
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup

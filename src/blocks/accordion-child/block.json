@@ -3,7 +3,7 @@
     "title": "Single Accordion",
     "name": "zolo/accordion-child",
     "category": "zoloblocks",
-    "keywords": ["Accordion"],
+    "keywords": ["Accordion", "Collapse", "Expand", "faq", "toggle"],
     "description": "Add accordion items for collapsible content sections.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

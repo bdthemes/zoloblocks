@@ -540,18 +540,18 @@ if (! class_exists('ZoloEnqueues')) {
          * @return blockMarkup
          */
         public function modify_nav_links($block_content, $block) {
-            if ($block['blockName'] == 'zolo/navmenu') {
+            if ($block['blockName'] == 'zolo/navigation') {
                 $tags = new \WP_HTML_Tag_Processor($block_content);
-                $tags->next_tag(array('tag_name' => 'a', 'class_name' => 'zolo-nav-menu-sidebar-logo'));
+                $tags->next_tag(array('tag_name' => 'a', 'class_name' => 'zolo-navigation-sidebar-logo'));
                 $tags->set_attribute('href', home_url());
                 $tags->get_updated_html();
 
                 return $tags;
             }
 
-            if ($block['blockName'] == 'zolo/navmenu-item') {
+            if ($block['blockName'] == 'zolo/navigation-item') {
                 $tags = new \WP_HTML_Tag_Processor($block_content);
-                $tags->next_tag(array('tag_name' => 'li', 'class_name' => 'zolo-navmenu-item'));
+                $tags->next_tag(array('tag_name' => 'li', 'class_name' => 'zolo-navigation-item'));
                 if ($tags->get_attribute('data-id') == get_the_ID() && $tags->get_attribute('data-type') == get_post_type()) {
                     $tags->add_class('current-item');
                 }

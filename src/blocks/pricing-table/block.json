@@ -3,7 +3,7 @@
     "title": "Pricing Table",
     "name": "zolo/pricing-table",
     "category": "zoloblocks",
-    "keywords": ["pricing", "pricing table"],
+    "keywords": ["pricing", "table", "price", "plan", "package", "feature", "list"],
     "description": "Showcase offerings with visually appealing pricing tables.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

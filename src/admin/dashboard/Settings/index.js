@@ -2,10 +2,9 @@ import SettingBox from './setting-box';
 import Notice from '../notice';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, Button, Modal } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 const { zoloBlocks } = window;
-
 const Settings = () => {
     const [notice, setNotice] = useState(false);
     const [editorWidth, setEditorWidth] = useState(1200);
@@ -15,7 +14,9 @@ const Settings = () => {
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
+    const [disableCorePatterns, setDisableCorePatterns] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
+    const [modalNewPage, setModalNewPage] = useState(false);
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
@@ -44,6 +45,7 @@ const Settings = () => {
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
+            setDisableCorePatterns(response.zolo_disable_core_patterns);
         } catch (error) {
             handleFetchError(error);
         }
@@ -66,6 +68,7 @@ const Settings = () => {
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
+            setDisableCorePatterns(response.zolo_disable_core_patterns);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -128,6 +131,13 @@ const Settings = () => {
             data: { zolo_enable_template_library: value },
         });
     };
+    const updateDisableCorePatterns = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_disable_core_patterns: value },
+        });
+    };
 
     useEffect(() => {
         if (notice) {
@@ -140,6 +150,9 @@ const Settings = () => {
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
+    };
+    const createNewPage = () => {
+        setModalNewPage(true);
     };
 
     return (
@@ -306,6 +319,21 @@ const Settings = () => {
                                             }}
                                         />
                                     </SettingBox>
+                                    <SettingBox
+                                        title={__('Disable Core starter patterns', 'zoloblocks')}
+                                        description={__(
+                                            'Disable the core starter patterns in the block inserter when creating a new page.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ToggleControl
+                                            checked={!!disableCorePatterns}
+                                            onChange={() => {
+                                                updateDisableCorePatterns(!disableCorePatterns);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
                                 </div>
                             </div>
                         )}
@@ -336,17 +364,22 @@ const Settings = () => {
                                                 )}
                                             </p>
                                             {!maintenanceMode && comingSoonMode && (
-                                                <SelectControl
-                                                    label={__('Select Templates', 'zoloblocks')}
-                                                    help={__(
-                                                        '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                        'zoloblocks'
-                                                    )}
-                                                    value={maintenanceModeTemplate}
-                                                    options={templates}
-                                                    onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                    __nextHasNoMarginBottom
-                                                />
+                                                <>
+                                                    <SelectControl
+                                                        label={__('Select Templates', 'zoloblocks')}
+                                                        help={__(
+                                                            '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                            'zoloblocks'
+                                                        )}
+                                                        value={maintenanceModeTemplate}
+                                                        options={templates}
+                                                        onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                        __nextHasNoMarginBottom
+                                                    />
+                                                    <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
+                                                        {__('Create New Page', 'zoloblocks')}
+                                                    </Button>
+                                                </>
                                             )}
                                         </div>
                                         <ToggleControl
@@ -368,17 +401,22 @@ const Settings = () => {
                                                 )}
                                             </p>
                                             {maintenanceMode && !comingSoonMode && (
-                                                <SelectControl
-                                                    label={__('Select Templates', 'zoloblocks')}
-                                                    help={__(
-                                                        '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                        'zoloblocks'
-                                                    )}
-                                                    value={maintenanceModeTemplate}
-                                                    options={templates}
-                                                    onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                    __nextHasNoMarginBottom
-                                                />
+                                                <>
+                                                    <SelectControl
+                                                        label={__('Select Templates', 'zoloblocks')}
+                                                        help={__(
+                                                            '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
+                                                            'zoloblocks'
+                                                        )}
+                                                        value={maintenanceModeTemplate}
+                                                        options={templates}
+                                                        onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                        __nextHasNoMarginBottom
+                                                    />
+                                                    <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
+                                                        {__('Create New Page', 'zoloblocks')}
+                                                    </Button>
+                                                </>
                                             )}
                                         </div>
                                         <ToggleControl
@@ -395,6 +433,56 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
+            {modalNewPage && (
+                <Modal
+                    className="zolo-maintenance-modal zolo-sv-create-new-page-modal"
+                    onRequestClose={() => setModalNewPage(false)}
+                    shouldCloseOnClickOutside={true}
+                    shouldCloseOnEsc={true}
+                    isOpen={modalNewPage}
+                    isDismissible={false}
+                    // title={__('Create New Page', 'zoloblocks')}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    <div className="zolo-modal-content">
+                        <div className="zolo-modal-header">
+                            <h2 className="zolo-modal-head-title">{__('Create New Page', 'zoloblocks')}</h2>
+                            <span
+                                className="zolo-modal-close"
+                                onClick={() => {
+                                    setModalNewPage(false);
+                                }}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width={24}
+                                    height={24}
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="icon icon-tabler icons-tabler-outline icon-tabler-x"
+                                >
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M18 6l-12 12" />
+                                    <path d="M6 6l12 12" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div className="zolo-modal-body">
+                            <iframe
+                                src={`${zoloBlocks?.site_url}/wp-admin/post-new.php?post_type=page`}
+                                className="zolo-modal-iframe"
+                            ></iframe>
+                        </div>
+                    </div>
+                </Modal>
+            )}
         </>
     );
 };

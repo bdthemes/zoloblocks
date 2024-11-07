@@ -15,10 +15,13 @@
         background: rgba(255, 255, 255, 0.3);
         border-radius: 6px;
         transition: all 0.3s ease;
-        padding: 5px 12px;
+        padding: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 1em;
+        height: 1em;
+        box-sizing: content-box;
     }
 
     .zolo-category-item {
@@ -210,7 +213,7 @@
         }
         .zolo-category-count {
             background: #000000;
-            padding: 10px 17px;
+            padding: 20px;
             border-radius: 50%;
             opacity: 0;
             visibility: hidden;

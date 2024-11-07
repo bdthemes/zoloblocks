@@ -5,14 +5,14 @@ import { applyFilters } from '@wordpress/hooks';
 const { generateResRangeStyle, generateResAlignmentStyle, generateGapStyle, GlobalStyleHanlder } = window.zoloModule;
 
 import {
-    CONTENT_WIDTH,
-    MIN_HEIGHT,
-    CONTAINER_WIDTH,
-    FLEX_DIRECTION,
-    FLEX_WRAP,
-    FLEX_JUSTIFY,
-    FLEX_ALIGN,
     CONTAINER_GAP,
+    CONTAINER_WIDTH,
+    CONTENT_WIDTH,
+    FLEX_ALIGN,
+    FLEX_DIRECTION,
+    FLEX_JUSTIFY,
+    FLEX_WRAP,
+    MIN_HEIGHT,
 } from './constants';
 
 const Style = ({ props }) => {
