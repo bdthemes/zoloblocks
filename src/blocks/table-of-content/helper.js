@@ -2,6 +2,13 @@ export const supportedHeaders = [
   "core/heading",
   "zolo/advanced-heading",
   "essential-blocks/heading",
+  "gutenverse/advanced-heading",
+  "gutenkit/heading",
+  "kadence/advancedheading",
+  "qubely/heading",
+  "ugb/header",
+  "ugb/heading",
+  "themeisle-blocks/advanced-heading"
 ];
 
 export function isZoloBlocksAHeading(block) {
