@@ -1,5 +1,13 @@
-.edit-post-header__center {
-    flex-grow: unset !important;
+.zolo-editor{
+    .editor-header__toolbar{
+        .edit-post-header__center,
+        .editor-header__center {
+            order:2!important;
+        }
+        .zoloblocks-template-library-button{
+            order:1!important;
+        }
+    }
 }
 
 .zolo-preloader-wrapper {
@@ -27,6 +35,10 @@
     font-size: 13px;
     transition: 0.3s;
     outline: none;
+    flex-wrap: nowrap;
+    .zolo-template-label{
+        white-space: nowrap;
+    }
     svg {
         width: 20px;
         height: 20px;
