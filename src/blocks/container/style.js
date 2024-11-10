@@ -28,7 +28,7 @@ const Style = ({ props }) => {
         mobRangeStyle: contentMobWidth,
     } = generateResRangeStyle({
         controlName: CONTENT_WIDTH,
-        property: 'max-width',
+        property: '--zolo-container-content-width',
         attributes,
     });
 
@@ -39,7 +39,7 @@ const Style = ({ props }) => {
         mobRangeStyle: containerMobWidth,
     } = generateResRangeStyle({
         controlName: CONTAINER_WIDTH,
-        property: 'width',
+        property: '--zolo-container-width',
         attributes,
     });
 
@@ -122,23 +122,21 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-         .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+        .${uniqueId} {
             ${contentDeskWidth}
-         }
+        }
         ${
             'custom_width' === containerWidthType
                 ? `
-        #block-${clientId}.block-editor-block-list__block{
-            ${containerDeskWidth}
-        }`
+                        #block-${clientId} {
+                            ${containerDeskWidth}
+                        }`
                 : ''
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+        #block-${clientId},
+        .${uniqueId} {
             ${containerDeskWidth}
-
         }
 
         .${uniqueId} {
@@ -156,24 +154,22 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
-        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
-             ${contentTabWidth}
-         }
+        .${uniqueId} {
+            ${contentTabWidth}
+        }
 
         ${
             'custom_width' === containerWidthType
                 ? `
-        #block-${clientId}.block-editor-block-list__block{
-            ${containerTabWidth}
-        }`
+                        #block-${clientId} {
+                            ${containerTabWidth}
+                        }`
                 : ''
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+        #block-${clientId},
+        .${uniqueId} {
             ${containerTabWidth}
-
         }
 
         .${uniqueId} {
@@ -191,24 +187,22 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
-         .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+        .${uniqueId} {
              ${contentMobWidth}
          }
 
         ${
             'custom_width' === containerWidthType
                 ? `
-        #block-${clientId}.block-editor-block-list__block{
-            ${containerMobWidth}
-        }`
+                        #block-${clientId} {
+                            ${containerMobWidth}
+                        }`
                 : ''
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+        #block-${clientId},
+        .${uniqueId} {
             ${containerMobWidth}
-
         }
 
         .${uniqueId} {

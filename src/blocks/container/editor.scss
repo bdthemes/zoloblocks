@@ -131,6 +131,9 @@
     }
 
     .block-editor-block-list__layout {
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
         .block-list-appender.wp-block {
             button {
                 color: #a0a7ac;

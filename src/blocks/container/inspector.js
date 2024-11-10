@@ -8,15 +8,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const {
-    ResRangeControl,
-    HeaderTabs,
-    IconicBtnGroup,
-    ResAlignmentControl,
-    AdvancedOptions,
-    ZoloPanelBody,
-    ResGapControl,
-} = window.zoloModule;
+const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions, ZoloPanelBody, ResGapControl } =
+    window.zoloModule;
 
 import objAttributes from './attributes';
 import {
@@ -79,7 +72,6 @@ function Inspector(props) {
     else if (resMode === 'Mobile') justifyContentOptions = isRowDirectionMob;
     justifyContentOptions ? (justifyContentOptions = FLEX_JUSTIFIES_ROW) : (justifyContentOptions = FLEX_JUSTIFIES);
 
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -88,7 +80,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup

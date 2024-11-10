@@ -597,7 +597,6 @@ export const GlobalStyleHanlder = (props) => {
         ${overflow ? `overflow: ${overflow};` : ''}
         ${transformStylesDesktop}
         ${positionDesktop}
-        box-sizing: border-box;
       }
 
       ${

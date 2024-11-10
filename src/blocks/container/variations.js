@@ -18,7 +18,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'column',
+            // FlexDirectionZRPAlign: 'column',
         },
     },
     {
@@ -45,7 +45,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -55,7 +55,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -84,7 +84,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -94,7 +94,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -104,7 +104,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -133,7 +133,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -143,7 +143,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -153,7 +153,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -163,7 +163,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -183,7 +183,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'nowrap',
         },
         innerBlocks: [
@@ -194,7 +194,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -204,7 +204,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -224,7 +224,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'nowrap',
         },
         innerBlocks: [
@@ -235,7 +235,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -245,7 +245,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -265,7 +265,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
         },
         innerBlocks: [
@@ -276,7 +276,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -286,7 +286,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -296,7 +296,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -306,7 +306,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -333,7 +333,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
         },
         innerBlocks: [
@@ -344,7 +344,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -354,7 +354,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -364,7 +364,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -374,7 +374,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -384,7 +384,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -394,7 +394,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -421,8 +421,8 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
-            FlexWrapZRPAlign: 'nowrap',
+            // FlexDirectionZRPAlign: 'row',
+            // FlexWrapZRPAlign: 'nowrap',
         },
         innerBlocks: [
             [
@@ -432,7 +432,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -442,7 +442,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -452,7 +452,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -489,7 +489,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
         },
         innerBlocks: [
@@ -500,7 +500,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -510,7 +510,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -520,7 +520,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -530,7 +530,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -567,7 +567,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
         },
         innerBlocks: [
@@ -578,7 +578,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -588,7 +588,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -598,7 +598,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -608,7 +608,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
@@ -641,7 +641,7 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
-            FlexDirectionZRPAlign: 'row',
+            // FlexDirectionZRPAlign: 'row',
             FlexWrapZRPAlign: 'wrap',
         },
         innerBlocks: [
@@ -652,7 +652,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -662,7 +662,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
             [
@@ -672,7 +672,7 @@ export const variations = [
                     zolo_ContainerWidthUnit: '%',
                     zolo_TABContainerWidthRange: 100,
                     zolo_TABContainerWidthUnit: '%',
-                    FlexDirectionZRPAlign: 'column',
+                    // FlexDirectionZRPAlign: 'column',
                 },
             ],
         ],
