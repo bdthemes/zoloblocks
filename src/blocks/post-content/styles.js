@@ -2,6 +2,7 @@ import { applyFilters } from '@wordpress/hooks';
 import {
     CONTENT_ALIGN,
     CONTENT_PADDING,
+    CONTENT_MARGIN,
     CONTENT_BG,
     CONTENT_BORDER,
     CONTENT_BORDER_RADIUS,
@@ -15,6 +16,9 @@ import {
     //image
     THUMBNAIL_WIDTH,
     THUMBNAIL_HEIGHT,
+    THUMBNAIL_BG,
+    THUMBNAIL_PADDING,
+    THUMBNAIL_MARGIN,
     THUMBNAIL_BORDER,
     THUMBNAIL_BRADIUS,
     THUMBNAIL_BOX_SHADOW,
@@ -22,10 +26,11 @@ import {
     //heading
     HEADING_TEXT_STROKE,
     HEADING_TEXT_SHADOW,
-
+    HEADING_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
+    LINK_MARGIN,
     LINK_BORDER,
     LINK_SHADOW,
     LINK_BORDER_RADIUS,
@@ -119,6 +124,16 @@ function Style({ props }) {
     });
 
     const {
+        dimensionStylesDesktop: contentMarginDesk,
+        dimensionStylesTab: contentMarginTab,
+        dimensionStylesMobile: contentMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
         backgroundStylesDesktop: contentBGDesk,
         backgroundStylesTab: contentBGTab,
         backgroundStylesMobile: contentBGMob,
@@ -201,6 +216,37 @@ function Style({ props }) {
         property: 'height',
         attributes,
     });
+
+    const {
+        dimensionStylesDesktop: thumbPaddingDesk,
+        dimensionStylesTab: thumbPaddingTab,
+        dimensionStylesMobile: thumbPaddingMob,
+    } = generateDimensionStyle({
+        controlName: THUMBNAIL_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: thumbMarginDesk,
+        dimensionStylesTab: thumbMarginTab,
+        dimensionStylesMobile: thumbMarginMob,
+    } = generateDimensionStyle({
+        controlName: THUMBNAIL_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: thumbBGDesk,
+        backgroundStylesTab: thumbBGTab,
+        backgroundStylesMobile: thumbBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: THUMBNAIL_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
     const {
         desktopBorderStyle: thumbBorderDesk,
         tabBorderStyle: thumbBorderTab,
@@ -249,6 +295,17 @@ function Style({ props }) {
         attributes,
         controlName: HEADING_TEXT_STROKE,
     });
+
+    const {
+        dimensionStylesDesktop: headingMarginDesk,
+        dimensionStylesTab: headingMarginTab,
+        dimensionStylesMobile: headingMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     //link
     const {
         typoStylesDesktop: linkTypoDesk,
@@ -276,6 +333,16 @@ function Style({ props }) {
     } = generateDimensionStyle({
         controlName: LINK_PADDING,
         styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: linkMarginDesk,
+        dimensionStylesTab: linkMarginTab,
+        dimensionStylesMobile: linkMarginMob,
+    } = generateDimensionStyle({
+        controlName: LINK_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
@@ -340,6 +407,7 @@ function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
             ${contentPaddingDesk}
+            ${contentMarginDesk}
             ${contentBGDesk}
             ${contentBorderDesk}
             ${contentBorderRadiusDesk}
@@ -362,6 +430,9 @@ function Style({ props }) {
           .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthDesk}
             ${thumbHeightDesk}
+            ${thumbPaddingDesk}
+            ${thumbMarginDesk}
+            ${thumbBGDesk}
             ${thumbBorderDesk}
             ${thumbBRadiusDesk}
             ${thumbBoxShadow}
@@ -415,6 +486,7 @@ function Style({ props }) {
               ${headingTypoDesk}
               ${headingTextShadowStyle}
               ${headingTextStrokeDesk}
+              ${headingMarginDesk}
               ${headingColor ? `color:${headingColor};` : ''}
             }
             .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag}:hover,
@@ -436,6 +508,7 @@ function Style({ props }) {
             ${linkColor ? `color:${linkColor};` : ''}
             ${linkBGDesk}
             ${linkPaddingDesk}
+            ${linkMarginDesk}
             ${linkBorderDesk}
             ${linkBRadiusDesk}
             ${linkBoxShadow}
@@ -457,6 +530,7 @@ function Style({ props }) {
         }
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
             ${contentPaddingTab}
+            ${contentMarginTab}
             ${contentBGTab}
             ${contentBorderTab}
             ${contentBorderRadiusTab}
@@ -474,6 +548,9 @@ function Style({ props }) {
           .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthTab}
             ${thumbHeightTab}
+            ${thumbPaddingTab}
+            ${thumbMarginTab}
+            ${thumbBGTab}
             ${thumbBorderTab}
             ${thumbBRadiusTab}
           }
@@ -490,6 +567,7 @@ function Style({ props }) {
              .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
               ${headingTypoTab}
               ${headingTextStrokeTab}
+              ${headingMarginTab}
             }
             `
                 )
@@ -504,6 +582,7 @@ function Style({ props }) {
                     ${linkTypoTab}
                     ${linkBGTab}
                     ${linkPaddingTab}
+                    ${linkMarginTab}
                     ${linkBorderTab}
                     ${linkBRadiusTab}
                   }
@@ -521,6 +600,7 @@ function Style({ props }) {
         }
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
             ${contentPaddingMob}
+            ${contentMarginMob}
             ${contentBGMob}
             ${contentBorderMob}
             ${contentBorderRadiusMob}
@@ -538,6 +618,9 @@ function Style({ props }) {
           .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthMob}
             ${thumbHeightMob}
+            ${thumbPaddingMob}
+            ${thumbMarginMob}
+            ${thumbBGMob}
             ${thumbBorderMob}
             ${thumbBRadiusMob}
           }
@@ -554,6 +637,7 @@ function Style({ props }) {
              .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
               ${headingTypoMob}
               ${headingTextStrokeMob}
+              ${headingMarginMob}
             }
             `
                 )
@@ -568,6 +652,7 @@ function Style({ props }) {
                     ${linkTypoMob}
                     ${linkBGDesk}
                     ${linkPaddingMob}
+                    ${linkMarginMob}
                     ${linkBorderMob}
                     ${linkBRadiusMob}
                   }
