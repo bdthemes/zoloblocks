@@ -313,7 +313,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
     useEffect(() => {
         const subscribeBtn = subscribe(() => {
-            const toolbar = document.querySelector('.editor-header__toolbar');
+            const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
             const libraryButton = document.querySelector('.zoloblocks-template-library-button');
             const currentPostType = wp.data.select('core/editor').getCurrentPostType();
 
