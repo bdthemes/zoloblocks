@@ -47,6 +47,7 @@ const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavT
                     handleImportTemplate={handleImportTemplate}
                     favIds={favIds}
                     handleFavTemplate={handleFavTemplate}
+                    templateName={template?.title}
                 />
             )}
         </>

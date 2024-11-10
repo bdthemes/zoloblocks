@@ -1,4 +1,4 @@
-### 2.0.0 [November 06, 2024]
+### 2.0.0 [November 07, 2024]
 
 #### New Features
 - Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
@@ -7,6 +7,7 @@
 - Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
 - Post Navigation Block: Added a block to enable easy navigation between posts.
 - Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Post Content: Introduced a fully customizable content block for single post.
 - Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
 
 #### Enhancements

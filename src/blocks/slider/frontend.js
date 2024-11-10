@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
             effect: effect || 'slide',
             navigation: navigation
                 ? {
-                      nextEl: '.swiper-button-next',
-                      prevEl: '.swiper-button-prev',
+                      nextEl: slider.querySelector('.swiper-button-next'),
+                      prevEl: slider.querySelector('.swiper-button-prev'),
                   }
                 : false,
             pagination: pagination ? { el: '.swiper-pagination', type: paginationType || 'bullets', clickable: true } : false,

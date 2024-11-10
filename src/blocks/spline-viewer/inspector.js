@@ -44,7 +44,7 @@ function Inspector(props) {
                                     placeholder={__('Enter source URL', 'zoloblocks')}
                                 />
                             </div>
-                            <ResRangeControl
+                            {/* <ResRangeControl
                                 label={__('Width', 'zoloblocks')}
                                 controlName={WIDTH}
                                 requiredProps={requiredProps}
@@ -122,7 +122,7 @@ function Inspector(props) {
                                         ),
                                     },
                                 ]}
-                            />
+                            /> */}
                             <ToggleControl
                                 label={__('Hint', 'zoloblocks')}
                                 checked={hint}

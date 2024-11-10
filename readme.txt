@@ -354,7 +354,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-= 2.0.0 - 06-11-2024 =
+= 2.0.0 - 07-11-2024 =
 
 **New Features:**
 - Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
@@ -363,6 +363,7 @@ Not at all. We have optimized all of these blocks for better performance.
 - Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
 - Post Navigation Block: Added a block to enable easy navigation between posts.
 - Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Post Content: Introduced a fully customizable content block for single post.
 - Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
 
 **Improvements:**
