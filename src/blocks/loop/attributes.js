@@ -25,6 +25,10 @@ const attributes = {
     },
     ref: {
         type: 'number'
+    },
+    isStartingScreenSet: {
+        type: 'boolean',
+        default: false
     }
 };
 

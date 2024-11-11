@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 import { useEffect, useMemo } from '@wordpress/element';
-import { useSelect, useDispatch, dispatch } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { Spinner } from '@wordpress/components';
 import { useEntityRecord, useEntityBlockEditor } from '@wordpress/core-data';
 
@@ -17,6 +17,7 @@ const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 import BlockToolbar from './block-toolbar';
+import StartingScreen from './starting-screen';
 
 function LoopInnerBlocks({ classList, index, value: blocks }) {
     const innerBlocksProps = useInnerBlocksProps(
@@ -38,7 +39,8 @@ export default function Edit(props) {
         uniqueId,
         preview,
         parentClasses,
-        ref
+        ref,
+        isStartingScreenSet
     } = attributes;
 
     const { posts } = context;
@@ -56,33 +58,6 @@ export default function Edit(props) {
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
-
-
-    useEffect(() => {
-        const createLoopTemplate = async () => {
-            if (!ref) {
-                const { saveEntityRecord } = dispatch('core');
-
-                try {
-                    const newTemplate = await saveEntityRecord('postType', 'loop-template', {
-                        status: 'publish',
-                        title: `Loop Template ${Date.now()}`,
-                    });
-
-                    if (newTemplate?.id) {
-                        setAttributes({ ref: newTemplate?.id });
-                    } else {
-                        console.error('Failed to create the loop template');
-                    }
-
-                } catch (error) {
-                    console.error('Error while creating the loop template:', error);
-                }
-            }
-        };
-
-        createLoopTemplate();
-    }, [ref]);
 
     const { record, hasResolved } = useEntityRecord(
         'postType',
@@ -160,36 +135,47 @@ export default function Edit(props) {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            {hasResolved && !isMissing && (
+            {hasResolved && !isMissing && ref && (
                 <BlockToolbar
                     recordId={ref}
                     handleEditOriginal={handleEditOriginal}
                     key={ref}
                 />
             )}
-            <div {...blockProps}>
-                {renderHookBefore && renderHookBefore}
-                <SidebarOpener clientId={clientId} />
-                {blockContexts &&
-                    blockContexts.map((blockContext, index) => {
-                        return (
-                            <BlockContextProvider
-                                key={blockContext?.postId}
-                                value={blockContext}
-                            >
-                                {blockContext.postId && (
-                                    <LoopInnerBlocks
-                                        classList={blockContext?.classList}
-                                        index={index}
-                                        value={blocks}
-                                    />
-                                )}
+            {
+                ref ? (
+                    <div {...blockProps}>
+                        {renderHookBefore && renderHookBefore}
+                        <SidebarOpener clientId={clientId} />
+                        {blockContexts &&
+                            blockContexts.map((blockContext, index) => {
+                                return (
+                                    <BlockContextProvider
+                                        key={blockContext?.postId}
+                                        value={blockContext}
+                                    >
+                                        {blockContext.postId && (
+                                            <LoopInnerBlocks
+                                                classList={blockContext?.classList}
+                                                index={index}
+                                                value={blocks}
+                                            />
+                                        )}
 
-                            </BlockContextProvider>
-                        )
-                    })}
-                {renderHookAfter && renderHookAfter}
-            </div>
+                                    </BlockContextProvider>
+                                )
+                            })}
+                        {renderHookAfter && renderHookAfter}
+                    </div>
+                ) : (
+                    <div {...blockProps}>
+                        {renderHookBefore && renderHookBefore}
+                        <SidebarOpener clientId={clientId} />
+                        <StartingScreen attributes={attributes} setAttributes={setAttributes} />
+                        {renderHookAfter && renderHookAfter}
+                    </div>
+                )
+            }
         </>
     );
 }

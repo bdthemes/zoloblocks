@@ -178,7 +178,6 @@ export default function Edit(props) {
     }
 
     if (posts.length === 0) {
-
         return (
             <>
                 {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -193,7 +192,6 @@ export default function Edit(props) {
         posts,
         queryId,
     }
-    console.log(blockContext);
     
 
     return (
