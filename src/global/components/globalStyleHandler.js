@@ -37,6 +37,8 @@ export const GlobalStyleHanlder = (props) => {
         scaleProportionally,
         scaleProportionallyHover,
         transformFlipHorizontal,
+        transformFlipHorizontalHover,
+        transformFlipVerticalHover,
         transformFlipVertical,
     } = attributes;
     if (!uniqueId) {
@@ -276,6 +278,7 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+
     //transform scale y
     const {
         desktopRangeStyle: scaleYStylesDesktop,
@@ -506,8 +509,8 @@ export const GlobalStyleHanlder = (props) => {
             ${translateYStylesDesktop}
             ${rotateStylesDesktop}
             ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ''}
-            ${scaleProportionally ? `${scaleStylesDesktop}` : ''}
-            ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ''}
+            ${scaleProportionally ? `${scaleStylesDesktop.replace('px', '')}` : ''}
+            ${!scaleProportionally ? `${scaleXStylesDesktop.replace('px', '')} ${scaleYStylesDesktop.replace('px', '')}` : ''}
             ${skewXStylesDesktop}
             ${skewYStylesDesktop}
             ${transformFlipHorizontal ? `--zolo-transform-flipX:-1;` : ''}
@@ -547,10 +550,12 @@ export const GlobalStyleHanlder = (props) => {
             ${translateYStylesDesktopHover}
             ${rotateStylesDesktopHover}
             ${transformRotate3DActiveHover ? `${rotateXStylesDesktopHover} ${rotateYStylesDesktopHover} ${rotatePerspectiveStylesDesktopHover}` : ''}
-            ${scaleProportionallyHover ? `${scaleStylesDesktopHover}` : ''}
-            ${!scaleProportionallyHover ? `${scaleXStylesDesktopHover} ${scaleYStylesDesktopHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesDesktopHover.replace('px', '')}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesDesktopHover.replace('px', '')} ${scaleYStylesDesktopHover.replace('px', '')}` : ''}
             ${skewXStylesDesktopHover}
             ${skewYStylesDesktopHover}
+            ${transformFlipHorizontalHover ? `--zolo-transform-flipX:-1;` : ''}
+            ${transformFlipVerticalHover ? `--zolo-transform-flipY:-1;` : ''}
             ${transformOriginXDesktopHover}
             ${transformOriginYDesktopHover}
             ${filteredTransitionDurationDesktop ? `${filteredTransitionDurationDesktop}` : ''}
