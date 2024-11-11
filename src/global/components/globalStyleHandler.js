@@ -37,6 +37,8 @@ export const GlobalStyleHanlder = (props) => {
         scaleProportionally,
         scaleProportionallyHover,
         transformFlipHorizontal,
+        transformFlipHorizontalHover,
+        transformFlipVerticalHover,
         transformFlipVertical,
     } = attributes;
     if (!uniqueId) {
@@ -276,7 +278,6 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
-    console.log('scaleXStylesDesktop', scaleXStylesDesktop);
 
     //transform scale y
     const {
@@ -553,6 +554,8 @@ export const GlobalStyleHanlder = (props) => {
             ${!scaleProportionallyHover ? `${scaleXStylesDesktopHover.replace('px', '')} ${scaleYStylesDesktopHover.replace('px', '')}` : ''}
             ${skewXStylesDesktopHover}
             ${skewYStylesDesktopHover}
+            ${transformFlipHorizontalHover ? `--zolo-transform-flipX:-1;` : ''}
+            ${transformFlipVerticalHover ? `--zolo-transform-flipY:-1;` : ''}
             ${transformOriginXDesktopHover}
             ${transformOriginYDesktopHover}
             ${filteredTransitionDurationDesktop ? `${filteredTransitionDurationDesktop}` : ''}
