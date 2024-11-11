@@ -5,6 +5,7 @@ import objAttributes from './attributes';
 import {
     CONTENT_ALIGN,
     CONTENT_PADDING,
+    CONTENT_MARGIN,
     CONTENT_BG,
     CONTENT_BORDER,
     CONTENT_BORDER_RADIUS,
@@ -18,6 +19,9 @@ import {
     //image
     THUMBNAIL_WIDTH,
     THUMBNAIL_HEIGHT,
+    THUMBNAIL_BG,
+    THUMBNAIL_PADDING,
+    THUMBNAIL_MARGIN,
     THUMBNAIL_BORDER,
     THUMBNAIL_BRADIUS,
     THUMBNAIL_BOX_SHADOW,
@@ -25,9 +29,11 @@ import {
     //heading
     HEADING_TEXT_SHADOW,
     HEADING_TEXT_STROKE,
+    HEADING_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
+    LINK_MARGIN,
     LINK_BORDER,
     LINK_SHADOW,
     LINK_BORDER_RADIUS,
@@ -161,6 +167,11 @@ function Inspector(props) {
                                             controlName={CONTENT_PADDING}
                                             requiredProps={requiredProps}
                                         />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={CONTENT_MARGIN}
+                                            requiredProps={requiredProps}
+                                        />
                                         <CardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
@@ -225,6 +236,18 @@ function Inspector(props) {
                                                 min={0}
                                                 max={1000}
                                                 step={1}
+                                            />
+                                            <CardDivider />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_BG} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={THUMBNAIL_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={THUMBNAIL_MARGIN}
+                                                requiredProps={requiredProps}
                                             />
                                             <CardDivider />
                                             <BorderControl
@@ -301,6 +324,12 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
+                                            <CardDivider />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={HEADING_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
                                         </>
                                     }
                                     hoverComponents={
@@ -345,6 +374,11 @@ function Inspector(props) {
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={LINK_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={LINK_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
                                             <CardDivider />
