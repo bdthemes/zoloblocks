@@ -1,20 +1,20 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
+import {InspectorControls} from '@wordpress/block-editor';
 import {
-    ToggleControl,
-    TabPanel
+  ToggleControl,
 } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
-    HeaderTabs,
-    AdvancedOptions,
-    ZoloPanelBody,
+  HeaderTabs,
+  AdvancedOptions,
+  ZoloPanelBody,
+  TabPanelControl
 } = window.zoloModule;
 
 import usePostQuery from './usePostQuery';
@@ -25,103 +25,89 @@ import Filters from './query/filters';
 import AdvancedQuery from './query/advanced';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
-    const [query, setQuery] = usePostQuery(attributes, setAttributes);
+  const {attributes, setAttributes} = props;
+  const [query, setQuery] = usePostQuery(attributes, setAttributes);
 
-    const {
-        resMode,
-    } = attributes;
+  const {
+    resMode,
+  } = attributes;
 
-    const requiredProps = {
-        attributes,
-        setAttributes,
-        resMode,
-        objAttributes,
-    };
+  const requiredProps = {
+    attributes,
+    setAttributes,
+    resMode,
+    objAttributes,
+  };
 
-    return (
-        <InspectorControls key="controls">
-            <HeaderTabs
-                block="zolo/post-query"
-                attributes={attributes}
-                setAttributes={setAttributes}
-                generalTab={
-                    <>
-                        <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <ToggleControl
-                                label={__('Inherit query from template', 'zoloblocks')}
-                                checked={query?.inherit}
-                                onChange={(value) => setQuery({ inherit: value })}
-                            />
-                            {
-                                !query?.inherit && (
-                                    <>
-                                        <TabPanel
-                                            tabs={[
-                                                {
-                                                    name: 'basic',
-                                                    title: __('Basic', 'zoloblocks'),
-                                                },
-                                                {
-                                                    name: 'filters',
-                                                    title: __('Filters', 'zoloblocks'),
-                                                },
-                                                {
-                                                    name: 'advanced',
-                                                    title: __('Advanced', 'zoloblocks'),
-                                                },
-                                            ]}
-                                        >
-                                            {(tab) => {
-                                                if ('basic' === tab.name) {
-                                                    return (
-                                                        <BasicQuery
-                                                            query={query}
-                                                            setQuery={setQuery}
-                                                            attributes={attributes}
-                                                            setAttributes={setAttributes}
-                                                        />
-                                                    )
-                                                }
+  return (
+    <InspectorControls key="controls">
+      <HeaderTabs
+        block="zolo/post-query"
+        attributes={attributes}
+        setAttributes={setAttributes}
+        generalTab={
+          <>
+            <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props} firstOpen={true}>
+              <ToggleControl
+                label={__('Inherit query from template', 'zoloblocks')}
+                checked={query?.inherit}
+                onChange={(value) => setQuery({inherit: value})}
+              />
+              {!query?.inherit && (
+                <TabPanelControl
+                  options={[
+                    {
+                      value: 'normal',
+                      label: __('Basic', 'zoloblocks'),
+                    },
+                    {
+                      value: 'hover',
+                      label: __('Filter', 'zoloblocks'),
+                    },
+                    {
+                      value: 'active',
+                      label: __('Advanced', 'zoloblocks'),
+                    },
+                  ]}
+                  normalComponents={
+                    <BasicQuery
+                      query={query}
+                      setQuery={setQuery}
+                      attributes={attributes}
+                      setAttributes={setAttributes}
+                    />
+                  }
+                  hoverComponents={
+                    <Filters
+                      query={query}
+                      setQuery={setQuery}
+                    />
+                  }
+                  activeComponents={
+                    <AdvancedQuery
+                      query={query}
+                      setQuery={setQuery}
+                    />
+                  }
+                />
+              )}
 
-                                                if ('filters' === tab.name) {
-                                                    return (
-                                                        <Filters 
-                                                            query={query}
-                                                            setQuery={setQuery}
-                                                        />
-                                                    )
-                                                }
-
-                                                if ('advanced' === tab.name) {
-                                                    return (
-                                                        <AdvancedQuery 
-                                                            query={query}
-                                                            setQuery={setQuery}
-                                                        />
-                                                    )
-                                                }
-                                            }}
-                                        </TabPanel>
-                                    </>
-                                )
-                            }
-                        </ZoloPanelBody>
-                    </>
-                }
-                advancedTab={
-                    <>
-                        <AdvancedOptions
-                            attributes={attributes}
-                            setAttributes={setAttributes}
-                            requiredProps={requiredProps}
-                            block="zolo/post-query"
-                        />
-                    </>
-                }
+            </ZoloPanelBody>
+          </>
+        }
+        advancedTab={
+          <>
+            <AdvancedOptions
+              attributes={attributes}
+              setAttributes={setAttributes}
+              requiredProps={requiredProps}
+              block="zolo/post-query"
             />
-        </InspectorControls>
-    );
+          </>
+        }
+      />
+    </InspectorControls>
+  );
 }
 
 export default Inspector;
