@@ -42,6 +42,27 @@ import {
     TOGGLE_ICON_BORDER_RADIUS,
     TOGGLE_ICON_H_BG,
     TOGGLE_ICON_H_SHADOW,
+
+    //close
+    CLOSE_ICON_SIZE,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_SHADOW,
+    CLOSE_ICON_BORDER_RADIUS,
+    CLOSE_ICON_H_BG,
+    CLOSE_ICON_H_SHADOW,
+
+    // open
+    OPEN_BTN_BG,
+    OPEN_BTN_PADDING,
+    OPEN_BTN_MARGIN,
+    OPEN_BTN_BORDER,
+    OPEN_BTN_SHADOW,
+    OPEN_BTN_BORDER_RADIUS,
+    OPEN_BTN_H_BG,
+    OPEN_BTN_H_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -157,6 +178,28 @@ const attributes = {
     ...generateDimensionAttributes(TOGGLE_ICON_BORDER_RADIUS),
     ...generateNormalBGAttributes(TOGGLE_ICON_H_BG),
     ...generateBoxShadowAttributies(TOGGLE_ICON_H_SHADOW),
+
+    //close
+    ...generateResRangeAttributies(CLOSE_ICON_SIZE),
+    ...generateNormalBGAttributes(CLOSE_ICON_BG),
+    ...generateDimensionAttributes(CLOSE_ICON_PADDING),
+    ...generateDimensionAttributes(CLOSE_ICON_MARGIN),
+    ...generateBorderAttributies(CLOSE_ICON_BORDER),
+    ...generateBoxShadowAttributies(CLOSE_ICON_SHADOW),
+    ...generateDimensionAttributes(CLOSE_ICON_BORDER_RADIUS),
+    ...generateNormalBGAttributes(CLOSE_ICON_H_BG),
+    ...generateBoxShadowAttributies(CLOSE_ICON_H_SHADOW),
+
+    // open
+    ...generateNormalBGAttributes(OPEN_BTN_BG),
+    ...generateDimensionAttributes(OPEN_BTN_PADDING),
+    ...generateDimensionAttributes(OPEN_BTN_MARGIN),
+    ...generateBorderAttributies(OPEN_BTN_BORDER),
+    ...generateBoxShadowAttributies(OPEN_BTN_SHADOW),
+    ...generateDimensionAttributes(OPEN_BTN_BORDER_RADIUS),
+    ...generateNormalBGAttributes(OPEN_BTN_H_BG),
+    ...generateBoxShadowAttributies(OPEN_BTN_H_SHADOW),
+
     boxBgColor: {
         type: 'string',
     },
@@ -173,6 +216,26 @@ const attributes = {
         type: 'string',
     },
     toggleHoverIconBorderColor: {
+        type: 'string',
+    },
+    // close
+    closeIconColor: {
+        type: 'string',
+    },
+    closeIconHoverColor: {
+        type: 'string',
+    },
+    closeIconHoverBorderColor: {
+        type: 'string',
+    },
+    // open
+    openBtnIconColor: {
+        type: 'string',
+    },
+    openBtnIconHoverColor: {
+        type: 'string',
+    },
+    openBtnIconHoverBorderColor: {
         type: 'string',
     },
 };

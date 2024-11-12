@@ -29,9 +29,30 @@ import {
 
     //list
     LIST_MARKER_SIZE,
+
+    // close
+    CLOSE_ICON_SIZE,
+    CLOSE_ICON_BG,
+    CLOSE_ICON_PADDING,
+    CLOSE_ICON_MARGIN,
+    CLOSE_ICON_BORDER,
+    CLOSE_ICON_SHADOW,
+    CLOSE_ICON_BORDER_RADIUS,
+    CLOSE_ICON_H_BG,
+    CLOSE_ICON_H_SHADOW,
+
+    // open
+    OPEN_BTN_BG,
+    OPEN_BTN_PADDING,
+    OPEN_BTN_MARGIN,
+    OPEN_BTN_BORDER,
+    OPEN_BTN_SHADOW,
+    OPEN_BTN_BORDER_RADIUS,
+    OPEN_BTN_H_BG,
+    OPEN_BTN_H_SHADOW,
 } from './constants';
 
-import { HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY, STICKY_OPEN_BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
     generateTextShadowStyles,
@@ -64,6 +85,14 @@ function Style({ props }) {
         listHoverColor,
         listActiveColor,
         listMarkerColor,
+        // close
+        closeIconColor,
+        closeIconHoverColor,
+        closeIconHoverBorderColor,
+        // open
+        openBtnIconColor,
+        openBtnIconHoverColor,
+        openBtnIconHoverBorderColor,
     } = attributes;
 
     //box
@@ -299,6 +328,176 @@ function Style({ props }) {
         attributes,
     });
 
+    // close
+    const {
+        desktopRangeStyle: closeIconSizeDesk,
+        tabRangeStyle: closeIconSizeTab,
+        mobRangeStyle: closeIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: CLOSE_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: closeIconHeightDesk,
+        tabRangeStyle: closeIconHeightTab,
+        mobRangeStyle: closeIconHeightMob,
+    } = generateResRangeStyle({
+        controlName: CLOSE_ICON_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: closeIconBgDesk,
+        backgroundStylesTab: closeIconBgTab,
+        backgroundStylesMobile: closeIconBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconPaddingDesk,
+        dimensionStylesTab: closeIconPaddingTab,
+        dimensionStylesMobile: closeIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconMarginDesk,
+        dimensionStylesTab: closeIconMarginTab,
+        dimensionStylesMobile: closeIconMarginMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: closeIconBorderDesk,
+        tabBorderStyle: closeIconBorderTab,
+        mobBorderStyle: closeIconBorderMob,
+    } = generateBorderStyle({
+        controlName: CLOSE_ICON_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: closeIconShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CLOSE_ICON_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: closeIconBorderRadiusDesk,
+        dimensionStylesTab: closeIconBorderRadiusTab,
+        dimensionStylesMobile: closeIconBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CLOSE_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: closeIconHoverBgDesk,
+        backgroundStylesTab: closeIconHoverBgTab,
+        backgroundStylesMobile: closeIconHoverBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: CLOSE_ICON_H_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const { boxShadowStyle: closeIconHoverShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CLOSE_ICON_H_SHADOW,
+    });
+
+    // open
+
+    const {
+        typoStylesDesktop: openBtnTypoDesk,
+        typoStylesTab: openBtnTypoTab,
+        typoStylesMobile: openBtnTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: STICKY_OPEN_BUTTON_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: openBtnBgDesk,
+        backgroundStylesTab: openBtnBgTab,
+        backgroundStylesMobile: openBtnBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: OPEN_BTN_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        dimensionStylesDesktop: openBtnPaddingDesk,
+        dimensionStylesTab: openBtnPaddingTab,
+        dimensionStylesMobile: openBtnPaddingMob,
+    } = generateDimensionStyle({
+        controlName: OPEN_BTN_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: openBtnMarginDesk,
+        dimensionStylesTab: openBtnMarginTab,
+        dimensionStylesMobile: openBtnMarginMob,
+    } = generateDimensionStyle({
+        controlName: OPEN_BTN_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: openBtnBorderDesk,
+        tabBorderStyle: openBtnBorderTab,
+        mobBorderStyle: openBtnBorderMob,
+    } = generateBorderStyle({
+        controlName: OPEN_BTN_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: openBtnShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: OPEN_BTN_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: openBtnBorderRadiusDesk,
+        dimensionStylesTab: openBtnBorderRadiusTab,
+        dimensionStylesMobile: openBtnBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: OPEN_BTN_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: openBtnHoverBgDesk,
+        backgroundStylesTab: openBtnHoverBgTab,
+        backgroundStylesMobile: openBtnHoverBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: OPEN_BTN_H_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const { boxShadowStyle: openBtnHoverShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: OPEN_BTN_H_SHADOW,
+    });
+
     /**
      * All Style Combination
      */
@@ -365,6 +564,48 @@ function Style({ props }) {
      ${listMarkerColor ? `color:${listMarkerColor};` : ''}
      ${listMarkerSizeDesk}
    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{
+        ${closeIconBgDesk}
+        ${closeIconPaddingDesk}
+        ${closeIconMarginDesk}
+        ${closeIconBorderDesk}
+        ${closeIconShadow}
+        ${closeIconBorderRadiusDesk}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close svg{
+        ${closeIconColor ? `color:${closeIconColor};` : ''}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close:hover{
+        ${closeIconHoverBorderColor ? `border-color:${closeIconHoverBorderColor};` : ''}
+        ${closeIconHoverBgDesk}
+        ${closeIconHoverShadow}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close:hover svg{
+        ${closeIconHoverColor ? `color:${closeIconHoverColor};` : ''}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open{
+        ${openBtnTypoDesk}
+        ${openBtnIconColor ? `color:${openBtnIconColor};` : ''}
+        ${openBtnBgDesk}
+        ${openBtnPaddingDesk}
+        ${openBtnMarginDesk}
+        ${openBtnBorderDesk}
+        ${openBtnShadow}
+        ${openBtnBorderRadiusDesk}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open:hover{
+        ${openBtnHoverBgDesk}
+        ${openBtnHoverShadow}
+         ${openBtnIconHoverColor ? `color:${openBtnIconHoverColor};` : ''}
+         ${openBtnIconHoverBorderColor ? `border-color:${openBtnIconHoverBorderColor};` : ''}
+    }
+
   `;
 
     const tabletAllStyle = `
@@ -409,6 +650,24 @@ function Style({ props }) {
         .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
           ${listMarkerSizeTab}
         }
+        
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{
+            ${closeIconBgTab}
+            ${closeIconPaddingTab}
+            ${closeIconMarginTab}
+            ${closeIconBorderTab}
+            ${closeIconBorderRadiusTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close svg{
+            ${closeIconSizeTab}
+            ${closeIconHeightTab}
+        }
+        
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close:hover{
+            ${closeIconHoverBgTab}
+        }
+
     `;
 
     const mobileAllStyle = `
@@ -452,6 +711,23 @@ function Style({ props }) {
         }
         .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
           ${listMarkerSizeMob}
+        }
+
+         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{
+            ${closeIconBgMob}
+            ${closeIconPaddingMob}
+            ${closeIconMarginMob}
+            ${closeIconBorderMob}
+            ${closeIconBorderRadiusMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close svg{
+            ${closeIconSizeMob}
+            ${closeIconHeightMob}
+        }
+        
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close:hover{
+            ${closeIconHoverBgMob}
         }
   `;
 

@@ -46,3 +46,24 @@ export const TOGGLE_ICON_H_SHADOW = 'toggleIconHoverShadow';
 
 //list
 export const LIST_MARKER_SIZE = 'headerIconSize';
+
+// close
+export const CLOSE_ICON_SIZE = 'closeIconSize';
+export const CLOSE_ICON_BG = 'closeIconBg';
+export const CLOSE_ICON_PADDING = 'closeIconPadding';
+export const CLOSE_ICON_MARGIN = 'closeIconMargin';
+export const CLOSE_ICON_BORDER = 'closeIconBorder';
+export const CLOSE_ICON_SHADOW = 'closeIconShadow';
+export const CLOSE_ICON_BORDER_RADIUS = 'closeIconBRadius';
+export const CLOSE_ICON_H_BG = 'closeIconHoverBg';
+export const CLOSE_ICON_H_SHADOW = 'closeIconHoverShadow';
+
+// open
+export const OPEN_BTN_BG = 'openBtnBg';
+export const OPEN_BTN_PADDING = 'openBtnPadding';
+export const OPEN_BTN_MARGIN = 'openBtnMargin';
+export const OPEN_BTN_BORDER = 'openBtnBorder';
+export const OPEN_BTN_SHADOW = 'openBtnShadow';
+export const OPEN_BTN_BORDER_RADIUS = 'openBtnBRadius';
+export const OPEN_BTN_H_BG = 'openBtnHoverBg';
+export const OPEN_BTN_H_SHADOW = 'openBtnHoverShadow';
