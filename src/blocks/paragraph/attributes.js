@@ -7,19 +7,29 @@ const {
     generateDimensionAttributes,
     generateNormalBGAttributes,
     generateBorderAttributies,
+    generateTextShadowAttributies,
+    generateResAlignmentAttributies,
 } = window.zoloModule;
 
 import {
-    LABEL_MARGIN,
-    LABEL_BG,
-    LABEL_PADDING,
-    LABEL_BORDER,
-    LABEL_BRADIUS,
-    FIELD_PADDING,
-    FIELD_BG,
     COLUMNS,
-    FIELD_BORDER,
-    FIELD_BRADIUS,
+    TEXT_ALIGNMENT,
+    LINK_BG_COLOR,
+    LINK_RADIUS,
+    LINK_PADDING,
+    HOVER_LINK_BG_COLOR,
+    HOVER_LINK_RADIUS,
+    HOVER_LINK_PADDING,
+    FOCUS_TEXT_PADDING,
+    USE_TEXT_BG_COLOR,
+    USE_BG_RADIUS,
+    USE_FILL_BG_COLOR,
+    DROP_CROP_SHADOW,
+    DROP_CROP_BG_COLOR,
+    DROP_CROP_BORDER,
+    DROP_CROP_RADIUS,
+    DROP_CROP_PADDING,
+    DROP_CROP_MARGIN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -50,75 +60,66 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    content: {
-        type: 'string',
-    },
-    dropcap:{
+    dropcap: {
         type: 'boolean',
         default: false,
-    },
-    preset: {
-        type: 'string',
-        default: 'style-1',
-    },
-    // Generators
-    // ...generateResAlignmentAttributies(ITEMS_ALIGN),
-    ...generateDimensionAttributes(LABEL_MARGIN),
-    ...generateNormalBGAttributes(LABEL_BG),
-    ...generateDimensionAttributes(LABEL_PADDING),
-    ...generateDimensionAttributes(LABEL_BRADIUS),
-    ...generateBorderAttributies(LABEL_BORDER),
-    ...generateDimensionAttributes(FIELD_PADDING),
-    ...generateNormalBGAttributes(FIELD_BG),
-    ...generateBorderAttributies(FIELD_BORDER),
-    ...generateDimensionAttributes(FIELD_BRADIUS),
-    ...generateResRangeAttributies(COLUMNS),
-    ...generateTypographyAttributes(Object.values(typographyObjs)),
-    showLabel: {
-        type: 'boolean',
-        default: true,
-    },
-    label: {
-        type: 'string',
-        default: 'Message',
     },
     textColor: {
         type: 'string',
+        default: '#000000',
     },
-    placeholder: {
+    hoverTextColor: {
         type: 'string',
-        default: 'Write your thoughts here...',
+        default: '#000000',
     },
-    placeholderColor: {
+    linkColor: {
         type: 'string',
+        default: '#000000',
     },
-    showIcon: {
+    hoverLinkColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    focusTextColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    focusHoverTextColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    textDecorColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    useBgOnText: {
         type: 'boolean',
         default: false,
     },
-    icon: {
-        type: 'string',
-        default:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M511.1 63.1v287.1c0 35.25-28.75 63.1-64 63.1h-144l-124.9 93.68c-7.875 5.75-19.12 .0497-19.12-9.7v-83.98h-96c-35.25 0-64-28.75-64-63.1V63.1c0-35.25 28.75-63.1 64-63.1h384C483.2 0 511.1 28.75 511.1 63.1z"></path></svg>',
-    },
-    iconColor: {
-        type: 'string',
-    },
-    isRequired: {
+    useTextFill: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
-    requiredMsg: {
+    dropcapColor: {
         type: 'string',
-        default: 'This field is required',
+        default: '#000000',
     },
-    showRequiredSymbol: {
-        type: 'boolean',
-        default: true,
-    },
-    requiredColor: {
-        type: 'string',
-    },
+
+    ...generateResRangeAttributies(COLUMNS),
+    ...generateResAlignmentAttributies(TEXT_ALIGNMENT),
+    ...generateNormalBGAttributes(LINK_BG_COLOR),
+    ...generateDimensionAttributes(LINK_RADIUS),
+    ...generateDimensionAttributes(LINK_PADDING),
+    ...generateNormalBGAttributes(HOVER_LINK_BG_COLOR),
+    ...generateDimensionAttributes(HOVER_LINK_RADIUS),
+    ...generateDimensionAttributes(HOVER_LINK_PADDING),
+    ...generateDimensionAttributes(FOCUS_TEXT_PADDING),
+    ...generateNormalBGAttributes(USE_TEXT_BG_COLOR),
+    ...generateDimensionAttributes(USE_BG_RADIUS),
+    ...generateNormalBGAttributes(USE_FILL_BG_COLOR),
+    ...generateTextShadowAttributies(DROP_CROP_SHADOW),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+    ...generateNormalBGAttributes(DROP_CROP_BG_COLOR),
 };
 
 export default attributes;

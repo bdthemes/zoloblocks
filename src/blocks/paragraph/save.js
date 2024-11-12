@@ -8,16 +8,7 @@ const Save = (props) => {
     const {
         uniqueId,
         parentClasses,
-        preset,
-        zoloId,
-        showLabel,
-        label,
-        placeholder,
-        showIcon,
-        icon,
-        isRequired,
-        requiredMsg,
-        showRequiredSymbol,
+        
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -34,7 +25,7 @@ const Save = (props) => {
             <RichText.Content
                 {...blockProps}
                 tagName="div" // Keep the same wrapper tag as in edit
-                value={attributes.content}
+                value={attributes}
             />
         // </div>
     );

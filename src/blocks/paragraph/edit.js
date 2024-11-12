@@ -26,9 +26,9 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
-    const { preview, preset, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
-    console.log('qni', uniqueId);
+    const { attributes, setAttributes, clientId, isSelected } = props;
+    const { preview, uniqueId, parentClasses } = attributes;
+
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -39,7 +39,6 @@ export default function Edit(props) {
         });
     }, []);
 
-
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
@@ -48,23 +47,22 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zoloblocks')} />;
     }
 
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-             <div {...blockProps}>
-            <RichText
-                identifier="content"
-                tagName="div"
-                onChange={(content) => {
-                    props.setAttributes({ content });
-                }}
-                value={props.attributes.content}
-                formatingcontrols={['bold', 'italic']}
-                placeholder="Enter text..."
-                multiline="p"
-            />
+            <div {...blockProps}>
+                <RichText
+                    identifier="content"
+                    tagName="div"
+                    onChange={(content) => {
+                        props.setAttributes({ content });
+                    }}
+                    value={props.attributes.content}
+                    formatingcontrols={['bold', 'italic']}
+                    placeholder="Enter text..."
+                    multiline="p"
+                />
             </div>
         </>
     );
