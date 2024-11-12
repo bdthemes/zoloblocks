@@ -401,6 +401,14 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/star-rating',
         'video' => 'https://www.youtube.com/watch?v=fZZxJUSRLbI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'paragraph' => [
+        'name' => 'paragraph',
+        'title' => __('Paragraph', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'demo' => 'https://demo.zoloblocks.com/paragraph',
+        'video' => 'https://www.youtube.com/watch?v=fZZxJUSRLbI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
     'tab' => [
         'name' => 'tab',
         'title' => __('Tab', 'zoloblocks'),
