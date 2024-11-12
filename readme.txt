@@ -5,7 +5,7 @@ Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg 
 Requires at least: 6.1
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -353,6 +353,12 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 2.0.1 - 12-11-2024 =
+**Fixes:**
+- Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
+- Post Meta Block: Fixed display issues.
+- Transform Effects: Resolved scale and hover flip issues.
 
 = 2.0.0 - 07-11-2024 =
 

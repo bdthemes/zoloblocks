@@ -1,3 +1,9 @@
+### 2.0.1 [November 12, 2024]
+#### Bug Fixes
+- Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
+- Post Meta Block: Fixed display issues.
+- Transform Effects: Resolved scale and hover flip issues.
+
 ### 2.0.0 [November 07, 2024]
 
 #### New Features
