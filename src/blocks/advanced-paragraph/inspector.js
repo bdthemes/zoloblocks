@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, TextareaControl } from '@wordpress/components';
+import { ToggleControl} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -25,7 +25,7 @@ const {
 
 import objAttributes from './attributes';
 
-import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, FOCUS_TEXT_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
+import { TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
 
 import {
     COLUMNS,
@@ -36,10 +36,6 @@ import {
     HOVER_LINK_BG_COLOR,
     HOVER_LINK_RADIUS,
     HOVER_LINK_PADDING,
-    // FOCUS_TEXT_PADDING,
-    // USE_TEXT_BG_COLOR,
-    // USE_BG_RADIUS,
-    // USE_FILL_BG_COLOR,
     DROP_CAP_SHADOW,
     DROP_CAP_BG_COLOR,
     DROP_CAP_BORDER,
@@ -57,11 +53,6 @@ function Inspector(props) {
         textColor,
         linkColor,
         hoverLinkColor,
-        // focusTextColor,
-        // focusHoverTextColor,
-        // textDecorColor,
-        // useBgOnText,
-        // useTextFill,
         dropcapColor,
     } = attributes;
 
@@ -174,77 +165,6 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-
-                        {/* <ZoloPanelBody title={__('Focused', 'zoloblocks')} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={focusTextColor}
-                                onChange={(color) => setAttributes({ focusTextColor: color })}
-                            />
-                            <ColorControl
-                                label={__('Hover Color', 'zoloblocks')}
-                                color={focusHoverTextColor}
-                                onChange={(color) => setAttributes({ focusHoverTextColor: color })}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={FOCUS_TEXT_TYPO}
-                                requiredProps={requiredProps}
-                            />
-                            <ColorControl
-                                label={__('Text Decoration Color', 'zoloblocks')}
-                                color={textDecorColor}
-                                onChange={(color) => setAttributes({ textDecorColor: color })}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={FOCUS_TEXT_PADDING}
-                                requiredProps={requiredProps}
-                            />
-
-                            {useTextFill === true ? (
-                                <></>
-                            ) : (
-                                <>
-                                    <ToggleControl
-                                        label={__('Use Background On Text', 'zoloblocks')}
-                                        checked={useBgOnText}
-                                        onChange={() => setAttributes({ useBgOnText: !useBgOnText })}
-                                    />
-                                </>
-                            )}
-
-                            {useBgOnText && (
-                                <>
-                                    <NormalBGControl controlName={USE_TEXT_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
-                                    <ResDimensionsControl
-                                        label={__('Radius', 'zoloblocks')}
-                                        controlName={USE_BG_RADIUS}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                </>
-                            )}
-
-                            {useBgOnText === true ? (
-                                <></>
-                            ) : (
-                                <>
-                                    <ToggleControl
-                                        label={__('Use Text Fill', 'zoloblocks')}
-                                        checked={useTextFill}
-                                        onChange={() => setAttributes({ useTextFill: !useTextFill })}
-                                    />
-                                </>
-                            )}
-
-                            {useTextFill && (
-                                <>
-                                    <NormalBGControl controlName={USE_FILL_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
-                                </>
-                            )}
-                        </ZoloPanelBody> */}
-
                         <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}

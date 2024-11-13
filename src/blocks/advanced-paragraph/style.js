@@ -157,60 +157,6 @@ const Style = ({ props }) => {
         styleFor: 'padding',
     });
 
-    // focused
-
-    // const {
-    //     dimensionStylesDesktop: focusTextPaddingDesk,
-    //     dimensionStylesTab: focusTextPaddingTab,
-    //     dimensionStylesMobile: focusTextPaddingMob,
-    // } = generateDimensionStyle({
-    //     controlName: FOCUS_TEXT_PADDING,
-    //     attributes,
-    //     styleFor: 'padding',
-    // });
-
-    // const {
-    //     typoStylesDesktop: focusTextTypoDesk,
-    //     typoStylesTab: focusTextTypoTab,
-    //     typoStylesMobile: focusTextTypoMob,
-    // } = generateTypographyStyles({
-    //     controlName: FOCUS_TEXT_TYPO,
-    //     prefixConstant: FOCUS_TEXT_TYPO,
-    //     defaultFontSize: '',
-    //     attributes,
-    // });
-
-    // const {
-    //     backgroundStylesDesktop: useTextBgColorDesk,
-    //     backgroundStylesTab: useTextBgColorTab,
-    //     backgroundStylesMobile: useTextBgColorMob,
-    // } = generateNormalBGControlStyles({
-    //     controlName: USE_TEXT_BG_COLOR,
-    //     attributes,
-    //     noMainBGImg: true,
-    // });
-
-    // const {
-    //     dimensionStylesDesktop: useBgRadiusDesk,
-    //     dimensionStylesTab: useBgRadiusTab,
-    //     dimensionStylesMobile: useBgRadiusMob,
-    // } = generateDimensionStyle({
-    //     controlName: USE_BG_RADIUS,
-    //     attributes,
-    //     styleFor: 'border-radius',
-    // });
-
-    // const {
-    //     backgroundStylesDesktop: useFillBgColorDesk,
-    //     backgroundStylesTab: useFillBgColorTab,
-    //     backgroundStylesMobile: useFillBgColorMob,
-    // } = generateNormalBGControlStyles({
-    //     controlName: USE_FILL_BG_COLOR,
-    //     attributes,
-    //     noMainBGImg: true,
-    // });
-
-    // dropcap
     const {
         typoStylesDesktop: dropCapTypoDesk,
         typoStylesTab: dropCapTypoTab,
@@ -455,7 +401,7 @@ const Style = ({ props }) => {
             ? `
         .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
             ${dropcapColor ? `color: ${dropcapColor};` : ''}
-            ${dropCapTypoMob}            
+            ${dropCapTypoMob}
             ${dropCapShadowStyle}
             ${dropCapBgColorMob}
             ${dropCapBorderMob}

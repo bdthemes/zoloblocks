@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr} = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -16,9 +16,6 @@ const Save = (props) => {
             {...blockProps}
             tagName="div"
             value={content}
-            formatingcontrols={['bold', 'italic']}
-            placeholder="Enter text..."
-            multiline="p"
         />
     );
 };

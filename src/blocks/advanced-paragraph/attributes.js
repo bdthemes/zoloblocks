@@ -20,10 +20,6 @@ import {
     HOVER_LINK_BG_COLOR,
     HOVER_LINK_RADIUS,
     HOVER_LINK_PADDING,
-    FOCUS_TEXT_PADDING,
-    USE_TEXT_BG_COLOR,
-    USE_BG_RADIUS,
-    USE_FILL_BG_COLOR,
     DROP_CAP_SHADOW,
     DROP_CAP_BG_COLOR,
     DROP_CAP_BORDER,
@@ -82,26 +78,6 @@ const attributes = {
         type: 'string',
         default: '#000000',
     },
-    // focusTextColor: {
-    //     type: 'string',
-    //     default: '#000000',
-    // },
-    // focusHoverTextColor: {
-    //     type: 'string',
-    //     default: '#000000',
-    // },
-    // textDecorColor: {
-    //     type: 'string',
-    //     default: '#000000',
-    // },
-    // useBgOnText: {
-    //     type: 'boolean',
-    //     default: false,
-    // },
-    // useTextFill: {
-    //     type: 'boolean',
-    //     default: false,
-    // },
     dropcapColor: {
         type: 'string',
         default: '#000000',
@@ -115,10 +91,6 @@ const attributes = {
     ...generateNormalBGAttributes(HOVER_LINK_BG_COLOR),
     ...generateDimensionAttributes(HOVER_LINK_RADIUS),
     ...generateDimensionAttributes(HOVER_LINK_PADDING),
-    // ...generateDimensionAttributes(FOCUS_TEXT_PADDING),
-    // ...generateNormalBGAttributes(USE_TEXT_BG_COLOR),
-    // ...generateDimensionAttributes(USE_BG_RADIUS),
-    // ...generateNormalBGAttributes(USE_FILL_BG_COLOR),
     ...generateTextShadowAttributies(DROP_CAP_SHADOW),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateNormalBGAttributes(DROP_CAP_BG_COLOR),
