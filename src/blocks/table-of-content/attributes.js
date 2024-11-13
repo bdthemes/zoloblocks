@@ -4,14 +4,11 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 const {
-    generateTextShadowAttributies,
-    generateTextStrokeAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
     generateBoxShadowAttributies,
     generateNormalBGAttributes,
     generateTypographyAttributes,
-    generateResAlignmentAttributies,
     generateResRangeAttributies,
 } = window.zoloModule;
 
