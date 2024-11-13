@@ -30,22 +30,22 @@ export default function Edit(props) {
     const { preview, uniqueId, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+    // useEffect(() => {
+    //     handleUniqueId({
+    //         uniqueId,
+    //         clientId,
+    //         BLOCK_PREFIX,
+    //         setAttributes,
+    //     });
+    // }, []);
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
     // preview image
-    if (preview) {
-        return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zoloblocks')} />;
-    }
+    // if (preview) {
+    //     return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zoloblocks')} />;
+    // }
 
     return (
         <>

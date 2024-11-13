@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Paragraph",
-    "name": "zolo/paragraph",
+    "title": "Advanced Paragraph",
+    "name": "zolo/advanced-paragraph",
     "category": "zoloblocks",
-    "keywords": ["zolo", "paragraph"],
+    "keywords": ["zolo", "paragraph", "advanced"],
     "description": "A simple block for adding a paragraph.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

@@ -16,7 +16,6 @@ const {
     HeaderTabs,
     BorderControl,
     AdvancedOptions,
-    ZoloIconPicker,
     ResDimensionsControl,
     NormalBGControl,
     TabPanelControl,
@@ -26,7 +25,7 @@ const {
 
 import objAttributes from './attributes';
 
-import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, FOCUS_TEXT_TYPO, DROP_CROP_TYPO } from './constants/typoPrefixConstant';
+import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, FOCUS_TEXT_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
 
 import {
     COLUMNS,
@@ -37,16 +36,16 @@ import {
     HOVER_LINK_BG_COLOR,
     HOVER_LINK_RADIUS,
     HOVER_LINK_PADDING,
-    FOCUS_TEXT_PADDING,
-    USE_TEXT_BG_COLOR,
-    USE_BG_RADIUS,
-    USE_FILL_BG_COLOR,
-    DROP_CROP_SHADOW,
-    DROP_CROP_BG_COLOR,
-    DROP_CROP_BORDER,
-    DROP_CROP_RADIUS,
-    DROP_CROP_PADDING,
-    DROP_CROP_MARGIN,
+    // FOCUS_TEXT_PADDING,
+    // USE_TEXT_BG_COLOR,
+    // USE_BG_RADIUS,
+    // USE_FILL_BG_COLOR,
+    DROP_CAP_SHADOW,
+    DROP_CAP_BG_COLOR,
+    DROP_CAP_BORDER,
+    DROP_CAP_RADIUS,
+    DROP_CAP_PADDING,
+    DROP_CAP_MARGIN,
 } from './constants';
 
 function Inspector(props) {
@@ -56,14 +55,13 @@ function Inspector(props) {
         resMode,
         dropcap,
         textColor,
-        hoverTextColor,
         linkColor,
         hoverLinkColor,
-        focusTextColor,
-        focusHoverTextColor,
-        textDecorColor,
-        useBgOnText,
-        useTextFill,
+        // focusTextColor,
+        // focusHoverTextColor,
+        // textDecorColor,
+        // useBgOnText,
+        // useTextFill,
         dropcapColor,
     } = attributes;
 
@@ -116,37 +114,6 @@ function Inspector(props) {
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={TEXT_ALIGNMENT}
                                 requiredProps={requiredProps}
-                            />
-
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={textColor}
-                                            onChange={(color) => setAttributes({ textColor: color })}
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={TEXT_TYPO}
-                                            requiredProps={requiredProps}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Hover Color', 'zoloblocks')}
-                                            color={hoverTextColor}
-                                            onChange={(color) => setAttributes({ hoverTextColor: color })}
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={HOVER_TEXT_TYPO}
-                                            requiredProps={requiredProps}
-                                        />
-                                    </>
-                                }
                             />
                         </ZoloPanelBody>
 
@@ -208,7 +175,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Focused', 'zoloblocks')} panelProps={props}>
+                        {/* <ZoloPanelBody title={__('Focused', 'zoloblocks')} panelProps={props}>
                             <ColorControl
                                 label={__('Color', 'zoloblocks')}
                                 color={focusTextColor}
@@ -276,12 +243,12 @@ function Inspector(props) {
                                     <NormalBGControl controlName={USE_FILL_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
                                 </>
                             )}
-                        </ZoloPanelBody>
+                        </ZoloPanelBody> */}
 
-                        <ZoloPanelBody title={__('Drop Crop', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={DROP_CROP_TYPO}
+                                typoPrefixConstant={DROP_CAP_TYPO}
                                 requiredProps={requiredProps}
                             />
                             <ColorControl
@@ -291,30 +258,29 @@ function Inspector(props) {
                             />
                             <TextShadowControl
                                 label={__('Text Shadow', 'zoloblocks')}
-                                controlName={DROP_CROP_SHADOW}
+                                controlName={DROP_CAP_SHADOW}
                                 requiredProps={requiredProps}
                                 enableTransition={true}
                             />
-                            <NormalBGControl controlName={DROP_CROP_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
-                            <BorderControl
-                                label={__('Border', 'zoloblocks')}
-                                controlName={DROP_CROP_BORDER}
-                                requiredProps={requiredProps}
-                            />
+
+                            <NormalBGControl controlName={DROP_CAP_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
+
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={DROP_CAP_BORDER} requiredProps={requiredProps} />
+
                             <ResDimensionsControl
                                 label={__('Radius', 'zoloblocks')}
-                                controlName={DROP_CROP_RADIUS}
+                                controlName={DROP_CAP_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
-                                controlName={DROP_CROP_PADDING}
+                                controlName={DROP_CAP_PADDING}
                                 requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
-                                controlName={DROP_CROP_MARGIN}
+                                controlName={DROP_CAP_MARGIN}
                                 requiredProps={requiredProps}
                             />
                         </ZoloPanelBody>
@@ -326,7 +292,7 @@ function Inspector(props) {
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
-                            block="zolo/textarea"
+                            block="zolo/adavanced-paragraph"
                         />
                     </>
                 }

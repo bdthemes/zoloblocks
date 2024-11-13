@@ -24,12 +24,12 @@ import {
     USE_TEXT_BG_COLOR,
     USE_BG_RADIUS,
     USE_FILL_BG_COLOR,
-    DROP_CROP_SHADOW,
-    DROP_CROP_BG_COLOR,
-    DROP_CROP_BORDER,
-    DROP_CROP_RADIUS,
-    DROP_CROP_PADDING,
-    DROP_CROP_MARGIN,
+    DROP_CAP_SHADOW,
+    DROP_CAP_BG_COLOR,
+    DROP_CAP_BORDER,
+    DROP_CAP_RADIUS,
+    DROP_CAP_PADDING,
+    DROP_CAP_MARGIN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -68,10 +68,6 @@ const attributes = {
         type: 'string',
         default: '#000000',
     },
-    hoverTextColor: {
-        type: 'string',
-        default: '#000000',
-    },
     linkColor: {
         type: 'string',
         default: '#000000',
@@ -80,26 +76,26 @@ const attributes = {
         type: 'string',
         default: '#000000',
     },
-    focusTextColor: {
-        type: 'string',
-        default: '#000000',
-    },
-    focusHoverTextColor: {
-        type: 'string',
-        default: '#000000',
-    },
-    textDecorColor: {
-        type: 'string',
-        default: '#000000',
-    },
-    useBgOnText: {
-        type: 'boolean',
-        default: false,
-    },
-    useTextFill: {
-        type: 'boolean',
-        default: false,
-    },
+    // focusTextColor: {
+    //     type: 'string',
+    //     default: '#000000',
+    // },
+    // focusHoverTextColor: {
+    //     type: 'string',
+    //     default: '#000000',
+    // },
+    // textDecorColor: {
+    //     type: 'string',
+    //     default: '#000000',
+    // },
+    // useBgOnText: {
+    //     type: 'boolean',
+    //     default: false,
+    // },
+    // useTextFill: {
+    //     type: 'boolean',
+    //     default: false,
+    // },
     dropcapColor: {
         type: 'string',
         default: '#000000',
@@ -113,13 +109,17 @@ const attributes = {
     ...generateNormalBGAttributes(HOVER_LINK_BG_COLOR),
     ...generateDimensionAttributes(HOVER_LINK_RADIUS),
     ...generateDimensionAttributes(HOVER_LINK_PADDING),
-    ...generateDimensionAttributes(FOCUS_TEXT_PADDING),
-    ...generateNormalBGAttributes(USE_TEXT_BG_COLOR),
-    ...generateDimensionAttributes(USE_BG_RADIUS),
-    ...generateNormalBGAttributes(USE_FILL_BG_COLOR),
-    ...generateTextShadowAttributies(DROP_CROP_SHADOW),
+    // ...generateDimensionAttributes(FOCUS_TEXT_PADDING),
+    // ...generateNormalBGAttributes(USE_TEXT_BG_COLOR),
+    // ...generateDimensionAttributes(USE_BG_RADIUS),
+    // ...generateNormalBGAttributes(USE_FILL_BG_COLOR),
+    ...generateTextShadowAttributies(DROP_CAP_SHADOW),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    ...generateNormalBGAttributes(DROP_CROP_BG_COLOR),
+    ...generateNormalBGAttributes(DROP_CAP_BG_COLOR),
+    ...generateBorderAttributies(DROP_CAP_BORDER),
+    ...generateDimensionAttributes(DROP_CAP_RADIUS),
+    ...generateDimensionAttributes(DROP_CAP_PADDING),
+    ...generateDimensionAttributes(DROP_CAP_MARGIN),
 };
 
 export default attributes;
