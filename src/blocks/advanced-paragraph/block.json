@@ -3,7 +3,7 @@
     "title": "Advanced Paragraph",
     "name": "zolo/advanced-paragraph",
     "category": "zoloblocks",
-    "keywords": ["zolo", "paragraph", "advanced"],
+    "keywords": ["zolo", "paragraph", "advanced", "content", "text", "description"],
     "description": "Advanced Paragraph block with custom styles",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

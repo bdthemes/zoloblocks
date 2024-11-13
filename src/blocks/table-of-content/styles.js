@@ -531,14 +531,18 @@ function Style({ props }) {
     }
     .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
       ${headerBGDesk}
-      ${headerTypoDesk}
       ${headerPaddingDesk}
       ${headerMarginDesk}
       ${headerBorderDesk}
       ${headerBorderRadiusDesk}
       ${headerShadow}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading .title{
+      ${headerTypoDesk}
       ${headerColor ? `color:${headerColor};` : ''}
     }
+
     .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-toggle-btn svg{
       ${headerIconSizeDesk}
       ${headerIconHeightDesk}
@@ -638,12 +642,16 @@ function Style({ props }) {
         }
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
           ${headerBGTab}
-          ${headerTypoTab}
           ${headerPaddingTab}
           ${headerMarginTab}
           ${headerBorderTab}
           ${headerBorderRadiusTab}
         }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading .title{
+          ${headerTypoTab}
+        }
+
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading svg{
           ${headerIconSizeTab}
           ${headerIconHeightTab}
@@ -713,12 +721,16 @@ function Style({ props }) {
         }
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
           ${headerBGMob}
-          ${headerTypoMob}
           ${headerPaddingMob}
           ${headerMarginMob}
           ${headerBorderMob}
           ${headerBorderRadiusMob}
         }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading .title{
+            ${headerTypoMob}
+        }
+
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading svg{
           ${headerIconSizeMob}
           ${headerIconHeightMob}
