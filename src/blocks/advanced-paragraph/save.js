@@ -5,11 +5,7 @@ const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        
-    } = attributes;
+    const { uniqueId, parentClasses } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -22,11 +18,14 @@ const Save = (props) => {
         //         id: zoloId,
         //     })}
         // >
-            <RichText.Content
-                {...blockProps}
-                tagName="div" // Keep the same wrapper tag as in edit
-                value={attributes}
-            />
+        <RichText.Content
+            {...blockProps}
+            tagName="div"
+            value={props.attributes.content}
+            formatingcontrols={['bold', 'italic']}
+            placeholder="Enter text..."
+            multiline="p"
+        />
         // </div>
     );
 };
