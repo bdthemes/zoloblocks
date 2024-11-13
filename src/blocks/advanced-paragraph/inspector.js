@@ -80,6 +80,11 @@ function Inspector(props) {
                                 max={6}
                                 step={1}
                             />
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zoloblocks')}
+                                controlName={TEXT_ALIGNMENT}
+                                requiredProps={requiredProps}
+                            />
                             <ToggleControl
                                 label={__('Dropcap', 'zoloblocks')}
                                 checked={dropcap}
@@ -90,7 +95,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ColorControl
                                 label={__('Color', 'zoloblocks')}
                                 color={textColor}
@@ -101,14 +106,9 @@ function Inspector(props) {
                                 typoPrefixConstant={TEXT_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={TEXT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                            />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Link', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={LINK_TYPO}
@@ -165,7 +165,7 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} stylePanel={true}  panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={DROP_CAP_TYPO}
