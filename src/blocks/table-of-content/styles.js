@@ -8,6 +8,10 @@ import {
     BOX_BORDER,
     BOX_BORDER_RADIUS,
     BOX_SHADOW,
+
+    // content
+    CONTENT_PADDING,
+
     //header
     HEADER_BG,
     HEADER_PADDING,
@@ -498,6 +502,17 @@ function Style({ props }) {
         controlName: OPEN_BTN_H_SHADOW,
     });
 
+    // content
+    const {
+        dimensionStylesDesktop: contentPaddingDesk,
+        dimensionStylesTab: contentPaddingTab,
+        dimensionStylesMobile: contentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -512,8 +527,7 @@ function Style({ props }) {
       ${boxPaddingDesk}
     }
     .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content{
-      ${boxSWidthDesk}
-      ${boxSeparatorColor ? `border-top-color:${boxSeparatorColor};` : ''}
+      ${contentPaddingDesk}
     }
     .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
       ${headerBGDesk}
@@ -563,6 +577,9 @@ function Style({ props }) {
    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
      ${listMarkerColor ? `color:${listMarkerColor};` : ''}
      ${listMarkerSizeDesk}
+   }
+   .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ul li{
+     ${listMarkerColor ? `color:${listMarkerColor};` : ''}
    }
 
     .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{
@@ -617,7 +634,7 @@ function Style({ props }) {
           ${boxPaddingTab}
         }
         .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content{
-          ${boxSWidthTab}
+          ${contentPaddingTab}
         }
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
           ${headerBGTab}
@@ -668,6 +685,19 @@ function Style({ props }) {
             ${closeIconHoverBgTab}
         }
 
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open{
+            ${openBtnTypoTab}
+            ${openBtnBgTab}
+            ${openBtnPaddingTab}
+            ${openBtnMarginTab}
+            ${openBtnBorderTab}
+            ${openBtnBorderRadiusTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open:hover{
+            ${openBtnHoverBgTab}
+        }
+
     `;
 
     const mobileAllStyle = `
@@ -679,7 +709,7 @@ function Style({ props }) {
           ${boxPaddingMob}
         }
         .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content{
-          ${boxSWidthMob}
+          ${contentPaddingMob}
         }
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-heading{
           ${headerBGMob}
@@ -728,6 +758,19 @@ function Style({ props }) {
         
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close:hover{
             ${closeIconHoverBgMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open{
+            ${openBtnTypoMob}
+            ${openBtnBgMob}
+            ${openBtnPaddingMob}
+            ${openBtnMarginMob}
+            ${openBtnBorderMob}
+            ${openBtnBorderRadiusMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open:hover{
+            ${openBtnHoverBgMob}
         }
   `;
 

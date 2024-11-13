@@ -24,6 +24,9 @@ import {
     BOX_BORDER,
     BOX_BORDER_RADIUS,
     BOX_SHADOW,
+
+    // content
+    CONTENT_PADDING,
     //header
     HEADER_BG,
     HEADER_PADDING,
@@ -159,6 +162,9 @@ const attributes = {
     ...generateBorderAttributies(BOX_BORDER),
     ...generateDimensionAttributes(BOX_BORDER_RADIUS),
     ...generateBoxShadowAttributies(BOX_SHADOW),
+
+    //content
+    ...generateDimensionAttributes(CONTENT_PADDING),
     //header
 
     ...generateNormalBGAttributes(HEADER_BG),

@@ -17,6 +17,10 @@
         &:focus {
             outline: none;
         }
+        svg {
+            width: 18px;
+            height: 18px;
+        }
     }
 
     &.collapsed .zolo-toc-toggle-btn svg {
@@ -75,10 +79,6 @@
                 }
                 .child-list {
                     margin-top: 5px;
-                    a {
-                        font-weight: 400;
-                        font-size: 15px;
-                    }
                 }
             }
         }
@@ -130,6 +130,17 @@
             background: #d5d5d5;
         }
     }
+    .zolo-toc-open {
+        padding: 10px 20px;
+        border: 0;
+        color: #fff;
+        background: var(--zoloblocks-brand-color);
+        cursor: pointer;
+        transition: 0.3s ease;
+        &:hover {
+            background: var(--zoloblocks-brand-color-hover);
+        }
+    }
 
     &.content-visible {
         visibility: visible;
@@ -159,7 +170,7 @@
     }
 
     &.sticky-content {
-        max-width: 510px;
+        max-width: 300px;
     }
 
     &.position-right .zolo-toc-open {

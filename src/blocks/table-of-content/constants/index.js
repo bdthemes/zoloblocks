@@ -24,6 +24,9 @@ export const BOX_MAX_WIDTH = 'boxMWidth';
 export const BOX_BORDER = 'boxBorder';
 export const BOX_BORDER_RADIUS = 'boxBRadius';
 export const BOX_SHADOW = 'boxShadow';
+
+//content
+export const CONTENT_PADDING = 'contentPadding';
 //header
 export const HEADER_BG = 'headerBg';
 export const HEADER_ICON_SIZE = 'headerIconSize';

@@ -16,6 +16,8 @@ import {
     BOX_BORDER,
     BOX_BORDER_RADIUS,
     BOX_SHADOW,
+    // content
+    CONTENT_PADDING,
     //header
     HEADER_BG,
     HEADER_PADDING,
@@ -247,6 +249,13 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
+
+                            <div className="zolo-custom-heading">{__('Content', 'zoloblocks')}</div>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CONTENT_PADDING}
+                                requiredProps={requiredProps}
+                            />
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Header', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -463,165 +472,170 @@ function Inspector(props) {
                                 step={1}
                             />
                         </ZoloPanelBody>
+                        {showSticky && (
+                            <ZoloPanelBody title={__('Sticky Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Open', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Close', 'zoloblocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={openBtnIconColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        openBtnIconColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={STICKY_OPEN_BUTTON_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={OPEN_BTN_BG} noMainBGImg={true} />
 
-                        <ZoloPanelBody title={__('Sticky Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <TabPanelControl
-                                options={[
-                                    {
-                                        value: 'normal',
-                                        label: __('Open', 'zoloblocks'),
-                                    },
-                                    {
-                                        value: 'hover',
-                                        label: __('Close', 'zoloblocks'),
-                                    },
-                                ]}
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={openBtnIconColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    openBtnIconColor: color,
-                                                })
-                                            }
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={STICKY_OPEN_BUTTON_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <CardDivider />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={OPEN_BTN_BG} noMainBGImg={true} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={OPEN_BTN_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
 
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={OPEN_BTN_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={OPEN_BTN_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={OPEN_BTN_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={OPEN_BTN_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={OPEN_BTN_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
 
-                                        <ResDimensionsControl
-                                            label={__('Margin', 'zoloblocks')}
-                                            controlName={OPEN_BTN_MARGIN}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={OPEN_BTN_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl controlName={OPEN_BTN_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={OPEN_BTN_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+                                            <BoxShadowControl controlName={OPEN_BTN_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={OPEN_BTN_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
 
-                                        <BoxShadowControl controlName={OPEN_BTN_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={OPEN_BTN_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-
-                                        <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={openBtnIconHoverColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    openBtnIconHoverColor: color,
-                                                })
-                                            }
-                                        />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={OPEN_BTN_H_BG} noMainBGImg={true} />
-                                        <CardDivider />
-                                        <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={openBtnIconHoverBorderColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    openBtnIconHoverBorderColor: color,
-                                                })
-                                            }
-                                        />
-                                        <BoxShadowControl controlName={OPEN_BTN_H_SHADOW} requiredProps={requiredProps} />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={closeIconColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    closeIconColor: color,
-                                                })
-                                            }
-                                        />
-                                        <ResRangeControl
-                                            label={__('Size', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_SIZE}
-                                            requiredProps={requiredProps}
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                        />
-                                        <CardDivider />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={true} />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Margin', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_MARGIN}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl controlName={CLOSE_ICON_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CLOSE_ICON_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={closeIconHoverColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    closeIconHoverColor: color,
-                                                })
-                                            }
-                                        />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_H_BG} noMainBGImg={true} />
-                                        <CardDivider />
-                                        <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={closeIconHoverBorderColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    closeIconHoverBorderColor: color,
-                                                })
-                                            }
-                                        />
-                                        <BoxShadowControl controlName={CLOSE_ICON_H_SHADOW} requiredProps={requiredProps} />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
+                                            <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={openBtnIconHoverColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        openBtnIconHoverColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={OPEN_BTN_H_BG} noMainBGImg={true} />
+                                            <CardDivider />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={openBtnIconHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        openBtnIconHoverBorderColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={OPEN_BTN_H_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={closeIconColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        closeIconColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={CLOSE_ICON_SIZE}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                            />
+                                            <CardDivider />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={true} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={CLOSE_ICON_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={CLOSE_ICON_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={CLOSE_ICON_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={CLOSE_ICON_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={CLOSE_ICON_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={closeIconHoverColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        closeIconHoverColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={CLOSE_ICON_H_BG}
+                                                noMainBGImg={true}
+                                            />
+                                            <CardDivider />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={closeIconHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        closeIconHoverBorderColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={CLOSE_ICON_H_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={
