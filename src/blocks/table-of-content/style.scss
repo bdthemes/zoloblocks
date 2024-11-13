@@ -20,6 +20,12 @@
         svg {
             width: 18px;
             height: 18px;
+            fill: #6b697c;
+        }
+        &:hover {
+            svg {
+                fill: #000;
+            }
         }
     }
 
@@ -36,7 +42,7 @@
         align-items: center;
         border-bottom: 1px solid #efefef;
         .title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: #28272e;
         }
@@ -47,6 +53,12 @@
         .zolo-toc-list {
             a {
                 text-decoration: none;
+                font-size: 18px;
+                color: #45444d;
+                font-weight: 500;
+                &:hover {
+                    color: var(--zoloblocks-brand-color);
+                }
 
                 &:focus {
                     outline: none;
@@ -69,14 +81,6 @@
                 &:nth-last-child(1) {
                     margin-bottom: 0;
                 }
-                a {
-                    font-size: 16px;
-                    color: #45444d;
-                    font-weight: 500;
-                    &:hover {
-                        color: var(--zoloblocks-brand-color);
-                    }
-                }
                 .child-list {
                     margin-top: 5px;
                 }
@@ -91,8 +95,8 @@
 
             li {
                 position: relative;
-                padding-left: 1.3em;
-                margin: 0.25em 0;
+                padding-left: 1em;
+                margin: 12px 0;
 
                 &::before {
                     position: absolute;
@@ -104,7 +108,7 @@
             }
 
             ol li {
-                padding-left: 2.3em;
+                padding-left: 1.5em;
             }
         }
     }
