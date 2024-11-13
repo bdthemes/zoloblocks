@@ -1124,8 +1124,9 @@ input.zoloblocks-search {
         .components-button {
             padding: 0;
             min-width: none;
-            margin: 0;
+            margin: 20px;
             left: 0;
+            position: unset !important;
             svg {
                 color: #a3a7b1;
             }
