@@ -385,7 +385,7 @@ Not at all. We have optimized all of these blocks for better performance.
 - Range Control: Upgraded the range control for more precise and responsive adjustments.
 - CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
 - Background Controls: Background controls have been moved to a popover for a cleaner layout.
-- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user*friendly design.
+- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
 
 **Fixes:**
 - TextPath Image Control: Fixed the issue with image selection in the TextPath block.
