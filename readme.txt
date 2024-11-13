@@ -5,7 +5,7 @@ Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg 
 Requires at least: 6.1
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -354,7 +354,12 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-= 2.0.1 - 12-11-2024 =
+= 2.1.0 - 13-11-2024 =
+
+**New Features:**
+- Table of Content Block: Introduced a new, highly customizable Table of Content block, allowing users to easily structure long content with automatic heading detection and flexible styling options.
+- Paragraph Block: Introduced an paragraph block with enhanced customization options. This block also supports responsive styling for mobile, tablet, and desktop views.
+
 **Fixes:**
 - Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
 - Post Meta Block: Fixed display issues.

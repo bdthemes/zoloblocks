@@ -1,4 +1,9 @@
-### 2.0.1 [November 12, 2024]
+### 2.1.0 [November 13, 2024]
+
+####New Features
+- Table of Content Block: Introduced a new, highly customizable Table of Content block, allowing users to easily structure long content with automatic heading detection and flexible styling options.
+- Paragraph Block: Introduced an paragraph block with enhanced customization options. This block also supports responsive styling for mobile, tablet, and desktop views.
+
 #### Bug Fixes
 - Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
 - Post Meta Block: Fixed display issues.
