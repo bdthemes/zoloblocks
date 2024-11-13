@@ -58,6 +58,7 @@
     }
 
     .zolo-button-content {
+        font-size: 16px;
         color: var(--secondary-color);
         z-index: 1;
     }
@@ -567,6 +568,109 @@
             transition:
                 transform 0.3s ease,
                 opacity 0.3s ease;
+        }
+    }
+
+    // button 10 style
+    &.button-9 {
+        .zolo-button {
+            position: relative;
+            border: 2px solid var(--zoloblocks-brand-color);
+
+            &:hover {
+                background: transparent;
+                border-color: var(--zoloblocks-brand-color);
+                .zolo-button-content {
+                    color: var(--zoloblocks-brand-color);
+                }
+                .zolo__display-icon {
+                    svg {
+                        fill: var(--zoloblocks-brand-color);
+                    }
+                }
+                .zolo-star {
+                    opacity: 1;
+                    z-index: 2;
+                    filter: drop-shadow(0 0 10px #fffdef);
+                }
+                .zolo-star-1 {
+                    top: -80%;
+                    left: -30%;
+                }
+                .zolo-star-2 {
+                    top: -25%;
+                    left: 10%;
+                }
+                .zolo-star-3 {
+                    top: 55%;
+                    left: 25%;
+                }
+                .zolo-star-4 {
+                    top: 30%;
+                    left: 80%;
+                }
+                .zolo-star-5 {
+                    top: 25%;
+                    left: 115%;
+                }
+                .zolo-star-6 {
+                    top: 5%;
+                    left: 60%;
+                }
+            }
+        }
+        .zolo-star {
+            position: absolute;
+            z-index: -5;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            filter: drop-shadow(0 0 0 #fffdef);
+
+            &.zolo-star-1 {
+                top: 20%;
+                left: 20%;
+                width: 25px;
+                transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+            }
+
+            &.zolo-star-2 {
+                top: 45%;
+                left: 45%;
+                width: 15px;
+                transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-3 {
+                top: 40%;
+                left: 40%;
+                width: 5px;
+                transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-4 {
+                top: 20%;
+                left: 40%;
+                width: 8px;
+                transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-5 {
+                top: 25%;
+                left: 45%;
+                width: 15px;
+                transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-6 {
+                top: 5%;
+                left: 50%;
+                width: 5px;
+                transition: all 0.8s ease;
+            }
+        }
+        .zolo-star-icon {
+            fill: var(--zoloblocks-brand-color);
         }
     }
 }

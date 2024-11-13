@@ -72,6 +72,7 @@ export default function Style({ props }) {
         presetSixStyle,
         presetSevenStyles,
         buttonTwoBorderColor,
+        psStarColor,
     } = attributes;
 
     // alignment
@@ -552,6 +553,16 @@ export default function Style({ props }) {
                 ${pseDeskBGStyle}
                     
                 }
+				`
+                : ''
+        }
+
+        ${
+            preset === 'button-9'
+                ? `
+                    .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-9 .zolo-star-icon {
+                       fill: ${psStarColor ? psStarColor : ''};
+                    }
 				`
                 : ''
         }
