@@ -26,26 +26,12 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses } = attributes;
-
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    // useEffect(() => {
-    //     handleUniqueId({
-    //         uniqueId,
-    //         clientId,
-    //         BLOCK_PREFIX,
-    //         setAttributes,
-    //     });
-    // }, []);
+    const { attributes, setAttributes, isSelected } = props;
+    const { uniqueId, parentClasses, content } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-    // preview image
-    // if (preview) {
-    //     return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zoloblocks')} />;
-    // }
 
     return (
         <>
@@ -58,7 +44,7 @@ export default function Edit(props) {
                     onChange={(content) => {
                         props.setAttributes({ content });
                     }}
-                    value={props.attributes.content}
+                    value={content}
                     formatingcontrols={['bold', 'italic']}
                     placeholder="Enter text..."
                     multiline="p"
