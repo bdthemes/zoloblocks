@@ -5,7 +5,7 @@ Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg 
 Requires at least: 6.1
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -354,7 +354,12 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-= 2.0.1 - 12-11-2024 =
+= 2.1.0 - 13-11-2024 =
+
+**New Features:**
+- Table of Content Block: Introduced a new, highly customizable Table of Content block, allowing users to easily structure long content with automatic heading detection and flexible styling options.
+- Paragraph Block: Introduced an paragraph block with enhanced customization options. This block also supports responsive styling for mobile, tablet, and desktop views.
+
 **Fixes:**
 - Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
 - Post Meta Block: Fixed display issues.
@@ -414,61 +419,5 @@ Not at all. We have optimized all of these blocks for better performance.
 * Improved: Refactored and optimized query for better performance.
 * Improved: Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud blocks.
 * Improved: Container block design updated.
-
-= 1.4.4 - 25-09-2024 =
-
-* Fixed: QR code block layout issue.
-* Fixed: Post Grid block hover animation issue.
-* Fixed: Post Timeline block excerpt not displaying on the frontend.
-* Improved: Optimized Post Grid and Post Timeline blocks for efficiency and better user experience.
-
-= 1.4.3 - 24-09-2024 =
-
-* Added: Horizontal layout features to List Block.
-* Added: New List Block presets (2, 3, 4).
-* Fixed: Authors Block avatar issue.
-* Fixed: Review Block image issue.
-* Fixed: Post & Review Carousel vertical offset issue.
-* Improved: Optimized block controls UI.
-
-= 1.4.2 - 18-09-2024 =
-
-* Fixed: List block deprecated issue.
-* Improved: Control layout for Chart, Authors, Notice, and Review Grid blocks.
-
-= 1.4.1 - 17-09-2024 =
-
-* Fixed: List block linkable issue.
-* Fixed: Particles z-index issue.
-* Fixed: Newsletter block API issue.
-* Fixed: Lightbox background color issue.
-* Fixed: Post Category block color issue.
-
-= 1.4.0 - 12-09-2024 =
-
-* Added: Author Block.
-* Added: Breadcrumbs Block.
-* Added: Lightbox Block.
-* Added: Post Category Block.
-* Added: Tag Cloud Block.
-* Added: Post Comments Block.
-* Added: Social Count Block.
-* Added: Recent Comments Block.
-* Added: Advanced Button hover background control.
-* Fixed: Review Grid column issue.
-* Fixed: Star Rating responsive issue.
-* Fixed: Google Maps block editor issue.
-* Fixed: Astra theme link underline style support issue.
-* Fixed: Multiple chart rendering issue on a single page.
-* Improved: Dashboard UI updated.
-* Improved: Block scripts optimized.
-* Improved: Optimized asset loading.
-* Improved: Enhanced Post Query system.
-* Improved: Block controls UI optimized.
-* Improved: Pricing Block design refined.
-* Improved: QR code block scripts updated.
-* Improved: Button Block preset styles enhanced.
-* Improved: Removed line link from preset particles.
-* Improved: Added particles preview options to the editor.
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)
