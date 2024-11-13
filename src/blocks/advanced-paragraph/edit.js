@@ -45,7 +45,7 @@ export default function Edit(props) {
                         props.setAttributes({ content });
                     }}
                     value={content}
-                    formatingcontrols={['bold', 'italic']}
+                    formatingControls={['bold', 'italic']}
                     placeholder="Enter text..."
                     multiline="p"
                 />

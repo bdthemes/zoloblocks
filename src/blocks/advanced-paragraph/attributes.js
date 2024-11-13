@@ -60,6 +60,12 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    content: {
+        type: 'string',
+        source: 'html',
+        selector: 'div',
+        default: '',
+    },
     dropcap: {
         type: 'boolean',
         default: false,
