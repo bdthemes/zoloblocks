@@ -40,20 +40,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const {
-        uniqueId,
-        dropcap,
-        textColor,
-        hoverTextColor,
-        linkColor,
-        hoverLinkColor,
-        focusTextColor,
-        focusHoverTextColor,
-        textDecorColor,
-        useBgOnText,
-        useTextFill,
-        dropcapColor,
-    } = attributes;
+    const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor } = attributes;
 
     const {
         desktopRangeStyle: columnsDesktop,
@@ -261,7 +248,7 @@ const Style = ({ props }) => {
 
     const {
         dimensionStylesDesktop: dropCapRadiusDesk,
-        dimensionStylesTab: dropRadiusTab,
+        dimensionStylesTab: dropCapRadiusTab,
         dimensionStylesMobile: dropCapRadiusMob,
     } = generateDimensionStyle({
         controlName: DROP_CAP_RADIUS,
@@ -293,10 +280,10 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-    .${uniqueId}.wp-block-zolo-paragraph {
+    .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsDesktop.replace('px', '')}
     }
-    .${uniqueId}.wp-block-zolo-paragraph p{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
         ${textTypoDesk}
         ${textAlignDesk}
@@ -306,7 +293,7 @@ const Style = ({ props }) => {
     ${
         dropcap
             ? `
-        .${uniqueId}.wp-block-zolo-paragraph:first-letter {
+        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
             font-size: 2em;
             font-weight: bold;
             float: left;
@@ -317,12 +304,12 @@ const Style = ({ props }) => {
             : ''
     }
 
-    .${uniqueId}.wp-block-zolo-paragraph p:hover{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p:hover{
         ${hoverTextColor ? `color: ${hoverTextColor};` : ''}
         ${hoverTextTypoDesk}
     }
 
-    .${uniqueId}.wp-block-zolo-paragraph a{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoDesk}
         ${linkColor ? `color: ${linkColor};` : ''}
         ${linkBgColorDesk}
@@ -330,7 +317,7 @@ const Style = ({ props }) => {
         ${linkPaddingDesk}
     }
 
-    .${uniqueId}.wp-block-zolo-paragraph a:hover{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph a:hover{
         ${hoverLinkColor ? `color: ${hoverLinkColor};` : ''}
         ${hoverLinkBgColorDesk}
         ${hoverLinkRadiusDesk}
@@ -340,7 +327,7 @@ const Style = ({ props }) => {
     ${
         dropcap
             ? `
-        .${uniqueId}.wp-block-zolo-paragraph:first-letter {
+        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
             ${dropcapColor ? `color: ${dropcapColor};` : ''}
             ${dropCapTypoDesk}
             ${dropCapShadowStyle}
@@ -355,9 +342,131 @@ const Style = ({ props }) => {
     }
 `;
 
-    const tabletAllStyle = ``;
+    const tabletAllStyle = `
+    .${uniqueId}.wp-block-zolo-advanced-paragraph {
+        ${columnsTab.replace('px', '')}
+    }
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+        ${textColor ? `color: ${textColor};` : ''}
+        ${textTypoTab}
+        ${textAlignTab}
 
-    const mobileAllStyle = ``;
+    }
+
+    ${
+        dropcap
+            ? `
+        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
+            font-size: 2em;
+            font-weight: bold;
+            float: left;
+            margin-right: 0.1em;
+            line-height: 1;
+        }
+    `
+            : ''
+    }
+
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p:hover{
+        ${hoverTextColor ? `color: ${hoverTextColor};` : ''}
+        ${hoverTextTypoTab}
+    }
+
+    .${uniqueId}.wp-block-zolo-advanced-paragraph a{
+        ${linkTypoTab}
+        ${linkColor ? `color: ${linkColor};` : ''}
+        ${linkBgColorTab}
+        ${linkRadiusTab}
+        ${linkPaddingTab}
+    }
+
+    .${uniqueId}.wp-block-zolo-advanced-paragraph a:hover{
+        ${hoverLinkColor ? `color: ${hoverLinkColor};` : ''}
+        ${hoverLinkBgColorTab}
+        ${hoverLinkRadiusTab}
+        ${hoverLinkPaddingTab}
+    }
+
+    ${
+        dropcap
+            ? `
+        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
+            ${dropcapColor ? `color: ${dropcapColor};` : ''}
+            ${dropCapTypoTab}
+            ${dropCapShadowStyle}
+            ${dropCapBgColorTab}
+            ${dropCapBorderTab}
+            ${dropCapRadiusTab}
+            ${dropCapPaddingTab}
+            ${dropCapMarginTab}
+        }
+    `
+            : ''
+    }
+    `;
+
+    const mobileAllStyle = `
+     .${uniqueId}.wp-block-zolo-advanced-paragraph {
+        ${columnsMob.replace('px', '')}
+    }
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+        ${textColor ? `color: ${textColor};` : ''}
+        ${textTypoMob}
+        ${textAlignMob}
+
+    }
+
+    ${
+        dropcap
+            ? `
+        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
+            font-size: 2em;
+            font-weight: bold;
+            float: left;
+            margin-right: 0.1em;
+            line-height: 1;
+        }
+    `
+            : ''
+    }
+
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p:hover{
+        ${hoverTextColor ? `color: ${hoverTextColor};` : ''}
+        ${hoverTextTypoMob}
+    }
+
+    .${uniqueId}.wp-block-zolo-advanced-paragraph a{
+        ${linkTypoMob}
+        ${linkColor ? `color: ${linkColor};` : ''}
+        ${linkBgColorMob}
+        ${linkRadiusMob}
+        ${linkPaddingMob}
+    }
+
+    .${uniqueId}.wp-block-zolo-advanced-paragraph a:hover{
+        ${hoverLinkColor ? `color: ${hoverLinkColor};` : ''}
+        ${hoverLinkBgColorMob}
+        ${hoverLinkRadiusMob}
+        ${hoverLinkPaddingMob}
+    }
+
+    ${
+        dropcap
+            ? `
+        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
+            ${dropcapColor ? `color: ${dropcapColor};` : ''}
+            ${dropCapTypoMob}            
+            ${dropCapShadowStyle}
+            ${dropCapBgColorMob}
+            ${dropCapBorderMob}
+            ${dropCapRadiusMob}
+            ${dropCapPaddingMob}
+            ${dropCapMarginMob}
+        }
+    `
+            : ''
+    }
+    `;
 
     return (
         <>
