@@ -46,6 +46,7 @@ import {
     WRAPPER_SHADOW,
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
+    TEXT_GRADIENT_COLOR,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -80,6 +81,16 @@ const attributes = {
     styles: {
         type: 'string',
         default: 'style-0',
+    },
+
+    textGradient: {
+        type: 'boolean',
+        default: false,
+    },
+
+    textGradientType: {
+        type: 'string',
+        default: 'zolo-text-gradient-color',
     },
 
     titleText: {
@@ -239,5 +250,7 @@ const attributes = {
     ...generateNormalBGAttributes(TEST_NORMAL_BG, {
         defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
     }),
+
+    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR),
 };
 export default attributes;
