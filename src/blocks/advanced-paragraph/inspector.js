@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl} from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -17,6 +17,7 @@ const {
     BorderControl,
     AdvancedOptions,
     ResDimensionsControl,
+    BoxShadowControl,
     NormalBGControl,
     TabPanelControl,
     TextShadowControl,
@@ -29,7 +30,10 @@ import { TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConst
 
 import {
     COLUMNS,
+    COLUMNS_GAP,
     TEXT_ALIGNMENT,
+    // LINK_BORDER,
+    // LINK_BOX_SHADOW,
     LINK_BG_COLOR,
     LINK_RADIUS,
     LINK_PADDING,
@@ -43,18 +47,13 @@ import {
     DROP_CAP_PADDING,
     DROP_CAP_MARGIN,
 } from './constants';
+import { CardDivider } from '@wordpress/components';
+import { Card } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
 
-    const {
-        resMode,
-        dropcap,
-        textColor,
-        linkColor,
-        hoverLinkColor,
-        dropcapColor,
-    } = attributes;
+    const { resMode, dropcap, textColor, linkColor, hoverLinkColor, dropcapColor } = attributes;
 
     const requiredProps = {
         attributes,
@@ -72,6 +71,15 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Show & Hide elements', 'zoloblocks')}
+                            </div>
+                            <ToggleControl
+                                label={__('Dropcap', 'zoloblocks')}
+                                checked={dropcap}
+                                onChange={() => setAttributes({ dropcap: !dropcap })}
+                            />
+                            <CardDivider />
                             <ResRangeControl
                                 label={__('Columns', 'zoloblocks')}
                                 controlName={COLUMNS}
@@ -80,15 +88,19 @@ function Inspector(props) {
                                 max={6}
                                 step={1}
                             />
+                            <ResRangeControl
+                                label={__('Gap', 'zoloblocks')}
+                                controlName={COLUMNS_GAP}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={100}
+                                step={1}
+                            />
+                            <CardDivider />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={TEXT_ALIGNMENT}
                                 requiredProps={requiredProps}
-                            />
-                            <ToggleControl
-                                label={__('Dropcap', 'zoloblocks')}
-                                checked={dropcap}
-                                onChange={() => setAttributes({ dropcap: !dropcap })}
                             />
                         </ZoloPanelBody>
                     </>
@@ -109,12 +121,6 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={LINK_TYPO}
-                                requiredProps={requiredProps}
-                            />
-
                             <TabPanelControl
                                 normalComponents={
                                     <>
@@ -123,24 +129,41 @@ function Inspector(props) {
                                             color={linkColor}
                                             onChange={(color) => setAttributes({ linkColor: color })}
                                         />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={LINK_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
                                         <NormalBGControl controlName={LINK_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={LINK_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <CardDivider />
+                                        {/* <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={LINK_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zoloblocks')}
+                                            controlName={LINK_BOX_SHADOW}
+                                            requiredProps={requiredProps}
+                                        /> */}
                                         <ResDimensionsControl
                                             label={__('Radius', 'zoloblocks')}
                                             controlName={LINK_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={LINK_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
                                     </>
                                 }
                                 hoverComponents={
                                     <>
                                         <ColorControl
-                                            label={__('Hover Color', 'zoloblocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={hoverLinkColor}
                                             onChange={(color) => setAttributes({ hoverLinkColor: color })}
                                         />
@@ -150,22 +173,11 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             noMainBGImg={true}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Radius', 'zoloblocks')}
-                                            controlName={HOVER_LINK_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={HOVER_LINK_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
                                     </>
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} stylePanel={true}  panelProps={props}>
+                        <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={DROP_CAP_TYPO}

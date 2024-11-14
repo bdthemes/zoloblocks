@@ -22,6 +22,7 @@ import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constant
 
 import {
     COLUMNS,
+    COLUMNS_GAP,
     TEXT_ALIGNMENT,
     LINK_BG_COLOR,
     LINK_RADIUS,
@@ -49,6 +50,16 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: COLUMNS,
         property: 'column-count',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: columnsGapDesktop,
+        tabRangeStyle: columnsGapTab,
+        mobRangeStyle: columnsGapMob,
+    } = generateResRangeStyle({
+        controlName: COLUMNS_GAP,
+        property: 'gap',
         attributes,
     });
 
@@ -228,6 +239,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
     .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsDesktop.replace('px', '')}
+        ${columnsGapDesktop}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
@@ -291,6 +303,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
     .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsTab.replace('px', '')}
+        ${columnsGapTab}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
@@ -354,6 +367,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
      .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsMob.replace('px', '')}
+        ${columnsGapMob}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}

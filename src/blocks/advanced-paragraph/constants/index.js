@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-paragraph';
 
 export const COLUMNS = 'columns';
-
+export const COLUMNS_GAP = 'columnGap';
 // Text
 export const TEXT_ALIGNMENT = 'textAlignment';
 

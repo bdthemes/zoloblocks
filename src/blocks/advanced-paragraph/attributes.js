@@ -13,6 +13,7 @@ const {
 
 import {
     COLUMNS,
+    COLUMNS_GAP,
     TEXT_ALIGNMENT,
     LINK_BG_COLOR,
     LINK_RADIUS,
@@ -84,6 +85,7 @@ const attributes = {
     },
 
     ...generateResRangeAttributies(COLUMNS),
+    ...generateResRangeAttributies(COLUMNS_GAP),
     ...generateResAlignmentAttributies(TEXT_ALIGNMENT),
     ...generateNormalBGAttributes(LINK_BG_COLOR),
     ...generateDimensionAttributes(LINK_RADIUS),
