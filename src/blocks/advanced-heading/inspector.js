@@ -17,12 +17,13 @@ const {
     RangeResetControl,
     HeaderTabs,
     LinkControl,
-    NormalBGControl,
+    TextGradientControl,
     IconicBtnGroup,
     AdvancedOptions,
     TabPanelControl,
     ZoloPanelBody,
     ImageAvatar,
+    BackgroundControl,
 } = window.zoloModule;
 
 //block attributes
@@ -471,7 +472,17 @@ const Inspector = (props) => {
                             />
                             {textGradient && (
                                 <>
-                                    <NormalBGControl noMainBGImg={true} controlName={TEXT_GRADIENT_COLOR} requiredProps={requiredProps} />
+                                    {/* <BackgroundControl
+                                        controlName={'mainBg'}
+                                        requiredProps={requiredProps}
+                                        particles={false}
+                                        video={false}
+                                    /> */}
+                                    <TextGradientControl
+                                        noMainBGImg={true}
+                                        controlName={TEXT_GRADIENT_COLOR}
+                                        requiredProps={requiredProps}
+                                    />
                                 </>
                             )}
                         </ZoloPanelBody>
