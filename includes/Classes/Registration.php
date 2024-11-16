@@ -62,7 +62,7 @@ class Registration {
      */
     public function render_callback($attributes, $content, $block, $render) {
         if ($render !== false) {
-            return $render->render($attributes,$content,$block);
+            return $render->render($attributes, $content, $block);
         }
 
         return $content;

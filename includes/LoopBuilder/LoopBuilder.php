@@ -111,7 +111,7 @@ if (!class_exists('LoopBuilder')) {
             $tax_query = [];
             foreach ($params as $value) {
                 $tax_query_args = $value['taxonomies'] ?? [];
-                $operator = self::get_select_value($tax_query_args['operator'] ?? '');
+                $operator = self::get_select_value($tax_query_args['operator'] ?? 'IN');
                 $taxonomy = self::get_select_value($tax_query_args['taxonomy'] ?? '');
                 $terms = self::get_select_value($tax_query_args['terms'] ?? [], true);
                 if (!empty($taxonomy) && !empty($terms)) {

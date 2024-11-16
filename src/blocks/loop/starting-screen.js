@@ -2,8 +2,10 @@ import { useState } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelect } from '@wordpress/data';
+import TemplatePicker from './template-picker';
 const StartingScreen = ({ attributes, setAttributes }) => {
     const { saveEntityRecord } = useDispatch('core');
+    const [openTemplateModal, setOpenTemplateModal] = useState(false);
     const {
         onNavigateToEntityRecord,
     } = useSelect(
@@ -35,14 +37,17 @@ const StartingScreen = ({ attributes, setAttributes }) => {
         }
     };
 
-    return(
-        <div className='zolo-loop-starting-screen'>
-            <h3 className="zolo-loop-starting-screen-title">{__('Choose an option', 'zoloblocks')}</h3>
-            <div className="zolo-loop-starting-screen-content">
-                <Button onClick={() => {}} variant='primary'>{__('Select Template', 'zoloblocks')}</Button>
-                <Button onClick={createLoopTemplate} variant='primary'>{__('Create New', 'zoloblocks')}</Button>
+    return (
+        <>
+            <div className='zolo-loop-starting-screen'>
+                <h3 className="zolo-loop-starting-screen-title">{__('Choose an option', 'zoloblocks')}</h3>
+                <div className="zolo-loop-starting-screen-content">
+                    <Button onClick={() => { setOpenTemplateModal(true) }} variant='primary'>{__('Select Template', 'zoloblocks')}</Button>
+                    <Button onClick={createLoopTemplate} variant='primary'>{__('Create New', 'zoloblocks')}</Button>
+                </div>
             </div>
-        </div>
+            {openTemplateModal && <TemplatePicker openTemplateModal={openTemplateModal} setOpenTemplateModal={setOpenTemplateModal} />}
+        </>
     )
 }
 

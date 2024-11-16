@@ -10,7 +10,6 @@
         "loop",
         "loop builder"
     ],
-    "parent": ["zolo/post-query"],
     "description": "Loop your content",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
@@ -33,6 +32,5 @@
         ]
     },
     "editorScript": "file:./index.js",
-    "style": "file:./style-index.css",
-    "render": "file:./render.php"
+    "style": "file:./style-index.css"
 }

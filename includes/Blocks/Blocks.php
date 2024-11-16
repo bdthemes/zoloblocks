@@ -648,9 +648,9 @@ return apply_filters('zolo_blocks_list_data', [
     'post-query'           => [
         'name'             => 'post-query',
         'title'            => __('Post Query', 'zoloblocks'),
-        'render_available' => true,
         'categories'       => ['others'],
         'status'           => true,
+        'class'            => '\Zolo\Blocks\PostQuery',
         'demo'             => 'https://demo.zoloblocks.com/post-query',
         'video'            => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
@@ -659,6 +659,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title'      => __('Loop', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
+        'class'      => '\Zolo\Blocks\Loop',
         'demo'       => 'https://demo.zoloblocks.com/loop',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
