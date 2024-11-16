@@ -9,6 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 const {
     generateDimensionStyle,
+    generateResCounterStyle,
     generateTextShadowStyles,
     generateResAlignmentStyle,
     generateTypographyStyles,
@@ -16,16 +17,20 @@ const {
     generateNormalBGControlStyles,
     generateBorderStyle,
     GlobalStyleHanlder,
+    generateBoxShadowStyles,
 } = window.zoloModule;
 
 import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
 
 import {
     COLUMNS,
+    COLUMNS_GAP,
     TEXT_ALIGNMENT,
     LINK_BG_COLOR,
     LINK_RADIUS,
     LINK_PADDING,
+    LINK_BORDER,
+    LINK_BOX_SHADOW,
     HOVER_LINK_BG_COLOR,
     HOVER_LINK_RADIUS,
     HOVER_LINK_PADDING,
@@ -40,15 +45,25 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor } = attributes;
+    const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor, hoverLinkBorderColor } = attributes;
 
     const {
         desktopRangeStyle: columnsDesktop,
         tabRangeStyle: columnsTab,
         mobRangeStyle: columnsMob,
-    } = generateResRangeStyle({
+    } = generateResCounterStyle({
         controlName: COLUMNS,
         property: 'column-count',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: columnsGapDesktop,
+        tabRangeStyle: columnsGapTab,
+        mobRangeStyle: columnsGapMob,
+    } = generateResRangeStyle({
+        controlName: COLUMNS_GAP,
+        property: 'gap',
         attributes,
     });
 
@@ -115,6 +130,20 @@ const Style = ({ props }) => {
         controlName: LINK_RADIUS,
         attributes,
         styleFor: 'border-radius',
+    });
+
+    const {
+        desktopBorderStyle: linkBorderDesk,
+        tabBorderStyle: linkBorderTab,
+        mobBorderStyle: linkBorderMob,
+    } = generateBorderStyle({
+        controlName: LINK_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: linkBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: LINK_BOX_SHADOW,
     });
 
     const {
@@ -228,6 +257,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
     .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsDesktop.replace('px', '')}
+        ${columnsGapDesktop}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
@@ -261,10 +291,13 @@ const Style = ({ props }) => {
         ${linkBgColorDesk}
         ${linkRadiusDesk}
         ${linkPaddingDesk}
+        ${linkBorderDesk}
+        ${linkBoxShadow}
     }
 
     .${uniqueId}.wp-block-zolo-advanced-paragraph a:hover{
         ${hoverLinkColor ? `color: ${hoverLinkColor};` : ''}
+        ${hoverLinkBorderColor ? `border-color: ${hoverLinkBorderColor};` : ''}
         ${hoverLinkBgColorDesk}
         ${hoverLinkRadiusDesk}
         ${hoverLinkPaddingDesk}
@@ -291,6 +324,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
     .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsTab.replace('px', '')}
+        ${columnsGapTab}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
@@ -354,6 +388,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
      .${uniqueId}.wp-block-zolo-advanced-paragraph {
         ${columnsMob.replace('px', '')}
+        ${columnsGapMob}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}

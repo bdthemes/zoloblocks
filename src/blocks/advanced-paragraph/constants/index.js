@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-paragraph';
 
 export const COLUMNS = 'columns';
-
+export const COLUMNS_GAP = 'columnGap';
 // Text
 export const TEXT_ALIGNMENT = 'textAlignment';
 
@@ -15,6 +15,8 @@ export const TEXT_ALIGNMENT = 'textAlignment';
 export const LINK_BG_COLOR = 'linkBgColor';
 export const LINK_RADIUS = 'linkRadius';
 export const LINK_PADDING = 'linkPadding';
+export const LINK_BORDER = 'linkBorder';
+export const LINK_BOX_SHADOW = 'linkBoxShadow';
 // export const FOCUS_TEXT_PADDING = 'focusTextPadding';
 export const HOVER_LINK_BG_COLOR = 'hoverLinkBgColor';
 export const HOVER_LINK_RADIUS = 'hoverLinkRadius';

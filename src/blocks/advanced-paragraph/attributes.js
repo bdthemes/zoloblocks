@@ -3,20 +3,25 @@
  */
 const {
     generateResRangeAttributies,
+    generateResCounterAttributies,
     generateTypographyAttributes,
     generateDimensionAttributes,
     generateNormalBGAttributes,
     generateBorderAttributies,
     generateTextShadowAttributies,
     generateResAlignmentAttributies,
+    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
     COLUMNS,
+    COLUMNS_GAP,
     TEXT_ALIGNMENT,
     LINK_BG_COLOR,
     LINK_RADIUS,
     LINK_PADDING,
+    LINK_BORDER,
+    LINK_BOX_SHADOW,
     HOVER_LINK_BG_COLOR,
     HOVER_LINK_RADIUS,
     HOVER_LINK_PADDING,
@@ -68,26 +73,32 @@ const attributes = {
     },
     textColor: {
         type: 'string',
-        default: '#000000',
+        default: '#000',
     },
     linkColor: {
         type: 'string',
-        default: '#000000',
+        default: '#2667ff',
     },
     hoverLinkColor: {
         type: 'string',
-        default: '#000000',
+        default: '#175af5',
+    },
+    hoverLinkBorderColor: {
+        type: 'string',
     },
     dropcapColor: {
         type: 'string',
         default: '#000000',
     },
 
-    ...generateResRangeAttributies(COLUMNS),
+    ...generateResCounterAttributies(COLUMNS),
+    ...generateResRangeAttributies(COLUMNS_GAP),
     ...generateResAlignmentAttributies(TEXT_ALIGNMENT),
     ...generateNormalBGAttributes(LINK_BG_COLOR),
     ...generateDimensionAttributes(LINK_RADIUS),
     ...generateDimensionAttributes(LINK_PADDING),
+    ...generateBorderAttributies(LINK_BORDER),
+    ...generateBoxShadowAttributies(LINK_BOX_SHADOW),
     ...generateNormalBGAttributes(HOVER_LINK_BG_COLOR),
     ...generateDimensionAttributes(HOVER_LINK_RADIUS),
     ...generateDimensionAttributes(HOVER_LINK_PADDING),
