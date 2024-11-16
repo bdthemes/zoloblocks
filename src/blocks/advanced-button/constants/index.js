@@ -17,7 +17,7 @@ export const PRESETS = [
     { label: __('Style 7', 'zoloblocks'), value: 'button-6' },
     { label: __('Style 8', 'zoloblocks'), value: 'button-7' },
     { label: __('Style 9', 'zoloblocks'), value: 'button-8' },
-    { label: __('Style 10', 'zoloblocks'), value: 'button-9' },
+    { label: __('Style 10 (Pro)', 'zoloblocks'), value: 'button-9', disabled: true },
 ];
 
 /**
