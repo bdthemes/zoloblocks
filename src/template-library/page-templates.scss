@@ -10,10 +10,10 @@
 
     .zolo-demos-wrapper {
         padding: 0 !important;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        // display: grid;
+        // grid-template-columns: repeat(1, 1fr);
         grid-gap: 10px;
-        columns: unset !important;
+        // columns: 2 !important;
         .footer-left {
             width: 100%;
             box-sizing: border-box;
@@ -114,9 +114,10 @@
 
     .photos-group {
         .single-page-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: none;
+            &:first-child {
+                display: block;
+            }
         }
     }
 }
@@ -124,14 +125,14 @@
 @media (min-width: 768px) {
     .zolo-pages-preview-container {
         .zolo-demos-wrapper {
-            grid-template-columns: repeat(2, 1fr);
+            columns: 2 !important;
         }
     }
 }
 @media (min-width: 1440px) {
     .zolo-pages-preview-container {
         .zolo-demos-wrapper {
-            grid-template-columns: repeat(3, 1fr);
+            columns: 3 !important;
         }
     }
 }

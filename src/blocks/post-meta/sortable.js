@@ -37,10 +37,10 @@ const Sortable = ({ metaData, setAttributes }) => {
                     </svg>
                 </Button>
             </div>
-            <SortableControl defaultItems={metaData} attributeName="metaData" setAttributes={setAttributes}>
                 {deepCloneMetaData &&
                     deepCloneMetaData.map((meta, index) => {
                         return (
+                            <SortableControl defaultItems={metaData} attributeName="metaData" setAttributes={setAttributes}>
                             <div className="dnd-container" key={index}>
                                 <Button
                                     className="dnd-trash"
@@ -112,39 +112,12 @@ const Sortable = ({ metaData, setAttributes }) => {
                                             />
                                         )}
 
-                                        {/*<div className="zolo-flex-row-control-tab">*/}
-                                        {/*    <IconicBtnGroup*/}
-                                        {/*        label={__('Icon', 'zoloblocks')}*/}
-                                        {/*        value={meta?.showIcon || ''}*/}
-                                        {/*        onChange={(v) => {*/}
-                                        {/*            const newItems = [...deepCloneMetaData];*/}
-                                        {/*            newItems[index].showIcon = v;*/}
-                                        {/*            setAttributes({*/}
-                                        {/*                metaData: newItems,*/}
-                                        {/*            });*/}
-                                        {/*        }}*/}
-                                        {/*        options={ICON_TYPE}*/}
-                                        {/*    />*/}
-                                        {/*</div>*/}
-                                        {/*{meta?.showIcon === 'icon' && (*/}
-                                        {/*    <ZoloIconPicker*/}
-                                        {/*        label={__('Select Icon', 'zoloblocks')}*/}
-                                        {/*        value={meta.icon}*/}
-                                        {/*        onChange={(value) => {*/}
-                                        {/*            const newItems = [...deepCloneMetaData];*/}
-                                        {/*            newItems[index].icon = value;*/}
-                                        {/*            setAttributes({*/}
-                                        {/*                metaData: newItems,*/}
-                                        {/*            });*/}
-                                        {/*        }}*/}
-                                        {/*    />*/}
-                                        {/*)}*/}
                                     </PanelBody>
                                 </SortableItem>
                             </div>
+                             </SortableControl>
                         );
                     })}
-            </SortableControl>
         </div>
     );
 };

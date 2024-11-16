@@ -213,6 +213,9 @@ const attributes = {
     buttonTwoBorderColor: {
         type: 'string',
     },
+    psStarColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;

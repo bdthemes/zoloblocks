@@ -1,0 +1,206 @@
+.wp-block-zolo-table-of-content {
+    border: 1px solid #efefef;
+    border-radius: 6px;
+    margin-bottom: 30px;
+
+    &.collapsed .zolo-toc-content {
+        display: none;
+    }
+
+    .zolo-toc-toggle-btn {
+        transition: transform 0.3s ease;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        cursor: pointer;
+        display: flex;
+
+        &:focus {
+            outline: none;
+        }
+        svg {
+            width: 18px;
+            height: 18px;
+            fill: #6b697c;
+        }
+        &:hover {
+            svg {
+                fill: #000;
+            }
+        }
+    }
+
+    &.collapsed .zolo-toc-toggle-btn svg {
+        transform: rotate(180deg);
+    }
+
+    .zolo-toc-heading {
+        color: #000;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 30px;
+        align-items: center;
+        border-bottom: 1px solid #efefef;
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #28272e;
+        }
+    }
+
+    .zolo-toc-content {
+        padding: 20px 30px;
+        .zolo-toc-list {
+            a {
+                text-decoration: none;
+                font-size: 18px;
+                color: #45444d;
+                font-weight: 500;
+                &:hover {
+                    color: var(--zoloblocks-brand-color);
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+
+            li.active > {
+                a {
+                    color: var(--zoloblocks-brand-color);
+                }
+            }
+        }
+
+        ul {
+            padding: 0;
+            margin: 0 0 0 20px;
+            li {
+                margin-bottom: 13px;
+                &:nth-last-child(1) {
+                    margin-bottom: 0;
+                }
+                .child-list {
+                    margin-top: 5px;
+                }
+            }
+        }
+
+        ol {
+            counter-reset: listitem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                position: relative;
+                padding-left: 1em;
+                margin: 12px 0;
+
+                &::before {
+                    position: absolute;
+                    left: 0;
+                    counter-increment: listitem;
+                    content: counters(listitem, '.') '.';
+                    background: none !important;
+                }
+            }
+
+            ol li {
+                padding-left: 1.5em;
+            }
+        }
+    }
+
+    .zolo-toc-close {
+        position: absolute;
+        top: -30px;
+        right: 0;
+        background: #e5e5e5;
+        padding: 8px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        cursor: pointer;
+        transition:
+            color 0.3s ease,
+            background 0.3s ease;
+        svg {
+            display: block;
+            width: 14px;
+            height: 14px;
+        }
+        &:hover {
+            background: #d5d5d5;
+        }
+    }
+    .zolo-toc-open {
+        padding: 10px 20px;
+        border: 0;
+        color: #fff;
+        background: var(--zoloblocks-brand-color);
+        cursor: pointer;
+        transition: 0.3s ease;
+        &:hover {
+            background: var(--zoloblocks-brand-color-hover);
+        }
+    }
+
+    &.content-visible {
+        visibility: visible;
+    }
+
+    &.content-hidden {
+        background-color: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        visibility: hidden !important;
+    }
+
+    &.position-left.sticky-content {
+        position: fixed;
+        top: 25%;
+        z-index: 999;
+        left: 0;
+    }
+
+    &.position-right.sticky-content {
+        position: fixed;
+        top: 25%;
+        z-index: 999;
+        left: auto;
+        right: 0;
+    }
+
+    &.sticky-content {
+        max-width: 300px;
+    }
+
+    &.position-right .zolo-toc-open {
+        right: 0;
+        left: auto;
+        transform-origin: right top;
+        transform: rotate(90deg) translate(100%, 0);
+    }
+
+    .zolo-toc-open {
+        left: 0;
+        position: absolute;
+        top: 0;
+        text-transform: none;
+        transform: rotate(90deg);
+        transform-origin: bottom left;
+    }
+
+    &.content-visible .zolo-toc-open {
+        display: none;
+        visibility: hidden;
+    }
+
+    &.content-hidden .zolo-toc-open {
+        display: inline-block;
+        visibility: visible;
+    }
+}

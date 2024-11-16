@@ -171,7 +171,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (activePatternCat === 'all') {
                 return true;
             } else {
-                return template.categories.includes(activePatternCat);
+                return template.patterns_category.includes(activePatternCat);
             }
         });
         setPatterns(filteredPatterns);
@@ -237,7 +237,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (activePageCat === 'all') {
                 return true;
             } else {
-                return template.categories.includes(activePageCat);
+                return template.pages_category.includes(activePageCat);
             }
         });
         setPages(filteredPages.slice(0, number));
@@ -304,7 +304,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (activeDemoCat === 'all') {
                 return true;
             } else {
-                return template.categories.includes(activeDemoCat);
+                return template.demos_category.includes(activeDemoCat);
             }
         });
         setDemos(filteredDemos.slice(0, number));
@@ -320,6 +320,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
                 renderButton(toolbar);
             }
+
         });
 
         return () => {
@@ -462,6 +463,10 @@ function ZoloBlocksTemplateLibraryButton() {
             const uniqueFavCategories = [...new Set(favCategories?.flat())];
             const sortedFavCategories = uniqueFavCategories.sort((a, b) => a.localeCompare(b));
             const favCategoriesArray = sortedFavCategories.map((category) => ({ label: category, value: category }));
+            const index = favCategoriesArray.findIndex((category) => category.value === 'Demos');
+            if (index > -1) {
+                favCategoriesArray.splice(index, 1);
+            }
             favCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setFavCategories(favCategoriesArray);
 
@@ -475,7 +480,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedFavTags = Object.keys(favTags)
                 .sort((a, b) => favTags[b] - favTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setFavTags(sortedFavTags);
         } else {
             setAllFavItems([]);
@@ -506,7 +511,7 @@ function ZoloBlocksTemplateLibraryButton() {
             setPages(pages);
 
             // set page categories
-            const pageCategories = pages?.filter((template) => template.template_type === 'pages').map((template) => template.categories);
+            const pageCategories = pages?.filter((template) => template.template_type === 'pages').map((template) => template.pages_category);
             const uniquePageCategories = [...new Set(pageCategories?.flat())];
             const sortedPageCategories = uniquePageCategories.sort((a, b) => a.localeCompare(b));
             const pageCategoriesArray = sortedPageCategories.map((category) => ({ label: category, value: category }));
@@ -523,7 +528,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedPageTags = Object.keys(pageTags)
                 .sort((a, b) => pageTags[b] - pageTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setPageTags(sortedPageTags);
 
             // stop loading
@@ -553,14 +558,14 @@ function ZoloBlocksTemplateLibraryButton() {
             setPatterns(patterns);
 
             // set pattern categories
-            const patternCategories = patterns
-                ?.filter((template) => template.template_type === 'patterns')
-                .map((template) => template.categories);
+            const patternCategories = patterns?.filter((template) => template.template_type === 'patterns')
+                .map((template) => template.patterns_category);
             const uniquePatternCategories = [...new Set(patternCategories?.flat())];
             const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
             const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
             patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setPatternCategories(patternCategoriesArray);
+
 
             // patterns tags
             const allPatternTags = patterns?.map((template) => template.tags);
@@ -572,7 +577,7 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedPatternTags = Object.keys(patternTags)
                 .sort((a, b) => patternTags[b] - patternTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setPatternTags(sortedPatternTags);
 
             // set all demos
@@ -581,7 +586,7 @@ function ZoloBlocksTemplateLibraryButton() {
             setDemos(demos);
 
             // set demo categories
-            const demoCategories = demos?.filter((template) => template.template_type === 'demos').map((template) => template.categories);
+            const demoCategories = demos?.filter((template) => template.template_type === 'demos').map((template) => template.demos_category);
             const uniqueDemoCategories = [...new Set(demoCategories?.flat())];
             const sortedDemoCategories = uniqueDemoCategories.sort((a, b) => a.localeCompare(b));
             const demoCategoriesArray = sortedDemoCategories.map((category) => ({ label: category, value: category }));
@@ -598,9 +603,8 @@ function ZoloBlocksTemplateLibraryButton() {
 
             const sortedDemoTags = Object.keys(demoTags)
                 .sort((a, b) => demoTags[b] - demoTags[a])
-                .slice(0, 9);
+                .slice(0, 10);
             setDemoTags(sortedDemoTags);
-
             // stop loading
             setLoading(false);
         });

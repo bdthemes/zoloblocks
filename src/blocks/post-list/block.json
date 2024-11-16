@@ -3,7 +3,7 @@
     "title": "Post List",
     "name": "zolo/post-list",
     "category": "zoloblocks",
-    "keywords": ["post", "list", "archive", "filter", "navigation", "content", "display", "blog", "magazine"],
+    "keywords": ["post", "navigation", "list", "archive", "filter", "content", "display", "blog", "magazine"],
     "description": "Display customizable post lists to optimize content visibility.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

@@ -88,7 +88,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup

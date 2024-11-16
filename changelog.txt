@@ -1,4 +1,15 @@
-### 2.0.0 [November 05, 2024]
+### 2.1.0 [November 13, 2024]
+
+#### New Features
+- Table of Content Block: Introduced a new, highly customizable Table of Content block, allowing users to easily structure long content with automatic heading detection and flexible styling options.
+- Advanced Paragraph Block: Introduced an Advanced paragraph block with enhanced customization options. This block also supports responsive styling for mobile, tablet, and desktop views.
+
+#### Bug Fixes
+- Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
+- Post Meta Block: Fixed display issues.
+- Transform Effects: Resolved scale and hover flip issues.
+
+### 2.0.0 [November 07, 2024]
 
 #### New Features
 - Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
@@ -7,6 +18,7 @@
 - Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
 - Post Navigation Block: Added a block to enable easy navigation between posts.
 - Post Comments Form: Introduced a customizable comments form block for post interaction.
+- Post Content: Introduced a fully customizable content block for single post.
 - Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
 
 #### Enhancements

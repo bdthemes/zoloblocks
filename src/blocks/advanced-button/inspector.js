@@ -90,6 +90,7 @@ function Inspector(props) {
         presetSevenStyles,
         iconAnimation,
         buttonTwoBorderColor,
+        psStarColor,
     } = attributes;
 
     const requiredProps = {
@@ -569,6 +570,20 @@ function Inspector(props) {
                                             forBorderRadius={true}
                                         />
                                     </Fragment>
+                                )}
+
+                                {preset == 'button-9' && (
+                                    <>
+                                        <ColorControl
+                                            label={__('Star Color', 'zoloblocks')}
+                                            color={psStarColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    psStarColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
                                 )}
                             </ZoloPanelBody>
                         )}

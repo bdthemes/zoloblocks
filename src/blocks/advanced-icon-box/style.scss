@@ -161,24 +161,26 @@
         }
         .zolo-block-icon-wrap {
             --zolo-icon-margin: 0;
-            margin: var(--zolo-icon-margin);
             background-color: var(--zoloblocks-brand-color);
-            width: 100%;
+            width: -webkit-fill-available; /* WebKit/Blink-based browsers */
+            width: fill-available; /* Standard syntax (limited support) */
+            // width: 100%; /* Fallback for unsupported browsers */
+            margin: var(--zolo-icon-margin);
             box-sizing: border-box;
-             img {
+            img {
                 --zolo-icon-img-width: 100%;
                 width: var(--zolo-icon-img-width);
                 height: auto;
                 vertical-align: middle;
             }
 
-         .zolo__display-icon {
-            margin: auto;
-            padding: 100px;
-            svg {
-                fill: #fff;
+            .zolo__display-icon {
+                margin: auto;
+                padding: 100px;
+                svg {
+                    fill: #fff;
+                }
             }
-        }
         }
         .zolo-block-body-content {
             --zolo-content-padding: 30px;
@@ -198,7 +200,7 @@
                 position: absolute;
                 background-color: #d6f2fd;
                 z-index: 1;
-                transition: .3s cubic-bezier(.24,.74,.58,1);
+                transition: 0.3s cubic-bezier(0.24, 0.74, 0.58, 1);
             }
         }
         .zolo__display-icon,
@@ -213,8 +215,8 @@
     // pro animation style-1 css here
 
     &.animation-style-1 {
-         --zolo-animation-size: 128px;
-         --zolo-animation-spacing: -75px;
+        --zolo-animation-size: 128px;
+        --zolo-animation-spacing: -75px;
         .zolo-block-item {
             overflow: hidden;
             &:hover {
@@ -226,7 +228,7 @@
                 height: var(--zolo-animation-size);
                 width: var(--zolo-animation-size);
                 border-radius: 50%;
-                transition: all .5s ease;
+                transition: all 0.5s ease;
             }
             &.animation-top-right::before {
                 top: var(--zolo-animation-spacing);
@@ -308,7 +310,7 @@
                 height: 100%;
                 width: 100%;
                 border-radius: var(--zolo-item-border-radius);
-                transform: scale(.8);
+                transform: scale(0.8);
                 opacity: 0;
             }
         }
