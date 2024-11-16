@@ -1,4 +1,5 @@
 <?php
+
 namespace Zolo\Templates;
 
 use Zolo\Traits\SingletonTrait;
@@ -8,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if( ! class_exists( 'Templates' ) ) {
+if (! class_exists('Templates')) {
 
     /**
      * Class Templates
@@ -84,7 +85,7 @@ if( ! class_exists( 'Templates' ) ) {
 
                 if ($type === 'bg') {
                     $srcs = array_map(function ($src) {
-                    return str_replace('\\u0022', '', $src);
+                        return str_replace('\\u0022', '', $src);
                     }, $srcs);
                 }
 
@@ -154,7 +155,9 @@ if( ! class_exists( 'Templates' ) ) {
             delete_transient($transient_key);
 
             // Fetch latest templates from external server
-            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/template-manager/v1/zolo');
+            $response = wp_remote_get('https://templates.zoloblocks.com/wp-json/template-manager/v1/zolo', [
+                'timeout' => 30,
+            ]);
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
@@ -189,7 +192,9 @@ if( ! class_exists( 'Templates' ) ) {
             delete_transient($transient_key);
 
             // Fetch latest templates from external server
-            $response = wp_remote_get('https://demo.zoloblocks.com/wp-json/template-manager/v1/zolo');
+            $response = wp_remote_get('https://demo.zoloblocks.com/wp-json/template-manager/v1/zolo', [
+                'timeout' => 30,
+            ]);
             $body     = wp_remote_retrieve_body($response);
             $data     = json_decode($body, true);
 
