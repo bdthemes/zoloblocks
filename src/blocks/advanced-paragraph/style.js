@@ -9,6 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 const {
     generateDimensionStyle,
+    generateResCounterStyle,
     generateTextShadowStyles,
     generateResAlignmentStyle,
     generateTypographyStyles,
@@ -16,6 +17,7 @@ const {
     generateNormalBGControlStyles,
     generateBorderStyle,
     GlobalStyleHanlder,
+    generateBoxShadowStyles,
 } = window.zoloModule;
 
 import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
@@ -27,6 +29,8 @@ import {
     LINK_BG_COLOR,
     LINK_RADIUS,
     LINK_PADDING,
+    LINK_BORDER,
+    LINK_BOX_SHADOW,
     HOVER_LINK_BG_COLOR,
     HOVER_LINK_RADIUS,
     HOVER_LINK_PADDING,
@@ -41,13 +45,13 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor } = attributes;
+    const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor, hoverLinkBorderColor } = attributes;
 
     const {
         desktopRangeStyle: columnsDesktop,
         tabRangeStyle: columnsTab,
         mobRangeStyle: columnsMob,
-    } = generateResRangeStyle({
+    } = generateResCounterStyle({
         controlName: COLUMNS,
         property: 'column-count',
         attributes,
@@ -126,6 +130,20 @@ const Style = ({ props }) => {
         controlName: LINK_RADIUS,
         attributes,
         styleFor: 'border-radius',
+    });
+
+    const {
+        desktopBorderStyle: linkBorderDesk,
+        tabBorderStyle: linkBorderTab,
+        mobBorderStyle: linkBorderMob,
+    } = generateBorderStyle({
+        controlName: LINK_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: linkBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: LINK_BOX_SHADOW,
     });
 
     const {
@@ -273,10 +291,13 @@ const Style = ({ props }) => {
         ${linkBgColorDesk}
         ${linkRadiusDesk}
         ${linkPaddingDesk}
+        ${linkBorderDesk}
+        ${linkBoxShadow}
     }
 
     .${uniqueId}.wp-block-zolo-advanced-paragraph a:hover{
         ${hoverLinkColor ? `color: ${hoverLinkColor};` : ''}
+        ${hoverLinkBorderColor ? `border-color: ${hoverLinkBorderColor};` : ''}
         ${hoverLinkBgColorDesk}
         ${hoverLinkRadiusDesk}
         ${hoverLinkPaddingDesk}
