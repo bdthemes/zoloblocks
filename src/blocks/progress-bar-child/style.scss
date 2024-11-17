@@ -7,6 +7,12 @@
 }
 
 .wp-block-zolo-progress-bar-child {
+    --zolo-item-gap: 8px;
+    --zolo-content-gap: 10px;
+    --zolo-content-left: 20px;
+    --zolo-title-text-color: #fff;
+    --zolo-content-margin: 0 20px;
+    --zolo-content-text-color: #fff;
     h1,
     h2,
     h3,
@@ -17,13 +23,6 @@
         margin: 0;
         padding: 0;
     }
-
-    --zolo-item-gap: 8px;
-    --zolo-content-gap: 10px;
-    --zolo-content-left: 20px;
-    --zolo-title-text-color: #fff;
-    --zolo-content-margin: 0 20px;
-    --zolo-content-text-color: #fff;
 
     display: flex;
     gap: var(--zolo-item-gap);
@@ -76,7 +75,7 @@
         font-weight: 600;
         font-size: clamp(12px, 1.5vw, 14px);
         line-height: 1;
-}
+    }
 
     /* progress bars style 1 css here */
     &.style-1 {
@@ -103,7 +102,6 @@
         }
     }
 
-
     &.style-3 .zolo-progress-bar_content,
     &.style-4 .zolo-progress-bar_content {
         position: absolute;
@@ -113,7 +111,7 @@
     }
 
     &.style-3 .zolo-progress-bar__title,
-    &.style-4 .zolo-progress-bar__title{
+    &.style-4 .zolo-progress-bar__title {
         color: var(--zolo-title-text-color);
     }
 
@@ -161,7 +159,7 @@
             flex-direction: column;
             align-items: flex-start;
         }
-        .zolo-progress-bar_counter {   
+        .zolo-progress-bar_counter {
             font-size: 40px;
         }
     }

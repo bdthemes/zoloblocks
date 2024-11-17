@@ -15,7 +15,6 @@
     --zolo-ribbon-btn-padding: 4px 10px;
     --zolo-ribbon-btn-text-color: #fff;
     --zolo-ribbon-btn-border-radius: 2px;
-
     position: relative;
     box-sizing: border-box;
     display: block;
@@ -162,9 +161,7 @@
         .zolo-block-icon-wrap {
             --zolo-icon-margin: 0;
             background-color: var(--zoloblocks-brand-color);
-            width: -webkit-fill-available; /* WebKit/Blink-based browsers */
-            width: fill-available; /* Standard syntax (limited support) */
-            // width: 100%; /* Fallback for unsupported browsers */
+            width: stretch;
             margin: var(--zolo-icon-margin);
             box-sizing: border-box;
             img {
@@ -298,12 +295,6 @@
     // pro animation style-3 css here
     &.animation-style-3 {
         .zolo-block-item {
-            &:hover {
-                &::before {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
             &::before {
                 top: 0;
                 left: 0;
@@ -312,6 +303,12 @@
                 border-radius: var(--zolo-item-border-radius);
                 transform: scale(0.8);
                 opacity: 0;
+            }
+            &:hover {
+                &::before {
+                    opacity: 1;
+                    transform: scale(1);
+                }
             }
         }
     }

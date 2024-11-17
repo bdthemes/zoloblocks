@@ -31,6 +31,7 @@ import {
     NAV_MENU_ITEM_BOX_SHADOW,
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
+    NAV_MENU_ITEM_GAP,
     MB_LOGO_WIDTH,
     MB_LOGO_HEIGHT,
     MB_LOGO_MARGIN,
@@ -240,6 +241,18 @@ export default function Style({ props }) {
         attributes,
         noMainBGImg: false,
     });
+
+    // NAV_MENU_ITEM_GAP
+    const {
+        desktopRangeStyle: menuItemGapDesk,
+        tabRangeStyle: menuItemGapTab,
+        mobRangeStyle: menuItemGapMob,
+    } = generateResRangeStyle({
+        controlName: NAV_MENU_ITEM_GAP,
+        property: 'gap',
+        attributes,
+    });
+
     // MOBILE LOGO
     const {
         desktopRangeStyle: mbLogoWidthDesk,
@@ -563,6 +576,10 @@ export default function Style({ props }) {
             ${wrapBoxShadowStyle}
         }
 
+         .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-menu{
+            ${menuItemGapDesk}
+        }
+
          .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-menu .zolo-navigation-item .zolo-navigation-link {
             color: ${navItemTextColor ? navItemTextColor : ''};
             ${menuTypoDesktop}
@@ -653,6 +670,10 @@ export default function Style({ props }) {
             ${wrapPaddingTab}
         }
 
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-menu{
+            ${menuItemGapTab}
+        }
+
         .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-menu .zolo-navigation-item .zolo-navigation-link{
             ${menuTypoTab}
             ${itemBGTab}
@@ -720,6 +741,10 @@ export default function Style({ props }) {
             ${wrapBorderMob}
             ${wrapBorderRadiusMob}
             ${wrapPaddingMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-menu{
+            ${menuItemGapMob}
         }
 
         .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-menu .zolo-navigation-item .zolo-navigation-link{

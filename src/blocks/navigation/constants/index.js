@@ -21,6 +21,7 @@ export const NAV_MENU_ITEM_BOX_SHADOW = 'navItemBoxShadow';
 
 export const NAV_MENU_ITEM_HOVER_BG = 'navItemHoverBg';
 export const NAV_MENU_ITEM_ACTIVE_BG = 'navItemHoverBg';
+export const NAV_MENU_ITEM_GAP = 'navItemGap';
 
 export const MOBILE_MENU_WIDTH = 'mobileMenuWidth';
 export const MOBILE_MENU_WRAP_BG = 'mobileMenuWrapBg';
