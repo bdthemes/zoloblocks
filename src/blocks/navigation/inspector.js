@@ -52,6 +52,7 @@ import {
     NAV_MENU_ITEM_PADDING,
     NAV_MENU_ITEM_HOVER_BG,
     NAV_MENU_ITEM_ACTIVE_BG,
+    NAV_MENU_ITEM_GAP,
     TAB_STATES,
     TAB_MOBILE,
     MB_LOGO_PADDING,
@@ -276,6 +277,15 @@ const Inspector = (props) => {
                                             controlName={NAV_MENU_ITEM_BORDER_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
+                                        />
+                                        <CardDivider />
+                                        <ResRangeControl
+                                            label={__('Gap', 'zoloblocks')}
+                                            controlName={NAV_MENU_ITEM_GAP}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={50}
+                                            step={1}
                                         />
                                     </>
                                 }
