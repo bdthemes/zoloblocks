@@ -100,3 +100,6 @@ export const TEST_NORMAL_BG = 'testBg';
 // transparent heading offset
 export const TPH_X_OFFSET = 'tphXOffset';
 export const TPH_Y_OFFSET = 'tphYOffset';
+
+//text gradient color
+export const TEXT_GRADIENT_COLOR = 'textGradientColor';

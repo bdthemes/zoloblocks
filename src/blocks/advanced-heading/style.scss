@@ -1,4 +1,3 @@
-
 .wp-block-zolo-advanced-heading {
     --zolo-subtitle-color: #262729;
     --zolo-subtitle-margin: 0 0 8px;
@@ -38,7 +37,6 @@
         // color: rgba(156, 156, 156);
     }
 
-
     .zolo-ah-title {
         margin: var(--zolo-ah-title-margin);
         position: relative;
@@ -75,12 +73,10 @@
         border-width: var(--zolo-separator-border-width);
         width: var(--zolo-separator-width);
     }
-
 }
 .zolo-block-wrapper {
     position: relative;
 }
-
 
 .zolo-ah-style-3 .zolo-ah-title {
     -webkit-background-clip: text;
@@ -123,4 +119,17 @@
 
 .zolo-transform-origin-bottom-right {
     transform-origin: 100% 100%;
+}
+
+// text gradient style
+.zolo-text-gradient-color {
+    .zolo-ah-title {
+        .zolo-ah-main-title {
+            display: inline-block;
+            background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+    }
 }

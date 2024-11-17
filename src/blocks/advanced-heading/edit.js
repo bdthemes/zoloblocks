@@ -33,6 +33,10 @@ const Edit = (props) => {
         transparentTitleText,
         transparentTitleRotateOrigin,
         zolo_titleFontWeight,
+
+        // text Gradient
+        textGradient,
+        textGradientType,
     } = attributes;
 
     //block wrapper class
@@ -56,7 +60,9 @@ const Edit = (props) => {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
+                <div
+                    className={`zolo-block-wrapper zolo-advanced-heading zolo-ah-${styles} ${uniqueId} ${textGradient ? textGradientType : ''}`}
+                >
                     {showTransparentTitle && (
                         <div className="zolo-transparent-heading-wrap">
                             <DynamicTag

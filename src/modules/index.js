@@ -23,6 +23,7 @@ export { default as LinkUnlink } from '../controls/link-unlink';
 export { default as MaskControl } from '../controls/mask-control';
 export { default as MultiRangeControl } from '../controls/multi-range-control';
 export { default as NormalBGControl } from '../controls/normal-bg-control';
+export { default as TextGradientControl } from '../controls/text-gradient-control';
 export { default as ObjectFitControl } from '../controls/object-fit-control';
 export { default as OverflowControl } from '../controls/overflow-control';
 export { default as Pagination } from '../controls/pagination';

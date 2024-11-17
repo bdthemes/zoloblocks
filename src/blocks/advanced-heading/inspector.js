@@ -17,11 +17,13 @@ const {
     RangeResetControl,
     HeaderTabs,
     LinkControl,
+    TextGradientControl,
     IconicBtnGroup,
     AdvancedOptions,
     TabPanelControl,
     ZoloPanelBody,
     ImageAvatar,
+    BackgroundControl,
 } = window.zoloModule;
 
 //block attributes
@@ -59,6 +61,7 @@ import {
     TPT_TEXT_STROKE,
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
+    TEXT_GRADIENT_COLOR,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -99,6 +102,10 @@ const Inspector = (props) => {
         tptBgColor,
         tptOpacity,
         separatorColor,
+
+        // text gradient
+        textGradient,
+        textGradientType,
     } = attributes;
 
     const requiredProps = {
@@ -457,6 +464,27 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
+                            <CardDivider />
+                            <ToggleControl
+                                label={__('Text Gradient', 'zoloblocks')}
+                                checked={textGradient}
+                                onChange={() => setAttributes({ textGradient: !textGradient })}
+                            />
+                            {textGradient && (
+                                <>
+                                    {/* <BackgroundControl
+                                        controlName={'mainBg'}
+                                        requiredProps={requiredProps}
+                                        particles={false}
+                                        video={false}
+                                    /> */}
+                                    <TextGradientControl
+                                        noMainBGImg={true}
+                                        controlName={TEXT_GRADIENT_COLOR}
+                                        requiredProps={requiredProps}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
 
                         {showSubTitle && (

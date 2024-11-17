@@ -740,6 +740,18 @@ export const BACKGROUND_TYPES = [
         icon: 'art',
     },
 ];
+export const TEXT_GRADIENT_TYPES = [
+    {
+        label: __('Gradient', 'zoloblocks'),
+        value: 'gradient',
+        icon: 'art',
+    },
+    {
+        label: __('Image', 'zoloblocks'),
+        value: 'classic',
+        icon: 'color-picker',
+    },
+];
 
 export const BOX_SHADOW_TYPES = [
     {
