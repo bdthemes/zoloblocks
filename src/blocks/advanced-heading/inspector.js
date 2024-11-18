@@ -26,6 +26,8 @@ const {
     BackgroundControl,
 } = window.zoloModule;
 
+const { zolo_pro_status } = window.zoloParams;
+
 //block attributes
 import objAttributes from './attributes';
 
@@ -102,10 +104,6 @@ const Inspector = (props) => {
         tptBgColor,
         tptOpacity,
         separatorColor,
-
-        // text gradient
-        textGradient,
-        textGradientType,
     } = attributes;
 
     const requiredProps = {
@@ -360,15 +358,25 @@ const Inspector = (props) => {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Heading', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={titleColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        titleColor: val,
-                                    })
-                                }
-                            />
+                            {zolo_pro_status === 'active' ? (
+                                <>
+                                    <TextGradientControl
+                                        noMainBGImg={true}
+                                        controlName={TEXT_GRADIENT_COLOR}
+                                        requiredProps={requiredProps}
+                                    />
+                                </>
+                            ) : (
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={titleColor}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            titleColor: val,
+                                        })
+                                    }
+                                />
+                            )}
                             {enableTitleLink && (
                                 <ColorControl
                                     label={__('Hover Color', 'zoloblocks')}
@@ -465,26 +473,6 @@ const Inspector = (props) => {
                                 forBorderRadius={true}
                             />
                             <CardDivider />
-                            <ToggleControl
-                                label={__('Text Gradient', 'zoloblocks')}
-                                checked={textGradient}
-                                onChange={() => setAttributes({ textGradient: !textGradient })}
-                            />
-                            {textGradient && (
-                                <>
-                                    {/* <BackgroundControl
-                                        controlName={'mainBg'}
-                                        requiredProps={requiredProps}
-                                        particles={false}
-                                        video={false}
-                                    /> */}
-                                    <TextGradientControl
-                                        noMainBGImg={true}
-                                        controlName={TEXT_GRADIENT_COLOR}
-                                        requiredProps={requiredProps}
-                                    />
-                                </>
-                            )}
                         </ZoloPanelBody>
 
                         {showSubTitle && (
