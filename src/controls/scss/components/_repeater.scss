@@ -1,0 +1,15 @@
+.zolo-panel-control {
+    .zolo-repeater-container {
+        .zolo-repeater-add {
+            color: #2f2f31;
+            min-width: 100%;
+            justify-content: space-between;
+            background: transparent;
+            flex-direction: row-reverse;
+            &:hover {
+                color: #000;
+                background: transparent;
+            }
+        }
+    }
+}
