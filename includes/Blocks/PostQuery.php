@@ -66,7 +66,6 @@ class PostQuery
 			add_filter('render_block_context', $filter_block_context, 1);
 			$block_content = (new \WP_Block($block_instance))->render(['dynamic' => false]);
 			remove_filter('render_block_context', $filter_block_context, 1);
-
 			$query_content .= $block_content;
 		}
 		return sprintf(

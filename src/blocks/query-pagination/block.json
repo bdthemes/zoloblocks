@@ -7,7 +7,7 @@
     "description": "Dynamic post pagination block for any landing page in WordPress",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
-    "parent": ["zolo/post-query"],
+    "ancestor": ["zolo/post-query"],
     "example": {
         "attributes": {
             "preview": true
