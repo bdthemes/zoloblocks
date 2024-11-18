@@ -20,6 +20,7 @@ const {
     generateTextStrokeStyles,
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
+    generateTextGradientsStyles,
 } = window.zoloModule;
 
 //block constants
@@ -391,15 +392,17 @@ export default function Style({ props }) {
         attributes,
     });
 
-    const {
-        backgroundStylesDesktop: textGradientDesktop,
-        backgroundStylesTab: textGradientTab,
-        backgroundStylesMobile: textGradientMobile,
-    } = generateNormalBGControlStyles({
-        controlName: TEXT_GRADIENT_COLOR,
-        attributes,
-        noMainBGImg: false,
-    });
+
+
+        const {
+            backgroundStylesDesktop: textGradientDesktop,
+            backgroundStylesTab: textGradientTab,
+            backgroundStylesMobile: textGradientMobile,
+        } = generateTextGradientsStyles({
+            controlName: TEXT_GRADIENT_COLOR,
+            attributes,
+            noMainBGImg: false,
+        });
 
     //css style
     const wrapperStylesDesktop = `

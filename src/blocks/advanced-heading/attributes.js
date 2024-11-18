@@ -251,8 +251,6 @@ const attributes = {
         defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
     }),
 
-    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR, {
-        isBgDefaultGradient: true,
-    }),
+    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR),
 };
 export default attributes;

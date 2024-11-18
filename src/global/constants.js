@@ -742,7 +742,7 @@ export const BACKGROUND_TYPES = [
 ];
 export const TEXT_GRADIENT_TYPES = [
     {
-        label: __('Classic', 'zoloblocks'),
+        label: __('Color', 'zoloblocks'),
         value: 'classic',
         icon: 'Color',
     },
