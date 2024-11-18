@@ -171,7 +171,7 @@ if (!class_exists('LoopBuilder')) {
         {
             $default_posts_per_page = get_option('posts_per_page');
             $pagination_page = isset($query['page']) ? (int)$query['page'] : 1;
-            $paged = get_query_var('paged') ?: ($_GET['zolo_query_page'] ?? 1);
+            $paged = get_query_var('paged') ?: ($_GET['zolo-qp'] ?? 1);
             $paged = ($pagination_page > 1 && $paged == 1) ? $pagination_page : $paged;
 
             $args = [

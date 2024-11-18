@@ -680,6 +680,15 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/loop',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+    'query-pagination' => [
+        'name'       => 'query-pagination',
+        'title'      => __('Query Pagination', 'zoloblocks'),
+        'categories' => ['others'],
+        'status'     => true,
+        'class'      => '\Zolo\Blocks\QueryPagination',
+        'demo'       => 'https://demo.zoloblocks.com/query-pagination',
+        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
     'post-content' => [
         'name' => 'post-content',
         'class' => '\Zolo\Blocks\PostContent',

@@ -1,27 +1,27 @@
 /**
  * WordPress dependencies
  */
-import {useBlockProps, useInnerBlocksProps, BlockContextProvider} from '@wordpress/block-editor';
-import {__} from '@wordpress/i18n';
+import { useBlockProps, useInnerBlocksProps, BlockContextProvider } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import {applyFilters} from '@wordpress/hooks';
+import { applyFilters } from '@wordpress/hooks';
 import apiFetch from '@wordpress/api-fetch';
-import {useEffect, useState} from '@wordpress/element';
-import {useSelect} from '@wordpress/data';
-import {store as blockEditorStore} from '@wordpress/block-editor';
-import {Spinner} from '@wordpress/components';
-import {addQueryArgs} from '@wordpress/url';
-import {useInstanceId} from '@wordpress/compose';
+import { useEffect, useState } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
+import { store as blockEditorStore } from '@wordpress/block-editor';
+import { Spinner } from '@wordpress/components';
+import { addQueryArgs } from '@wordpress/url';
+import { useInstanceId } from '@wordpress/compose';
 
 /**
  * Internal depencencies
  */
-const {DisplayZoloIcon, classArrayToStr, SidebarOpener} = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Inspector from './inspector';
 
 export default function Edit(props) {
-  const {attributes, setAttributes, isSelected, clientId, context} = props;
+  const { attributes, setAttributes, isSelected, clientId, context } = props;
   const {
     uniqueId,
     preview,
@@ -35,7 +35,7 @@ export default function Edit(props) {
     previewPostType
   } = context;
 
-  const {inherit} = query || {};
+  const { inherit } = query || {};
 
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,12 +52,13 @@ export default function Edit(props) {
   const innerBlocksProps = useInnerBlocksProps({}, {
     template: [
       ['zolo/loop', {}],
+      ['zolo/query-pagination', {}],
     ],
   });
 
-  const {postsPerPage} = useSelect(
+  const { postsPerPage } = useSelect(
     (select) => {
-      const {getSettings} = select(blockEditorStore);
+      const { getSettings } = select(blockEditorStore);
       return {
         postsPerPage: getSettings()?.postsPerPage,
       };
@@ -164,15 +165,15 @@ export default function Edit(props) {
 
   // preview image
   if (preview) {
-    return <img src={zoloParams.blocksPreview.notice} alt={__('Post Query Preview', 'zoloblocks')}/>;
+    return <img src={zoloParams.blocksPreview.notice} alt={__('Post Query Preview', 'zoloblocks')} />;
   }
 
   if (isLoading) {
     return (
       <>
-        {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
+        {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
         <div {...blockProps}>
-          <Spinner/>
+          <Spinner />
         </div>
       </>
     )
@@ -181,7 +182,7 @@ export default function Edit(props) {
   if (posts.length === 0) {
     return (
       <>
-        {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
+        {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
         <div {...blockProps}>
           <p>{__('No posts found.', 'zoloblocks')}</p>
         </div>
@@ -196,10 +197,10 @@ export default function Edit(props) {
 
   return (
     <>
-      {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
+      {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
       <div {...blockProps}>
         {renderHookBefore && renderHookBefore}
-        <SidebarOpener clientId={clientId}/>
+        <SidebarOpener clientId={clientId} />
         {
           blockContext && (
             <BlockContextProvider
