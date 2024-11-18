@@ -2,10 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-    ToggleControl,
-    TabPanel
-} from '@wordpress/components';
+import { ToggleControl, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -37,9 +34,7 @@ import objAttributes from './attributes';
 function Inspector(props) {
     const { attributes, setAttributes } = props;
 
-    const {
-        resMode,
-    } = attributes;
+    const { resMode } = attributes;
 
     const requiredProps = {
         attributes,
@@ -57,7 +52,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <h6>{__('Inherit query from template', 'zoloblocks')}</h6>
+                            <h4>{__('Inherit query from template', 'zoloblocks')}</h4>
                         </ZoloPanelBody>
                     </>
                 }
