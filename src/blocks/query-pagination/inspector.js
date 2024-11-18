@@ -144,13 +144,13 @@ function Inspector(props) {
                                     {attributes?.paginationNextPrevType?.includes('icon') && (
                                         <>
                                             <ZoloIconPicker
-                                                label={__('Prev Icon', 'gutenkit-blocks-addon')}
+                                                label={__('Prev Icon', 'zoloblocks')}
                                                 value={attributes?.prevIcon}
                                                 onChange={value => setAttributes({ prevIcon: value })}
                                             />
 
                                             <ZoloIconPicker
-                                                label={__('Next Icon', 'gutenkit-blocks-addon')}
+                                                label={__('Next Icon', 'zoloblocks')}
                                                 value={attributes?.nextIcon}
                                                 onChange={value => setAttributes({ nextIcon: value })}
                                             />

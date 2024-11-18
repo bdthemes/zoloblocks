@@ -35,8 +35,8 @@ export default function Edit(props) {
       attributes?.truncatePaginationNumbers || false,
       attributes?.paginationType || 'number',
       attributes?.paginationNextPrevType || 'text',
-      attributes?.paginationPreviousText || __('Previous', 'gutenkit-blocks-addon-pro'),
-      attributes?.paginationNextText || __('Next', 'gutenkit-blocks-addon-pro'),
+      attributes?.paginationPreviousText || __('Previous', 'zoloblocks'),
+      attributes?.paginationNextText || __('Next', 'zoloblocks'),
       attributes?.nextIcon || '',
       attributes?.prevIcon || ''
     );
