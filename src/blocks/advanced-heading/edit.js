@@ -37,6 +37,7 @@ const Edit = (props) => {
         // text Gradient
         textGradient,
         textGradientType,
+        textGradientColorbackgroundType
     } = attributes;
 
     //block wrapper class
@@ -61,7 +62,7 @@ const Edit = (props) => {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
-                    className={`zolo-block-wrapper zolo-advanced-heading zolo-ah-${styles} ${uniqueId} ${textGradient ? textGradientType : ''}`}
+                    className={`zolo-block-wrapper zolo-advanced-heading zolo-ah-${styles} ${uniqueId} ${textGradientColorbackgroundType !== 'classic' ? textGradientType : ''}`}
                 >
                     {showTransparentTitle && (
                         <div className="zolo-transparent-heading-wrap">

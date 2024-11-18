@@ -69,6 +69,7 @@ export { generateTextShadowAttributies, generateTextShadowStyles } from '../help
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
+export { generateTextGradientsStyles } from '../helpers/text-gradient-helper';
 
 
 export {
