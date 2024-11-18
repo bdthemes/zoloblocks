@@ -12,7 +12,7 @@ const PopoverControl = ({
     onReset = null,
     onChange = null,
     hasValue = false,
-    hasStyle = true,
+    hasStyle = false,
     applyStyle = '#f3f3f3',
 }) => {
     return (
@@ -49,22 +49,22 @@ const PopoverControl = ({
                                     //           }
                                     //         : {}
                                     // }
-                                    // style={{
-                                    //     backgroundColor: hasStyle ? applyStyle : '#f3f3f3',
-                                    //     border: hasStyle ? '1px solid #F00' : '1px solid #4D4D4D',
-                                    //     backgroundImage: hasStyle ? applyStyle : '#f3f3f3',
-                                    // }}
-                                    style={{
-                                        backgroundColor:
-                                            hasStyle && typeof applyStyle === 'string' && !applyStyle.startsWith('url(')
-                                                ? applyStyle // Use as background color if it's not a URL
-                                                : '#f3f3f3', // Default fallback color
-                                        border: hasStyle ? '1px solid #F00' : '1px solid #4D4D4D',
-                                        backgroundImage:
-                                            hasStyle && typeof applyStyle === 'string' && applyStyle.startsWith('url(')
-                                                ? applyStyle // Use as background image if it's a URL
-                                                : 'none', // Default fallback for no image
-                                    }}
+                                    style={
+                                        hasStyle && typeof applyStyle === 'string' && applyStyle.startsWith('url(')
+                                            ? {
+                                                  backgroundImage: applyStyle,
+                                                  backgroundSize: 'contain',
+                                                  backgroundRepeat: 'no-repeat',
+                                                  backgroundPosition: 'center',
+                                              }
+                                            : applyStyle.startsWith('linear-gradient(') || applyStyle.startsWith('radial-gradient(')
+                                              ? {
+                                                    backgroundImage: applyStyle,
+                                                }
+                                              : {
+                                                    backgroundColor: applyStyle,
+                                                }
+                                    }
                                     className="zolo-panel-opener-btn"
                                 >
                                     {icon || (

@@ -56,6 +56,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
         [`MOB${controlName}bgImgcustomPosYUnit`]: MOBbgImgcustomPosYUnit,
         [`MOB${controlName}bgImgRepeat`]: MOBbgImgRepeat,
         titleColor,
+        textGradientColorgradientColor,
     } = attributes;
 
     return (
@@ -71,7 +72,13 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
             }}
             hasStyle={true}
             applyStyle={
-                backgroundType === 'gradient' ? `${controlName}gradientColor` : backgroundType === 'classic' ? titleColor : backgroundType === 'image' ? 'url(' + bgImageURL + ')' : ''
+                backgroundType === 'gradient'
+                    ? textGradientColorgradientColor
+                    : backgroundType === 'classic'
+                      ? titleColor
+                      : backgroundType === 'image'
+                        ? 'url(' + bgImageURL + ')'
+                        : ''
             }
         >
             <div className="zolo-control-container zolo-border-control">
