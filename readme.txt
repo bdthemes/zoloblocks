@@ -354,6 +354,16 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+
+= 2.1.1 - 19-11-2024 =
+
+**Bug Fixes & Improvements:**
+- Paragraph Block: Optimized code and improved block arrangement
+- Typography: Fixed typography font family control design.
+- Initialized gradient text control.
+- Added an advanced button for expanded functionality.
+- Table of Contents Block**: Introduced a sticky feature for better usability.
+
 = 2.1.0 - 13-11-2024 =
 
 **New Features:**
