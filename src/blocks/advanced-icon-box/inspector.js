@@ -85,6 +85,10 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
+
+    // Ribbon
+    RIBBON_X_POSITION,
+    RIBBON_Y_POSITION,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS, HEADING, ICON_BOX_OPTIONS, POSITIONS } from '../../../src/global/constants';
@@ -523,7 +527,7 @@ function Inspector(props) {
                                 </div>
                                 {/* <CardDivider /> */}
                                 <div className="zolo-custom-heading">{__('Offset', 'zoloblocks')}</div>
-                                <RangeResetControl
+                                {/* <RangeResetControl
                                     className="zolo-flex-row-control"
                                     label={__('Horizontal', 'zoloblocks')}
                                     controlName={'ribbonXPosition'}
@@ -531,10 +535,27 @@ function Inspector(props) {
                                     min={-150}
                                     max={150}
                                     step={1}
+                                /> */}
+                                <ResRangeControl
+                                    label={__('Horizontal', 'zoloblocks')}
+                                    controlName={RIBBON_X_POSITION}
+                                    requiredProps={requiredProps}
+                                    min={-150}
+                                    max={150}
+                                    step={1}
                                 />
-                                <RangeResetControl
+                                {/* <RangeResetControl
                                     label={__('Vertical', 'zoloblocks')}
                                     controlName={'ribbonYPosition'}
+                                    requiredProps={requiredProps}
+                                    min={-150}
+                                    max={150}
+                                    step={1}
+                                /> */}
+
+                                <ResRangeControl
+                                    label={__('Vertical', 'zoloblocks')}
+                                    controlName={RIBBON_Y_POSITION}
                                     requiredProps={requiredProps}
                                     min={-150}
                                     max={150}
@@ -549,6 +570,15 @@ function Inspector(props) {
                                     max={180}
                                     step={1}
                                 />
+
+                                {/* <ResRangeControl
+                                    label={__('Rotate', 'zoloblocks')}
+                                    controlName={RIBBON_ROTATE}
+                                    requiredProps={requiredProps}
+                                    min={-180}
+                                    max={180}
+                                    step={1}
+                                /> */}
                             </ZoloPanelBody>
                         )}
 

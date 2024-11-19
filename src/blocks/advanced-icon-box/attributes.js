@@ -55,6 +55,11 @@ import {
     ICON_ANIMATION_SIZE,
     ICON_ANIMATION_RADIUS,
     ICON_ANIMATION_THICKNESS,
+
+    // RIBBON
+    RIBBON_X_POSITION,
+    RIBBON_Y_POSITION,
+    RIBBON_ROTATE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -146,6 +151,10 @@ const attributes = {
     ...generateResRangeAttributies(ICON_ANIMATION_SIZE),
     ...generateDimensionAttributes(ICON_ANIMATION_RADIUS),
     ...generateResRangeAttributies(ICON_ANIMATION_THICKNESS),
+
+    // ribbon
+    ...generateResRangeAttributies(RIBBON_X_POSITION),
+    ...generateResRangeAttributies(RIBBON_Y_POSITION),
 
     // item
     itemHBorderColor: {

@@ -191,3 +191,7 @@ export const ICON_ANIMATION_BG = 'iconAnimationBg';
 export const ICON_ANIMATION_SIZE = 'iconAnimationSize';
 export const ICON_ANIMATION_RADIUS = 'iconAnimationRadius';
 export const ICON_ANIMATION_THICKNESS = 'iconAnimationThickness';
+
+// RIBON
+export const RIBBON_X_POSITION = 'ribbonXPosition';
+export const RIBBON_Y_POSITION = 'ribbonYPosition';
