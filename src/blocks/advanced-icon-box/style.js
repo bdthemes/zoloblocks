@@ -65,6 +65,10 @@ import {
     ICON_ANIMATION_SIZE,
     ICON_ANIMATION_RADIUS,
     ICON_ANIMATION_THICKNESS,
+    // Ribbon
+    RIBBON_X_POSITION,
+    RIBBON_Y_POSITION,
+    RIBBON_ROTATE,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -585,15 +589,37 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // ribbon
+
+    const {
+        desktopRangeStyle: ribbonXPositionDesk,
+        tabRangeStyle: ribbonXPositionTab,
+        mobRangeStyle: ribbonXPositionMob,
+    } = generateResRangeStyle({
+        controlName: RIBBON_X_POSITION,
+        property: '--zolo-ribbon-xposition',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: ribbonYPositionDesk,
+        tabRangeStyle: ribbonYPositionTab,
+        mobRangeStyle: ribbonYPositionMob,
+    } = generateResRangeStyle({
+        controlName: RIBBON_Y_POSITION,
+        property: '--zolo-ribbon-yposition',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-    	.zolo-block-advanced-icon-box.${uniqueId}{
-      --zolo-ribbon-xposition: ${ribbonXPosition}px;
-      --zolo-ribbon-yposition: ${ribbonYPosition}px;
-      ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
-		}
+        .zolo-block-advanced-icon-box.${uniqueId}{
+            ${ribbonXPositionDesk}
+            ${ribbonYPositionDesk}
+            ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
+        }
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item {
             ${itemBgDesk}
@@ -740,6 +766,11 @@ export default function Style({ props }) {
   	`;
 
     const tabletAllStyle = `
+        .zolo-block-advanced-icon-box.${uniqueId}{
+            ${ribbonXPositionTab}
+            ${ribbonYPositionTab}
+        }
+
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
             ${itemBgTab}
             ${itemBorderTab}
@@ -840,6 +871,10 @@ export default function Style({ props }) {
 	`;
 
     const mobileAllStyle = `
+        .zolo-block-advanced-icon-box.${uniqueId}{
+            ${ribbonXPositionMob}
+            ${ribbonYPositionMob}
+        }
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
             ${itemBgMob}
             ${itemBorderMob}
