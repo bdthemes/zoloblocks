@@ -363,6 +363,7 @@ Not at all. We have optimized all of these blocks for better performance.
 - Initialized gradient text control.
 - Added an advanced button for expanded functionality.
 - Table of Contents Block**: Introduced a sticky feature for better usability.
+- Advanced Icon box: Responsive options added to the offset control.
 
 = 2.1.0 - 13-11-2024 =
 
