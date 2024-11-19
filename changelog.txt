@@ -7,6 +7,7 @@
 - Initialized gradient text control.
 - Added an advanced button for expanded functionality.
 - Table of Contents Block**: Introduced a sticky feature for better usability.
+- Advanced Icon box: Responsive options added to the offset control
 
 ### 2.1.0 [November 13, 2024]
 
