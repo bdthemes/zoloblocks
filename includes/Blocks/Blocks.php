@@ -685,5 +685,12 @@ return apply_filters('zolo_blocks_list_data', [
         'categories' => ['others'],
         'status' => true,
         'is_child' => true,
-    ]
+    ],
+    'checkbox-field' => [
+        'name' => 'checkbox-field',
+        'title' => __('Checkbox Field', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_child' => true,
+    ],
 ]);
