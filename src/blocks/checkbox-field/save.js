@@ -4,8 +4,22 @@ import { __ } from '@wordpress/i18n';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg } =
-        attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        preset,
+        zoloId,
+        showLabel,
+        label,
+        showIcon,
+        icon,
+        isRequired,
+        showRequiredSymbol,
+        requiredMsg,
+        optionData,
+        defaultValue,
+        customNameAttribute
+    } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
@@ -37,8 +51,7 @@ const Save = ({ attributes }) => {
                     optionData.map((option) => (
                         <label htmlFor={option.value}>
                           <input
-                            id={option.value}
-                            name={fieldName}
+                            name={customNameAttribute||'checkbox_field'}
                             value={option.value}
                             checked={defaultValue === option.value}
                             type="checkbox"
