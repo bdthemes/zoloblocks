@@ -1,3 +1,14 @@
+### 2.1.1 [November 19, 2024]
+
+
+### Bug Fixes & Improvements
+- Paragraph Block: Optimized code and improved block arrangement
+- Typography: Fixed typography font family control design.
+- Initialized gradient text control.
+- Added an advanced button for expanded functionality.
+- Table of Contents Block**: Introduced a sticky feature for better usability.
+- Advanced Icon box: Responsive options added to the offset control
+
 ### 2.1.0 [November 13, 2024]
 
 #### New Features
