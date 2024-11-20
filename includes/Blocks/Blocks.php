@@ -679,11 +679,11 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/advanced-paragraph',
         'video' => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'select-field' => [
-        'name' => 'select-field',
-        'title' => __('Select Field', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_child' => true,
-    ]
+    // 'select-field' => [
+    //     'name' => 'select-field',
+    //     'title' => __('Select Field', 'zoloblocks'),
+    //     'categories' => ['others'],
+    //     'status' => true,
+    //     'is_child' => true,
+    // ]
 ]);
