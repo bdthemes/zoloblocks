@@ -91,7 +91,11 @@ const attributes = {
         default: '#000000',
     },
 
-    ...generateResCounterAttributies(COLUMNS),
+    ...generateResCounterAttributies(COLUMNS, {
+        deskRange: 1,
+        tabRange: 1,
+        mobRange: 1,
+    }),
     ...generateResRangeAttributies(COLUMNS_GAP),
     ...generateResAlignmentAttributies(TEXT_ALIGNMENT),
     ...generateNormalBGAttributes(LINK_BG_COLOR),
