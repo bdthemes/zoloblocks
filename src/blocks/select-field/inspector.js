@@ -42,6 +42,7 @@ function Inspector(props) {
   const {
     preset,
     optionData,
+    isDisable,
     resMode,
     showLabel,
     label,
@@ -83,6 +84,11 @@ function Inspector(props) {
                 label={__('Is It Required Field?', 'zoloblocks')}
                 checked={isRequired}
                 onChange={() => setAttributes({isRequired: !isRequired})}
+              />
+              <ToggleControl
+                label={__('Disable Field?', 'zoloblocks')}
+                checked={isDisable}
+                onChange={(isDisable) => setAttributes({isDisable})}
               />
               {preset !== 'style-3' && (
                 <ToggleControl

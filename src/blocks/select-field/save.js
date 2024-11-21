@@ -1,7 +1,7 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import classnames from 'classnames';
 import {__} from '@wordpress/i18n';
-import {convertToOptionsArray, transformToValueFormat} from "@/blocks/select-field/helper";
+import { parseInputToArray, transformToValueFormat} from "@/blocks/select-field/helper";
 
 const {classArrayToStr, DisplayZoloIcon} = window.zoloModule;
 
@@ -20,14 +20,15 @@ const Save = ({attributes}) => {
     showRequiredSymbol,
     requiredMsg,
     customNameAttribute,
-    defaultValue
+    defaultValue,
+    isDisable
   } = attributes;
 
   const blockProps = useBlockProps.save({
     className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
   });
 
-  const optionArray = convertToOptionsArray(optionData);
+  const optionArray = parseInputToArray(optionData);
   const defaultSelect = transformToValueFormat(defaultValue);
 
   return (
@@ -53,23 +54,35 @@ const Save = ({attributes}) => {
           )}
 
           <select
-            name={customNameAttribute || 'select_feild'}
-            value={defaultSelect || ''}
+            name={customNameAttribute || 'select_field'}
             required={isRequired}
+            value={defaultSelect}
+            disabled={isDisable}
             {...(isRequired && {'data-pristine-required-message': requiredMsg})}
           >
             {optionArray.length > 0 &&
-              optionArray.map((item) => (
-                <option
-                  key={item.id}
-                  value={item.value}
-                  {...(defaultSelect === item.value && {'selected': ''})}
-                >
-                  {item.name}
-                </option>
-              ))}
+              optionArray.map((item, index) => {
+                if (item?.label) {
+                  // Render optgroup
+                  return (
+                    <optgroup key={index} label={item.label}>
+                      {item.options.map((option, optIndex) => (
+                        <option key={optIndex} value={option.value}>
+                          {option.name}
+                        </option>
+                      ))}
+                    </optgroup>
+                  );
+                } else {
+                  // Render standalone option
+                  return (
+                    <option key={index} value={item.value}>
+                      {item.name}
+                    </option>
+                  );
+                }
+              })}
           </select>
-
         </div>
       </div>
     </div>

@@ -68,6 +68,10 @@ Option 3`
   customNameAttribute: {
     type: 'string',
   },
+  isDisable: {
+    type: 'boolean',
+    default: false
+  },
   // Generators
   // ...generateResAlignmentAttributies(ITEMS_ALIGN),
   ...generateDimensionAttributes(LABEL_MARGIN),
@@ -92,13 +96,7 @@ Option 3`
   labelColor: {
     type: 'string',
   },
-  placeholder: {
-    type: 'string',
-    default: 'Enter your text',
-  },
-  placeholderColor: {
-    type: 'string',
-  },
+
   textColor: {
     type: 'string',
   },
