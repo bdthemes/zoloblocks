@@ -57,18 +57,16 @@ const attributes = {
     default: 'style-1',
   },
   optionData: {
-    type: 'array',
-    default: [
-      {id: 1, name: 'Select Item', value: ''},
-      {id: 2, name: 'Option 1', value: 'option_1'},
-      {id: 3, name: 'Option 2', value: 'option_2'},
-    ]
+    type: 'string',
+    default: `Option 1
+Option 2
+Option 3`
   },
-  defaultValue:{
-    type:'string',
+  defaultValue: {
+    type: 'string',
   },
-  customNameAttribute:{
-    type:'string',
+  customNameAttribute: {
+    type: 'string',
   },
   // Generators
   // ...generateResAlignmentAttributies(ITEMS_ALIGN),

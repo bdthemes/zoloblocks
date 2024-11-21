@@ -17,6 +17,7 @@ const {handleUniqueId, DisplayZoloIcon, classArrayToStr} = window.zoloModule;
 
 import {BLOCK_PREFIX} from './constants';
 import Inspector from './inspector';
+import {convertToOptionsArray, transformToValueFormat} from "@/blocks/select-field/helper";
 
 // import style
 import Style from './style';
@@ -79,6 +80,9 @@ export default function Edit(props) {
   }, [context]);
 
 
+  const optionArray = convertToOptionsArray(optionData);
+  const defaultSelect = transformToValueFormat(defaultValue);
+
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
@@ -112,17 +116,18 @@ export default function Edit(props) {
             <select
               name={customNameAttribute || 'select_field'}
               required={isRequired}
-              {...(defaultValue ? {'value': defaultValue}:{})}
+              {...(defaultSelect ? {'value': defaultSelect} : {})}
             >
-              {optionData.map((item) => (
-                <option
-                  key={item.id}
-                  selected={item.value === defaultValue}
-                  value={item?.value}
-                >
-                  {item?.name}
-                </option>
-              ))}
+              {optionArray.length > 0 &&
+                optionArray.map((item) => (
+                  <option
+                    key={item.id}
+                    selected={item.value === defaultSelect}
+                    value={item?.value}
+                  >
+                    {item?.name}
+                  </option>
+                ))}
             </select>
 
           </div>

@@ -1,6 +1,7 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import classnames from 'classnames';
 import {__} from '@wordpress/i18n';
+import {convertToOptionsArray, transformToValueFormat} from "@/blocks/select-field/helper";
 
 const {classArrayToStr, DisplayZoloIcon} = window.zoloModule;
 
@@ -26,6 +27,9 @@ const Save = ({attributes}) => {
     className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
   });
 
+  const optionArray = convertToOptionsArray(optionData);
+  const defaultSelect = transformToValueFormat(defaultValue);
+
   return (
     <div
       {...blockProps}
@@ -50,19 +54,20 @@ const Save = ({attributes}) => {
 
           <select
             name={customNameAttribute || 'select_feild'}
-            value={defaultValue || ''}
+            value={defaultSelect || ''}
             required={isRequired}
             {...(isRequired && {'data-pristine-required-message': requiredMsg})}
           >
-            {optionData.map((item) => (
-              <option
-                key={item.id}
-                value={item.value}
-                {...(defaultValue === item.value && {'selected': ''})}
-              >
-                {item.name}
-              </option>
-            ))}
+            {optionArray.length > 0 &&
+              optionArray.map((item) => (
+                <option
+                  key={item.id}
+                  value={item.value}
+                  {...(defaultSelect === item.value && {'selected': ''})}
+                >
+                  {item.name}
+                </option>
+              ))}
           </select>
 
         </div>

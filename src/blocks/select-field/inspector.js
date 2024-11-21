@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import {InspectorControls} from '@wordpress/block-editor';
-import {ToggleControl, TextControl, TextareaControl, CardDivider} from '@wordpress/components';
+import {ToggleControl, TextControl, TextareaControl} from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 
 /**
@@ -36,7 +36,6 @@ import {
   FIELD_BRADIUS,
   ICON_SIZE,
 } from './constants';
-import Sortable from "@/blocks/select-field/sortable";
 
 function Inspector(props) {
   const {attributes, setAttributes} = props;
@@ -151,7 +150,15 @@ function Inspector(props) {
               <div className="zolo-custom-heading">
                 {__('Manage Options', 'zoloblocks')}
               </div>
-              <Sortable optionData={optionData} setAttributes={setAttributes}/>
+
+              <div className='zolo-flex-col-control'>
+                <TextareaControl
+                  label={__('Options', 'zoloblocks')}
+                  value={optionData}
+                  onChange={(v) => setAttributes({optionData: v})}
+                  help={__('"Enter your options as a list, with each option on a new line. For example: Option 1\n Option 2', 'zoloblocks')}
+                />
+              </div>
             </ZoloPanelBody>
           </>
         }
