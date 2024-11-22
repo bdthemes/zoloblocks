@@ -207,6 +207,15 @@ const Save = (props) => {
                             </div>
                         </>
                     )}
+                    {preset === 'button-11' && (
+                        <>
+                            <span class="zolo-circle zolo-circle1"></span>
+                            <span class="zolo-circle zolo-circle2"></span>
+                            <span class="zolo-circle zolo-circle3"></span>
+                            <span class="zolo-circle zolo-circle4"></span>
+                            <span class="zolo-circle zolo-circle5"></span>
+                        </>
+                    )}
                 </a>
             </div>
             {renderHookAfter && renderHookAfter}
