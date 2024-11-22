@@ -87,6 +87,11 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={6}
+                                defaults={{
+                                    deskRange: 1,
+                                    tabRange: 1,
+                                    mobRange: 1,
+                                }}
                             />
                             <ResRangeControl
                                 label={__('Gap', 'zoloblocks')}

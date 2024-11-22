@@ -23,6 +23,7 @@ export { default as LinkUnlink } from '../controls/link-unlink';
 export { default as MaskControl } from '../controls/mask-control';
 export { default as MultiRangeControl } from '../controls/multi-range-control';
 export { default as NormalBGControl } from '../controls/normal-bg-control';
+export { default as TextGradientControl } from '../controls/text-gradient-control';
 export { default as ObjectFitControl } from '../controls/object-fit-control';
 export { default as OverflowControl } from '../controls/overflow-control';
 export { default as Pagination } from '../controls/pagination';
@@ -69,6 +70,7 @@ export { generateTextShadowAttributies, generateTextShadowStyles } from '../help
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
+export { generateTextGradientsStyles } from '../helpers/text-gradient-helper';
 
 
 export {

@@ -3,7 +3,18 @@ import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
 
-const PopoverControl = ({ label = '', icon = '', isActive = false, isPro = false, children, onReset = null, onChange = null, hasValue = false }) => {
+const PopoverControl = ({
+    label = '',
+    icon = '',
+    isActive = false,
+    isPro = false,
+    children,
+    onReset = null,
+    onChange = null,
+    hasValue = false,
+    hasStyle = false,
+    applyStyle = '#f3f3f3',
+}) => {
     return (
         <>
             <div className="zolo-control-container zolo-border-control">
@@ -30,13 +41,29 @@ const PopoverControl = ({ label = '', icon = '', isActive = false, isPro = false
                                         }
                                     }}
                                     aria-expanded={isOpen}
+                                    // style ={
+                                    //     isActive
+                                    //         ? {
+                                    //               backgroundColor: hasStyle ? applyStyle :  '#f3f3f3',
+                                    //               border: '1px solid #F00',
+                                    //           }
+                                    //         : {}
+                                    // }
                                     style={
-                                        isActive
+                                        hasStyle && typeof applyStyle === 'string' && applyStyle.startsWith('url(')
                                             ? {
-                                                  backgroundColor: '#f3f3f3',
-                                                  border: '1px solid #F00',
+                                                  backgroundImage: applyStyle,
+                                                  backgroundSize: 'contain',
+                                                  backgroundRepeat: 'no-repeat',
+                                                  backgroundPosition: 'center',
                                               }
-                                            : {}
+                                            : applyStyle.startsWith('linear-gradient(') || applyStyle.startsWith('radial-gradient(')
+                                              ? {
+                                                    backgroundImage: applyStyle,
+                                                }
+                                              : {
+                                                    backgroundColor: applyStyle,
+                                                }
                                     }
                                     className="zolo-panel-opener-btn"
                                 >

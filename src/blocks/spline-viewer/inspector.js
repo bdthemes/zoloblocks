@@ -13,6 +13,7 @@ const { ResRangeControl, HeaderTabs, AdvancedOptions, ZoloPanelBody, ResAlignmen
 import objAttributes from './attributes';
 
 import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
+import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -123,6 +124,7 @@ function Inspector(props) {
                                     },
                                 ]}
                             /> */}
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Hint', 'zoloblocks')}
                                 checked={hint}
@@ -142,21 +144,24 @@ function Inspector(props) {
                                 }
                             />
                             {loading && (
-                                <SelectControl
-                                    label={__('Loading Animation', 'zoloblocks')}
-                                    value={loadingAnimType}
-                                    options={[
-                                        { label: 'Spinner Small Dark', value: 'spinner-small-dark' },
-                                        { label: 'Spinner Small Light', value: 'spinner-small-light' },
-                                        { label: 'Spinner Big Dark', value: 'spinner-big-dark' },
-                                        { label: 'Spinner Big Light', value: 'spinner-big-light' },
-                                    ]}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            options: { ...options, loadingAnimType: v },
-                                        })
-                                    }
-                                />
+                                <>
+                                    <CardDivider />
+                                    <SelectControl
+                                        label={__('Animation', 'zoloblocks')}
+                                        value={loadingAnimType}
+                                        options={[
+                                            { label: 'Spinner Small Dark', value: 'spinner-small-dark' },
+                                            { label: 'Spinner Small Light', value: 'spinner-small-light' },
+                                            { label: 'Spinner Big Dark', value: 'spinner-big-dark' },
+                                            { label: 'Spinner Big Light', value: 'spinner-big-light' },
+                                        ]}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                options: { ...options, loadingAnimType: v },
+                                            })
+                                        }
+                                    />
+                                </>
                             )}
                         </ZoloPanelBody>
                     </>

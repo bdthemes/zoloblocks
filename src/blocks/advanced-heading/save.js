@@ -25,6 +25,9 @@ const Save = (props) => {
         //styles
         styles,
         zoloId,
+        textGradient,
+        textGradientType,
+        textGradientColorbackgroundType,
     } = attributes;
 
     // filter hooks for render
@@ -41,7 +44,9 @@ const Save = (props) => {
             })}
         >
             {renderHookBefore && renderHookBefore}
-            <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
+            <div
+                className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}  ${textGradientColorbackgroundType !== 'classic' ? textGradientType : ''}`}
+            >
                 {showTransparentTitle && (
                     <div className="zolo-transparent-heading-wrap">
                         <DynamicTag

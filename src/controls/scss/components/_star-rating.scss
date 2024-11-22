@@ -1,8 +1,8 @@
 .zolo-star-rating {
-    svg {
-        width: 20px;
-    }
     display: inline-flex;
     gap: 3px;
     justify-content: flex-start;
+    svg {
+        width: 20px;
+    }
 }
