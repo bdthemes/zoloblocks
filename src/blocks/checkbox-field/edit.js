@@ -21,9 +21,7 @@ import Inspector from './inspector';
 // import style
 import Style from './style';
 
-/**
- * Edit Function
- */
+import {convertToOptionsArray, convertToDefaultValueArray} from "@/blocks/checkbox-field/helper";
 
 export default function Edit(props) {
   const {attributes, setAttributes, className, clientId, isSelected, context} = props;
@@ -78,7 +76,8 @@ export default function Edit(props) {
     });
   }, [context]);
 
-
+  const optionArray = convertToOptionsArray(optionData);
+  const defaultCheck = convertToDefaultValueArray(defaultValue)
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
@@ -109,13 +108,13 @@ export default function Edit(props) {
               </div>
             )}
 
-            {optionData.length > 0 &&
-              optionData.map((option) => (
+            {optionArray.length > 0 &&
+              optionArray.map((option) => (
                 <label htmlFor={option.value}>
                   <input
                     name={customNameAttribute || 'checkbox_field'}
                     value={option.value}
-                    checked={defaultValue === option.value}
+                    checked={defaultCheck.includes(option.value)}
                     type="checkbox"
                   />{" "}
                   {option.name}

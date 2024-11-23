@@ -2,7 +2,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
-
+import {convertToDefaultValueArray, convertToOptionsArray} from "@/blocks/checkbox-field/helper";
 const Save = ({ attributes }) => {
     const {
         uniqueId,
@@ -24,7 +24,8 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
     });
-
+  const optionArray = convertToOptionsArray(optionData);
+  const defaultCheck = convertToDefaultValueArray(defaultValue)
     return (
         <div
             {...blockProps}
@@ -47,13 +48,14 @@ const Save = ({ attributes }) => {
                         </div>
                     )}
 
-                  {optionData.length > 0 &&
-                    optionData.map((option) => (
+                  {optionArray.length > 0 &&
+                    optionArray.map((option) => (
                         <label htmlFor={option.value}>
                           <input
+                            id={option.value}
                             name={customNameAttribute||'checkbox_field'}
                             value={option.value}
-                            checked={defaultValue === option.value}
+                            checked={defaultCheck.includes(option.value)}
                             type="checkbox"
                           />{" "}
                           {option.name}

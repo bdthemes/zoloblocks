@@ -55,12 +55,10 @@ const attributes = {
     default: 'style-1',
   },
   optionData: {
-    type: 'array',
-    default: [
-      {id: 1, name: 'Option 1', value: 'option_1'},
-      {id: 2, name: 'Option 2', value: 'option_2'},
-      {id: 3, name: 'Option 3', value: 'option_3'},
-    ]
+    type: 'string',
+    default: `Option 1
+Option 2
+Option 3`
   },
   defaultValue: {
     type: 'string',
@@ -87,7 +85,7 @@ const attributes = {
   },
   label: {
     type: 'string',
-    default: 'Name',
+    default: 'Field Label',
   },
   labelColor: {
     type: 'string',

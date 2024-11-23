@@ -36,7 +36,6 @@ import {
   FIELD_BRADIUS,
   ICON_SIZE,
 } from './constants';
-import Sortable from "@/blocks/checkbox-field/sortable";
 
 function Inspector(props) {
   const {attributes, setAttributes} = props;
@@ -151,7 +150,16 @@ function Inspector(props) {
               <div className="zolo-custom-heading">
                 {__('Manage Options', 'zoloblocks')}
               </div>
-              <Sortable optionData={optionData} setAttributes={setAttributes}/>
+
+              <div className='zolo-flex-col-control'>
+                <TextareaControl
+                  label={__('Options', 'zoloblocks')}
+                  value={optionData}
+                  onChange={(v) => setAttributes({optionData: v})}
+                  help={__('"Enter your options as a list, with each option on a new line. For example: Option 1\n Option 2', 'zoloblocks')}
+                />
+              </div>
+
             </ZoloPanelBody>
           </>
         }
