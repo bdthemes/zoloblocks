@@ -1,49 +1,74 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import {RichText, useBlockProps} from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+import {__} from '@wordpress/i18n';
 
-const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg } =
-        attributes;
+const {classArrayToStr, DisplayZoloIcon} = window.zoloModule;
 
-    const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
-    });
+const Save = ({attributes}) => {
+  const {
+    uniqueId,
+    parentClasses,
+    preset,
+    optionData,
+    zoloId,
+    showLabel,
+    label,
+    showIcon,
+    icon,
+    isRequired,
+    showRequiredSymbol,
+    requiredMsg,
+    customNameAttribute,
+    defaultValue
+  } = attributes;
 
-    return (
-        <div
-            {...blockProps}
-            {...(zoloId && {
-                id: zoloId,
-            })}
-        >
-            <div className="zolo-field-item">
-                {showLabel && (
-                    <div className="zolo-label-wrapper">
-                        <RichText.Content tagName="label" className="zolo-label" value={label} />
-                        {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
-                    </div>
-                )}
+  const blockProps = useBlockProps.save({
+    className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
+  });
 
-                <div className="zolo-field-input-item">
-                    {showIcon && preset !== 'style-3' && (
-                        <div className="zolo-input-icon">
-                            <DisplayZoloIcon icon={icon} />
-                        </div>
-                    )}
+  return (
+    <div
+      {...blockProps}
+      {...(zoloId && {
+        id: zoloId,
+      })}
+    >
+      <div className="zolo-field-item">
+        {showLabel && (
+          <div className="zolo-label-wrapper">
+            <RichText.Content tagName="label" className="zolo-label" value={label}/>
+            {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
+          </div>
+        )}
 
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder={placeholder}
-                        required={isRequired}
-                        {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
-                    />
-                </div>
+        <div className="zolo-field-input-item">
+          {showIcon && preset !== 'style-3' && (
+            <div className="zolo-input-icon">
+              <DisplayZoloIcon icon={icon}/>
             </div>
+          )}
+
+          <select
+            name={customNameAttribute || 'select_feild'}
+            value={defaultValue || ''}
+            required={isRequired}
+            {...(isRequired && {'data-pristine-required-message': requiredMsg})}
+          >
+            {optionData.map((item) => (
+              <option
+                key={item.id}
+                value={item.value}
+                {...(defaultValue === item.value && {'selected': ''})}
+              >
+                {item.name}
+              </option>
+            ))}
+          </select>
+
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Save;
