@@ -4,6 +4,7 @@ export const transformToValueFormat = (input) => {
   }
   return input.toLowerCase().replace(/\s+/g, '_');
 };
+
 export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -22,19 +23,23 @@ export function parseInputToArray(input) {
   let currentGroup = null;
 
   lines.forEach((line, index) => {
+    const isDisabled = line.includes('| disabled'); // Check if the line includes "| disabled"
+    line = line.replace('| disabled', '').trim(); // Remove the "| disabled" part for further processing
+
     if (!line.startsWith('-')) {
       // Check if the next line starts with '-' to identify a group vs standalone option
       const isNextLineOption = lines[index + 1]?.startsWith('-');
 
       if (isNextLineOption) {
         // It's a group with options
-        currentGroup = { label: capitalizeFirstLetter(line.trim()), options: [] };
+        currentGroup = {label: capitalizeFirstLetter(line), options: []};
         result.push(currentGroup);
       } else {
         // It's a standalone option
         result.push({
           value: line.toLowerCase().replace(/\s+/g, '_'),
-          name: capitalizeFirstLetter(line.trim()),
+          name: capitalizeFirstLetter(line),
+          disabled: isDisabled, // Add disabled flag
         });
         currentGroup = null; // Reset current group
       }
@@ -43,6 +48,7 @@ export function parseInputToArray(input) {
       const option = {
         value: line.replace(/^-/, '').trim().toLowerCase().replace(/\s+/g, '_'),
         name: capitalizeFirstLetter(line.replace(/^-/, '').trim()),
+        disabled: isDisabled, // Add disabled flag
       };
       if (currentGroup) {
         currentGroup.options.push(option);
@@ -51,7 +57,6 @@ export function parseInputToArray(input) {
   });
 
   // Insert the default "Select Item" option at the beginning of the array
-  result.unshift({ value: '', name: 'Select Item' });
+  result.unshift({value: '', name: 'Select Item', disabled: false});
   return result;
 }
-

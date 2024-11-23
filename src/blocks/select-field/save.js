@@ -1,7 +1,7 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import classnames from 'classnames';
 import {__} from '@wordpress/i18n';
-import { parseInputToArray, transformToValueFormat} from "@/blocks/select-field/helper";
+import {parseInputToArray, transformToValueFormat} from "@/blocks/select-field/helper";
 
 const {classArrayToStr, DisplayZoloIcon} = window.zoloModule;
 
@@ -57,8 +57,8 @@ const Save = ({attributes}) => {
             name={customNameAttribute || 'select_field'}
             required={isRequired}
             value={defaultSelect}
-            disabled={isDisable}
             {...(isRequired && {'data-pristine-required-message': requiredMsg})}
+            disabled={isDisable}
           >
             {optionArray.length > 0 &&
               optionArray.map((item, index) => {
@@ -67,7 +67,12 @@ const Save = ({attributes}) => {
                   return (
                     <optgroup key={index} label={item.label}>
                       {item.options.map((option, optIndex) => (
-                        <option key={optIndex} value={option.value}>
+                        <option
+                          key={optIndex}
+                          value={option.value}
+                          {...(defaultSelect === option.value && {'selected': ''})}
+                          {...(option?.disabled && {'disabled': option.disabled})}
+                        >
                           {option.name}
                         </option>
                       ))}
@@ -76,7 +81,12 @@ const Save = ({attributes}) => {
                 } else {
                   // Render standalone option
                   return (
-                    <option key={index} value={item.value}>
+                    <option
+                      key={index}
+                      value={item.value}
+                      {...(defaultSelect === item.value && {'selected': ''})}
+                      {...(item?.disabled && {'disabled': item.disabled})}
+                    >
                       {item.name}
                     </option>
                   );

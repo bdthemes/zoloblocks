@@ -80,7 +80,6 @@ export default function Edit(props) {
     });
   }, [context]);
 
-
   const optionArray = parseInputToArray(optionData);
   const defaultSelect = transformToValueFormat(defaultValue);
 
@@ -127,7 +126,12 @@ export default function Edit(props) {
                     return (
                       <optgroup key={index} label={item.label}>
                         {item.options.map((option, optIndex) => (
-                          <option key={optIndex} value={option.value}>
+                          <option
+                            key={optIndex}
+                            value={option.value}
+                            selected={option.value === defaultSelect}
+                            disabled={option?.disabled}
+                          >
                             {option.name}
                           </option>
                         ))}
@@ -136,7 +140,12 @@ export default function Edit(props) {
                   } else {
                     // Render standalone option
                     return (
-                      <option key={index} value={item.value}>
+                      <option
+                        key={index}
+                        value={item.value}
+                        selected={item.value === defaultSelect}
+                        disabled={item?.disabled}
+                      >
                         {item.name}
                       </option>
                     );
