@@ -21,7 +21,6 @@ const Save = ({attributes}) => {
     requiredMsg,
     customNameAttribute,
     defaultValue,
-    isDisable
   } = attributes;
 
   const blockProps = useBlockProps.save({
@@ -58,7 +57,6 @@ const Save = ({attributes}) => {
             required={isRequired}
             value={defaultSelect}
             {...(isRequired && {'data-pristine-required-message': requiredMsg})}
-            disabled={isDisable}
           >
             {optionArray.length > 0 &&
               optionArray.map((item, index) => {

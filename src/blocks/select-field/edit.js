@@ -42,7 +42,6 @@ export default function Edit(props) {
     optionData,
     customNameAttribute,
     defaultValue,
-    isDisable,
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -117,7 +116,6 @@ export default function Edit(props) {
               name={customNameAttribute || 'select_field'}
               required={isRequired}
               {...(defaultSelect ? {'value': defaultSelect} : {})}
-              disabled={isDisable}
             >
               {optionArray.length > 0 &&
                 optionArray.map((item, index) => {

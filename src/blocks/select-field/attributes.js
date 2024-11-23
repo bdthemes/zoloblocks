@@ -68,10 +68,6 @@ Option 3`
   customNameAttribute: {
     type: 'string',
   },
-  isDisable: {
-    type: 'boolean',
-    default: false
-  },
   // Generators
   // ...generateResAlignmentAttributies(ITEMS_ALIGN),
   ...generateDimensionAttributes(LABEL_MARGIN),
