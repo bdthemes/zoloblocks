@@ -47,9 +47,6 @@ function Inspector(props) {
     label,
     labelColor,
     textColor,
-    showIcon,
-    icon,
-    iconColor,
     isRequired,
     requiredMsg,
     showRequiredSymbol,
@@ -84,13 +81,6 @@ function Inspector(props) {
                 checked={isRequired}
                 onChange={() => setAttributes({isRequired: !isRequired})}
               />
-              {preset !== 'style-3' && (
-                <ToggleControl
-                  label={__('Show icon', 'zoloblocks')}
-                  checked={showIcon}
-                  onChange={() => setAttributes({showIcon: !showIcon})}
-                />
-              )}
 
               {isRequired && (
                 <ToggleControl
@@ -135,17 +125,6 @@ function Inspector(props) {
                     onChange={(v) => setAttributes({requiredMsg: v})}
                   />
                 </div>
-              )}
-              {showIcon && preset !== 'style-3' && (
-                <ZoloIconPicker
-                  label={__('Select Icon', 'zoloblocks')}
-                  value={icon}
-                  onChange={(value) => {
-                    setAttributes({
-                      icon: value,
-                    });
-                  }}
-                />
               )}
               <div className="zolo-custom-heading">
                 {__('Manage Options', 'zoloblocks')}
@@ -247,23 +226,6 @@ function Inspector(props) {
               />
               <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false}/>
             </ZoloPanelBody>
-            {showIcon && preset !== 'style-3' && (
-              <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                <ColorControl
-                  label={__('Color', 'zoloblocks')}
-                  color={iconColor}
-                  onChange={(color) => setAttributes({iconColor: color})}
-                />
-                <ResRangeControl
-                  label={__('Icon', 'zoloblocks')}
-                  controlName={ICON_SIZE}
-                  requiredProps={requiredProps}
-                  min={1}
-                  max={100}
-                  step={1}
-                />
-              </ZoloPanelBody>
-            )}
           </>
         }
         advancedTab={

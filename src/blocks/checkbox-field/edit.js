@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {handleUniqueId, DisplayZoloIcon, classArrayToStr} = window.zoloModule;
+const {handleUniqueId, classArrayToStr} = window.zoloModule;
 
 import {BLOCK_PREFIX} from './constants';
 import Inspector from './inspector';
@@ -22,7 +22,6 @@ import Inspector from './inspector';
 import Style from './style';
 
 import {convertToOptionsArray, convertToDefaultValueArray} from "@/blocks/checkbox-field/helper";
-
 export default function Edit(props) {
   const {attributes, setAttributes, className, clientId, isSelected, context} = props;
   const {
@@ -32,8 +31,6 @@ export default function Edit(props) {
     parentClasses,
     showLabel,
     label,
-    showIcon,
-    icon,
     isRequired,
     showRequiredSymbol,
     optionData,
@@ -56,7 +53,6 @@ export default function Edit(props) {
       className,
       `${uniqueId}`,
       classArrayToStr(parentClasses),
-      `${showIcon ? 'zolo-field-icon' : ''}`,
       'form-group-editor'
     ),
   });
@@ -71,7 +67,6 @@ export default function Edit(props) {
    */
   useEffect(() => {
     setAttributes({
-      showIcon: context['zolo/showFieldIcon'],
       preset: context['zolo/preset'],
     });
   }, [context]);
@@ -102,20 +97,16 @@ export default function Edit(props) {
           )}
 
           <div className="zolo-field-input-item">
-            {showIcon && preset !== 'style-3' && (
-              <div className="zolo-input-icon">
-                <DisplayZoloIcon icon={icon}/>
-              </div>
-            )}
 
             {optionArray.length > 0 &&
               optionArray.map((option) => (
                 <label htmlFor={option.value}>
                   <input
+                    type="checkbox"
                     name={customNameAttribute || 'checkbox_field'}
                     value={option.value}
-                    checked={defaultCheck.includes(option.value)}
-                    type="checkbox"
+                    defaultChecked={defaultCheck.includes(option.value)}
+                    required={isRequired}
                   />{" "}
                   {option.name}
                 </label>
