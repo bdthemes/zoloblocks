@@ -42,6 +42,7 @@ export default function Edit(props) {
         optionData,
         customNameAttribute,
         defaultValue,
+        firstOption
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -79,7 +80,7 @@ export default function Edit(props) {
         });
     }, [context]);
 
-    const optionArray = parseInputToArray(optionData);
+    const optionArray = parseInputToArray(optionData,firstOption);
     const defaultSelect = transformToValueFormat(defaultValue);
 
     return (

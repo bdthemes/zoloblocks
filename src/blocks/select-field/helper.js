@@ -9,7 +9,7 @@ export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function parseInputToArray(input) {
+export function parseInputToArray(input,firstOption='Select Item') {
   if (!input || input.trim() === '') {
     return [];
   }
@@ -57,6 +57,6 @@ export function parseInputToArray(input) {
   });
 
   // Insert the default "Select Item" option at the beginning of the array
-  result.unshift({value: '', name: 'Select Item', disabled: false});
+  result.unshift({value: '', name: firstOption, disabled: false});
   return result;
 }

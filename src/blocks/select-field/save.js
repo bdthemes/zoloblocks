@@ -21,13 +21,14 @@ const Save = ({ attributes }) => {
         requiredMsg,
         customNameAttribute,
         defaultValue,
+        firstOption
     } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
     });
 
-    const optionArray = parseInputToArray(optionData);
+    const optionArray = parseInputToArray(optionData,firstOption);
     const defaultSelect = transformToValueFormat(defaultValue);
 
     return (

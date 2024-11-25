@@ -56,6 +56,10 @@ const attributes = {
     type: 'string',
     default: 'style-1',
   },
+  firstOption:{
+    type:'string',
+    default:'Select Item'
+  },
   optionData: {
     type: 'string',
     default: `Option 1
