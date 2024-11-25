@@ -216,6 +216,9 @@ const attributes = {
     psStarColor: {
         type: 'string',
     },
+    presetBgColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;
