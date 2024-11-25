@@ -144,8 +144,11 @@ if (! class_exists('ZoloEnqueues')) {
 
                 wp_enqueue_script('particles-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/frontend.js', ['particles-js'], ZOLO_VERSION, true);
                 wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style-index.css', [], ZOLO_VERSION);
-            }
 
+            }
+            if (has_block('zolo/container') && ZoloHelpers::is_extension_enabled('shape-builder')) {
+            wp_enqueue_style('zolo-shape-builder-frontend-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-builder/style-index.css', [], ZOLO_VERSION);
+            }
             // form validation
             if (has_block('zolo/form')) {
                 wp_enqueue_script(
@@ -415,6 +418,7 @@ if (! class_exists('ZoloEnqueues')) {
                         ZOLO_VERSION,
                         true
                     );
+                    wp_enqueue_style('zolo-shape-builder-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-builder/style-index.css', [], ZOLO_VERSION);
                 }
             }
 

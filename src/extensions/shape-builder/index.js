@@ -2,6 +2,7 @@ import { addFilter } from '@wordpress/hooks';
 import Inspector from './inspector.js';
 import Render from './render';
 import Style from './style.js';
+import './style.scss';
 
 addFilter('zolo.extensions.controls.shapeDivider', 'zolo/shape-builder', (panels, panelProps) => {
     if (panelProps.attributes.shapeBuilder) {
@@ -17,7 +18,6 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/shape-builder', (panels, panel
     return panels;
 });
 
-
 addFilter('zolo.container.desktopAllStyle', 'zolo/shape-builder', (desktopAllStyle, props) => {
     if (props.attributes.shapeBuilder) {
         const { shapeBuilderDesktop } = Style(props);
@@ -25,4 +25,3 @@ addFilter('zolo.container.desktopAllStyle', 'zolo/shape-builder', (desktopAllSty
     }
     return desktopAllStyle;
 });
-
