@@ -9,24 +9,13 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
-            shapeDivider: {
+            shapeBuilder: {
                 type: 'object',
-                default: {
-                    top: {
-                        type: 'none',
-                        color: '#2667ff',
-                        invert: false,
-                        flip: false,
-                        bringToFront: false,
-                    },
-                    bottom: {
-                        type: 'none',
-                        color: '#2667ff',
-                        invert: false,
-                        flip: false,
-                        bringToFront: false,
-                    },
-                },
+                default: {},
+            },
+            builderShapes: {
+                type: 'array',
+                default: [],
             },
             ...generateResRangeAttributies(TOP_HEIGHT_SHAPE),
             ...generateResRangeAttributies(BOTTOM_HEIGHT_SHAPE),

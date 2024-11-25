@@ -3,10 +3,11 @@ const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody, ThumbsCon
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
+import Sortable from './sortable';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-    const { resMode, shapeBuilder } = attributes;
+    const { resMode, shapeBuilder, builderShapes } = attributes;
 
     const requiredProps = {
         resMode,
@@ -16,8 +17,8 @@ const Inspector = ({ panelProps }) => {
     };
 
     return (
-        <ZoloPanelBody title={__('Shape Builder', 'zoloblocks')} panelProps={panelProps} isNew={true}>
-            <h3>Shape Builder</h3>
+        <ZoloPanelBody title={__('Shape Builder', 'zoloblocks')} panelProps={panelProps} isNew={false}>
+            <Sortable builderShapes={builderShapes} setAttributes={setAttributes} />
         </ZoloPanelBody>
     );
 };
