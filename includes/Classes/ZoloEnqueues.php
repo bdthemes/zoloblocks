@@ -403,8 +403,21 @@ if (! class_exists('ZoloEnqueues')) {
                     );
                 }
             }
-            // import shape divider
-            // if (ZoloHelpers::is_extension_enabled('background-video')) {
+            // import shape builder
+            if (ZoloHelpers::is_extension_enabled('shape-builder')) {
+                $import_shape_builder_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/shape-builder/index.asset.php';
+                if (file_exists($import_shape_builder_file)) {
+                    $script_dependecy = include $import_shape_builder_file;
+                    wp_enqueue_script(
+                        'zolo-shape-builder-editor-script',
+                        trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/shape-builder/index.js',
+                        $script_dependecy['dependencies'],
+                        ZOLO_VERSION,
+                        true
+                    );
+                }
+            }
+
 
             $import_shape_divider_file = trailingslashit(ZOLO_DIR_PATH) . 'build/extensions/background-video/index.asset.php';
             if (file_exists($import_shape_divider_file)) {
@@ -417,7 +430,6 @@ if (! class_exists('ZoloEnqueues')) {
                     true
                 );
             }
-            // }
 
 
             // template library

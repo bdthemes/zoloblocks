@@ -110,6 +110,13 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/shape-divider',
         'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
     ],
+    'shape-builder'          => [
+        'name'   => 'shape-builder',
+        'title'  => __('Shape Builder', 'zoloblocks'),
+        'status' => false,
+        'demo'   => 'https://demo.zoloblocks.com/shape-builder',
+        'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ],
     'dynamic-content'          => [
         'name'     => 'dynamic-content',
         'title'    => __('Dynamic Content', 'zoloblocks'),

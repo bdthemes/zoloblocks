@@ -15,6 +15,7 @@ module.exports = {
         'extensions/export-pattern/index': ['./src/extensions/export-pattern/index.js'],
         'extensions/import-pattern/index': ['./src/extensions/import-pattern/index.js'],
         'extensions/shape-divider/index': ['./src/extensions/shape-divider/index.js'],
+        'extensions/shape-builder/index': ['./src/extensions/shape-builder/index.js'],
         'extensions/background-video/index': ['./src/extensions/background-video/index.js'],
         'extensions/particles/index': ['./src/extensions/particles/index.js'],
         'extensions/particles/frontend': ['./src/extensions/particles/frontend.js'],
