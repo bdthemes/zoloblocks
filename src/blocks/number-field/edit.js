@@ -4,6 +4,7 @@
 import {useBlockProps, RichText} from '@wordpress/block-editor';
 import {useEffect} from '@wordpress/element';
 import {__} from '@wordpress/i18n';
+import {__experimentalNumberControl as NumberControl} from '@wordpress/components';
 
 /**
  * External dependencies
@@ -109,12 +110,19 @@ export default function Edit(props) {
               </div>
             )}
 
-            <input
-              type="number"
-              name={customNameAttribute || 'number'}
+            <NumberControl
               value={defaultValue}
+              name={customNameAttribute || 'number'}
               required={isRequired}
-              placeholder={placeholder}/>
+              placeholder={placeholder}
+            />
+
+            {/*<input*/}
+            {/*  type="number"*/}
+            {/*  name={customNameAttribute || 'number'}*/}
+            {/*  value={defaultValue}*/}
+            {/*  required={isRequired}*/}
+            {/*  placeholder={placeholder}/>*/}
           </div>
         </div>
       </div>
