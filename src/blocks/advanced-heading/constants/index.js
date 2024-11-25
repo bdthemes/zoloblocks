@@ -5,7 +5,7 @@ export const BLOCK_PREFIX = 'zolo-advanced-heading';
 export const STYLES = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-0' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-1' },
-    { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
+    // { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
 ];
 
 export const ST_POSITION = [
@@ -100,3 +100,6 @@ export const TEST_NORMAL_BG = 'testBg';
 // transparent heading offset
 export const TPH_X_OFFSET = 'tphXOffset';
 export const TPH_Y_OFFSET = 'tphYOffset';
+
+//text gradient color
+export const TEXT_GRADIENT_COLOR = 'textGradientColor';

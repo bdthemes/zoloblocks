@@ -14,7 +14,7 @@ const Style = (props) => {
     const { attributes } = props;
     const { shapeDivider, uniqueId } = attributes;
 
-    if(shapeDivider?.top?.type === 'none' || shapeDivider?.bottom?.type === 'none') {
+    if(shapeDivider?.top?.type === 'none' && shapeDivider?.bottom?.type === 'none') {
         return {
             shapeDividerDesktop: '',
             shapeDividerTablet: '',

@@ -19,6 +19,8 @@ const {
     generateTextShadowStyles,
     generateTextStrokeStyles,
     GlobalStyleHanlder,
+    generateNormalBGControlStyles,
+    generateTextGradientsStyles,
 } = window.zoloModule;
 
 //block constants
@@ -54,6 +56,7 @@ import {
     WRAPPER_SHADOW,
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
+    TEXT_GRADIENT_COLOR,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -80,7 +83,6 @@ export default function Style({ props }) {
         splitTextActive,
         subTitlePosition,
     } = attributes;
-
 
     //title style generate
     const {
@@ -390,6 +392,18 @@ export default function Style({ props }) {
         attributes,
     });
 
+
+
+        const {
+            backgroundStylesDesktop: textGradientDesktop,
+            backgroundStylesTab: textGradientTab,
+            backgroundStylesMobile: textGradientMobile,
+        } = generateTextGradientsStyles({
+            controlName: TEXT_GRADIENT_COLOR,
+            attributes,
+            noMainBGImg: false,
+        });
+
     //css style
     const wrapperStylesDesktop = `
   .zolo-block-wrapper.${uniqueId}{
@@ -507,6 +521,10 @@ export default function Style({ props }) {
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: ${titleColor || 'rgba(6, 6, 7, 0.919)'};
+    }
+
+    .zolo-block-wrapper.${uniqueId}.zolo-text-gradient-color .zolo-ah-title .zolo-ah-main-title {
+      ${textGradientDesktop}
     }
 
   `;

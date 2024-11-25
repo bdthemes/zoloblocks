@@ -15,6 +15,7 @@ export const HEADING_TAGS = [
 ];
 export const CONTENT_ALIGN = 'contentAlign';
 export const CONTENT_PADDING = 'contentPadding';
+export const CONTENT_MARGIN = 'contentMargin';
 export const CONTENT_BG = 'contentBg';
 export const CONTENT_BORDER = 'contentBorder';
 export const CONTENT_BORDER_RADIUS = 'contentBRadius';
@@ -29,6 +30,9 @@ export const CONTENT_TEXT_STROKE = 'contentTextStroke';
 //image
 export const THUMBNAIL_WIDTH = 'thumbWidth';
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
+export const THUMBNAIL_PADDING = 'thumbPadding';
+export const THUMBNAIL_MARGIN = 'thumbMargin';
+export const THUMBNAIL_BG = 'thumbBg';
 export const THUMBNAIL_BORDER = 'thumbBorder';
 export const THUMBNAIL_BRADIUS = 'thumbBRadius';
 export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
@@ -36,10 +40,12 @@ export const THUMBNAIL_HOVER_SHADOW = 'thumbHShadow';
 //heading
 export const HEADING_TEXT_SHADOW = 'headingShadow';
 export const HEADING_TEXT_STROKE = 'headingStroke';
+export const HEADING_MARGIN = 'headingMargin';
 
 //link
 export const LINK_BG = 'linkBg';
 export const LINK_PADDING = 'linkPadding';
+export const LINK_MARGIN = 'linkMargin';
 export const LINK_BORDER = 'linkBorder';
 export const LINK_BORDER_RADIUS = 'linkBRadius';
 export const LINK_SHADOW = 'linkShadow';

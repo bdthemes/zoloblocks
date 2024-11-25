@@ -320,6 +320,7 @@ function ZoloBlocksTemplateLibraryButton() {
             if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
                 renderButton(toolbar);
             }
+
         });
 
         return () => {

@@ -963,3 +963,11 @@ textarea[readonly] {
         }
     }
 }
+
+.zolo-text-gradient-label {
+    .zb-label-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

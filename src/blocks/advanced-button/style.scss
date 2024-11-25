@@ -58,6 +58,7 @@
     }
 
     .zolo-button-content {
+        font-size: 16px;
         color: var(--secondary-color);
         z-index: 1;
     }
@@ -567,6 +568,247 @@
             transition:
                 transform 0.3s ease,
                 opacity 0.3s ease;
+        }
+    }
+
+    // button 10 style
+    &.button-9 {
+        .zolo-button {
+            position: relative;
+            border: 2px solid var(--zoloblocks-brand-color);
+
+            &:hover {
+                background: transparent;
+                border-color: var(--zoloblocks-brand-color);
+                .zolo-button-content {
+                    color: var(--zoloblocks-brand-color);
+                }
+                .zolo__display-icon {
+                    svg {
+                        fill: var(--zoloblocks-brand-color);
+                    }
+                }
+                .zolo-star {
+                    opacity: 1;
+                    z-index: 2;
+                    filter: drop-shadow(0 0 10px #fffdef);
+                }
+                .zolo-star-1 {
+                    top: -80%;
+                    left: -30%;
+                }
+                .zolo-star-2 {
+                    top: -25%;
+                    left: 10%;
+                }
+                .zolo-star-3 {
+                    top: 55%;
+                    left: 25%;
+                }
+                .zolo-star-4 {
+                    top: 30%;
+                    left: 80%;
+                }
+                .zolo-star-5 {
+                    top: 25%;
+                    left: 115%;
+                }
+                .zolo-star-6 {
+                    top: 5%;
+                    left: 60%;
+                }
+            }
+        }
+        .zolo-star {
+            position: absolute;
+            z-index: -5;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            filter: drop-shadow(0 0 0 #fffdef);
+
+            &.zolo-star-1 {
+                top: 20%;
+                left: 20%;
+                width: 25px;
+                transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+            }
+
+            &.zolo-star-2 {
+                top: 45%;
+                left: 45%;
+                width: 15px;
+                transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-3 {
+                top: 40%;
+                left: 40%;
+                width: 5px;
+                transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-4 {
+                top: 20%;
+                left: 40%;
+                width: 8px;
+                transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-5 {
+                top: 25%;
+                left: 45%;
+                width: 15px;
+                transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            &.zolo-star-6 {
+                top: 5%;
+                left: 50%;
+                width: 5px;
+                transition: all 0.8s ease;
+            }
+        }
+        .zolo-star-icon {
+            fill: var(--zoloblocks-brand-color);
+        }
+    }
+
+    // button 11 style pro
+    &.button-10 {
+        .zolo-button {
+            overflow: hidden;
+            position: relative;
+            border-radius: 0;
+            &::after,
+            &::before {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 10%;
+                background: #000;
+                z-index: 1;
+                opacity: 0;
+                transition: 0.2s ease;
+                clip-path: polygon(
+                    0% 74%,
+                    4% 75%,
+                    8% 76%,
+                    11% 77%,
+                    15% 78%,
+                    20% 78%,
+                    25% 77%,
+                    32% 77%,
+                    37% 75%,
+                    40% 74%,
+                    43% 74%,
+                    46% 73%,
+                    52% 72%,
+                    57% 72%,
+                    65% 74%,
+                    66% 75%,
+                    71% 78%,
+                    75% 82%,
+                    81% 86%,
+                    83% 88%,
+                    88% 91%,
+                    90% 94%,
+                    94% 96%,
+                    98% 98%,
+                    100% 100%,
+                    82% 100%,
+                    0 100%
+                );
+            }
+            &::before {
+                transform: rotate(180deg);
+            }
+            &:hover {
+                &::after,
+                &::before {
+                    clip-path: polygon(
+                        0 30%,
+                        9% 34%,
+                        7% 39%,
+                        11% 43%,
+                        13% 33%,
+                        17% 30%,
+                        24% 34%,
+                        25% 35%,
+                        30% 31%,
+                        30% 38%,
+                        39% 33%,
+                        35% 43%,
+                        43% 45%,
+                        55% 46%,
+                        65% 74%,
+                        67% 66%,
+                        81% 57%,
+                        75% 82%,
+                        81% 86%,
+                        83% 88%,
+                        88% 91%,
+                        90% 94%,
+                        94% 96%,
+                        98% 98%,
+                        100% 100%,
+                        82% 100%,
+                        0 100%
+                    );
+                    height: 100%;
+                    opacity: 1;
+                }
+            }
+        }
+        .zolo-button-content {
+            position: relative;
+            z-index: 99;
+        }
+        .zolo__display-icon {
+            z-index: 99;
+        }
+    }
+
+    // button 12 style pro
+    &.button-11 {
+        .zolo-button {
+            overflow: hidden;
+            .zolo-circle {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                height: 30px;
+                width: 30px;
+                background-color: #000;
+                border-radius: 50%;
+                opacity: 0.3;
+                visibility: hidden;
+                transition: 0.6s ease;
+                &.zolo-circle1 {
+                    transform: translate(-3.3em, -4em);
+                }
+                &.zolo-circle2 {
+                    transform: translate(-6em, 1.3em);
+                }
+                &.zolo-circle3 {
+                    transform: translate(-0.2em, 1.8em);
+                }
+                &.zolo-circle4 {
+                    transform: translate(3.5em, 1.4em);
+                }
+                &.zolo-circle5 {
+                    transform: translate(3.5em, -3.8em);
+                }
+            }
+            &:hover {
+                .zolo-circle {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translate(-50%, -50%) scale(10);
+                    transition: 1.5s ease;
+                }
+            }
         }
     }
 }

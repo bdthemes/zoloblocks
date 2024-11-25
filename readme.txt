@@ -5,7 +5,7 @@ Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg 
 Requires at least: 6.1
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -354,115 +354,69 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+= 2.1.2 - 20-11-2024 =
+* **Fixed:** Resolved the column layout issue.
+* **Fixed:** Addressed the caption hide issue.
+
+= 2.1.1 - 19-11-2024 =
+- **New Feature:** Added an advanced button with expanded functionality.
+- **New Feature:** **Table of Contents Block** – Introduced a sticky feature for improved usability.
+- **New Feature:** Initialized gradient text control for enhanced customization.
+- **Fixed:** Fixed the design of the typography font family control.
+- **Improved:** Added responsive options to the offset control for better flexibility.
+- **Improved:** Optimized code and improved block arrangement for enhanced performance.
+
+= 2.1.0 - 13-11-2024 =
+* **New Feature:** Introduced a highly customizable **Table of Contents** block, enabling users to structure long content effortlessly with automatic heading detection and flexible styling options.
+* **New Feature:** Added an **Advanced Paragraph** block with enhanced customization options, including support for responsive styling across mobile, tablet, and desktop views.
+* **Fixed:** Resolved navigation issues to improve control responsiveness and enhance the user experience.
+* **Fixed:** Addressed display issues for consistent functionality.
+* **Fixed:** Resolved issues with scale and hover flip effects.
+
 = 2.0.0 - 07-11-2024 =
-
-**New Features:**
-- Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
-- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
-- Featured Image Block: Added a block to display featured image to the single page
-- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
-- Post Navigation Block: Added a block to enable easy navigation between posts.
-- Post Comments Form: Introduced a customizable comments form block for post interaction.
-- Post Content: Introduced a fully customizable content block for single post.
-- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
-
-**Improvements:**
-- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
-- Video Controls: Improved the video block controls for smoother interactions and functionality.
-- Slider Block: Refined the Slider Block for improved performance and usability.
-- Template Library: Enhanced the organization and accessibility of templates within the library.
-- Range Control: Upgraded the range control for more precise and responsive adjustments.
-- CSS and Backdrop Filters: Enhanced filter controls, offering more creative flexibility.
-- Background Controls: Background controls have been moved to a popover for a cleaner layout.
-- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
-
-**Fixes:**
-- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
-- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
+* **New Feature:** Introduced a fully customizable navigation menu block for easy site navigation.
+* **New Feature:** Added a block to display post metadata, such as the author, date, and categories.
+* **New Feature:** Added a block to display the featured image on single pages.
+* **New Feature:** Added a block to display interactive 3D Spline scenes.
+* **New Feature:** Added a block to enable seamless navigation between posts.
+* **New Feature:** Introduced a customizable comments form block for post interaction.
+* **New Feature:** Introduced a fully customizable content block for single posts.
+* **New Feature:** Added a preset for creating brand grids.
+* **Improved:** Optimized the user interface for block controls, enhancing the overall user experience.
+* **Improved:** Enhanced video block controls for smoother interactions and better functionality.
+* **Improved:** Refined the Slider Block for improved performance and usability.
+* **Improved:** Enhanced the organization and accessibility of templates within the Template Library.
+* **Improved:** Upgraded range control for more precise and responsive adjustments.
+* **Improved:** Enhanced CSS and backdrop filter controls to offer more creative flexibility.
+* **Improved:** Relocated background controls to a popover for a cleaner and more intuitive layout.
+* **Improved:** Updated Shape Divider feature controls for better usability and a more user-friendly experience.
+* **Fixed:** Resolved the issue with image selection in the TextPath block.
+* **Fixed:** Addressed the compatibility issue with Spectra blocks.
 
 
 = 1.5.1 - 08-10-2024 =
-
-* Fixed: Slider navigation issue.
-* Fixed: TextPath image issue.
-* Improved: Optimized block controls UI.
+* **Fixed:**Slider navigation issue.
+* **Fixed:**TextPath image issue.
+* **Improved:** Optimized block controls UI.
 
 = 1.5.0 - 08-10-2024 =
-
-* Added: Background video feature added to Container and Slider child blocks.
-* Improved: Advanced Button preset 3 updated.
+- **New Feature:** Background video feature added to Container and Slider child blocks.
+* **Improved:**  Advanced Button preset 3 updated.
 
 = 1.4.5 - 05-10-2024 =
-
-* Added: Post Title block introduced.
-* Added: Image feature (Circle, Triangle, Rectangle, Polygon) for the TextPath block.
-* Added: Direction control for circular paths in the TextPath block.
-* Added: Color control for text in the TextPath block.
-* Fixed: Typography Control reset issue resolved.
-* Fixed: Maintenance mode issue resolved.
-* Fixed: Appender button issue fixed.
-* Fixed: Focus issue in Advanced Search & Newsletter blocks.
-* Fixed: Photo height, width, and margin issues in Review Carousel Block.
-* Fixed: Photo padding control issue in the Author block.
-* Fixed: Icon Border Radius issue in Notice block (layout style 4).
-* Improved: Refactored and optimized query for better performance.
-* Improved: Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud blocks.
-* Improved: Container block design updated.
-
-= 1.4.4 - 25-09-2024 =
-
-* Fixed: QR code block layout issue.
-* Fixed: Post Grid block hover animation issue.
-* Fixed: Post Timeline block excerpt not displaying on the frontend.
-* Improved: Optimized Post Grid and Post Timeline blocks for efficiency and better user experience.
-
-= 1.4.3 - 24-09-2024 =
-
-* Added: Horizontal layout features to List Block.
-* Added: New List Block presets (2, 3, 4).
-* Fixed: Authors Block avatar issue.
-* Fixed: Review Block image issue.
-* Fixed: Post & Review Carousel vertical offset issue.
-* Improved: Optimized block controls UI.
-
-= 1.4.2 - 18-09-2024 =
-
-* Fixed: List block deprecated issue.
-* Improved: Control layout for Chart, Authors, Notice, and Review Grid blocks.
-
-= 1.4.1 - 17-09-2024 =
-
-* Fixed: List block linkable issue.
-* Fixed: Particles z-index issue.
-* Fixed: Newsletter block API issue.
-* Fixed: Lightbox background color issue.
-* Fixed: Post Category block color issue.
-
-= 1.4.0 - 12-09-2024 =
-
-* Added: Author Block.
-* Added: Breadcrumbs Block.
-* Added: Lightbox Block.
-* Added: Post Category Block.
-* Added: Tag Cloud Block.
-* Added: Post Comments Block.
-* Added: Social Count Block.
-* Added: Recent Comments Block.
-* Added: Advanced Button hover background control.
-* Fixed: Review Grid column issue.
-* Fixed: Star Rating responsive issue.
-* Fixed: Google Maps block editor issue.
-* Fixed: Astra theme link underline style support issue.
-* Fixed: Multiple chart rendering issue on a single page.
-* Improved: Dashboard UI updated.
-* Improved: Block scripts optimized.
-* Improved: Optimized asset loading.
-* Improved: Enhanced Post Query system.
-* Improved: Block controls UI optimized.
-* Improved: Pricing Block design refined.
-* Improved: QR code block scripts updated.
-* Improved: Button Block preset styles enhanced.
-* Improved: Removed line link from preset particles.
-* Improved: Added particles preview options to the editor.
+- **New Feature:** Post Title block introduced.
+- **New Feature:** Image feature (Circle, Triangle, Rectangle, Polygon) for the TextPath block.
+- **New Feature:** Direction control for circular paths in the TextPath block.
+- **New Feature:** Color control for text in the TextPath block.
+* **Fixed:**Typography Control reset issue resolved.
+* **Fixed:**Maintenance mode issue resolved.
+* **Fixed:**Appender button issue fixed.
+* **Fixed:**Focus issue in Advanced Search & Newsletter blocks.
+* **Fixed:**Photo height, width, and margin issues in Review Carousel Block.
+* **Fixed:**Photo padding control issue in the Author block.
+* **Fixed:**Icon Border Radius issue in Notice block (layout style 4).
+* **Improved:** Refactored and optimized query for better performance.
+* **Improved:** Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud blocks.
+* **Improved:** Container block design updated.
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)

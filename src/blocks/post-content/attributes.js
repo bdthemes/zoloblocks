@@ -18,6 +18,7 @@ const {
 import {
     CONTENT_ALIGN,
     CONTENT_PADDING,
+    CONTENT_MARGIN,
     CONTENT_BG,
     CONTENT_BORDER,
     CONTENT_BORDER_RADIUS,
@@ -31,6 +32,9 @@ import {
     //image
     THUMBNAIL_WIDTH,
     THUMBNAIL_HEIGHT,
+    THUMBNAIL_BG,
+    THUMBNAIL_PADDING,
+    THUMBNAIL_MARGIN,
     THUMBNAIL_BORDER,
     THUMBNAIL_BRADIUS,
     THUMBNAIL_BOX_SHADOW,
@@ -38,10 +42,11 @@ import {
     //heading
     HEADING_TEXT_SHADOW,
     HEADING_TEXT_STROKE,
-
+    HEADING_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
+    LINK_MARGIN,
     LINK_BORDER,
     LINK_SHADOW,
     LINK_BORDER_RADIUS,
@@ -135,6 +140,7 @@ const attributes = {
 
     ...generateResAlignmentAttributies(CONTENT_ALIGN),
     ...generateDimensionAttributes(CONTENT_PADDING),
+    ...generateDimensionAttributes(CONTENT_MARGIN),
     ...generateNormalBGAttributes(CONTENT_BG),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
@@ -148,6 +154,9 @@ const attributes = {
     //image
     ...generateResRangeAttributies(THUMBNAIL_WIDTH),
     ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
+    ...generateNormalBGAttributes(THUMBNAIL_BG),
+    ...generateDimensionAttributes(THUMBNAIL_PADDING),
+    ...generateDimensionAttributes(THUMBNAIL_MARGIN),
     ...generateBorderAttributies(THUMBNAIL_BORDER),
     ...generateDimensionAttributes(THUMBNAIL_BRADIUS),
     ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
@@ -155,10 +164,11 @@ const attributes = {
     //heading
     ...generateTextShadowAttributies(HEADING_TEXT_SHADOW),
     ...generateTextStrokeAttributies(HEADING_TEXT_STROKE),
-
+    ...generateDimensionAttributes(HEADING_MARGIN),
     //link
     ...generateNormalBGAttributes(LINK_BG),
     ...generateDimensionAttributes(LINK_PADDING),
+    ...generateDimensionAttributes(LINK_MARGIN),
     ...generateBorderAttributies(LINK_BORDER),
     ...generateBoxShadowAttributies(LINK_SHADOW),
     ...generateDimensionAttributes(LINK_BORDER_RADIUS),
