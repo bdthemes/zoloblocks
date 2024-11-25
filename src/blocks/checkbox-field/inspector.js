@@ -106,7 +106,7 @@ function Inspector(props) {
                 label={__('Default Value', 'zoloblocks')}
                 value={defaultValue}
                 onChange={(v) => setAttributes({defaultValue: v})}
-                help={__('Leave empty if no default value is needed.', 'zoloblocks')}
+                help={__('Leave empty if no default value is needed and display only on the frontend.', 'zoloblocks')}
               />
 
               <TextControl
