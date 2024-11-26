@@ -685,5 +685,12 @@ return apply_filters('zolo_blocks_list_data', [
     //     'categories' => ['others'],
     //     'status' => true,
     //     'is_child' => true,
-    // ]
+    // ],
+     'radio-field' => [
+         'name' => 'radio-field',
+         'title' => __('Radio Field', 'zoloblocks'),
+         'categories' => ['others'],
+         'status' => true,
+         'is_child' => true,
+     ]
 ]);
