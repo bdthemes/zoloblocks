@@ -4,7 +4,6 @@
 import {useBlockProps, RichText} from '@wordpress/block-editor';
 import {useEffect} from '@wordpress/element';
 import {__} from '@wordpress/i18n';
-import {__experimentalNumberControl as NumberControl} from '@wordpress/components';
 
 /**
  * External dependencies
@@ -41,7 +40,6 @@ export default function Edit(props) {
     isRequired,
     showRequiredSymbol,
     customNameAttribute,
-    defaultValue
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -99,7 +97,8 @@ export default function Edit(props) {
                 }
                 placeholder={__('Label', 'zoloblocks')}
               />
-              {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
+              {isRequired && showRequiredSymbol &&
+                <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
             </div>
           )}
 
@@ -109,20 +108,11 @@ export default function Edit(props) {
                 <DisplayZoloIcon icon={icon}/>
               </div>
             )}
-
-            <NumberControl
-              value={defaultValue}
+            <input
+              type="number"
               name={customNameAttribute || 'number'}
               required={isRequired}
-              placeholder={placeholder}
-            />
-
-            {/*<input*/}
-            {/*  type="number"*/}
-            {/*  name={customNameAttribute || 'number'}*/}
-            {/*  value={defaultValue}*/}
-            {/*  required={isRequired}*/}
-            {/*  placeholder={placeholder}/>*/}
+              placeholder={placeholder}/>
           </div>
         </div>
       </div>
