@@ -3,11 +3,9 @@ const { generateResRangeAttributies, generateNormalBGAttributes } = window.zoloM
 import { addFilter } from '@wordpress/hooks';
 
 import { TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
-import { shape } from 'prop-types';
 
 const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute', (settings) => {
     if (settings.category && settings.category == 'zoloblocks' && settings.name === 'zolo/container') {
-        console.log('settings', settings.attributes);
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -28,6 +26,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
             ...generateResRangeAttributies(BOTTOM_WIDTH_SHAPE, {
                 defaultUnit: '%',
             }),
+            ...generateNormalBGAttributes('shapeBG1'),
         };
     }
 
