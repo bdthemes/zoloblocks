@@ -1,84 +1,82 @@
-.wp-block {
-    &.zolo-shape-builder {
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        &.zolo-shape-builder-1 {
-            transform: translate(10px, 10px);
-            background: #f00;
+.zolo-shape-builder {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    &.zolo-shape-builder-1 {
+        transform: translate(10px, 10px);
+        // background: #f00;
+    }
+    &.zolo-shape-builder-2 {
+        transform: translate(20px, 20px);
+        // background: blue;
+    }
+    &.zolo-shape-builder-3 {
+        transform: translate(30px, 30px);
+        // background: green;
+    }
+    &.zolo-shape-builder-4 {
+        transform: translate(40px, 40px);
+        // background: yellow;
+    }
+    &.zolo-shape-builder-5 {
+        transform: translate(50px, 50px);
+        // background: purple;
+    }
+    &.zolo-shape-builder-6 {
+        transform: translate(60px, 60px);
+        // background: orange;
+    }
+    &.zolo-shape-builder-7 {
+        transform: translate(70px, 70px);
+        // background: pink;
+    }
+    &.zolo-shape-builder-8 {
+        transform: translate(80px, 80px);
+        // background: black;
+    }
+    &.zolo-shape-builder-1,
+    &.zolo-shape-builder-2,
+    &.zolo-shape-builder-3,
+    &.zolo-shape-builder-4,
+    &.zolo-shape-builder-5,
+    &.zolo-shape-builder-6,
+    &.zolo-shape-builder-7,
+    &.zolo-shape-builder-8 {
+        &.zolo-shape-ps-bottom-left {
+            bottom: 0;
+            left: 0;
         }
-        &.zolo-shape-builder-2 {
-            transform: translate(20px, 20px);
-            background: blue;
+        &.zolo-shape-ps-bottom-right {
+            bottom: 0;
+            right: 0;
         }
-        &.zolo-shape-builder-3 {
-            transform: translate(30px, 30px);
-            background: green;
+        &.zolo-shape-ps-bottom-center {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        &.zolo-shape-builder-4 {
-            transform: translate(40px, 40px);
-            background: yellow;
+        &.zolo-shape-ps-top-left {
+            top: 0;
+            left: 0;
         }
-        &.zolo-shape-builder-5 {
-            transform: translate(50px, 50px);
-            background: purple;
+        &.zolo-shape-ps-top-right {
+            top: 0;
+            right: 0;
         }
-        &.zolo-shape-builder-6 {
-            transform: translate(60px, 60px);
-            background: orange;
+        &.zolo-shape-ps-top-center {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        &.zolo-shape-builder-7 {
-            transform: translate(70px, 70px);
-            background: pink;
+        &.zolo-shape-ps-middle-left {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
         }
-        &.zolo-shape-builder-8 {
-            transform: translate(80px, 80px);
-            background: black;
-        }
-        &.zolo-shape-builder-1,
-        &.zolo-shape-builder-2,
-        &.zolo-shape-builder-3,
-        &.zolo-shape-builder-4,
-        &.zolo-shape-builder-5,
-        &.zolo-shape-builder-6,
-        &.zolo-shape-builder-7,
-        &.zolo-shape-builder-8 {
-            &.zolo-shape-ps-bottom-left {
-                bottom: 0;
-                left: 0;
-            }
-            &.zolo-shape-ps-bottom-right {
-                bottom: 0;
-                right: 0;
-            }
-            &.zolo-shape-ps-bottom-center {
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            &.zolo-shape-ps-top-left {
-                top: 0;
-                left: 0;
-            }
-            &.zolo-shape-ps-top-right {
-                top: 0;
-                right: 0;
-            }
-            &.zolo-shape-ps-top-center {
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            &.zolo-shape-ps-middle-left {
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%);
-            }
-            &.zolo-shape-ps-middle-right {
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-            }
+        &.zolo-shape-ps-middle-right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
         }
     }
 }

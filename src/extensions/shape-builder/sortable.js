@@ -1,16 +1,20 @@
 /**
  * Internal depencencies
  */
-const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
+const { ZoloIconPicker, SortableControl, SortableItem, LinkControl, ColorControl, NormalBGControl } = window.zoloModule;
 
 const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl, SelectControl } = wp.components;
 import { cloneDeep } from 'lodash';
 
-import { SHAPE_BUILDER_PS } from './constants';
+import { SHAPE_BUILDER_PS, SHAPE_BG } from './constants';
 
-const Sortable = ({ builderShapes, shapeBuilderPs, setAttributes }) => {
+const Sortable = ({ panelProps, requiredProps }) => {
+    const { attributes, setAttributes } = panelProps;
+    const { builderShapes } = attributes;
     const deepCloneShapes = cloneDeep(builderShapes);
+
+    console.log('builderShapes', attributes);
 
     return (
         <div className="sortable">
@@ -24,6 +28,7 @@ const Sortable = ({ builderShapes, shapeBuilderPs, setAttributes }) => {
                                 {
                                     id: builderShapes.length + 1,
                                     text: 'Shape ' + (builderShapes.length + 1),
+                                    position: 'bottom-right',
                                 },
                             ],
                         })
@@ -53,9 +58,18 @@ const Sortable = ({ builderShapes, shapeBuilderPs, setAttributes }) => {
                                     <PanelBody title={shape.text || 'Title'} initialOpen={false}>
                                         <SelectControl
                                             label={__('Position', 'zoloblocks')}
-                                            value={shapeBuilderPs}
+                                            value={shape?.position || 'bottom-right'}
                                             options={SHAPE_BUILDER_PS}
-                                            onChange={(value) => setAttributes({ shapeBuilderPs: value })}
+                                            onChange={(value) => {
+                                                const newShapes = [...builderShapes];
+                                                newShapes[index].position = value;
+                                                setAttributes({ builderShapes: newShapes });
+                                            }}
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={`shapeBG${shape.id}`}
+                                            noMainBGImg={false}
                                         />
                                     </PanelBody>
                                 </SortableItem>

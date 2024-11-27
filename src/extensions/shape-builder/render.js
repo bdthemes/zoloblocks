@@ -9,6 +9,7 @@ export default function Render({ panelProps }) {
     if (!builderShapes.length) {
         return null;
     }
+
     //if builderShapes is not empty array, return the following loop to render the shapes
     return (
         <>
@@ -16,7 +17,7 @@ export default function Render({ panelProps }) {
                 return (
                     <div
                         key={index}
-                        className={`wp-block zolo-shape-builder zolo-shape-ps-${shapeBuilderPs} zolo-shape-builder-${shape.id}`}
+                        className={`wp-block zolo-shape-builder zolo-shape-ps-${shape?.position} zolo-shape-builder-${shape.id}`}
                     ></div>
                 );
             })}

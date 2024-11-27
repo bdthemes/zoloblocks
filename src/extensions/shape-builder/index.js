@@ -19,7 +19,7 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/shape-builder', (panels, panel
 });
 
 addFilter('zolo.container.desktopAllStyle', 'zolo/shape-builder', (desktopAllStyle, props) => {
-    if (props.attributes.shapeBuilder) {
+    if (props.attributes?.builderShapes.length) {
         const { shapeBuilderDesktop } = Style(props);
         return desktopAllStyle + shapeBuilderDesktop;
     }
