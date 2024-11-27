@@ -3,6 +3,7 @@ const { generateResRangeAttributies } = window.zoloModule;
 import { addFilter } from '@wordpress/hooks';
 
 import { TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
+import { shape } from 'prop-types';
 
 const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute', (settings) => {
     if (settings.category && settings.category == 'zoloblocks' && settings.name === 'zolo/container') {
@@ -17,6 +18,12 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
                 type: 'array',
                 default: [],
             },
+
+            shapeBuilderPs: {
+                type: 'string',
+                default: 'bottom-right',
+            },
+
             ...generateResRangeAttributies(TOP_HEIGHT_SHAPE),
             ...generateResRangeAttributies(BOTTOM_HEIGHT_SHAPE),
             ...generateResRangeAttributies(TOP_WIDTH_SHAPE, {

@@ -4,7 +4,7 @@
 
 export default function Render({ panelProps }) {
     const { attributes } = panelProps;
-    const { builderShapes, uniqueId } = attributes;
+    const { builderShapes, uniqueId, shapeBuilderPs } = attributes;
     //if bulderShapes is empty array, return null
     if (!builderShapes.length) {
         return null;
@@ -13,7 +13,12 @@ export default function Render({ panelProps }) {
     return (
         <>
             {builderShapes.map((shape, index) => {
-                return <div key={index} className={`wp-block zolo-shape-builder zolo-shape-builder-${shape.id}`}></div>;
+                return (
+                    <div
+                        key={index}
+                        className={`wp-block zolo-shape-builder zolo-shape-ps-${shapeBuilderPs} zolo-shape-builder-${shape.id}`}
+                    ></div>
+                );
             })}
         </>
     );

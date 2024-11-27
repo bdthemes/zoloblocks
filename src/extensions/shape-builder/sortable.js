@@ -4,10 +4,12 @@
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
 const { __ } = wp.i18n;
-const { Button, PanelBody, TextControl } = wp.components;
+const { Button, PanelBody, TextControl, SelectControl } = wp.components;
 import { cloneDeep } from 'lodash';
 
-const Sortable = ({ builderShapes, setAttributes }) => {
+import { SHAPE_BUILDER_PS } from './constants';
+
+const Sortable = ({ builderShapes, shapeBuilderPs, setAttributes }) => {
     const deepCloneShapes = cloneDeep(builderShapes);
 
     return (
@@ -49,16 +51,11 @@ const Sortable = ({ builderShapes, setAttributes }) => {
                                 />
                                 <SortableItem key={shape.id} id={shape.id}>
                                     <PanelBody title={shape.text || 'Title'} initialOpen={false}>
-                                        <TextControl
-                                            label={__('Title', 'zoloblocks')}
-                                            value={shape.text}
-                                            onChange={(v) => {
-                                                const newItems = [...deepCloneShapes];
-                                                newItems[index].text = v;
-                                                setAttributes({
-                                                    builderShapes: newItems,
-                                                });
-                                            }}
+                                        <SelectControl
+                                            label={__('Position', 'zoloblocks')}
+                                            value={shapeBuilderPs}
+                                            options={SHAPE_BUILDER_PS}
+                                            onChange={(value) => setAttributes({ shapeBuilderPs: value })}
                                         />
                                     </PanelBody>
                                 </SortableItem>
