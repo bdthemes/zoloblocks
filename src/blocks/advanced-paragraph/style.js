@@ -255,7 +255,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-    .${uniqueId}.wp-block-zolo-advanced-paragraph {
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${columnsDesktop.replace('px', '')}
         ${columnsGapDesktop}
     }
@@ -322,7 +322,7 @@ const Style = ({ props }) => {
 `;
 
     const tabletAllStyle = `
-    .${uniqueId}.wp-block-zolo-advanced-paragraph {
+    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${columnsTab.replace('px', '')}
         ${columnsGapTab}
     }
@@ -386,7 +386,7 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-     .${uniqueId}.wp-block-zolo-advanced-paragraph {
+     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${columnsMob.replace('px', '')}
         ${columnsGapMob}
     }

@@ -364,6 +364,12 @@ const Inspector = (props) => {
                                         noMainBGImg={true}
                                         controlName={TEXT_GRADIENT_COLOR}
                                         requiredProps={requiredProps}
+                                        defaultColor={titleColor}
+                                        onChangeDefault={(val) =>{
+                                            setAttributes({
+                                                titleColor: val,
+                                            })
+                                        }}
                                     />
                                 </>
                             ) : (
