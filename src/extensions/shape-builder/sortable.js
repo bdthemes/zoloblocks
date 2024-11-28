@@ -7,15 +7,13 @@ const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl, SelectControl } = wp.components;
 import { cloneDeep } from 'lodash';
 
-import { SHAPE_BUILDER_PS, SHAPE_BG } from './constants';
+import { SHAPE_BUILDER_PS } from './constants';
 
 const Sortable = ({ panelProps, requiredProps }) => {
     const { attributes, setAttributes } = panelProps;
+    console.log('attributes', attributes);
     const { builderShapes } = attributes;
     const deepCloneShapes = cloneDeep(builderShapes);
-
-    console.log('builderShapes', attributes);
-
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">

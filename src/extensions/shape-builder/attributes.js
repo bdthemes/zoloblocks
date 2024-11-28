@@ -26,8 +26,14 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
             ...generateResRangeAttributies(BOTTOM_WIDTH_SHAPE, {
                 defaultUnit: '%',
             }),
-            ...generateNormalBGAttributes('shapeBG1'),
+            ...generateResRangeAttributies('shapeBG1'),
         };
+
+        // Add new attribute for each shape
+
+
+
+
     }
 
     return settings;
