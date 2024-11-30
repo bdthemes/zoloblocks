@@ -118,5 +118,13 @@ return apply_filters('zolo_extensions', [
         'released' => false,
         'demo'     => 'https://demo.zoloblocks.com/dynamic-content',
         'video'    => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ]
+    ],
+    'interactions'          => [
+        'name'   => 'interactions',
+        'title'  => __('Interactions', 'zoloblocks'),
+        'status' => false,
+        'is_pro' => true,
+        'demo'   => 'https://demo.zoloblocks.com/interactions',
+        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ],
 ]);
