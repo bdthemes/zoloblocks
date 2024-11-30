@@ -1,0 +1,22 @@
+.wp-block-zolo-query-pagination {
+    .zolo-query-pagination-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+
+        .page-numbers{
+            &.prev, &.next{
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.zolo__display-icon {
+    svg {
+        width: 1em;
+        height: 1em;
+    }
+}

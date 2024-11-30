@@ -52,6 +52,7 @@ export { default as ResSelectControl } from '../controls/res-select-control';
 export { default as ThumbsControl } from '../controls/thumbs-control';
 export { default as TabDynamicControl } from '../controls/tabdynamic-control';
 export { default as ToggleGroup } from '../controls/toggle-group';
+export { default as ZoloRepeater } from '../controls/repeater';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
