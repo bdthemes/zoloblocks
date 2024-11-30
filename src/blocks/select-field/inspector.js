@@ -35,6 +35,8 @@ import {
     FIELD_BORDER,
     FIELD_BRADIUS,
     ICON_SIZE,
+    ARROW_ICON_SIZE,
+    ARROW_ICON_SPACING,
 } from './constants';
 
 function Inspector(props) {
@@ -56,7 +58,8 @@ function Inspector(props) {
         requiredColor,
         defaultValue,
         customNameAttribute,
-        firstOption
+        firstOption,
+        arrowIconColor,
     } = attributes;
 
     const requiredProps = {
@@ -104,98 +107,97 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                      <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                        {showLabel && (
-                          <TextControl
-                            label={__('Field Label', 'zoloblocks')}
-                            value={label}
-                            onChange={(v) => setAttributes({label: v})}
-                            placeholder={__('Enter label..', 'zoloblocks')}
-                            help={__('This will be used as the label for the field', 'zoloblocks')}
-                          />
-                        )}
-                        <CardDivider/>
-                        <TextControl
-                          label={__('Default Value', 'zoloblocks')}
-                          value={defaultValue}
-                          onChange={(v) => setAttributes({defaultValue: v})}
-                          help={__('Leave empty if no default value is needed.', 'zoloblocks')}
-                        />
-
-                        <CardDivider/>
-
-                        <div className="zolo-flex-col-control">
-                          <TextareaControl
-                            label={__('Options', 'zoloblocks')}
-                            value={optionData}
-                            onChange={(v) => setAttributes({optionData: v})}
-                            help={__(
-                              '"Enter your options as a list, with each option on a new line. For example: Option 1\n Option 2',
-                              'zoloblocks'
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
+                            {showLabel && (
+                                <TextControl
+                                    label={__('Field Label', 'zoloblocks')}
+                                    value={label}
+                                    onChange={(v) => setAttributes({ label: v })}
+                                    placeholder={__('Enter label..', 'zoloblocks')}
+                                    help={__('This will be used as the label for the field', 'zoloblocks')}
+                                />
                             )}
-                          />
-                        </div>
-                        <CardDivider/>
-                        <div className="zolo-flex-col-control">
-                          <TextControl
-                            label={__('Custom Name Attribute', 'zoloblocks')}
-                            value={customNameAttribute}
-                            onChange={(v) => setAttributes({customNameAttribute: v})}
-                            help={__(
-                              'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
-                              'zoloblocks'
-                            )}
-                          />
-                        </div>
-
-                        <CardDivider/>
-
-                        {isRequired && (
-                          <div className="zolo-flex-col-control">
-                            <TextareaControl
-                              label={__('Required Message', 'zoloblocks')}
-                              help={__('This message will be shown when the field is required', 'zoloblocks')}
-                              value={requiredMsg}
-                              onChange={(v) => setAttributes({requiredMsg: v})}
+                            <CardDivider />
+                            <TextControl
+                                label={__('Default Value', 'zoloblocks')}
+                                value={defaultValue}
+                                onChange={(v) => setAttributes({ defaultValue: v })}
+                                help={__('Leave empty if no default value is needed.', 'zoloblocks')}
                             />
-                          </div>
-                        )}
 
-                        {showIcon && preset !== 'style-3' && (
-                          <ZoloIconPicker
-                            label={__('Select Icon', 'zoloblocks')}
-                            value={icon}
-                            onChange={(value) => {
-                              setAttributes({
-                                icon: value,
-                              });
-                            }}
-                          />
-                        )}
-                        <CardDivider/>
-                        <div className="zolo-flex-col-control">
-                          <TextControl
-                            label={__('First Option Item', 'zoloblocks')}
-                            value={firstOption}
-                            onChange={(v) => setAttributes({firstOption: v})}
-                          />
-                        </div>
-                      </ZoloPanelBody>
+                            <CardDivider />
+
+                            <div className="zolo-flex-col-control">
+                                <TextareaControl
+                                    label={__('Options', 'zoloblocks')}
+                                    value={optionData}
+                                    onChange={(v) => setAttributes({ optionData: v })}
+                                    help={__(
+                                        '"Enter your options as a list, with each option on a new line. For example: Option 1\n Option 2',
+                                        'zoloblocks'
+                                    )}
+                                />
+                            </div>
+                            <CardDivider />
+                            <div className="zolo-flex-col-control">
+                                <TextControl
+                                    label={__('Custom Name Attribute', 'zoloblocks')}
+                                    value={customNameAttribute}
+                                    onChange={(v) => setAttributes({ customNameAttribute: v })}
+                                    help={__(
+                                        'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
+                                        'zoloblocks'
+                                    )}
+                                />
+                            </div>
+
+                            <CardDivider />
+
+                            {isRequired && (
+                                <div className="zolo-flex-col-control">
+                                    <TextareaControl
+                                        label={__('Required Message', 'zoloblocks')}
+                                        help={__('This message will be shown when the field is required', 'zoloblocks')}
+                                        value={requiredMsg}
+                                        onChange={(v) => setAttributes({ requiredMsg: v })}
+                                    />
+                                </div>
+                            )}
+
+                            {showIcon && preset !== 'style-3' && (
+                                <ZoloIconPicker
+                                    label={__('Select Icon', 'zoloblocks')}
+                                    value={icon}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            icon: value,
+                                        });
+                                    }}
+                                />
+                            )}
+                            <CardDivider />
+                            <div className="zolo-flex-col-control">
+                                <TextControl
+                                    label={__('First Option Item', 'zoloblocks')}
+                                    value={firstOption}
+                                    onChange={(v) => setAttributes({ firstOption: v })}
+                                />
+                            </div>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
-                  <>
-                    {showLabel && (
-                      <ZoloPanelBody title={__('Label', 'zoloblocks')} firstOpen={true} stylePanel={true}
-                                     panelProps={props}>
-                        <ColorControl
-                          label={__('Color', 'zoloblocks')}
-                          color={labelColor}
-                          onChange={(color) => setAttributes({labelColor: color})}
-                        />
-                        <ColorControl
-                          label={__('Required Color', 'zoloblocks')}
-                          color={requiredColor}
+                    <>
+                        {showLabel && (
+                            <ZoloPanelBody title={__('Label', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={labelColor}
+                                    onChange={(color) => setAttributes({ labelColor: color })}
+                                />
+                                <ColorControl
+                                    label={__('Required Color', 'zoloblocks')}
+                                    color={requiredColor}
                                     onChange={(color) => setAttributes({ requiredColor: color })}
                                 />
                                 <TypographyDropdown
@@ -268,6 +270,28 @@ function Inspector(props) {
                                 controlName={FIELD_BRADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
+                            />
+                            <div className="zolo-custom-heading">{__('Arrow Icon', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={arrowIconColor}
+                                onChange={(color) => setAttributes({ arrowIconColor: color })}
+                            />
+                            <ResRangeControl
+                                label={__('Size', 'zoloblocks')}
+                                controlName={ARROW_ICON_SIZE}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                            />
+                            <ResRangeControl
+                                label={__('Spacing', 'zoloblocks')}
+                                controlName={ARROW_ICON_SPACING}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
                             />
                         </ZoloPanelBody>
                         {showIcon && preset !== 'style-3' && (
