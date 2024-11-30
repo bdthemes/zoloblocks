@@ -150,7 +150,7 @@ function Inspector(props) {
                         {showLabel && (
                             <ZoloPanelBody title={__('Label', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <ColorControl
-                                    label={__('Label Color', 'zoloblocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={labelColor}
                                     onChange={(color) => setAttributes({ labelColor: color })}
                                 />
@@ -164,6 +164,7 @@ function Inspector(props) {
                                     typoPrefixConstant={LABEL_TYPO}
                                     requiredProps={requiredProps}
                                 />
+                                <CardDivider />
                                 {preset === 'style-3' && (
                                     <>
                                         <BorderControl
@@ -204,7 +205,7 @@ function Inspector(props) {
                             firstOpen={showLabel ? false : true}
                         >
                             <ColorControl
-                                label={__('Text Color', 'zoloblocks')}
+                                label={__('Color', 'zoloblocks')}
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
                             />
@@ -213,6 +214,15 @@ function Inspector(props) {
                                 typoPrefixConstant={FIELD_TYPO}
                                 requiredProps={requiredProps}
                             />
+                            <CardDivider />
+                            <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={FIELD_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <CardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
@@ -220,13 +230,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={FIELD_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
                         </ZoloPanelBody>
                     </>
                 }
