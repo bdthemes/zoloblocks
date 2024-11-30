@@ -177,7 +177,7 @@ function Inspector(props) {
                         {showLabel && (
                             <ZoloPanelBody title={__('Label', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <ColorControl
-                                    label={__('Label Color', 'zoloblocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={labelColor}
                                     onChange={(color) => setAttributes({ labelColor: color })}
                                 />
@@ -232,7 +232,7 @@ function Inspector(props) {
                             firstOpen={showLabel ? false : true}
                         >
                             <ColorControl
-                                label={__('Text Color', 'zoloblocks')}
+                                label={__('Color', 'zoloblocks')}
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
                             />
