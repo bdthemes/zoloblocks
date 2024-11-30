@@ -175,7 +175,6 @@ function Inspector(props) {
                                     }}
                                 />
                             )}
-                            <CardDivider />
                             <div className="zolo-flex-col-control">
                                 <TextControl
                                     label={__('First Option Item', 'zoloblocks')}
