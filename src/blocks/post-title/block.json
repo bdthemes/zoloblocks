@@ -2,7 +2,7 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Post Title",
     "name": "zolo/post-title",
-    "category": "zoloblocks",
+    "category": "zoloblocks-single",
     "keywords": ["post", "title", "heading", "dynamic", "content", "page", "single", "archive"],
     "description": "Dynamic post title for any landing page in WordPress",
     "apiVersion": 3,
