@@ -679,6 +679,13 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/advanced-paragraph',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
+    'checkbox-field' => [
+        'name' => 'checkbox-field',
+        'title' => __('Checkbox Field', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_child' => true,
+    ],
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),
