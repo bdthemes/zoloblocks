@@ -679,11 +679,21 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/advanced-paragraph',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
+    'post-video-slider' => [
+        'name' => 'post-video-slider',
+        'title' => __('Post Video Slider', 'zoloblocks-pro'),
+        'categories' => ['postCategory'],
+        'class' => '\ZoloPro\Blocks\PostVideoSlider',
+        'status' => true,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/marquee',
+        'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+    ],
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),
     //     'categories' => ['others'],
     //     'status' => true,
     //     'is_child' => true,
-    // ]
+    // ],
 ]);
