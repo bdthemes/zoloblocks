@@ -269,7 +269,7 @@ export default function Inspector(props) {
                                     step={1}
                                 />
                                 <ResRangeControl
-                                    label={__('Hiight', 'zoloblocks')}
+                                    label={__('Height', 'zoloblocks')}
                                     controlName={AVATAR_IMG_H_SIZE}
                                     requiredProps={requiredProps}
                                     min={0}
