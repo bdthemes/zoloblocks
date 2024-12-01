@@ -6,6 +6,10 @@ import Edit from './edit';
 import './editor.scss';
 import Save from './save';
 import './style.scss';
+
+//**
+//*Deprecated since v2.1.3
+//*/
 import deprecated from './deprecated';
 
 const { BlockIcons } = window.zoloIcons;
