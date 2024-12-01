@@ -16,6 +16,7 @@ import { __ } from '@wordpress/i18n';
  */
 const {
     ResRangeControl,
+    ResGapControl,
     ColorControl,
     TypographyDropdown,
     HeaderTabs,
@@ -37,9 +38,12 @@ import {
     LABEL_BORDER,
     LABEL_BRADIUS,
     FIELD_PADDING,
+    FIELD_MARGIN,
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
+    FIELD_GAP,
+    FIELD_SPACE,
     ICON_SIZE,
 } from './constants';
 
@@ -243,7 +247,6 @@ function Inspector(props) {
                                     onChange={(color) => setAttributes({ placeholderColor: color })}
                                 />
                             )}
-
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={FIELD_TYPO}
@@ -257,6 +260,11 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={FIELD_MARGIN}
+                                requiredProps={requiredProps}
+                            />
                             <CardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
@@ -264,6 +272,19 @@ function Inspector(props) {
                                 controlName={FIELD_BRADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
+                            />
+                            <CardDivider />
+                            <ResGapControl
+                                label={__('Gap', 'zoloblocks')}
+                                controlName={FIELD_GAP}
+                                requiredProps={requiredProps}
+                                max={200}
+                            />
+                            <ResRangeControl
+                                label={__('Spacing', 'zoloblocks')}
+                                controlName={FIELD_SPACE}
+                                requiredProps={requiredProps}
+                                max={200}
                             />
                         </ZoloPanelBody>
                         {showIcon && preset !== 'style-3' && (

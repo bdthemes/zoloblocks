@@ -10,6 +10,7 @@ import { applyFilters } from '@wordpress/hooks';
 const {
     generateDimensionStyle,
     generateBorderStyle,
+    generateGapStyle,
     generateTypographyStyles,
     generateResRangeStyle,
     generateNormalBGControlStyles,
@@ -17,6 +18,7 @@ const {
 } = window.zoloModule;
 
 import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
+
 import {
     LABEL_MARGIN,
     LABEL_BG,
@@ -24,9 +26,12 @@ import {
     LABEL_BORDER,
     LABEL_BRADIUS,
     FIELD_PADDING,
+    FIELD_MARGIN,
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
+    FIELD_GAP,
+    FIELD_SPACE,
     ICON_SIZE,
 } from './constants';
 
@@ -131,6 +136,16 @@ const Style = ({ props }) => {
     });
 
     const {
+        dimensionStylesDesktop: fieldMarginDesktop,
+        dimensionStylesTab: fieldMarginTab,
+        dimensionStylesMobile: fieldMarginMob,
+    } = generateDimensionStyle({
+        controlName: FIELD_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
         backgroundStylesDesktop: fieldBGStyle,
         backgroundStylesTab: fieldTabBGStyle,
         backgroundStylesMobile: fieldMobBGStyle,
@@ -138,6 +153,24 @@ const Style = ({ props }) => {
         controlName: FIELD_BG,
         attributes,
         noMainBGImg: false,
+    });
+
+    const {
+        gapStylesDesktop: fieldGapDesk,
+        gapStylesTab: fieldGapTab,
+        gapStylesMobile: fieldGapMob,
+    } = generateGapStyle({
+        controlName: FIELD_GAP,
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: fieldSpaceDesk,
+        tabRangeStyle: fieldSpaceTab,
+        mobRangeStyle: fieldSpaceMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_SPACE,
+        attributes,
     });
 
     // Icon
