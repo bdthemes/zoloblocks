@@ -31,12 +31,12 @@ import {
     LABEL_PADDING,
     LABEL_BORDER,
     LABEL_BRADIUS,
+    FIELD_SIZE,
     FIELD_PADDING,
     FIELD_MARGIN,
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
-    ICON_SIZE,
     FIELD_GAP,
     FIELD_SPACE,
 } from './constants';
@@ -212,6 +212,13 @@ function Inspector(props) {
                                 label={__('Color', 'zoloblocks')}
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
+                            />
+                            <ResRangeControl
+                                label={__('Size', 'zoloblocks')}
+                                controlName={FIELD_SIZE}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={100}
                             />
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}

@@ -24,6 +24,7 @@ import {
     LABEL_PADDING,
     LABEL_BORDER,
     LABEL_BRADIUS,
+    FIELD_SIZE,
     FIELD_PADDING,
     FIELD_MARGIN,
     FIELD_BG,
@@ -95,6 +96,15 @@ const Style = ({ props }) => {
     });
 
     // Field
+    const {
+        desktopRangeStyle: fieldSizeDesk,
+        tabRangeStyle: fieldSizeTab,
+        mobRangeStyle: fieldSizeMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_SIZE,
+        attributes,
+    });
+
     const {
         typoStylesDesktop: fieldTypoDesk,
         typoStylesTab: fieldTypoTab,
