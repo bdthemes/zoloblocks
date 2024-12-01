@@ -39,6 +39,10 @@
                         position: absolute;
                         right: -17px;
                     }
+                    &::before,
+                    &::after {
+                        content: none;
+                    }
                 }
             }
         }
