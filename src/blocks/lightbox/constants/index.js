@@ -66,3 +66,10 @@ export const CONTENT_WIDTH = 'contentWidth';
 export const ICON_BG_COLOR = 'iconBgColor';
 export const ICON_H_BG_COLOR = 'iconHoverBgColor';
 
+export const PLAY_BTN_ICON_SIZE = 'playBtnIconSize';
+export const PLAY_BTN_PADDING = 'playBtnPadding';
+export const PLAY_BTN_MARGIN = 'playBtnMargin';
+export const PLAY_BTN_BORDER = 'playBtnBorder';
+export const PLAY_BTN_BORDER_RADIUS = 'playBtnBorderRadius';
+export const PLAY_BTN_BOX_SHADOW = 'playBtnBoxShadow';
+export const PLAY_BTN_H_BOX_SHADOW = 'playBtnHoverBoxShadow';

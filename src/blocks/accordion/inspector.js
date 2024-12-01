@@ -86,6 +86,8 @@ function Inspector(props) {
         animatedBorderColor,
         animatedBorderActiveColor,
         preset,
+        iconBorderHoverColor,
+        iconBorderActiveColor,
     } = attributes;
 
     const requiredProps = {
@@ -386,6 +388,15 @@ function Inspector(props) {
                                             }
                                         />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ICONTAINER_HBG} noMainBGImg={true} />
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={iconBorderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconBorderHoverColor: value,
+                                                })
+                                            }
+                                        />
                                     </>
                                 }
                                 activeComponents={
@@ -400,6 +411,15 @@ function Inspector(props) {
                                             }
                                         />
                                         <NormalBGControl requiredProps={requiredProps} controlName={AICONTAINER_BG} noMainBGImg={true} />
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={iconBorderActiveColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconBorderActiveColor: value,
+                                                })
+                                            }
+                                        />
                                     </>
                                 }
                             />
