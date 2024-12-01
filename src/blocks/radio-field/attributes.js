@@ -7,6 +7,7 @@ const {
   generateDimensionAttributes,
   generateNormalBGAttributes,
   generateBorderAttributies,
+  generateGapAttributes,
 } = window.zoloModule;
 
 import {
@@ -16,10 +17,13 @@ import {
   LABEL_BORDER,
   LABEL_BRADIUS,
   FIELD_PADDING,
+  FIELD_MARGIN,
   FIELD_BG,
   ICON_SIZE,
   FIELD_BORDER,
   FIELD_BRADIUS,
+  FIELD_GAP,
+  FIELD_SPACE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -74,11 +78,13 @@ Option 3`
   ...generateDimensionAttributes(LABEL_BRADIUS),
   ...generateBorderAttributies(LABEL_BORDER),
   ...generateDimensionAttributes(FIELD_PADDING),
+  ...generateDimensionAttributes(FIELD_MARGIN),
   ...generateNormalBGAttributes(FIELD_BG),
   ...generateBorderAttributies(FIELD_BORDER),
   ...generateDimensionAttributes(FIELD_BRADIUS),
   ...generateResRangeAttributies(ICON_SIZE),
   ...generateTypographyAttributes(Object.values(typographyObjs)),
+  ...generateGapAttributes(FIELD_GAP),
   showLabel: {
     type: 'boolean',
     default: true,
