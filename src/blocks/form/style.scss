@@ -195,7 +195,7 @@
         color: var(--zolo-input-text-color);
         border-radius: var(--zolo-input-border-radius);
         width: 100%;
-		max-width:100%;
+        max-width: 100%;
         box-sizing: border-box;
         background-color: rgb(249 250 251 / var(--tw-opacity));
         border-width: var(--zolo-input-border-width);
@@ -352,8 +352,8 @@
 
 .zolo-input-icon svg {
     fill: rgb(107 114 128 / var(--tw-opacity));
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     display: block;
 }
 
