@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 const SettingBox = ({ title = 'Option title', description = '', children, released = true, isPro = false }) => {
     return (
-        <div className={`zolo-settings-option-item ${released ? '' : 'upcoming'}`}>
+        <div className={`zolo-settings-option-item ${released ? '' : 'upcoming'} ${isPro ? 'ispro' : ''}`}>
             <div className="zolo-settins-content">
                 {title && <h2 className="zolo-settings-title">{title}</h2>}
                 {description && <p className="zolo-settings-text">{description}</p>}
