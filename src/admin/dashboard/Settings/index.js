@@ -15,6 +15,7 @@ const Settings = () => {
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
     const [disableCorePatterns, setDisableCorePatterns] = useState(true);
+    const[ autoRecovery, setAutoRecovery] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
     const [modalNewPage, setModalNewPage] = useState(false);
     const handleFetchError = (error) => {
@@ -46,6 +47,7 @@ const Settings = () => {
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
             setDisableCorePatterns(response.zolo_disable_core_patterns);
+            setAutoRecovery(response.zolo_auto_recovery);
         } catch (error) {
             handleFetchError(error);
         }
@@ -69,6 +71,7 @@ const Settings = () => {
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
             setDisableCorePatterns(response.zolo_disable_core_patterns);
+            setAutoRecovery(response.zolo_auto_recovery);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -139,6 +142,14 @@ const Settings = () => {
         });
     };
 
+    const updateAutoRecovery = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_auto_recovery: value },
+        });
+    };
+
     useEffect(() => {
         if (notice) {
             const timer = setTimeout(() => {
@@ -189,20 +200,7 @@ const Settings = () => {
                             </svg>
                             <span>{__('Assets Generation', 'zoloblocks')}</span>
                         </div>
-                        <div
-                            className={`zolo-tab-button-item ${activeTab === 'editor-enhancements' ? 'zolo-tab-active' : ''}`}
-                            onClick={() => handleTabClick('editor-enhancements')}
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M15.63 1C14.7566 1 13.9122 1.15799 13.3021 1.73198C12.6781 2.31897 12.5 3.14817 12.5 4V10.8C12.5 11.6518 12.6781 12.481 13.3021 13.068C13.9122 13.642 14.7566 13.8 15.63 13.8H19.67C20.5434 13.8 21.3878 13.642 21.9979 13.068C22.6219 12.481 22.8 11.6518 22.8 10.8V4C22.8 3.14817 22.6219 2.31897 21.9979 1.73198C21.3878 1.15799 20.5434 1 19.67 1H15.63ZM14.3 4C14.3 3.35183 14.4419 3.13103 14.5354 3.04301C14.6428 2.94201 14.9134 2.8 15.63 2.8H19.67C20.3866 2.8 20.6572 2.94201 20.7646 3.04301C20.8581 3.13103 21 3.35183 21 4V10.8C21 11.4482 20.8581 11.669 20.7646 11.757C20.6572 11.858 20.3866 12 19.67 12H15.63C14.9134 12 14.6428 11.858 14.5354 11.757C14.4419 11.669 14.3 11.4482 14.3 10.8V4ZM15.63 15C14.7566 15 13.9122 15.158 13.3021 15.732C12.6781 16.319 12.5 17.1482 12.5 18V19.8C12.5 20.6518 12.6781 21.481 13.3021 22.068C13.9122 22.642 14.7566 22.8 15.63 22.8H19.67C20.5434 22.8 21.3878 22.642 21.9979 22.068C22.6219 21.481 22.8 20.6518 22.8 19.8V18C22.8 17.1482 22.6219 16.319 21.9979 15.732C21.3878 15.158 20.5434 15 19.67 15H15.63ZM14.3 18C14.3 17.3518 14.4419 17.131 14.5354 17.043C14.6428 16.942 14.9134 16.8 15.63 16.8H19.67C20.3866 16.8 20.6572 16.942 20.7646 17.043C20.8581 17.131 21 17.3518 21 18V19.8C21 20.4482 20.8581 20.669 20.7646 20.757C20.6572 20.858 20.3866 21 19.67 21H15.63C14.9134 21 14.6428 20.858 14.5354 20.757C14.4419 20.669 14.3 20.4482 14.3 19.8V18ZM3.03544 12.043C2.94188 12.131 2.8 12.3518 2.8 13V19.8C2.8 20.4482 2.94188 20.669 3.03544 20.757C3.1428 20.858 3.41338 21 4.13 21H8.17C8.88662 21 9.1572 20.858 9.26456 20.757C9.35812 20.669 9.5 20.4482 9.5 19.8V13C9.5 12.3518 9.35812 12.131 9.26456 12.043C9.1572 11.942 8.88662 11.8 8.17 11.8H4.13C3.41338 11.8 3.1428 11.942 3.03544 12.043ZM1.80206 10.732C2.4122 10.158 3.25662 10 4.13 10H8.17C9.04338 10 9.88779 10.158 10.4979 10.732C11.1219 11.319 11.3 12.1482 11.3 13V19.8C11.3 20.6518 11.1219 21.481 10.4979 22.068C9.88779 22.642 9.04338 22.8 8.17 22.8H4.13C3.25662 22.8 2.4122 22.642 1.80206 22.068C1.17812 21.481 1 20.6518 1 19.8V13C1 12.1482 1.17812 11.319 1.80206 10.732ZM2.8 4C2.8 3.35183 2.94188 3.13103 3.03544 3.04301C3.1428 2.94201 3.41338 2.8 4.13 2.8H8.17C8.88662 2.8 9.1572 2.94201 9.26456 3.04301C9.35812 3.13103 9.5 3.35183 9.5 4V5.8C9.5 6.44817 9.35812 6.66897 9.26456 6.75699C9.1572 6.85799 8.88662 7 8.17 7H4.13C3.41338 7 3.1428 6.85799 3.03544 6.75699C2.94188 6.66897 2.8 6.44817 2.8 5.8V4ZM4.13 1C3.25662 1 2.4122 1.15799 1.80206 1.73198C1.17812 2.31897 1 3.14817 1 4V5.8C1 6.65183 1.17812 7.48103 1.80206 8.06802C2.4122 8.64201 3.25662 8.8 4.13 8.8H8.17C9.04338 8.8 9.88779 8.64201 10.4979 8.06802C11.1219 7.48103 11.3 6.65183 11.3 5.8V4C11.3 3.14817 11.1219 2.31897 10.4979 1.73198C9.88779 1.15799 9.04338 1 8.17 1H4.13Z"
-                                    fill="#4D4D4D"
-                                />
-                            </svg>
-                            <span>{__('Editor Enhancements', 'zoloblocks')}</span>
-                        </div>
+
                         <div
                             className={`zolo-tab-button-item ${activeTab === 'site-visibility' ? 'zolo-tab-active' : ''}`}
                             onClick={() => handleTabClick('site-visibility')}
@@ -246,7 +244,7 @@ const Settings = () => {
                                     </SettingBox>
 
                                     <SettingBox
-                                        title={__('Enable SVG Upload', 'zoloblocks')}
+                                        title={__('SVG Upload', 'zoloblocks')}
                                         description={__(
                                             'Enable the SVG Upload option to upload SVG files in the Media Library and use them in your Blocks.',
                                             'zoloblocks'
@@ -256,6 +254,51 @@ const Settings = () => {
                                             checked={!!supportSVG}
                                             onChange={() => {
                                                 updateSVG(!supportSVG);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
+                                        title={__('Templates Library', 'zoloblocks')}
+                                        description={__(
+                                            'ZoloBlocks includes a rich library of page templates and block patterns. Accessible via the Templates button during page or post editing, you can manage the visibility of this button using this option.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ToggleControl
+                                            checked={!!blockLibrary}
+                                            onChange={() => {
+                                                updateBlockLibrary(!blockLibrary);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
+                                        title={__('Disable Core starter patterns', 'zoloblocks')}
+                                        description={__(
+                                            'Disable the core starter patterns in the block inserter when creating a new page.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ToggleControl
+                                            checked={!!disableCorePatterns}
+                                            onChange={() => {
+                                                updateDisableCorePatterns(!disableCorePatterns);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
+                                        title={__('Automatic Block Recovery', 'zoloblocks')}
+                                        description={__(
+                                            'Automatically recover any erroneous blocks on your web pages, saving you the hassle of manually clicking \'Attempt Block Recovery\' buttons.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ToggleControl
+                                            checked={!!autoRecovery}
+                                            onChange={() => {
+                                                updateAutoRecovery(!autoRecovery);
                                                 setNotice(true);
                                             }}
                                         />
@@ -285,58 +328,6 @@ const Settings = () => {
                                 </div>
                             </div>
                         )}
-                        {activeTab === 'editor-enhancements' && (
-                            <div className="zolo-tab-content-item zolo-tab-content-active">
-                                <div className="zolo-settings-option-wrap">
-                                    <SettingBox
-                                        title={__('Move Title Top', 'zoloblocks')}
-                                        description={__(
-                                            'Move the page title to the top to create a cleaner, more organized editor.',
-                                            'zoloblocks'
-                                        )}
-                                        released={false}
-                                    ></SettingBox>
-                                    <SettingBox
-                                        title={__('Collapse Panels', 'zoloblocks')}
-                                        released={false}
-                                        description={__(
-                                            'Enable "Collapse Panels" to focus on one panel at a time by collapsing all others in your Blocks Settings except the one clicked. This simplifies your editing experience',
-                                            'zoloblocks'
-                                        )}
-                                    ></SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Templates Library', 'zoloblocks')}
-                                        description={__(
-                                            'ZoloBlocks includes a rich library of page templates and block patterns. Accessible via the Templates button during page or post editing, you can manage the visibility of this button using this option.',
-                                            'zoloblocks'
-                                        )}
-                                    >
-                                        <ToggleControl
-                                            checked={!!blockLibrary}
-                                            onChange={() => {
-                                                updateBlockLibrary(!blockLibrary);
-                                                setNotice(true);
-                                            }}
-                                        />
-                                    </SettingBox>
-                                    <SettingBox
-                                        title={__('Disable Core starter patterns', 'zoloblocks')}
-                                        description={__(
-                                            'Disable the core starter patterns in the block inserter when creating a new page.',
-                                            'zoloblocks'
-                                        )}
-                                    >
-                                        <ToggleControl
-                                            checked={!!disableCorePatterns}
-                                            onChange={() => {
-                                                updateDisableCorePatterns(!disableCorePatterns);
-                                                setNotice(true);
-                                            }}
-                                        />
-                                    </SettingBox>
-                                </div>
-                            </div>
-                        )}
                         {/* {activeTab === 'performance' && (
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
@@ -356,7 +347,7 @@ const Settings = () => {
                                 <div className="zolo-settings-option-wrap">
                                     <div className="zolo-settings-option-item">
                                         <div className="zolo-settins-content">
-                                            <h2 className="zolo-settings-title">{__('Enable Coming Soon Mode', 'zoloblocks')}</h2>
+                                            <h2 className="zolo-settings-title">{__('Coming Soon Mode', 'zoloblocks')}</h2>
                                             <p className="zolo-settings-text">
                                                 {__(
                                                     "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.",
@@ -393,7 +384,7 @@ const Settings = () => {
 
                                     <div className="zolo-settings-option-item">
                                         <div className="zolo-settins-content">
-                                            <h2 className="zolo-settings-title">{__('Enable Maintenance Mode', 'zoloblocks')}</h2>
+                                            <h2 className="zolo-settings-title">{__('Maintenance Mode', 'zoloblocks')}</h2>
                                             <p className="zolo-settings-text">
                                                 {__(
                                                     'Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.',
