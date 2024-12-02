@@ -17,6 +17,7 @@ const Settings = () => {
     const [disableCorePatterns, setDisableCorePatterns] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
     const [modalNewPage, setModalNewPage] = useState(false);
+    const [editorVideoLink, setEditorVideoLink] = useState(false);
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
@@ -46,6 +47,7 @@ const Settings = () => {
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
             setDisableCorePatterns(response.zolo_disable_core_patterns);
+            setEditorVideoLink(response.zolo_enable_video_link);
         } catch (error) {
             handleFetchError(error);
         }
@@ -69,6 +71,7 @@ const Settings = () => {
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
             setDisableCorePatterns(response.zolo_disable_core_patterns);
+            setEditorVideoLink(response.zolo_enable_video_link);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -137,6 +140,14 @@ const Settings = () => {
             method: 'POST',
             data: { zolo_disable_core_patterns: value },
         });
+    };
+
+    const updateEditorVideoLink = (value) => {
+      updateSettings({
+        path: '/wp/v2/settings',
+        method: 'POST',
+        data: { zolo_enable_video_link: value },
+      });
     };
 
     useEffect(() => {
@@ -259,6 +270,18 @@ const Settings = () => {
                                                 setNotice(true);
                                             }}
                                         />
+                                    </SettingBox>
+                                    <SettingBox
+                                      title={__('Enable Video Link', 'zoloblocks')}
+                                      description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
+                                    >
+                                      <ToggleControl
+                                        checked={!!editorVideoLink}
+                                        onChange={() => {
+                                          updateEditorVideoLink(!editorVideoLink);
+                                          setNotice(true);
+                                        }}
+                                      />
                                     </SettingBox>
                                 </div>
                             </div>
