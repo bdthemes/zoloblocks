@@ -25,7 +25,7 @@ import {
     LABEL_PADDING,
     LABEL_BORDER,
     LABEL_BRADIUS,
-    FIELD_PADDING,
+    FIELD_SIZE,
     FIELD_MARGIN,
     FIELD_BG,
     FIELD_BORDER,
@@ -126,12 +126,22 @@ const Style = ({ props }) => {
     });
 
     const {
-        dimensionStylesDesktop: fieldPaddingDesktop,
-        dimensionStylesTab: fieldPaddingTab,
-        dimensionStylesMobile: fieldPaddingMob,
-    } = generateDimensionStyle({
-        controlName: FIELD_PADDING,
-        styleFor: 'padding',
+        desktopRangeStyle: fieldSizeDesk,
+        tabRangeStyle: fieldSizeTab,
+        mobRangeStyle: fieldSizeMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: fieldHSizeDesk,
+        tabRangeStyle: fieldHSizeTab,
+        mobRangeStyle: fieldHSizeMob,
+    } = generateResRangeStyle({
+        controlName: FIELD_SIZE,
+        property: 'width',
         attributes,
     });
 
@@ -221,7 +231,6 @@ const Style = ({ props }) => {
             ${fieldTypoDesk}
             ${fieldBorderStyles}
             ${fieldBRDesktop}
-            ${fieldPaddingDesktop}
             ${fieldBGStyle}
         }
         .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input::placeholder {
@@ -257,7 +266,6 @@ const Style = ({ props }) => {
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
             ${fieldBRTab}
-            ${fieldPaddingTab}
             ${fieldTabBGStyle}
         }
 
@@ -289,7 +297,6 @@ const Style = ({ props }) => {
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}
-            ${fieldPaddingMob}
             ${fieldMobBGStyle}
         }
 

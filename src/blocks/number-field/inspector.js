@@ -37,7 +37,7 @@ import {
     LABEL_PADDING,
     LABEL_BORDER,
     LABEL_BRADIUS,
-    FIELD_PADDING,
+    FIELD_SIZE,
     FIELD_MARGIN,
     FIELD_BG,
     FIELD_BORDER,
@@ -229,12 +229,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody
-                            title={__('Field', 'zoloblocks')}
-                            stylePanel={true}
-                            panelProps={props}
-                            firstOpen={showLabel ? false : true}
-                        >
+                        <ZoloPanelBody title={__('Field', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={showLabel ? false : true}>
                             <ColorControl
                                 label={__('Color', 'zoloblocks')}
                                 color={textColor}
@@ -252,14 +247,16 @@ function Inspector(props) {
                                 typoPrefixConstant={FIELD_TYPO}
                                 requiredProps={requiredProps}
                             />
+                            <ResRangeControl
+                                label={__('Size', 'zoloblocks')}
+                                controlName={FIELD_SIZE}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={100}
+                            />
                             <CardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={FIELD_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
+                            
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={FIELD_MARGIN}
