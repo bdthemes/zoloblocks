@@ -1,22 +1,47 @@
 .wp-block-zolo-query-pagination {
     .zolo-query-pagination-wrapper {
         display: flex;
+        align-items: center;
         flex-direction: row;
         justify-content: center;
-        gap: 15px;
+        gap: 5px;
+        .page-numbers {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #575561;
+            font-weight: 500;
+            border-radius: 6px;
+            outline: none;
+            line-height: 1;
+            transition: all 0.3s ease;
+            min-width: 1em;
+            min-height: 1em;
+            background: rgba(101, 120, 161, 0.071);
 
-        .page-numbers{
-            &.prev, &.next{
-                display: flex;
-                align-items: center;
+            &.current,
+            &:hover {
+                background-color: var(--zoloblocks-brand-color);
+                color: #fff;
+            }
+            &.dots {
+                &:focus,
+                &:hover {
+                    box-shadow: unset;
+                }
             }
         }
     }
-}
-
-.zolo__display-icon {
-    svg {
-        width: 1em;
-        height: 1em;
+    .zolo__display-icon {
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+            fill: currentColor;
+        }
     }
 }

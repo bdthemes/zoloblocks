@@ -41,7 +41,7 @@ const {
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, paginationType, titleColor, titleHoverColor } = attributes;
+    const { resMode, paginationType, paginationColor, titleHoverColor } = attributes;
 
     const requiredProps = {
         resMode,
@@ -73,36 +73,30 @@ function Inspector(props) {
                                     {
                                         label: __('Number + Previous/Next', 'zoloblocks'),
                                         value: 'number-previous-next',
-                                    }
+                                    },
                                 ]}
                                 onChange={(paginationType) => setAttributes({ paginationType })}
                             />
-                            {
-                                attributes?.paginationType?.includes('number') && (
-                                    <>
-                                        <ToggleControl
-                                            label={__('Truncate Pagination Numbers', 'zoloblocks')}
-                                            checked={attributes?.truncatePaginationNumbers}
-                                            onChange={(value) => setAttributes({ truncatePaginationNumbers: value })}
+                            {attributes?.paginationType?.includes('number') && (
+                                <>
+                                    <ToggleControl
+                                        label={__('Truncate Pagination Numbers', 'zoloblocks')}
+                                        checked={attributes?.truncatePaginationNumbers}
+                                        onChange={(value) => setAttributes({ truncatePaginationNumbers: value })}
+                                    />
+                                    {attributes?.truncatePaginationNumbers && (
+                                        <RangeResetControl
+                                            className="zolo-flex-row-control"
+                                            label={__('items both sides', 'zoloblocks')}
+                                            controlName={'PaginationNumberAmountBothSides'}
+                                            requiredProps={requiredProps}
+                                            min={1}
+                                            max={5}
+                                            step={1}
                                         />
-                                        {
-                                            attributes?.truncatePaginationNumbers && (
-                                                <RangeResetControl
-                                                    className="zolo-flex-row-control"
-                                                    label={__('items both sides', 'zoloblocks')}
-                                                    controlName={'PaginationNumberAmountBothSides'}
-                                                    requiredProps={requiredProps}
-                                                    min={1}
-                                                    max={5}
-                                                    step={1}
-                                                />
-                                            )
-                                        }
-
-
-                                    </>
-                                )
-                            }
+                                    )}
+                                </>
+                            )}
                             {paginationType?.includes('previous-next') && (
                                 <>
                                     <SelectControl
@@ -119,40 +113,38 @@ function Inspector(props) {
                                             {
                                                 label: __('Icon & Text', 'zoloblocks'),
                                                 value: 'icon-text',
-                                            }
+                                            },
                                         ]}
                                         value={attributes?.paginationNextPrevType}
                                         onChange={(value) => setAttributes({ paginationNextPrevType: value })}
                                     />
 
-                                    {
-                                        (attributes?.paginationNextPrevType?.includes('text')) && (
-                                            <>
-                                                <TextControl
-                                                    label={__('Previous Label', 'zoloblocks')}
-                                                    value={attributes?.paginationPreviousText}
-                                                    onChange={(value) => setAttributes({ paginationPreviousText: value })}
-                                                />
-                                                <TextControl
-                                                    label={__('Next Label', 'zoloblocks')}
-                                                    value={attributes?.paginationNextText}
-                                                    onChange={(value) => setAttributes({ paginationNextText: value })}
-                                                />
-                                            </>
-                                        )
-                                    }
+                                    {attributes?.paginationNextPrevType?.includes('text') && (
+                                        <>
+                                            <TextControl
+                                                label={__('Previous Label', 'zoloblocks')}
+                                                value={attributes?.paginationPreviousText}
+                                                onChange={(value) => setAttributes({ paginationPreviousText: value })}
+                                            />
+                                            <TextControl
+                                                label={__('Next Label', 'zoloblocks')}
+                                                value={attributes?.paginationNextText}
+                                                onChange={(value) => setAttributes({ paginationNextText: value })}
+                                            />
+                                        </>
+                                    )}
                                     {attributes?.paginationNextPrevType?.includes('icon') && (
                                         <>
                                             <ZoloIconPicker
                                                 label={__('Prev Icon', 'zoloblocks')}
                                                 value={attributes?.prevIcon}
-                                                onChange={value => setAttributes({ prevIcon: value })}
+                                                onChange={(value) => setAttributes({ prevIcon: value })}
                                             />
 
                                             <ZoloIconPicker
                                                 label={__('Next Icon', 'zoloblocks')}
                                                 value={attributes?.nextIcon}
-                                                onChange={value => setAttributes({ nextIcon: value })}
+                                                onChange={(value) => setAttributes({ nextIcon: value })}
                                             />
                                         </>
                                     )}
@@ -163,7 +155,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Title', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Pagination', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <TabPanelControl
                                 options={[
                                     {
@@ -179,10 +171,10 @@ function Inspector(props) {
                                     <>
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
-                                            color={titleColor}
+                                            color={paginationColor}
                                             onChange={(color) =>
                                                 setAttributes({
-                                                    titleColor: color,
+                                                    paginationColor: color,
                                                 })
                                             }
                                         />
@@ -190,16 +182,6 @@ function Inspector(props) {
                                             label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={TITLE_TYPOGRAPHY}
                                             requiredProps={requiredProps}
-                                        />
-                                        <TextShadowControl
-                                            controlName={TITLE_TEXT_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                        <TextStrokeControl
-                                            controlName={TITLE_TEXT_STROKE}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
                                         />
                                         <CardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={TITLE_BG} noMainBGImg={true} />

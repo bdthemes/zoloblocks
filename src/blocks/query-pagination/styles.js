@@ -11,8 +11,6 @@ import {
     TITLE_HOVER_BORDER,
     TITLE_HOVER_BRADIUS,
     TITLE_HOVER_SHADOW,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -31,7 +29,7 @@ const {
 
 function Style({ props }) {
     const { attributes, setAttributes } = props;
-    const { uniqueId, titleColor, titleHoverColor, isLink } = attributes;
+    const { uniqueId, paginationColor, titleHoverColor, isLink } = attributes;
 
     const {
         desktopAlignStyle: titleAlignDesk,
@@ -50,20 +48,6 @@ function Style({ props }) {
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPOGRAPHY,
         attributes,
-    });
-
-    const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
-        attributes,
-        controlName: TITLE_TEXT_SHADOW,
-    });
-
-    const {
-        desktopTextStrokeStyle: titleTextStrokeStyle,
-        tabTextStrokeStyle: tabTitleTextStrokeStyle,
-        mobTextStrokeStyle: mobTitleTextStrokeStyle,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: TITLE_TEXT_STROKE,
     });
 
     const {
@@ -156,58 +140,24 @@ function Style({ props }) {
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-post-title.zolo-block{
           ${titleAlignDesk}
-          ${titleMarginDesk}
         }
-        ${
-            !isLink
-                ? `
-                    .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-                      ${titlePaddingDesk}
-                      ${titleBGDesk}
-                      ${titleBorderDesk}
-                      ${titleBorderRadiusDesk}
-                      ${titleBoxShadow}
-                      ${titleTypoDesk}
-                      ${titleColor ? `color:${titleColor};` : ''}
-                      ${titleTextShadowStyle}
-                      ${titleTextStrokeStyle}
-                    }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block:hover{
-                    ${titleHoverBGDesk}
-                    ${titleHoverBorderDesk}
-                    ${titleHoverBRadiusDesk}
-                    ${titleHoverBoxShadow}
-                    ${titleHoverColor ? `color:${titleHoverColor};` : ''}
-                  }
-                  `
-                : ''
+        .${uniqueId}.wp-block-zolo-query-pagination .zolo-query-pagination-wrapper .page-numbers {
+            ${titlePaddingDesk}
+            ${titleMarginDesk}
+            ${titleBGDesk}
+            ${titleBorderDesk}
+            ${titleBorderRadiusDesk}
+            ${titleBoxShadow}
+            ${titleTypoDesk}
+            ${paginationColor ? `color:${paginationColor};` : ''}
         }
 
-        ${
-            isLink
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a{
-                    ${titlePaddingDesk}
-                    ${titleBGDesk}
-                    ${titleBorderDesk}
-                    ${titleBorderRadiusDesk}
-                    ${titleBoxShadow}
-                    ${titleTypoDesk}
-                    ${titleColor ? `color:${titleColor};` : ''}
-                    ${titleTextShadowStyle}
-                    ${titleTextStrokeStyle}
-                   }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a:hover{
-                    ${titleHoverBGDesk}
-                    ${titleHoverBorderDesk}
-                    ${titleHoverBRadiusDesk}
-                    ${titleHoverBoxShadow}
-                    ${titleHoverColor ? `color:${titleHoverColor};` : ''}
-                  }
-              `
-                : ''
+        .${uniqueId}.wp-block-zolo-query-pagination .zolo-query-pagination-wrapper .page-numbers{
+            ${titleHoverBGDesk}
+            ${titleHoverBorderDesk}
+            ${titleHoverBRadiusDesk}
+            ${titleHoverBoxShadow}
+            ${titleHoverColor ? `color:${titleHoverColor};` : ''}
         }
     `;
 
@@ -218,94 +168,12 @@ function Style({ props }) {
           ${titleMarginTab}
         }
 
-        ${
-            !isLink
-                ? `
-                    .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-                      ${titleTypoTab}
-                      ${titlePaddingTab}
-                      ${titleBGTab}
-                      ${titleBorderTab}
-                      ${titleBorderRadiusTab}
-                      ${tabTitleTextStrokeStyle}
-                    }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block:hover{
-                      ${titleHoverBGTab}
-                      ${titleHoverBorderTab}
-                      ${titleHoverBRadiusTab}
-                  }
-                  `
-                : ''
-        }
-
-        ${
-            isLink
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a{
-                      ${titleTypoTab}
-                      ${titlePaddingTab}
-                      ${titleBGTab}
-                      ${titleBorderTab}
-                      ${titleBorderRadiusTab}
-                      ${tabTitleTextStrokeStyle}
-                   }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a:hover{
-                      ${titleHoverBGTab}
-                      ${titleHoverBorderTab}
-                      ${titleHoverBRadiusTab}
-                  }
-              `
-                : ''
-        }
     `;
 
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-post-title.zolo-block{
           ${titleAlignMob}
           ${titleMarginMob}
-        }
-        ${
-            !isLink
-                ? `
-                    .${uniqueId}.wp-block-zolo-post-title.zolo-block{
-                      ${titleTypoMob}
-                      ${titlePaddingMob}
-                      ${titleBGMob}
-                      ${titleBorderMob}
-                      ${titleBorderRadiusMob}
-                      ${mobTitleTextStrokeStyle}
-                    }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block:hover{
-                      ${titleHoverBGMob}
-                      ${titleHoverBorderMob}
-                      ${titleHoverBRadiusMob}
-                  }
-                  `
-                : ''
-        }
-
-        ${
-            isLink
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a{
-                      ${titleTypoMob}
-                      ${titlePaddingMob}
-                      ${titleBGMob}
-                      ${titleBorderMob}
-                      ${titleBorderRadiusMob}
-                      ${mobTitleTextStrokeStyle}
-                   }
-
-                  .${uniqueId}.wp-block-zolo-post-title.zolo-block a:hover{
-                      ${titleHoverBGMob}
-                      ${titleHoverBorderMob}
-                      ${titleHoverBRadiusMob}
-                  }
-              `
-                : ''
         }
   `;
 

@@ -10,5 +10,3 @@ export const TITLE_HOVER_BG = 'titleHBg';
 export const TITLE_HOVER_BORDER = 'titleHBorder';
 export const TITLE_HOVER_BRADIUS = 'titleHBRadius';
 export const TITLE_HOVER_SHADOW = 'titleHShadow';
-export const TITLE_TEXT_SHADOW = 'titleTextShadow';
-export const TITLE_TEXT_STROKE = 'titleTextStroke';
