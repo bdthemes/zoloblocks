@@ -28,12 +28,6 @@
                 background-color: var(--zoloblocks-brand-color);
                 color: #fff;
             }
-            &.dots {
-                &:focus,
-                &:hover {
-                    box-shadow: unset;
-                }
-            }
         }
     }
     .zolo__display-icon {

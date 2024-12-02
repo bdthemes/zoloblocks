@@ -3,27 +3,23 @@ import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpre
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import {
-    TITLE_ALIGN,
-    TITLE_PADDING,
-    TITLE_MARGIN,
-    TITLE_BG,
-    TITLE_BORDER,
-    TITLE_BORDER_RADIUS,
-    TITLE_SHADOW,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
-    TITLE_HOVER_BG,
-    TITLE_HOVER_BORDER,
-    TITLE_HOVER_BRADIUS,
-    TITLE_HOVER_SHADOW,
+    PAGINATION_ALIGN,
+    PAGINATION_PADDING,
+    PAGINATION_MARGIN,
+    PAGINATION_BG,
+    PAGINATION_BORDER,
+    PAGINATION_BORDER_RADIUS,
+    PAGINATION_SHADOW,
+    PAGINATION_HOVER_BG,
+    PAGINATION_HOVER_SHADOW,
+    PAGINATION_ACTIVE_BG,
+    PAGINATION_ACTIVE_SHADOW,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { PAGINATION_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
 
 const {
-    TextShadowControl,
-    TextStrokeControl,
     ResDimensionsControl,
     NormalBGControl,
     BorderControl,
@@ -41,7 +37,15 @@ const {
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, paginationType, paginationColor, titleHoverColor } = attributes;
+    const {
+        resMode,
+        paginationType,
+        paginationColor,
+        paginationHoverColor,
+        paginationHoverBorderColor,
+        paginationActiveColor,
+        paginationActiveBorderColor,
+    } = attributes;
 
     const requiredProps = {
         resMode,
@@ -79,6 +83,7 @@ function Inspector(props) {
                             />
                             {attributes?.paginationType?.includes('number') && (
                                 <>
+                                    <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                                     <ToggleControl
                                         label={__('Truncate Pagination Numbers', 'zoloblocks')}
                                         checked={attributes?.truncatePaginationNumbers}
@@ -97,60 +102,62 @@ function Inspector(props) {
                                     )}
                                 </>
                             )}
-                            {paginationType?.includes('previous-next') && (
-                                <>
-                                    <SelectControl
-                                        label={__('Previous / Next Type', 'zoloblocks')}
-                                        options={[
-                                            {
-                                                label: __('Text', 'zoloblocks'),
-                                                value: 'text',
-                                            },
-                                            {
-                                                label: __('Icon', 'zoloblocks'),
-                                                value: 'icon',
-                                            },
-                                            {
-                                                label: __('Icon & Text', 'zoloblocks'),
-                                                value: 'icon-text',
-                                            },
-                                        ]}
-                                        value={attributes?.paginationNextPrevType}
-                                        onChange={(value) => setAttributes({ paginationNextPrevType: value })}
-                                    />
-
-                                    {attributes?.paginationNextPrevType?.includes('text') && (
-                                        <>
-                                            <TextControl
-                                                label={__('Previous Label', 'zoloblocks')}
-                                                value={attributes?.paginationPreviousText}
-                                                onChange={(value) => setAttributes({ paginationPreviousText: value })}
-                                            />
-                                            <TextControl
-                                                label={__('Next Label', 'zoloblocks')}
-                                                value={attributes?.paginationNextText}
-                                                onChange={(value) => setAttributes({ paginationNextText: value })}
-                                            />
-                                        </>
-                                    )}
-                                    {attributes?.paginationNextPrevType?.includes('icon') && (
-                                        <>
-                                            <ZoloIconPicker
-                                                label={__('Prev Icon', 'zoloblocks')}
-                                                value={attributes?.prevIcon}
-                                                onChange={(value) => setAttributes({ prevIcon: value })}
-                                            />
-
-                                            <ZoloIconPicker
-                                                label={__('Next Icon', 'zoloblocks')}
-                                                value={attributes?.nextIcon}
-                                                onChange={(value) => setAttributes({ nextIcon: value })}
-                                            />
-                                        </>
-                                    )}
-                                </>
-                            )}
                         </ZoloPanelBody>
+                        {paginationType?.includes('previous-next') && (
+                            <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
+                                <SelectControl
+                                    label={__('Type', 'zoloblocks')}
+                                    options={[
+                                        {
+                                            label: __('Text', 'zoloblocks'),
+                                            value: 'text',
+                                        },
+                                        {
+                                            label: __('Icon', 'zoloblocks'),
+                                            value: 'icon',
+                                        },
+                                        {
+                                            label: __('Icon & Text', 'zoloblocks'),
+                                            value: 'icon-text',
+                                        },
+                                    ]}
+                                    value={attributes?.paginationNextPrevType}
+                                    onChange={(value) => setAttributes({ paginationNextPrevType: value })}
+                                />
+
+                                {attributes?.paginationNextPrevType?.includes('text') && (
+                                    <>
+                                        <CardDivider />
+                                        <TextControl
+                                            label={__('Prev', 'zoloblocks')}
+                                            value={attributes?.paginationPreviousText}
+                                            onChange={(value) => setAttributes({ paginationPreviousText: value })}
+                                        />
+                                        <TextControl
+                                            label={__('Next', 'zoloblocks')}
+                                            value={attributes?.paginationNextText}
+                                            onChange={(value) => setAttributes({ paginationNextText: value })}
+                                        />
+                                    </>
+                                )}
+                                {attributes?.paginationNextPrevType?.includes('icon') && (
+                                    <>
+                                        <div className="zolo-custom-heading">{__('Icons', 'zoloblocks')}</div>
+                                        <ZoloIconPicker
+                                            label={__('Previous', 'zoloblocks')}
+                                            value={attributes?.prevIcon}
+                                            onChange={(value) => setAttributes({ prevIcon: value })}
+                                        />
+
+                                        <ZoloIconPicker
+                                            label={__('Next', 'zoloblocks')}
+                                            value={attributes?.nextIcon}
+                                            onChange={(value) => setAttributes({ nextIcon: value })}
+                                        />
+                                    </>
+                                )}
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={
@@ -166,6 +173,10 @@ function Inspector(props) {
                                         value: 'hover',
                                         label: __('Hover', 'zoloblocks'),
                                     },
+                                    {
+                                        value: 'active',
+                                        label: __('Active', 'zoloblocks'),
+                                    },
                                 ]}
                                 normalComponents={
                                     <>
@@ -180,31 +191,31 @@ function Inspector(props) {
                                         />
                                         <TypographyDropdown
                                             label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                            typoPrefixConstant={PAGINATION_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <CardDivider />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={TITLE_BG} noMainBGImg={true} />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={PAGINATION_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
-                                            controlName={TITLE_PADDING}
+                                            controlName={PAGINATION_PADDING}
                                             requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
-                                            controlName={TITLE_MARGIN}
+                                            controlName={PAGINATION_MARGIN}
                                             requiredProps={requiredProps}
                                         />
                                         <CardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
-                                            controlName={TITLE_BORDER}
+                                            controlName={PAGINATION_BORDER}
                                             requiredProps={requiredProps}
                                         />
-                                        <BoxShadowControl controlName={TITLE_SHADOW} requiredProps={requiredProps} />
+                                        <BoxShadowControl controlName={PAGINATION_SHADOW} requiredProps={requiredProps} />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
-                                            controlName={TITLE_BORDER_RADIUS}
+                                            controlName={PAGINATION_BORDER_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
@@ -214,27 +225,58 @@ function Inspector(props) {
                                     <>
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
-                                            color={titleHoverColor}
+                                            color={paginationHoverColor}
                                             onChange={(color) =>
                                                 setAttributes({
-                                                    titleHoverColor: color,
+                                                    paginationHoverColor: color,
                                                 })
                                             }
                                         />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={TITLE_HOVER_BG} noMainBGImg={true} />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={PAGINATION_HOVER_BG}
+                                            noMainBGImg={true}
+                                        />
                                         <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={TITLE_HOVER_BORDER}
-                                            requiredProps={requiredProps}
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={paginationHoverBorderColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    paginationHoverBorderColor: color,
+                                                })
+                                            }
                                         />
-                                        <BoxShadowControl controlName={TITLE_HOVER_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={TITLE_HOVER_BRADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
+                                        <BoxShadowControl controlName={PAGINATION_HOVER_SHADOW} requiredProps={requiredProps} />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={paginationActiveColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    paginationActiveColor: color,
+                                                })
+                                            }
                                         />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={PAGINATION_ACTIVE_BG}
+                                            noMainBGImg={true}
+                                        />
+                                        <CardDivider />
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={paginationActiveBorderColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    paginationActiveBorderColor: color,
+                                                })
+                                            }
+                                        />
+                                        <BoxShadowControl controlName={PAGINATION_ACTIVE_SHADOW} requiredProps={requiredProps} />
                                     </>
                                 }
                             />

@@ -2,8 +2,6 @@
  * Internal dependencies
  */
 const {
-    generateTextShadowAttributies,
-    generateTextStrokeAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
     generateBoxShadowAttributies,
@@ -13,19 +11,19 @@ const {
 } = window.zoloModule;
 
 import {
-    TITLE_ALIGN,
-    TITLE_PADDING,
-    TITLE_MARGIN,
-    TITLE_BG,
-    TITLE_BORDER,
-    TITLE_BORDER_RADIUS,
-    TITLE_SHADOW,
-    TITLE_HOVER_BG,
-    TITLE_HOVER_BORDER,
-    TITLE_HOVER_BRADIUS,
-    TITLE_HOVER_SHADOW,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
+    PAGINATION_ALIGN,
+    PAGINATION_PADDING,
+    PAGINATION_MARGIN,
+    PAGINATION_BG,
+    PAGINATION_BORDER,
+    PAGINATION_BORDER_RADIUS,
+    PAGINATION_SHADOW,
+    PAGINATION_HOVER_BG,
+    PAGINATION_HOVER_BORDER,
+    PAGINATION_HOVER_BRADIUS,
+    PAGINATION_HOVER_SHADOW,
+    PAGINATION_ACTIVE_SHADOW,
+    PAGINATION_ACTIVE_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -57,21 +55,37 @@ const attributes = {
         },
     },
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    ...generateResAlignmentAttributies(TITLE_ALIGN),
-    ...generateDimensionAttributes(TITLE_PADDING),
-    ...generateDimensionAttributes(TITLE_MARGIN),
-    ...generateNormalBGAttributes(TITLE_BG),
-    ...generateBorderAttributies(TITLE_BORDER),
-    ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(TITLE_SHADOW),
-    ...generateNormalBGAttributes(TITLE_HOVER_BG),
-    ...generateBorderAttributies(TITLE_HOVER_BORDER),
-    ...generateDimensionAttributes(TITLE_HOVER_BRADIUS),
-    ...generateBoxShadowAttributies(TITLE_HOVER_SHADOW),
-    ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
-    ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+    ...generateResAlignmentAttributies(PAGINATION_ALIGN),
+    ...generateDimensionAttributes(PAGINATION_PADDING),
+    ...generateDimensionAttributes(PAGINATION_MARGIN),
+    ...generateNormalBGAttributes(PAGINATION_BG),
+    ...generateBorderAttributies(PAGINATION_BORDER),
+    ...generateDimensionAttributes(PAGINATION_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(PAGINATION_SHADOW),
+    ...generateNormalBGAttributes(PAGINATION_HOVER_BG),
+    ...generateBorderAttributies(PAGINATION_HOVER_BORDER),
+    ...generateDimensionAttributes(PAGINATION_HOVER_BRADIUS),
+    ...generateBoxShadowAttributies(PAGINATION_HOVER_SHADOW),
+    ...generateBoxShadowAttributies(PAGINATION_ACTIVE_SHADOW),
+    ...generateNormalBGAttributes(PAGINATION_ACTIVE_BG),
 
     paginationColor: {
+        type: 'string',
+    },
+
+    paginationHoverColor: {
+        type: 'string',
+    },
+
+    paginationHoverBorderColor: {
+        type: 'string',
+    },
+
+    paginationActiveColor: {
+        type: 'string',
+    },
+
+    paginationActiveBorderColor: {
         type: 'string',
     },
 
