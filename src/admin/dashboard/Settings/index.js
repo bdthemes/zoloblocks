@@ -272,16 +272,18 @@ const Settings = () => {
                                         />
                                     </SettingBox>
                                     <SettingBox
-                                      title={__('Enable Video Link', 'zoloblocks')}
-                                      description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
+                                        title={__('Enable Video Link', 'zoloblocks')}
+                                        description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
+                                        isPro={true}
                                     >
-                                      <ToggleControl
-                                        checked={!!editorVideoLink}
-                                        onChange={() => {
-                                          updateEditorVideoLink(!editorVideoLink);
-                                          setNotice(true);
-                                        }}
-                                      />
+                                        <ToggleControl
+                                            checked={!!editorVideoLink}
+                                            disabled={!zoloBlocks?.has_pro}
+                                            onChange={() => {
+                                                updateEditorVideoLink(!editorVideoLink);
+                                                setNotice(true);
+                                            }}
+                                        />
                                     </SettingBox>
                                 </div>
                             </div>
