@@ -12,3 +12,12 @@ export const PAGINATION_HOVER_BRADIUS = 'paginationHBRadius';
 export const PAGINATION_HOVER_SHADOW = 'paginationHShadow';
 export const PAGINATION_ACTIVE_SHADOW = 'paginationAShadow';
 export const PAGINATION_ACTIVE_BG = 'paginationABg';
+
+export const NAV_BG = 'navBg';
+export const NAV_MARGIN = 'navMargin';
+export const NAV_PADDING = 'navPadding';
+export const NAV_BORDER = 'navBorder';
+export const NAV_BORDER_RADIUS = 'navBRadius';
+export const NAV_SHADOW = 'navShadow';
+export const NAV_HOVER_BG = 'navHBg';
+export const NAV_HOVER_SHADOW = 'navHShadow';

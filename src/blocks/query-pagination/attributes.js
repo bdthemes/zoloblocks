@@ -24,6 +24,14 @@ import {
     PAGINATION_HOVER_SHADOW,
     PAGINATION_ACTIVE_SHADOW,
     PAGINATION_ACTIVE_BG,
+    NAV_BG,
+    NAV_PADDING,
+    NAV_MARGIN,
+    NAV_BORDER,
+    NAV_BORDER_RADIUS,
+    NAV_SHADOW,
+    NAV_HOVER_BG,
+    NAV_HOVER_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -69,6 +77,16 @@ const attributes = {
     ...generateBoxShadowAttributies(PAGINATION_ACTIVE_SHADOW),
     ...generateNormalBGAttributes(PAGINATION_ACTIVE_BG),
 
+    //Nav Attributes
+    ...generateNormalBGAttributes(NAV_BG),
+    ...generateDimensionAttributes(NAV_PADDING),
+    ...generateDimensionAttributes(NAV_MARGIN),
+    ...generateBorderAttributies(NAV_BORDER),
+    ...generateDimensionAttributes(NAV_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(NAV_SHADOW),
+    ...generateNormalBGAttributes(NAV_HOVER_BG),
+    ...generateBoxShadowAttributies(NAV_HOVER_SHADOW),
+
     paginationColor: {
         type: 'string',
     },
@@ -86,6 +104,18 @@ const attributes = {
     },
 
     paginationActiveBorderColor: {
+        type: 'string',
+    },
+
+    navColor: {
+        type: 'string',
+    },
+
+    navHoverColor: {
+        type: 'string',
+    },
+
+    navHoverBorderColor: {
         type: 'string',
     },
 

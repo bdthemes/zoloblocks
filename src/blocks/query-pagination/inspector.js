@@ -14,9 +14,17 @@ import {
     PAGINATION_HOVER_SHADOW,
     PAGINATION_ACTIVE_BG,
     PAGINATION_ACTIVE_SHADOW,
+    NAV_BG,
+    NAV_PADDING,
+    NAV_MARGIN,
+    NAV_BORDER,
+    NAV_BORDER_RADIUS,
+    NAV_SHADOW,
+    NAV_HOVER_BG,
+    NAV_HOVER_SHADOW,
 } from './constants';
 
-import { PAGINATION_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { PAGINATION_TYPOGRAPHY, NAV_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
 
 const {
@@ -45,6 +53,9 @@ function Inspector(props) {
         paginationHoverBorderColor,
         paginationActiveColor,
         paginationActiveBorderColor,
+        navColor,
+        navHoverColor,
+        navHoverBorderColor,
     } = attributes;
 
     const requiredProps = {
@@ -102,9 +113,16 @@ function Inspector(props) {
                                     )}
                                 </>
                             )}
+                            <CardDivider />
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zoloblocks')}
+                                controlName={PAGINATION_ALIGN}
+                                requiredProps={requiredProps}
+                                defaultAlign={DEFAULT_ALIGNS}
+                            />
                         </ZoloPanelBody>
                         {paginationType?.includes('previous-next') && (
-                            <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Next/Previous', 'zoloblocks')} panelProps={props}>
                                 <SelectControl
                                     label={__('Type', 'zoloblocks')}
                                     options={[
@@ -281,6 +299,90 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
+                        {paginationType?.includes('previous-next') && (
+                            <ZoloPanelBody title={__('Next/Previous', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Normal', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Hover', 'zoloblocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={navColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        navColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={NAV_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={NAV_BG} noMainBGImg={true} />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={NAV_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={NAV_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={NAV_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={NAV_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={NAV_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={navHoverColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        navHoverColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={NAV_HOVER_BG} noMainBGImg={true} />
+                                            <CardDivider />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={navHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        navHoverBorderColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={NAV_HOVER_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={
