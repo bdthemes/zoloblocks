@@ -538,7 +538,7 @@ const Style = ({ props }) => {
             ${iconBorderStylesTab}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon svg  {
             ${iconHeightWidthTab}
         }
 
@@ -602,7 +602,7 @@ const Style = ({ props }) => {
             ${iconBorderStylesMob}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon svg  {
             ${iconHeightWidthMob}
         }
 

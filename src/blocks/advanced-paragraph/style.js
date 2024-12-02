@@ -18,11 +18,13 @@ const {
     generateBorderStyle,
     GlobalStyleHanlder,
     generateBoxShadowStyles,
+    generateTextGradientsStyles,
 } = window.zoloModule;
 
 import { TEXT_TYPO, HOVER_TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
 
 import {
+    TEXT_MARGIN,
     COLUMNS,
     COLUMNS_GAP,
     TEXT_ALIGNMENT,
@@ -40,12 +42,24 @@ import {
     DROP_CAP_RADIUS,
     DROP_CAP_PADDING,
     DROP_CAP_MARGIN,
+    TEXT_GRADIENT_COLOR,
 } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
     const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor, hoverLinkBorderColor } = attributes;
+
+    // text margin
+    const {
+        dimensionStylesDesktop: textMarginDesk,
+        dimensionStylesTab: textMarginTab,
+        dimensionStylesMobile: textMarginMob,
+    } = generateDimensionStyle({
+        controlName: TEXT_MARGIN,
+        attributes,
+        styleFor: 'margin',
+    });
 
     const {
         desktopRangeStyle: columnsDesktop,
@@ -251,6 +265,17 @@ const Style = ({ props }) => {
         styleFor: 'margin',
     });
 
+    // text gradient color
+    const {
+        backgroundStylesDesktop: textGradientDesktop,
+        backgroundStylesTab: textGradientTab,
+        backgroundStylesMobile: textGradientMobile,
+    } = generateTextGradientsStyles({
+        controlName: TEXT_GRADIENT_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * All Style Combination
      */
@@ -258,6 +283,8 @@ const Style = ({ props }) => {
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${columnsDesktop.replace('px', '')}
         ${columnsGapDesktop}
+        ${textMarginDesk}
+        ${textGradientDesktop}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
@@ -325,6 +352,7 @@ const Style = ({ props }) => {
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${columnsTab.replace('px', '')}
         ${columnsGapTab}
+        ${textMarginTab}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}
@@ -389,6 +417,7 @@ const Style = ({ props }) => {
      .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${columnsMob.replace('px', '')}
         ${columnsGapMob}
+        ${textMarginMob}
     }
     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
         ${textColor ? `color: ${textColor};` : ''}

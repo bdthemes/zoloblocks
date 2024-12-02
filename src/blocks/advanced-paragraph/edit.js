@@ -27,10 +27,21 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, parentClasses, content } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        content,
+        // text Gradient
+        textGradientType,
+        textGradientColorbackgroundType,
+    } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(
+            uniqueId,
+            classArrayToStr(parentClasses),
+            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
+        ),
     });
 
     return (
