@@ -1,0 +1,1 @@
+alert('AI extension loaded');
