@@ -10,4 +10,6 @@ import './form';
 
 import './settings';
 
+import './video-link';
+
 
