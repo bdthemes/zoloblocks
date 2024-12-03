@@ -28,6 +28,14 @@ const Input = () => {
         };
     });
 
+    function onKeyDown(e) {
+        if (e.key === 'Enter') {
+            requestAI();
+            console.log('Enter key pressed');
+        }
+    }
+
+
     return (
         <div className="zolo-popup-input">
             <textarea
@@ -38,7 +46,7 @@ const Input = () => {
                     console.log(e.target.value);
                     setPrompt(e.target.value);
                 }}
-                // onKeyDown={onKeyDown}
+                onKeyDown={onKeyDown(e.target.value)}
                 // disabled={loading}
                 rows={1}
             />
