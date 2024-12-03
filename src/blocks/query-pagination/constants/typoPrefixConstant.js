@@ -1,3 +1,2 @@
-export const TITLE_TYPOGRAPHY = 'titleTypo';
-
-
+export const PAGINATION_TYPOGRAPHY = 'paginationTypography';
+export const NAV_TYPOGRAPHY = 'navTypography';
