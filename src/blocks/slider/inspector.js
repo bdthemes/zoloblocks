@@ -125,7 +125,6 @@ const Inspector = (props) => {
         },
     } = sliderOptions || {};
 
-
     const requiredProps = {
         resMode,
         attributes,
