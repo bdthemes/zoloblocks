@@ -1,26 +1,6 @@
-// : {
-//         open() {
-//             return {type: 'OPEN'};
-//         },
-//         close() {
-//             return {type: 'CLOSE'};
-//         },
-//         toggle() {
-//             return {type: 'TOGGLE'};
-//         },
-//         reset() {
-//             return {type: 'RESET'};
-//         },
-//         setPrompt(prompt) {
-//             return {
-//                 type: 'SET_PROMPT',
-//                 prompt,
-//                 onConfirm: prompt.onConfirm,
-//                 onCancel: prompt.on
-//             };
-//         }
-//     }
 
+import apiFetch from '@wordpress/api-fetch';
+import { __ } from '@wordpress/i18n';
 export function open() {
     return { type: 'OPEN' };
 }

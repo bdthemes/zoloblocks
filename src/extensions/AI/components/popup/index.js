@@ -46,7 +46,7 @@ const Input = () => {
                     console.log(e.target.value);
                     setPrompt(e.target.value);
                 }}
-                onKeyDown={onKeyDown(e.target.value)}
+                onKeyDown={onKeyDown}
                 // disabled={loading}
                 rows={1}
             />

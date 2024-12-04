@@ -56,6 +56,7 @@ class ZoloOpenAi extends WP_REST_Controller {
      */
     public function get_openai_response(WP_REST_Request $request) {
         $data = $request->get_params();
+        // print_r($data);
         $api_key = $this->get_api_key();
 
         if (empty($api_key)) {
@@ -66,7 +67,7 @@ class ZoloOpenAi extends WP_REST_Controller {
             );
         }
 
-        $response = $this->query_openai($data['message'] ?? '', $api_key);
+        $response = $this->query_openai($data['request'] ?? '', $api_key);
 
         if (is_wp_error($response)) {
             return $response;
