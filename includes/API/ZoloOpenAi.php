@@ -121,7 +121,15 @@ class ZoloOpenAi extends WP_REST_Controller {
             );
         }
 
-        return $body['choices'][0]['message']['content'];
+        $result = [
+            'content' => $body['choices'][0]['message']['content'],
+            // generate a random number between 1 and 100
+            'id' => rand(1, 100),
+        ];
+
+        return $result;
+
+        // return $body['choices'][0]['message']['content'];
     }
 
     /**

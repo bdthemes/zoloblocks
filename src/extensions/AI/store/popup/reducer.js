@@ -20,7 +20,7 @@ function reducer(state = initialState, action) {
         case 'SET_RESPONSE':
             return { ...state, response: action.response };
         case 'REQUEST_AI_PENDING':
-            return { ...state, loading: true, isOpen: true };
+            return { ...state, loading: true};
         case 'REQUEST_AI_SUCCESS': {
             return {
                 ...state,
