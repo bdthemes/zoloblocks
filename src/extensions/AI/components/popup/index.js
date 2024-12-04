@@ -31,7 +31,6 @@ const Input = () => {
     function onKeyDown(e) {
         if (e.key === 'Enter') {
             requestAI();
-            console.log('Enter key pressed');
         }
     }
 
@@ -43,7 +42,6 @@ const Input = () => {
                 placeholder={__('Ask AI to write anything…', 'zoloblocks')}
                 value={prompt}
                 onChange={(e) => {
-                    console.log(e.target.value);
                     setPrompt(e.target.value);
                 }}
                 onKeyDown={onKeyDown}
@@ -66,10 +64,6 @@ const Content = () => {
         };
     }
     );
-
-        console.log(response);
-
-
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">

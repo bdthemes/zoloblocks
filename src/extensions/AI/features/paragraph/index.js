@@ -51,8 +51,11 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
                 !processedClientIds.includes(clientId) // Prevent processing the same block
             ) {
                 const handleKeyDown = (event) => {
-                    if (event.key === 'Tab') {
+                    if (event.key === 'Enter') {
                         event.preventDefault();
+                        event.stopPropagation();
+                        //prevent to the new line
+
                         const cleanedContent = content.replace('/zoloai:', '').trim();
                         // Set the AI prompt and request response
                         setPrompt(cleanedContent);
