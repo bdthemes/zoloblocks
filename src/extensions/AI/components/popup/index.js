@@ -54,6 +54,34 @@ const Input = () => {
     );
 };
 
+const Content = () => {
+    const { reset, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
+    const { isOpen, prompt, response } = useSelect((select) => {
+        const { isOpen: checkIsOpen, getPrompt, getResponse } = select('zoloai/popup');
+
+        return {
+            isOpen: checkIsOpen(),
+            prompt: getPrompt(),
+            response: getResponse(),
+        };
+    }
+    );
+
+        console.log(response);
+
+
+    return (
+        <div className="zolo-popup-content">
+            <div className="zolo-popup-response">
+                <div
+                    className="zolo-popup-response-content"
+                    dangerouslySetInnerHTML={{ __html: response }}
+                />
+            </div>
+        </div>
+    );
+}
+
 export default function Popup() {
     const { close, reset } = useDispatch('zoloai/popup');
 
@@ -111,7 +139,7 @@ export default function Popup() {
             __experimentalHideHeader
         >
             <Input />
-            AI Popup Content
+            <Content/>
         </Modal>
     );
 }

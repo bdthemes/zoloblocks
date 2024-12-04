@@ -11,6 +11,9 @@ const store = createReduxStore('zoloai/popup', {
         getPrompt(state) {
             return state.prompt || '';
         },
+        getResponse(state) {
+            return state.response || '';
+        },
     },
 });
 

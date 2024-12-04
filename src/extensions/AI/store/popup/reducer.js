@@ -1,25 +1,44 @@
+const initialState = {
+    isOpen: false,
+    prompt: '',
+    response: '',
+    loading: false,
+    onConfirm: () => {},
+    onCancel: () => {},
+};
 
-function reducer (state = { isOpen: false }, action) {
+function reducer(state = initialState, action) {
     switch (action.type) {
         case 'OPEN':
-            return { isOpen: true };
+            return { ...state, isOpen: true };
         case 'CLOSE':
-            return { isOpen: false };
+            return { ...state, isOpen: false };
         case 'TOGGLE':
-            return { isOpen: !state.isOpen };
-        case 'RESET':
-            return { isOpen: false };
+            return { ...state, isOpen: !state.isOpen };
         case 'SET_PROMPT':
+            return { ...state, prompt: action.prompt };
+        case 'SET_RESPONSE':
+            return { ...state, response: action.response };
+        case 'REQUEST_AI_PENDING':
+            return { ...state, loading: true, isOpen: true };
+        case 'REQUEST_AI_SUCCESS': {
             return {
-                isOpen: true,
-                prompt: action.prompt,
-                onConfirm: action.onConfirm,
-                onCancel: action.onCancel,
+                ...state,
+                loading: false,
+                response: action.payload || '',
             };
-
+        }
+        case 'REQUEST_AI_ERROR':
+            return {
+                ...state,
+                loading: false,
+                response: action.payload || '',
+            };
+        case 'RESET':
+            return initialState;
         default:
             return state;
     }
-};
+}
 
 export default reducer;
