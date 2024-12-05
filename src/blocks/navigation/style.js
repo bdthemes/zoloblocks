@@ -58,6 +58,15 @@ import {
     MOBILE_MENU_WRAP_BORDER_RADIUS,
     MOBILE_MENU_WRAP_PADDING,
     MOBILE_MENU_WRAP_BOX_SHADOW,
+    SUB_MENU_INDICATOR_SIZE,
+    SUB_MENU_INDICATOR_BG,
+    SUB_MENU_INDICATOR_PADDING,
+    SUB_MENU_INDICATOR_MARGIN,
+    SUB_MENU_INDICATOR_BORDER,
+    SUB_MENU_INDICATOR_BORDER_RADIUS,
+    SUB_MENU_INDICATOR_BOX_SHADOW,
+    SUB_MENU_INDICATOR_HOVER_BG,
+    SUB_MENU_INDICATOR_ACTIVE_BG,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -78,6 +87,13 @@ export default function Style({ props }) {
         closeIconColor,
         closeIconHoverColor,
         closeIconBorderHoverColor,
+
+        // indicator
+        subMenuIconColor,
+        subMenuIconHoverColor,
+        subMenuIconHoverBorderColor,
+        subMenuIconActiveColor,
+        subMenuIconActiveBorderColor,
     } = attributes;
 
     // alignment
@@ -539,6 +555,91 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // Indicator
+    const {
+        desktopRangeStyle: subMenuIndicatorSizeDesk,
+        tabRangeStyle: subMenuIndicatorSizeTab,
+        mobRangeStyle: subMenuIndicatorSizeMob,
+    } = generateResRangeStyle({
+        controlName: SUB_MENU_INDICATOR_SIZE,
+        property: '--zolo-submenu-arrow-size',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: subMenuIndicatorBGDesk,
+        backgroundStylesTab: subMenuIndicatorBGTab,
+        backgroundStylesMobile: subMenuIndicatorBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUB_MENU_INDICATOR_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: subMenuIndicatorPaddingDesk,
+        dimensionStylesTab: subMenuIndicatorPaddingTab,
+        dimensionStylesMobile: subMenuIndicatorPaddingMob,
+    } = generateDimensionStyle({
+        controlName: SUB_MENU_INDICATOR_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: subMenuIndicatorMarginDesk,
+        dimensionStylesTab: subMenuIndicatorMarginTab,
+        dimensionStylesMobile: subMenuIndicatorMarginMob,
+    } = generateDimensionStyle({
+        controlName: SUB_MENU_INDICATOR_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: subMenuIndicatorBorderDesk,
+        tabBorderStyle: subMenuIndicatorBorderTab,
+        mobBorderStyle: subMenuIndicatorBorderMob,
+    } = generateBorderStyle({
+        controlName: SUB_MENU_INDICATOR_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: subMenuIndicatorBorderRadiusDesk,
+        dimensionStylesTab: subMenuIndicatorBorderRadiusTab,
+        dimensionStylesMobile: subMenuIndicatorBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SUB_MENU_INDICATOR_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: subMenuIndicatorBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: SUB_MENU_INDICATOR_BOX_SHADOW,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: subMenuIndicatorHoverBGDesk,
+        backgroundStylesTab: subMenuIndicatorHoverBGTab,
+        backgroundStylesMobile: subMenuIndicatorHoverBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUB_MENU_INDICATOR_HOVER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: subMenuIndicatorActiveBGDesk,
+        backgroundStylesTab: subMenuIndicatorActiveBGTab,
+        backgroundStylesMobile: subMenuIndicatorActiveBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUB_MENU_INDICATOR_ACTIVE_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * Generate Alignment Class
      */
@@ -652,6 +753,38 @@ export default function Style({ props }) {
             ${mobileMenuWrapBorderRadiusDesk}
             ${mobileMenuWrapPaddingDesk}
             ${mobileMenuWrapBoxShadowStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link .zolo-submenu-arrow {
+            ${subMenuIndicatorBGDesk}
+            ${subMenuIndicatorPaddingDesk}
+            ${subMenuIndicatorMarginDesk}
+            ${subMenuIndicatorBorderDesk}
+            ${subMenuIndicatorBorderRadiusDesk}
+            ${subMenuIndicatorBoxShadowStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link:hover .zolo-submenu-arrow {
+            ${subMenuIndicatorHoverBGDesk}
+        }
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link.active .zolo-submenu-arrow {
+            ${subMenuIndicatorActiveBGDesk}
+        }
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link .zolo-submenu-arrow svg{
+           ${subMenuIndicatorSizeDesk};
+            fill: ${subMenuIconColor ? subMenuIconColor : ''};
+        }
+
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link:hover .zolo-submenu-arrow svg{
+            fill: ${subMenuIconHoverColor ? subMenuIconHoverColor : ''};
+            border-color: ${subMenuIconHoverBorderColor ? subMenuIconHoverBorderColor : ''};
+            ${subMenuIndicatorHoverBGDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link.active .zolo-submenu-arrow svg{
+            fill: ${subMenuIconActiveColor ? subMenuIconActiveColor : ''};
+            border-color: ${subMenuIconActiveBorderColor ? subMenuIconActiveBorderColor : ''};
+            ${subMenuIndicatorActiveBGDesk}
         }
 
 	`;
