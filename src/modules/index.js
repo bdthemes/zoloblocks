@@ -85,3 +85,6 @@ export {
     popoverHasAttrVal,
 } from '../helpers/helper';
 
+
+export { default as ZoloAnimations } from '../controls/animations';
+

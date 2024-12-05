@@ -41,13 +41,13 @@ class ZoloOpenAi extends WP_REST_Controller {
      * Permission callback for REST API
      */
     public function zolo_permission_callback() {
-        if (!current_user_can('edit_posts')) {
-            return new WP_Error(
-                'rest_forbidden',
-                __('You are not allowed to access this route.', 'zoloblocks'),
-                ['status' => 401]
-            );
-        }
+        // if (!current_user_can('edit_posts')) {
+        //     return new WP_Error(
+        //         'rest_forbidden',
+        //         __('You are not allowed to access this route.', 'zoloblocks'),
+        //         ['status' => 401]
+        //     );
+        // }
         return true;
     }
 
@@ -104,6 +104,8 @@ class ZoloOpenAi extends WP_REST_Controller {
                         ['role' => 'user', 'content' => $message],
                     ],
                 ]),
+
+                // 'timeout' => 10, // 10 seconds timeout for the request to complete successfully (default is 5 seconds)
             ]
         );
 

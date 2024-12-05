@@ -4,6 +4,8 @@ import { useState, useEffect } from '@wordpress/element';
 import { usePrevious, createHigherOrderComponent } from '@wordpress/compose';
 import { useDispatch, useSelect } from '@wordpress/data';
 
+
+import { TextEffect } from '../../../../controls/animations/text-effects';
 /**
  * Change Paragraph block placeholder.
  */
@@ -83,6 +85,27 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
         }, [content, clientId, processedClientIds, requestAI, setPrompt, response?.content, setAttributes, previousContent]);
 
         return <OriginalComponent {...props} />;
+
+        // return (
+        //     <div>
+        //         {content && content.trim() ? (
+        //             <TextEffect
+        //                 className="inline-flex"
+        //                 per="char"
+        //                 trigger="hover"
+        //                 variants={{
+        //                     opacity: [0, 1],
+        //                     translateY: [10, 0],
+        //                 }}
+        //             >
+        //                 {content}
+        //             </TextEffect>
+        //         ) : (
+        //             <OriginalComponent {...props} />
+        //         )}
+        //     </div>
+        // );
+
     }
 
     return ZoloParagraphAI;
