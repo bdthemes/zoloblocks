@@ -47,7 +47,7 @@ const Input = () => {
                 }}
                 onKeyDown={onKeyDown}
                 // disabled={loading}
-                rows={1}
+                rows={5}
             />
         </div>
     );
