@@ -4,7 +4,6 @@ import { useState, useEffect } from '@wordpress/element';
 import { usePrevious, createHigherOrderComponent } from '@wordpress/compose';
 import { useDispatch, useSelect } from '@wordpress/data';
 
-
 import { TextEffect } from '../../../../controls/animations/text-effects';
 /**
  * Change Paragraph block placeholder.
@@ -34,11 +33,12 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
         const { content = '' } = attributes;
 
         const previousContent = usePrevious(content);
-        const {reset, setPrompt, requestAI } = useDispatch('zoloai/popup');
-        const {prompt, response } = useSelect((select) => {
-            const { getPrompt, getResponse } = select('zoloai/popup');
+        const { reset, setPrompt, requestAI } = useDispatch('zoloai/popup');
+        const { prompt, response, loading } = useSelect((select) => {
+            const { getPrompt, getResponse, isLoading } = select('zoloai/popup');
             return {
                 prompt: getPrompt(),
+                loading: isLoading(),
                 response: getResponse(),
             };
         });
@@ -75,36 +75,30 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
 
             // Replace content for the current block only if a response is available
             if (response && response.content && processedClientIds.includes(clientId)) {
-
                 // Remove clientId from the processed list to allow further edits
                 setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
                 setAttributes({ content: response.content });
                 reset();
-
             }
-        }, [content, clientId, processedClientIds, requestAI, setPrompt, response?.content, setAttributes, previousContent]);
 
+            // Replace content for the current block only if a response is available
+            if (response && response.content && processedClientIds.includes(clientId)) {
+                // Remove clientId from the processed list to allow further edits
+                setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
+                setAttributes({ content: response.content });
+                reset();
+            }
+        }, [content, clientId, processedClientIds, requestAI, setPrompt, response?.content, setAttributes, previousContent, loading]);
+
+        // Update the content to "Processing..." during loading
+        if (loading && processedClientIds.includes(clientId)) {
+            return (
+                <TextEffect className="inline-flex" per="char" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
+                    Processing...
+                </TextEffect>
+            );
+        }
         return <OriginalComponent {...props} />;
-
-        // return (
-        //     <div>
-        //         {content && content.trim() ? (
-        //             <TextEffect
-        //                 className="inline-flex"
-        //                 per="char"
-        //                 trigger="hover"
-        //                 variants={{
-        //                     opacity: [0, 1],
-        //                     translateY: [10, 0],
-        //                 }}
-        //             >
-        //                 {content}
-        //             </TextEffect>
-        //         ) : (
-        //             <OriginalComponent {...props} />
-        //         )}
-        //     </div>
-        // );
 
     }
 

@@ -14,6 +14,7 @@ import domReady from '@wordpress/dom-ready';
 import clsx from 'clsx';
 import { useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { TextEffect } from '../../../../controls/animations/text-effects';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
@@ -54,23 +55,33 @@ const Input = () => {
 
 const Content = () => {
     const { reset, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
-    const { isOpen, prompt, response } = useSelect((select) => {
-        const { isOpen: checkIsOpen, getPrompt, getResponse } = select('zoloai/popup');
+    const { loading, prompt, response } = useSelect((select) => {
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse } = select('zoloai/popup');
 
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
             response: getResponse(),
+            loading: isLoading(),
         };
-    }
-    );
+    });
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">
-                <div
-                    className="zolo-popup-response-content"
-                    dangerouslySetInnerHTML={{ __html: response }}
-                />
+                {loading && (
+                    <div className="zolo-popup-response-content">
+                        <TextEffect className="inline-flex" per="char" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
+                            Processing...
+                        </TextEffect>
+                    </div>
+                )}
+                {!loading && response && (
+                    <div className="zolo-popup-response-content">
+                        <TextEffect className="inline-flex" per="word" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
+                            {response.content}
+                        </TextEffect>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -100,7 +111,7 @@ export default function Popup() {
     const { insertBlocks, replaceBlocks } = useDispatch('core/block-editor');
 
     function insertResponse() {
-        const parsedBlocks = rawHandler({ HTML: response });
+        const parsedBlocks = rawHandler({ HTML: response?.content });
 
         if (parsedBlocks.length) {
             if (insertionPlace === 'selected-blocks') {
