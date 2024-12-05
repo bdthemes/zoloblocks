@@ -20,6 +20,7 @@ const {
     ResDimensionsControl,
     NormalBGControl,
     ZoloPanelBody,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -39,6 +40,7 @@ import {
     FIELD_BRADIUS,
     FIELD_GAP,
     FIELD_SPACE,
+    CHECKBOX_SPACE_BETWEEN,
     ICON_SIZE,
 } from './constants';
 
@@ -58,6 +60,7 @@ function Inspector(props) {
         requiredColor,
         defaultValue,
         customNameAttribute,
+        checkboxDirection,
     } = attributes;
 
     const requiredProps = {
@@ -76,8 +79,9 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
-                                label={__('Show Label', 'zoloblocks')}
+                                label={__('Label', 'zoloblocks')}
                                 checked={showLabel}
                                 onChange={() => setAttributes({ showLabel: !showLabel })}
                             />
@@ -89,11 +93,27 @@ function Inspector(props) {
 
                             {isRequired && (
                                 <ToggleControl
-                                    label={__('Show Required Symbol', 'zoloblocks')}
+                                    label={__('Required Symbol', 'zoloblocks')}
                                     checked={showRequiredSymbol}
                                     onChange={() => setAttributes({ showRequiredSymbol: !showRequiredSymbol })}
                                 />
                             )}
+                            <CardDivider />
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Layout Type', 'zoloblocks')}
+                                    value={checkboxDirection}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            checkboxDirection: value,
+                                        })
+                                    }
+                                    options={[
+                                        { label: 'Column', value: 'zolo-form-checkbox-col' },
+                                        { label: 'Row', value: 'zolo-form-checkbox-row' },
+                                    ]}
+                                />
+                            </div>
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
@@ -227,11 +247,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={FIELD_MARGIN}
-                                requiredProps={requiredProps}
-                            />
                             <CardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
@@ -241,19 +256,19 @@ function Inspector(props) {
                                 forBorderRadius={true}
                             />
                             <CardDivider />
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={FIELD_GAP}
+                            <ResRangeControl
+                                label={__('Space Between', 'zoloblocks')}
+                                controlName={CHECKBOX_SPACE_BETWEEN}
                                 requiredProps={requiredProps}
                                 min={0}
-                                max={200}
+                                max={100}
                             />
                             <ResRangeControl
-                                label={__('Spacing', 'zoloblocks')}
+                                label={__('Gap', 'zoloblocks')}
                                 controlName={FIELD_SPACE}
                                 requiredProps={requiredProps}
                                 min={0}
-                                max={200}
+                                max={100}
                             />
                         </ZoloPanelBody>
                     </>

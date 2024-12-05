@@ -1,3 +1,22 @@
-.wp-block-zolo-checkbox-field{
+.wp-block-zolo-checkbox-field {
+    .zolo-field-input-item {
+        display: flex;
+        gap: 10px;
+        label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    }
 
+    &.zolo-form-checkbox-col {
+        .zolo-field-input-item {
+            flex-direction: column;
+        }
+    }
+    &.zolo-form-checkbox-row {
+        .zolo-field-input-item {
+            flex-direction: row;
+        }
+    }
 }

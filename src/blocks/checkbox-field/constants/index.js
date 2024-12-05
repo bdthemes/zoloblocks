@@ -20,6 +20,7 @@ export const FIELD_BORDER = 'fieldBorder';
 export const FIELD_BRADIUS = 'fieldBorderRadius';
 export const FIELD_GAP = 'fieldGap';
 export const FIELD_SPACE = 'fieldSpace';
+export const CHECKBOX_SPACE_BETWEEN = 'checkboxSpaceBetween';
 
 // Icon
 export const ICON_SIZE = 'iconSize';
