@@ -86,7 +86,8 @@ class ZoloOpenAi extends WP_REST_Controller {
      * Query OpenAI API
      */
     private function query_openai(array $prompts, string $api_key) {
-
+        $context = $prompts['context'] ?? '';
+        $request = $prompts['request'] ?? '';
         $messages = [];
         $messages[] = ['role' => 'system', 'content' => 'You are a helpful assistant.'];
         if (isset($prompts['context'])) {
@@ -96,7 +97,7 @@ class ZoloOpenAi extends WP_REST_Controller {
                     "\n",
                     [
                         'Context:',
-                        $prompts['context'],
+                        $context,
                     ]
                 ),
             ];
@@ -110,7 +111,7 @@ class ZoloOpenAi extends WP_REST_Controller {
                 [
                     'Rules:',
                     '- Respond to the user request placed under "Request".',
-                    $prompts['context'] ? '- The context for the user request placed under "Context".' : '',
+                    $context ? '- The context for the user request placed under "Context".' : '',
                     '- Response ready for publishing, without additional context, labels or prefixes.',
                     '- Response in Markdown format.',
                     '- Avoid offensive or sensitive content.',
@@ -128,7 +129,7 @@ class ZoloOpenAi extends WP_REST_Controller {
                 "\n",
                 [
                     'Request:',
-                    $prompts['request'] . 'within 10 words',
+                    $request . 'within 10 words',
                 ]
             ),
         ];

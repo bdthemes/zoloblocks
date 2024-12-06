@@ -102,7 +102,7 @@ const Toolbar = () => {
                             />
                         </svg>
                     }
-                    title={__('Zolo AI', 'zoloblocks-pro')}
+                    title={__('ZoloAi AI', 'zoloblocks-pro')}
                     onClick={(e) => {
                         e.preventDefault();
                         toggle();
@@ -135,7 +135,7 @@ const isToolbarAllowed = (props) => {
 
 
 const withToolbarControl = createHigherOrderComponent((OriginalComponent) => {
-    function MindToolbarToggle(props) {
+    function ZoloAiToolbarToggle(props) {
         const allow = isToolbarAllowed(props);
 
         if (!allow) {
@@ -152,7 +152,7 @@ const withToolbarControl = createHigherOrderComponent((OriginalComponent) => {
         );
     }
 
-    return MindToolbarToggle;
+    return ZoloAiToolbarToggle;
 }, 'withToolbarControl');
 
-addFilter('editor.BlockEdit', 'mind/block-toolbar-toggle', withToolbarControl);
+addFilter('editor.BlockEdit', 'zolo/ai-toolbar', withToolbarControl);
