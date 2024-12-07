@@ -576,7 +576,7 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props}>
                             <TabPanelControl
                                 options={TAB_STATES}
                                 normalComponents={
