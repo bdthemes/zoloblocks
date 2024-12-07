@@ -36,6 +36,7 @@ import {
     ERR_BRADIUS,
     ERR_BG,
     ERR_PADDING,
+    ICON_SPACING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -211,6 +212,7 @@ const attributes = {
 
     // Field icon
     ...generateResRangeAttributies(ICON_SIZE, {}),
+    ...generateResRangeAttributies(ICON_SPACING),
 
     // input fields
     ...generateDimensionAttributes(FIELD_PADDING),

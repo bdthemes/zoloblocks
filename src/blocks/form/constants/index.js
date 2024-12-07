@@ -31,6 +31,7 @@ export const BTN_MARGIN = 'btnMargin';
 
 // icon
 export const ICON_SIZE = 'iconSize';
+export const ICON_SPACING = 'iconSpacing';
 
 // Input Field
 export const FIELD_BORDER = 'fieldBorder';

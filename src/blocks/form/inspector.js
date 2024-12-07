@@ -40,10 +40,13 @@ import {
     ERR_BRADIUS,
     ERR_BG,
     ERR_PADDING,
+    ICON_SPACING,
 } from './constants';
 
 import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
 import { TEXT_ALIGN_OPTIONS, ICON_HPOSITIONS } from '../../../src/global/constants';
+import { Card } from '@wordpress/components';
+import { CardDivider } from '@wordpress/components';
 
 const {
     ResRangeControl,
@@ -80,23 +83,17 @@ function Inspector(props) {
         errMsgColor,
         sccMsgColor,
         showFieldIcon,
-
         // form settings
         formSettings,
-
         // form confirmations
         submissionSettings,
-
         // submission message position
         messagePosition,
-
         // close btn
         closeBtnColor,
-
         // focus
         focusBorderColor,
         focusBorderWidth,
-
         // reCaptcha
         reCaptcha,
     } = attributes;
@@ -482,6 +479,15 @@ function Inspector(props) {
                                 <ResRangeControl
                                     label={__('Icon', 'zoloblocks')}
                                     controlName={ICON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                />
+                                <CardDivider />
+                                <ResRangeControl
+                                    label={__('Spacing', 'zoloblocks')}
+                                    controlName={ICON_SPACING}
                                     requiredProps={requiredProps}
                                     min={1}
                                     max={100}
