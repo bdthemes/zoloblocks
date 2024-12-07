@@ -11,11 +11,20 @@ const store = createReduxStore('zoloai/popup', {
         getPrompt(state) {
             return state.prompt || '';
         },
+        getContext(state) {
+            return state.context || '';
+        },
         getResponse(state) {
             return state.response || '';
         },
+        getLanguage(state) {
+            return state.language || '';
+        },
         isLoading(state) {
             return state.loading || false;
+        },
+        getContent(state) {
+            return state.content || '';
         },
     },
 });

@@ -7,13 +7,13 @@
  * WordPress dependencies
  */
 import { createRoot } from '@wordpress/element';
-import { Modal } from '@wordpress/components';
+import { Modal, SelectControl } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { rawHandler } from '@wordpress/blocks';
 import domReady from '@wordpress/dom-ready';
 import clsx from 'clsx';
 import { useRef } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { TextEffect } from '../../../../controls/animations/text-effects';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
@@ -43,6 +43,7 @@ const Input = () => {
                 placeholder={__('Ask AI to write anything…', 'zoloblocks')}
                 value={prompt}
                 onChange={(e) => {
+
                     setPrompt(e.target.value);
                 }}
                 onKeyDown={onKeyDown}
@@ -54,17 +55,28 @@ const Input = () => {
 };
 
 const Content = () => {
-    const { reset, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
-    const { loading, prompt, response } = useSelect((select) => {
-        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse } = select('zoloai/popup');
+    const { reset, setPrompt, setContext, setLanguage, requestAI } = useDispatch('zoloai/popup');
+    const { loading, prompt, language, response, content } = useSelect((select) => {
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent } = select('zoloai/popup');
 
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
             response: getResponse(),
             loading: isLoading(),
+            content: getContent()
         };
     });
+
+
+    function openModal(prompt) {
+        // open();
+        setPrompt(prompt);
+        setContext('selected-blocks');
+        // setInsertionPlace('selected-blocks');
+        requestAI();
+    }
+
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">
@@ -75,13 +87,78 @@ const Content = () => {
                         </TextEffect>
                     </div>
                 )}
-                {!loading && response && (
-                    <div className="zolo-popup-response-content">
-                        <TextEffect className="inline-flex" per="word" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
-                            {response.content}
-                        </TextEffect>
-                    </div>
-                )}
+                {/* {!loading && response && ( */}
+                <div className="zolo-popup-response-content">
+                    {!loading && response?.content ? (
+                        <textarea
+                            placeholder={__('Ask AI to write anything…', 'zoloblocks')}
+                            value={response?.content}
+                            onChange={(e) => {
+                                setPrompt(e.target.value);
+                            }}
+                            rows={5}
+                        />
+                    ) : (
+                        <textarea
+                            placeholder={__('Ask AI to write anything…', 'zoloblocks')}
+                            value={content}
+                            onChange={(e) => {
+                                setPrompt(e.target.value);
+                            }}
+                            rows={5}
+                        />
+                    )}
+                    {/* <TextEffect className="inline-flex" per="word" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}> */}
+                    {/* {response?.content || 'No response'} */}
+                    {/* </TextEffect> */}
+                    {/* // change language */}
+                    <SelectControl
+                        label={__('Change Language', 'zoloblocks')}
+                        value={language}
+                        options={[
+                            { label: 'English', value: 'english' },
+                            { label: 'French', value: 'french' },
+                            { label: 'German', value: 'german' },
+                            { label: 'Spanish', value: 'spanish' },
+                            { label: 'Italian', value: 'italian' },
+                            { label: 'Dutch', value: 'dutch' },
+                            { label: 'Portuguese', value: 'portuguese' },
+                            { label: 'Russian', value: 'russian' },
+                            { label: 'Japanese', value: 'japanese' },
+                            { label: 'Chinese', value: 'chinese' },
+                            { label: 'Korean', value: 'korean' },
+                            { label: 'Arabic', value: 'arabic' },
+                            { label: 'Turkish', value: 'turkish' },
+                            { label: 'Polish', value: 'polish' },
+                            { label: 'Swedish', value: 'swedish' },
+                            { label: 'Danish', value: 'danish' },
+                            { label: 'Norwegian', value: 'norwegian' },
+                            { label: 'Finnish', value: 'finnish' },
+                            { label: 'Czech', value: 'czech' },
+                            { label: 'Hungarian', value: 'hungarian' },
+                            { label: 'Romanian', value: 'romanian' },
+                            { label: 'Greek', value: 'greek' },
+                            { label: 'Bulgarian', value: 'bulgarian' },
+                            { label: 'Croatian', value: 'croatian' },
+                            { label: 'Slovak', value: 'slovak' },
+                            { label: 'Lithuanian', value: 'lithuanian' },
+                            { label: 'Slovenian', value: 'slovenian' },
+                            { label: 'Latvian', value: 'latvian' },
+                            { label: 'Estonian', value: 'estonian' },
+                            { label: 'Maltese', value: 'maltese' },
+                            { label: 'Hindi', value: 'hindi' },
+                            { label: 'Bengali', value: 'bengali' },
+                            { label: 'Tamil', value: 'tamil' },
+                            { label: 'Telugu', value: 'telugu' },
+                            { label: 'Urdu', value: 'urdu' },
+                            { label: 'Gujarati', value: 'gujarati' },
+                        ]}
+                        onChange={(value) => {
+                            openModal(__(sprintf(`${prompt} Translate the following text to %s`, value), 'zoloblocks'));
+                        }}
+                    ></SelectControl>
+                </div>
+                {/* )} */}
             </div>
         </div>
     );
@@ -143,7 +220,7 @@ export default function Popup() {
             }}
             __experimentalHideHeader
         >
-            <Input />
+            {/* <Input /> */}
             <Content/>
         </Modal>
     );
