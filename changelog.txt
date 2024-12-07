@@ -1,12 +1,13 @@
 ### 2.1.4 [December 07, 2024]
 
 - **New Features:**
-  - **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control. Optimized arrow size for better usability and design consistency.
+  - **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control. 
+  Optimized arrow size for better usability and design consistency.
   - **Profile Card Block:** Added background options for the photo overlay in preset 2.
   - **Automatic Block Recovery:** Introduced the "Automatic Block Recovery" feature.
-  Form Block: Added spacing options for icons.
   - **Form Block:** Added spacing options for icons.
-  - **Newsletter Block:** Added width type and alignment options for the submit button. Removed the custom width range control for the submit button in preset 1.
+  - **Newsletter Block:** Added width type and alignment options for the submit button.
+  Removed the custom width range control for the submit button in preset 1.
 
 - **Fixes:**
   - **Container Block:** Enhanced design compatibility for default navigation and Gutenkit navigation in the editor.

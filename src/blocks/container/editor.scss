@@ -170,10 +170,10 @@
         }
     }
 }
-.zolo-editor {
-    .wp-block {
-        &.zolo-block {
-            width: 100%;
-        }
+// .zolo-editor {
+.wp-block {
+    &.zolo-block {
+        width: 100%;
     }
 }
+// }
