@@ -39,6 +39,7 @@ export default function Edit(props) {
         textSubscribed,
         textError,
         showLabels,
+        btnWType,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -61,7 +62,7 @@ export default function Edit(props) {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <form
-                    className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}${preset === 'zolo-newsletter-5' ? focusStyle : ''}`}
+                    className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}${preset === 'zolo-newsletter-5' ? focusStyle : ''} ${preset !== 'zolo-newsletter-4' ? btnWType : ''}`}
                 >
                     {showNameField && (
                         <div className="zolo-form-control" role="tablist">

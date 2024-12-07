@@ -14,6 +14,7 @@ const {
     generateBoxShadowStyles,
     generateTypographyStyles,
     GlobalStyleHanlder,
+    generateResAlignmentStyle,
 } = window.zoloModule;
 
 import {
@@ -51,6 +52,7 @@ import {
     FOCUS_STYLE_5_BORDER_WIDTH,
     FIELD_ICON_SIZE,
     FIELD_ICON_SPACING,
+    BUTTON_ALIGNMENT,
 } from './constants';
 
 import { LABEL_TYPOGRAPHY, INPUT_TYPOGRAPHY, BUTTON_TYPOGRAPHY, MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -452,6 +454,17 @@ export default function Style({ props }) {
         styleFor: 'padding',
         attributes,
     });
+
+    // generate alignment
+    const {
+        desktopAlignStyle: buttonAlignDesk,
+        tabAlignStyle: buttonAlignTab,
+        mobAlignStyle: buttonAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: BUTTON_ALIGNMENT,
+        property: 'align-items',
+        attributes,
+    });
     /**
      * All Style Combination
      */
@@ -609,6 +622,16 @@ export default function Style({ props }) {
         ${btnBorderHoverColor ? `border-color: ${btnBorderHoverColor};` : ''}
       }
 
+      ${
+          preset !== 'zolo-newsletter-4'
+              ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .button-auto .zolo-form-submit-btn {
+                    ${buttonAlignDesk}
+                }
+            `
+              : ''
+      }
+
   	`;
     const tabletAllStyle = `
         .${uniqueId}.zolo-block.wp-block-zolo-newsletter .zolo-form-label{
@@ -673,6 +696,16 @@ export default function Style({ props }) {
         ${msgPaddingTab}
         ${msgMarginTab}
       }
+
+     ${
+         preset !== 'zolo-newsletter-4'
+             ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .button-auto .zolo-form-submit-btn {
+                    ${buttonAlignTab}
+                }
+            `
+             : ''
+     }
     `;
 
     const mobileAllStyle = `
@@ -737,6 +770,16 @@ export default function Style({ props }) {
         ${msgPaddingMob}
         ${msgMarginMob}
       }
+
+    ${
+        preset !== 'zolo-newsletter-4'
+            ? `
+                .${uniqueId}.zolo-block.wp-block-zolo-newsletter .button-auto .zolo-form-submit-btn {
+                    ${buttonAlignMob}
+                }
+            `
+            : ''
+    }
     `;
 
     return (
