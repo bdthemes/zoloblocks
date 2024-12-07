@@ -34,6 +34,7 @@ const Save = (props) => {
         showLabels,
         provider,
         selectedWebhook,
+        btnWType,
     } = attributes;
     const newsletterMsg = {
         textSuccess,
@@ -58,7 +59,7 @@ const Save = (props) => {
         >
             {renderHookBefore && renderHookBefore}
             <form
-                className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}${preset === 'zolo-newsletter-5' ? focusStyle : ''}`}
+                className={`zolo-newsletter-form ${preset} ${preset === 'zolo-newsletter-4' ? btnLayoutType : ''}${preset === 'zolo-newsletter-5' ? focusStyle : ''} ${preset !== 'zolo-newsletter-4' ? btnWType : ''}`}
                 data-settings={JSON.stringify(newsletterMsg)}
             >
                 {showNameField && (
