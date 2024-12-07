@@ -278,7 +278,6 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
-
     //transform scale y
     const {
         desktopRangeStyle: scaleYStylesDesktop,
@@ -608,7 +607,8 @@ export const GlobalStyleHanlder = (props) => {
       ${
           widthTypeDesktop !== 'default'
               ? `
-        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),.zolo-frontend :where(.${uniqueId}){
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),
+        .zolo-frontend :where(.${uniqueId}){
         ${widthTypeDesktop == 'full' ? `width: 100vw !important; ` : ''}
         ${widthTypeDesktop == 'inline' ? `width: auto !important; ` : ''}
         ${widthTypeDesktop == 'custom' ? `${customWidthDesktop.replace(';', ' !important;')} ` : ''}
