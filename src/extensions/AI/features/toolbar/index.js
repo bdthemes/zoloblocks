@@ -21,134 +21,8 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { rawHandler } from '@wordpress/blocks';
 import clsx from 'clsx';
 import { __, sprintf } from '@wordpress/i18n';
-import { TextEffect } from '../../../../controls/animations/text-effects';
-import { requestAI } from '../../store/popup/actions';
 
 
-
-const Input = () => {
-    const ref = useRef();
-    const { reset, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
-    const { isOpen, prompt } = useSelect((select) => {
-        const { isOpen: checkIsOpen, getPrompt } = select('zoloai/popup');
-        return {
-            isOpen: checkIsOpen(),
-            prompt: getPrompt(),
-        };
-    });
-
-    function onKeyDown(e) {
-        if (e.key === 'Enter') {
-            requestAI();
-        }
-    }
-
-    return (
-        <div className="zolo-popup-input">
-            <textarea
-                ref={ref}
-                placeholder={__('Ask AI to write anything…', 'zoloblocks')}
-                value={prompt}
-                onChange={(e) => {
-                    setPrompt(e.target.value);
-                }}
-                onKeyDown={onKeyDown}
-                // disabled={loading}
-                rows={5}
-            />
-        </div>
-    );
-};
-
-const Content = () => {
-    const { reset, setPrompt, setContext, requestAI } = useDispatch('zoloai/popup');
-    const { loading, prompt, response } = useSelect((select) => {
-        const { isOpen: checkIsOpen, isLoading, getContext, getPrompt, getResponse } = select('zoloai/popup');
-
-        return {
-            isOpen: checkIsOpen(),
-            prompt: getPrompt(),
-            response: getResponse(),
-            loading: isLoading(),
-            context: getContext(),
-        };
-    });
-
-    function openModal(prompt) {
-        // open();
-        setPrompt(prompt);
-        setContext('selected-blocks');
-        // setInsertionPlace('selected-blocks');
-        requestAI();
-    }
-
-    return (
-        <div className="zolo-popup-content">
-            <div className="zolo-popup-response">
-                {loading && (
-                    <div className="zolo-popup-response-content">
-                        <TextEffect className="inline-flex" per="char" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
-                            Processing...
-                        </TextEffect>
-                    </div>
-                )}
-                {!loading && response && (
-                    <div className="zolo-popup-response-content">
-                        <TextEffect className="inline-flex" per="word" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
-                            <RawHTML>{response?.content || 'No response'}</RawHTML>
-                        </TextEffect>
-                        {/* // change language */}
-                        <SelectControl
-                            label={__('Change Language', 'zoloblocks')}
-                            value={response?.language}
-                            options={[
-                                { label: 'English', value: 'english' },
-                                { label: 'French', value: 'french' },
-                                { label: 'German', value: 'german' },
-                                { label: 'Spanish', value: 'spanish' },
-                                { label: 'Italian', value: 'italian' },
-                                { label: 'Dutch', value: 'dutch' },
-                                { label: 'Portuguese', value: 'portuguese' },
-                                { label: 'Russian', value: 'russian' },
-                                { label: 'Japanese', value: 'japanese' },
-                                { label: 'Chinese', value: 'chinese' },
-                                { label: 'Korean', value: 'korean' },
-                                { label: 'Arabic', value: 'arabic' },
-                                { label: 'Turkish', value: 'turkish' },
-                                { label: 'Polish', value: 'polish' },
-                                { label: 'Swedish', value: 'swedish' },
-                                { label: 'Danish', value: 'danish' },
-                                { label: 'Norwegian', value: 'norwegian' },
-                                { label: 'Finnish', value: 'finnish' },
-                                { label: 'Czech', value: 'czech' },
-                                { label: 'Hungarian', value: 'hungarian' },
-                                { label: 'Romanian', value: 'romanian' },
-                                { label: 'Greek', value: 'greek' },
-                                { label: 'Bulgarian', value: 'bulgarian' },
-                                { label: 'Croatian', value: 'croatian' },
-                                { label: 'Slovak', value: 'slovak' },
-                                { label: 'Lithuanian', value: 'lithuanian' },
-                                { label: 'Slovenian', value: 'slovenian' },
-                                { label: 'Latvian', value: 'latvian' },
-                                { label: 'Estonian', value: 'estonian' },
-                                { label: 'Maltese', value: 'maltese' },
-                                { label: 'Hindi', value: 'hindi' },
-                                { label: 'Bengali', value: 'bengali' },
-                                { label: 'Tamil', value: 'tamil' },
-                                { label: 'Telugu', value: 'telugu' },
-                                { label: 'Urdu', value: 'urdu' },
-                                { label: 'Gujarati', value: 'gujarati' },
-                            ]}
-                            onChange={(value) => {
-                                // setAttributes({ language: value });
-                            }}
-                        ></SelectControl>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
 const Toolbar = (props) => {
     const { toggle, requestAI } = useDispatch('zoloai/popup');
     const [panel, setPanel] = useState(false);
@@ -180,19 +54,14 @@ const {attributes, setAttributes} = props;
                     title={__('ZoloAi AI', 'zoloblocks-pro')}
                     onClick={(e) => {
                         e.preventDefault();
-                        // toggle();
-                        toggle(attributes.content);
+                        toggle();
+                        // toggle(attributes?.content);
+
                         // requestAI();
                     }}
                     isPressed={false}
                 />
             </ToolbarGroup>
-            {/* {panel && ( */}
-                {/* <Popover position="bottom center" focusOnMount={false} className="zolo-highlight-popover">
-                    <Input />
-                    <Content />
-                </Popover> */}
-            {/* )} */}
         </BlockControls>
     );
 }

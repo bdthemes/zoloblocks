@@ -6,8 +6,8 @@
 /**
  * WordPress dependencies
  */
-import { createRoot } from '@wordpress/element';
-import { Modal, SelectControl } from '@wordpress/components';
+import { createRoot, RawHTML } from '@wordpress/element';
+import { Modal, SelectControl, Button } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { rawHandler } from '@wordpress/blocks';
 import domReady from '@wordpress/dom-ready';
@@ -35,7 +35,6 @@ const Input = () => {
         }
     }
 
-
     return (
         <div className="zolo-popup-input">
             <textarea
@@ -43,7 +42,6 @@ const Input = () => {
                 placeholder={__('Ask AI to write anything…', 'zoloblocks')}
                 value={prompt}
                 onChange={(e) => {
-
                     setPrompt(e.target.value);
                 }}
                 onKeyDown={onKeyDown}
@@ -55,19 +53,18 @@ const Input = () => {
 };
 
 const Content = () => {
+    const ref = useRef();
     const { reset, setPrompt, setContext, setLanguage, requestAI } = useDispatch('zoloai/popup');
     const { loading, prompt, language, response, content } = useSelect((select) => {
         const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent } = select('zoloai/popup');
-
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
             response: getResponse(),
             loading: isLoading(),
-            content: getContent()
+            content: getContent() ? getContent() : '',
         };
     });
-
 
     function openModal(prompt) {
         // open();
@@ -75,8 +72,13 @@ const Content = () => {
         setContext('selected-blocks');
         // setInsertionPlace('selected-blocks');
         requestAI();
+        // reset();
     }
-
+    function onKeyDown(e) {
+        if (e.key === 'Enter') {
+            requestAI();
+        }
+    }
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">
@@ -89,72 +91,128 @@ const Content = () => {
                 )}
                 {/* {!loading && response && ( */}
                 <div className="zolo-popup-response-content">
-                    {!loading && response?.content ? (
-                        <textarea
-                            placeholder={__('Ask AI to write anything…', 'zoloblocks')}
-                            value={response?.content}
-                            onChange={(e) => {
-                                setPrompt(e.target.value);
-                            }}
-                            rows={5}
-                        />
-                    ) : (
-                        <textarea
-                            placeholder={__('Ask AI to write anything…', 'zoloblocks')}
-                            value={content}
-                            onChange={(e) => {
-                                setPrompt(e.target.value);
-                            }}
-                            rows={5}
-                        />
+                    {!loading && response && response?.content ? (<p>{response?.content || ''}</p>):
+                    (
+                        <p>{content}</p>
                     )}
-                    {/* <TextEffect className="inline-flex" per="word" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}> */}
-                    {/* {response?.content || 'No response'} */}
-                    {/* </TextEffect> */}
-                    {/* // change language */}
+                    {
+
+                    }
+                    <br />
+                    <br />
+
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            openModal(__(`Simplify the language`, 'zoloblocks'));
+                        }}
+                    >
+                        {__('Simplify Language', 'zoloblocks')}
+                    </Button>
+                    <br />
+                    <br />
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            openModal(__(`Make it longer`, 'zoloblocks'));
+                        }}
+                    >
+                        {__('Make it longer', 'zoloblocks')}
+                    </Button>
+                    <br />
+                    <br />
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            openModal(__(`Make it shorter`, 'zoloblocks'));
+                        }}
+                    >
+                        {__('Make it shorter', 'zoloblocks')}
+                    </Button>
+                    <br />
+                    <br />
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            openModal(__(`Fix spelling and grammar`, 'zoloblocks'));
+                        }}
+                    >
+                        {__('Fix spelling & grammar', 'zoloblocks')}
+                    </Button>
+                    <br />
+                    <br />
                     <SelectControl
                         label={__('Change Language', 'zoloblocks')}
-                        value={language}
+                        value={''}
                         options={[
+                            { label: 'Translate to', value: '' },
+                            { label: 'Arabic', value: 'arabic' },
+                            { label: 'Bengali', value: 'bengali' },
+                            { label: 'Bulgarian', value: 'bulgarian' },
+                            { label: 'Chinese', value: 'chinese' },
+                            { label: 'Croatian', value: 'croatian' },
+                            { label: 'Czech', value: 'czech' },
+                            { label: 'Danish', value: 'danish' },
+                            { label: 'Dutch', value: 'dutch' },
                             { label: 'English', value: 'english' },
+                            { label: 'Estonian', value: 'estonian' },
+                            { label: 'Finnish', value: 'finnish' },
                             { label: 'French', value: 'french' },
                             { label: 'German', value: 'german' },
-                            { label: 'Spanish', value: 'spanish' },
-                            { label: 'Italian', value: 'italian' },
-                            { label: 'Dutch', value: 'dutch' },
-                            { label: 'Portuguese', value: 'portuguese' },
-                            { label: 'Russian', value: 'russian' },
-                            { label: 'Japanese', value: 'japanese' },
-                            { label: 'Chinese', value: 'chinese' },
-                            { label: 'Korean', value: 'korean' },
-                            { label: 'Arabic', value: 'arabic' },
-                            { label: 'Turkish', value: 'turkish' },
-                            { label: 'Polish', value: 'polish' },
-                            { label: 'Swedish', value: 'swedish' },
-                            { label: 'Danish', value: 'danish' },
-                            { label: 'Norwegian', value: 'norwegian' },
-                            { label: 'Finnish', value: 'finnish' },
-                            { label: 'Czech', value: 'czech' },
-                            { label: 'Hungarian', value: 'hungarian' },
-                            { label: 'Romanian', value: 'romanian' },
                             { label: 'Greek', value: 'greek' },
-                            { label: 'Bulgarian', value: 'bulgarian' },
-                            { label: 'Croatian', value: 'croatian' },
-                            { label: 'Slovak', value: 'slovak' },
-                            { label: 'Lithuanian', value: 'lithuanian' },
-                            { label: 'Slovenian', value: 'slovenian' },
-                            { label: 'Latvian', value: 'latvian' },
-                            { label: 'Estonian', value: 'estonian' },
-                            { label: 'Maltese', value: 'maltese' },
+                            { label: 'Gujarati', value: 'gujarati' },
+                            { label: 'Hebrew', value: 'hebrew' },
                             { label: 'Hindi', value: 'hindi' },
-                            { label: 'Bengali', value: 'bengali' },
+                            { label: 'Hungarian', value: 'hungarian' },
+                            { label: 'Indonesian', value: 'indonesian' },
+                            { label: 'Italian', value: 'italian' },
+                            { label: 'Japanese', value: 'japanese' },
+                            { label: 'Korean', value: 'korean' },
+                            { label: 'Latvian', value: 'latvian' },
+                            { label: 'Lithuanian', value: 'lithuanian' },
+                            { label: 'Maltese', value: 'maltese' },
+                            { label: 'Norwegian', value: 'norwegian' },
+                            { label: 'Persian', value: 'persian' },
+                            { label: 'Polish', value: 'polish' },
+                            { label: 'Portuguese', value: 'portuguese' },
+                            { label: 'Romanian', value: 'romanian' },
+                            { label: 'Russian', value: 'russian' },
+                            { label: 'Slovak', value: 'slovak' },
+                            { label: 'Slovenian', value: 'slovenian' },
+                            { label: 'Spanish', value: 'spanish' },
+                            { label: 'Swedish', value: 'swedish' },
                             { label: 'Tamil', value: 'tamil' },
                             { label: 'Telugu', value: 'telugu' },
+                            { label: 'Thai', value: 'thai' },
+                            { label: 'Turkish', value: 'turkish' },
                             { label: 'Urdu', value: 'urdu' },
-                            { label: 'Gujarati', value: 'gujarati' },
+                            { label: 'Vietnamese', value: 'vietnamese' },
                         ]}
                         onChange={(value) => {
-                            openModal(__(sprintf(`${prompt} Translate the following text to %s`, value), 'zoloblocks'));
+                            if (value !== '') {
+                                openModal(__(sprintf(`Translate to %s`, value), 'zoloblocks'));
+                            }
+                        }}
+                    ></SelectControl>
+                    <SelectControl
+                        label={__('Change tone', 'zoloblocks')}
+                        value={''}
+                        options={[
+                            { label: 'Casual', value: 'casual' },
+                            { label: 'Confidence', value: 'confidence' },
+                            { label: 'Formal', value: 'formal' },
+                            { label: 'Friendly', value: 'friendly' },
+                            { label: 'Inspirational', value: 'inspirational' },
+                            { label: 'Motivational', value: 'motivational' },
+                            { label: 'Nostalgic', value: 'nostalgic' },
+                            { label: 'Playful', value: 'playful' },
+                            { label: 'Professional', value: 'professional' },
+                            { label: 'Scientific', value: 'scientific' },
+                            { label: 'Straightforward', value: 'straightforward' },
+                            { label: 'Witty', value: 'witty' },
+                        ]}
+                        onChange={(value) => {
+                            openModal(__(sprintf(`Change tone to %s`, value), 'zoloblocks'));
                         }}
                     ></SelectControl>
                 </div>
@@ -162,7 +220,7 @@ const Content = () => {
             </div>
         </div>
     );
-}
+};
 
 export default function Popup() {
     const { close, reset } = useDispatch('zoloai/popup');
@@ -220,8 +278,8 @@ export default function Popup() {
             }}
             __experimentalHideHeader
         >
-            {/* <Input /> */}
-            <Content/>
+            <Input />
+            <Content />
         </Modal>
     );
 }
