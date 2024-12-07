@@ -119,7 +119,7 @@ const Inspector = (props) => {
                     <>
                         {addSubmenu && (
                             <>
-                                <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                {/* <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                     <TabPanelControl
                                         options={TAB_STATES}
                                         normalComponents={
@@ -236,7 +236,7 @@ const Inspector = (props) => {
                                             </>
                                         }
                                     />
-                                </ZoloPanelBody>
+                                </ZoloPanelBody> */}
                             </>
                         )}
                     </>
