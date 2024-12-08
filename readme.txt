@@ -1,11 +1,11 @@
 === ZoloBlocks – Gutenberg Blocks, Page Builder, Gutenberg Templates & Patterns for Gutenberg Editor ===
-Contributors: bdthemes, selimmw, abutalib, muhammadasik
+Contributors: bdthemes, selimmw, abutalib, muhammadasik, golam523
 Donate link: http://zoloblocks.com/
 Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
 Requires at least: 6.1
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Meet [**ZoloBlocks**](https://zoloblocks.com) – the best Gutenberg Blocks Edit
 
 Meet [**ZoloBlocks**](https://zoloblocks.com) – the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
 
-This isn’t just another WordPress Gutenberg blocks plugin—it’s a game-changer that puts the power of premium page builder plugins at your fingertips. With ZoloBlocks, an ultimate WordPress Editor block plugin, you get **50+ advanced blocks**, **250+ pattern templates**, and **20+ extra editor options** for Gutenberg. This amazing Ultimate block plugin for Gutenberg offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
+This isn’t just another WordPress Gutenberg blocks plugin—it’s a game-changer that puts the power of premium page builder plugins at your fingertips. With ZoloBlocks, an ultimate WordPress Editor block plugin, you get **65+ advanced blocks**, **[650+ pattern templates](https://demo.zoloblocks.com/library/#patterns)**, and **20+ extra editor options** for Gutenberg. This amazing Ultimate block plugin for Gutenberg offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
 
 Whether you are a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress Gutenberg block editor. Say goodbye to coding headaches and cumbersome page builder plugins. Just replace the slow and complicated page-builder plugins with this fine-tuned website-builder plugin.
 
@@ -25,8 +25,8 @@ https://www.youtube.com/watch?v=8kBMIL-4PZI
 
 == Key Features of ZoloBlocks ==
 
-👍 **50+** Advanced blocks for Gutenberg
-👍 **250+** ready templates
+👍 **65+** Advanced blocks for Gutenberg
+👍 **650+** ready templates
 👍 **One-click** template import
 👍 Impressive page builder & patterns for Gutenberg editor
 👍 **15+** Creative Gutenberg blocks
@@ -59,7 +59,7 @@ Even famous page builder plugins bow down to the **design freedom** at Zolo Bloc
 
 == One-Click Template Import 🪄 ==
 
-You open your page, then click on the ZoloBlocks Template Library icon, then choose a pattern template, and click it to import on your page. Only 4 steps are required to create your landing page almost instantly. With its arsenal of efficient page builder & patterns for Gutenberg editor, you are free to choose from **250+ high-quality templates**. The numbers are going up fast.
+You open your page, then click on the ZoloBlocks Template Library icon, then choose a pattern template, and click it to import on your page. Only 4 steps are required to create your landing page almost instantly. With its arsenal of efficient page builder & patterns for Gutenberg editor, you are free to choose from **650+ high-quality templates**. The numbers are going up fast.
 
 == Creative Animations Transitions 🌠 ==
 
@@ -354,9 +354,23 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+**2.1.4 [December 07, 2024]**
 
+- **New Features:**
+	- **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control.
+	Optimized arrow size for better usability and design consistency.
+	- **Profile Card Block:** Added background options for the photo overlay in preset 2.
+	- **Automatic Block Recovery:** Introduced the "Automatic Block Recovery" feature.
+	- **Form Block:** Added spacing options for icons.
+	- **Newsletter Block:** Added width type and alignment options for the submit button.
+Removed the custom width range control for the submit button in preset 1.
 
-**= 2.1.3 - 01-12-2024 =**
+- **Fixes:**
+	- **Container Block:** Enhanced design compatibility for default navigation and Gutenkit navigation in the editor.
+	- **Team Grid Block:** Fixed z-index issues affecting content in preset style 1.
+	- **Review Carousel Block:** Resolved the issue with arrow color control functionality.
+
+**2.1.3 [December 01, 2024]**
 
 - **New Features:**
   - **Advanced Paragraph Block:** Added hover border color option.
@@ -370,13 +384,13 @@ Not at all. We have optimized all of these blocks for better performance.
   - **Advanced Paragraph Block:** Fixed default spacing issue.
   - **WordPress v6.7.1 compatibility issue fixed.
 
-**= 2.1.2 - 20-11-2024 =**
+**2.1.2 [November 20, 2024]**
 
 - **Fixes:**
   - **Column Layout:** Resolved the column layout issue.
   - **Caption Display:** Addressed the caption hide issue.
 
-**= 2.1.1 - 19-11-2024 =**
+**2.1.1 [November 19, 2024]**
 
 - **New Features:**
   - **Advanced Button:** Added expanded functionality.
@@ -390,7 +404,7 @@ Not at all. We have optimized all of these blocks for better performance.
   - **Offset Control:** Added responsive options for better flexibility.
   - **Code Optimization:** Improved block arrangement for enhanced performance.
 
-**= 2.1.0 - 13-11-2024 =**
+**2.1.0 [November 13, 2024]**
 
 - **New Features:**
   - **Table of Contents Block:** Introduced a highly customizable block with automatic heading detection and flexible styling options for structuring long content effortlessly.
@@ -401,7 +415,7 @@ Not at all. We have optimized all of these blocks for better performance.
   - **Display Consistency:** Addressed display issues for consistent functionality.
   - **Effects:** Fixed scale and hover flip effect issues.
 
-  **= 2.0.0 - 07-11-2024 =**
+**2.0.0 [November 07, 2024]**
 
 - **New Features:**
   - **Navigation Menu Block:** Introduced a fully customizable block for easy site navigation.
