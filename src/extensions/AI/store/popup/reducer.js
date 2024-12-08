@@ -4,6 +4,7 @@ const initialState = {
     response: '',
     loading: false,
     content: '',
+    blockContent: '',
     onConfirm: () => {},
     onCancel: () => {},
 };
@@ -18,6 +19,9 @@ function reducer(state = initialState, action) {
             return { ...state, isOpen: !state.isOpen, content: action.payload.content };
         case 'SET_PROMPT':
             return { ...state, prompt: action.prompt };
+        case 'SET_BLOCK_CONTENT':
+            return { ...state, blockContent: action.blockContent };
+
         case 'SET_RESPONSE':
             return { ...state, response: action.response };
         case 'SET_CONTEXT':

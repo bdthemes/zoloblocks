@@ -49,10 +49,10 @@ export function setLanguage(language) {
     };
 }
 
-export function setDefault(defaultValue) {
+export function setBlockContent(blockContent) {
     return {
-        type: 'SET_DEFAULT',
-        defaultValue,
+        type: 'SET_BLOCK_CONTENT',
+        blockContent,
     };
 }
 
@@ -65,6 +65,7 @@ export function requestAI() {
         const data = { request: select.getPrompt() };
         if (context === 'selected-blocks') {
             data.context = getContextFromSelectedBlocks();
+            data.request = select.getBlockContent();
         }
         apiFetch({
             path: '/zolo/v1/openai',

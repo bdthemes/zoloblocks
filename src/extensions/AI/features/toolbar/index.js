@@ -24,7 +24,7 @@ import { __, sprintf } from '@wordpress/i18n';
 
 
 const Toolbar = (props) => {
-    const { toggle, requestAI } = useDispatch('zoloai/popup');
+    const { toggle, setBlockContent, requestAI } = useDispatch('zoloai/popup');
     const [panel, setPanel] = useState(false);
 const {attributes, setAttributes} = props;
 
@@ -55,7 +55,7 @@ const {attributes, setAttributes} = props;
                     onClick={(e) => {
                         e.preventDefault();
                         toggle();
-                        // toggle(attributes?.content);
+                        setBlockContent(attributes?.content);
 
                         // requestAI();
                     }}

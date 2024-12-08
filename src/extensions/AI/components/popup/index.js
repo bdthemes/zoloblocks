@@ -12,45 +12,64 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { rawHandler } from '@wordpress/blocks';
 import domReady from '@wordpress/dom-ready';
 import clsx from 'clsx';
-import { useRef } from '@wordpress/element';
+import { useRef, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { TextEffect } from '../../../../controls/animations/text-effects';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
+// import { useRef, useEffect } from 'react';
+// import { useDispatch, useSelect } from '@wordpress/data';
+// import { __ } from '@wordpress/i18n';
+
 const Input = () => {
     const ref = useRef();
+
     const { reset, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
-    const { isOpen, prompt } = useSelect((select) => {
-        const { isOpen: checkIsOpen, getPrompt } = select('zoloai/popup');
+    const { isOpen, prompt, content, loading } = useSelect((select) => {
+        const { isOpen: checkIsOpen, getPrompt, getBlockContent, getLoading } = select('zoloai/popup');
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
+            loading: getLoading(),
+            content: getBlockContent() || '', // Default to an empty string if null
         };
     });
 
-    function onKeyDown(e) {
-        if (e.key === 'Enter') {
+    console.log('prompt', prompt);
+    console.log('content', content);
+
+    // useEffect(() => {
+    //     if (content && content !== prompt) {
+    //         setPrompt(content); // Sync content as the initial value for the prompt
+    //     }
+    // }, [content, prompt]);
+
+    const onKeyDown = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevent default newline behavior on Enter
             requestAI();
         }
-    }
+    };
 
     return (
         <div className="zolo-popup-input">
             <textarea
                 ref={ref}
                 placeholder={__('Ask AI to write anything…', 'zoloblocks')}
-                value={prompt}
-                onChange={(e) => {
-                    setPrompt(e.target.value);
-                }}
+                value={prompt} // Ensure the textarea is controlled
+                onChange={(e) => setPrompt(e.target.value)} // Update prompt state
                 onKeyDown={onKeyDown}
-                // disabled={loading}
                 rows={5}
+                // disabled={loading}
+
             />
         </div>
     );
 };
+
+// export default Input;
+
 
 const Content = () => {
     const ref = useRef();
