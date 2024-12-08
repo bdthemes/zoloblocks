@@ -39,11 +39,10 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
                 name === 'core/paragraph'
             ) {
                 const handleKeyDown = (event) => {
-                    if (event.key === 'Tab') {
-                        // alert('Tab pressed');
+                    console.log(event);
+                    if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
                         event.preventDefault();
                         event.stopPropagation();
-                        //prevent to the new line
                         open();
                     }
                 };
