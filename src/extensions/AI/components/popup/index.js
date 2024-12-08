@@ -15,81 +15,87 @@ import clsx from 'clsx';
 import { useRef, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import { TextEffect } from '../../../../controls/animations/text-effects';
+import Input from '../Input';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
-// import { useRef, useEffect } from 'react';
-// import { useDispatch, useSelect } from '@wordpress/data';
-// import { __ } from '@wordpress/i18n';
 
-const Input = () => {
-    const ref = useRef();
 
-    const { reset, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
-    const { isOpen, prompt, content, loading } = useSelect((select) => {
-        const { isOpen: checkIsOpen, getPrompt, getBlockContent, getLoading } = select('zoloai/popup');
-        return {
-            isOpen: checkIsOpen(),
-            prompt: getPrompt(),
-            loading: getLoading(),
-            content: getBlockContent() || '', // Default to an empty string if null
-        };
-    });
+// const Input = () => {
+//     const ref = useRef();
 
-    console.log('prompt', prompt);
-    console.log('content', content);
+//     const { reset, open, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
+//     const { isOpen, prompt, content, response, loading, context } = useSelect((select) => {
+//     const { isOpen: checkIsOpen, getPrompt, getBlockContent, getResponse, isLoading, getContext } = select('zoloai/popup');
+//         return {
+//             isOpen: checkIsOpen(),
+//             prompt: getPrompt(),
+//             content: getBlockContent() || '', // Default to an empty string if null
+//             response: getResponse() || '', // Default to an empty string if null
+//             loading: isLoading(),
+//             context: getContext(),
+//         };
+//     });
+// let responseContent = content;
+//     if(response && response.content) {
+//         responseContent = response.content;
+//     }
 
-    // useEffect(() => {
-    //     if (content && content !== prompt) {
-    //         setPrompt(content); // Sync content as the initial value for the prompt
-    //     }
-    // }, [content, prompt]);
+// // set content as the default prompt
+//     useEffect(() => {
+//         if(!prompt && content) {
+//             setPrompt(context);
+//         }
+//     }, [content,  prompt, responseContent, setPrompt]);
 
-    const onKeyDown = (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault(); // Prevent default newline behavior on Enter
-            requestAI();
-        }
-    };
 
-    return (
-        <div className="zolo-popup-input">
-            <textarea
-                ref={ref}
-                placeholder={__('Ask AI to write anything…', 'zoloblocks')}
-                value={prompt} // Ensure the textarea is controlled
-                onChange={(e) => setPrompt(e.target.value)} // Update prompt state
-                onKeyDown={onKeyDown}
-                rows={5}
-                // disabled={loading}
 
-            />
-        </div>
-    );
-};
+//     const onKeyDown = (e) => {
+//         if (e.key === 'Enter' && !e.shiftKey) {
+//             e.preventDefault(); // Prevent default newline behavior on Enter
+//             requestAI();
+//         }
+//     };
 
-// export default Input;
+//     return (
+//         <div className="zolo-popup-input">
+//             <textarea
+//                 ref={ref}
+//                 placeholder={__('Ask AI to write anything…', 'zoloblocks')}
+//                 value={context} // Ensure the textarea is controlled
+//                 onChange={(e) => setPrompt(e.target.value)} // Update prompt state
+//                 onKeyDown={onKeyDown}
+//                 rows={1}
+//                 disabled={loading}
+//             />
+//         </div>
+//     );
+// };
+
+
 
 
 const Content = () => {
     const ref = useRef();
     const { reset, setPrompt, setContext, setLanguage, requestAI } = useDispatch('zoloai/popup');
-    const { loading, prompt, language, response, content } = useSelect((select) => {
-        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent } = select('zoloai/popup');
+    const { loading, prompt, language, response, content, context } = useSelect((select) => {
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
             response: getResponse(),
             loading: isLoading(),
             content: getContent() ? getContent() : '',
+            context: getContext(),
         };
     });
+
+    // console.log('content ', context);
 
     function openModal(prompt) {
         // open();
         setPrompt(prompt);
         setContext('selected-blocks');
-        // setInsertionPlace('selected-blocks');
         requestAI();
         // reset();
     }
@@ -110,16 +116,6 @@ const Content = () => {
                 )}
                 {/* {!loading && response && ( */}
                 <div className="zolo-popup-response-content">
-                    {!loading && response && response?.content ? (<p>{response?.content || ''}</p>):
-                    (
-                        <p>{content}</p>
-                    )}
-                    {
-
-                    }
-                    <br />
-                    <br />
-
                     <Button
                         variant="primary"
                         onClick={() => {

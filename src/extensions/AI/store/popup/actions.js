@@ -63,10 +63,11 @@ export function requestAI() {
         dispatch({ type: 'REQUEST_AI_PENDING' });
         const context = select.getContext();
         const data = { request: select.getPrompt() };
-        if (context === 'selected-blocks') {
-            data.context = getContextFromSelectedBlocks();
-            data.request = select.getBlockContent();
+        if (context !== '') {
+            // data.context = getContextFromSelectedBlocks();
+            data.context = select.getBlockContent().trim();
         }
+        console.log('data', data);
         apiFetch({
             path: '/zolo/v1/openai',
             method: 'POST',
