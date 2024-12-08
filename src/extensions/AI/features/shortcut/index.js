@@ -1,0 +1,89 @@
+import { addFilter } from '@wordpress/hooks';
+import { useState, useEffect } from '@wordpress/element';
+import { usePrevious, createHigherOrderComponent } from '@wordpress/compose';
+import { useDispatch, useSelect } from '@wordpress/data';
+
+import { TextEffect } from '../../../../controls/animations/text-effects';
+
+
+
+/**
+ * Listen for `/zoloai:` inside an empty paragraph block.
+ * And open the Zolo Popup.
+ *
+ * @param {Function} OriginalComponent Original component.
+ *
+ * @return {Function} Wrapped component.
+ */
+const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
+    function ZoloParagraphAI(props) {
+        const { name, attributes, setAttributes, clientId } = props;
+        const { content = '' } = attributes;
+
+        const previousContent = usePrevious(content);
+        const {open, reset, setPrompt, requestAI } = useDispatch('zoloai/popup');
+        const { prompt, response, loading } = useSelect((select) => {
+            const { getPrompt, getResponse, isLoading } = select('zoloai/popup');
+            return {
+                prompt: getPrompt(),
+                loading: isLoading(),
+                response: getResponse(),
+            };
+        });
+
+        // State for tracking processed client IDs
+        const [processedClientIds, setProcessedClientIds] = useState([]);
+
+        useEffect(() => {
+            if (
+                name === 'core/paragraph'
+            ) {
+                const handleKeyDown = (event) => {
+                    if (event.key === 'Tab') {
+                        // alert('Tab pressed');
+                        event.preventDefault();
+                        event.stopPropagation();
+                        //prevent to the new line
+                        open();
+                    }
+                };
+
+                document.addEventListener('keydown', handleKeyDown);
+
+                return () => {
+                    document.removeEventListener('keydown', handleKeyDown);
+                };
+            }
+
+            // Replace content for the current block only if a response is available
+            if (response && response.content && processedClientIds.includes(clientId)) {
+                // Remove clientId from the processed list to allow further edits
+                setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
+                setAttributes({ content: response.content });
+                reset();
+            }
+
+            // Replace content for the current block only if a response is available
+            if (response && response.content && processedClientIds.includes(clientId)) {
+                // Remove clientId from the processed list to allow further edits
+                setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
+                setAttributes({ content: response.content });
+                reset();
+            }
+        }, [content, clientId, processedClientIds, requestAI, setPrompt, response?.content, setAttributes, previousContent, loading]);
+
+        // Update the content to "Processing..." during loading
+        if (loading && processedClientIds.includes(clientId)) {
+            return (
+                <TextEffect className="inline-flex" per="char" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
+                    Processing...
+                </TextEffect>
+            );
+        }
+        return <OriginalComponent {...props} />;
+    }
+
+    return ZoloParagraphAI;
+}, 'withZoloAI');
+
+addFilter('editor.BlockEdit', 'zolo/open-popup', withZoloAI);
