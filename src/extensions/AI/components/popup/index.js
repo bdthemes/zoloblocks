@@ -19,62 +19,6 @@ import Input from '../Input';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
-
-
-// const Input = () => {
-//     const ref = useRef();
-
-//     const { reset, open, setPrompt, setScreen, requestAI } = useDispatch('zoloai/popup');
-//     const { isOpen, prompt, content, response, loading, context } = useSelect((select) => {
-//     const { isOpen: checkIsOpen, getPrompt, getBlockContent, getResponse, isLoading, getContext } = select('zoloai/popup');
-//         return {
-//             isOpen: checkIsOpen(),
-//             prompt: getPrompt(),
-//             content: getBlockContent() || '', // Default to an empty string if null
-//             response: getResponse() || '', // Default to an empty string if null
-//             loading: isLoading(),
-//             context: getContext(),
-//         };
-//     });
-// let responseContent = content;
-//     if(response && response.content) {
-//         responseContent = response.content;
-//     }
-
-// // set content as the default prompt
-//     useEffect(() => {
-//         if(!prompt && content) {
-//             setPrompt(context);
-//         }
-//     }, [content,  prompt, responseContent, setPrompt]);
-
-
-
-//     const onKeyDown = (e) => {
-//         if (e.key === 'Enter' && !e.shiftKey) {
-//             e.preventDefault(); // Prevent default newline behavior on Enter
-//             requestAI();
-//         }
-//     };
-
-//     return (
-//         <div className="zolo-popup-input">
-//             <textarea
-//                 ref={ref}
-//                 placeholder={__('Ask AI to write anything…', 'zoloblocks')}
-//                 value={context} // Ensure the textarea is controlled
-//                 onChange={(e) => setPrompt(e.target.value)} // Update prompt state
-//                 onKeyDown={onKeyDown}
-//                 rows={1}
-//                 disabled={loading}
-//             />
-//         </div>
-//     );
-// };
-
-
-
-
 const Content = () => {
     const ref = useRef();
     const { reset, setPrompt, setContext, setLanguage, requestAI } = useDispatch('zoloai/popup');
@@ -90,14 +34,11 @@ const Content = () => {
         };
     });
 
-    // console.log('content ', context);
 
     function openModal(prompt) {
-        // open();
         setPrompt(prompt);
         setContext('selected-blocks');
         requestAI();
-        // reset();
     }
     function onKeyDown(e) {
         if (e.key === 'Enter') {

@@ -2,54 +2,57 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
 
 const Input = () => {
-    const { setBlockContent, requestAI } = useDispatch('zoloai/popup');
+    const { setBlockContent } = useDispatch('zoloai/popup');
 
     const { response, isOpen } = useSelect((select) => {
         const { getResponse, isOpen: checkIsOpen } = select('zoloai/popup');
         return {
-            response: getResponse() || '', // Default to an empty string if null
+            response: getResponse() || {}, // Default to an empty object if null
             isOpen: checkIsOpen(),
         };
     });
+    const [blockContent, setBlockContentState] = useState('');
 
     const getContextFromSelectedBlocks = () => {
         const { getBlock, getSelectedBlockClientIds } = wp.data.select('core/block-editor');
-        const selectedBlocks = getSelectedBlockClientIds().map((clientId) => getBlock(clientId));
-        let blockContent = '';
-        selectedBlocks.forEach((block) => {
-            if (block?.attributes?.content) {
-                blockContent += block.attributes.content;
-            }
-        });
-        return blockContent;
+        return getSelectedBlockClientIds()
+            .map((id) => getBlock(id)?.attributes?.content || '')
+            .map((content) => {
+                const selection = window.getSelection();
+                return selection?.rangeCount > 0 && selection.toString() ? selection.toString() : content;
+            })
+            .join('');
     };
 
-    const [blockContent, setLocalBlockContent] = useState(getContextFromSelectedBlocks());
+    useEffect(() => {
+        if (isOpen) {
+            const initialContent = getContextFromSelectedBlocks();
+            setBlockContentState(initialContent);
+            setBlockContent(initialContent);
+        }
+    }, [isOpen, setBlockContent]);
 
     useEffect(() => {
-        // Update block content when response changes
-        if (response.content) {
-            setLocalBlockContent(response.content);
+        if (response?.content) {
+            setBlockContentState(response.content);
             setBlockContent(response.content);
         }
-    }, [response.content, setBlockContent]);
+    }, [response, setBlockContent]);
 
     const handleInputChange = (e) => {
         const newContent = e.target.value;
-        setLocalBlockContent(newContent);
+        setBlockContentState(newContent);
         setBlockContent(newContent);
     };
 
     return (
-        <div>
-            <textarea
-                value={blockContent}
-                onChange={handleInputChange}
-                placeholder="Type your content here..."
-                rows={6}
-                style={{ width: '100%' }}
-            />
-        </div>
+        <textarea
+            value={blockContent}
+            onChange={handleInputChange}
+            placeholder="Type your content here..."
+            rows={6}
+            style={{ width: '100%' }}
+        />
     );
 };
 
