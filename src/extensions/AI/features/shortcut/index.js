@@ -1,15 +1,10 @@
 import { addFilter } from '@wordpress/hooks';
-import { useState, useEffect } from '@wordpress/element';
-import { usePrevious, createHigherOrderComponent } from '@wordpress/compose';
-import { useDispatch, useSelect } from '@wordpress/data';
-
-import { TextEffect } from '../../../../controls/animations/text-effects';
-
-
+import { useEffect } from '@wordpress/element';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { useDispatch } from '@wordpress/data';
 
 /**
- * Listen for `/zoloai:` inside an empty paragraph block.
- * And open the Zolo Popup.
+ * Open Zolo Popup when `Ctrl + Shift + /` is pressed.
  *
  * @param {Function} OriginalComponent Original component.
  *
@@ -17,29 +12,12 @@ import { TextEffect } from '../../../../controls/animations/text-effects';
  */
 const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
     function ZoloParagraphAI(props) {
-        const { name, attributes, setAttributes, clientId } = props;
-        const { content = '' } = attributes;
-
-        const previousContent = usePrevious(content);
-        const {open, reset, setPrompt, requestAI } = useDispatch('zoloai/popup');
-        const { prompt, response, loading } = useSelect((select) => {
-            const { getPrompt, getResponse, isLoading } = select('zoloai/popup');
-            return {
-                prompt: getPrompt(),
-                loading: isLoading(),
-                response: getResponse(),
-            };
-        });
-
-        // State for tracking processed client IDs
-        const [processedClientIds, setProcessedClientIds] = useState([]);
+        const { name } = props;
+        const { open } = useDispatch('zoloai/popup');
 
         useEffect(() => {
-            if (
-                name === 'core/paragraph'
-            ) {
+            if (name === 'core/paragraph') {
                 const handleKeyDown = (event) => {
-                    console.log(event);
                     if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
                         event.preventDefault();
                         event.stopPropagation();
@@ -53,32 +31,8 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
                     document.removeEventListener('keydown', handleKeyDown);
                 };
             }
+        }, [name, open]);
 
-            // Replace content for the current block only if a response is available
-            if (response && response.content && processedClientIds.includes(clientId)) {
-                // Remove clientId from the processed list to allow further edits
-                setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
-                setAttributes({ content: response.content });
-                reset();
-            }
-
-            // Replace content for the current block only if a response is available
-            if (response && response.content && processedClientIds.includes(clientId)) {
-                // Remove clientId from the processed list to allow further edits
-                setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
-                setAttributes({ content: response.content });
-                reset();
-            }
-        }, [content, clientId, processedClientIds, requestAI, setPrompt, response?.content, setAttributes, previousContent, loading]);
-
-        // Update the content to "Processing..." during loading
-        if (loading && processedClientIds.includes(clientId)) {
-            return (
-                <TextEffect className="inline-flex" per="char" trigger="hover" variants={{ opacity: [0, 1], translateY: [10, 0] }}>
-                    Processing...
-                </TextEffect>
-            );
-        }
         return <OriginalComponent {...props} />;
     }
 

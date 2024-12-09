@@ -226,7 +226,7 @@ export default function Popup() {
     return (
         <Modal
             title={false}
-            className={clsx('zolo-popup')}
+            className={clsx('zolo-popup zolo-popup-ai')}
             overlayClassName="zolo-popup-overlay"
             onRequestClose={() => {
                 reset();

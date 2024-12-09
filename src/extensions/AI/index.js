@@ -1,3 +1,5 @@
+
+import './ai.scss';
 import './store/popup';
 import './components/popup';
 import './features/paragraph';

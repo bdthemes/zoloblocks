@@ -467,7 +467,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'import-pattern' => ['has_style' => true],
                 'shape-divider' => ['has_style' => false],
                 'particles' => ['has_style' => true],
-                'AI' => ['has_style' => false],
+                'AI' => ['has_style' => true],
             ];
 
             foreach ($extensions as $extension => $properties) {
