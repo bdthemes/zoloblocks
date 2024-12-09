@@ -1,7 +1,5 @@
 
 import './ai.scss';
-import './store/popup';
+import './store';
 import './popup';
-import './features/paragraph';
-import './features/toolbar';
-import './features/shortcut';
+import './features';

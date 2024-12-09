@@ -2,8 +2,7 @@ import { Button, SelectControl } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useRef } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { TextEffect } from '../../../../controls/animations/text-effects';
-
+import { TextEffect } from '../../../../../controls/animations/text-effects';
 
 const Content = () => {
     const ref = useRef();

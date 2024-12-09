@@ -14,9 +14,11 @@ import domReady from '@wordpress/dom-ready';
 import clsx from 'clsx';
 import { __ } from '@wordpress/i18n';
 
-import { Input, Content } from './components';
+import { Header, PromptInput, Content } from './components';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
+
+
 
 export default function Popup() {
     const { close, reset } = useDispatch('zoloai/popup');
@@ -74,7 +76,8 @@ export default function Popup() {
             }}
             __experimentalHideHeader
         >
-            <Input />
+            <Header/>
+            <PromptInput />
             <Content />
         </Modal>
     );

@@ -1,4 +1,5 @@
-import Input from './Input';
-import Content from './Content';
+import Header from '../components/header';
+import PromptInput from '../components/prompt';
+import Content from '../components/content';
 
-export { Input, Content };
+export { Header, Content, PromptInput };

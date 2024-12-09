@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
 
-const Input = () => {
+const PromptInput = () => {
     const { setBlockContent } = useDispatch('zoloai/popup');
 
     const { response, isOpen } = useSelect((select) => {
@@ -56,4 +56,4 @@ const Input = () => {
     );
 };
 
-export default Input;
+export default PromptInput;

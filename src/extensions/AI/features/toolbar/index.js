@@ -16,7 +16,6 @@ import {
     SelectControl,
 } from '@wordpress/components';
 import { useState, useRef } from '@wordpress/element';
-const { ColorControl } = window.zoloModule;
 import { useSelect, useDispatch } from '@wordpress/data';
 import { rawHandler } from '@wordpress/blocks';
 import clsx from 'clsx';
