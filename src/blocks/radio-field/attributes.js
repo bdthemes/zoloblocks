@@ -22,7 +22,7 @@ import {
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
-    FIELD_GAP,
+    RADIO_SPACE_BETWEEN,
     FIELD_SPACE,
 } from './constants';
 
@@ -84,7 +84,7 @@ Option 3`,
     ...generateBorderAttributies(FIELD_BORDER),
     ...generateDimensionAttributes(FIELD_BRADIUS),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    ...generateGapAttributes(FIELD_GAP),
+    ...generateResRangeAttributies(RADIO_SPACE_BETWEEN),
     ...generateResRangeAttributies(FIELD_SPACE),
     showLabel: {
         type: 'boolean',
@@ -92,7 +92,7 @@ Option 3`,
     },
     label: {
         type: 'string',
-        default: 'Field Label',
+        default: 'Radio',
     },
     labelColor: {
         type: 'string',
@@ -133,6 +133,10 @@ Option 3`,
     },
     requiredColor: {
         type: 'string',
+    },
+    radioDirection: {
+        type: 'string',
+        default: 'zolo-form-radio-col',
     },
 };
 export default attributes;

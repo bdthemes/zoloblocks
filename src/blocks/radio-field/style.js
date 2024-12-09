@@ -30,7 +30,7 @@ import {
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
-    FIELD_GAP,
+    RADIO_SPACE_BETWEEN,
     FIELD_SPACE,
     ICON_SIZE,
 } from './constants';
@@ -165,20 +165,22 @@ const Style = ({ props }) => {
     });
 
     const {
-        gapStylesDesktop: fieldGapDesk,
-        gapStylesTab: fieldGapTab,
-        gapStylesMobile: fieldGapMob,
-    } = generateGapStyle({
-        controlName: FIELD_GAP,
-        attributes,
-    });
-
-    const {
         desktopRangeStyle: fieldSpaceDesk,
         tabRangeStyle: fieldSpaceTab,
         mobRangeStyle: fieldSpaceMob,
     } = generateResRangeStyle({
         controlName: FIELD_SPACE,
+        property: 'gap',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: radioSpaceDesk,
+        tabRangeStyle: radioSpaceTab,
+        mobRangeStyle: radioSpaceMob,
+    } = generateResRangeStyle({
+        controlName: RADIO_SPACE_BETWEEN,
+        property: 'gap',
         attributes,
     });
 
@@ -226,6 +228,14 @@ const Style = ({ props }) => {
             ${fieldPaddingDesktop}
             ${fieldBGStyle}
         }
+
+      .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item{
+            ${fieldSpaceDesk}
+        }
+      .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item label{
+            ${radioSpaceDesk}
+        }
+
     `;
 
     const tabletAllStyle = `
@@ -254,6 +264,12 @@ const Style = ({ props }) => {
             ${fieldBRTab}
             ${fieldPaddingTab}
             ${fieldTabBGStyle}
+        }
+      .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item{
+            ${fieldSpaceTab}
+      }
+      .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item label{
+            ${radioSpaceTab}
         }
     `;
 
@@ -284,6 +300,13 @@ const Style = ({ props }) => {
             ${fieldBRMob}
             ${fieldPaddingMob}
             ${fieldMobBGStyle}
+        }
+
+    .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item{
+            ${fieldSpaceMob}
+      }
+      .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item label{
+            ${radioSpaceMob}
         }
 
     `;

@@ -20,6 +20,5 @@ export const FIELD_MARGIN = 'fieldMargin';
 export const FIELD_BG = 'fieldBg';
 export const FIELD_BORDER = 'fieldBorder';
 export const FIELD_BRADIUS = 'fieldBorderRadius';
-export const FIELD_GAP = 'fieldGap';
+export const RADIO_SPACE_BETWEEN = 'radioSpaceBetween';
 export const FIELD_SPACE = 'fieldSpace';
-

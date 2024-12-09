@@ -20,5 +20,6 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js"
 }
