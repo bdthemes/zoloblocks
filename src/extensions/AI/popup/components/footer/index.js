@@ -24,9 +24,9 @@ export const Footer = (props) => {
 
     const showFooter = response || (prompt && !loading && !response);
 
-    // if (!showFooter) {
-    //     return null;
-    // }
+    if (!showFooter) {
+        return null;
+    }
 
     return (
         <div className="zolo-popup-footer">
@@ -40,8 +40,8 @@ export const Footer = (props) => {
                         {__('Get Answer', 'zoloblocks')}
                     </Button>
                 )}
-                {/* {response && (
-                    <>*/}
+                {response && (
+                    <>
                 <Button
                     onClick={() => {
                         // setError('');
@@ -52,8 +52,41 @@ export const Footer = (props) => {
                 </Button>
                 <Button
                     onClick={() => {
-                        // Copy to clipboard.
-                        window.navigator.clipboard.writeText(response?.content);
+                        const textToCopy = response?.content;
+
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard
+                                .writeText(textToCopy)
+                                .then(() => {
+                                    console.log('Text copied to clipboard successfully!');
+                                })
+                                .catch((err) => {
+                                    console.error('Failed to copy text: ', err);
+                                });
+                        } else {
+                            // Fallback for older browsers or if clipboard API is restricted
+                            const textArea = document.createElement('textarea');
+                            textArea.value = textToCopy;
+                            textArea.style.position = 'fixed'; // Avoid scrolling to the bottom
+                            textArea.style.top = '0';
+                            textArea.style.left = '0';
+                            document.body.appendChild(textArea);
+                            textArea.focus();
+                            textArea.select();
+
+                            try {
+                                const successful = document.execCommand('copy');
+                                if (successful) {
+                                    console.log('Fallback: Text copied to clipboard!');
+                                } else {
+                                    console.error('Fallback: Unable to copy text.');
+                                }
+                            } catch (err) {
+                                console.error('Fallback: Error copying text: ', err);
+                            }
+
+                            document.body.removeChild(textArea);
+                        }
 
                         reset();
                         close();
@@ -61,9 +94,10 @@ export const Footer = (props) => {
                 >
                     {__('Copy', 'zoloblocks')}
                 </Button>
+
                 <Button onClick={onInsert}>{__('Insert', 'zoloblocks')}</Button>
-                {/* </>
-                )} */}
+                </>
+                )}
             </div>
         </div>
     );
