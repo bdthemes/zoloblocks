@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
 
-const Prompt = () => {
+const Prompt = (props) => {
+        const{onInsert} = props;
     const { setBlockContent } = useDispatch('zoloai/popup');
 
     const { response, isOpen } = useSelect((select) => {

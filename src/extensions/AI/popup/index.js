@@ -18,16 +18,18 @@ import { Header, Prompt, Content, Footer } from './components';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
-
-
 export default function Popup() {
     const { close, reset } = useDispatch('zoloai/popup');
 
-    const { isOpen, insertionPlace, response } = useSelect((select) => {
-        const { isOpen: checkIsOpen } = select('zoloai/popup');
-
+    const { isOpen, response } = useSelect((select) => {
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getBlockContent, getContext } = select('zoloai/popup');
         return {
             isOpen: checkIsOpen(),
+            prompt: getPrompt(),
+            response: getResponse(),
+            loading: isLoading(),
+            blockContent: getBlockContent(),
+            context: getContext(),
         };
     });
 
@@ -41,23 +43,49 @@ export default function Popup() {
         };
     }, []);
 
-    const { insertBlocks, replaceBlocks } = useDispatch('core/block-editor');
+    const { insertBlocks, replaceBlocks, updateBlockAttributes } = useDispatch('core/block-editor');
+
+    const getContextFromSelectedBlocks = () => {
+        const { getBlock, getSelectedBlockClientIds } = wp.data.select('core/block-editor');
+        return getSelectedBlockClientIds()
+            .map((id) => getBlock(id)?.attributes?.content || '')
+            .map((content) => {
+                const selection = window.getSelection();
+                return selection?.rangeCount > 0 && selection.toString() ? selection.toString() : content;
+            })
+            .join('');
+    };
 
     function insertResponse() {
+        const selectedText = getContextFromSelectedBlocks();
+        const origintalContent = (clientId) => {
+            const block = wp.data.select('core/block-editor').getBlock(clientId);
+            return block ? block.attributes?.content : {};
+        };
+        // console.log('selectedClientIds:', getBlockData(selectedClientIds[0]));
         const parsedBlocks = rawHandler({ HTML: response?.content });
 
-        if (parsedBlocks.length) {
-            if (insertionPlace === 'selected-blocks') {
-                replaceBlocks(selectedClientIds, parsedBlocks);
+        console.log('Selected Text:', selectedText);
+
+        if (parsedBlocks.length && selectedText) {
+            console.log('Replacing selected content with:', response?.content);
+
+            if (selectedText) {
+                updateBlockAttributes(selectedClientIds[0], {
+                    content: origintalContent(selectedClientIds[0]).replace(selectedText, response?.content),
+                });
             } else {
-                insertBlocks(parsedBlocks);
+                // insertBlocks(parsedBlocks, insertionPlace);
+                replaceBlocks(selectedClientIds[0], parsedBlocks);
             }
+        } else {
+            console.warn('No valid text selected or no parsed blocks available.');
         }
     }
 
     function onInsert() {
         insertResponse();
-        reset();
+        // reset();
         close();
     }
 
@@ -76,10 +104,10 @@ export default function Popup() {
             }}
             __experimentalHideHeader
         >
-            <Header/>
+            <Header />
             <Prompt />
             <Content />
-            <Footer/>
+            <Footer onInsert={onInsert} />
         </Modal>
     );
 }
