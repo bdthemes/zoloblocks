@@ -14,7 +14,7 @@ import domReady from '@wordpress/dom-ready';
 import clsx from 'clsx';
 import { __ } from '@wordpress/i18n';
 
-import { Header, PromptInput, Content, Footer } from './components';
+import { Header, Prompt, Content, Footer } from './components';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
@@ -77,7 +77,7 @@ export default function Popup() {
             __experimentalHideHeader
         >
             <Header/>
-            <PromptInput />
+            <Prompt />
             <Content />
             <Footer/>
         </Modal>
