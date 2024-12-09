@@ -143,7 +143,7 @@ if (! class_exists('ZoloEnqueues')) {
                 );
 
                 wp_enqueue_script('particles-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/frontend.js', ['particles-js'], ZOLO_VERSION, true);
-                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style-index.css', [], ZOLO_VERSION);
+                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/index.css', [], ZOLO_VERSION);
             }
 
             // form validation
@@ -276,7 +276,7 @@ if (! class_exists('ZoloEnqueues')) {
 
             if (ZoloHelpers::is_extension_enabled('particles')) {
                 wp_enqueue_script('particles-js', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js', [], ZOLO_VERSION, true);
-                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/style-index.css', [], ZOLO_VERSION);
+                wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/index.css', [], ZOLO_VERSION);
             }
 
             // Register Modules
