@@ -195,7 +195,7 @@
         color: var(--zolo-input-text-color);
         border-radius: var(--zolo-input-border-radius);
         width: 100%;
-		max-width:100%;
+        max-width: 100%;
         box-sizing: border-box;
         background-color: rgb(249 250 251 / var(--tw-opacity));
         border-width: var(--zolo-input-border-width);
@@ -355,6 +355,7 @@
     width: 1em;
     height: 1em;
     display: block;
+    font-size: 16px;
 }
 
 // .zolo-contact-form

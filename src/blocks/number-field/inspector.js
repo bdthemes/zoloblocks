@@ -38,7 +38,7 @@ import {
     LABEL_BORDER,
     LABEL_BRADIUS,
     FIELD_SIZE,
-    FIELD_MARGIN,
+    FIELD_PADDING,
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
@@ -85,8 +85,9 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
-                                label={__('Show Label', 'zoloblocks')}
+                                label={__('Label', 'zoloblocks')}
                                 checked={showLabel}
                                 onChange={() => setAttributes({ showLabel: !showLabel })}
                             />
@@ -97,7 +98,7 @@ function Inspector(props) {
                             />
                             {preset !== 'style-3' && (
                                 <ToggleControl
-                                    label={__('Show icon', 'zoloblocks')}
+                                    label={__('Icon', 'zoloblocks')}
                                     checked={showIcon}
                                     onChange={() => setAttributes({ showIcon: !showIcon })}
                                 />
@@ -105,7 +106,7 @@ function Inspector(props) {
 
                             {isRequired && (
                                 <ToggleControl
-                                    label={__('Show Required Symbol', 'zoloblocks')}
+                                    label={__('Required Symbol', 'zoloblocks')}
                                     checked={showRequiredSymbol}
                                     onChange={() => setAttributes({ showRequiredSymbol: !showRequiredSymbol })}
                                 />
@@ -229,7 +230,12 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody title={__('Field', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={showLabel ? false : true}>
+                        <ZoloPanelBody
+                            title={__('Field', 'zoloblocks')}
+                            stylePanel={true}
+                            panelProps={props}
+                            firstOpen={showLabel ? false : true}
+                        >
                             <ColorControl
                                 label={__('Color', 'zoloblocks')}
                                 color={textColor}
@@ -247,19 +253,12 @@ function Inspector(props) {
                                 typoPrefixConstant={FIELD_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <ResRangeControl
-                                label={__('Size', 'zoloblocks')}
-                                controlName={FIELD_SIZE}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                            />
                             <CardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
-                            
+
                             <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={FIELD_MARGIN}
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={FIELD_PADDING}
                                 requiredProps={requiredProps}
                             />
                             <CardDivider />

@@ -17,7 +17,7 @@ import {
     LABEL_BORDER,
     LABEL_BRADIUS,
     FIELD_SIZE,
-    FIELD_MARGIN,
+    FIELD_PADDING,
     FIELD_BG,
     ICON_SIZE,
     FIELD_BORDER,
@@ -72,7 +72,7 @@ const attributes = {
     ...generateDimensionAttributes(LABEL_BRADIUS),
     ...generateBorderAttributies(LABEL_BORDER),
     ...generateDimensionAttributes(FIELD_SIZE),
-    ...generateDimensionAttributes(FIELD_MARGIN),
+    ...generateDimensionAttributes(FIELD_PADDING),
     ...generateNormalBGAttributes(FIELD_BG),
     ...generateBorderAttributies(FIELD_BORDER),
     ...generateDimensionAttributes(FIELD_BRADIUS),
@@ -86,7 +86,7 @@ const attributes = {
     },
     label: {
         type: 'string',
-        default: 'Field Label',
+        default: 'Number',
     },
     labelColor: {
         type: 'string',
@@ -108,7 +108,7 @@ const attributes = {
     icon: {
         type: 'string',
         default:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z"/></svg>',
     },
     iconColor: {
         type: 'string',

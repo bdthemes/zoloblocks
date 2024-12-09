@@ -26,7 +26,7 @@ import {
     LABEL_BORDER,
     LABEL_BRADIUS,
     FIELD_SIZE,
-    FIELD_MARGIN,
+    FIELD_PADDING,
     FIELD_BG,
     FIELD_BORDER,
     FIELD_BRADIUS,
@@ -38,7 +38,6 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, showLabel, labelColor, textColor, placeholderColor, iconColor, showRequiredSymbol, requiredColor } = attributes;
-
     // label
     const {
         desktopBorderStyle: labelBorderStyles,
@@ -146,12 +145,12 @@ const Style = ({ props }) => {
     });
 
     const {
-        dimensionStylesDesktop: fieldMarginDesktop,
-        dimensionStylesTab: fieldMarginTab,
-        dimensionStylesMobile: fieldMarginMob,
+        dimensionStylesDesktop: fieldPaddingDesk,
+        dimensionStylesTab: fieldPaddingTab,
+        dimensionStylesMobile: fieldPaddingMob,
     } = generateDimensionStyle({
-        controlName: FIELD_MARGIN,
-        styleFor: 'margin',
+        controlName: FIELD_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
@@ -163,24 +162,6 @@ const Style = ({ props }) => {
         controlName: FIELD_BG,
         attributes,
         noMainBGImg: false,
-    });
-
-    const {
-        gapStylesDesktop: fieldGapDesk,
-        gapStylesTab: fieldGapTab,
-        gapStylesMobile: fieldGapMob,
-    } = generateGapStyle({
-        controlName: FIELD_GAP,
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: fieldSpaceDesk,
-        tabRangeStyle: fieldSpaceTab,
-        mobRangeStyle: fieldSpaceMob,
-    } = generateResRangeStyle({
-        controlName: FIELD_SPACE,
-        attributes,
     });
 
     // Icon
@@ -201,14 +182,14 @@ const Style = ({ props }) => {
         ${
             showLabel
                 ? `
-            .${uniqueId}.wp-block-zolo-text-field .zolo-label-wrapper {
+            .${uniqueId}.wp-block-zolo-number-field .zolo-label-wrapper {
                 ${labelMarginDesk}
             }
-            .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+            .${uniqueId}.wp-block-zolo-number-field .zolo-label {
                 ${labelTypoDesk}
                 color: ${labelColor};
             }
-            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-text-field .zolo-label{
+            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-number-field .zolo-label{
                 ${labelPaddingDesk}
                 ${labelBGStyle}
                 ${labelBorderStyles}
@@ -217,7 +198,7 @@ const Style = ({ props }) => {
             ${
                 showRequiredSymbol
                     ? `
-                .${uniqueId}.wp-block-zolo-text-field .zolo-required {
+                .${uniqueId}.wp-block-zolo-number-field .zolo-required {
                     color: ${requiredColor};
                 }
             `
@@ -226,18 +207,19 @@ const Style = ({ props }) => {
         `
                 : ''
         }
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item input {
             ${textColor ? `color: ${textColor};` : ''}
             ${fieldTypoDesk}
             ${fieldBorderStyles}
             ${fieldBRDesktop}
             ${fieldBGStyle}
+            ${fieldPaddingDesk}
         }
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input::placeholder {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item input::placeholder {
             ${placeholderColor ? `color: ${placeholderColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item .zolo-input-icon svg {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item .zolo-input-icon svg {
             ${iconSize}
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
@@ -247,13 +229,13 @@ const Style = ({ props }) => {
         ${
             showLabel
                 ? `
-            .${uniqueId}.wp-block-zolo-text-field .zolo-label-wrapper {
+            .${uniqueId}.wp-block-zolo-number-field .zolo-label-wrapper {
                 ${labelMarginTab}
             }
-            .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+            .${uniqueId}.wp-block-zolo-number-field .zolo-label {
                 ${labelTypoTab}
             }
-            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-number-field .zolo-label {
                 ${labelPaddingTab}
                 ${labelBorderStylesTab}
                 ${labelBRTab}
@@ -262,14 +244,15 @@ const Style = ({ props }) => {
                 : ''
         }
 
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item input {
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
             ${fieldBRTab}
             ${fieldTabBGStyle}
+            ${fieldPaddingTab}
         }
 
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item .zolo-input-icon svg {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item .zolo-input-icon svg {
             ${iconTabSize}
         }
     `;
@@ -278,13 +261,13 @@ const Style = ({ props }) => {
         ${
             showLabel
                 ? `
-            .${uniqueId}.wp-block-zolo-text-field .zolo-label-wrapper {
+            .${uniqueId}.wp-block-zolo-number-field .zolo-label-wrapper {
                 ${labelMarginMob}
             }
-            .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+            .${uniqueId}.wp-block-zolo-number-field .zolo-label {
                 ${labelTypoMob}
             }
-            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-number-field .zolo-label {
                 ${labelPaddingMob}
                 ${labelBorderStylesMob}
                 ${labelBRMob}
@@ -293,14 +276,15 @@ const Style = ({ props }) => {
                 : ''
         }
         
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item input {
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}
             ${fieldMobBGStyle}
+            ${fieldPaddingMob}
         }
 
-        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item .zolo-input-icon svg {
+        .${uniqueId}.wp-block-zolo-number-field .zolo-field-input-item .zolo-input-icon svg {
             ${iconMobSize}
         }
     `;

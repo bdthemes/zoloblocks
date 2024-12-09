@@ -15,7 +15,7 @@ export const LABEL_BRADIUS = 'labelBorderRadius';
 
 // Field
 export const FIELD_SIZE = 'fieldSize';
-export const FIELD_MARGIN = 'fieldMargin';
+export const FIELD_PADDING = 'fieldPadding';
 export const FIELD_BG = 'fieldBg';
 export const FIELD_BORDER = 'fieldBorder';
 export const FIELD_BRADIUS = 'fieldBorderRadius';
