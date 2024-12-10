@@ -105,8 +105,10 @@ export default function Popup() {
             __experimentalHideHeader
         >
             <Header />
-            <Prompt />
-            <Content />
+            <div className="zolo-popup__content_wrap">
+                <Prompt />
+                <Content />
+            </div>
             <Footer onInsert={onInsert} />
         </Modal>
     );

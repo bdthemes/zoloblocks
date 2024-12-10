@@ -1,5 +1,5 @@
 import { createReduxStore, register } from '@wordpress/data';
-import  reducer from './reducer';
+import reducer from './reducer';
 import * as actions from './actions';
 const store = createReduxStore('zoloai/popup', {
     reducer,
