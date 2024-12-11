@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
+import {useRef} from '@wordpress/element';
+
 
 const Prompt = (props) => {
-        const{onInsert} = props;
-    const { setBlockContent } = useDispatch('zoloai/popup');
-
-    const { response, isOpen } = useSelect((select) => {
-        const { getResponse, isOpen: checkIsOpen } = select('zoloai/popup');
+    const { onInsert } = props;
+    const { setBlockContent, setPrompt } = useDispatch('zoloai/popup');
+    const ref = useRef(null);
+    const { prompt, response, isOpen, loading } = useSelect((select) => {
+        const { getResponse, isOpen: checkIsOpen, getPrompt, isLoading } = select('zoloai/popup');
         return {
             response: getResponse() || {}, // Default to an empty object if null
             isOpen: checkIsOpen(),
+            prompt: getPrompt(),
+            loading: isLoading(),
         };
     });
     const [blockContent, setBlockContentState] = useState('');
@@ -30,6 +34,7 @@ const Prompt = (props) => {
             const initialContent = getContextFromSelectedBlocks();
             setBlockContentState(initialContent);
             setBlockContent(initialContent);
+            setPrompt(initialContent);
         }
     }, [isOpen, setBlockContent]);
 
@@ -37,21 +42,41 @@ const Prompt = (props) => {
         if (response?.content) {
             setBlockContentState(response.content);
             setBlockContent(response.content);
+            setPrompt(response.content);
         }
     }, [response, setBlockContent]);
 
+    // Automatic height.
+    useEffect(() => {
+        if (ref?.current) {
+            ref.current.style.height = '0px';
+            const scrollHeight = ref.current.scrollHeight;
+            ref.current.style.height = scrollHeight + 'px';
+        }
+    }, [ref, prompt, response, blockContent]);
+
+    // Set focus on Input.
+    useEffect(() => {
+        if (isOpen && !loading && ref?.current) {
+            ref.current.focus();
+        }
+    }, [isOpen, loading, ref]);
+
+
     const handleInputChange = (e) => {
-        const newContent = e.target.value;
+        const newContent = e?.target?.value;
         setBlockContentState(newContent);
         setBlockContent(newContent);
+        setPrompt(newContent);
     };
 
     return (
         <textarea
-            value={blockContent}
+            ref={ref}
+            value={blockContent || ''}
             onChange={handleInputChange}
             placeholder="Type your content here..."
-            rows={6}
+            rows={1}
             style={{ width: '100%' }}
         />
     );

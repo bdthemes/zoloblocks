@@ -31,7 +31,6 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
     function ZoloParagraphAI(props) {
         const { name, attributes, setAttributes, clientId } = props;
         const { content = '' } = attributes;
-
         const previousContent = usePrevious(content);
         const { reset, setPrompt, requestAI } = useDispatch('zoloai/popup');
         const { prompt, response, loading } = useSelect((select) => {
@@ -45,13 +44,19 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
 
         // State for tracking processed client IDs
         const [processedClientIds, setProcessedClientIds] = useState([]);
+    const { insertBlocks, replaceBlocks, updateBlockAttributes } = useDispatch('core/block-editor');
 
         useEffect(() => {
+            // console.log('name', name);
             if (
-                name === 'core/paragraph' &&
-                content?.startsWith('/zoloai:') &&
+                (name === 'core/paragraph' ||
+                    name === 'core/heading' ||
+                    name === 'zolo/advanced-paragraph' ||
+                    name === 'zolo/advanced-heading') &&
+                content?.includes('/zoloai:') && // Check if the substring exists
                 !processedClientIds.includes(clientId) // Prevent processing the same block
             ) {
+
                 const handleKeyDown = (event) => {
                     if (event.key === 'Enter') {
                         event.preventDefault();
@@ -77,15 +82,20 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
             if (response && response.content && processedClientIds.includes(clientId)) {
                 // Remove clientId from the processed list to allow further edits
                 setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
-                setAttributes({ content: response.content });
-                reset();
-            }
+                // console.log('response.content', response.content);
+                const filteredContent = response.content.replace(/(?:\r\n|\r|\n)/g, '<p>');
+                const parsedBlocks = wp.blocks.rawHandler({ HTML: filteredContent });
+                const newBlock = wp.blocks.createBlock(name, {
+                    content: filteredContent,
+                }); 
+                if (parsedBlocks.length) {
+                    console.log('Replacing selected content with:', response?.content);
+                    console.log('clientId', clientId);
+                    // Replace the block content with the AI response to zolo/advanced-paragraph
+    replaceBlocks(clientId, [newBlock]);
+                }
 
-            // Replace content for the current block only if a response is available
-            if (response && response.content && processedClientIds.includes(clientId)) {
-                // Remove clientId from the processed list to allow further edits
-                setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
-                setAttributes({ content: response.content });
+                // Reset the prompt and response
                 reset();
             }
         }, [content, clientId, processedClientIds, requestAI, setPrompt, response?.content, setAttributes, previousContent, loading]);

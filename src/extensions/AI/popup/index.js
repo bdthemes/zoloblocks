@@ -85,7 +85,7 @@ export default function Popup() {
 
     function onInsert() {
         insertResponse();
-        // reset();
+        reset();
         close();
     }
 

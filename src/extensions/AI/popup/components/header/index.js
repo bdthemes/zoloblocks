@@ -1,7 +1,22 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
+
 
 const Header = () => {
+
+     const { loading, prompt, language, response, content, context } = useSelect((select) => {
+         const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
+         return {
+             isOpen: checkIsOpen(),
+             prompt: getPrompt(),
+             response: getResponse(),
+             loading: isLoading(),
+             content: getContent() ? getContent() : '',
+             context: getContext(),
+         };
+     });
+
     return (
         <div className="zolo-popup-header">
             <div className="zolo-popup-header__logo">
@@ -67,7 +82,12 @@ const Header = () => {
             </div>
 
             {/* loader here */}
-            <div class="zolo-ai-loader"></div>
+            {
+                loading && (
+                    <div className="zolo-ai-loader"></div>
+                )
+            }
+            {/* <div class="zolo-ai-loader"></div> */}
         </div>
     );
 };
