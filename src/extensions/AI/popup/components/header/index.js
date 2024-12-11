@@ -1,9 +1,10 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 
 
 const Header = () => {
+    const { close} = useDispatch('zoloai/popup');
 
      const { loading, prompt, language, response, content, context } = useSelect((select) => {
          const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
@@ -17,6 +18,9 @@ const Header = () => {
          };
      });
 
+     const handleClose = () => {
+            close();
+     }
     return (
         <div className="zolo-popup-header">
             <div className="zolo-popup-header__logo">
@@ -61,7 +65,7 @@ const Header = () => {
                     </svg>
                 </a>
 
-                <button className="zolo-head-close-button">
+                <button className="zolo-head-close-button" onClick={handleClose}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width={24}
