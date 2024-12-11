@@ -105,6 +105,39 @@
             font-weight: 700;
             text-transform: uppercase;
         }
+        .zolo-popup-header_right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .zolo-head-upgrade-btn {
+                border: 0;
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                gap: 4px;
+                padding: 10px 12px;
+                font-size: 14px;
+                line-height: 1;
+                border-radius: 30px;
+                cursor: pointer;
+                color: #fff;
+                background-color: var(--zoloblocks-brand-color);
+                transition: all 0.3s ease;
+                text-decoration: none;
+                svg {
+                    width: 18px;
+                    height: 18px;
+                    display: block;
+                    fill: currentColor;
+                }
+                &:hover,
+                &:focus {
+                    border-color: var(--zoloblocks-brand-color);
+                    box-shadow: 0 0 0 2px var(--zoloblocks-brand-color);
+                    background-color: var(--zoloblocks-brand-color-hover);
+                }
+            }
+        }
     }
 
     .zolo-popup-header__logo {
@@ -182,7 +215,7 @@
     }
 
     .components-button {
-        border-radius: 6px;
+        border-radius: 30px;
         padding: 20px 14px;
         display: flex;
         align-items: center;
@@ -279,6 +312,15 @@
                     color: var(--zoloblocks-brand-color);
                 }
             }
+            .zolo-ai-regenerate-btn {
+                border: 0;
+                padding: 0;
+                &:hover,
+                &:focus {
+                    border: 0;
+                    box-shadow: none;
+                }
+            }
         }
 
         .zolo-ai-footer-btn {
@@ -286,6 +328,7 @@
             align-items: center;
             gap: 10px;
             .components-button {
+                border-radius: 6px;
                 &.insert-btn {
                     background: var(--zoloblocks-brand-color);
                     color: #fff;
@@ -293,7 +336,7 @@
                     &:hover,
                     &:focus {
                         color: #fff;
-                        background: var(--zoloblocks-brand-color);
+                        background: var(--zoloblocks-brand-color-hover);
                         border-color: var(--zoloblocks-brand-color);
                         box-shadow: 0 0 0 1px var(--zoloblocks-brand-color);
                     }
