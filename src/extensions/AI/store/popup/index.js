@@ -6,7 +6,7 @@ const store = createReduxStore('zoloai/popup', {
     actions,
     selectors: {
         isOpen(state) {
-            return state.isOpen || false;
+            return state.isOpen || true;
         },
         getPrompt(state) {
             return state.prompt || '';
