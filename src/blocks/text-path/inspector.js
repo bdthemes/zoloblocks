@@ -47,6 +47,7 @@ import {
     CIRCLE_IMAGE_BORDER,
     CIRCLE_IMAGE_BOX_SHADOW,
     CIRCLE_IMAGE_BORDER_RADIUS,
+    PATH_THICKNESS,
 } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
@@ -273,6 +274,14 @@ function Inspector(props) {
                                                 pathColor: value,
                                             })
                                         }
+                                    />
+                                    <ResRangeControl
+                                        label={__('Thikness', 'zoloblocks')}
+                                        controlName={PATH_THICKNESS}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
                                     />
                                 </>
                             )}
