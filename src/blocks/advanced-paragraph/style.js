@@ -358,7 +358,6 @@ const Style = ({ props }) => {
         ${textColor ? `color: ${textColor};` : ''}
         ${textTypoTab}
         ${textAlignTab}
-
     }
 
     ${

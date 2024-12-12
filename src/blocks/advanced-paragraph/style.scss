@@ -1,7 +1,16 @@
 .wp-block-zolo-advanced-paragraph {
+    &::first-letter {
+        color: #000;
+    }
     p {
         margin: 0;
         color: #4e4e5a;
+    }
+    a {
+        color: #2667ff;
+        &:hover {
+            color: #084be9;
+        }
     }
 
     // text gradient style
