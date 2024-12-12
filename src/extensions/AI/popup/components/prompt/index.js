@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
-import {useRef} from '@wordpress/element';
-
+import { useRef } from '@wordpress/element';
 
 const Prompt = (props) => {
     const { onInsert } = props;
@@ -61,7 +60,6 @@ const Prompt = (props) => {
             ref.current.focus();
         }
     }, [isOpen, loading, ref]);
-
 
     const handleInputChange = (e) => {
         const newContent = e?.target?.value;

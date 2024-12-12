@@ -108,22 +108,23 @@
         .zolo-popup-header_right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             .zolo-head-upgrade-btn {
                 border: 0;
                 display: flex;
                 align-items: center;
                 flex-direction: row-reverse;
                 gap: 4px;
-                padding: 10px 12px;
-                font-size: 14px;
+                padding: 9px 12px;
+                font-size: 13px;
                 line-height: 1;
                 border-radius: 30px;
                 cursor: pointer;
-                color: #fff;
-                background-color: var(--zoloblocks-brand-color);
+                color: var(--zoloblocks-brand-color);
+                background-color: #e5f0ff;
                 transition: all 0.3s ease;
                 text-decoration: none;
+                font-weight: 600;
                 svg {
                     width: 18px;
                     height: 18px;
@@ -134,7 +135,6 @@
                 &:focus {
                     border-color: var(--zoloblocks-brand-color);
                     box-shadow: 0 0 0 2px var(--zoloblocks-brand-color);
-                    background-color: var(--zoloblocks-brand-color-hover);
                 }
             }
         }
@@ -187,6 +187,7 @@
             padding: 14px;
             font-size: 16px;
             font-weight: 400;
+            min-height: 130px;
             &::placeholder {
                 color: #6e7178;
             }
@@ -220,7 +221,7 @@
         display: flex;
         align-items: center;
         flex-direction: row-reverse;
-        gap: 10px;
+        gap: 8px;
         background: transparent;
         border: 1px solid rgba(42, 42, 52, 0.18);
         color: #72727a;
@@ -304,10 +305,6 @@
                 font-weight: 500;
                 padding: 20px 14px;
                 color: #43434a;
-                svg {
-                    width: 18px;
-                    height: 18px;
-                }
                 &:hover {
                     color: var(--zoloblocks-brand-color);
                 }
@@ -327,20 +324,23 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            .components-button {
-                border-radius: 6px;
-                &.insert-btn {
-                    background: var(--zoloblocks-brand-color);
+        }
+        .components-button {
+            border-radius: 6px;
+            &.insert-btn {
+                background: var(--zoloblocks-brand-color);
+                color: #fff;
+                border-color: var(--zoloblocks-brand-color);
+                &:hover,
+                &:focus {
                     color: #fff;
+                    background: var(--zoloblocks-brand-color-hover);
                     border-color: var(--zoloblocks-brand-color);
-                    &:hover,
-                    &:focus {
-                        color: #fff;
-                        background: var(--zoloblocks-brand-color-hover);
-                        border-color: var(--zoloblocks-brand-color);
-                        box-shadow: 0 0 0 1px var(--zoloblocks-brand-color);
-                    }
+                    box-shadow: 0 0 0 1px var(--zoloblocks-brand-color);
                 }
+            }
+            &.generate-btn {
+                margin-left: auto;
             }
         }
     }
