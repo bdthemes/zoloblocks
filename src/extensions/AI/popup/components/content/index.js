@@ -1,13 +1,13 @@
 import { Button, SelectControl } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { useRef } from '@wordpress/element';
+import { useRef, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
 const Content = () => {
     const ref = useRef();
-    const { reset, setPrompt, setContext, setLanguage, requestAI } = useDispatch('zoloai/popup');
-    const { loading, response, content, context } = useSelect((select) => {
-        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
+    const { reset, setPrompt, setContext, setScreen, requestAI } = useDispatch('zoloai/popup');
+    const { loading, response, content, screen, prompt } = useSelect((select) => {
+    const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext, getScreen } = select('zoloai/popup');
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
@@ -15,6 +15,7 @@ const Content = () => {
             loading: isLoading(),
             content: getContent() ? getContent() : '',
             context: getContext(),
+            screen: getScreen()
         };
     });
 
@@ -23,15 +24,25 @@ const Content = () => {
         setContext('selected-blocks');
         requestAI();
     }
+
+    console.log('prompt', prompt);
     function onKeyDown(e) {
         if (e.key === 'Enter') {
             requestAI();
         }
     }
+
+    	// useEffect(() => {
+        //     if (screen === 'prompt' && prompt) {
+        //         setScreen('prompt');
+        //     }
+        // }, [screen, prompt, setScreen]);
+        // console.log('screen', screen);
+
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">
-                {!loading && response && (
+                {screen === 'request' && (
                     <>
                         <div className="zolo-popup-response-button">
                             <Button
@@ -178,6 +189,7 @@ const Content = () => {
                         </div>
                     </>
                 )}
+                {screen === 'prompt' && <p>suggesition text goes here</p>}
             </div>
         </div>
     );

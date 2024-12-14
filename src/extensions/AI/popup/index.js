@@ -62,13 +62,8 @@ export default function Popup() {
             const block = wp.data.select('core/block-editor').getBlock(clientId);
             return block ? block.attributes?.content : {};
         };
-        // console.log('selectedClientIds:', getBlockData(selectedClientIds[0]));
         const parsedBlocks = rawHandler({ HTML: response?.content });
-
-        console.log('Selected Text:', selectedText);
-
         if (parsedBlocks.length && selectedText) {
-            console.log('Replacing selected content with:', response?.content);
 
             if (selectedText) {
                 updateBlockAttributes(selectedClientIds[0], {

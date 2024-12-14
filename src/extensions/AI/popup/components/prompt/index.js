@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useRef } from '@wordpress/element';
+import { TextControl } from '@wordpress/components';
 
 const Prompt = (props) => {
     const { onInsert } = props;
-    const { setBlockContent, setPrompt } = useDispatch('zoloai/popup');
+    const { reset, setBlockContent, setPrompt, setScreen } = useDispatch('zoloai/popup');
     const ref = useRef(null);
-    const { prompt, response, isOpen, loading } = useSelect((select) => {
-        const { getResponse, isOpen: checkIsOpen, getPrompt, isLoading } = select('zoloai/popup');
+    const {prompt, response, isOpen, loading, screen} = useSelect((select) => {
+        const { getResponse, isOpen: checkIsOpen, getPrompt, isLoading, getScreen } = select('zoloai/popup');
         return {
             response: getResponse() || {}, // Default to an empty object if null
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
             loading: isLoading(),
+            screen: getScreen(),
         };
     });
+
+
+    console.log(screen, 'screen');
     const [blockContent, setBlockContentState] = useState('');
 
     const getContextFromSelectedBlocks = () => {
@@ -45,6 +50,7 @@ const Prompt = (props) => {
         }
     }, [response, setBlockContent]);
 
+
     // Automatic height.
     useEffect(() => {
         if (ref?.current) {
@@ -62,6 +68,13 @@ const Prompt = (props) => {
     }, [isOpen, loading, ref]);
 
     const handleInputChange = (e) => {
+        // reset();
+        const newContent = e?.target?.value;
+        // setBlockContentState(newContent);
+        // setBlockContent(newContent);
+        setPrompt(newContent);
+    };
+    const handleContentChange = (e) => {
         const newContent = e?.target?.value;
         setBlockContentState(newContent);
         setBlockContent(newContent);
@@ -69,14 +82,28 @@ const Prompt = (props) => {
     };
 
     return (
-        <textarea
-            ref={ref}
-            value={blockContent || ''}
-            onChange={handleInputChange}
-            placeholder="Type your content here..."
-            rows={1}
-            style={{ width: '100%' }}
-        />
+        <>
+            {screen === 'prompt' && (
+                <textarea
+                    ref={ref}
+                    value={prompt || ''}
+                    onChange={handleInputChange}
+                    placeholder="Type your content here..."
+                    rows={1}
+                    style={{ width: '100%' }}
+                />
+            )}
+            {screen === 'request' && (
+                <textarea
+                    ref={ref}
+                    value={blockContent || ''}
+                    onChange={handleContentChange}
+                    placeholder="Type your content here..."
+                    rows={1}
+                    style={{ width: '100%' }}
+                />
+            )}
+        </>
     );
 };
 

@@ -47,7 +47,6 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
     const { insertBlocks, replaceBlocks, updateBlockAttributes } = useDispatch('core/block-editor');
 
         useEffect(() => {
-            // console.log('name', name);
             if (
                 (name === 'core/paragraph' ||
                     name === 'core/heading' ||
@@ -82,17 +81,13 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
             if (response && response.content && processedClientIds.includes(clientId)) {
                 // Remove clientId from the processed list to allow further edits
                 setProcessedClientIds((ids) => ids.filter((id) => id !== clientId));
-                // console.log('response.content', response.content);
                 const filteredContent = response.content.replace(/(?:\r\n|\r|\n)/g, '<p>');
                 const parsedBlocks = wp.blocks.rawHandler({ HTML: filteredContent });
                 const newBlock = wp.blocks.createBlock(name, {
                     content: filteredContent,
                 }); 
                 if (parsedBlocks.length) {
-                    console.log('Replacing selected content with:', response?.content);
-                    console.log('clientId', clientId);
-                    // Replace the block content with the AI response to zolo/advanced-paragraph
-    replaceBlocks(clientId, [newBlock]);
+                    replaceBlocks(clientId, [newBlock]);
                 }
 
                 // Reset the prompt and response

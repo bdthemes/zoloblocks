@@ -46,6 +46,13 @@ export function setBlockContent(blockContent) {
     };
 }
 
+export function setScreen(screen) {
+    return {
+        type: 'SET_SCREEN',
+        screen,
+    };
+}
+
 
 
 export function requestAI() {
@@ -57,6 +64,7 @@ export function requestAI() {
             // data.context = getContextFromSelectedBlocks();
             data.context = select.getBlockContent().trim();
         }
+
         apiFetch({
             path: '/zolo/v1/openai',
             method: 'POST',

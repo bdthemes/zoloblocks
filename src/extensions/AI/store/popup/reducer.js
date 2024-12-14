@@ -2,6 +2,7 @@ const initialState = {
     isOpen: false,
     prompt: '',
     response: '',
+    screen: 'request',
     loading: false,
     content: '',
     blockContent: '',
@@ -26,12 +27,16 @@ function reducer(state = initialState, action) {
             return { ...state, response: action.response };
         case 'SET_CONTEXT':
             return { ...state, context: action.context };
+            case 'SET_SCREEN':
+            return { ...state, screen: action.screen };
+
         case 'REQUEST_AI_PENDING':
             return { ...state, loading: true };
         case 'REQUEST_AI_SUCCESS': {
             return {
                 ...state,
                 loading: false,
+                screen: 'request',
                 response: action.payload || '',
             };
         }
