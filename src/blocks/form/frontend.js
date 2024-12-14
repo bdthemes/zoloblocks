@@ -10,15 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const initializeFormWhenReady = (form, retries = 10) => {
         let datePickerInput = form.querySelector('.zolo-form-date-picker');
-        if (datePickerInput) {
+        if (datePickerInput || retries === 0) {
           setupFormHandlers(form);
-        } else if (retries > 0) {
-          // Retry after 1 second if retries are remaining
+        } else {
           setTimeout(() => {
             initializeFormWhenReady(form, retries - 1);
-          }, 1000);
-        } else {
-          console.log('DatePickerInput not found.');
+          }, 100);
         }
       };
       // Call the function to check for the date picker

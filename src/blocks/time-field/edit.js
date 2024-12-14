@@ -35,7 +35,7 @@ export default function Edit(props) {
     icon,
     isRequired,
     showRequiredSymbol,
-    dateFormat,
+    timeFormat,
     customNameAttribute,
     defaultValue
   } = attributes;
@@ -103,11 +103,12 @@ export default function Edit(props) {
               showIcon={showIcon}
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
-              dateFormat={dateFormat}
+              showTimeSelectOnly
+              timeInputLabel="Time"
+              dateFormat={timeFormat}
+              showTimeInput
               placeholderText={placeholder}
-              name={customNameAttribute || 'date_field'}
-              showMonthDropdown
-              showYearDropdown
+              name={customNameAttribute || 'time_field'}
               icon={
                 <div className="zolo-input-icon">
                   <DisplayZoloIcon icon={icon}/>

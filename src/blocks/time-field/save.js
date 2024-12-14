@@ -18,7 +18,7 @@ const Save = ({attributes}) => {
     isRequired,
     showRequiredSymbol,
     requiredMsg,
-    dateFormat,
+    timeFormat,
     customNameAttribute,
     defaultValue
   } = attributes;
@@ -48,8 +48,8 @@ const Save = ({attributes}) => {
              data-required={JSON.stringify(isRequired)}
              data-placeholder={placeholder}
              data-requiredmsg={requiredMsg}
-             data-dateformat={dateFormat}
-             data-nameattribute={customNameAttribute || 'date_field'}
+             data-dateformat={timeFormat}
+             data-nameattribute={customNameAttribute || 'time_field'}
              data-defaultvalue={defaultValue}
         >
         </div>

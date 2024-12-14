@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Time Field",
+    "name": "zolo/time-field",
+    "category": "zoloblocks",
+    "keywords": ["zolo", "time", "field", "input", "form", "survey"],
+    "description": "Customizable time fields for forms or surveys.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "parent": ["zolo/form"],
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "usesContext": ["zolo/showFieldIcon"],
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./index.css",
+    "viewScript": "file:./frontend.js"
+}

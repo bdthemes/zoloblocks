@@ -685,7 +685,14 @@ return apply_filters('zolo_blocks_list_data', [
          'categories' => ['others'],
          'status' => true,
          'is_child' => true,
-     ]
+     ],
+    'time-field' => [
+        'name' => 'time-field',
+        'title' => __('Time Field', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_child' => true,
+    ]
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),

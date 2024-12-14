@@ -43,7 +43,7 @@ import {
   FIELD_BORDER,
   FIELD_BRADIUS,
   ICON_SIZE,
-  DATE_FORMAT
+  TIME_FORMAT
 } from './constants';
 
 function Inspector(props) {
@@ -64,7 +64,7 @@ function Inspector(props) {
     requiredMsg,
     showRequiredSymbol,
     requiredColor,
-    dateFormat,
+    timeFormat,
     defaultValue,
     customNameAttribute,
   } = attributes;
@@ -152,10 +152,10 @@ function Inspector(props) {
               )}
               <CardDivider/>
               <SelectControl
-                label={__('Date Format', 'zoloblocks')}
-                value={dateFormat}
-                options={DATE_FORMAT}
-                onChange={(dateFormat) => setAttributes({dateFormat})}
+                label={__('Time Format', 'zoloblocks')}
+                value={timeFormat}
+                options={TIME_FORMAT}
+                onChange={(timeFormat) => setAttributes({timeFormat})}
               />
               <CardDivider/>
               <BaseControl
@@ -164,9 +164,11 @@ function Inspector(props) {
                 <DatePicker
                   selected={defaultValue}
                   onChange={(v) => setAttributes({defaultValue: v})}
-                  dateFormat={dateFormat}
-                  showMonthDropdown
-                  showYearDropdown
+                  dateFormat={timeFormat}
+                  showTimeSelectOnly
+                  timeInputLabel="Time"
+                  dateFormat={timeFormat}
+                  showTimeInput
                 />
               </BaseControl>
 
