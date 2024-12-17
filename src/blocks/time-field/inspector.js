@@ -164,7 +164,6 @@ function Inspector(props) {
                 <DatePicker
                   selected={defaultValue}
                   onChange={(v) => setAttributes({defaultValue: v})}
-                  dateFormat={timeFormat}
                   showTimeSelectOnly
                   timeInputLabel="Time"
                   dateFormat={timeFormat}

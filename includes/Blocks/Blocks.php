@@ -692,7 +692,25 @@ return apply_filters('zolo_blocks_list_data', [
         'categories' => ['others'],
         'status' => true,
         'is_child' => true,
-    ]
+    ],
+    'datetime-field' => [
+        'name' => 'datetime-field',
+        'title' => __('Date & time', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/data-table',
+        'video' => 'https://youtu.be/3ea3t7Pvoo4',
+    ],
+    'date-range-field' => [
+        'name' => 'date-range-field',
+        'title' => __('Date Range', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/data-table',
+        'video' => 'https://youtu.be/3ea3t7Pvoo4',
+    ],
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),
