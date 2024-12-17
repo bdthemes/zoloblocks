@@ -376,7 +376,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        {textPathType === 'circle' && (
+                        {showCircleImg && textPathType === 'circle' && (
                             <>
                                 <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                                     <ResRangeControl

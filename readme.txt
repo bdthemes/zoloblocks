@@ -357,13 +357,14 @@ Not at all. We have optimized all of these blocks for better performance.
 ### 2.1.5 [December 17, 2024]
 
 - **New Features:**
-  - **Text Path:** Added settings for adjusting path thickness and width.
+  - **Text Path Block:** Added settings for adjusting path thickness and width.
   - **Paragraph Block:** Enhanced functionality for better performance.
   - **Tabs Block:** Introduced header wrapper tab width customization.
 
 - **Fixes:**
   - **Newsletter Block:** Fixed placeholder text issues in presets 2, 3, and 4.
-  - **Image Gallery:** Resolved issue with saving the backdrop filter control settings.
+  - **Image Gallery Block:** Resolved issue with saving the backdrop filter control settings.
+  - **Text Path Block:** Fixed show/hide conditions for image options in the style tab for circle path type and resolved image border radius issues.
 
 **2.1.4 [December 07, 2024]**
 
