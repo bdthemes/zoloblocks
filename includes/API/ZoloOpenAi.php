@@ -41,13 +41,13 @@ class ZoloOpenAi extends WP_REST_Controller {
      * Permission callback for REST API
      */
     public function zolo_permission_callback() {
-        // if (!current_user_can('edit_posts')) {
-        //     return new WP_Error(
-        //         'rest_forbidden',
-        //         __('You are not allowed to access this route.', 'zoloblocks'),
-        //         ['status' => 401]
-        //     );
-        // }
+        if (!current_user_can('edit_posts')) {
+            return new WP_Error(
+                'rest_forbidden',
+                __('You are not allowed to access this route.', 'zoloblocks'),
+                ['status' => 401]
+            );
+        }
         return true;
     }
 
@@ -56,8 +56,7 @@ class ZoloOpenAi extends WP_REST_Controller {
      */
     public function get_openai_response(WP_REST_Request $request) {
         $data = $request->get_params();
-        // print_r($data);
-        $api_key = $this->get_api_key();
+        $api_key = sanitize_text_field($this->get_api_key());
 
         if (empty($api_key)) {
             return new WP_Error(
@@ -103,7 +102,6 @@ class ZoloOpenAi extends WP_REST_Controller {
             ];
         }
 
-        // $messages[] = ['role' => 'user', 'content' => $prompts['request'] . 'within 10 words'];
         $messages[] = [
             'role'    => 'user',
             'content' => implode(
@@ -175,6 +173,6 @@ class ZoloOpenAi extends WP_REST_Controller {
      * Retrieve API key
      */
     private function get_api_key() {
-        return defined('OPENAI_API_KEY') ? OPENAI_API_KEY : get_option('zolo_openai_api_key', '');
+        return get_option('zolo_openai_api_key', '');
     }
 }

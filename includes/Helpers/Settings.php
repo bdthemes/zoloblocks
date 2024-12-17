@@ -104,6 +104,19 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+            // register zolo openai api key setting
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_openai_api_key',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
 
             // register zolo google spread sheet api key setting
             register_setting(
