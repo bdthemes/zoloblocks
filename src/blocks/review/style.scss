@@ -216,7 +216,7 @@
 
     &.style-preset-3 {
         --zolo-item-gap: 10px;
-        --zolo-img-size: clamp(12.5rem, 28vw, 20rem);
+        --zolo-img-size: clamp(14.5rem, 28vw, 20rem);
         --zolo-img-radius: 20px;
         --zolo-desc-margin: 0 0 clamp(1.875rem, 4vw, 2rem);
         --zolo-desc-text-color: #efeff0;
@@ -224,12 +224,14 @@
         --zolo-dasignation-text-color: #e0e0e0;
         --arrow-border-radius: 50%;
         --arrow-size: 30px;
+        --arrow-h-space: 50%;
+        --arrow-v-space: -20px;
         --zolo-quote-icon-size: 70px;
         --zolo-quote-icon-color: #ff9a00;
         .zolo-item {
-            flex-direction: row;
+            flex-direction: column;
             height: 100%;
-            align-items: flex-end;
+            align-items: center;
         }
         .zolo-image-wrap {
             width: var(--zolo-img-size);
@@ -238,10 +240,11 @@
             border-radius: var(--zolo-img-radius);
         }
         .zolo-info-wrap {
-            padding: 30px;
+            padding: clamp(20px, 2.5vw, 30px);
             border-radius: 20px;
             position: relative;
             background: var(--zoloblocks-brand-color);
+            box-sizing: border-box;
         }
         .zolo-desc {
             font-size: 18px;
@@ -269,15 +272,15 @@
         }
         .zolo-triangle {
             position: absolute;
-            bottom: 50px;
-            left: -20px;
+            top: var(--arrow-v-space);
+            left: var(--arrow-h-space);
             width: var(--arrow-size);
             height: var(--arrow-size);
             border-top-right-radius: var(--arrow-border-radius);
             background-color: var(--zoloblocks-brand-color);
             text-align: left;
             display: inline-block;
-            transform: rotate(90deg) skewX(-30deg) scale(1, 0.866);
+            transform: rotate(60deg) skewX(-30deg) scale(1, 0.866) translateX(-50%);
             transform-origin: 45% 75%;
             &::before,
             &::after {
@@ -330,6 +333,21 @@
             .zolo-info-wrap {
                 flex-direction: row;
                 align-items: center;
+            }
+        }
+
+        &.style-preset-3 {
+            --arrow-h-space: -20px;
+            --arrow-v-space: 50px;
+            .zolo-item {
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            .zolo-triangle {
+                top: unset;
+                bottom: var(--arrow-v-space);
+                left: var(--arrow-h-space);
+                transform: rotate(90deg) skewX(-30deg) scale(1, 0.866);
             }
         }
     }
