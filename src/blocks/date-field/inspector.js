@@ -11,8 +11,7 @@ import {
   BaseControl,
 } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
-import DatePicker from 'react-datepicker';
-
+import Datetime from 'react-datetime';
 /**
  * Internal depencencies
  */
@@ -75,7 +74,6 @@ function Inspector(props) {
     resMode,
     objAttributes,
   };
-
   return (
     <InspectorControls key="controls">
       <HeaderTabs
@@ -160,13 +158,19 @@ function Inspector(props) {
               <CardDivider/>
               <BaseControl
                 label={__('Default Value', 'zoloblocks')}
+                className="zolo-flex-col-control"
               >
-                <DatePicker
-                  selected={defaultValue}
-                  onChange={(v) => setAttributes({defaultValue: v})}
+                <Datetime
+                  value={defaultValue}
+                  onChange={(date) => {
+                    const formattedDate = date && date?.format ? date.format(dateFormat) : '';
+                    setAttributes({ defaultValue: formattedDate });
+                  }}
+                  timeFormat={false}
                   dateFormat={dateFormat}
-                  showMonthDropdown
-                  showYearDropdown
+                  inputProps={{
+                    placeholder: placeholder
+                  }}
                 />
               </BaseControl>
 

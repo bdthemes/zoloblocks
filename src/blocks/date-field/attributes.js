@@ -117,7 +117,7 @@ const attributes = {
   },
   dateFormat: {
     type: 'string',
-    default:'MM/dd/yyyy'
+    default:'MMMM D, YYYY'
   },
   defaultValue: {
     type: 'string',

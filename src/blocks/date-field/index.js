@@ -4,7 +4,7 @@ import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
 import Context from './context';
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datetime/css/react-datetime.css";
 
 registerBlockType(metadata, {
   icon: {

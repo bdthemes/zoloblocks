@@ -49,6 +49,7 @@
         "react-compare-slider": "^3.0.1",
         "react-countup": "^6.5.1",
         "react-datepicker": "^7.5.0",
+        "react-datetime": "^3.3.1",
         "react-google-autocomplete": "^2.7.3",
         "react-multi-select-component": "^4.3.4",
         "react-qrcode-logo": "^3.0.0",

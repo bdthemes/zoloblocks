@@ -1,5 +1,5 @@
 import React, {useState, forwardRef} from 'react';
-import DatePicker from 'react-datepicker';
+import Datetime from 'react-datetime';
 import {createRoot} from 'react-dom/client';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,40 +18,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const dateFormat = zoloFieldItem.dataset.dateformat;
         const customNameAttribute = zoloFieldItem.dataset.nameattribute;
         const defaultValue = zoloFieldItem.dataset.defaultvalue;
-        const CustomInput = forwardRef(({value, onClick, onChange}, ref) => (
-          <>
-            {showIcon && (
-              <span
-                className="zolo-input-icon"
-                dangerouslySetInnerHTML={{__html: svgIcon}}
-              />
-            )}
-            <input
-              ref={ref}
-              value={value}
-              onClick={onClick}
-              onChange={onChange}
-              placeholder={placeholderMsg}
-              className="zolo-form-date-picker"
-              name={customNameAttribute}
-              required={isRequired}
-              {...(isRequired && {'data-pristine-required-message': requiredMsg})}
-            />
-          </>
-        ));
-
         const DatePickerComponent = () => {
-          const [selectedDate, setSelectedDate] = useState(defaultValue);
+          const [selectedDate, setSelectedDate] = useState(null);
 
           return (
             <>
-              <DatePicker
-                selected={selectedDate}
+              {showIcon && (
+                <span
+                  className="zolo-input-icon"
+                  dangerouslySetInnerHTML={{__html: svgIcon}}
+                />
+              )}
+              <Datetime
+                value={selectedDate || defaultValue}
                 onChange={(date) => setSelectedDate(date)}
+                timeFormat={false}
                 dateFormat={dateFormat}
-                showMonthDropdown
-                showYearDropdown
-                customInput={<CustomInput/>}
+                inputProps={{
+                  placeholder: placeholderMsg,
+                  name: customNameAttribute,
+                  required: isRequired,
+                  ...(isRequired && {'data-pristine-required-message': requiredMsg})
+                }}
               />
             </>
           );
