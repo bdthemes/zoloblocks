@@ -354,7 +354,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-### 2.1.5 [December 17, 2024]
+### 2.1.5 [December 19, 2024]
 
 - **New Features:**
   - **Text Path Block:** Added settings for adjusting path thickness and width.
