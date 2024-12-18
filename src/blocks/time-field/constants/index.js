@@ -17,6 +17,6 @@ export const FIELD_BRADIUS = 'fieldBorderRadius';
 export const ICON_SIZE = 'iconSize';
 
 export const TIME_FORMAT = [
-  {label: '10:00 AM', value: 'h:mm aa'},
-  {label: '10:00', value: 'h:mm'},
+  {label: '10:00 AM', value: 'hh:mm A'},
+  {label: '10:00', value: 'HH:mm'},
 ];

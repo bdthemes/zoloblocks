@@ -11,7 +11,7 @@ import {
   BaseControl,
 } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
-import DatePicker from 'react-datepicker';
+import Datetime from 'react-datetime';
 
 /**
  * Internal depencencies
@@ -160,14 +160,19 @@ function Inspector(props) {
               <CardDivider/>
               <BaseControl
                 label={__('Default Value', 'zoloblocks')}
+                className="zolo-flex-col-control"
               >
-                <DatePicker
-                  selected={defaultValue}
-                  onChange={(v) => setAttributes({defaultValue: v})}
-                  showTimeSelectOnly
-                  timeInputLabel="Time"
-                  dateFormat={timeFormat}
-                  showTimeInput
+                <Datetime
+                  value={defaultValue}
+                  onChange={(time) => {
+                    const formattedDate = time && time?.format ? time.format(timeFormat) : '';
+                    setAttributes({defaultValue: formattedDate});
+                  }}
+                  dateFormat={false}
+                  timeFormat={timeFormat}
+                  inputProps={{
+                    placeholder: placeholder
+                  }}
                 />
               </BaseControl>
 

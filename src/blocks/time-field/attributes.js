@@ -117,7 +117,7 @@ const attributes = {
   },
   timeFormat: {
     type: 'string',
-    default:'h:mm aa'
+    default:'hh:mm A'
   },
   defaultValue: {
     type: 'string',

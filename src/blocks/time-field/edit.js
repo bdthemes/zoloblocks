@@ -9,7 +9,7 @@ import {__} from '@wordpress/i18n';
  * External dependencies
  */
 import classnames from 'classnames';
-import DatePicker from 'react-datepicker';
+import Datetime from 'react-datetime';
 
 /**
  * Internal dependencies
@@ -74,7 +74,7 @@ export default function Edit(props) {
       preset: context['zolo/preset'],
     });
   }, [context]);
-  const [selectedDate, setSelectedDate] = useState(defaultValue);
+  const [selectedTime, setSelectedTime] = useState(defaultValue);
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
@@ -99,21 +99,20 @@ export default function Edit(props) {
           )}
 
           <div className="zolo-field-input-item">
-            <DatePicker
-              showIcon={showIcon}
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              showTimeSelectOnly
-              timeInputLabel="Time"
-              dateFormat={timeFormat}
-              showTimeInput
-              placeholderText={placeholder}
-              name={customNameAttribute || 'time_field'}
-              icon={
-                <div className="zolo-input-icon">
-                  <DisplayZoloIcon icon={icon}/>
-                </div>
-              }
+            {showIcon && (
+              <div className="zolo-input-icon">
+                <DisplayZoloIcon icon={icon}/>
+              </div>
+            )}
+            <Datetime
+              value={selectedTime}
+              onChange={(date) => setSelectedTime(date)}
+              dateFormat={false}
+              timeFormat={timeFormat}
+              inputProps={{
+                placeholder: placeholder,
+                name: customNameAttribute || 'time_field'
+              }}
             />
           </div>
         </div>
