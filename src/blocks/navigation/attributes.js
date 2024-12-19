@@ -108,6 +108,7 @@ const attributes = {
     ...generateNormalBGAttributes(NAV_MENU_ITEM_HOVER_BG),
     ...generateNormalBGAttributes(NAV_MENU_ITEM_ACTIVE_BG),
 
+    ...generateResRangeAttributies(NAV_MENU_ITEM_GAP),
     // Mobile
     ...generateResRangeAttributies(MB_LOGO_WIDTH),
     ...generateResRangeAttributies(MB_LOGO_HEIGHT),
