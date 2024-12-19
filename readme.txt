@@ -358,7 +358,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 - **New Features:**
   - **Text Path Block:** Added settings for adjusting path thickness and width.
-  - **Paragraph Block:** Enhanced functionality for better performance.
+  - **Paragraph Block:** Improved functionality with added justify alignment options.
   - **Tabs Block:** Introduced header wrapper tab width customization.
 
 - **Fixes:**
