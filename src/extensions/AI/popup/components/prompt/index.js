@@ -4,10 +4,9 @@ import { useRef } from '@wordpress/element';
 import { TextControl } from '@wordpress/components';
 
 const Prompt = (props) => {
-    const { onInsert } = props;
     const { reset, setBlockContent, setPrompt, setScreen } = useDispatch('zoloai/popup');
     const ref = useRef(null);
-    const {prompt, response, isOpen, loading, screen} = useSelect((select) => {
+    const { prompt, response, isOpen, loading, screen } = useSelect((select) => {
         const { getResponse, isOpen: checkIsOpen, getPrompt, isLoading, getScreen } = select('zoloai/popup');
         return {
             response: getResponse() || {}, // Default to an empty object if null
@@ -18,8 +17,6 @@ const Prompt = (props) => {
         };
     });
 
-
-    console.log(screen, 'screen');
     const [blockContent, setBlockContentState] = useState('');
 
     const getContextFromSelectedBlocks = () => {
@@ -50,7 +47,6 @@ const Prompt = (props) => {
         }
     }, [response, setBlockContent]);
 
-
     // Automatic height.
     useEffect(() => {
         if (ref?.current) {
@@ -72,7 +68,7 @@ const Prompt = (props) => {
         const newContent = e?.target?.value;
         // setBlockContentState(newContent);
         // setBlockContent(newContent);
-        setPrompt(newContent);
+        // setPrompt(newContent);
     };
     const handleContentChange = (e) => {
         const newContent = e?.target?.value;
@@ -80,24 +76,25 @@ const Prompt = (props) => {
         setBlockContent(newContent);
         setPrompt(newContent);
     };
-
+console.log(response);
     return (
         <>
-            {screen === 'prompt' && (
+            {screen === 'request' && response?.content !== '' ? (
                 <textarea
+                    className="zolo-ai-prompt-response"
                     ref={ref}
-                    value={prompt || ''}
-                    onChange={handleInputChange}
+                    value={blockContent || ''}
+                    onChange={handleContentChange}
                     placeholder="Type your content here..."
                     rows={1}
                     style={{ width: '100%' }}
                 />
-            )}
-            {screen === 'request' && (
+            ) : (
                 <textarea
+                    className="zolo-ai-prompt"
                     ref={ref}
-                    value={blockContent || ''}
-                    onChange={handleContentChange}
+                    value={prompt || ''}
+                    onChange={handleInputChange}
                     placeholder="Type your content here..."
                     rows={1}
                     style={{ width: '100%' }}

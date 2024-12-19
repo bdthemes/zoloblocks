@@ -107,7 +107,7 @@ if (! class_exists('Settings')) {
             // register zolo openai api key setting
             register_setting(
                 'zolo_blocks_settings_group',
-                'zolo_openai_api_key',
+                'zolo_sigmative_api_key',
                 [
                     'type'              => 'string',
                     'default'           => '',

@@ -1,7 +1,7 @@
 import { addFilter } from '@wordpress/hooks';
 import { useEffect } from '@wordpress/element';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { useDispatch } from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 
 /**
  * Open Zolo Popup when `Ctrl + Shift + /` is pressed.
@@ -14,13 +14,9 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
     function ZoloParagraphAI(props) {
         const { name } = props;
         const { open } = useDispatch('zoloai/popup');
-
         useEffect(() => {
-            if (name === 'core/paragraph') {
                 const handleKeyDown = (event) => {
                     if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
-                        event.preventDefault();
-                        event.stopPropagation();
                         open();
                     }
                 };
@@ -30,7 +26,6 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
                 return () => {
                     document.removeEventListener('keydown', handleKeyDown);
                 };
-            }
         }, [name, open]);
 
         return <OriginalComponent {...props} />;

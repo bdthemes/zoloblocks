@@ -41,7 +41,7 @@ const ApiSettings = () => {
         }).then(
             ({
                 zolo_google_api_key,
-                zolo_openai_api_key,
+                zolo_sigmative_api_key,
                 zolo_recaptcha_site_key,
                 zolo_recaptcha_secret_key,
                 zolo_mailchimp_api_key,
@@ -49,7 +49,7 @@ const ApiSettings = () => {
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
-                setOpenaiAPIKey(zolo_openai_api_key);
+                setOpenaiAPIKey(zolo_sigmative_api_key);
                 setSiteKey(zolo_recaptcha_site_key);
                 setSecretKey(zolo_recaptcha_secret_key);
                 setMailchimpKey(zolo_mailchimp_api_key);
@@ -77,10 +77,10 @@ const ApiSettings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: {
-                zolo_openai_api_key: value,
+                zolo_sigmative_api_key: value,
             },
-        }).then(({ zolo_openai_api_key }) => {
-            setOpenaiAPIKey(zolo_openai_api_key);
+        }).then(({ zolo_sigmative_api_key }) => {
+            setOpenaiAPIKey(zolo_sigmative_api_key);
         });
     };
 

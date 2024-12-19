@@ -25,24 +25,23 @@ const Content = () => {
         requestAI();
     }
 
-    console.log('prompt', prompt);
     function onKeyDown(e) {
         if (e.key === 'Enter') {
             requestAI();
         }
     }
-
-    	// useEffect(() => {
-        //     if (screen === 'prompt' && prompt) {
-        //         setScreen('prompt');
-        //     }
-        // }, [screen, prompt, setScreen]);
-        // console.log('screen', screen);
-
+    useEffect(() => {
+        // if (response?.content) {
+        //     setPrompt(response.content);
+        // }
+        if(screen === 'request') {
+            setPrompt(content);
+        }
+    }, [response, content, screen, prompt]);
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">
-                {screen === 'request' && (
+                {screen === 'request' ? (
                     <>
                         <div className="zolo-popup-response-button">
                             <Button
@@ -188,8 +187,9 @@ const Content = () => {
                             ></SelectControl>
                         </div>
                     </>
+                ) : (
+                    <p>suggesition text goes here</p>
                 )}
-                {screen === 'prompt' && <p>suggesition text goes here</p>}
             </div>
         </div>
     );
