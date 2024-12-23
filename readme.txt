@@ -366,6 +366,7 @@ Not at all. We have optimized all of these blocks for better performance.
   - **Image Gallery Block:** Resolved issue with saving the backdrop filter control settings.
   - **Text Path Block:** Fixed show/hide conditions for image options in the style tab for circle path type and resolved image border radius issues.
   - **Navigation Block:** Fixed menu gap control save issue in the style tab.
+  - **Lightbox Block:** Resolved image resolution save issue in the basic tab.
 
 **2.1.4 [December 07, 2024]**
 

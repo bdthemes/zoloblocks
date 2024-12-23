@@ -186,6 +186,10 @@ const attributes = {
     playBtnBorderHColor: {
         type: 'string',
     },
+    imageSize: {
+        type: 'string',
+        default: 'thumbnail',
+    },
     // style attributes
 
     ...generateResRangeAttributies(POSTER_HEIGHT, { default: 300 }),
