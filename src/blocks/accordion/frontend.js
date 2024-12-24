@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // options
             const initialOpen = accordion.dataset.initialOpen ? parseInt(accordion.dataset.initialOpen) : 0;
             const allowInitialOpen = accordion.dataset.allowinitialopen ? true : false;
-            console.log(initialOpen);
             const allowMultiple = accordion.dataset.multiple === 'true' ? true : false;
 
             new Accordion(accordion, {
