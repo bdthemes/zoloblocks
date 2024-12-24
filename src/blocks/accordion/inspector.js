@@ -119,7 +119,7 @@ function Inspector(props) {
                             />
 
                             <ToggleControl
-                                label={__('Allow Initial', 'zoloblocks')}
+                                label={__('Initial Open', 'zoloblocks')}
                                 checked={allowInitialOpen}
                                 onChange={() => setAttributes({ allowInitialOpen: !allowInitialOpen })}
                                 help={__('This feature works on the frontend only.', 'zoloblocks')}
