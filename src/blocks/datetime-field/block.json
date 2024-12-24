@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Date Field",
-    "name": "zolo/date-field",
+    "title": "Date Time Field",
+    "name": "zolo/datetime-field",
     "category": "zoloblocks",
-    "keywords": ["zolo", "date", "field", "input", "form", "survey"],
+    "keywords": ["zolo", "date", "time", "input", "form", "survey"],
     "description": "Customizable date fields for forms or surveys.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

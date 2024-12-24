@@ -73,14 +73,14 @@ const attributes = {
   },
   label: {
     type: 'string',
-    default: 'Date',
+    default: 'Date/Time',
   },
   labelColor: {
     type: 'string',
   },
   placeholder: {
     type: 'string',
-    default: 'Choose a date',
+    default: 'Select Date/Time',
   },
   placeholderColor: {
     type: 'string',
@@ -117,7 +117,11 @@ const attributes = {
   },
   dateFormat: {
     type: 'string',
-    default:'MMMM D, YYYY'
+    default: 'Y-m-d'
+  },
+  timeFormat:{
+    type:'string',
+    default:'H:i'
   },
   defaultValue: {
     type: 'string',
@@ -125,6 +129,11 @@ const attributes = {
   customNameAttribute: {
     type: 'string',
   },
+  fieldType: {
+    type: 'string',
+    default: 'date'
+  },
+
 };
 
 export default attributes;

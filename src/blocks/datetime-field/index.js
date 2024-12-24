@@ -4,7 +4,7 @@ import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
 import Context from './context';
-import "react-datetime/css/react-datetime.css";
+import "flatpickr/dist/themes/material_green.css";
 
 registerBlockType(metadata, {
   icon: {

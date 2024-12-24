@@ -9,7 +9,7 @@ import {__} from '@wordpress/i18n';
  * External dependencies
  */
 import classnames from 'classnames';
-import Datetime from 'react-datetime';
+import Flatpickr from "react-flatpickr";
 
 /**
  * Internal dependencies
@@ -37,7 +37,9 @@ export default function Edit(props) {
     showRequiredSymbol,
     dateFormat,
     customNameAttribute,
-    defaultValue
+    defaultValue,
+    fieldType,
+    timeFormat
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -104,16 +106,50 @@ export default function Edit(props) {
                 <DisplayZoloIcon icon={icon}/>
               </div>
             )}
-            <Datetime
-              value={selectedDate || defaultValue}
-              onChange={(date) => setSelectedDate(date)}
-              timeFormat={false}
-              dateFormat={dateFormat}
-              inputProps={{
-                placeholder: placeholder,
-                name: customNameAttribute || 'date_field'
-              }}
-            />
+
+            {fieldType === 'date' && (
+              <Flatpickr
+                className="zolo-date-field"
+                value={selectedDate || defaultValue}
+                onChange={(date) => setSelectedDate(date[0])}
+                name={customNameAttribute || 'date_field'}
+                placeholder={placeholder}
+                options={{
+                  dateFormat: dateFormat,
+                  enableTime: false,
+                }}
+              />
+            )}
+
+            {fieldType === 'datetime' && (
+              <Flatpickr
+                className="zolo-date-field"
+                value={selectedDate || defaultValue}
+                onChange={(date) => setSelectedDate(date[0])}
+                name={customNameAttribute || 'date_field'}
+                placeholder={placeholder}
+                options={{
+                  dateFormat: dateFormat + ' ' + timeFormat,
+                  enableTime: true,
+                }}
+              />
+            )}
+
+            {fieldType === 'time' && (
+              <Flatpickr
+                className="zolo-date-field"
+                value={selectedDate || defaultValue}
+                onChange={(date) => setSelectedDate(date[0])}
+                name={customNameAttribute || 'date_field'}
+                placeholder={placeholder}
+                options={{
+                  dateFormat: timeFormat,
+                  enableTime: true,
+                  noCalendar: true
+                }}
+              />
+            )}
+
           </div>
         </div>
       </div>

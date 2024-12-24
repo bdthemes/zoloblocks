@@ -20,7 +20,9 @@ const Save = ({attributes}) => {
     requiredMsg,
     dateFormat,
     customNameAttribute,
-    defaultValue
+    defaultValue,
+    timeFormat,
+    fieldType
   } = attributes;
 
   const blockProps = useBlockProps.save({
@@ -49,6 +51,8 @@ const Save = ({attributes}) => {
              data-placeholder={placeholder}
              data-requiredmsg={requiredMsg}
              data-dateformat={dateFormat}
+             data-timeformat={timeFormat}
+             data-fieldtype={fieldType}
              data-nameattribute={customNameAttribute || 'date_field'}
              data-defaultvalue={defaultValue}
         >

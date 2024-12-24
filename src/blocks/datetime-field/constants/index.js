@@ -18,7 +18,18 @@ export const FIELD_BRADIUS = 'fieldBorderRadius';
 export const ICON_SIZE = 'iconSize';
 
 export const DATE_FORMAT = [
-  {label: 'December 12, 2024', value: 'MMMM D, YYYY'},
-  {label: '12/12/2024', value: 'MM/DD/YYYY'},
-  {label: '2024-12-12', value: 'YYYY-MM-DD'}
+  {label: '2024-12-12', value: 'Y-m-d'},
+  {label: 'December 12, 2024', value: 'F j, Y'},
+  {label: '12/12/2024', value: 'd/m/Y'},
 ];
+export const TIME_FORMAT = [
+  {label: '10:00', value: 'H:i'},
+  {label: '10:00 AM', value: 'h:i K'},
+];
+
+export const FIELD_TYPE = [
+  {label: 'Date', value: 'date'},
+  {label: 'Date & Time', value: 'datetime'},
+  {label: 'Time Only', value: 'time'},
+];
+

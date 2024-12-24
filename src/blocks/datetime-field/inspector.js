@@ -11,7 +11,8 @@ import {
   BaseControl,
 } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
-import Datetime from 'react-datetime';
+import Flatpickr from 'react-flatpickr';
+
 /**
  * Internal depencencies
  */
@@ -42,8 +43,11 @@ import {
   FIELD_BORDER,
   FIELD_BRADIUS,
   ICON_SIZE,
-  DATE_FORMAT
+  DATE_FORMAT,
+  FIELD_TYPE,
+  TIME_FORMAT
 } from './constants';
+
 
 function Inspector(props) {
   const {attributes, setAttributes} = props;
@@ -66,6 +70,8 @@ function Inspector(props) {
     dateFormat,
     defaultValue,
     customNameAttribute,
+    fieldType,
+    timeFormat
   } = attributes;
 
   const requiredProps = {
@@ -149,29 +155,112 @@ function Inspector(props) {
                 />
               )}
               <CardDivider/>
+
               <SelectControl
-                label={__('Date Format', 'zoloblocks')}
-                value={dateFormat}
-                options={DATE_FORMAT}
-                onChange={(dateFormat) => setAttributes({dateFormat})}
+                label={__('Field Type', 'zoloblocks')}
+                value={fieldType}
+                options={FIELD_TYPE}
+                onChange={(fieldType) => setAttributes({fieldType})}
               />
+
+              {(fieldType === 'date' || fieldType === 'datetime') && (
+                <SelectControl
+                  label={__('Date Format', 'zoloblocks')}
+                  value={dateFormat}
+                  options={DATE_FORMAT}
+                  onChange={(dateFormat) => setAttributes({dateFormat})}
+                />
+              )}
+
+              {(fieldType === 'time' || fieldType === 'datetime') && (
+                <SelectControl
+                  label={__('Time Format', 'zoloblocks')}
+                  value={timeFormat}
+                  options={TIME_FORMAT}
+                  onChange={(timeFormat) => setAttributes({timeFormat})}
+                />
+              )}
               <CardDivider/>
               <BaseControl
                 label={__('Default Value', 'zoloblocks')}
                 className="zolo-flex-col-control"
               >
-                <Datetime
-                  value={defaultValue}
-                  onChange={(date) => {
-                    const formattedDate = date && date?.format ? date.format(dateFormat) : '';
-                    setAttributes({ defaultValue: formattedDate });
-                  }}
-                  timeFormat={false}
-                  dateFormat={dateFormat}
-                  inputProps={{
-                    placeholder: placeholder
-                  }}
-                />
+                {fieldType === 'date' && (
+                  <Flatpickr
+                    value={defaultValue}
+                    onChange={(date) => {
+                      if (date[0]) {
+                        const formattedDate = date[0].toISOString().split('T')[0];
+                        setAttributes({defaultValue: formattedDate});
+                      }
+                    }}
+                    options={{
+                      dateFormat,
+                      enableTime: false
+                    }}
+                    render={({defaultValue, ...props}, ref) => (
+                      <input
+                        {...props}
+                        ref={ref}
+                        placeholder={placeholder}
+                        style={{
+                          pointerEvents: "inherit !important"
+                        }}
+                      />
+                    )}
+                  />
+                )}
+                {fieldType === 'time' && (
+                  <Flatpickr
+                    value={defaultValue}
+                    onChange={(date) => {
+                      if (date[0]) {
+                        const formattedDate = date[0].toISOString().split('T')[0];
+                        setAttributes({defaultValue: formattedDate});
+                      }
+                    }}
+                    options={{
+                      dateFormat: timeFormat,
+                      enableTime: true,
+                      noCalendar: true
+                    }}
+                    render={({defaultValue, ...props}, ref) => (
+                      <input
+                        {...props}
+                        ref={ref}
+                        placeholder={placeholder}
+                        style={{
+                          pointerEvents: "inherit !important"
+                        }}
+                      />
+                    )}
+                  />
+                )}
+                {fieldType === 'datetime' && (
+                  <Flatpickr
+                    value={defaultValue}
+                    onChange={(date) => {
+                      if (date[0]) {
+                        const formattedDate = date[0].toISOString().split('T')[0];
+                        setAttributes({defaultValue: formattedDate});
+                      }
+                    }}
+                    options={{
+                      enableTime: true,
+                      dateFormat: dateFormat + ' ' + timeFormat,
+                    }}
+                    render={({defaultValue, ...props}, ref) => (
+                      <input
+                        {...props}
+                        ref={ref}
+                        placeholder={placeholder}
+                        style={{
+                          pointerEvents: "inherit !important"
+                        }}
+                      />
+                    )}
+                  />
+                )}
               </BaseControl>
 
               <CardDivider/>
