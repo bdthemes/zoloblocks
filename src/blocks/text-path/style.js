@@ -36,6 +36,7 @@ import {
     CIRCLE_IMAGE_BORDER,
     CIRCLE_IMAGE_BOX_SHADOW,
     CIRCLE_IMAGE_BORDER_RADIUS,
+    PATH_THICKNESS,
 } from './constants';
 
 const Style = ({ props }) => {
@@ -186,6 +187,16 @@ const Style = ({ props }) => {
 
     const directionStyle = circleAnimationDuration.direction === 'clockwise' ? 1 : -1;
 
+    const {
+        desktopRangeStyle: pathDeskThickness,
+        tabRangeStyle: pathTabThickness,
+        mobRangeStyle: pathMobThickness,
+    } = generateResRangeStyle({
+        controlName: PATH_THICKNESS,
+        property: 'stroke-width',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -227,6 +238,7 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-text-path .zolo-path{
             ${textPathShow && 'stroke:#2667ff'};
+            ${pathDeskThickness}
         }
         .${uniqueId}.wp-block-zolo-text-path svg {
             ${DesktopTextpathTypo}
@@ -288,7 +300,9 @@ const Style = ({ props }) => {
             ${imageBorderTab}
             ${imageBorderRadiusTab}
         }
-
+        .${uniqueId}.wp-block-zolo-text-path .zolo-path{
+            ${pathTabThickness}
+        }
     `;
 
     const mobileAllStyle = `
@@ -311,6 +325,9 @@ const Style = ({ props }) => {
             ${imagePaddingMob}
             ${imageBorderMob}
             ${imageBorderRadiusMob}
+        }
+        .${uniqueId}.wp-block-zolo-text-path .zolo-path{
+            ${pathMobThickness}
         }
     `;
     return (

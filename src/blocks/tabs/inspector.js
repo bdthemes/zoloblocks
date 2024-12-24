@@ -97,6 +97,7 @@ function Inspector(props) {
         verticalLayoutDirection,
         contentDirection,
         itemBorderColors,
+        horizontalTabItemWidth,
     } = attributes;
 
     const requiredProps = {
@@ -306,6 +307,27 @@ function Inspector(props) {
                             stylePanel={true}
                             panelProps={props}
                         >
+                            {tabsLayout === 'horizontal' && (
+                                <>
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Width', 'zoloblocks')}
+                                            value={horizontalTabItemWidth}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    horizontalTabItemWidth: value,
+                                                })
+                                            }
+                                            options={[
+                                                { label: 'Full', value: '' },
+                                                { label: 'Auto', value: 'zolo-h-tab-auto' },
+                                            ]}
+                                        />
+                                    </div>
+                                    <CardDivider />
+                                </>
+                            )}
+
                             <NormalBGControl requiredProps={requiredProps} controlName={TAB_WRAP_BGCOLOR} noMainBGImg={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}

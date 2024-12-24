@@ -75,22 +75,18 @@ const attributes = {
     },
     textColor: {
         type: 'string',
-        default: '#39384b',
     },
     linkColor: {
         type: 'string',
-        default: '#2667ff',
     },
     hoverLinkColor: {
         type: 'string',
-        default: '#175af5',
     },
     hoverLinkBorderColor: {
         type: 'string',
     },
     dropcapColor: {
         type: 'string',
-        default: '#000000',
     },
 
     textGradient: {
