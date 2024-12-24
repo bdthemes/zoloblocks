@@ -82,6 +82,7 @@ function Inspector(props) {
         titleHoverColor,
         atitleColor,
         initialOpen,
+        allowInitialOpen,
         allowMultiple,
         animatedBorderColor,
         animatedBorderActiveColor,
@@ -117,21 +118,29 @@ function Inspector(props) {
                                 }}
                             />
 
-                            <InputControl
-                                label={__('Initial open item', 'zoloblocks')}
-                                value={initialOpen}
-                                onChange={(nextValue) =>
-                                    setAttributes({
-                                        initialOpen: nextValue,
-                                    })
-                                }
-                                type="number"
-                                min={1}
-                                max={99}
-                                labelPosition="edge"
-                                __unstableInputWidth="64px"
-                                placeholder="1"
+                            <ToggleControl
+                                label={__('Allow Initial', 'zoloblocks')}
+                                checked={allowInitialOpen}
+                                onChange={() => setAttributes({ allowInitialOpen: !allowInitialOpen })}
+                                help={__('This feature works on the frontend only.', 'zoloblocks')}
                             />
+                            {allowInitialOpen && (
+                                <InputControl
+                                    label={__('Initial open item', 'zoloblocks')}
+                                    value={initialOpen}
+                                    onChange={(nextValue) =>
+                                        setAttributes({
+                                            initialOpen: nextValue,
+                                        })
+                                    }
+                                    type="number"
+                                    min={1}
+                                    max={99}
+                                    labelPosition="edge"
+                                    __unstableInputWidth="64px"
+                                    placeholder="1"
+                                />
+                            )}
 
                             <ToggleControl
                                 label={__('Allow multiple open at a time', 'zoloblocks')}
