@@ -730,6 +730,9 @@ return apply_filters('zolo_blocks_list_data', [
     //     'status' => true,
     //     'is_child' => true,
     // ],
+     'number-field' => [
+         'name' => 'number-field',
+         'title' => __('Number Field', 'zoloblocks'),
      'radio-field' => [
          'name' => 'radio-field',
          'title' => __('Radio Field', 'zoloblocks'),
