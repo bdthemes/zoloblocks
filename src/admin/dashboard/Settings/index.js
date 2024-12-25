@@ -15,7 +15,7 @@ const Settings = () => {
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
     const [disableCorePatterns, setDisableCorePatterns] = useState(true);
-    const[ autoRecovery, setAutoRecovery] = useState(true);
+    const [autoRecovery, setAutoRecovery] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
     const [modalNewPage, setModalNewPage] = useState(false);
     const [editorVideoLink, setEditorVideoLink] = useState(false);
@@ -50,7 +50,6 @@ const Settings = () => {
             setDisableCorePatterns(response.zolo_disable_core_patterns);
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
-
         } catch (error) {
             handleFetchError(error);
         }
@@ -74,7 +73,7 @@ const Settings = () => {
             setComingSoonMode(response.zolo_coming_soon_mode);
             setBlockLibrary(response.zolo_enable_template_library);
             setDisableCorePatterns(response.zolo_disable_core_patterns);
-            setEditorVideoLink(response.zolo_enable_video_link)
+            setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setNotice(true);
         } catch (error) {
@@ -146,12 +145,12 @@ const Settings = () => {
         });
     };
     const updateEditorVideoLink = (value) => {
-      updateSettings({
-        path: '/wp/v2/settings',
-        method: 'POST',
-        data: { zolo_enable_video_link: value },
-      });
-    }
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_enable_video_link: value },
+        });
+    };
     const updateAutoRecovery = (value) => {
         updateSettings({
             path: '/wp/v2/settings',
@@ -321,7 +320,7 @@ const Settings = () => {
                                     <SettingBox
                                         title={__('Automatic Block Recovery', 'zoloblocks')}
                                         description={__(
-                                            'Automatically recover any erroneous blocks on your web pages, saving you the hassle of manually clicking \'Attempt Block Recovery\' buttons.',
+                                            "Automatically recover any erroneous blocks on your web pages, saving you the hassle of manually clicking 'Attempt Block Recovery' buttons.",
                                             'zoloblocks'
                                         )}
                                     >

@@ -58,7 +58,7 @@ export default function Edit(props) {
                     value={content}
                     formatingControls={['bold', 'italic']}
                     placeholder="Enter text..."
-                    multiline="p"
+                    // multiline="p"
                 />
             </div>
         </>
