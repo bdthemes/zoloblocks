@@ -254,7 +254,7 @@ const attributes = {
         type: 'string',
     },
     backdropFilterBlur: {
-        type: 'string',
+        type: 'number',
     },
 };
 

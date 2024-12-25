@@ -19,6 +19,7 @@
 
     .zolo-item {
         position: relative;
+        outline: none;
         &:hover {
             .zolo-image-wrap {
                 &::before {
@@ -50,7 +51,7 @@
             right: 0;
             top: 0;
             bottom: 0;
-            z-index: 1;
+            z-index: 99;
             transition: all 0.3s ease-in-out;
             background-color: rgba(10, 10, 25, 0.369);
         }
@@ -66,7 +67,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        z-index: 11;
+        z-index: 111;
         transform: translate(-50%, -50%);
         text-decoration: none;
     }

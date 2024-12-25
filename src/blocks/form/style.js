@@ -43,6 +43,7 @@ import {
     ERR_BRADIUS,
     ERR_BG,
     ERR_PADDING,
+    ICON_SPACING,
 } from './constants';
 
 import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
@@ -364,6 +365,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // ICON SPACING
+    const {
+        desktopRangeStyle: iconSpacingDesk,
+        tabRangeStyle: iconSpacingTab,
+        mobRangeStyle: iconSpacingMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SPACING,
+        property: 'padding-inline-start',
+        attributes,
+    });
+
     // alignment
     const btnDeskAlign = `width: ${buttonAlignmentDesktop === 'text-align:justify;' ? '100%' : ''};`;
     const btnTabAlign = `width: ${buttonAlignmentTab === 'text-align:justify;' ? '100%' : ''};`;
@@ -419,6 +431,10 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-input-icon svg {
             ${iconSize}
             fill: ${iconColor};
+        }
+
+        .${uniqueId} .zolo-input-icon {
+            ${iconSpacingDesk}
         }
 
         .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
@@ -509,6 +525,10 @@ const Style = ({ props }) => {
             ${iconTabSize}
         }
 
+        .${uniqueId} .zolo-input-icon {
+            ${iconSpacingTab}
+        }
+
         .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
@@ -572,6 +592,10 @@ const Style = ({ props }) => {
 
         .${uniqueId} .zolo-input-icon svg {
             ${iconMobSize}
+        }
+
+        .${uniqueId} .zolo-input-icon {
+            ${iconSpacingMob}
         }
 
         .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {

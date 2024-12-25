@@ -27,6 +27,7 @@ import {
     CIRCLE_IMAGE_BORDER,
     CIRCLE_IMAGE_BOX_SHADOW,
     CIRCLE_IMAGE_BORDER_RADIUS,
+    PATH_THICKNESS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -73,6 +74,7 @@ const attributes = {
     ...generateBorderAttributies(CIRCLE_IMAGE_BORDER),
     ...generateBoxShadowAttributies(CIRCLE_IMAGE_BOX_SHADOW),
     ...generateDimensionAttributes(CIRCLE_IMAGE_BORDER_RADIUS),
+    ...generateResRangeAttributies(PATH_THICKNESS),
 
     circlePhoto: {
         type: 'object',
