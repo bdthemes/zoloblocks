@@ -1,0 +1,23 @@
+export const BLOCK_PREFIX = 'zolo-post-title';
+export const PAGINATION_ALIGN = 'paginationAlign';
+export const PAGINATION_PADDING = 'paginationPadding';
+export const PAGINATION_MARGIN = 'paginationMargin';
+export const PAGINATION_BG = 'paginationBg';
+export const PAGINATION_BORDER = 'paginationBorder';
+export const PAGINATION_BORDER_RADIUS = 'paginationBRadius';
+export const PAGINATION_SHADOW = 'paginationShadow';
+export const PAGINATION_HOVER_BG = 'paginationHBg';
+export const PAGINATION_HOVER_BORDER = 'paginationHBorder';
+export const PAGINATION_HOVER_BRADIUS = 'paginationHBRadius';
+export const PAGINATION_HOVER_SHADOW = 'paginationHShadow';
+export const PAGINATION_ACTIVE_SHADOW = 'paginationAShadow';
+export const PAGINATION_ACTIVE_BG = 'paginationABg';
+
+export const NAV_BG = 'navBg';
+export const NAV_MARGIN = 'navMargin';
+export const NAV_PADDING = 'navPadding';
+export const NAV_BORDER = 'navBorder';
+export const NAV_BORDER_RADIUS = 'navBRadius';
+export const NAV_SHADOW = 'navShadow';
+export const NAV_HOVER_BG = 'navHBg';
+export const NAV_HOVER_SHADOW = 'navHShadow';

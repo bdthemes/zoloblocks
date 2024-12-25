@@ -81,7 +81,6 @@ const {
     ZoloPanelBody,
     ResGapControl,
     ZoloIconPicker,
-    presetFiveArrowColor,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -119,6 +118,7 @@ function Inspector(props) {
         navBg,
         navHoverBg,
         navWidth,
+        presetFiveArrowColor,
     } = attributes;
 
     const requiredProps = {

@@ -73,6 +73,7 @@ export default function Style({ props }) {
         presetSevenStyles,
         buttonTwoBorderColor,
         psStarColor,
+        presetBgColor,
     } = attributes;
 
     // alignment
@@ -395,7 +396,6 @@ export default function Style({ props }) {
 
 		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
 			${hoverBoxShadowStyle}
-			${hoverDeskBGStyle}
 			border-color: ${borderHoverColor ? borderHoverColor : ''};
 		}
 
@@ -408,6 +408,7 @@ export default function Style({ props }) {
             ${normalDeskBGStyle}
             ${normalBoxShadowStyle}
 		}
+
         ${
             preset === 'button-2'
                 ? `
@@ -417,10 +418,38 @@ export default function Style({ props }) {
         `
                 : ''
         }
+
+         ${
+             preset !== 'button-10' && preset !== 'button-11'
+                 ? `
+                       .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
+                            ${hoverDeskBGStyle}
+                        }
+                `
+                 : ''
+         }
         
-        .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
-			${hoverDeskBGStyle}
-		}
+        ${
+            preset === 'button-10'
+                ? `
+                    .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-10 .zolo-button::after,
+                    .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-10 .zolo-button::before {
+                        background: ${presetBgColor ? presetBgColor : ''};
+                    }
+                `
+                : ''
+        }
+
+        ${
+            preset === 'button-11'
+                ? `
+                    .wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId}.button-11 .zolo-button .zolo-circle {
+                       background: ${presetBgColor ? presetBgColor : ''};
+                    }
+                `
+                : ''
+        }
+
 		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoDesktop}
 			color: ${textColor ? textColor : ''};

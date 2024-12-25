@@ -8,6 +8,8 @@ import './unregister';
 // form editor script
 import './form';
 
-import './defaultpatterns';
+import './settings';
+
+import './video-link';
 
 

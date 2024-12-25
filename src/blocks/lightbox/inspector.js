@@ -54,9 +54,18 @@ import {
     CONTENT_HEIGHT,
     ICON_BG_COLOR,
     ICON_H_BG_COLOR,
+    PLAY_BTN_ICON_SIZE,
+    PLAY_BTN_PADDING,
+    PLAY_BTN_MARGIN,
+    PLAY_BTN_BORDER,
+    PLAY_BTN_BORDER_RADIUS,
+    PLAY_BTN_BOX_SHADOW,
+    PLAY_BTN_H_BOX_SHADOW,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { CardDivider } from '@wordpress/components';
+import { Card } from '@wordpress/components';
 
 export default function Edit(props) {
     const { attributes, setAttributes } = props;
@@ -86,6 +95,7 @@ export default function Edit(props) {
         hoverTitleSubColor,
         iconColor,
         iconHColor,
+        playBtnBorderHColor,
     } = attributes;
 
     const requiredProps = {
@@ -118,6 +128,7 @@ export default function Edit(props) {
 
                                 {lightboxType === 'poster' && (
                                     <>
+                                        <CardDivider />
                                         <BaseControl label={__('Poster Image', 'zoloblocks')} className="zolo-flex-col-control">
                                             {imagePoster ? (
                                                 <ImageAvatar
@@ -184,9 +195,9 @@ export default function Edit(props) {
                                             min={0}
                                             max={1200}
                                         />
-
+                                        <CardDivider />
                                         <ToggleControl
-                                            label={__('Show Icon', 'zoloblocks')}
+                                            label={__('Play Button', 'zoloblocks')}
                                             checked={showPosterIcon}
                                             onChange={() =>
                                                 setAttributes({
@@ -214,8 +225,9 @@ export default function Edit(props) {
 
                                 {lightboxType === 'button' && (
                                     <>
+                                        <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                                         <ToggleControl
-                                            label={__('Show Title', 'zoloblocks')}
+                                            label={__('Title', 'zoloblocks')}
                                             checked={enableHeading}
                                             onChange={() =>
                                                 setAttributes({
@@ -224,7 +236,7 @@ export default function Edit(props) {
                                             }
                                         />
                                         <ToggleControl
-                                            label={__('Show Sub Title', 'zoloblocks')}
+                                            label={__('Sub Title', 'zoloblocks')}
                                             checked={enableSubHeading}
                                             onChange={() =>
                                                 setAttributes({
@@ -233,7 +245,7 @@ export default function Edit(props) {
                                             }
                                         />
                                         <ToggleControl
-                                            label={__('Show Icon', 'zoloblocks')}
+                                            label={__('Play Button', 'zoloblocks')}
                                             checked={showPosterIcon}
                                             onChange={() =>
                                                 setAttributes({
@@ -241,6 +253,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
+                                        <CardDivider />
                                         {enableHeading && (
                                             <>
                                                 <TextControl
@@ -266,17 +279,20 @@ export default function Edit(props) {
                                             />
                                         )}
                                         {showPosterIcon && (
-                                            <ZoloIconPicker
-                                                label={__('Selected Icon', 'zoloblocks')}
-                                                value={posterIcon}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        posterIcon: value,
-                                                    })
-                                                }
-                                            />
+                                            <>
+                                                <CardDivider />
+                                                <ZoloIconPicker
+                                                    label={__('Play Button Icon', 'zoloblocks')}
+                                                    value={posterIcon}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            posterIcon: value,
+                                                        })
+                                                    }
+                                                />
+                                            </>
                                         )}
-
+                                        <CardDivider />
                                         <ResAlignmentControl
                                             label={__('Alignment', 'zoloblocks')}
                                             controlName={BUTTON_ALIGN}
@@ -431,7 +447,7 @@ export default function Edit(props) {
                                             normalComponents={
                                                 <>
                                                     <BorderControl
-                                                        label={__('Border Type', 'zoloblocks')}
+                                                        label={__('Border', 'zoloblocks')}
                                                         controlName={POSTER_BORDER}
                                                         requiredProps={requiredProps}
                                                     />
@@ -474,7 +490,7 @@ export default function Edit(props) {
 
                             {lightboxType === 'button' && (
                                 <>
-                                    <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
+                                    <ZoloPanelBody title={__('Button Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
@@ -484,30 +500,27 @@ export default function Edit(props) {
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
                                                     />
-
-                                                    <BorderControl
-                                                        label={__('Border Type', 'zoloblocks')}
-                                                        controlName={BUTTON_BORDER}
-                                                        requiredProps={requiredProps}
-                                                    />
-
-                                                    <ResDimensionsControl
-                                                        label={__('Border Radius', 'zoloblocks')}
-                                                        controlName={BUTTON_BORDER_RADIUS}
-                                                        requiredProps={requiredProps}
-                                                        forBorderRadius={true}
-                                                    />
-
                                                     <ResDimensionsControl
                                                         label={__('Padding', 'zoloblocks')}
                                                         controlName={BUTTON_PADDING}
                                                         requiredProps={requiredProps}
                                                     />
-
+                                                    <CardDivider />
+                                                    <BorderControl
+                                                        label={__('Border', 'zoloblocks')}
+                                                        controlName={BUTTON_BORDER}
+                                                        requiredProps={requiredProps}
+                                                    />
                                                     <BoxShadowControl
                                                         controlName={BUTTON_BOX_SHADOW}
                                                         requiredProps={requiredProps}
                                                         enableTransition={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={BUTTON_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={true}
                                                     />
                                                 </>
                                             }
@@ -519,18 +532,18 @@ export default function Edit(props) {
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
                                                     />
-
-                                                    <ResDimensionsControl
-                                                        label={__('Border Radius', 'zoloblocks')}
-                                                        controlName={HOVER_BUTTON_BORDER_RADIUS}
-                                                        requiredProps={requiredProps}
-                                                        forBorderRadius={true}
-                                                    />
+                                                    <CardDivider />
 
                                                     <BoxShadowControl
                                                         controlName={HOVER_BUTTON_BOX_SHADOW}
                                                         requiredProps={requiredProps}
                                                         enableTransition={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={HOVER_BUTTON_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={true}
                                                     />
                                                 </>
                                             }
@@ -539,8 +552,18 @@ export default function Edit(props) {
 
                                     {enableHeading && (
                                         <>
-                                            <ZoloPanelBody title={__('Button Title', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                                            <ZoloPanelBody title={__('Button Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                                 <TabPanelControl
+                                                    options={[
+                                                        {
+                                                            value: 'normal',
+                                                            label: __('Title', 'zoloblocks'),
+                                                        },
+                                                        {
+                                                            value: 'hover',
+                                                            label: __('Sub Title', 'zoloblocks'),
+                                                        },
+                                                    ]}
                                                     normalComponents={
                                                         <>
                                                             <ColorControl
@@ -558,12 +581,22 @@ export default function Edit(props) {
                                                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                                                 requiredProps={requiredProps}
                                                             />
-
+                                                            <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                                            <ColorControl
+                                                                label={__('Color', 'zoloblocks')}
+                                                                color={hoverTitleColor}
+                                                                onChange={(value) =>
+                                                                    setAttributes({
+                                                                        hoverTitleColor: value,
+                                                                    })
+                                                                }
+                                                            />
+                                                        </>
+                                                    }
+                                                    hoverComponents={
+                                                        <>
                                                             {enableSubHeading && (
                                                                 <>
-                                                                    <div className="zolo-custom-heading">
-                                                                        {__('Button Sub Title', 'zoloblocks')}
-                                                                    </div>
                                                                     <ColorControl
                                                                         label={__('Color', 'zoloblocks')}
                                                                         color={titleSubColor}
@@ -573,36 +606,23 @@ export default function Edit(props) {
                                                                             })
                                                                         }
                                                                     />
-
                                                                     <TypographyDropdown
                                                                         label={__('Typography', 'zoloblocks')}
                                                                         typoPrefixConstant={BUTTON_SUB_TYPOGRAPHY}
                                                                         requiredProps={requiredProps}
                                                                     />
+                                                                    <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                                                    <ColorControl
+                                                                        label={__('Color', 'zoloblocks')}
+                                                                        color={hoverTitleSubColor}
+                                                                        onChange={(value) =>
+                                                                            setAttributes({
+                                                                                hoverTitleSubColor: value,
+                                                                            })
+                                                                        }
+                                                                    />
                                                                 </>
                                                             )}
-                                                        </>
-                                                    }
-                                                    hoverComponents={
-                                                        <>
-                                                            <ColorControl
-                                                                label={__('Title Color', 'zoloblocks')}
-                                                                color={hoverTitleColor}
-                                                                onChange={(value) =>
-                                                                    setAttributes({
-                                                                        hoverTitleColor: value,
-                                                                    })
-                                                                }
-                                                            />
-                                                            <ColorControl
-                                                                label={__('Sub Title Color', 'zoloblocks')}
-                                                                color={hoverTitleSubColor}
-                                                                onChange={(value) =>
-                                                                    setAttributes({
-                                                                        hoverTitleSubColor: value,
-                                                                    })
-                                                                }
-                                                            />
                                                         </>
                                                     }
                                                 />
@@ -613,7 +633,7 @@ export default function Edit(props) {
                             )}
                             {showPosterIcon && (
                                 <>
-                                    <ZoloPanelBody title={__('Button Icon', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                                    <ZoloPanelBody title={__('Play Button', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
@@ -626,11 +646,47 @@ export default function Edit(props) {
                                                             })
                                                         }
                                                     />
+                                                    <ResRangeControl
+                                                        label={__('Icon Size', 'zoloblocks')}
+                                                        controlName={PLAY_BTN_ICON_SIZE}
+                                                        requiredProps={requiredProps}
+                                                        min={0}
+                                                        max={100}
+                                                    />
+                                                    <CardDivider />
                                                     <NormalBGControl
                                                         label={__('Background Color', 'zoloblocks')}
                                                         controlName={ICON_BG_COLOR}
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Padding', 'zoloblocks')}
+                                                        controlName={PLAY_BTN_PADDING}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Margin', 'zoloblocks')}
+                                                        controlName={PLAY_BTN_MARGIN}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
+                                                    <BorderControl
+                                                        label={__('Border', 'zoloblocks')}
+                                                        controlName={PLAY_BTN_BORDER}
+                                                        requiredProps={requiredProps}
+                                                    />
+
+                                                    <BoxShadowControl
+                                                        controlName={PLAY_BTN_BOX_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={PLAY_BTN_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={true}
                                                     />
                                                 </>
                                             }
@@ -650,6 +706,22 @@ export default function Edit(props) {
                                                         controlName={ICON_H_BG_COLOR}
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
+                                                    />
+                                                    <CardDivider />
+                                                    <ColorControl
+                                                        label={__('Border Color', 'zoloblocks')}
+                                                        color={playBtnBorderHColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                playBtnBorderHColor: value,
+                                                            })
+                                                        }
+                                                    />
+
+                                                    <BoxShadowControl
+                                                        controlName={PLAY_BTN_H_BOX_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
                                                     />
                                                 </>
                                             }

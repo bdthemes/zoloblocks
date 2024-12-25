@@ -34,7 +34,14 @@ import {
     CONTENT_HEIGHT,
     CONTENT_WIDTH,
     ICON_BG_COLOR,
-    ICON_H_BG_COLOR
+    ICON_H_BG_COLOR,
+    PLAY_BTN_ICON_SIZE,
+    PLAY_BTN_PADDING,
+    PLAY_BTN_MARGIN,
+    PLAY_BTN_BORDER,
+    PLAY_BTN_BORDER_RADIUS,
+    PLAY_BTN_BOX_SHADOW,
+    PLAY_BTN_H_BOX_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -175,6 +182,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+
+    playBtnBorderHColor: {
+        type: 'string',
+    },
     // style attributes
 
     ...generateResRangeAttributies(POSTER_HEIGHT, { default: 300 }),
@@ -203,6 +214,14 @@ const attributes = {
     ...generateDimensionAttributes(HOVER_BUTTON_BORDER_RADIUS),
     ...generateBoxShadowAttributies(HOVER_BUTTON_BOX_SHADOW),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    ...generateResRangeAttributies(PLAY_BTN_ICON_SIZE),
+    ...generateDimensionAttributes(PLAY_BTN_PADDING),
+    ...generateDimensionAttributes(PLAY_BTN_MARGIN),
+    ...generateBorderAttributies(PLAY_BTN_BORDER),
+    ...generateDimensionAttributes(PLAY_BTN_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(PLAY_BTN_BOX_SHADOW),
+    ...generateBoxShadowAttributies(PLAY_BTN_H_BOX_SHADOW),
 };
 
 export default attributes;

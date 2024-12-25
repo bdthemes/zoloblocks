@@ -82,6 +82,16 @@ import {
     MOBILE_MENU_WRAP_PADDING,
     MOBILE_MENU_WRAP_BOX_SHADOW,
     BREAKPOINT_OPTIONS,
+    // indicator
+    SUB_MENU_INDICATOR_SIZE,
+    SUB_MENU_INDICATOR_BG,
+    SUB_MENU_INDICATOR_PADDING,
+    SUB_MENU_INDICATOR_MARGIN,
+    SUB_MENU_INDICATOR_BORDER,
+    SUB_MENU_INDICATOR_BORDER_RADIUS,
+    SUB_MENU_INDICATOR_BOX_SHADOW,
+    SUB_MENU_INDICATOR_HOVER_BG,
+    SUB_MENU_INDICATOR_ACTIVE_BG,
 } from './constants';
 
 import { MENU_TYPOGRAPHY, SUB_MENU_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -104,6 +114,12 @@ const Inspector = (props) => {
         brandPhoto,
         imageRes,
         humbergerIcon,
+
+        subMenuIconColor,
+        subMenuIconHoverColor,
+        subMenuIconHoverBorderColor,
+        subMenuIconActiveColor,
+        subMenuIconActiveBorderColor,
     } = attributes;
 
     const requiredProps = {
@@ -552,6 +568,122 @@ const Inspector = (props) => {
                                             onChange={(value) =>
                                                 setAttributes({
                                                     closeIconBorderHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Indicator', 'zoloblocks')} panelProps={props}>
+                            <TabPanelControl
+                                options={TAB_STATES}
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={subMenuIconColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    subMenuIconColor: value,
+                                                })
+                                            }
+                                        />
+
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={SUB_MENU_INDICATOR_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <CardDivider />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={SUB_MENU_INDICATOR_BG}
+                                            noMainBGImg={false}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={SUB_MENU_INDICATOR_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={SUB_MENU_INDICATOR_MARGIN}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={SUB_MENU_INDICATOR_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl controlName={SUB_MENU_INDICATOR_BOX_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={SUB_MENU_INDICATOR_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={subMenuIconHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    subMenuIconHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={SUB_MENU_INDICATOR_HOVER_BG}
+                                            noMainBGImg={false}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={subMenuIconHoverBorderColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    subMenuIconHoverBorderColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={subMenuIconActiveColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    subMenuIconActiveColor: value,
+                                                })
+                                            }
+                                        />
+
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={SUB_MENU_INDICATOR_ACTIVE_BG}
+                                            noMainBGImg={false}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={subMenuIconActiveBorderColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    subMenuIconActiveBorderColor: value,
                                                 })
                                             }
                                         />

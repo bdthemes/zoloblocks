@@ -8,6 +8,7 @@ const {
     generateNormalBGAttributes,
     generateBoxShadowAttributies,
     generateTypographyAttributes,
+    generateResAlignmentAttributies,
 } = window.zoloModule;
 
 import {
@@ -45,6 +46,7 @@ import {
     MSG_PADDING,
     SUBSCRIBED_MSG_BG,
     SUCCESS_MSG_BG,
+    BUTTON_ALIGNMENT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -122,6 +124,8 @@ const attributes = {
     ...generateBorderAttributies(INPUT_BORDER),
     ...generateDimensionAttributes(INPUT_BORDER_RADIUS),
 
+    //Button Alignment
+    ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
     //Block specific Attributes
     provider: {
         type: 'string',
@@ -272,6 +276,10 @@ const attributes = {
     textError: {
         type: 'string',
         default: "OOps, someting wrong, Can't process your request",
+    },
+    btnWType: {
+        type: 'string',
+        default: '',
     },
 };
 
