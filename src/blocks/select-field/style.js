@@ -28,11 +28,13 @@ import {
     FIELD_BORDER,
     FIELD_BRADIUS,
     ICON_SIZE,
+    ARROW_ICON_SIZE,
+    ARROW_ICON_SPACING,
 } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, showLabel, labelColor, textColor, iconColor, showRequiredSymbol, requiredColor } = attributes;
+    const { uniqueId, showLabel, labelColor, textColor, iconColor, showRequiredSymbol, requiredColor, arrowIconColor } = attributes;
 
     // label
     const {
@@ -151,6 +153,27 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // Arrow Icon
+    const {
+        desktopRangeStyle: arrowIconSize,
+        tabRangeStyle: arrowIconTabSize,
+        mobRangeStyle: arrowIconMobSize,
+    } = generateResRangeStyle({
+        controlName: ARROW_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: arrowIconSpacing,
+        tabRangeStyle: arrowIconTabSpacing,
+        mobRangeStyle: arrowIconMobSpacing,
+    } = generateResRangeStyle({
+        controlName: ARROW_ICON_SPACING,
+        property: 'margin-right',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -195,6 +218,13 @@ const Style = ({ props }) => {
             ${iconSize}
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
+        .${uniqueId}.wp-block-zolo-select-field .zolo-select-arrow {
+            ${arrowIconSize}
+            ${arrowIconSpacing}
+        }
+        .${uniqueId}.wp-block-zolo-select-field .zolo-select-arrow svg{
+            ${arrowIconColor ? `color: ${arrowIconColor};` : ''}
+        }
     `;
 
     const tabletAllStyle = `
@@ -227,6 +257,10 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-select-field .zolo-field-input-item .zolo-input-icon svg {
             ${iconTabSize}
         }
+        .${uniqueId}.wp-block-zolo-select-field .zolo-select-arrow {
+            ${arrowIconTabSize}
+            ${arrowIconTabSpacing}
+        }
     `;
 
     const mobileAllStyle = `
@@ -258,6 +292,10 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-select-field .zolo-field-input-item .zolo-input-icon svg {
             ${iconMobSize}
+        }
+        .${uniqueId}.wp-block-zolo-select-field .zolo-select-arrow {
+            ${arrowIconMobSize}
+            ${arrowIconMobSpacing}
         }
     `;
 

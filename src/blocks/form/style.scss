@@ -181,7 +181,8 @@
     }
     .zolo-field-icon {
         input,
-        textarea {
+        textarea,
+        select {
             padding-inline-start: var(--zolo-icon-input-padding-inline-start);
         }
     }
@@ -209,6 +210,24 @@
         -moz-appearance: none;
         text-indent: 1px;
         text-overflow: '';
+        background-image: unset;
+        background-size: unset;
+        min-height: auto;
+        max-width: auto;
+    }
+    .zolo-select-arrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        margin-right: 15px;
+        pointer-events: none;
+        svg {
+            color: currentColor;
+            display: block;
+            width: 1em;
+            height: 1em;
+        }
     }
 
     .zolo-select-icon svg {
