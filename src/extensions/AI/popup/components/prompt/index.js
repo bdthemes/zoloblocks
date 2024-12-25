@@ -66,9 +66,9 @@ const Prompt = (props) => {
     const handleInputChange = (e) => {
         // reset();
         const newContent = e?.target?.value;
-        // setBlockContentState(newContent);
-        // setBlockContent(newContent);
-        // setPrompt(newContent);
+        setBlockContentState(newContent);
+        setBlockContent(newContent);
+        setPrompt(newContent);
     };
     const handleContentChange = (e) => {
         const newContent = e?.target?.value;
@@ -76,7 +76,7 @@ const Prompt = (props) => {
         setBlockContent(newContent);
         setPrompt(newContent);
     };
-console.log(response);
+// console.log(response);
     return (
         <>
             {screen === 'request' && response?.content !== '' ? (
