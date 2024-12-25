@@ -53,6 +53,16 @@ export const CLOSE_ICON_MARGIN = 'closeIconMargin';
 export const CLOSE_ICON_BOX_SHADOW = 'closeIconBoxShadow';
 export const CLOSE_ICON_HOVER_BG = 'closeIconHoverBg';
 
+export const SUB_MENU_INDICATOR_SIZE = 'subMenuIndicatorSize';
+export const SUB_MENU_INDICATOR_BG = 'subMenuIndicatorBg';
+export const SUB_MENU_INDICATOR_PADDING = 'subMenuIndicatorPadding';
+export const SUB_MENU_INDICATOR_MARGIN = 'subMenuIndicatorMargin';
+export const SUB_MENU_INDICATOR_BORDER = 'subMenuIndicatorBorder';
+export const SUB_MENU_INDICATOR_BORDER_RADIUS = 'subMenuIndicatorBorderRadius';
+export const SUB_MENU_INDICATOR_BOX_SHADOW = 'subMenuIndicatorBoxShadow';
+export const SUB_MENU_INDICATOR_HOVER_BG = 'subMenuIndicatorHoverBg';
+export const SUB_MENU_INDICATOR_ACTIVE_BG = 'subMenuIndicatorActiveBg';
+
 // tab states
 export const TAB_STATES = [
     {

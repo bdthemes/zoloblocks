@@ -15,7 +15,7 @@
     --zolo-error-border-width: 1px;
     --zolo-error-border-style: solid;
     --border-error-border-color: red;
-    --zolo-label-margin: 0 0 0.5rem;
+    --zolo-label-margin: 0 0 1rem;
     --zolo-label-gap: 0.5rem;
     --zolo-required-color: #b80606;
     --zolo-label-text-color: rgb(17 24 39 / var(--tw-opacity));
@@ -371,8 +371,8 @@
 
 .zolo-input-icon svg {
     fill: rgb(107 114 128 / var(--tw-opacity));
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     display: block;
 }
 

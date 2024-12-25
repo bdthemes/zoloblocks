@@ -45,7 +45,11 @@ export default function Edit(props) {
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} ${preset && stylePreset === '' ? preset : ''} ${stylePreset !== '' && stylePreset}`, classArrayToStr(parentClasses)),
+        className: classnames(
+            className,
+            `${uniqueId} ${preset && stylePreset === '' ? preset : ''} ${stylePreset !== '' && stylePreset}`,
+            classArrayToStr(parentClasses)
+        ),
     });
 
     // preview image
@@ -91,7 +95,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
                 <div className="zolo-item">
-                    {showPhoto && stylePreset !=='style-preset-2' &&(
+                    {showPhoto && stylePreset !== 'style-preset-2' && (
                         <div className="zolo-image-quote-wrap">
                             <div className="zolo-image-wrap">
                                 {memberPhoto ? (
@@ -127,7 +131,7 @@ export default function Edit(props) {
                                     />
                                 )}
                             </div>
-                            {showQuoteIcon && (
+                            {showQuoteIcon && stylePreset !== 'style-preset-3' && (
                                 <div className="zolo-quote-icon">
                                     <DisplayZoloIcon icon={quoteIcon} />
                                 </div>
@@ -135,10 +139,10 @@ export default function Edit(props) {
                         </div>
                     )}
 
-                    {showTestimonialMessage && stylePreset ==='style-preset-2' &&(
+                    {showTestimonialMessage && stylePreset === 'style-preset-2' && (
                         <>
-                           <div className='zolo-desc-quote-wrap'>
-                               {showQuoteIcon && (
+                            <div className="zolo-desc-quote-wrap">
+                                {showQuoteIcon && (
                                     <div className="zolo-quote-icon">
                                         <DisplayZoloIcon icon={quoteIcon} />
                                     </div>
@@ -154,12 +158,12 @@ export default function Edit(props) {
                                         placeholder={__('message..', 'zoloblocks')}
                                     />
                                 </div>
-                           </div>
+                            </div>
                         </>
                     )}
 
                     <div className="zolo-info-wrap">
-                        {showPhoto && stylePreset ==='style-preset-2' &&(
+                        {showPhoto && stylePreset === 'style-preset-2' && (
                             <div className="zolo-image-wrap">
                                 {memberPhoto ? (
                                     <img
@@ -196,12 +200,12 @@ export default function Edit(props) {
                             </div>
                         )}
                         <div className="zolo-meta-content">
-                            {showRating &&(
+                            {showRating && (
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>
                             )}
-                            {showTestimonialMessage && stylePreset !=='style-preset-2' &&(
+                            {showTestimonialMessage && stylePreset !== 'style-preset-2' && (
                                 <div className="zolo-desc">
                                     <RichText
                                         value={testimonialMessage}
@@ -244,6 +248,14 @@ export default function Edit(props) {
                                 )}
                             </div>
                         </div>
+                        {stylePreset === 'style-preset-3' && (
+                            <>
+                                <div className="zolo-quote-icon">
+                                    <DisplayZoloIcon icon={quoteIcon} />
+                                </div>
+                                <div className="zolo-triangle"></div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

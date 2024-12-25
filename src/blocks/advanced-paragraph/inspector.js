@@ -23,6 +23,7 @@ const {
     TabPanelControl,
     TextShadowControl,
     ZoloPanelBody,
+    TextGradientControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -30,6 +31,7 @@ import objAttributes from './attributes';
 import { TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
 
 import {
+    TEXT_MARGIN,
     COLUMNS,
     COLUMNS_GAP,
     TEXT_ALIGNMENT,
@@ -47,9 +49,12 @@ import {
     DROP_CAP_RADIUS,
     DROP_CAP_PADDING,
     DROP_CAP_MARGIN,
+    TEXT_GRADIENT_COLOR,
 } from './constants';
 import { CardDivider } from '@wordpress/components';
 import { Card } from '@wordpress/components';
+
+const { zolo_pro_status } = window.zoloParams;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -87,6 +92,11 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={6}
+                                defaults={{
+                                    deskRange: 1,
+                                    tabRange: 1,
+                                    mobRange: 1,
+                                }}
                             />
                             <ResRangeControl
                                 label={__('Gap', 'zoloblocks')}
@@ -108,14 +118,40 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={textColor}
-                                onChange={(color) => setAttributes({ textColor: color })}
-                            />
+                            {zolo_pro_status === 'active' ? (
+                                <>
+                                    <TextGradientControl
+                                        noMainBGImg={true}
+                                        controlName={TEXT_GRADIENT_COLOR}
+                                        requiredProps={requiredProps}
+                                        defaultColor={textColor}
+                                        onChangeDefault={(val) => {
+                                            setAttributes({
+                                                textColor: val,
+                                            });
+                                        }}
+                                    />
+                                </>
+                            ) : (
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={textColor}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            textColor: val,
+                                        })
+                                    }
+                                />
+                            )}
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TEXT_TYPO}
+                                requiredProps={requiredProps}
+                            />
+                            <CardDivider />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={TEXT_MARGIN}
                                 requiredProps={requiredProps}
                             />
                         </ZoloPanelBody>
@@ -182,45 +218,53 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={dropcapColor}
-                                onChange={(color) => setAttributes({ dropcapColor: color })}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={DROP_CAP_TYPO}
-                                requiredProps={requiredProps}
-                            />
+                        {dropcap && (
+                            <>
+                                <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={dropcapColor}
+                                        onChange={(color) => setAttributes({ dropcapColor: color })}
+                                    />
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zoloblocks')}
+                                        typoPrefixConstant={DROP_CAP_TYPO}
+                                        requiredProps={requiredProps}
+                                    />
 
-                            <TextShadowControl
-                                label={__('Text Shadow', 'zoloblocks')}
-                                controlName={DROP_CAP_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={true}
-                            />
-                            <CardDivider />
-                            <NormalBGControl controlName={DROP_CAP_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={DROP_CAP_PADDING}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={DROP_CAP_MARGIN}
-                                requiredProps={requiredProps}
-                            />
-                            <CardDivider />
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={DROP_CAP_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Radius', 'zoloblocks')}
-                                controlName={DROP_CAP_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                        </ZoloPanelBody>
+                                    <TextShadowControl
+                                        label={__('Text Shadow', 'zoloblocks')}
+                                        controlName={DROP_CAP_SHADOW}
+                                        requiredProps={requiredProps}
+                                        enableTransition={true}
+                                    />
+                                    <CardDivider />
+                                    <NormalBGControl controlName={DROP_CAP_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={DROP_CAP_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zoloblocks')}
+                                        controlName={DROP_CAP_MARGIN}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <CardDivider />
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={DROP_CAP_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Radius', 'zoloblocks')}
+                                        controlName={DROP_CAP_RADIUS}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                </ZoloPanelBody>
+                            </>
+                        )}
                     </>
                 }
                 advancedTab={

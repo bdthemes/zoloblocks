@@ -13,7 +13,7 @@ import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
 import { ColorPalette } from '@wordpress/block-editor';
 
-const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGImg = false }) => {
+const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGImg = false, defaultColor="",onChangeDefault= null }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
     const {
         //attributes for background type normal start
@@ -75,7 +75,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                 backgroundType === 'gradient'
                     ? textGradientColorgradientColor
                     : backgroundType === 'classic'
-                      ? titleColor
+                      ? defaultColor
                       : backgroundType === 'image'
                         ? 'url(' + bgImageURL + ')'
                         : ''
@@ -1054,19 +1054,10 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                     </>
                 )}
                 {backgroundType === 'classic' && (
-                    // <color
-                    //     label={__('Color', 'zoloblocks')}
-                    //     color={titleColor}
-                    //     onChange={(val) =>
-                    //         setAttributes({
-                    //             titleColor: val,
-                    //         })
-                    //     }
-                    // />
                     <ColorPalette
                         label={__('Color', 'zoloblocks')}
-                        value={titleColor}
-                        onChange={(val) => setAttributes({ titleColor: val })}
+                        value={defaultColor}
+                        onChange={onChangeDefault}
                     />
                 )}
             </div>
