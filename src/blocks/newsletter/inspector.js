@@ -26,6 +26,7 @@ const {
     IconicBtnGroup,
     AdvancedOptions,
     ZoloPanelBody,
+    ResAlignmentControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -67,6 +68,8 @@ import {
     LABEL_BOTTOM_SPACING,
     LABEL_BG,
     LABEL_HOVER_BG_COLOR,
+    BUTTON_ALIGNMENT,
+    BUTTON_FLEX_ALIGN,
 } from './constants';
 
 import { INPUT_TYPOGRAPHY, LABEL_TYPOGRAPHY, BUTTON_TYPOGRAPHY, MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -111,6 +114,7 @@ function Inspector(props) {
         labelTextHoverColor,
         provider,
         selectedWebhook,
+        btnWType,
     } = attributes;
 
     // const [webhooks, setWebhooks] = useState([]);
@@ -150,17 +154,17 @@ function Inspector(props) {
     const validLabels = labels.filter((label) => label.trim() !== '');
 
     // zolo.newsletter.providers;
-   const providers = [
-                {
-                    label: __('Mailchimp', 'zoloblocks'),
-                    value: 'newsletter',
-                },
-                {
-                    label: __('Webhook (Pro)', 'zoloblocks'),
-                    value: 'webhook',
-                    disabled: true,
-                },
-            ]
+    const providers = [
+        {
+            label: __('Mailchimp', 'zoloblocks'),
+            value: 'newsletter',
+        },
+        {
+            label: __('Webhook (Pro)', 'zoloblocks'),
+            value: 'webhook',
+            disabled: true,
+        },
+    ];
 
     return (
         <InspectorControls key="controls">
@@ -246,6 +250,42 @@ function Inspector(props) {
                                     />
                                 </div>
                             )}
+
+                            {preset !== 'zolo-newsletter-4' && (
+                                <>
+                                    <CardDivider />
+                                    <div className="zolo-flex-row-control-tab">
+                                        <IconicBtnGroup
+                                            label={__('Button Width', 'zoloblocks')}
+                                            value={btnWType}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnWType: value,
+                                                })
+                                            }
+                                            options={[
+                                                {
+                                                    label: __('Full', 'zoloblocks'),
+                                                    value: '',
+                                                },
+                                                {
+                                                    label: __('Auto', 'zoloblocks'),
+                                                    value: 'button-auto',
+                                                },
+                                            ]}
+                                        />
+                                    </div>
+                                    {btnWType === 'button-auto' && (
+                                        <ResAlignmentControl
+                                            label={__('Alignment', 'zoloblocks')}
+                                            controlName={BUTTON_ALIGNMENT}
+                                            requiredProps={requiredProps}
+                                            alignOptions={BUTTON_FLEX_ALIGN}
+                                        />
+                                    )}
+                                </>
+                            )}
+
                             <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Name Field', 'zoloblocks')}
@@ -671,7 +711,7 @@ function Inspector(props) {
                                                     max={36}
                                                 />
                                                 <CardDivider />
-                                                {preset === 'zolo-newsletter-1' && (
+                                                {/* {preset === 'zolo-newsletter-1' && (
                                                     <ResRangeControl
                                                         label={__('Width', 'zoloblocks')}
                                                         controlName={BUTTON_SIZE}
@@ -684,12 +724,15 @@ function Inspector(props) {
                                                             { label: 'em', value: 'em' },
                                                         ]}
                                                     />
-                                                )}
+                                                )} */}
                                             </>
                                         )}
                                         {showIcon && (
                                             <>
-                                                <div className="zolo-custom-heading">{__('Icon', 'zoloblocks')}</div>
+                                                <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                                    {__('Icon', 'zoloblocks')}
+                                                </div>
+
                                                 <ColorControl
                                                     label={__('Color', 'zoloblocks')}
                                                     color={iconColor}

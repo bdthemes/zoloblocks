@@ -217,6 +217,12 @@ const attributes = {
             active: '',
         },
     },
+
+    horizontalTabItemWidth: {
+        type: 'string',
+        default: '',
+    },
+
     // tabs container
     ...generateResRangeAttributies(TABS_CWIDTH, {
         defaultUnit: '%',

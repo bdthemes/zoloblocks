@@ -51,7 +51,20 @@ import { TITLE_TYPO } from './constants/typoPrefixConstant';
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, preset, iconColor, iconHoverColor, aiconColor, titleColor, titleHoverColor, atitleColor, animatedBorderColor, animatedBorderActiveColor } = attributes;
+    const {
+        uniqueId,
+        preset,
+        iconColor,
+        iconHoverColor,
+        aiconColor,
+        titleColor,
+        titleHoverColor,
+        atitleColor,
+        animatedBorderColor,
+        animatedBorderActiveColor,
+        iconBorderHoverColor,
+        iconBorderActiveColor,
+    } = attributes;
 
     // accordion container
     const {
@@ -370,6 +383,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverDesk}
+             ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-accordion .zolo-accordion-toggle svg {
@@ -427,6 +441,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.zolo-block.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-toggle {
             ${aaiNormalBgDesktop}
+            ${iconBorderActiveColor ? `border-color: ${iconBorderActiveColor};` : ''}
         }
 
 

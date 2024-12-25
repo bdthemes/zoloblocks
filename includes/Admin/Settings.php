@@ -101,6 +101,19 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+            // register zolo openai api key setting
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_sigmative_api_key',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
 
             // register zolo google spread sheet api key setting
             register_setting(
@@ -281,6 +294,18 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_auto_recovery',
+                [
+                    'type'              => 'boolean',
+                    'default'           => true,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
 
             // zolo webhooks
             register_setting(
@@ -306,6 +331,20 @@ if (! class_exists('Settings')) {
                             ],
                         ],
                     ],
+                ]
+            );
+
+            //Enable video link.
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_enable_video_link',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
                 ]
             );
         }

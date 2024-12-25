@@ -12,7 +12,7 @@
     height: 22px;
     display: block;
 }
-.zolo-lightbox-btn{
+.zolo-lightbox-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +61,7 @@
     padding-bottom: 110%;
     top: 50%;
     left: 50%;
-    border-radius: 50%;
+    border-radius: inherit;
     transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 1);
     content: '';
     position: absolute;
@@ -172,7 +172,7 @@
     border: none;
 }
 
-.wp-block-zolo-lightbox{
+.wp-block-zolo-lightbox {
     // text-decoration: none;
     .zolo-play-btn {
         outline: none;

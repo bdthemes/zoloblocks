@@ -82,7 +82,9 @@ const Save = (props) => {
                                 {preset === 'style-2' && (
                                     <div className="zolo-inner-item">
                                         <div className="zolo-content-wrap">
-                                            {showTitle && <h4 className="zolo-subTitle">design</h4>}
+                                            {showTitle && (
+                                                <h4 className="zolo-subTitle">{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>
+                                            )}
                                             {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
                                         </div>
                                         {showLightbox && (

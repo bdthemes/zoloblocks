@@ -82,6 +82,7 @@ import {
     FBTN_HOVER_BG,
     FBTN_HOVER_BOX_SHADOW,
     STATUS_GAP,
+    PHOTO_IMG_OVERLAY,
 } from './constants';
 
 import {
@@ -615,6 +616,8 @@ function Inspector(props) {
                                 )}
                                 {preset === 'style-1' && (
                                     <>
+                                        <div className="zolo-custom-heading">{__('Overlay')}</div>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_IMG_OVERLAY} noMainBGImg={true} />
                                         <div className="zolo-custom-heading">{__('Meta Wrapper')}</div>
                                         <ResDimensionsControl
                                             label={__(' Margin', 'zoloblocks')}

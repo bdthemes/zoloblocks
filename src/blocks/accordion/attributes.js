@@ -131,6 +131,12 @@ const attributes = {
     animatedBorderActiveColor: {
         type: 'string',
     },
+    iconBorderHoverColor: {
+        type: 'string',
+    },
+    iconBorderActiveColor: {
+        type: 'string',
+    },
     // Generators
     ...generateBorderAttributies(AC_CONTAINER_BORDER),
     ...generateDimensionAttributes(AC_CONTAINER_BORDER_RADIUS),

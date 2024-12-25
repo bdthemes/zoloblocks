@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'advanced-paragraph';
 
+export const TEXT_MARGIN = 'textMargin';
 export const COLUMNS = 'columns';
 export const COLUMNS_GAP = 'columnGap';
 // Text
@@ -30,3 +31,5 @@ export const DROP_CAP_BORDER = 'dropCropBorder';
 export const DROP_CAP_RADIUS = 'dropCropRadius';
 export const DROP_CAP_PADDING = 'dropCropPadding';
 export const DROP_CAP_MARGIN = 'dropCropMargin';
+//text gradient color
+export const TEXT_GRADIENT_COLOR = 'textGradientColor';

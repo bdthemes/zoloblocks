@@ -85,6 +85,7 @@ const attributes = {
     ...generateBoxShadowAttributies(SUB_MENU_BOX_SHADOW),
     ...generateNormalBGAttributes(SUB_MENU_HOVER_BG),
     ...generateNormalBGAttributes(SUB_MENU_ACTIVE_BG),
+
     ...generateResRangeAttributies(SUB_MENU_INDICATOR_SIZE),
     ...generateNormalBGAttributes(SUB_MENU_INDICATOR_BG),
     ...generateDimensionAttributes(SUB_MENU_INDICATOR_PADDING),

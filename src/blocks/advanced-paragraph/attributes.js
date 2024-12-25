@@ -14,6 +14,7 @@ const {
 } = window.zoloModule;
 
 import {
+    TEXT_MARGIN,
     COLUMNS,
     COLUMNS_GAP,
     TEXT_ALIGNMENT,
@@ -31,6 +32,7 @@ import {
     DROP_CAP_RADIUS,
     DROP_CAP_PADDING,
     DROP_CAP_MARGIN,
+    TEXT_GRADIENT_COLOR,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -73,24 +75,31 @@ const attributes = {
     },
     textColor: {
         type: 'string',
-        default: '#000',
     },
     linkColor: {
         type: 'string',
-        default: '#2667ff',
     },
     hoverLinkColor: {
         type: 'string',
-        default: '#175af5',
     },
     hoverLinkBorderColor: {
         type: 'string',
     },
     dropcapColor: {
         type: 'string',
-        default: '#000000',
     },
 
+    textGradient: {
+        type: 'boolean',
+        default: false,
+    },
+
+    textGradientType: {
+        type: 'string',
+        default: 'zolo-text-gradient-color',
+    },
+
+    ...generateDimensionAttributes(TEXT_MARGIN),
     ...generateResCounterAttributies(COLUMNS, {
         deskRange: 1,
         tabRange: 1,
@@ -113,6 +122,7 @@ const attributes = {
     ...generateDimensionAttributes(DROP_CAP_RADIUS),
     ...generateDimensionAttributes(DROP_CAP_PADDING),
     ...generateDimensionAttributes(DROP_CAP_MARGIN),
+    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR),
 };
 
 export default attributes;

@@ -21,3 +21,7 @@ export const FIELD_BRADIUS = 'fieldBorderRadius';
 
 // Icon
 export const ICON_SIZE = 'iconSize';
+
+// Arrow
+export const ARROW_ICON_SIZE = 'arrowIconSize';
+export const ARROW_ICON_SPACING = 'arrowIconSpacing';

@@ -110,6 +110,13 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/shape-divider',
         'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
     ],
+    'AI'          => [
+        'name'   => 'AI',
+        'title'  => __('AI', 'zoloblocks'),
+        'status' => false,
+        'demo'   => 'https://demo.zoloblocks.com/ai',
+        'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ],
     'dynamic-content'          => [
         'name'     => 'dynamic-content',
         'title'    => __('Dynamic Content', 'zoloblocks'),
@@ -118,5 +125,13 @@ return apply_filters('zolo_extensions', [
         'released' => false,
         'demo'     => 'https://demo.zoloblocks.com/dynamic-content',
         'video'    => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ]
+    ],
+    'interactions'          => [
+        'name'   => 'interactions',
+        'title'  => __('Interactions', 'zoloblocks'),
+        'status' => false,
+        'is_pro' => true,
+        'demo'   => 'https://demo.zoloblocks.com/interactions',
+        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ],
 ]);

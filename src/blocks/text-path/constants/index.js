@@ -22,6 +22,7 @@ export const CIRCLE_IMAGE_MARGIN = 'circleImageMargin';
 export const CIRCLE_IMAGE_BORDER = 'circleImageBorder';
 export const CIRCLE_IMAGE_BOX_SHADOW = 'circleImageBoxShadow';
 export const CIRCLE_IMAGE_BORDER_RADIUS = 'circleImageBorderRadius';
+export const PATH_THICKNESS = 'pathThickness';
 
 export const PATH_OPTION = [
     {
