@@ -1,3 +1,9 @@
+### 2.2.0 [January 05, 2024]
+
+- **New Features:**
+
+- **Fixes:**
+
 ### 2.1.5 [December 17, 2024]
 
 - **New Features:**
@@ -14,7 +20,7 @@
 ### 2.1.4 [December 07, 2024]
 
 - **New Features:**
-  - **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control. 
+  - **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control.
   Optimized arrow size for better usability and design consistency.
   - **Profile Card Block:** Added background options for the photo overlay in preset 2.
   - **Automatic Block Recovery:** Introduced the "Automatic Block Recovery" feature.
