@@ -41,6 +41,13 @@ import {
     CONTENT_WIDTH,
     ICON_BG_COLOR,
     ICON_H_BG_COLOR,
+    PLAY_BTN_ICON_SIZE,
+    PLAY_BTN_PADDING,
+    PLAY_BTN_MARGIN,
+    PLAY_BTN_BORDER,
+    PLAY_BTN_BORDER_RADIUS,
+    PLAY_BTN_BOX_SHADOW,
+    PLAY_BTN_H_BOX_SHADOW,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -57,6 +64,7 @@ export default function Style({ props }) {
         hoverTitleSubColor,
         iconColor,
         iconHColor,
+        playBtnBorderHColor,
     } = attributes;
 
     const {
@@ -281,6 +289,75 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: playBtnIconSizeDesk,
+        tabRangeStyle: playBtnIconSizeTab,
+        mobRangeStyle: playBtnIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: PLAY_BTN_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: playBtnIconHDesk,
+        tabRangeStyle: playBtnIconHTab,
+        mobRangeStyle: playBtnIconHMob,
+    } = generateResRangeStyle({
+        controlName: PLAY_BTN_ICON_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: playBtnPaddingDesk,
+        dimensionStylesTab: playBtnPaddingTab,
+        dimensionStylesMob: playBtnPaddingMob,
+    } = generateDimensionStyle({
+        controlName: PLAY_BTN_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: playBtnMarginDesk,
+        dimensionStylesTab: playBtnMarginTab,
+        dimensionStylesMob: playBtnMarginMob,
+    } = generateDimensionStyle({
+        controlName: PLAY_BTN_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: playBtnBorderDesk,
+        tabBorderStyle: playBtnBorderTab,
+        mobBorderStyle: playBtnBorderMob,
+    } = generateBorderStyle({
+        controlName: PLAY_BTN_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: playBtnBorderRadiusDesk,
+        dimensionStylesTab: playBtnBorderRadiusTab,
+        dimensionStylesMob: playBtnBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: PLAY_BTN_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: playBtnBoxShadow } = generateBoxShadowStyles({
+        controlName: PLAY_BTN_BOX_SHADOW,
+        attributes,
+    });
+
+    const { boxShadowStyle: playBtnHBoxShadow } = generateBoxShadowStyles({
+        controlName: PLAY_BTN_H_BOX_SHADOW,
+        attributes,
+    });
+
     // style
 
     const desktopAllStyle = `
@@ -301,13 +378,26 @@ export default function Style({ props }) {
          .${uniqueId} .zolo-play-btn .zolo-btn-icon{
             ${iconBgColorDesk}
             ${iconColor ? `border-color: ${iconColor};` : ''}
+            ${playBtnPaddingDesk}
+            ${playBtnMarginDesk}
+            ${playBtnBorderDesk}
+            ${playBtnBorderRadiusDesk}
+            ${playBtnBoxShadow}
+        }
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
+             ${iconColor ? `fill: ${iconColor} !important;` : ''}
+             ${playBtnIconSizeDesk}
+             ${playBtnIconHDesk}
         }
         .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
             ${iconHBgColorDesk}
         }
-        .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
-             ${iconColor ? `fill: ${iconColor} !important;` : ''}
+
+      .${uniqueId} .zolo-play-btn:hover .zolo-btn-icon {
+            ${playBtnBorderHColor ? `border-color: ${playBtnBorderHColor};` : ''}
+            ${playBtnHBoxShadow}
         }
+
        .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg{
             ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
         }
@@ -361,6 +451,14 @@ export default function Style({ props }) {
         }
          .${uniqueId} .zolo-play-btn .zolo-btn-icon{
             ${iconBgColorTab}
+            ${playBtnPaddingTab}
+            ${playBtnMarginTab}
+            ${playBtnBorderTab}
+            ${playBtnBorderRadiusTab}
+        }
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
+             ${playBtnIconSizeTab}
+             ${playBtnIconHTab}
         }
         .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
             ${iconHBgColorTab}
@@ -404,6 +502,14 @@ export default function Style({ props }) {
         }
          .${uniqueId} .zolo-play-btn .zolo-btn-icon{
             ${iconBgColorMob}
+            ${playBtnPaddingMob}
+            ${playBtnMarginMob}
+            ${playBtnBorderMob}
+            ${playBtnBorderRadiusMob}
+        }
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon svg{
+             ${playBtnIconSizeMob}
+             ${playBtnIconHMob}
         }
         .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
             ${iconHBgColorMob}

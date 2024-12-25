@@ -43,6 +43,7 @@ import {
     ERR_BRADIUS,
     ERR_BG,
     ERR_PADDING,
+    ICON_SPACING,
 } from './constants';
 
 import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
@@ -364,6 +365,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // ICON SPACING
+    const {
+        desktopRangeStyle: iconSpacingDesk,
+        tabRangeStyle: iconSpacingTab,
+        mobRangeStyle: iconSpacingMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SPACING,
+        property: 'padding-inline-start',
+        attributes,
+    });
+
     // alignment
     const btnDeskAlign = `width: ${buttonAlignmentDesktop === 'text-align:justify;' ? '100%' : ''};`;
     const btnTabAlign = `width: ${buttonAlignmentTab === 'text-align:justify;' ? '100%' : ''};`;
@@ -373,7 +385,9 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .zolo-contact-form input:focus, .${uniqueId} .zolo-contact-form select:focus, .${uniqueId} .zolo-contact-form textarea:focus {
+        .${uniqueId} .zolo-contact-form input:focus, 
+        .${uniqueId} .zolo-contact-form select:focus, 
+        .${uniqueId} .zolo-contact-form textarea:focus {
             ${focusBorderColor ? `border-color: ${focusBorderColor};` : ''} 
             ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px;` : ''}
             ${focusBorderColor ? `outline-color: ${focusBorderColor};` : ''}
@@ -420,8 +434,9 @@ const Style = ({ props }) => {
             ${iconSize}
             fill: ${iconColor};
         }
-
-        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select {
             color: ${textColor};
             ${fieldTypoDesk}
             ${fieldBorderStyles}
@@ -430,7 +445,9 @@ const Style = ({ props }) => {
             ${fieldBGStyle}
         }
 
-        .${uniqueId} .zolo-field-input-item input::placeholder , .${uniqueId} .zolo-field-input-item textarea::placeholder {
+        .${uniqueId} .zolo-field-input-item input::placeholder , 
+        .${uniqueId} .zolo-field-input-item textarea::placeholder,
+        .${uniqueId} .zolo-field-input-item select::placeholder {
             color: ${placeholderColor};
         }
 
@@ -439,7 +456,9 @@ const Style = ({ props }) => {
             ${errMsgTypoDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-form .has-danger input, .${uniqueId}.wp-block-zolo-form .has-danger textarea, .${uniqueId}.wp-block-zolo-form .has-danger select {
+        .${uniqueId}.wp-block-zolo-form .has-danger input, 
+        .${uniqueId}.wp-block-zolo-form .has-danger textarea, 
+        .${uniqueId}.wp-block-zolo-form .has-danger select {
             border-color: ${errMsgColor};
         }
 
@@ -509,7 +528,10 @@ const Style = ({ props }) => {
             ${iconTabSize}
         }
 
-        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select {
+
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
             ${fieldBRTab}
@@ -574,7 +596,10 @@ const Style = ({ props }) => {
             ${iconMobSize}
         }
 
-        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select {
+
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}

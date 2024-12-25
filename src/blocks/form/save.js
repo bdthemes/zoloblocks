@@ -1,13 +1,13 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
-
 // Save function
 const Save = (props) => {
     const { attributes } = props;
-    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition, reCaptcha } = attributes;
+    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition, reCaptcha, showBtnIcon, icon } =
+        attributes;
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
@@ -72,6 +72,7 @@ const Save = (props) => {
                             })}
                         >
                             {btnLabel || __('Submit Now', 'zoloblocks')}
+                            {showBtnIcon && <DisplayZoloIcon icon={icon} />}
                         </button>
                     </div>
                 </div>

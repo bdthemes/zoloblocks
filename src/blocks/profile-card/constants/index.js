@@ -81,3 +81,5 @@ export const ICONS_BORDER_RADIUS = 'IconsBorderRadius';
 
 export const ICONS_PADDING = 'IconsPadding';
 export const ICONS_MARGIN = 'IconsMargin';
+
+export const PHOTO_IMG_OVERLAY = 'PhotoImgOverlay';

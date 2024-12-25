@@ -52,6 +52,7 @@ import {
     ICONS_MARGIN,
     ICONS_BG,
     ICONS_HOVER_BG,
+    PHOTO_IMG_OVERLAY,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -142,7 +143,8 @@ const attributes = {
     },
     bio: {
         type: 'string',
-        default: 'Proficient WordPress developer specializing in plugin customization, integration, and delivering responsive, feature-rich websites.',
+        default:
+            'Proficient WordPress developer specializing in plugin customization, integration, and delivering responsive, feature-rich websites.',
     },
     showStatus: {
         type: 'boolean',
@@ -309,6 +311,8 @@ const attributes = {
     ...generateDimensionAttributes(ICONS_MARGIN),
     ...generateResRangeAttributies(ICONS_SIZE, {}),
     ...generateResRangeAttributies(ICONS_SPACING, {}),
+
+    ...generateNormalBGAttributes(PHOTO_IMG_OVERLAY),
 
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),

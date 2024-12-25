@@ -367,7 +367,7 @@ export default function Style({ props }) {
             border-color: ${subMenuBorderActiveColor ? subMenuBorderActiveColor : ''};
         }
 
-        .zolo-block.wp-block-zolo-navigation .zolo-navigation-wrapper .${uniqueId}.zolo-navigation-item .zolo-navigation-link .zolo-submenu-arrow {
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link .zolo-submenu-arrow {
             ${subMenuIndicatorBGDesk}
             ${subMenuIndicatorPaddingDesk}
             ${subMenuIndicatorMarginDesk}
@@ -376,24 +376,24 @@ export default function Style({ props }) {
             ${subMenuIndicatorBoxShadowStyle}
         }
 
-        .zolo-block.wp-block-zolo-navigation .zolo-navigation-wrapper .${uniqueId}.zolo-navigation-item .zolo-navigation-link:hover .zolo-submenu-arrow {
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link:hover .zolo-submenu-arrow {
             ${subMenuIndicatorHoverBGDesk}
         }
-        .zolo-block.wp-block-zolo-navigation .zolo-navigation-wrapper .${uniqueId}.zolo-navigation-item .zolo-navigation-link.active .zolo-submenu-arrow {
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link.active .zolo-submenu-arrow {
             ${subMenuIndicatorActiveBGDesk}
         }
-        .zolo-block.wp-block-zolo-navigation .zolo-navigation-wrapper .${uniqueId}.zolo-navigation-item .zolo-navigation-link .zolo-submenu-arrow svg{
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link .zolo-submenu-arrow svg{
            ${subMenuIndicatorSizeDesk};
             fill: ${subMenuIconColor ? subMenuIconColor : ''};
         }
 
-        .zolo-block.wp-block-zolo-navigation .zolo-navigation-wrapper .${uniqueId}.zolo-navigation-item .zolo-navigation-link:hover .zolo-submenu-arrow svg{
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link:hover .zolo-submenu-arrow svg{
             fill: ${subMenuIconHoverColor ? subMenuIconHoverColor : ''};
             border-color: ${subMenuIconHoverBorderColor ? subMenuIconHoverBorderColor : ''};
             ${subMenuIndicatorHoverBGDesk}
         }
 
-        .zolo-block.wp-block-zolo-navigation .zolo-navigation-wrapper .${uniqueId}.zolo-navigation-item .zolo-navigation-link.active .zolo-submenu-arrow svg{
+        .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper .zolo-navigation-item .zolo-navigation-link.active .zolo-submenu-arrow svg{
             fill: ${subMenuIconActiveColor ? subMenuIconActiveColor : ''};
             border-color: ${subMenuIconActiveBorderColor ? subMenuIconActiveBorderColor : ''};
             ${subMenuIndicatorActiveBGDesk}

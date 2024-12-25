@@ -383,8 +383,13 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-tabs {
             ${deskVarticalContentSpacing}
         }
-        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap {
+
+        .${uniqueId} .zolo-tabs.zolo-tab_horizontal .zolo-horizontal-head-tabswrap,
+        .${uniqueId} .zolo-tabs.zolo-tab_horizontal .zolo-tab_header-wrap {
             ${itemsVDeskAlign}
+        }
+
+        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap {
             ${deskNavSpacing}
             ${deskContentSpacing}
             ${wrapBorderStylesDesk}
@@ -493,8 +498,13 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-tabs{
             ${tabVarticalContentSpacing}
         }
-        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
+
+        .${uniqueId} .zolo-tabs.zolo-tab_horizontal .zolo-horizontal-head-tabswrap,
+        .${uniqueId} .zolo-tabs.zolo-tab_horizontal .zolo-tab_header-wrap {
             ${itemsVTabAlign}
+        }
+
+        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
             ${tabNavSpacing}
             ${tabContentSpacing}
             ${wrapBorderStylesTab}
@@ -538,7 +548,7 @@ const Style = ({ props }) => {
             ${iconBorderStylesTab}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon svg  {
             ${iconHeightWidthTab}
         }
 
@@ -552,8 +562,12 @@ const Style = ({ props }) => {
             ${tabVarticalContentSpacing}
         }
 
+        .${uniqueId} .zolo-tabs.zolo-tab_horizontal .zolo-horizontal-head-tabswrap,
+        .${uniqueId} .zolo-tabs.zolo-tab_horizontal .zolo-tab_header-wrap {
+            ${itemsVMobAlign}
+        }
+
         .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
-            ${itemsVTabAlign}
             ${mobNavSpacing}
             ${mobContentSpacing}
             ${wrapBorderStylesMob}
@@ -602,7 +616,7 @@ const Style = ({ props }) => {
             ${iconBorderStylesMob}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon svg  {
             ${iconHeightWidthMob}
         }
 
