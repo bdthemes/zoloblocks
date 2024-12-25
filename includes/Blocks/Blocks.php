@@ -713,32 +713,30 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'is_child' => true,
 
-    'post-video-slider' => [
-        'name' => 'post-video-slider',
-        'title' => __('Post Video Slider', 'zoloblocks-pro'),
-        'categories' => ['postCategory'],
-        'class' => '\ZoloPro\Blocks\PostVideoSlider',
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/marquee',
-        'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'post-video-slider' => [
+            'name' => 'post-video-slider',
+            'title' => __('Post Video Slider', 'zoloblocks-pro'),
+            'categories' => ['postCategory'],
+            'class' => '\ZoloPro\Blocks\PostVideoSlider',
+            'status' => true,
+            'is_pro' => true,
+            'demo' => 'https://demo.zoloblocks.com/marquee',
+            'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        ],
+        'number-field' => [
+            'name' => 'number-field',
+            'title' => __('Number Field', 'zoloblocks'),
+            'categories' => ['others'],
+            'status' => true,
+            'is_child' => true,
+        ],
+        'radio-field' => [
+            'name' => 'radio-field',
+            'title' => __('Radio Field', 'zoloblocks'),
+            'categories' => ['others'],
+            'status' => true,
+            'is_child' => true,
+        ]
     ],
-    // 'select-field' => [
-    //     'name' => 'select-field',
-    //     'title' => __('Select Field', 'zoloblocks'),
-    //     'categories' => ['others'],
-    //     'status' => true,
-    //     'is_child' => true,
-    // ],
-     'number-field' => [
-         'name' => 'number-field',
-         'title' => __('Number Field', 'zoloblocks'),
-     'radio-field' => [
-         'name' => 'radio-field',
-         'title' => __('Radio Field', 'zoloblocks'),
-         'categories' => ['others'],
-         'status' => true,
-         'is_child' => true,
-     ]
 
 ]);

@@ -267,26 +267,7 @@ const Settings = () => {
                                             }}
                                         />
                                     </SettingBox>
-                                    <SettingBox
-                                        title={__('Enable Video Link', 'zoloblocks')}
-                                        description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
-                                        isPro={true}
-                                    >
-                                        <ToggleControl
-                                            checked={!!editorVideoLink}
-                                            disabled={!zoloBlocks?.has_pro}
-                                            onChange={() => {
-                                                updateEditorVideoLink(!editorVideoLink);
-                                                setNotice(true);
-                                            }}
-                                        />
-                                    </SettingBox>
-                                </div>
-                            </div>
-                        )}
-                        {activeTab === 'assets-generation' && (
-                            <div className="zolo-tab-content-item zolo-tab-content-active">
-                                <div className="zolo-settings-option-wrap">
+
                                     <SettingBox
                                         title={__('Templates Library', 'zoloblocks')}
                                         description={__(
@@ -328,6 +309,20 @@ const Settings = () => {
                                             checked={!!autoRecovery}
                                             onChange={() => {
                                                 updateAutoRecovery(!autoRecovery);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
+                                        title={__('Enable Video Link', 'zoloblocks')}
+                                        description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
+                                        isPro={true}
+                                    >
+                                        <ToggleControl
+                                            checked={!!editorVideoLink}
+                                            disabled={!zoloBlocks?.has_pro}
+                                            onChange={() => {
+                                                updateEditorVideoLink(!editorVideoLink);
                                                 setNotice(true);
                                             }}
                                         />
