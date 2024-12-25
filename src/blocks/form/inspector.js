@@ -45,8 +45,6 @@ import {
 
 import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
 import { TEXT_ALIGN_OPTIONS, ICON_HPOSITIONS } from '../../../src/global/constants';
-import { Card } from '@wordpress/components';
-import { CardDivider } from '@wordpress/components';
 
 const {
     ResRangeControl,
