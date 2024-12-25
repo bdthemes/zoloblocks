@@ -12,6 +12,20 @@
   - **Advanced Paragraph Block:** Fixed default spacing issue.
   - **WordPress v6.7.1 compatibility issue fixed.
 
+### 2.1.3 [December 01, 2024]
+
+- **New Features:**
+  - **Advanced Paragraph Block:** Added hover border color option.
+  - **Lightbox Block:** Introduced play button style options.
+  - **Accordion Block:** Added icon hover and active tab border color options.
+
+- **Fixes:**
+  - **Lightbox Block:** Resolved column layout issue.
+  - **Tabs Block:** Fixed icon size issue on tablet and mobile.
+  - **Form Block:** Corrected frontend preview icon for the submit button.
+  - **Advanced Paragraph Block:** Fixed default spacing issue.
+  - **WordPress v6.7.1 compatibility issue fixed.
+
 
 ### 2.1.2 [November 20, 2024]
 
