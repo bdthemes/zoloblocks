@@ -215,7 +215,6 @@ export const AdvancedOptions = (props) => {
                         popoverHasAttrVal(position.horizontalOrientation.direction, true, 'left') ||
                         popoverHasAttrVal(position.verticalOrientation.unit, true, 'px') ||
                         popoverHasAttrVal(position.horizontalOrientation.unit, true, 'px')
-
                     }
                 >
                     <div className="zolo-flex-row-control">

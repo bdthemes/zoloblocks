@@ -75,6 +75,40 @@ export const BUTTON_LAYOUT_TYPES = [
     },
 ];
 
+export const BUTTON_FLEX_ALIGN = [
+    {
+        label: 'Flex Start',
+        value: 'flex-start',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Flex End',
+        value: 'flex-end',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
 export const BUTTON_BG = 'buttonBg';
 export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
 export const BUTTON_PADDING = 'buttonPadding';

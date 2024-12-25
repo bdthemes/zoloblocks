@@ -103,12 +103,12 @@
             .zolo-navigation-menu {
                 flex-direction: column;
                 align-items: flex-start;
-                background: inherit;
-                box-shadow: inherit;
+                background: none;
+                box-shadow: none;
 
                 .wp-block-zolo-navigation-submenu {
-                    background: inherit !important;
-                    box-shadow: inherit !important;
+                    background: none !important;
+                    box-shadow: none !important;
                 }
 
                 .zolo-navigation-item {

@@ -197,6 +197,10 @@
             border-radius: var(--zolo-item-border-radius);
             text-align: center;
         }
+        .zolo-info-wrap {
+            z-index: 99;
+            position: relative;
+        }
         .zolo-image-wrap {
             margin: var(--zolo-img-margin);
         }
