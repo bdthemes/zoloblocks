@@ -71,7 +71,8 @@ function Inspector(props) {
     defaultValue,
     customNameAttribute,
     fieldType,
-    timeFormat
+    timeFormat,
+    dateRangeDefaultValue
   } = attributes;
 
   const requiredProps = {
@@ -248,6 +249,34 @@ function Inspector(props) {
                     options={{
                       enableTime: true,
                       dateFormat: dateFormat + ' ' + timeFormat,
+                    }}
+                    render={({defaultValue, ...props}, ref) => (
+                      <input
+                        {...props}
+                        ref={ref}
+                        placeholder={placeholder}
+                        style={{
+                          pointerEvents: "inherit !important"
+                        }}
+                      />
+                    )}
+                  />
+                )}
+                {fieldType === 'date-range' && (
+                  <Flatpickr
+                    value={dateRangeDefaultValue}
+                    onChange={(selectedDates) => {
+                      const adjustedDates = selectedDates.map(date => {
+                        // Adjust dates to ignore time zone discrepancies
+                        return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                          .toISOString()
+                          .split('T')[0]; // Extract only the date part
+                      });
+                      setAttributes({dateRangeDefaultValue: adjustedDates});
+                    }}
+                    options={{
+                      mode: 'range',
+                      dateFormat: dateFormat,
                     }}
                     render={({defaultValue, ...props}, ref) => (
                       <input

@@ -126,6 +126,10 @@ const attributes = {
   defaultValue: {
     type: 'string',
   },
+  dateRangeDefaultValue:{
+    type: 'array',
+    default: [],
+  },
   customNameAttribute: {
     type: 'string',
   },

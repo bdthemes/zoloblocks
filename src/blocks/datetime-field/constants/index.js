@@ -31,5 +31,6 @@ export const FIELD_TYPE = [
   {label: 'Date', value: 'date'},
   {label: 'Date & Time', value: 'datetime'},
   {label: 'Time Only', value: 'time'},
+  {label: 'Date Range', value: 'date-range'},
 ];
 

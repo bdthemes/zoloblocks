@@ -22,7 +22,8 @@ const Save = ({attributes}) => {
     customNameAttribute,
     defaultValue,
     timeFormat,
-    fieldType
+    fieldType,
+    dateRangeDefaultValue
   } = attributes;
 
   const blockProps = useBlockProps.save({
@@ -55,6 +56,7 @@ const Save = ({attributes}) => {
              data-fieldtype={fieldType}
              data-nameattribute={customNameAttribute || 'date_field'}
              data-defaultvalue={defaultValue}
+             data-daterangedefaultvalue={JSON.stringify(dateRangeDefaultValue)}
         >
         </div>
 

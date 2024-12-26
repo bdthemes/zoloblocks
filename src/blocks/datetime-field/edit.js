@@ -39,7 +39,8 @@ export default function Edit(props) {
     customNameAttribute,
     defaultValue,
     fieldType,
-    timeFormat
+    timeFormat,
+    dateRangeDefaultValue
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -77,6 +78,7 @@ export default function Edit(props) {
     });
   }, [context]);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [dateRange, setDateRange] = useState(dateRangeDefaultValue || []);
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
@@ -146,6 +148,28 @@ export default function Edit(props) {
                   dateFormat: timeFormat,
                   enableTime: true,
                   noCalendar: true
+                }}
+              />
+            )}
+
+            {fieldType === 'date-range' && (
+              <Flatpickr
+                className="zolo-date-field"
+                value={dateRange}
+                onChange={(selectedDates) => {
+                  const adjustedDates = selectedDates.map(date => {
+                    // Adjust dates to ignore time zone discrepancies
+                    return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                      .toISOString()
+                      .split('T')[0]; // Extract only the date part
+                  });
+                  setDateRange(adjustedDates);
+                }}
+                name={customNameAttribute || 'date_field'}
+                placeholder={placeholder}
+                options={{
+                  mode: 'range',
+                  dateFormat: dateFormat,
                 }}
               />
             )}

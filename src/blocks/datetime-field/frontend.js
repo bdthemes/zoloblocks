@@ -20,9 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const customNameAttribute = zoloFieldItem.dataset.nameattribute;
         const defaultValue = zoloFieldItem.dataset.defaultvalue;
         const fieldType = zoloFieldItem.dataset.fieldtype;
-        const DatePickerComponent = () => {
-          const [selectedDate, setSelectedDate] = useState(null);
+        const dateRangeDefaultValue = JSON.parse(zoloFieldItem.dataset.daterangedefaultvalue);
 
+        const DatePickerComponent = () => {
+          const [selectedDate, setSelectedDate] = fieldType === 'date-range' ? useState(dateRangeDefaultValue || []) : useState(defaultValue || null);
           return (
             <>
               {showIcon && (
@@ -33,8 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
               )}
 
               <Flatpickr
-                value={selectedDate || defaultValue}
-                onChange={(date) => setSelectedDate(date[0])}
+                value={selectedDate}
+                onChange={(dates) => {
+                  if (fieldType === 'date-range') {
+                    const adjustedDates = dates.map(date => {
+                      // Adjust dates to ignore time zone discrepancies
+                      return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                        .toISOString()
+                        .split('T')[0]; // Extract only the date part
+                    });
+                    setSelectedDate(adjustedDates);
+                  } else {
+                    setSelectedDate(dates[0]);
+                  }
+                }}
                 options={{
                   ...(fieldType === 'date' && {
                     dateFormat: dateFormat,
@@ -49,7 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     enableTime: true,
                     noCalendar: true
                   }),
-
+                  ...(fieldType === 'date-range' && {
+                    mode: 'range',
+                    dateFormat: dateFormat,
+                  })
                 }}
                 render={({defaultValue, ...props}, ref) => (
                   <input
@@ -63,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   />
                 )}
               />
+
             </>
           );
         };
