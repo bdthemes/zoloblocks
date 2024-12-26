@@ -70,6 +70,7 @@ export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../help
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
 export { generateTextGradientsStyles } from '../helpers/text-gradient-helper';
+export { default as LottiePreview } from '../helpers/lottiePreview';
 
 
 export {
