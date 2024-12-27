@@ -1,0 +1,307 @@
+.wp-block-zolo-brand-carousel {
+    position: relative;
+    box-sizing: border-box;
+    .swiper {
+        --brand-carousel-mask-offset: 300px;
+    }
+    &.default {
+        .swiper {
+            padding: 50px 0 0;
+        }
+    }
+
+    .swiper-pagination-bullet {
+        margin: 0 !important;
+    }
+
+    .swiper-pagination {
+        --zolo-pagination-offset: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        z-index: 11;
+        bottom: 0 !important;
+        transform: translateY(var(--zolo-pagination-offset));
+        .swiper-pagination-bullet {
+            background-color: transparent;
+            width: 8px;
+            height: 8px;
+            border: 1px solid var(--zoloblocks-brand-color);
+            transition: all 0.3s ease;
+
+            &.swiper-pagination-bullet-active {
+                transform: scale(1.3);
+                background-color: var(--zoloblocks-brand-color);
+            }
+        }
+    }
+
+    .swiper-nav-button {
+        position: absolute;
+        top: 55%;
+        z-index: 1;
+        transform: translateY(-55%);
+        width: clamp(2.188rem, 6vw, 3.125rem);
+        height: clamp(2.188rem, 6vw, 3.125rem);
+        color: #000;
+        fill: #000;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        &:hover {
+            fill: var(--zoloblocks-brand-button-color);
+            color: var(--zoloblocks-brand-button-color);
+            background-color: var(--zoloblocks-brand-color);
+        }
+
+        &:after {
+            font-size: clamp(0.625rem, 1.5vw, 0.875rem);
+        }
+        &.swiper-zolo-next,
+        &.swiper-button-next {
+            right: -26px;
+        }
+        &.swiper-zolo-prev,
+        &.swiper-button-prev {
+            left: -26px;
+        }
+    }
+
+    // custom navigation icon
+    .swiper-zolo-prev {
+        .zolo__display-icon {
+            display: inline-block;
+        }
+    }
+
+    .swiper-zolo-prev,
+    .swiper-zolo-next {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+    }
+
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
+        content: 'next';
+    }
+
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        content: 'prev';
+    }
+}
+// pagination css  start
+.zolo-pagination-nav {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    .page-numbers {
+        transition: 0.2s;
+        font-size: 14px;
+        padding: 8px 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #f0f0f4;
+        cursor: pointer;
+        + .page-numbers {
+            border-left: 1px solid #d9d9d9;
+        }
+        &.current {
+            background-color: #c5c5c5;
+        }
+    }
+}
+// pagination css  end
+
+.wp-block-zolo-brand-carousel {
+    --zolo-item-gap: 20px;
+    --zolo-item-height: 250px;
+    --zolo-img-placeholder-margin: 20px;
+    --zolo-title-text-color: #3c4356;
+    --zolo-title-margin: 0 0 0px;
+
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-gap: var(--zolo-item-gap);
+    // box-sizing: border-box;
+    // overflow: hidden;
+    a {
+        text-decoration: none !important;
+    }
+
+    .zb-brand-item {
+        position: relative;
+        height: var(--zolo-item-height);
+        background-color: #f1f1f1;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .zb-brand-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .components-placeholder {
+            margin: var(--zolo-img-placeholder-margin);
+        }
+    }
+
+    .zb-brand-image img {
+        display: block;
+        width: auto;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .zb-brand-content {
+        position: absolute;
+        background-color: #fff;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .zb-brand-title {
+        font-size: 32px;
+        margin: var(--zolo-title-margin);
+        text-transform: capitalize;
+        transition: all 0.3s ease;
+    }
+
+    .zb-brand-title-link {
+        font-size: 18px;
+        font-weight: 300;
+        color: var(--zolo-img-placeholder-margin);
+        display: block;
+        transition: all 0.3s ease;
+    }
+
+    .zb-brand-title-link.has-link:hover {
+        color: var(--zoloblocks-brand-color-hover);
+    }
+
+    .zb-brand-inner-content {
+        text-align: center;
+    }
+
+    .zb-brand-content {
+        top: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .has-photo.zb-brand-item:hover .zb-brand-content {
+        opacity: 1;
+        visibility: visible;
+    }
+    &.zb-brand-style-1 .zb-brand-title {
+        transform: translateX(-40px);
+    }
+
+    &.zb-brand-style-1 .zb-brand-title-link {
+        transform: translateX(40px);
+    }
+
+    &.zb-brand-style-2 .zb-brand-title {
+        transform: translateY(-20px);
+    }
+    &.zb-brand-style-2 .zb-brand-title-link {
+        transform: translateY(20px);
+    }
+
+    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title,
+    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title-link {
+        transform: translateX(0);
+    }
+
+    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title,
+    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title-link {
+        transform: translateY(0);
+    }
+
+    &.zb-brand-style-1 .zb-brand-icon,
+    &.zb-brand-style-2 .zb-brand-icon,
+    &.zb-brand-style-3 .zb-brand-icon {
+        display: none;
+    }
+
+    &.zb-brand-style-2 .zb-brand-content {
+        align-items: start;
+        justify-content: end;
+    }
+
+    // Style 3 pro css
+    &.zb-brand-style-3 {
+        .zb-brand-item {
+            &:hover {
+                .zb-brand-content {
+                    height: 100%;
+                }
+                .zb-brand-title,
+                .zb-brand-title-link {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+                .zb-brand-title {
+                    transition-delay: 0.2s;
+                }
+                .zb-brand-title-link {
+                    transition-delay: 0.3s;
+                }
+                .zb-brand-image {
+                    img {
+                        transform: translateY(-20px);
+                    }
+                }
+            }
+        }
+        .zb-brand-content {
+            top: unset;
+            bottom: 0;
+            height: 0;
+        }
+        // .zb-brand-inner-content {
+        //     overflow: hidden;
+        // }
+        .zb-brand-title,
+        .zb-brand-title-link {
+            opacity: 0;
+            transform: translateY(16px);
+            transition:
+                transform 350ms cubic-bezier(0.165, 0.84, 0.44, 1),
+                opacity 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .zb-brand-image {
+            img {
+                transition: all 0.3s ease;
+            }
+        }
+    }
+    // Style basic preset css
+    &.zb-brand-basic-style {
+        .zb-brand-content {
+            display: none !important;
+        }
+    }
+}
+
+/* Demo style 1 & style 2 css  */
