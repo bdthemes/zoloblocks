@@ -29,6 +29,7 @@ const {
 import objAttributes from './attributes';
 
 import { TEXT_TYPO, LINK_TYPO, DROP_CAP_TYPO } from './constants/typoPrefixConstant';
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import {
     TEXT_MARGIN,
@@ -111,6 +112,7 @@ function Inspector(props) {
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={TEXT_ALIGNMENT}
                                 requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </ZoloPanelBody>
                     </>
