@@ -59,7 +59,7 @@ class ZoloOpenAi extends WP_REST_Controller {
         $api_url = "https://ai.sigmative.com/api/gpt/v2/chat/completions";
         $api_key = $this->get_api_key();
         $payload = [
-            'prompt_text' => $request,
+            'command' => $request,
             'context'     => $context,
             // 'max_tokens'  => 1000,
             // 'max_steps'   => 50,
