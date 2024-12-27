@@ -187,7 +187,7 @@ const Blocks = () => {
                                 } else if (category.value === 'others') {
                                     // calculate total blocks for others category (exclude slider, list, gallery, social, review)
                                     return !block.categories.some((category) =>
-                                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory','singlePage'].includes(category)
                                     );
                                 }
                                 return block.categories.some((cat) => cat === category.value);
@@ -218,7 +218,7 @@ const Blocks = () => {
 
                                     if (blockCategory === 'others') {
                                         return !block.categories.some((category) =>
-                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory','singlePage'].includes(category)
                                         );
                                     }
 
@@ -263,7 +263,7 @@ const Blocks = () => {
 
                                     if (blockCategory === 'others') {
                                         return !block.categories.some((category) =>
-                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory','singlePage'].includes(category)
                                         );
                                     }
 
