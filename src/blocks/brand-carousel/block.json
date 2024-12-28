@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Brand Carousel",
+    "name": "zolo/brand-carousel",
+    "category": "zoloblocks",
+    "keywords": ["brand", "carousel", "feedback", "testimonial", "slider", "stars"],
+    "description": "Display brands in an interactive carousel format.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ["file:./index.js", "zolo-swiper-editor-script"],
+    "editorStyle": ["file:./index.css", "zolo-swiper-editor-style"],
+    "style": ["zolo-swiper-frontend-style", "file:./style-index.css"],
+    "viewScript": ["file:./frontend.js", "zolo-swiper-frontend-script"]
+}
