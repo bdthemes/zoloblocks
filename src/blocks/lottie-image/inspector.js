@@ -2,13 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
+    SimpleRangeControl,
     ResRangeControl,
     ResCounterControl,
     ResAlignmentControl,
@@ -52,16 +52,27 @@ import {
     DROP_CAP_MARGIN,
     TEXT_GRADIENT_COLOR,
 } from './constants';
-import { CardDivider } from '@wordpress/components';
-import { Card } from '@wordpress/components';
+// import { CardDivider, SelectControl, RangeControl, ToggleControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl,RangeControl, TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
 
-const { zolo_pro_status } = window.zoloParams;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-
-    const { resMode, dropcap, textColor, linkColor, hoverLinkColor, dropcapColor, hoverLinkBorderColor } = attributes;
-
+    const {
+        uniqueId,
+        parentClasses,
+        content,
+        // text Gradient
+        textGradientType,
+        textGradientColorbackgroundType,
+        fileURL,
+        fileId,
+        trigger,
+        loop,
+        direction,
+        speed,
+        resMode,
+    } = attributes;
     const requiredProps = {
         attributes,
         setAttributes,
@@ -78,195 +89,109 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                {__('Show & Hide elements', 'zoloblocks')}
-                            </div>
-                            <ToggleControl
-                                label={__('Dropcap', 'zoloblocks')}
-                                checked={dropcap}
-                                onChange={() => setAttributes({ dropcap: !dropcap })}
-                            />
-                            <CardDivider />
-                            <ResCounterControl
-                                label={__('Columns', 'zoloblocks')}
-                                controlName={COLUMNS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={6}
-                                defaults={{
-                                    deskRange: 1,
-                                    tabRange: 1,
-                                    mobRange: 1,
-                                }}
-                            />
-                            <ResRangeControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <CardDivider />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={TEXT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={TEXT_ALIGN_OPTIONS}
-                            />
+                            {fileURL && (
+                                <>
+                                    <SelectControl
+                                        label={__('Play Animation On', 'zoloblocks')}
+                                        value={trigger}
+                                        options={[
+                                            {
+                                                label: __('Page Load', 'zoloblocks'),
+                                                value: '',
+                                            },
+                                            {
+                                                label: __('Viewport', 'zoloblocks'),
+                                                value: 'viewport',
+                                            },
+                                            {
+                                                label: __('Hover', 'zoloblocks'),
+                                                value: 'hover',
+                                            },
+                                            {
+                                                label: __('Click', 'zoloblocks'),
+                                                value: 'click',
+                                            },
+                                            {
+                                                label: __('Scroll', 'zoloblocks'),
+                                                value: 'scroll',
+                                            },
+                                        ]}
+                                        onChange={(value) => setAttributes({ trigger: value })}
+                                    />
+                                    {trigger !== 'scroll' && (
+                                        <>
+                                            <SimpleRangeControl
+                                                label={__('Speed', 'zoloblocks')}
+                                                value={speed}
+                                                onChange={(speed) =>
+                                                    setAttributes({
+                                                        speed,
+                                                    })
+                                                }
+                                                onReset={() =>
+                                                    setAttributes({
+                                                        speed: undefined,
+                                                    })
+                                                }
+                                                step={0.1}
+                                                min={0}
+                                                max={10}
+                                            />
+                                            {/* <RangeControl
+                                                label={__('Speed', 'otter-blocks')}
+                                                value={speed}
+                                                onChange={(val) => setAttributes({ speed: val })}
+                                                step={0.1}
+                                                min={0}
+                                                max={10}
+                                            /> */}
+                                            <ToggleControl
+                                                label={__('Loop', 'zoloblocks')}
+                                                checked={!!loop}
+                                                onChange={() => setAttributes({ loop: !loop })}
+                                            />
+                                        </>
+                                    )}
+                                    <ToggleControl
+                                        label={__('Reverse', 'zoloblocks')}
+                                        checked={direction === -1}
+                                        onChange={() => {
+                                            setAttributes({
+                                                direction: direction === 1 ? -1 : 1,
+                                            });
+                                        }}
+                                    />
+                                    <CardDivider />
+                                    <TextControl
+                                        label={__('Lottie File', 'zoloblocks')}
+                                        value={fileURL}
+                                        disabled
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                fileURL: value,
+                                            });
+                                        }}
+                                    />
+                                    <Button
+                                        variant="primary"
+                                        onClick={() => {
+                                            setAttributes({
+                                                fileURL: undefined,
+                                            });
+                                        }}
+                                    >
+                                        {__('Clear', 'zoloblocks')}
+                                    </Button>
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            {zolo_pro_status === 'active' ? (
-                                <>
-                                    <TextGradientControl
-                                        noMainBGImg={true}
-                                        controlName={TEXT_GRADIENT_COLOR}
-                                        requiredProps={requiredProps}
-                                        defaultColor={textColor}
-                                        onChangeDefault={(val) => {
-                                            setAttributes({
-                                                textColor: val,
-                                            });
-                                        }}
-                                    />
-                                </>
-                            ) : (
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={textColor}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            textColor: val,
-                                        })
-                                    }
-                                />
-                            )}
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={TEXT_TYPO}
-                                requiredProps={requiredProps}
-                            />
-                            <CardDivider />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={TEXT_MARGIN}
-                                requiredProps={requiredProps}
-                            />
+                            Text
                         </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={linkColor}
-                                            onChange={(color) => setAttributes({ linkColor: color })}
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={LINK_TYPO}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <CardDivider />
-                                        <NormalBGControl controlName={LINK_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={LINK_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <CardDivider />
-                                        <BorderControl
-                                            label={__('Border', 'zoloblocks')}
-                                            controlName={LINK_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl
-                                            label={__('Box Shadow', 'zoloblocks')}
-                                            controlName={LINK_BOX_SHADOW}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Radius', 'zoloblocks')}
-                                            controlName={LINK_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={hoverLinkColor}
-                                            onChange={(color) => setAttributes({ hoverLinkColor: color })}
-                                        />
-                                        <NormalBGControl
-                                            label={__('Background', 'zoloblocks')}
-                                            controlName={HOVER_LINK_BG_COLOR}
-                                            requiredProps={requiredProps}
-                                            noMainBGImg={true}
-                                        />
-                                        <ColorControl
-                                            label={__('Border Color', 'zoloblocks')}
-                                            color={hoverLinkBorderColor}
-                                            onChange={(color) => setAttributes({ hoverLinkBorderColor: color })}
-                                        />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
-                        {dropcap && (
-                            <>
-                                <ZoloPanelBody title={__('Drop Cap', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                    <ColorControl
-                                        label={__('Color', 'zoloblocks')}
-                                        color={dropcapColor}
-                                        onChange={(color) => setAttributes({ dropcapColor: color })}
-                                    />
-                                    <TypographyDropdown
-                                        label={__('Typography', 'zoloblocks')}
-                                        typoPrefixConstant={DROP_CAP_TYPO}
-                                        requiredProps={requiredProps}
-                                    />
-
-                                    <TextShadowControl
-                                        label={__('Text Shadow', 'zoloblocks')}
-                                        controlName={DROP_CAP_SHADOW}
-                                        requiredProps={requiredProps}
-                                        enableTransition={true}
-                                    />
-                                    <CardDivider />
-                                    <NormalBGControl controlName={DROP_CAP_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
-                                    <ResDimensionsControl
-                                        label={__('Padding', 'zoloblocks')}
-                                        controlName={DROP_CAP_PADDING}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Margin', 'zoloblocks')}
-                                        controlName={DROP_CAP_MARGIN}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <CardDivider />
-                                    <BorderControl
-                                        label={__('Border', 'zoloblocks')}
-                                        controlName={DROP_CAP_BORDER}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Radius', 'zoloblocks')}
-                                        controlName={DROP_CAP_RADIUS}
-                                        requiredProps={requiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                </ZoloPanelBody>
-                            </>
-                        )}
                     </>
                 }
                 advancedTab={
