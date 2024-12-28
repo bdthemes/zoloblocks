@@ -86,6 +86,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Brand Carousel', 'zoloblocks'),
         'categories' => ['list'],
         'status' => true,
+        'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/brand-carousel',
         'video' => 'https://www.youtube.com/watch?v=zhip0e6rqsE&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
