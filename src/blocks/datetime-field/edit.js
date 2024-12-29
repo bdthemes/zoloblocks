@@ -1,26 +1,14 @@
-/**
- * WordPress dependencies
- */
 import {useBlockProps, RichText} from '@wordpress/block-editor';
 import {useEffect, useState} from '@wordpress/element';
 import {__} from '@wordpress/i18n';
-
-/**
- * External dependencies
- */
 import classnames from 'classnames';
 import Flatpickr from "react-flatpickr";
 
-/**
- * Internal dependencies
- */
 const {handleUniqueId, DisplayZoloIcon, classArrayToStr} = window.zoloModule;
-
 import {BLOCK_PREFIX} from './constants';
 import Inspector from './inspector';
-
-// import style
 import Style from './style';
+import {manageOptions} from "@/blocks/datetime-field/helper";
 
 export default function Edit(props) {
   const {attributes, setAttributes, className, clientId, isSelected, context} = props;
@@ -39,11 +27,12 @@ export default function Edit(props) {
     customNameAttribute,
     defaultValue,
     fieldType,
-    timeFormat,
-    dateRangeDefaultValue
+    dateRangeDefaultValue,
+    disableDates,
+    disableDays,
+    showEnableDate
   } = attributes;
 
-  // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
     handleUniqueId({
       BLOCK_PREFIX,
@@ -52,6 +41,13 @@ export default function Edit(props) {
       clientId,
     });
   }, []);
+
+  useEffect(() => {
+    setAttributes({
+      showIcon: context['zolo/showFieldIcon'],
+      preset: context['zolo/preset'],
+    });
+  }, [context]);
 
   const blockProps = useBlockProps({
     className: classnames(
@@ -63,22 +59,36 @@ export default function Edit(props) {
     ),
   });
 
-  // preview image
-  if (preview) {
-    return <img src={zoloParams.blocksPreview.text} alt={__('Text Preview', 'zoloblocks')}/>;
-  }
+  const [selectedDate, setSelectedDate] = fieldType === 'date-range' || fieldType === 'date-multiple' ? useState(dateRangeDefaultValue || []) : useState(defaultValue || null);
 
-  /**
-   * context
-   */
-  useEffect(() => {
-    setAttributes({
-      showIcon: context['zolo/showFieldIcon'],
-      preset: context['zolo/preset'],
-    });
-  }, [context]);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [dateRange, setDateRange] = useState(dateRangeDefaultValue || []);
+
+  // Generate Flatpickr options
+  const getFlatpickrOptions = () => {
+    const baseOptions = {
+      dateFormat,
+      disable: [
+        ...disableDates,
+        (date) => disableDays.includes(date.getDay()),
+      ],
+    };
+
+    return manageOptions(baseOptions, attributes);
+  };
+
+  const handleDateChange = (dates) => {
+    if (fieldType === "date-range" || fieldType === "date-multiple") {
+      setSelectedDate(
+        dates.map((date) =>
+          new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split("T")[0]
+        )
+      );
+    } else {
+      setSelectedDate(dates[0]);
+    }
+  };
+
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
@@ -91,11 +101,7 @@ export default function Edit(props) {
                 tagName="label"
                 className="zolo-label"
                 value={label}
-                onChange={(v) =>
-                  setAttributes({
-                    label: v,
-                  })
-                }
+                onChange={(v) => setAttributes({label: v})}
                 placeholder={__('Label', 'zoloblocks')}
               />
               {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
@@ -109,71 +115,15 @@ export default function Edit(props) {
               </div>
             )}
 
-            {fieldType === 'date' && (
-              <Flatpickr
-                className="zolo-date-field"
-                value={selectedDate || defaultValue}
-                onChange={(date) => setSelectedDate(date[0])}
-                name={customNameAttribute || 'date_field'}
-                placeholder={placeholder}
-                options={{
-                  dateFormat: dateFormat,
-                  enableTime: false,
-                }}
-              />
-            )}
-
-            {fieldType === 'datetime' && (
-              <Flatpickr
-                className="zolo-date-field"
-                value={selectedDate || defaultValue}
-                onChange={(date) => setSelectedDate(date[0])}
-                name={customNameAttribute || 'date_field'}
-                placeholder={placeholder}
-                options={{
-                  dateFormat: dateFormat + ' ' + timeFormat,
-                  enableTime: true,
-                }}
-              />
-            )}
-
-            {fieldType === 'time' && (
-              <Flatpickr
-                className="zolo-date-field"
-                value={selectedDate || defaultValue}
-                onChange={(date) => setSelectedDate(date[0])}
-                name={customNameAttribute || 'date_field'}
-                placeholder={placeholder}
-                options={{
-                  dateFormat: timeFormat,
-                  enableTime: true,
-                  noCalendar: true
-                }}
-              />
-            )}
-
-            {fieldType === 'date-range' && (
-              <Flatpickr
-                className="zolo-date-field"
-                value={dateRange}
-                onChange={(selectedDates) => {
-                  const adjustedDates = selectedDates.map(date => {
-                    // Adjust dates to ignore time zone discrepancies
-                    return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
-                      .toISOString()
-                      .split('T')[0]; // Extract only the date part
-                  });
-                  setDateRange(adjustedDates);
-                }}
-                name={customNameAttribute || 'date_field'}
-                placeholder={placeholder}
-                options={{
-                  mode: 'range',
-                  dateFormat: dateFormat,
-                }}
-              />
-            )}
-
+            <Flatpickr
+              key={fieldType + showEnableDate} // Force reinitialization when options change
+              className="zolo-date-field"
+              value={selectedDate}
+              onChange={handleDateChange}
+              name={customNameAttribute || "date_field"}
+              placeholder={placeholder}
+              options={getFlatpickrOptions()}
+            />
           </div>
         </div>
       </div>

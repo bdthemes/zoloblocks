@@ -45,8 +45,10 @@ import {
   ICON_SIZE,
   DATE_FORMAT,
   FIELD_TYPE,
-  TIME_FORMAT
+  TIME_FORMAT,
+  DAYS_OPTION
 } from './constants';
+import Select2 from "react-select";
 
 
 function Inspector(props) {
@@ -72,7 +74,14 @@ function Inspector(props) {
     customNameAttribute,
     fieldType,
     timeFormat,
-    dateRangeDefaultValue
+    dateRangeDefaultValue,
+    disableDates,
+    enableDates,
+    weekendDays,
+    minTime,
+    maxTime,
+    showEnableDate,
+    disableDays
   } = attributes;
 
   const requiredProps = {
@@ -104,7 +113,7 @@ function Inspector(props) {
                 <ToggleControl
                   label={__('Show icon', 'zoloblocks')}
                   checked={showIcon}
-                  onChange={() => setAttributes({showIcon: !showIcon})}
+                  onChange={(showIcon) => setAttributes({showIcon})}
                 />
               )}
 
@@ -115,6 +124,12 @@ function Inspector(props) {
                   onChange={() => setAttributes({showRequiredSymbol: !showRequiredSymbol})}
                 />
               )}
+
+              <ToggleControl
+                label={__('Enable Specific Dates', 'zoloblocks')}
+                checked={showEnableDate}
+                onChange={(showEnableDate) => setAttributes({showEnableDate})}
+              />
             </ZoloPanelBody>
             <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
               {showLabel && (
@@ -197,7 +212,11 @@ function Inspector(props) {
                     }}
                     options={{
                       dateFormat,
-                      enableTime: false
+                      enableTime: false,
+                      disable: [
+                        ...disableDates,
+                        (date) => disableDays.includes(date.getDay()),
+                      ]
                     }}
                     render={({defaultValue, ...props}, ref) => (
                       <input
@@ -249,6 +268,10 @@ function Inspector(props) {
                     options={{
                       enableTime: true,
                       dateFormat: dateFormat + ' ' + timeFormat,
+                      disable: [
+                        ...disableDates,
+                        (date) => disableDays.includes(date.getDay()),
+                      ]
                     }}
                     render={({defaultValue, ...props}, ref) => (
                       <input
@@ -267,16 +290,50 @@ function Inspector(props) {
                     value={dateRangeDefaultValue}
                     onChange={(selectedDates) => {
                       const adjustedDates = selectedDates.map(date => {
-                        // Adjust dates to ignore time zone discrepancies
                         return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
                           .toISOString()
-                          .split('T')[0]; // Extract only the date part
+                          .split('T')[0];
                       });
                       setAttributes({dateRangeDefaultValue: adjustedDates});
                     }}
                     options={{
                       mode: 'range',
                       dateFormat: dateFormat,
+                      disable: [
+                        ...disableDates,
+                        (date) => disableDays.includes(date.getDay()),
+                      ]
+                    }}
+                    render={({defaultValue, ...props}, ref) => (
+                      <input
+                        {...props}
+                        ref={ref}
+                        placeholder={placeholder}
+                        style={{
+                          pointerEvents: "inherit !important"
+                        }}
+                      />
+                    )}
+                  />
+                )}
+                {fieldType === 'date-multiple' && (
+                  <Flatpickr
+                    value={dateRangeDefaultValue}
+                    onChange={(selectedDates) => {
+                      const adjustedDates = selectedDates.map(date => {
+                        return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                          .toISOString()
+                          .split('T')[0];
+                      });
+                      setAttributes({dateRangeDefaultValue: adjustedDates});
+                    }}
+                    options={{
+                      mode: 'multiple',
+                      dateFormat: dateFormat,
+                      disable: [
+                        ...disableDates,
+                        (date) => disableDays.includes(date.getDay()),
+                      ]
                     }}
                     render={({defaultValue, ...props}, ref) => (
                       <input
@@ -304,6 +361,107 @@ function Inspector(props) {
                   )}
                 />
               </div>
+              {fieldType !== 'time' && (
+                <>
+                  <BaseControl
+                    label={__('Disable Specific Dates', 'zoloblocks')}
+                    className="zolo-flex-col-control"
+                  >
+                    <Flatpickr
+                      value={disableDates}
+                      onChange={(dates) => {
+                        const adjustedDates = dates.map(date => {
+                          return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                            .toISOString()
+                            .split('T')[0];
+                        });
+                        setAttributes({disableDates: adjustedDates});
+                      }}
+                      options={{
+                        mode: 'multiple',
+                        dateFormat: dateFormat,
+                      }}
+                      render={({defaultValue, ...props}, ref) => (
+                        <input
+                          {...props}
+                          ref={ref}
+                          placeholder={placeholder}
+                          style={{
+                            pointerEvents: "inherit !important"
+                          }}
+                        />
+                      )}
+                    />
+                  </BaseControl>
+
+                  <BaseControl label={__('Weekends Days', 'zoloblocks')} className="zolo-flex-col-control">
+                    <Select2
+                      classNamePrefix="zolo-select"
+                      options={DAYS_OPTION}
+                      value={weekendDays}
+                      onChange={(weekendDays) => {
+                        setAttributes({weekendDays});
+                        const disableDays = weekendDays.map((day) => day.value);
+                        setAttributes({disableDays});
+                      }}
+                      isMulti={true}
+                      closeMenuOnSelect={false}
+                    />
+                  </BaseControl>
+                </>
+              )}
+
+              {(showEnableDate && fieldType !== 'time') && (
+                <BaseControl
+                  label={__('Enable Specific Dates', 'zoloblocks')}
+                  className="zolo-flex-col-control"
+                >
+                  <Flatpickr
+                    value={enableDates}
+                    onChange={(dates) => {
+                      const adjustedDates = dates.map(date => {
+                        // Adjust dates to ignore time zone discrepancies
+                        return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                          .toISOString()
+                          .split('T')[0]; // Extract only the date part
+                      });
+                      setAttributes({enableDates: adjustedDates});
+                    }}
+                    options={{
+                      mode: 'multiple',
+                      dateFormat: dateFormat,
+                    }}
+                    render={({defaultValue, ...props}, ref) => (
+                      <input
+                        {...props}
+                        ref={ref}
+                        placeholder={placeholder}
+                        style={{
+                          pointerEvents: "inherit !important"
+                        }}
+                      />
+                    )}
+                  />
+                </BaseControl>
+              )}
+
+
+              {(fieldType === 'time' || fieldType === 'datetime') && (
+                <>
+                  <TextControl
+                    label={__('Limited Min Time', 'zoloblocks')}
+                    value={minTime}
+                    onChange={(minTime) => setAttributes({minTime})}
+                    help={__('Ex:09:00', 'zoloblocks')}
+                  />
+                  <TextControl
+                    label={__('Limited Max Time', 'zoloblocks')}
+                    value={maxTime}
+                    onChange={(maxTime) => setAttributes({maxTime})}
+                    help={__('Ex:16:00', 'zoloblocks')}
+                  />
+                </>
+              )}
             </ZoloPanelBody>
           </>
         }

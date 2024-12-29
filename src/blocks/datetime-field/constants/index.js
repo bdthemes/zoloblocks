@@ -32,5 +32,15 @@ export const FIELD_TYPE = [
   {label: 'Date & Time', value: 'datetime'},
   {label: 'Time Only', value: 'time'},
   {label: 'Date Range', value: 'date-range'},
+  {label: 'Date Multiple', value: 'date-multiple'}
+];
+export const DAYS_OPTION = [
+  { label: 'Sunday', value: 0 },
+  { label: 'Monday', value: 1 },
+  { label: 'Tuesday', value: 2 },
+  { label: 'Wednesday', value: 3 },
+  { label: 'Thursday', value: 4 },
+  { label: 'Friday', value: 5 },
+  { label: 'Saturday', value: 6 },
 ];
 

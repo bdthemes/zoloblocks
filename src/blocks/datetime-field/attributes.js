@@ -119,14 +119,14 @@ const attributes = {
     type: 'string',
     default: 'Y-m-d'
   },
-  timeFormat:{
-    type:'string',
-    default:'H:i'
+  timeFormat: {
+    type: 'string',
+    default: 'H:i'
   },
   defaultValue: {
     type: 'string',
   },
-  dateRangeDefaultValue:{
+  dateRangeDefaultValue: {
     type: 'array',
     default: [],
   },
@@ -137,7 +137,36 @@ const attributes = {
     type: 'string',
     default: 'date'
   },
-
+  disableDates: {
+    type: 'array',
+    default: []
+  },
+  disableWeekends: {
+    type: 'boolean',
+    default: true
+  },
+  enableDates: {
+    type: 'array',
+    default: []
+  },
+  weekendDays: {
+    type: 'array',
+    default: []
+  },
+  disableDays: {
+    type: 'array',
+    default: []
+  },
+  minTime: {
+    type: 'string',
+  },
+  maxTime: {
+    type: 'string',
+  },
+  showEnableDate: {
+    type: 'string',
+    default: false
+  }
 };
 
 export default attributes;

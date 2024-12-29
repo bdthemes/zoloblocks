@@ -23,7 +23,13 @@ const Save = ({attributes}) => {
     defaultValue,
     timeFormat,
     fieldType,
-    dateRangeDefaultValue
+    dateRangeDefaultValue,
+    minTime,
+    maxTime,
+    showEnableDate,
+    enableDates,
+    disableDates,
+    disableDays
   } = attributes;
 
   const blockProps = useBlockProps.save({
@@ -46,17 +52,37 @@ const Save = ({attributes}) => {
         )}
 
         <div className="zolo-field-input-item"
+             data-fieldtype={fieldType}
              data-showicon={JSON.stringify(showIcon)}
-             data-icon={JSON.stringify(icon)}
+             {...(showIcon ? {
+                 'data-icon': JSON.stringify(icon)
+               }
+               : {})}
              data-required={JSON.stringify(isRequired)}
              data-placeholder={placeholder}
              data-requiredmsg={requiredMsg}
-             data-dateformat={dateFormat}
-             data-timeformat={timeFormat}
-             data-fieldtype={fieldType}
              data-nameattribute={customNameAttribute || 'date_field'}
-             data-defaultvalue={defaultValue}
-             data-daterangedefaultvalue={JSON.stringify(dateRangeDefaultValue)}
+             {...(fieldType !== 'time' ? {
+               'data-dateformat': dateFormat,
+               'data-defaultvalue': defaultValue,
+               'data-daterangedefaultvalue': JSON.stringify(dateRangeDefaultValue),
+               'data-showenabledate': JSON.stringify(showEnableDate),
+               'data-disabledates': JSON.stringify(disableDates),
+               'data-disabledays': JSON.stringify(disableDays)
+             } : {})}
+
+             {...(showEnableDate && fieldType !== 'time' ? {
+                 'data-enabledates': JSON.stringify(enableDates)
+               }
+               : {})}
+
+             {...(fieldType === 'time' || fieldType === 'datetime'
+               ? {
+                 'data-timeformat': timeFormat,
+                 'data-mintime': minTime,
+                 'data-maxtime': maxTime,
+               }
+               : {})}
         >
         </div>
 

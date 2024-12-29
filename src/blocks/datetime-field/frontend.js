@@ -9,18 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const zoloFieldItem = dateFieldWrap.querySelector('.zolo-field-input-item');
 
       if (zoloFieldItem) {
-
-        const showIcon = JSON.parse(zoloFieldItem.dataset.showicon);
-        const isRequired = JSON.parse(zoloFieldItem.dataset.required);
+        const fieldType = zoloFieldItem.dataset.fieldtype;
+        const showIcon = JSON.parse(zoloFieldItem.dataset.showicon || '{}');
+        const isRequired = JSON.parse(zoloFieldItem.dataset.required || '{}');
         const requiredMsg = zoloFieldItem.dataset.requiredmsg;
         const placeholderMsg = zoloFieldItem.dataset.placeholder;
-        const svgIcon = JSON.parse(zoloFieldItem.dataset.icon);
-        const dateFormat = zoloFieldItem.dataset.dateformat;
-        const timeFormat = zoloFieldItem.dataset.timeformat;
+        const svgIcon = showIcon ? JSON.parse(zoloFieldItem.dataset.icon || '{}') : '';
         const customNameAttribute = zoloFieldItem.dataset.nameattribute;
+
+        const dateFormat = zoloFieldItem.dataset.dateformat;
         const defaultValue = zoloFieldItem.dataset.defaultvalue;
-        const fieldType = zoloFieldItem.dataset.fieldtype;
-        const dateRangeDefaultValue = JSON.parse(zoloFieldItem.dataset.daterangedefaultvalue);
+        const dateRangeDefaultValue = JSON.parse(zoloFieldItem.dataset.daterangedefaultvalue || '{}');
+        const showEnableDate = JSON.parse(zoloFieldItem.dataset.showenabledate || '{}');
+        const disableDates = JSON.parse(zoloFieldItem.dataset.disabledates || '{}');
+        const enableDates = showEnableDate ? JSON.parse(zoloFieldItem.dataset.enabledates || '{}') : false;
+        const disableDays = JSON.parse(zoloFieldItem.dataset.disabledays || '{}');
+
+        const timeFormat = zoloFieldItem.dataset.timeformat;
+        const minTime = zoloFieldItem.dataset.mintime;
+        const maxTime = zoloFieldItem.dataset.maxtime;
 
         const DatePickerComponent = () => {
           const [selectedDate, setSelectedDate] = fieldType === 'date-range' ? useState(dateRangeDefaultValue || []) : useState(defaultValue || null);
@@ -34,14 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
               )}
 
               <Flatpickr
+                // key={fieldType + showEnableDate}
                 value={selectedDate}
                 onChange={(dates) => {
-                  if (fieldType === 'date-range') {
+                  if (fieldType === 'date-range' || fieldType === 'date-multiple') {
                     const adjustedDates = dates.map(date => {
-                      // Adjust dates to ignore time zone discrepancies
                       return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
                         .toISOString()
-                        .split('T')[0]; // Extract only the date part
+                        .split('T')[0];
                     });
                     setSelectedDate(adjustedDates);
                   } else {
@@ -49,21 +56,36 @@ document.addEventListener('DOMContentLoaded', () => {
                   }
                 }}
                 options={{
-                  ...(fieldType === 'date' && {
-                    dateFormat: dateFormat,
-                    enableTime: false
-                  }),
+                  ...(fieldType !== 'time' ? {
+                    dateFormat,
+                    enableTime: false,
+                    disable: [
+                      ...disableDates,
+                      (date) => disableDays.includes(date.getDay()),
+                    ],
+                  } : {}),
+
+                  ...((showEnableDate && fieldType !== 'time') ? {enable: enableDates} : {}),
+
                   ...(fieldType === 'datetime' && {
                     dateFormat: dateFormat + ' ' + timeFormat,
-                    enableTime: true
+                    enableTime: true,
+                    ...(minTime ? {minTime} : {}),
+                    ...(maxTime ? {maxTime} : {}),
                   }),
                   ...(fieldType === 'time' && {
                     dateFormat: timeFormat,
                     enableTime: true,
-                    noCalendar: true
+                    noCalendar: true,
+                    ...(minTime ? {minTime} : {}),
+                    ...(maxTime ? {maxTime} : {}),
                   }),
                   ...(fieldType === 'date-range' && {
                     mode: 'range',
+                    dateFormat: dateFormat,
+                  }),
+                  ...(fieldType === 'date-multiple' && {
+                    mode: 'multiple',
                     dateFormat: dateFormat,
                   })
                 }}
