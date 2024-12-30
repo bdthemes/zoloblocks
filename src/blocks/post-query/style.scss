@@ -1,0 +1,21 @@
+.zolo-loop-starting-screen {
+    border: 1px solid #000;
+    padding: 20px;
+    .zolo-loop-starting-screen-title {
+        margin: 0 0 20px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .zolo-loop-starting-screen-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .components-button {
+            &:nth-last-child(1) {
+                background: transparent;
+                border: 1px solid blue;
+                color: blue;
+            }
+        }
+    }
+}

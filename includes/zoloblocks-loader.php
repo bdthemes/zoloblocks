@@ -11,6 +11,7 @@ use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
+use Zolo\API\ZoloOpenAi;
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Admin\PostCategoryImage;
 use Zolo\Admin\Author;
@@ -20,6 +21,7 @@ use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
+use Zolo\API\PostQuery;
 use Zolo\API\TemplatesV1;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
@@ -28,6 +30,7 @@ use Zolo\Form\FormAjax;
 use Zolo\Form\Recaptcha;
 use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
+use Zolo\LoopBuilder\LoopBuilder;
 
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
@@ -61,6 +64,7 @@ class ZoloBlocks_Loader {
      */
     public function plugins_loaded() {
         GetPostsV1::getInstance();
+        ZoloOpenAi::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
@@ -68,6 +72,7 @@ class ZoloBlocks_Loader {
         ZoloEnqueues::getInstance();
         FontLoader::getInstance();
         PostMeta::getInstance();
+        PostQuery::getInstance();
 
         // form
         Form::getInstance();
@@ -88,6 +93,9 @@ class ZoloBlocks_Loader {
 
         // popup
         PopupBuilder::getInstance();
+
+        // Loop Builder
+        LoopBuilder::getInstance();
 
         // Templates and Demo Import
         TemplatesV1::getInstance();

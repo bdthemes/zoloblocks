@@ -1,0 +1,21 @@
+.wp-block-zolo-loop {
+    &.grid {
+        grid-gap: 30px;
+        &.loop-grid {
+            display: grid;
+        }
+        &.loop-masonary {
+            clear: both;
+            box-sizing: border-box;
+            .zolo-loop-item {
+                break-inside: avoid-column;
+            }
+        }
+    }
+    &.flex {
+        display: flex;
+    }
+    .zolo-loop-item {
+        list-style: none;
+    }
+}
