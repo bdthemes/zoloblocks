@@ -206,7 +206,7 @@ export default function Edit(props) {
                                     />
                                 ))}
 
-                            {showDesignation && preset !== 'style-3' && (
+                            {showDesignation && preset !== 'style-3' && preset !== 'style-5' && (
                                 <div className="zolo-designation">
                                     <RichText
                                         value={memberDesignation}
@@ -220,7 +220,7 @@ export default function Edit(props) {
                                 </div>
                             )}
 
-                            {showRating && preset === 'style-3' && (
+                            {showRating && (preset === 'style-3' || preset === 'style-5') && (
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>
@@ -230,7 +230,7 @@ export default function Edit(props) {
 
                     <div className="zolo-info-wrap">
                         <div className="zolo-meta-content">
-                            {showRating && preset !== 'style-3' && (
+                            {showRating && preset !== 'style-3' && preset !== 'style-5' && (
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>

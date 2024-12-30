@@ -131,7 +131,8 @@
 
     &.style-1,
     &.style-3,
-    &.style-4 {
+    &.style-4,
+    &.style-5 {
         .zolo-review-icon {
             --zolo-review-icon-margin: 0 0 12px;
             margin: var(--zolo-review-icon-margin);
@@ -154,7 +155,8 @@
     &.style-1,
     &.style-2,
     &.style-3,
-    &.style-4 {
+    &.style-4,
+    &.style-5 {
         .zolo-item {
             display: inline-flex;
             flex-direction: column-reverse;
@@ -178,7 +180,8 @@
         }
     }
 
-    &.style-3 {
+    &.style-3,
+    &.style-5 {
         &.zolo-fl-normal {
             .zolo-item {
                 flex-direction: column;
@@ -193,6 +196,29 @@
         .zolo-review-icon {
             --zolo-review-icon-margin: 0;
             margin: var(--zolo-review-icon-margin);
+        }
+    }
+
+    &.style-5 {
+        --img-height: 60px;
+        --img-width: 60px;
+        --zolo-star-rating-icon-size: 14px;
+        .zolo-image-wrap {
+            width: var(--img-width);
+            height: var(--img-height);
+            min-width: var(--img-width);
+        }
+        .zolo-img {
+            border: 2px solid #fff;
+        }
+        .zolo-name {
+            font-size: 18px;
+        }
+        // rating
+        .zolo-star-rating {
+            svg {
+                width: var(--zolo-star-rating-icon-size);
+            }
         }
     }
 }

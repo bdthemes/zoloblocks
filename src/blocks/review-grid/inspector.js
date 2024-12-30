@@ -187,7 +187,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            {preset !== 'style-3' && (
+                            {preset !== 'style-3' && preset !== 'style-5' && (
                                 <ToggleControl
                                     label={__('Designation', 'zoloblocks')}
                                     checked={showDesignation}
