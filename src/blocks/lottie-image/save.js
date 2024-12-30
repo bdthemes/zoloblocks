@@ -1,32 +1,14 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { handleUniqueId, classArrayToStr, LottiePreview } = window.zoloModule;
+const { classArrayToStr, LottiePreview } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        content,
-        // text Gradient
-        textGradientType,
-        textGradientColorbackgroundType,
-        fileURL,
-        fileId,
-        trigger,
-        loop,
-        direction,
-        speed,
-        isSelected
-    } = attributes;
+    const { uniqueId, parentClasses, fileURL, trigger, loop, direction, speed, isSelected } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(
-            uniqueId,
-            classArrayToStr(parentClasses),
-            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
-        ),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (

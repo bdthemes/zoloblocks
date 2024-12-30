@@ -1,20 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateResCounterAttributies,
-    generateTypographyAttributes,
-    generateDimensionAttributes,
-    generateNormalBGAttributes,
-    generateBorderAttributies,
-    generateTextShadowAttributies,
-    generateResAlignmentAttributies,
-    generateBoxShadowAttributies,
-} = window.zoloModule;
 
-
-import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     // global Attributes
@@ -57,28 +44,27 @@ const attributes = {
     fileHeight: {
         type: 'number',
     },
-    direction:{
+    direction: {
         type: 'number',
         default: 1,
     },
-    trigger:{
+    trigger: {
         type: 'number',
         default: 0,
     },
 
-    loop:{
+    loop: {
         type: 'boolean',
         default: true,
     },
-    speed:{
+    speed: {
         type: 'number',
         default: 1,
     },
-    autoplay:{
+    autoplay: {
         type: 'boolean',
         default: true,
     },
-
 };
 
 export default attributes;

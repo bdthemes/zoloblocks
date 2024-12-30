@@ -1,10 +1,9 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, MediaPlaceholder } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 
+import { useBlockProps, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 /**
  * External dependencies
  */
@@ -13,13 +12,10 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr, LottiePreview } = window.zoloModule;
+const { classArrayToStr, LottiePreview } = window.zoloModule;
 
-import { BLOCK_PREFIX } from './constants';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import Inspector from './inspector';
-
-// import style
-import Style from './style';
 
 /**
  * Edit Function
@@ -30,27 +26,20 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-        content,
-        // text Gradient
-        textGradientType,
-        textGradientColorbackgroundType,
         fileURL,
-        fileId,
         trigger,
         loop,
         direction,
         speed,
     } = attributes;
 
-
     const blockProps = useBlockProps({
         className: classnames(
             uniqueId,
             classArrayToStr(parentClasses),
-            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
         ),
     });
-	const handleFileSelect = (file) => {
+    const handleFileSelect = (file) => {
         setAttributes({
             fileId: file.id,
             fileURL: file.url,
@@ -74,10 +63,38 @@ export default function Edit(props) {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
+
+            {fileURL && (
+                <BlockControls>
+                    <ToolbarGroup>
+                        <MediaUpload
+                            icon="format-image"
+                            labels={{
+                                title: __('Lottie JSON', 'zoloblocks'),
+                                name: __('lottie', 'zoloblocks'),
+                                instructions: __('Upload a JSON file or pick one from your media library.', 'zoloblocks'),
+                            }}
+                            onSelect={handleFileSelect}
+                            onSelectURL={handleURLSelect}
+                            accept={['application/json']}
+                            allowedTypes={['application/json']}
+                            onError={handleError}
+                            render={({ open }) => (
+                                <ToolbarButton
+                                    className="components-toolbar__control"
+                                    label={__('Replace Lottie Files', 'zoloblocks')}
+                                    icon="edit"
+                                    onClick={open}
+                                />
+                            )}
+                        />
+                    </ToolbarGroup>
+                </BlockControls>
+            )}
             <div {...blockProps}>
                 {fileURL ? (
                     <LottiePreview
+                        key={JSON.stringify(`${fileURL}-${loop}-${direction}-${speed}-${trigger}`)}
                         url={fileURL}
                         trigger={trigger}
                         speed={speed}
