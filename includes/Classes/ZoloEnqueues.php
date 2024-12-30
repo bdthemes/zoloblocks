@@ -216,6 +216,15 @@ if (! class_exists('ZoloEnqueues')) {
                     true
                 );
             }
+            if (has_block('zolo/lottie-image')) {
+                wp_enqueue_script(
+                    'zolo-lottie-image',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
             // social share Scripts and Styles
             if (has_block('zolo/social-share')) {
                 wp_enqueue_script('zolo-social-share-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);

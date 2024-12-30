@@ -25,8 +25,8 @@ class SupportSVG {
      * Register hooks and actions.
      */
     private function __construct() {
-        add_filter('wp_check_filetype_and_ext', [$this, 'sanitize_svg_uploads'], 10, 4);
-        add_filter('upload_mimes', [$this, 'modify_svg_mimes']);
+        add_filter('wp_check_filetype_and_ext', [$this, 'sanitize_uploads'], 10, 4);
+        add_filter('upload_mimes', [$this, 'modify_mimes']);
         add_action('init', [$this, 'add_flush_rewrite_rules']);
         add_filter('user_has_cap', [$this, 'filter_user_capabilities'], 10, 3);
         add_action('admin_head', [$this, 'add_svg_support_style']);
@@ -40,27 +40,54 @@ class SupportSVG {
      * @param array $mimes
      * @return array
      */
-    public function sanitize_svg_uploads($data, $file, $filename, $mimes) {
-        // Check if SVG upload is allowed.
-        if (!current_user_can('upload_svg')) {
+    public function sanitize_uploads($data, $file, $filename, $mimes) {
+        // Check user permission
+        if (!current_user_can('upload_files')) {
             return $data;
         }
 
-        // Validate file type
+        // Determine file type
         $filetype = wp_check_filetype($filename, $mimes);
-        if ($filetype['ext'] !== 'svg' || $filetype['type'] !== 'image/svg+xml') {
-            $data['error'] = 'Invalid file type. Only SVG files are allowed.';
-        }
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-        // Sanitize SVG content
-        $svg_content = wp_remote_get($file);
-        $sanitized_content = $this->sanitize_svg_content($svg_content);
-        if ($sanitized_content !== $svg_content) {
-            $data['error'] = 'SVG file contains disallowed content.';
+        if ($ext === 'svg') {
+            // Validate and sanitize SVG
+            if ($filetype['ext'] !== 'svg' || $filetype['type'] !== 'image/svg+xml') {
+                $data['error'] = 'Invalid file type. Only SVG files are allowed.';
+                return $data;
+            }
+
+            $svg_content = file_get_contents($file['tmp_name']);
+            if (!$svg_content || !$this->sanitize_svg_content($svg_content)) {
+                $data['error'] = 'SVG file contains disallowed content.';
+                return $data;
+            }
+        } elseif ($ext === 'json') {
+            // Validate JSON
+            $json_content = file_get_contents($file['tmp_name']);
+            if (!$this->is_valid_json($json_content)) {
+                $data['error'] = 'Invalid JSON file.';
+                return $data;
+            }
+            $data['type'] = 'application/json';
+            $data['ext'] = 'json';
         }
 
         return $data;
     }
+
+
+    /**
+     * Validate JSON content.
+     *
+     * @param string $json_content Raw JSON content.
+     * @return bool True if valid, false otherwise.
+     */
+    private function is_valid_json($json_content) {
+        json_decode($json_content);
+        return json_last_error() === JSON_ERROR_NONE;
+    }
+
 
     /**
      * Sanitize SVG content to remove potentially harmful elements.
@@ -74,12 +101,18 @@ class SupportSVG {
     }
 
     /**
-     * Modify MIME types to allow SVG uploads.
+     * Modify MIME types to allow additional uploads.
      * @param array $existingMimes
      * @return array
      */
-    public function modify_svg_mimes($existingMimes) {
-        $existingMimes['svg'] = 'image/svg+xml';
+    public function modify_mimes($existingMimes) {
+
+        if (! isset($existingMimes['svg'])) {
+            $existingMimes['svg'] = 'image/svg+xml';
+        }
+        if (! isset($existingMimes['json'])) {
+            $existingMimes['json'] = 'application/json';
+        }
         return $existingMimes;
     }
 

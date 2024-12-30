@@ -72,6 +72,7 @@ export { generateTypographyAttributes, generateTypographyStyles } from '../helpe
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
 export {manageSingleBlock} from '../helpers/manage-single-block';
 export { generateTextGradientsStyles } from '../helpers/text-gradient-helper';
+export { default as LottiePreview } from '../helpers/lottiePreview';
 
 export {
     DynamicTag,
