@@ -744,7 +744,7 @@ return apply_filters('zolo_blocks_list_data', [
         'categories' => ['others'],
         'status' => true,
         'is_child' => true,
-    ]
+    ],
     'number-field' => [
         'name' => 'number-field',
         'title' => __('Number Field', 'zoloblocks'),
