@@ -686,13 +686,6 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'is_child' => true,
     ],
-    'date-range-field' => [
-        'name' => 'date-range-field',
-        'title' => __('Date Range', 'zoloblocks-pro'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_child' => true,
-    ],
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),

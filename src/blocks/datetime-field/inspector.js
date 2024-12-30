@@ -126,11 +126,12 @@ function Inspector(props) {
               )}
 
               <ToggleControl
-                label={__('Enable Specific Dates', 'zoloblocks')}
+                label={__('Disable All Enable Specific Dates', 'zoloblocks')}
                 checked={showEnableDate}
                 onChange={(showEnableDate) => setAttributes({showEnableDate})}
               />
             </ZoloPanelBody>
+
             <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
               {showLabel && (
                 <TextControl
@@ -170,8 +171,8 @@ function Inspector(props) {
                   }}
                 />
               )}
-              <CardDivider/>
 
+              <CardDivider/>
               <SelectControl
                 label={__('Field Type', 'zoloblocks')}
                 value={fieldType}
@@ -196,6 +197,7 @@ function Inspector(props) {
                   onChange={(timeFormat) => setAttributes({timeFormat})}
                 />
               )}
+
               <CardDivider/>
               <BaseControl
                 label={__('Default Value', 'zoloblocks')}
@@ -230,6 +232,7 @@ function Inspector(props) {
                     )}
                   />
                 )}
+
                 {fieldType === 'time' && (
                   <Flatpickr
                     value={defaultValue}
@@ -361,7 +364,8 @@ function Inspector(props) {
                   )}
                 />
               </div>
-              {fieldType !== 'time' && (
+
+              {(!showEnableDate && fieldType !== 'time') && (
                 <>
                   <BaseControl
                     label={__('Disable Specific Dates', 'zoloblocks')}
