@@ -75,6 +75,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'zolo_nonce'              => wp_create_nonce('zolo-nonce'),
                 'theme_fonts'             => ZoloHelpers::zolo_get_theme_fonts(),
                 'googleAPIKey'            => get_option('zolo_google_api_key'),
+                'svg_upload'              => get_option('zolo_support_svg'),
                 'maskShapes'              => [
                     'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',
                     'abstract-brush-1' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract-brush-1.svg',

@@ -87,12 +87,11 @@ const iconCategories = [
 ];
 
 const ZoloIconPicker = ({ label, value, onChange }) => {
-    console.log('value', value);
     const [iconsPanel, setIconsPanel] = useState(false);
     const [category, setCategory] = useState('all');
     const [filterIcons, setFilterIcons] = useState([]);
     const [searchText, setSearchText] = useState('');
-
+    const enableMediaUpload = zoloSettings?.svg_upload === '1' ? true : false;
     const allSvgItems = useMemo(() => {
         return Object.keys(icons).map((key) => ({
             label: icons[key].label,
@@ -178,9 +177,11 @@ const handlUploadMediaSVG = () => {
                 <Button className={`zolo-picker__button ${value ? 'active' : ''}`} id="iconPreview" onClick={() => setIconsPanel(true)}>
                     {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zoloblocks')}
                 </Button>
+                {enableMediaUpload && (
                 <Button className={`zolo-picker__button ${value ? 'active' : ''}`} id="iconPreview" onClick={handlUploadMediaSVG}>
                     UPLOAD MEDIA
                 </Button>
+                )}
             </div>
 
             {iconsPanel && (
