@@ -87,6 +87,7 @@ const iconCategories = [
 ];
 
 const ZoloIconPicker = ({ label, value, onChange }) => {
+    console.log('value', value);
     const [iconsPanel, setIconsPanel] = useState(false);
     const [category, setCategory] = useState('all');
     const [filterIcons, setFilterIcons] = useState([]);
@@ -135,12 +136,50 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         setFilterIcons(displayIcons);
     }, [category, solidCategory, brandCategory, regularCategory, allSvgItems, searchText]);
 
+const handlUploadMediaSVG = () => {
+    const mediaFrame = wp.media({
+        title: __('Upload SVG', 'zoloblocks'),
+        button: {
+            text: __('Insert', 'zoloblocks'),
+        },
+        multiple: false,
+        library: {
+            type: 'image/svg+xml',
+        },
+    });
+
+    mediaFrame.on('select', () => {
+        const attachment = mediaFrame.state().get('selection').first().toJSON();
+        const svgUrl = attachment.url;
+
+        // Fetch the SVG content
+        fetch(svgUrl)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then((svgContent) => {
+                onChange(svgContent);
+                setIconsPanel(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching SVG:', error);
+            });
+    });
+    mediaFrame.open();
+};
+
     return (
         <div className="zolo-icon-picker">
             <div className="zolo-icon-preview">
                 <label htmlFor="iconPreview">{label}</label>
                 <Button className={`zolo-picker__button ${value ? 'active' : ''}`} id="iconPreview" onClick={() => setIconsPanel(true)}>
                     {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zoloblocks')}
+                </Button>
+                <Button className={`zolo-picker__button ${value ? 'active' : ''}`} id="iconPreview" onClick={handlUploadMediaSVG}>
+                    UPLOAD MEDIA
                 </Button>
             </div>
 
