@@ -55,6 +55,15 @@ import {
     RC_BG,
     MC_SPACING,
     MC_PADDING,
+    // Quote
+    QUOTE_SIZE,
+    QUOTE_BACKGROUND,
+    QUOTE_PADDING,
+    QUOTE_BORDER,
+    QUOTE_BOX_SHADOW,
+    QUOTE_BORDER_RADIUS,
+    QUOTE_H_SPACING,
+    QUOTE_V_SPACING,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -88,6 +97,8 @@ function Inspector(props) {
         imageRes,
         objectFit,
         presetFiveArrowColor,
+        showQuote,
+        quoteColor,
     } = attributes;
 
     const requiredProps = {
@@ -542,6 +553,52 @@ function Inspector(props) {
                                     controlName={MC_PADDING}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
+                                />
+                            </ZoloPanelBody>
+                        )}
+                        {showQuote && preset === 'style-5' && (
+                            <ZoloPanelBody title={__('Quote', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={quoteColor}
+                                    onChange={(color) => setAttributes({ quoteColor: color })}
+                                />
+                                <ResRangeControl label={__('Size', 'zoloblocks')} controlName={QUOTE_SIZE} requiredProps={requiredProps} />
+                                <CardDivider />
+                                <NormalBGControl requiredProps={requiredProps} controlName={QUOTE_BACKGROUND} noMainBGImg={false} />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={QUOTE_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <CardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={QUOTE_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <BoxShadowControl controlName={QUOTE_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={QUOTE_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <CardDivider />
+                                <ResRangeControl
+                                    label={__('Horizontal', 'zoloblocks')}
+                                    controlName={QUOTE_H_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={-100}
+                                    max={100}
+                                />
+                                <ResRangeControl
+                                    label={__('Vertical', 'zoloblocks')}
+                                    controlName={QUOTE_V_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={-100}
+                                    max={100}
                                 />
                             </ZoloPanelBody>
                         )}

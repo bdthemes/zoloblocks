@@ -24,6 +24,7 @@ const Save = (props) => {
         zoloId,
         imageRes,
         presetFourLayout,
+        showQuote,
     } = attributes;
 
     // filter hooks for render
@@ -109,7 +110,7 @@ const Save = (props) => {
                         )}
                     </div>
                 </div>
-                {preset === 'style-5' && (
+                {showQuote && preset === 'style-5' && (
                     <div className="zolo-review-quote-icon">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

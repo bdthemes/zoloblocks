@@ -595,7 +595,6 @@ const Style = ({ props }) => {
                 : ''
         }
 
-
         ${
             preset === 'style-5'
                 ? `
