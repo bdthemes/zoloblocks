@@ -686,6 +686,13 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'is_child' => true,
     ],
+    'phonenumber-field' => [
+        'name' => 'phonenumber-field',
+        'title' => __('Phone Number', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_pro' => true,
+    ],
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),
