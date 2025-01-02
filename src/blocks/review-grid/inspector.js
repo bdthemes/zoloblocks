@@ -132,6 +132,13 @@ function Inspector(props) {
                     showRating: true,
                 });
                 break;
+            case 'style-5':
+                setAttributes({
+                    showPhoto: true,
+                    showName: true,
+                    showTestimonialMessage: true,
+                    showRating: true,
+                });
             default:
                 setAttributes({
                     showPhoto: true,

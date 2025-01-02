@@ -110,12 +110,15 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
+                            {preset !== 'style-5' && (
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zoloblocks')}
+                                    controlName={CONTENT_ALIGNMENT}
+                                    requiredProps={requiredProps}
+                                    alignOptions={DEFAULT_ALIGNS}
+                                />
+                            )}
+
                             {showPhoto && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Photo', 'zoloblocks')}</div>
@@ -207,7 +210,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            {showDesignation && preset !== 'style-3' && (
+                            {showDesignation && preset !== 'style-3' && preset !== 'style-5' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Designation', 'zoloblocks')}</div>
                                     <TextControl
@@ -404,7 +407,7 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-                        {showDesignation && preset !== 'style-3' && (
+                        {showDesignation && preset !== 'style-3' && preset !== 'style-5' && (
                             <ZoloPanelBody title={__('Designation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}

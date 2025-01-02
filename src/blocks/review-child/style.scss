@@ -220,5 +220,17 @@
                 width: var(--zolo-star-rating-icon-size);
             }
         }
+        .zolo-review-quote-icon {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin: 25px 20px;
+            svg {
+                width: 70px;
+                height: 70px;
+                display: block;
+                color: #f1f1f1;
+            }
+        }
     }
 }
