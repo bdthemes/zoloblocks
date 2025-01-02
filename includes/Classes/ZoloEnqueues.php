@@ -68,6 +68,7 @@ if (! class_exists('ZoloEnqueues')) {
                     true
                 );
             }
+
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
                 'ajaxurl'                 => admin_url('admin-ajax.php'),
