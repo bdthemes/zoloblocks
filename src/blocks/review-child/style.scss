@@ -203,6 +203,7 @@
         --img-height: 60px;
         --img-width: 60px;
         --zolo-star-rating-icon-size: 14px;
+        --zolo-quote-icon-size: 60px;
         .zolo-image-wrap {
             width: var(--img-width);
             height: var(--img-height);
@@ -226,8 +227,8 @@
             bottom: 0;
             margin: 25px 20px;
             svg {
-                width: 70px;
-                height: 70px;
+                width: var(--zolo-quote-icon-size);
+                height: var(--zolo-quote-icon-size);
                 display: block;
                 color: #f1f1f1;
             }

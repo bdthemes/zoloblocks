@@ -64,6 +64,7 @@ export default function Edit(props) {
         rating,
         imageRes,
         presetFourLayout,
+        showQuote,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -91,6 +92,7 @@ export default function Edit(props) {
             showPhoto: context['zolo/showPhoto'],
             showName: context['zolo/showName'],
             showRating: context['zolo/showRating'],
+            showQuote: context['zolo/showQuote'],
             addReviewerWebsiteLink: context['zolo/addReviewerWebsiteLink'],
             presetFourLayout: context['zolo/presetFourLayout'],
         });
@@ -252,7 +254,7 @@ export default function Edit(props) {
                         </div>
                     </div>
 
-                    {preset === 'style-5' && (
+                    {showQuote && preset === 'style-5' && (
                         <div className="zolo-review-quote-icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

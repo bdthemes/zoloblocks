@@ -209,6 +209,10 @@ const attributes = {
     presetFiveArrowColor: {
         type: 'string',
     },
+    showQuote: {
+        type: 'boolean',
+        default: true,
+    },
 };
 
 export default attributes;
