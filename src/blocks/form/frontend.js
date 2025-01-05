@@ -33,10 +33,27 @@ function setupFormHandlers(form) {
   // form validation
   let pristine = new Pristine(form);
 
+  //phone number validation
+  const inputs = form.querySelectorAll('input.invalid-number');
+  if (inputs.length > 0) {
+    inputs.forEach((input) => {
+      const errorMessage = input.getAttribute('data-pristine-required-message') || 'This field is required.';
+      pristine.addValidator(
+        input,
+        function (value) {
+          if (input.classList.contains('invalid-number')) {
+            return false;
+          }
+          return value.trim() !== '';
+        },
+        errorMessage
+      );
+    });
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     let valid = pristine.validate();
-
     if (valid) {
       const formData = new FormData(form);
       const values = [...formData.entries()];
