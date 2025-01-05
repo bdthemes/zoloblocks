@@ -13,7 +13,29 @@ import { useDispatch, useSelect } from '@wordpress/data';
 const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
     function ZoloParagraphAI(props) {
         const { name } = props;
-        const { open } = useDispatch('zoloai/popup');
+        const { open, reset, setPrompt, setContext, setScreen, requestAI } = useDispatch('zoloai/popup');
+            const { loading, response, content, screen, prompt } = useSelect((select) => {
+                const {
+                    isOpen: checkIsOpen,
+                    isLoading,
+                    getPrompt,
+                    getResponse,
+                    getContent,
+                    getContext,
+                    getScreen,
+                } = select('zoloai/popup');
+                return {
+                    isOpen: checkIsOpen(),
+                    prompt: getPrompt(),
+                    response: getResponse(),
+                    loading: isLoading(),
+                    content: getContent() ? getContent() : '',
+                    context: getContext(),
+                    screen: getScreen(),
+                };
+            });
+
+            console.log('prompt', prompt);
         useEffect(() => {
                 const handleKeyDown = (event) => {
                     if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
@@ -26,7 +48,7 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
                 return () => {
                     document.removeEventListener('keydown', handleKeyDown);
                 };
-        }, [name, open]);
+        }, [name, open, screen]);
 
         return <OriginalComponent {...props} />;
     }
