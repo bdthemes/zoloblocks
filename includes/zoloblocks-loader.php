@@ -51,6 +51,8 @@ class ZoloBlocks_Loader {
         add_action('plugins_loaded', [$this, 'plugins_loaded']);
         add_action('init', [$this, 'init_actions']);
         add_action('admin_init', [$this, 'dci_plugin_zoloblocks']);
+        add_filter('upload_mimes', array($this, 'upload_mimes'), 100);
+        add_filter('wp_check_filetype_and_ext', array($this, 'wp_check_filetype_and_ext'), 100, 3);
     }
 
     /**
@@ -113,6 +115,30 @@ class ZoloBlocks_Loader {
             Dashboard::getInstance();
             Assets::getInstance();
         }
+    }
+
+
+    public function upload_mimes($mimes) {
+        if (! isset($mimes['json'])) {
+            $mimes['json'] = 'application/json';
+        }
+        return $mimes;
+    }
+
+    public function wp_check_filetype_and_ext($data, $file, $filename) {
+        $ext = isset($data['ext']) ? $data['ext'] : '';
+
+        if (! $ext) {
+            $exploded = explode('.', $filename);
+            $ext      = strtolower(end($exploded));
+        }
+
+        if ('json' === $ext) {
+            $data['type'] = 'application/json';
+            $data['ext']  = 'json';
+        }
+
+        return $data;
     }
 
     /**

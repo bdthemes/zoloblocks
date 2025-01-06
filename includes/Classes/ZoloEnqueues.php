@@ -178,7 +178,10 @@ if (! class_exists('ZoloEnqueues')) {
             }
 
             // Swiper Scripts and Styles
-            if (has_block('zolo/slider') || has_block('zolo/post-carousel') || has_block('zolo/review-carousel') || has_block('zolo/post-video-slider')) {
+            if (
+                has_block('zolo/slider') || has_block('zolo/post-carousel') || has_block('zolo/review-carousel') ||
+                has_block('zolo/brand-carousel')  || has_block('zolo/post-video-slider')
+            ) {
                 wp_enqueue_style(
                     'zolo-swiper-frontend-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -211,6 +214,15 @@ if (! class_exists('ZoloEnqueues')) {
                 wp_enqueue_script(
                     'zolo-spline-viewer',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/spline/spline.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+            if (has_block('zolo/lottie-image')) {
+                wp_enqueue_script(
+                    'zolo-lottie-image',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie.js',
                     [],
                     ZOLO_VERSION,
                     true
