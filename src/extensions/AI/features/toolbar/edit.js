@@ -6,7 +6,7 @@ import { useRef } from '@wordpress/element';
 
 const Edit = (props) => {
     const { isActive, onFocus, value } = props;
-    const { toggle, setBlockContent} = useDispatch('zoloai/popup');
+    const { toggle, setBlockContent, setScreen } = useDispatch('zoloai/popup');
 
 
     const { selectedBlock, openPopover } = useSelect((select) => {
@@ -50,6 +50,7 @@ if (selectedBlock) {
                         e.preventDefault();
                         toggle();
                         setBlockContent(value?.text);
+                        setScreen('request');
                     }}
                     isActive={isActive}
                     className="zolo-ai-toolbar-button"

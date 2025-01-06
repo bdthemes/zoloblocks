@@ -1,3 +1,3 @@
 import './paragraph';
 import './toolbar';
-// import './shortcut';
+import './shortcut';

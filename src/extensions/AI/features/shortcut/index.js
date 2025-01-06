@@ -11,48 +11,30 @@ import { useDispatch, useSelect } from '@wordpress/data';
  * @return {Function} Wrapped component.
  */
 const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
-    function ZoloParagraphAI(props) {
+    function ZoloAIShortcut(props) {
         const { name } = props;
-        const { open, reset, setPrompt, setContext, setScreen, requestAI } = useDispatch('zoloai/popup');
-            const { loading, response, content, screen, prompt } = useSelect((select) => {
-                const {
-                    isOpen: checkIsOpen,
-                    isLoading,
-                    getPrompt,
-                    getResponse,
-                    getContent,
-                    getContext,
-                    getScreen,
-                } = select('zoloai/popup');
-                return {
-                    isOpen: checkIsOpen(),
-                    prompt: getPrompt(),
-                    response: getResponse(),
-                    loading: isLoading(),
-                    content: getContent() ? getContent() : '',
-                    context: getContext(),
-                    screen: getScreen(),
-                };
-            });
+        const { open, setScreen } = useDispatch('zoloai/popup');
 
         useEffect(() => {
-                const handleKeyDown = (event) => {
-                    if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
-                        open();
-                    }
-                };
+            const handleKeyDown = (event) => {
+                if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
+                    event.preventDefault();
+                    open();
+                    setScreen('prompt');
+                }
+            };
 
-                document.addEventListener('keydown', handleKeyDown);
+            document.addEventListener('keydown', handleKeyDown);
 
-                return () => {
-                    document.removeEventListener('keydown', handleKeyDown);
-                };
-        }, [name, open, screen]);
+            return () => {
+                document.removeEventListener('keydown', handleKeyDown);
+            };
+        }, [name, open]);
 
         return <OriginalComponent {...props} />;
     }
 
-    return ZoloParagraphAI;
+    return ZoloAIShortcut;
 }, 'withZoloAI');
 
 addFilter('editor.BlockEdit', 'zolo/open-popup', withZoloAI);

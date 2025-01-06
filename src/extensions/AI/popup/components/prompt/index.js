@@ -20,33 +20,10 @@ const Prompt = (props) => {
 
     console.log('Prompt',blockContent);
 
-    // const [blockContent, setBlockContentState] = useState('');
-
-    const getContextFromSelectedBlocks = () => {
-        const { getBlock, getSelectedBlockClientIds } = wp.data.select('core/block-editor');
-        return getSelectedBlockClientIds()
-            .map((id) => getBlock(id)?.attributes?.content || '')
-            .map((content) => {
-                const selection = window.getSelection();
-                return selection?.rangeCount > 0 && selection.toString() ? selection.toString() : content;
-            })
-            .join('');
-    };
-
-    // useEffect(() => {
-    //     if (isOpen) {
-    //         const initialContent = getContextFromSelectedBlocks();
-    //         // setBlockContentState(initialContent);
-    //         // setBlockContent(initialContent);
-    //         // setPrompt(initialContent);
-    //     }
-    // }, [isOpen, setBlockContent]);
 
     useEffect(() => {
         if (response?.content) {
-            // setBlockContentState(response.content);
             setBlockContent(response.content);
-            // setPrompt('');
         }
     }, [response, setBlockContent]);
 
