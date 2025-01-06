@@ -31,9 +31,9 @@ const Content = () => {
         }
     }
     useEffect(() => {
-        // if (response?.content) {
-        //     setPrompt(response.content);
-        // }
+        if (response?.content) {
+            setPrompt(response.content);
+        }
         if(screen === 'request') {
             setPrompt(content);
         }

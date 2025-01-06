@@ -11,27 +11,30 @@ import { useDispatch, useSelect } from '@wordpress/data';
  * @return {Function} Wrapped component.
  */
 const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
-    function ZoloParagraphAI(props) {
+    function ZoloAIShortcut(props) {
         const { name } = props;
-        const { open } = useDispatch('zoloai/popup');
+        const { open, setScreen } = useDispatch('zoloai/popup');
+
         useEffect(() => {
-                const handleKeyDown = (event) => {
-                    if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
-                        open();
-                    }
-                };
+            const handleKeyDown = (event) => {
+                if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {
+                    event.preventDefault();
+                    open();
+                    setScreen('prompt');
+                }
+            };
 
-                document.addEventListener('keydown', handleKeyDown);
+            document.addEventListener('keydown', handleKeyDown);
 
-                return () => {
-                    document.removeEventListener('keydown', handleKeyDown);
-                };
+            return () => {
+                document.removeEventListener('keydown', handleKeyDown);
+            };
         }, [name, open]);
 
         return <OriginalComponent {...props} />;
     }
 
-    return ZoloParagraphAI;
+    return ZoloAIShortcut;
 }, 'withZoloAI');
 
 addFilter('editor.BlockEdit', 'zolo/open-popup', withZoloAI);

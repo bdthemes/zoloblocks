@@ -42,13 +42,13 @@ const Header = () => {
                         </clipPath>
                     </defs>
                 </svg>
-                <h2 className="zolo-ai-logo-text">{__('Zolo AI', 'zoloblocks-pro')}</h2>
-                <span className="zolo-ai-badge">{__('Beta', 'zoloblocks-pro')}</span>
+                <h2 className="zolo-ai-logo-text">{__('Zolo AI', 'zoloblocks')}</h2>
+                <span className="zolo-ai-badge">{__('Beta', 'zoloblocks')}</span>
             </div>
 
             <div className="zolo-popup-header_right">
                 <a href="#" className="zolo-head-upgrade-btn">
-                    {__('Upgrade', 'zoloblocks-pro')}
+                    {__('Upgrade', 'zoloblocks')}
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
                         <g clipPath="url(#clip0_1313_270)">
                             <path
@@ -86,10 +86,10 @@ const Header = () => {
             </div>
 
             {/* loader here */}
+            {loading && <div className="zolo-ai-loader"></div>}
             {
-                loading && (
-                    <div className="zolo-ai-loader"></div>
-                )
+                //error message
+                response?.message && <div className="zolo-ai-error">{response?.errors?.command || response?.message}</div>
             }
             {/* <div class="zolo-ai-loader"></div> */}
         </div>

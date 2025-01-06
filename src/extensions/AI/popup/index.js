@@ -64,7 +64,6 @@ export default function Popup() {
         };
         const parsedBlocks = rawHandler({ HTML: response?.content });
         if (parsedBlocks.length && selectedText) {
-
             if (selectedText) {
                 updateBlockAttributes(selectedClientIds[0], {
                     content: origintalContent(selectedClientIds[0]).replace(selectedText, response?.content),
