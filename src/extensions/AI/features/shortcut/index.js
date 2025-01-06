@@ -35,7 +35,6 @@ const withZoloAI = createHigherOrderComponent((OriginalComponent) => {
                 };
             });
 
-            console.log('prompt', prompt);
         useEffect(() => {
                 const handleKeyDown = (event) => {
                     if (event.ctrlKey && event.shiftKey && event.code === 'Slash') {

@@ -8,9 +8,9 @@ import { useSelect, useDispatch } from '@wordpress/data';
 export const Footer = (props) => {
     const { onInsert } = props;
 
-    const {open, close, reset, setPrompt, requestAI, setScreen } = useDispatch('zoloai/popup');
+    const { open, close, reset, setPrompt, requestAI, setScreen, setBlockContent } = useDispatch('zoloai/popup');
 
-    const { prompt, loading, response } = useSelect((select) => {
+    const { prompt, loading, response, screen } = useSelect((select) => {
         const { getPrompt, getContext, isLoading, getResponse, getScreen } = select('zoloai/popup');
 
         return {
@@ -22,35 +22,23 @@ export const Footer = (props) => {
         };
     });
 
-    const showFooter = response || (prompt && !loading && !response);
-
-    // if (!showFooter) {
-    //     return null;
-    // }
-
     return (
         <div className="zolo-popup-footer">
             <div className="zolo-popup-footer-actions">
-                <Button
-                    className="insert-btn"
-                    onClick={() => {
-                        setScreen('prompt');
-                        // setPrompt('');
-                    }}
-                >
-                    {__('New Prompt', 'zoloblocks')}
-                </Button>
-                {response && (
+                {screen !== 'prompt' && (
+                    <Button
+                        className="insert-btn"
+                        onClick={() => {
+                            setScreen('prompt');
+                            setPrompt('');
+                            setBlockContent('');
+                        }}
+                    >
+                        {__('New Prompt', 'zoloblocks')}
+                    </Button>
+                )}
+                {response && screen !== 'prompt' && (
                     <>
-                        <Button
-                            className="zolo-ai-regenerate-btn"
-                            onClick={() => {
-                                // setError('');
-                                requestAI();
-                            }}
-                        >
-                            {__('Regenerate', 'zoloblocks')}
-                        </Button>
                         <div className="zolo-ai-footer-btn">
                             <Button
                                 onClick={() => {
@@ -116,7 +104,7 @@ export const Footer = (props) => {
                         </div>
                     </>
                 )}
-                {!loading && !response && (
+                {prompt && !loading && !response && (
                     <>
                         <Button
                             className="insert-btn generate-btn"

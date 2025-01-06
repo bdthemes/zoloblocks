@@ -6,18 +6,21 @@ import { TextControl } from '@wordpress/components';
 const Prompt = (props) => {
     const { reset, setBlockContent, setPrompt, setScreen } = useDispatch('zoloai/popup');
     const ref = useRef(null);
-    const { prompt, response, isOpen, loading, screen } = useSelect((select) => {
-        const { getResponse, isOpen: checkIsOpen, getPrompt, isLoading, getScreen } = select('zoloai/popup');
+    const { prompt, response, isOpen, loading, screen, blockContent } = useSelect((select) => {
+        const { getResponse, isOpen: checkIsOpen, getPrompt, isLoading, getScreen, getBlockContent } = select('zoloai/popup');
         return {
             response: getResponse() || {}, // Default to an empty object if null
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
             loading: isLoading(),
             screen: getScreen(),
+            blockContent: getBlockContent(),
         };
     });
 
-    const [blockContent, setBlockContentState] = useState('');
+    console.log('Prompt',blockContent);
+
+    // const [blockContent, setBlockContentState] = useState('');
 
     const getContextFromSelectedBlocks = () => {
         const { getBlock, getSelectedBlockClientIds } = wp.data.select('core/block-editor');
@@ -30,20 +33,20 @@ const Prompt = (props) => {
             .join('');
     };
 
-    useEffect(() => {
-        if (isOpen) {
-            const initialContent = getContextFromSelectedBlocks();
-            setBlockContentState(initialContent);
-            setBlockContent(initialContent);
-            setPrompt(initialContent);
-        }
-    }, [isOpen, setBlockContent]);
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         const initialContent = getContextFromSelectedBlocks();
+    //         // setBlockContentState(initialContent);
+    //         // setBlockContent(initialContent);
+    //         // setPrompt(initialContent);
+    //     }
+    // }, [isOpen, setBlockContent]);
 
     useEffect(() => {
         if (response?.content) {
-            setBlockContentState(response.content);
+            // setBlockContentState(response.content);
             setBlockContent(response.content);
-            setPrompt(response.content);
+            // setPrompt('');
         }
     }, [response, setBlockContent]);
 
@@ -63,25 +66,17 @@ const Prompt = (props) => {
         }
     }, [isOpen, loading, ref]);
 
-    const handleInputChange = (e) => {
-        // reset();
-        const newContent = e?.target?.value;
-        setBlockContentState(newContent);
-        setBlockContent(newContent);
-        setPrompt(newContent);
-    };
     const handleContentChange = (e) => {
         const newContent = e?.target?.value;
-        setBlockContentState(newContent);
         setBlockContent(newContent);
         setPrompt(newContent);
     };
-// console.log(response);
+
+
     return (
         <>
-            {screen === 'request' && response?.content !== '' ? (
                 <textarea
-                    className="zolo-ai-prompt-response"
+                    className="zolo-ai-prompt"
                     ref={ref}
                     value={blockContent || ''}
                     onChange={handleContentChange}
@@ -89,17 +84,7 @@ const Prompt = (props) => {
                     rows={1}
                     style={{ width: '100%' }}
                 />
-            ) : (
-                <textarea
-                    className="zolo-ai-prompt"
-                    ref={ref}
-                    value={prompt || ''}
-                    onChange={handleInputChange}
-                    placeholder="Type your content here..."
-                    rows={1}
-                    style={{ width: '100%' }}
-                />
-            )}
+
         </>
     );
 };

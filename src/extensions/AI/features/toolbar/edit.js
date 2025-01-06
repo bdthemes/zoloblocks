@@ -6,7 +6,6 @@ import { useRef } from '@wordpress/element';
 
 const Edit = (props) => {
     const { isActive, onFocus, value } = props;
-    console.log('props', props);
     const { toggle, setBlockContent} = useDispatch('zoloai/popup');
 
 
@@ -22,7 +21,7 @@ const Edit = (props) => {
 if (selectedBlock) {
     // Access the rich-text attribute
     const richTextContent = selectedBlock.attributes?.content; // Replace 'content' with the actual attribute key
-    console.log('RichText Content:', selectedBlock);
+    // console.log('RichText Content:', selectedBlock);
 }
 
     return (
@@ -46,7 +45,7 @@ if (selectedBlock) {
                             </defs>
                         </svg>
                     }
-                    title={__('Zolo AI', 'zoloblocks-pro')}
+                    title={__('Zolo AI', 'zoloblocks')}
                     onClick={(e) => {
                         e.preventDefault();
                         toggle();
