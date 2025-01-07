@@ -1,12 +1,14 @@
 import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { RichTextToolbarButton } from '@wordpress/block-editor';
-import { useRef } from '@wordpress/element';
+import { useRef, useState } from '@wordpress/element';
+import Popup from '../../popup';
 
 
 const Edit = (props) => {
-    const { isActive, onFocus, value } = props;
+    const { isActive, onFocus, value, onChange } = props;
     const { toggle, setBlockContent, setScreen } = useDispatch('zoloai/popup');
+    const [openModal, setOpenModal] = useState(false);
 
 
     const { selectedBlock, openPopover } = useSelect((select) => {
@@ -51,13 +53,18 @@ if (selectedBlock) {
                         toggle();
                         setBlockContent(value?.text);
                         setScreen('request');
+                        setOpenModal(!openModal);
                     }}
                     isActive={isActive}
                     className="zolo-ai-toolbar-button"
                     aria-posinset={1}
                 />
             </div>
-
+            {
+                openModal && (
+                    <Popup  {...{value, onChange}}/>
+                )
+            }
         </>
     );
 };
