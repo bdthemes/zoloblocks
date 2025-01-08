@@ -20,6 +20,7 @@ use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
+use Zolo\API\GetPostMetaV1;
 use Zolo\API\TemplatesV1;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
@@ -59,6 +60,7 @@ class ZoloBlocks_Loader {
      */
     public function plugins_loaded() {
         GetPostsV1::getInstance();
+        GetPostMetaV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
