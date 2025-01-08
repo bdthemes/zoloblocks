@@ -6,11 +6,9 @@
 /**
  * WordPress dependencies
  */
-import { createRoot } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { rawHandler } from '@wordpress/blocks';
-import domReady from '@wordpress/dom-ready';
 import clsx from 'clsx';
 import { __ } from '@wordpress/i18n';
 
@@ -18,7 +16,7 @@ import { Header, Prompt, Content, Footer } from './components';
 
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
-export default function Popup() {
+export default function Popup({ value, onChange }) {
     const { close, reset } = useDispatch('zoloai/popup');
 
     const { isOpen, response } = useSelect((select) => {
@@ -103,29 +101,7 @@ export default function Popup() {
                 <Prompt />
                 <Content />
             </div>
-            <Footer onInsert={onInsert} />
+            <Footer onInsert={onInsert} value={value} onChange={onChange} />
         </Modal>
     );
 }
-
-// Insert popup renderer in editor.
-domReady(() => {
-    // Check if popup exists already.
-    if (document.querySelector(`.${POPUP_CONTAINER_CLASS}`)) {
-        return;
-    }
-
-    const blockEditor = document.querySelector('.block-editor');
-
-    if (!blockEditor) {
-        return;
-    }
-
-    const toggleContainer = document.createElement('div');
-    toggleContainer.classList.add(POPUP_CONTAINER_CLASS);
-
-    blockEditor.appendChild(toggleContainer);
-
-    const root = createRoot(toggleContainer);
-    root.render(<Popup />);
-});
