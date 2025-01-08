@@ -130,6 +130,7 @@ export const AdvancedOptions = (props) => {
     const tilt = applyFilters('zolo.extensions.controls.tilt', [], block, panelProps);
     const interactions = applyFilters('zolo.extensions.controls.interactions', [], block, panelProps);
 
+
     return (
         <>
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>

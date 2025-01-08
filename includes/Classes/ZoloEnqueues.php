@@ -146,6 +146,14 @@ if (! class_exists('ZoloEnqueues')) {
                 wp_enqueue_style('particles-css', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/particles/index.css', [], ZOLO_VERSION);
             }
 
+            /**
+             * Only for frontend
+             * Background Parallax
+             */
+            if (has_block('zolo/container') && ZoloHelpers::is_extension_enabled('background-parallax')) {
+                wp_enqueue_script('background-parallax-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'build/extensions/background-parallax/frontend.js', [], ZOLO_VERSION, true);
+            }
+
             // form validation
             if (has_block('zolo/form')) {
                 wp_enqueue_script(
@@ -480,6 +488,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'shape-divider' => ['has_style' => false],
                 'particles' => ['has_style' => true],
                 'AI' => ['has_style' => true],
+                // 'background-parallax' => ['has_style' => false],
             ];
 
             foreach ($extensions as $extension => $properties) {

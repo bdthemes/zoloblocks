@@ -85,7 +85,6 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Background Parallax', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
-        'released' => false,
         'demo'   => 'https://demo.zoloblocks.com/background-parallax',
         'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
