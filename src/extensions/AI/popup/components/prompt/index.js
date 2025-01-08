@@ -18,7 +18,6 @@ const Prompt = (props) => {
         };
     });
 
-    console.log('Prompt',blockContent);
 
 
     useEffect(() => {
