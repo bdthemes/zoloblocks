@@ -116,7 +116,7 @@
 
     &.zb-brand-style-1 .zb-brand-icon,
     &.zb-brand-style-2 .zb-brand-icon,
-    &.zb-brand-style-3 .zb-brand-icon{
+    &.zb-brand-style-3 .zb-brand-icon {
         display: none;
     }
 
@@ -125,58 +125,11 @@
         justify-content: end;
     }
 
-    // Style 3 pro css
-    &.zb-brand-style-3 {
-        .zb-brand-item {
-            &:hover {
-                .zb-brand-content {
-                    height: 100%;
-                }
-                .zb-brand-title,
-                .zb-brand-title-link {
-                    transform: translateY(0);
-                    opacity: 1;
-
-                }
-                .zb-brand-title {
-                    transition-delay: .2s;
-                }
-                .zb-brand-title-link {
-                    transition-delay: .3s;
-                }
-                .zb-brand-image {
-                    img {
-                        transform: translateY(-20px);
-                    }
-                }
-            }
-        }
-        .zb-brand-content {
-            top: unset;
-            bottom: 0;
-            height: 0;
-        }
-        // .zb-brand-inner-content {
-        //     overflow: hidden;
-        // }
-       .zb-brand-title,
-       .zb-brand-title-link {
-           opacity: 0;
-           transform: translateY(16px);
-           transition: transform 350ms cubic-bezier(0.165, 0.84, 0.44, 1), opacity 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .zb-brand-image {
-            img {
-                transition: all .3s ease;
-            }
-        }
-    }
     // Style basic preset css
     &.zb-brand-basic-style {
         .zb-brand-content {
             display: none !important;
         }
-
     }
 }
 
