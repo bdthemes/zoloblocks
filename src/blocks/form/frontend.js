@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
           setTimeout(() => {
             initializeFormWhenReady(form, retries - 1);
-          }, 100);
+          }, 10);
         }
       };
       // Call the function to check for the date picker

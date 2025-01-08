@@ -693,6 +693,13 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'is_pro' => true,
     ],
+    'country-field' => [
+        'name' => 'country-field',
+        'title' => __('Country Field', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_pro' => true,
+    ],
     // 'select-field' => [
     //     'name' => 'select-field',
     //     'title' => __('Select Field', 'zoloblocks'),
