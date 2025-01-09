@@ -1,12 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { RichTextToolbarButton } from '@wordpress/block-editor';
-import { useRef, useState } from '@wordpress/element';
-import Popup from '../../popup';
+import { useRef } from '@wordpress/element';
 
 
 const Edit = (props) => {
-    const { isActive, onFocus, value, onChange } = props;
+    const { isActive, value } = props;
     const { toggle, setBlockContent, setScreen } = useDispatch('zoloai/popup');
     const { selectedBlock } = useSelect((select) => {
         const blockEditor = select('core/block-editor');
