@@ -1,6 +1,6 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr,DynamicTag } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
 
 const Save = ({ attributes }) => {
@@ -10,7 +10,7 @@ const Save = ({ attributes }) => {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
-    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth, advBtnBgbackgroundType } = attributes;
+    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth, advBtnBgbackgroundType,tagName,link } = attributes;
 
 
     // if (advBtnBgbackgroundType === 'video') {
@@ -44,7 +44,8 @@ const Save = ({ attributes }) => {
     //     renderHookBefore.push(videoMarkup);
     // }
     return (
-        <div
+        <DynamicTag
+          tagName={tagName}
             {...useBlockProps.save({
                 className: classnames(
                     uniqueId,
@@ -54,8 +55,10 @@ const Save = ({ attributes }) => {
                     classArrayToStr(parentClasses)
                 ),
             })}
-            {...(zoloId && {
-                id: zoloId,
+            {...(zoloId && {id: zoloId})}
+            {...(tagName === 'a' && link?.url && {
+              href: link.url,
+              ...(link.openInNewTab ? { rel: 'noreferrer noopener', target: '_blank' } : {})
             })}
         >
             {renderHookBefore && renderHookBefore}
@@ -71,7 +74,7 @@ const Save = ({ attributes }) => {
             )}
 
             {renderHookAfter && renderHookAfter}
-        </div>
+        </DynamicTag>
     );
 };
 
