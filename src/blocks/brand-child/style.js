@@ -24,6 +24,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_BOX_SHADOW_H,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     CONTENT_PADDING,
@@ -48,7 +49,7 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, preset } = attributes;
+    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, preset, containerBorderHColor } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
     const {
@@ -113,6 +114,11 @@ const Style = ({ props }) => {
     const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: containerBoxShadowH } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW_H,
     });
 
     const {
@@ -312,6 +318,12 @@ const Style = ({ props }) => {
             ${containerMarginDesk}
             ${containerDeskBGStyle}
 		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-brand-child.zb-brand-item:hover {
+            ${containerBorderHColor ? `border-color:${containerBorderHColor};` : ''}
+            ${containerBoxShadowH}
+		}
+
 		.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-content{
             ${containerDeskBGHStyle}
 		}
@@ -364,7 +376,7 @@ const Style = ({ props }) => {
        ${
            active
                ? `
-                    .${uniqueId}.wp-block-zolo-brand-child.zb-brand-item .zb-brand-image img  {
+                    .${uniqueId}.zolo-block.wp-block-zolo-brand-child.zb-brand-item .zb-brand-image img  {
                         filter:
                             blur(${blur}px)
                             brightness(${brightness}%)
@@ -379,7 +391,7 @@ const Style = ({ props }) => {
         ${
             activeHover && preset === 'zb-brand-basic-style'
                 ? `
-                     .${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-image img {
+                     .${uniqueId}.zolo-block.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-image img {
                         filter:
                             blur(${blurHover}px)
                             brightness(${brightnessHover}%)

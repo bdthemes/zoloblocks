@@ -274,15 +274,11 @@
         }
     }
 
-    .zolo-flex-input-row-control {
-        .components-flex-item {
-            width: var(--zolo-flex-row-control-label-width);
-        }
+    .zolo-flex-input-col-control {
         .components-input-base {
-            flex-direction: row;
+            flex-direction: column;
             width: 100%;
-            align-items: center;
-            gap: 15px;
+            gap: 8px;
         }
         .components-input-control__container {
             width: 100%;
