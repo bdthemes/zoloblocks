@@ -280,13 +280,13 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph{
         ${columnsDesktop.replace('px', '')}
         ${columnsGapDesktop}
         ${textMarginDesk}
         ${textGradientDesktop}
     }
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph{
         ${textColor ? `color: ${textColor};` : ''}
         ${textTypoDesk}
         ${textAlignDesk}
@@ -307,10 +307,6 @@ const Style = ({ props }) => {
             : ''
     }
 
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p:hover{
-        ${hoverTextColor ? `color: ${hoverTextColor};` : ''}
-        ${hoverTextTypoDesk}
-    }
 
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoDesk}
@@ -349,12 +345,12 @@ const Style = ({ props }) => {
 `;
 
     const tabletAllStyle = `
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph{
         ${columnsTab.replace('px', '')}
         ${columnsGapTab}
         ${textMarginTab}
     }
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph{
         ${textColor ? `color: ${textColor};` : ''}
         ${textTypoTab}
         ${textAlignTab}
@@ -374,10 +370,6 @@ const Style = ({ props }) => {
             : ''
     }
 
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p:hover{
-        ${hoverTextColor ? `color: ${hoverTextColor};` : ''}
-        ${hoverTextTypoTab}
-    }
 
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoTab}
@@ -413,12 +405,12 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-     .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+     .${uniqueId}.wp-block-zolo-advanced-paragraph{
         ${columnsMob.replace('px', '')}
         ${columnsGapMob}
         ${textMarginMob}
     }
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p{
+    .${uniqueId}.wp-block-zolo-advanced-paragraph{
         ${textColor ? `color: ${textColor};` : ''}
         ${textTypoMob}
         ${textAlignMob}
@@ -437,11 +429,6 @@ const Style = ({ props }) => {
         }
     `
             : ''
-    }
-
-    .${uniqueId}.wp-block-zolo-advanced-paragraph p:hover{
-        ${hoverTextColor ? `color: ${hoverTextColor};` : ''}
-        ${hoverTextTypoMob}
     }
 
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
