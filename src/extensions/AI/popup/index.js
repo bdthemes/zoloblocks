@@ -81,6 +81,10 @@ export default function Popup() {
         >
             <Header />
             <div className="zolo-popup__content_wrap">
+                {
+                    //error message
+                    response?.message && <div className="zolo-ai-error">{response?.errors?.command || response?.message}</div>
+                }
                 <Prompt />
                 <Content />
             </div>

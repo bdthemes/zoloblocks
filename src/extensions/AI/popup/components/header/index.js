@@ -2,25 +2,24 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
 
-
 const Header = () => {
-    const { close} = useDispatch('zoloai/popup');
+    const { close } = useDispatch('zoloai/popup');
 
-     const { loading, prompt, language, response, content, context } = useSelect((select) => {
-         const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
-         return {
-             isOpen: checkIsOpen(),
-             prompt: getPrompt(),
-             response: getResponse(),
-             loading: isLoading(),
-             content: getContent() ? getContent() : '',
-             context: getContext(),
-         };
-     });
+    const { loading, prompt, language, response, content, context } = useSelect((select) => {
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
+        return {
+            isOpen: checkIsOpen(),
+            prompt: getPrompt(),
+            response: getResponse(),
+            loading: isLoading(),
+            content: getContent() ? getContent() : '',
+            context: getContext(),
+        };
+    });
 
-     const handleClose = () => {
-            close();
-     }
+    const handleClose = () => {
+        close();
+    };
     return (
         <div className="zolo-popup-header">
             <div className="zolo-popup-header__logo">
@@ -87,10 +86,7 @@ const Header = () => {
 
             {/* loader here */}
             {loading && <div className="zolo-ai-loader"></div>}
-            {
-                //error message
-                response?.message && <div className="zolo-ai-error">{response?.errors?.command || response?.message}</div>
-            }
+
             {/* <div class="zolo-ai-loader"></div> */}
         </div>
     );
