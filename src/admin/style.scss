@@ -535,6 +535,14 @@ input.zoloblocks-search,
         justify-content: center;
         border: 1px solid #e7eaf5;
     }
+
+    .zolo-activated-btn.zolo-save-changes {
+        background: #3f8efc;
+        color: #fff;
+        &:focus {
+            color: #fff !important;
+        }
+    }
 }
 
 .zolo-category-wrap {
@@ -690,6 +698,9 @@ input.zoloblocks-search {
 .zolo-settings-option-item {
     .components-h-stack {
         gap: 0;
+    }
+    .components-form-toggle {
+        height: 30px;
     }
     .components-form-toggle .components-form-toggle__thumb {
         height: 22px;

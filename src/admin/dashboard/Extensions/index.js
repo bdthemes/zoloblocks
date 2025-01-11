@@ -12,6 +12,9 @@ const Extensions = () => {
     const [blockCategory, setCategory] = useState('all');
     const [notice, setNotice] = useState(false);
 
+    const [extensionsTobeUpdated, setExtensionsTobeUpdated] = useState({}); // Store extensions changes
+
+    // Fetch extensions
     const fetchExtensions = async () => {
         try {
             const response = await apiFetch({
@@ -36,27 +39,6 @@ const Extensions = () => {
             }, 1000);
         }
     }, [notice]);
-
-    // update block setting
-    const updateExtensionStatus = (extensionName) => {
-        const extension = extensions.find((ext) => ext.name === extensionName);
-        const status = !extension.status;
-
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks.zolo_nonce,
-                name: extensionName,
-                status,
-            },
-        })
-            .then((response) => {
-                setExtensions(response);
-                setNotice(true);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
-    };
 
     // activate all extensions
     const activateAllExtensions = (status) => {
@@ -122,6 +104,55 @@ const Extensions = () => {
                 setExtensions(response);
             })
             .catch((error) => console.error('API Fetch Error:', error));
+    };
+
+    // Handle block click
+    const handleExtensionClick = (extensionName) => {
+        setExtensionsTobeUpdated((prev) => {
+            const currentStatus =
+                prev[extensionName] !== undefined
+                    ? prev[extensionName]
+                    : extensions.find((extension) => extension.name === extensionName).status;
+            return {
+                ...prev,
+                [extensionName]: !currentStatus,
+            };
+        });
+    };
+
+    // Save changes
+    const saveChanges = () => {
+        // Map the blocks to an array of update objects
+        const updates = Object.entries(extensionsTobeUpdated).map(([name, status]) => ({
+            name,
+            status,
+        }));
+
+        // If there are no updates, return early
+        if (updates.length === 0) {
+            return;
+        }
+
+        // Construct the API call
+        apiFetch({
+            path: '/zolo/v1/extensions',
+            method: 'POST',
+            data: {
+                zolo_nonce: zoloBlocks?.zolo_nonce,
+                updates, // Send the array of updates
+            },
+        })
+            .then((response) => {
+                // Update the local extensions state with the fresh data
+                setExtensions(response);
+                // Clear the extensions to be updated state
+                setExtensionsTobeUpdated({});
+                // reload the page
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('API Fetch Error:', error);
+            });
     };
 
     return (
@@ -195,6 +226,9 @@ const Extensions = () => {
                         >
                             {__('Deactivate All', 'zoloblocks')}
                         </button>
+                        <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                            {__('Save Changes', 'zoloblocks')}
+                        </button>
                     </div>
                 </div>
                 <div className="zoloblocks-grid">
@@ -213,12 +247,17 @@ const Extensions = () => {
                                             key={index}
                                             icon={extension?.name}
                                             title={extension?.title}
-                                            value={extension?.status}
+                                            value={
+                                                // extension?.status
+                                                extensionsTobeUpdated[extension.name] !== undefined
+                                                    ? extensionsTobeUpdated[extension.name]
+                                                    : extension.status
+                                            }
                                             demo={extension?.demo || ''}
                                             video={extension?.video || ''}
                                             released={extension?.released}
                                             onClick={() => {
-                                                updateExtensionStatus(extension?.name);
+                                                handleExtensionClick(extension.name);
                                             }}
                                             {...(extension?.is_pro && {
                                                 isPro: true,
