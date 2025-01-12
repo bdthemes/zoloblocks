@@ -3,8 +3,8 @@
     "title": "Lottie Image",
     "name": "zolo/lottie-image",
     "category": "zoloblocks",
-    "keywords": ["zolo", "lottie", "image"],
-    "description": "Lottie Image block for ZoloBlocks",
+    "keywords": ["zolo", "lottie", "image", "animation", "video"],
+    "description": "Lightweight Lottie animations for web, apps, and UI.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
