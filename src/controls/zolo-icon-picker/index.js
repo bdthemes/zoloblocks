@@ -174,8 +174,10 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         <div className="zolo-icon-picker">
             <div className="zolo-icon-preview">
                 <label htmlFor="iconPreview">{label}</label>
-                <div className="zolo__icon-preview-wrap" onClick={() => setIconsPanel(true)}>
-                    {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zoloblocks')}
+                <div className="zolo__icon-preview-wrap">
+                    <div className="zolo__icon-preview" onClick={() => setIconsPanel(true)}>
+                        {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zoloblocks')}
+                    </div>
                     <div className="zolo__icon-picker-buttons">
                         <Button
                             className={`zolo-picker__button ${value ? 'active' : ''}`}
