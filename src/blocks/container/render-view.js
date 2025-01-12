@@ -3,7 +3,7 @@ import { Button, Dropdown, ToolbarButton, ToolbarGroup } from '@wordpress/compon
 import { select } from '@wordpress/data';
 import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
-const { classArrayToStr, ContainerSidebarOpener } = window.zoloModule;
+const { classArrayToStr, ContainerSidebarOpener,DynamicTag } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
@@ -14,6 +14,8 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         isBlockRootParent,
         parentClasses,
         containerWidth,
+        tagName,
+        link
     } = attributes;
     const panelProps = { attributes, setAttributes };
     const { getBlockOrder } = select('core/block-editor');
@@ -73,7 +75,14 @@ const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelP
                     />
                 </ToolbarGroup>
             </BlockControls>
-            <div {...blockProps}>
+            <DynamicTag
+              tagName={tagName}
+              {...blockProps}
+               {...(tagName === 'a' && link?.url && {
+                 href: link.url,
+                 ...(link.openInNewTab ? { rel: 'noreferrer noopener', target: '_blank' } : {})
+               })}
+            >
                 {renderHookBefore && renderHookBefore}
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
@@ -86,7 +95,7 @@ const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelP
                     </>
                 )}
                 {renderHookAfter && renderHookAfter}
-            </div>
+            </DynamicTag>
         </>
     );
 }
