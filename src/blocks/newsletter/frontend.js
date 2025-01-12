@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const data = new FormData();
                 data.append('email', email);
-                data.append('list', zoloSettings.list_id);
                 data.append('fname', fname);
                 data.append('action', 'zolo_subscribe_newsletter');
                 data.append('nonce', zoloSettings.zolo_nonce);

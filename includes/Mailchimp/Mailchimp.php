@@ -146,9 +146,8 @@ if (! class_exists('Mailchimp')) {
                     $response['message'] = "{$email} {$subscribed}";
                 } else {
                     $response['status']  = 'error';
-                    $response['message'] = __('Can\'t process your request.', 'zoloblocks');
+                    $response['message'] = $result['detail'] ?? __('Can\'t process your request.', 'zoloblocks');
                 }
-
                 wp_send_json($response);
             }
         }
@@ -181,6 +180,7 @@ if (! class_exists('Mailchimp')) {
                     if (isset($result['success']) && $result['success'] == 'success') {
                         wp_send_json([
                             'success'  => true,
+                            $response['status']  = 'success',
                             'message' => $data['textSuccess'] ?? __('Thank you for subscribing!', 'zoloblocks'),
                         ]);
                     } elseif (isset($result['status']) && $result['status'] == 400 && !isset($result['errors'])) {
@@ -189,13 +189,15 @@ if (! class_exists('Mailchimp')) {
                     } else {
                         wp_send_json([
                             'success'  => false,
-                            'message' => $data['textError'] ?? __('Can\'t process your request.', 'zoloblocks'),
+                            $response['status']  = 'error',
+                            'message' => $result['detail'] ?? __('Can\'t process your request.', 'zoloblocks'),
                         ]);
                     }
                 }
             } else {
                 wp_send_json([
                     'success'  => false,
+                    $response['status']  = 'error',
                     'message' => __('Webhook URL is missing!', 'zoloblocks'),
                 ]);
             }
