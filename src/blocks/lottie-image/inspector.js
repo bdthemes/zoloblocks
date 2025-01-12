@@ -101,20 +101,13 @@ function Inspector(props) {
                         </ZoloPanelBody>
                     </>
                 }
-                styleTab={
-                    <>
-                        <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            Text
-                        </ZoloPanelBody>
-                    </>
-                }
                 advancedTab={
                     <>
                         <AdvancedOptions
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
-                            block="zolo/adavanced-paragraph"
+                            block="zolo/lottie-image"
                         />
                     </>
                 }
