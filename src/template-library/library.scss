@@ -7,7 +7,36 @@
         }
         .zoloblocks-template-library-button {
             order: 1 !important;
+            &.empty-page {
+                transition:
+                    transform 0.3s ease-in-out,
+                    opacity 0.3s ease-in-out;
+                animation: shake 0.5s ease-in-out infinite; /* Apply shaking animation */
+            }
+
+            &:hover {
+                animation: none;
+                transition:
+                    transform 0.3s ease-in-out,
+                    opacity 0.3s ease-in-out; /* Smooth transition on hover */
+            }
         }
+    }
+}
+
+.zoloblocks-template-library-button {
+    &.empty-page {
+        transition:
+            transform 0.3s ease-in-out,
+            opacity 0.3s ease-in-out;
+        animation: shake 0.5s ease-in-out infinite; /* Apply shaking animation */
+    }
+
+    &:hover {
+        animation: none;
+        transition:
+            transform 0.3s ease-in-out,
+            opacity 0.3s ease-in-out; /* Smooth transition on hover */
     }
 }
 
@@ -1074,5 +1103,22 @@
                 column-count: 5;
             }
         }
+    }
+}
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }

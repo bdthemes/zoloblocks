@@ -128,6 +128,7 @@ function Inspector(props) {
     const [duotone, setDuotone] = useState(['#000000', '#ffffff']);
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
     const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
+    const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -243,6 +244,7 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ showCaption: !showCaption })}
                                 />
                             )}
+                            {backgroundParallax && backgroundParallax}
                         </ZoloPanelBody>
                         {layout === 'normal' && showCaption && (
                             <ZoloPanelBody title={__('Caption', 'zoloblocks')} panelProps={props}>

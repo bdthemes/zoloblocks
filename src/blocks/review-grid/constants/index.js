@@ -10,6 +10,7 @@ export const PRESETS = [
     { label: __('Preset 3', 'zoloblocks'), value: 'default' },
     { label: __('Preset 4', 'zoloblocks'), value: 'style-3' },
     { label: __('Preset 5 (Pro)', 'zoloblocks'), value: 'style-4', disabled: true },
+    { label: __('Preset 6 (Pro)', 'zoloblocks'), value: 'style-5', disabled: true },
 ];
 
 // Block Prefix
@@ -67,3 +68,13 @@ export const RC_BSHADOW = 'rcBShadow';
 // meta content
 export const MC_PADDING = 'mcPadding';
 export const MC_SPACING = 'mcSpacing';
+
+// Quote
+export const QUOTE_SIZE = 'quoteSize';
+export const QUOTE_BACKGROUND = 'quoteBackground';
+export const QUOTE_PADDING = 'quotePadding';
+export const QUOTE_BORDER = 'quoteBorder';
+export const QUOTE_BOX_SHADOW = 'quoteBoxShadow';
+export const QUOTE_BORDER_RADIUS = 'quoteBorderRadius';
+export const QUOTE_H_SPACING = 'quoteHSpacing';
+export const QUOTE_V_SPACING = 'quoteVSpacing';

@@ -13,6 +13,8 @@ const excludeKeys = [
     'customClasses',
     'preset',
     // advanced button
+    'content',
+    // advanced button
     'label',
     'link',
     'iconType',

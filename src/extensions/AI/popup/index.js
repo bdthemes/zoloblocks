@@ -8,73 +8,53 @@
  */
 import { createRoot } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
-import { useSelect, useDispatch } from '@wordpress/data';
-import { rawHandler } from '@wordpress/blocks';
-import domReady from '@wordpress/dom-ready';
+import { useSelect, useDispatch, dispatch, select } from '@wordpress/data';
 import clsx from 'clsx';
 import { __ } from '@wordpress/i18n';
+import domReady from '@wordpress/dom-ready';
 
 import { Header, Prompt, Content, Footer } from './components';
-
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
 
 export default function Popup() {
     const { close, reset } = useDispatch('zoloai/popup');
+    const { updateBlockAttributes } = dispatch('core/block-editor');
+    const { getSelectedBlock, getSelectedBlockClientId } = select('core/block-editor');
 
     const { isOpen, response } = useSelect((select) => {
-        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getBlockContent, getContext } = select('zoloai/popup');
+        const { isOpen: checkIsOpen, getResponse } = select('zoloai/popup');
         return {
             isOpen: checkIsOpen(),
-            prompt: getPrompt(),
             response: getResponse(),
-            loading: isLoading(),
-            blockContent: getBlockContent(),
-            context: getContext(),
         };
     });
 
-    const { selectedClientIds } = useSelect((select) => {
-        const { getSelectedBlockClientIds } = select('core/block-editor');
-
-        const ids = getSelectedBlockClientIds();
-
-        return {
-            selectedClientIds: ids,
-        };
-    }, []);
-
-    const { insertBlocks, replaceBlocks, updateBlockAttributes } = useDispatch('core/block-editor');
-
-    const getContextFromSelectedBlocks = () => {
-        const { getBlock, getSelectedBlockClientIds } = wp.data.select('core/block-editor');
-        return getSelectedBlockClientIds()
-            .map((id) => getBlock(id)?.attributes?.content || '')
-            .map((content) => {
-                const selection = window.getSelection();
-                return selection?.rangeCount > 0 && selection.toString() ? selection.toString() : content;
-            })
-            .join('');
-    };
-
     function insertResponse() {
-        const selectedText = getContextFromSelectedBlocks();
-        const origintalContent = (clientId) => {
-            const block = wp.data.select('core/block-editor').getBlock(clientId);
-            return block ? block.attributes?.content : {};
-        };
-        const parsedBlocks = rawHandler({ HTML: response?.content });
-        if (parsedBlocks.length && selectedText) {
+        const { content } = response;
+        if (content) {
+            const selectedBlock = getSelectedBlock();
+            const clientId = getSelectedBlockClientId();
 
-            if (selectedText) {
-                updateBlockAttributes(selectedClientIds[0], {
-                    content: origintalContent(selectedClientIds[0]).replace(selectedText, response?.content),
-                });
+            if (selectedBlock && clientId) {
+                let attributeKey;
+
+                switch (selectedBlock.name) {
+                    case 'zolo/advanced-icon-box':
+                        attributeKey = 'iconBoxDescription';
+                        break;
+
+                    case 'zolo/advanced-heading':
+                        attributeKey = 'titleText';
+                        break;
+
+                    default:
+                        attributeKey = 'content';
+                        break;
+                }
+                updateBlockAttributes(clientId, { [attributeKey]: content });
             } else {
-                // insertBlocks(parsedBlocks, insertionPlace);
-                replaceBlocks(selectedClientIds[0], parsedBlocks);
+                console.warn('No selected block or client ID found.');
             }
-        } else {
-            console.warn('No valid text selected or no parsed blocks available.');
         }
     }
 
@@ -101,6 +81,10 @@ export default function Popup() {
         >
             <Header />
             <div className="zolo-popup__content_wrap">
+                {
+                    //error message
+                    response?.message && <div className="zolo-ai-error">{response?.errors?.command || response?.message}</div>
+                }
                 <Prompt />
                 <Content />
             </div>

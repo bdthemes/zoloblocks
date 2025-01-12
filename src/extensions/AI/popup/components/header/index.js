@@ -2,25 +2,24 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
 
-
 const Header = () => {
-    const { close} = useDispatch('zoloai/popup');
+    const { close } = useDispatch('zoloai/popup');
 
-     const { loading, prompt, language, response, content, context } = useSelect((select) => {
-         const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
-         return {
-             isOpen: checkIsOpen(),
-             prompt: getPrompt(),
-             response: getResponse(),
-             loading: isLoading(),
-             content: getContent() ? getContent() : '',
-             context: getContext(),
-         };
-     });
+    const { loading, prompt, language, response, content, context } = useSelect((select) => {
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext } = select('zoloai/popup');
+        return {
+            isOpen: checkIsOpen(),
+            prompt: getPrompt(),
+            response: getResponse(),
+            loading: isLoading(),
+            content: getContent() ? getContent() : '',
+            context: getContext(),
+        };
+    });
 
-     const handleClose = () => {
-            close();
-     }
+    const handleClose = () => {
+        close();
+    };
     return (
         <div className="zolo-popup-header">
             <div className="zolo-popup-header__logo">
@@ -42,13 +41,13 @@ const Header = () => {
                         </clipPath>
                     </defs>
                 </svg>
-                <h2 className="zolo-ai-logo-text">{__('Zolo AI', 'zoloblocks-pro')}</h2>
-                <span className="zolo-ai-badge">{__('Beta', 'zoloblocks-pro')}</span>
+                <h2 className="zolo-ai-logo-text">{__('Zolo AI', 'zoloblocks')}</h2>
+                <span className="zolo-ai-badge">{__('Beta', 'zoloblocks')}</span>
             </div>
 
             <div className="zolo-popup-header_right">
                 <a href="#" className="zolo-head-upgrade-btn">
-                    {__('Upgrade', 'zoloblocks-pro')}
+                    {__('Upgrade', 'zoloblocks')}
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
                         <g clipPath="url(#clip0_1313_270)">
                             <path
@@ -86,11 +85,8 @@ const Header = () => {
             </div>
 
             {/* loader here */}
-            {
-                loading && (
-                    <div className="zolo-ai-loader"></div>
-                )
-            }
+            {loading && <div className="zolo-ai-loader"></div>}
+
             {/* <div class="zolo-ai-loader"></div> */}
         </div>
     );

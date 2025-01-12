@@ -57,6 +57,8 @@ function ZoloBlocksTemplateLibraryButton() {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
+    const [isPageEmpty, setIsPageEmpty] = useState(false);
+    const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
 
     /**
      * =====
@@ -312,21 +314,41 @@ function ZoloBlocksTemplateLibraryButton() {
     }, [activeDemoCat]); // eslint-disable-line
 
     useEffect(() => {
-        const subscribeBtn = subscribe(() => {
-            const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
-            const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-            const currentPostType = wp.data.select('core/editor').getCurrentPostType();
+        const subscribeBtn = wp.data.subscribe(() => {
+            const updatedPostType = wp.data.select('core/editor').getCurrentPostType();
+            const updatedIsPageEmpty = wp.data.select('core/block-editor').getBlocks().length === 0;
 
-            if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
-                renderButton(toolbar);
+            // Update only if the values have changed
+            if (updatedPostType !== currentPostType) {
+                setCurrentPostType(updatedPostType);
             }
-
+            if (updatedIsPageEmpty !== isPageEmpty) {
+                setIsPageEmpty(updatedIsPageEmpty);
+            }
         });
 
         return () => {
             subscribeBtn();
         };
-    }, []);
+    }, [currentPostType, isPageEmpty]);
+
+    useEffect(() => {
+        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
+        const libraryButton = document.querySelector('.zoloblocks-template-library-button');
+        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
+            renderButton(toolbar);
+        }
+
+        if (libraryButton) {
+            setTimeout(() => {
+                if (isPageEmpty) {
+                    libraryButton.classList.add('empty-page');
+                } else {
+                    libraryButton.classList.remove('empty-page');
+                }
+            }, 1000);
+        }
+    }, [currentPostType, isPageEmpty]);
 
     // Filter by Tags
     const sortDemosByTag = (tag) => {
@@ -511,7 +533,9 @@ function ZoloBlocksTemplateLibraryButton() {
             setPages(pages);
 
             // set page categories
-            const pageCategories = pages?.filter((template) => template.template_type === 'pages').map((template) => template.pages_category);
+            const pageCategories = pages
+                ?.filter((template) => template.template_type === 'pages')
+                .map((template) => template.pages_category);
             const uniquePageCategories = [...new Set(pageCategories?.flat())];
             const sortedPageCategories = uniquePageCategories.sort((a, b) => a.localeCompare(b));
             const pageCategoriesArray = sortedPageCategories.map((category) => ({ label: category, value: category }));
@@ -558,14 +582,14 @@ function ZoloBlocksTemplateLibraryButton() {
             setPatterns(patterns);
 
             // set pattern categories
-            const patternCategories = patterns?.filter((template) => template.template_type === 'patterns')
+            const patternCategories = patterns
+                ?.filter((template) => template.template_type === 'patterns')
                 .map((template) => template.patterns_category);
             const uniquePatternCategories = [...new Set(patternCategories?.flat())];
             const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
             const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
             patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setPatternCategories(patternCategoriesArray);
-
 
             // patterns tags
             const allPatternTags = patterns?.map((template) => template.tags);
@@ -586,7 +610,9 @@ function ZoloBlocksTemplateLibraryButton() {
             setDemos(demos);
 
             // set demo categories
-            const demoCategories = demos?.filter((template) => template.template_type === 'demos').map((template) => template.demos_category);
+            const demoCategories = demos
+                ?.filter((template) => template.template_type === 'demos')
+                .map((template) => template.demos_category);
             const uniqueDemoCategories = [...new Set(demoCategories?.flat())];
             const sortedDemoCategories = uniqueDemoCategories.sort((a, b) => a.localeCompare(b));
             const demoCategoriesArray = sortedDemoCategories.map((category) => ({ label: category, value: category }));

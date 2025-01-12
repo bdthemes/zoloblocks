@@ -6,6 +6,9 @@ import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { addFilter } from '@wordpress/hooks';
+
 /**
  * Internal depencencies
  */
@@ -15,6 +18,26 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+
+/**
+ * Filter Slide Item block on Register
+ * and pass the block as a child of swiper-slide
+ */
+const zoloBrandCarousel = createHigherOrderComponent((BlockListBlock) => {
+    return (props) => {
+        if ('zolo/brand-child' === props.name) {
+            return (
+                <div className="swiper-slide">
+                    <BlockListBlock {...props} />
+                </div>
+            );
+        }
+
+        return <BlockListBlock {...props} />;
+    };
+}, 'zoloBrandCarousel');
+
+addFilter('editor.BlockListBlock', 'zolo/brand-child', zoloBrandCarousel);
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;

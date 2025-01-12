@@ -7,7 +7,7 @@ const Content = () => {
     const ref = useRef();
     const { reset, setPrompt, setContext, setScreen, requestAI } = useDispatch('zoloai/popup');
     const { loading, response, content, screen, prompt } = useSelect((select) => {
-    const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext, getScreen } = select('zoloai/popup');
+        const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext, getScreen } = select('zoloai/popup');
         return {
             isOpen: checkIsOpen(),
             prompt: getPrompt(),
@@ -15,7 +15,7 @@ const Content = () => {
             loading: isLoading(),
             content: getContent() ? getContent() : '',
             context: getContext(),
-            screen: getScreen()
+            screen: getScreen(),
         };
     });
 
@@ -31,17 +31,17 @@ const Content = () => {
         }
     }
     useEffect(() => {
-        // if (response?.content) {
-        //     setPrompt(response.content);
-        // }
-        if(screen === 'request') {
+        if (response?.content) {
+            setPrompt(response.content);
+        }
+        if (screen === 'request') {
             setPrompt(content);
         }
     }, [response, content, screen, prompt]);
     return (
         <div className="zolo-popup-content">
             <div className="zolo-popup-response">
-                {screen === 'request' ? (
+                {screen === 'request' && (
                     <>
                         <div className="zolo-popup-response-button">
                             <Button
@@ -187,8 +187,6 @@ const Content = () => {
                             ></SelectControl>
                         </div>
                     </>
-                ) : (
-                    <p>suggesition text goes here</p>
                 )}
             </div>
         </div>

@@ -48,6 +48,15 @@ import {
     RC_BG,
     MC_SPACING,
     MC_PADDING,
+    // Quote
+    QUOTE_SIZE,
+    QUOTE_BACKGROUND,
+    QUOTE_PADDING,
+    QUOTE_BORDER,
+    QUOTE_BOX_SHADOW,
+    QUOTE_BORDER_RADIUS,
+    QUOTE_H_SPACING,
+    QUOTE_V_SPACING,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -65,6 +74,7 @@ const Style = ({ props }) => {
         activeRatingColor,
         inactiveRatingColor,
         presetFiveArrowColor,
+        quoteColor,
     } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
@@ -386,6 +396,82 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // Quote
+
+    const {
+        desktopRangeStyle: quoteDeskSize,
+        tabRangeStyle: quoteTabSize,
+        mobRangeStyle: quoteMobSize,
+    } = generateResRangeStyle({
+        controlName: QUOTE_SIZE,
+        property: '--zolo-quote-icon-size',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: quoteDeskBG,
+        backgroundStylesTab: quoteTabBG,
+        backgroundStylesMobile: quoteMobBG,
+    } = generateNormalBGControlStyles({
+        controlName: QUOTE_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: quoteDeskPadding,
+        dimensionStylesTab: quoteTabPadding,
+        dimensionStylesMobile: quoteMobPadding,
+    } = generateDimensionStyle({
+        controlName: QUOTE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: quoteDeskBorder,
+        tabBorderStyle: quoteTabBorder,
+        mobBorderStyle: quoteMobBorder,
+    } = generateBorderStyle({
+        controlName: QUOTE_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: quoteBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: QUOTE_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: quoteDeskBorderRadius,
+        dimensionStylesTab: quoteTabBorderRadius,
+        dimensionStylesMobile: quoteMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: QUOTE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: quoteDeskHSpacing,
+        tabRangeStyle: quoteTabHSpacing,
+        mobRangeStyle: quoteMobHSpacing,
+    } = generateResRangeStyle({
+        controlName: QUOTE_H_SPACING,
+        property: 'right',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: quoteDeskVSpacing,
+        tabRangeStyle: quoteTabVSpacing,
+        mobRangeStyle: quoteMobVSpacing,
+    } = generateResRangeStyle({
+        controlName: QUOTE_V_SPACING,
+        property: 'bottom',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -508,6 +594,28 @@ const Style = ({ props }) => {
                 `
                 : ''
         }
+
+        ${
+            preset === 'style-5'
+                ? `
+                    .${uniqueId}.wp-block-zolo-review-grid.style-5 .zolo-review-quote-icon svg {
+                        color: ${quoteColor};
+                        ${quoteDeskSize}
+                    }
+                    .${uniqueId}.wp-block-zolo-review-grid.style-5 .zolo-review-quote-icon {
+                        ${quoteDeskBG}
+                        ${quoteDeskPadding}
+                        ${quoteDeskBorder}
+                        ${quoteBoxShadow}
+                        ${quoteDeskBorderRadius}
+                        ${quoteDeskHSpacing}
+                        ${quoteDeskVSpacing}
+                    }
+                `
+                : ''
+        }
+
+
 	`;
     const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid.grid {
@@ -585,6 +693,25 @@ const Style = ({ props }) => {
             `
                 : ''
         }
+
+        ${
+            preset === 'style-5'
+                ? `
+                    .${uniqueId}.wp-block-zolo-review-grid.style-5 .zolo-review-quote-icon svg {
+                        ${quoteTabSize}
+                    }
+                    .${uniqueId}.wp-block-zolo-review-grid.style-5 .zolo-review-quote-icon {
+                        ${quoteTabBG}
+                        ${quoteTabPadding}
+                        ${quoteTabBorder}
+                        ${quoteBoxShadow}
+                        ${quoteTabBorderRadius}
+                        ${quoteTabHSpacing}
+                        ${quoteTabVSpacing}
+                    }
+                 `
+                : ''
+        }
 	`;
     const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid.grid {
@@ -660,6 +787,25 @@ const Style = ({ props }) => {
                     ${rcMobPadding}
                 }
             `
+                : ''
+        }
+
+        ${
+            preset === 'style-5'
+                ? `
+                    .${uniqueId}.wp-block-zolo-review-grid.style-5 .zolo-review-quote-icon svg {
+                        ${quoteMobSize}
+                    }
+                    .${uniqueId}.wp-block-zolo-review-grid.style-5 .zolo-review-quote-icon {
+                        ${quoteMobBG}
+                        ${quoteMobPadding}
+                        ${quoteMobBorder}
+                        ${quoteBoxShadow}
+                        ${quoteMobBorderRadius}
+                        ${quoteMobHSpacing}
+                        ${quoteMobVSpacing}
+                    }
+                `
                 : ''
         }
 	`;

@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, BaseControl, Button, SelectControl, TextareaControl, CardDivider } from '@wordpress/components';
+import { TextControl, BaseControl, Button, SelectControl, TextareaControl, CardDivider, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -25,6 +25,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ImageSizes,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -35,6 +36,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_BOX_SHADOW_H,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     CONTENT_PADDING,
@@ -50,6 +52,8 @@ import {
     BRAND_PHOTO_PADDING,
     BRAND_PHOTO_MARGIN,
     IMAGE_WIDTH,
+    LINK_TYPES,
+    LINK_TYPES_BASIC,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -74,6 +78,7 @@ function Inspector(props) {
         enableLogoLink,
         logoLinkType,
         imageRes,
+        containerBorderHColor,
     } = attributes;
 
     const requiredProps = {
@@ -147,6 +152,40 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            <ToggleControl
+                                label={__('Enable Logo Link', 'zoloblocks')}
+                                checked={enableLogoLink}
+                                onChange={() => setAttributes({ enableLogoLink: !enableLogoLink })}
+                            />
+                            {enableLogoLink && preset !== 'zb-brand-basic-style' && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Link', 'zoloblocks')}
+                                        value={logoLinkType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                logoLinkType: value,
+                                            })
+                                        }
+                                        options={LINK_TYPES}
+                                    />
+                                </div>
+                            )}
+
+                            {enableLogoLink && preset === 'zb-brand-basic-style' && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Link', 'zoloblocks')}
+                                        value={logoLinkType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                logoLinkType: value,
+                                            })
+                                        }
+                                        options={LINK_TYPES_BASIC}
+                                    />
+                                </div>
+                            )}
                             {enableLogoLink && preset === 'zb-brand-basic-style' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Link', 'zoloblocks')}</div>
@@ -277,6 +316,21 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_H_BG} noMainBGImg={false} />
+                                        <CardDivider />
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={containerBorderHColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    containerBorderHColor: value,
+                                                })
+                                            }
+                                        />
+                                        <BoxShadowControl
+                                            controlName={CONTAINER_BOX_SHADOW_H}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
                                     </>
                                 }
                             />
