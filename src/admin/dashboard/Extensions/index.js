@@ -4,13 +4,10 @@ import { __ } from '@wordpress/i18n';
 
 import SingleExtension from './single-extension';
 
-import Notice from '../notice';
-
 const Extensions = () => {
     const [extensions, setExtensions] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
-    const [notice, setNotice] = useState(false);
 
     const [extensionsTobeUpdated, setExtensionsTobeUpdated] = useState({}); // Store extensions changes
 
@@ -31,79 +28,42 @@ const Extensions = () => {
         fetchExtensions();
     }, []);
 
-    // set notice to false after 3 seconds
-    useEffect(() => {
-        if (notice) {
-            setTimeout(() => {
-                setNotice(false);
-            }, 1000);
-        }
-    }, [notice]);
-
     // activate all extensions
     const activateAllExtensions = (status) => {
-        const inactiveExtensions = extensions.filter((extension) => extension.status === false);
+        const inactiveExtensions = extensions.filter((extension) => !extension.status);
 
         if (inactiveExtensions.length === 0) {
             return;
         }
 
-        const proExtensions = inactiveExtensions.filter((extension) => extension.is_pro === true);
-        let extensionNames = inactiveExtensions.map((extension) => extension.name);
-
-        if (proExtensions.length > 0) {
-            if (zoloBlocks?.has_pro !== '1') {
-                // remove pro extensions from the list
-                extensionNames = extensionNames.filter((extension) => !proExtensions.includes(extension)); // remove pro extensions
-            }
-        }
-
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks.zolo_nonce,
-                names: extensionNames,
-                status: true,
-            },
-        })
-            .then((response) => {
-                setExtensions(response);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
+        setExtensionsTobeUpdated((prev) => {
+            const updatedExtensions = { ...prev };
+            inactiveExtensions.forEach((extension) => {
+                if (!(extension.name in updatedExtensions)) {
+                    updatedExtensions[extension.name] = true; // Set to activate
+                }
+            });
+            return updatedExtensions;
+        });
     };
 
     // deactivate all extensions
     const deactivateAllExtensions = (status) => {
-        const activeExtensions = extensions.filter((extension) => extension.status === true);
+        const activeExtensions = extensions.filter((extension) => extension.status);
 
         if (activeExtensions.length === 0) {
             return;
         }
 
-        const proExtensions = activeExtensions.filter((extension) => extension.is_pro === true);
-        let extensionNames = activeExtensions.map((extension) => extension.name);
-
-        if (proExtensions.length > 0) {
-            if (zoloBlocks?.has_pro !== '1') {
-                // remove pro extensions from the list
-                extensionNames = extensionNames.filter((extension) => !proExtensions.includes(extension)); // remove pro extensions
-            }
-        }
-
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks.zolo_nonce,
-                names: extensionNames,
-                status: false,
-            },
-        })
-            .then((response) => {
-                setExtensions(response);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
+        setExtensionsTobeUpdated((prev) => {
+            const updatedExtensions = { ...prev };
+            activeExtensions.forEach((extension) => {
+                if (!(extension.name in updatedExtensions)) {
+                    updatedExtensions[extension.name] = false; // Set to deactivate
+                }
+            });
+            return updatedExtensions;
+        });
     };
 
     // Handle block click
@@ -157,7 +117,6 @@ const Extensions = () => {
 
     return (
         <>
-            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">

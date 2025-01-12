@@ -1,9 +1,9 @@
-import SettingBox from './setting-box';
-import Notice from '../notice';
-import { __ } from '@wordpress/i18n';
-import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl, SelectControl, Button, Modal } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
+import { Button, Modal, SelectControl, ToggleControl } from '@wordpress/components';
+import { useCallback, useEffect, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import Notice from '../notice';
+import SettingBox from './setting-box';
 const { zoloBlocks } = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);
@@ -15,7 +15,7 @@ const Settings = () => {
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
     const [disableCorePatterns, setDisableCorePatterns] = useState(true);
-    const[ autoRecovery, setAutoRecovery] = useState(true);
+    const [autoRecovery, setAutoRecovery] = useState(true);
     const [activeTab, setActiveTab] = useState('editor-options');
     const [modalNewPage, setModalNewPage] = useState(false);
     const handleFetchError = (error) => {
@@ -291,7 +291,7 @@ const Settings = () => {
                                     <SettingBox
                                         title={__('Automatic Block Recovery', 'zoloblocks')}
                                         description={__(
-                                            'Automatically recover any erroneous blocks on your web pages, saving you the hassle of manually clicking \'Attempt Block Recovery\' buttons.',
+                                            "Automatically recover any erroneous blocks on your web pages, saving you the hassle of manually clicking 'Attempt Block Recovery' buttons.",
                                             'zoloblocks'
                                         )}
                                     >

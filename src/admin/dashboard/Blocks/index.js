@@ -1,7 +1,6 @@
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import Notice from '../notice';
 import categories from './categories';
 import SingleBlock from './single-block';
 
@@ -14,7 +13,6 @@ const Blocks = () => {
     const [blocks, setBlocks] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
-    const [notice, setNotice] = useState(false);
 
     const [blocksTobeUpdated, setBlocksTobeUpdated] = useState({}); // Store block changes
 
@@ -36,100 +34,47 @@ const Blocks = () => {
         fetchBlocks();
     }, []);
 
-    // set notice to false after 3 seconds
-    useEffect(() => {
-        if (notice) {
-            setTimeout(() => {
-                setNotice(false);
-            }, 1000);
-        }
-    }, [notice]);
-
     // update block setting for all
     const activateAllBlocks = () => {
-        const inactiveBlocks = blocks.filter((block) => block.status === false);
-
-        if (inactiveBlocks.length === 0) {
-            return;
-        }
-
-        // Filter the block names based on the current category
-        const blockNames = inactiveBlocks
-            .filter((block) => {
-                if (blockCategory === 'all') {
-                    return true;
+        setBlocksTobeUpdated((prev) => {
+            const newUpdates = {};
+            blocks.forEach((block) => {
+                if (
+                    blockCategory === 'all' ||
+                    (blockCategory === 'others' &&
+                        !block.categories.some((category) =>
+                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                        )) ||
+                    block.categories.some((category) => category === blockCategory)
+                ) {
+                    if (!block.status) {
+                        newUpdates[block.name] = true;
+                    }
                 }
-
-                if (blockCategory === 'others') {
-                    return !block.categories.some((category) =>
-                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                    );
-                }
-
-                return block.categories.some((category) => category === blockCategory);
-            })
-            .map((block) => block.name);
-
-        apiFetch({
-            path: '/zolo/v1/blocks',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks?.zolo_nonce,
-                status: true,
-                names: blockNames,
-            },
-        }).then((response) => {
-            setBlocks(removeChildBlocks(response));
-            // set notice to true
-            // setNotice(true);
-            // wait for 100ms and reload the page
-            setTimeout(() => {
-                window.location.reload();
-            }, 200);
+            });
+            return { ...prev, ...newUpdates };
         });
     };
 
     // update block setting for all
     const deactivateAllBlocks = () => {
-        const activeBlocks = blocks.filter((block) => block.status === true);
-
-        if (activeBlocks.length === 0) {
-            return;
-        }
-
-        // filter blocks based on category and get the block names
-        const blockNames = activeBlocks
-            .filter((block) => {
-                if (blockCategory === 'all') {
-                    return true;
+        setBlocksTobeUpdated((prev) => {
+            const newUpdates = {};
+            blocks.forEach((block) => {
+                if (
+                    blockCategory === 'all' ||
+                    (blockCategory === 'others' &&
+                        !block.categories.some((category) =>
+                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                        )) ||
+                    block.categories.some((category) => category === blockCategory)
+                ) {
+                    if (block.status) {
+                        newUpdates[block.name] = false;
+                    }
                 }
-
-                if (blockCategory === 'others') {
-                    return !block.categories.some((category) =>
-                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                    );
-                }
-
-                return block.categories.some((category) => category === blockCategory);
-            })
-            .map((block) => block.name);
-
-        apiFetch({
-            path: '/zolo/v1/blocks',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks?.zolo_nonce,
-                status: false,
-                names: blockNames,
-            },
-        }).then((response) => {
-            setBlocks(removeChildBlocks(response));
-            // set notice to true
-            // setNotice(true);
-            // wait for 100ms and reload the page
-            setTimeout(() => {
-                window.location.reload();
-            }, 200);
+            });
+            return { ...prev, ...newUpdates };
         });
     };
 
@@ -181,7 +126,6 @@ const Blocks = () => {
 
     return (
         <>
-            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
