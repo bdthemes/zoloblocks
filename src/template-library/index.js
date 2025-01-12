@@ -1,6 +1,7 @@
 import apiFetch from '@wordpress/api-fetch';
 import { Button, Modal } from '@wordpress/components';
-import { subscribe } from '@wordpress/data';
+import { subscribe, useSelect } from '@wordpress/data';
+import { getTextContent } from '@wordpress/rich-text'; 
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
@@ -57,7 +58,6 @@ function ZoloBlocksTemplateLibraryButton() {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
-    const [isPageEmpty, setIsPageEmpty] = useState(false);
     const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
 
     /**
@@ -70,6 +70,25 @@ function ZoloBlocksTemplateLibraryButton() {
     const [pageTemplatesType, setPageTemplatesType] = useState('');
     const [pageTemplateCategories, setPageTemplateCategories] = useState([]);
     const [activePageTemplateCat, setActivePageTemplateCat] = useState('all');
+
+    const { isPageEmpty } = useSelect((select) => {
+        const { getBlocks } = select('core/block-editor');
+        const blocks = getBlocks();
+        let isPageEmpty = false;
+
+        if (blocks.length === 0) {
+            isPageEmpty = true;
+        }
+
+        if (blocks.length == 1) {
+            const firstBlock = blocks[0];
+            if (firstBlock.name === 'core/paragraph' && getTextContent(firstBlock.attributes.content).length === 0) {
+                isPageEmpty = true;
+            }
+        }
+
+        return { isPageEmpty };
+    }, []);
 
     useEffect(() => {
         apiFetch({
@@ -312,25 +331,6 @@ function ZoloBlocksTemplateLibraryButton() {
         setDemos(filteredDemos.slice(0, number));
         setTotal(filteredDemos.length);
     }, [activeDemoCat]); // eslint-disable-line
-
-    useEffect(() => {
-        const subscribeBtn = wp.data.subscribe(() => {
-            const updatedPostType = wp.data.select('core/editor').getCurrentPostType();
-            const updatedIsPageEmpty = wp.data.select('core/block-editor').getBlocks().length === 0;
-
-            // Update only if the values have changed
-            if (updatedPostType !== currentPostType) {
-                setCurrentPostType(updatedPostType);
-            }
-            if (updatedIsPageEmpty !== isPageEmpty) {
-                setIsPageEmpty(updatedIsPageEmpty);
-            }
-        });
-
-        return () => {
-            subscribeBtn();
-        };
-    }, [currentPostType, isPageEmpty]);
 
     useEffect(() => {
         const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
