@@ -42,7 +42,7 @@ class SupportSVG {
      */
     public function sanitize_uploads($data, $file, $filename, $mimes) {
         // Check user permission
-        if (!current_user_can('upload_files')) {
+        if (!current_user_can('upload_files') || !current_user_can('upload_svg')) {
             return $data;
         }
 
