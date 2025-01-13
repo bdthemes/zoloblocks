@@ -20,6 +20,7 @@ const {
     ResDimensionsControl,
     NormalBGControl,
     ZoloPanelBody,
+    TabPanelControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -40,6 +41,10 @@ import {
     FIELD_TYPE,
     TIME_FORMAT,
     DAYS_OPTION,
+
+    // Date/Time
+    // DATE_HEAD_BG,
+    // DATE_BODY_BG,
 } from './constants';
 import Select2 from 'react-select';
 
@@ -74,6 +79,15 @@ function Inspector(props) {
         maxTime,
         showEnableDate,
         disableDays,
+        // Date/Time
+        // dateMonthColor,
+        // dateMonthHoverColor,
+        // dateYearColor,
+        // dateNavColor,
+        // dateNavHoverColor,
+        // dateDaysColor,
+        // dateBodyColor,
+        // dateBodyNextColor,
     } = attributes;
 
     const requiredProps = {
@@ -549,6 +563,68 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
+
+                        {/* <ZoloPanelBody title={__('Date/Time', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <div className="zolo-custom-heading" style={{ paddingTop: 0, border: 0 }}>
+                                            {__('Header', 'zoloblocks')}
+                                        </div>
+
+                                        <ColorControl
+                                            label={__('Month Color', 'zoloblocks')}
+                                            color={dateMonthColor}
+                                            onChange={(color) => setAttributes({ dateMonthColor: color })}
+                                        />
+                                        <ColorControl
+                                            label={__('Year Color', 'zoloblocks')}
+                                            color={dateYearColor}
+                                            onChange={(color) => setAttributes({ dateYearColor: color })}
+                                        />
+                                        <ColorControl
+                                            label={__('Nav Color', 'zoloblocks')}
+                                            color={dateNavColor}
+                                            onChange={(color) => setAttributes({ dateNavColor: color })}
+                                        />
+                                        <ColorControl
+                                            label={__('Days Color', 'zoloblocks')}
+                                            color={dateDaysColor}
+                                            onChange={(color) => setAttributes({ dateDaysColor: color })}
+                                        />
+                                        <CardDivider />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={DATE_HEAD_BG} noMainBGImg={false} />
+
+                                        <div className="zolo-custom-heading">{__('Date Container', 'zoloblocks')}</div>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={DATE_BODY_BG} noMainBGImg={false} />
+                                        <ColorControl
+                                            label={__('Date Color', 'zoloblocks')}
+                                            color={dateBodyColor}
+                                            onChange={(color) => setAttributes({ dateBodyColor: color })}
+                                        />
+                                        <ColorControl
+                                            label={__('Next/Prev Date Color', 'zoloblocks')}
+                                            color={dateBodyNextColor}
+                                            onChange={(color) => setAttributes({ dateBodyNextColor: color })}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Month Color', 'zoloblocks')}
+                                            color={dateMonthHoverColor}
+                                            onChange={(color) => setAttributes({ dateMonthHoverColor: color })}
+                                        />
+                                        <ColorControl
+                                            label={__('Nav Color', 'zoloblocks')}
+                                            color={dateNavHoverColor}
+                                            onChange={(color) => setAttributes({ dateNavHoverColor: color })}
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody> */}
                     </>
                 }
                 advancedTab={

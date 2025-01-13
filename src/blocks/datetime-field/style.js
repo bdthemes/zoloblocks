@@ -28,11 +28,33 @@ import {
     FIELD_BORDER,
     FIELD_BRADIUS,
     ICON_SIZE,
+
+    // Date/Time
+    // DATE_HEAD_BG,
+    // DATE_BODY_BG,
 } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, showLabel, labelColor, textColor, placeholderColor, iconColor, showRequiredSymbol, requiredColor } = attributes;
+    const {
+        uniqueId,
+        showLabel,
+        labelColor,
+        textColor,
+        placeholderColor,
+        iconColor,
+        showRequiredSymbol,
+        requiredColor,
+        // Date/Time
+        // dateMonthColor,
+        // dateMonthHoverColor,
+        // dateYearColor,
+        // dateNavColor,
+        // dateNavHoverColor,
+        // dateDaysColor,
+        // dateBodyColor,
+        // dateBodyNextColor,
+    } = attributes;
 
     // label
     const {
@@ -151,6 +173,27 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // Date Time Field
+    // const {
+    //     backgroundStylesDesktop: dateHeadBGStyleDesk,
+    //     backgroundStylesTab: dateHeadBGStyleTab,
+    //     backgroundStylesMobile: dateHeadBGStyleMob,
+    // } = generateNormalBGControlStyles({
+    //     controlName: DATE_HEAD_BG,
+    //     attributes,
+    //     noMainBGImg: false,
+    // });
+
+    // const {
+    //     backgroundStylesDesktop: dateBodyBGStyleDesk,
+    //     backgroundStylesTab: dateBodyBGStyleTab,
+    //     backgroundStylesMobile: dateBodyBGStyleMob,
+    // } = generateNormalBGControlStyles({
+    //     controlName: DATE_BODY_BG,
+    //     attributes,
+    //     noMainBGImg: false,
+    // });
+
     /**
      * All Style Combination
      */
@@ -199,6 +242,8 @@ const Style = ({ props }) => {
             ${iconSize}
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
+
+
     `;
 
     const tabletAllStyle = `

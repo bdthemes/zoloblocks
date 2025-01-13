@@ -20,6 +20,10 @@ import {
     ICON_SIZE,
     FIELD_BORDER,
     FIELD_BRADIUS,
+
+    // Date/Time
+    // DATE_HEAD_BG,
+    // DATE_BODY_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -67,6 +71,9 @@ const attributes = {
     ...generateDimensionAttributes(FIELD_BRADIUS),
     ...generateResRangeAttributies(ICON_SIZE),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    // Date Time Field Attributes
+    // ...generateNormalBGAttributes(DATE_HEAD_BG),
+    // ...generateNormalBGAttributes(DATE_BODY_BG),
     showLabel: {
         type: 'boolean',
         default: true,
@@ -167,6 +174,31 @@ const attributes = {
         type: 'string',
         default: false,
     },
+
+    // dateMonthColor: {
+    //     type: 'string',
+    // },
+    // dateMonthHoverColor: {
+    //     type: 'string',
+    // },
+    // dateYearColor: {
+    //     type: 'string',
+    // },
+    // dateNavColor: {
+    //     type: 'string',
+    // },
+    // dateNavHoverColor: {
+    //     type: 'string',
+    // },
+    // dateDaysColor: {
+    //     type: 'string',
+    // },
+    // dateBodyNextColor: {
+    //     type: 'string',
+    // },
+    // dateBodyNextColor: {
+    //     type: 'string',
+    // },
 };
 
 export default attributes;
