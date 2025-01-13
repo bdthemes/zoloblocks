@@ -131,19 +131,19 @@ function Inspector(props) {
                                 label={__('Default Value', 'zoloblocks')}
                                 value={defaultValue}
                                 onChange={(v) => setAttributes({ defaultValue: v })}
-                                help={__('Leave empty if no default value is needed and display only on the frontend.', 'zoloblocks')}
+                                help={__('Leave empty if no default value is needed; set defaults as "option 1 | option 2" and display only on the frontend.', 'zoloblocks')}
                             />
-
-                            <TextControl
-                                label={__('Custom Name Attribute', 'zoloblocks')}
-                                value={customNameAttribute}
-                                onChange={(v) => setAttributes({ customNameAttribute: v })}
-                                help={__(
-                                    'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
-                                    'zoloblocks'
-                                )}
-                            />
-
+                          <div className="zolo-flex-col-control">
+                              <TextControl
+                                  label={__('Custom Name Attribute', 'zoloblocks')}
+                                  value={customNameAttribute}
+                                  onChange={(v) => setAttributes({ customNameAttribute: v })}
+                                  help={__(
+                                      'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
+                                      'zoloblocks'
+                                  )}
+                              />
+                          </div>
                             {isRequired && (
                                 <div className="zolo-flex-col-control">
                                     <TextareaControl
