@@ -15,7 +15,7 @@
     --zolo-error-border-width: 1px;
     --zolo-error-border-style: solid;
     --border-error-border-color: red;
-    --zolo-label-margin: 0 0 0.5rem;
+    --zolo-label-margin: 0 0 1rem;
     --zolo-label-gap: 0.5rem;
     --zolo-required-color: #b80606;
     --zolo-label-text-color: rgb(17 24 39 / var(--tw-opacity));
@@ -181,7 +181,8 @@
     }
     .zolo-field-icon {
         input,
-        textarea {
+        textarea,
+        select {
             padding-inline-start: var(--zolo-icon-input-padding-inline-start);
         }
     }
@@ -209,6 +210,24 @@
         -moz-appearance: none;
         text-indent: 1px;
         text-overflow: '';
+        background-image: unset;
+        background-size: unset;
+        min-height: auto;
+        max-width: auto;
+    }
+    .zolo-select-arrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        margin-right: 15px;
+        pointer-events: none;
+        svg {
+            color: currentColor;
+            display: block;
+            width: 1em;
+            height: 1em;
+        }
     }
 
     .zolo-select-icon svg {
@@ -352,9 +371,10 @@
 
 .zolo-input-icon svg {
     fill: rgb(107 114 128 / var(--tw-opacity));
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     display: block;
+    font-size: 16px;
 }
 
 // .zolo-contact-form

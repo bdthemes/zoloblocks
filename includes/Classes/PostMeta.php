@@ -1,5 +1,6 @@
 <?php
 namespace Zolo\Classes;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -19,7 +20,7 @@ if( ! class_exists( 'PostMeta' ) ) {
 	class PostMeta {
 
 		use SingletonTrait;
-	
+
 		/**
 		 * Class constructor for the PostMeta class.
 		 *
@@ -29,7 +30,7 @@ if( ! class_exists( 'PostMeta' ) ) {
 		public function __construct() {
 			add_filter('init', [ $this, 'register_meta']);
 		}
-	
+
 		/**
 		 * Registers the meta for the PostMeta class.
 		 *
@@ -48,9 +49,24 @@ if( ! class_exists( 'PostMeta' ) ) {
 					'auth_callback' => [$this, 'auth_callback'],
 				)
 			);
+
+            // for post format video link.
+            $post_types = apply_filters( 'zolo_post_video_link_post_types', [ 'post', 'page' ] );
+
+            foreach ( $post_types as $post_type ) {
+                register_post_meta(
+                    $post_type,
+                    'zolo_post_video_link',
+                    [
+                        'show_in_rest' => true,
+                        'single'       => true,
+                        'type'         => 'string',
+                    ]
+                );
+            }
 		}
-	
-	
+
+
 		/**
 		 * Callback function for authentication.
 		 *

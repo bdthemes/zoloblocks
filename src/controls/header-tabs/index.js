@@ -38,31 +38,34 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
 
                         <h5 className="zolo-tab-label">{__('Basic', 'zoloblocks')}</h5>
                     </Button>
-                    <Button
-                        className={`zolo-tab ${selectedTab === 'style' ? 'active__tab' : ''}${selectedTab === 'basic' ? 'next__tab' : ''}${
-                            selectedTab === 'extra' ? 'sup_prev__tab' : ''
-                        }`}
-                        onClick={() => setAttributes({ selectedTab: 'style' })}
-                        key="style"
-                    >
-                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                            <path
-                                d="M85,24.38a9.4,9.4,0,0,0-16-6.65L56.52,30.18l-3.41-3.41a9,9,0,0,0-12.7,0L35.23,32a2.52,2.52,0,0,0,0,3.54L37,37.25c-5.62,7.53-11.36,8.84-19.93,10.27a2.49,2.49,0,0,0-1.54,4l26,32.53a2.48,2.48,0,0,0,1.95.94,2.55,2.55,0,0,0,1.11-.26c5.64-2.82,16-12.53,19.64-20.25l.25.26a2.51,2.51,0,0,0,3.54,0l5.18-5.18a9,9,0,0,0,0-12.71l-3.4-3.4L82.27,31A9.37,9.37,0,0,0,85,24.38ZM44.12,79.29,31.79,63.87l23,5.75A55.16,55.16,0,0,1,44.12,79.29Zm14-14L26.63,57.42l-4.58-5.73c7.31-1.49,13.05-3.83,18.51-10.88L60.41,60.67A15.1,15.1,0,0,1,58.12,65.3ZM78.73,27.49,64.51,41.71a2.52,2.52,0,0,0,0,3.54l5.17,5.16a4,4,0,0,1,0,5.65l-3.41,3.4L64.8,58h0L42,35.22h0l-1.49-1.49,3.4-3.4a4,4,0,0,1,5.64,0l5.17,5.18a2.51,2.51,0,0,0,3.54,0L72.51,21.27a4.4,4.4,0,1,1,6.22,6.22Z"
-                                style={{
-                                    fill: '#39394d',
-                                }}
-                            />
-                            <rect
-                                width="100"
-                                height="100"
-                                style={{
-                                    fill: 'none',
-                                }}
-                            />
-                        </svg>
+                    {styleTab && (
+                        <Button
+                            className={`zolo-tab ${selectedTab === 'style' ? 'active__tab' : ''}${selectedTab === 'basic' ? 'next__tab' : ''}${
+                                selectedTab === 'extra' ? 'sup_prev__tab' : ''
+                            }`}
+                            onClick={() => setAttributes({ selectedTab: 'style' })}
+                            key="style"
+                        >
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                <path
+                                    d="M85,24.38a9.4,9.4,0,0,0-16-6.65L56.52,30.18l-3.41-3.41a9,9,0,0,0-12.7,0L35.23,32a2.52,2.52,0,0,0,0,3.54L37,37.25c-5.62,7.53-11.36,8.84-19.93,10.27a2.49,2.49,0,0,0-1.54,4l26,32.53a2.48,2.48,0,0,0,1.95.94,2.55,2.55,0,0,0,1.11-.26c5.64-2.82,16-12.53,19.64-20.25l.25.26a2.51,2.51,0,0,0,3.54,0l5.18-5.18a9,9,0,0,0,0-12.71l-3.4-3.4L82.27,31A9.37,9.37,0,0,0,85,24.38ZM44.12,79.29,31.79,63.87l23,5.75A55.16,55.16,0,0,1,44.12,79.29Zm14-14L26.63,57.42l-4.58-5.73c7.31-1.49,13.05-3.83,18.51-10.88L60.41,60.67A15.1,15.1,0,0,1,58.12,65.3ZM78.73,27.49,64.51,41.71a2.52,2.52,0,0,0,0,3.54l5.17,5.16a4,4,0,0,1,0,5.65l-3.41,3.4L64.8,58h0L42,35.22h0l-1.49-1.49,3.4-3.4a4,4,0,0,1,5.64,0l5.17,5.18a2.51,2.51,0,0,0,3.54,0L72.51,21.27a4.4,4.4,0,1,1,6.22,6.22Z"
+                                    style={{
+                                        fill: '#39394d',
+                                    }}
+                                />
+                                <rect
+                                    width="100"
+                                    height="100"
+                                    style={{
+                                        fill: 'none',
+                                    }}
+                                />
+                            </svg>
 
-                        <h5 className="zolo-tab-label">{__('Style', 'zoloblocks')}</h5>
-                    </Button>
+                            <h5 className="zolo-tab-label">{__('Style', 'zoloblocks')}</h5>
+                        </Button>
+                    )}
+
                     <Button
                         className={`zolo-tab ${selectedTab === 'extra' ? 'active__tab' : ''}${selectedTab === 'style' ? 'next__tab' : ''}`}
                         onClick={() => setAttributes({ selectedTab: 'extra' })}

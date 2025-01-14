@@ -14,7 +14,6 @@ const BackgroundControl = ({
     noTransition = false,
     particles = false,
     video = false,
-
 }) => {
     const { setAttributes, attributes } = requiredProps;
 

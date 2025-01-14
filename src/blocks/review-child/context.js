@@ -9,7 +9,8 @@ const Context = [
     'zolo/showTestimonialMessage',
     'zolo/addReviewerWebsiteLink',
     'zolo/showRating',
-    'zolo/presetFourLayout'
+    'zolo/presetFourLayout',
+    'zolo/showQuote',
 ];
 
 export default Context;

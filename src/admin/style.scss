@@ -52,21 +52,6 @@
 
 .toplevel_page_zoloblocks {
     background-color: #f5f5f5;
-    // .zolo-footer {
-    //     right: 0;
-    //     color: #50575e;
-    //     .zolo-footer-version,
-    //     .zolo-footer-text {
-    //         font-size: 13px;
-    //         margin: 0;
-    //         line-height: 1.55;
-    //     }
-    //     .zolo-footer-text {
-    //         font-style: italic !important;
-    //         font-weight: 400;
-    //         color: #50575e;
-    //     }
-    // }
     #wpfooter {
         display: none;
     }
@@ -680,9 +665,6 @@ input.zoloblocks-search {
         display: block;
         width: 16px;
         height: 16px;
-        // path {
-        //     stroke: currentColor;
-        // }
     }
 }
 
@@ -717,6 +699,9 @@ input.zoloblocks-search {
             background-color: var(--zolo-badge-pro-color);
         }
     }
+    // .components-form-toggle.is-checked .components-form-toggle__track {
+    //     background-color: var(--zolo-badge-pro-color);
+    // }
 
     .components-form-toggle .components-form-toggle__track {
         background-color: #e2e8f0;
@@ -1214,12 +1199,6 @@ input.zoloblocks-search {
         padding: 13px 13px 13px 38px;
     }
 }
-
-// @media (min-width: 1440px) {
-//     .zoloblocks-grid .zoloblocks-inner-grid {
-//         grid-template-columns: repeat(3, 1fr);
-//     }
-// }
 
 @media (min-width: 1640px) {
     .zoloblocks-grid .zoloblocks-inner-grid {

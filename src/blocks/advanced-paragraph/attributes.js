@@ -65,9 +65,6 @@ const attributes = {
     },
     content: {
         type: 'string',
-        source: 'html',
-        selector: 'div',
-        default: '',
     },
     dropcap: {
         type: 'boolean',

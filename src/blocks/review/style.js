@@ -50,6 +50,10 @@ import {
     RW_BOX_SHADOW,
     RW_MARGIN,
     RW_PADDING,
+    ARROW_SIZE,
+    AROOW_H_SPACE,
+    AROOW_V_SPACE,
+    ARROW_ROUNDED,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -68,6 +72,7 @@ const Style = ({ props }) => {
         dplIconColor,
         objectFit,
         photoOverflow,
+        arrowColor,
     } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
@@ -474,6 +479,46 @@ const Style = ({ props }) => {
         controlName: RW_BOX_SHADOW,
     });
 
+    const {
+        desktopRangeStyle: arrowSizeDesk,
+        tabRangeStyle: arrowSizeTab,
+        mobRangeStyle: arrowSizeMob,
+    } = generateResRangeStyle({
+        controlName: ARROW_SIZE,
+        property: '--arrow-size',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: arrowHSpaceDesk,
+        tabRangeStyle: arrowHSpaceTab,
+        mobRangeStyle: arrowHSpaceMob,
+    } = generateResRangeStyle({
+        controlName: AROOW_H_SPACE,
+        property: '--arrow-h-space',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: arrowVSpaceDesk,
+        tabRangeStyle: arrowVSpaceTab,
+        mobRangeStyle: arrowVSpaceMob,
+    } = generateResRangeStyle({
+        controlName: AROOW_V_SPACE,
+        property: '--arrow-v-space',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: arrowRoundedDesk,
+        tabRangeStyle: arrowRoundedTab,
+        mobRangeStyle: arrowRoundedMob,
+    } = generateResRangeStyle({
+        controlName: ARROW_ROUNDED,
+        property: '--arrow-border-radius',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -594,6 +639,14 @@ const Style = ({ props }) => {
              `
                 : ''
         }
+
+        .${uniqueId}.wp-block-zolo-review.style-preset-3 .zolo-triangle {
+            ${arrowColor ? `background-color: ${arrowColor};` : ''}
+            ${arrowSizeDesk}
+            ${arrowHSpaceDesk}
+            ${arrowVSpaceDesk}
+            ${arrowRoundedDesk}
+        }
 	`;
 
     const tabletAllStyle = `
@@ -671,6 +724,13 @@ const Style = ({ props }) => {
             ${dplTabSize}
             ${dplTabHSize}
         }
+
+        .${uniqueId}.wp-block-zolo-review.style-preset-3 .zolo-triangle {
+            ${arrowSizeTab}
+            ${arrowHSpaceTab}
+            ${arrowVSpaceTab}
+            ${arrowRoundedTab}
+        }
 	`;
 
     const mobileAllStyle = `
@@ -747,6 +807,13 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{
             ${dplMobSize}
             ${dplMobHSize}
+        }
+
+        .${uniqueId}.wp-block-zolo-review.style-preset-3 .zolo-triangle {
+            ${arrowSizeMob}            
+            ${arrowHSpaceMob}
+            ${arrowVSpaceMob}
+            ${arrowRoundedMob}
         }
 	`;
 

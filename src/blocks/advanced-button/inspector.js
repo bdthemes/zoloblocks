@@ -91,6 +91,7 @@ function Inspector(props) {
         iconAnimation,
         buttonTwoBorderColor,
         psStarColor,
+        presetBgColor,
     } = attributes;
 
     const requiredProps = {
@@ -276,7 +277,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        {preset !== 'button-1' && (
+                                        {preset !== 'button-1' && preset !== 'button-10' && preset !== 'button-11' && (
                                             <>
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
@@ -286,6 +287,21 @@ function Inspector(props) {
                                                 <CardDivider />
                                             </>
                                         )}
+                                        {(preset === 'button-10' || preset === 'button-11') && (
+                                            <>
+                                                <ColorControl
+                                                    label={__('Background', 'zoloblocks')}
+                                                    color={presetBgColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            presetBgColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                <CardDivider />
+                                            </>
+                                        )}
+
                                         <ColorControl
                                             label={__('Border Color', 'zoloblocks')}
                                             color={borderHoverColor}
@@ -415,7 +431,7 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        {preset !== '' && preset !== 'button-2' && (
+                        {preset !== '' && preset !== 'button-2' && preset !== 'button-10' && preset !== 'button-11' && (
                             <ZoloPanelBody title={__('Preset Style', 'zoloblocks')} panelProps={props} stylePanel={true}>
                                 {preset === 'button-1' && (
                                     <Fragment>
