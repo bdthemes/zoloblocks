@@ -8,6 +8,8 @@ import { __ } from '@wordpress/i18n';
  * External dependencies
  */
 import classnames from 'classnames';
+import { useEffect, useRef } from '@wordpress/element';
+import { useMergeRefs } from '@wordpress/compose';
 
 /**
  * Internal depencencies
@@ -22,22 +24,14 @@ import Inspector from './inspector';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        fileURL,
-        trigger,
-        loop,
-        direction,
-        speed,
-    } = attributes;
+    const { attributes, setAttributes, isSelected, clientId } = props;
+    const { uniqueId, parentClasses, fileURL, trigger, loop, direction, speed } = attributes;
+    const lottieRef = useRef(null);
+    const isAnimationCompleteRef = useRef(true);
 
     const blockProps = useBlockProps({
-        className: classnames(
-            uniqueId,
-            classArrayToStr(parentClasses),
-        ),
+        ref: useMergeRefs([lottieRef]),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
     const handleFileSelect = (file) => {
         setAttributes({
@@ -59,6 +53,39 @@ export default function Edit(props) {
             fileURL: undefined,
         });
     };
+
+    useEffect(() => {
+        const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
+
+        const handleComplete = () => {
+            isAnimationCompleteRef.current = true;
+        };
+
+        const handleClick = () => {
+            if (lottiePlayer) {
+                if (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0) {
+                    lottiePlayer.stop();
+                    lottiePlayer.play();
+                    isAnimationCompleteRef.current = false;
+                }
+            }
+        };
+
+        if (trigger === 'click' && lottiePlayer) {
+            lottiePlayer.addEventListener('complete', handleComplete);
+            lottieRef.current.addEventListener('click', handleClick);
+        }
+
+        // Cleanup event listeners
+        return () => {
+            if (lottiePlayer) {
+                lottiePlayer.removeEventListener('complete', handleComplete);
+            }
+            if (lottieRef.current) {
+                lottieRef.current.removeEventListener('click', handleClick);
+            }
+        };
+    }, [trigger, lottieRef.current]);
 
     return (
         <>
