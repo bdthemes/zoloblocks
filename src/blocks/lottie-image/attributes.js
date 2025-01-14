@@ -49,8 +49,8 @@ const attributes = {
         default: 1,
     },
     trigger: {
-        type: 'number',
-        default: 0,
+        type: 'string',
+        default: '',
     },
 
     loop: {

@@ -6,9 +6,12 @@ const { classArrayToStr, LottiePreview } = window.zoloModule;
 const Save = (props) => {
     const { attributes } = props;
     const { uniqueId, parentClasses, fileURL, trigger, loop, direction, speed, isSelected } = attributes;
-
+    const settings = {
+       trigger,
+    }
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        'data-settings': JSON.stringify(settings),
     });
 
     return (
