@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { parseInputToArray, transformToValueFormat } from '@/blocks/select-field/helper';
 
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -54,7 +54,7 @@ const Save = ({ attributes }) => {
                     )}
 
                     <select
-                        name={customNameAttribute || 'select_field'}
+                        name={generateUniqueName(uniqueId,customNameAttribute,'select_field')}
                         required={isRequired}
                         value={defaultSelect}
                         {...(isRequired && { 'data-pristine-required-message': requiredMsg })}

@@ -84,6 +84,7 @@ export {
     strToHex,
     getTaxonomies,
     popoverHasAttrVal,
+    generateUniqueName
 } from '../helpers/helper';
 
 

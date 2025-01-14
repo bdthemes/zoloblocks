@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr,generateUniqueName } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -94,11 +94,11 @@ export default function Edit(props) {
 
                     <div className="zolo-field-input-item">
                         {optionArray.length > 0 &&
-                            optionArray.map((option) => (
-                                <label htmlFor={option.value}>
+                            optionArray.map((option,index) => (
+                                <label key={index} htmlFor={option.value}>
                                     <input
                                         type="radio"
-                                        name={customNameAttribute || 'radio_field'}
+                                        name={generateUniqueName(uniqueId,customNameAttribute,'radio_field')}
                                         value={option.value}
                                         defaultChecked={defaultCheck === option.value}
                                         required={isRequired}

@@ -2,7 +2,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr,generateUniqueName } = window.zoloModule;
 import { transformToValueFormat, convertToOptionsArray } from '@/blocks/radio-field/helper';
 
 const Save = ({ attributes }) => {
@@ -44,12 +44,12 @@ const Save = ({ attributes }) => {
 
                 <div className="zolo-field-input-item">
                     {optionArray.length > 0 &&
-                        optionArray.map((option) => (
-                            <label htmlFor={option.value}>
+                        optionArray.map((option,index) => (
+                            <label key={index} htmlFor={option.value}>
                                 <input
                                     type="radio"
                                     id={option.value}
-                                    name={customNameAttribute || 'radio_field'}
+                                    name={generateUniqueName(uniqueId,customNameAttribute,'radio_field')}
                                     value={option.value}
                                     checked={defaultCheck === option.value}
                                     required={isRequired}
