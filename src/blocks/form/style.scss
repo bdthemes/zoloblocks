@@ -1,376 +1,376 @@
 :root {
-	--tw-opacity: 1;
-	--tw-ring-inset: var(--tw-empty,);
-	--tw-ring-offset-width: 0px;
-	--tw-ring-offset-color: #fff;
-	--tw-ring-color: #1c64f2;
-	--tw-ring-offset-shadow: 0 0 #0000;
-	--tw-ring-shadow: 0 0 #0000;
-	--tw-shadow: 0 0 #0000;
-	--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-opacity: 1;
+    --tw-ring-inset: var(--tw-empty,);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: #1c64f2;
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
 
-	--zolo-field-item-margin: 0 0 1.2rem;
-	--zolo-error-text-color: red;
-	--zolo-error-margin: 8px 0 0;
-	--zolo-error-border-width: 1px;
-	--zolo-error-border-style: solid;
-	--border-error-border-color: red;
-	--zolo-label-margin: 0 0 0.5rem;
-	--zolo-label-gap: 0.5rem;
-	--zolo-required-color: #b80606;
-	--zolo-label-text-color: rgb(17 24 39 / var(--tw-opacity));
-	--zolo-icon-input-padding-inline-start: 2.5rem;
-	--zolo-input-padding: 0.875rem 0.75rem;
-	--zolo-input-border-radius: var(--zoloblocks-button-border-radius);
-	--zolo-input-border-width: 1px;
-	--zolo-input-border-style: solid;
-	--zolo-input-border-color: rgba(238, 238, 238, 0.996);
-	--zolo-input-text-color: rgb(17 24 39 / var(--tw-opacity));
+    --zolo-field-item-margin: 0 0 1.2rem;
+    --zolo-error-text-color: red;
+    --zolo-error-margin: 8px 0 0;
+    --zolo-error-border-width: 1px;
+    --zolo-error-border-style: solid;
+    --border-error-border-color: red;
+    --zolo-label-margin: 0 0 0.5rem;
+    --zolo-label-gap: 0.5rem;
+    --zolo-required-color: #b80606;
+    --zolo-label-text-color: rgb(17 24 39 / var(--tw-opacity));
+    --zolo-icon-input-padding-inline-start: 2.5rem;
+    --zolo-input-padding: 0.875rem 0.75rem;
+    --zolo-input-border-radius: var(--zoloblocks-button-border-radius);
+    --zolo-input-border-width: 1px;
+    --zolo-input-border-style: solid;
+    --zolo-input-border-color: rgba(238, 238, 238, 0.996);
+    --zolo-input-text-color: rgb(17 24 39 / var(--tw-opacity));
 }
 
 .wp-block-zolo-form {
-	.form-group,
-	.form-group-editor {
-		margin: var(--zolo-field-item-margin);
-	}
+    .form-group,
+    .form-group-editor {
+        margin: var(--zolo-field-item-margin);
+    }
 
-	.has-danger {
-		.pristine-error {
-			font-size: 14px;
-			color: var(--zolo-error-text-color);
-			margin: var(--zolo-error-margin);
-		}
+    .has-danger {
+        .pristine-error {
+            font-size: 14px;
+            color: var(--zolo-error-text-color);
+            margin: var(--zolo-error-margin);
+        }
 
-		input,
-		textarea,
-		select {
-			border-width: var(--zolo-error-border-width);
-			border-style: var(--zolo-error-border-style);
-			border-color: var(--border-error-border-color);
-		}
-	}
+        input,
+        textarea,
+        select {
+            border-width: var(--zolo-error-border-width);
+            border-style: var(--zolo-error-border-style);
+            border-color: var(--border-error-border-color);
+        }
+    }
 
-	// form message
+    // form message
 
-	.zolo-form-msg {
-		--zolo-form-msg-padding: clamp(0.75rem, 1.5vw, 0.938rem);
-		--zolo-form-msg-gap: 10px;
-		--zolo-form-msg-border-radius: 10px;
-		--zolo-form-msg-border-width: 1px;
-		--zolo-form-msg-border-style: solid;
-		--zolo-form-msg-success-border-color: #6dc16b;
-		--zolo-form-seccess-color: #6dc16b;
-		--zolo-form-msg-success-bg: #f9fff9;
-		--zolo-form-msg-error-border-color: #c72727;
-		--zolo-form-error-color: #c72727;
-		--zolo-form-msg-error-bg: #fef9f9;
-		--zolo-msg-close-hover-color: #f00;
-		--zolo-msg-close-margin: 15px;
-		--zolo-form-error-color: #c72727;
-		--zolo-msg-desc-margin: 0;
-		--zolo-msg-close-size: 26px;
-		--zolo-msg-close-color: #76767d;
-		--zolo-form-top-margin: 0 0 25px;
-		--zolo-form-bottom-margin: 25px 0 0;
-		padding: var(--zolo-form-msg-padding);
-		border-radius: var(--zolo-form-msg-border-radius);
-		position: relative;
-		justify-content: space-between;
-		align-items: center;
-		gap: var(--zolo-form-msg-gap);
-		border-width: var(--zolo-form-msg-border-width);
-		border-style: var(--zolo-form-msg-border-style);
-		display: none;
+    .zolo-form-msg {
+        --zolo-form-msg-padding: clamp(0.75rem, 1.5vw, 0.938rem);
+        --zolo-form-msg-gap: 10px;
+        --zolo-form-msg-border-radius: 10px;
+        --zolo-form-msg-border-width: 1px;
+        --zolo-form-msg-border-style: solid;
+        --zolo-form-msg-success-border-color: #6dc16b;
+        --zolo-form-seccess-color: #6dc16b;
+        --zolo-form-msg-success-bg: #f9fff9;
+        --zolo-form-msg-error-border-color: #c72727;
+        --zolo-form-error-color: #c72727;
+        --zolo-form-msg-error-bg: #fef9f9;
+        --zolo-msg-close-hover-color: #f00;
+        --zolo-msg-close-margin: 15px;
+        --zolo-form-error-color: #c72727;
+        --zolo-msg-desc-margin: 0;
+        --zolo-msg-close-size: 26px;
+        --zolo-msg-close-color: #76767d;
+        --zolo-form-top-margin: 0 0 25px;
+        --zolo-form-bottom-margin: 25px 0 0;
+        padding: var(--zolo-form-msg-padding);
+        border-radius: var(--zolo-form-msg-border-radius);
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--zolo-form-msg-gap);
+        border-width: var(--zolo-form-msg-border-width);
+        border-style: var(--zolo-form-msg-border-style);
+        display: none;
 
-		&.show {
-			display: flex;
-		}
+        &.show {
+            display: flex;
+        }
 
-		&.form_top {
-			margin: var(--zolo-form-top-margin);
-		}
+        &.form_top {
+            margin: var(--zolo-form-top-margin);
+        }
 
-		&.form_bottom {
-			margin: var(--zolo-form-bottom-margin);
-		}
-	}
+        &.form_bottom {
+            margin: var(--zolo-form-bottom-margin);
+        }
+    }
 
-	.zolo-form-success-msg {
-		background-color: var(--zolo-form-msg-success-bg);
-		border-color: var(--zolo-form-msg-success-border-color);
-	}
+    .zolo-form-success-msg {
+        background-color: var(--zolo-form-msg-success-bg);
+        border-color: var(--zolo-form-msg-success-border-color);
+    }
 
-	.zolo-form-error-msg {
-		background-color: var(--zolo-form-msg-error-bg);
-		border-color: var(--zolo-form-msg-error-border-color);
-	}
+    .zolo-form-error-msg {
+        background-color: var(--zolo-form-msg-error-bg);
+        border-color: var(--zolo-form-msg-error-border-color);
+    }
 
-	.zolo-form-msg-content {
-		display: flex;
-		align-items: center;
-		// flex-wrap: wrap;
-		gap: 10px;
-	}
+    .zolo-form-msg-content {
+        display: flex;
+        align-items: center;
+        // flex-wrap: wrap;
+        gap: 10px;
+    }
 
-	.zolo-form-error-msg .zolo-msg-desc {
-		color: var(--zolo-form-error-color);
-	}
+    .zolo-form-error-msg .zolo-msg-desc {
+        color: var(--zolo-form-error-color);
+    }
 
-	.zolo-form-success-msg .zolo-msg-desc {
-		color: var(--zolo-form-seccess-color);
-	}
+    .zolo-form-success-msg .zolo-msg-desc {
+        color: var(--zolo-form-seccess-color);
+    }
 
-	.zolo-form-success-msg .zolo-msg-icon svg {
-		color: var(--zolo-form-seccess-color);
-	}
+    .zolo-form-success-msg .zolo-msg-icon svg {
+        color: var(--zolo-form-seccess-color);
+    }
 
-	.zolo-form-error-msg .zolo-msg-icon svg {
-		color: var(--zolo-form-error-color);
-	}
+    .zolo-form-error-msg .zolo-msg-icon svg {
+        color: var(--zolo-form-error-color);
+    }
 
-	.zolo-msg-icon svg {
-		--zolo-msg-icon-size: clamp(1.875rem, 3vw, 2.5rem);
-		width: var(--zolo-msg-icon-size);
-		height: var(--zolo-msg-icon-size);
-		display: block;
-	}
+    .zolo-msg-icon svg {
+        --zolo-msg-icon-size: clamp(1.875rem, 3vw, 2.5rem);
+        width: var(--zolo-msg-icon-size);
+        height: var(--zolo-msg-icon-size);
+        display: block;
+    }
 
-	.zolo-msg-close {
-		background-color: none !important;
+    .zolo-msg-close {
+        background-color: none !important;
 
-		svg {
-			color: var(--zolo-msg-close-color);
-			width: var(--zolo-msg-close-size);
-			height: var(--zolo-msg-close-size);
-			display: block;
-		}
-	}
+        svg {
+            color: var(--zolo-msg-close-color);
+            width: var(--zolo-msg-close-size);
+            height: var(--zolo-msg-close-size);
+            display: block;
+        }
+    }
 
-	.zolo-msg-close:hover svg {
-		color: var(--zolo-msg-close-hover-color);
-	}
+    .zolo-msg-close:hover svg {
+        color: var(--zolo-msg-close-hover-color);
+    }
 
-	.zolo-msg-close {
-		padding: 0;
-		background-color: transparent;
-		border: 0;
-		cursor: pointer;
-	}
+    .zolo-msg-close {
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+    }
 
-	.zolo-msg-desc {
-		font-size: clamp(0.875rem, 1.5vw, 1rem);
-		margin: var(--zolo-msg-desc-margin);
-	}
+    .zolo-msg-desc {
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        margin: var(--zolo-msg-desc-margin);
+    }
 }
 
 .zolo-field-input-item {
-	position: relative;
-	line-height: 1;
+    position: relative;
+    line-height: 1;
 }
 
 .zolo-label-wrapper {
-	display: flex;
-	align-items: flex-start;
-	margin: var(--zolo-label-margin);
-	gap: var(--zolo-label-gap);
+    display: flex;
+    align-items: flex-start;
+    margin: var(--zolo-label-margin);
+    gap: var(--zolo-label-gap);
 
-	.zolo-required {
-		display: inline-block;
-		line-height: 1;
-		color: var(--zolo-required-color);
-		font-size: 0.85rem;
-	}
+    .zolo-required {
+        display: inline-block;
+        line-height: 1;
+        color: var(--zolo-required-color);
+        font-size: 0.85rem;
+    }
 }
 
 .zolo-contact-form {
-	label {
-		font-size: 0.875rem;
-		line-height: 1;
-		font-weight: 500;
-		color: var(--zolo-label-text-color);
-		display: block;
-	}
+    label {
+        font-size: 0.875rem;
+        line-height: 1;
+        font-weight: 500;
+        color: var(--zolo-label-text-color);
+        display: block;
+    }
 
-	.zolo-field-icon {
-		input,
-		textarea {
-			padding-inline-start: var(--zolo-icon-input-padding-inline-start);
-		}
-	}
+    .zolo-field-icon {
+        input,
+        textarea {
+            padding-inline-start: var(--zolo-icon-input-padding-inline-start);
+        }
+    }
 
-	input,
-	select,
-	textarea {
-		padding: var(--zolo-input-padding);
-		outline: none;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-		color: var(--zolo-input-text-color);
-		border-radius: var(--zolo-input-border-radius);
-		width: 100%;
-		max-width: 100%;
-		box-sizing: border-box;
-		background-color: rgb(249 250 251 / var(--tw-opacity));
-		border-width: var(--zolo-input-border-width);
-		border-style: var(--zolo-input-border-style);
-		border-color: var(--zolo-input-border-color);
-	}
+    .zolo-field-item input,
+    .zolo-field-item select,
+    .zolo-field-item textarea {
+        padding: var(--zolo-input-padding);
+        outline: none;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: var(--zolo-input-text-color);
+        border-radius: var(--zolo-input-border-radius);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        background-color: rgb(249 250 251 / var(--tw-opacity));
+        border-width: var(--zolo-input-border-width);
+        border-style: var(--zolo-input-border-style);
+        border-color: var(--zolo-input-border-color);
+    }
 
-	select {
-		// padding: 0.625rem;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		text-indent: 1px;
-		text-overflow: '';
-	}
+    select {
+        // padding: 0.625rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+    }
 
-	.zolo-select-icon svg {
-		width: 0.8em;
-		height: 0.8em;
-	}
+    .zolo-select-icon svg {
+        width: 0.8em;
+        height: 0.8em;
+    }
 
-	::placeholder {
-		color: #747474;
-	}
+    ::placeholder {
+        color: #747474;
+    }
 
-	input[type='file'] {
-		padding: 0;
-	}
+    input[type='file'] {
+        padding: 0;
+    }
 
-	input[type='file']:focus {
-		outline: none;
-	}
+    input[type='file']:focus {
+        outline: none;
+    }
 
-	input[type='file']::file-selector-button {
-		padding: 0.625rem;
-		color: #fff;
-		border-radius: 0.5rem;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-		border: 1px solid #000;
-		background-color: #000;
-		margin-right: 14px;
-	}
+    input[type='file']::file-selector-button {
+        padding: 0.625rem;
+        color: #fff;
+        border-radius: 0.5rem;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: 1px solid #000;
+        background-color: #000;
+        margin-right: 14px;
+    }
 
-	.zolo-password-icon,
-	.zolo-select-icon {
-		right: 0;
-		padding-inline-end: 0.875rem;
-	}
+    .zolo-password-icon,
+    .zolo-select-icon {
+        right: 0;
+        padding-inline-end: 0.875rem;
+    }
 
-	.zolo-password-icon svg {
-		cursor: pointer;
-	}
+    .zolo-password-icon svg {
+        cursor: pointer;
+    }
 
-	[type='checkbox']:checked {
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 12'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M1 5.917 5.724 10.5 15 1.5'/%3E%3C/svg%3E");
-		-webkit-print-color-adjust: exact;
-		print-color-adjust: exact;
-	}
+    [type='checkbox']:checked {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 12'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M1 5.917 5.724 10.5 15 1.5'/%3E%3C/svg%3E");
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 
-	[type='radio']:checked {
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
-		background-size: 1em 1em;
-	}
+    [type='radio']:checked {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
+        background-size: 1em 1em;
+    }
 
-	input[type='checkbox']:focus,
-	input[type='radio']:focus {
-		--tw-ring-offset-width: 2px;
-		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-		box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-		outline: 2px solid transparent;
-		outline-offset: 2px;
-		box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-		--tw-ring-color: rgb(63 131 248 / var(--tw-opacity));
-	}
+    input[type='checkbox']:focus,
+    input[type='radio']:focus {
+        --tw-ring-offset-width: 2px;
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+        --tw-ring-color: rgb(63 131 248 / var(--tw-opacity));
+    }
 
-	.zolo-checkbox-item {
-		label {
-			color: #59595e;
-			font-weight: 400;
+    .zolo-checkbox-item {
+        label {
+            color: #59595e;
+            font-weight: 400;
 
-			a {
-				color: #3468f1;
-				text-decoration: none;
-			}
-		}
-	}
+            a {
+                color: #3468f1;
+                text-decoration: none;
+            }
+        }
+    }
 
-	.zolo-submit-btn button {
-		border: 0;
-		padding: 14px 30px;
-		background-color: var(--zoloblocks-brand-color);
-		color: #fff;
-		text-transform: capitalize;
-		font-size: 16px;
-		line-height: 1.25rem;
-		border-radius: var(--zoloblocks-button-border-radius);
-		cursor: pointer;
-		outline: none;
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		gap: 0.5rem;
-		transition: all 0.3s ease-in-out;
+    .zolo-submit-btn button {
+        border: 0;
+        padding: 14px 30px;
+        background-color: var(--zoloblocks-brand-color);
+        color: #fff;
+        text-transform: capitalize;
+        font-size: 16px;
+        line-height: 1.25rem;
+        border-radius: var(--zoloblocks-button-border-radius);
+        cursor: pointer;
+        outline: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease-in-out;
 
-		svg {
-			fill: currentColor;
-			width: 1em;
-			height: 1em;
-			display: block;
-		}
+        svg {
+            fill: currentColor;
+            width: 1em;
+            height: 1em;
+            display: block;
+        }
 
-		&.right {
-			flex-direction: row;
-		}
+        &.right {
+            flex-direction: row;
+        }
 
-		&.left {
-			flex-direction: row-reverse;
-		}
-	}
+        &.left {
+            flex-direction: row-reverse;
+        }
+    }
 
-	.zolo-submit-btn button:focus {
-		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-		box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-	}
+    .zolo-submit-btn button:focus {
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+    }
 
-	.zolo-submit-btn button:hover {
-		background-color: var(--zoloblocks-brand-color-hover);
-	}
+    .zolo-submit-btn button:hover {
+        background-color: var(--zoloblocks-brand-color-hover);
+    }
 
-	input:focus,
-	select:focus,
-	textarea:focus {
-		border-color: #1c64f2;
-		outline-style: solid;
-		outline-width: 1px;
-		outline-color: #1c64f2;
-	}
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #1c64f2;
+        outline-style: solid;
+        outline-width: 1px;
+        outline-color: #1c64f2;
+    }
 }
 
 .wp-block-zolo-textarea {
-	.zolo-input-icon {
-		top: 18px;
-		align-items: flex-start;
-	}
+    .zolo-input-icon {
+        top: 18px;
+        align-items: flex-start;
+    }
 }
 
 /* field icon style css here start */
 .zolo-input-icon {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	display: flex;
-	align-items: center;
-	padding-inline-start: 0.875rem;
-	z-index: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-inline-start: 0.875rem;
+    z-index: 1;
 }
 
 .zolo-input-icon svg {
-	fill: rgb(107 114 128 / var(--tw-opacity));
-	width: 1em;
-	height: 1em;
-	display: block;
+    fill: rgb(107 114 128 / var(--tw-opacity));
+    width: 1em;
+    height: 1em;
+    display: block;
 }
 
 // .zolo-contact-form
@@ -379,19 +379,19 @@
 
 /* zolo-contact-form-style-2 css here start */
 .zolo-contact-form-style-2 .zolo-field-item {
-	display: block;
+    display: block;
 }
 
 @media (min-width: 767px) {
-	.zolo-contact-form-style-2 .zolo-field-item {
-		display: flex;
-		gap: 10px;
-		justify-content: space-between;
-	}
+    .zolo-contact-form-style-2 .zolo-field-item {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+    }
 
-	.zolo-contact-form-style-2 .zolo-field-input-item {
-		width: 60%;
-	}
+    .zolo-contact-form-style-2 .zolo-field-input-item {
+        width: 60%;
+    }
 }
 
 /* zolo-contact-form-style-2 css here end */
@@ -399,22 +399,22 @@
 /* zolo-field-icon-style-2  */
 
 .zolo-field-icon-style-2 .zolo-input-icon {
-	border-right: 1px solid #d1d1d1;
-	border-radius: 6px;
-	padding-inline: 0.875rem;
+    border-right: 1px solid #d1d1d1;
+    border-radius: 6px;
+    padding-inline: 0.875rem;
 }
 
 .zolo-field-icon-style-2 .zolo-password-icon,
 .zolo-field-icon-style-2 .zolo-select-icon {
-	border: 0;
+    border: 0;
 }
 
 .zolo-field-icon-style-2.zolo-field-icon input {
-	padding-inline-start: 3.5rem;
+    padding-inline-start: 3.5rem;
 }
 
 .zolo-field-icon-style-2.zolo-field-icon input[type='file'] {
-	padding-inline-start: 0;
+    padding-inline-start: 0;
 }
 
 // .zolo-contact-form textarea {
@@ -423,112 +423,112 @@
 // }
 
 .zolo-contact-form .zolo-password-show {
-	display: none;
+    display: none;
 }
 
 .zolo-contact-form .zolo-checkbox-item {
-	display: flex;
-	align-items: center;
-	gap: 7px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
 .zolo-contact-form .zolo-checkbox-item label,
 .zolo-contact-form .zolo-radio-item label {
-	margin: 0;
+    margin: 0;
 }
 
 .zolo-contact-form input[type='checkbox'] {
-	border-radius: 0.25rem;
+    border-radius: 0.25rem;
 }
 
 .zolo-contact-form input[type='radio'] {
-	border-radius: 50%;
+    border-radius: 50%;
 }
 
 .zolo-contact-form input[type='checkbox'],
 .zolo-contact-form input[type='radio'] {
-	margin: 0;
-	padding: 0;
-	width: 1rem;
-	height: 1rem;
+    margin: 0;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
 }
 
 .zolo-contact-form [type='checkbox'],
 .zolo-contact-form [type='radio'] {
-	appearance: none;
-	background-origin: border-box;
+    appearance: none;
+    background-origin: border-box;
 }
 
 .zolo-contact-form [type='checkbox']:checked,
 .zolo-contact-form [type='radio']:checked {
-	background-color: #1c64f2;
-	background-position: 50%;
-	background-repeat: no-repeat;
-	background-size: 0.55em 0.55em;
-	border-color: transparent;
+    background-color: #1c64f2;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 0.55em 0.55em;
+    border-color: transparent;
 }
 
 /*  form style 3 */
 .wp-block-zolo-form {
-	.zolo-field-item {
-		position: relative;
-	}
+    .zolo-field-item {
+        position: relative;
+    }
 
-	&.style-3 {
-		.zolo-label-wrapper {
-			position: absolute;
-			top: 0;
-			transform: translateY(-50%);
-			left: 0;
-			margin: 0 10px;
-			z-index: 1;
-			background-color: #fff;
-			backdrop-filter: blur(4px);
-			padding: 6px 8px;
-			border-radius: 6px;
+    &.style-3 {
+        .zolo-label-wrapper {
+            position: absolute;
+            top: 0;
+            transform: translateY(-50%);
+            left: 0;
+            margin: 0 10px;
+            z-index: 1;
+            background-color: #fff;
+            backdrop-filter: blur(4px);
+            padding: 6px 8px;
+            border-radius: 6px;
 
-			.zolo-label {
-				margin: 0 !important;
-			}
-		}
-	}
+            .zolo-label {
+                margin: 0 !important;
+            }
+        }
+    }
 
-	&.style-3 input,
-	&.style-3 select,
-	&.style-3 textarea {
-		background-color: transparent;
-		padding-left: 18px;
-	}
+    &.style-3 input,
+    &.style-3 select,
+    &.style-3 textarea {
+        background-color: transparent;
+        padding-left: 18px;
+    }
 
-	&.style-3 input::placeholder,
-	&.style-3 textarea::placeholder,
-	&.style-3 select::placeholder {
-		color: transparent !important;
-	}
+    &.style-3 input::placeholder,
+    &.style-3 textarea::placeholder,
+    &.style-3 select::placeholder {
+        color: transparent !important;
+    }
 
-	.react-tel-input .form-control {
-		height: inherit;
-	}
+    .react-tel-input .form-control {
+        height: inherit;
+    }
 
-	.react-tel-input .form-control.invalid-number {
-		border-color: var(--zolo-input-border-color);
-		background-color: inherit;
-		border-left-color: inherit;
-	}
+    .react-tel-input .form-control.invalid-number {
+        border-color: var(--zolo-input-border-color);
+        background-color: inherit;
+        border-left-color: inherit;
+    }
 
-	.react-tel-input .flag-dropdown.invalid-number {
-		border-color: var(--zolo-input-border-color);
-	}
+    .react-tel-input .flag-dropdown.invalid-number {
+        border-color: var(--zolo-input-border-color);
+    }
 }
 
 // editor style
 .wp-block-zolo-container.backend .wp-block-zolo-form {
-	.block-editor-button-block-appender {
-		height: auto !important;
-	}
+    .block-editor-button-block-appender {
+        height: auto !important;
+    }
 
-	.block-list-appender.wp-block {
-		justify-content: flex-end;
-		align-items: flex-start;
-	}
+    .block-list-appender.wp-block {
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
 }
