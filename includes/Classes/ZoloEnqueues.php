@@ -232,7 +232,7 @@ if (! class_exists('ZoloEnqueues')) {
             if (has_block('zolo/lottie-image')) {
                 wp_enqueue_script(
                     'zolo-lottie-image',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie.js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie-player.js',
                     [],
                     ZOLO_VERSION,
                     true

@@ -54,38 +54,58 @@ export default function Edit(props) {
         });
     };
 
-    useEffect(() => {
-        const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
+  useEffect(() => {
+      const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
 
-        const handleComplete = () => {
-            isAnimationCompleteRef.current = true;
-        };
+      const handleComplete = () => {
+          isAnimationCompleteRef.current = true;
+      };
 
-        const handleClick = () => {
-            if (lottiePlayer) {
-                if (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0) {
-                    lottiePlayer.stop();
-                    lottiePlayer.play();
-                    isAnimationCompleteRef.current = false;
-                }
-            }
-        };
+      const handleClick = () => {
+          if (lottiePlayer && (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0)) {
+              lottiePlayer.stop();
+              lottiePlayer.play();
+              isAnimationCompleteRef.current = false;
+          }
+      };
 
-        if (trigger === 'click' && lottiePlayer) {
-            lottiePlayer.addEventListener('complete', handleComplete);
-            lottieRef.current.addEventListener('click', handleClick);
-        }
+      const observer =
+          trigger === 'viewport' &&
+          new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                      lottiePlayer.play();
+                  } else {
+                      lottiePlayer.pause();
+                  }
+              });
+          });
 
-        // Cleanup event listeners
-        return () => {
-            if (lottiePlayer) {
-                lottiePlayer.removeEventListener('complete', handleComplete);
-            }
-            if (lottieRef.current) {
-                lottieRef.current.removeEventListener('click', handleClick);
-            }
-        };
-    }, [trigger, lottieRef.current]);
+      if (lottiePlayer) {
+          if (trigger === 'click') {
+              lottiePlayer.addEventListener('complete', handleComplete);
+              lottieRef.current.addEventListener('click', handleClick);
+          }
+
+          if (trigger === 'viewport' && observer) {
+              observer.observe(lottieRef.current);
+          }
+      }
+
+      // Cleanup function
+      return () => {
+          if (lottiePlayer) {
+              lottiePlayer.removeEventListener('complete', handleComplete);
+              if (trigger === 'click') {
+                  lottieRef.current.removeEventListener('click', handleClick);
+              }
+          }
+          if (trigger === 'viewport' && observer) {
+              observer.unobserve(lottieRef.current);
+          }
+      };
+  }, [trigger]);
+
 
     return (
         <>
