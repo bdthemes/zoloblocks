@@ -62,6 +62,7 @@ const Save = ({ attributes }) => {
                           }
                         : {})}
                     data-required={JSON.stringify(isRequired)}
+                    data-uniqueid={uniqueId}
                     data-placeholder={placeholder}
                     data-requiredmsg={requiredMsg}
                     data-nameattribute={customNameAttribute || 'date_field'}

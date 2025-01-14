@@ -117,6 +117,18 @@ export default function Edit(props) {
                             name={customNameAttribute || 'date_field'}
                             placeholder={placeholder}
                             options={getFlatpickrOptions()}
+                            onOpen={(event, ui, instance) => {
+                                const calendarContainer = instance?.calendarContainer;
+                                if (calendarContainer) {
+                                    calendarContainer.classList.add(`zolo-datepicker-${uniqueId}`);
+                                }
+                            }}
+                            onClose={(event, ui, instance) => {
+                                const calendarContainer = instance?.calendarContainer;
+                                if (calendarContainer) {
+                                    calendarContainer.classList.remove(`zolo-datepicker-${uniqueId}`);
+                                }
+                            }}
                         />
                     </div>
                 </div>
