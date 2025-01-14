@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const placeholderMsg = zoloFieldItem.dataset.placeholder;
         const svgIcon = showIcon ? JSON.parse(zoloFieldItem.dataset.icon || '{}') : '';
         const customNameAttribute = zoloFieldItem.dataset.nameattribute;
+        const uniqueId = zoloFieldItem?.dataset?.uniqueid;
 
         const dateFormat = zoloFieldItem.dataset.dateformat;
         const defaultValue = zoloFieldItem.dataset.defaultvalue;
@@ -100,6 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     {...(isRequired && {'data-pristine-required-message': requiredMsg})}
                   />
                 )}
+                onOpen={(event, ui, instance) => {
+                  const calendarContainer = instance?.calendarContainer;
+                  if (calendarContainer) {
+                    calendarContainer.classList.add(`zolo-datepicker-${uniqueId}`);
+                  }
+                }}
+                onClose={(event, ui, instance) => {
+                  const calendarContainer = instance?.calendarContainer;
+                  if (calendarContainer) {
+                    calendarContainer.classList.remove(`zolo-datepicker-${uniqueId}`);
+                  }
+                }}
               />
 
             </>
