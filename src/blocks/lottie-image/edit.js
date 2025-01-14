@@ -91,19 +91,6 @@ export default function Edit(props) {
               observer.observe(lottieRef.current);
           }
       }
-
-      // Cleanup function
-      return () => {
-          if (lottiePlayer) {
-              lottiePlayer.removeEventListener('complete', handleComplete);
-              if (trigger === 'click') {
-                  lottieRef.current.removeEventListener('click', handleClick);
-              }
-          }
-          if (trigger === 'viewport' && observer) {
-              observer.unobserve(lottieRef.current);
-          }
-      };
   }, [trigger]);
 
 
