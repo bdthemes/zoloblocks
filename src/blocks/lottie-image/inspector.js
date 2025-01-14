@@ -35,7 +35,12 @@ function Inspector(props) {
                             {fileURL && (
                                 <>
                                     <SelectControl
-                                        label={__('Play Animation On', 'zoloblocks')}
+                                        label={__('Animation On', 'zoloblocks')}
+                                        help={
+                                            trigger === 'scroll'
+                                                ? __('This feature is only available on the front end', 'zoloblocks')
+                                                : __('Choose the event that triggers the animation to start', 'zoloblocks')
+                                        }
                                         value={trigger}
                                         options={[
                                             {
