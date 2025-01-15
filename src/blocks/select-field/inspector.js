@@ -120,7 +120,7 @@ function Inspector(props) {
                             <CardDivider />
                             <TextControl
                                 label={__('Default Value', 'zoloblocks')}
-                                value={defaultValue}
+                                value={defaultValue || ''}
                                 onChange={(v) => setAttributes({ defaultValue: v })}
                                 help={__('Leave empty if no default value is needed.', 'zoloblocks')}
                             />
