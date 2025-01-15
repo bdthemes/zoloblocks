@@ -21,6 +21,7 @@ const {
     ResGapControl,
     ZoloPanelBody,
     IconicBtnGroup,
+    TabPanelControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -229,58 +230,63 @@ function Inspector(props) {
                             panelProps={props}
                             firstOpen={showLabel ? false : true}
                         >
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={textColor}
-                                onChange={(color) => setAttributes({ textColor: color })}
-                            />
                             <ResRangeControl
-                                label={__('Size', 'zoloblocks')}
-                                controlName={FIELD_SIZE}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={FIELD_TYPO}
-                                requiredProps={requiredProps}
-                            />
-                            <CardDivider />
-                            <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={FIELD_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            {/* <ResDimensionsControl
-                                label={__('Marign', 'zoloblocks')}
-                                controlName={FIELD_MARGIN}
-                                requiredProps={requiredProps}
-                            /> */}
-                            <CardDivider />
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={FIELD_BRADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <CardDivider />
-                            <ResRangeControl
-                                label={__('Space Between', 'zoloblocks')}
-                                controlName={RADIO_SPACE_BETWEEN}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                            />
-                            <ResRangeControl
-                                label={__('Gap', 'zoloblocks')}
+                                label={__('Item Gap', 'zoloblocks')}
                                 controlName={FIELD_SPACE}
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={100}
+                            />
+                            <TabPanelControl
+                                options={[
+                                    { label: __('Radio', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Label', 'zoloblocks'), value: 'hover' },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={FIELD_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={FIELD_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={FIELD_BRADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <CardDivider />
+                                        <ResRangeControl
+                                            label={__('Space Between', 'zoloblocks')}
+                                            controlName={RADIO_SPACE_BETWEEN}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={textColor}
+                                            onChange={(color) => setAttributes({ textColor: color })}
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={FIELD_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
                     </>

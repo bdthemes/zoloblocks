@@ -225,7 +225,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item input[type="radio"] {
             ${fieldBorderStyles}
             ${fieldBRDesktop}
-            ${fieldPaddingDesktop}
+            ${fieldPaddingDesktop.replace(';', ' !important;')}
             ${fieldBGStyle}
         }
 
@@ -262,7 +262,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item input[type="radio"] {
             ${fieldBorderStylesTab}
             ${fieldBRTab}
-            ${fieldPaddingTab}
+            ${fieldPaddingTab.replace(';', ' !important;')}
             ${fieldTabBGStyle}
         }
       .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item{
@@ -298,7 +298,7 @@ const Style = ({ props }) => {
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}
-            ${fieldPaddingMob}
+             ${fieldPaddingMob.replace(';', ' !important;')}
             ${fieldMobBGStyle}
         }
 

@@ -19,4 +19,8 @@
             flex-direction: row;
         }
     }
+
+    input[type='checkbox']:checked::before {
+        opacity: 0;
+    }
 }

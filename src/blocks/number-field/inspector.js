@@ -269,8 +269,8 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <CardDivider />
-                            <ResGapControl
+                            {/* <CardDivider /> */}
+                            {/* <ResGapControl
                                 label={__('Gap', 'zoloblocks')}
                                 controlName={FIELD_GAP}
                                 requiredProps={requiredProps}
@@ -281,7 +281,7 @@ function Inspector(props) {
                                 controlName={FIELD_SPACE}
                                 requiredProps={requiredProps}
                                 max={200}
-                            />
+                            /> */}
                         </ZoloPanelBody>
                         {showIcon && preset !== 'style-3' && (
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>

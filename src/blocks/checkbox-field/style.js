@@ -208,7 +208,7 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input[type="checkbox"] {
             ${fieldBorderStyles}
             ${fieldBRDesktop}
-            ${fieldPaddingDesktop}
+            ${fieldPaddingDesktop.replace(';', ' !important;')}
             ${fieldBGStyle}
         }
     `;
@@ -244,7 +244,7 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input[type="checkbox"] {
             ${fieldBorderStylesTab}
             ${fieldBRTab}
-            ${fieldPaddingTab}
+            ${fieldPaddingTab.replace(';', ' !important;')}
             ${fieldTabBGStyle}
         }
     `;
@@ -285,7 +285,7 @@ const Style = ({ props }) => {
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}
-            ${fieldPaddingMob}
+            ${fieldPaddingMob.replace(';', ' !important;')}
             ${fieldMobBGStyle}
         }
 
