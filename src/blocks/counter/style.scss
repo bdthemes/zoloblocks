@@ -46,7 +46,7 @@
             fill: var(--zolo-icon-color);
             box-sizing: content-box;
             width: var(--zolo-icon-size);
-            height:  var(--zolo-icon-size);
+            height: var(--zolo-icon-size);
             display: block;
         }
     }
@@ -79,38 +79,6 @@
                 flex-direction: row-reverse;
                 text-align: right;
             }
-        }
-    }
-
-    .style-3 {
-        .zolo-counter-item {
-            background-color: transparent;
-            border: 0;
-            padding: 0;
-
-        }
-        .zolo-counter-count {
-            margin: 0;
-            position: relative;
-            font-size: 85px;
-            color: rgba(176, 177, 178, 0.2);
-            min-width: 200px;
-            text-align: center;
-        }
-
-        .zolo-counter-title {
-            font-size: 22px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            color: #000;
-            padding: 0 6px;
-            min-width: max-content ! IMPORTANT;
         }
     }
 }

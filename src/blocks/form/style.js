@@ -435,7 +435,6 @@ const Style = ({ props }) => {
             ${iconSize}
             fill: ${iconColor};
         }
-
         .${uniqueId} .zolo-input-icon {
             ${iconSpacingDesk}
         }
@@ -443,6 +442,7 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-field-input-item input, 
         .${uniqueId} .zolo-field-input-item textarea,
         .${uniqueId} .zolo-contact-form .zolo-select__control {
+
             color: ${textColor};
             ${fieldTypoDesk}
             ${fieldBorderStyles}
@@ -457,6 +457,7 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-field-input-item input::placeholder , 
         .${uniqueId} .zolo-field-input-item textarea::placeholder,
         .${uniqueId} .zolo-contact-form .zolo-select__placeholder {
+
             color: ${placeholderColor};
         }
 
@@ -465,7 +466,9 @@ const Style = ({ props }) => {
             ${errMsgTypoDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-form .has-danger input, .${uniqueId}.wp-block-zolo-form .has-danger textarea, .${uniqueId}.wp-block-zolo-form .has-danger select {
+        .${uniqueId}.wp-block-zolo-form .has-danger input, 
+        .${uniqueId}.wp-block-zolo-form .has-danger textarea, 
+        .${uniqueId}.wp-block-zolo-form .has-danger select {
             border-color: ${errMsgColor};
         }
 
@@ -535,13 +538,14 @@ const Style = ({ props }) => {
             ${iconTabSize}
         }
 
-        .${uniqueId} .zolo-input-icon {
-            ${iconSpacingTab}
-        }
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select {
 
         .${uniqueId} .zolo-field-input-item input, 
         .${uniqueId} .zolo-field-input-item textarea,
         .${uniqueId} .zolo-contact-form .zolo-select__control {
+
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
             ${fieldBRTab}
@@ -606,13 +610,14 @@ const Style = ({ props }) => {
             ${iconMobSize}
         }
 
-        .${uniqueId} .zolo-input-icon {
-            ${iconSpacingMob}
-        }
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select {
 
         .${uniqueId} .zolo-field-input-item input, 
         .${uniqueId} .zolo-field-input-item textarea,
         .${uniqueId} .zolo-contact-form .zolo-select__control {
+
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}

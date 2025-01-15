@@ -74,6 +74,10 @@ import {
     RW_BOX_SHADOW,
     RW_MARGIN,
     RW_PADDING,
+    ARROW_SIZE,
+    AROOW_H_SPACE,
+    AROOW_V_SPACE,
+    ARROW_ROUNDED,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -109,6 +113,7 @@ function Inspector(props) {
         imageRes,
         objectFit,
         photoOverflow,
+        arrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -144,7 +149,7 @@ function Inspector(props) {
                                     }
                                 }}
                             />
-                            {stylePreset !== 'style-preset-2' && (
+                            {stylePreset !== 'style-preset-2' && stylePreset !== 'style-preset-3' && (
                                 <div className="zolo-flex-row-control-tab">
                                     <IconicBtnGroup
                                         label={__('Direction', 'zoloblocks')}
@@ -413,6 +418,53 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
+
+                                {stylePreset === 'style-preset-3' && (
+                                    <>
+                                        <div className="zolo-custom-heading">{__('Arrow', 'zoloblocks')}</div>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={arrowColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    arrowColor: color,
+                                                })
+                                            }
+                                        />
+
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={ARROW_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                        />
+
+                                        <ResRangeControl
+                                            label={__('Rounded', 'zoloblocks')}
+                                            controlName={ARROW_ROUNDED}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                        />
+                                        <CardDivider />
+                                        <ResRangeControl
+                                            label={__('Horizontal Space', 'zoloblocks')}
+                                            controlName={AROOW_H_SPACE}
+                                            requiredProps={requiredProps}
+                                            min={-100}
+                                            max={100}
+                                        />
+
+                                        <ResRangeControl
+                                            label={__('Vertical Space', 'zoloblocks')}
+                                            controlName={AROOW_V_SPACE}
+                                            requiredProps={requiredProps}
+                                            min={-100}
+                                            max={100}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
                         {showPhoto && (

@@ -218,15 +218,17 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
-                                label={__('Social Profiles', 'zoloblocks')}
-                                checked={showSocialProfiles}
-                                onChange={() =>
-                                    setAttributes({
-                                        showSocialProfiles: !showSocialProfiles,
-                                    })
-                                }
-                            />
+                            {preset !== 'style-3' && (
+                                <ToggleControl
+                                    label={__('Social Profiles', 'zoloblocks')}
+                                    checked={showSocialProfiles}
+                                    onChange={() =>
+                                        setAttributes({
+                                            showSocialProfiles: !showSocialProfiles,
+                                        })
+                                    }
+                                />
+                            )}
                             {preset !== 'style-4' && preset !== 'style-2' && (
                                 <>
                                     <CardDivider />

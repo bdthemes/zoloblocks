@@ -5,7 +5,7 @@ Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg 
 Requires at least: 6.1
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 2.1.4
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -353,6 +353,24 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.1.5 [December 24, 2024]
+
+- **New Features:**
+  - **Text Path Block:** Added settings for adjusting path thickness and width.
+  - **Paragraph Block:** Improved functionality with added justify alignment options (Thanks to chihi108)
+  - **Tabs Block:** Introduced header wrapper tab width customization.
+  - **Accordion Block:** Initial Open allow or disallow feature added (Thanks to chihi108)
+
+
+- **Fixes:**
+  - **Newsletter Block:** Fixed placeholder text issues in presets 2, 3, and 4.
+  - **Image Gallery Block:** Resolved issue with saving the backdrop filter control settings.
+  - **Text Path Block:** Fixed show/hide conditions for image options in the style tab for circle path type and resolved image border radius issues.
+  - **Navigation Block:** Fixed menu gap control save issue in the style tab.
+  - **Lightbox Block:** Resolved image resolution save issue in the basic tab.
+  - **Accordion Block:** Initial Open item issue fixed.
+
 
 **2.1.4 [December 07, 2024]**
 

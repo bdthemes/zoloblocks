@@ -112,9 +112,9 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
                             {preset !== 'zb-brand-basic-style' && (
                                 <>
+                                    <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
                                     <ToggleControl
                                         label={__('Brand Name', 'zoloblocks')}
                                         checked={brandNameVisible}
@@ -127,7 +127,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            <ToggleControl
+                            {/* <ToggleControl
                                 label={__('Enable Logo Link', 'zoloblocks')}
                                 checked={enableLogoLink}
                                 onChange={() => setAttributes({ enableLogoLink: !enableLogoLink })}
@@ -160,7 +160,7 @@ function Inspector(props) {
                                         options={LINK_TYPES_BASIC}
                                     />
                                 </div>
-                            )}
+                            )} */}
                             {preset !== 'zb-brand-basic-style' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Content Alignment', 'zoloblocks')}</div>

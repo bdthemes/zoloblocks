@@ -89,6 +89,9 @@ const attributes = {
     initialOpen: {
         type: 'string',
     },
+    allowInitialOpen: {
+        type: 'boolean',
+    },
     allowMultiple: {
         type: 'boolean',
     },

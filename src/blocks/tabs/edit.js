@@ -48,6 +48,7 @@ const Edit = (props) => {
         contentDirection,
         tabItemWidth,
         verticalPreset,
+        horizontalTabItemWidth,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -115,6 +116,59 @@ const Edit = (props) => {
         setActiveTabId(`${id}`);
     };
 
+    const headerTabsContent = (
+        <div className={`tab__list zolo-tab_header-wrap ${tabItemWidth}`}>
+            {tabTitles &&
+                tabTitles.map((tab, index) => (
+                    <div
+                        key={index}
+                        className={`tab__item zolo-tab_head-item ${(activeTabId || activeDefaultTabId) === tab.id ? 'active' : ''}`}
+                        tabIndex={tab.id}
+                        role="tab"
+                        aria-controls={`tab-content-${tab.id}`}
+                        aria-selected={(activeTabId || activeDefaultTabId) === tab.id ? 'true' : 'false'}
+                        onClick={() => handleTabClick(tab.id)}
+                    >
+                        {tab.hasMedia && showIcon && (
+                            <div className="zolo-tab_icon-number-wrap">
+                                <span className="zolo-tab_icon">
+                                    <DisplayZoloIcon icon={tab.icon} />
+                                </span>
+                            </div>
+                        )}
+                        <div className="zolo-tab_head-content">
+                            {showTitle && (
+                                <RichText
+                                    tagName="h2"
+                                    className={'zolo-tab_title'}
+                                    value={tab.title}
+                                    onChange={(v) => {
+                                        const newTabTitles = [...tabTitles];
+                                        newTabTitles[index].title = v;
+                                        setAttributes({ tabTitles: newTabTitles });
+                                    }}
+                                    placeholder={__('Tab Title', 'zoloblocks')}
+                                />
+                            )}
+                            {tab.hasDescription && showDesc && (
+                                <RichText
+                                    tagName="p"
+                                    className={'zolo-tab_desc'}
+                                    value={tab.description}
+                                    onChange={(v) => {
+                                        const newTabTitles = [...tabTitles];
+                                        newTabTitles[index].description = v;
+                                        setAttributes({ tabTitles: newTabTitles });
+                                    }}
+                                    placeholder={__('Tab Description', 'zoloblocks')}
+                                />
+                            )}
+                        </div>
+                    </div>
+                ))}
+        </div>
+    );
+
     return (
         <>
             {isSelected && (
@@ -143,70 +197,23 @@ const Edit = (props) => {
                 <div
                     className={classnames(
                         'zolo-tabs zolo-indicator-position-bottom',
-                        `${tabsLayout === 'horizontal' ? `zolo-tab_${tabsLayout}` : `zolo-tab_${verticalLayoutDirection}`}`,
-                        `${tabContentStyle === 'content-style-2' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
+                        tabsLayout === 'horizontal'
+                            ? `zolo-tab_${tabsLayout} ${horizontalTabItemWidth}`
+                            : `zolo-tab_${verticalLayoutDirection}`,
+                        tabContentStyle === 'content-style-2' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`,
                         `zolo-tab_${tabIndicatorStyle}`,
-                        `${verticalPreset === 'vpreset-2' ? verticalPreset : ''}`
+                        verticalPreset === 'vpreset-2' ? verticalPreset : ''
                     )}
                     role="tablist"
                     tabIndex={0}
                     ref={tabWrapRef}
                 >
-                    <div className={`tab__list zolo-tab_header-wrap ${tabItemWidth}`}>
-                        {tabTitles &&
-                            tabTitles.map((tab, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`tab__item zolo-tab_head-item ${
-                                            // tabActiveItemNo === tab.id ? 'active' : ''
-                                            (activeTabId || activeDefaultTabId) === tab.id ? 'active' : ''
-                                        }`}
-                                        tabIndex={tab.id}
-                                        role="tab"
-                                        aria-controls={`tab-content-${tab.id}`}
-                                        aria-selected={(activeTabId || activeDefaultTabId) === tab.id ? 'true' : 'false'}
-                                        onClick={() => handleTabClick(tab.id)}
-                                    >
-                                        {tab.hasMedia && showIcon && (
-                                            <div className="zolo-tab_icon-number-wrap">
-                                                <span className="zolo-tab_icon">
-                                                    <DisplayZoloIcon icon={tab.icon} />
-                                                </span>
-                                            </div>
-                                        )}
-                                        <div className="zolo-tab_head-content">
-                                            {showTitle && (
-                                                <RichText
-                                                    tagName="h2"
-                                                    className={'zolo-tab_title'}
-                                                    value={tab.title}
-                                                    onChange={(v) => {
-                                                        const newTabTitles = [...tabTitles];
-                                                        newTabTitles[index].title = v;
-                                                        setAttributes({ tabTitles: newTabTitles });
-                                                    }}
-                                                    placeholder={__('Tab Title', 'zoloblocks')}
-                                                />
-                                            )}
-                                            {tab.hasDescription && showDesc && (
-                                                <RichText
-                                                    tagName="p"
-                                                    className={'zolo-tab_desc'}
-                                                    value={tab.description}
-                                                    onChange={(v) => {
-                                                        const newTabTitles = [...tabTitles];
-                                                        newTabTitles[index].description = v;
-                                                        setAttributes({ tabTitles: newTabTitles });
-                                                    }}
-                                                    placeholder={__('Tab Description', 'zoloblocks')}
-                                                />
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                    </div>
+                    {horizontalTabItemWidth && tabsLayout !== 'vertical' ? (
+                        <div className="zolo-horizontal-head-tabswrap">{headerTabsContent}</div>
+                    ) : (
+                        headerTabsContent
+                    )}
+
                     <div className="tab__content">
                         <InnerBlocks
                             templateLock="all"

@@ -276,6 +276,25 @@
             margin: 3px !important;
         }
     }
+
+    .zolo-flex-input-col-control {
+        .components-input-base {
+            flex-direction: column;
+            width: 100%;
+            gap: 8px;
+        }
+        .components-input-control__container {
+            width: 100%;
+        }
+        .components-input-control__label {
+            padding: 0;
+        }
+    }
+    .zolo-repeater-item-content {
+        .zolo-select__input {
+            grid-area: unset !important;
+        }
+    }
 }
 
 .zb-res-range-control-wrapper {

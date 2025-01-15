@@ -37,6 +37,16 @@ import {
     RC_BG,
     MC_PADDING,
     MC_SPACING,
+
+    // Quote
+    QUOTE_SIZE,
+    QUOTE_BACKGROUND,
+    QUOTE_PADDING,
+    QUOTE_BORDER,
+    QUOTE_BOX_SHADOW,
+    QUOTE_BORDER_RADIUS,
+    QUOTE_H_SPACING,
+    QUOTE_V_SPACING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -107,6 +117,20 @@ const attributes = {
     ...generateDimensionAttributes(MC_PADDING),
     ...generateResRangeAttributies(MC_SPACING, {}),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    // Quote
+    ...generateResRangeAttributies(QUOTE_SIZE),
+    ...generateNormalBGAttributes(QUOTE_BACKGROUND),
+    ...generateDimensionAttributes(QUOTE_PADDING),
+    ...generateBorderAttributies(QUOTE_BORDER),
+    ...generateBoxShadowAttributies(QUOTE_BOX_SHADOW),
+    ...generateDimensionAttributes(QUOTE_BORDER_RADIUS),
+    ...generateResRangeAttributies(QUOTE_H_SPACING),
+    ...generateResRangeAttributies(QUOTE_V_SPACING),
+
+    quoteColor: {
+        type: 'string',
+    },
 
     //Block Specific Attributes
     showPhoto: {
@@ -208,6 +232,10 @@ const attributes = {
     },
     presetFiveArrowColor: {
         type: 'string',
+    },
+    showQuote: {
+        type: 'boolean',
+        default: true,
     },
 };
 

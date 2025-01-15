@@ -1,74 +1,118 @@
-import {RichText, useBlockProps} from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
+import { parseInputToArray, transformToValueFormat } from '@/blocks/select-field/helper';
 
-const {classArrayToStr, DisplayZoloIcon} = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
 
-const Save = ({attributes}) => {
-  const {
-    uniqueId,
-    parentClasses,
-    preset,
-    optionData,
-    zoloId,
-    showLabel,
-    label,
-    showIcon,
-    icon,
-    isRequired,
-    showRequiredSymbol,
-    requiredMsg,
-    customNameAttribute,
-    defaultValue
-  } = attributes;
+const Save = ({ attributes }) => {
+    const {
+        uniqueId,
+        parentClasses,
+        preset,
+        optionData,
+        zoloId,
+        showLabel,
+        label,
+        showIcon,
+        icon,
+        isRequired,
+        showRequiredSymbol,
+        requiredMsg,
+        customNameAttribute,
+        defaultValue,
+        firstOption
+    } = attributes;
 
-  const blockProps = useBlockProps.save({
-    className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
-  });
+    const blockProps = useBlockProps.save({
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
+    });
 
-  return (
-    <div
-      {...blockProps}
-      {...(zoloId && {
-        id: zoloId,
-      })}
-    >
-      <div className="zolo-field-item">
-        {showLabel && (
-          <div className="zolo-label-wrapper">
-            <RichText.Content tagName="label" className="zolo-label" value={label}/>
-            {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
-          </div>
-        )}
+    const optionArray = parseInputToArray(optionData,firstOption);
+    const defaultSelect = transformToValueFormat(defaultValue);
 
-        <div className="zolo-field-input-item">
-          {showIcon && preset !== 'style-3' && (
-            <div className="zolo-input-icon">
-              <DisplayZoloIcon icon={icon}/>
+    return (
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
+            <div className="zolo-field-item">
+                {showLabel && (
+                    <div className="zolo-label-wrapper">
+                        <RichText.Content tagName="label" className="zolo-label" value={label} />
+                        {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
+                    </div>
+                )}
+
+                <div className="zolo-field-input-item">
+                    {showIcon && preset !== 'style-3' && (
+                        <div className="zolo-input-icon">
+                            <DisplayZoloIcon icon={icon} />
+                        </div>
+                    )}
+
+                    <select
+                        name={generateUniqueName(uniqueId,customNameAttribute,'select_field')}
+                        required={isRequired}
+                        value={defaultSelect}
+                        {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
+                    >
+                        {optionArray.length > 0 &&
+                            optionArray.map((item, index) => {
+                                if (item?.label) {
+                                    // Render optgroup
+                                    return (
+                                        <optgroup key={index} label={item.label}>
+                                            {item.options.map((option, optIndex) => (
+                                                <option
+                                                    key={optIndex}
+                                                    value={option.value}
+                                                    {...(defaultSelect === option.value && { selected: '' })}
+                                                    {...(option?.disabled && { disabled: option.disabled })}
+                                                >
+                                                    {option.name}
+                                                </option>
+                                            ))}
+                                        </optgroup>
+                                    );
+                                } else {
+                                    // Render standalone option
+                                    return (
+                                        <option
+                                            key={index}
+                                            value={item.value}
+                                            {...(defaultSelect === item.value && { selected: '' })}
+                                            {...(item?.disabled && { disabled: item.disabled })}
+                                        >
+                                            {item.name}
+                                        </option>
+                                    );
+                                }
+                            })}
+                    </select>
+                    <div className="zolo-select-arrow">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
+                        >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M6 9l6 6l6 -6" />
+                        </svg>
+                    </div>
+                </div>
             </div>
-          )}
-
-          <select
-            name={customNameAttribute || 'select_feild'}
-            value={defaultValue || ''}
-            required={isRequired}
-            {...(isRequired && {'data-pristine-required-message': requiredMsg})}
-          >
-            {optionData.map((item) => (
-              <option
-                key={item.id}
-                value={item.value}
-                {...(defaultValue === item.value && {'selected': ''})}
-              >
-                {item.name}
-              </option>
-            ))}
-          </select>
-
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Save;
