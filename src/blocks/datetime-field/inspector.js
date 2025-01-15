@@ -589,7 +589,7 @@ function Inspector(props) {
                                 normalComponents={
                                     <>
                                         <div className="zolo-custom-heading" style={{ paddingTop: 0, border: 0 }}>
-                                            {__('Header', 'zoloblocks')}
+                                            {__('Header Area', 'zoloblocks')}
                                         </div>
                                         <ColorControl
                                             label={__('Month Color', 'zoloblocks')}
