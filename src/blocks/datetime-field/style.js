@@ -30,8 +30,14 @@ import {
     ICON_SIZE,
 
     // Date/Time
-    // DATE_HEAD_BG,
-    // DATE_BODY_BG,
+    DATE_HEAD_BG,
+    DATE_BODY_BG,
+    DATE_BODY_BG_HOVER,
+    DATE_BODY_SELECTED,
+    DATE_BODY_TODAY_BG_HOVER,
+    DATE_BODY_TODAY_BG,
+    TIME_BG_COLOR,
+    TIME_BG_HOVER_COLOR,
 } from './constants';
 
 const Style = ({ props }) => {
@@ -46,14 +52,27 @@ const Style = ({ props }) => {
         showRequiredSymbol,
         requiredColor,
         // Date/Time
-        // dateMonthColor,
-        // dateMonthHoverColor,
-        // dateYearColor,
-        // dateNavColor,
-        // dateNavHoverColor,
-        // dateDaysColor,
-        // dateBodyColor,
-        // dateBodyNextColor,
+        dateMonthColor,
+        dateMonthHoverColor,
+        dateYearColor,
+        dateNavColor,
+        dateNavHoverColor,
+        dateDaysColor,
+        dateBodyColor,
+        dateBodyNextColor,
+        dateDisableColor,
+        dateBodyTodayColor,
+        dateBodyTodayBorderColor,
+        dateBodyTodayHoverColor,
+        dateBodyTodayHoverBorderColor,
+        dateBodySelectedColor,
+        dateBodySelectedBorderColor,
+        dateBodyRangeColor,
+        dateBodyRangeBgColor,
+        timeTextColor,
+        timeBorderColor,
+        timeTextHoverColor,
+        timeArrowColor,
     } = attributes;
 
     // label
@@ -174,25 +193,85 @@ const Style = ({ props }) => {
     });
 
     // Date Time Field
-    // const {
-    //     backgroundStylesDesktop: dateHeadBGStyleDesk,
-    //     backgroundStylesTab: dateHeadBGStyleTab,
-    //     backgroundStylesMobile: dateHeadBGStyleMob,
-    // } = generateNormalBGControlStyles({
-    //     controlName: DATE_HEAD_BG,
-    //     attributes,
-    //     noMainBGImg: false,
-    // });
+    const {
+        backgroundStylesDesktop: dateHeadBGStyleDesk,
+        backgroundStylesTab: dateHeadBGStyleTab,
+        backgroundStylesMobile: dateHeadBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: DATE_HEAD_BG,
+        attributes,
+        noMainBGImg: false,
+    });
 
-    // const {
-    //     backgroundStylesDesktop: dateBodyBGStyleDesk,
-    //     backgroundStylesTab: dateBodyBGStyleTab,
-    //     backgroundStylesMobile: dateBodyBGStyleMob,
-    // } = generateNormalBGControlStyles({
-    //     controlName: DATE_BODY_BG,
-    //     attributes,
-    //     noMainBGImg: false,
-    // });
+    const {
+        backgroundStylesDesktop: dateBodyBGStyleDesk,
+        backgroundStylesTab: dateBodyBGStyleTab,
+        backgroundStylesMobile: dateBodyBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: DATE_BODY_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: dateBodyBGHoverStyleDesk,
+        backgroundStylesTab: dateBodyBGHoverStyleTab,
+        backgroundStylesMobile: dateBodyBGHoverStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: DATE_BODY_BG_HOVER,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: dateBodySelectedStyleDesk,
+        backgroundStylesTab: dateBodySelectedStyleTab,
+        backgroundStylesMobile: dateBodySelectedStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: DATE_BODY_SELECTED,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: dateBodyTodayBGHoverStyleDesk,
+        backgroundStylesTab: dateBodyTodayBGHoverStyleTab,
+        backgroundStylesMobile: dateBodyTodayBGHoverStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: DATE_BODY_TODAY_BG_HOVER,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: dateBodyTodayBGStyleDesk,
+        backgroundStylesTab: dateBodyTodayBGStyleTab,
+        backgroundStylesMobile: dateBodyTodayBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: DATE_BODY_TODAY_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: timeBGStyleDesk,
+        backgroundStylesTab: timeBGStyleTab,
+        backgroundStylesMobile: timeBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: TIME_BG_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: timeBGHoverStyleDesk,
+        backgroundStylesTab: timeBGHoverStyleTab,
+        backgroundStylesMobile: timeBGHoverStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: TIME_BG_HOVER_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
 
     /**
      * All Style Combination
@@ -243,6 +322,109 @@ const Style = ({ props }) => {
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
 
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-current-month .flatpickr-monthDropdown-months,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-months .flatpickr-month,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-weekdays,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-weekday {
+           ${dateHeadBGStyleDesk}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-months .flatpickr-month {
+            ${dateMonthColor ? `color: ${dateMonthColor};` : ''}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-monthDropdown-months:focus,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-monthDropdown-months:hover{
+            ${dateMonthHoverColor ? `color: ${dateMonthHoverColor};` : ''}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-current-month input.cur-year{
+            ${dateYearColor ? `color: ${dateYearColor};` : ''}
+           
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-months .flatpickr-prev-month, 
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-months .flatpickr-next-month {
+            ${dateNavColor ? `fill: ${dateNavColor};` : ''}
+            ${dateNavColor ? `color: ${dateNavColor};` : ''}
+        }
+
+       .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-months:hover .flatpickr-prev-month,
+       .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-months:hover .flatpickr-next-month {
+            ${dateNavHoverColor ? `color: ${dateNavHoverColor};` : ''}
+            
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-weekday {
+            ${dateDaysColor ? `color: ${dateDaysColor};` : ''}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-innerContainer {
+            ${dateBodyBGStyleDesk}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day{
+            ${dateBodyColor ? `color: ${dateBodyColor};` : ''}
+        }
+ 
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.nextMonthDay,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.prevMonthDay{
+            ${dateBodyNextColor ? `color: ${dateBodyNextColor};` : ''}
+        }
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.flatpickr-disabled{
+            ${dateDisableColor ? `color: ${dateDisableColor};` : ''}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.today{
+            ${dateBodyTodayColor ? `color: ${dateBodyTodayColor};` : ''}
+            ${dateBodyTodayBorderColor ? `border-color: ${dateBodyTodayBorderColor};` : ''}
+            ${dateBodyTodayBGStyleDesk}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day:hover{
+            ${dateBodyBGHoverStyleDesk}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.today:hover{
+            ${dateBodyTodayHoverColor ? `color: ${dateBodyTodayHoverColor};` : ''}
+            ${dateBodyTodayHoverBorderColor ? `border-color: ${dateBodyTodayHoverBorderColor};` : ''}
+             ${dateBodyTodayBGHoverStyleDesk}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.selected{
+            ${dateBodySelectedColor ? `color: ${dateBodySelectedColor};` : ''}
+            ${dateBodySelectedBorderColor ? `border-color: ${dateBodySelectedBorderColor};` : ''}
+             ${dateBodySelectedStyleDesk}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-day.inRange{
+            ${dateBodyRangeColor ? `color: ${dateBodyRangeColor};` : ''}
+            ${dateBodyRangeBgColor ? `--zolo-date-range-color: ${dateBodyRangeBgColor};` : ''}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time input,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time .flatpickr-time-separator,
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time .flatpickr-am-pm{
+            ${timeTextColor ? `color: ${timeTextColor};` : ''}
+        }
+
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar.hasTime .flatpickr-time{
+            ${timeBorderColor ? `border-color: ${timeBorderColor};` : ''}
+        }
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time{
+            ${timeBGStyleDesk}
+        }
+            
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time {
+            ${timeArrowColor ? `--zolo-time-arrow-color: ${timeArrowColor};` : ''}
+        }
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time input:hover, 
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time .flatpickr-am-pm:hover, 
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time input:focus, 
+        .zolo-datepicker-${uniqueId}.flatpickr-calendar .flatpickr-time .flatpickr-am-pm:focus{
+            ${timeBGHoverStyleDesk}
+             ${timeTextHoverColor ? `color: ${timeTextHoverColor};` : ''}
+        }
 
     `;
 

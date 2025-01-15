@@ -22,8 +22,14 @@ import {
     FIELD_BRADIUS,
 
     // Date/Time
-    // DATE_HEAD_BG,
-    // DATE_BODY_BG,
+    DATE_HEAD_BG,
+    DATE_BODY_BG,
+    DATE_BODY_BG_HOVER,
+    DATE_BODY_SELECTED,
+    DATE_BODY_TODAY_BG_HOVER,
+    DATE_BODY_TODAY_BG,
+    TIME_BG_COLOR,
+    TIME_BG_HOVER_COLOR,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -72,8 +78,14 @@ const attributes = {
     ...generateResRangeAttributies(ICON_SIZE),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     // Date Time Field Attributes
-    // ...generateNormalBGAttributes(DATE_HEAD_BG),
-    // ...generateNormalBGAttributes(DATE_BODY_BG),
+    ...generateNormalBGAttributes(DATE_HEAD_BG),
+    ...generateNormalBGAttributes(DATE_BODY_BG),
+    ...generateNormalBGAttributes(DATE_BODY_BG_HOVER),
+    ...generateNormalBGAttributes(DATE_BODY_SELECTED),
+    ...generateNormalBGAttributes(DATE_BODY_TODAY_BG_HOVER),
+    ...generateNormalBGAttributes(DATE_BODY_TODAY_BG),
+    ...generateNormalBGAttributes(TIME_BG_COLOR),
+    ...generateNormalBGAttributes(TIME_BG_HOVER_COLOR),
     showLabel: {
         type: 'boolean',
         default: true,
@@ -175,30 +187,69 @@ const attributes = {
         default: false,
     },
 
-    // dateMonthColor: {
-    //     type: 'string',
-    // },
-    // dateMonthHoverColor: {
-    //     type: 'string',
-    // },
-    // dateYearColor: {
-    //     type: 'string',
-    // },
-    // dateNavColor: {
-    //     type: 'string',
-    // },
-    // dateNavHoverColor: {
-    //     type: 'string',
-    // },
-    // dateDaysColor: {
-    //     type: 'string',
-    // },
-    // dateBodyNextColor: {
-    //     type: 'string',
-    // },
-    // dateBodyNextColor: {
-    //     type: 'string',
-    // },
+    dateMonthColor: {
+        type: 'string',
+    },
+    dateMonthHoverColor: {
+        type: 'string',
+    },
+    dateYearColor: {
+        type: 'string',
+    },
+    dateNavColor: {
+        type: 'string',
+    },
+    dateNavHoverColor: {
+        type: 'string',
+    },
+    dateDaysColor: {
+        type: 'string',
+    },
+    dateBodyNextColor: {
+        type: 'string',
+    },
+    dateBodyNextColor: {
+        type: 'string',
+    },
+    dateDisableColor: {
+        type: 'string',
+    },
+    dateBodyTodayColor: {
+        type: 'string',
+    },
+    dateBodyTodayBorderColor: {
+        type: 'string',
+    },
+    dateBodyTodayHoverColor: {
+        type: 'string',
+    },
+    dateBodyTodayHoverBorderColor: {
+        type: 'string',
+    },
+    dateBodySelectedColor: {
+        type: 'string',
+    },
+    dateBodySelectedBorderColor: {
+        type: 'string',
+    },
+    dateBodyRangeColor: {
+        type: 'string',
+    },
+    dateBodyRangeBgColor: {
+        type: 'string',
+    },
+    timeTextColor: {
+        type: 'string',
+    },
+    timeBorderColor: {
+        type: 'string',
+    },
+    timeTextHoverColor: {
+        type: 'string',
+    },
+    timeArrowColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;
