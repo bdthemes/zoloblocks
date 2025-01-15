@@ -718,12 +718,33 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/advanced-paragraph',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
+    'datetime-field' => [
+        'name' => 'datetime-field',
+        'title' => __('Date Time Field', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_child' => true,
+    ],
     'checkbox-field' => [
         'name' => 'checkbox-field',
         'title' => __('Checkbox Field', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'is_child' => true,
+    ],
+    'phonenumber-field' => [
+        'name' => 'phonenumber-field',
+        'title' => __('Phone Number', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_pro' => true,
+    ],
+    'country-field' => [
+        'name' => 'country-field',
+        'title' => __('Country Field', 'zoloblocks-pro'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_pro' => true,
     ],
     'select-field' => [
         'name' => 'select-field',
@@ -750,13 +771,6 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/lottie-image',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
-    'select-field' => [
-        'name' => 'select-field',
-        'title' => __('Select Field', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_child' => true,
-    ],
     'number-field' => [
         'name' => 'number-field',
         'title' => __('Number Field', 'zoloblocks'),
@@ -771,5 +785,4 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'is_child' => true,
     ]
-
 ]);

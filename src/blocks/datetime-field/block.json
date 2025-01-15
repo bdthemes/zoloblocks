@@ -1,25 +1,26 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Form",
-    "name": "zolo/form",
+    "title": "Date Time Field",
+    "name": "zolo/datetime-field",
     "category": "zoloblocks",
-    "keywords": ["form", "input", "field", "data", "collection", "survey"],
-    "description": "Create dynamic forms with customizable fields for data collection.",
+    "keywords": ["zolo", "date", "time", "input", "form", "survey"],
+    "description": "Customizable date fields for forms or surveys.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
+    "parent": ["zolo/form"],
     "example": {
         "attributes": {
             "preview": true
         },
         "viewportWidth": 410
     },
+    "usesContext": ["zolo/showFieldIcon"],
     "supports": {
         "anchor": false,
         "customClassName": false,
         "align": ["wide", "full"]
     },
     "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css",
+    "style": "file:./index.css",
     "viewScript": "file:./frontend.js"
 }

@@ -60,6 +60,9 @@
             outline: none !important;
             border-radius: 6px;
             padding: 0 10px !important;
+            width: 100%;
+            box-sizing: border-box;
+            background: transparent;
             &:focus {
                 border-color: #001feb !important;
                 box-shadow: none !important;
