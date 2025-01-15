@@ -10,6 +10,7 @@ export const BLOCK_PREFIX = 'review';
 export const STYLE_PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: '' },
     { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-preset-2', disabled: true },
+    { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'style-preset-3', disabled: true },
 ];
 
 export const PRESETS = [
@@ -107,3 +108,9 @@ export const DPL_ICON_SIZE = 'DPLIconSize';
 
 // GAP
 export const CONTENT_GAP = 'ContentGap';
+
+// ARROW
+export const ARROW_SIZE = 'ArrowSize';
+export const AROOW_H_SPACE = 'ArrowHSpace';
+export const AROOW_V_SPACE = 'ArrowVSpace';
+export const ARROW_ROUNDED = 'ArrowRounded';

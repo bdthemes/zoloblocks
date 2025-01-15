@@ -11,6 +11,7 @@ use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
+use Zolo\API\ZoloOpenAi;
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Admin\PostCategoryImage;
 use Zolo\Admin\Author;
@@ -20,6 +21,7 @@ use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
+use Zolo\API\GetPostMetaV1;
 use Zolo\API\TemplatesV1;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
@@ -48,6 +50,8 @@ class ZoloBlocks_Loader {
         add_action('plugins_loaded', [$this, 'plugins_loaded']);
         add_action('init', [$this, 'init_actions']);
         add_action('admin_init', [$this, 'dci_plugin_zoloblocks']);
+        add_filter('upload_mimes', array($this, 'upload_mimes'), 100);
+        add_filter('wp_check_filetype_and_ext', array($this, 'wp_check_filetype_and_ext'), 100, 3);
     }
 
     /**
@@ -59,6 +63,8 @@ class ZoloBlocks_Loader {
      */
     public function plugins_loaded() {
         GetPostsV1::getInstance();
+        GetPostMetaV1::getInstance();
+        ZoloOpenAi::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
@@ -105,6 +111,30 @@ class ZoloBlocks_Loader {
             Dashboard::getInstance();
             Assets::getInstance();
         }
+    }
+
+
+    public function upload_mimes($mimes) {
+        if (! isset($mimes['json'])) {
+            $mimes['json'] = 'application/json';
+        }
+        return $mimes;
+    }
+
+    public function wp_check_filetype_and_ext($data, $file, $filename) {
+        $ext = isset($data['ext']) ? $data['ext'] : '';
+
+        if (! $ext) {
+            $exploded = explode('.', $filename);
+            $ext      = strtolower(end($exploded));
+        }
+
+        if ('json' === $ext) {
+            $data['type'] = 'application/json';
+            $data['ext']  = 'json';
+        }
+
+        return $data;
     }
 
     /**

@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Lottie Image",
+    "name": "zolo/lottie-image",
+    "category": "zoloblocks",
+    "keywords": ["zolo", "lottie", "image", "animation", "video"],
+    "description": "Lightweight Lottie animations for web, apps, and UI.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
+}

@@ -28,14 +28,18 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(uniqueId, ` ${preset && stylePreset === '' ? preset : ''} ${stylePreset !== '' && stylePreset}`, classArrayToStr(parentClasses)),
+                className: classnames(
+                    uniqueId,
+                    ` ${preset && stylePreset === '' ? preset : ''} ${stylePreset !== '' && stylePreset}`,
+                    classArrayToStr(parentClasses)
+                ),
             })}
             {...(zoloId && {
                 id: zoloId,
             })}
         >
             <div className="zolo-item">
-                {showPhoto && stylePreset !== 'style-preset-2' &&(
+                {showPhoto && stylePreset !== 'style-preset-2' && (
                     <div className="zolo-image-quote-wrap">
                         <div className="zolo-image-wrap">
                             {memberPhoto && (
@@ -49,7 +53,7 @@ const Save = ({ attributes }) => {
                                 />
                             )}
                         </div>
-                        {showQuoteIcon && (
+                        {showQuoteIcon && stylePreset !== 'style-preset-3' && (
                             <div className="zolo-quote-icon">
                                 <DisplayZoloIcon icon={quoteIcon} />
                             </div>
@@ -57,10 +61,10 @@ const Save = ({ attributes }) => {
                     </div>
                 )}
 
-                {showTestimonialMessage && stylePreset ==='style-preset-2' &&(
+                {showTestimonialMessage && stylePreset === 'style-preset-2' && (
                     <>
-                        <div className='zolo-desc-quote-wrap'>
-                           {showQuoteIcon && (
+                        <div className="zolo-desc-quote-wrap">
+                            {showQuoteIcon && (
                                 <div className="zolo-quote-icon">
                                     <DisplayZoloIcon icon={quoteIcon} />
                                 </div>
@@ -73,7 +77,7 @@ const Save = ({ attributes }) => {
                 )}
 
                 <div className="zolo-info-wrap">
-                       {showPhoto && stylePreset === 'style-preset-2' &&(
+                    {showPhoto && stylePreset === 'style-preset-2' && (
                         <div className="zolo-image-wrap">
                             {memberPhoto && (
                                 <img
@@ -88,12 +92,12 @@ const Save = ({ attributes }) => {
                         </div>
                     )}
                     <div className="zolo-meta-content">
-                        {showRating &&(
+                        {showRating && (
                             <div className="zolo-review-icon">
                                 <div className="zolo-rating" data-rating={rating}></div>
                             </div>
                         )}
-                        {showTestimonialMessage && stylePreset !=='style-preset-2' && (
+                        {showTestimonialMessage && stylePreset !== 'style-preset-2' && (
                             <div className="zolo-desc">
                                 <RichText.Content value={testimonialMessage} />
                             </div>
@@ -122,6 +126,15 @@ const Save = ({ attributes }) => {
                             )}
                         </div>
                     </div>
+
+                    {stylePreset === 'style-preset-3' && (
+                        <>
+                            <div className="zolo-quote-icon">
+                                <DisplayZoloIcon icon={quoteIcon} />
+                            </div>
+                            <div className="zolo-triangle"></div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

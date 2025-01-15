@@ -48,19 +48,16 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <div {...blockProps}>
                 <RichText
+                    {...blockProps}
                     identifier="content"
-                    tagName="div"
+                    tagName="p"
                     onChange={(content) => {
-                        props.setAttributes({ content });
+                        setAttributes({ content });
                     }}
                     value={content}
-                    formatingControls={['bold', 'italic']}
                     placeholder="Enter text..."
-                    multiline="p"
                 />
-            </div>
         </>
     );
 }

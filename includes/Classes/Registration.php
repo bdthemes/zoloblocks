@@ -62,7 +62,7 @@ class Registration {
      */
     public function render_callback($attributes, $content, $block, $render) {
         if ($render !== false) {
-            return $render->render($attributes,$content,$block);
+            return $render->render($attributes, $content, $block);
         }
 
         return $content;
@@ -88,10 +88,14 @@ class Registration {
      */
     public function register_block_category($categories, $post) {
         $zb_category = [
-            'slug'  => 'zoloblocks',
-            'title' => __('Zolo Blocks', 'zoloblocks')
+             'slug'  => 'zoloblocks',
+             'title' => __('Zolo Blocks', 'zoloblocks')
         ];
-        array_unshift($categories, $zb_category);
+        $zb_cat_single=[
+            'slug'  =>'zoloblocks-single',
+            'title'=>'Zolo Blocks Single',
+        ];
+        array_unshift($categories, $zb_cat_single, $zb_category);
         return $categories;
     }
 }

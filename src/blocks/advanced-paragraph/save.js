@@ -22,7 +22,11 @@ const Save = (props) => {
         ),
     });
 
-    return <RichText.Content {...blockProps} tagName="div" value={content} />;
+    return (
+        <p {...blockProps}>
+            <RichText.Content value={content} />
+        </p>
+    );
 };
 
 export default Save;
