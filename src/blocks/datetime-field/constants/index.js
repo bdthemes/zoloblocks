@@ -45,5 +45,11 @@ export const DAYS_OPTION = [
 ];
 
 // date-time-field
-// export const DATE_HEAD_BG = 'dateHeadBg';
-// export const DATE_BODY_BG = 'dateBodyBg';
+export const DATE_HEAD_BG = 'dateHeadBg';
+export const DATE_BODY_BG = 'dateBodyBg';
+export const DATE_BODY_BG_HOVER = 'dateBodyBgHover';
+export const DATE_BODY_SELECTED = 'dateBodySelected';
+export const DATE_BODY_TODAY_BG_HOVER = 'dateBodyTodayBgHover';
+export const DATE_BODY_TODAY_BG = 'dateBodyTodayBg';
+export const TIME_BG_COLOR = 'timeBgColor';
+export const TIME_BG_HOVER_COLOR = 'timeBgHoverColor';

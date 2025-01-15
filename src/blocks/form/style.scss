@@ -43,7 +43,8 @@
 
         input,
         textarea,
-        select {
+        select,
+        .zolo-select__control {
             border-width: var(--zolo-error-border-width);
             border-style: var(--zolo-error-border-style);
             border-color: var(--border-error-border-color);
@@ -201,7 +202,8 @@
 
     .zolo-field-item input,
     .zolo-field-item select,
-    .zolo-field-item textarea {
+    .zolo-field-item textarea,
+    .zolo-select__control {
         padding: var(--zolo-input-padding);
         outline: none;
         font-size: 0.875rem;
