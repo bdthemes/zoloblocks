@@ -117,10 +117,8 @@ export default function Edit(props) {
             <select
               name={generateUniqueName(uniqueId, customNameAttribute, 'select_field')}
               required={isRequired}
-              {...(defaultSelect && {value: defaultSelect})}
-              // defaultValue={defaultSelect}
-              // value={selectedValue}
-              // onChange={(event) => setSelectedValue(event.target.value)}
+              value={selectedValue || defaultSelect || ''} 
+              onChange={(event) => setSelectedValue(event.target.value)}
             >
               {optionArray.length > 0 &&
                 optionArray.map((item, index) => {
