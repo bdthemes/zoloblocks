@@ -279,3 +279,21 @@ export const getTaxonomies=(postType, allTaxonomyList) =>{
          }
      }
  };
+
+//from field unique name generator
+export const generateUniqueName = (uniqueId, customNameAttribute, defaultName = 'field_name') => {
+  const lastPart = uniqueId && typeof uniqueId === 'string'
+    ? uniqueId.split('-').pop()
+    : 'unknown';
+  const sanitizedCustomName = customNameAttribute
+    ? customNameAttribute
+      .trim()
+      .replace(/[^a-zA-Z0-9]/g, '_')
+      .replace(/\s+/g, '_')
+    : null;
+
+  return sanitizedCustomName
+    ? sanitizedCustomName
+    : `${defaultName}_${lastPart}`;
+};
+

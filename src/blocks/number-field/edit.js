@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {handleUniqueId, DisplayZoloIcon, classArrayToStr} = window.zoloModule;
+const {handleUniqueId, DisplayZoloIcon, classArrayToStr,generateUniqueName} = window.zoloModule;
 
 import {BLOCK_PREFIX} from './constants';
 import Inspector from './inspector';
@@ -110,7 +110,7 @@ export default function Edit(props) {
             )}
             <input
               type="number"
-              name={customNameAttribute || 'number'}
+              name={generateUniqueName(uniqueId,customNameAttribute,'number')}
               required={isRequired}
               placeholder={placeholder}/>
           </div>
