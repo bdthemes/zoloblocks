@@ -21,6 +21,7 @@ const {
     NormalBGControl,
     ZoloPanelBody,
     IconicBtnGroup,
+    TabPanelControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -131,19 +132,22 @@ function Inspector(props) {
                                 label={__('Default Value', 'zoloblocks')}
                                 value={defaultValue}
                                 onChange={(v) => setAttributes({ defaultValue: v })}
-                                help={__('Leave empty if no default value is needed; set defaults as "option 1 | option 2" and display only on the frontend.', 'zoloblocks')}
+                                help={__(
+                                    'Leave empty if no default value is needed; set defaults as "option 1 | option 2" and display only on the frontend.',
+                                    'zoloblocks'
+                                )}
                             />
-                          <div className="zolo-flex-col-control">
-                              <TextControl
-                                  label={__('Custom Name Attribute', 'zoloblocks')}
-                                  value={customNameAttribute}
-                                  onChange={(v) => setAttributes({ customNameAttribute: v })}
-                                  help={__(
-                                      'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
-                                      'zoloblocks'
-                                  )}
-                              />
-                          </div>
+                            <div className="zolo-flex-col-control">
+                                <TextControl
+                                    label={__('Custom Name Attribute', 'zoloblocks')}
+                                    value={customNameAttribute}
+                                    onChange={(v) => setAttributes({ customNameAttribute: v })}
+                                    help={__(
+                                        'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
+                                        'zoloblocks'
+                                    )}
+                                />
+                            </div>
                             {isRequired && (
                                 <div className="zolo-flex-col-control">
                                     <TextareaControl
@@ -229,46 +233,63 @@ function Inspector(props) {
                             panelProps={props}
                             firstOpen={showLabel ? false : true}
                         >
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={textColor}
-                                onChange={(color) => setAttributes({ textColor: color })}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={FIELD_TYPO}
-                                requiredProps={requiredProps}
-                            />
-                            <CardDivider />
-                            <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={FIELD_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <CardDivider />
-                            <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={FIELD_BRADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <CardDivider />
                             <ResRangeControl
-                                label={__('Space Between', 'zoloblocks')}
-                                controlName={CHECKBOX_SPACE_BETWEEN}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                            />
-                            <ResRangeControl
-                                label={__('Gap', 'zoloblocks')}
+                                label={__('Item Gap', 'zoloblocks')}
                                 controlName={FIELD_SPACE}
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={100}
+                            />
+                            <TabPanelControl
+                                options={[
+                                    { label: __('Checkbox', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Label', 'zoloblocks'), value: 'hover' },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={FIELD_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                        <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={FIELD_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={FIELD_BRADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <CardDivider />
+                                        <ResRangeControl
+                                            label={__('Space Between', 'zoloblocks')}
+                                            controlName={CHECKBOX_SPACE_BETWEEN}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={textColor}
+                                            onChange={(color) => setAttributes({ textColor: color })}
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={FIELD_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
                     </>
