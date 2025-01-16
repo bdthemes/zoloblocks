@@ -54,45 +54,42 @@ export default function Edit(props) {
         });
     };
 
-  useEffect(() => {
-      const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
+    useEffect(() => {
+        const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
 
-      const handleComplete = () => {
-          isAnimationCompleteRef.current = true;
-      };
+        const handleComplete = () => {
+            isAnimationCompleteRef.current = true;
+        };
 
-      const handleClick = () => {
-          if (lottiePlayer && (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0)) {
-              lottiePlayer.stop();
-              lottiePlayer.play();
-              isAnimationCompleteRef.current = false;
-          }
-      };
+        const handleClick = () => {
+            if (lottiePlayer && (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0)) {
+                lottiePlayer.stop();
+                lottiePlayer.play();
+                isAnimationCompleteRef.current = false;
+            }
+        };
+        const observer =
+            trigger === 'viewport' &&
+            new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        lottiePlayer.play();
+                    } else {
+                        lottiePlayer.pause();
+                    }
+                });
+            });
 
-      const observer =
-          trigger === 'viewport' &&
-          new IntersectionObserver((entries) => {
-              entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                      lottiePlayer.play();
-                  } else {
-                      lottiePlayer.pause();
-                  }
-              });
-          });
-
-      if (lottiePlayer) {
-          if (trigger === 'click') {
-              lottiePlayer.addEventListener('complete', handleComplete);
-              lottieRef.current.addEventListener('click', handleClick);
-          }
-
-          if (trigger === 'viewport' && observer) {
-              observer.observe(lottieRef.current);
-          }
-      }
-  }, [trigger]);
-
+        if (lottiePlayer) {
+            if (trigger === 'click') {
+                lottiePlayer.addEventListener('complete', handleComplete);
+                lottieRef.current.addEventListener('click', handleClick);
+            }
+            if (trigger === 'viewport' && observer) {
+                observer.observe(lottieRef.current);
+            }
+        }
+    }, [trigger]);
 
     return (
         <>

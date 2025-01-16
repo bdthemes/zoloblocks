@@ -84,6 +84,7 @@ function Inspector(props) {
                                                 step={0.1}
                                                 min={0}
                                                 max={10}
+                                                noUnits={true}
                                             />
                                             <ToggleControl
                                                 label={__('Loop', 'zoloblocks')}
