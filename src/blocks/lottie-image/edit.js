@@ -68,29 +68,6 @@ export default function Edit(props) {
                 isAnimationCompleteRef.current = false;
             }
         };
-
-        const checkLottieLoaded = () => {
-            console.log('checkLottieLoaded');
-            if (lottiePlayer?._lottie) {
-                const { totalFrames, goToAndStop } = lottiePlayer._lottie;
-                window.addEventListener('scroll', () => {
-                    console.log('scroll');
-                    const { top, bottom } = lottiePlayer.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
-
-                    const isInView = top < windowHeight && bottom > 0;
-                    if (isInView) {
-                        console.log('isInView');
-                        const progress = Math.min(Math.max((window.scrollY + windowHeight - top) / (bottom - top + windowHeight), 0), 1);
-                        let newFrame = Math.round(progress * totalFrames);
-                        if (reverse) newFrame = totalFrames - newFrame;
-                        if (newFrame < totalFrames) goToAndStop.call(lottiePlayer._lottie, newFrame, true);
-                    }
-                });
-            } else {
-                setTimeout(checkLottieLoaded, 100);
-            }
-        };
         const observer =
             trigger === 'viewport' &&
             new IntersectionObserver((entries) => {
@@ -108,13 +85,9 @@ export default function Edit(props) {
                 lottiePlayer.addEventListener('complete', handleComplete);
                 lottieRef.current.addEventListener('click', handleClick);
             }
-
             if (trigger === 'viewport' && observer) {
                 observer.observe(lottieRef.current);
             }
-            // if (trigger === 'scroll') {
-            //     checkLottieLoaded();
-            // }
         }
     }, [trigger]);
 
