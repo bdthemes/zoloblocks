@@ -441,8 +441,8 @@ const Style = ({ props }) => {
 
         .${uniqueId} .zolo-field-input-item input, 
         .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select,
         .${uniqueId} .zolo-contact-form .zolo-select__control {
-
             color: ${textColor};
             ${fieldTypoDesk}
             ${fieldBorderStyles}
@@ -457,7 +457,6 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-field-input-item input::placeholder , 
         .${uniqueId} .zolo-field-input-item textarea::placeholder,
         .${uniqueId} .zolo-contact-form .zolo-select__placeholder {
-
             color: ${placeholderColor};
         }
 
@@ -540,12 +539,8 @@ const Style = ({ props }) => {
 
         .${uniqueId} .zolo-field-input-item input, 
         .${uniqueId} .zolo-field-input-item textarea,
-        .${uniqueId} .zolo-field-input-item select {
-
-        .${uniqueId} .zolo-field-input-item input, 
-        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select,
         .${uniqueId} .zolo-contact-form .zolo-select__control {
-
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
             ${fieldBRTab}
@@ -612,10 +607,7 @@ const Style = ({ props }) => {
 
         .${uniqueId} .zolo-field-input-item input, 
         .${uniqueId} .zolo-field-input-item textarea,
-        .${uniqueId} .zolo-field-input-item select {
-
-        .${uniqueId} .zolo-field-input-item input, 
-        .${uniqueId} .zolo-field-input-item textarea,
+         .${uniqueId} .zolo-field-input-item select,
         .${uniqueId} .zolo-contact-form .zolo-select__control {
 
             ${fieldTypoMob}

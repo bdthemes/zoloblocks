@@ -162,24 +162,30 @@
         font-size: clamp(0.875rem, 1.5vw, 1rem);
         margin: var(--zolo-msg-desc-margin);
     }
-}
-
-.zolo-field-input-item {
-    position: relative;
-    line-height: 1;
-}
-
-.zolo-label-wrapper {
-    display: flex;
-    align-items: flex-start;
-    margin: var(--zolo-label-margin);
-    gap: var(--zolo-label-gap);
-
-    .zolo-required {
-        display: inline-block;
+    .zolo-field-input-item {
+        position: relative;
         line-height: 1;
-        color: var(--zolo-required-color);
-        font-size: 0.85rem;
+    }
+
+    .zolo-label-wrapper {
+        display: flex;
+        align-items: flex-start;
+        margin: var(--zolo-label-margin);
+        gap: var(--zolo-label-gap);
+
+        .zolo-required {
+            display: inline-block;
+            line-height: 1;
+            color: var(--zolo-required-color);
+            font-size: 0.85rem;
+        }
+    }
+}
+
+.wp-block-zolo-textarea {
+    .zolo-input-icon {
+        top: 18px;
+        align-items: flex-start;
     }
 }
 
@@ -190,14 +196,6 @@
         font-weight: 500;
         color: var(--zolo-label-text-color);
         display: block;
-    }
-
-    .zolo-field-icon {
-        input,
-        textarea,
-        select {
-            padding-inline-start: var(--zolo-icon-input-padding-inline-start);
-        }
     }
 
     .zolo-field-item input,
@@ -230,6 +228,17 @@
         min-height: auto;
         max-width: auto;
     }
+
+    .zolo-field-icon {
+        // .zolo-field-item {
+        input,
+        textarea,
+        select {
+            padding-inline-start: var(--zolo-icon-input-padding-inline-start);
+        }
+        // }
+    }
+
     .zolo-select-arrow {
         position: absolute;
         top: 50%;
@@ -369,13 +378,6 @@
     }
 }
 
-.wp-block-zolo-textarea {
-    .zolo-input-icon {
-        top: 18px;
-        align-items: flex-start;
-    }
-}
-
 /* field icon style css here start */
 .zolo-input-icon {
     position: absolute;
@@ -389,8 +391,8 @@
 
 .zolo-input-icon svg {
     fill: rgb(107 114 128 / var(--tw-opacity));
-    width: 0.8em;
-    height: 0.8em;
+    width: 1em;
+    height: 1em;
     display: block;
     font-size: 16px;
 }
