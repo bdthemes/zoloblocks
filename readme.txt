@@ -1,5 +1,5 @@
 === ZoloBlocks – Gutenberg Blocks, Page Builder, Gutenberg Templates & Patterns for Gutenberg Editor ===
-Contributors: bdthemes, selimmw, abutalib, muhammadasik, golam523
+Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, golam523
 Donate link: http://zoloblocks.com/
 Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
 Requires at least: 6.1
@@ -354,6 +354,20 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+### 2.2.0 [January 20, 2025]
+
+**New Features:**
+- Added SVG support in the Icon Control.
+- Introduced AI Text Generation for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
+- Enabled HTML tag selection for the Container block.
+
+**Enhancements:**
+- Added "Maintenance" and "Coming Soon" site visibility options in WordPress Reading settings, placed after "Search engine visibility."
+- Improved the Blank Page Template Library with an attention-grabbing feature.
+
+**Fixes:**
+- Resolved copy-paste issues in the Paragraph block.
+
 ### 2.1.5 [December 24, 2024]
 
 - **New Features:**
@@ -401,62 +415,5 @@ Removed the custom width range control for the submit button in preset 1.
   - **Form Block:** Corrected frontend preview icon for the submit button.
   - **Advanced Paragraph Block:** Fixed default spacing issue.
   - **WordPress v6.7.1 compatibility issue fixed.
-
-**2.1.2 [November 20, 2024]**
-
-- **Fixes:**
-  - **Column Layout:** Resolved the column layout issue.
-  - **Caption Display:** Addressed the caption hide issue.
-
-**2.1.1 [November 19, 2024]**
-
-- **New Features:**
-  - **Advanced Button:** Added expanded functionality.
-  - **Table of Contents Block:** Introduced a sticky feature for improved usability.
-  - **Gradient Text Control:** Initialized for enhanced customization.
-
-- **Fixes:**
-  - **Typography Control:** Fixed the design of the font family control.
-
-- **Improvements:**
-  - **Offset Control:** Added responsive options for better flexibility.
-  - **Code Optimization:** Improved block arrangement for enhanced performance.
-
-**2.1.0 [November 13, 2024]**
-
-- **New Features:**
-  - **Table of Contents Block:** Introduced a highly customizable block with automatic heading detection and flexible styling options for structuring long content effortlessly.
-  - **Advanced Paragraph Block:** Added enhanced customization options, including support for responsive styling across mobile, tablet, and desktop views.
-
-- **Fixes:**
-  - **Navigation Controls:** Resolved issues to improve control responsiveness and enhance the user experience.
-  - **Display Consistency:** Addressed display issues for consistent functionality.
-  - **Effects:** Fixed scale and hover flip effect issues.
-
-**2.0.0 [November 07, 2024]**
-
-- **New Features:**
-  - **Navigation Menu Block:** Introduced a fully customizable block for easy site navigation.
-  - **Post Metadata Block:** Added a block to display author, date, and categories.
-  - **Featured Image Block:** Added a block to display the featured image on single pages.
-  - **3D Spline Scenes Block:** Added a block to display interactive 3D scenes.
-  - **Post Navigation Block:** Added a block for seamless navigation between posts.
-  - **Comments Form Block:** Introduced a customizable block for post interaction.
-  - **Content Block:** Added a fully customizable block for single posts.
-  - **Brand Grids Preset:** Introduced a preset for creating brand grids.
-
-- **Improvements:**
-  - **Block Controls UI:** Optimized for an enhanced user experience.
-  - **Video Block Controls:** Improved for smoother interactions and functionality.
-  - **Slider Block:** Refined for better performance and usability.
-  - **Template Library:** Enhanced organization and accessibility.
-  - **Range Control:** Upgraded for precise and responsive adjustments.
-  - **CSS & Backdrop Filters:** Enhanced for greater creative flexibility.
-  - **Background Controls:** Relocated to a popover for a cleaner layout.
-  - **Shape Divider Controls:** Updated for better usability.
-
-- **Fixes:**
-  - **TextPath Block:** Resolved the issue with image selection.
-  - **Spectra Blocks Compatibility:** Addressed compatibility issues.
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)
