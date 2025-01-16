@@ -8,22 +8,22 @@ export const BLOCK_PREFIX = 'brand-child';
 
 export const LINK_TYPES = [
     {
-        label: __('Global', 'zoloblocks'),
+        label: __('Item', 'zoloblocks'),
         value: 'logo__global',
-    },
-    {
-        label: __('Label', 'zoloblocks'),
-        value: 'logo__label',
     },
     {
         label: __('Title', 'zoloblocks'),
         value: 'logo__title',
     },
+    {
+        label: __('Sub Title', 'zoloblocks'),
+        value: 'logo__label',
+    },
 ];
 
 export const LINK_TYPES_BASIC = [
     {
-        label: __('Global', 'zoloblocks'),
+        label: __('Item', 'zoloblocks'),
         value: 'logo__global',
     },
 ];

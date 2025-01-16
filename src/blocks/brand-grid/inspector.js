@@ -116,12 +116,12 @@ function Inspector(props) {
                                 <>
                                     <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
                                     <ToggleControl
-                                        label={__('Brand Name', 'zoloblocks')}
+                                        label={__('Title', 'zoloblocks')}
                                         checked={brandNameVisible}
                                         onChange={() => setAttributes({ brandNameVisible: !brandNameVisible })}
                                     />
                                     <ToggleControl
-                                        label={__('Brand Label', 'zoloblocks')}
+                                        label={__('Sub Title', 'zoloblocks')}
                                         checked={brandLabelVisible}
                                         onChange={() => setAttributes({ brandLabelVisible: !brandLabelVisible })}
                                     />
@@ -406,7 +406,7 @@ function Inspector(props) {
                                     </ZoloPanelBody>
                                 )}
                                 {brandLabelVisible && (
-                                    <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                    <ZoloPanelBody title={__('Sub Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                         {!(enableLogoLink && logoLinkType == 'logo__label') && (
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}

@@ -157,10 +157,11 @@ function Inspector(props) {
                                 checked={enableLogoLink}
                                 onChange={() => setAttributes({ enableLogoLink: !enableLogoLink })}
                             />
+
                             {enableLogoLink && preset !== 'zb-brand-basic-style' && (
-                                <div className="zolo-flex-row-control-tab">
+                                <div className="zolo-flex-col-control-tab">
                                     <IconicBtnGroup
-                                        label={__('Link', 'zoloblocks')}
+                                        // label={__('Link Type', 'zoloblocks')}
                                         value={logoLinkType}
                                         onChange={(value) =>
                                             setAttributes({
@@ -175,7 +176,7 @@ function Inspector(props) {
                             {enableLogoLink && preset === 'zb-brand-basic-style' && (
                                 <div className="zolo-flex-row-control-tab">
                                     <IconicBtnGroup
-                                        label={__('Link', 'zoloblocks')}
+                                        label={__('Link Type', 'zoloblocks')}
                                         value={logoLinkType}
                                         onChange={(value) =>
                                             setAttributes({
@@ -186,9 +187,10 @@ function Inspector(props) {
                                     />
                                 </div>
                             )}
-                            {enableLogoLink && preset === 'zb-brand-basic-style' && (
+
+                            {enableLogoLink && (
                                 <>
-                                    <div className="zolo-custom-heading">{__('Link', 'zoloblocks')}</div>
+                                    {/* <div className="zolo-custom-heading">{__('Link', 'zoloblocks')}</div> */}
                                     <LinkControl
                                         label={__('URL', 'zoloblocks')}
                                         value={logoLink}
@@ -233,7 +235,7 @@ function Inspector(props) {
                                 )}
                                 {brandLabelVisible && (
                                     <>
-                                        <div className="zolo-custom-heading">{__('Label', 'zoloblocks')}</div>
+                                        <div className="zolo-custom-heading">{__('Sub Title', 'zoloblocks')}</div>
                                         <TextControl
                                             label={__('Text', 'zoloblocks')}
                                             onChange={(name) =>
@@ -243,20 +245,6 @@ function Inspector(props) {
                                             }
                                             value={brandLabel}
                                             placeholder={__('label..', 'zoloblocks')}
-                                        />
-                                    </>
-                                )}
-                                {enableLogoLink && (
-                                    <>
-                                        <div className="zolo-custom-heading">{__('Link', 'zoloblocks')}</div>
-                                        <LinkControl
-                                            label={__('URL', 'zoloblocks')}
-                                            value={logoLink}
-                                            onChange={(data) =>
-                                                setAttributes({
-                                                    logoLink: data,
-                                                })
-                                            }
                                         />
                                     </>
                                 )}
@@ -480,7 +468,7 @@ function Inspector(props) {
                                     </ZoloPanelBody>
                                 )}
                                 {brandLabelVisible && (
-                                    <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                    <ZoloPanelBody title={__('Sub Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                         {!(enableLogoLink && logoLinkType == 'logo__label') && (
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
