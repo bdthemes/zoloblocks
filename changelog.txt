@@ -1,8 +1,16 @@
-### 2.2.0 [January 05, 2024]
+### 2.2.0 [January 20, 2025]
 
-- **New Features:**
-- Image Parallax Effects added to the Advanced Image block
-- **Fixes:**
+**New Features:**
+- Added SVG support in the Icon Control.
+- Introduced AI Text Generation for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
+- Enabled HTML tag selection for the Container block.
+
+**Enhancements:**
+- Added "Maintenance" and "Coming Soon" site visibility options in WordPress Reading settings, placed after "Search engine visibility."
+- Improved the Blank Page Template Library with an attention-grabbing feature.
+
+**Fixes:**
+- Resolved copy-paste issues in the Paragraph block.
 
 ### 2.1.5 [December 24, 2024]
 
