@@ -7,14 +7,13 @@ const LottiePreview = (props) => {
 
         <lottie-player
             key={`lottie-${trigger}-${speed}-${loop}-${direction}`}
-            // ref={lottieRef}
             src={url}
             direction={direction}
             background="transparent"
             mode="normal"
             {...(trigger !== 'scroll' ? { speed } : {})}
             {...(trigger !== 'scroll' && loop ? { loop: 'loop' } : {})}
-            {...(!trigger || isSelected ? { autoplay: 'autoplay' } : {})}
+            {...(!trigger && isSelected ? { autoplay: 'autoplay' } : {})}
             {...(trigger === 'hover' ? { hover: 'hover' } : {})}
             style={{
                 width: '100%',

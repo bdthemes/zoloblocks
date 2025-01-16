@@ -17,7 +17,7 @@ const Save = (props) => {
     return (
         <div {...blockProps}>
             {fileURL && (
-                <LottiePreview url={fileURL} trigger={trigger} speed={speed} loop={loop} direction={direction} isSelected={isSelected} />
+                <LottiePreview url={fileURL} trigger={trigger} speed={speed} loop={loop} direction={direction} isSelected={true} />
             )}
         </div>
     );

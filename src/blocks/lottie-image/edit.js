@@ -54,45 +54,69 @@ export default function Edit(props) {
         });
     };
 
-  useEffect(() => {
-      const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
+    useEffect(() => {
+        const lottiePlayer = lottieRef.current?.querySelector('lottie-player');
 
-      const handleComplete = () => {
-          isAnimationCompleteRef.current = true;
-      };
+        const handleComplete = () => {
+            isAnimationCompleteRef.current = true;
+        };
 
-      const handleClick = () => {
-          if (lottiePlayer && (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0)) {
-              lottiePlayer.stop();
-              lottiePlayer.play();
-              isAnimationCompleteRef.current = false;
-          }
-      };
+        const handleClick = () => {
+            if (lottiePlayer && (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0)) {
+                lottiePlayer.stop();
+                lottiePlayer.play();
+                isAnimationCompleteRef.current = false;
+            }
+        };
 
-      const observer =
-          trigger === 'viewport' &&
-          new IntersectionObserver((entries) => {
-              entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                      lottiePlayer.play();
-                  } else {
-                      lottiePlayer.pause();
-                  }
-              });
-          });
+        const checkLottieLoaded = () => {
+            console.log('checkLottieLoaded');
+            if (lottiePlayer?._lottie) {
+                const { totalFrames, goToAndStop } = lottiePlayer._lottie;
+                window.addEventListener('scroll', () => {
+                    console.log('scroll');
+                    const { top, bottom } = lottiePlayer.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
 
-      if (lottiePlayer) {
-          if (trigger === 'click') {
-              lottiePlayer.addEventListener('complete', handleComplete);
-              lottieRef.current.addEventListener('click', handleClick);
-          }
+                    const isInView = top < windowHeight && bottom > 0;
+                    if (isInView) {
+                        console.log('isInView');
+                        const progress = Math.min(Math.max((window.scrollY + windowHeight - top) / (bottom - top + windowHeight), 0), 1);
+                        let newFrame = Math.round(progress * totalFrames);
+                        if (reverse) newFrame = totalFrames - newFrame;
+                        if (newFrame < totalFrames) goToAndStop.call(lottiePlayer._lottie, newFrame, true);
+                    }
+                });
+            } else {
+                setTimeout(checkLottieLoaded, 100);
+            }
+        };
+        const observer =
+            trigger === 'viewport' &&
+            new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        lottiePlayer.play();
+                    } else {
+                        lottiePlayer.pause();
+                    }
+                });
+            });
 
-          if (trigger === 'viewport' && observer) {
-              observer.observe(lottieRef.current);
-          }
-      }
-  }, [trigger]);
+        if (lottiePlayer) {
+            if (trigger === 'click') {
+                lottiePlayer.addEventListener('complete', handleComplete);
+                lottieRef.current.addEventListener('click', handleClick);
+            }
 
+            if (trigger === 'viewport' && observer) {
+                observer.observe(lottieRef.current);
+            }
+            // if (trigger === 'scroll') {
+            //     checkLottieLoaded();
+            // }
+        }
+    }, [trigger]);
 
     return (
         <>
