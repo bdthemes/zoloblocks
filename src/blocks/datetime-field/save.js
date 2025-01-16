@@ -65,7 +65,7 @@ const Save = ({ attributes }) => {
                     data-uniqueid={uniqueId}
                     data-placeholder={placeholder}
                     data-requiredmsg={requiredMsg}
-                    data-nameattribute={customNameAttribute || 'date_field'}
+                    data-nameattribute={customNameAttribute}
                     {...(fieldType !== 'time'
                         ? {
                               'data-dateformat': dateFormat,

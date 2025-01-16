@@ -245,6 +245,7 @@ function Inspector(props) {
                                                 {...props}
                                                 ref={ref}
                                                 placeholder={placeholder}
+                                                onChange={()=>null}
                                                 style={{
                                                     pointerEvents: 'inherit !important',
                                                 }}
@@ -272,6 +273,7 @@ function Inspector(props) {
                                                 {...props}
                                                 ref={ref}
                                                 placeholder={placeholder}
+                                                onChange={()=>null}
                                                 style={{
                                                     pointerEvents: 'inherit !important',
                                                 }}
@@ -298,6 +300,7 @@ function Inspector(props) {
                                                 {...props}
                                                 ref={ref}
                                                 placeholder={placeholder}
+                                                onChange={()=>null}
                                                 style={{
                                                     pointerEvents: 'inherit !important',
                                                 }}
@@ -326,6 +329,7 @@ function Inspector(props) {
                                                 {...props}
                                                 ref={ref}
                                                 placeholder={placeholder}
+                                                onChange={()=>null}
                                                 style={{
                                                     pointerEvents: 'inherit !important',
                                                 }}
@@ -354,6 +358,7 @@ function Inspector(props) {
                                                 {...props}
                                                 ref={ref}
                                                 placeholder={placeholder}
+                                                onChange={()=>null}
                                                 style={{
                                                     pointerEvents: 'inherit !important',
                                                 }}
@@ -398,6 +403,7 @@ function Inspector(props) {
                                                     {...props}
                                                     ref={ref}
                                                     placeholder={placeholder}
+                                                    onChange={()=>null}
                                                     style={{
                                                         pointerEvents: 'inherit !important',
                                                     }}
@@ -444,6 +450,7 @@ function Inspector(props) {
                                             <input
                                                 {...props}
                                                 ref={ref}
+                                                onChange={()=>null}
                                                 placeholder={placeholder}
                                                 style={{
                                                     pointerEvents: 'inherit !important',

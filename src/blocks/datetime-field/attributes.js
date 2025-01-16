@@ -208,9 +208,6 @@ const attributes = {
     dateBodyNextColor: {
         type: 'string',
     },
-    dateBodyNextColor: {
-        type: 'string',
-    },
     dateDisableColor: {
         type: 'string',
     },

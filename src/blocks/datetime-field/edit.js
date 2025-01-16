@@ -1,10 +1,10 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState,useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import Flatpickr from 'react-flatpickr';
 
-const { handleUniqueId, DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, DisplayZoloIcon, classArrayToStr,generateUniqueName } = window.zoloModule;
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 import Style from './style';
@@ -62,8 +62,17 @@ export default function Edit(props) {
 
     const [selectedDate, setSelectedDate] =
         fieldType === 'date-range' || fieldType === 'date-multiple'
-            ? useState(dateRangeDefaultValue || [])
-            : useState(defaultValue || null);
+            ? useState( [])
+            : useState( null);
+
+    // Reset selectedDate when fieldType changes
+    useEffect(() => {
+      if (fieldType === 'date-range' || fieldType === 'date-multiple') {
+        setSelectedDate(null);
+      } else {
+        setSelectedDate(null);
+      }
+    }, [fieldType]);
 
     // Generate Flatpickr options
     const getFlatpickrOptions = () => {
@@ -112,9 +121,10 @@ export default function Edit(props) {
                         <Flatpickr
                             key={fieldType + showEnableDate} // Force reinitialization when options change
                             className="zolo-date-field"
-                            value={selectedDate}
+                            value={selectedDate || (fieldType === 'date-range' || fieldType === 'date-multiple'
+                              ? dateRangeDefaultValue:defaultValue)}
                             onChange={handleDateChange}
-                            name={customNameAttribute || 'date_field'}
+                            name={generateUniqueName(uniqueId,customNameAttribute,'date_field')}
                             placeholder={placeholder}
                             options={getFlatpickrOptions()}
                             onOpen={(event, ui, instance) => {

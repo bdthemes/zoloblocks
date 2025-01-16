@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import Flatpickr from "react-flatpickr";
-
+import {generateUniqueName} from '../../helpers/helper';
 document.addEventListener('DOMContentLoaded', () => {
   const zoloDateFieldWrap = document.querySelectorAll('.wp-block-zolo-datetime-field');
   if (zoloDateFieldWrap.length > 0) {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <Flatpickr
                 // key={fieldType + showEnableDate}
-                value={selectedDate}
+                value={selectedDate || ''}
                 onChange={(dates) => {
                   if (fieldType === 'date-range' || fieldType === 'date-multiple') {
                     const adjustedDates = dates.map(date => {
@@ -95,9 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     {...props}
                     ref={ref}
                     defaultValue={defaultValue}
+                    onChange={()=>null}
                     placeholder={placeholderMsg}
                     required={isRequired}
-                    name={customNameAttribute}
+                    name={generateUniqueName(uniqueId,customNameAttribute,'date_field')}
                     {...(isRequired && {'data-pristine-required-message': requiredMsg})}
                   />
                 )}
