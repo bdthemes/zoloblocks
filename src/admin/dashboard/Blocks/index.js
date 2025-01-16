@@ -36,55 +36,59 @@ const Blocks = () => {
 
     // update block setting for all
     const activateAllBlocks = () => {
-        setBlocksTobeUpdated((prev) => {
-            const newUpdates = {};
-            blocks.forEach((block) => {
-                if (
-                    blockCategory === 'all' ||
-                    (blockCategory === 'others' &&
-                        !block.categories.some((category) =>
-                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                        )) ||
-                    block.categories.some((category) => category === blockCategory)
-                ) {
-                    if (!block.status) {
-                        newUpdates[block.name] = true;
-                    }
-                }
-            });
-            return { ...prev, ...newUpdates };
+        const newUpdates = {};
+        const updatedBlocks = blocks.map((block) => {
+            const shouldActivate =
+                blockCategory === 'all' ||
+                (blockCategory === 'others' &&
+                    !block.categories.some((category) =>
+                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                    )) ||
+                block.categories.some((category) => category === blockCategory);
+
+            if (shouldActivate && !block.status) {
+                newUpdates[block.name] = true;
+                return { ...block, status: true };
+            }
+            return block;
         });
+
+        setBlocks(updatedBlocks);
+        setBlocksTobeUpdated((prev) => ({ ...prev, ...newUpdates }));
     };
 
     // update block setting for all
     const deactivateAllBlocks = () => {
-        setBlocksTobeUpdated((prev) => {
-            const newUpdates = {};
-            blocks.forEach((block) => {
-                if (
-                    blockCategory === 'all' ||
-                    (blockCategory === 'others' &&
-                        !block.categories.some((category) =>
-                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
-                        )) ||
-                    block.categories.some((category) => category === blockCategory)
-                ) {
-                    if (block.status) {
-                        newUpdates[block.name] = false;
-                    }
-                }
-            });
-            return { ...prev, ...newUpdates };
+        const newUpdates = {};
+        const updatedBlocks = blocks.map((block) => {
+            const shouldDeactivate =
+                blockCategory === 'all' ||
+                (blockCategory === 'others' &&
+                    !block.categories.some((category) =>
+                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                    )) ||
+                block.categories.some((category) => category === blockCategory);
+
+            if (shouldDeactivate && block.status) {
+                newUpdates[block.name] = false;
+                return { ...block, status: false };
+            }
+            return block;
         });
+
+        setBlocks(updatedBlocks);
+        setBlocksTobeUpdated((prev) => ({ ...prev, ...newUpdates }));
     };
 
     // Handle block click
     const handleBlockClick = (blockName) => {
         setBlocksTobeUpdated((prev) => {
             const currentStatus = prev[blockName] !== undefined ? prev[blockName] : blocks.find((block) => block.name === blockName).status;
+            const updatedStatus = !currentStatus;
+            setBlocks((prevBlocks) => prevBlocks.map((block) => (block.name === blockName ? { ...block, status: updatedStatus } : block)));
             return {
                 ...prev,
-                [blockName]: !currentStatus,
+                [blockName]: updatedStatus,
             };
         });
     };

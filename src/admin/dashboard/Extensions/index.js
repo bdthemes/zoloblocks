@@ -28,56 +28,37 @@ const Extensions = () => {
         fetchExtensions();
     }, []);
 
-    // activate all extensions
-    const activateAllExtensions = (status) => {
-        const inactiveExtensions = extensions.filter((extension) => !extension.status);
-
-        if (inactiveExtensions.length === 0) {
-            return;
-        }
-
-        setExtensionsTobeUpdated((prev) => {
-            const updatedExtensions = { ...prev };
-            inactiveExtensions.forEach((extension) => {
-                if (!(extension.name in updatedExtensions)) {
-                    updatedExtensions[extension.name] = true; // Set to activate
+    // activate / deactivate all extensions
+    const toggleAllExtensions = (status) => {
+        setExtensions((prevExtensions) =>
+            prevExtensions.map((extension) => {
+                if (extension.status !== status) {
+                    setExtensionsTobeUpdated((prev) => ({
+                        ...prev,
+                        [extension.name]: status,
+                    }));
+                    return { ...extension, status };
                 }
-            });
-            return updatedExtensions;
-        });
-    };
-
-    // deactivate all extensions
-    const deactivateAllExtensions = (status) => {
-        const activeExtensions = extensions.filter((extension) => extension.status);
-
-        if (activeExtensions.length === 0) {
-            return;
-        }
-
-        setExtensionsTobeUpdated((prev) => {
-            const updatedExtensions = { ...prev };
-            activeExtensions.forEach((extension) => {
-                if (!(extension.name in updatedExtensions)) {
-                    updatedExtensions[extension.name] = false; // Set to deactivate
-                }
-            });
-            return updatedExtensions;
-        });
+                return extension;
+            })
+        );
     };
 
     // Handle block click
     const handleExtensionClick = (extensionName) => {
-        setExtensionsTobeUpdated((prev) => {
-            const currentStatus =
-                prev[extensionName] !== undefined
-                    ? prev[extensionName]
-                    : extensions.find((extension) => extension.name === extensionName).status;
-            return {
-                ...prev,
-                [extensionName]: !currentStatus,
-            };
-        });
+        setExtensions((prevExtensions) =>
+            prevExtensions.map((extension) => {
+                if (extension.name === extensionName) {
+                    const newStatus = !extension.status;
+                    setExtensionsTobeUpdated((prev) => ({
+                        ...prev,
+                        [extension.name]: newStatus,
+                    }));
+                    return { ...extension, status: newStatus };
+                }
+                return extension;
+            })
+        );
     };
 
     // Save changes
@@ -170,8 +151,7 @@ const Extensions = () => {
                         <button
                             className="zolo-activated-btn"
                             onClick={() => {
-                                activateAllExtensions(true);
-                                setNotice(true);
+                                toggleAllExtensions(true);
                             }}
                         >
                             {__('Activate All', 'zoloblocks')}
@@ -179,8 +159,7 @@ const Extensions = () => {
                         <button
                             className="zolo-deactivated-btn"
                             onClick={() => {
-                                deactivateAllExtensions(false);
-                                setNotice(true);
+                                toggleAllExtensions(false);
                             }}
                         >
                             {__('Deactivate All', 'zoloblocks')}
