@@ -1,10 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, requiredMsg, showRequiredSymbol } =
+    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, requiredMsg, showRequiredSymbol,defaultValue,customNameAttribute } =
         attributes;
 
     const blockProps = useBlockProps.save({
@@ -33,7 +33,8 @@ const Save = ({ attributes }) => {
                     )}
                     <textarea
                         id="textarea"
-                        name="message"
+                        value={defaultValue || ''}
+                        name={generateUniqueName(uniqueId,customNameAttribute,"message")}
                         rows={4}
                         placeholder={placeholder}
                         required={isRequired}
