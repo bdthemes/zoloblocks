@@ -1,7 +1,10 @@
 import classNames from 'classnames';
 import { dispatch } from '@wordpress/data';
-
+const activeSidbar = null;
 const SidebarOpener = ({clientId = null }) => {
+    if(activeSidbar === null) {
+        return null;
+    }
     return (
         <div className={classNames('zolo-blocks-toolbar general-block')}>
             <button

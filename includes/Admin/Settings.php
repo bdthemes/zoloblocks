@@ -418,6 +418,19 @@ if (! class_exists('Settings')) {
                 ]
             );
 
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_sidebar_open',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             // zolo webhooks
             register_setting(
                 'zolo_blocks_settings_group',
@@ -559,26 +572,26 @@ if (! class_exists('Settings')) {
          */
         public function update_blocks($request) {
             $nonce = $request->get_param('zolo_nonce');
-        
+
             // Verify nonce
             if (!wp_verify_nonce($nonce, 'zolo-nonce')) {
                 return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
-        
+
             // Fetch the updates array from the request
             $updates = $request->get_param('updates');
             $block_names = $request->get_param('names'); // For bulk update
             $status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN); // Status for bulk update
-        
+
             // Fetch existing blocks from the options
             $blocks = get_option('zolo_blocks_settings', []);
-        
+
             // If the updates array is provided, use it for individual updates
             if (is_array($updates) && !empty($updates)) {
                 foreach ($updates as $update) {
                     $block_name = sanitize_text_field($update['name']);
                     $block_status = filter_var($update['status'], FILTER_VALIDATE_BOOLEAN);
-        
+
                     // Find and update the matching block
                     foreach ($blocks as &$block) {
                         if ($block['name'] === $block_name) {
@@ -590,7 +603,7 @@ if (! class_exists('Settings')) {
             } elseif (is_array($block_names) && !empty($block_names)) {
                 // For bulk updates with names array
                 $block_names = array_map('sanitize_text_field', $block_names);
-        
+
                 foreach ($blocks as &$block) {
                     if (in_array($block['name'], $block_names)) {
                         $block['status'] = $status;
@@ -599,10 +612,10 @@ if (! class_exists('Settings')) {
             } else {
                 return new WP_Error('invalid_request', __('Invalid block name(s) provided.', 'zoloblocks'), array('status' => 400));
             }
-        
+
             // Update the option with the new blocks data
             update_option('zolo_blocks_settings', $blocks);
-        
+
             return rest_ensure_response($blocks);
         }
 
@@ -667,26 +680,26 @@ if (! class_exists('Settings')) {
         public function update_extensions($request) {
 
             $nonce = $request->get_param('zolo_nonce');
-        
+
             // Verify nonce
             if (!wp_verify_nonce($nonce, 'zolo-nonce')) {
                 return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
-        
+
             // Fetch the updates array from the request
             $updates = $request->get_param('updates');
             $extension_names = $request->get_param('names'); // For bulk update
             $status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN); // Status for bulk update
-        
+
             // Fetch existing extensions from the options
             $extensions = get_option('zolo_extensions_settings', []);
-        
+
             // If the updates array is provided, use it for individual updates
             if (is_array($updates) && !empty($updates)) {
                 foreach ($updates as $update) {
                     $extension_name = sanitize_text_field($update['name']);
                     $extension_status = filter_var($update['status'], FILTER_VALIDATE_BOOLEAN);
-        
+
                     // Find and update the matching block
                     foreach ($extensions as &$extension) {
                         if ($extension['name'] === $extension_name) {
@@ -698,7 +711,7 @@ if (! class_exists('Settings')) {
             } elseif (is_array($extension_names) && !empty($extension_names)) {
                 // For bulk updates with names array
                 $extension_names = array_map('sanitize_text_field', $extension_names);
-        
+
                 foreach ($extensions as &$extension) {
                     if (in_array($extension['name'], $extension_names)) {
                         $extension['status'] = $status;
@@ -707,10 +720,10 @@ if (! class_exists('Settings')) {
             } else {
                 return new WP_Error('invalid_request', __('Invalid extension name(s) provided.', 'zoloblocks'), array('status' => 400));
             }
-        
+
             // Update the option with the new blocks data
             update_option('zolo_extensions_settings', $extensions);
-        
+
             return rest_ensure_response($extensions);
         }
 
