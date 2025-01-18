@@ -1,9 +1,9 @@
-import SettingBox from './setting-box';
-import Notice from '../notice';
-import { __ } from '@wordpress/i18n';
-import { useState, useEffect, useCallback } from '@wordpress/element';
-import { ToggleControl, SelectControl, Button, Modal } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
+import { Button, Modal, SelectControl, ToggleControl } from '@wordpress/components';
+import { useCallback, useEffect, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import Notice from '../notice';
+import SettingBox from './setting-box';
 const { zoloBlocks } = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);

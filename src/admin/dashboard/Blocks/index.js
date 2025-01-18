@@ -1,7 +1,6 @@
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import Notice from '../notice';
 import categories from './categories';
 import SingleBlock from './single-block';
 
@@ -14,8 +13,10 @@ const Blocks = () => {
     const [blocks, setBlocks] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
-    const [notice, setNotice] = useState(false);
 
+    const [blocksTobeUpdated, setBlocksTobeUpdated] = useState({}); // Store block changes
+
+    // fetch blocks
     const fetchBlocks = async () => {
         try {
             const response = await apiFetch({
@@ -33,94 +34,102 @@ const Blocks = () => {
         fetchBlocks();
     }, []);
 
-    // set notice to false after 3 seconds
-    useEffect(() => {
-        if (notice) {
-            setTimeout(() => {
-                setNotice(false);
-            }, 1000);
-        }
-    }, [notice]);
-
-    // update block setting
-    const updateStatus = (blockName) => {
-        const block = blocks.find((block) => block.name === blockName);
-        const status = !block.status;
-
-        apiFetch({
-            path: '/zolo/v1/blocks',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks?.zolo_nonce,
-                status: status,
-                name: blockName,
-            },
-        })
-            .then((response) => {
-                setBlocks(removeChildBlocks(response));
-                // set notice to true
-                setNotice(true);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
-    };
-
     // update block setting for all
     const activateAllBlocks = () => {
-        const inactiveBlocks = blocks.filter((block) => block.status === false);
+        const newUpdates = {};
+        const updatedBlocks = blocks.map((block) => {
+            const shouldActivate =
+                blockCategory === 'all' ||
+                (blockCategory === 'others' &&
+                    !block.categories.some((category) =>
+                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                    )) ||
+                block.categories.some((category) => category === blockCategory);
 
-        if (inactiveBlocks.length === 0) {
-            return;
-        }
-
-        const blockNames = inactiveBlocks.map((block) => block.name);
-
-        apiFetch({
-            path: '/zolo/v1/blocks',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks?.zolo_nonce,
-                status: true,
-                names: blockNames,
-            },
-        }).then((response) => {
-            setBlocks(removeChildBlocks(response));
-            // set category to all
-            setCategory('all');
-            // set notice to true
-            setNotice(true);
+            if (shouldActivate && !block.status) {
+                newUpdates[block.name] = true;
+                return { ...block, status: true };
+            }
+            return block;
         });
+
+        setBlocks(updatedBlocks);
+        setBlocksTobeUpdated((prev) => ({ ...prev, ...newUpdates }));
     };
 
     // update block setting for all
     const deactivateAllBlocks = () => {
-        const activeBlocks = blocks.filter((block) => block.status === true);
+        const newUpdates = {};
+        const updatedBlocks = blocks.map((block) => {
+            const shouldDeactivate =
+                blockCategory === 'all' ||
+                (blockCategory === 'others' &&
+                    !block.categories.some((category) =>
+                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                    )) ||
+                block.categories.some((category) => category === blockCategory);
 
-        if (activeBlocks.length === 0) {
+            if (shouldDeactivate && block.status) {
+                newUpdates[block.name] = false;
+                return { ...block, status: false };
+            }
+            return block;
+        });
+
+        setBlocks(updatedBlocks);
+        setBlocksTobeUpdated((prev) => ({ ...prev, ...newUpdates }));
+    };
+
+    // Handle block click
+    const handleBlockClick = (blockName) => {
+        setBlocksTobeUpdated((prev) => {
+            const currentStatus = prev[blockName] !== undefined ? prev[blockName] : blocks.find((block) => block.name === blockName).status;
+            const updatedStatus = !currentStatus;
+            setBlocks((prevBlocks) => prevBlocks.map((block) => (block.name === blockName ? { ...block, status: updatedStatus } : block)));
+            return {
+                ...prev,
+                [blockName]: updatedStatus,
+            };
+        });
+    };
+
+    // Save changes
+    const saveChanges = () => {
+        // Map the blocks to an array of update objects
+        const updates = Object.entries(blocksTobeUpdated).map(([name, status]) => ({
+            name,
+            status,
+        }));
+
+        // If there are no updates, return early
+        if (updates.length === 0) {
             return;
         }
 
-        const blockNames = activeBlocks.map((block) => block.name);
-
+        // Construct the API call
         apiFetch({
             path: '/zolo/v1/blocks',
             method: 'POST',
             data: {
                 zolo_nonce: zoloBlocks?.zolo_nonce,
-                status: false,
-                names: blockNames,
+                updates, // Send the array of updates
             },
-        }).then((response) => {
-            setBlocks(removeChildBlocks(response));
-            // set category to all
-            setCategory('all');
-            // set notice to true
-            setNotice(true);
-        });
+        })
+            .then((response) => {
+                // Update the local blocks state with the fresh data
+                setBlocks(removeChildBlocks(response));
+                // Clear the blocks to be updated state
+                setBlocksTobeUpdated({});
+                // reload the page
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('API Fetch Error:', error);
+            });
     };
 
     return (
         <>
-            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
@@ -175,6 +184,9 @@ const Blocks = () => {
                         </button>
                         <button className="zolo-deactivated-btn" onClick={deactivateAllBlocks}>
                             {__('Deactivate All', 'zoloblocks')}
+                        </button>
+                        <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                            {__('Save Changes', 'zoloblocks')}
                         </button>
                     </div>
                 </div>
@@ -236,13 +248,14 @@ const Blocks = () => {
                                             key={index}
                                             icon={block?.name}
                                             title={block?.title}
-                                            value={block?.status}
+                                            value={
+                                                blocksTobeUpdated[block.name] !== undefined ? blocksTobeUpdated[block.name] : block.status
+                                            }
                                             demo={block?.demo || ''}
                                             video={block?.video || ''}
                                             upcoming={block?.upcoming}
                                             onClick={() => {
-                                                updateStatus(block?.name);
-                                                setNotice(true);
+                                                handleBlockClick(block.name);
                                             }}
                                             {...(block?.is_pro && {
                                                 isPro: true,

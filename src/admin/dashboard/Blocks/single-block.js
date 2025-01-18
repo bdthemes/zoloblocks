@@ -150,7 +150,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                                         )}
                                     </>
                                 ) : (
-                                    <ToggleControl checked={value} onChange={onClick} />
+                                    <ToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom />
                                 )}
                             </>
                         )}
