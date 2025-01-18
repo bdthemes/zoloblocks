@@ -166,8 +166,11 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <TextControl
                                     label={__('Custom Name Attribute', 'zoloblocks')}
-                                    value={customNameAttribute}
-                                    onChange={(v) => setAttributes({ customNameAttribute: v })}
+                                    value={customNameAttribute || ''}
+                                    onChange={(v) => {
+                                      const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_')
+                                      setAttributes({customNameAttribute: val});
+                                    }}
                                     help={__(
                                         'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
                                         'zoloblocks'
