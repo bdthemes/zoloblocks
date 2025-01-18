@@ -34,7 +34,7 @@ function setupFormHandlers(form) {
   let pristine = new Pristine(form);
 
   //phone number validation
-  const inputs = form.querySelectorAll('input.invalid-number');
+  const inputs = form.querySelectorAll('input.invalid-number, input.invalid-country');
   if (inputs.length > 0) {
     inputs.forEach((input) => {
       const errorMessage = input.getAttribute('data-pristine-required-message') || 'This field is required.';
