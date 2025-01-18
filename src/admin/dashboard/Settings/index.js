@@ -51,7 +51,7 @@ const Settings = () => {
             setDisableCorePatterns(response.zolo_disable_core_patterns);
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
-            setSidebarOpen(response.zolo_sidebar_open);
+            setSidebarOpen(response.zolo_sidebar_opener);
         } catch (error) {
             handleFetchError(error);
         }
@@ -77,7 +77,7 @@ const Settings = () => {
             setDisableCorePatterns(response.zolo_disable_core_patterns);
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
-            setSidebarOpen(response.zolo_sidebar_open);
+            setSidebarOpen(response.zolo_sidebar_opener);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -166,7 +166,7 @@ const Settings = () => {
         updateSettings({
             path: '/wp/v2/settings',
             method: 'POST',
-            data: { zolo_sidebar_open: value },
+            data: { zolo_sidebar_opener: value },
         });
     };
 
@@ -325,9 +325,9 @@ const Settings = () => {
                                         />
                                     </SettingBox>
                                     <SettingBox
-                                        title={__('Automatic Block Recovery', 'zoloblocks')}
+                                        title={__('Editor Sidebar Open', 'zoloblocks')}
                                         description={__(
-                                            "Automatically recover any erroneous blocks on your web pages, saving you the hassle of manually clicking 'Attempt Block Recovery' buttons.",
+                                            'Enable this option to provide users easy access to the Gutenberg editor sidebar settings.',
                                             'zoloblocks'
                                         )}
                                     >

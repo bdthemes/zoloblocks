@@ -5,23 +5,18 @@ import apiFetch from '@wordpress/api-fetch';
 import { useState, useEffect, useCallback } from '@wordpress/element';
 
 const ContainerSidebarOpener = ({ clientId = null }) => {
-    // if (activeSidbar === null) {
-    //     return null;
-    // }
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    // Function to fetch settings and set video link enable status
     const fetchSettings = useCallback(async () => {
         try {
             const response = await apiFetch({ path: '/wp/v2/settings' });
-            setIsSidebarOpen(Boolean(response?.zolo_sidebar_open));
+            setIsSidebarOpen(Boolean(response?.zolo_sidebar_opener));
         } catch (error) {
             console.error('Failed to fetch settings:', error);
         }
     }, []);
 
-    // Fetch settings when the component mounts
     useEffect(() => {
         fetchSettings();
     }, [fetchSettings]);
