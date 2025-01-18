@@ -62,11 +62,9 @@ export default function Edit(props) {
         };
 
         const handleClick = () => {
-            if (lottiePlayer && (isAnimationCompleteRef.current || lottiePlayer.currentFrame === 0)) {
-                lottiePlayer.stop();
-                lottiePlayer.play();
-                isAnimationCompleteRef.current = false;
-            }
+            lottiePlayer.stop();
+            lottiePlayer.play();
+            isAnimationCompleteRef.current = false;
         };
         const observer =
             trigger === 'viewport' &&
@@ -89,7 +87,7 @@ export default function Edit(props) {
                 observer.observe(lottieRef.current);
             }
         }
-    }, [trigger]);
+    }, [trigger, loop, direction, speed]);
 
     return (
         <>
