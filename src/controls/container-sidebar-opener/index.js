@@ -3,6 +3,7 @@ import { dispatch } from '@wordpress/data';
 // const activeSidbar = null;
 import apiFetch from '@wordpress/api-fetch';
 import { useState, useEffect, useCallback } from '@wordpress/element';
+import { createBlock } from '@wordpress/blocks';
 
 const ContainerSidebarOpener = ({ clientId = null }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -28,7 +29,9 @@ const ContainerSidebarOpener = ({ clientId = null }) => {
             <button
                 className="zolo-insert-before"
                 onClick={() => {
-                    dispatch('core/block-editor').insertAfterBlock(clientId);
+                    // dispatch('core/block-editor').insertBeforeBlock(clientId);
+                    const newBlock = createBlock('zolo/container'); // Create the block to insert
+                    dispatch('core/block-editor').insertBlocks(newBlock, undefined, clientId);
                 }}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
