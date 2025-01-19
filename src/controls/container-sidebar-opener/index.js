@@ -24,14 +24,14 @@ const ContainerSidebarOpener = ({ clientId = null }) => {
     if (!isSidebarOpen) {
         return null;
     }
+    if (!clientId) return null;
     return (
         <div className={classNames('zolo-blocks-toolbar container')}>
             <button
                 className="zolo-insert-before"
                 onClick={() => {
-                    // dispatch('core/block-editor').insertBeforeBlock(clientId);
-                    const newBlock = createBlock('zolo/container'); // Create the block to insert
-                    dispatch('core/block-editor').insertBlocks(newBlock, undefined, clientId);
+                    const newBlock = createBlock('zolo/container');
+                    dispatch('core/block-editor').insertBlocks(newBlock, 'before');
                 }}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -41,15 +41,8 @@ const ContainerSidebarOpener = ({ clientId = null }) => {
             </button>
             <button
                 className="zolo-open-sidebar-settings"
-                onClick={(event) => {
-                    const childBlock = event?.target?.closest('.wp-block');
-                    if (!childBlock) {
-                        return;
-                    }
-                    const childBlockID = childBlock?.dataset?.block;
-                    if (childBlockID) {
-                        dispatch('core/block-editor').selectBlock(childBlockID);
-                    }
+                onClick={() => {
+                    dispatch('core/block-editor').selectBlock(clientId);
                 }}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
