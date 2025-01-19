@@ -8,17 +8,39 @@ import ICONS_NEGATIVE from './iconsNegative';
 export default function Render({ panelProps }) {
     const { attributes } = panelProps;
     const { shapeDivider, uniqueId } = attributes;
-    if(shapeDivider.top.type === 'custom' || shapeDivider.bottom.type === 'custom') {
-        return (
-            <div className="zolo-shape-divider-custom">
-                <img src={shapeDivider.top.image} alt="Top shape divider" className="zolo-shape-divider-custom-top" />
-                <img src={shapeDivider.bottom.image} alt="Bottom shape divider" className="zolo-shape-divider-custom-bottom" />
-            </div>
-        );
+
+    function fetchSvgContent(url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, false); // Synchronous request
+        xhr.send(null);
+        if (xhr.status === 200) {
+            return xhr.responseText;
+        }
+        return '';
     }
+
+    const SvgRenderer = ({ url, position }) => {
+        const svgContent = fetchSvgContent(url);
+        if (!svgContent) {
+            return null;
+        }
+
+        return (
+            <div className={`zolo-shape zolo-shape-custom zolo-shape-${position} ${uniqueId}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
+        );
+    };
 
     const topKey = `${uniqueId}-top`;
     const bottomKey = `${uniqueId}-bottom`;
+
+    if (shapeDivider.top.type === 'custom' || shapeDivider.bottom.type === 'custom') {
+        return (
+            <>
+                {shapeDivider.top.type === 'custom' && <SvgRenderer position="top" url={shapeDivider.top.image} />}
+                {shapeDivider.bottom.type === 'custom' && <SvgRenderer position="bottom" url={shapeDivider.bottom.image} />}
+            </>
+        );
+    }
 
     return (
         <>

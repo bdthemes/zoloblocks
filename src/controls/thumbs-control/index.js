@@ -1,7 +1,7 @@
-
 /**
  * WordPress dependencies
  */
+import { __ } from '@wordpress/i18n';
 
 const ThumbsControl = (props) => {
     const { label, value, options, onChange, itemsPerRow = 2 } = props;
@@ -10,16 +10,15 @@ const ThumbsControl = (props) => {
     const handleMediaUpload = (option) => {
         if (option.value === 'custom') {
             const mediaUploader = wp.media({
-                title: 'Choose an SVG Shape',
-                button: { text: 'Use this shape' },
-                multiple: false, // Allow only a single image to be selected
+                title: __('Select a custom shape', 'zoloblocks'),
+                button: { text: __('Use this shape', 'zoloblocks') },
+                multiple: false,
                 library: { type: 'image/svg+xml' }, // Only allow SVG files
             });
 
             mediaUploader.on('select', () => {
                 const selectedImage = mediaUploader.state().get('selection').first().toJSON();
                 if (selectedImage.mime === 'image/svg+xml') {
-                    // Update the parent with the selected image URL and set its type to "custom"
                     onChange({
                         value: 'custom',
                         image: selectedImage.url ? selectedImage.url : null,
@@ -44,7 +43,7 @@ const ThumbsControl = (props) => {
             {options.map((option) => (
                 <button
                     key={`zolo-thumbs-picker-${option.value}`}
-                    onClick={() => handleMediaUpload(option)} // Trigger media uploader on custom option
+                    onClick={() => handleMediaUpload(option)}
                     className={`zolo-thumbs-control-item ${value === option.value ? 'zolo-thumbs-active' : ''}`}
                 >
                     {option.image && typeof option.image === 'string' ? (

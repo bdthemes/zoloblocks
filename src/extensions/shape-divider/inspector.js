@@ -64,27 +64,8 @@ const Inspector = ({ panelProps }) => {
                     normalComponents={
                         <>
                             <div className="zolo-shape-thumbs-top">
-                                {/* <ThumbsControl
-                                    value={shapeDivider.top.type}
-                                    // attributes={attributes}
-                                    // setAttributes={setAttributes}
-                                    options={SHAPE_DIVIDER}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            shapeDivider: {
-                                                ...shapeDivider,
-                                                top: {
-                                                    ...shapeDivider.top,
-                                                    type: value,
-                                                },
-                                            },
-                                        })
-                                    }
-                                /> */}
                                 <ThumbsControl
                                     value={shapeDivider.top.type}
-                                    attributes={attributes}
-                                    setAttributes={setAttributes}
                                     options={SHAPE_DIVIDER}
                                     onChange={(selectedOption) =>
                                         setAttributes({
@@ -108,13 +89,14 @@ const Inspector = ({ panelProps }) => {
                                 <ThumbsControl
                                     value={shapeDivider.bottom.type}
                                     options={SHAPE_DIVIDER}
-                                    onChange={(value) =>
+                                    onChange={(selectedOption) =>
                                         setAttributes({
                                             shapeDivider: {
                                                 ...shapeDivider,
                                                 bottom: {
                                                     ...shapeDivider.bottom,
-                                                    type: value,
+                                                    type: selectedOption.value,
+                                                    image: selectedOption.image,
                                                 },
                                             },
                                         })
