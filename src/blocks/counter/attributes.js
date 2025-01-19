@@ -8,6 +8,7 @@ const {
     generateTextShadowAttributies,
     generateTextStrokeAttributies,
     generateNormalBGAttributes,
+    generateMaskAttributes,
 } = window.zoloModule;
 
 import {
@@ -37,6 +38,7 @@ import {
     COUNTER_TEXT_SHADOW,
     COUNTER_TEXT_STROKE,
     ICON_IMAGE_SIZE,
+    NUMBER_BG_MASK,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -106,8 +108,14 @@ const attributes = {
     // Image
     ...generateResRangeAttributies(ICON_IMAGE_SIZE),
 
+    ...generateMaskAttributes(NUMBER_BG_MASK),
+
     //Block Specific Attributes
     preset: {
+        type: 'string',
+        default: '',
+    },
+    contentCounterTitle: {
         type: 'string',
         default: '',
     },

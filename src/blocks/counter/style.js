@@ -16,6 +16,7 @@ const {
     generateTextStrokeStyles,
     GlobalStyleHanlder,
     generateResAlignmentStyle,
+    generateMaskStyles,
 } = window.zoloModule;
 
 import {
@@ -46,6 +47,7 @@ import {
     TITLE_BORDER_RADIUS,
     TITLE_PADDING,
     ICON_BOX_SHADOW,
+    NUMBER_BG_MASK,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -333,6 +335,12 @@ const Style = ({ props }) => {
         noMainBGImg: true,
     });
 
+    // masking
+    const { maskStyle: maskStyles } = generateMaskStyles({
+        attributes,
+        controlName: NUMBER_BG_MASK,
+    });
+
     /**
      * All Style Combination
      */
@@ -385,7 +393,7 @@ const Style = ({ props }) => {
                         ${titlePaddingDesk}
                     }
                 `
-            : ''
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon svg {
@@ -406,6 +414,18 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
             ${iconImageWidthDesk}
         }
+
+        ${
+            preset === 'style-4'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-4 .zolo-counter-count{
+                        ${maskStyles}
+                    }
+                `
+                : ''
+        }
+
+
   	`;
 
     const tabletAllStyle = `
@@ -448,7 +468,7 @@ const Style = ({ props }) => {
                         ${titlePaddingTab}
                     }
                 `
-            : ''
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon .zolo__display-icon, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
@@ -510,7 +530,7 @@ const Style = ({ props }) => {
                         ${titlePaddingMob}
                     }
                 `
-            : ''
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon .zolo__display-icon, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {

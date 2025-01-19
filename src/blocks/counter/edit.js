@@ -37,6 +37,7 @@ export default function Edit(props) {
         iconTypeImage,
         imageRes,
         counterDirection,
+        contentCounterTitle,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -100,7 +101,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
+                <div className={`zolo-counter-wrap ${preset} ${counterDirection} ${preset !== 'style-3' ? contentCounterTitle : ''}`}>
                     <div class="zolo-counter-item">
                         {hideIcon && (
                             <div class="zolo-counter-icon">

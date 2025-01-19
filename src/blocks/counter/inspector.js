@@ -26,6 +26,8 @@ const {
     ResAlignmentControl,
     ZoloPanelBody,
     ImageSizes,
+    MaskControl,
+    TabPanelControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -58,6 +60,9 @@ import {
     CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
     PRESETS_ALIGNMENT,
+    ZOLO_CONTENT_LAYOUT,
+    NUMBER_BG_MASK,
+    ZOLO_CONTENT_LAYOUT_4,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -86,6 +91,8 @@ function Inspector(props) {
         suffixColor,
         imageRes,
         counterDirection,
+        contentCounterTitle,
+        maskImage,
     } = attributes;
 
     const requiredProps = {
@@ -107,6 +114,11 @@ function Inspector(props) {
                 });
                 break;
             case 'style-3':
+                setAttributes({
+                    hideIcon: false,
+                });
+                break;
+            case 'style-4':
                 setAttributes({
                     hideIcon: false,
                 });
@@ -148,6 +160,7 @@ function Inspector(props) {
                                     </div>
                                 )
                             }
+
                             <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Icon', 'zoloblocks')}
@@ -155,24 +168,47 @@ function Inspector(props) {
                                 onChange={() => setAttributes({ hideIcon: !hideIcon })}
                             />
 
-                            <ToggleControl
+                            {/* <ToggleControl
                                 label={__('Number', 'zoloblocks')}
                                 checked={hideCounter}
                                 onChange={() => setAttributes({ hideCounter: !hideCounter })}
-                            />
-                            {hideCounter && (
-                                <ToggleControl
-                                    label={__('Suffix', 'zoloblocks')}
-                                    checked={hideSuffix}
-                                    onChange={() => setAttributes({ hideSuffix: !hideSuffix })}
-                                />
-                            )}
+                            /> */}
+
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={hideTitle}
                                 onChange={() => setAttributes({ hideTitle: !hideTitle })}
                             />
-                            {(preset === '' || preset === 'style-3') && (
+                            {hideTitle && preset !== 'style-3' && preset !== 'style-4' && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Direction', 'zoloblocks')}
+                                        value={contentCounterTitle}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                contentCounterTitle: value,
+                                            })
+                                        }
+                                        options={ZOLO_CONTENT_LAYOUT}
+                                    />
+                                </div>
+                            )}
+
+                            {hideTitle && preset === 'style-4' && (
+                                <div className="zolo-flex-row-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Direction', 'zoloblocks')}
+                                        value={contentCounterTitle}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                contentCounterTitle: value,
+                                            })
+                                        }
+                                        options={ZOLO_CONTENT_LAYOUT_4}
+                                    />
+                                </div>
+                            )}
+                            {preset !== 'style-1' && (
                                 <>
                                     <CardDivider />
                                     <ResAlignmentControl
@@ -188,7 +224,7 @@ function Inspector(props) {
                                 <>
                                     <CardDivider />
                                     <ResAlignmentControl
-                                        label={__('Alignment', 'zoloblocks')}
+                                        label={__('Icon Alignment', 'zoloblocks')}
                                         controlName={CONTENT_V_ALIGN}
                                         requiredProps={requiredProps}
                                         alignOptions={FLEX_ALIGN_OPTIONS}
@@ -213,6 +249,13 @@ function Inspector(props) {
                                             label={__('Suffix', 'zoloblocks')}
                                             value={counterSuffix}
                                             onChange={(counterSuffix) => setAttributes({ counterSuffix })}
+                                        />
+                                    )}
+                                    {hideCounter && (
+                                        <ToggleControl
+                                            label={__('Suffix', 'zoloblocks')}
+                                            checked={hideSuffix}
+                                            onChange={() => setAttributes({ hideSuffix: !hideSuffix })}
                                         />
                                     )}
                                 </>
@@ -411,61 +454,138 @@ function Inspector(props) {
                         )}
                         {hideCounter && (
                             <ZoloPanelBody title={__('Number', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={textColor}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            textColor: value,
-                                        })
-                                    }
-                                />
-                                {hideSuffix && (
-                                    <ColorControl
-                                        label={__('Suffix Color', 'zoloblocks')}
-                                        color={suffixColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                suffixColor: value,
-                                            })
-                                        }
-                                    />
-                                )}
-
-                                <TypographyDropdown
-                                    label={__('Typography', 'zoloblocks')}
-                                    typoPrefixConstant={COUNTER_TYPOGRAPHY}
-                                    requiredProps={requiredProps}
-                                />
-                                <TextShadowControl
-                                    controlName={COUNTER_TEXT_SHADOW}
-                                    requiredProps={requiredProps}
-                                    enableTransition={false}
-                                />
-                                <TextStrokeControl
-                                    controlName={COUNTER_TEXT_STROKE}
-                                    requiredProps={requiredProps}
-                                    enableTransition={false}
-                                />
-                                {hideSuffix && (
+                                {preset !== 'style-4' && (
                                     <>
-                                        <ResRangeControl
-                                            label={__('Space Between', 'zoloblocks')}
-                                            controlName={COUNTER_GAP}
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={textColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textColor: value,
+                                                })
+                                            }
+                                        />
+                                        {hideSuffix && (
+                                            <ColorControl
+                                                label={__('Suffix Color', 'zoloblocks')}
+                                                color={suffixColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        suffixColor: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={COUNTER_TYPOGRAPHY}
                                             requiredProps={requiredProps}
-                                            min={0}
-                                            max={100}
-                                            step={1}
+                                        />
+                                        <TextShadowControl
+                                            controlName={COUNTER_TEXT_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <TextStrokeControl
+                                            controlName={COUNTER_TEXT_STROKE}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                        {hideSuffix && (
+                                            <>
+                                                <ResRangeControl
+                                                    label={__('Space Between', 'zoloblocks')}
+                                                    controlName={COUNTER_GAP}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={100}
+                                                    step={1}
+                                                />
+                                            </>
+                                        )}
+                                        <CardDivider />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={COUNTER_MARGIN}
+                                            requiredProps={requiredProps}
                                         />
                                     </>
                                 )}
-                                <CardDivider />
 
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zoloblocks')}
-                                    controlName={COUNTER_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
+                                {preset === 'style-4' && (
+                                    <>
+                                        <TabPanelControl
+                                            options={[
+                                                { label: __('Normal', 'zoloblocks'), value: 'normal' },
+                                                { label: __('Mask', 'zoloblocks'), value: 'hover' },
+                                            ]}
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={textColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                textColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    {hideSuffix && (
+                                                        <ColorControl
+                                                            label={__('Suffix Color', 'zoloblocks')}
+                                                            color={suffixColor}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    suffixColor: value,
+                                                                })
+                                                            }
+                                                        />
+                                                    )}
+
+                                                    <TypographyDropdown
+                                                        label={__('Typography', 'zoloblocks')}
+                                                        typoPrefixConstant={COUNTER_TYPOGRAPHY}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <TextShadowControl
+                                                        controlName={COUNTER_TEXT_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    />
+                                                    <TextStrokeControl
+                                                        controlName={COUNTER_TEXT_STROKE}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    />
+                                                    {hideSuffix && (
+                                                        <>
+                                                            <ResRangeControl
+                                                                label={__('Space Between', 'zoloblocks')}
+                                                                controlName={COUNTER_GAP}
+                                                                requiredProps={requiredProps}
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                            />
+                                                        </>
+                                                    )}
+                                                    <CardDivider />
+                                                    <ResDimensionsControl
+                                                        label={__('Margin', 'zoloblocks')}
+                                                        controlName={COUNTER_MARGIN}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <MaskControl controlName={NUMBER_BG_MASK} requiredProps={requiredProps} />
+                                                </>
+                                            }
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
                         {hideTitle && (
