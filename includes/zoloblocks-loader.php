@@ -30,6 +30,7 @@ use Zolo\Form\FormAjax;
 use Zolo\Form\Recaptcha;
 use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
+use Zolo\Extensions\ExtensionsLoader;
 
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
@@ -72,6 +73,7 @@ class ZoloBlocks_Loader {
         ZoloEnqueues::getInstance();
         FontLoader::getInstance();
         PostMeta::getInstance();
+        ExtensionsLoader::getInstance();
 
         // form
         Form::getInstance();
