@@ -10,6 +10,9 @@ export default function Render({ panelProps }) {
     const { shapeDivider, uniqueId } = attributes;
 
     function fetchSvgContent(url) {
+        if (zoloParams?.zolo_pro_status !== 'active') {
+            return '';
+        }
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url, false); // Synchronous request
         xhr.send(null);
@@ -26,14 +29,17 @@ export default function Render({ panelProps }) {
         }
 
         return (
-            <div className={`zolo-shape zolo-shape-custom zolo-shape-${position} ${uniqueId}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
+            <div
+                className={`zolo-shape zolo-shape-custom zolo-shape-${position} ${uniqueId}`}
+                dangerouslySetInnerHTML={{ __html: svgContent }}
+            />
         );
     };
 
     const topKey = `${uniqueId}-top`;
     const bottomKey = `${uniqueId}-bottom`;
 
-    if (shapeDivider.top.type === 'custom' || shapeDivider.bottom.type === 'custom') {
+    if (shapeDivider.top.type === 'custom' || (shapeDivider.bottom.type === 'custom' && zoloParams?.zolo_pro_status === 'active')) {
         return (
             <>
                 {shapeDivider.top.type === 'custom' && <SvgRenderer position="top" url={shapeDivider.top.image} />}

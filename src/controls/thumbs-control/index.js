@@ -2,13 +2,13 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-
+ const { zoloParams } = window;
 const ThumbsControl = (props) => {
     const { label, value, options, onChange, itemsPerRow = 2 } = props;
-
+console.log(props);
     // Handler to open WordPress Media Uploader
     const handleMediaUpload = (option) => {
-        if (option.value === 'custom') {
+        if (option.value === 'custom' && zoloParams?.zolo_pro_status === 'active') {
             const mediaUploader = wp.media({
                 title: __('Select a custom shape', 'zoloblocks'),
                 button: { text: __('Use this shape', 'zoloblocks') },
@@ -51,6 +51,7 @@ const ThumbsControl = (props) => {
                     ) : null}
                     {option.image && typeof option.image !== 'string' ? option.image : ''}
                     {option.label ? <span>{option.label}</span> : ''}
+                    {option.pro ? <span className="zolo-pro-badge">{__('Pro', 'zoloblocks')}</span> : ''}
                 </button>
             ))}
         </div>
