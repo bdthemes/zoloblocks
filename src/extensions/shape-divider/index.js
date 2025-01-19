@@ -4,6 +4,7 @@ import Render from './render';
 import Style from './style.js';
 
 addFilter('zolo.extensions.controls.shapeDivider', 'zolo/shape-divider', (panels, panelProps) => {
+    console.log('panelProps', panelProps.attributes.shapeDivider);
     if (panelProps.attributes.shapeDivider) {
         panels.push(<Inspector key={`controls-shape-divider-${panelProps.attributes.uniqueId}`} panelProps={panelProps} />);
     }

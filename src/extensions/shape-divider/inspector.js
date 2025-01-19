@@ -67,6 +67,8 @@ const Inspector = ({ panelProps }) => {
                             <div className="zolo-shape-thumbs-top">
                                 <ThumbsControl
                                     value={shapeDivider.top.type}
+                                    attributes={attributes}
+                                    setAttributes={setAttributes}
                                     options={SHAPE_DIVIDER}
                                     onChange={(value) =>
                                         setAttributes({

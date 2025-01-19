@@ -15,7 +15,8 @@ export const TB_POSITION = [
 
 // Common shape divider options
 const SHAPE_OPTIONS = [
-    { label: 'None', value: 'none', icon: '' },
+    { label: 'Custom', value: 'custom', icon: 'custom' },
+    // { label: 'None', value: 'none', icon: '' },
     { label: 'Arrow', value: 'arrow', icon: 'arrow' },
     { label: 'Book', value: 'book', icon: 'book' },
     { label: 'Clouds', value: 'clouds', icon: 'clouds' },
