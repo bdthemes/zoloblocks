@@ -1,5 +1,6 @@
 import { select } from '@wordpress/data';
 import CryptoJS from 'crypto-js';
+import {forwardRef} from '@wordpress/element';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
@@ -102,11 +103,11 @@ export const removeEmptyCSSProperties = (cssString) => {
 };
 
 //Dynamic Tag
-export const DynamicTag = (props) => {
+export const DynamicTag = forwardRef((props,ref) => {
   const {tagName, children, ...attr} = props;
   const Tag = tagName || 'h2';
-  return <Tag {...attr}>{children}</Tag>;
-};
+  return <Tag ref={ref} {...attr}>{children}</Tag>;
+});
 
 export const classArrayToStr = (classes) => {
   if (typeof classes !== 'object') {
