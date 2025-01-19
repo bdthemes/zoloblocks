@@ -5,7 +5,6 @@ import apiFetch from '@wordpress/api-fetch';
 import { useState, useEffect, useCallback } from '@wordpress/element';
 
 const ContainerSidebarOpener = ({ clientId = null }) => {
-
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const fetchSettings = useCallback(async () => {
@@ -20,6 +19,7 @@ const ContainerSidebarOpener = ({ clientId = null }) => {
     useEffect(() => {
         fetchSettings();
     }, [fetchSettings]);
+
     if (!isSidebarOpen) {
         return null;
     }
@@ -38,10 +38,14 @@ const ContainerSidebarOpener = ({ clientId = null }) => {
             </button>
             <button
                 className="zolo-open-sidebar-settings"
-                onClick={() => {
-                    const sidebar = document.querySelector('.edit-post-sidebar');
-                    if (sidebar) {
-                        sidebar.classList.add('is-open');
+                onClick={(event) => {
+                    const childBlock = event?.target?.closest('.wp-block');
+                    if (!childBlock) {
+                        return;
+                    }
+                    const childBlockID = childBlock?.dataset?.block;
+                    if (childBlockID) {
+                        dispatch('core/block-editor').selectBlock(childBlockID);
                     }
                 }}
             >
