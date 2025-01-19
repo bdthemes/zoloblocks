@@ -1,42 +1,43 @@
-import { useState } from 'react';
 
 /**
  * WordPress dependencies
  */
 
 const ThumbsControl = (props) => {
-    console.log(props);
     const { label, value, options, onChange, itemsPerRow = 2 } = props;
-    const [customImage, setCustomImage] = useState('');
 
     // Handler to open WordPress Media Uploader
-const handleMediaUpload = (option) => {
-    if (option.value === 'custom') {
-        const mediaUploader = wp.media({
-            title: 'Choose an SVG Shape',
-            button: { text: 'Use this shape' },
-            multiple: false, // Allow only a single image to be selected
-            library: { type: 'image/svg+xml' }, // Only allow SVG files
-        });
+    const handleMediaUpload = (option) => {
+        if (option.value === 'custom') {
+            const mediaUploader = wp.media({
+                title: 'Choose an SVG Shape',
+                button: { text: 'Use this shape' },
+                multiple: false, // Allow only a single image to be selected
+                library: { type: 'image/svg+xml' }, // Only allow SVG files
+            });
 
-        mediaUploader.on('select', () => {
-            const selectedImage = mediaUploader.state().get('selection').first().toJSON();
+            mediaUploader.on('select', () => {
+                const selectedImage = mediaUploader.state().get('selection').first().toJSON();
+                if (selectedImage.mime === 'image/svg+xml') {
+                    // Update the parent with the selected image URL and set its type to "custom"
+                    onChange({
+                        value: 'custom',
+                        image: selectedImage.url ? selectedImage.url : null,
+                    });
+                } else {
+                    alert('Only SVG images are allowed.');
+                }
+            });
 
-            if (selectedImage.mime === 'image/svg+xml') {
-                // setCustomImage(selectedImage.url); // Store the selected image URL
-                onChange(selectedImage.url); // Update the parent with the selected image URL
-            } else {
-                alert('Only SVG images are allowed.');
-            }
-        });
-
-        mediaUploader.open();
-    } else {
-        onChange(option.value); // Handle other options
-    }
-};
-
-
+            mediaUploader.open();
+        } else {
+            // Handle other options (non-custom)
+            onChange({
+                value: option.value,
+                image: null,
+            });
+        }
+    };
 
     return (
         <div id={label} label={label} className={`zolo-thumbs-control zolo-thumbs-control-${itemsPerRow}`}>
@@ -53,7 +54,6 @@ const handleMediaUpload = (option) => {
                     {option.label ? <span>{option.label}</span> : ''}
                 </button>
             ))}
-            {customImage && <img src={customImage} alt="Custom preview" className="zolo-custom-image-preview" />}
         </div>
     );
 };
