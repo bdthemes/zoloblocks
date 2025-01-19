@@ -8,14 +8,7 @@ const { __ } = wp.i18n;
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const { DscToggle, preset, isLinkable } = attributes;
-
-    // update the profile list
-    const updateProfiles = (index, key, value) => {
-        const updatedProfiles = cloneDeep(listProfiles);
-        updatedProfiles[index][key] = value;
-        setAttributes({ listProfiles: updatedProfiles });
-    };
-
+    
     // add a new profile
     const addProfile = () => {
         const newProfile = {
@@ -26,6 +19,13 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
             desc: 'Customize widget dimension beyond normal scale',
         };
         setAttributes({ listProfiles: [...listProfiles, newProfile] });
+    };
+    
+    // update the profile list
+    const updateProfiles = (index, key, value) => {
+        const updatedProfiles = cloneDeep(listProfiles);
+        updatedProfiles[index][key] = value;
+        setAttributes({ listProfiles: updatedProfiles });
     };
 
     // remove a profile
