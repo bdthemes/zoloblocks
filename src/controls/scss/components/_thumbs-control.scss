@@ -13,6 +13,7 @@
         border-radius: 6px;
         background: transparent;
         height: 40px;
+        line-height: 1;
         position: relative;
         transition:
             border 0.3s,
@@ -32,6 +33,11 @@
                 color: #3f3f48;
             }
         }
+        &.zolo-thumbs-pro{
+            span{
+                display: inline-block;
+            }
+        }
         span {
             display: none;
         }
@@ -39,7 +45,7 @@
         &:hover {
             border-color: #3f8efc;
             box-shadow: 0 0 0 1px #3f8efc;
-            span {
+            span:not(.zolo-pro-badge){
                 color: #3f8efc;
             }
         }

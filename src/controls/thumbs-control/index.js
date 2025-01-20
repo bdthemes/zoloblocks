@@ -44,7 +44,7 @@ console.log(props);
                 <button
                     key={`zolo-thumbs-picker-${option.value}`}
                     onClick={() => handleMediaUpload(option)}
-                    className={`zolo-thumbs-control-item ${value === option.value ? 'zolo-thumbs-active' : ''}`}
+                    className={`zolo-thumbs-control-item ${value === option.value ? 'zolo-thumbs-active' : ''} ${option.pro ? 'zolo-thumbs-pro' : ''}`}
                 >
                     {option.image && typeof option.image === 'string' ? (
                         <img src={option.image} alt={option.label || option.value} />
