@@ -10,12 +10,12 @@ export default function Render({ panelProps }) {
     const { shapeDivider, uniqueId } = attributes;
 
     function fetchSvgContent(url) {
-        if (zoloParams?.zolo_pro_status !== 'active') {
+        if(!url) {
             return '';
         }
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url, false); // Synchronous request
-        xhr.send(null);
+        xhr.send();
         if (xhr.status === 200) {
             return xhr.responseText;
         }
