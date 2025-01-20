@@ -356,3 +356,10 @@ export const IMAGE_BORDER = 'imageBorder';
 export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';
 
 export const NUMBER_BG_MASK = 'numberBgMask';
+export const NUMBER_BACKGROUND = 'numberBg';
+export const NUMBER_BG_SIZE = 'numberBorder';
+export const NUMBER_PADDING = 'numberPadding';
+
+export const NUMBER_BORDER = 'numberBorder';
+export const NUMBER_BORDER_RADIUS = 'numberBorderRadius';
+export const NUMBER_BOX_SHADOW = 'numberTextShadow';

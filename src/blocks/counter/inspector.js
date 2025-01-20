@@ -63,6 +63,12 @@ import {
     ZOLO_CONTENT_LAYOUT,
     NUMBER_BG_MASK,
     ZOLO_CONTENT_LAYOUT_4,
+    NUMBER_BACKGROUND,
+    NUMBER_BG_SIZE,
+    NUMBER_PADDING,
+    NUMBER_BORDER,
+    NUMBER_BOX_SHADOW,
+    NUMBER_BORDER_RADIUS,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -542,7 +548,6 @@ function Inspector(props) {
                                                             }
                                                         />
                                                     )}
-
                                                     <TypographyDropdown
                                                         label={__('Typography', 'zoloblocks')}
                                                         typoPrefixConstant={COUNTER_TYPOGRAPHY}
@@ -571,10 +576,45 @@ function Inspector(props) {
                                                         </>
                                                     )}
                                                     <CardDivider />
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={NUMBER_BACKGROUND}
+                                                        noMainBGImg={true}
+                                                    />
+                                                    <ResRangeControl
+                                                        label={__('Background Size', 'zoloblocks')}
+                                                        controlName={NUMBER_BG_SIZE}
+                                                        requiredProps={requiredProps}
+                                                        min={0}
+                                                        max={100}
+                                                        step={1}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Padding', 'zoloblocks')}
+                                                        controlName={NUMBER_PADDING}
+                                                        requiredProps={requiredProps}
+                                                    />
                                                     <ResDimensionsControl
                                                         label={__('Margin', 'zoloblocks')}
                                                         controlName={COUNTER_MARGIN}
                                                         requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
+                                                    <BorderControl
+                                                        label={__('Border', 'zoloblocks')}
+                                                        controlName={NUMBER_BORDER}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <BoxShadowControl
+                                                        controlName={NUMBER_BOX_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={NUMBER_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={true}
                                                     />
                                                 </>
                                             }
