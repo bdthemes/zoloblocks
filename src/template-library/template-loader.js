@@ -37,6 +37,7 @@ const TemplatesLoader = ({
     // favorites
     favIds,
     handleFavTemplate,
+    attemptComplete,
 }) => {
     let itemText = '';
     switch (activeTab) {
@@ -337,7 +338,13 @@ const categoryTypes = ['demos_category', 'templates_category', 'pages_category',
                         </button>
                     </div>
                 )}
-                {items?.length === 0 && !loading && (
+                {items?.length === 0 && !loading && (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites Items') && (
+                    <div className="no-found-item">
+                        <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
+                    </div>
+                )}
+
+                {items?.length === 0 && !loading && (itemText === 'Demos' || itemText === 'Patterns') && attemptComplete && (
                     <div className="no-found-item">
                         <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
                     </div>

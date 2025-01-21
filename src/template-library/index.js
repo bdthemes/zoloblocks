@@ -2,11 +2,11 @@ import apiFetch from '@wordpress/api-fetch';
 import { Button, Modal } from '@wordpress/components';
 import { subscribe, useSelect } from '@wordpress/data';
 import { getTextContent } from '@wordpress/rich-text'; 
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
-
+import domReady from '@wordpress/dom-ready';
 /**
  * Template Library Style
  */
@@ -58,6 +58,7 @@ function ZoloBlocksTemplateLibraryButton() {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
+    const [attemptComplete, setAttemptComplete] = useState(false);
     const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
 
     /**
@@ -333,21 +334,23 @@ function ZoloBlocksTemplateLibraryButton() {
     }, [activeDemoCat]); // eslint-disable-line
 
     useEffect(() => {
-        const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
-        const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-        if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
-            renderButton(toolbar);
-        }
+        domReady(() => {
+            const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
+            const libraryButton = document.querySelector('.zoloblocks-template-library-button');
+            if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
+                renderButton(toolbar);
+            }
 
-        if (libraryButton) {
-            setTimeout(() => {
-                if (isPageEmpty) {
-                    libraryButton.classList.add('empty-page');
-                } else {
-                    libraryButton.classList.remove('empty-page');
-                }
-            }, 1000);
-        }
+            if (libraryButton) {
+                setTimeout(() => {
+                    if (isPageEmpty) {
+                        libraryButton.classList.add('empty-page');
+                    } else {
+                        libraryButton.classList.remove('empty-page');
+                    }
+                }, 1000);
+            }
+        });
     }, [currentPostType, isPageEmpty]);
 
     // Filter by Tags
@@ -511,7 +514,7 @@ function ZoloBlocksTemplateLibraryButton() {
             setFavTags([]);
         }
     }, [favIds, allTemplates, favStatus]);
-
+    let count = useRef(0);
     // fetch templates
     const fetchTemplates = async () => {
         setLoading(true);
@@ -520,8 +523,15 @@ function ZoloBlocksTemplateLibraryButton() {
             method: 'GET',
         }).then((response) => {
             const { data } = response;
+            if (!data && count.current >= 2) {
+                setAttemptComplete(true);
+                setLoading(false);
+                return;
+            }
+
             if (!data) {
-                console.log('No data found');
+                count.current += 1;
+                pullNewDemos();
                 return;
             }
 
@@ -570,6 +580,7 @@ function ZoloBlocksTemplateLibraryButton() {
             const { data } = response;
             if (!data) {
                 console.log('No data found');
+                setLoading(false);
                 return;
             }
 
@@ -638,46 +649,46 @@ function ZoloBlocksTemplateLibraryButton() {
 
     // pull new demos
     const pullNewDemos = () => {
-        setLoading(true);
-        jQuery.ajax({
-            url: zoloParams?.ajaxurl,
-            type: 'POST',
-            nonce: zoloParams?.nonce,
-            data: {
-                action: 'zolo_demo_pull',
-            },
-            success: function (response) {
-                if (response.success) {
-                    fetchTemplates();
-                    setLoading(false);
-                } else {
-                    console.log('Error:', response.data);
-                }
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            },
-        });
+        setTimeout(() => {
+            setLoading(true);
+            jQuery.ajax({
+                url: zoloParams?.ajaxurl,
+                type: 'POST',
+                nonce: zoloParams?.nonce,
+                data: {
+                    action: 'zolo_demo_pull',
+                },
+                success: function (response) {
+                    if (response.success) {
+                        fetchTemplates();
+                    } else {
+                        console.log('Error:', response.data);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                },
+            });
 
-        jQuery.ajax({
-            url: zoloParams?.ajaxurl,
-            type: 'POST',
-            nonce: zoloParams?.nonce,
-            data: {
-                action: 'zolo_demo_template_pull',
-            },
-            success: function (response) {
-                if (response.success) {
-                    fetchDemoTemplates();
-                    setLoading(false);
-                } else {
-                    console.log('Error:', response.data);
-                }
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            },
-        });
+            jQuery.ajax({
+                url: zoloParams?.ajaxurl,
+                type: 'POST',
+                nonce: zoloParams?.nonce,
+                data: {
+                    action: 'zolo_demo_template_pull',
+                },
+                success: function (response) {
+                    if (response.success) {
+                        fetchDemoTemplates();
+                    } else {
+                        console.log('Error:', response.data);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                },
+            });
+        }, 1500);
     };
 
     /**
@@ -848,6 +859,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                     // fav templates
                                     favIds={favIds}
                                     handleFavTemplate={handleFavTemplate}
+                                    attemptComplete={attemptComplete}
                                 />
                             )
                         }
@@ -885,6 +897,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                     // fav templates
                                     favIds={favIds}
                                     handleFavTemplate={handleFavTemplate}
+                                    attemptComplete={attemptComplete}
                                 />
                             )
                         }
