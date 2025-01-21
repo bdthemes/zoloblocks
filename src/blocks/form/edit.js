@@ -69,8 +69,8 @@ export default function Edit(props) {
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
-
-    return (
+    const allowedBlocksList = zoloParams?.zolo_pro_status === 'active' ? ['zolo/container'] : [];
+  return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
@@ -79,7 +79,7 @@ export default function Edit(props) {
                 <SidebarOpener clientId={clientId} />
                 <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1" id={formId}>
                     <InnerBlocks
-                        allowedBlocks={(['zolo/text-field'], ['zolo/email'], ['zolo/textarea'])}
+                        allowedBlocks={allowedBlocksList}
                         template={[['zolo/text-field'], ['zolo/email'], ['zolo/textarea']]}
                     />
                     <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">

@@ -7,7 +7,7 @@
     "description": "Customizable date fields for forms or surveys.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
-    "parent": ["zolo/form"],
+    "parent": ["zolo/form","zolo/container"],
     "example": {
         "attributes": {
             "preview": true
