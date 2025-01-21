@@ -31,6 +31,11 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    ITEM_BOX_HOVER_SHADOW,
+    ICON_SHADOW,
+    ICON_SHADOW_HOVER,
+    MEDIA_BOX_SHADOW,
+    MEDIA_BOX_SHADOW_HOVER,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -50,6 +55,9 @@ const Style = ({ props }) => {
         mediaTextColor,
         mediaTextBgColor,
         itemBorderHoverColor,
+        mediaTextHoverColor,
+        mediaTextBgHoverColor,
+        mediaBorderHoverColor,
     } = attributes;
 
     // item
@@ -94,6 +102,11 @@ const Style = ({ props }) => {
     const { boxShadowStyle: itemBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: ITEM_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: itemBoxShadowHover } = generateBoxShadowStyles({
+        attributes,
+        controlName: ITEM_BOX_HOVER_SHADOW,
     });
 
     const {
@@ -294,6 +307,26 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const { boxShadowStyle: iconBoxHoverShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ICON_SHADOW,
+    });
+
+    const { boxShadowStyle: iconBoxHoverShadowHover } = generateBoxShadowStyles({
+        attributes,
+        controlName: ICON_SHADOW_HOVER,
+    });
+
+    const { boxShadowStyle: mediaBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: MEDIA_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: mediaBoxShadowHover } = generateBoxShadowStyles({
+        attributes,
+        controlName: MEDIA_BOX_SHADOW_HOVER,
+    });
+
     //  All Style Combination
     const desktopAllStyle = `
         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon {
@@ -301,6 +334,7 @@ const Style = ({ props }) => {
              ${iconNoramlBGStyle}
              ${DesktopIconBorder}
              ${deskiconRadius}
+             ${iconBoxHoverShadow}
         }
          .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child {
             ${itemDeskBg}
@@ -313,6 +347,7 @@ const Style = ({ props }) => {
          .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover {
             ${itemDeskBgHover}
             ${itemBorderHoverColor ? `border-color:${itemBorderHoverColor};` : ''}
+            ${itemBoxShadowHover}
 		}
 
         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
@@ -332,6 +367,18 @@ const Style = ({ props }) => {
             ${DesktopimageBorder}
             ${deskImageRadius}
             ${deskImagepadding}
+            ${mediaBoxShadow}
+        }
+
+         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-image, 
+         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-number {
+            ${mediaBorderHoverColor ? `border-color:${mediaBorderHoverColor};` : ''}
+            ${mediaBoxShadowHover}
+        }
+ 
+        .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-number{
+            ${mediaTextHoverColor ? `color:${mediaTextHoverColor};` : ''}
+            ${mediaTextBgHoverColor ? `background-color:${mediaTextBgHoverColor};` : ''}
         }
 
         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
@@ -364,6 +411,7 @@ const Style = ({ props }) => {
         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverBGStyle}
             ${iconHBColor ? `border-color:${iconHBColor};` : ''}
+            ${iconBoxHoverShadow}
         }
         .zolo-block.wp-block-zolo-fancy-list .zolo-fancy-list-container .${uniqueId}.zolo-block.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg {
             ${iconHColor ? `fill:${iconHColor};` : ''}
