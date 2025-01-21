@@ -22,20 +22,20 @@
         background: #555;
     }
     // Display Icon
-.zolo__display-icon {
-    display: inline;
-    svg {
-        display: block;
-        width: 1em;
-        height: 1em;
+    .zolo__display-icon {
+        display: inline;
+        svg {
+            display: block;
+            width: 1em;
+            height: 1em;
+        }
     }
-}
 }
 
 .zolo__icons-grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(7, 1fr);
+    // display: grid;
+    // gap: 15px;
+    // grid-template-columns: repeat(7, 1fr);
     position: relative;
 
     .single__icon {
@@ -71,6 +71,14 @@
     }
 }
 
+.zolo__icons-grid > div {
+    max-width: 100%;
+}
+
+.zolo__icons-grid > div > div {
+    width: 100% !important;
+}
+
 .zolo-icons-title {
     margin: 0 0 20px;
 }
@@ -99,7 +107,7 @@
     }
 
     .modal__content {
-        width: calc(100% - 180px);
+        width: calc(100% - 280px);
         box-sizing: border-box;
         box-sizing: border-box;
     }
@@ -253,8 +261,6 @@
     border-right: 1px solid #ececf1;
     padding-top: 30px;
 }
-
-
 
 .zolo-picker__button {
     border-radius: 6px !important;

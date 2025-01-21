@@ -1,6 +1,7 @@
-import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
-import { Modal, Button } from '@wordpress/components';
+import { Button, Modal } from '@wordpress/components';
+import { RawHTML, useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { FixedSizeGrid as Grid } from 'react-window';
 
 import icons from './icons.json';
 
@@ -96,8 +97,11 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         return Object.keys(icons).map((key) => ({
             label: icons[key].label,
             svg: icons[key].svg,
+            terms: icons[key].search.terms,
         }));
     }, [icons]);
+
+    // console.log(allSvgItems);
 
     const solidCategory = useMemo(() => allSvgItems.filter((item) => item.svg.solid), [allSvgItems]);
     const brandCategory = useMemo(() => allSvgItems.filter((item) => item.svg.brands), [allSvgItems]);
@@ -116,7 +120,12 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         }
 
         if (searchText) {
-            displayIcons = displayIcons.filter((item) => item.label.toLowerCase().includes(searchText.toLowerCase()));
+            // filter by label and terms
+            displayIcons = displayIcons.filter(
+                (item) =>
+                    item.label.toLowerCase().includes(searchText.toLowerCase()) ||
+                    item.terms.some((term) => term.toLowerCase().includes(searchText.toLowerCase()))
+            );
 
             if (displayIcons.length === 0) {
                 displayIcons = [
@@ -134,6 +143,11 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
 
         setFilterIcons(displayIcons);
     }, [category, solidCategory, brandCategory, regularCategory, allSvgItems, searchText]);
+
+    // Define gap between columns and rows
+    const columnWidthWithGap = 75; // Column width
+    const rowHeightWithGap = 75; // Row height
+    const gapSize = 15; // Gap between items
 
     return (
         <div className="zolo-icon-picker">
@@ -193,7 +207,54 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                     {category === 'regular' && __('Font Awesome - Regular', 'zoloblocks')}
                                 </h2>
                                 <div className="zolo__icons-grid">
-                                    {filterIcons &&
+                                    <Grid
+                                        columnCount={9}
+                                        columnWidth={columnWidthWithGap}
+                                        height={400}
+                                        rowCount={Math.ceil(filterIcons.length / 9)}
+                                        rowHeight={rowHeightWithGap}
+                                        width={(columnWidthWithGap + gapSize) * 9} // Adjust the total width
+                                        style={{
+                                            marginLeft: -gapSize, // Adjust the margin to remove the gap
+                                            marginTop: -gapSize, // Adjust the margin to remove the gap
+                                        }}
+                                    >
+                                        {({ columnIndex, rowIndex, style }) => {
+                                            const index = rowIndex * 9 + columnIndex;
+                                            if (index >= filterIcons.length) return null;
+                                            const item = filterIcons[index];
+                                            let iconCat;
+                                            if (item.svg.solid) {
+                                                iconCat = 'solid';
+                                            } else if (item.svg.brands) {
+                                                iconCat = 'brands';
+                                            } else if (item.svg.regular) {
+                                                iconCat = 'regular';
+                                            }
+
+                                            return (
+                                                <Button
+                                                    key={index}
+                                                    className={`single__icon ${value === item.svg[iconCat].raw ? 'active' : ''}`}
+                                                    onClick={() => {
+                                                        onChange(item.svg[iconCat].raw);
+                                                        setIconsPanel(false);
+                                                    }}
+                                                    title={item.label}
+                                                    style={{
+                                                        ...style,
+                                                        left: parseFloat(style.left) + gapSize, // Add gap between columns
+                                                        top: parseFloat(style.top) + gapSize, // Add gap between rows
+                                                        width: style.width - gapSize, // Reduce the width for the gap
+                                                        height: style.height - gapSize, // Reduce the height for the gap
+                                                    }}
+                                                >
+                                                    <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
+                                                </Button>
+                                            );
+                                        }}
+                                    </Grid>
+                                    {/* {filterIcons &&
                                         filterIcons.map((item, index) => {
                                             // find category
                                             let iconCat;
@@ -222,7 +283,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                                     <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
                                                 </Button>
                                             );
-                                        })}
+                                        })} */}
                                 </div>
                             </div>
                         </div>
