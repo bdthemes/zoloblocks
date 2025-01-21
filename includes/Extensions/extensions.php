@@ -132,4 +132,12 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/interactions',
         'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
     ],
+    'text-animation'          => [
+        'name'   => 'text-animation',
+        'title'  => __('Text Animation', 'zoloblocks'),
+        'status' => true,
+        'is_pro' => true,
+        'demo'   => 'https://demo.zoloblocks.com/interactions',
+        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ],
 ]);
