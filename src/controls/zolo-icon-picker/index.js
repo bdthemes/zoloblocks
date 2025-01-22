@@ -1,7 +1,7 @@
 import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
 import { Modal, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { FixedSizeGrid as Grid } from 'react-window';
 import icons from './icons.json';
 
 const iconCategories = [
@@ -96,6 +96,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         return Object.keys(icons).map((key) => ({
             label: icons[key].label,
             svg: icons[key].svg,
+            terms: icons[key]?.search?.terms || [],
         }));
     }, [icons]);
 
@@ -116,8 +117,12 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         }
 
         if (searchText) {
-            displayIcons = displayIcons.filter((item) => item.label.toLowerCase().includes(searchText.toLowerCase()));
-
+            // filter by label and terms
+            displayIcons = displayIcons.filter(
+                (item) =>
+                    item.label.toLowerCase().includes(searchText.toLowerCase()) ||
+                    item.terms.some((term) => term.toLowerCase().includes(searchText.toLowerCase()))
+            );
             if (displayIcons.length === 0) {
                 displayIcons = [
                     {
@@ -169,6 +174,11 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         });
         mediaFrame.open();
     };
+
+    // Define gap between columns and rows
+    const columnWidthWithGap = 75; // Column width
+    const rowHeightWithGap = 75; // Row height
+    const gapSize = 15; // Gap between items
 
     return (
         <div className="zolo-icon-picker">
@@ -248,9 +258,22 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                     {category === 'regular' && __('Font Awesome - Regular', 'zoloblocks')}
                                 </h2>
                                 <div className="zolo__icons-grid">
-                                    {filterIcons &&
-                                        filterIcons.map((item, index) => {
-                                            // find category
+                                    <Grid
+                                        columnCount={9}
+                                        columnWidth={columnWidthWithGap}
+                                        height={400}
+                                        rowCount={Math.ceil(filterIcons.length / 9)}
+                                        rowHeight={rowHeightWithGap}
+                                        width={(columnWidthWithGap + gapSize) * 9} // Adjust the total width
+                                        style={{
+                                            marginLeft: -gapSize, // Adjust the margin to remove the gap
+                                            marginTop: -gapSize, // Adjust the margin to remove the gap
+                                        }}
+                                    >
+                                        {({ columnIndex, rowIndex, style }) => {
+                                            const index = rowIndex * 9 + columnIndex;
+                                            if (index >= filterIcons.length) return null;
+                                            const item = filterIcons[index];
                                             let iconCat;
                                             if (item.svg.solid) {
                                                 iconCat = 'solid';
@@ -260,11 +283,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                                 iconCat = 'regular';
                                             }
 
-                                            return item.title ? (
-                                                <p key={index} className="zolo__not_found">
-                                                    {item.title}
-                                                </p>
-                                            ) : (
+                                            return (
                                                 <Button
                                                     key={index}
                                                     className={`single__icon ${value === item.svg[iconCat].raw ? 'active' : ''}`}
@@ -273,11 +292,19 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                                         setIconsPanel(false);
                                                     }}
                                                     title={item.label}
+                                                    style={{
+                                                        ...style,
+                                                        left: parseFloat(style.left) + gapSize, // Add gap between columns
+                                                        top: parseFloat(style.top) + gapSize, // Add gap between rows
+                                                        width: style.width - gapSize, // Reduce the width for the gap
+                                                        height: style.height - gapSize, // Reduce the height for the gap
+                                                    }}
                                                 >
                                                     <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
                                                 </Button>
                                             );
-                                        })}
+                                        }}
+                                    </Grid>
                                 </div>
                             </div>
                         </div>
