@@ -1,8 +1,295 @@
-
+/**
+ * WordPress dependencies
+ */
 import { addFilter } from '@wordpress/hooks';
 
+/**
+ * Attributes for the sticky animation.
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/sticky', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            isSticky: {
+                type: 'boolean',
+                default: false,
+            },
+            stickyAnimation: {
+                type: 'object',
+                default: {
+                    position: 'top',
+                    offset: 0,
+                    effect: 'fade',
+                    zIndex: 1000,
+                    devices: null,
+                },
+            },
+        };
+    }
 
+    return settings;
+});
 
+/**
+ * Attributes for the parallax animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            parallaxAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            parallaxAnimation: {
+                type: 'object',
+                default: {
+                    vertical: {
+                        triggerPosition: 'top',
+                        viewportPosition: 'center',
+                        endTriggerPosition: 'bottom',
+                        endViewportPosition: 'top',
+                        isStartAdvanced: false,
+                        isEndAdvanced: false,
+                        start: undefined,
+                        end: undefined,
+                        speed: -100,
+                        scrub: 2,
+                    },
+                    horizontal: {
+                        triggerPosition: 'top',
+                        viewportPosition: 'center',
+                        endTriggerPosition: 'bottom',
+                        endViewportPosition: 'top',
+                        isStartAdvanced: false,
+                        isEndAdvanced: false,
+                        start: undefined,
+                        end: undefined,
+                        speed: 0,
+                        scrub: 2,
+                    },
+                    rotate: {
+                        triggerPosition: 'top',
+                        viewportPosition: 'center',
+                        endTriggerPosition: 'bottom',
+                        endViewportPosition: 'top',
+                        isStartAdvanced: false,
+                        isEndAdvanced: false,
+                        start: undefined,
+                        end: undefined,
+                        speed: 0,
+                        scrub: 2,
+                    },
+                    scale: {
+                        triggerPosition: 'top',
+                        viewportPosition: 'center',
+                        endTriggerPosition: 'bottom',
+                        endViewportPosition: 'top',
+                        isStartAdvanced: false,
+                        isEndAdvanced: false,
+                        start: undefined,
+                        end: undefined,
+                        speed: 1,
+                        scrub: 2,
+                    },
+                },
+            }
+        };
+    }
+
+    return settings;
+});
+/**
+ * Attributes for the floating animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/floating', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            floatingAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            floatingAnimation: {
+                type: 'object',
+                default: {
+                    translateX: {
+                        minValue: -100,
+                        maxValue: 100,
+                        unit: 'px',
+                    },
+                    translateY: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'px',
+                    },
+                    translateZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'px',
+                    },
+                    rotateX: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    rotateY: {
+                        minValue: 0,
+                        maxValue: 0,
+                    },
+                    rotateZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    scaleX: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: '',
+                    },
+                    scaleY: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: '',
+                    },
+                    scaleZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: '',
+                    },
+                    skewX: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    skewY: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    opacity: {
+                        minValue: 1,
+                        maxValue: 1,
+                        unit: '',
+                    },
+                    easing: 'ease-out',
+                    easingCustom: '',
+                    repeat: false,
+                    perspective: 1000,
+                    duration: 3000,
+                    delay: 0,
+                    transformOrigin: 'center',
+                },
+            },
+        };
+    }
+
+    return settings;
+});
+
+/**
+ * Attributes for the entrance animation.
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/entrance', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            entranceAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            entranceAnimation: {
+                type: 'object',
+                default: {
+                    active3D: false,
+                    repeatable: false,
+                    translateX: {
+                        value: 0,
+                        unit: 'px',
+                    },
+                    translateY: {
+                        value: 50,
+                        unit: 'px',
+                    },
+                    translateZ: {
+                        value: 0,
+                        unit: 'px',
+                    },
+                    rotateX: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    rotateY: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    rotateZ: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    scaleX: {
+                        value: 0,
+                        unit: '',
+                    },
+                    scaleY: {
+                        value: 0,
+                        unit: '',
+                    },
+                    scaleZ: {
+                        value: 0,
+                        unit: '',
+                    },
+                    skewX: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    skewY: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    opacity: undefined,
+                    easing: 'power4.out',
+                    easingCustom: [0.165, 0.84, 0.44, 1],
+                    repeat: false,
+                    perspective: 1000,
+                    duration: 1800,
+                    delay: 180,
+                    transformOrigin: 'center',
+                    presetAnimation: 'bottomMedium',
+                    transformOriginCustom: '',
+                },
+            },
+        };
+    }
+
+    return settings;
+});
+
+/**
+ * Attributes for the tilt effect.
+ */
+
+addFilter('blocks.registerBlockType', 'zolo/attributes/tilt', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        settings.attributes = {
+            ...settings.attributes,
+            zoloTilt: {
+                type: 'object',
+                default: {
+                    active: false,
+                },
+            },
+        };
+    }
+
+    return settings;
+});
 /**
 * Attributes for the Text Animation
  */
