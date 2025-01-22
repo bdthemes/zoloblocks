@@ -29,7 +29,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            {enableLogoLink && logoLinkType === 'logo__global' ? (
+            {(enableLogoLink && logoLinkType === 'logo__global') || ( enableLogoLink && preset==='zb-brand-basic-style' ) ? (
                 <a
                     className="zb-brand-global-link"
                     href={logoLink && logoLink.url}

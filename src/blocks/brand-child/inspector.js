@@ -173,20 +173,20 @@ function Inspector(props) {
                                 </div>
                             )}
 
-                            {enableLogoLink && preset === 'zb-brand-basic-style' && (
-                                <div className="zolo-flex-row-control-tab">
-                                    <IconicBtnGroup
-                                        label={__('Link Type', 'zoloblocks')}
-                                        value={logoLinkType}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                logoLinkType: value,
-                                            })
-                                        }
-                                        options={LINK_TYPES_BASIC}
-                                    />
-                                </div>
-                            )}
+                            {/*{enableLogoLink && preset === 'zb-brand-basic-style' && (*/}
+                            {/*    <div className="zolo-flex-row-control-tab">*/}
+                            {/*        <IconicBtnGroup*/}
+                            {/*            label={__('Link Type', 'zoloblocks')}*/}
+                            {/*            value={logoLinkType}*/}
+                            {/*            onChange={(value) =>*/}
+                            {/*                setAttributes({*/}
+                            {/*                    logoLinkType: value,*/}
+                            {/*                })*/}
+                            {/*            }*/}
+                            {/*            options={LINK_TYPES_BASIC}*/}
+                            {/*        />*/}
+                            {/*    </div>*/}
+                            {/*)}*/}
 
                             {enableLogoLink && (
                                 <>
