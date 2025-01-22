@@ -1,27 +1,18 @@
 import classNames from 'classnames';
-// const activeSidbar = null;
-import apiFetch from '@wordpress/api-fetch';
-import { useState, useEffect, useCallback } from '@wordpress/element';
-
+import { useSelect } from '@wordpress/data';
 
 const SidebarOpener = ({clientId = null }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    const fetchSettings = useCallback(async () => {
-        try {
-            const response = await apiFetch({ path: '/wp/v2/settings' });
-            setIsSidebarOpen(Boolean(response?.zolo_sidebar_opener));
-        } catch (error) {
-            console.error('Failed to fetch settings:', error);
-        }
-    }, []);
-
-    useEffect(() => {
-        fetchSettings();
-    }, [fetchSettings]);
+const { zoloSidebarOpener } = useSelect((select) => {
+    const { getEntityRecord } = select('core');
+    const settings = getEntityRecord('root', 'site');
+    return {
+        zoloSidebarOpener: settings?.zolo_sidebar_opener,
+    };
+}, []);
 
 
-    if (!isSidebarOpen) {
+    if (!zoloSidebarOpener) {
         return null;
     }
     return (
