@@ -70,8 +70,6 @@ export default function Edit(props) {
             preset: context['zolo/preset'],
             brandNameVisible: context['zolo/brandNameVisible'],
             brandLabelVisible: context['zolo/brandLabelVisible'],
-            enableLogoLink: context['zolo/enableLogoLink'],
-            logoLinkType: context['zolo/logoLinkType'],
         });
     }, [context]);
 
