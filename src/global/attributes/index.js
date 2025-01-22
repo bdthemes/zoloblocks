@@ -1,3 +1,3 @@
 
 // blocks
-import './blocks';
+import './extensions';

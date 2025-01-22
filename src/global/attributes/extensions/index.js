@@ -1,24 +1,15 @@
-/**
- * WordPress dependencies
- */
+
 import { addFilter } from '@wordpress/hooks';
 
-// Internal Dependencies
-const { generateResRangeAttributies } = window.zoloModule;
 
-// constants
 
 /**
- * Filter Hook: blocks.registerBlockType
- * Description: Add new attribute to zolo/advanced-button block
- *
+* Attributes for the Text Animation
  */
 addFilter('blocks.registerBlockType', 'zolo/advancedHeading/addAttribute', (settings, name) => {
     if (name !== 'zolo/advanced-heading') {
         return settings;
     }
-
-    // Add new attribute
     settings.attributes = {
         ...settings.attributes,
         splitTextActive: {
@@ -91,5 +82,86 @@ addFilter('blocks.registerBlockType', 'zolo/advancedHeading/addAttribute', (sett
             },
         },
     };
+    return settings;
+});
+
+/**
+* Attributes for the backdrop filters.
+*/
+addFilter('blocks.registerBlockType', 'zolo/attributes/backdropFilters', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        settings.attributes = {
+            ...settings.attributes,
+            backdropFilters: {
+                type: 'object',
+                default: {
+                    active: false,
+                    blur: 0,
+                    brightness: 100,
+                    contrast: 100,
+                    saturate: 100,
+                    hueRotate: 0,
+                    grayscale: 0,
+                    invert: 0,
+                    sepia: 0,
+                    opacity: 100,
+                },
+            },
+        };
+    }
+    return settings;
+});
+
+/**
+* Attributes for the background parallax.
+*/
+addFilter('blocks.registerBlockType', 'zolo/attributes/backgroundParallax', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        settings.attributes = {
+            ...settings.attributes,
+            zoloBackgroundParallax: {
+                type: 'object',
+                default: {
+                    active: false,
+                },
+            },
+        };
+    }
+
+    return settings;
+});
+
+/**
+* Attributes for the css filters.
+*/
+addFilter('blocks.registerBlockType', 'zolo/attributes/cssFilters', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        settings.attributes = {
+            ...settings.attributes,
+            cssFilters: {
+                type: 'object',
+                default: {
+                    active: false,
+                    blur: 0,
+                    brightness: 100,
+                    contrast: 100,
+                    saturate: 100,
+                    hueRotate: 0,
+                },
+            },
+            cssFiltersHover: {
+                type: 'object',
+                default: {
+                    active: false,
+                    blur: 0,
+                    brightness: 100,
+                    contrast: 100,
+                    saturate: 100,
+                    hueRotate: 0,
+                },
+            },
+        };
+    }
+
     return settings;
 });
