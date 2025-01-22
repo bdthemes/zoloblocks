@@ -1,0 +1,1 @@
+import './text-animation.js';
