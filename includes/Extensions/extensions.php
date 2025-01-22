@@ -148,4 +148,20 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/display-condition',
         'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
     ],
+    'tooltip' => [
+        'name' => 'tooltip',
+        'title' => __('Tooltip', 'zoloblocks'),
+        'status' => true,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/tooltip',
+        'video' => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ],
+    'highlight' => [
+        'name' => 'highlight',
+        'title' => __('Highlighter', 'zoloblocks'),
+        'status' => true,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/highlight',
+        'video' => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+    ]
 ]);
