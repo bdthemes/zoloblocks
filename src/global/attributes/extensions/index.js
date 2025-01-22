@@ -4,6 +4,52 @@
 import { addFilter } from '@wordpress/hooks';
 
 /**
+ * Attributes for the visibility extension.
+ */
+addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            enableAdvancedVisibility: {
+                type: 'boolean',
+                default: false,
+            },
+            visibilityType: {
+                type: 'string',
+                default: 'cd_show',
+            },
+            displayConditions: {
+                type: 'array',
+                default: [],
+            },
+            operator: {
+                type: 'string',
+                default: 'and',
+            },
+        };
+    }
+
+    return settings;
+});
+
+
+addFilter('blocks.registerBlockType', 'zolo/attributes/interactions', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            interactions: {
+                type: 'array',
+                default: []
+            },
+        };
+    }
+
+    return settings;
+});
+
+/**
  * Attributes for the sticky animation.
  */
 addFilter('blocks.registerBlockType', 'zolo/extension/sticky', (settings) => {
