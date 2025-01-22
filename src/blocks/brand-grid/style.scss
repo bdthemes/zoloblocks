@@ -56,7 +56,8 @@
         transition: all 0.3s ease;
     }
 
-    .zb-brand-title-link {
+    .zb-brand-title-link,
+    .zb-brand-link {
         font-size: 18px;
         font-weight: 300;
         color: var(--zolo-img-placeholder-margin);
@@ -64,7 +65,8 @@
         transition: all 0.3s ease;
     }
 
-    .zb-brand-title-link.has-link:hover {
+    .zb-brand-title-link.has-link:hover,
+    .zb-brand-link.has-link:hover {
         color: var(--zoloblocks-brand-color-hover);
     }
 
@@ -93,24 +95,28 @@
         transform: translateX(-40px);
     }
 
-    &.zb-brand-style-1 .zb-brand-title-link {
+    &.zb-brand-style-1 .zb-brand-title-link,
+    &.zb-brand-style-1 .zb-brand-link {
         transform: translateX(40px);
     }
 
     &.zb-brand-style-2 .zb-brand-title {
         transform: translateY(-20px);
     }
-    &.zb-brand-style-2 .zb-brand-title-link {
+    &.zb-brand-style-2 .zb-brand-title-link,
+    &.zb-brand-style-2 .zb-brand-link {
         transform: translateY(20px);
     }
 
     &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title,
-    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title-link {
+    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title-link,
+    &.zb-brand-style-1 .zb-brand-item:hover .zb-brand-link {
         transform: translateX(0);
     }
 
     &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title,
-    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title-link {
+    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title-link,
+    &.zb-brand-style-2 .zb-brand-item:hover .zb-brand-link {
         transform: translateY(0);
     }
 
