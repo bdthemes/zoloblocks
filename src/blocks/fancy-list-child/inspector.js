@@ -51,6 +51,11 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    ITEM_BOX_HOVER_SHADOW,
+    ICON_SHADOW,
+    ICON_SHADOW_HOVER,
+    MEDIA_BOX_SHADOW,
+    MEDIA_BOX_SHADOW_HOVER,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -86,6 +91,9 @@ function Inspector(props) {
         iconHBColor,
         imageRes,
         itemBorderHoverColor,
+        mediaTextHoverColor,
+        mediaTextBgHoverColor,
+        mediaBorderHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -270,6 +278,11 @@ function Inspector(props) {
                                             color={itemBorderHoverColor}
                                             onChange={(v) => setAttributes({ itemBorderHoverColor: v })}
                                         />
+                                        <BoxShadowControl
+                                            controlName={ITEM_BOX_HOVER_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
                                     </>
                                 }
                             />
@@ -394,17 +407,11 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                             />
                                             <CardDivider />
-                                            <BorderControl
-                                                label={__('Border')}
-                                                controlName={ICON_BORDER}
+                                            <BorderControl label={__('Border')} controlName={ICON_BORDER} requiredProps={requiredProps} />
+                                            <BoxShadowControl
+                                                controlName={ICON_SHADOW}
                                                 requiredProps={requiredProps}
-                                                hoverControl={
-                                                    <ColorControl
-                                                        label={__('Border Color', 'zolo-block')}
-                                                        color={iconHBColor}
-                                                        onChange={(v) => setAttributes({ iconHBColor: v })}
-                                                    />
-                                                }
+                                                enableTransition={false}
                                             />
                                             <ResDimensionsControl
                                                 label={__('Border Radius', 'zolo-block')}
@@ -422,6 +429,16 @@ function Inspector(props) {
                                                 onChange={(v) => setAttributes({ iconHColor: v })}
                                             />
                                             <NormalBGControl requiredProps={requiredProps} controlName={ICON_HBG} noMainBGImg={true} />
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-block')}
+                                                color={iconHBColor}
+                                                onChange={(v) => setAttributes({ iconHBColor: v })}
+                                            />
+                                            <BoxShadowControl
+                                                controlName={ICON_SHADOW_HOVER}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
                                         </>
                                     }
                                 />
@@ -433,63 +450,109 @@ function Inspector(props) {
                                 stylePanel={true}
                                 panelProps={props}
                             >
-                                {mediaType === 'text' && (
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-block')}
-                                            color={mediaTextColor}
-                                            onChange={(v) => setAttributes({ mediaTextColor: v })}
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={MEDIA_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
-                                        <CardDivider />
-                                        <ColorControl
-                                            label={__('Background Color', 'zolo-block')}
-                                            color={mediaTextBgColor}
-                                            onChange={(v) => setAttributes({ mediaTextBgColor: v })}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zolo-block')}
-                                            controlName={IMAGE_PADDING}
-                                            requiredProps={requiredProps}
-                                        />
-                                    </>
-                                )}
-                                {mediaType === 'image' && (
-                                    <>
-                                        <ResRangeControl
-                                            label={__('Width', 'zolo-block')}
-                                            controlName={IMAGE_WIDTH}
-                                            requiredProps={requiredProps}
-                                            max={500}
-                                        />
-                                        <ResRangeControl
-                                            label={__('Height', 'zolo-block')}
-                                            controlName={IMAGE_HEIGHT}
-                                            requiredProps={requiredProps}
-                                            max={500}
-                                        />
-                                    </>
-                                )}
-                                <CardDivider />
-                                <BorderControl
-                                    label={__('Border', 'zolo-block')}
-                                    controlName={IMAGE_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-block')}
-                                    controlName={IMAGE_BORDERRADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            {mediaType === 'text' && (
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zolo-block')}
+                                                        color={mediaTextColor}
+                                                        onChange={(v) => setAttributes({ mediaTextColor: v })}
+                                                    />
+                                                    <TypographyDropdown
+                                                        label={__('Typography', 'zoloblocks')}
+                                                        typoPrefixConstant={MEDIA_TYPOGRAPHY}
+                                                        requiredProps={requiredProps}
+                                                        max={36}
+                                                    />
+                                                    <CardDivider />
+                                                    <ColorControl
+                                                        label={__('Background Color', 'zolo-block')}
+                                                        color={mediaTextBgColor}
+                                                        onChange={(v) => setAttributes({ mediaTextBgColor: v })}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Padding', 'zolo-block')}
+                                                        controlName={IMAGE_PADDING}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                </>
+                                            )}
+                                            {mediaType === 'image' && (
+                                                <>
+                                                    <ResRangeControl
+                                                        label={__('Width', 'zolo-block')}
+                                                        controlName={IMAGE_WIDTH}
+                                                        requiredProps={requiredProps}
+                                                        max={500}
+                                                    />
+                                                    <ResRangeControl
+                                                        label={__('Height', 'zolo-block')}
+                                                        controlName={IMAGE_HEIGHT}
+                                                        requiredProps={requiredProps}
+                                                        max={500}
+                                                    />
+                                                </>
+                                            )}
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zolo-block')}
+                                                controlName={IMAGE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl
+                                                controlName={MEDIA_BOX_SHADOW}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zolo-block')}
+                                                controlName={IMAGE_BORDERRADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
 
-                                <CardDivider />
-                                <ResRangeControl label={__('Gap', 'zolo-block')} controlName={GAP} requiredProps={requiredProps} />
+                                            <CardDivider />
+                                            <ResRangeControl
+                                                label={__('Gap', 'zolo-block')}
+                                                controlName={GAP}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            {mediaType === 'text' && (
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zolo-block')}
+                                                        color={mediaTextHoverColor}
+                                                        onChange={(v) => setAttributes({ mediaTextHoverColor: v })}
+                                                    />
+
+                                                    <ColorControl
+                                                        label={__('Background Color', 'zolo-block')}
+                                                        color={mediaTextBgHoverColor}
+                                                        onChange={(v) => setAttributes({ mediaTextBgHoverColor: v })}
+                                                    />
+                                                    <CardDivider />
+                                                </>
+                                            )}
+
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-block')}
+                                                color={mediaBorderHoverColor}
+                                                onChange={(v) => setAttributes({ mediaBorderHoverColor: v })}
+                                            />
+                                            <BoxShadowControl
+                                                controlName={MEDIA_BOX_SHADOW_HOVER}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
+                                        </>
+                                    }
+                                />
                             </ZoloPanelBody>
                         )}
                     </>

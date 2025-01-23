@@ -16,6 +16,8 @@ import {
     ICON_PADDING,
     ICON_BG,
     ICON_HBG,
+    ICON_SHADOW,
+    ICON_SHADOW_HOVER,
     GAP,
     COLUMNS,
     GRID_GAP,
@@ -26,6 +28,9 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    ITEM_BOX_HOVER_SHADOW,
+    MEDIA_BOX_SHADOW,
+    MEDIA_BOX_SHADOW_HOVER,
 } from './constants';
 const {
     generateTypographyAttributes,
@@ -134,6 +139,16 @@ const attributes = {
         type: 'string',
     },
 
+    mediaTextHoverColor: {
+        type: 'string',
+    },
+    mediaTextBgHoverColor: {
+        type: 'string',
+    },
+    mediaBorderHoverColor: {
+        type: 'string',
+    },
+
     ...generateResCounterAttributies(COLUMNS, {
         deskRange: 2,
         tabRange: 1,
@@ -152,6 +167,7 @@ const attributes = {
     ...generateDimensionAttributes(ITEM_PADDING),
     ...generateDimensionAttributes(ITEM_MARGIN),
     ...generateBoxShadowAttributies(ITEM_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ITEM_BOX_HOVER_SHADOW),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(ICON_PADDING),
@@ -164,6 +180,8 @@ const attributes = {
     ...generateBorderAttributies(IMAGE_BORDER),
     ...generateDimensionAttributes(IMAGE_BORDERRADIUS),
     ...generateDimensionAttributes(ICON_RADIUS),
+    ...generateBoxShadowAttributies(ICON_SHADOW),
+    ...generateBoxShadowAttributies(ICON_SHADOW_HOVER),
     ...generateDimensionAttributes(IMAGE_PADDING),
 
     // gap
@@ -173,6 +191,9 @@ const attributes = {
     ...generateDimensionAttributes(TITLE_SPACING),
     // description
     ...generateDimensionAttributes(DESC_SPACING),
+    // media
+    ...generateBoxShadowAttributies(MEDIA_BOX_SHADOW),
+    ...generateBoxShadowAttributies(MEDIA_BOX_SHADOW_HOVER),
 };
 
 export default attributes;
