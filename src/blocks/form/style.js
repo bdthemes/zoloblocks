@@ -397,7 +397,6 @@ const Style = ({ props }) => {
             ${focusBorderColor ? `border-color: ${focusBorderColor} !important;` : ''}
             ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px !important;` : ''}
             ${focusBorderColor ? `outline-color: ${focusBorderColor} !important;` : ''}
-            outline-style: solid !important;
         }
 
         .${uniqueId} .zolo-label {
