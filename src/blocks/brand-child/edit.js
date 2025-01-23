@@ -73,6 +73,13 @@ export default function Edit(props) {
         });
     }, [context]);
 
+    //for preset basic
+    useEffect(() => {
+      if(enableLogoLink && context['zolo/preset']==='zb-brand-basic-style'){
+        setAttributes({logoLinkType:'logo__global'});
+      }
+    }, [context['zolo/preset']]);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -109,12 +116,12 @@ export default function Edit(props) {
             )}
             <Style props={props} />
             <div {...blockProps}>
-                {(enableLogoLink && logoLinkType === 'logo__global') || ( enableLogoLink && preset==='zb-brand-basic-style' )   ? (
+                {enableLogoLink && logoLinkType === 'logo__global' ? (
                     <a
                         className="zb-brand-global-link"
                         href={logoLink && logoLink.url}
-                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                        target={logoLink && logoLink.openInNewTab && '_blank'}
+                        rel={logoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                        target={logoLink?.openInNewTab ? '_blank' : undefined}
                         title={brandLabel}
                     >
                         <div className="zb-brand-image">
@@ -223,8 +230,8 @@ export default function Edit(props) {
                                                 {enableLogoLink && logoLinkType === 'logo__title' ? (
                                                     <a
                                                         href={logoLink && logoLink.url}
-                                                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                                        target={logoLink && logoLink.openInNewTab && '_blank'}
+                                                        rel={logoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                                                        target={logoLink?.openInNewTab ? '_blank' : undefined}
                                                         title={brandTitle}
                                                     >
                                                         <RichText.Content
@@ -247,8 +254,8 @@ export default function Edit(props) {
                                                 {enableLogoLink && logoLinkType === 'logo__label' ? (
                                                     <a
                                                         href={logoLink && logoLink.url}
-                                                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                                        target={logoLink && logoLink.openInNewTab && '_blank'}
+                                                        rel={logoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                                                        target={logoLink?.openInNewTab ? '_blank' : undefined}
                                                         className="zb-brand-title-link has-link"
                                                         title={brandLabel}
                                                     >
