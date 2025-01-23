@@ -54,6 +54,8 @@ import {
     AROOW_H_SPACE,
     AROOW_V_SPACE,
     ARROW_ROUNDED,
+    QUOTE_ICON_H_OFFSET,
+    QUOTE_ICON_V_OFFSET,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -519,6 +521,28 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: quoteIconHOffsetDesk,
+        tabRangeStyle: quoteIconHOffsetTab,
+        mobRangeStyle: quoteIconHOffsetMob,
+    } = generateResRangeStyle({
+        controlName: QUOTE_ICON_H_OFFSET,
+        property: '--zolo-quote-icon-h-offset',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: quoteIconVOffsetDesk,
+        tabRangeStyle: quoteIconVOffsetTab,
+        mobRangeStyle: quoteIconVOffsetMob,
+    } = generateResRangeStyle({
+        controlName: QUOTE_ICON_V_OFFSET,
+        property: '--zolo-quote-icon-v-offset',
+        attributes,
+    });
+
+    console.log('quoteIconHOffsetDesk', quoteIconHOffsetDesk);
+
     /**
      * All Style Combination
      */
@@ -541,6 +565,10 @@ const Style = ({ props }) => {
                 }
                 .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-meta-content {
                     ${separatorColor ? `border-top-color: ${separatorColor};` : ''}
+                }
+                .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-quote-icon {
+                    ${quoteIconHOffsetDesk}
+                    ${quoteIconVOffsetDesk}
                 }
             `
                 : ''

@@ -80,5 +80,19 @@
                 text-align: right;
             }
         }
+
+        // Content inline style
+        &.zolo-content-inline {
+            .zolo-counter-inner-content {
+                display: inline-flex;
+                align-items: center;
+            }
+            .zolo-counter-count {
+                margin: 0;
+            }
+            .zolo-counter-title {
+                margin-left: 10px;
+            }
+        }
     }
 }

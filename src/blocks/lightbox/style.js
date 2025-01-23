@@ -65,6 +65,7 @@ export default function Style({ props }) {
         iconColor,
         iconHColor,
         playBtnBorderHColor,
+        lightboxType,
     } = attributes;
 
     const {
@@ -398,8 +399,28 @@ export default function Style({ props }) {
             ${playBtnHBoxShadow}
         }
 
-       .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg{
+       .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg {
             ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
+        }
+
+       ${
+           lightboxType === 'poster'
+               ? `
+                       .${uniqueId} .zolo-play-btn .zolo-btn-icon:hover svg {
+                            ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
+                        }
+                `
+               : ''
+       }
+
+        ${
+            lightboxType === 'button'
+                ? `
+                       .${uniqueId} .zolo-play-btn:hover .zolo-btn-icon svg {
+                            ${iconHColor ? `fill: ${iconHColor} !important;` : ''}
+                        }
+                `
+                : ''
         }
 
         .${uniqueId}.zolo-lightbox-button .zolo-play-btn .zolo-btn-text {

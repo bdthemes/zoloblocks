@@ -23,6 +23,7 @@ const Save = (props) => {
         zoloId,
         imageRes,
         counterDirection,
+        contentCounterTitle,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -39,7 +40,7 @@ const Save = (props) => {
             })}
         >
             {renderHookBefore && renderHookBefore}
-            <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
+            <div className={`zolo-counter-wrap ${preset} ${counterDirection} ${preset !== 'style-3' ? contentCounterTitle : ''}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (
                         <div class="zolo-counter-icon">
