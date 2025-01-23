@@ -298,3 +298,10 @@ export const generateUniqueName = (uniqueId, customNameAttribute, defaultName = 
     : `${defaultName}_${lastPart}`;
 };
 
+//generate css for order sort control
+export const generateOrderSortCSS = (items,uniqueId) => {
+  return items
+    .map((item, index) => {
+      return `.${uniqueId}.zolo-block .${item.class} {order: ${index + 1};}`;
+    }).join("\n");
+};
