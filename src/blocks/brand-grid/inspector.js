@@ -103,7 +103,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Presets', 'zoloblocks')}
+                                label={__('Hover Animation', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.brandGrid.presets', PRESETS)}
                                 onChange={(value) =>
