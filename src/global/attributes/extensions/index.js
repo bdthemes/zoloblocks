@@ -2,6 +2,15 @@
  * WordPress dependencies
  */
 import { addFilter } from '@wordpress/hooks';
+const {
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateNormalBGAttributes,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+} = window.zoloModule;
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 /**
  * Attributes for the visibility extension.
@@ -493,6 +502,45 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/cssFilters', (settings) =
                     hueRotate: 0,
                 },
             },
+        };
+    }
+
+    return settings;
+});
+
+
+/**
+* Attributes for the Cursor.
+*/
+addFilter('blocks.registerBlockType', 'zolo/attributes/cursors', (settings) => {
+    if (settings.category && settings.category == 'zoloblocks') {
+        settings.attributes = {
+            ...settings.attributes,
+            zoloCursors: {
+                type: 'object',
+                default: {
+                    active: false,
+                    source: 'default',
+                    imageSource: {
+                        url: zoloPlaceholders.placeholder,
+                        id: '',
+                    },
+                    disabledDefault: false,
+                    speed: 2,
+                    disabledDefault: false,
+                    textLabel: 'ZoloBlocks',
+                },
+            },
+            ...generateResRangeAttributies('dotSize'),
+            ...generateResRangeAttributies('cursorImageSize'),
+            ...generateResRangeAttributies('iconSize'),
+            ...generateBorderAttributies('textBorder'),
+            ...generateDimensionAttributes('textBorderRadius'),
+            ...generateDimensionAttributes('textPadding'),
+            ...generateTypographyAttributes(Object.values(typographyObjs)),
+            ...generateBorderAttributies('imageBorder'),
+            ...generateDimensionAttributes('cursorImageBorderRadius'),
+            ...generateNormalBGAttributes('textBgColor'),
         };
     }
 
