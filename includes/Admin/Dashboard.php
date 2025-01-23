@@ -29,8 +29,16 @@ if (! class_exists('Dashboard')) {
         public function __construct() {
             add_action('admin_menu', [$this, 'zolo_admin_menu']);
             add_action('admin_init', [$this, 'disable_admin_notice']);
+            add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
         }
 
+        /**
+         * Enqueues the Zolo dashboard scripts.
+         */
+
+        public function enqueue_scripts() {
+            wp_enqueue_style('zolo-dashboard-css', trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/assets/css/dashboard.css', [], ZOLO_VERSION, 'all');
+        }
         /**
          * Disables the admin notice.
          *
@@ -120,6 +128,18 @@ if (! class_exists('Dashboard')) {
                 'manage_options',
                 'edit.php?post_type=zolo-popup'
             );
+            if (!class_exists('Zolo_Blocks_Pro')) {
+                add_submenu_page(
+                    'zoloblocks',
+                    __('Upgrade', 'zoloblocks'),
+                    __('Upgrade', 'zoloblocks'),
+                    'manage_options',
+                    'zolo-pro',
+                    function () {
+                        echo '<script>document.location.href = "https://zoloblocks.com/pricing/";</script>';
+                    }
+                );
+            }
         }
 
         /**
