@@ -62,6 +62,7 @@ function Inspector(props) {
         defaultValue,
         customNameAttribute,
         checkboxDirection,
+        checkboxCheckedBgColor,
     } = attributes;
 
     const requiredProps = {
@@ -142,8 +143,8 @@ function Inspector(props) {
                                     label={__('Custom Name Attribute', 'zoloblocks')}
                                     value={customNameAttribute || ''}
                                     onChange={(v) => {
-                                      const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_')
-                                      setAttributes({customNameAttribute: val});
+                                        const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_');
+                                        setAttributes({ customNameAttribute: val });
                                     }}
                                     help={__(
                                         'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
@@ -276,6 +277,13 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={100}
+                                        />
+
+                                        <div className="zolo-custom-heading">{__('Checked', 'zoloblocks')}</div>
+                                        <ColorControl
+                                            label={__('Background Color', 'zoloblocks')}
+                                            color={checkboxCheckedBgColor}
+                                            onChange={(color) => setAttributes({ checkboxCheckedBgColor: color })}
                                         />
                                     </>
                                 }

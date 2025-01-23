@@ -1,18 +1,37 @@
-.flatpickr-calendar {
-    --zolo-time-arrow-color: #484848;
-    .flatpickr-day.inRange {
-        --zolo-date-range-color: #e2e2e2;
-        box-shadow:
-            -5px 0 0 var(--zolo-date-range-color),
-            5px 0 0 var(--zolo-date-range-color);
-        background: var(--zolo-date-range-color);
-        border-color: var(--zolo-date-range-color);
-    }
+[class*='zolo-datepicker-datetime-field-'] {
+    &.flatpickr-calendar {
+        --zolo-time-arrow-color: #484848;
+        .flatpickr-current-month .flatpickr-monthDropdown-months,
+        .flatpickr-months .flatpickr-month,
+        .flatpickr-weekdays,
+        .flatpickr-weekday {
+            background-color: var(--zoloblocks-brand-color);
+        }
 
-    .flatpickr-time .numInputWrapper span.arrowUp:after {
-        border-bottom-color: var(--zolo-time-arrow-color);
-    }
-    .flatpickr-time .numInputWrapper span.arrowDown:after {
-        border-top-color: var(--zolo-time-arrow-color);
+        .flatpickr-day.inRange {
+            --zolo-date-range-color: #e2e2e2;
+            box-shadow:
+                -5px 0 0 var(--zolo-date-range-color),
+                5px 0 0 var(--zolo-date-range-color);
+            background: var(--zolo-date-range-color);
+            border-color: var(--zolo-date-range-color);
+        }
+
+        .flatpickr-time .numInputWrapper span.arrowUp:after {
+            border-bottom-color: var(--zolo-time-arrow-color);
+        }
+        .flatpickr-time .numInputWrapper span.arrowDown:after {
+            border-top-color: var(--zolo-time-arrow-color);
+        }
+
+        .flatpickr-day.selected {
+            border-color: var(--zoloblocks-brand-color);
+            background-color: var(--zoloblocks-brand-color);
+        }
+        .flatpickr-weekday {
+            color: rgba(255, 255, 255, 0.69);
+        }
     }
 }
+
+// [class^=".zolo-datepicker-datetime-field-"]

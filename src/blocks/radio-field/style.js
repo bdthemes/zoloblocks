@@ -37,7 +37,7 @@ import {
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, showLabel, labelColor, textColor, showRequiredSymbol, requiredColor } = attributes;
+    const { uniqueId, showLabel, labelColor, textColor, showRequiredSymbol, requiredColor, radioCheckedBgColor } = attributes;
 
     // label
     const {
@@ -222,11 +222,15 @@ const Style = ({ props }) => {
           ${fieldTypoDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item input[type="radio"] {
+        .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item input {
             ${fieldBorderStyles}
             ${fieldBRDesktop}
             ${fieldPaddingDesktop.replace(';', ' !important;')}
             ${fieldBGStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item [type=radio]:checked {
+            background-color: ${radioCheckedBgColor};
         }
 
       .${uniqueId}.wp-block-zolo-radio-field .zolo-field-input-item{

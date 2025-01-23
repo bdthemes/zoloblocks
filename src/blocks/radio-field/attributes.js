@@ -138,5 +138,8 @@ Option 3`,
         type: 'string',
         default: 'zolo-form-radio-col',
     },
+    radioCheckedBgColor: {
+        type: 'string',
+    },
 };
 export default attributes;
