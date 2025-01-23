@@ -31,14 +31,17 @@ const SHAPE_OPTIONS = [
     { label: 'Triangle', value: 'triangle', icon: 'triangle' },
     { label: 'Triangle Asymmetrical', value: 'triangleAsy', icon: 'triangleAsy' },
     { label: 'Waves', value: 'waves', icon: 'waves' },
+    { label: 'Custom', value: 'custom', icon: 'custom', pro: true },
 ];
 
 // Helper function to map shape options with icon sources
 const mapShapeOptions = (iconSource) =>
-    SHAPE_OPTIONS.map(({ label, value, icon }) => ({
+    SHAPE_OPTIONS.map(({ label, value, icon, pro }) => ({
         label: __(label, 'zoloblocks'),
         value,
         image: iconSource[icon] || '',
+       //define pro badge
+        pro,
     }));
 
 // Shape divider arrays with appropriate icons
