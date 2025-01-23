@@ -78,6 +78,8 @@ import {
     AROOW_H_SPACE,
     AROOW_V_SPACE,
     ARROW_ROUNDED,
+    QUOTE_ICON_H_OFFSET,
+    QUOTE_ICON_V_OFFSET,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -683,6 +685,27 @@ function Inspector(props) {
                                 min={0}
                                 max={200}
                             />
+
+                            {stylePreset === 'style-preset-2' && (
+                                <>
+                                    <CardDivider />
+                                    <ResRangeControl
+                                        label={__('Horizontal Offset', 'zoloblocks')}
+                                        controlName={QUOTE_ICON_H_OFFSET}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={50}
+                                    />
+
+                                    <ResRangeControl
+                                        label={__('Vertical Offset', 'zoloblocks')}
+                                        controlName={QUOTE_ICON_V_OFFSET}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={50}
+                                    />
+                                </>
+                            )}
 
                             {stylePreset !== 'style-preset-2' && (
                                 <>

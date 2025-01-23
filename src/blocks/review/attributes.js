@@ -47,6 +47,8 @@ import {
     AROOW_H_SPACE,
     AROOW_V_SPACE,
     ARROW_ROUNDED,
+    QUOTE_ICON_H_OFFSET,
+    QUOTE_ICON_V_OFFSET,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -137,6 +139,13 @@ const attributes = {
     ...generateResRangeAttributies(AROOW_H_SPACE),
     ...generateResRangeAttributies(AROOW_V_SPACE),
     ...generateResRangeAttributies(ARROW_ROUNDED),
+
+    ...generateResRangeAttributies(QUOTE_ICON_H_OFFSET, {
+        defaultUnit: 'em',
+    }),
+    ...generateResRangeAttributies(QUOTE_ICON_V_OFFSET, {
+        defaultUnit: 'em',
+    }),
 
     //Block Specific Attributes
     showPhoto: {
