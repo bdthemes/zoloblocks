@@ -11,7 +11,7 @@ use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
-use Zolo\API\ZoloOpenAi;
+use Zolo\API\ZoloAi;
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Admin\PostCategoryImage;
 use Zolo\Admin\Author;
@@ -64,7 +64,7 @@ class ZoloBlocks_Loader {
     public function plugins_loaded() {
         GetPostsV1::getInstance();
         GetPostMetaV1::getInstance();
-        ZoloOpenAi::getInstance();
+        ZoloAi::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();

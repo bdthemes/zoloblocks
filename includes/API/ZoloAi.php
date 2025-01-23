@@ -1,7 +1,7 @@
 <?php
 
 /**
- * OpenAI API Class
+ * ZoloAI API Class
  */
 
 namespace Zolo\API;
@@ -12,23 +12,23 @@ use WP_REST_Request;
 use WP_Error;
 use WP_REST_Response;
 
-class ZoloOpenAi extends WP_REST_Controller {
+class ZoloAi extends WP_REST_Controller {
     use SingletonTrait;
 
     /**
      * Constructor
      */
     public function __construct() {
-        add_action('rest_api_init', [$this, 'register_openai_route']);
+        add_action('rest_api_init', [$this, 'register_zoloai_route']);
     }
 
     /**
-     * Register OpenAI REST API route
+     * Register ZoloAi REST API route
      */
-    public function register_openai_route() {
+    public function register_zoloai_route() {
         register_rest_route(
             'zolo/v1',
-            'openai',
+            'zoloai',
             [
                 'methods'             => ['GET', 'POST'],
                 'callback'            => [$this, 'call_sigmative_api'],
