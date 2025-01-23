@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useEffect,useRef } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
@@ -74,9 +74,16 @@ export default function Edit(props) {
     }, [context]);
 
     //for preset basic
+    let linkType = useRef('');
     useEffect(() => {
       if(enableLogoLink && context['zolo/preset']==='zb-brand-basic-style'){
+        linkType.current = logoLinkType;
         setAttributes({logoLinkType:'logo__global'});
+      }else{
+        if(linkType.current){
+          setAttributes({logoLinkType:linkType.current});
+          linkType.current = '';
+        }
       }
     }, [context['zolo/preset']]);
 
