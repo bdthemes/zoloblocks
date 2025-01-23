@@ -28,6 +28,8 @@ export const ICON_PADDING = 'iconPadding';
 export const ICON_RADIUS = 'iconRadius';
 export const ICON_BG = 'iconBg';
 export const ICON_HBG = 'iconHbg';
+export const ICON_SHADOW = 'iconShadow';
+export const ICON_SHADOW_HOVER = 'iconHoverShadow';
 
 //image
 export const IMAGE_WIDTH = 'imageWidth';
@@ -35,6 +37,10 @@ export const IMAGE_HEIGHT = 'imageHeight';
 export const IMAGE_BORDER = 'imageBorder';
 export const IMAGE_BORDERRADIUS = 'imageBorderRadius';
 export const IMAGE_PADDING = 'imagePadding';
+export const ITEM_BOX_HOVER_SHADOW = 'itemBoxHoverShadow';
 
 // gap
 export const GAP = 'gap';
+
+export const MEDIA_BOX_SHADOW = 'mediaBoxShadow';
+export const MEDIA_BOX_SHADOW_HOVER = 'mediaBoxShadowHover';
