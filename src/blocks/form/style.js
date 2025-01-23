@@ -387,12 +387,19 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId} .zolo-contact-form input:focus, 
         .${uniqueId} .zolo-contact-form select:focus, 
-        .${uniqueId} .zolo-contact-form textarea:focus,
-        .${uniqueId} .zolo-contact-form .zolo-select__control:focus {
+        .${uniqueId} .zolo-contact-form textarea:focus{
             ${focusBorderColor ? `border-color: ${focusBorderColor};` : ''} 
             ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px;` : ''}
             ${focusBorderColor ? `outline-color: ${focusBorderColor};` : ''}
         }
+
+        .${uniqueId} .zolo-contact-form .zolo-field-item .zolo-field-input-item .zolo-select__control--is-focused {
+            ${focusBorderColor ? `border-color: ${focusBorderColor} !important;` : ''}
+            ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px !important;` : ''}
+            ${focusBorderColor ? `outline-color: ${focusBorderColor} !important;` : ''}
+            outline-style: solid !important;
+        }
+
         .${uniqueId} .zolo-label {
             ${labelTypoDesk}
             color: ${labelColor};
