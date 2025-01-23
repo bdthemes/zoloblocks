@@ -311,7 +311,7 @@ const ApiSettings = () => {
                         'ZoloAI enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of ZoloAI.'
                     )}
                     docLink="https://account.bdthemes.com"
-                    icon="openai"
+                    icon="zoloai"
                     onSave={() => {
                         onChangeZoloAiKey(zoloaiAPIKey);
                     }}
