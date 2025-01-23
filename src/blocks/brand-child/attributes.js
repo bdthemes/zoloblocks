@@ -155,11 +155,11 @@ const attributes = {
     },
     enableLogoLink: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     logoLinkType: {
         type: 'string',
-        default: 'logo__label',
+        default: 'logo__global',
     },
     logoLink: {
         type: 'object',
