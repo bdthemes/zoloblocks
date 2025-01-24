@@ -309,6 +309,18 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_sidebar_opener',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
         }
 
         /**

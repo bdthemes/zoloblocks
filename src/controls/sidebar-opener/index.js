@@ -1,7 +1,20 @@
 import classNames from 'classnames';
-import { dispatch } from '@wordpress/data';
+import { useSelect } from '@wordpress/data';
 
 const SidebarOpener = ({clientId = null }) => {
+
+const { zoloSidebarOpener } = useSelect((select) => {
+    const { getEntityRecord } = select('core');
+    const settings = getEntityRecord('root', 'site');
+    return {
+        zoloSidebarOpener: settings?.zolo_sidebar_opener,
+    };
+}, []);
+
+
+    if (!zoloSidebarOpener) {
+        return null;
+    }
     return (
         <div className={classNames('zolo-blocks-toolbar general-block')}>
             <button

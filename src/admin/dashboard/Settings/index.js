@@ -19,6 +19,7 @@ const Settings = () => {
     const [activeTab, setActiveTab] = useState('editor-options');
     const [modalNewPage, setModalNewPage] = useState(false);
     const [editorVideoLink, setEditorVideoLink] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
@@ -50,6 +51,7 @@ const Settings = () => {
             setDisableCorePatterns(response.zolo_disable_core_patterns);
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
+            setSidebarOpen(response.zolo_sidebar_opener);
         } catch (error) {
             handleFetchError(error);
         }
@@ -75,6 +77,7 @@ const Settings = () => {
             setDisableCorePatterns(response.zolo_disable_core_patterns);
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
+            setSidebarOpen(response.zolo_sidebar_opener);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -156,6 +159,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_auto_recovery: value },
+        });
+    };
+
+    const updateSidebarOpener = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_sidebar_opener: value },
         });
     };
 
@@ -310,6 +321,20 @@ const Settings = () => {
                                             onChange={() => {
                                                 updateAutoRecovery(!autoRecovery);
                                                 setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
+                                        title={__('Editor Sidebar Open', 'zoloblocks')}
+                                        description={__(
+                                            'Enable this option to provide users easy access to the Gutenberg editor sidebar settings.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ToggleControl
+                                            checked={!!sidebarOpen}
+                                            onChange={() => {
+                                                updateSidebarOpener(!sidebarOpen);
                                             }}
                                         />
                                     </SettingBox>

@@ -1,26 +1,9 @@
 .zolo-icons-wrap {
-    padding: 0 30px 30px 30px;
-    overflow-y: scroll;
-    height: 475px;
-    min-height: 475px;
-    /* width */
-    &::-webkit-scrollbar {
-        width: 5px;
-        border-radius: 10px;
-    }
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #aeaeae;
-    }
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+    padding: 0 20px 30px 30px;
+    // overflow-y: scroll;
+    // height: 475px;
+    // min-height: 475px;
+
     // Display Icon
     .zolo__display-icon {
         display: inline;
@@ -33,13 +16,32 @@
 }
 
 .zolo__icons-grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(7, 1fr);
-    position: relative;
+    /* width */
+
+    & > div {
+        // height: 370px !important;
+        width: auto !important;
+        &::-webkit-scrollbar {
+            width: 5px;
+            border-radius: 10px;
+        }
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #aeaeae;
+            border-radius: 10px;
+        }
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    }
 
     .single__icon {
-        height: 70px;
         border: 1px solid #ececf1;
         border-radius: 4px;
         display: flex;
@@ -48,24 +50,22 @@
         cursor: pointer;
         margin: 0;
         padding: 0 !important;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        transition: border 0.3s ease;
-        &:hover {
-            border-color: #dbdbdd;
-            svg {
-                color: #001feb;
-            }
-        }
+        // box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition:
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
         svg {
             width: 24px;
             height: 24px;
             color: #5d5b65;
         }
-        &.active {
-            border-color: #b9befd;
-            border-width: 2px;
+
+        &.active,
+        &:hover {
+            border-color: var(--zoloblocks-brand-color);
+            box-shadow: 0 0 0 1px var(--zoloblocks-brand-color);
             svg {
-                color: #001feb;
+                color: var(--zoloblocks-brand-color);
             }
         }
     }
@@ -80,6 +80,7 @@
     min-width: 1024px;
     height: auto;
     min-height: auto;
+    border-radius: 10px;
     .components-modal__header {
         border-bottom: 1px solid #ececf1;
         padding: 25px 30px;

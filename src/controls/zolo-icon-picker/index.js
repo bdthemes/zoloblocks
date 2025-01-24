@@ -176,8 +176,8 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
     };
 
     // Define gap between columns and rows
-    const columnWidthWithGap = 75; // Column width
-    const rowHeightWithGap = 75; // Row height
+    const columnWidthWithGap = 77; // Column width
+    const rowHeightWithGap = 77; // Row height
     const gapSize = 15; // Gap between items
 
     return (
@@ -261,7 +261,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                     <Grid
                                         columnCount={9}
                                         columnWidth={columnWidthWithGap}
-                                        height={400}
+                                        height={370}
                                         rowCount={Math.ceil(filterIcons.length / 9)}
                                         rowHeight={rowHeightWithGap}
                                         width={(columnWidthWithGap + gapSize) * 9} // Adjust the total width
