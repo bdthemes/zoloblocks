@@ -2,7 +2,7 @@ import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
 import { Modal, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { FixedSizeGrid as Grid } from 'react-window';
-import icons from './new-icons.json';
+import icons from './icons.json';
 
 const iconCategories = [
     {
@@ -93,15 +93,10 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
     const [searchText, setSearchText] = useState('');
     const enableMediaUpload = zoloSettings?.svg_upload === '1' ? true : false;
     const allSvgItems = useMemo(() => {
-        // return Object.keys(icons).map((key) => ({
-        //     label: icons[key].label,
-        //     svg: icons[key].svg,
-        //     terms: icons[key]?.search?.terms || [],
-        // }));
-        return icons.map((icon) => ({
-            label: icon.label,
-            svg: icon.svg,
-            terms: icon.terms,
+        return Object.keys(icons).map((key) => ({
+            label: icons[key].label,
+            svg: icons[key].svg,
+            terms: icons[key]?.search?.terms || [],
         }));
     }, [icons]);
 
@@ -287,29 +282,25 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                             } else if (item.svg.regular) {
                                                 iconCat = 'regular';
                                             }
-                                            const generateIcon = (icon) => {
-                                                const svgRaw = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${icon.svg[iconCat].width} 512"><path d="${icon.svg[iconCat].path}" /></svg>`;
-                                                return svgRaw;
-                                            };
 
                                             return (
                                                 <Button
                                                     key={index}
-                                                    className={`single__icon ${value === generateIcon(item) ? 'active' : ''}`}
+                                                    className={`single__icon ${value === item.svg[iconCat].raw ? 'active' : ''}`}
                                                     onClick={() => {
-                                                        onChange(generateIcon(item));
+                                                        onChange(item.svg[iconCat].raw);
                                                         setIconsPanel(false);
                                                     }}
                                                     title={item.label}
                                                     style={{
                                                         ...style,
-                                                        left: parseFloat(style.left) + gapSize,
-                                                        top: parseFloat(style.top) + gapSize,
-                                                        width: style.width - gapSize,
-                                                        height: style.height - gapSize,
+                                                        left: parseFloat(style.left) + gapSize, // Add gap between columns
+                                                        top: parseFloat(style.top) + gapSize, // Add gap between rows
+                                                        width: style.width - gapSize, // Reduce the width for the gap
+                                                        height: style.height - gapSize, // Reduce the height for the gap
                                                     }}
                                                 >
-                                                    <RawHTML className="single__icon_svg" children={generateIcon(item)} />
+                                                    <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
                                                 </Button>
                                             );
                                         }}
