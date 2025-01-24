@@ -2,7 +2,7 @@ import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
 import { Modal, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { FixedSizeGrid as Grid } from 'react-window';
-import icons from './icons.json';
+import icons from './xicons.json';
 
 const iconCategories = [
     {
