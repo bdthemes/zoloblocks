@@ -1,7 +1,7 @@
 import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
 import { Modal, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { FixedSizeGrid as Grid } from 'react-window';
 import icons from './icons.json';
 
 const iconCategories = [
@@ -93,9 +93,10 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
     const [searchText, setSearchText] = useState('');
     const enableMediaUpload = zoloSettings?.svg_upload === '1' ? true : false;
     const allSvgItems = useMemo(() => {
-        return Object.keys(icons).map((key) => ({
-            label: icons[key].label,
-            svg: icons[key].svg,
+        return icons.map((icon) => ({
+            label: icon.label,
+            svg: icon.svg,
+            terms: icon.terms,
         }));
     }, [icons]);
 
@@ -116,15 +117,21 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         }
 
         if (searchText) {
-            displayIcons = displayIcons.filter((item) => item.label.toLowerCase().includes(searchText.toLowerCase()));
-
+            // filter by label and terms
+            displayIcons = displayIcons.filter(
+                (item) =>
+                    item.label.toLowerCase().includes(searchText.toLowerCase()) ||
+                    item.terms.some((term) => term.toLowerCase().includes(searchText.toLowerCase()))
+            );
             if (displayIcons.length === 0) {
                 displayIcons = [
                     {
                         label: __('No Icons Found', 'zoloblocks'),
+
                         svg: {
                             solid: {
-                                raw: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0C114.62 0 0 114.62 0 256s114.62 256 256 256 256-114.62 256-256S397.38 0 256 0zm0 480C132.48 480 32 379.52 32 256S132.48 32 256 32s224 100.48 224 224-100.48 224-224 224z"/><path d="M336 192H176a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm-16 64H192v-32h128z"/></svg>`,
+                                path: 'M256 0C114.62 0 0 114.62 0 256s114.62 256 256 256 256-114.62 256-256S397.38 0 256 0zm0 480C132.48 480 32 379.52 32 256S132.48 32 256 32s224 100.48 224 224-100.48 224-224 224z"/><path d="M336 192H176a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm-16 64H192v-32h128z',
+                                width: 512,
                             },
                         },
                     },
@@ -170,14 +177,50 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
         mediaFrame.open();
     };
 
+    // Define gap between columns and rows
+    const columnWidthWithGap = 77; // Column width
+    const rowHeightWithGap = 77; // Row height
+    const gapSize = 15; // Gap between items
+
     return (
         <div className="zolo-icon-picker">
             <div className="zolo-icon-preview">
                 <label htmlFor="iconPreview">{label}</label>
                 <div className="zolo__icon-preview-wrap">
                     <div className="zolo__icon-preview" onClick={() => setIconsPanel(true)}>
-                        {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zoloblocks')}
+                        {value ? (
+                            <RawHTML className="zolo__single-preview-icon" children={value} />
+                        ) : (
+                            <div className="zolo__single-preview-icon">{__('ADD ICON', 'zoloblocks')}</div>
+                        )}
                     </div>
+                    {value && (
+                        <Button
+                            className="zolo-picker__remove"
+                            id="iconRemove"
+                            onClick={() => {
+                                onChange('');
+                                setIconsPanel(false);
+                            }}
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22 2L2 22"
+                                    stroke="#4D4D4D"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></path>
+                                <path
+                                    d="M2 2L22 22"
+                                    stroke="#4D4D4D"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></path>
+                            </svg>
+                        </Button>
+                    )}
                     <div className="zolo__icon-picker-buttons">
                         <Button
                             className={`zolo-picker__button ${value ? 'active' : ''}`}
@@ -189,7 +232,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                         {enableMediaUpload && (
                             <Button
                                 className={`zolo-picker__button ${value ? 'active' : ''}`}
-                                id="iconPreview"
+                                id="iconUpload"
                                 onClick={handlUploadMediaSVG}
                             >
                                 {__('Upload SVG', 'zoloblocks')}
@@ -248,9 +291,22 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                     {category === 'regular' && __('Font Awesome - Regular', 'zoloblocks')}
                                 </h2>
                                 <div className="zolo__icons-grid">
-                                    {filterIcons &&
-                                        filterIcons.map((item, index) => {
-                                            // find category
+                                    <Grid
+                                        columnCount={9}
+                                        columnWidth={columnWidthWithGap}
+                                        height={370}
+                                        rowCount={Math.ceil(filterIcons.length / 9)}
+                                        rowHeight={rowHeightWithGap}
+                                        width={(columnWidthWithGap + gapSize) * 9} // Adjust the total width
+                                        style={{
+                                            marginLeft: -gapSize, // Adjust the margin to remove the gap
+                                            marginTop: -gapSize, // Adjust the margin to remove the gap
+                                        }}
+                                    >
+                                        {({ columnIndex, rowIndex, style }) => {
+                                            const index = rowIndex * 9 + columnIndex;
+                                            if (index >= filterIcons.length) return null;
+                                            const item = filterIcons[index];
                                             let iconCat;
                                             if (item.svg.solid) {
                                                 iconCat = 'solid';
@@ -259,25 +315,33 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                             } else if (item.svg.regular) {
                                                 iconCat = 'regular';
                                             }
+                                            const generateIcon = (icon) => {
+                                                const svgRaw = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${icon.svg[iconCat].width} 512"><path d="${icon.svg[iconCat].path}" /></svg>`;
+                                                return svgRaw;
+                                            };
 
-                                            return item.title ? (
-                                                <p key={index} className="zolo__not_found">
-                                                    {item.title}
-                                                </p>
-                                            ) : (
+                                            return (
                                                 <Button
                                                     key={index}
-                                                    className={`single__icon ${value === item.svg[iconCat].raw ? 'active' : ''}`}
+                                                    className={`single__icon ${value === generateIcon(item) ? 'active' : ''}`}
                                                     onClick={() => {
-                                                        onChange(item.svg[iconCat].raw);
+                                                        onChange(generateIcon(item));
                                                         setIconsPanel(false);
                                                     }}
                                                     title={item.label}
+                                                    style={{
+                                                        ...style,
+                                                        left: parseFloat(style.left) + gapSize,
+                                                        top: parseFloat(style.top) + gapSize,
+                                                        width: style.width - gapSize,
+                                                        height: style.height - gapSize,
+                                                    }}
                                                 >
-                                                    <RawHTML className="single__icon_svg" children={item.svg[iconCat].raw} />
+                                                    <RawHTML className="single__icon_svg" children={generateIcon(item)} />
                                                 </Button>
                                             );
-                                        })}
+                                        }}
+                                    </Grid>
                                 </div>
                             </div>
                         </div>
