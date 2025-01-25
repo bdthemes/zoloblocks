@@ -95,9 +95,10 @@ export default function Edit(props) {
                     <div className="zolo-field-input-item">
                         {optionArray.length > 0 &&
                             optionArray.map((option,index) => (
-                                <label key={index} htmlFor={option.value}>
+                                <label key={index} htmlFor={option.value+uniqueId}>
                                     <input
                                         type="radio"
+                                        id={option.value+uniqueId}
                                         name={generateUniqueName(uniqueId,customNameAttribute,'radio_field')}
                                         value={option.value}
                                         defaultChecked={defaultCheck === option.value}
