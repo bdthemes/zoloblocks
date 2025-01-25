@@ -182,37 +182,27 @@
     }
 }
 
-.zolo-picker__button {
-    // width: 100%;
-    // height: 180px;
-    // border: 1px solid #ececf1;
-    // align-items: center;
-    // justify-content: center;
-    // overflow: hidden;
-    // position: relative;
-    // font-size: 13px;
-    // font-weight: 600;
-    // &:focus {
-    //     outline: none !important;
-    //     box-shadow: none !important;
-    // }
-}
+
 button.zolo-picker__remove#iconRemove {
-height: 28px;
-	width: 28px;
-	padding: 8px;
-	background-color: #ffffff;
-	border-radius: 50%;
-	border: 0;
-	cursor: pointer;
-	min-width: auto;
-	opacity: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	top: 5px;
-	right: 5px;
+    height: 28px;
+    width: 28px;
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    min-width: auto;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
 }
 
 .zolo__not_found {
@@ -226,30 +216,6 @@ height: 28px;
     color: #858596;
 }
 
-// .zolo-picker__button.active:after {
-//     position: absolute;
-//     bottom: 0;
-//     left: 0;
-//     width: 100%;
-//     height: auto;
-//     content: 'Change Icon';
-//     padding: 8px;
-//     background: #e0e0e0;
-//     font-size: 14px;
-//     text-transform: capitalize;
-//     line-height: 1;
-//     font-weight: 400;
-//     transition: 0.3s;
-//     transform: translateY(30px);
-//     opacity: 0;
-//     visibility: hidden;
-// }
-
-// .zolo-picker__button:hover:after {
-//     visibility: visible;
-//     opacity: 1;
-//     transform: translateY(0);
-// }
 
 .zolo-modal__wrapper {
     display: flex;
@@ -326,6 +292,10 @@ height: 28px;
                     opacity: 1;
                     visibility: visible;
                 }
+            }
+            button.zolo-picker__remove#iconRemove {
+                opacity: 1;
+                visibility: visible;
             }
         }
     }
