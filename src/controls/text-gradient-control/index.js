@@ -1058,6 +1058,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                         label={__('Color', 'zoloblocks')}
                         value={defaultColor}
                         onChange={onChangeDefault}
+                        enableAlpha={true}
                     />
                 )}
             </div>

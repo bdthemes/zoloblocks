@@ -1,6 +1,3 @@
-// import Lottie from 'react-lottie-player';
-import '@lottiefiles/lottie-player';
-
 const LottiePreview = (props) => {
     const { url, trigger, speed, loop, direction, isSelected } = props;
     return (

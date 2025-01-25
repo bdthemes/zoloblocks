@@ -7,7 +7,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 const ApiSettings = () => {
     const [googleAPIKey, setGoogleAPIKey] = useState('');
-    const [openaiAPIKey, setOpenaiAPIKey] = useState('');
+    const [zoloaiAPIKey, setZoloaiAPIKey] = useState('');
     const [siteKey, setSiteKey] = useState('');
     const [secretKey, setSecretKey] = useState('');
     const [mailchimpKey, setMailchimpKey] = useState('');
@@ -49,7 +49,7 @@ const ApiSettings = () => {
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
-                setOpenaiAPIKey(zolo_sigmative_api_key);
+                setZoloaiAPIKey(zolo_sigmative_api_key);
                 setSiteKey(zolo_recaptcha_site_key);
                 setSecretKey(zolo_recaptcha_secret_key);
                 setMailchimpKey(zolo_mailchimp_api_key);
@@ -71,8 +71,8 @@ const ApiSettings = () => {
             setGoogleAPIKey(zolo_google_api_key);
         });
     };
-    // onchange openai key
-    const onChangeOpenAiKey = (value) => {
+    // onchange zoloai key
+    const onChangeZoloAiKey = (value) => {
         fetchSettings({
             path: '/wp/v2/settings',
             method: 'POST',
@@ -80,7 +80,7 @@ const ApiSettings = () => {
                 zolo_sigmative_api_key: value,
             },
         }).then(({ zolo_sigmative_api_key }) => {
-            setOpenaiAPIKey(zolo_sigmative_api_key);
+            setZoloaiAPIKey(zolo_sigmative_api_key);
         });
     };
 
@@ -306,21 +306,20 @@ const ApiSettings = () => {
                     </Button>
                 </SettingPanel>
                 <SettingPanel
-                    title={__('OpenAI', 'zoloblocks')}
+                    title={__('ZoloAI', 'zoloblocks')}
                     description={__(
-                        'The OpenAI API block allows you to integrate OpenAI API to your WordPress site. You can use the API key to generate text, images, and more.',
-                        'zoloblocks'
+                        'ZoloAI enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of ZoloAI.'
                     )}
-                    docLink="https://platform.openai.com/api-keys"
-                    icon="openai"
+                    docLink="https://account.bdthemes.com"
+                    icon="zoloai"
                     onSave={() => {
-                        onChangeOpenAiKey(openaiAPIKey);
+                        onChangeZoloAiKey(zoloaiAPIKey);
                     }}
                 >
                     <TextControl
                         label={__('API Key', 'zoloblocks')}
-                        onChange={(value) => setOpenaiAPIKey(value)}
-                        value={openaiAPIKey}
+                        onChange={(value) => setZoloaiAPIKey(value)}
+                        value={zoloaiAPIKey}
                         placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
                     />
                 </SettingPanel>
