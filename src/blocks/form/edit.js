@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks,ButtonBlockAppender } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
@@ -81,7 +81,11 @@ export default function Edit(props) {
                     <InnerBlocks
                         allowedBlocks={(['zolo/text-field'], ['zolo/email'], ['zolo/textarea'])}
                         template={[['zolo/text-field'], ['zolo/email'], ['zolo/textarea']]}
+                        renderAppender={() => null}
                     />
+
+                    <ButtonBlockAppender rootClientId={clientId} />
+
                     <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                         <div className="zolo-submit-btn">
                             <button type="submit" className={iconPosition}>
