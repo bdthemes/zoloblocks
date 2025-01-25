@@ -1,0 +1,16 @@
+#adminmenu #toplevel_page_zoloblocks a[href="admin.php?page=zolo-pro"] {
+    background-color: #3f8efc;
+    border-radius: 3px;
+    display: block;
+    font-weight: 600;
+    margin: 3px 10px 0;
+    text-align: center;
+    transition: all .3s;
+    color: #fff;
+}
+
+#adminmenu #toplevel_page_zoloblocks a[href="admin.php?page=zolo-pro"]:hover {
+    background-color:#2667ff;
+    outline: none;
+    box-shadow: none
+}

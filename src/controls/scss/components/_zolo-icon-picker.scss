@@ -1,26 +1,9 @@
 .zolo-icons-wrap {
-    padding: 0 30px 30px 30px;
-    overflow-y: scroll;
-    height: 475px;
-    min-height: 475px;
-    /* width */
-    &::-webkit-scrollbar {
-        width: 5px;
-        border-radius: 10px;
-    }
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #aeaeae;
-    }
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+    padding: 0 20px 30px 30px;
+    // overflow-y: scroll;
+    // height: 475px;
+    // min-height: 475px;
+
     // Display Icon
     .zolo__display-icon {
         display: inline;
@@ -33,13 +16,32 @@
 }
 
 .zolo__icons-grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(7, 1fr);
-    position: relative;
+    /* width */
+
+    & > div {
+        // height: 370px !important;
+        width: auto !important;
+        &::-webkit-scrollbar {
+            width: 5px;
+            border-radius: 10px;
+        }
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #aeaeae;
+            border-radius: 10px;
+        }
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    }
 
     .single__icon {
-        height: 70px;
         border: 1px solid #ececf1;
         border-radius: 4px;
         display: flex;
@@ -48,24 +50,22 @@
         cursor: pointer;
         margin: 0;
         padding: 0 !important;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        transition: border 0.3s ease;
-        &:hover {
-            border-color: #dbdbdd;
-            svg {
-                color: #001feb;
-            }
-        }
+        // box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition:
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
         svg {
             width: 24px;
             height: 24px;
             color: #5d5b65;
         }
-        &.active {
-            border-color: #b9befd;
-            border-width: 2px;
+
+        &.active,
+        &:hover {
+            border-color: var(--zoloblocks-brand-color);
+            box-shadow: 0 0 0 1px var(--zoloblocks-brand-color);
             svg {
-                color: #001feb;
+                color: var(--zoloblocks-brand-color);
             }
         }
     }
@@ -80,6 +80,7 @@
     min-width: 1024px;
     height: auto;
     min-height: auto;
+    border-radius: 10px;
     .components-modal__header {
         border-bottom: 1px solid #ececf1;
         padding: 25px 30px;
@@ -181,20 +182,27 @@
     }
 }
 
-.zolo-picker__button {
-    // width: 100%;
-    // height: 180px;
-    // border: 1px solid #ececf1;
-    // align-items: center;
-    // justify-content: center;
-    // overflow: hidden;
-    // position: relative;
-    // font-size: 13px;
-    // font-weight: 600;
-    // &:focus {
-    //     outline: none !important;
-    //     box-shadow: none !important;
-    // }
+
+button.zolo-picker__remove#iconRemove {
+    height: 28px;
+    width: 28px;
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    min-width: auto;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
 }
 
 .zolo__not_found {
@@ -208,30 +216,6 @@
     color: #858596;
 }
 
-// .zolo-picker__button.active:after {
-//     position: absolute;
-//     bottom: 0;
-//     left: 0;
-//     width: 100%;
-//     height: auto;
-//     content: 'Change Icon';
-//     padding: 8px;
-//     background: #e0e0e0;
-//     font-size: 14px;
-//     text-transform: capitalize;
-//     line-height: 1;
-//     font-weight: 400;
-//     transition: 0.3s;
-//     transform: translateY(30px);
-//     opacity: 0;
-//     visibility: hidden;
-// }
-
-// .zolo-picker__button:hover:after {
-//     visibility: visible;
-//     opacity: 1;
-//     transform: translateY(0);
-// }
 
 .zolo-modal__wrapper {
     display: flex;
@@ -308,6 +292,10 @@
                     opacity: 1;
                     visibility: visible;
                 }
+            }
+            button.zolo-picker__remove#iconRemove {
+                opacity: 1;
+                visibility: visible;
             }
         }
     }

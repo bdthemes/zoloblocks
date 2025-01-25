@@ -212,7 +212,7 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
-            // register zolo openai api key setting
+            // register zolo zoloai api key setting
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_sigmative_api_key',
