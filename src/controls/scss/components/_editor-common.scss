@@ -182,7 +182,7 @@
         .components-panel__body-toggle {
             &::before {
                 content: 'pro';
-                background-color: #f00;
+                background-color: var(--zolo-badge-pro-color);
             }
         }
     }
