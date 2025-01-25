@@ -1,6 +1,7 @@
 // import hooks
 // import '../global/hooks';
 import '../global/hooks';
+import '../global/attributes';
 
 // unregister blocks
 import './unregister';
