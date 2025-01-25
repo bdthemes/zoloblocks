@@ -135,7 +135,7 @@ return apply_filters('zolo_extensions', [
     'text-animation'          => [
         'name'   => 'text-animation',
         'title'  => __('Text Animation', 'zoloblocks'),
-        'status' => false,
+        'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/interactions',
         'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
@@ -143,7 +143,7 @@ return apply_filters('zolo_extensions', [
     'display-condition'          => [
         'name'   => 'display-condition',
         'title'  => __('Display Condition', 'zoloblocks'),
-        'status' => false,
+        'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/display-condition',
         'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
