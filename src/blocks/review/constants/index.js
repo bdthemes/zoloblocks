@@ -114,3 +114,5 @@ export const ARROW_SIZE = 'ArrowSize';
 export const AROOW_H_SPACE = 'ArrowHSpace';
 export const AROOW_V_SPACE = 'ArrowVSpace';
 export const ARROW_ROUNDED = 'ArrowRounded';
+export const QUOTE_ICON_H_OFFSET = 'QuoteIconHOffset';
+export const QUOTE_ICON_V_OFFSET = 'QuoteIconVOffset';

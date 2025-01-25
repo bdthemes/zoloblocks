@@ -196,9 +196,9 @@ span.zolo-pro-badge {
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
 
-.zolo-editor .zolo-block:not(.zolo-entrance-animation) {
-    transition: transform 0.3s ease-out;
-}
+// .zolo-editor .zolo-block:not(.zolo-entrance-animation) {
+//     transition: transform 0.3s ease-out;
+// }
 
 .block-editor-block-breadcrumb li {
     align-items: center;

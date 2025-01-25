@@ -126,7 +126,10 @@
         --zolo-quote-icon-size: 120px;
         --zolo-img-size: clamp(4rem, 8vw, 6.875rem);
         --zolo-desc-margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
-        --zolo-star-rating-icon-size: 22px;
+
+        --zolo-quote-icon-v-offset: 0;
+        --zolo-quote-icon-h-offset: 0;
+
         .zolo-item {
             display: block;
             background-color: #fff;
@@ -159,6 +162,7 @@
             position: absolute;
             background-color: transparent;
             padding: 0;
+            transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
             svg {
                 fill: var(--zolo-quote-icon-color);
                 width: var(--zolo-quote-icon-size);

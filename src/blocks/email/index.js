@@ -4,6 +4,7 @@ import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
 import Context from './context';
+import deprecated from './deprecated';
 
 registerBlockType(metadata, {
     icon: {
@@ -18,8 +19,8 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-
     attributes,
+    deprecated,
     usesContext: Context,
     edit: Edit,
     save: Save,

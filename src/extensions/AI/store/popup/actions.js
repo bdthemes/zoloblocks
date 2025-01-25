@@ -66,7 +66,7 @@ export function requestAI() {
         }
 
         apiFetch({
-            path: '/zolo/v1/openai',
+            path: '/zolo/v1/zoloai',
             method: 'POST',
             data,
         })
