@@ -1,16 +1,26 @@
-### 2.2.0 [January 20, 2025]
+### 2.2.0 [January 27, 2025]
 
 **New Features:**
-- Added SVG support in the Icon Control.
-- Introduced AI Text Generation for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
-- Enabled HTML tag selection for the Container block.
+- SVG support added to the Icon Control.
+- AI Text Generation introduced for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
+- HTML tag selection added for the Container block.
+- Quote and offset options added to the Review block.
+- Inline display option added to the Counter block.
+- Hover color option for descriptions added to the Fancy List block.
 
 **Enhancements:**
-- Added "Maintenance" and "Coming Soon" site visibility options in WordPress Reading settings, placed after "Search engine visibility."
-- Improved the Blank Page Template Library with an attention-grabbing feature.
+- Optimized assets loading for better performance.
+- Added "Maintenance" and "Coming Soon" options in WordPress Reading settings.
+- Improved the Blank Page Template Library with eye-catching updates.
+- Enhanced Editor Block Selector with an on/off toggle.
+- Manual Save button added for dashboard settings.
+- Improved search and features in the Icons Library.
 
 **Fixes:**
-- Resolved copy-paste issues in the Paragraph block.
+- Fixed copy-paste issues in the Paragraph block.
+- Resolved hover color issue for icons in lightbox buttons.
+- Fixed infinite loading issue in the Template Library.
+- Corrected item order issues in List block controls.
 
 ### 2.1.5 [December 24, 2024]
 
