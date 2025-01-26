@@ -170,6 +170,16 @@
         }
     }
 }
+
+.zolo-container-inner-blocks-wrap {
+    .wp-block {
+        &.zolo-block {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+}
+
 // .zolo-editor {
 // .wp-block {
 //     &.zolo-block {
