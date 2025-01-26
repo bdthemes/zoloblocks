@@ -768,6 +768,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Lottie Image', 'zoloblocks-pro'),
         'categories' => ['others'],
         'status' => true,
+        'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/lottie-image',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
