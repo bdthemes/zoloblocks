@@ -1,10 +1,12 @@
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import Notice from '../notice';
 
 import SingleExtension from './single-extension';
 
 const Extensions = () => {
+        const [notice, setNotice] = useState('');
     const [extensions, setExtensions] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
@@ -89,7 +91,12 @@ const Extensions = () => {
                 // Clear the extensions to be updated state
                 setExtensionsTobeUpdated({});
                 // reload the page
-                window.location.reload();
+                // window.location.reload();
+                 setNotice(true);
+
+                 setTimeout(() => {
+                     setNotice(false);
+                 }, 1000);
             })
             .catch((error) => {
                 console.error('API Fetch Error:', error);
@@ -98,6 +105,7 @@ const Extensions = () => {
 
     return (
         <>
+            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
@@ -243,6 +251,11 @@ const Extensions = () => {
                                 </div>
                             )
                     }
+                </div>
+                <div className="zolo-settings-footer">
+                    <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                        {__('Save Changes', 'zoloblocks')}
+                    </button>
                 </div>
             </div>
         </>

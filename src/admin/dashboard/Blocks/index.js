@@ -3,12 +3,14 @@ import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import categories from './categories';
 import SingleBlock from './single-block';
+import Notice from '../notice';
 
 const removeChildBlocks = (blocks) => {
     return blocks.filter((block) => !block.is_child);
 };
 
 const Blocks = () => {
+    const [notice, setNotice] = useState('');
     const [blockStates, setBlockStates] = useState([]);
     const [blocks, setBlocks] = useState([]);
     const [search, setSearch] = useState('');
@@ -121,7 +123,12 @@ const Blocks = () => {
                 // Clear the blocks to be updated state
                 setBlocksTobeUpdated({});
                 // reload the page
-                window.location.reload();
+                // window.location.reload();
+                setNotice(true);
+
+                setTimeout(() => {
+                    setNotice(false);
+                }, 1000);
             })
             .catch((error) => {
                 console.error('API Fetch Error:', error);
@@ -130,6 +137,7 @@ const Blocks = () => {
 
     return (
         <>
+            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
@@ -199,7 +207,7 @@ const Blocks = () => {
                                 } else if (category.value === 'others') {
                                     // calculate total blocks for others category (exclude slider, list, gallery, social, review)
                                     return !block.categories.some((category) =>
-                                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory','singlePage'].includes(category)
+                                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory', 'singlePage'].includes(category)
                                     );
                                 }
                                 return block.categories.some((cat) => cat === category.value);
@@ -230,7 +238,9 @@ const Blocks = () => {
 
                                     if (blockCategory === 'others') {
                                         return !block.categories.some((category) =>
-                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory','singlePage'].includes(category)
+                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory', 'singlePage'].includes(
+                                                category
+                                            )
                                         );
                                     }
 
@@ -276,7 +286,9 @@ const Blocks = () => {
 
                                     if (blockCategory === 'others') {
                                         return !block.categories.some((category) =>
-                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory','singlePage'].includes(category)
+                                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory', 'singlePage'].includes(
+                                                category
+                                            )
                                         );
                                     }
 
@@ -317,6 +329,11 @@ const Blocks = () => {
                                 </div>
                             )
                     }
+                </div>
+                <div className="zolo-settings-footer">
+                    <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                        {__('Save Changes', 'zoloblocks')}
+                    </button>
                 </div>
             </div>
         </>

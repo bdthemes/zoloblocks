@@ -7,6 +7,7 @@
 - Quote and offset options added to the Review block.
 - Inline display option added to the Counter block.
 - Hover color option for descriptions added to the Fancy List block.
+- Enhanced the **Form Block** with new fields: Select, Number, Radio, and Checkbox.
 
 **Enhancements:**
 - Optimized assets loading for better performance.
