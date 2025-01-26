@@ -87,11 +87,11 @@ const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelP
                 <ContainerSidebarOpener clientId={clientId} />
                 {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                     <div className="zolo-container-inner-blocks-wrap">
-                        <InnerBlocks renderAppender={hasChildren ? false : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </div>
                 ) : (
                     <>
-                        <InnerBlocks renderAppender={hasChildren ? false : InnerBlocks.ButtonBlockAppender} />
+                        <InnerBlocks renderAppender={hasChildren ? undefined : InnerBlocks.ButtonBlockAppender} />
                     </>
                 )}
                 {renderHookAfter && renderHookAfter}

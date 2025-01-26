@@ -1,12 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks,ButtonBlockAppender } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, ButtonBlockAppender } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
+import { useSelect } from '@wordpress/data';
 
 /**
  * Internal depencencies
@@ -21,6 +21,13 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, formId, uniqueId, parentClasses, preset, btnLabel, showBtnIcon, icon, iconPosition } = attributes;
+
+    const { hasSelectedInnerBlock } = useSelect((select) => {
+        const { hasSelectedInnerBlock } = select('core/block-editor');
+        return {
+            hasSelectedInnerBlock: hasSelectedInnerBlock(clientId, true),
+        };
+    });
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -69,6 +76,7 @@ export default function Edit(props) {
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+    
 
     return (
         <>
@@ -79,12 +87,15 @@ export default function Edit(props) {
                 <SidebarOpener clientId={clientId} />
                 <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1" id={formId}>
                     <InnerBlocks
-                        allowedBlocks={(['zolo/text-field'], ['zolo/email'], ['zolo/textarea'])}
                         template={[['zolo/text-field'], ['zolo/email'], ['zolo/textarea']]}
                         renderAppender={() => null}
                     />
 
-                    <ButtonBlockAppender rootClientId={clientId} />
+                    {
+                        (isSelected || hasSelectedInnerBlock) && (
+                            <ButtonBlockAppender rootClientId={clientId} />
+                        )
+                    }
 
                     <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                         <div className="zolo-submit-btn">
