@@ -522,7 +522,7 @@ input.zoloblocks-search,
     }
 
     .zolo-activated-btn.zolo-save-changes {
-        background: #3f8efc;
+        background: var(--zolo-dashboard-brand-color);
         color: #fff;
         &:focus {
             color: #fff !important;
@@ -1094,6 +1094,20 @@ input.zoloblocks-search {
         }
         .zolo-search-bar {
             position: relative;
+        }
+    }
+
+    .zolo-settings-footer {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 20px;
+        .zolo-save-changes {
+            background: var(--zolo-dashboard-brand-color);
+            color: #fff;
+            &:focus {
+                color: #fff !important;
+            }
         }
     }
 }
