@@ -21,7 +21,11 @@
     padding: var(--zolo-item-padding);
     box-sizing: border-box;
     border-radius: var(--zolo-item-border-radius);
-    transition: background 0.2s;
+    transition:
+        background 0.3s,
+        border-color,
+        0.3s,
+        box-shadow 0.3s;
 
     .zb-fancy-list-content {
         display: flex;
@@ -45,6 +49,10 @@
         color: var(--zolo-desc-text-color);
         font-weight: 400;
     }
+    .zb-fancy-list-title,
+    .zb-fancy-list-text {
+        transition: color 0.3s;
+    }
 
     .zb-fancy-icon,
     .zb-fancy-list-number {
@@ -54,7 +62,12 @@
         color: var(--zoloblocks-brand-button-color);
         background-color: var(--zoloblocks-brand-color);
         border-radius: var(--zoloblocks-button-border-radius);
-        transition: all 0.3s ease-in-out;
+        transition:
+            color 0.3s,
+            background 0.3s,
+            border-color,
+            0.3s,
+            box-shadow 0.3s;
     }
 
     .zb-fancy-icon {
@@ -87,10 +100,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            border-radius: inherit;
         }
     }
 
-    &.fancy-list-align-right{
+    &.fancy-list-align-right {
         flex-direction: row-reverse;
         .zb-fancy-list-item,
         .zb-fancy-list-content {

@@ -2,7 +2,14 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, TextareaControl, RangeControl, SelectControl } from '@wordpress/components';
+import {
+  ToggleControl,
+  TextControl,
+  TextareaControl,
+  RangeControl,
+  SelectControl,
+  CardDivider
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -55,6 +62,8 @@ function Inspector(props) {
         requiredMsg,
         showRequiredSymbol,
         requiredColor,
+        defaultValue,
+        customNameAttribute
     } = attributes;
 
     const requiredProps = {
@@ -138,6 +147,28 @@ function Inspector(props) {
                                     }}
                                 />
                             )}
+                          <CardDivider />
+                          <TextControl
+                            label={__('Default Value', 'zoloblocks')}
+                            value={defaultValue || ''}
+                            onChange={(v) => setAttributes({ defaultValue: v })}
+                            help={__('Leave empty if no default value is needed.', 'zoloblocks')}
+                          />
+                          <CardDivider />
+                          <div className="zolo-flex-col-control">
+                            <TextControl
+                              label={__('Custom Name Attribute', 'zoloblocks')}
+                              value={customNameAttribute || ''}
+                              onChange={(v) => {
+                                const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_')
+                                setAttributes({customNameAttribute: val});
+                              }}
+                              help={__(
+                                'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
+                                'zoloblocks'
+                              )}
+                            />
+                          </div>
                         </ZoloPanelBody>
                     </>
                 }

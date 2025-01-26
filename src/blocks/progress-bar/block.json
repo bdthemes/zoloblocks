@@ -20,5 +20,5 @@
     },
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",
-    "viewScript": "file:./frontend.js"
+    "viewScript": ["zolo-waypoint", "zolo-roll-number", "file:./frontend.js"]
 }
