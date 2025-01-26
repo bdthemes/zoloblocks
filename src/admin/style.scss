@@ -174,13 +174,21 @@
     gap: clamp(0.625rem, 1.5vw, 0.938rem);
 }
 
-.zolo-current-version.single-info {
-    color: #ffffff;
-    font-size: 14px;
-    padding: 12px 20px;
-    border-radius: 30px;
+.zolo-current-version.single-info a {
+    color: #51545e;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
     font-weight: 700;
-    background-color: var(--zolo-dashboard-brand-color);
+    background-color: rgba(246, 250, 255, 0.239);
+    border: 2px solid rgba(190, 190, 190, 0.31);
+    text-decoration: none;
+}
+
+.zolo-current-version.single-info a:hover,
+.zolo-current-version.single-info a:focus {
+    color: #000;
+    border-color: rgba(52, 54, 56, 0.16);
 }
 
 .zolo-changes-logs.single-info .logos-panel-btn {
@@ -327,6 +335,7 @@
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 340px;
+    background: rgba(250, 251, 255, 0.47);
     &.active:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
@@ -345,7 +354,7 @@
     .block-pro {
         background: var(--zolo-badge-pro-alpha-color);
         color: var(--zolo-badge-pro-color);
-        padding: 7px;
+        padding: clamp(6px, 0.8vw, 7px);
         line-height: 1;
         font-size: 10px;
         text-transform: uppercase;
@@ -355,7 +364,7 @@
         justify-content: center;
         gap: 5px;
         border-radius: 6px;
-        margin-top: -15px;
+        margin-top: clamp(-6px, -1vw, -15px);
     }
 
     .block-pro-badge-icon {
@@ -448,7 +457,7 @@ input.zoloblocks-search,
 .block-external-link {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: clamp(4px, 1vw, 10px);
 }
 
 .block-icon {
@@ -477,7 +486,7 @@ input.zoloblocks-search,
 }
 .zolo-single-block.active {
     .block-icon {
-        background-color: #e4ecff;
+        background-color: #f5f8ff;
         svg {
             path {
                 fill: var(--zolo-dashboard-brand-color);
@@ -735,7 +744,7 @@ input.zoloblocks-search {
 
 .zolo-tabs-dropbtn {
     padding: 12px;
-    border-radius: 50%;
+    border-radius: 6px;
     background-color: #ffffff;
     cursor: pointer;
     transition: 0.3s ease;
@@ -979,6 +988,7 @@ input.zoloblocks-search {
         position: fixed;
         border-right: 1px solid #efeef1;
         display: none;
+        z-index: 99;
     }
 
     .zolo-dash-sidebar-info {
@@ -1101,7 +1111,16 @@ input.zoloblocks-search {
         display: inline-flex;
         align-items: center;
         justify-content: flex-end;
-        margin-top: 20px;
+        position: fixed;
+        bottom: 0;
+        background: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        border: 1px solid #a0a1a417;
+
         .zolo-save-changes {
             background: var(--zolo-dashboard-brand-color);
             color: #fff;

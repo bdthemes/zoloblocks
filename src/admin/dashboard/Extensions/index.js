@@ -6,7 +6,7 @@ import Notice from '../notice';
 import SingleExtension from './single-extension';
 
 const Extensions = () => {
-        const [notice, setNotice] = useState('');
+    const [notice, setNotice] = useState('');
     const [extensions, setExtensions] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
@@ -92,11 +92,11 @@ const Extensions = () => {
                 setExtensionsTobeUpdated({});
                 // reload the page
                 // window.location.reload();
-                 setNotice(true);
+                setNotice(true);
 
-                 setTimeout(() => {
-                     setNotice(false);
-                 }, 1000);
+                setTimeout(() => {
+                    setNotice(false);
+                }, 1000);
             })
             .catch((error) => {
                 console.error('API Fetch Error:', error);
@@ -109,7 +109,6 @@ const Extensions = () => {
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
-                        <h2 className="zolo-settings-title">{__('Extensions', 'zoloblocks')}</h2>
                         <div className="zolo-settings-type-badge zolo-dash-flex-center">
                             <button className="zolo-settings-type-btn active">{__('Free', 'zoloblocks')}</button>
                             <button className="zolo-settings-type-btn">{__('Pro', 'zoloblocks')}</button>

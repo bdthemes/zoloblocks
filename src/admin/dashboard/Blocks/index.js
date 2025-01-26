@@ -141,7 +141,6 @@ const Blocks = () => {
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
-                        <h2 className="zolo-settings-title">{__('Blocks', 'zoloblocks')}</h2>
                         <div className="zolo-settings-type-badge zolo-dash-flex-center">
                             <button className="zolo-settings-type-btn active">{__('Free', 'zoloblocks')}</button>
                             <button className="zolo-settings-type-btn">{__('Pro', 'zoloblocks')}</button>
