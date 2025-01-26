@@ -365,6 +365,7 @@ Not at all. We have optimized all of these blocks for better performance.
 - Hover color option for descriptions added to the Fancy List block.
 
 **Enhancements:**
+- Optimized assets loading for better performance.
 - Added "Maintenance" and "Coming Soon" options in WordPress Reading settings.
 - Improved the Blank Page Template Library with eye-catching updates.
 - Enhanced Editor Block Selector with an on/off toggle.
