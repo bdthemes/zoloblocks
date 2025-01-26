@@ -93,7 +93,7 @@ export default function Edit(props) {
 
                     {
                         (isSelected || hasSelectedInnerBlock) && (
-                            <ButtonBlockAppender rootClientId={clientId} className='zolo-form-add-btn' />
+                            <ButtonBlockAppender rootClientId={clientId} />
                         )
                     }
 
