@@ -45,10 +45,10 @@ const Save = ({ attributes }) => {
                 <div className="zolo-field-input-item">
                     {optionArray.length > 0 &&
                         optionArray.map((option,index) => (
-                            <label key={index} htmlFor={option.value}>
+                            <label key={index} htmlFor={option.value+uniqueId}>
                                 <input
                                     type="checkbox"
-                                    id={option.value}
+                                    id={option.value+uniqueId}
                                     name={generateUniqueName(uniqueId,customNameAttribute,'checkbox_field')}
                                     value={option.value}
                                     checked={defaultCheck.includes(option.value)}

@@ -137,6 +137,9 @@ Option 3`,
         type: 'string',
         default: 'zolo-form-checkbox-col',
     },
+    checkboxCheckedBgColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;

@@ -35,7 +35,7 @@ import {
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, showLabel, labelColor, textColor, showRequiredSymbol, requiredColor } = attributes;
+    const { uniqueId, showLabel, labelColor, textColor, showRequiredSymbol, requiredColor, checkboxCheckedBgColor } = attributes;
 
     // label
     const {
@@ -205,11 +205,15 @@ const Style = ({ props }) => {
           ${chekboxSpaceBDesktop}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input[type="checkbox"] {
+        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input {
             ${fieldBorderStyles}
             ${fieldBRDesktop}
             ${fieldPaddingDesktop.replace(';', ' !important;')}
             ${fieldBGStyle}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item [type=checkbox]:checked {
+            background-color: ${checkboxCheckedBgColor};
         }
     `;
 
@@ -241,7 +245,7 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item label{
           ${fieldTypoTab}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input[type="checkbox"] {
+        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input {
             ${fieldBorderStylesTab}
             ${fieldBRTab}
             ${fieldPaddingTab.replace(';', ' !important;')}
@@ -281,7 +285,7 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item label{
           ${fieldTypoMob}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input[type="checkbox"] {
+        .${uniqueId}.zolo-block.wp-block-zolo-checkbox-field .zolo-field-input-item input {
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}
