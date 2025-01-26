@@ -137,8 +137,8 @@ button.editor-block-list-item-zolo-loop {
     // &:button {
     &:before {
         content: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewBox='0 0 500 500' style='enable-background:new 0 0 500 500;' xml:space='preserve'%3e%3cpath class='st0' fill='%23fff' d='M250,0L250,0c138.1,0,250,111.9,250,250v0c0,138.1-111.9,250-250,250h0C111.9,500,0,388.1,0,250v0 C0,111.9,111.9,0,250,0z'/%3e%3cg fill= '%23f8a827'%3e%3cpolygon points='103.2,226.5 231.8,96.6 102.5,96.6 '/%3e%3cpath d='M364.6,182.7l-50.8,50.8c7.5,8.4,16.4,21.9,16.4,34c0,14.5-5.8,26.6-15.1,36.2c-9,9.3-20.8,13.9-34.7,13.9H169.9 L394.7,96.6H290.9L103.1,283.5v120.7l71.6-0.5h105.5c37.1,0,68-11.5,93.7-34.4c25.1-22.9,37.8-60.4,37.8-96 C411.7,235.8,392.7,204.1,364.6,182.7L364.6,182.7L364.6,182.7L364.6,182.7z'/%3e%3c/g%3e%3c/svg%3e");
-        opacity: 0.7;
-        background-color: rgba(255, 168, 38, 0.478);
+        opacity: 0.9;
+        background-color: rgba(255, 168, 38, 0.86);
     }
     &:hover {
         &:before {
