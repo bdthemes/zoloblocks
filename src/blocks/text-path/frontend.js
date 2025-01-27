@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <a
                                     className="zolo-textpath"
                                     href={pathlink && pathlink.url}
-                                    rel={pathlink && pathlink.openInNewTab && 'noreferrer noopener'}
-                                    target={pathlink && pathlink.openInNewTab && '_blank'}
+                                    rel={pathlink && pathlink.openInNewTab ? 'noreferrer noopener' : undefined}
+                                    target={pathlink && pathlink.openInNewTab ? '_blank' : undefined}
                                     title={textpathContent}
                                 >
                                     <tspan>{textpathContent && textpathContent}</tspan>
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <a
                                             className="zolo-textpath"
                                             href={pathlink && pathlink.url}
-                                            rel={pathlink && pathlink.openInNewTab && 'noreferrer noopener'}
-                                            target={pathlink && pathlink.openInNewTab && '_blank'}
+                                            rel={pathlink && pathlink.openInNewTab ? 'noreferrer noopener' : undefined}
+                                            target={pathlink && pathlink.openInNewTab ? '_blank' : undefined}
                                             title={textpathContent}
                                         >
                                             <tspan>{textpathContent && textpathContent}</tspan>

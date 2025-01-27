@@ -3,9 +3,6 @@ import { __ } from '@wordpress/i18n';
 const { DynamicTag } = window.zoloModule;
 function RenderView({ attributes, postResults }) {
     const {
-        preset,
-        showThumbnail,
-        showTitle,
         titleWords,
         titleTag,
         showfeatureimg,
@@ -13,7 +10,7 @@ function RenderView({ attributes, postResults }) {
         excerptWords,
         excerptindicator,
         showCategory,
-        
+
         showMeta,
         showCount,
         showReadingTime,
@@ -21,47 +18,49 @@ function RenderView({ attributes, postResults }) {
         authorPrefix,
     } = attributes;
 
-    const defaultAuthorPrefix =  __('Posted By', 'zoloblocks'); 
-    return [
-        postResults.length > 0 &&
-            postResults.map((post, index) => {
-                const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
-                const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
+    const defaultAuthorPrefix = __('Posted By', 'zoloblocks');
+    return (
+        <>
+            {
+                postResults.length > 0 &&
+                postResults.map((post, index) => {
+                    const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
+                    const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
+                    const uniqueKey = post.id || post.slug || Math.random().toString(36).slice(2);
+                    const categoriesHtml =
+                        post.categories.length > 0 ? (
+                            <ul className="zolo-post-category">
+                                {post.categories.map((item, index) => (
+                                    <li key={`${uniqueKey}-category-${index}`} dangerouslySetInnerHTML={{ __html: item }} />
+                                ))}
+                            </ul>
+                        ) : (
+                            ''
+                        );
 
-                const categoriesHtml =
-                    post.categories.length > 0 ? (
-                        <ul className="zolo-post-category">
-                            {post.categories.map((item) => (
-                                <li dangerouslySetInnerHTML={{ __html: item }} />
-                            ))}
-                        </ul>
-                    ) : (
-                        ''
+                    const author = (
+                        <div className="zolo-post-author-name">
+                            <span>
+                                {
+                                    authorPrefix || defaultAuthorPrefix
+                                }
+                            </span>
+                            <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
+                        </div>
+                    );
+                    const date = <div className="zolo-post-date">{post.date}</div>;
+                    const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
+
+                    const readingTimeHtml = (
+                        <div className="zolo-post-reading-time">
+                            {readingTime}
+                            {__('Min Read', 'zoloblocks')}
+                        </div>
                     );
 
-                 const author = (
-                     <div className="zolo-post-author-name">
-                         <span>
-                            {
-                                authorPrefix || defaultAuthorPrefix
-                            }
-                        </span>
-                         <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
-                     </div>
-                 );
-                const date = <div className="zolo-post-date">{post.date}</div>;
-                const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
-
-                const readingTimeHtml = (
-                    <div className="zolo-post-reading-time">
-                        {readingTime}
-                        {__('Min Read', 'zoloblocks')}
-                    </div>
-                );
-
-                return (
-                    <div className={`zolo-post-item ${index === 0 ? showfeatureimg && 'featured-post' : ''}`}>
-                        <div className="zolo-post-image">
+                    return (
+                        <div className={`zolo-post-item ${index === 0 ? showfeatureimg && 'featured-post' : ''}`} key={uniqueKey}>
+                            <div className="zolo-post-image">
                                 <>
                                     {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                     {!post.thumbnail && (
@@ -70,13 +69,13 @@ function RenderView({ attributes, postResults }) {
                                         </a>
                                     )}
                                 </>
-                        </div>
+                            </div>
 
-                        <div className="zolo-post-content">
-                            {showCount && <div className="zolo-post-count-number"></div>}
+                            <div className="zolo-post-content">
+                                {showCount && <div className="zolo-post-count-number"></div>}
 
-                            <div className="zolo-post-inner-content">
-                                {showCategory && categoriesHtml}
+                                <div className="zolo-post-inner-content">
+                                    {showCategory && categoriesHtml}
 
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
                                         <a href={post.permalink}>
@@ -84,33 +83,35 @@ function RenderView({ attributes, postResults }) {
                                         </a>
                                     </DynamicTag>
 
-                                {showMeta && (
-                                    <div className="zolo-post-meta">
-                                        {author}
-                                        <span className="meta-separator">{metaSeparator}</span>
-                                        {date}
-                                        {showReadingTime && (
-                                            <>
-                                                <span className="meta-separator">{metaSeparator}</span>
-                                                {readingTimeHtml}
-                                            </>
-                                        )}
-                                    </div>
-                                )}
-                                {showExcerpt && (
-                                    <div className="zolo-post-desc">
-                                        <p>
-                                            <RawHTML>{excerptLimitWords}</RawHTML>
-                                            {excerptindicator}
-                                        </p>
-                                    </div>
-                                )}
+                                    {showMeta && (
+                                        <div className="zolo-post-meta">
+                                            {author}
+                                            <span className="meta-separator">{metaSeparator}</span>
+                                            {date}
+                                            {showReadingTime && (
+                                                <>
+                                                    <span className="meta-separator">{metaSeparator}</span>
+                                                    {readingTimeHtml}
+                                                </>
+                                            )}
+                                        </div>
+                                    )}
+                                    {showExcerpt && (
+                                        <div className="zolo-post-desc">
+                                            <p>
+                                                <RawHTML>{excerptLimitWords}</RawHTML>
+                                                {excerptindicator}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                );
-            }),
-    ];
+                    );
+                })
+            }
+        </>
+    )
 }
 
 export default RenderView;

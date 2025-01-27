@@ -88,7 +88,7 @@ export default function RenderView({props}) {
   return (
     <>
       {isLink && postPermalink ? (
-        <a href={postPermalink} target={linkTarget} rel={linkRel}>
+        <a href={postPermalink} target={linkTarget ? linkTarget : undefined} rel={linkRel}>
           {image}
         </a>
       ) : (

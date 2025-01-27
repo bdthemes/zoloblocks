@@ -33,8 +33,8 @@ const Save = ({ attributes }) => {
                 <a
                     className="zb-brand-global-link"
                     href={logoLink && logoLink.url}
-                    rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                    target={logoLink && logoLink.openInNewTab && '_blank'}
+                    rel={logoLink && logoLink.openInNewTab ? 'noreferer noopener' : undefined}
+                    target={logoLink && logoLink.openInNewTab ? '_blank' : undefined}
                     title={brandLabel}
                 >
                     <div className="zb-brand-image">
@@ -97,8 +97,8 @@ const Save = ({ attributes }) => {
                                         <a
                                             className="zb-brand-link"
                                             href={logoLink && logoLink.url}
-                                            rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                            target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            rel={logoLink && logoLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                            target={logoLink && logoLink.openInNewTab ? '_blank' : undefined}
                                             title={brandTitle}
                                         >
                                             <RichText.Content
@@ -118,8 +118,8 @@ const Save = ({ attributes }) => {
                                         <a
                                             className="zb-brand-title-link has-link"
                                             href={logoLink && logoLink.url}
-                                            rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                            target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            rel={logoLink && logoLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                            target={logoLink && logoLink.openInNewTab ? '_blank' : undefined}
                                             title={brandLabel}
                                         >
                                             <RichText.Content tagName="span" value={brandLabel} />

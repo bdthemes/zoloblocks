@@ -48,7 +48,7 @@ export default function Edit(props) {
       return (
         <a
           href={postLink || '#'}
-          target={linkTarget}
+          target={linkTarget || undefined}
           rel={linkRel}
           onClick={(event) => event.preventDefault()} // Prevent default for edit mode
         >

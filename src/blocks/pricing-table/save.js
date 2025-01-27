@@ -104,8 +104,8 @@ const Save = (props) => {
                                             className="zolo-buy-btn"
                                             value={buttonText}
                                             href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
-                                            target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                                            rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                            target={buttonLink && buttonLink.openInNewTab ? '_blank' : undefined}
+                                            rel={buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                         />
                                     )}
                                     {showChatBtn && (
@@ -114,8 +114,8 @@ const Save = (props) => {
                                             className="zolo-chat-btn"
                                             value={chatBtnText}
                                             href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
-                                            target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
-                                            rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
+                                            target={chatBtnLink && chatBtnLink.openInNewTab ? '_blank' : undefined}
+                                            rel={chatBtnLink && chatBtnLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                         />
                                     )}
                                 </div>
@@ -153,8 +153,8 @@ const Save = (props) => {
                                             className="zolo-buy-btn"
                                             value={buttonText}
                                             href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
-                                            target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                                            rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                            target={buttonLink && buttonLink.openInNewTab ? '_blank' : undefined}
+                                            rel={buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                             title={buttonText}
                                         />
                                     )}
@@ -164,8 +164,8 @@ const Save = (props) => {
                                             className="zolo-chat-btn"
                                             value={chatBtnText}
                                             href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
-                                            target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
-                                            rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
+                                            target={chatBtnLink && chatBtnLink.openInNewTab ? '_blank' : undefined}
+                                            rel={chatBtnLink && chatBtnLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                             title={chatBtnText}
                                         />
                                     )}

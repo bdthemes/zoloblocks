@@ -1,19 +1,19 @@
-import {__} from '@wordpress/i18n';
-import {useBlockProps} from '@wordpress/block-editor';
-import {useEffect, useState} from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { useBlockProps } from '@wordpress/block-editor';
+import { useEffect, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import {Spinner} from '@wordpress/components';
+import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
 import './style.scss';
 
-const {Pagination, classArrayToStr, SidebarOpener} = window.zoloModule;
+const { Pagination, classArrayToStr, SidebarOpener } = window.zoloModule;
 
 import Style from './styles';
 
 export default function Edit(props) {
-  const {attributes, setAttributes, className, isSelected, clientId} = props;
+  const { attributes, setAttributes, className, isSelected, clientId } = props;
   const {
     preview,
     uniqueId,
@@ -81,49 +81,58 @@ export default function Edit(props) {
       })
       .catch((error) => console.log(error));
   }, [postQuery]);
+  let content;
 
-  if (Array.isArray(postResults) && postResults.length === 0) {
-    return [
-      isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>,
-      dataSuccess ? (
-        <div className="zolo-spinner">
-          <Spinner/>
-        </div>
-      ) : (
-        <p>{__('No posts found.', 'zoloblocks')}</p>
-      ),
-    ];
+  if (preview) {
+    return <img src={zoloParams.blocksPreview.postList} alt={__('Post List Preview', 'zoloblocks')} />;
   }
 
-  // preview image
-  if (preview) {
-    return <img src={zoloParams.blocksPreview.postList} alt={__('Post List Preview', 'zoloblocks')}/>;
+  if (Array.isArray(postResults) && postResults.length === 0) {
+    content = (
+      <>
+        {
+          dataSuccess ? (
+            <div className="zolo-spinner">
+              <Spinner />
+            </div>
+          ) : (
+            <p>{__('No posts found.', 'zoloblocks')}</p>
+          )
+        }
+      </>
+    )
+  } else {
+    content = (
+      <>
+        <Style props={props} />
+        <div {...blockProps}>
+          <SidebarOpener clientId={clientId} />
+          <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
+        </div>
+        {(postQuery?.showPagination && pageTotal > 1) && (
+          <div className={`zolo-pagination-wrap ${uniqueId}`}>
+            {(paginationType === 'normal' || paginationType === 'number') && (
+              <Pagination
+                total={pageTotal}
+                current={page || 1}
+                prevText={previousText}
+                nextText={nextText}
+                onClickPage={(page) => setAttributes({ page })}
+              />
+            )}
+            {paginationType === 'button' && (
+              <a className="zolo-pagination-button">{loadMoreText}</a>
+            )}
+          </div>
+        )}
+      </>
+    );
   }
 
   return (
     <>
-      {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}
-      <Style props={props}/>
-      <div {...blockProps}>
-        <SidebarOpener clientId={clientId}/>
-        <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults}/>
-      </div>
-      {(postQuery?.showPagination && pageTotal > 1) && (
-        <div className={`zolo-pagination-wrap ${uniqueId}`}>
-          {(paginationType === 'normal' || paginationType === 'number') && (
-            <Pagination
-              total={pageTotal}
-              current={page || 1}
-              prevText={previousText}
-              nextText={nextText}
-              onClickPage={(page) => setAttributes({page})}
-            />
-          )}
-          {paginationType === 'button' && (
-            <a className="zolo-pagination-button">{loadMoreText}</a>
-          )}
-        </div>
-      )}
+      {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+      {content}
     </>
   );
 }

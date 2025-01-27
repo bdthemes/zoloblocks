@@ -3,9 +3,10 @@
  */
 
 import { useBlockProps, RichText, BlockControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
+import { Fragment } from '@wordpress/element';
 /**
  * Internal depencencies
  */
@@ -89,13 +90,13 @@ export default function Edit(props) {
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
                         return (
-                            <>
+                            <Fragment key={index}>
                                 {preset == 'zolo-list-style-1' && (
                                     <RichText
                                         href={profile.link && profile.link.url}
                                         key={index}
-                                        target={profile.link && profile.link.openInNewTab && '_blank'}
-                                        rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                                        target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
+                                        rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
                                         className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
                                         tagName="a"
                                         value={profile.text}
@@ -250,7 +251,7 @@ export default function Edit(props) {
                                         )}
                                     </div>
                                 )}
-                            </>
+                            </Fragment>
                         );
                     })}
                 {renderHookAfter && renderHookAfter}

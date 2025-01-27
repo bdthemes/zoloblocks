@@ -129,8 +129,8 @@ export default function Edit(props) {
                                 <a
                                     className="zolo-external-link"
                                     href={memberDetailPageLink && memberDetailPageLink.url}
-                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
-                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer' : undefined}
+                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                                 >
                                     <DisplayZoloIcon icon={detailIcon} />
                                 </a>
@@ -213,8 +213,8 @@ export default function Edit(props) {
                                                     className="zolo-social-link"
                                                     href={profile.link && profile.link.url}
                                                     key={index}
-                                                    rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
-                                                    target={profile.link && profile.link.openInNewTab && '_blank'}
+                                                    rel={profile.link && profile.link.openInNewTab ? 'noreferer noopener' : undefined}
+                                                    target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                                     title={profile.title}
                                                 >
                                                     <DisplayZoloIcon icon={profile.icon} />
@@ -228,8 +228,8 @@ export default function Edit(props) {
                                     <a
                                         className="zolo-external-link"
                                         href={memberDetailPageLink && memberDetailPageLink.url}
-                                        rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
-                                        target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                                        rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer' : undefined}
+                                        target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                                     >
                                         <DisplayZoloIcon icon={detailIcon} />
                                     </a>
