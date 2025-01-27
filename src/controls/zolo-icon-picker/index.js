@@ -262,6 +262,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                             <p className="zolo-custom-icon">
                                 <strong>{__('Upcoming:', 'zoloblocks')}</strong>
                                 {__('Custom Icons Option', 'zoloblocks')}
+                                <span className="zolo-pro-badge">{__('pro', 'zoloblocks')}</span>
                             </p>
                         </div>
                         <div className="modal__content">

@@ -1,10 +1,6 @@
 .zolo-icons-wrap {
     padding: 0 20px 30px 30px;
-    // overflow-y: scroll;
-    // height: 475px;
-    // min-height: 475px;
-
-    // Display Icon
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
     .zolo__display-icon {
         display: inline;
         svg {
@@ -12,6 +8,10 @@
             width: 1em;
             height: 1em;
         }
+    }
+    .zolo-icons-title {
+        margin: 0 0 20px;
+        font-size: 1.2rem;
     }
 }
 
@@ -71,10 +71,6 @@
     }
 }
 
-.zolo-icons-title {
-    margin: 0 0 20px;
-}
-
 .zolo__modal.components-modal__frame {
     width: 1024px;
     min-width: 1024px;
@@ -129,17 +125,24 @@
     }
 
     .zolo-custom-icon {
-        padding: 14px;
-        margin: 0;
+        padding: 18px 14px;
         text-align: center;
-        color: #34363b;
         background-color: #d7e7fb;
         margin: 24px;
         border-radius: 4px;
         font-size: 13px;
         color: #2f2f3f;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        position: relative;
         strong {
             color: #001feb;
+        }
+        .zolo-pro-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 
@@ -182,7 +185,6 @@
     }
 }
 
-
 button.zolo-picker__remove#iconRemove {
     height: 28px;
     width: 28px;
@@ -215,7 +217,6 @@ button.zolo-picker__remove#iconRemove {
     font-weight: 400;
     color: #858596;
 }
-
 
 .zolo-modal__wrapper {
     display: flex;
@@ -341,5 +342,26 @@ button.zolo-picker__remove#iconRemove {
             fill: #4c4a53;
             display: block;
         }
+    }
+}
+
+@media (min-width: 768px) {
+    .zolo__modal.components-modal__frame {
+        width: 700px;
+        min-width: 700px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .zolo__modal.components-modal__frame {
+        width: 800px;
+        min-width: 800px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .zolo__modal.components-modal__frame {
+        width: 1024px;
+        min-width: 1024px;
     }
 }
