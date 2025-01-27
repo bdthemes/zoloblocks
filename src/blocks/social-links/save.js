@@ -31,8 +31,8 @@ const Save = (props) => {
                         <a
                             href={profile.link && profile.link.url}
                             key={index}
-                            target={profile.link && profile.link.openInNewTab && '_blank'}
-                            rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                            target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
+                            rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
                             className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
                             title={profile.text}
                         >

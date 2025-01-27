@@ -15,7 +15,7 @@
     --zolo-error-border-width: 1px;
     --zolo-error-border-style: solid;
     --border-error-border-color: red;
-    --zolo-label-margin: 0 0 0.5rem;
+    --zolo-label-margin: 0 0 1rem;
     --zolo-label-gap: 0.5rem;
     --zolo-required-color: #b80606;
     --zolo-label-text-color: rgb(17 24 39 / var(--tw-opacity));
@@ -33,15 +33,18 @@
     .form-group-editor {
         margin: var(--zolo-field-item-margin);
     }
+
     .has-danger {
         .pristine-error {
             font-size: 14px;
             color: var(--zolo-error-text-color);
             margin: var(--zolo-error-margin);
         }
+
         input,
         textarea,
-        select {
+        select,
+        .zolo-select__control {
             border-width: var(--zolo-error-border-width);
             border-style: var(--zolo-error-border-style);
             border-color: var(--border-error-border-color);
@@ -79,20 +82,25 @@
         border-width: var(--zolo-form-msg-border-width);
         border-style: var(--zolo-form-msg-border-style);
         display: none;
+
         &.show {
             display: flex;
         }
+
         &.form_top {
             margin: var(--zolo-form-top-margin);
         }
+
         &.form_bottom {
             margin: var(--zolo-form-bottom-margin);
         }
     }
+
     .zolo-form-success-msg {
         background-color: var(--zolo-form-msg-success-bg);
         border-color: var(--zolo-form-msg-success-border-color);
     }
+
     .zolo-form-error-msg {
         background-color: var(--zolo-form-msg-error-bg);
         border-color: var(--zolo-form-msg-error-border-color);
@@ -108,6 +116,7 @@
     .zolo-form-error-msg .zolo-msg-desc {
         color: var(--zolo-form-error-color);
     }
+
     .zolo-form-success-msg .zolo-msg-desc {
         color: var(--zolo-form-seccess-color);
     }
@@ -129,6 +138,7 @@
 
     .zolo-msg-close {
         background-color: none !important;
+
         svg {
             color: var(--zolo-msg-close-color);
             width: var(--zolo-msg-close-size);
@@ -136,6 +146,7 @@
             display: block;
         }
     }
+
     .zolo-msg-close:hover svg {
         color: var(--zolo-msg-close-hover-color);
     }
@@ -151,23 +162,30 @@
         font-size: clamp(0.875rem, 1.5vw, 1rem);
         margin: var(--zolo-msg-desc-margin);
     }
-}
-
-.zolo-field-input-item {
-    position: relative;
-    line-height: 1;
-}
-
-.zolo-label-wrapper {
-    display: flex;
-    align-items: flex-start;
-    margin: var(--zolo-label-margin);
-    gap: var(--zolo-label-gap);
-    .zolo-required {
-        display: inline-block;
+    .zolo-field-input-item {
+        position: relative;
         line-height: 1;
-        color: var(--zolo-required-color);
-        font-size: 0.85rem;
+    }
+
+    .zolo-label-wrapper {
+        display: flex;
+        align-items: flex-start;
+        margin: var(--zolo-label-margin);
+        gap: var(--zolo-label-gap);
+
+        .zolo-required {
+            display: inline-block;
+            line-height: 1;
+            color: var(--zolo-required-color);
+            font-size: 0.85rem;
+        }
+    }
+}
+
+.wp-block-zolo-textarea {
+    .zolo-input-icon {
+        top: 18px;
+        align-items: flex-start;
     }
 }
 
@@ -179,15 +197,11 @@
         color: var(--zolo-label-text-color);
         display: block;
     }
-    .zolo-field-icon {
-        input,
-        textarea {
-            padding-inline-start: var(--zolo-icon-input-padding-inline-start);
-        }
-    }
-    input,
-    select,
-    textarea {
+
+    .zolo-field-item input,
+    .zolo-field-item select,
+    .zolo-field-item textarea,
+    .zolo-select__control {
         padding: var(--zolo-input-padding);
         outline: none;
         font-size: 0.875rem;
@@ -209,6 +223,35 @@
         -moz-appearance: none;
         text-indent: 1px;
         text-overflow: '';
+        background-image: unset;
+        background-size: unset;
+        min-height: auto;
+        max-width: auto;
+    }
+
+    .zolo-field-icon {
+        // .zolo-field-item {
+        input,
+        textarea,
+        select {
+            padding-inline-start: var(--zolo-icon-input-padding-inline-start);
+        }
+        // }
+    }
+
+    .zolo-select-arrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        margin-right: 15px;
+        pointer-events: none;
+        svg {
+            color: currentColor;
+            display: block;
+            width: 1em;
+            height: 1em;
+        }
     }
 
     .zolo-select-icon svg {
@@ -223,6 +266,7 @@
     input[type='file'] {
         padding: 0;
     }
+
     input[type='file']:focus {
         outline: none;
     }
@@ -259,21 +303,11 @@
         background-size: 1em 1em;
     }
 
-    input[type='checkbox']:focus,
-    input[type='radio']:focus {
-        --tw-ring-offset-width: 2px;
-        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-        outline: 2px solid transparent;
-        outline-offset: 2px;
-        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-        --tw-ring-color: rgb(63 131 248 / var(--tw-opacity));
-    }
-
     .zolo-checkbox-item {
         label {
             color: #59595e;
             font-weight: 400;
+
             a {
                 color: #3468f1;
                 text-decoration: none;
@@ -331,12 +365,13 @@
         outline-width: 1px;
         outline-color: #1c64f2;
     }
-}
 
-.wp-block-zolo-textarea {
-    .zolo-input-icon {
-        top: 18px;
-        align-items: flex-start;
+    .zolo-select__control--is-focused {
+        border-color: #1c64f2 !important;
+        outline-style: solid !important;
+        outline-width: 1px !important;
+        outline-color: #1c64f2 !important;
+        box-shadow: none;
     }
 }
 
@@ -348,6 +383,7 @@
     display: flex;
     align-items: center;
     padding-inline-start: 0.875rem;
+    z-index: 1;
 }
 
 .zolo-input-icon svg {
@@ -355,6 +391,7 @@
     width: 1em;
     height: 1em;
     display: block;
+    font-size: 16px;
 }
 
 // .zolo-contact-form
@@ -432,7 +469,7 @@
 .zolo-contact-form input[type='checkbox'],
 .zolo-contact-form input[type='radio'] {
     margin: 0;
-    padding: 0;
+    padding: 10px !important;
     width: 1rem;
     height: 1rem;
 }
@@ -452,11 +489,65 @@
     border-color: transparent;
 }
 
+/*  form style 3 */
+.wp-block-zolo-form {
+    .zolo-field-item {
+        position: relative;
+    }
+
+    &.style-3 {
+        .zolo-label-wrapper {
+            position: absolute;
+            top: 0;
+            transform: translateY(-50%);
+            left: 0;
+            margin: 0 10px;
+            z-index: 1;
+            background-color: #fff;
+            backdrop-filter: blur(4px);
+            padding: 6px 8px;
+            border-radius: 6px;
+
+            .zolo-label {
+                margin: 0 !important;
+            }
+        }
+    }
+
+    &.style-3 input,
+    &.style-3 select,
+    &.style-3 textarea {
+        background-color: transparent;
+        padding-left: 18px;
+    }
+
+    &.style-3 input::placeholder,
+    &.style-3 textarea::placeholder,
+    &.style-3 select::placeholder {
+        color: transparent !important;
+    }
+
+    .react-tel-input .form-control {
+        height: inherit;
+    }
+
+    .react-tel-input .form-control.invalid-number {
+        border-color: var(--zolo-input-border-color);
+        background-color: inherit;
+        border-left-color: inherit;
+    }
+
+    .react-tel-input .flag-dropdown.invalid-number {
+        border-color: var(--zolo-input-border-color);
+    }
+}
+
 // editor style
 .wp-block-zolo-container.backend .wp-block-zolo-form {
     .block-editor-button-block-appender {
         height: auto !important;
     }
+
     .block-list-appender.wp-block {
         justify-content: flex-end;
         align-items: flex-start;

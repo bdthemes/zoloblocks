@@ -1,11 +1,12 @@
 import apiFetch from '@wordpress/api-fetch';
 import { Button, Modal } from '@wordpress/components';
-import { subscribe } from '@wordpress/data';
-import { useEffect, useState } from '@wordpress/element';
+import { subscribe, useSelect } from '@wordpress/data';
+import { getTextContent } from '@wordpress/rich-text'; 
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
-
+import domReady from '@wordpress/dom-ready';
 /**
  * Template Library Style
  */
@@ -57,6 +58,8 @@ function ZoloBlocksTemplateLibraryButton() {
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(20);
     const [total, setTotal] = useState(0);
+    const [attemptComplete, setAttemptComplete] = useState(false);
+    const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
 
     /**
      * =====
@@ -68,6 +71,25 @@ function ZoloBlocksTemplateLibraryButton() {
     const [pageTemplatesType, setPageTemplatesType] = useState('');
     const [pageTemplateCategories, setPageTemplateCategories] = useState([]);
     const [activePageTemplateCat, setActivePageTemplateCat] = useState('all');
+
+    const { isPageEmpty } = useSelect((select) => {
+        const { getBlocks } = select('core/block-editor');
+        const blocks = getBlocks();
+        let isPageEmpty = false;
+
+        if (blocks.length === 0) {
+            isPageEmpty = true;
+        }
+
+        if (blocks.length == 1) {
+            const firstBlock = blocks[0];
+            if (firstBlock.name === 'core/paragraph' && getTextContent(firstBlock.attributes.content).length === 0) {
+                isPageEmpty = true;
+            }
+        }
+
+        return { isPageEmpty };
+    }, []);
 
     useEffect(() => {
         apiFetch({
@@ -312,21 +334,24 @@ function ZoloBlocksTemplateLibraryButton() {
     }, [activeDemoCat]); // eslint-disable-line
 
     useEffect(() => {
-        const subscribeBtn = subscribe(() => {
+        domReady(() => {
             const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
             const libraryButton = document.querySelector('.zoloblocks-template-library-button');
-            const currentPostType = wp.data.select('core/editor').getCurrentPostType();
-
             if (toolbar && !libraryButton && currentPostType !== 'zolo-popup') {
                 renderButton(toolbar);
             }
 
+            if (libraryButton) {
+                setTimeout(() => {
+                    if (isPageEmpty) {
+                        libraryButton.classList.add('empty-page');
+                    } else {
+                        libraryButton.classList.remove('empty-page');
+                    }
+                }, 1000);
+            }
         });
-
-        return () => {
-            subscribeBtn();
-        };
-    }, []);
+    }, [currentPostType, isPageEmpty]);
 
     // Filter by Tags
     const sortDemosByTag = (tag) => {
@@ -489,7 +514,7 @@ function ZoloBlocksTemplateLibraryButton() {
             setFavTags([]);
         }
     }, [favIds, allTemplates, favStatus]);
-
+    let count = useRef(0);
     // fetch templates
     const fetchTemplates = async () => {
         setLoading(true);
@@ -498,8 +523,15 @@ function ZoloBlocksTemplateLibraryButton() {
             method: 'GET',
         }).then((response) => {
             const { data } = response;
+            if (!data && count.current >= 2) {
+                setAttemptComplete(true);
+                setLoading(false);
+                return;
+            }
+
             if (!data) {
-                console.log('No data found');
+                count.current += 1;
+                pullNewDemos();
                 return;
             }
 
@@ -511,7 +543,9 @@ function ZoloBlocksTemplateLibraryButton() {
             setPages(pages);
 
             // set page categories
-            const pageCategories = pages?.filter((template) => template.template_type === 'pages').map((template) => template.pages_category);
+            const pageCategories = pages
+                ?.filter((template) => template.template_type === 'pages')
+                .map((template) => template.pages_category);
             const uniquePageCategories = [...new Set(pageCategories?.flat())];
             const sortedPageCategories = uniquePageCategories.sort((a, b) => a.localeCompare(b));
             const pageCategoriesArray = sortedPageCategories.map((category) => ({ label: category, value: category }));
@@ -546,6 +580,7 @@ function ZoloBlocksTemplateLibraryButton() {
             const { data } = response;
             if (!data) {
                 console.log('No data found');
+                setLoading(false);
                 return;
             }
 
@@ -558,14 +593,14 @@ function ZoloBlocksTemplateLibraryButton() {
             setPatterns(patterns);
 
             // set pattern categories
-            const patternCategories = patterns?.filter((template) => template.template_type === 'patterns')
+            const patternCategories = patterns
+                ?.filter((template) => template.template_type === 'patterns')
                 .map((template) => template.patterns_category);
             const uniquePatternCategories = [...new Set(patternCategories?.flat())];
             const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
             const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
             patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
             setPatternCategories(patternCategoriesArray);
-
 
             // patterns tags
             const allPatternTags = patterns?.map((template) => template.tags);
@@ -586,7 +621,9 @@ function ZoloBlocksTemplateLibraryButton() {
             setDemos(demos);
 
             // set demo categories
-            const demoCategories = demos?.filter((template) => template.template_type === 'demos').map((template) => template.demos_category);
+            const demoCategories = demos
+                ?.filter((template) => template.template_type === 'demos')
+                .map((template) => template.demos_category);
             const uniqueDemoCategories = [...new Set(demoCategories?.flat())];
             const sortedDemoCategories = uniqueDemoCategories.sort((a, b) => a.localeCompare(b));
             const demoCategoriesArray = sortedDemoCategories.map((category) => ({ label: category, value: category }));
@@ -612,46 +649,46 @@ function ZoloBlocksTemplateLibraryButton() {
 
     // pull new demos
     const pullNewDemos = () => {
-        setLoading(true);
-        jQuery.ajax({
-            url: zoloParams?.ajaxurl,
-            type: 'POST',
-            nonce: zoloParams?.nonce,
-            data: {
-                action: 'zolo_demo_pull',
-            },
-            success: function (response) {
-                if (response.success) {
-                    fetchTemplates();
-                    setLoading(false);
-                } else {
-                    console.log('Error:', response.data);
-                }
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            },
-        });
+        setTimeout(() => {
+            setLoading(true);
+            jQuery.ajax({
+                url: zoloParams?.ajaxurl,
+                type: 'POST',
+                nonce: zoloParams?.nonce,
+                data: {
+                    action: 'zolo_demo_pull',
+                },
+                success: function (response) {
+                    if (response.success) {
+                        fetchTemplates();
+                    } else {
+                        console.log('Error:', response.data);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                },
+            });
 
-        jQuery.ajax({
-            url: zoloParams?.ajaxurl,
-            type: 'POST',
-            nonce: zoloParams?.nonce,
-            data: {
-                action: 'zolo_demo_template_pull',
-            },
-            success: function (response) {
-                if (response.success) {
-                    fetchDemoTemplates();
-                    setLoading(false);
-                } else {
-                    console.log('Error:', response.data);
-                }
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            },
-        });
+            jQuery.ajax({
+                url: zoloParams?.ajaxurl,
+                type: 'POST',
+                nonce: zoloParams?.nonce,
+                data: {
+                    action: 'zolo_demo_template_pull',
+                },
+                success: function (response) {
+                    if (response.success) {
+                        fetchDemoTemplates();
+                    } else {
+                        console.log('Error:', response.data);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                },
+            });
+        }, 1500);
     };
 
     /**
@@ -822,6 +859,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                     // fav templates
                                     favIds={favIds}
                                     handleFavTemplate={handleFavTemplate}
+                                    attemptComplete={attemptComplete}
                                 />
                             )
                         }
@@ -859,6 +897,7 @@ function ZoloBlocksTemplateLibraryButton() {
                                     // fav templates
                                     favIds={favIds}
                                     handleFavTemplate={handleFavTemplate}
+                                    attemptComplete={attemptComplete}
                                 />
                             )
                         }

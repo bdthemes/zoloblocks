@@ -1,0 +1,53 @@
+.wp-block-zolo-form {
+    input[readonly] {
+        pointer-events: inherit !important;
+    }
+
+    .zolo-contact-form {
+        > .block-editor-inserter {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 99;
+            .block-editor-button-block-appender {
+                color: #000;
+                background-color: rgba(180, 187, 197, 0.36);
+                border-radius: var(--zoloblocks-button-border-radius);
+    
+                width: 100px;
+                margin-left: auto;
+                border: 0;
+                box-shadow: none;
+                position: relative;
+                transition: all 0.3s;
+                height: 40px !important;
+                &:hover {
+                    background: rgba(203, 211, 223, 0.36);
+                }
+                &::before {
+                    content: 'add field';
+                    position: absolute;
+                    font-size: 13px;
+                    color: currentColor;
+                    left: 11px;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                }
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    right: 8px;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+}
+
+.zolo-panel-control .react-tel-input .form-control {
+    padding: 0 0 0 42px !important;
+}
+
+.react-tel-input .selected-flag .arrow {
+    margin-left: 0;
+}

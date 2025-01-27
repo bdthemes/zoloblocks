@@ -1,4 +1,4 @@
-import { PluginBlockSettingsMenuItem } from '@wordpress/edit-post';
+import { PluginBlockSettingsMenuItem } from '@wordpress/editor';
 import { registerPlugin } from '@wordpress/plugins';
 import { select, dispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';

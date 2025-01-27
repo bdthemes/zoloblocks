@@ -1,5 +1,6 @@
 import { select } from '@wordpress/data';
 import CryptoJS from 'crypto-js';
+import {forwardRef} from '@wordpress/element';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
@@ -102,11 +103,11 @@ export const removeEmptyCSSProperties = (cssString) => {
 };
 
 //Dynamic Tag
-export const DynamicTag = (props) => {
+export const DynamicTag = forwardRef((props,ref) => {
   const {tagName, children, ...attr} = props;
   const Tag = tagName || 'h2';
-  return <Tag {...attr}>{children}</Tag>;
-};
+  return <Tag ref={ref} {...attr}>{children}</Tag>;
+});
 
 export const classArrayToStr = (classes) => {
   if (typeof classes !== 'object') {
@@ -279,3 +280,28 @@ export const getTaxonomies=(postType, allTaxonomyList) =>{
          }
      }
  };
+
+//from field unique name generator
+export const generateUniqueName = (uniqueId, customNameAttribute, defaultName = 'field_name') => {
+  const lastPart = uniqueId && typeof uniqueId === 'string'
+    ? uniqueId.split('-').pop()
+    : 'unknown';
+  const sanitizedCustomName = customNameAttribute
+    ? customNameAttribute
+      .trim()
+      .replace(/[^a-zA-Z0-9]/g, '_')
+      .replace(/\s+/g, '_')
+    : null;
+
+  return sanitizedCustomName
+    ? sanitizedCustomName
+    : `${defaultName}_${lastPart}`;
+};
+
+//generate css for order sort control
+export const generateOrderSortCSS = (items,uniqueId) => {
+  return items
+    .map((item, index) => {
+      return `.${uniqueId}.zolo-block .${item.class} {order: ${index + 1};}`;
+    }).join("\n");
+};

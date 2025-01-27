@@ -1,0 +1,110 @@
+.zolo-panel-control {
+    .zolo-repeater-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+        .zolo-repeater-add {
+            color: #2f2f31;
+            min-width: 100%;
+            justify-content: space-between;
+            background: transparent;
+            flex-direction: row-reverse;
+            padding: 0;
+            svg {
+                height: 26px;
+                width: 26px;
+                background-color: #f2f2f2;
+                border-radius: 50%;
+                padding: 2px;
+            }
+            &:hover {
+                color: #000;
+                background: transparent;
+            }
+        }
+        .zolo-repeater-item-body {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow-x: hidden !important;
+            background: transparent !important;
+            .components-panel__body-title {
+                background-color: #f2f2f2;
+                padding: 14px 10px 14px 35px;
+                border-radius: inherit;
+                line-height: 1;
+                .components-panel__body-toggle {
+                    padding: 0;
+                    margin: 0;
+                    span {
+                        position: absolute;
+                        right: -17px;
+                    }
+                    &::before,
+                    &::after {
+                        content: none;
+                    }
+                }
+            }
+            /* width */
+            &::-webkit-scrollbar {
+                width: 3px;
+                border-radius: 6px;
+            }
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: #cccccc;
+            }
+        }
+        .zolo-repeater-item {
+            position: relative;
+            .zolo-repeater-actions {
+                .zolo-repeater-action-button {
+                    position: absolute;
+                    top: 14px;
+                    min-width: auto;
+                    min-height: auto;
+                    padding: 0;
+                    height: auto;
+                    &:first-child {
+                        right: 36px;
+                        svg {
+                            width: 17px;
+                            height: 17px;
+                        }
+                    }
+                    &:nth-last-child(1) {
+                        left: 12px;
+                        top: 12px;
+                    }
+                    svg {
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        fill: #6e6e73;
+                        &:hover {
+                            svg {
+                                fill: #000;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .zolo-repeater-item-content {
+            margin-top: 20px;
+        }
+    }
+}
+.zolo-panel-control {
+    .zolo-select__menu {
+        z-index: 9999 !important;
+        position: relative !important;
+    }
+}

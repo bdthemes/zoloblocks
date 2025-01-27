@@ -7,6 +7,19 @@
     "description": "Create dynamic forms with customizable fields for data collection.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
+    "allowedBlocks": [
+        "zolo/text-field",
+        "zolo/email",
+        "zolo/textarea",
+        "zolo/checkbox-field",
+        "zolo/number-field",
+        "zolo/radio-field",
+        "zolo/select-field",
+        "zolo/phonenumber-field",
+        "zolo/datetime-field",
+        "zolo/country-field",
+        "zolo/container"
+    ],
     "example": {
         "attributes": {
             "preview": true
@@ -19,7 +32,7 @@
         "align": ["wide", "full"]
     },
     "editorScript": "file:./index.js",
-    "editorStyle": "file:./editor.css",
+    "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",
-    "viewScript": "file:./frontend.js"
+    "viewScript": ["zolo-form-validation", "file:./frontend.js"]
 }

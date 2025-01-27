@@ -46,8 +46,8 @@ const Save = ({ attributes }) => {
                             <a
                                 className="zolo-external-link"
                                 href={memberDetailPageLink && memberDetailPageLink.url}
-                                rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
-                                target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                                rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                             >
                                 <DisplayZoloIcon icon={detailIcon} />
                             </a>
@@ -98,8 +98,8 @@ const Save = ({ attributes }) => {
                                                 className="zolo-social-link"
                                                 href={profile.link && profile.link.url}
                                                 key={index}
-                                                rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
-                                                target={profile.link && profile.link.openInNewTab && '_blank'}
+                                                rel={profile.link && profile.link.openInNewTab ? 'noreferer noopener' : undefined}
+                                                target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                                 title={profile.title}
                                             >
                                                 <DisplayZoloIcon icon={profile.icon} />
@@ -114,8 +114,8 @@ const Save = ({ attributes }) => {
                                 <a
                                     className="zolo-external-link"
                                     href={memberDetailPageLink && memberDetailPageLink.url}
-                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
-                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                                 >
                                     <DisplayZoloIcon icon={detailIcon} />
                                 </a>

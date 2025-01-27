@@ -246,6 +246,7 @@ function Inspector(props) {
                                 value={preset}
                                 options={applyFilters('zolo.postCarousel.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
+                                __nextHasNoMarginBottom={true}
                             />
                             <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
                             <ToggleControl
@@ -314,6 +315,7 @@ function Inspector(props) {
                                             value={titleTag}
                                             options={HEADING}
                                             onChange={(titleTag) => setAttributes({ titleTag })}
+                                            __nextHasNoMarginBottom={true}
                                         />
                                         <RangeResetControl
                                             label={__('Words', 'zoloblocks')}
@@ -425,6 +427,7 @@ function Inspector(props) {
                                     })
                                 }
                                 value={carouselEffect}
+                                __nextHasNoMarginBottom={true}
                             />
                             <RangeControl
                                 className="zolo-flex-col-control"
@@ -641,6 +644,7 @@ function Inspector(props) {
                                                 postQuery: { ...postQuery, postThumbnail },
                                             })
                                         }
+                                        __nextHasNoMarginBottom={true}
                                     />
                                 )}
                                 <CardDivider />
@@ -722,6 +726,7 @@ function Inspector(props) {
                                                 value={postTitleAnimation}
                                                 options={applyFilters('zolo.postCarousel.titleAnimation', POST_TITLE_ANIMATION)}
                                                 onChange={(postTitleAnimation) => setAttributes({ postTitleAnimation })}
+                                                __nextHasNoMarginBottom={true}
                                             />
                                             <CardDivider />
                                             <ColorControl

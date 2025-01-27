@@ -170,10 +170,31 @@
         }
     }
 }
-// .zolo-editor {
-.wp-block {
-    &.zolo-block {
-        width: 100%;
+
+.zolo-container-inner-blocks-wrap {
+    .wp-block {
+        &.zolo-block {
+            width: 100%;
+            box-sizing: border-box;
+        }
     }
 }
+
+// .zolo-editor {
+// .wp-block {
+//     &.zolo-block {
+//         width: 100%;
+//     }
 // }
+// }
+
+.zolo-root-container {
+    .wp-block-navigation__container {
+        flex-grow: inherit;
+        flex-wrap: nowrap;
+    }
+
+    .wp-block-navigation-item__label {
+        white-space: nowrap !important;
+    }
+}

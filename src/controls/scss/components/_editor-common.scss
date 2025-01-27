@@ -60,6 +60,9 @@
             outline: none !important;
             border-radius: 6px;
             padding: 0 10px !important;
+            width: 100%;
+            box-sizing: border-box;
+            background: transparent;
             &:focus {
                 border-color: #001feb !important;
                 box-shadow: none !important;
@@ -179,7 +182,7 @@
         .components-panel__body-toggle {
             &::before {
                 content: 'pro';
-                background-color: #f00;
+                background-color: var(--zolo-badge-pro-color);
             }
         }
     }
@@ -271,6 +274,25 @@
             height: 32px !important;
             font-size: 12px !important;
             margin: 3px !important;
+        }
+    }
+
+    .zolo-flex-input-col-control {
+        .components-input-base {
+            flex-direction: column;
+            width: 100%;
+            gap: 8px;
+        }
+        .components-input-control__container {
+            width: 100%;
+        }
+        .components-input-control__label {
+            padding: 0;
+        }
+    }
+    .zolo-repeater-item-content {
+        .zolo-select__input {
+            grid-area: unset !important;
         }
     }
 }

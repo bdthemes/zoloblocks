@@ -18,6 +18,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
                         invert: false,
                         flip: false,
                         bringToFront: false,
+                        image: '',
                     },
                     bottom: {
                         type: 'none',
@@ -25,6 +26,7 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/add
                         invert: false,
                         flip: false,
                         bringToFront: false,
+                        image: '',
                     },
                 },
             },

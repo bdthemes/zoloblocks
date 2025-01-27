@@ -7,7 +7,7 @@
     --zolo-star-rating-icon-size: clamp(0.875rem, 1.5vw, 1rem);
     --zolo-star-rating-icon-color: #ff9a00;
     --zolo-desc-text-color: #656565;
-    --zolo-desc-margin:  0 0 clamp(1.875rem, 5vw, 3.125rem);
+    --zolo-desc-margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
     --zolo-name-text-color: #19191c;
     --zolo-name-margin: 0 0 2px;
     --zolo-dasignation-text-color: #656565;
@@ -126,7 +126,10 @@
         --zolo-quote-icon-size: 120px;
         --zolo-img-size: clamp(4rem, 8vw, 6.875rem);
         --zolo-desc-margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
-        --zolo-star-rating-icon-size: 22px;
+
+        --zolo-quote-icon-v-offset: 0;
+        --zolo-quote-icon-h-offset: 0;
+
         .zolo-item {
             display: block;
             background-color: #fff;
@@ -159,6 +162,7 @@
             position: absolute;
             background-color: transparent;
             padding: 0;
+            transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
             svg {
                 fill: var(--zolo-quote-icon-color);
                 width: var(--zolo-quote-icon-size);
@@ -179,7 +183,7 @@
             border-top: 2px solid rgba(198, 196, 209, 0.25);
             padding-top: 20px;
         }
-        
+
         .zolo-user-info-wrap {
             width: 100%;
         }
@@ -195,22 +199,110 @@
             svg {
                 width: var(--zolo-star-rating-icon-size);
                 transform: scale(1);
-                transition: transform .3s ease;
+                transition: transform 0.3s ease;
             }
             svg:nth-child(2) {
-               transition-delay: .2s;
+                transition-delay: 0.2s;
             }
             svg:nth-child(3) {
-               transition-delay: .3s;
+                transition-delay: 0.3s;
             }
             svg:nth-child(4) {
-               transition-delay: .4s;
+                transition-delay: 0.4s;
             }
             svg:nth-child(5) {
-               transition-delay: .5s;
+                transition-delay: 0.5s;
             }
         }
-     }
+    }
+
+    // style preset 3 css start here
+
+    &.style-preset-3 {
+        --zolo-item-gap: 10px;
+        --zolo-img-size: clamp(14.5rem, 28vw, 20rem);
+        --zolo-img-radius: 20px;
+        --zolo-desc-margin: 0 0 clamp(1.875rem, 4vw, 2rem);
+        --zolo-desc-text-color: #efeff0;
+        --zolo-name-text-color: #ffffff;
+        --zolo-dasignation-text-color: #e0e0e0;
+        --arrow-border-radius: 50%;
+        --arrow-size: 30px;
+        --arrow-h-space: 50%;
+        --arrow-v-space: -20px;
+        --zolo-quote-icon-size: 70px;
+        --zolo-quote-icon-color: #ff9a00;
+        .zolo-item {
+            flex-direction: column;
+            height: 100%;
+            align-items: center;
+        }
+        .zolo-image-wrap {
+            width: var(--zolo-img-size);
+            height: var(--zolo-img-size);
+            min-width: var(--zolo-img-size);
+            border-radius: var(--zolo-img-radius);
+        }
+        .zolo-info-wrap {
+            padding: clamp(20px, 2.5vw, 30px);
+            border-radius: 20px;
+            position: relative;
+            background: var(--zoloblocks-brand-color);
+            box-sizing: border-box;
+        }
+        .zolo-desc {
+            font-size: 18px;
+            margin: var(--zolo-desc-margin);
+            color: var(--zolo-desc-text-color);
+        }
+        .zolo-name {
+            font-size: 18px;
+            color: var(--zolo-name-text-color);
+        }
+        .zolo-designation {
+            color: var(--zolo-dasignation-text-color);
+        }
+        .zolo-quote-icon {
+            right: 0;
+            padding: 0;
+            background: transparent;
+            transform: rotate(-180deg);
+            margin: 0 40px -28px 0;
+            svg {
+                width: var(--zolo-quote-icon-size);
+                height: var(--zolo-quote-icon-size);
+                fill: var(--zolo-quote-icon-color);
+            }
+        }
+        .zolo-triangle {
+            position: absolute;
+            top: var(--arrow-v-space);
+            left: var(--arrow-h-space);
+            width: var(--arrow-size);
+            height: var(--arrow-size);
+            border-top-right-radius: var(--arrow-border-radius);
+            background-color: var(--zoloblocks-brand-color);
+            text-align: left;
+            display: inline-block;
+            transform: rotate(60deg) skewX(-30deg) scale(1, 0.866) translateX(-50%);
+            transform-origin: 45% 75%;
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                background-color: inherit;
+                width: 100%;
+                height: 100%;
+                border-top-right-radius: inherit;
+            }
+            &::before {
+                transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+            }
+            &::after {
+                transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+            }
+        }
+    }
 }
 
 @media (min-width: 768px) {
@@ -243,8 +335,23 @@
                 margin-bottom: 0;
             }
             .zolo-info-wrap {
-               flex-direction: row;
-               align-items: center;
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        &.style-preset-3 {
+            --arrow-h-space: -20px;
+            --arrow-v-space: 50px;
+            .zolo-item {
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            .zolo-triangle {
+                top: unset;
+                bottom: var(--arrow-v-space);
+                left: var(--arrow-h-space);
+                transform: rotate(90deg) skewX(-30deg) scale(1, 0.866);
             }
         }
     }

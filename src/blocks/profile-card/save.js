@@ -131,8 +131,8 @@ const Save = (props) => {
                                     <a
                                         className="zb-profile-fllow-btn"
                                         href={followButtonLink && followButtonLink.url && followButtonLink.url}
-                                        target={followButtonLink && followButtonLink.openInNewTab && '_blank'}
-                                        rel={followButtonLink && followButtonLink.openInNewTab && 'noopener noreferrer'}
+                                        target={followButtonLink && followButtonLink.openInNewTab ? '_blank' : undefined}
+                                        rel={followButtonLink && followButtonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                         title={followButtonText}
                                     >
                                         {followButtonText}
@@ -146,8 +146,8 @@ const Save = (props) => {
                                                     <a
                                                         href={profile.link && profile.link.url}
                                                         key={index}
-                                                        rel={profile.link.openInNewTab && 'noopener noreferer'}
-                                                        target={profile.link.openInNewTab && '_blank'}
+                                                        rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
+                                                        target={profile.link.openInNewTab ? '_blank' : undefined}
                                                         title={profile.title}
                                                     >
                                                         <DisplayZoloIcon icon={profile.icon} />
@@ -195,8 +195,8 @@ const Save = (props) => {
                                         <a
                                             className="zb-profile-fllow-btn"
                                             href={followButtonLink && followButtonLink.url && followButtonLink.url}
-                                            target={followButtonLink && followButtonLink.openInNewTab && '_blank'}
-                                            rel={followButtonLink && followButtonLink.openInNewTab && 'noopener noreferrer'}
+                                            target={followButtonLink && followButtonLink.openInNewTab ? '_blank' : undefined}
+                                            rel={followButtonLink && followButtonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                             title={followButtonText}
                                         >
                                             {followButtonText}
@@ -210,8 +210,8 @@ const Save = (props) => {
                                                         <a
                                                             href={profile.link && profile.link.url}
                                                             key={index}
-                                                            rel={profile.link.openInNewTab && 'noopener noreferer'}
-                                                            target={profile.link.openInNewTab && '_blank'}
+                                                            rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
+                                                            target={profile.link.openInNewTab ? '_blank' : undefined}
                                                             title={profile.title}
                                                         >
                                                             <DisplayZoloIcon icon={profile.icon} />

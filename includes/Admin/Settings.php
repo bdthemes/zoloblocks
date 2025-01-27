@@ -28,6 +28,117 @@ if (! class_exists('Settings')) {
             add_action('rest_api_init', [$this, 'zolo_blocks_settings_init']);
             add_action('admin_init', [$this, 'save_default_blocks']);
             add_action('admin_init', [$this, 'save_default_extensions']);
+            add_action("admin_init", [$this, 'zolo_site_visibility_settings']);
+        }
+
+        /**
+         * Zolo Site Visibility Settings
+         */
+
+        public function zolo_site_visibility_settings() {
+            add_settings_section(
+                'zolo_site_visibility',
+                __('ZoloBlocks Site Visibility', 'zoloblocks'),
+                [$this, 'zolo_site_visibility_section'],
+                'reading'
+            );
+            add_settings_field(
+                'zolo_site_visibility',
+                __('Site Visibility', 'zoloblocks'),
+                [$this, 'zolo_site_visibility_field'],
+                'reading',
+                'zolo_site_visibility'
+            );
+
+            register_setting('reading', 'zolo_maintenance_mode');
+            register_setting('reading', 'zolo_coming_soon_mode');
+            register_setting('reading', 'zolo_maintenance_mode_template');
+        }
+
+        public function zolo_site_visibility_section() {
+            echo '<p>' . __('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>';
+        }
+        public function zolo_site_visibility_field() {
+            $zolo_maintenance_mode = get_option('zolo_maintenance_mode', false);
+            $zolo_coming_soon_mode = get_option('zolo_coming_soon_mode', false);
+            $selected_page = get_option('zolo_maintenance_mode_template', '');
+            $pages = get_pages(); // Fetch all available pages
+
+?>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e('Site Visibility', 'zoloblocks'); ?></span></legend>
+
+                <!-- Coming Soon Mode Toggle -->
+                <label for="zolo_coming_soon_mode">
+                    <input type="checkbox" name="zolo_coming_soon_mode" id="zolo_coming_soon_mode" value="1" <?php checked($zolo_coming_soon_mode, true); ?>>
+                    <?php _e('Enable Coming Soon Mode', 'zoloblocks'); ?>
+                </label>
+                <p className="zolo-settings-text">
+                    <?php _e(
+                        "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.",
+                        'zoloblocks'
+                    ); ?>
+                </p>
+                <br>
+
+                <!-- Maintenance Mode Toggle -->
+                <label for="zolo_maintenance_mode">
+                    <input type="checkbox" name="zolo_maintenance_mode" id="zolo_maintenance_mode" value="1" <?php checked($zolo_maintenance_mode, true); ?>>
+                    <?php _e('Enable Maintenance Mode', 'zoloblocks'); ?>
+                </label>
+                <p className="zolo-settings-text">
+                    <?php _e(
+                        "Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.",
+                        'zoloblocks'
+                    ); ?>
+                </p>
+                <br>
+
+                <!-- Template Selection -->
+                <div id="template-selection-wrapper" style="display: <?php echo ($zolo_maintenance_mode || $zolo_coming_soon_mode) ? 'block' : 'none'; ?>;">
+                    <h4><?php _e('Select a Template', 'zoloblocks'); ?></h4>
+                    <label for="zolo_maintenance_mode_template">
+                        <select name="zolo_maintenance_mode_template" id="zolo_maintenance_mode_template">
+                            <option value="" <?php selected($selected_page, ''); ?>><?php _e('Select Template', 'zoloblocks'); ?></option>
+                            <?php foreach ($pages as $page) : ?>
+                                <option value="<?php echo esc_attr($page->ID); ?>" <?php selected($selected_page, $page->ID); ?>><?php echo esc_html($page->post_title); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                </div>
+            </fieldset>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const maintenanceCheckbox = document.getElementById('zolo_maintenance_mode');
+                    const comingSoonCheckbox = document.getElementById('zolo_coming_soon_mode');
+                    const templateWrapper = document.getElementById('template-selection-wrapper');
+
+                    function toggleTemplateVisibility() {
+                        if (maintenanceCheckbox.checked || comingSoonCheckbox.checked) {
+                            templateWrapper.style.display = 'block';
+                        } else {
+                            templateWrapper.style.display = 'none';
+                        }
+                    }
+
+                    function ensureExclusiveMode() {
+                        if (this.id === 'zolo_maintenance_mode' && this.checked) {
+                            comingSoonCheckbox.checked = false;
+                        } else if (this.id === 'zolo_coming_soon_mode' && this.checked) {
+                            maintenanceCheckbox.checked = false;
+                        }
+                        toggleTemplateVisibility();
+                    }
+
+                    // Initial toggle based on saved settings
+                    toggleTemplateVisibility();
+
+                    maintenanceCheckbox.addEventListener('change', ensureExclusiveMode);
+                    comingSoonCheckbox.addEventListener('change', ensureExclusiveMode);
+                });
+            </script>
+<?php
         }
 
         /**
@@ -72,26 +183,39 @@ if (! class_exists('Settings')) {
             );
 
             // favorite templates
-            // register_setting(
-            //     'zolo_blocks_settings_group',
-            //     'zolo_favorite_templates',
-            //     [
-            //         'type'              => 'array',
-            //         'default'           => [],
-            //         'sanitize_callback' => NULL,
-            //         'show_in_rest'      => [
-            //             'schema' => [
-            //                 'type'  => 'array',
-            //                 'items' => ['type' => 'number'],
-            //             ],
-            //         ],
-            //     ]
-            // );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_favorite_templates',
+                [
+                    'type'              => 'array',
+                    'default'           => [],
+                    'sanitize_callback' => NULL,
+                    'show_in_rest'      => [
+                        'schema' => [
+                            'type'  => 'array',
+                            'items' => ['type' => 'number'],
+                        ],
+                    ],
+                ]
+            );
 
             // register zolo google api key setting
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_google_api_key',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+            // register zolo zoloai api key setting
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_sigmative_api_key',
                 [
                     'type'              => 'string',
                     'default'           => '',
@@ -294,6 +418,19 @@ if (! class_exists('Settings')) {
                 ]
             );
 
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_sidebar_opener',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             // zolo webhooks
             register_setting(
                 'zolo_blocks_settings_group',
@@ -318,6 +455,20 @@ if (! class_exists('Settings')) {
                             ],
                         ],
                     ],
+                ]
+            );
+
+            //Enable video link.
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_enable_video_link',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => NULL,
                 ]
             );
         }
@@ -422,36 +573,47 @@ if (! class_exists('Settings')) {
         public function update_blocks($request) {
             $nonce = $request->get_param('zolo_nonce');
 
-            if (! wp_verify_nonce($nonce, 'zolo-nonce')) {
+            // Verify nonce
+            if (!wp_verify_nonce($nonce, 'zolo-nonce')) {
                 return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
 
-            $block_names = $request->get_param('names');
-            $single_block_name = filter_var($request->get_param('name'), FILTER_SANITIZE_STRING);
-            $active_status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN);
+            // Fetch the updates array from the request
+            $updates = $request->get_param('updates');
+            $block_names = $request->get_param('names'); // For bulk update
+            $status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN); // Status for bulk update
 
-            // Fetch existing blocks
+            // Fetch existing blocks from the options
             $blocks = get_option('zolo_blocks_settings', []);
 
-            // Determine if it's a single block or multiple blocks
-            if (!empty($single_block_name)) {
-                // Handle single block update
-                $block_names = [sanitize_text_field($single_block_name)];
-            } elseif (is_array($block_names)) {
-                // Sanitize all block names in the array
+            // If the updates array is provided, use it for individual updates
+            if (is_array($updates) && !empty($updates)) {
+                foreach ($updates as $update) {
+                    $block_name = sanitize_text_field($update['name']);
+                    $block_status = filter_var($update['status'], FILTER_VALIDATE_BOOLEAN);
+
+                    // Find and update the matching block
+                    foreach ($blocks as &$block) {
+                        if ($block['name'] === $block_name) {
+                            $block['status'] = $block_status;
+                            break;
+                        }
+                    }
+                }
+            } elseif (is_array($block_names) && !empty($block_names)) {
+                // For bulk updates with names array
                 $block_names = array_map('sanitize_text_field', $block_names);
+
+                foreach ($blocks as &$block) {
+                    if (in_array($block['name'], $block_names)) {
+                        $block['status'] = $status;
+                    }
+                }
             } else {
                 return new WP_Error('invalid_request', __('Invalid block name(s) provided.', 'zoloblocks'), array('status' => 400));
             }
 
-            // Update the blocks' active status
-            foreach ($blocks as &$block) {
-                if (in_array($block['name'], $block_names)) {
-                    $block['status'] = $active_status;
-                }
-            }
-
-            // Update the option
+            // Update the option with the new blocks data
             update_option('zolo_blocks_settings', $blocks);
 
             return rest_ensure_response($blocks);
@@ -516,38 +678,50 @@ if (! class_exists('Settings')) {
          * @return array The updated extensions list.
          */
         public function update_extensions($request) {
+
             $nonce = $request->get_param('zolo_nonce');
 
-            if (! wp_verify_nonce($nonce, 'zolo-nonce')) {
+            // Verify nonce
+            if (!wp_verify_nonce($nonce, 'zolo-nonce')) {
                 return new WP_Error('invalid_request', __('Invalid request.', 'zoloblocks'), array('status' => 400));
             }
 
-            $extension_names = $request->get_param('names');
-            $single_extension_name = filter_var($request->get_param('name'), FILTER_SANITIZE_STRING);
-            $active_status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN);
+            // Fetch the updates array from the request
+            $updates = $request->get_param('updates');
+            $extension_names = $request->get_param('names'); // For bulk update
+            $status = filter_var($request->get_param('status'), FILTER_VALIDATE_BOOLEAN); // Status for bulk update
 
-            // Fetch existing blocks
+            // Fetch existing extensions from the options
             $extensions = get_option('zolo_extensions_settings', []);
 
-            // Determine if it's a single block or multiple blocks
-            if (!empty($single_extension_name)) {
-                // Handle single block update
-                $extension_names = [sanitize_text_field($single_extension_name)];
-            } elseif (is_array($extension_names)) {
-                // Sanitize all block names in the array
-                $extension_names = array_map('sanitize_text_field', $extension_names);
-            } else {
-                return new WP_Error('invalid_request', __('Invalid block name(s) provided.', 'zoloblocks'), array('status' => 400));
-            }
+            // If the updates array is provided, use it for individual updates
+            if (is_array($updates) && !empty($updates)) {
+                foreach ($updates as $update) {
+                    $extension_name = sanitize_text_field($update['name']);
+                    $extension_status = filter_var($update['status'], FILTER_VALIDATE_BOOLEAN);
 
-            // Update the blocks' active status
-            foreach ($extensions as &$extension) {
-                if (in_array($extension['name'], $extension_names)) {
-                    $extension['status'] = $active_status;
+                    // Find and update the matching block
+                    foreach ($extensions as &$extension) {
+                        if ($extension['name'] === $extension_name) {
+                            $extension['status'] = $extension_status;
+                            break;
+                        }
+                    }
                 }
+            } elseif (is_array($extension_names) && !empty($extension_names)) {
+                // For bulk updates with names array
+                $extension_names = array_map('sanitize_text_field', $extension_names);
+
+                foreach ($extensions as &$extension) {
+                    if (in_array($extension['name'], $extension_names)) {
+                        $extension['status'] = $status;
+                    }
+                }
+            } else {
+                return new WP_Error('invalid_request', __('Invalid extension name(s) provided.', 'zoloblocks'), array('status' => 400));
             }
 
-            // Update the option
+            // Update the option with the new blocks data
             update_option('zolo_extensions_settings', $extensions);
 
             return rest_ensure_response($extensions);

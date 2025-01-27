@@ -385,11 +385,20 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .zolo-contact-form input:focus, .${uniqueId} .zolo-contact-form select:focus, .${uniqueId} .zolo-contact-form textarea:focus {
+        .${uniqueId} .zolo-contact-form input:focus, 
+        .${uniqueId} .zolo-contact-form select:focus, 
+        .${uniqueId} .zolo-contact-form textarea:focus{
             ${focusBorderColor ? `border-color: ${focusBorderColor};` : ''} 
             ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px;` : ''}
             ${focusBorderColor ? `outline-color: ${focusBorderColor};` : ''}
         }
+
+        .${uniqueId} .zolo-contact-form .zolo-field-item .zolo-field-input-item .zolo-select__control--is-focused {
+            ${focusBorderColor ? `border-color: ${focusBorderColor} !important;` : ''}
+            ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px !important;` : ''}
+            ${focusBorderColor ? `outline-color: ${focusBorderColor} !important;` : ''}
+        }
+
         .${uniqueId} .zolo-label {
             ${labelTypoDesk}
             color: ${labelColor};
@@ -432,12 +441,14 @@ const Style = ({ props }) => {
             ${iconSize}
             fill: ${iconColor};
         }
-
         .${uniqueId} .zolo-input-icon {
             ${iconSpacingDesk}
         }
 
-        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select,
+        .${uniqueId} .zolo-contact-form .zolo-select__control {
             color: ${textColor};
             ${fieldTypoDesk}
             ${fieldBorderStyles}
@@ -445,8 +456,13 @@ const Style = ({ props }) => {
             ${fieldPaddingDesktop}
             ${fieldBGStyle}
         }
+        .${uniqueId} .zolo-contact-form .zolo-select__single-value {
+            color: ${textColor};
+        }
 
-        .${uniqueId} .zolo-field-input-item input::placeholder , .${uniqueId} .zolo-field-input-item textarea::placeholder {
+        .${uniqueId} .zolo-field-input-item input::placeholder , 
+        .${uniqueId} .zolo-field-input-item textarea::placeholder,
+        .${uniqueId} .zolo-contact-form .zolo-select__placeholder {
             color: ${placeholderColor};
         }
 
@@ -455,7 +471,9 @@ const Style = ({ props }) => {
             ${errMsgTypoDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-form .has-danger input, .${uniqueId}.wp-block-zolo-form .has-danger textarea, .${uniqueId}.wp-block-zolo-form .has-danger select {
+        .${uniqueId}.wp-block-zolo-form .has-danger input, 
+        .${uniqueId}.wp-block-zolo-form .has-danger textarea, 
+        .${uniqueId}.wp-block-zolo-form .has-danger select {
             border-color: ${errMsgColor};
         }
 
@@ -525,11 +543,10 @@ const Style = ({ props }) => {
             ${iconTabSize}
         }
 
-        .${uniqueId} .zolo-input-icon {
-            ${iconSpacingTab}
-        }
-
-        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+        .${uniqueId} .zolo-field-input-item select,
+        .${uniqueId} .zolo-contact-form .zolo-select__control {
             ${fieldTypoTab}
             ${fieldBorderStylesTab}
             ${fieldBRTab}
@@ -594,11 +611,11 @@ const Style = ({ props }) => {
             ${iconMobSize}
         }
 
-        .${uniqueId} .zolo-input-icon {
-            ${iconSpacingMob}
-        }
+        .${uniqueId} .zolo-field-input-item input, 
+        .${uniqueId} .zolo-field-input-item textarea,
+         .${uniqueId} .zolo-field-input-item select,
+        .${uniqueId} .zolo-contact-form .zolo-select__control {
 
-        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
             ${fieldTypoMob}
             ${fieldBorderStylesMob}
             ${fieldBRMob}

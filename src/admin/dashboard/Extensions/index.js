@@ -1,17 +1,19 @@
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import Notice from '../notice';
 
 import SingleExtension from './single-extension';
 
-import Notice from '../notice';
-
 const Extensions = () => {
+    const [notice, setNotice] = useState('');
     const [extensions, setExtensions] = useState([]);
     const [search, setSearch] = useState('');
     const [blockCategory, setCategory] = useState('all');
-    const [notice, setNotice] = useState(false);
 
+    const [extensionsTobeUpdated, setExtensionsTobeUpdated] = useState({}); // Store extensions changes
+
+    // Fetch extensions
     const fetchExtensions = async () => {
         try {
             const response = await apiFetch({
@@ -28,100 +30,77 @@ const Extensions = () => {
         fetchExtensions();
     }, []);
 
-    // set notice to false after 3 seconds
-    useEffect(() => {
-        if (notice) {
-            setTimeout(() => {
-                setNotice(false);
-            }, 1000);
+    // activate / deactivate all extensions
+    const toggleAllExtensions = (status) => {
+        setExtensions((prevExtensions) =>
+            prevExtensions.map((extension) => {
+                if (extension.status !== status) {
+                    setExtensionsTobeUpdated((prev) => ({
+                        ...prev,
+                        [extension.name]: status,
+                    }));
+                    return { ...extension, status };
+                }
+                return extension;
+            })
+        );
+    };
+
+    // Handle block click
+    const handleExtensionClick = (extensionName) => {
+        setExtensions((prevExtensions) =>
+            prevExtensions.map((extension) => {
+                if (extension.name === extensionName) {
+                    const newStatus = !extension.status;
+                    setExtensionsTobeUpdated((prev) => ({
+                        ...prev,
+                        [extension.name]: newStatus,
+                    }));
+                    return { ...extension, status: newStatus };
+                }
+                return extension;
+            })
+        );
+    };
+
+    // Save changes
+    const saveChanges = () => {
+        // Map the blocks to an array of update objects
+        const updates = Object.entries(extensionsTobeUpdated).map(([name, status]) => ({
+            name,
+            status,
+        }));
+
+        // If there are no updates, return early
+        if (updates.length === 0) {
+            return;
         }
-    }, [notice]);
 
-    // update block setting
-    const updateExtensionStatus = (extensionName) => {
-        const extension = extensions.find((ext) => ext.name === extensionName);
-        const status = !extension.status;
-
+        // Construct the API call
         apiFetch({
             path: '/zolo/v1/extensions',
             method: 'POST',
             data: {
-                zolo_nonce: zoloBlocks.zolo_nonce,
-                name: extensionName,
-                status,
+                zolo_nonce: zoloBlocks?.zolo_nonce,
+                updates, // Send the array of updates
             },
         })
             .then((response) => {
+                // Update the local extensions state with the fresh data
                 setExtensions(response);
+                // Clear the extensions to be updated state
+                setExtensionsTobeUpdated({});
+                // reload the page
+                // window.location.reload();
                 setNotice(true);
+
+                setTimeout(() => {
+                    setNotice(false);
+                }, 1000);
             })
-            .catch((error) => console.error('API Fetch Error:', error));
-    };
-
-    // activate all extensions
-    const activateAllExtensions = (status) => {
-        const inactiveExtensions = extensions.filter((extension) => extension.status === false);
-
-        if (inactiveExtensions.length === 0) {
-            return;
-        }
-
-        const proExtensions = inactiveExtensions.filter((extension) => extension.is_pro === true);
-        let extensionNames = inactiveExtensions.map((extension) => extension.name);
-
-        if (proExtensions.length > 0) {
-            if (zoloBlocks?.has_pro !== '1') {
-                // remove pro extensions from the list
-                extensionNames = extensionNames.filter((extension) => !proExtensions.includes(extension)); // remove pro extensions
-            }
-        }
-
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks.zolo_nonce,
-                names: extensionNames,
-                status: true,
-            },
-        })
-            .then((response) => {
-                setExtensions(response);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
-    };
-
-    // deactivate all extensions
-    const deactivateAllExtensions = (status) => {
-        const activeExtensions = extensions.filter((extension) => extension.status === true);
-
-        if (activeExtensions.length === 0) {
-            return;
-        }
-
-        const proExtensions = activeExtensions.filter((extension) => extension.is_pro === true);
-        let extensionNames = activeExtensions.map((extension) => extension.name);
-
-        if (proExtensions.length > 0) {
-            if (zoloBlocks?.has_pro !== '1') {
-                // remove pro extensions from the list
-                extensionNames = extensionNames.filter((extension) => !proExtensions.includes(extension)); // remove pro extensions
-            }
-        }
-
-        apiFetch({
-            path: '/zolo/v1/extensions',
-            method: 'POST',
-            data: {
-                zolo_nonce: zoloBlocks.zolo_nonce,
-                names: extensionNames,
-                status: false,
-            },
-        })
-            .then((response) => {
-                setExtensions(response);
-            })
-            .catch((error) => console.error('API Fetch Error:', error));
+            .catch((error) => {
+                console.error('API Fetch Error:', error);
+            });
     };
 
     return (
@@ -130,7 +109,6 @@ const Extensions = () => {
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
-                        <h2 className="zolo-settings-title">{__('Extensions', 'zoloblocks')}</h2>
                         <div className="zolo-settings-type-badge zolo-dash-flex-center">
                             <button className="zolo-settings-type-btn active">{__('Free', 'zoloblocks')}</button>
                             <button className="zolo-settings-type-btn">{__('Pro', 'zoloblocks')}</button>
@@ -180,8 +158,7 @@ const Extensions = () => {
                         <button
                             className="zolo-activated-btn"
                             onClick={() => {
-                                activateAllExtensions(true);
-                                setNotice(true);
+                                toggleAllExtensions(true);
                             }}
                         >
                             {__('Activate All', 'zoloblocks')}
@@ -189,11 +166,13 @@ const Extensions = () => {
                         <button
                             className="zolo-deactivated-btn"
                             onClick={() => {
-                                deactivateAllExtensions(false);
-                                setNotice(true);
+                                toggleAllExtensions(false);
                             }}
                         >
                             {__('Deactivate All', 'zoloblocks')}
+                        </button>
+                        <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                            {__('Save Changes', 'zoloblocks')}
                         </button>
                     </div>
                 </div>
@@ -213,12 +192,17 @@ const Extensions = () => {
                                             key={index}
                                             icon={extension?.name}
                                             title={extension?.title}
-                                            value={extension?.status}
+                                            value={
+                                                // extension?.status
+                                                extensionsTobeUpdated[extension.name] !== undefined
+                                                    ? extensionsTobeUpdated[extension.name]
+                                                    : extension.status
+                                            }
                                             demo={extension?.demo || ''}
                                             video={extension?.video || ''}
                                             released={extension?.released}
                                             onClick={() => {
-                                                updateExtensionStatus(extension?.name);
+                                                handleExtensionClick(extension.name);
                                             }}
                                             {...(extension?.is_pro && {
                                                 isPro: true,
@@ -266,6 +250,13 @@ const Extensions = () => {
                                 </div>
                             )
                     }
+                </div>
+                <div className="zolo-settings-footer">
+                    <div className="zolo-settings-footer-inner">
+                        <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                            {__('Save Changes', 'zoloblocks')}
+                        </button>
+                    </div>
                 </div>
             </div>
         </>

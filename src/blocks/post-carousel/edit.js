@@ -134,17 +134,17 @@ export default function Edit(props) {
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
             navigation: showNavigation
                 ? {
-                      nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
-                      prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
-                  }
+                    nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
+                    prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
+                }
                 : false,
             pagination: showPagination
                 ? {
-                      el: `.${uniqueId} .swiper-pagination`,
-                      clickable: true,
-                      type: paginationType,
-                      dynamicBullets: dynamicBullets,
-                  }
+                    el: `.${uniqueId} .swiper-pagination`,
+                    clickable: true,
+                    type: paginationType,
+                    dynamicBullets: dynamicBullets,
+                }
                 : false,
             breakpoints: breakpoints,
         };
@@ -208,36 +208,34 @@ export default function Edit(props) {
             .catch((error) => console.log(error));
     }, [postQuery]);
 
-    if (Array.isArray(postResults) && postResults.length === 0) {
-        return [
-            isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />,
-            dataSuccess ? (
-                <div className="zolo-spinner">
-                    <Spinner />
-                </div>
-            ) : (
-                <p>{__('No posts found.', 'zoloblocks')}</p>
-            ),
-        ];
-    }
-
-    // preview image
+    let content;
+    
     if (preview) {
-        return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zoloblocks')} />;
-    }
-
-    return (
-        <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
-            <div {...blockProps}>
+        content = <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zoloblocks')} />;
+    } else if (Array.isArray(postResults) && postResults.length === 0) {
+        content = (
+            <>
+                {
+                    dataSuccess ? (
+                        <div className="zolo-spinner">
+                            <Spinner />
+                        </div>
+                    ) : (
+                        <p>{__('No posts found.', 'zoloblocks')}</p>
+                    )
+                }
+            </>
+        )
+    } else {
+        content = (
+            <>
                 <SidebarOpener clientId={clientId} />
                 <div className="swiper" ref={postCarouselRef}>
                     <div className="swiper-wrapper">
                         <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
                     </div>
                 </div>
-                {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
+                {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
                 {showNavigation && (
                     <Fragment>
                         <div
@@ -262,6 +260,16 @@ export default function Edit(props) {
                         </div>
                     </Fragment>
                 )}
+            </>
+        )
+    }
+
+    return (
+        <>
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <Style props={props} />
+            <div {...blockProps}>
+                {content}
             </div>
         </>
     );

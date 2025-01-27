@@ -1,0 +1,25 @@
+.wp-block-zolo-radio-field {
+    .zolo-field-input-item {
+        display: flex;
+        gap: 10px;
+        label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    &.zolo-form-radio-col {
+        .zolo-field-input-item {
+            flex-direction: column;
+        }
+    }
+    &.zolo-form-radio-row {
+        .zolo-field-input-item {
+            flex-direction: row;
+        }
+    }
+    input[type='radio']:checked::before {
+        opacity: 0;
+    }
+}

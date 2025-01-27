@@ -109,7 +109,7 @@ const Dashboard = () => {
                             </div>
                         )}
                         <span className="zolo-footer-text alignleft" id="footer-thankyou">
-                            {__('© 2024 BdThemes. All rights reserved.', 'zoloblocks')}
+                            {__('© ' + new Date().getFullYear() + ' BdThemes. All rights reserved.', 'zoloblocks')}
                         </span>
                     </div>
                 </div>

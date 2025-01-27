@@ -33,8 +33,8 @@ const Save = ({ attributes }) => {
                 <a
                     className="zb-brand-global-link"
                     href={logoLink && logoLink.url}
-                    rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                    target={logoLink && logoLink.openInNewTab && '_blank'}
+                    rel={logoLink && logoLink.openInNewTab ? 'noreferer noopener' : undefined}
+                    target={logoLink && logoLink.openInNewTab ? '_blank' : undefined}
                     title={brandLabel}
                 >
                     <div className="zb-brand-image">
@@ -60,9 +60,7 @@ const Save = ({ attributes }) => {
                             </svg>
                         </div>
                         <div className="zb-brand-inner-content">
-                            {brandNameVisible && (
-                                <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />
-                            )}
+                            {brandNameVisible && <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />}
                             {brandLabelVisible && <RichText.Content tagName="span" className="zb-brand-label" value={brandLabel} />}
                         </div>
                     </div>
@@ -99,8 +97,8 @@ const Save = ({ attributes }) => {
                                         <a
                                             className="zb-brand-link"
                                             href={logoLink && logoLink.url}
-                                            rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                            target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            rel={logoLink && logoLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                            target={logoLink && logoLink.openInNewTab ? '_blank' : undefined}
                                             title={brandTitle}
                                         >
                                             <RichText.Content
@@ -120,8 +118,8 @@ const Save = ({ attributes }) => {
                                         <a
                                             className="zb-brand-title-link has-link"
                                             href={logoLink && logoLink.url}
-                                            rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                            target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            rel={logoLink && logoLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                            target={logoLink && logoLink.openInNewTab ? '_blank' : undefined}
                                             title={brandLabel}
                                         >
                                             <RichText.Content tagName="span" value={brandLabel} />

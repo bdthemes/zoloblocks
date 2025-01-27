@@ -5,8 +5,8 @@ import Inspector from './inspector';
 import './style.scss';
 import Style from './styles';
 import {useEffect} from "@wordpress/element";
-import useHeader from "@/blocks/table-of-content/use-header";
-import {parseList, formatHeaders} from "@/blocks/table-of-content/helper";
+import useHeader from "./use-header";
+import {parseList, formatHeaders} from "./helper";
 
 const {classArrayToStr, SidebarOpener} = window.zoloModule;
 

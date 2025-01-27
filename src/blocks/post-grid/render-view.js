@@ -120,8 +120,9 @@ function RenderView({ attributes, setAttributes }) {
         <>
             {filterArray.length > 0 && showFilterTaxonomy && (
                 <div className="zolo-post-filter-taxonomy">
-                    {filterArray.map((term) => (
+                    {filterArray.map((term, index) => (
                         <a
+                            key={index}
                             href="#"
                             onClick={(e) => {
                                 e.preventDefault();
@@ -146,12 +147,12 @@ function RenderView({ attributes, setAttributes }) {
                     postResults.map((post) => {
                         const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
                         const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
-
+                        const uniqueKey = post.id || post.slug || Math.random().toString(36).slice(2);
                         const categoriesHtml =
                             post.categories.length > 0 ? (
                                 <ul className="zolo-post-category">
-                                    {post.categories.map((item) => (
-                                        <li dangerouslySetInnerHTML={{ __html: item }} />
+                                    {post.categories.map((item, index) => (
+                                        <li key={`${uniqueKey}-category-${index}`}  dangerouslySetInnerHTML={{ __html: item }} />
                                     ))}
                                 </ul>
                             ) : (
@@ -191,7 +192,7 @@ function RenderView({ attributes, setAttributes }) {
                         );
 
                         return (
-                            <div className="zolo-post-item">
+                            <div className="zolo-post-item" key={uniqueKey}>
                                 <div className="zolo-post-image">
                                     {showThumbnail && preset !== 'style-5' && (
                                         <>

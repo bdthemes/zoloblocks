@@ -6,6 +6,28 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'brand-child';
 
+export const LINK_TYPES = [
+    {
+        label: __('Item', 'zoloblocks'),
+        value: 'logo__global',
+    },
+    {
+        label: __('Title', 'zoloblocks'),
+        value: 'logo__title',
+    },
+    {
+        label: __('Sub Title', 'zoloblocks'),
+        value: 'logo__label',
+    },
+];
+
+export const LINK_TYPES_BASIC = [
+    {
+        label: __('Item', 'zoloblocks'),
+        value: 'logo__global',
+    },
+];
+
 // container
 export const CONTAINER_HEIGHT = 'containerHeight';
 export const CONTAINER_BG = 'containerBg';
@@ -13,6 +35,7 @@ export const CONTAINER_H_BG = 'containerHBg';
 export const CONTAINER_BORDER = 'containerBorder';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
+export const CONTAINER_BOX_SHADOW_H = 'containerBoxShadowH';
 export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
 

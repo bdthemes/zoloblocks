@@ -7,7 +7,7 @@
 :root {
     --zolo-dashboard-brand-color: #3f8efc;
     --zolo-badge-pro-color: #ffa826;
-    --zolo-badge-pro-h-color: rgba(255, 168, 38, 0.2);
+    --zolo-badge-pro-alpha-color: rgba(255, 168, 38, 0.2);
     --zolo-badge-upcoming-color: #009375;
     --zolo-badge-upcoming-h-color: rgba(0, 255, 203, 0.149);
     --zolo-dash-brand-hover-color: #1475fe;
@@ -52,21 +52,6 @@
 
 .toplevel_page_zoloblocks {
     background-color: #f5f5f5;
-    // .zolo-footer {
-    //     right: 0;
-    //     color: #50575e;
-    //     .zolo-footer-version,
-    //     .zolo-footer-text {
-    //         font-size: 13px;
-    //         margin: 0;
-    //         line-height: 1.55;
-    //     }
-    //     .zolo-footer-text {
-    //         font-style: italic !important;
-    //         font-weight: 400;
-    //         color: #50575e;
-    //     }
-    // }
     #wpfooter {
         display: none;
     }
@@ -189,13 +174,21 @@
     gap: clamp(0.625rem, 1.5vw, 0.938rem);
 }
 
-.zolo-current-version.single-info {
-    color: #ffffff;
-    font-size: 14px;
-    padding: 12px 20px;
-    border-radius: 30px;
+.zolo-current-version.single-info a {
+    color: #51545e;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
     font-weight: 700;
-    background-color: var(--zolo-dashboard-brand-color);
+    background-color: rgba(246, 250, 255, 0.239);
+    border: 2px solid rgba(190, 190, 190, 0.31);
+    text-decoration: none;
+}
+
+.zolo-current-version.single-info a:hover,
+.zolo-current-version.single-info a:focus {
+    color: #000;
+    border-color: rgba(52, 54, 56, 0.16);
 }
 
 .zolo-changes-logs.single-info .logos-panel-btn {
@@ -342,6 +335,7 @@
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 340px;
+    background: rgba(250, 251, 255, 0.47);
     &.active:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
@@ -358,9 +352,9 @@
     }
 
     .block-pro {
-        background: var(--zolo-badge-pro-h-color);
+        background: var(--zolo-badge-pro-alpha-color);
         color: var(--zolo-badge-pro-color);
-        padding: 7px;
+        padding: clamp(6px, 0.8vw, 7px);
         line-height: 1;
         font-size: 10px;
         text-transform: uppercase;
@@ -370,7 +364,7 @@
         justify-content: center;
         gap: 5px;
         border-radius: 6px;
-        margin-top: -15px;
+        margin-top: clamp(-6px, -1vw, -15px);
     }
 
     .block-pro-badge-icon {
@@ -463,7 +457,7 @@ input.zoloblocks-search,
 .block-external-link {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: clamp(4px, 1vw, 10px);
 }
 
 .block-icon {
@@ -492,7 +486,7 @@ input.zoloblocks-search,
 }
 .zolo-single-block.active {
     .block-icon {
-        background-color: #e4ecff;
+        background-color: #f5f8ff;
         svg {
             path {
                 fill: var(--zolo-dashboard-brand-color);
@@ -534,6 +528,14 @@ input.zoloblocks-search,
     button {
         justify-content: center;
         border: 1px solid #e7eaf5;
+    }
+
+    .zolo-activated-btn.zolo-save-changes {
+        background: var(--zolo-dashboard-brand-color);
+        color: #fff;
+        &:focus {
+            color: #fff !important;
+        }
     }
 }
 
@@ -680,9 +682,6 @@ input.zoloblocks-search {
         display: block;
         width: 16px;
         height: 16px;
-        // path {
-        //     stroke: currentColor;
-        // }
     }
 }
 
@@ -690,6 +689,9 @@ input.zoloblocks-search {
 .zolo-settings-option-item {
     .components-h-stack {
         gap: 0;
+    }
+    .components-form-toggle {
+        height: 30px;
     }
     .components-form-toggle .components-form-toggle__thumb {
         height: 22px;
@@ -717,6 +719,9 @@ input.zoloblocks-search {
             background-color: var(--zolo-badge-pro-color);
         }
     }
+    // .components-form-toggle.is-checked .components-form-toggle__track {
+    //     background-color: var(--zolo-badge-pro-color);
+    // }
 
     .components-form-toggle .components-form-toggle__track {
         background-color: #e2e8f0;
@@ -739,7 +744,7 @@ input.zoloblocks-search {
 
 .zolo-tabs-dropbtn {
     padding: 12px;
-    border-radius: 50%;
+    border-radius: 6px;
     background-color: #ffffff;
     cursor: pointer;
     transition: 0.3s ease;
@@ -967,7 +972,8 @@ input.zoloblocks-search {
     box-sizing: border-box;
     position: relative;
     --zolo-dashboard-sidebar-width: 280px;
-    max-width: 1720px;
+    --zolo-dashboard-width: 1720px;
+    max-width: var(--zolo-dashboard-width);
 
     .button-primary {
         line-height: 1.5;
@@ -983,6 +989,7 @@ input.zoloblocks-search {
         position: fixed;
         border-right: 1px solid #efeef1;
         display: none;
+        z-index: 99;
     }
 
     .zolo-dash-sidebar-info {
@@ -1100,6 +1107,35 @@ input.zoloblocks-search {
             position: relative;
         }
     }
+
+    .zolo-settings-footer {
+        --zolo-mask-shadow: 70%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        mask-image: linear-gradient(to top, #000 var(--zolo-mask-shadow), transparent);
+        background: #fff;
+        .zolo-settings-footer-inner {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 30px 30px 30px 0;
+            width: 100%;
+            max-width: calc(var(--zolo-dashboard-width) + 160px);
+            box-sizing: border-box;
+            z-index: 1;
+            position: relative;
+        }
+
+        .zolo-save-changes {
+            background: var(--zolo-dashboard-brand-color);
+            color: #fff;
+            &:focus {
+                color: #fff !important;
+            }
+        }
+    }
 }
 
 // zolo pro modal css start
@@ -1151,10 +1187,10 @@ input.zoloblocks-search {
 
     .zolo-pro-modal-btn {
         text-decoration: none;
-        background-color: #ffe9e9;
+        background-color: var(--zolo-badge-pro-alpha-color);
         padding: 12px 20px;
         display: inline-block;
-        color: #f00;
+        color: var(--zolo-badge-pro-color);
         font-weight: 600;
         font-size: 13px;
         border-radius: 6px;
@@ -1168,10 +1204,11 @@ input.zoloblocks-search {
             display: block;
         }
         &:focus {
-            outline: 2px solid rgba(255, 156, 156, 0.98) !important;
+            outline: 2px solid var(--zolo-badge-pro-alpha-color) !important;
+            box-shadow: none;
         }
         &:hover {
-            background-color: #f00;
+            background-color: var(--zolo-badge-pro-color);
             color: #fff;
         }
     }
@@ -1214,12 +1251,6 @@ input.zoloblocks-search {
         padding: 13px 13px 13px 38px;
     }
 }
-
-// @media (min-width: 1440px) {
-//     .zoloblocks-grid .zoloblocks-inner-grid {
-//         grid-template-columns: repeat(3, 1fr);
-//     }
-// }
 
 @media (min-width: 1640px) {
     .zoloblocks-grid .zoloblocks-inner-grid {

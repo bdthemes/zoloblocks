@@ -52,6 +52,8 @@ export { default as ResSelectControl } from '../controls/res-select-control';
 export { default as ThumbsControl } from '../controls/thumbs-control';
 export { default as TabDynamicControl } from '../controls/tabdynamic-control';
 export { default as ToggleGroup } from '../controls/toggle-group';
+export { default as ZoloRepeater } from '../controls/repeater';
+export {default as OrderSortControl} from '../controls/ordersort-control'
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -69,8 +71,9 @@ export { generateTextShadowAttributies, generateTextShadowStyles } from '../help
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
+export {manageSingleBlock} from '../helpers/manage-single-block';
 export { generateTextGradientsStyles } from '../helpers/text-gradient-helper';
-
+export { default as LottiePreview } from '../helpers/lottiePreview';
 
 export {
     DynamicTag,
@@ -81,6 +84,11 @@ export {
     isEmpty,
     strToHex,
     getTaxonomies,
-    popoverHasAttrVal
+    popoverHasAttrVal,
+    generateUniqueName,
+    generateOrderSortCSS
 } from '../helpers/helper';
+
+
+export { default as ZoloAnimations } from '../controls/animations';
 

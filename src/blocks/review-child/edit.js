@@ -64,6 +64,7 @@ export default function Edit(props) {
         rating,
         imageRes,
         presetFourLayout,
+        showQuote,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -91,6 +92,7 @@ export default function Edit(props) {
             showPhoto: context['zolo/showPhoto'],
             showName: context['zolo/showName'],
             showRating: context['zolo/showRating'],
+            showQuote: context['zolo/showQuote'],
             addReviewerWebsiteLink: context['zolo/addReviewerWebsiteLink'],
             presetFourLayout: context['zolo/presetFourLayout'],
         });
@@ -178,8 +180,8 @@ export default function Edit(props) {
                                 (addReviewerWebsiteLink ? (
                                     <a
                                         href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
-                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
+                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined}
                                         className="zolo-name has-link"
                                         title={memberName}
                                     >
@@ -206,7 +208,7 @@ export default function Edit(props) {
                                     />
                                 ))}
 
-                            {showDesignation && preset !== 'style-3' && (
+                            {showDesignation && preset !== 'style-3' && preset !== 'style-5' && (
                                 <div className="zolo-designation">
                                     <RichText
                                         value={memberDesignation}
@@ -220,7 +222,7 @@ export default function Edit(props) {
                                 </div>
                             )}
 
-                            {showRating && preset === 'style-3' && (
+                            {showRating && (preset === 'style-3' || preset === 'style-5') && (
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>
@@ -230,7 +232,7 @@ export default function Edit(props) {
 
                     <div className="zolo-info-wrap">
                         <div className="zolo-meta-content">
-                            {showRating && preset !== 'style-3' && (
+                            {showRating && preset !== 'style-3' && preset !== 'style-5' && (
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>
@@ -251,6 +253,21 @@ export default function Edit(props) {
                             )}
                         </div>
                     </div>
+
+                    {showQuote && preset === 'style-5' && (
+                        <div className="zolo-review-quote-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={16}
+                                height={16}
+                                fill="currentColor"
+                                className="bi bi-quote"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z" />
+                            </svg>
+                        </div>
+                    )}
                 </div>
                 {renderHookAfter && renderHookAfter}
             </div>

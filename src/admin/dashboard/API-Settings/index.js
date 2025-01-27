@@ -7,6 +7,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 const ApiSettings = () => {
     const [googleAPIKey, setGoogleAPIKey] = useState('');
+    const [zoloaiAPIKey, setZoloaiAPIKey] = useState('');
     const [siteKey, setSiteKey] = useState('');
     const [secretKey, setSecretKey] = useState('');
     const [mailchimpKey, setMailchimpKey] = useState('');
@@ -40,6 +41,7 @@ const ApiSettings = () => {
         }).then(
             ({
                 zolo_google_api_key,
+                zolo_sigmative_api_key,
                 zolo_recaptcha_site_key,
                 zolo_recaptcha_secret_key,
                 zolo_mailchimp_api_key,
@@ -47,6 +49,7 @@ const ApiSettings = () => {
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
+                setZoloaiAPIKey(zolo_sigmative_api_key);
                 setSiteKey(zolo_recaptcha_site_key);
                 setSecretKey(zolo_recaptcha_secret_key);
                 setMailchimpKey(zolo_mailchimp_api_key);
@@ -66,6 +69,18 @@ const ApiSettings = () => {
             },
         }).then(({ zolo_google_api_key }) => {
             setGoogleAPIKey(zolo_google_api_key);
+        });
+    };
+    // onchange zoloai key
+    const onChangeZoloAiKey = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_sigmative_api_key: value,
+            },
+        }).then(({ zolo_sigmative_api_key }) => {
+            setZoloaiAPIKey(zolo_sigmative_api_key);
         });
     };
 
@@ -291,36 +306,22 @@ const ApiSettings = () => {
                     </Button>
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Facebook Page Feed', 'zoloblocks')}
+                    title={__('ZoloAI', 'zoloblocks')}
                     description={__(
-                        'The Facebook Page Feed block allows you to display the latest posts from your Facebook page directly on your WordPress site. You can also customize the layout and style to match your website’s design. Please connect your Facebook API key to seamlessly integrate your Facebook content.',
-                        'zoloblocks'
+                        'ZoloAI enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of ZoloAI.'
                     )}
-                    docLink="https://mailchimp.com/help/find-audience-id/"
-                    icon="facebook"
-                    released={false}
+                    docLink="https://account.bdthemes.com"
+                    icon="zoloai"
                     onSave={() => {
-                        onChangeMailchimpKey(mailchimpKey);
-                        onChangeMailchimpAudienceID(audienceID);
+                        onChangeZoloAiKey(zoloaiAPIKey);
                     }}
                 >
-                    <TextControl label={__('FAcebook Page ID', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('FAcebook Access Token', 'zoloblocks')} disabled={true} />
-                </SettingPanel>
-                <SettingPanel
-                    title={__('Instagram Feed', 'zoloblocks')}
-                    description={__(
-                        'The Instagram Feed block lets you showcase your Instagram photos and videos on your landing page. An API key from Instagram needs to be linked to ZoloBlocks to show and customize your content.',
-                        'zoloblocks'
-                    )}
-                    docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
-                    icon="instagram"
-                    released={false}
-                    onSave={() => {}}
-                >
-                    <TextControl label={__('Instagram App ID', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Instagram App Secret', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Instagram Access Token', 'zoloblocks')} disabled={true} />
+                    <TextControl
+                        label={__('API Key', 'zoloblocks')}
+                        onChange={(value) => setZoloaiAPIKey(value)}
+                        value={zoloaiAPIKey}
+                        placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+                    />
                 </SettingPanel>
                 <SettingPanel
                     title={__('Google Review', 'zoloblocks')}
@@ -334,37 +335,6 @@ const ApiSettings = () => {
                     onSave={() => {}}
                 >
                     <TextControl label={__('API Key', 'zoloblocks')} disabled={true} />
-                </SettingPanel>
-                <SettingPanel
-                    title={__('Yelp Review', 'zoloblocks')}
-                    description={__(
-                        'The Yelp Review block lets you feature original Yelp reviews on your landing page by pulling data directly through Yelp API. Please insert the API key to start.',
-                        'zoloblocks'
-                    )}
-                    docLink="#"
-                    icon="yelp"
-                    released={false}
-                    onSave={() => {}}
-                >
-                    <TextControl label={__('Yelp Client ID', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Yelp API Key', 'zoloblocks')} disabled={true} />
-                </SettingPanel>
-                <SettingPanel
-                    title={__('Zoom', 'zoloblocks')}
-                    description={__(
-                        'The Zoom Meeting block allows you to embed live Zoom meetings directly on your WordPress site. You’ll need an API key from Zoom to connect your Zoom account.',
-                        'zoloblocks'
-                    )}
-                    docLink="#"
-                    icon="zoom"
-                    released={false}
-                    onSave={() => {
-                        onChangeMailchimpKey(mailchimpKey);
-                        onChangeMailchimpAudienceID(audienceID);
-                    }}
-                >
-                    <TextControl label={__('Zoom API Key', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Zoom  Secret Key', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
             </div>
         </div>

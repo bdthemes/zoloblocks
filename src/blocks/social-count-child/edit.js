@@ -43,8 +43,8 @@ export default function Edit(props) {
 
         <a
           href={socialLink && socialLink?.url}
-          target={socialLink && socialLink?.openInNewTab && '_blank'}
-          rel={socialLink && socialLink?.openInNewTab && 'noopener noreferrer'}
+          target={socialLink && socialLink?.openInNewTab ? '_blank' : undefined}
+          rel={socialLink && socialLink?.openInNewTab ? 'noopener noreferrer' : undefined}
           className={`zolo-item zolo-social-icon`}
         >
           <div className="zolo-icon">

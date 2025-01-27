@@ -16,6 +16,7 @@ const {
     generateTextStrokeStyles,
     GlobalStyleHanlder,
     generateResAlignmentStyle,
+    generateMaskStyles,
 } = window.zoloModule;
 
 import {
@@ -46,6 +47,13 @@ import {
     TITLE_BORDER_RADIUS,
     TITLE_PADDING,
     ICON_BOX_SHADOW,
+    NUMBER_BG_MASK,
+    NUMBER_BACKGROUND,
+    NUMBER_BG_SIZE,
+    NUMBER_PADDING,
+    NUMBER_BORDER,
+    NUMBER_BOX_SHADOW,
+    NUMBER_BORDER_RADIUS,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -333,6 +341,67 @@ const Style = ({ props }) => {
         noMainBGImg: true,
     });
 
+    // masking
+    const { maskStyle: maskStyles } = generateMaskStyles({
+        attributes,
+        controlName: NUMBER_BG_MASK,
+    });
+
+    // Number
+    const {
+        backgroundStylesDesktop: numberBgDesktop,
+        backgroundStylesTab: numberBgTab,
+        backgroundStylesMobile: numberBgMobile,
+    } = generateNormalBGControlStyles({
+        controlName: NUMBER_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopRangeStyle: numberBgSizeDesktop,
+        tabRangeStyle: numberBgSizeTab,
+        mobRangeStyle: numberBgSizeMobile,
+    } = generateResRangeStyle({
+        controlName: NUMBER_BG_SIZE,
+        property: '--zolo-counter-number-bg-size',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: numberPaddingDesktop,
+        dimensionStylesTab: numberPaddingTab,
+        dimensionStylesMobile: numberPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: NUMBER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: numberBorderDesktop,
+        tabBorderStyle: numberBorderTab,
+        mobBorderStyle: numberBorderMobile,
+    } = generateBorderStyle({
+        controlName: NUMBER_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: numberBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: NUMBER_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: numberBorderRadiusDesktop,
+        dimensionStylesTab: numberBorderRadiusTab,
+        dimensionStylesMobile: numberBorderRadiusMobile,
+    } = generateDimensionStyle({
+        controlName: NUMBER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -385,7 +454,7 @@ const Style = ({ props }) => {
                         ${titlePaddingDesk}
                     }
                 `
-            : ''
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon svg {
@@ -406,6 +475,25 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
             ${iconImageWidthDesk}
         }
+
+        ${
+            preset === 'style-4'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-4 .zolo-counter-count{
+                        ${maskStyles}
+                        ${numberBgDesktop}
+                        ${numberBgSizeDesktop}
+                        ${numberPaddingDesktop}
+                        ${numberBorderDesktop}
+
+                        ${numberBoxShadow}
+                        ${numberBorderRadiusDesktop}
+                    }
+                `
+                : ''
+        }
+
+
   	`;
 
     const tabletAllStyle = `
@@ -448,7 +536,7 @@ const Style = ({ props }) => {
                         ${titlePaddingTab}
                     }
                 `
-            : ''
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon .zolo__display-icon, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
@@ -510,7 +598,7 @@ const Style = ({ props }) => {
                         ${titlePaddingMob}
                     }
                 `
-            : ''
+                : ''
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon .zolo__display-icon, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {

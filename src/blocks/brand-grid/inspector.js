@@ -103,7 +103,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Presets', 'zoloblocks')}
+                                label={__('Hover Animation', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.brandGrid.presets', PRESETS)}
                                 onChange={(value) =>
@@ -112,22 +112,22 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
                             {preset !== 'zb-brand-basic-style' && (
                                 <>
+                                    <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
                                     <ToggleControl
-                                        label={__('Brand Name', 'zoloblocks')}
+                                        label={__('Title', 'zoloblocks')}
                                         checked={brandNameVisible}
                                         onChange={() => setAttributes({ brandNameVisible: !brandNameVisible })}
                                     />
                                     <ToggleControl
-                                        label={__('Brand Label', 'zoloblocks')}
+                                        label={__('Sub Title', 'zoloblocks')}
                                         checked={brandLabelVisible}
                                         onChange={() => setAttributes({ brandLabelVisible: !brandLabelVisible })}
                                     />
                                 </>
                             )}
-                            <ToggleControl
+                            {/* <ToggleControl
                                 label={__('Enable Logo Link', 'zoloblocks')}
                                 checked={enableLogoLink}
                                 onChange={() => setAttributes({ enableLogoLink: !enableLogoLink })}
@@ -160,7 +160,7 @@ function Inspector(props) {
                                         options={LINK_TYPES_BASIC}
                                     />
                                 </div>
-                            )}
+                            )} */}
                             {preset !== 'zb-brand-basic-style' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Content Alignment', 'zoloblocks')}</div>
@@ -406,7 +406,7 @@ function Inspector(props) {
                                     </ZoloPanelBody>
                                 )}
                                 {brandLabelVisible && (
-                                    <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                    <ZoloPanelBody title={__('Sub Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                         {!(enableLogoLink && logoLinkType == 'logo__label') && (
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}

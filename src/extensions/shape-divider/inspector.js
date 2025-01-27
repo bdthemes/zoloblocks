@@ -9,7 +9,6 @@ import objAttributes from './attributes';
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { resMode, shapeDivider } = attributes;
-
     const requiredProps = {
         resMode,
         attributes,
@@ -68,13 +67,14 @@ const Inspector = ({ panelProps }) => {
                                 <ThumbsControl
                                     value={shapeDivider.top.type}
                                     options={SHAPE_DIVIDER}
-                                    onChange={(value) =>
+                                    onChange={(selectedOption) =>
                                         setAttributes({
                                             shapeDivider: {
                                                 ...shapeDivider,
                                                 top: {
                                                     ...shapeDivider.top,
-                                                    type: value,
+                                                    type: selectedOption.value,
+                                                    image: selectedOption.image,
                                                 },
                                             },
                                         })
@@ -89,13 +89,14 @@ const Inspector = ({ panelProps }) => {
                                 <ThumbsControl
                                     value={shapeDivider.bottom.type}
                                     options={SHAPE_DIVIDER}
-                                    onChange={(value) =>
+                                    onChange={(selectedOption) =>
                                         setAttributes({
                                             shapeDivider: {
                                                 ...shapeDivider,
                                                 bottom: {
                                                     ...shapeDivider.bottom,
-                                                    type: value,
+                                                    type: selectedOption.value,
+                                                    image: selectedOption.image,
                                                 },
                                             },
                                         })

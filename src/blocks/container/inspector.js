@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-
+import {SelectControl} from "@wordpress/components";
 /**
  * Internal depencencies
  */
@@ -16,6 +16,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ResGapControl,
+    LinkControl
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -28,6 +29,7 @@ import {
     FLEX_JUSTIFY,
     FLEX_WRAP,
     MIN_HEIGHT,
+    TAG_LIST
 } from './constants';
 
 import {
@@ -53,6 +55,8 @@ function Inspector(props) {
         FlexDirectionZRPAlign,
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
+        tagName,
+        link
     } = attributes;
 
     const requiredProps = {
@@ -173,6 +177,23 @@ function Inspector(props) {
                                 alignOptions={FLEX_WRAPS}
                             />
                         </ZoloPanelBody>
+                        {isBlockRootParent && (
+                          <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} panelProps={props}>
+                             <SelectControl
+                                label={__('HTML Tag', 'zoloblocks')}
+                                value={tagName}
+                                options={TAG_LIST}
+                                onChange={(tagName) => setAttributes({tagName})}
+                             />
+                            {tagName==='a'&&(
+                              <LinkControl
+                                label={__('URL', 'zoloblocks')}
+                                value={link}
+                                onChange={(value) => setAttributes({ link: value })}
+                              />
+                            )}
+                          </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={

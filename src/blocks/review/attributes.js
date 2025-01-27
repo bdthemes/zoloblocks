@@ -37,14 +37,18 @@ import {
     DPL_MARGIN,
     DPL_ICON_SIZE,
     CONTENT_GAP,
-
     RW_BACKGROUND,
     RW_BORDER,
     RW_BORDER_RADIUS,
     RW_BOX_SHADOW,
     RW_MARGIN,
     RW_PADDING,
-    
+    ARROW_SIZE,
+    AROOW_H_SPACE,
+    AROOW_V_SPACE,
+    ARROW_ROUNDED,
+    QUOTE_ICON_H_OFFSET,
+    QUOTE_ICON_V_OFFSET,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -130,6 +134,18 @@ const attributes = {
     ...generateBoxShadowAttributies(RW_BOX_SHADOW),
     ...generateDimensionAttributes(RW_MARGIN),
     ...generateDimensionAttributes(RW_PADDING),
+
+    ...generateResRangeAttributies(ARROW_SIZE),
+    ...generateResRangeAttributies(AROOW_H_SPACE),
+    ...generateResRangeAttributies(AROOW_V_SPACE),
+    ...generateResRangeAttributies(ARROW_ROUNDED),
+
+    ...generateResRangeAttributies(QUOTE_ICON_H_OFFSET, {
+        defaultUnit: 'em',
+    }),
+    ...generateResRangeAttributies(QUOTE_ICON_V_OFFSET, {
+        defaultUnit: 'em',
+    }),
 
     //Block Specific Attributes
     showPhoto: {
@@ -221,6 +237,11 @@ const attributes = {
     photoOverflow: {
         type: 'string',
         default: 'hidden',
+    },
+
+    // Arrow
+    arrowColor: {
+        type: 'string',
     },
 };
 

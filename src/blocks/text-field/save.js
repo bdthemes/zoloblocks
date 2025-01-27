@@ -1,10 +1,10 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg } =
+    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg,defaultValue,customNameAttribute } =
         attributes;
 
     const blockProps = useBlockProps.save({
@@ -35,7 +35,8 @@ const Save = ({ attributes }) => {
 
                     <input
                         type="text"
-                        name="name"
+                        value={defaultValue || ''}
+                        name={generateUniqueName(uniqueId,customNameAttribute,"name")}
                         placeholder={placeholder}
                         required={isRequired}
                         {...(isRequired && { 'data-pristine-required-message': requiredMsg })}

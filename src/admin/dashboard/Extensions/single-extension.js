@@ -53,12 +53,6 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
             )}
             <div
                 className={classNames('zolo-single-block', {
-                    // active: `${
-                    //     isPro &&
-                    //     zoloBlocks?.has_pro === '1' &&
-                    //     !upcoming ? value : !isPro &&
-                    //     !upcoming ? value : ''
-                    // }`,
                     active: value && !upcoming && isPro ? zoloBlocks?.has_pro === '1' : value && !upcoming && !isPro,
                     upcoming: !released,
                     ispro: isPro,
@@ -147,13 +141,17 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                                 {isPro ? (
                                     <>
                                         {zoloBlocks?.has_pro === '1' ? (
-                                            <ToggleControl checked={value} onChange={onClick} />
+                                            <ToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
                                         ) : (
-                                            <ToggleControl checked={false} onChange={() => setProPanel(true)} />
+                                            <ToggleControl
+                                                checked={false}
+                                                onChange={() => setProPanel(true)}
+                                                __nextHasNoMarginBottom={true}
+                                            />
                                         )}
                                     </>
                                 ) : (
-                                    <ToggleControl checked={value} onChange={onClick} />
+                                    <ToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
                                 )}
                             </>
                         ) : (

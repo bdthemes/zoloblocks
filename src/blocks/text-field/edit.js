@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, DisplayZoloIcon, classArrayToStr,generateUniqueName } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -27,7 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, context } = props;
-    const { preview, preset, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
+    const { preview, preset, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol,defaultValue,customNameAttribute } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -95,7 +95,7 @@ export default function Edit(props) {
                             </div>
                         )}
 
-                        <input type="text" name="name" required={isRequired} placeholder={placeholder} />
+                        <input type="text" value={defaultValue || ''} name={generateUniqueName(uniqueId,customNameAttribute,"name")} required={isRequired} placeholder={placeholder} onChange={()=>null} />
                     </div>
                 </div>
             </div>

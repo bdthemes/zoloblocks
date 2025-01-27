@@ -37,6 +37,7 @@ export default function Edit(props) {
         iconTypeImage,
         imageRes,
         counterDirection,
+        contentCounterTitle,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -100,10 +101,10 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
-                    <div class="zolo-counter-item">
+                <div className={`zolo-counter-wrap ${preset} ${counterDirection} ${preset !== 'style-3' ? contentCounterTitle : ''}`}>
+                    <div className="zolo-counter-item">
                         {hideIcon && (
-                            <div class="zolo-counter-icon">
+                            <div className="zolo-counter-icon">
                                 {iconType === 'icon' ? (
                                     <DisplayZoloIcon icon={counterIcon} />
                                 ) : (
@@ -121,9 +122,9 @@ export default function Edit(props) {
                             </div>
                         )}
 
-                        <div class="zolo-counter-inner-content">
+                        <div className="zolo-counter-inner-content">
                             {preset !== 'style-3' && (
-                                <div class="zolo-counter-count">
+                                <div className="zolo-counter-count">
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">
@@ -136,7 +137,7 @@ export default function Edit(props) {
                             )}
 
                             {preset === 'style-3' && (
-                                <div class="zolo-counter-count">
+                                <div className="zolo-counter-count">
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">

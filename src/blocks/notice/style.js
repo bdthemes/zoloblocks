@@ -709,9 +709,9 @@ export default function Style({ props }) {
     }
     
     .${uniqueId}.zolo-block.wp-block-zolo-notice .zolo-notice-dismiss:hover {
-        ${closeIconHoverBgDesk}
-        ${closeIconBorderHoverColor}
-        ${closeIconHoverBoxShadow}
+        ${closeIconHoverBgDesk || ''}
+        ${closeIconHoverBoxShadow || ''}
+        ${closeIconBorderHoverColor ? `border-color: ${closeIconBorderHoverColor};` : ''}
     }
 
     ${
