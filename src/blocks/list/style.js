@@ -49,6 +49,9 @@ import {
     ICON_LINKVERTICAL_ALIGN,
     //title
     H_TTITLE_WIDTH,
+    //icon
+    ICON_LIST_SHADOW,
+    ICON_LIST_HOVER_SHADOW,
 } from './constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -70,6 +73,7 @@ const Style = ({ props }) => {
         HoverIconColor,
         iconToggle,
         BorderHovColor,
+        listIconBorderHover,
     } = attributes;
 
     //desc
@@ -299,6 +303,11 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    //Hover icon
+
+    const { boxShadowStyle: iconListShadow } = generateBoxShadowStyles({ controlName: ICON_LIST_SHADOW, attributes });
+    const { boxShadowStyle: iconHoverListShadow } = generateBoxShadowStyles({ controlName: ICON_LIST_HOVER_SHADOW, attributes });
+
     /**
      * All Style Combination
      */
@@ -364,10 +373,14 @@ const Style = ({ props }) => {
          ${DesktopIconMargin}
          ${desktopIconBorder}
          ${DesktopIconRadius}
+         ${iconListShadow}
      }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon{
-         ${DeskIconHBg}
-     }
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon {
+        ${DeskIconHBg};
+        ${listIconBorderHover ? `border-color: ${listIconBorderHover};` : ''};
+        ${iconHoverListShadow};
+    }
+
     .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon svg{
          fill:${listIconHover}
      }
