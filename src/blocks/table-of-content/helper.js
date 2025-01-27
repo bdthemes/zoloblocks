@@ -65,18 +65,20 @@ export const formatHeaders = (allHeaders, allowedHeading) => {
 };
 
 export const parseList = (list, ListTag = 'ul') =>
-  list.map((item) => (
-    <li key={item.anchor}>
-      <a href={`#${item.anchor}`}>
-        {item.content.replace(/(<.+?>)/g, '')}
-      </a>
-      {item.children && (
-        <ListTag className="child-list">
-          {parseList(item.children, ListTag)}
-        </ListTag>
-      )}
-    </li>
-  ));
+  list.map((item, index) => {
+    return (
+      <li key={`${item.anchor}-${index}`}>
+        <a href={`#${item.anchor}`}>
+          {item.content.replace(/(<.+?>)/g, '')}
+        </a>
+        {item.children && (
+          <ListTag className="child-list">
+            {parseList(item.children, ListTag)}
+          </ListTag>
+        )}
+      </li>
+    )
+  });
 
 export function parseTocSlug(slug) {
   if (!slug) return slug;
