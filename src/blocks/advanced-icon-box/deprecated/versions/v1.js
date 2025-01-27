@@ -62,8 +62,8 @@ const v1 = {
                 tagName={globalLink === true ? 'a' : 'div'}
                 {...(globalLink === true && {
                     href: buttonLink && buttonLink.url,
-                    target: buttonLink && buttonLink.openInNewTab && '_blank',
-                    rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                    target: buttonLink && buttonLink.openInNewTab ? '_blank' : undefined,
+                    rel: buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined,
                     title: buttonText,
                 })}
             >
@@ -105,8 +105,8 @@ const v1 = {
                                     className="zolo-box-button"
                                     {...(globalLink !== true && {
                                         href: buttonLink && buttonLink.url,
-                                        target: buttonLink && buttonLink.openInNewTab && '_blank',
-                                        rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                                        target: buttonLink && buttonLink.openInNewTab ? '_blank' : undefined,
+                                        rel: buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined,
                                     })}
                                 >
                                     <RichText.Content tagName="span" value={buttonText} />

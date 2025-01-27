@@ -102,9 +102,9 @@ export default function Edit(props) {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div className={`zolo-counter-wrap ${preset} ${counterDirection} ${preset !== 'style-3' ? contentCounterTitle : ''}`}>
-                    <div class="zolo-counter-item">
+                    <div className="zolo-counter-item">
                         {hideIcon && (
-                            <div class="zolo-counter-icon">
+                            <div className="zolo-counter-icon">
                                 {iconType === 'icon' ? (
                                     <DisplayZoloIcon icon={counterIcon} />
                                 ) : (
@@ -122,9 +122,9 @@ export default function Edit(props) {
                             </div>
                         )}
 
-                        <div class="zolo-counter-inner-content">
+                        <div className="zolo-counter-inner-content">
                             {preset !== 'style-3' && (
-                                <div class="zolo-counter-count">
+                                <div className="zolo-counter-count">
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">
@@ -137,7 +137,7 @@ export default function Edit(props) {
                             )}
 
                             {preset === 'style-3' && (
-                                <div class="zolo-counter-count">
+                                <div className="zolo-counter-count">
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">

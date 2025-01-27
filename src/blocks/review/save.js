@@ -107,8 +107,8 @@ const Save = ({ attributes }) => {
                                 (showQuoteIcon ? (
                                     <a
                                         href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
-                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
+                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferer noopener' : undefined}
+                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined}
                                         className="zolo-name has-link"
                                         title={memberName}
                                     >

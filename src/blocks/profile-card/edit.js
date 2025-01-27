@@ -266,8 +266,8 @@ export default function Edit(props) {
                                                         <a
                                                             href={profile.link && profile.link.url}
                                                             key={index}
-                                                            rel={profile.link.openInNewTab && 'noopener noreferer'}
-                                                            target={profile.link.openInNewTab && '_blank'}
+                                                            rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
+                                                            target={profile.link.openInNewTab ? '_blank' : undefined}
                                                             title={profile.title}
                                                         >
                                                             <DisplayZoloIcon icon={profile.icon} />
@@ -354,8 +354,8 @@ export default function Edit(props) {
                                                             <a
                                                                 href={profile.link && profile.link.url}
                                                                 key={index}
-                                                                rel={profile.link.openInNewTab && 'noopener noreferer'}
-                                                                target={profile.link.openInNewTab && '_blank'}
+                                                                rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
+                                                                target={profile.link.openInNewTab ? '_blank' : undefined}
                                                                 title={profile.title}
                                                             >
                                                                 <DisplayZoloIcon icon={profile.icon} />

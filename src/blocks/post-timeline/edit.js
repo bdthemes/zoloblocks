@@ -89,56 +89,69 @@ export default function Edit(props) {
             .catch((error) => console.log(error));
     }, [postQuery]);
 
-    if (Array.isArray(postResults) && postResults.length === 0) {
-        return [
-            isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />,
-            dataSuccess ? (
-                <div className="zolo-spinner">
-                    <Spinner />
-                </div>
-            ) : (
-                <p>{__('No posts found.', 'zoloblocks')}</p>
-            ),
-        ];
-    }
-
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview?.postTimeline} alt={__('Post Timeline Preview', 'zoloblocks')} />;
     }
 
+    let content = null;
+
+    if (Array.isArray(postResults) && postResults.length === 0) {
+        content = (
+            <>
+                {
+                    dataSuccess ? (
+                        <div className="zolo-spinner">
+                            <Spinner />
+                        </div>
+                    ) : (
+                        <p>{__('No posts found.', 'zoloblocks')}</p>
+                    )
+                }
+            </>
+        )
+    }else{
+        content = (
+            <>
+                <Style props={props} />
+                <div {...blockProps}>
+                    <SidebarOpener clientId={clientId} />
+                    <div className="zolo-post-start-end-wrap">
+                        {showStartEnd && (
+                            <>
+                                <div className="zolo-se-text zolo-top-start">{__('start', 'zoloblocks')}</div>
+                                <div className="zolo-se-text zolo-bottom-end">{__('end', 'zoloblocks')}</div>
+                            </>
+                        )}
+                        <div className="zolo-post-timeline-grid">
+                            <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
+                        </div>
+                    </div>
+                </div>
+                {postQuery?.showPagination && pageTotal > 1 && (
+                    <div className={`zolo-pagination-wrap ${uniqueId}`}>
+                        {(paginationType === 'normal' || paginationType === 'number') && (
+                            <Pagination
+                                total={pageTotal}
+                                current={page || 1}
+                                prevText={previousText}
+                                nextText={nextText}
+                                onClickPage={(page) => setAttributes({ page })}
+                            />
+                        )}
+                        {paginationType === 'button' && <a className="zolo-pagination-button">{loadMoreText}</a>}
+                    </div>
+                )}
+            </>
+        )
+    }
+
+    
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
-            <div {...blockProps}>
-                <SidebarOpener clientId={clientId} />
-                <div className="zolo-post-start-end-wrap">
-                    {showStartEnd && (
-                        <>
-                            <div className="zolo-se-text zolo-top-start">{__('start', 'zoloblocks')}</div>
-                            <div className="zolo-se-text zolo-bottom-end">{__('end', 'zoloblocks')}</div>
-                        </>
-                    )}
-                    <div className="zolo-post-timeline-grid">
-                        <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
-                    </div>
-                </div>
-            </div>
-            {postQuery?.showPagination && pageTotal > 1 && (
-                <div className={`zolo-pagination-wrap ${uniqueId}`}>
-                    {(paginationType === 'normal' || paginationType === 'number') && (
-                        <Pagination
-                            total={pageTotal}
-                            current={page || 1}
-                            prevText={previousText}
-                            nextText={nextText}
-                            onClickPage={(page) => setAttributes({ page })}
-                        />
-                    )}
-                    {paginationType === 'button' && <a className="zolo-pagination-button">{loadMoreText}</a>}
-                </div>
-            )}
+            {content}
         </>
     );
 }

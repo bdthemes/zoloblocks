@@ -1,5 +1,5 @@
 const { registerPlugin } = wp.plugins;
-const { PluginSidebarMoreMenuItem } = wp.editPost;
+const { PluginSidebarMoreMenuItem } = wp.editor;
 const { withSelect, select } = wp.data;
 const { Button } = wp.components;
 const { Fragment } = wp.element;

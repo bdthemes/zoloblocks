@@ -69,47 +69,47 @@ export const ZOLO_CONTENT_LAYOUT = [
                 <path
                     d="M16.391 6.72949L16.391 17.1923"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M16.3909 17.1923L18.606 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M16.391 17.1923L14.176 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M7.65393 6.72949L7.65393 17.1923"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M7.65381 17.1923L9.85767 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M7.65393 17.1923L5.43889 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
-                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         ),
     },
@@ -121,56 +121,56 @@ export const ZOLO_CONTENT_LAYOUT = [
                 <path
                     d="M6.64246 7.53723H17.2781"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 7.53729L15.3485 5.28601"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 7.53723L15.3485 9.78851"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M6.64246 16.4172H17.2781"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 16.4173L15.3485 14.1774"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 16.4172L15.3485 18.6685"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M2.85132 21.1473V2.85278"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M21.1487 21.1473V2.85278"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
@@ -188,56 +188,56 @@ export const ZOLO_CONTENT_LAYOUT_4 = [
                 <path
                     d="M6.64246 7.53723H17.2781"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 7.53729L15.3485 5.28601"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 7.53723L15.3485 9.78851"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M6.64246 16.4172H17.2781"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 16.4173L15.3485 14.1774"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M17.2781 16.4172L15.3485 18.6685"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M2.85132 21.1473V2.85278"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M21.1487 21.1473V2.85278"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
@@ -252,47 +252,47 @@ export const ZOLO_CONTENT_LAYOUT_4 = [
                 <path
                     d="M16.391 6.72949L16.391 17.1923"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M16.3909 17.1923L18.606 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M16.391 17.1923L14.176 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M7.65393 6.72949L7.65393 17.1923"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M7.65381 17.1923L9.85767 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
                 <path
                     d="M7.65393 17.1923L5.43889 15.2941"
                     stroke="#4D4D4D"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 ></path>
-                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 3L21 3" stroke="#4D4D4D" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 21L21 21" stroke="#4D4D4D" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         ),
     },

@@ -34,8 +34,8 @@ export default function save(props) {
                 className="zolo-icon-wrap"
                 {...(iconLink !== '' && {
                     href: iconLink && iconLink.url,
-                    target: iconLink && iconLink.openInNewTab && '_blank',
-                    rel: iconLink && iconLink.openInNewTab && 'noopener noreferrer',
+                    target: iconLink && iconLink.openInNewTab ? '_blank' : undefined,
+                    rel: iconLink && iconLink.openInNewTab ? 'noopener noreferrer' : undefined,
                 })}
             >
                 <DisplayZoloIcon icon={mainIcon} />

@@ -39,8 +39,8 @@ const v1 = {
                             <a
                                 href={profile.link && profile.link.url}
                                 key={index}
-                                target={profile.link && profile.link.openInNewTab && '_blank'}
-                                rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                                target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
+                                rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
                                 className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
                             >
                                 {preset == 'zolo-list-style-1' && <RawHTML>{profile.text}</RawHTML>}

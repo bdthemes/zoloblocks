@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         cx="21"
                                         cy="21"
                                         r="15.91549430918954"
-                                        stroke-width="3"
+                                        strokeWidth="3"
                                     ></circle>
                                     <circle
                                         className="progress-pie-fill"
@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         r="15.91549430918954"
                                         fill="transparent"
                                         stroke={fillColor ? fillColor : '#e5e5e5'}
-                                        stroke-dasharray="100 0"
-                                        stroke-dashoffset="25"
+                                        strokeDasharray="100 0"
+                                        strokeDashoffset="25"
                                     ></circle>
                                     <circle
                                         id="progress1"
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                         r="15.91549430918954"
                                         fill="transparent"
                                         stroke={`url(#gradient-${uniqueId})`}
-                                        stroke-width="3"
-                                        stroke-dasharray="0 100"
-                                        stroke-dashoffset="25"
+                                        strokeWidth="3"
+                                        strokeDasharray="0 100"
+                                        strokeDashoffset="25"
                                     ></circle>
                                     <defs>
                                         <linearGradient id={`gradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">

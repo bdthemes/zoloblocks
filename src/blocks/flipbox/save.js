@@ -125,8 +125,8 @@ const Save = (props) => {
                                                 (link ? (
                                                     <a
                                                         href={link && link?.url}
-                                                        target={link && link?.openInNewTab && '_blank'}
-                                                        rel={link && link?.openInNewTab && 'noopener noreferrer'}
+                                                        target={link && link?.openInNewTab ? '_blank' : undefined}
+                                                        rel={link && link?.openInNewTab ? 'noopener noreferrer' : undefined}
                                                         className="title-link"
                                                     >
                                                         <h3 className="zolo-flip-box_title">{backTitle}</h3>
@@ -143,8 +143,8 @@ const Save = (props) => {
                                     <div className="zolo-flip-box_link-button-wrap">
                                         <a
                                             href={link && link?.url}
-                                            target={link && link?.openInNewTab && '_blank'}
-                                            rel={link && link?.openInNewTab && 'noopener noreferrer'}
+                                            target={link && link?.openInNewTab ? '_blank' : undefined}
+                                            rel={link && link?.openInNewTab ? 'noopener noreferrer' : undefined}
                                             className="zolo-flip-box_link-btn"
                                         >
                                             <span>{buttonText}</span>

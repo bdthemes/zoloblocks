@@ -91,8 +91,8 @@ export default function Edit(props) {
                                         <a
                                             className={`zolo-button primary ${iconPosition}`}
                                             href={link && link.url}
-                                            rel={link && link.openInNewTab && 'noreferrer noopener'}
-                                            target={link && link.openInNewTab && '_blank'}
+                                            rel={link && link.openInNewTab ? 'noreferrer noopener' : undefined}
+                                            target={link && link.openInNewTab ? '_blank' : undefined}
                                             title={label}
                                         >
                                             {iconType !== 'iconOnly' && (
@@ -118,8 +118,8 @@ export default function Edit(props) {
                                         <a
                                             className={`zolo-button secondary ${SiconPosition}`}
                                             href={Slink && Slink.url}
-                                            rel={Slink && Slink.openInNewTab && 'noreferrer noopener'}
-                                            target={Slink && Slink.openInNewTab && '_blank'}
+                                            rel={Slink && Slink.openInNewTab ? 'noreferrer noopener' : undefined}
+                                            target={Slink && Slink.openInNewTab ? '_blank' : undefined}
                                             title={Slabel}
                                         >
                                             {SiconType !== 'iconOnly' && (
