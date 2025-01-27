@@ -3,14 +3,25 @@
     "version": "1.0.0",
     "description": "To start developing, simply follow the steps:-",
     "main": "index.js",
+    "files": [
+        "assets",
+        "build",
+        "dci",
+        "includes",
+        "languages",
+        "vendor",
+        "vendor-editor-bundle",
+        "views",
+        "*.php"
+    ],
     "scripts": {
         "start": "wp-scripts start",
         "build": "wp-scripts build",
         "build-zolo": "wp-scripts build && npm run make-pot",
         "packages-update": "wp-scripts packages-update",
         "make-pot": "wp i18n make-pot . languages/zoloblocks.pot --exclude=node_modules,build,vendor,assets",
-        "zip-plugin": "zip -r zoloblocks.zip . -x \"*.git*\" \"*.DS_Store*\" \"*.vscode*\" \"*.idea*\" \"*.github*\" \"*.gitignore*\" \"*.gitattributes*\" \"*.editorconfig*\" \"*.prettierrc*\" \"*.eslintrc*\" \"*.babelrc*\" \"*.distignore*\" \"*.stylelintrc*\" \"node_modules/*\" \"src/*\" \"*index.js.map\" \"*frontend.js.map\" \"*style-index.css.map\" \"composer.lock\" \"package.json\" \"package-lock.json\" \"README.md\" \"webpack.config.js\" \"*.phpcs.xml\"",
-        "publish": "npm run build-zolo && npm run zip-plugin"
+        "plugin-zip": "node ./packages/create-zip.js",
+        "publish": "npm run build-zolo && npm run plugin-zip"
     },
     "author": "BdThemes",
     "license": "ISC",
@@ -36,9 +47,9 @@
         "@splinetool/runtime": "^1.9.46",
         "@uiw/react-codemirror": "^4.23.6",
         "@vis.gl/react-google-maps": "^1.4.0",
-        "@wordpress/editor": "^14.12.0",
-        "@wordpress/plugins": "^7.12.0",
-        "@wordpress/server-side-render": "^5.12.0",
+        "@wordpress/editor": "^14.16.0",
+        "@wordpress/plugins": "^7.16.0",
+        "@wordpress/server-side-render": "^5.16.0",
         "apexcharts": "^4.0.0",
         "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
@@ -56,16 +67,16 @@
         "react-multi-select-component": "^4.3.4",
         "react-qrcode-logo": "^3.0.0",
         "react-select": "^5.8.3",
-        "react-window": "^1.8.11",
         "react-sortablejs": "^6.1.4",
+        "react-window": "^1.8.11",
         "simple-parallax-js": "^6.0.1",
         "swiper": "^11.1.15",
         "uuid": "^11.0.3",
         "webfontloader": "^1.6.28"
     },
     "devDependencies": {
-        "@wordpress/api-fetch": "^7.12.0",
-        "@wordpress/prettier-config": "^4.12.0",
-        "@wordpress/scripts": "^30.5.1"
+        "@wordpress/api-fetch": "^7.16.0",
+        "@wordpress/prettier-config": "^4.16.0",
+        "@wordpress/scripts": "^30.9.0"
     }
 }
