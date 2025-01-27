@@ -1,9 +1,12 @@
 import { __ } from '@wordpress/i18n';
 
-const CurrentVersion = ({ version }) => {
+const CurrentVersion = ({ version, pro }) => {
     return (
         <div className="zolo-current-version single-info">
-            {__('Version')} {version}
+            <a className="logos-panel-btn zolo-version" href="https://feedback.zoloblocks.com/announcements" target="_blank">
+                <span>{__(`ZoloBlocks Core v${version}`, 'zolo-blocks')}</span>
+                {pro && <span>{__(` | Pro v${pro}`, 'zolo-blocks')}</span>}
+            </a>
         </div>
     );
 };

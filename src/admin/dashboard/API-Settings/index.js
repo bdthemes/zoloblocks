@@ -336,53 +336,6 @@ const ApiSettings = () => {
                 >
                     <TextControl label={__('API Key', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
-                {/* <SettingPanel
-                    title={__('Instagram Feed', 'zoloblocks')}
-                    description={__(
-                        'The Instagram Feed block lets you showcase your Instagram photos and videos on your landing page. An API key from Instagram needs to be linked to ZoloBlocks to show and customize your content.',
-                        'zoloblocks'
-                    )}
-                    docLink="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
-                    icon="instagram"
-                    released={false}
-                    onSave={() => {}}
-                >
-                    <TextControl label={__('Instagram App ID', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Instagram App Secret', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Instagram Access Token', 'zoloblocks')} disabled={true} />
-                </SettingPanel>
-
-                <SettingPanel
-                    title={__('Yelp Review', 'zoloblocks')}
-                    description={__(
-                        'The Yelp Review block lets you feature original Yelp reviews on your landing page by pulling data directly through Yelp API. Please insert the API key to start.',
-                        'zoloblocks'
-                    )}
-                    docLink="#"
-                    icon="yelp"
-                    released={false}
-                    onSave={() => {}}
-                >
-                    <TextControl label={__('Yelp Client ID', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Yelp API Key', 'zoloblocks')} disabled={true} />
-                </SettingPanel> */}
-                {/* <SettingPanel
-                    title={__('Zoom', 'zoloblocks')}
-                    description={__(
-                        'The Zoom Meeting block allows you to embed live Zoom meetings directly on your WordPress site. You’ll need an API key from Zoom to connect your Zoom account.',
-                        'zoloblocks'
-                    )}
-                    docLink="#"
-                    icon="zoom"
-                    released={false}
-                    onSave={() => {
-                        onChangeMailchimpKey(mailchimpKey);
-                        onChangeMailchimpAudienceID(audienceID);
-                    }}
-                >
-                    <TextControl label={__('Zoom API Key', 'zoloblocks')} disabled={true} />
-                    <TextControl label={__('Zoom  Secret Key', 'zoloblocks')} disabled={true} />
-                </SettingPanel> */}
             </div>
         </div>
     );
