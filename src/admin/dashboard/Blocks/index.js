@@ -330,9 +330,11 @@ const Blocks = () => {
                     }
                 </div>
                 <div className="zolo-settings-footer">
-                    <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
-                        {__('Save Changes', 'zoloblocks')}
-                    </button>
+                    <div className="zolo-settings-footer-inner">
+                        <button className="zolo-activated-btn zolo-save-changes" onClick={saveChanges}>
+                            {__('Save Changes', 'zoloblocks')}
+                        </button>
+                    </div>
                 </div>
             </div>
         </>

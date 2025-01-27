@@ -972,7 +972,8 @@ input.zoloblocks-search {
     box-sizing: border-box;
     position: relative;
     --zolo-dashboard-sidebar-width: 280px;
-    max-width: 1720px;
+    --zolo-dashboard-width: 1720px;
+    max-width: var(--zolo-dashboard-width);
 
     .button-primary {
         line-height: 1.5;
@@ -1108,18 +1109,24 @@ input.zoloblocks-search {
     }
 
     .zolo-settings-footer {
-        display: inline-flex;
-        align-items: center;
-        justify-content: flex-end;
+        --zolo-mask-shadow: 70%;
         position: fixed;
         bottom: 0;
-        background: #fff;
-        width: 100%;
-        box-sizing: border-box;
         left: 0;
         right: 0;
-        padding: 20px;
-        border: 1px solid #a0a1a417;
+        mask-image: linear-gradient(to top, #000 var(--zolo-mask-shadow), transparent);
+        background: #fff;
+        .zolo-settings-footer-inner {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 30px 30px 30px 0;
+            width: 100%;
+            max-width: calc(var(--zolo-dashboard-width) + 160px);
+            box-sizing: border-box;
+            z-index: 1;
+            position: relative;
+        }
 
         .zolo-save-changes {
             background: var(--zolo-dashboard-brand-color);
