@@ -65,6 +65,8 @@ import {
     H_TTITLE_WIDTH,
     //option
     ITEM_ALIGNS_OPTION,
+    ICON_LIST_SHADOW,
+    ICON_LIST_HOVER_SHADOW,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
@@ -94,6 +96,7 @@ function Inspector(props) {
         BorderHovColor,
         globalIcon,
         isLinkable,
+        listIconBorderHover,
     } = attributes;
 
     const requiredProps = {
@@ -596,8 +599,15 @@ function Inspector(props) {
                                                 controlName={ICON_LIST_BORDER}
                                                 requiredProps={requiredProps}
                                             />
+
+                                            <BoxShadowControl
+                                                label={__('Box Shadow', 'zoloblocks')}
+                                                controlName={ICON_LIST_SHADOW}
+                                                requiredProps={requiredProps}
+                                            />
+
                                             <ResDimensionsControl
-                                                label={__('Radius', 'zoloblocks')}
+                                                label={__('Border Radius', 'zoloblocks')}
                                                 controlName={ICON_RADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={false}
@@ -632,6 +642,21 @@ function Inspector(props) {
                                                 controlName={ICON_LIST_HOVER_BG}
                                                 noOverlay={true}
                                                 noMainBGImg={true}
+                                            />
+                                            <CardDivider />
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={listIconBorderHover}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        listIconBorderHover: value,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl
+                                                label={__('Box Shadow', 'zoloblocks')}
+                                                controlName={ICON_LIST_HOVER_SHADOW}
+                                                requiredProps={requiredProps}
                                             />
                                         </>
                                     }

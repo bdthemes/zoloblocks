@@ -64,6 +64,10 @@ export const ICON_LINKVERTICAL_ALIGN = 'iconLinkVerticalAlign';
 //Title
 export const H_TTITLE_WIDTH = 'hTitleWidth';
 
+//Icon
+export const ICON_LIST_SHADOW = 'iconListShadow';
+export const ICON_LIST_HOVER_SHADOW = 'iconHoverListShadow';
+
 export const ITEM_ALIGNS_OPTION = [
     {
         label: 'Left',

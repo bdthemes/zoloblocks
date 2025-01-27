@@ -42,10 +42,19 @@
         padding: var(--zolo-icon-padding);
         background-color: var(--zoloblocks-brand-color);
         border-radius: var(--zolo-icon-border-radius);
-        transition: all 0.2s ease;
+        transition:
+            border 0.3s ease,
+            background-color 0.3s ease,
+            box-shadow,
+            0.3s ease,
+            background 0.3s ease;
         vertical-align: middle;
         svg {
             fill: var(--zolo-icon-color);
+            transition:
+                fill 0.3s ease,
+                color,
+                0.3s ease;
         }
     }
 
