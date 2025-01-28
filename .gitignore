@@ -14,3 +14,4 @@ tags*
 yarn.lock
 composer.lock
 build/
+package-lock.json
