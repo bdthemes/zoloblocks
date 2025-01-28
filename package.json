@@ -20,7 +20,7 @@
         "packages-update": "wp-scripts packages-update",
         "make-pot": "wp i18n make-pot . languages/zoloblocks.pot --exclude=node_modules,build,vendor,assets",
         "plugin-zip": "node ./packages/create-zip.js",
-        "publish": "npm run build && npm run plugin-zip"
+        "publish": "npm run build && npm run make-pot && npm run plugin-zip"
     },
     "author": "BdThemes",
     "license": "ISC",
