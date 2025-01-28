@@ -17,13 +17,10 @@ jobs:
 
             - name: Install dependencies
               run: npm install --force
-
+              
             - name: Setup WP-CLI
-              uses: holyhope/install-wp-cli-github-action@main
-              with:
-                  version: "latest"
-                  verify: true
-
+              uses: godaddy-wordpress/setup-wp-cli@1
+            
             - name: Build
               run: npm run publish
 
