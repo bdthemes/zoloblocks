@@ -19,15 +19,10 @@ jobs:
               run: npm install --force
 
             - name: Build
-              run: npm run build
+              run: npm run publish
 
             - name: Remove all .map files
               run: find . -name "*.map" -type f -delete
-
-            - name: Create zoloblocks directory and move files
-              run: |
-                  mkdir -p zoloblocks &&
-                  find . -maxdepth 1 -not -name 'zoloblocks' -exec mv {} zoloblocks \;
 
             - name: Archive release
               uses: thedoctor0/zip-release@0.7.6
