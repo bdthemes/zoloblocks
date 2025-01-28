@@ -18,6 +18,9 @@ jobs:
             - name: Install dependencies
               run: npm install --force
 
+            - name: Setup WP-CLI
+              uses: godaddy-wordpress/setup-wp-cli@1
+
             - name: Build
               run: npm run publish
 
