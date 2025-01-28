@@ -32,18 +32,12 @@ jobs:
       - name: Build
         run: npm run publish
 
-      - name: Verify artifact exists
-        run: ls -l ./zoloblocks.zip
-        # Add a check to fail the job if the artifact is missing
-        if: ${{ ! exists('./zoloblocks.zip') }}
-        shell: bash
-
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          artifacts: './zoloblocks.zip'
-          token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN instead of a custom TOKEN
-          removeArtifacts: true
-          allowUpdates: true
-          makeLatest: true
-          tag: ${{ github.ref_name }}
+            artifacts: './zoloblocks.zip'
+            token: ${{ secrets.TOKEN }}
+            removeArtifacts: true
+            allowUpdates: true
+            makeLatest: true
+            tag: ${{ github.ref_name }}
