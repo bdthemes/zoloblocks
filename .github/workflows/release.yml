@@ -21,17 +21,6 @@ jobs:
             - name: Build
               run: npm run publish
 
-            - name: Remove all .map files
-              run: find . -name "*.map" -type f -delete
-
-            - name: Archive release
-              uses: thedoctor0/zip-release@0.7.6
-              with:
-                  filename: 'zoloblocks.zip'
-                  exclusions: '/*.git/* /*.DS_Store/* /*.vscode/*  /*.idea/*  /*.github/* /*.gitignore /*.distignore /*.gitattributes /*.editorconfig /*.prettierrc/*  /*.eslintrc/* /*.babelrc/* /*.distignore/* /*.stylelintrc/* /*node_modules/*  /*src/* /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.lock /*webpack.config.js /*index.js.LICENSE.txt /*README.md /*.phpcs.xml'
-            - name: Display release
-              run: ls -a
-
             - name: Create Release
               uses: ncipollo/release-action@v1.14.0
               with:
