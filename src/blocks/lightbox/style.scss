@@ -164,6 +164,11 @@
 
 .zolo-lightbox-content {
     display: none;
+    img {
+        width: inherit;
+        height: inherit;
+        display: block;
+    }
 }
 
 .zolo-content-iframe {
