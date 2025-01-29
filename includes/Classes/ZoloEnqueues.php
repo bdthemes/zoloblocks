@@ -176,13 +176,13 @@ if (! class_exists('ZoloEnqueues')) {
                 true
             );
 
-            // wp_register_script(
-            //     'zolo-lottie-image',
-            //     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie-player.js',
-            //     [],
-            //     ZOLO_VERSION,
-            //     true
-            // );
+            wp_register_script(
+                'lottie-player',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie-player.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
 
             wp_register_script(
                 'zolo-social-share-script',
