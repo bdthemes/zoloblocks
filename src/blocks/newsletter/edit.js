@@ -185,7 +185,7 @@ export default function Edit(props) {
                                         onChange={(value) => setAttributes({ buttonText: value })}
                                         className="zolo-form-btn-text"
                                         multiline={false}
-                                        allowedFormats={['core/bold', 'core/italic', 'core/strikethrough']}
+                                        allowedFormats={['core/bold', 'core/italic', 'core/strikethrough', 'zolo/dynamic-content']}
                                     />
                                 )}
                                 {showIcon && (

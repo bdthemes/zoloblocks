@@ -94,12 +94,15 @@ const Edit = (props) => {
                             value={titleText}
                             onChange={(titleText) => setAttributes({ titleText })}
                             placeholder={__('Add service name', 'zoloblocks')}
-                            allowedFormats={['bold', 'italic', 'strikethrough']}
+                            allowedFormats={['core/bold', 'core/italic', 'core/strikethrough', 'zolo/dynamic-content']}
                         />
 
                         {showRibbon && ribbonTitle && (
                             <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
-                                <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />
+                                <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })}
+                                    placeholder={__('Ribbon Title', 'zoloblocks')}
+                                    allowedFormats={['core/bold', 'core/italic', 'core/strikethrough']}
+                                 />
                             </div>
                         )}
 
@@ -137,7 +140,7 @@ const Edit = (props) => {
                                 value={descText}
                                 onChange={(descText) => setAttributes({ descText })}
                                 placeholder={__('Add description', 'zoloblocks')}
-                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                                allowedFormats={['core/bold', 'core/italic', 'core/strikethrough', 'zolo/dynamic-content']}
                             />
                         )}
                         {btnsPosition === 'middle' && (
@@ -151,7 +154,7 @@ const Edit = (props) => {
                                                 value={buttonText}
                                                 onChange={(text) => setAttributes({ buttonText: text })}
                                                 placeholder={__('Button Text', 'zoloblocks')}
-                                                allowedFormats={[]}
+                                                allowedFormats={['zolo/dynamic-content']}
                                             />
                                         )}
                                         {showChatBtn && (
@@ -161,7 +164,7 @@ const Edit = (props) => {
                                                 value={chatBtnText}
                                                 onChange={(text) => setAttributes({ chatBtnText: text })}
                                                 placeholder={__('Button Text', 'zoloblocks')}
-                                                allowedFormats={[]}
+                                                allowedFormats={['zolo/dynamic-content']}
                                             />
                                         )}
                                     </div>
@@ -178,7 +181,7 @@ const Edit = (props) => {
                                 value={featureTitle}
                                 onChange={(featureTitle) => setAttributes({ featureTitle })}
                                 placeholder={__('Add feature title', 'zoloblocks')}
-                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                                allowedFormats={['core/bold', 'coore/italic', 'core/strikethrough', 'zolo/dynamic-content']}
                             />
                         )}
                         {showFeatureDesc && (
@@ -188,7 +191,7 @@ const Edit = (props) => {
                                 value={featureDesc}
                                 onChange={(featureDesc) => setAttributes({ featureDesc })}
                                 placeholder={__('Add feature description', 'zoloblocks')}
-                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                                allowedFormats={['core/bold', 'core/italic', 'core/strikethrough', 'zolo/dynamic-content']}
                             />
                         )}
 
@@ -218,7 +221,7 @@ const Edit = (props) => {
                                                 value={buttonText}
                                                 onChange={(text) => setAttributes({ buttonText: text })}
                                                 placeholder={__('Button Text', 'zoloblocks')}
-                                                allowedFormats={[]}
+                                                allowedFormats={['zolo/dynamic-content']}
                                                 title={buttonText}
                                             />
                                         )}
@@ -229,7 +232,7 @@ const Edit = (props) => {
                                                 value={chatBtnText}
                                                 onChange={(text) => setAttributes({ chatBtnText: text })}
                                                 placeholder={__('Button Text', 'zoloblocks')}
-                                                allowedFormats={[]}
+                                                allowedFormats={['zolo/dynamic-content']}
                                                 title={chatBtnText}
                                             />
                                         )}

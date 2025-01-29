@@ -200,7 +200,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                             placeholder={__('Read More', 'zoloblocks')}
-                                            allowedFormats={['core/bold', 'core/italic']}
+                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                         />
                                     )}
                                     {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}

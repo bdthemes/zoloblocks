@@ -69,7 +69,7 @@ const Save = (props) => {
                         tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
-                        allowedFormats={['bold', 'italic']}
+                        allowedFormats={['core/bold', 'core/italic']}
                     />
                 )}
 
@@ -78,7 +78,7 @@ const Save = (props) => {
                         tagName={enableTitleLink && titleLink ? 'a' : 'span'}
                         className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
                         value={titleText}
-                        allowedFormats={['bold', 'italic']}
+                        allowedFormats={['core/bold', 'core/italic']}
                         {...(enableTitleLink && titleLink
                             ? {
                                   href: titleLink.url,
@@ -95,7 +95,7 @@ const Save = (props) => {
                         tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
-                        allowedFormats={['bold', 'italic']}
+                        allowedFormats={['core/bold', 'core/italic']}
                     />
                 )}
 

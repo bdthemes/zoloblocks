@@ -102,7 +102,7 @@ export default function Edit(props) {
                                                     value={label}
                                                     onChange={(text) => setAttributes({ label: text })}
                                                     placeholder={__('button text', 'zoloblocks')}
-                                                    allowedFormats={[]}
+                                                    allowedFormats={['zolo/dynamic-content']}
                                                 />
                                             )}
                                             {iconType !== 'none' && (
@@ -129,7 +129,7 @@ export default function Edit(props) {
                                                     value={Slabel}
                                                     onChange={(text) => setAttributes({ Slabel: text })}
                                                     placeholder={__('Secondary text', 'zoloblocks')}
-                                                    allowedFormats={[]}
+                                                    allowedFormats={['zolo/dynamic-content']}
                                                 />
                                             )}
                                             {SiconType !== 'none' && (

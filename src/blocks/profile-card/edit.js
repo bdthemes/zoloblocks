@@ -223,7 +223,7 @@ export default function Edit(props) {
                                                                 });
                                                             }}
                                                             placeholder={__('Number', 'zoloblocks')}
-                                                            allowedFormats={['core/bold', 'core/italic']}
+                                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                         />
                                                         <RichText
                                                             tagName="span"
@@ -237,7 +237,7 @@ export default function Edit(props) {
                                                                 });
                                                             }}
                                                             placeholder={__('Label', 'zoloblocks')}
-                                                            allowedFormats={['core/bold', 'core/italic']}
+                                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                         />
                                                     </div>
                                                 );
@@ -302,7 +302,7 @@ export default function Edit(props) {
                                                                     });
                                                                 }}
                                                                 placeholder={__('Number', 'zoloblocks')}
-                                                                allowedFormats={['core/bold', 'core/italic']}
+                                                                allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                             />
                                                             <RichText
                                                                 tagName="span"
@@ -316,7 +316,7 @@ export default function Edit(props) {
                                                                     });
                                                                 }}
                                                                 placeholder={__('Label', 'zoloblocks')}
-                                                                allowedFormats={['core/bold', 'core/italic']}
+                                                                allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                             />
                                                         </div>
                                                     );

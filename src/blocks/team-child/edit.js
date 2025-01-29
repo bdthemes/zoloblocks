@@ -145,7 +145,7 @@ export default function Edit(props) {
                                     value={memberName}
                                     onChange={(name) => setAttributes({ memberName: name })}
                                     placeholder={__('Name...', 'zoloblocks')}
-                                    allowedFormats={['core/bold', 'core/italic']}
+                                    allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                 />
                             )}
                             {showDesignation && preset !== 'style-4' && (
@@ -158,7 +158,7 @@ export default function Edit(props) {
                                         })
                                     }
                                     placeholder={__('Designation...', 'zoloblocks')}
-                                    allowedFormats={['core/bold', 'core/italic']}
+                                    allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                 />
                             )}
 
@@ -169,7 +169,7 @@ export default function Edit(props) {
                                         value={memberName}
                                         onChange={(name) => setAttributes({ memberName: name })}
                                         placeholder={__('Name...', 'zoloblocks')}
-                                        allowedFormats={['core/bold', 'core/italic']}
+                                        allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                     />
                                     {showDesignation && <span className="zolo-nameDg-separator"></span>}
                                     {showDesignation && (
@@ -182,7 +182,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                             placeholder={__('Designation...', 'zoloblocks')}
-                                            allowedFormats={['core/bold', 'core/italic']}
+                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                         />
                                     )}
                                 </div>
@@ -198,7 +198,7 @@ export default function Edit(props) {
                                         })
                                     }
                                     placeholder={__('short bio...', 'zoloblocks')}
-                                    allowedFormats={['core/bold', 'core/italic']}
+                                    allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                 />
                             )}
                         </div>
