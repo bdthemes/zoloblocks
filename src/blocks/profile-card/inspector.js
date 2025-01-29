@@ -95,7 +95,6 @@ import {
     PROFILE_USERNAME,
     BTN_TYPO,
 } from './constants/typoPrefixConstants';
-import { Fragment } from 'react';
 import Sortable from './sortable';
 
 function Inspector(props) {

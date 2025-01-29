@@ -7,7 +7,7 @@ import classNames from 'classnames';
  * WordPress Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState, Fragment, useRef } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select, useSelect, withSelect } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';

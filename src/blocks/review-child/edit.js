@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';

@@ -90,7 +90,7 @@ export default function Edit(props) {
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
                         return (
-                            <Fragment key={index}>
+                            <React.Fragment  key={index}>
                                 {preset == 'zolo-list-style-1' && (
                                     <RichText
                                         href={profile.link && profile.link.url}
@@ -251,7 +251,7 @@ export default function Edit(props) {
                                         )}
                                     </div>
                                 )}
-                            </>
+                            </React.Fragment>
                         );
                     })}
                 {renderHookAfter && renderHookAfter}

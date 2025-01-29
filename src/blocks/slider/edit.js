@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
-import { Fragment, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useSelect, useDispatch } from '@wordpress/data';
 import classnames from 'classnames';
 import Inspector from './inspector';
