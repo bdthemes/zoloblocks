@@ -4,7 +4,7 @@ const {
     generateBorderAttributies,
     generateDimensionAttributes,
     generateBoxShadowAttributies,
-    generateNormalBGAttributes
+    generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
@@ -17,7 +17,7 @@ import {
     ICON_HOVER_BOX_SHADOW,
     ICON_ALIGNMENT,
     ICON_BG_COLOR,
-    ICON_HOVER_BG_COLOR
+    ICON_HOVER_BG_COLOR,
 } from './constants';
 
 const attributes = {
@@ -80,6 +80,10 @@ const attributes = {
             url: '#',
             openInNewTab: false,
         },
+    },
+    iconSizeVariation: {
+        type: 'string',
+        default: '',
     },
 };
 
