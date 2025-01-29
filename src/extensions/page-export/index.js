@@ -2,7 +2,6 @@ const { registerPlugin } = wp.plugins;
 const { PluginSidebarMoreMenuItem } = wp.editor;
 const { withSelect, select } = wp.data;
 const { Button } = wp.components;
-const { Fragment } = wp.element;
 const { __ } = wp.i18n;
 
 const handleCurrentPostExport = () => {

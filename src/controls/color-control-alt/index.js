@@ -3,7 +3,6 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
 import { getContrastRatio } from '../../helpers/helper';
-import { Fragment } from 'react';
 
 const ColorControlAlt = ({ label, defaultColor = '', color, onChange }) => {
     const [colorPanel, setColorPanel] = useState(false);

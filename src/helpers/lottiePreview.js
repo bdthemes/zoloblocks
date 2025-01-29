@@ -1,10 +1,7 @@
-
-import Lottie from 'react-lottie-player';
-
 const LottiePreview = (props) => {
     const { url, trigger, speed, loop, direction, isSelected } = props;
     return (
-        <Lottie
+        <lottie-player
             key={`lottie-${trigger}-${speed}-${loop}-${direction}`}
             src={url}
             direction={direction}
@@ -12,7 +9,7 @@ const LottiePreview = (props) => {
             mode="normal"
             {...(trigger !== 'scroll' ? { speed } : {})}
             {...(trigger !== 'scroll' && loop ? { loop: 'loop' } : {})}
-            {...(!trigger && isSelected ? { autoPlay: 'autoplay' } : {})}
+            {...(!trigger && isSelected ? { autoplay: 'autoplay' } : {})}
             {...(trigger === 'hover' ? { hover: 'hover' } : {})}
             style={{
                 width: '100%',
