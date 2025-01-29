@@ -3,7 +3,7 @@
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { BaseControl, Button, SelectControl, TextControl, TextareaControl, ToggleControl, CardDivider } from '@wordpress/components';
-import { Fragment } from '@wordpress/element';
+
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 

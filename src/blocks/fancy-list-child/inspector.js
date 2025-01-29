@@ -4,7 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, TextControl, TextareaControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 
 /**
  * Internal depencencies

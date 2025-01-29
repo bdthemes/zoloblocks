@@ -4,7 +4,7 @@
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect, useRef } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { Fragment } from '@wordpress/element';
+
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';

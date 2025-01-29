@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 
 /**
  * Internal depencencies

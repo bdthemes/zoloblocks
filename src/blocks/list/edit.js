@@ -6,7 +6,7 @@ import { useBlockProps, RichText, BlockControls } from '@wordpress/block-editor'
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
-import { Fragment } from '@wordpress/element';
+
 /**
  * Internal depencencies
  */
