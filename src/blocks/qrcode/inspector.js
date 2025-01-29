@@ -25,6 +25,7 @@ const {
 } = window.zoloModule;
 
 import {
+    QR_CODE_SIZE,
     QR_CODE_LEVEL,
     QR_CODE_BORDER,
     QR_CODE_ALIGN,
@@ -39,6 +40,7 @@ import {
     BADGE_QR_CODE_MARGIN,
     BADGE_QR_CODE_BOX_SHADOW,
     BADGE_ICON_SIZE,
+
     // BADGE_TYPOGRAPHY
 } from './constants/index';
 
@@ -91,7 +93,7 @@ export default function Inspector(props) {
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                                 {!qrCodeLink && (
                                     <TextareaControl
-                                        className='zolo-flex-col-control'
+                                        className="zolo-flex-col-control"
                                         label={__('Content', 'zoloblocks')}
                                         value={qrContent}
                                         onChange={(value) =>
@@ -103,24 +105,13 @@ export default function Inspector(props) {
                                 )}
                                 {/* hook links */}
                                 {hookLinks && hookLinks.length > 0 && hookLinks}
-                                <div className='zolo-flex-col-control'>
-                                    <SimpleRangeControl
-                                        label={__('Size', 'zoloblocks')}
-                                        value={qrCodeSize}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                qrCodeSize: value,
-                                            })
-                                        }
-                                        onReset={() =>
-                                            setAttributes({
-                                                qrCodeSize: 0,
-                                            })
-                                        }
-                                        max={500}
-                                        noUnits={true}
-                                    />
-                                </div>
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zoloblocks')}
+                                    controlName={QR_CODE_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                />
 
                                 <SelectControl
                                     label={__('Error Level', 'zoloblocks')}
@@ -210,7 +201,7 @@ export default function Inspector(props) {
                                     }
                                 />
 
-                                <div className='zolo-flex-col-control'>
+                                <div className="zolo-flex-col-control">
                                     <SimpleRangeControl
                                         label={__('Eye Radius', 'zoloblocks')}
                                         value={eyeRadius}
@@ -253,7 +244,7 @@ export default function Inspector(props) {
                                     forBorderRadius={true}
                                 />
 
-                                <div className='zolo-flex-col-control'>
+                                <div className="zolo-flex-col-control">
                                     <SimpleRangeControl
                                         label={__('Padding', 'zoloblocks')}
                                         value={qrCodePadding}
