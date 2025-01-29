@@ -260,7 +260,7 @@ export default function Edit(props) {
                 )}
 
                 {showNavigation && (
-                    <Fragment>
+                    <>
                         <div
                             className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                         >
@@ -281,7 +281,7 @@ export default function Edit(props) {
                                 </>
                             )}
                         </div>
-                    </Fragment>
+                    </>
                 )}
             </div>
         </>

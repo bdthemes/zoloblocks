@@ -251,7 +251,7 @@ export default function Edit(props) {
                                         )}
                                     </div>
                                 )}
-                            </Fragment>
+                            </>
                         );
                     })}
                 {renderHookAfter && renderHookAfter}

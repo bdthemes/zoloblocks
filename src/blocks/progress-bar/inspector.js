@@ -65,7 +65,7 @@ function Inspector(props) {
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
@@ -105,7 +105,7 @@ function Inspector(props) {
                                 step={1}
                             />
                         </ZoloPanelBody>
-                    </Fragment>
+                    </>
                 }
                 styleTab={
                     <>

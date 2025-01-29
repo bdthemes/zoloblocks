@@ -110,7 +110,7 @@ function Inspector(props) {
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props} firstOpen={true}>
                             {titleToggle && (
                                 <>
@@ -230,7 +230,7 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-                    </Fragment>
+                    </>
                 }
                 styleTab={
                     <>

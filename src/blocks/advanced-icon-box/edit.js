@@ -78,7 +78,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 {iconTypeImage && (
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             {iconType === 'image' && (
                                 <MediaUpload
@@ -100,7 +100,7 @@ export default function Edit(props) {
                                 />
                             )}
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 )}
             </BlockControls>
             <div {...blockProps}>

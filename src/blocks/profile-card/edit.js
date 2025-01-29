@@ -68,7 +68,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 {photo && (
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
@@ -94,7 +94,7 @@ export default function Edit(props) {
                                 )}
                             />
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 )}
             </BlockControls>
 

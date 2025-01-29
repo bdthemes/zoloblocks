@@ -35,7 +35,7 @@ const ColorBtn = ({ color, onChange }) => {
                 <div className="zolo-color-picker">
                     <ColorPicker color={color} disableAlpha={false} onChangeComplete={(value) => onChange(value.hex)} />
                     {COLORS && (
-                        <Fragment>
+                        <>
                             <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {COLORS.map((paletteColor) => (
@@ -71,13 +71,13 @@ const ColorBtn = ({ color, onChange }) => {
                                     </div>
                                 ))}
                             </div>
-                        </Fragment>
+                        </>
                     )}
 
                     {/* default Color  */}
 
                     {DEFAULTCOLORS && (
-                        <Fragment>
+                        <>
                             <p className="zolo-theme-color-label">{__('Default Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {DEFAULTCOLORS.map((paletteColor) => (
@@ -111,7 +111,7 @@ const ColorBtn = ({ color, onChange }) => {
                                     </div>
                                 ))}
                             </div>
-                        </Fragment>
+                        </>
                     )}
                 </div>
             )}
