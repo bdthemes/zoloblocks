@@ -58,7 +58,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
                 {iconTypeImage && (
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
@@ -94,7 +94,7 @@ export default function Edit(props) {
                                 }}
                             />
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 )}
             </BlockControls>
             <Style props={props} />

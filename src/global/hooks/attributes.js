@@ -385,9 +385,9 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
         }, [deviceType]);
 
         return (
-            <Fragment>
+            <>
                 <BlockEdit {...props} />
-            </Fragment>
+            </>
         );
     };
 }, 'withAdvancedControls');

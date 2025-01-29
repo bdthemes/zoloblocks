@@ -68,7 +68,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                      {...(!disableAlpha && { enableAlpha: true })}
                     />
                     {COLORS && (
-                        <Fragment>
+                        <>
                             <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {COLORS.map((paletteColor) => (
@@ -102,13 +102,13 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                     </div>
                                 ))}
                             </div>
-                        </Fragment>
+                        </>
                     )}
 
                     {/* default Color  */}
 
                     {DEFAULTCOLORS && (
-                        <Fragment>
+                        <>
                             <p className="zolo-theme-color-label">{__('Default Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {DEFAULTCOLORS.map((paletteColor) => (
@@ -142,7 +142,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                     </div>
                                 ))}
                             </div>
-                        </Fragment>
+                        </>
                     )}
                 </Popover>
             )}

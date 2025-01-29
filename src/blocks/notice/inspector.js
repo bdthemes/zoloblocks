@@ -245,7 +245,7 @@ function Inspector(props) {
                                     </>
                                 )}
                                 {enableIcon && iconType === 'icon' && (
-                                    <Fragment>
+                                    <>
                                         <ZoloIconPicker
                                             label={__('Icon', 'zoloblocks')}
                                             value={mainIcon}
@@ -255,7 +255,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
 
                                 {enableIcon && iconType === 'image' && (

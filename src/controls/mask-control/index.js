@@ -16,7 +16,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
     } = attributes;
 
     return (
-        <Fragment>
+        <>
             <SelectControl
                 label={__('Mask Shape', 'zoloblocks')}
                 value={maskImage}
@@ -63,7 +63,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
                     />
                 </>
             )}
-        </Fragment>
+        </>
     );
 };
 

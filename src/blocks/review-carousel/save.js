@@ -48,7 +48,7 @@ const Save = ({ attributes }) => {
                 <div className="swiper-pagination swiper-pagination-position-bottom"></div>
             )}
             {showNavigation && (
-                <Fragment>
+                <>
                     <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>
                         {customNavIcon && (
                             <>
@@ -67,7 +67,7 @@ const Save = ({ attributes }) => {
                             </>
                         )}
                     </div>
-                </Fragment>
+                </>
             )}
         </div>
     );

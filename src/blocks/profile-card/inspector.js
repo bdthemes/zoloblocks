@@ -445,7 +445,7 @@ function Inspector(props) {
                         )}
                         <ZoloPanelBody title={__('Follow Button', 'zoloblocks')} panelProps={props}>
                             {showFollowButton && (
-                                <Fragment>
+                                <>
                                     <TextControl
                                         label={__('Text', 'zoloblocks')}
                                         onChange={(v) =>
@@ -465,7 +465,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                </Fragment>
+                                </>
                             )}
                         </ZoloPanelBody>
                         {showSocialProfiles && (

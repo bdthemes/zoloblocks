@@ -236,7 +236,7 @@ function Inspector(props) {
                                     />
                                 </div>
                                 {iconType !== 'none' && (
-                                    <Fragment>
+                                    <>
                                         <ZoloIconPicker
                                             label={__('Select', 'zoloblocks')}
                                             value={icon}
@@ -261,7 +261,7 @@ function Inspector(props) {
                                                 />
                                             </div>
                                         )}
-                                    </Fragment>
+                                    </>
                                 )}
                             </ZoloPanelBody>
                         )}
@@ -295,7 +295,7 @@ function Inspector(props) {
                                     />
                                 </div>
                                 {SiconType !== 'none' && (
-                                    <Fragment>
+                                    <>
                                         <ZoloIconPicker
                                             label={__('Select Icon', 'zoloblocks')}
                                             value={Sicon}
@@ -320,7 +320,7 @@ function Inspector(props) {
                                                 />
                                             </div>
                                         )}
-                                    </Fragment>
+                                    </>
                                 )}
                             </ZoloPanelBody>
                         )}

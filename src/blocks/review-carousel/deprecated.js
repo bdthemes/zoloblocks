@@ -56,7 +56,7 @@ const deprecated = {
                 </div>
                 {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
                 {showNavigation && (
-                    <Fragment>
+                    <>
                         <div
                             className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                         >
@@ -77,7 +77,7 @@ const deprecated = {
                                 </>
                             )}
                         </div>
-                    </Fragment>
+                    </>
                 )}
             </div>
         );

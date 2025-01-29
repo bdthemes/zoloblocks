@@ -506,7 +506,7 @@ function Inspector(props) {
                             />
 
                             {autoplay && (
-                                <Fragment>
+                                <>
                                     <RangeControl
                                         className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
@@ -529,7 +529,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                </Fragment>
+                                </>
                             )}
                             <ToggleControl
                                 label={__('Navigation', 'zoloblocks')}
@@ -1123,7 +1123,7 @@ function Inspector(props) {
                             <ZoloPanelBody title={__('Navigation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
-                                        <Fragment>
+                                        <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={navColor}
@@ -1173,13 +1173,13 @@ function Inspector(props) {
                                                 controlName={NAV_BORDER}
                                                 requiredProps={requiredProps}
                                                 hoverControl={
-                                                    <Fragment>
+                                                    <>
                                                         <ColorControl
                                                             label={__('Border Color', 'zoloblocks')}
                                                             color={navHoverBorderColor}
                                                             onChange={(color) => setAttributes({ navHoverBorderColor: color })}
                                                         />
-                                                    </Fragment>
+                                                    </>
                                                 }
                                             />
                                             <ResDimensionsControl
@@ -1197,10 +1197,10 @@ function Inspector(props) {
                                                 min={-100}
                                                 max={500}
                                             />
-                                        </Fragment>
+                                        </>
                                     }
                                     hoverComponents={
-                                        <Fragment>
+                                        <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={navHoverColor}
@@ -1212,13 +1212,13 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
-                                        </Fragment>
+                                        </>
                                     }
                                 />
                             </ZoloPanelBody>
                         )}
                         {showPagination && (
-                            <Fragment>
+                            <>
                                 <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                     <TabPanelControl
                                         options={[
@@ -1232,7 +1232,7 @@ function Inspector(props) {
                                             },
                                         ]}
                                         normalComponents={
-                                            <Fragment>
+                                            <>
                                                 <ResRangeControl
                                                     label={__('Width', 'zoloblocks')}
                                                     controlName={PAG_WIDTH}
@@ -1281,10 +1281,10 @@ function Inspector(props) {
                                                     min={-200}
                                                     max={200}
                                                 />
-                                            </Fragment>
+                                            </>
                                         }
                                         hoverComponents={
-                                            <Fragment>
+                                            <>
                                                 <ResRangeControl
                                                     label={__('Width', 'zoloblocks')}
                                                     controlName={APAG_WIDTH}
@@ -1318,11 +1318,11 @@ function Inspector(props) {
                                                     requiredProps={requiredProps}
                                                     forBorderRadius={true}
                                                 />
-                                            </Fragment>
+                                            </>
                                         }
                                     />
                                 </ZoloPanelBody>
-                            </Fragment>
+                            </>
                         )}
                     </>
                 }

@@ -45,7 +45,7 @@ const handleCurrentPostExport = () => {
 
 registerPlugin('custom-export-button', {
     render: () => (
-        <Fragment>
+        <>
             <PluginSidebarMoreMenuItem
                 target="custom-export-button"
                 icon="admin-post"
@@ -55,6 +55,6 @@ registerPlugin('custom-export-button', {
             >
                 {__('Export as Pattern', 'zoloblocks')}
             </PluginSidebarMoreMenuItem>
-        </Fragment>
+        </>
     ),
 });

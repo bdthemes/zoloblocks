@@ -114,7 +114,7 @@ const Edit = (props) => {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             {brandPhoto && (
                 <BlockControls>
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
@@ -140,7 +140,7 @@ const Edit = (props) => {
                                 )}
                             />
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 </BlockControls>
             )}
             <Style props={props} />
