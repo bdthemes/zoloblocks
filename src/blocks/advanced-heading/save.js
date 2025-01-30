@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
-const { classArrayToStr, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -28,11 +28,25 @@ const Save = (props) => {
         textGradient,
         textGradientType,
         textGradientColorbackgroundType,
+        // subTitle styles
+        subTitleStyles,
+        showSubTitleBadgeText,
+        subTitleBadgeText,
+        subTitleBadgeIcon,
+        showSubTitleBadgeIcon,
+        badgeDirection,
     } = attributes;
 
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
+
+    const richSubTitleTextContentProps = {
+        tagName: subTitleTag,
+        className: 'zolo-ah-subtitle',
+        value: subTitleText,
+        allowedFormats: ['core/bold', 'core/italic'],
+    };
 
     return (
         <div
@@ -45,7 +59,7 @@ const Save = (props) => {
         >
             {renderHookBefore && renderHookBefore}
             <div
-                className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}  ${textGradientColorbackgroundType !== 'classic' ? textGradientType : ''}`}
+                className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId} ${showSubTitle ? subTitleStyles : ''} ${textGradientColorbackgroundType !== 'classic' ? textGradientType : ''}`}
             >
                 {showTransparentTitle && (
                     <div className="zolo-transparent-heading-wrap">
@@ -64,14 +78,17 @@ const Save = (props) => {
                     </div>
                 )}
 
-                {showSubTitle && subTitlePosition == 'top' && (
-                    <RichText.Content
-                        tagName={subTitleTag}
-                        className="zolo-ah-subtitle"
-                        value={subTitleText}
-                        allowedFormats={['core/bold', 'core/italic']}
-                    />
-                )}
+                {showSubTitle &&
+                    subTitlePosition === 'top' &&
+                    (subTitleStyles !== 'badge-style-1' ? (
+                        <RichText.Content {...richSubTitleTextContentProps} />
+                    ) : (
+                        <div className={`zolo-ah-subtitle-badge-wrap ${badgeDirection}`}>
+                            {showSubTitleBadgeText && subTitleBadgeText && <span className="zolo-badge-text">{subTitleBadgeText}</span>}
+                            <RichText.Content {...richSubTitleTextContentProps} />
+                            {showSubTitleBadgeIcon && <DisplayZoloIcon icon={subTitleBadgeIcon} />}
+                        </div>
+                    ))}
 
                 <DynamicTag tagName={titleTagName} className="zolo-ah-title">
                     <RichText.Content
@@ -90,20 +107,17 @@ const Save = (props) => {
                     />
                 </DynamicTag>
 
-                {showSubTitle && subTitlePosition == 'bottom' && (
-                    <RichText.Content
-                        tagName={subTitleTag}
-                        className="zolo-ah-subtitle"
-                        value={subTitleText}
-                        allowedFormats={['core/bold', 'core/italic']}
-                    />
-                )}
-
-                {showSeparator && separatorPosition === 'bottom' && (
-                    <div className="zolo-separator-wrapper">
-                        <div className="zolo-ah-separator"></div>
-                    </div>
-                )}
+                {showSubTitle &&
+                    subTitlePosition === 'bottom' &&
+                    (subTitleStyles !== 'badge-style-1' ? (
+                        <RichText.Content {...richSubTitleTextContentProps} />
+                    ) : (
+                        <div className={`zolo-ah-subtitle-badge-wrap ${badgeDirection}`}>
+                            {showSubTitleBadgeText && subTitleBadgeText && <span className="zolo-badge-text">{subTitleBadgeText}</span>}
+                            <RichText.Content {...richSubTitleTextContentProps} />
+                            {showSubTitleBadgeIcon && <DisplayZoloIcon icon={subTitleBadgeIcon} />}
+                        </div>
+                    ))}
             </div>
             {renderHookAfter && renderHookAfter}
         </div>

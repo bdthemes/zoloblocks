@@ -9,7 +9,7 @@ import Inspector from './inspector';
 import Style from './style';
 import './style.scss';
 
-const { DynamicTag, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DynamicTag, classArrayToStr, SidebarOpener, DisplayZoloIcon } = window.zoloModule;
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
@@ -37,7 +37,14 @@ const Edit = (props) => {
         // text Gradient
         textGradient,
         textGradientType,
-        textGradientColorbackgroundType
+        textGradientColorbackgroundType,
+        // subTitle styles
+        subTitleStyles,
+        showSubTitleBadgeText,
+        subTitleBadgeText,
+        subTitleBadgeIcon,
+        showSubTitleBadgeIcon,
+        badgeDirection,
     } = attributes;
 
     //block wrapper class
@@ -54,6 +61,14 @@ const Edit = (props) => {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
+    const richSubTitleTextProps = {
+        tagName: subTitleTag,
+        className: 'zolo-ah-subtitle',
+        value: subTitleText,
+        formatingcontrols: ['bold', 'italic'],
+        onChange: (newSubTitleText) => setAttributes({ subTitleText: newSubTitleText }),
+    };
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -62,7 +77,7 @@ const Edit = (props) => {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <div
-                    className={`zolo-block-wrapper zolo-advanced-heading zolo-ah-${styles} ${uniqueId} ${textGradientColorbackgroundType !== 'classic' ? textGradientType : ''}`}
+                    className={`zolo-block-wrapper zolo-advanced-heading zolo-ah-${styles} ${uniqueId} ${showSubTitle ? subTitleStyles : ''} ${textGradientColorbackgroundType !== 'classic' ? textGradientType : ''}`}
                 >
                     {showTransparentTitle && (
                         <div className="zolo-transparent-heading-wrap">
@@ -81,15 +96,25 @@ const Edit = (props) => {
                         </div>
                     )}
 
-                    {showSubTitle && subTitlePosition == 'top' && (
-                        <RichText
-                            tagName={subTitleTag}
-                            className="zolo-ah-subtitle"
-                            value={subTitleText}
-                            formatingcontrols={['bold', 'italic']}
-                            onChange={(subTitleText) => setAttributes({ subTitleText })}
-                        />
-                    )}
+                    {showSubTitle &&
+                        subTitlePosition === 'top' &&
+                        (subTitleStyles !== 'badge-style-1' ? (
+                            <RichText {...richSubTitleTextProps} />
+                        ) : (
+                            <div className={`zolo-ah-subtitle-badge-wrap ${badgeDirection}`}>
+                                {showSubTitleBadgeText && (
+                                    <RichText
+                                        className="zolo-badge-text"
+                                        tagName="span"
+                                        value={subTitleBadgeText}
+                                        onChange={(v) => setAttributes({ subTitleBadgeText: v })}
+                                    />
+                                )}
+                                <RichText {...richSubTitleTextProps} />
+                                {showSubTitleBadgeIcon && <DisplayZoloIcon icon={subTitleBadgeIcon} />}
+                            </div>
+                        ))}
+
                     <DynamicTag tagName={titleTagName} className="zolo-ah-title">
                         <RichText
                             tagName={enableTitleLink && titleLink ? 'a' : 'span'}
@@ -107,15 +132,25 @@ const Edit = (props) => {
                                 : {})}
                         />
                     </DynamicTag>
-                    {showSubTitle && subTitlePosition == 'bottom' && (
-                        <RichText
-                            tagName={subTitleTag}
-                            className="zolo-ah-subtitle"
-                            value={subTitleText}
-                            formatingcontrols={['bold', 'italic']}
-                            onChange={(subTitleText) => setAttributes({ subTitleText })}
-                        />
-                    )}
+
+                    {showSubTitle &&
+                        subTitlePosition === 'bottom' &&
+                        (subTitleStyles !== 'badge-style-1' ? (
+                            <RichText {...richSubTitleTextProps} />
+                        ) : (
+                            <div className={`zolo-ah-subtitle-badge-wrap ${badgeDirection}`}>
+                                {showSubTitleBadgeText && (
+                                    <RichText
+                                        className="zolo-badge-text"
+                                        tagName="span"
+                                        value={subTitleBadgeText}
+                                        onChange={(v) => setAttributes({ subTitleBadgeText: v })}
+                                    />
+                                )}
+                                <RichText {...richSubTitleTextProps} />
+                                {showSubTitleBadgeIcon && <DisplayZoloIcon icon={subTitleBadgeIcon} />}
+                            </div>
+                        ))}
                     {showSeparator && separatorPosition === 'bottom' && (
                         <div className="zolo-separator-wrapper">
                             <div className="zolo-ah-separator"></div>

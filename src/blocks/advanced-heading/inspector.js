@@ -24,6 +24,8 @@ const {
     ZoloPanelBody,
     ImageAvatar,
     BackgroundControl,
+    ZoloIconPicker,
+    NormalBGControl,
 } = window.zoloModule;
 
 const { zolo_pro_status } = window.zoloParams;
@@ -64,8 +66,16 @@ import {
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
     TEXT_GRADIENT_COLOR,
+    SUB_TITLE_BADGE_STYLES,
+    ZOLO_SUB_TITLE_BADGE_DIRECTION,
+    // sub title badge styles,
+    SUBTITLE_BADGE_BG,
+    SUBTITLE_BADGE_PADDING,
+    SUBTITLE_BADGE_MARGIN,
+    SUBTITE_BADGE_BORDER,
+    SUBTITLE_BADGE_BORDER_RADIUS,
 } from './constants';
-import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY, SUBTITLE_BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import { TEXT_ALIGN_OPTIONS, HEADING } from '../../../src/global/constants';
 
@@ -104,6 +114,13 @@ const Inspector = (props) => {
         tptBgColor,
         tptOpacity,
         separatorColor,
+        subTitleStyles,
+        showSubTitleBadgeText,
+        subTitleBadgeText,
+        subTitleBadgeIcon,
+        showSubTitleBadgeIcon,
+        badgeDirection,
+        subTitleBadgeColor,
     } = attributes;
 
     const requiredProps = {
@@ -198,6 +215,7 @@ const Inspector = (props) => {
                                 checked={showTransparentTitle}
                                 onChange={() => setAttributes({ showTransparentTitle: !showTransparentTitle })}
                             />
+
                             <CardDivider />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
@@ -256,6 +274,59 @@ const Inspector = (props) => {
                                         options={ST_POSITION}
                                     />
                                 </div>
+                                <div className="zolo-custom-heading">{__('Badge', 'zoloblocks')}</div>
+                                <SelectControl
+                                    label={__('Badge Style', 'zoloblocks')}
+                                    value={subTitleStyles}
+                                    options={applyFilters('zolo.advancedHeading.presets', SUB_TITLE_BADGE_STYLES) || SUB_TITLE_BADGE_STYLES}
+                                    onChange={(value) => setAttributes({ subTitleStyles: value })}
+                                />
+                                {subTitleStyles === 'badge-style-1' && (
+                                    <>
+                                        <div className="zolo-flex-row-control-tab">
+                                            <IconicBtnGroup
+                                                label={__('Direction', 'zoloblocks')}
+                                                value={badgeDirection}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        badgeDirection: value,
+                                                    })
+                                                }
+                                                options={ZOLO_SUB_TITLE_BADGE_DIRECTION}
+                                            />
+                                        </div>
+                                        <CardDivider />
+                                        <ToggleControl
+                                            label={__('Text', 'zoloblocks')}
+                                            checked={showSubTitleBadgeText}
+                                            onChange={() => setAttributes({ showSubTitleBadgeText: !showSubTitleBadgeText })}
+                                        />
+                                        <ToggleControl
+                                            label={__('Icon', 'zoloblocks')}
+                                            checked={showSubTitleBadgeIcon}
+                                            onChange={() => setAttributes({ showSubTitleBadgeIcon: !showSubTitleBadgeIcon })}
+                                        />
+                                        {showSubTitleBadgeText && (
+                                            <TextControl
+                                                label={__('Text', 'zoloblocks')}
+                                                value={subTitleBadgeText}
+                                                onChange={(subTitleBadgeText) => setAttributes({ subTitleBadgeText })}
+                                            />
+                                        )}
+
+                                        {showSubTitleBadgeIcon && (
+                                            <ZoloIconPicker
+                                                label={__('Icon', 'zoloblocks')}
+                                                value={subTitleBadgeIcon}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        subTitleBadgeIcon: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
 
@@ -365,10 +436,10 @@ const Inspector = (props) => {
                                         controlName={TEXT_GRADIENT_COLOR}
                                         requiredProps={requiredProps}
                                         defaultColor={titleColor}
-                                        onChangeDefault={(val) =>{
+                                        onChangeDefault={(val) => {
                                             setAttributes({
                                                 titleColor: val,
-                                            })
+                                            });
                                         }}
                                     />
                                 </>
@@ -549,6 +620,48 @@ const Inspector = (props) => {
                                 />
                             </ZoloPanelBody>
                         )}
+
+                        <ZoloPanelBody title={__('Sub Heading Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={subTitleBadgeColor}
+                                onChange={(val) =>
+                                    setAttributes({
+                                        subTitleBadgeColor: val,
+                                    })
+                                }
+                            />
+                            <TypographyDropdown
+                                label="Typography"
+                                typoPrefixConstant={SUBTITLE_BADGE_TYPOGRAPHY}
+                                requiredProps={requiredProps}
+                                max={100}
+                            />
+                            <CardDivider />
+                            <NormalBGControl requiredProps={requiredProps} controlName={SUBTITLE_BADGE_BG} noMainBGImg={true} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={SUBTITLE_BADGE_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={SUBTITLE_BADGE_MARGIN}
+                                requiredProps={requiredProps}
+                            />
+                            <CardDivider />
+                            <BorderControl
+                                label={__('Border', 'zoloblocks')}
+                                controlName={SUBTITE_BADGE_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={SUBTITLE_BADGE_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                        </ZoloPanelBody>
 
                         {showSeparator && (
                             <ZoloPanelBody title={__('Separator', 'zoloblocks')} stylePanel={true} panelProps={props}>
