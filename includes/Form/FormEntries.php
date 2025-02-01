@@ -146,7 +146,7 @@ class FormEntries
      * @param string $value The field value.
      * @return string HTML for the table row.
      */
-    private function generate_table_row($label, $value) {
+    public function generate_table_row($label, $value) {
         return "<tr bgcolor='#EAF2FA'>
                     <td><strong>{$label}</strong></td>
                 </tr>
