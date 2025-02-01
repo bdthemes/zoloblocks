@@ -2,6 +2,7 @@
 
 namespace Zolo\Admin;
 
+use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -128,6 +129,69 @@ if (! class_exists('Dashboard')) {
                 'manage_options',
                 'edit.php?post_type=zolo-popup'
             );
+
+            add_submenu_page(
+                'zoloblocks',
+                __('Form Entries', 'zoloblocks'),
+                __('Form Entries', 'zoloblocks'),
+                'manage_options',
+                'edit.php?post_type=zolo_form_entries',
+                function () {
+                    $admin_url = admin_url( 'edit.php' );
+                    $post_type_url = add_query_arg('post_type', 'zolo_form_entries', $admin_url );
+                    if (!class_exists('Zolo_Blocks_Pro')) {
+                        $content = <<<EOF
+                            <style>
+                                .wp-list-table {
+                                    border-collapse: collapse;
+                                }
+                                .wp-list-table td {
+                                    border: 1px solid #ddd;
+                                    padding: 8px;
+                                }
+                                .wp-list-table th {
+                                    background-color: #4CAF50;
+                                    color: white;
+                                }
+                            </style>
+                            <table class="wp-list-table widefat fixed striped pages">
+                                <thead>
+                                    <tr>
+                                        <th>Form Name</th>
+                                        <th>Form Type</th>
+                                        <th>Entries</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>My Form</td>
+                                        <td>Contact Form</td>
+                                        <td>3</td>
+                                        <td>2022-07-01 12:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>My Form</td>
+                                        <td>Contact Form</td>
+                                        <td>3</td>
+                                        <td>2022-07-01 12:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>My Form</td>
+                                        <td>Contact Form</td>
+                                        <td>3</td>
+                                        <td>2022-07-01 12:00:00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        EOF;
+                        echo wp_kses($content, ZoloHelpers::wp_kses_allowed_svg($content));
+                    }else{
+                        echo '<script>document.location.href = "' . $post_type_url . '";</script>';
+                    }
+                }
+            );
+
             if (!class_exists('Zolo_Blocks_Pro')) {
                 add_submenu_page(
                     'zoloblocks',

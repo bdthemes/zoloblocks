@@ -200,7 +200,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Notification', 'zoloblocks')}
                                 value={formSettings?.notificationType}
-                                options={NOTIFICATION_TYPES}
+                                options={applyFilters('zolo.form.notificationTypes', NOTIFICATION_TYPES)}
                                 onChange={(v) =>
                                     setAttributes({
                                         formSettings: {

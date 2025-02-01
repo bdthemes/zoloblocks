@@ -57,7 +57,7 @@ function setupFormHandlers(form) {
     if (valid) {
       const formData = new FormData(form);
       const values = [...formData.entries()];
-
+    
       // add the formId to the data
       values.push(['formId', formId]);
 
@@ -69,8 +69,23 @@ function setupFormHandlers(form) {
         return acc;
       }, {});
 
-      const dataString = JSON.stringify(formattedData);
+      values.forEach(([name, value]) => {
+        form.querySelectorAll([`[name="${name}"]`]).forEach((input) => {
+          const wrapper = input.closest('[data-field-settings]');
+          if (wrapper) {
+            const settings = JSON.parse(wrapper.dataset.fieldSettings);
+            formattedData[name] = {
+              value: value,
+              ...settings,
+            }
+          }
+        })
+      });
 
+      
+      const dataString = JSON.stringify(formattedData);
+    
+      
       // create an ajax request
       const xhr = new XMLHttpRequest();
       xhr.open('POST', zoloSettings.ajaxurl, true);
@@ -80,24 +95,17 @@ function setupFormHandlers(form) {
           if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
             const {
-              validationStatus,
-              validationMessage,
-              successStatus,
-              successMessage,
-              failStatus,
-              failMessage,
-              nonceValidationFail,
+              data,
+              success,
             } = response;
-            if (validationStatus || nonceValidationFail) {
-              formNotice.innerHTML = validationMessage;
-              formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
-            }
-            if (successStatus) {
-              formNotice.innerHTML = successMessage;
+
+            if (success) {
+              formNotice.innerHTML = data;
               formNoticeContainer.classList.add('zolo-form-success-msg', 'show');
             }
-            if (failStatus) {
-              formNotice.innerHTML = failMessage;
+
+            if (!success) {
+              formNotice.innerHTML = data;
               formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
             }
 
