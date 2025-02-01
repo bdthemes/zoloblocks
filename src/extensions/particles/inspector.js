@@ -249,8 +249,8 @@ const Inspector = ({ panelProps }) => {
                                 ]}
                             />
                         </div>
-
                         <BaseControl className="zolo-flex-col-control">
+                            <div className="zolo-custom-label">{__('Choose Shape', 'zoloblocks')}</div>
                             <Select2
                                 isMulti
                                 isSearchable={false}
