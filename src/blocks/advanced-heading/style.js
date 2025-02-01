@@ -63,6 +63,14 @@ import {
     SUBTITLE_BADGE_MARGIN,
     SUBTITE_BADGE_BORDER,
     SUBTITLE_BADGE_BORDER_RADIUS,
+
+    // SUBTITLE ICON
+    SUBTITLE_ICON_SIZE,
+    SUBTITLE_ICON_BG,
+    SUBTITLE_ICON_PADDING,
+    SUBTITLE_ICON_MARGIN,
+    SUBTITLE_ICON_BORDER,
+    SUBTITLE_ICON_BORDER_RADIUS,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY, SUBTITLE_BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -90,6 +98,7 @@ export default function Style({ props }) {
         subTitlePosition,
         subTitleStyles,
         subTitleBadgeColor,
+        subTitleIconColor,
     } = attributes;
 
     //title style generate
@@ -470,6 +479,65 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // sub title icon
+    const {
+        desktopRangeStyle: subTitleIconSizeDesktop,
+        tabRangeStyle: subTitleIconSizeTab,
+        mobRangeStyle: subTitleIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: SUBTITLE_ICON_SIZE,
+        property: '--zolo-subtitle-icon-size',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: subTitleIconBgDesktop,
+        backgroundStylesTab: subTitleIconBgTab,
+        backgroundStylesMobile: subTitleIconBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: SUBTITLE_ICON_BG,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: subTitleIconMarginDesktop,
+        dimensionStylesTab: subTitleIconMarginTab,
+        dimensionStylesMobile: subTitleIconMarginMob,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_ICON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: subTitleIconPaddingDesktop,
+        dimensionStylesTab: subTitleIconPaddingTab,
+        dimensionStylesMobile: subTitleIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: subTitleIconBorderDesktop,
+        tabBorderStyle: subTitleIconBorderTab,
+        mobBorderStyle: subTitleIconBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: SUBTITLE_ICON_BORDER,
+    });
+
+    const {
+        dimensionStylesDesktop: subTitleIconBorderRadiusDesktop,
+        dimensionStylesTab: subTitleIconBorderRadiusTab,
+        dimensionStylesMobile: subTitleIconBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
     //css style
     const wrapperStylesDesktop = `
   .zolo-block-wrapper.${uniqueId}{
@@ -817,7 +885,7 @@ export default function Style({ props }) {
 `;
 
     const subtitleBadgeStylesDesktop = `
-      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-badge-text {
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo-badge-text {
           ${subTitleBadgeColor ? `color: ${subTitleBadgeColor};` : ''}
           ${subTitleBadgeTypoDesktop}
           ${subTitleBadgeBgDesktop}
@@ -827,10 +895,23 @@ export default function Style({ props }) {
           ${subTitleBadgeBorderRadiusDesktop}
       }
 
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo__display-icon svg {
+          ${subTitleIconSizeDesktop}
+          ${subTitleIconColor ? `fill: ${subTitleIconColor};` : ''}
+      }
+
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo__display-icon {
+          ${subTitleIconBgDesktop}
+          ${subTitleIconMarginDesktop}
+          ${subTitleIconPaddingDesktop}
+          ${subTitleIconBorderDesktop}
+          ${subTitleIconBorderRadiusDesktop}
+      }
+
 `;
 
     const subtitleBadgeStylesTab = `
-        .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-badge-text {
+        .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo-badge-text {
           ${subTitleBadgeTypoTab}
           ${subTitleBadgeBgTab}
           ${subTitleBadgeMarginTab}
@@ -838,10 +919,22 @@ export default function Style({ props }) {
           ${subTitleBadgeBorderTab}
           ${subTitleBadgeBorderRadiusTab}
         }
+
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo__display-icon svg {
+          ${subTitleIconSizeTab}
+      }
+
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo__display-icon {
+          ${subTitleIconBgTab}
+          ${subTitleIconMarginTab}
+          ${subTitleIconPaddingTab}
+          ${subTitleIconBorderTab}
+          ${subTitleIconBorderRadiusTab}
+      }
 `;
 
     const subtitleBadgeStylesMobile = `
-      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-badge-text {
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo-badge-text {
         ${subTitleBadgeTypoMobile}
         ${subTitleBadgeBgMob}
         ${subTitleBadgeMarginMob}
@@ -849,6 +942,18 @@ export default function Style({ props }) {
         ${subTitleBadgeBorderMob}
         ${subTitleBadgeBorderRadiusMob}
       }
+
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo__display-icon svg {
+          ${subTitleIconSizeMob}
+      }
+      
+      .zolo-block-wrapper.${uniqueId}.badge-style-1 .zolo-ah-subtitle-badge-wrap .zolo__display-icon {
+        ${subTitleIconBgMob}
+        ${subTitleIconMarginMob}
+        ${subTitleIconPaddingMob}
+        ${subTitleIconBorderMob}
+        ${subTitleIconBorderRadiusMob}
+    }
 `;
 
     const desktopAllStyle = `

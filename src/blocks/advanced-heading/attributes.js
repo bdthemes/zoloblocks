@@ -53,6 +53,13 @@ import {
     SUBTITLE_BADGE_MARGIN,
     SUBTITE_BADGE_BORDER,
     SUBTITLE_BADGE_BORDER_RADIUS,
+    // Subtitle Icon
+    SUBTITLE_ICON_SIZE,
+    SUBTITLE_ICON_BG,
+    SUBTITLE_ICON_PADDING,
+    SUBTITLE_ICON_MARGIN,
+    SUBTITLE_ICON_BORDER,
+    SUBTITLE_ICON_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -235,6 +242,10 @@ const attributes = {
         type: 'string',
     },
 
+    subTitleIconColor: {
+        type: 'string',
+    },
+
     tptColor: {
         type: 'string',
         default: '',
@@ -301,5 +312,13 @@ const attributes = {
     ...generateDimensionAttributes(SUBTITLE_BADGE_PADDING),
     ...generateBorderAttributies(SUBTITE_BADGE_BORDER),
     ...generateDimensionAttributes(SUBTITLE_BADGE_BORDER_RADIUS),
+
+    // subtitle icon attributes
+    ...generateDimensionAttributes(SUBTITLE_ICON_SIZE),
+    ...generateNormalBGAttributes(SUBTITLE_ICON_BG),
+    ...generateDimensionAttributes(SUBTITLE_ICON_MARGIN),
+    ...generateDimensionAttributes(SUBTITLE_ICON_PADDING),
+    ...generateBorderAttributies(SUBTITLE_ICON_BORDER),
+    ...generateDimensionAttributes(SUBTITLE_ICON_BORDER_RADIUS),
 };
 export default attributes;

@@ -142,3 +142,12 @@ export const SUBTITLE_BADGE_PADDING = 'subTitleBadgePadding';
 export const SUBTITLE_BADGE_MARGIN = 'subTitleBadgeMargin';
 export const SUBTITE_BADGE_BORDER = 'subTitleBadgeBorder';
 export const SUBTITLE_BADGE_BORDER_RADIUS = 'subTitleBadgeBorderRadius';
+
+// sub title ICON
+
+export const SUBTITLE_ICON_SIZE = 'subTitleIconSize';
+export const SUBTITLE_ICON_BG = 'subTitleIconBg';
+export const SUBTITLE_ICON_PADDING = 'subTitleIconPadding';
+export const SUBTITLE_ICON_MARGIN = 'subTitleIconMargin';
+export const SUBTITLE_ICON_BORDER = 'subTitleIconBorder';
+export const SUBTITLE_ICON_BORDER_RADIUS = 'subTitleIconBorderRadius';
