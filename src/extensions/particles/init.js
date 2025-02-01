@@ -16,7 +16,6 @@ const useParticlesInit = (panelProps) => {
     const { particleOptions, preset, colors, speed, dotOpacity } = zoloParticles;
     const { shapes, direction, shapeSize, customOptions } = particleOptions;
     const color = colors && colors.map((item) => item.color);
-
     function createObject(customOptions) {
         if (!customOptions) {
             return false;
@@ -48,6 +47,7 @@ const useParticlesInit = (panelProps) => {
                     move: {
                         ...optionOne?.move,
                         direction: direction || 'none',
+                        speed: speed || optionOne?.move?.speed,
                     },
                 }),
             },
@@ -71,6 +71,7 @@ const useParticlesInit = (panelProps) => {
                 move: {
                     ...optionTwo?.move,
                     direction: direction || 'none',
+                    speed: speed || optionTwo?.move?.speed,
                 },
             },
             //interactivity
@@ -94,6 +95,7 @@ const useParticlesInit = (panelProps) => {
                 move: {
                     ...optionThree?.move,
                     direction: direction || 'none',
+                    speed: speed || optionThree?.move?.speed,
                 },
             },
             //interactivity
@@ -116,6 +118,7 @@ const useParticlesInit = (panelProps) => {
                 move: {
                     ...optionFour?.move,
                     direction: direction || 'none',
+                    speed: speed || optionFour?.move?.speed,
                 },
             },
             //interactivity
@@ -139,6 +142,7 @@ const useParticlesInit = (panelProps) => {
                 move: {
                     ...optionFive?.move,
                     direction: direction || 'none',
+                    speed: speed || optionFive?.move?.speed,
                 },
                 line_linked: {
                     enable: false,
@@ -166,6 +170,7 @@ const useParticlesInit = (panelProps) => {
                 move: {
                     ...optionSix?.move,
                     direction: direction || 'none',
+                    speed: speed || optionSix?.move?.speed,
                 },
             },
         }),

@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            const { particlesId, preset, colors, particleOptions } = particlesData;
+            const { particlesId, preset, colors, particleOptions, speed } = particlesData;
             const { shapes, direction, shapeSize, customOptions } = particleOptions;
-            const color = colors && colors.map((color) => color.color);
 
+            const color = colors && colors.map((color) => color.color);
             function createObject(customOptions) {
                 if (!customOptions) {
                     return false;
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             move: {
                                 ...optionOne?.move,
                                 direction: direction || 'none',
+                                speed: speed || optionOne?.move?.speed,
                             },
                         }),
                     },
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         move: {
                             ...optionTwo?.move,
                             direction: direction || 'none',
+                            speed: speed || optionTwo?.move?.speed,
                         },
                     },
                     //interactivity
@@ -92,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         move: {
                             ...optionThree?.move,
                             direction: direction || 'none',
+                            speed: speed || optionThree?.move?.speed,
                         },
                     },
                     //interactivity
@@ -114,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         move: {
                             ...optionFour?.move,
                             direction: direction || 'none',
+                            speed: speed || optionFour?.move?.speed,
                         },
                     },
                     //interactivity
@@ -137,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         move: {
                             ...optionFive?.move,
                             direction: direction || 'none',
+                            speed: speed || optionFive?.move?.speed,
                         },
                         line_linked: {
                             enable: false,
@@ -164,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         move: {
                             ...optionSix?.move,
                             direction: direction || 'none',
+                            speed: speed || optionSix?.move?.speed,
                         },
                     },
                 }),
