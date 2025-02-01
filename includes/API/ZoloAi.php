@@ -56,7 +56,7 @@ class ZoloAi extends WP_REST_Controller {
         $context = $data['context'] ?? '';
         $request = $data['request'] ?? '';
         // Prepare the API endpoint and payload
-        $api_url = "https://devai.sigmative.com/api/prompt/v2/chat/completions";
+        $api_url = "https://ai.sigmative.com/api/prompt/v1/chat/completions";
         $api_key = $this->get_api_key();
         $payload = [
             'command' => $request,
