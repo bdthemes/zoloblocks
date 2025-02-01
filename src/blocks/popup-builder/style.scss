@@ -23,7 +23,6 @@ body.zolo-popup-fixed {
     &.popup_box {
         display: flex;
         &.zolo-popup-overlay {
-            background-color: rgba(62, 62, 62, 0.7);
             &.frontend {
                 position: fixed;
                 top: 0;
@@ -79,6 +78,10 @@ body.zolo-popup-fixed {
             align-items: flex-end;
             justify-content: right;
         }
+    }
+
+    &.zolo-popup-overlay {
+        background-color: rgba(62, 62, 62, 0.7);
     }
 
     .zolo-popup-inner {
