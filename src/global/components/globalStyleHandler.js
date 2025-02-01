@@ -607,8 +607,8 @@ export const GlobalStyleHanlder = (props) => {
       ${
           widthTypeDesktop !== 'default'
               ? `
-        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),
-        .zolo-frontend :where(.${uniqueId}){
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}):not(.zolo-content-iframe),
+        .zolo-frontend :where(.${uniqueId}):not(.zolo-content-iframe){
         ${widthTypeDesktop == 'full' ? `width: 100vw !important; ` : ''}
         ${widthTypeDesktop == 'inline' ? `width: auto !important; ` : ''}
         ${widthTypeDesktop == 'custom' ? `${customWidthDesktop.replace(';', ' !important;')} ` : ''}
@@ -656,7 +656,7 @@ export const GlobalStyleHanlder = (props) => {
     ${
         widthTypeTab !== 'default'
             ? `
-        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),.zolo-frontend :where(.${uniqueId}){
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}):not(.zolo-content-iframe),.zolo-frontend :where(.${uniqueId}):not(.zolo-content-iframe){
         ${widthTypeTab == 'full' ? `width: 100vw !important; ` : ''}
         ${widthTypeTab == 'inline' ? `width: auto !important; ` : ''}
         ${widthTypeTab == 'custom' ? `${customWidthTab.replace(';', ' !important;')} ` : ''}
@@ -700,7 +700,7 @@ export const GlobalStyleHanlder = (props) => {
     ${
         widthTypeMob !== 'default'
             ? `
-        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}),.zolo-frontend :where(.${uniqueId}){
+        .editor-styles-wrapper .block-editor-block-list__layout.is-root-container :where(.${uniqueId}):not(.zolo-content-iframe),.zolo-frontend :where(.${uniqueId}):not(.zolo-content-iframe){
         ${widthTypeMob == 'full' ? `width: 100vw !important; ` : ''}
         ${widthTypeMob == 'inline' ? `width: auto !important; ` : ''}
         ${widthTypeMob == 'custom' ? `${customWidthMob.replace(';', ' !important;')} ` : ''}
