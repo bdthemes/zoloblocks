@@ -657,7 +657,8 @@ export default function Style({ props }) {
       -webkit-text-stroke-color: ${titleColor || 'rgba(6, 6, 7, 0.919)'};
     }
 
-    .zolo-block-wrapper.${uniqueId}.zolo-text-gradient-color .zolo-ah-title .zolo-ah-main-title {
+    .zolo-block-wrapper.${uniqueId}.zolo-text-gradient-color .zolo-ah-title .zolo-ah-main-title,
+    .zolo-block-wrapper.${uniqueId}.zolo-text-gradient-color .zolo-ah-title .zolo-ah-main-title div {
       ${textGradientDesktop}
     }
 
