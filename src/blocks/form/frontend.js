@@ -53,6 +53,9 @@ function setupFormHandlers(form) {
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    const submitBtn = form.querySelector('.zolo-submit-btn button');
+    
     let valid = pristine.validate();
     if (valid) {
       const formData = new FormData(form);
@@ -84,7 +87,9 @@ function setupFormHandlers(form) {
 
       
       const dataString = JSON.stringify(formattedData);
-    
+      
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
       
       // create an ajax request
       const xhr = new XMLHttpRequest();
@@ -98,6 +103,9 @@ function setupFormHandlers(form) {
               data,
               success,
             } = response;
+
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
 
             if (success) {
               formNotice.innerHTML = data;

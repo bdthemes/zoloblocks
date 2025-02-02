@@ -71,8 +71,10 @@ const Save = (props) => {
                                 'data-action': 'submit',
                             })}
                         >
-                            {btnLabel || __('Submit Now', 'zoloblocks')}
-                            {showBtnIcon && <DisplayZoloIcon icon={icon} />}
+                            <span className="zolo-submit-btn-content">
+                                {btnLabel || __('Submit Now', 'zoloblocks')}
+                                {showBtnIcon && <DisplayZoloIcon icon={icon} />}
+                            </span>
                         </button>
                     </div>
                 </div>
