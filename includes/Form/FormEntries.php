@@ -116,8 +116,18 @@ class FormEntries
     private function generate_form_entries_table($form_data, $form_settings) {
         unset($form_data['formId']);
         unset($form_data['nonce']);
-        $content = '<table width="100%" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" 
+        
+
+           
+        $content = '<table class="form-entry-table"width="100%" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" 
                     style="border: 1px solid #EAF2FA; word-break: break-word;">';
+
+                    $content .= '<style>
+                    table.form-entry-table td {
+                        padding: 14px;
+                        font-size: 14px;
+                    }
+                </style>';
         $content .= "<tbody>";
         
         // Loop through each form field
