@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            const { particlesId, preset, colors, particleOptions } = particlesData;
+            const { particlesId, preset, colors, particleOptions, speed } = particlesData;
             const { shapes, direction, shapeSize, customOptions } = particleOptions;
-            const color = colors && colors.map((color) => color.color);
 
+            const color = colors && colors.map((color) => color.color);
             function createObject(customOptions) {
                 if (!customOptions) {
                     return false;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionOne?.particles.color?.value,
                         },
                         size: {
-                            ...optionSix?.size,
+                            ...optionOne?.particles?.size,
                             value: shapeSize ? shapeSize : optionOne?.particles.size?.value,
                         },
 
@@ -44,8 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         },
                         ...(preset === 'hover_bubble' && {
                             move: {
-                                ...optionOne?.move,
+                                ...optionOne?.particles?.move,
                                 direction: direction || 'none',
+                                speed: speed || optionOne?.particles?.move?.speed,
                             },
                         }),
                     },
@@ -60,15 +61,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionTwo?.particles.color?.value || '#000000',
                         },
                         size: {
-                            ...optionSix?.size,
+                            ...optionTwo?.particles?.size,
                             value: shapeSize ? shapeSize : optionTwo?.particles.size?.value,
                         },
                         shape: {
                             type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                         },
                         move: {
-                            ...optionTwo?.move,
+                            ...optionTwo?.particles?.move,
                             direction: direction || 'none',
+                            speed: speed || optionTwo?.particles?.move?.speed,
                         },
                     },
                     //interactivity
@@ -82,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionThree?.particles.color?.value || '#000000',
                         },
                         size: {
-                            ...optionSix?.size,
+                            ...optionThree?.particles?.size,
                             value: shapeSize ? shapeSize : optionThree?.particles.size?.value,
                         },
                         shape: {
@@ -90,8 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         },
 
                         move: {
-                            ...optionThree?.move,
+                            ...optionThree?.particles?.move,
                             direction: direction || 'none',
+                            speed: speed || optionThree?.particles?.move?.speed,
                         },
                     },
                     //interactivity
@@ -105,15 +108,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionFour?.particles.color?.value || '#000000',
                         },
                         size: {
-                            ...optionSix?.size,
+                            ...optionFour?.particles?.size,
                             value: shapeSize ? shapeSize : optionFour?.particles.size?.value,
                         },
                         shape: {
                             type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                         },
                         move: {
-                            ...optionFour?.move,
+                            ...optionFour?.particles?.move,
                             direction: direction || 'none',
+                            speed: speed || optionFour?.particles?.move?.speed,
                         },
                     },
                     //interactivity
@@ -128,15 +132,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
                         },
                         size: {
-                            ...optionSix?.shapeSize,
+                            ...optionFive?.particles?.shapeSize,
                             value: shapeSize ? shapeSize : optionFive?.particles.size?.value,
                         },
                         shape: {
                             type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
                         },
                         move: {
-                            ...optionFive?.move,
+                            ...optionFive?.particles?.move,
                             direction: direction || 'none',
+                            speed: speed || optionFive?.particles?.move?.speed,
                         },
                         line_linked: {
                             enable: false,
@@ -153,17 +158,18 @@ document.addEventListener('DOMContentLoaded', function () {
                             value: color && color.length > 0 && color[0] !== '' ? color : optionSix?.particles.color?.value || '#000000',
                         },
                         size: {
-                            ...optionSix?.size,
+                            ...optionSix?.particles.size,
                             value: shapeSize ? shapeSize : optionSix?.particles.size?.value,
                         },
 
                         shape: {
                             type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionSix?.particles.shape?.type,
                         },
-                        ...optionSix?.opacity,
+                        ...optionSix?.particles?.opacity,
                         move: {
-                            ...optionSix?.move,
+                            ...optionSix?.particles?.move,
                             direction: direction || 'none',
+                            speed: speed || optionSix?.particles?.move?.speed,
                         },
                     },
                 }),

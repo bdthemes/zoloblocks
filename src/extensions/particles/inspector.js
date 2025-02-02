@@ -281,6 +281,27 @@ const Inspector = ({ panelProps }) => {
                             />
                         </BaseControl>
                         <SimpleRangeControl
+                            label={__('Speed', 'zoloblocks')}
+                            onChange={(v) =>
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        speed: v,
+                                    },
+                                })
+                            }
+                            value={zoloParticles?.speed}
+                            onReset={() =>
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        speed: 0,
+                                    },
+                                })
+                            }
+                            noUnits={true}
+                        />
+                        <SimpleRangeControl
                             label={__('Z Index', 'zoloblocks')}
                             onChange={(v) =>
                                 setAttributes({
