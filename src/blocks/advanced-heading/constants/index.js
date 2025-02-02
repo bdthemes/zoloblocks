@@ -5,7 +5,38 @@ export const BLOCK_PREFIX = 'zolo-advanced-heading';
 export const STYLES = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-0' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-1' },
-    // { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
+];
+
+export const SUB_TITLE_BADGE_STYLES = [
+    { label: __('None', 'zoloblocks'), value: '' },
+    { label: __('Style 1 (Pro)', 'zoloblocks'), value: 'badge-style-1', disabled: true },
+];
+
+export const ZOLO_SUB_TITLE_BADGE_DIRECTION = [
+    {
+        label: 'Left',
+        value: 'zolo-badge-left',
+        icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32" fill="none">
+                <rect x={6} y={14} width={4} height={4} rx="0.5" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={1} y={9} width={30} height={14} rx="0.5" stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M27 16H20" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16 9L16 23" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'zolo-badge-right',
+        icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32" fill="none">
+                <rect width={4} height={4} rx="0.5" transform="matrix(-1 0 0 1 26 14)" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect width={30} height={14} rx="0.5" transform="matrix(-1 0 0 1 31 9)" stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M5 16H12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16 9L16 23" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        ),
+    },
 ];
 
 export const ST_POSITION = [
@@ -103,3 +134,20 @@ export const TPH_Y_OFFSET = 'tphYOffset';
 
 //text gradient color
 export const TEXT_GRADIENT_COLOR = 'textGradientColor';
+
+// sub title badge
+
+export const SUBTITLE_BADGE_BG = 'subTitleBadgeBg';
+export const SUBTITLE_BADGE_PADDING = 'subTitleBadgePadding';
+export const SUBTITLE_BADGE_MARGIN = 'subTitleBadgeMargin';
+export const SUBTITE_BADGE_BORDER = 'subTitleBadgeBorder';
+export const SUBTITLE_BADGE_BORDER_RADIUS = 'subTitleBadgeBorderRadius';
+
+// sub title ICON
+
+export const SUBTITLE_ICON_SIZE = 'subTitleIconSize';
+export const SUBTITLE_ICON_BG = 'subTitleIconBg';
+export const SUBTITLE_ICON_PADDING = 'subTitleIconPadding';
+export const SUBTITLE_ICON_MARGIN = 'subTitleIconMargin';
+export const SUBTITLE_ICON_BORDER = 'subTitleIconBorder';
+export const SUBTITLE_ICON_BORDER_RADIUS = 'subTitleIconBorderRadius';
