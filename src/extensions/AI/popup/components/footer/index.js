@@ -104,7 +104,7 @@ export const Footer = (props) => {
                         </div>
                     </>
                 )}
-                {prompt && !loading && !response && (
+                {prompt && !loading && (
                     <>
                         <Button
                             className="insert-btn generate-btn"
