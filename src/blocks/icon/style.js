@@ -43,7 +43,7 @@ export default function Style({ props }) {
         mobRangeStyle: iconHeightSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'font-size',
+        property: '--zolo-icon-size',
         attributes,
     });
 
@@ -140,7 +140,6 @@ export default function Style({ props }) {
             ${iconDeskTextAlign}
         }
         .${uniqueId} .zolo__display-icon {
-            ${iconHeightSizeDesk}
             ${iconBorderDesktop}
             ${iconBorderRadiusDesk}
             ${iconMarginDesk}
@@ -148,6 +147,11 @@ export default function Style({ props }) {
             ${iconBoxShadow}
             ${iconBgDesk}
         }
+
+        .${uniqueId}.wp-block-zolo-icon.zolo-icon-custom .zolo__display-icon svg{
+            ${iconHeightSizeDesk}
+        }
+
         .${uniqueId} .zolo__display-icon svg {
             fill: ${iconColor};
 

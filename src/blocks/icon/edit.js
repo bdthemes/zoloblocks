@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
@@ -25,11 +25,13 @@ export default function Edit(props) {
         mainIcon,
         iconLink,
         isLinkable,
+        iconSizeVariation,
     } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), iconSizeVariation),
     });
+
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
