@@ -686,27 +686,6 @@ function Inspector(props) {
                                 max={200}
                             />
 
-                            {stylePreset === 'style-preset-2' && (
-                                <>
-                                    <CardDivider />
-                                    <ResRangeControl
-                                        label={__('Horizontal Offset', 'zoloblocks')}
-                                        controlName={QUOTE_ICON_H_OFFSET}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={50}
-                                    />
-
-                                    <ResRangeControl
-                                        label={__('Vertical Offset', 'zoloblocks')}
-                                        controlName={QUOTE_ICON_V_OFFSET}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={50}
-                                    />
-                                </>
-                            )}
-
                             {stylePreset !== 'style-preset-2' && (
                                 <>
                                     <CardDivider />
@@ -735,6 +714,23 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
+
+                            <CardDivider />
+                            <ResRangeControl
+                                label={__('Horizontal Offset', 'zoloblocks')}
+                                controlName={QUOTE_ICON_H_OFFSET}
+                                requiredProps={requiredProps}
+                                min={-50}
+                                max={50}
+                            />
+
+                            <ResRangeControl
+                                label={__('Vertical Offset', 'zoloblocks')}
+                                controlName={QUOTE_ICON_V_OFFSET}
+                                requiredProps={requiredProps}
+                                min={-50}
+                                max={50}
+                            />
                         </ZoloPanelBody>
                     </>
                 }
