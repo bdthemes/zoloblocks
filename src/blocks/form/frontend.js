@@ -24,6 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+const reverseValueToLabel = (value) => {
+  // Replace underscores with spaces, capitalize the first letter of each word
+  return value
+    .replace(/_/g, ' ')  // Replace underscores with spaces
+    .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letter of each word
+}
+
 function setupFormHandlers(form) {
   const formId = form.dataset.formId;
   let formNoticeContainer = form.parentNode.querySelector('.zolo-form-msg');
@@ -57,6 +64,14 @@ function setupFormHandlers(form) {
     const submitBtn = form.querySelector('.zolo-submit-btn button');
 
     let valid = pristine.validate();
+
+    const reverseValueToLabel = (value) => {
+      // Replace underscores with spaces, capitalize the first letter of each word
+      return value
+        .replace(/_/g, ' ')  // Replace underscores with spaces
+        .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letter of each word
+    }
+
     if (valid) {
       const formData = new FormData(form);
       const values = [...formData.entries()];
@@ -73,7 +88,7 @@ function setupFormHandlers(form) {
         }
 
         if (acc[key]) {
-          acc[key] = `${acc[key]}, ${value}`;
+          acc[key] = `${reverseValueToLabel(acc[key])}, ${reverseValueToLabel(value)}`;
         } else {
           acc[key] = value;
         }
