@@ -172,13 +172,12 @@
         align-items: flex-start;
         margin: var(--zolo-label-margin);
         gap: var(--zolo-label-gap);
-
-        .zolo-required {
-            display: inline-block;
-            line-height: 1;
-            color: var(--zolo-required-color);
-            font-size: 0.85rem;
-        }
+    }
+    .zolo-required {
+        display: inline-block;
+        line-height: 1;
+        color: var(--zolo-required-color);
+        font-size: 0.85rem;
     }
 }
 
