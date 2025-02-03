@@ -55,8 +55,7 @@ class ZoloAi extends WP_REST_Controller {
         $data = $request->get_params();
         $context = $data['context'] ?? '';
         $request = $data['request'] ?? '';
-        // Prepare the API endpoint and payload
-        $api_url = "https://ai.sigmative.com/api/prompt/v1/chat/completions";
+        $api_url = $this->get_api_url();
         $api_key = $this->get_api_key();
         $payload = [
             'command' => $request,
@@ -112,5 +111,14 @@ class ZoloAi extends WP_REST_Controller {
      */
     private function get_api_key() {
         return  get_option('zolo_sigmative_api_key');
+    }
+    /**
+     * Retrieve API URL
+     */
+    private function get_api_url() {
+        // if (defined('SIGMATIVE_AI_URL')) {
+        //     return SIGMATIVE_AI_URL;
+        // }
+        return 'https://devai.sigmative.com/api/prompt/v1/generation/chat/completions';
     }
 }
