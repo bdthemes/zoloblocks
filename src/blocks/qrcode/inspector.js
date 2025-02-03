@@ -110,7 +110,7 @@ export default function Inspector(props) {
                                     controlName={QR_CODE_SIZE}
                                     requiredProps={requiredProps}
                                     min={0}
-                                    max={100}
+                                    max={500}
                                 />
 
                                 <SelectControl
