@@ -21,9 +21,10 @@
         "id"
     ],
     "description": "Dynamic post meta for side editor single page in WordPress",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "usesContext": ["postId", "postType"],
+    "ancestor": ["zolo/loop"],
     "example": {
         "attributes": {
             "preview": true
