@@ -422,7 +422,7 @@ function Inspector(props) {
                                             'Please make sure to enter the site key and secret key in the ZoloBlocks settings.',
                                             'zoloblocks'
                                         )}
-                                        <a href="/wp-admin/admin.php?page=zoloblocks" target="_blank">
+                                        <a href="/wp-admin/admin.php?page=zoloblocks#apiSettings" target="_blank">
                                             {' '}
                                             {__('Click here to go to settings.', 'zoloblocks')}
                                         </a>
