@@ -1,7 +1,7 @@
-=== ZoloBlocks – Gutenberg Blocks, Page Builder, Gutenberg Templates & Patterns for Gutenberg Editor ===
+=== ZoloBlocks - WordPress Gutenberg Plugin with Advanced Blocks, Dynamic Content, Templates & Patterns ===
 Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, golam523
 Donate link: http://zoloblocks.com/
-Tags: block-editor, gutenberg blocks, gutenberg plugin, page builder, Gutenberg Templates
+Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.7.1
 Requires PHP: 7.4
@@ -9,7 +9,7 @@ Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Meet [**ZoloBlocks**](https://zoloblocks.com) – the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
+Empowering Gutenberg block editor to help you create WordPress websites with 55+ free Advanced blocks, 300+ patterns, 100+ ready pages and more.
 
 == Description ==
 
