@@ -114,10 +114,6 @@ const attributes = {
         type: 'string',
         default: '',
     },
-    qrCodeSize: {
-        type: 'number',
-        default: 1200,
-    },
     qrCodeLevel: {
         type: 'string',
         default: 'M',

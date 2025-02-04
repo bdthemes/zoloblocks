@@ -66,7 +66,7 @@ export default function Edit(props) {
         <QRCode
             value={qrContent}
             ecLevel={qrCodeLevel}
-            size={qrCodeSize !== 0 ? qrCodeSize : 240}
+            size="1200"
             qrStyle={qrCodeStyle}
             fgColor={codeColor !== '' ? codeColor : '#000'}
             bgColor={backgroundColor !== '' ? backgroundColor : '#fff'}
