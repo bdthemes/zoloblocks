@@ -556,6 +556,20 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
             ${iconImageWidthTab}
         }
+
+        ${
+            preset === 'style-4'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-4 .zolo-counter-count{
+                        ${numberBgTab}
+                        ${numberBgSizeTab}
+                        ${numberPaddingTab}
+                        ${numberBorderTab}
+                        ${numberBorderRadiusTab}
+                    }
+                `
+                : ''
+        }
 	`;
 
     const mobileAllStyle = `
@@ -617,6 +631,21 @@ const Style = ({ props }) => {
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
             ${iconImageWidthMob}
+        }
+
+
+        ${
+            preset === 'style-4'
+                ? `
+                    .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-4 .zolo-counter-count{
+                        ${numberBgMobile}
+                        ${numberBgSizeMobile}
+                        ${numberPaddingMobile}
+                        ${numberBorderMobile}
+                        ${numberBorderRadiusMobile}
+                    }
+                `
+                : ''
         }
     `;
 
