@@ -340,14 +340,14 @@
                 flex-direction: row-reverse;
             }
         }
-        
+
         > span {
             display: inline-flex;
             justify-content: center;
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s ease-in-out;
-    
+
             svg {
                 fill: currentColor;
                 width: 1em;
@@ -358,7 +358,7 @@
 
         &::after,
         &::before {
-            content: " ";
+            content: ' ';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -370,8 +370,8 @@
             border-width: 0;
             border-radius: 50%;
             opacity: 0;
-            -webkit-transition: opacity .3s ease;
-            transition: opacity .3s ease
+            -webkit-transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
         &::before {
@@ -381,22 +381,22 @@
 
         &::after {
             border-top-width: 2px;
-            animation: rotateSpin .55s linear infinite
+            animation: rotateSpin 0.55s linear infinite;
         }
 
-        &.loading{
+        &.loading {
             pointer-events: none;
             position: relative;
             cursor: progress;
 
-            span{
+            span {
                 opacity: 0;
-                transition-delay: 0
+                transition-delay: 0;
             }
 
             &::after {
                 opacity: 1;
-                transition-delay: .15s
+                transition-delay: 0.15s;
             }
         }
     }
@@ -404,7 +404,7 @@
     @keyframes rotateSpin {
         to {
             -webkit-transform: rotate(360deg);
-            transform: rotate(360deg)
+            transform: rotate(360deg);
         }
     }
 
@@ -538,6 +538,7 @@
 .zolo-contact-form [type='radio'] {
     appearance: none;
     background-origin: border-box;
+    box-shadow: none;
 }
 
 .zolo-contact-form [type='checkbox']:checked,
@@ -545,8 +546,15 @@
     background-color: #1c64f2;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-size: 0.55em 0.55em;
     border-color: transparent;
+}
+
+.zolo-contact-form [type='checkbox']:checked {
+    background-size: 0.8em 0.8em;
+}
+
+.zolo-contact-form [type='radio']:checked {
+    background-size: 1em 1em;
 }
 
 /*  form style 3 */
@@ -576,7 +584,8 @@
 
     &.style-3 input,
     &.style-3 select,
-    &.style-3 textarea {
+    &.style-3 textarea,
+    &.style-3 .zolo-select__control {
         background-color: transparent;
         padding-left: 18px;
     }
