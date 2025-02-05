@@ -16,7 +16,6 @@ export default function Save(props) {
         parentClasses,
         // settings
         qrContent,
-        qrCodeSize,
         qrCodeLevel,
         qrCodeStyle,
         codeColor,
@@ -41,7 +40,6 @@ export default function Save(props) {
 
     const options = {
         qrContent,
-        qrCodeSize,
         qrCodeLevel,
         qrCodeStyle,
         codeColor,
