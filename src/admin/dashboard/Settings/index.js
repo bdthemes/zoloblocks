@@ -325,9 +325,9 @@ const Settings = () => {
                                         />
                                     </SettingBox>
                                     <SettingBox
-                                        title={__('Editor Sidebar Open', 'zoloblocks')}
+                                        title={__('Block Selector', 'zoloblocks')}
                                         description={__(
-                                            'Enable this option to provide users easy access to the Gutenberg editor sidebar settings.',
+                                            'Enable this option to allow users to easily access and select blocks within the Gutenberg editor.',
                                             'zoloblocks'
                                         )}
                                     >

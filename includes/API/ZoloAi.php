@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ZoloAI API Class
+ * Zolo AI API Class
  */
 
 namespace Zolo\API;
