@@ -50,7 +50,7 @@ export const QR_LOGO_PADDING_STYLE = [
         value: 'circle',
     },
 ];
-
+export const QR_CODE_SIZE = 'qrCodeSize';
 export const QR_CODE_ALIGN = 'qrCodeAlign';
 export const QR_CODE_BORDER_RADIUS = 'qrCodeBorderRadius';
 export const QR_CODE_BORDER = 'qrCodeBorder';

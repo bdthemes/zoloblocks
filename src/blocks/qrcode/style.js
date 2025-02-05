@@ -19,6 +19,7 @@ const {
 } = window.zoloModule;
 
 import {
+    QR_CODE_SIZE,
     QR_CODE_ALIGN,
     QR_CODE_BORDER,
     QR_CODE_BORDER_RADIUS,
@@ -34,7 +35,7 @@ import {
     BADGE_ICON_SIZE,
 } from './constants/index';
 
-export default function Style({props}) {
+export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
     const { uniqueId, showBadge, badgeStyle, wrapBackgroundColor, badgeBackgroundColor, badgeBackgroundArrowColor, badgeTextColor } =
@@ -183,6 +184,16 @@ export default function Style({props}) {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: qrCodeSizeDesk,
+        tabRangeStyle: qrCodeSizeTab,
+        mobRangeStyle: qrCodeSizeMob,
+    } = generateResRangeStyle({
+        controlName: QR_CODE_SIZE,
+        property: '--zolo-qr-code-size',
+        attributes,
+    });
+
     const desktopAllStyle = `
         ${
             showBadge
@@ -235,6 +246,10 @@ export default function Style({props}) {
             ${qrCodeBorderDesk}
 
         }
+
+        .${uniqueId}.wp-block-zolo-qrcode .zolo-qrcode-wrapper canvas {
+            ${qrCodeSizeDesk}
+        }
     `;
 
     const tabletAllStyle = `
@@ -272,7 +287,11 @@ export default function Style({props}) {
 
         .${uniqueId} .zolo-qrcode-wrapper canvas{
             ${qrCodeBorderRadiusTab}
-              ${qrCodeBorderTab}
+            ${qrCodeBorderTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-qrcode .zolo-qrcode-wrapper canvas {
+            ${qrCodeSizeTab}
         }
     `;
 
@@ -311,6 +330,10 @@ export default function Style({props}) {
         .${uniqueId} .zolo-qrcode-wrapper canvas{
             ${qrCodeBorderRadiusMob}
               ${qrCodeBorderMob}
+        }
+        
+        .${uniqueId}.wp-block-zolo-qrcode .zolo-qrcode-wrapper canvas {
+            ${qrCodeSizeMob}
         }
     `;
 

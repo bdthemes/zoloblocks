@@ -3,6 +3,7 @@ import attributes from './attributes';
 import metadata from './block.json';
 import Edit from './edit';
 import Save from './save';
+import deprecated from './deprecated';
 const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata, {
@@ -10,6 +11,7 @@ registerBlockType(metadata, {
         src: BlockIcons['qrcode'],
     },
     attributes,
+    deprecated,
     edit: Edit,
     save: Save,
 });
