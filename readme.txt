@@ -354,7 +354,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-### 2.2.0 [January 27, 2025]
+### 2.2.0 [February 06, 2025]
 
 **New Features:**
 - SVG support added to the Icon Control.
