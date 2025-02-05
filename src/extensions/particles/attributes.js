@@ -1,7 +1,7 @@
 import { addFilter } from '@wordpress/hooks';
 
 const attributes = addFilter('blocks.registerBlockType', 'zolo/attributes/particles', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,

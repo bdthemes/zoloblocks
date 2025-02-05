@@ -5,7 +5,7 @@ import { addFilter } from '@wordpress/hooks';
 import { TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 const attributes = addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks' && settings.name === 'zolo/container') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single') && settings.name === 'zolo/container') {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
