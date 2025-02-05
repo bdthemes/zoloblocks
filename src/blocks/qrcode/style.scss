@@ -2,10 +2,13 @@
     --zolo-badge-bg-color: #222427;
     --zolo-badge-arrow-color: #222427;
     --zolo-badge-arrow-size: 12px;
+    --zolo-qr-code-size: 240px;
     .zolo-qrcode-wrapper {
         canvas {
             border-radius: 10px;
             vertical-align: middle;
+            width: var(--zolo-qr-code-size) !important;
+            height: var(--zolo-qr-code-size) !important;
         }
     }
     .zolo-qrcode-badge {
@@ -40,16 +43,16 @@
             flex-direction: column;
         }
     }
-   &.zolo-badge-style-1 {
+    &.zolo-badge-style-1 {
         .zolo-qrcode-badge {
             margin-top: 10px;
             font-size: 35px;
             line-height: 1;
             color: #fff;
         }
-   }
-   &.zolo-badge-style-2,
-   &.zolo-badge-style-3 {
+    }
+    &.zolo-badge-style-2,
+    &.zolo-badge-style-3 {
         .zolo-qrcode-badge-wrapper {
             display: inline-flex;
             justify-content: center;
@@ -78,8 +81,8 @@
             left: 50%;
             transform: translateX(-50%);
         }
-   }
-   &.zolo-badge-style-2 {
+    }
+    &.zolo-badge-style-2 {
         .zolo-qrcode-badge {
             margin-top: 20px;
         }
@@ -90,8 +93,8 @@
             border-left: var(--zolo-badge-arrow-size) solid transparent;
             border-right: var(--zolo-badge-arrow-size) solid transparent;
         }
-   }
-   &.zolo-badge-style-3 {
+    }
+    &.zolo-badge-style-3 {
         .zolo-qrcode-badge-wrapper {
             flex-direction: column-reverse;
         }
@@ -104,5 +107,5 @@
             border-style: solid;
             border-color: var(--zolo-badge-arrow-color) transparent transparent transparent;
         }
-   }
+    }
 }

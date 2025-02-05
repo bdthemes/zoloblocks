@@ -9,6 +9,8 @@ import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 
+import { SwiperSlide } from 'swiper/react';
+
 /**
  * Internal depencencies
  */
@@ -27,9 +29,9 @@ const zoloBrandCarousel = createHigherOrderComponent((BlockListBlock) => {
     return (props) => {
         if ('zolo/brand-child' === props.name) {
             return (
-                <div className="swiper-slide">
+                <SwiperSlide>
                     <BlockListBlock {...props} />
-                </div>
+                </SwiperSlide>
             );
         }
 
