@@ -17,7 +17,6 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
-    CONTAINER_BOX_SHADOW_H,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     TITLE_ALIGNMENT,
@@ -76,7 +75,6 @@ const attributes = {
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW_H),
     ...generateDimensionAttributes(CONTAINER_MARGIN),
     ...generateDimensionAttributes(CONTAINER_PADDING),
 
@@ -115,11 +113,6 @@ const attributes = {
         type: 'string',
         default: 'full',
     },
-
-    containerBorderHColor: {
-        type: 'string',
-    },
-
     brandTitle: {
         type: 'string',
         default: 'zoloblocks',
@@ -155,11 +148,11 @@ const attributes = {
     },
     enableLogoLink: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     logoLinkType: {
         type: 'string',
-        default: 'logo__global',
+        default: 'logo__label',
     },
     logoLink: {
         type: 'object',
