@@ -2,15 +2,10 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
-
-import { SwiperSlide } from 'swiper/react';
-
 /**
  * Internal depencencies
  */
@@ -20,26 +15,6 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
-
-/**
- * Filter Slide Item block on Register
- * and pass the block as a child of swiper-slide
- */
-const zoloBrandCarousel = createHigherOrderComponent((BlockListBlock) => {
-    return (props) => {
-        if ('zolo/brand-child' === props.name) {
-            return (
-                <SwiperSlide>
-                    <BlockListBlock {...props} />
-                </SwiperSlide>
-            );
-        }
-
-        return <BlockListBlock {...props} />;
-    };
-}, 'zoloBrandCarousel');
-
-addFilter('editor.BlockListBlock', 'zolo/brand-child', zoloBrandCarousel);
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;
@@ -72,22 +47,10 @@ export default function Edit(props) {
             preset: context['zolo/preset'],
             brandNameVisible: context['zolo/brandNameVisible'],
             brandLabelVisible: context['zolo/brandLabelVisible'],
+            enableLogoLink: context['zolo/enableLogoLink'],
+            logoLinkType: context['zolo/logoLinkType'],
         });
     }, [context]);
-
-    //for preset basic
-    let linkType = useRef('');
-    useEffect(() => {
-        if (enableLogoLink && context['zolo/preset'] === 'zb-brand-basic-style') {
-            linkType.current = logoLinkType;
-            setAttributes({ logoLinkType: 'logo__global' });
-        } else {
-            if (linkType.current) {
-                setAttributes({ logoLinkType: linkType.current });
-                linkType.current = '';
-            }
-        }
-    }, [context['zolo/preset']]);
 
     return (
         <>
@@ -129,8 +92,8 @@ export default function Edit(props) {
                     <a
                         className="zb-brand-global-link"
                         href={logoLink && logoLink.url}
-                        rel={logoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
-                        target={logoLink?.openInNewTab ? '_blank' : undefined}
+                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
+                        target={logoLink && logoLink.openInNewTab && '_blank'}
                         title={brandLabel}
                     >
                         <div className="zb-brand-image">
@@ -239,8 +202,8 @@ export default function Edit(props) {
                                                 {enableLogoLink && logoLinkType === 'logo__title' ? (
                                                     <a
                                                         href={logoLink && logoLink.url}
-                                                        rel={logoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
-                                                        target={logoLink?.openInNewTab ? '_blank' : undefined}
+                                                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
+                                                        target={logoLink && logoLink.openInNewTab && '_blank'}
                                                         title={brandTitle}
                                                     >
                                                         <RichText.Content
@@ -263,8 +226,8 @@ export default function Edit(props) {
                                                 {enableLogoLink && logoLinkType === 'logo__label' ? (
                                                     <a
                                                         href={logoLink && logoLink.url}
-                                                        rel={logoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
-                                                        target={logoLink?.openInNewTab ? '_blank' : undefined}
+                                                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
+                                                        target={logoLink && logoLink.openInNewTab && '_blank'}
                                                         className="zb-brand-title-link has-link"
                                                         title={brandLabel}
                                                     >
