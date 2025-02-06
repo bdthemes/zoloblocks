@@ -6,6 +6,7 @@ import './editor.scss';
 import Save from './save';
 import './style.scss';
 import { variations } from './variations';
+import transforms from './transforms';
 const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata, {
@@ -17,4 +18,5 @@ registerBlockType(metadata, {
     variations,
     edit: Edit,
     save: Save,
+    transforms: transforms
 });
