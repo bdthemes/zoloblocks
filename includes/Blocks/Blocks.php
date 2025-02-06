@@ -633,6 +633,14 @@ return apply_filters('zolo_blocks_list_data', [
         'is_pro' => true,
         'is_child' => true,
     ],
+    'brand-carousel-child' => [
+        'name' => 'brand-carousel-child',
+        'title' => __('Brand Carousel Child', 'zoloblocks-pro'),
+        'categories' => ['post'],
+        'status' => true,
+        'is_pro' => true,
+        'is_child' => true,
+    ],
     'post-tab' => [
         'name' => 'post-tab',
         'title' => __('Post Tab', 'zoloblocks-pro'),
