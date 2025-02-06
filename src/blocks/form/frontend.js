@@ -24,6 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+const reverseValueToLabel = (value) => {
+  // Replace underscores with spaces, capitalize the first letter of each word
+  return value
+    .replace(/_/g, ' ')  // Replace underscores with spaces
+    .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letter of each word
+}
+
 function setupFormHandlers(form) {
   const formId = form.dataset.formId;
   let formNoticeContainer = form.parentNode.querySelector('.zolo-form-msg');
@@ -53,7 +60,18 @@ function setupFormHandlers(form) {
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    const submitBtn = form.querySelector('.zolo-submit-btn button');
+
     let valid = pristine.validate();
+
+    const reverseValueToLabel = (value) => {
+      // Replace underscores with spaces, capitalize the first letter of each word
+      return value
+        .replace(/_/g, ' ')  // Replace underscores with spaces
+        .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letter of each word
+    }
+
     if (valid) {
       const formData = new FormData(form);
       const values = [...formData.entries()];
@@ -65,63 +83,95 @@ function setupFormHandlers(form) {
       values.push(['nonce', zoloSettings.zolo_nonce]);
 
       const formattedData = values.reduce((acc, [key, value]) => {
-        acc[key] = key === 'file' ? value.name : value;
+        if (key === 'file') {
+          value = value?.name;
+        }
+
+        if (acc[key]) {
+          acc[key] = `${reverseValueToLabel(acc[key])}, ${reverseValueToLabel(value)}`;
+        } else {
+          acc[key] = value;
+        }
+
         return acc;
       }, {});
 
+      values.forEach(([name, value]) => {
+        form.querySelectorAll(`[name="${name}"]`).forEach((input) => {
+          const wrapper = input.closest('[data-field-settings]');
+          if (wrapper) {
+            const settings = JSON.parse(wrapper.dataset.fieldSettings);
+            if (!formattedData[name]?.value) {
+              formattedData[name] = {
+                value: formattedData[name],
+                ...settings
+              }
+            }
+          }
+        })
+      });
+
       const dataString = JSON.stringify(formattedData);
 
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+
       // create an ajax request
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', zoloSettings.ajaxurl, true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            const {
-              validationStatus,
-              validationMessage,
-              successStatus,
-              successMessage,
-              failStatus,
-              failMessage,
-              nonceValidationFail,
-            } = response;
-            if (validationStatus || nonceValidationFail) {
-              formNotice.innerHTML = validationMessage;
-              formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
-            }
-            if (successStatus) {
-              formNotice.innerHTML = successMessage;
-              formNoticeContainer.classList.add('zolo-form-success-msg', 'show');
-            }
-            if (failStatus) {
-              formNotice.innerHTML = failMessage;
-              formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
-            }
-
-            // reset the form after submission
-            form.reset();
-
-            // remove the notice after 5 seconds
-            setTimeout(() => {
-              formNotice.innerHTML = '';
-              formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
-            }, 5000);
-
-            // close the notice
-            closeBtn.addEventListener('click', function () {
-              formNotice.innerHTML = '';
-              formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
-            });
-          } else {
-            console.error('Error:', xhr.statusText);
+      fetch(zoloSettings.ajaxurl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          action: 'send_form_data',
+          formData: dataString
+        })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
           }
-        }
-      };
+          return response.json();
+        })
+        .then(data => {
+          const { data: responseData, success } = data;
 
-      xhr.send('action=send_form_data&formData=' + encodeURIComponent(dataString));
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
+
+          if (success) {
+            formNotice.innerHTML = responseData;
+            formNoticeContainer.classList.add('zolo-form-success-msg', 'show');
+          } else {
+            formNotice.innerHTML = responseData;
+            formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
+          }
+
+          // reset the form after submission
+          form.reset();
+
+          // remove the notice after 5 seconds
+          const noticeTimeout = setTimeout(() => {
+            formNotice.innerHTML = '';
+            formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
+          }, 5000);
+
+          // close the notice
+          closeBtn.addEventListener('click', function () {
+            clearTimeout(noticeTimeout);  // Clear the timeout when the close button is clicked
+            formNotice.innerHTML = '';
+            formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        })
+        .finally(() => {
+          // You can use finally for resetting states if needed (e.g., re-enable submit button)
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
+        });
+
     }
   });
 }

@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
+
 
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -63,7 +63,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 {showPhoto && memberPhoto && (
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
@@ -89,7 +89,7 @@ export default function Edit(props) {
                                 )}
                             />
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 )}
             </BlockControls>
             <div {...blockProps}>

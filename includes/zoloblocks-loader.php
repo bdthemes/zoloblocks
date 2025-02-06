@@ -26,7 +26,6 @@ use Zolo\API\TemplatesV1;
 use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
 use Zolo\Form\Form;
-use Zolo\Form\FormAjax;
 use Zolo\Form\Recaptcha;
 use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
@@ -77,7 +76,6 @@ class ZoloBlocks_Loader {
 
         // form
         Form::getInstance();
-        FormAjax::getInstance();
         Recaptcha::getInstance();
 
         // post category image

@@ -6,7 +6,8 @@ import { SelectControl, ToggleControl, TextControl, TextareaControl, RangeContro
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import apiFetch from '@wordpress/api-fetch';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 
 import objAttributes from './attributes';
 
@@ -102,6 +103,17 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    const { zolo_recaptcha_secret_key, zolo_recaptcha_site_key } = useSelect((select) => {
+        const { getEntityRecord } = select('core');
+        const settings = getEntityRecord('root', 'site');
+
+        return {
+            zolo_recaptcha_secret_key: settings.zolo_recaptcha_secret_key,
+            zolo_recaptcha_site_key: settings.zolo_recaptcha_site_key,
+        };
+    }, []);
+    
 
     const onPresetChange = (selected) => {
         setAttributes({
@@ -200,7 +212,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Notification', 'zoloblocks')}
                                 value={formSettings?.notificationType}
-                                options={NOTIFICATION_TYPES}
+                                options={applyFilters('zolo.form.notificationTypes', NOTIFICATION_TYPES)}
                                 onChange={(v) =>
                                     setAttributes({
                                         formSettings: {
@@ -398,7 +410,7 @@ function Inspector(props) {
                                 checked={reCaptcha}
                                 onChange={onChangeRecaptcha}
                             />
-                            {reCaptcha && (
+                            {reCaptcha && (!zolo_recaptcha_site_key || !zolo_recaptcha_secret_key) && (
                                 <>
                                     <p
                                         style={{
@@ -410,7 +422,7 @@ function Inspector(props) {
                                             'Please make sure to enter the site key and secret key in the ZoloBlocks settings.',
                                             'zoloblocks'
                                         )}
-                                        <a href="/wp-admin/admin.php?page=zoloblocks">
+                                        <a href="/wp-admin/admin.php?page=zoloblocks#apiSettings" target="_blank">
                                             {' '}
                                             {__('Click here to go to settings.', 'zoloblocks')}
                                         </a>

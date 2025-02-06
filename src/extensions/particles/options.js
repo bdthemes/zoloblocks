@@ -117,7 +117,7 @@ export const optionTwo = {
             random: true,
             anim: { enable: true, size_min: 1, speed: 1 },
         },
-        move: { enable: true, direction: 'right', out_mode: 'out' },
+        move: { enable: true, direction: 'right', out_mode: 'out', speed: 2 },
     },
         interactivity: {
         detect_on: 'canvas',
@@ -382,7 +382,7 @@ export const optionSix = {
             anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false },
         },
 
-        size: { value: 150, random: true },
+        size: { value: 6, random: true },
         move: {
             enable: true,
             speed: 2,

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 
 import { SelectControl } from '@wordpress/components';
 
@@ -16,7 +16,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
     } = attributes;
 
     return (
-        <Fragment>
+        <>
             <SelectControl
                 label={__('Mask Shape', 'zoloblocks')}
                 value={maskImage}
@@ -63,7 +63,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
                     />
                 </>
             )}
-        </Fragment>
+        </>
     );
 };
 

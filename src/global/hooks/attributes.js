@@ -7,7 +7,7 @@ import classNames from 'classnames';
  * WordPress Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState, Fragment, useRef } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select, useSelect, withSelect } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
@@ -45,7 +45,7 @@ function addAttributes(settings) {
     if (typeof settings.attributes === 'undefined') {
         return settings;
     }
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // if (settings.name === 'zolo/advanced-button') {
         // }
         settings.attributes = {
@@ -385,9 +385,9 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
         }, [deviceType]);
 
         return (
-            <Fragment>
+            <>
                 <BlockEdit {...props} />
-            </Fragment>
+            </>
         );
     };
 }, 'withAdvancedControls');

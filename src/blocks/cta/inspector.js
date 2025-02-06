@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 import { applyFilters } from '@wordpress/hooks';
 
 /**
@@ -236,7 +236,7 @@ function Inspector(props) {
                                     />
                                 </div>
                                 {iconType !== 'none' && (
-                                    <Fragment>
+                                    <>
                                         <ZoloIconPicker
                                             label={__('Select', 'zoloblocks')}
                                             value={icon}
@@ -261,7 +261,7 @@ function Inspector(props) {
                                                 />
                                             </div>
                                         )}
-                                    </Fragment>
+                                    </>
                                 )}
                             </ZoloPanelBody>
                         )}
@@ -295,7 +295,7 @@ function Inspector(props) {
                                     />
                                 </div>
                                 {SiconType !== 'none' && (
-                                    <Fragment>
+                                    <>
                                         <ZoloIconPicker
                                             label={__('Select Icon', 'zoloblocks')}
                                             value={Sicon}
@@ -320,7 +320,7 @@ function Inspector(props) {
                                                 />
                                             </div>
                                         )}
-                                    </Fragment>
+                                    </>
                                 )}
                             </ZoloPanelBody>
                         )}

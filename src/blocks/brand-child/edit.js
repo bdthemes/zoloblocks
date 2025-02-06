@@ -4,11 +4,12 @@
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect, useRef } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
+
+import { SwiperSlide } from 'swiper/react';
 
 /**
  * Internal depencencies
@@ -28,9 +29,9 @@ const zoloBrandCarousel = createHigherOrderComponent((BlockListBlock) => {
     return (props) => {
         if ('zolo/brand-child' === props.name) {
             return (
-                <div className="swiper-slide">
+                <SwiperSlide>
                     <BlockListBlock {...props} />
-                </div>
+                </SwiperSlide>
             );
         }
 
@@ -93,7 +94,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             {brandPhoto && (
                 <BlockControls>
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
@@ -119,7 +120,7 @@ export default function Edit(props) {
                                 )}
                             />
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 </BlockControls>
             )}
             <Style props={props} />

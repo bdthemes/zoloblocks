@@ -16,6 +16,9 @@
     --zolo-quote-icon-padding: clamp(0.625rem, 1.5vw, 1rem);
     --zolo-quote-icon-border-radius: 50%;
 
+    --zolo-quote-icon-v-offset: 0;
+    --zolo-quote-icon-h-offset: 0;
+
     box-sizing: border-box;
     // overflow: hidden;
     .zolo-item {
@@ -96,6 +99,7 @@
         align-items: center;
         justify-content: center;
         box-sizing: content-box;
+        transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
         svg {
             width: var(--zolo-quote-icon-size);
             height: var(--zolo-quote-icon-size);
@@ -107,16 +111,20 @@
 
     // style 1 css start here
     &.default {
+        --zolo-quote-icon-v-offset: -8%;
+        --zolo-quote-icon-h-offset: 40%;
         .zolo-quote-icon {
             left: 0;
-            transform: translate(40%, -8%);
+            transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
         }
     }
     // style 2 css start here
     &.style-1 {
+        --zolo-quote-icon-v-offset: -8%;
+        --zolo-quote-icon-h-offset: -40%;
         .zolo-quote-icon {
             right: 0;
-            transform: translate(-40%, -8%);
+            transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
         }
     }
 
@@ -126,9 +134,6 @@
         --zolo-quote-icon-size: 120px;
         --zolo-img-size: clamp(4rem, 8vw, 6.875rem);
         --zolo-desc-margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
-
-        --zolo-quote-icon-v-offset: 0;
-        --zolo-quote-icon-h-offset: 0;
 
         .zolo-item {
             display: block;
@@ -162,7 +167,7 @@
             position: absolute;
             background-color: transparent;
             padding: 0;
-            transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
+
             svg {
                 fill: var(--zolo-quote-icon-color);
                 width: var(--zolo-quote-icon-size);
@@ -229,7 +234,7 @@
         --arrow-border-radius: 50%;
         --arrow-size: 30px;
         --arrow-h-space: 50%;
-        --arrow-v-space: -20px;
+        --arrow-v-space: 0;
         --zolo-quote-icon-size: 70px;
         --zolo-quote-icon-color: #ff9a00;
         .zolo-item {
@@ -266,7 +271,6 @@
             right: 0;
             padding: 0;
             background: transparent;
-            transform: rotate(-180deg);
             margin: 0 40px -28px 0;
             svg {
                 width: var(--zolo-quote-icon-size);
@@ -311,19 +315,23 @@
             text-align: left;
         }
         &.default {
+            --zolo-quote-icon-v-offset: -10px;
+            --zolo-quote-icon-h-offset: 20px;
             .zolo-item {
                 flex-direction: row-reverse;
             }
             .zolo-quote-icon {
-                transform: translate(20px, -10px);
+                transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
             }
         }
         &.style-1 {
+            --zolo-quote-icon-v-offset: -10px;
+            --zolo-quote-icon-h-offset: -20px;
             .zolo-item {
                 flex-direction: row;
             }
             .zolo-quote-icon {
-                transform: translate(-20px, -10px);
+                transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
             }
         }
         &.style-preset-2 {
@@ -360,13 +368,17 @@
 @media (min-width: 1025px) {
     .wp-block-zolo-review {
         &.default {
+            --zolo-quote-icon-v-offset: -30px;
+            --zolo-quote-icon-h-offset: 30px;
             .zolo-quote-icon {
-                transform: translate(30px, -30px);
+                transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
             }
         }
         &.style-1 {
+            --zolo-quote-icon-v-offset: -30px;
+            --zolo-quote-icon-h-offset: -30px;
             .zolo-quote-icon {
-                transform: translate(-30px, -30px);
+                transform: translate(var(--zolo-quote-icon-h-offset), var(--zolo-quote-icon-v-offset));
             }
         }
     }

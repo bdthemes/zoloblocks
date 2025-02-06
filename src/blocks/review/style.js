@@ -541,8 +541,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    console.log('quoteIconHOffsetDesk', quoteIconHOffsetDesk);
-
     /**
      * All Style Combination
      */
@@ -565,10 +563,6 @@ const Style = ({ props }) => {
                 }
                 .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-meta-content {
                     ${separatorColor ? `border-top-color: ${separatorColor};` : ''}
-                }
-                .${uniqueId}.wp-block-zolo-review.style-preset-2 .zolo-quote-icon {
-                    ${quoteIconHOffsetDesk}
-                    ${quoteIconVOffsetDesk}
                 }
             `
                 : ''
@@ -675,6 +669,11 @@ const Style = ({ props }) => {
             ${arrowVSpaceDesk}
             ${arrowRoundedDesk}
         }
+
+        .${uniqueId}.wp-block-zolo-review.zolo-block .zolo-quote-icon {
+            ${quoteIconHOffsetDesk};
+            ${quoteIconVOffsetDesk};
+        }
 	`;
 
     const tabletAllStyle = `
@@ -759,6 +758,11 @@ const Style = ({ props }) => {
             ${arrowVSpaceTab}
             ${arrowRoundedTab}
         }
+
+        .${uniqueId}.wp-block-zolo-review.zolo-block .zolo-quote-icon {
+            ${quoteIconHOffsetTab};
+            ${quoteIconVOffsetTab};
+        }
 	`;
 
     const mobileAllStyle = `
@@ -842,6 +846,11 @@ const Style = ({ props }) => {
             ${arrowHSpaceMob}
             ${arrowVSpaceMob}
             ${arrowRoundedMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-review.zolo-block .zolo-quote-icon {
+            ${quoteIconHOffsetMob};
+            ${quoteIconVOffsetMob};
         }
 	`;
 

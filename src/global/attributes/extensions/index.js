@@ -16,7 +16,7 @@ import * as typographyObjs from './constants/typoPrefixConstant';
  * Attributes for the visibility extension.
  */
 addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -44,7 +44,7 @@ addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute
 
 
 addFilter('blocks.registerBlockType', 'zolo/attributes/interactions', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -62,7 +62,7 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/interactions', (settings)
  * Attributes for the sticky animation.
  */
 addFilter('blocks.registerBlockType', 'zolo/extension/sticky', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -91,7 +91,7 @@ addFilter('blocks.registerBlockType', 'zolo/extension/sticky', (settings) => {
  *
  */
 addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -162,7 +162,7 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
  *
  */
 addFilter('blocks.registerBlockType', 'zolo/extension/floating', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -251,7 +251,7 @@ addFilter('blocks.registerBlockType', 'zolo/extension/floating', (settings) => {
  * Attributes for the entrance animation.
  */
 addFilter('blocks.registerBlockType', 'zolo/extension/entrance', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         // Add new attribute
         settings.attributes = {
             ...settings.attributes,
@@ -331,7 +331,7 @@ addFilter('blocks.registerBlockType', 'zolo/extension/entrance', (settings) => {
  */
 
 addFilter('blocks.registerBlockType', 'zolo/attributes/tilt', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         settings.attributes = {
             ...settings.attributes,
             zoloTilt: {
@@ -431,7 +431,7 @@ addFilter('blocks.registerBlockType', 'zolo/advancedHeading/addAttribute', (sett
 * Attributes for the backdrop filters.
 */
 addFilter('blocks.registerBlockType', 'zolo/attributes/backdropFilters', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         settings.attributes = {
             ...settings.attributes,
             backdropFilters: {
@@ -458,7 +458,7 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/backdropFilters', (settin
 * Attributes for the background parallax.
 */
 addFilter('blocks.registerBlockType', 'zolo/attributes/backgroundParallax', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         settings.attributes = {
             ...settings.attributes,
             zoloBackgroundParallax: {
@@ -477,7 +477,7 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/backgroundParallax', (set
 * Attributes for the css filters.
 */
 addFilter('blocks.registerBlockType', 'zolo/attributes/cssFilters', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         settings.attributes = {
             ...settings.attributes,
             cssFilters: {
@@ -513,7 +513,7 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/cssFilters', (settings) =
 * Attributes for the Cursor.
 */
 addFilter('blocks.registerBlockType', 'zolo/attributes/cursors', (settings) => {
-    if (settings.category && settings.category == 'zoloblocks') {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
         settings.attributes = {
             ...settings.attributes,
             zoloCursors: {

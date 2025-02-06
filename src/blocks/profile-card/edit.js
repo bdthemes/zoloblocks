@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
+
 
 import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -68,7 +68,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 {photo && (
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
@@ -94,7 +94,7 @@ export default function Edit(props) {
                                 )}
                             />
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 )}
             </BlockControls>
 
@@ -223,7 +223,7 @@ export default function Edit(props) {
                                                                 });
                                                             }}
                                                             placeholder={__('Number', 'zoloblocks')}
-                                                            allowedFormats={['core/bold', 'core/italic']}
+                                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                         />
                                                         <RichText
                                                             tagName="span"
@@ -237,7 +237,7 @@ export default function Edit(props) {
                                                                 });
                                                             }}
                                                             placeholder={__('Label', 'zoloblocks')}
-                                                            allowedFormats={['core/bold', 'core/italic']}
+                                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                         />
                                                     </div>
                                                 );
@@ -302,7 +302,7 @@ export default function Edit(props) {
                                                                     });
                                                                 }}
                                                                 placeholder={__('Number', 'zoloblocks')}
-                                                                allowedFormats={['core/bold', 'core/italic']}
+                                                                allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                             />
                                                             <RichText
                                                                 tagName="span"
@@ -316,7 +316,7 @@ export default function Edit(props) {
                                                                     });
                                                                 }}
                                                                 placeholder={__('Label', 'zoloblocks')}
-                                                                allowedFormats={['core/bold', 'core/italic']}
+                                                                allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                                             />
                                                         </div>
                                                     );

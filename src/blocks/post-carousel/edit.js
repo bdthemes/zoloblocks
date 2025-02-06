@@ -209,7 +209,7 @@ export default function Edit(props) {
     }, [postQuery]);
 
     let content;
-    
+
     if (preview) {
         content = <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zoloblocks')} />;
     } else if (Array.isArray(postResults) && postResults.length === 0) {
@@ -237,7 +237,7 @@ export default function Edit(props) {
                 </div>
                 {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
                 {showNavigation && (
-                    <Fragment>
+                    <>
                         <div
                             className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                         >
@@ -258,7 +258,7 @@ export default function Edit(props) {
                                 </>
                             )}
                         </div>
-                    </Fragment>
+                    </>
                 )}
             </>
         )

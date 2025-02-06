@@ -23,3 +23,18 @@
         opacity: 0;
     }
 }
+
+.wp-block-zolo-form {
+    &.style-3 {
+        .wp-block-zolo-radio-field,
+        .wp-block-zolo-checkbox-field {
+            .zolo-label-wrapper {
+                position: unset;
+                margin: var(--zolo-label-margin);
+                background: var(--zolo-label-bg);
+                padding: 0;
+                backdrop-filter: unset;
+            }
+        }
+    }
+}

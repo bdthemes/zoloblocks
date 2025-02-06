@@ -4,7 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
@@ -62,6 +62,7 @@ export default function Inspector(props) {
         iconBackgroundColor,
         iconBackgroundHoverColor,
         iconLink,
+        iconSizeVariation,
     } = attributes;
 
     const requiredProps = {
@@ -90,7 +91,6 @@ export default function Inspector(props) {
                                         })
                                     }
                                 />
-                                <CardDivider />
                                 <ToggleControl
                                     label={__('Linkable', 'zoloblocks')}
                                     checked={isLinkable}
@@ -111,6 +111,37 @@ export default function Inspector(props) {
                                         }
                                     />
                                 )}
+                                <CardDivider />
+                                <div className="zolo-flex-col-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Size', 'zoloblocks')}
+                                        value={iconSizeVariation}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconSizeVariation: value,
+                                            })
+                                        }
+                                        options={[
+                                            { label: __('S', 'zoloblocks'), value: '' },
+                                            { label: __('M', 'zoloblocks'), value: 'zolo-icon-medium' },
+                                            { label: __('L', 'zoloblocks'), value: 'zolo-icon-large' },
+                                            { label: __('Custom', 'zoloblocks'), value: 'zolo-icon-custom' },
+                                        ]}
+                                    />
+                                </div>
+
+                                {iconSizeVariation === 'zolo-icon-custom' && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={ICON_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                        />
+                                    </>
+                                )}
+
                                 <CardDivider />
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
@@ -136,16 +167,6 @@ export default function Inspector(props) {
                                                     })
                                                 }
                                             />
-
-                                            <ResRangeControl
-                                                label={__('Size', 'zoloblocks')}
-                                                controlName={ICON_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                            />
-
-                                            <CardDivider />
                                             <NormalBGControl controlName={ICON_BG_COLOR} requiredProps={requiredProps} />
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}

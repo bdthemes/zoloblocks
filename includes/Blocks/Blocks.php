@@ -643,14 +643,14 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/post-tab',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'post-query'           => [
-        'name'             => 'post-query',
-        'title'            => __('Post Query', 'zoloblocks'),
+    'loop-builder'           => [
+        'name'             => 'loop-builder',
+        'title'            => __('Loop Builder', 'zoloblocks'),
         'categories'       => ['others'],
         'status'           => true,
         'is_pro'           => true,
         'class'            => '\ZoloPro\Blocks\PostQuery',
-        'demo'             => 'https://demo.zoloblocks.com/post-query',
+        'demo'             => 'https://demo.zoloblocks.com/loop-builder',
         'video'            => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'loop'               => [
@@ -663,14 +663,14 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/loop',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'query-pagination' => [
-        'name'       => 'query-pagination',
-        'title'      => __('Query Pagination', 'zoloblocks'),
+    'loop-pagination' => [
+        'name'       => 'loop-pagination',
+        'title'      => __('Loop Pagination', 'zoloblocks'),
         'categories' => ['others'],
         'status'     => true,
         'is_pro'     => true,
         'class'      => '\ZoloPro\Blocks\QueryPagination',
-        'demo'       => 'https://demo.zoloblocks.com/query-pagination',
+        'demo'       => 'https://demo.zoloblocks.com/loop-pagination',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
     'post-content'        => [

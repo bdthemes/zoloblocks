@@ -13,7 +13,7 @@ import {
     CardDivider,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 import { applyFilters } from '@wordpress/hooks';
 
 /**
@@ -245,7 +245,7 @@ function Inspector(props) {
                                     </>
                                 )}
                                 {enableIcon && iconType === 'icon' && (
-                                    <Fragment>
+                                    <>
                                         <ZoloIconPicker
                                             label={__('Icon', 'zoloblocks')}
                                             value={mainIcon}
@@ -255,7 +255,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
 
                                 {enableIcon && iconType === 'image' && (

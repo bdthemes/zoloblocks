@@ -100,8 +100,10 @@ export default function Edit(props) {
                     <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                         <div className="zolo-submit-btn">
                             <button type="submit" className={iconPosition}>
-                                {btnLabel || __('Submit Now', 'zoloblocks')}
-                                {showBtnIcon && <DisplayZoloIcon icon={icon} />}
+                                <span className="zolo-submit-btn-content">
+                                    {btnLabel || __('Submit Now', 'zoloblocks')}
+                                    {showBtnIcon && <DisplayZoloIcon icon={icon} />}
+                                </span>
                             </button>
                         </div>
                     </div>

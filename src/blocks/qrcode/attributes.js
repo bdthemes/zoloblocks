@@ -8,6 +8,7 @@ const {
 } = window.zoloModule;
 
 import {
+    QR_CODE_SIZE,
     QR_CODE_ALIGN,
     QR_CODE_BORDER_RADIUS,
     QR_CODE_PADDING,
@@ -113,10 +114,6 @@ const attributes = {
         type: 'string',
         default: '',
     },
-    qrCodeSize: {
-        type: 'number',
-        default: 240,
-    },
     qrCodeLevel: {
         type: 'string',
         default: 'M',
@@ -161,6 +158,7 @@ const attributes = {
     badgeBackgroundArrowColor: {
         type: 'string',
     },
+    ...generateResRangeAttributies(QR_CODE_SIZE),
     ...generateBorderAttributies(QR_CODE_BORDER),
     ...generateDimensionAttributes(QR_CODE_BORDER_RADIUS),
     ...generateResAlignmentAttributies(QR_CODE_ALIGN),

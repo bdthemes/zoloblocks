@@ -71,7 +71,7 @@ export default function Edit(props) {
                                 value={label}
                                 onChange={(text) => setAttributes({ label: text })}
                                 placeholder={__('Button Text', 'zoloblocks')}
-                                allowedFormats={[]}
+                                allowedFormats={['zolo/dynamic-content']}
                             />
                         )}
                         {iconType !== 'none' && <DisplayZoloIcon icon={icon} />}

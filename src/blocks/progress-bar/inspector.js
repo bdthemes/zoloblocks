@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 
 /**
  * Internal depencencies
@@ -65,7 +65,7 @@ function Inspector(props) {
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zoloblocks')}
@@ -105,7 +105,7 @@ function Inspector(props) {
                                 step={1}
                             />
                         </ZoloPanelBody>
-                    </Fragment>
+                    </>
                 }
                 styleTab={
                     <>

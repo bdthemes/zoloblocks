@@ -249,8 +249,8 @@ const Inspector = ({ panelProps }) => {
                                 ]}
                             />
                         </div>
-
                         <BaseControl className="zolo-flex-col-control">
+                            <div className="zolo-custom-label">{__('Choose Shape', 'zoloblocks')}</div>
                             <Select2
                                 isMulti
                                 isSearchable={false}
@@ -280,6 +280,27 @@ const Inspector = ({ panelProps }) => {
                                 }))}
                             />
                         </BaseControl>
+                        <SimpleRangeControl
+                            label={__('Speed', 'zoloblocks')}
+                            onChange={(v) =>
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        speed: v,
+                                    },
+                                })
+                            }
+                            value={zoloParticles?.speed}
+                            onReset={() =>
+                                setAttributes({
+                                    zoloParticles: {
+                                        ...zoloParticles,
+                                        speed: 0,
+                                    },
+                                })
+                            }
+                            noUnits={true}
+                        />
                         <SimpleRangeControl
                             label={__('Z Index', 'zoloblocks')}
                             onChange={(v) =>

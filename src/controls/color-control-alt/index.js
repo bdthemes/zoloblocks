@@ -3,7 +3,6 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
 import { getContrastRatio } from '../../helpers/helper';
-import { Fragment } from 'react';
 
 const ColorControlAlt = ({ label, defaultColor = '', color, onChange }) => {
     const [colorPanel, setColorPanel] = useState(false);
@@ -64,7 +63,7 @@ const ColorControlAlt = ({ label, defaultColor = '', color, onChange }) => {
                         }}
                     />
                     {COLORS && (
-                        <Fragment>
+                        <>
                             <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {COLORS.map((paletteColor) => (
@@ -98,17 +97,17 @@ const ColorControlAlt = ({ label, defaultColor = '', color, onChange }) => {
                                     </div>
                                 ))}
                             </div>
-                        </Fragment>
+                        </>
                     )}
 
                     {DEFAULTCOLORS && (
-                        <Fragment>
+                        <>
                             <p className="zolo-theme-color-label">{__('Default Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {DEFAULTCOLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">
                                         <Button
-                                            className={`components-button components-circular-option-picker__option 
+                                            className={`components-button components-circular-option-picker__option
                                                 ${paletteColor.color === color ? 'is-pressed' : ''}
                                             `}
                                             style={{
@@ -138,7 +137,7 @@ const ColorControlAlt = ({ label, defaultColor = '', color, onChange }) => {
                                     </div>
                                 ))}
                             </div>
-                        </Fragment>
+                        </>
                     )}
                 </Popover>
             )}

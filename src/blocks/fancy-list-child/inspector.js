@@ -4,7 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, TextControl, TextareaControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 
 /**
  * Internal depencencies
@@ -110,7 +110,7 @@ function Inspector(props) {
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
-                    <Fragment>
+                    <>
                         <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props} firstOpen={true}>
                             {titleToggle && (
                                 <>
@@ -230,7 +230,7 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-                    </Fragment>
+                    </>
                 }
                 styleTab={
                     <>

@@ -78,7 +78,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 {iconTypeImage && (
-                    <Fragment>
+                    <>
                         <ToolbarGroup>
                             {iconType === 'image' && (
                                 <MediaUpload
@@ -100,7 +100,7 @@ export default function Edit(props) {
                                 />
                             )}
                         </ToolbarGroup>
-                    </Fragment>
+                    </>
                 )}
             </BlockControls>
             <div {...blockProps}>
@@ -200,7 +200,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                             placeholder={__('Read More', 'zoloblocks')}
-                                            allowedFormats={['core/bold', 'core/italic']}
+                                            allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                         />
                                     )}
                                     {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}

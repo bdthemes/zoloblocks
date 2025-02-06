@@ -177,7 +177,7 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             wp_register_script(
-                'zolo-lottie-image',
+                'lottie-player',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lottie/lottie-player.js',
                 [],
                 ZOLO_VERSION,
@@ -185,34 +185,34 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             wp_register_script(
-                'zolo-social-share-script', 
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', 
-                [], 
-                ZOLO_VERSION, 
+                'zolo-social-share-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js',
+                [],
+                ZOLO_VERSION,
                 true
             );
 
             wp_register_script(
-                'zolo-roll-number', 
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js', 
-                [], 
-                ZOLO_VERSION, 
+                'zolo-roll-number',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js',
+                [],
+                ZOLO_VERSION,
                 true
             );
 
             wp_register_script(
-                'zolo-tabs-script', 
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', 
-                [], 
-                ZOLO_VERSION, 
+                'zolo-tabs-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js',
+                [],
+                ZOLO_VERSION,
                 true
             );
 
             wp_register_script(
-                'zolo-popup-script', 
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js', 
-                [], 
-                ZOLO_VERSION, 
+                'zolo-popup-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/popup/popup.js',
+                [],
+                ZOLO_VERSION,
                 true
             );
         }

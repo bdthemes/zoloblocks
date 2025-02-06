@@ -17,10 +17,11 @@ export default function save(props) {
         isLinkable,
         // settings
         mainIcon,
+        iconSizeVariation,
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), iconSizeVariation),
     });
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);

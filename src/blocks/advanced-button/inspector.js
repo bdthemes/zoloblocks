@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+
 import { applyFilters } from '@wordpress/hooks';
 
 /**
@@ -159,7 +159,7 @@ function Inspector(props) {
                                 onChange={(value) => setAttributes({ link: value })}
                             />
                             {iconType !== 'none' && (
-                                <Fragment>
+                                <>
                                     <ZoloIconPicker
                                         label={__('Select Icon', 'zoloblocks')}
                                         value={icon}
@@ -195,7 +195,7 @@ function Inspector(props) {
                                             )}
                                         </>
                                     )}
-                                </Fragment>
+                                </>
                             )}
                         </ZoloPanelBody>
                         {iconType === 'iconText' && preset !== 'button-1' && preset !== 'button-3' && (
@@ -335,7 +335,7 @@ function Inspector(props) {
                                                 }
                                             />
                                             {iconType !== 'none' && (
-                                                <Fragment>
+                                                <>
                                                     <ResRangeControl
                                                         label={__('Size', 'zoloblocks')}
                                                         controlName={ICON_SIZE}
@@ -354,7 +354,7 @@ function Inspector(props) {
                                                             step={1}
                                                         />
                                                     )}
-                                                </Fragment>
+                                                </>
                                             )}
                                             <CardDivider />
 
@@ -434,17 +434,17 @@ function Inspector(props) {
                         {preset !== '' && preset !== 'button-2' && preset !== 'button-10' && preset !== 'button-11' && (
                             <ZoloPanelBody title={__('Preset Style', 'zoloblocks')} panelProps={props} stylePanel={true}>
                                 {preset === 'button-1' && (
-                                    <Fragment>
+                                    <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={PT_BG} noMainBGImg={true} />
-                                    </Fragment>
+                                    </>
                                 )}
                                 {preset === 'button-3' && (
-                                    <Fragment>
+                                    <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={PFTH_BG} noMainBGImg={true} />
-                                    </Fragment>
+                                    </>
                                 )}
                                 {preset === 'button-4' && (
-                                    <Fragment>
+                                    <>
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
@@ -511,10 +511,10 @@ function Inspector(props) {
                                                 </>
                                             }
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
                                 {preset === 'button-5' && (
-                                    <Fragment>
+                                    <>
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={PFV_BORDER}
@@ -526,10 +526,10 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
                                 {preset === 'button-6' && (
-                                    <Fragment>
+                                    <>
                                         <ColorControl
                                             label={__('Shadow Color', 'zoloblocks')}
                                             color={presetSixStyle && presetSixStyle}
@@ -539,10 +539,10 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
                                 {preset === 'button-7' && (
-                                    <Fragment>
+                                    <>
                                         <ColorControl
                                             label={__('Shadow Background', 'zoloblocks')}
                                             color={presetSevenStyles && presetSevenStyles.bgColor}
@@ -567,11 +567,11 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
 
                                 {preset == 'button-8' && (
-                                    <Fragment>
+                                    <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={PSE_BG} noMainBGImg={true} />
                                         <CardDivider />
                                         <BorderControl
@@ -585,7 +585,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                    </Fragment>
+                                    </>
                                 )}
 
                                 {preset == 'button-9' && (

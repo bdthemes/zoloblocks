@@ -95,7 +95,6 @@ import {
     PROFILE_USERNAME,
     BTN_TYPO,
 } from './constants/typoPrefixConstants';
-import { Fragment } from 'react';
 import Sortable from './sortable';
 
 function Inspector(props) {
@@ -445,7 +444,7 @@ function Inspector(props) {
                         )}
                         <ZoloPanelBody title={__('Follow Button', 'zoloblocks')} panelProps={props}>
                             {showFollowButton && (
-                                <Fragment>
+                                <>
                                     <TextControl
                                         label={__('Text', 'zoloblocks')}
                                         onChange={(v) =>
@@ -465,7 +464,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                </Fragment>
+                                </>
                             )}
                         </ZoloPanelBody>
                         {showSocialProfiles && (
