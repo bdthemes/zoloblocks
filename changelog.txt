@@ -1,3 +1,9 @@
+### 2.2.1 [February 06, 2025]
+
+**Fixes:**
+- Fixed Single Block Style Broken Issue fixed.
+- Fixed Brand Grid block Deprecated issue fixed.
+
 ### 2.2.0 [February 06, 2025]
 
 **New Features:**
