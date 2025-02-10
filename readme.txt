@@ -13,15 +13,18 @@ Empowering Gutenberg block editor to help you create WordPress websites with 55+
 
 == Description ==
 
-Meet [**ZoloBlocks**](https://zoloblocks.com) – the best Gutenberg Blocks Editor and Gutenberg page builder plugin for WordPress.
+- Best plugin to enhance your editing experience in block editor (aka Gutenberg editor)
+- 65+ free blocks: Mega menu, Advanced Heading, Accordion, and more
+- Helps you build professional website | No coding required
+- 5 out of 5 ratings on WordPress Repository
+- Premium support with 4.8 customer satisfaction on [**Trustpilot**](https://www.trustpilot.com/review/bdthemes.com)
 
-This isn’t just another WordPress Gutenberg blocks plugin—it’s a game-changer that puts the power of premium page builder plugins at your fingertips. With ZoloBlocks, an ultimate WordPress Editor block plugin, you get **65+ advanced blocks**, **[650+ pattern templates](https://demo.zoloblocks.com/library/#patterns)**, and **20+ extra editor options** for Gutenberg. This amazing Ultimate block plugin for Gutenberg offers detailed customization options and an intuitive user interface that makes designing your website a breeze.
+[**Free Demo**](https://www.trustpilot.com/review/bdthemes.com) | [**ZoloBlocks Pro**](https://www.zoloblocks.com/pricing) | [**Documentation**](https://bdthemes.com/knowledge-base-zoloblocks/)
 
-Whether you are a beginner or an experienced designer, ZoloBlocks empowers you to create professional, responsive websites directly within the WordPress Gutenberg block editor. Say goodbye to coding headaches and cumbersome page builder plugins. Just replace the slow and complicated page-builder plugins with this fine-tuned website-builder plugin.
+# ZoloBlocks - A WordPress Default Editor Plugin for Creating Websites within 15 Minutes!
 
-Not only does ZoloBlocks take Gutenberg’s capabilities to the next level, but also this Gutenberg plugin with dynamic multiple blocks offers an **all-in-one solution** that is easy to use and packs all advanced features.
+ZoloBlocks is a WordPress Gutenberg block editor plugin that empowers you in your web creation process. It delivers you free blocks, pre-made pages, and patterns. With this block plugin, you’ve got everything below for faster website design:
 
-https://www.youtube.com/watch?v=8kBMIL-4PZI
 
 == Key Features of ZoloBlocks ==
 
