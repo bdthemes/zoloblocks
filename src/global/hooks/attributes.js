@@ -50,6 +50,22 @@ function addAttributes(settings) {
         // }
         settings.attributes = {
             ...settings.attributes,
+            globalConfig: {
+                ...settings.attributes.globalConfig,
+                default: {
+                    ...(settings.attributes.globalConfig?.default || {}),
+                    borderHover: {
+                        prefix: 'mainBorderHover',
+                    },
+                    boxShadowHover: {
+                        prefix: 'mainBoxShadowHover',
+                    },
+                    borderRadiusHover: {
+                        prefix: 'mainBorderRadiusHover',
+                    },
+                },
+            },
+
             uniqueId: {
                 type: 'string',
             },
@@ -113,7 +129,7 @@ function addAttributes(settings) {
                 type: 'string',
             },
             contentWidth: {
-                type: 'string'
+                type: 'string',
             },
             position: {
                 type: 'object',
@@ -273,8 +289,14 @@ function addAttributes(settings) {
             ...(settings.attributes.globalConfig?.default?.border &&
                 generateBorderAttributies(settings.attributes.globalConfig.default.border?.prefix || 'mainBorder')),
 
-            ...(settings.attributes.globalConfig?.default?.borderRadius &&
-                generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadius?.prefix || 'mainBorderRadius')),
+            // ...(settings.attributes.globalConfig?.default?.borderHover &&
+            //     generateBorderAttributies(settings.attributes.globalConfig.default.borderHover?.prefix || 'mainBorderHover')),
+
+            // ...(settings.attributes.globalConfig?.default?.borderRadius &&
+            //     generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadius?.prefix || 'mainBorderRadius')),
+
+            ...(settings.attributes.globalConfig?.default?.borderRadiusHover &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadiusHover?.prefix || 'mainBorderRadiusHover')),
 
             ...(settings.attributes.globalConfig?.default?.boxShadow &&
                 generateBoxShadowAttributies(settings.attributes.globalConfig.default.boxShadow?.prefix || 'mainBoxShadow')),
@@ -294,9 +316,9 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         const { attributes, setAttributes, name, clientId } = props;
 
-         if (!name.includes('zolo/')) {
-             return <BlockEdit {...props} />;
-         }
+        if (!name.includes('zolo/')) {
+            return <BlockEdit {...props} />;
+        }
 
         const { uniqueId, parentClasses } = attributes;
         const localStoreKey = uniqueId + 'loaded';

@@ -130,7 +130,6 @@ export const AdvancedOptions = (props) => {
     const tilt = applyFilters('zolo.extensions.controls.tilt', [], block, panelProps);
     const interactions = applyFilters('zolo.extensions.controls.interactions', [], block, panelProps);
 
-
     return (
         <>
             <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
@@ -357,30 +356,66 @@ export const AdvancedOptions = (props) => {
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
                 <ZoloPanelBody title={__('Border', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                    {globalConfig?.border && (
-                        <BorderControl
-                            label={__('Border', 'zoloblocks')}
-                            controlName={globalConfig.border.prefix || 'mainBorder'}
-                            requiredProps={requiredProps}
-                            forBorderRadius={false}
-                        />
-                    )}
+                    <TabPanelControl
+                        normalComponents={
+                            <>
+                                {globalConfig?.border && (
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={globalConfig.border.prefix || 'mainBorder'}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
 
-                    {globalConfig?.borderRadius && (
-                        <ResDimensionsControl
-                            label={__('Border Radius', 'zoloblocks')}
-                            controlName={globalConfig.borderRadius.prefix || 'mainBorderRadius'}
-                            requiredProps={requiredProps}
-                            forBorderRadius={true}
-                        />
-                    )}
-                    {globalConfig?.boxShadow && (
-                        <BoxShadowControl
-                            controlName={globalConfig.boxShadow.prefix || 'mainBoxShadow'}
-                            requiredProps={requiredProps}
-                            forBorderRadius={false}
-                        />
-                    )}
+                                {globalConfig?.boxShadow && (
+                                    <BoxShadowControl
+                                        controlName={globalConfig.boxShadow.prefix || 'mainBoxShadow'}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
+
+                                {globalConfig?.borderRadius && (
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={globalConfig.borderRadius.prefix || 'mainBorderRadius'}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                )}
+                            </>
+                        }
+                        hoverComponents={
+                            <>
+                                {globalConfig?.borderHover && (
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={globalConfig.borderHover.prefix || 'mainBorderHover'}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
+
+                                {globalConfig?.boxShadowHover && (
+                                    <BoxShadowControl
+                                        controlName={globalConfig.boxShadowHover.prefix || 'mainBoxShadowHover'}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
+
+                                {globalConfig?.borderRadiusHover && (
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={globalConfig.borderRadiusHover.prefix || 'mainBorderRadiusHover'}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                )}
+                            </>
+                        }
+                    />
                 </ZoloPanelBody>
             )}
             {globalConfig?.responsiveControls && (

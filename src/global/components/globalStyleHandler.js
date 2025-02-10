@@ -83,6 +83,33 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+    // border hover
+    const {
+        desktopBorderStyle: desktopBorderHoverStyles,
+        tabBorderStyle: tabBorderHoverStyles,
+        mobBorderStyle: mobileBorderHoverStyles,
+    } = generateBorderStyle({
+        controlName: globalConfig?.borderHover?.prefix || 'mainBorderHover',
+        attributes,
+    });
+
+    // box shadow hover
+    const { boxShadowStyle: hoverBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: globalConfig?.boxShadowHover?.prefix || 'mainBoxShadowHover',
+        attributes,
+    });
+
+    // border radius hover
+    const {
+        dimensionStylesDesktop: borderRadiusStylesHoverDesktop,
+        dimensionStylesTab: borderRadiusStylesHoverTab,
+        dimensionStylesMobile: borderRadiusStylesHoverMobile,
+    } = generateDimensionStyle({
+        controlName: globalConfig?.borderRadiusHover?.prefix || 'mainBorderRadiusHover',
+        styleFor: 'border-radius',
+        attributes,
+    });
+
     const {
         // main background
         backgroundStylesDesktop: bgDeskStyle,
@@ -629,10 +656,13 @@ export const GlobalStyleHanlder = (props) => {
         ${transformStylesDesktopHover}
         }
 
+        .parent-${uniqueId}.zolo-block:hover {
+            ${hoverBgDeskStyle || ''}
+            ${desktopBorderHoverStyles || ''}
+            ${hoverBoxShadowStyle || ''}
+            ${borderRadiusStylesHoverDesktop || ''}
+        }
 
-      .parent-${uniqueId}.zolo-block:hover {
-          ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
-      }
 
       .parent-${uniqueId}.zolo-block:after {
           ${overlayDeskStyle ? overlayDeskStyle : ''}
