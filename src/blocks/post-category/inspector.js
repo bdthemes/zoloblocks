@@ -1,10 +1,10 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
     SelectControl,
     ToggleControl,
     RangeControl,
     __experimentalInputControl as InputControl,
-    TextareaControl,
     TextControl,
     CardDivider,
 } from '@wordpress/components';
@@ -62,7 +62,7 @@ const {
     ResGapControl,
     ZoloIconPicker,
 } = window.zoloModule;
-export default function Inspector(props) {
+function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         catQuery,
@@ -672,3 +672,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);

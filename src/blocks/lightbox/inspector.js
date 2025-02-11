@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 /**
  * WordPress dependencies
  */
@@ -20,7 +21,6 @@ const {
     ZoloIconPicker,
     BoxShadowControl,
     HeaderTabs,
-    LinkControl,
     NormalBGControl,
     ImageAvatar,
     ResAlignmentControl,
@@ -34,11 +34,8 @@ import {
     LIGHT_BOX_CONTENT,
     POSTER_HEIGHT,
     BUTTON_ALIGN,
-    POSTER_BG_COLOR,
     POSTER_BORDER,
     POSTER_BORDER_RADIUS,
-    POSTER_PADDING,
-    POSTER_BOX_SHADOW,
     HOVER_POSTER_BG_COLOR,
     HOVER_POSTER_BORDER_RADIUS,
     HOVER_POSTER_BOX_SHADOW,
@@ -65,9 +62,8 @@ import {
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { CardDivider } from '@wordpress/components';
-import { Card } from '@wordpress/components';
 
-export default function Edit(props) {
+function Inspector(props) {
     const { attributes, setAttributes } = props;
 
     const {
@@ -763,3 +759,5 @@ export default function Edit(props) {
         </>
     );
 }
+
+export default memo(Inspector);

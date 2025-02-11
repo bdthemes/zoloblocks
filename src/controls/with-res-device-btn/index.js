@@ -13,10 +13,9 @@ const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noReset
     const closeDevices = useCallback(() => setSwitcherIsOpen(false), []);
 
     const onClickHandler = (_device) => {
-        const editor_type = `core/${zoloParams?.editor_type || 'edit-post'}`;
         setAttributes({ resMode: _device });
         setDevice(_device);
-        dispatch(editor_type).__experimentalSetPreviewDeviceType(_device);
+        dispatch('core/editor').setDeviceType(_device);
         setSwitcherIsOpen(() => !switcherIsOpen);
     };
 

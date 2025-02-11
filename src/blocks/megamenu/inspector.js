@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -152,4 +153,4 @@ const Inspector = (props) => {
     );
 };
 
-export default Inspector;
+export default memo(Inspector);

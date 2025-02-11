@@ -48,7 +48,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, dropcap, textColor, hoverTextColor, linkColor, hoverLinkColor, dropcapColor, hoverLinkBorderColor } = attributes;
+    const { uniqueId, dropcap, textColor, linkColor, hoverLinkColor, dropcapColor, hoverLinkBorderColor } = attributes;
 
     // text margin
     const {
@@ -102,19 +102,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    const {
-        typoStylesDesktop: hoverTextTypoDesk,
-        typoStylesTab: hoverTextTypoTab,
-        typoStylesMobile: hoverTextTypoMob,
-    } = generateTypographyStyles({
-        controlName: HOVER_TEXT_TYPO,
-        prefixConstant: HOVER_TEXT_TYPO,
-        defaultFontSize: '',
-        attributes,
-    });
-
     // link
-
     const {
         typoStylesDesktop: linkTypoDesk,
         typoStylesTab: linkTypoTab,

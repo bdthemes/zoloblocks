@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 /**
  * WordPress dependencies
  */
@@ -89,7 +90,6 @@ function Inspector(props) {
         presetSixStyle,
         presetSevenStyles,
         iconAnimation,
-        buttonTwoBorderColor,
         psStarColor,
         presetBgColor,
     } = attributes;
@@ -620,4 +620,4 @@ function Inspector(props) {
     );
 }
 
-export default Inspector;
+export default memo(Inspector);

@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -47,7 +48,6 @@ import {
     SUBMITBTN_MARGIN,
     SUBMITBTN_BORDER,
 } from './constants';
-import { Card } from '@wordpress/components';
 
 const {
     ResDimensionsControl,
@@ -61,7 +61,8 @@ const {
     TabPanelControl,
     ResRangeControl,
 } = window.zoloModule;
-export default function Inspector(props) {
+
+function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
@@ -702,3 +703,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);

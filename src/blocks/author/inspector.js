@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, RangeControl, TextareaControl, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -67,7 +68,7 @@ const {
     ResGapControl,
     TextShadowControl,
 } = window.zoloModule;
-export default function Inspector(props) {
+function Inspector(props) {
     const { attributes, setAttributes, block } = props;
     const {
         authorQuery,
@@ -553,3 +554,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);

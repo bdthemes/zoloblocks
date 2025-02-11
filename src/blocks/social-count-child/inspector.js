@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -334,4 +335,4 @@ function Inspector(props) {
     );
 }
 
-export default Inspector;
+export default memo(Inspector);

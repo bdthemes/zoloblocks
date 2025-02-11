@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, RichText, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
-import { Button, ToolbarButton, ToolbarGroup, ResizableBox } from '@wordpress/components';
+import { useBlockProps, RichText, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';

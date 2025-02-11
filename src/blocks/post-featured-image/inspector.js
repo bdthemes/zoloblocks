@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, CardDivider, SelectControl, TextControl } from '@wordpress/components';
@@ -29,7 +30,8 @@ const {
     ResRangeControl,
     ResAlignmentControl,
 } = window.zoloModule;
-export default function Inspector(props) {
+
+function Inspector(props) {
     const { attributes, setAttributes, block } = props;
     const {
         resMode,
@@ -187,3 +189,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);

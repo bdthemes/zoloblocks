@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
@@ -713,4 +714,4 @@ const Inspector = (props) => {
     );
 };
 
-export default Inspector;
+export default memo(Inspector);

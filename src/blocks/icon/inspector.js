@@ -1,11 +1,10 @@
+import { memo } from '@wordpress/element';
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
@@ -17,9 +16,6 @@ const {
     ColorControl,
     BorderControl,
     ResDimensionsControl,
-    TextShadowControl,
-    TextStrokeControl,
-    TypographyDropdown,
     TabPanelControl,
     ZoloIconPicker,
     BoxShadowControl,
@@ -27,12 +23,9 @@ const {
     IconicBtnGroup,
     LinkControl,
     NormalBGControl,
-    ImageAvatar,
     ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
-    ImageSizes,
-    RangeResetControl,
 } = window.zoloModule;
 
 import {
@@ -48,7 +41,7 @@ import {
     ICON_BG_COLOR,
 } from './constants';
 
-export default function Inspector(props) {
+function Inspector(props) {
     const { attributes, setAttributes } = props;
 
     const {
@@ -59,8 +52,6 @@ export default function Inspector(props) {
         iconColor,
         iconHover,
         isLinkable,
-        iconBackgroundColor,
-        iconBackgroundHoverColor,
         iconLink,
         iconSizeVariation,
     } = attributes;
@@ -235,3 +226,5 @@ export default function Inspector(props) {
         </>
     );
 }
+
+export default memo(Inspector);

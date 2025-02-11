@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 /**
  * WordPress dependencies
  */
@@ -316,4 +317,4 @@ function Inspector(props) {
     );
 }
 
-export default Inspector;
+export default memo(Inspector);

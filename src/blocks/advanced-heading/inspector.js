@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { Button, SelectControl, TextControl, ToggleControl, BaseControl, CardDivider } from '@wordpress/components';
@@ -20,10 +21,8 @@ const {
     TextGradientControl,
     IconicBtnGroup,
     AdvancedOptions,
-    TabPanelControl,
     ZoloPanelBody,
     ImageAvatar,
-    BackgroundControl,
     ZoloIconPicker,
     NormalBGControl,
 } = window.zoloModule;
@@ -838,4 +837,4 @@ const Inspector = (props) => {
     );
 };
 
-export default Inspector;
+export default memo(Inspector);

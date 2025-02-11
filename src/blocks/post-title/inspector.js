@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -217,4 +218,4 @@ function Inspector(props) {
     );
 }
 
-export default Inspector;
+export default memo(Inspector);

@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, CardDivider, SelectControl } from '@wordpress/components';
@@ -11,11 +12,6 @@ import {
     //title
     TITLE_MARGIN,
     POST_TITLE_ANIMATION,
-    //thumbnail
-    THUMBNAIL_HEIGHT,
-    THUMBNAIL_BORDER,
-    THUMBNAIL_BRADIUS,
-    THUMBNAIL_BOX_SHADOW,
     //submit btn
     BTN_PADDING,
     BTN_BORDER_RADIUS,
@@ -23,27 +19,22 @@ import {
     BTN_BORDER,
 } from './constants';
 
-import { THUMBNAIL_SIZE } from '@/global/constants';
-
 const {
     ResDimensionsControl,
     BorderControl,
-    BoxShadowControl,
     HeaderTabs,
     ColorControl,
     TypographyDropdown,
     AdvancedOptions,
     ZoloPanelBody,
     TabPanelControl,
-    ResRangeControl,
-    NormalBGControl,
     ZoloIconPicker,
 } = window.zoloModule;
-export default function Inspector(props) {
+
+function Inspector(props) {
     const { attributes, setAttributes, block } = props;
     const {
         resMode,
-        showImage,
         showTitle,
         postTitleAnimation,
         titleAnimationTypeBgColor,
@@ -52,8 +43,6 @@ export default function Inspector(props) {
         selectedTaxonomy,
         previousPost,
         nextPost,
-        //thumbnail
-        thumbnailSize,
         //title
         titleColor,
         titleHoverColor,
@@ -74,9 +63,6 @@ export default function Inspector(props) {
     };
 
     const taxonomiesArray = GET_TAXONOMIEX(zoloParams.get_taxonomies);
-    // css filter
-    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
-    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -90,11 +76,6 @@ export default function Inspector(props) {
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>
-                            {/* <ToggleControl
-                                label={__('Post Image', 'zoloblocks')}
-                                checked={showImage}
-                                onChange={(showImage) => setAttributes({ showImage })}
-                            /> */}
                             <ToggleControl
                                 label={__('Post Title', 'zoloblocks')}
                                 checked={showTitle}
@@ -156,62 +137,7 @@ export default function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {/* {showImage && (
-                            <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                                <ResRangeControl
-                                    label={__('Size', 'zoloblocks')}
-                                    controlName={THUMBNAIL_HEIGHT}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={300}
-                                    step={1}
-                                />
-
-                                <SelectControl
-                                    label={__('Resolution', 'zoloblocks')}
-                                    value={thumbnailSize}
-                                    options={THUMBNAIL_SIZE}
-                                    onChange={(thumbnailSize) => setAttributes({ thumbnailSize })}
-                                />
-
-                                <CardDivider />
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={THUMBNAIL_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zoloblocks')}
-                                    controlName={THUMBNAIL_BRADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <BoxShadowControl
-                                    controlName={THUMBNAIL_BOX_SHADOW}
-                                    requiredProps={requiredProps}
-                                    enableTransition={false}
-                                />
-                                {cssFilters && cssFilters.length > 0 && (
-                                    <>
-                                        <TabPanelControl
-                                            options={[
-                                                {
-                                                    value: 'normal',
-                                                    label: __('Normal', 'zoloblocks'),
-                                                },
-                                                {
-                                                    value: 'hover',
-                                                    label: __('Hover', 'zoloblocks'),
-                                                },
-                                            ]}
-                                            normalComponents={<>{cssFilters}</>}
-                                            hoverComponents={<>{cssFiltersHover}</>}
-                                        />
-                                    </>
-                                )}
-                            </ZoloPanelBody>
-                        )} */}
-
+                        
                         {showTitle && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
@@ -381,3 +307,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);

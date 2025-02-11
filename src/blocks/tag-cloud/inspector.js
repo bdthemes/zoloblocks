@@ -1,3 +1,4 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -6,7 +7,6 @@ import objAttributes from './attributes';
 import { NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import QuerySettings from './query-settings';
 import {
-    PRESETS,
     COLUMNS_GAP,
     COUNT_PADDING,
     COUNT_BORDER,
@@ -34,12 +34,11 @@ const {
     ZoloPanelBody,
     ResGapControl,
 } = window.zoloModule;
-export default function Inspector(props) {
+
+function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
-        catQuery,
         resMode,
-        preset,
         showCount,
         nameColor,
         nameHoverColor,
@@ -50,6 +49,7 @@ export default function Inspector(props) {
         tagCloudPro,
         itemHoverOpacity,
     } = attributes;
+
     const { enableMultipleBG } = tagCloudPro ?? {};
     const requiredProps = {
         resMode,
@@ -278,3 +278,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);

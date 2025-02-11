@@ -1,14 +1,13 @@
+import { memo } from '@wordpress/element';
 /**
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import {
     ToggleControl,
-    BaseControl,
     SelectControl,
     CardDivider,
     __experimentalInputControl as InputControl,
-    __experimentalHeading as Heading,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -491,4 +490,4 @@ function Inspector(props) {
         </InspectorControls>
     );
 }
-export default Inspector;
+export default memo(Inspector);

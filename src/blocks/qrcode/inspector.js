@@ -1,8 +1,9 @@
+import { memo } from '@wordpress/element';
 /**
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button, TextControl } from '@wordpress/components';
+import { SelectControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
@@ -46,8 +47,8 @@ import {
 
 import { BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
-export default function Inspector(props) {
-    const { attributes, setAttributes, block } = props;
+function Inspector(props) {
+    const { attributes, setAttributes } = props;
 
     const {
         resMode,
@@ -363,3 +364,5 @@ export default function Inspector(props) {
         </>
     );
 }
+
+export default memo(Inspector);

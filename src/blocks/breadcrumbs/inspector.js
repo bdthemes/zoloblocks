@@ -1,12 +1,11 @@
+import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, TextControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 import { ITEM_TYPOGRAPHY, HOME_TYPOGRAPHY, CURRENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import {
-    PRESETS,
     ROW_ALIGNMENT,
     COLUMNS_GAP,
     //item
@@ -16,8 +15,6 @@ import {
     ITEM_PADDING,
     ITEM_SHADOW,
     ITEM_HOVER_BG,
-    ITEM_HOVER_BORDER_RADIUS,
-    ITEM_HOVER_PADDING,
     ITEM_HOVER_SHADOW,
     //home
     HOME_BG,
@@ -26,8 +23,6 @@ import {
     HOME_PADDING,
     HOME_SHADOW,
     HOME_HOVER_BG,
-    HOME_HOVER_BORDER_RADIUS,
-    HOME_HOVER_PADDING,
     HOME_HOVER_SHADOW,
     HOME_ICON_SPACE,
     HOME_ICON_SIZE,
@@ -37,10 +32,6 @@ import {
     CURRENT_BORDER_RADIUS,
     CURRENT_PADDING,
     CURRENT_SHADOW,
-    CURRENT_HOVER_BG,
-    CURRENT_HOVER_BORDER_RADIUS,
-    CURRENT_HOVER_PADDING,
-    CURRENT_HOVER_SHADOW,
     //separator
     SEP_SIZE,
     SEP_BG,
@@ -50,8 +41,6 @@ import {
     SEP_MARGIN,
     SEP_SHADOW,
     SEP_HOVER_BG,
-    SEP_HOVER_BORDER_RADIUS,
-    SEP_HOVER_PADDING,
     SEP_HOVER_SHADOW,
     HOME_BTN_OPTIONS,
 } from './constants';
@@ -69,17 +58,16 @@ const {
     ZoloPanelBody,
     ResGapControl,
     ResAlignmentControl,
-    TabDynamicControl,
     TabPanelControl,
     ZoloIconPicker,
     ResRangeControl,
     IconicBtnGroup,
 } = window.zoloModule;
-export default function Inspector(props) {
+
+function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        preset,
         showSeparator,
         separatorIcon,
         showHome,
@@ -562,3 +550,5 @@ export default function Inspector(props) {
         </InspectorControls>
     );
 }
+
+export default memo(Inspector);
