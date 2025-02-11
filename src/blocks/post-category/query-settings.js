@@ -2,10 +2,12 @@ import { SelectControl, __experimentalInputControl as InputControl, TextControl 
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { CAT_ORDER_BY } from './constants';
-
-const { Select2AjaxControl } = window.zoloModule;
+import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
+import { useSelect } from '@wordpress/data';
 
 const QuerySettings = ({ attributes, setAttributes }) => {
+    const { ZoloAsyncSelect } = window.zoloModule;
     const { catQuery } = attributes;
     const allTaxonomyList = zoloParams.get_taxonomies;
     let tpgAllTaxonomies = new Set();
@@ -24,6 +26,35 @@ const QuerySettings = ({ attributes, setAttributes }) => {
     }
 
     let tpgAllTaxonomiesArray = [...tpgAllTaxonomies];
+
+    const { taxonomy } = useSelect((select) => {
+        const { getTaxonomy } = select('core');
+        return {
+            taxonomy: getTaxonomy(catQuery?.catTaxonomy || 'category'),
+        };
+    }, [catQuery.catTaxonomy]);
+
+    const loadTerms = async (inputValue) => {
+        if( taxonomy?.rest_base ) {
+            const path = addQueryArgs(`/wp/v2/${taxonomy?.rest_base}`, {
+                search: inputValue,
+            });
+    
+            try {
+                const response = await apiFetch({ path });
+                return response.map((term) => {
+                    return {
+                        value: term.id,
+                        label: term.name,
+                    };
+                });
+            } catch (error) {
+                return [];
+            }
+        }
+
+        return [];
+    };
 
     return (
         <>
@@ -49,17 +80,15 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 options={tpgAllTaxonomiesArray}
             />
 
-            <div className="zolo-flex-col-control">
-                <Select2AjaxControl
-                    label={__('Exclude', 'zoloblocks-pro')}
-                    placeholder={__('Search...', 'zoloblocks-pro')}
-                    sourceName="taxonomy"
-                    sourceType={catQuery.catTaxonomy || 'category'}
-                    isMulti={true}
-                    value={catQuery?.catExclude || []}
-                    onChange={(catExclude) => setAttributes({ catQuery: { ...catQuery, catExclude } })}
-                />
-            </div>
+            <ZoloAsyncSelect
+                key={catQuery?.catTaxonomy}
+                options={loadTerms}
+                label={__('Exclude', 'zoloblocks-pro')}
+                placeholder={__('Search...', 'zoloblocks-pro')}
+                isMulti={true}
+                value={catQuery?.catExclude || []}
+                onChange={(catExclude) => setAttributes({ catQuery: { ...catQuery, catExclude } })}
+            />
 
             <TextControl
                 label={__('Parent', 'zoloblocks')}

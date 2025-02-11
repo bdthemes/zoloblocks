@@ -1,9 +1,8 @@
 import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, RangeControl, TextareaControl, BaseControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
-import Select2 from 'react-select';
 import objAttributes from './attributes';
 import { NAME_TYPOGRAPHY, ROLE_TYPOGRAPHY, DESC_TYPOGRAPHY, COUNT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import QuerySettings from './query-settings';
@@ -27,7 +26,6 @@ import {
     AVATAR_SIZE,
     AVATAR_IMG_SIZE,
     AVATAR_IMG_H_SIZE,
-    AVATAR_MASK,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
     AVATAR_SHADOW,
@@ -51,24 +49,28 @@ import {
 } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
-const {
-    ResAlignmentControl,
-    ResRangeControl,
-    ResCounterControl,
-    ResDimensionsControl,
-    NormalBGControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    TabPanelControl,
-    ColorControl,
-    TypographyDropdown,
-    AdvancedOptions,
-    ZoloPanelBody,
-    ResGapControl,
-    TextShadowControl,
-} = window.zoloModule;
+
 function Inspector(props) {
+
+    const {
+        ResAlignmentControl,
+        ResRangeControl,
+        ResCounterControl,
+        ResDimensionsControl,
+        NormalBGControl,
+        BorderControl,
+        BoxShadowControl,
+        HeaderTabs,
+        TabPanelControl,
+        ColorControl,
+        TypographyDropdown,
+        AdvancedOptions,
+        ZoloPanelBody,
+        ResGapControl,
+        TextShadowControl,
+        ZoloReactSelect,
+    } = window.zoloModule;
+
     const { attributes, setAttributes, block } = props;
     const {
         authorQuery,
@@ -167,7 +169,7 @@ function Inspector(props) {
                             />
                             {showSocialLink && (
                                 <BaseControl label={__('Social Links', 'zoloblocks')} className="zolo-flex-col-control">
-                                    <Select2
+                                    <ZoloReactSelect
                                         classNamePrefix="zolo-select"
                                         options={authorLinks}
                                         value={socialLinks}

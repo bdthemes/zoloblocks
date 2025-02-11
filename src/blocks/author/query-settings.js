@@ -2,13 +2,32 @@ import { SelectControl, __experimentalInputControl as InputControl, BaseControl,
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { ORDER_BY, USER_ROLE } from './constants';
-import Select2 from 'react-select';
+import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
 
-const { Select2AjaxControl } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
+    const { ZoloAsyncSelect, ZoloReactSelect } = window.zoloModule;
     const { authorQuery } = attributes;
 
+    const loadUsers = async (inputValue) => {
+        const path = addQueryArgs('/wp/v2/users', {
+            search: inputValue,
+        })
+
+        try {
+            const response = await apiFetch({ path });
+
+            return response.map((user) => {
+                return {
+                    value: user.id,
+                    label: user.name,
+                };
+            });
+        } catch (error) {
+            return [];
+        }
+    }
     return (
         <>
             <InputControl
@@ -27,8 +46,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
             <CardDivider />
 
             <BaseControl label={__('Role', 'zoloblocks')} className="zolo-flex-col-control">
-                <Select2
-                    classNamePrefix="zolo-select"
+                <ZoloReactSelect
                     options={USER_ROLE}
                     value={authorQuery.role}
                     onChange={(role) => setAttributes({ authorQuery: { ...authorQuery, role } })}
@@ -38,14 +56,13 @@ const QuerySettings = ({ attributes, setAttributes }) => {
             </BaseControl>
 
             <div className="zolo-flex-col-control">
-                <Select2AjaxControl
+                <ZoloAsyncSelect
                     label={__('Exclude', 'zoloblocks')}
                     placeholder={__('Search...', 'zoloblocks')}
-                    sourceName="user"
-                    sourceType=""
                     isMulti={true}
                     value={authorQuery?.exclude || []}
                     onChange={(exclude) => setAttributes({ authorQuery: { ...authorQuery, exclude } })}
+                    options={loadUsers}
                 />
             </div>
 
