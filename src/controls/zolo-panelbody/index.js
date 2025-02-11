@@ -22,16 +22,22 @@ const ZoloPanelBody = ({
               ? selectedStylePanel
               : selectedExtraPanel;
 
-    const handleToggle = (value) => {
-        if (value === true) {
+    // Handle toggle panel
+    const handleToggle = () => {
+        const panelKey = title.replace(' ', '_').toLowerCase();
+        if (firstOpen && panelName === 'first') {
             setAttributes({
-                [panelAttribute]: title.replace(' ', '_').toLowerCase(),
+                [panelAttribute]: '',
+            });
+        } else {
+            setAttributes({
+                [panelAttribute]: panelName === panelKey ? '' : panelKey,
             });
         }
     };
 
     const isOpened = panelName === title.replace(' ', '_').toLowerCase() || (firstOpen && panelName === 'first');
-    
+
     return (
         <PanelBody
             title={title}

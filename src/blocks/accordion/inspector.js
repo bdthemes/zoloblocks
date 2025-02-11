@@ -2,14 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-    ToggleControl,
-    BaseControl,
-    SelectControl,
-    CardDivider,
-    __experimentalInputControl as InputControl,
-    __experimentalHeading as Heading,
-} from '@wordpress/components';
+import { CardDivider, __experimentalInputControl as InputControl, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -35,38 +28,38 @@ import objAttributes from './attributes';
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 import {
-    AC_CONTAINER_BORDER,
-    AC_CONTAINER_BORDER_RADIUS,
-    AC_CONTAINER_BG,
-    AC_CONTAINER_BOX_SHADOW,
-    AC_CONTAINER_PADDING,
-    AC_CONTAINER_MARGIN,
-    ICONTAINER_BG,
-    ICONTAINER_HBG,
-    ICONTAINER_PADDING,
-    ICONTAINER_BORDER,
-    ICONTAINER_BRADIUS,
-    ICON_SIZE,
-    AC_HEADER_BORDER,
-    AC_HEADER_BORDER_RADIUS,
-    AC_HEADER_BG,
-    AC_HEADER_HBG,
-    AC_HEADER_PADDING,
-    AC_HEADER_MARGIN,
+    AAC_BODY_BG,
+    AAC_HEADER_BG,
+    AC_BODY_BG,
     AC_BODY_BORDER,
     AC_BODY_BORDER_RADIUS,
-    AC_BODY_BG,
-    AC_BODY_PADDING,
     AC_BODY_MARGIN,
-    AAC_HEADER_BG,
-    AAC_BODY_BG,
+    AC_BODY_PADDING,
+    AC_CONTAINER_BG,
+    AC_CONTAINER_BORDER,
+    AC_CONTAINER_BORDER_RADIUS,
+    AC_CONTAINER_BOX_SHADOW,
+    AC_CONTAINER_MARGIN,
+    AC_CONTAINER_PADDING,
+    AC_HEADER_BG,
+    AC_HEADER_BORDER,
+    AC_HEADER_BORDER_RADIUS,
+    AC_HEADER_HBG,
+    AC_HEADER_MARGIN,
+    AC_HEADER_PADDING,
     AICONTAINER_BG,
-    PRESETS,
     ANIMATED_BORDER_SIZE,
+    ICONTAINER_BG,
+    ICONTAINER_BORDER,
+    ICONTAINER_BRADIUS,
+    ICONTAINER_HBG,
+    ICONTAINER_PADDING,
+    ICON_SIZE,
+    PRESETS,
 } from './constants';
 
-import { HEADING } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
+import { HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
