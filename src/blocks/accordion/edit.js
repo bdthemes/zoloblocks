@@ -3,7 +3,7 @@
  */
 import { useBlockProps, BlockControls, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
-import { Button, ToolbarButton, ToolbarGroup, Spinner } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 

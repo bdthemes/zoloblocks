@@ -20,7 +20,7 @@ export const defaultDeviceList = [
     },
     {
         label: __('Mobile', 'zoloblocks'),
-        value: '768px',
+        value: '767px',
         slug: 'Mobile',
         identifier: 'mobile',
         icon: mobile,

@@ -72,7 +72,11 @@ const Edit = (props) => {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
+            {
+                uniqueId && (
+                    <Style props={{ attributes, setAttributes }} />
+                )
+            }
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />

@@ -579,12 +579,21 @@ class ZoloHelpers {
         if (isset($style['desktop']) && strlen($style['desktop']) > 0) {
             $css .= $style['desktop'];
         }
-        if (isset($style['tab']) && strlen($style['tab']) > 0) {
+        //TODO: Remove this in the future version
+        if (isset($style['tab']) && strlen($style['tab']) > 0 && !isset($style['tablet'])) {
             $css .= sprintf(
                 '@media all and (max-width: 1024px) {%1$s}',
                 $style['tab']
             );
         }
+
+        if (isset($style['tablet']) && strlen($style['tablet']) > 0) {
+            $css .= sprintf(
+                '@media all and (max-width: 1024px) {%1$s}',
+                $style['tablet']
+            );
+        }
+        
         if (isset($style['mobile']) && strlen($style['mobile']) > 0) {
             $css .= sprintf(
                 '@media all and (max-width: 767px) {%1$s}',

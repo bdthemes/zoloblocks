@@ -77,6 +77,7 @@ export { default as LottiePreview } from '../helpers/lottiePreview';
 export { default as usePanelProps } from '../helpers/use-panel-props';
 export { defaultDeviceList } from '../helpers/default-device-list';
 export { default as useDeviceType } from '../helpers/use-device-type';
+export { default as useDeviceList } from '../helpers/use-device-list';
 
 export {
     DynamicTag,
