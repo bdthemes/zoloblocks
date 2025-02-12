@@ -320,7 +320,7 @@ const ApiSettings = () => {
                         label={__('API Key', 'zoloblocks')}
                         onChange={(value) => setZoloaiAPIKey(value)}
                         value={zoloaiAPIKey}
-                        placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+                        placeholder="AbcdeF1GhIJkLMNOpQrSTUvWXyZU2VjdXJlL0FjY2Vzcy9Ub2tlbi9Gb3IvU2FmZVBsYXRmbJtL1Byb2plY3RX"
                     />
                 </SettingPanel>
                 <SettingPanel
