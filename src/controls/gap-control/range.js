@@ -13,6 +13,13 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
         });
     }, [isLinked]);
 
+    // useEffect(() => {
+    //   setAttributes({
+    //     [rowGapAttr]: gap,
+    //     [colGapAttr]: gap,
+    //   });
+    // },[]);
+
     return (
         <div className="zb-dimension-container zolo-gap-control">
             <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
@@ -23,6 +30,8 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                             onChange={(value) =>
                                 setAttributes({
                                     [gapAttr]: value,
+                                    [rowGapAttr]:value,
+                                    [colGapAttr]:value
                                 })
                             }
                             max={max || 100}
@@ -32,24 +41,25 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                         <>
                             <div className="input-wrap">
                                 <RangeControl
+                                  className="zolo-flex-col-control"
+                                  label={__('Column', 'zoloblocks')}
+                                  value={colGap}
+                                  onChange={(v) =>
+                                    setAttributes({
+                                      [colGapAttr]: v,
+                                      [gapAttr]:v
+                                    })
+                                  }
+                                  min={0}
+                                  max={max || 100}
+                                />
+                                <RangeControl
                                     className="zolo-flex-col-control"
                                     label={__('Row', 'zoloblocks')}
                                     value={rowGap}
                                     onChange={(v) =>
                                         setAttributes({
-                                            [rowGapAttr]: v,
-                                        })
-                                    }
-                                    min={0}
-                                    max={max || 100}
-                                />
-                                <RangeControl
-                                    className="zolo-flex-col-control"
-                                    label={__('Column', 'zoloblocks')}
-                                    value={colGap}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            [colGapAttr]: v,
+                                            [rowGapAttr]: v
                                         })
                                     }
                                     min={0}
