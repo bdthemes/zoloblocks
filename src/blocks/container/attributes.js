@@ -65,16 +65,16 @@ const attributes = {
         type: 'string',
         default: 'alignwide',
     },
-    tagName:{
-        type:'string',
-        default:'div'
+    tagName: {
+        type: 'string',
+        default: 'div',
     },
     link: {
-      type: 'object',
-      default: {
-        url: '#',
-        openInNewTab: false,
-      },
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
     },
     // container gap
     ...generateGapAttributes(CONTAINER_GAP, {
