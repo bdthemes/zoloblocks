@@ -1,9 +1,8 @@
 import { memo } from '@wordpress/element';
 import {InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, TextControl, ToggleControl, CardDivider, BaseControl} from '@wordpress/components';
+import {SelectControl, TextControl, ToggleControl, CardDivider} from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import objAttributes from './attributes';
-import Select2 from 'react-select';
 
 import {
   HEADING_TAGS,
@@ -73,6 +72,7 @@ const {
   ResRangeControl,
   AdvancedOptions,
   ZoloPanelBody,
+  ZoloReactSelect
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -163,27 +163,25 @@ function Inspector(props) {
                 value={listStyle}
                 onChange={(listStyle) => setAttributes({listStyle})}
               />
-              <BaseControl label={__('Support Heading Tag', 'zoloblocks')} className="zolo-flex-col-control">
-                <Select2
-                  classNamePrefix="zolo-select"
-                  options={HEADING_TAGS}
-                  value={headingTags || []}
-                  onChange={(v) => {
-                    const allowedHeading = v?.reduce((acc, item) => {
-                      if (item?.value) {
-                        acc[item.value] = true;
-                      }
-                      return acc;
-                    }, {});
-                    setAttributes({
-                      headingTags: v,
-                      allowedHeading,
-                    });
-                  }}
-                  isMulti={true}
-                  closeMenuOnSelect={true}
-                />
-              </BaseControl>
+              <ZoloReactSelect
+                label={__('Support Heading Tag', 'zoloblocks')}
+                options={HEADING_TAGS}
+                value={headingTags || []}
+                onChange={(v) => {
+                  const allowedHeading = v?.reduce((acc, item) => {
+                    if (item?.value) {
+                      acc[item.value] = true;
+                    }
+                    return acc;
+                  }, {});
+                  setAttributes({
+                    headingTags: v,
+                    allowedHeading,
+                  });
+                }}
+                isMulti={true}
+                closeMenuOnSelect={true}
+              />
             </ZoloPanelBody>
 
             {applyFilters(

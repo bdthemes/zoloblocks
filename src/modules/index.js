@@ -34,7 +34,6 @@ export { default as ResAlignmentControl } from '../controls/res-alignment-contro
 export { default as ResCounterControl } from '../controls/res-counter-control';
 export { default as ResRangeControl } from '../controls/res-range-control';
 export { default as ResRangeControlRaw } from '../controls/res-range-control-raw';
-export { default as Select2AjaxControl } from '../controls/select2-ajax-control';
 export { default as SidebarOpener } from '../controls/sidebar-opener';
 export { default as SimpleRangeControl } from '../controls/simple-range-control';
 export { default as SortableControl } from '../controls/sortable-control';
@@ -79,6 +78,9 @@ export { default as usePanelProps } from '../helpers/use-panel-props';
 export { defaultDeviceList } from '../helpers/default-device-list';
 export { default as useDeviceType } from '../helpers/use-device-type';
 export { default as useDeviceList } from '../helpers/use-device-list';
+export { default as loadUsers } from '../helpers/load-users';
+export { default as loadTerms } from '../helpers/load-terms';
+export { default as loadPosts } from '../helpers/load-posts';
 
 export {
     DynamicTag,

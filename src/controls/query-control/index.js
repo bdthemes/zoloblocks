@@ -1,14 +1,13 @@
-import {BaseControl, SelectControl, __experimentalInputControl as InputControl} from '@wordpress/components';
+import {SelectControl, __experimentalInputControl as InputControl} from '@wordpress/components';
 import {__} from '@wordpress/i18n';
-import Select2 from 'react-select';
 import {SORT_ORDER, ORDER_BY, PRINT_TAXONOMY, INCLUDE_BY, EXCLUDE_BY} from '../../global/constants';
-import Select2AjaxControl from '../select2-ajax-control';
 import TabDynamicControl from '../tabdynamic-control';
 import {applyFilters} from '@wordpress/hooks';
 import {useSelect, select} from '@wordpress/data';
 import {getTaxonomies} from '../../helpers/helper';
 
 const QueryControl = ({attributes, setAttributes}) => {
+  const { ZoloAsyncSelect, loadPosts, ZoloReactSelect } = window.zoloModule;
   const {postQuery} = attributes;
 
   const allTermList = zoloParams.all_term_list;
@@ -79,172 +78,163 @@ const QueryControl = ({attributes, setAttributes}) => {
             names={['include', 'exclude']}
             include={
               <>
-                <BaseControl label={__('Include By', 'zoloblocks')} className="zolo-flex-col-control">
-                  <Select2
-                    classNamePrefix="zolo-select"
-                    options={INCLUDE_BY}
-                    value={postQuery?.postIncludeBy || []}
-                    onChange={(postIncludeBy) => {
-                      let updatedPostQuery = {...postQuery, postIncludeBy};
+                <ZoloReactSelect
+                  label={__('Include By', 'zoloblocks')}
+                  options={INCLUDE_BY}
+                  value={postQuery?.postIncludeBy || []}
+                  onChange={(postIncludeBy) => {
+                    let updatedPostQuery = { ...postQuery, postIncludeBy };
 
-                      if (postIncludeBy.length === 0 && postQuery?.postIncludeBy?.length > 0) {
-                        updatedPostQuery = {
-                          ...updatedPostQuery,
-                          postIncludeTaxonomies: {},
-                          postIncludeAuthors: [],
-                        };
-                      } else {
-                        const removedItem = postQuery?.postIncludeBy?.find(
-                          (item) => !postIncludeBy.some((selectedItem) => selectedItem.value === item.value)
-                        );
+                    if (postIncludeBy.length === 0 && postQuery?.postIncludeBy?.length > 0) {
+                      updatedPostQuery = {
+                        ...updatedPostQuery,
+                        postIncludeTaxonomies: {},
+                        postIncludeAuthors: [],
+                      };
+                    } else {
+                      const removedItem = postQuery?.postIncludeBy?.find(
+                        (item) => !postIncludeBy.some((selectedItem) => selectedItem.value === item.value)
+                      );
 
-                        if (removedItem) {
-                          switch (removedItem.value) {
-                            case 'authors':
-                              updatedPostQuery = {
-                                ...updatedPostQuery,
-                                postIncludeAuthors: [],
-                              };
-                              break;
-                            case 'terms':
-                              updatedPostQuery = {
-                                ...updatedPostQuery,
-                                postIncludeTaxonomies: {},
-                              };
-                              break;
-                            default:
-                              break;
-                          }
+                      if (removedItem) {
+                        switch (removedItem.value) {
+                          case 'authors':
+                            updatedPostQuery = {
+                              ...updatedPostQuery,
+                              postIncludeAuthors: [],
+                            };
+                            break;
+                          case 'terms':
+                            updatedPostQuery = {
+                              ...updatedPostQuery,
+                              postIncludeTaxonomies: {},
+                            };
+                            break;
+                          default:
+                            break;
                         }
                       }
+                    }
 
-                      setAttributes({postQuery: updatedPostQuery});
-                    }}
+                    setAttributes({ postQuery: updatedPostQuery });
+                  }}
+                  isMulti={true}
+                  closeMenuOnSelect={false}
+                />
+
+                {postQuery?.postIncludeBy?.some((item) => item.value === 'authors') && (
+                  <ZoloReactSelect
+                    label={__('Authors', 'zoloblocks')}
+                    options={AUTHOR_LISTS}
+                    value={postQuery?.postIncludeAuthors}
+                    onChange={(postIncludeAuthors) => setAttributes({ postQuery: { ...postQuery, postIncludeAuthors } })}
                     isMulti={true}
                     closeMenuOnSelect={false}
                   />
-                </BaseControl>
-
-                {postQuery?.postIncludeBy?.some((item) => item.value === 'authors') && (
-                  <BaseControl label={__('Authors', 'zoloblocks')}>
-                    <Select2
-                      classNamePrefix="zolo-select"
-                      options={AUTHOR_LISTS}
-                      value={postQuery?.postIncludeAuthors}
-                      onChange={(postIncludeAuthors) => setAttributes({postQuery: {...postQuery, postIncludeAuthors}})}
-                      isMulti={true}
-                      closeMenuOnSelect={false}
-                    />
-                  </BaseControl>
                 )}
 
                 {postQuery?.postIncludeBy?.some((item) => item.value === 'terms') &&
                   zoloAllTaxonomies.map((tax, index) => (
-                    <BaseControl label={tax.label} key={index}>
-                      <Select2
-                        classNamePrefix="zolo-select"
-                        options={PRINT_TAXONOMY(allTermList[tax.value])}
-                        value={postQuery?.postIncludeTaxonomies?.[tax.value]?.options || []}
-                        onChange={(value) => changeIncludeTaxonomy(value, tax.value)}
-                        isMulti={true}
-                        closeMenuOnSelect={false}
-                      />
-                    </BaseControl>
+                    <ZoloReactSelect
+                      label={tax?.label}
+                      options={PRINT_TAXONOMY(allTermList[tax.value])}
+                      value={postQuery?.postIncludeTaxonomies?.[tax.value]?.options || []}
+                      onChange={(value) => changeIncludeTaxonomy(value, tax.value)}
+                      isMulti={true}
+                      closeMenuOnSelect={false}
+                    />
                   ))}
               </>
             }
             exclude={
               <>
-                <BaseControl label={__('Exclude By', 'zoloblocks')} className="zolo-flex-col-control">
-                  <Select2
-                    classNamePrefix="zolo-select"
-                    options={EXCLUDE_BY}
-                    value={postQuery?.postExcludeBy || []}
-                    onChange={(postExcludeBy) => {
-                      let updatedPostQuery = {...postQuery, postExcludeBy};
+                <ZoloReactSelect
+                  label={__('Exclude By', 'zoloblocks')}
+                  options={EXCLUDE_BY}
+                  value={postQuery?.postExcludeBy || []}
+                  onChange={(postExcludeBy) => {
+                    let updatedPostQuery = { ...postQuery, postExcludeBy };
 
-                      if (postExcludeBy.length === 0 && postQuery?.postExcludeBy?.length > 0) {
-                        updatedPostQuery = {
-                          ...updatedPostQuery,
-                          postExcludeTaxonomies: {},
-                          postExcludeAuthors: [],
-                          postExclude: [],
-                        };
-                      } else {
-                        const removedItem = postQuery?.postExcludeBy?.find(
-                          (item) => !postExcludeBy.some((selectedItem) => selectedItem.value === item.value)
-                        );
+                    if (postExcludeBy.length === 0 && postQuery?.postExcludeBy?.length > 0) {
+                      updatedPostQuery = {
+                        ...updatedPostQuery,
+                        postExcludeTaxonomies: {},
+                        postExcludeAuthors: [],
+                        postExclude: [],
+                      };
+                    } else {
+                      const removedItem = postQuery?.postExcludeBy?.find(
+                        (item) => !postExcludeBy.some((selectedItem) => selectedItem.value === item.value)
+                      );
 
-                        if (removedItem) {
-                          switch (removedItem.value) {
-                            case 'authors':
-                              updatedPostQuery = {
-                                ...updatedPostQuery,
-                                postExcludeAuthors: [],
-                              };
-                              break;
-                            case 'terms':
-                              updatedPostQuery = {
-                                ...updatedPostQuery,
-                                postExcludeTaxonomies: {},
-                              };
-                              break;
-                            case 'manual_selection':
-                              updatedPostQuery = {
-                                ...updatedPostQuery,
-                                postExclude: [],
-                              };
-                              break;
-                            default:
-                              break;
-                          }
+                      if (removedItem) {
+                        switch (removedItem.value) {
+                          case 'authors':
+                            updatedPostQuery = {
+                              ...updatedPostQuery,
+                              postExcludeAuthors: [],
+                            };
+                            break;
+                          case 'terms':
+                            updatedPostQuery = {
+                              ...updatedPostQuery,
+                              postExcludeTaxonomies: {},
+                            };
+                            break;
+                          case 'manual_selection':
+                            updatedPostQuery = {
+                              ...updatedPostQuery,
+                              postExclude: [],
+                            };
+                            break;
+                          default:
+                            break;
                         }
                       }
+                    }
 
-                      setAttributes({postQuery: updatedPostQuery});
-                    }}
-                    isMulti={true}
-                    closeMenuOnSelect={false}
-                  />
-                </BaseControl>
+                    setAttributes({ postQuery: updatedPostQuery });
+                  }}
+                  isMulti={true}
+                  closeMenuOnSelect={false}
+                />
 
                 {postQuery?.postExcludeBy?.some((item) => item.value === 'manual_selection') && (
-                  <Select2AjaxControl
+                  <ZoloAsyncSelect
                     label={__('Search & Select', 'zoloblocks')}
                     placeholder={__('Type & search', 'zoloblocks')}
-                    sourceName="post_type"
-                    sourceType={postQuery?.postType || 'post'}
+                    options={async (inputValue) => {
+                      return await loadPosts(inputValue, { subtype: postQuery?.postType || 'post' });
+                    }}
                     isMulti={true}
                     value={postQuery?.postExclude || []}
-                    onChange={(postExclude) => setAttributes({postQuery: {...postQuery, postExclude}})}
+                    onChange={(postExclude) => setAttributes({ postQuery: { ...postQuery, postExclude } })}
+                    key={postQuery?.postType || 'post'}
                   />
                 )}
 
                 {postQuery?.postExcludeBy?.some((item) => item.value === 'authors') && (
-                  <BaseControl label={__('Authors', 'zoloblocks')}>
-                    <Select2
-                      classNamePrefix="zolo-select"
-                      options={AUTHOR_LISTS}
-                      value={postQuery?.postExcludeAuthors}
-                      onChange={(postExcludeAuthors) => setAttributes({postQuery: {...postQuery, postExcludeAuthors}})}
-                      isMulti={true}
-                      closeMenuOnSelect={false}
-                    />
-                  </BaseControl>
+                  <ZoloReactSelect
+                    label={__('Authors', 'zoloblocks')}
+                    options={AUTHOR_LISTS}
+                    value={postQuery?.postExcludeAuthors}
+                    onChange={(postExcludeAuthors) => setAttributes({ postQuery: { ...postQuery, postExcludeAuthors } })}
+                    isMulti={true}
+                    closeMenuOnSelect={false}
+                  />
                 )}
 
                 {postQuery?.postExcludeBy?.some((item) => item.value === 'terms') &&
                   zoloAllTaxonomies.map((tax, index) => (
-                    <BaseControl label={tax.label} key={index}>
-                      <Select2
-                        classNamePrefix="zolo-select"
-                        options={PRINT_TAXONOMY(allTermList[tax.value])}
-                        value={postQuery?.postExcludeTaxonomies?.[tax.value]?.options || []}
-                        onChange={(value) => changeExcludeTaxonomy(value, tax.value)}
-                        isMulti={true}
-                        closeMenuOnSelect={false}
-                      />
-                    </BaseControl>
+                    <ZoloReactSelect
+                      key={index}
+                      label={tax?.label}
+                      options={PRINT_TAXONOMY(allTermList[tax.value])}
+                      value={postQuery?.postExcludeTaxonomies?.[tax.value]?.options || []}
+                      onChange={(value) => changeExcludeTaxonomy(value, tax.value)}
+                      isMulti={true}
+                      closeMenuOnSelect={false}
+                    />
                   ))}
               </>
             }
@@ -293,7 +283,6 @@ const QueryControl = ({attributes, setAttributes}) => {
             }}
             options={SORT_ORDER}
           />
-
         </>
       )}
     </>

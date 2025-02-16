@@ -2,32 +2,12 @@ import { SelectControl, __experimentalInputControl as InputControl, BaseControl,
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { ORDER_BY, USER_ROLE } from './constants';
-import apiFetch from '@wordpress/api-fetch';
-import { addQueryArgs } from '@wordpress/url';
 
 
 const QuerySettings = ({ attributes, setAttributes }) => {
-    const { ZoloAsyncSelect, ZoloReactSelect } = window.zoloModule;
+    const { ZoloAsyncSelect, ZoloReactSelect, loadUsers } = window.zoloModule;
     const { authorQuery } = attributes;
 
-    const loadUsers = async (inputValue) => {
-        const path = addQueryArgs('/wp/v2/users', {
-            search: inputValue,
-        })
-
-        try {
-            const response = await apiFetch({ path });
-
-            return response.map((user) => {
-                return {
-                    value: user.id,
-                    label: user.name,
-                };
-            });
-        } catch (error) {
-            return [];
-        }
-    }
     return (
         <>
             <InputControl
@@ -55,16 +35,14 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 />
             </BaseControl>
 
-            <div className="zolo-flex-col-control">
-                <ZoloAsyncSelect
-                    label={__('Exclude', 'zoloblocks')}
-                    placeholder={__('Search...', 'zoloblocks')}
-                    isMulti={true}
-                    value={authorQuery?.exclude || []}
-                    onChange={(exclude) => setAttributes({ authorQuery: { ...authorQuery, exclude } })}
-                    options={loadUsers}
-                />
-            </div>
+            <ZoloAsyncSelect
+                label={__('Exclude', 'zoloblocks')}
+                placeholder={__('Search...', 'zoloblocks')}
+                isMulti={true}
+                value={authorQuery?.exclude || []}
+                onChange={(exclude) => setAttributes({ authorQuery: { ...authorQuery, exclude } })}
+                options={loadUsers}
+            />
 
             <CardDivider />
 

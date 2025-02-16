@@ -2,11 +2,10 @@ import { SelectControl, __experimentalInputControl as InputControl, ToggleContro
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { COMMENT_ORDER_BY, STATUS } from './constants';
-import Select2 from 'react-select';
 
-const { TabDynamicControl, Select2AjaxControl } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
+    const { TabDynamicControl, ZoloAsyncSelect, ZoloReactSelect, loadUsers } = window.zoloModule;
     const { commentQuery } = attributes;
     //get post types
     const PostType = [];
@@ -29,9 +28,11 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 include={
                     <>
                         <div className="zolo-flex-col-control">
-                            <Select2
-                                classNamePrefix="zolo-select"
-                                options={[{ label: 'Author', value: 'author' }]}
+                            <ZoloReactSelect
+                                label={__('Include By', 'zoloblocks-pro')}
+                                options={[
+                                    { label: 'Author', value: 'author' }
+                                ]}
                                 value={commentQuery?.includeBy || []}
                                 onChange={(includeBy) => setAttributes({ commentQuery: { ...commentQuery, includeBy } })}
                                 isMulti={true}
@@ -40,25 +41,22 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                         </div>
 
                         {commentQuery?.includeBy?.some((item) => item.value === 'author') && (
-                            <div className="zolo-flex-col-control">
-                                <Select2AjaxControl
-                                    label={__('Authors', 'zoloblocks-pro')}
-                                    placeholder={__('Search...', 'zoloblocks-pro')}
-                                    sourceName="user"
-                                    sourceType={''}
-                                    isMulti={true}
-                                    value={commentQuery?.includeAuthors || []}
-                                    onChange={(includeAuthors) => setAttributes({ commentQuery: { ...commentQuery, includeAuthors } })}
-                                />
-                            </div>
+                            <ZoloAsyncSelect
+                                label={__('Authors', 'zoloblocks-pro')}
+                                placeholder={__('Search...', 'zoloblocks-pro')}
+                                options={loadUsers}
+                                isMulti={true}
+                                value={commentQuery?.includeAuthors || []}
+                                onChange={(includeAuthors) => setAttributes({ commentQuery: { ...commentQuery, includeAuthors } })}
+                            />
                         )}
                     </>
                 }
                 exclude={
                     <>
                         <div className="zolo-flex-col-control">
-                            <Select2
-                                classNamePrefix="zolo-select"
+                            <ZoloReactSelect
+                                label={__('Exclude By', 'zoloblocks-pro')}
                                 options={[{ label: 'Author', value: 'author' }]}
                                 value={commentQuery?.excludeBy || []}
                                 onChange={(excludeBy) => setAttributes({ commentQuery: { ...commentQuery, excludeBy } })}
@@ -69,11 +67,10 @@ const QuerySettings = ({ attributes, setAttributes }) => {
 
                         {commentQuery?.excludeBy?.some((item) => item.value === 'author') && (
                             <div className="zolo-flex-col-control">
-                                <Select2AjaxControl
+                                <ZoloAsyncSelect
                                     label={__('Authors', 'zoloblocks-pro')}
                                     placeholder={__('Search...', 'zoloblocks-pro')}
-                                    sourceName="user"
-                                    sourceType={''}
+                                    options={loadUsers}
                                     isMulti={true}
                                     value={commentQuery?.excludeAuthors || []}
                                     onChange={(excludeAuthors) => setAttributes({ commentQuery: { ...commentQuery, excludeAuthors } })}

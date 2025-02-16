@@ -1,6 +1,6 @@
 import { memo } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
+import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 
@@ -68,29 +68,31 @@ import {
 import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, PAGINARION_TYPE } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
 
-const {
-    ResDimensionsControl,
-    QueryControl,
-    ResRangeControl,
-    RangeResetControl,
-    NormalBGControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    TabPanelControl,
-    ColorControl,
-    TypographyDropdown,
-    ResCounterControl,
-    AdvancedOptions,
-    ZoloIconPicker,
-    ResAlignmentControl,
-    ZoloPanelBody,
-    ResGapControl,
-    getTaxonomies,
-    Select2AjaxControl,
-} = window.zoloModule;
 
 function Inspector(props) {
+    const {
+        ResDimensionsControl,
+        QueryControl,
+        ResRangeControl,
+        RangeResetControl,
+        NormalBGControl,
+        BorderControl,
+        BoxShadowControl,
+        HeaderTabs,
+        TabPanelControl,
+        ColorControl,
+        TypographyDropdown,
+        ResCounterControl,
+        AdvancedOptions,
+        ZoloIconPicker,
+        ResAlignmentControl,
+        ZoloPanelBody,
+        ResGapControl,
+        getTaxonomies,
+        ZoloAsyncSelect,
+        loadTerms
+    } = window.zoloModule;
+
     const { attributes, setAttributes, block } = props;
     const {
         preset,
@@ -151,7 +153,6 @@ function Inspector(props) {
         taxonomyName,
         filterColor,
         filterBgColor,
-        filterBorderColor,
         filterAColor,
         filterABgColor,
         filterABorderColor,
@@ -461,17 +462,15 @@ function Inspector(props) {
                                     />
 
                                     {postTaxonomy && (
-                                        <div className="zolo-flex-col-control">
-                                            <Select2AjaxControl
-                                                label={__(`Select ${taxonomyName}`, 'zoloblocks-pro')}
-                                                placeholder={__('Search...', 'zoloblocks-pro')}
-                                                sourceName="taxonomy"
-                                                sourceType={postTaxonomy}
-                                                isMulti={true}
-                                                value={postTerms || []}
-                                                onChange={(postTerms) => setAttributes({ postTerms })}
-                                            />
-                                        </div>
+                                        <ZoloAsyncSelect
+                                            label={__(`Select ${taxonomyName}`, 'zoloblocks-pro')}
+                                            placeholder={__('Search...', 'zoloblocks-pro')}
+                                            options={async (inputValue) => loadTerms(inputValue, postTaxonomy)}
+                                            isMulti={true}
+                                            value={postTerms || []}
+                                            onChange={(postTerms) => setAttributes({ postTerms })}
+                                            key={postTaxonomy}
+                                        />
                                     )}
                                 </>
                             )}

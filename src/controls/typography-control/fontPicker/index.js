@@ -7,13 +7,8 @@ import { __ } from '@wordpress/i18n';
 import WebFont from 'webfontloader';
 
 /**
- * External Dependencies
- */
-import Select2 from 'react-select';
-
-/**
  * Internal dependencies
- */
+*/
 import { googleFonts } from './googleFonts';
 
 const zoloThemeFonts = zoloSettings?.theme_fonts;
@@ -29,6 +24,7 @@ if (zoloThemeFonts) {
 }
 
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
+    const { ZoloReactSelect } = window?.zoloModule;
     const id = `inspector-zb-font-family-${instanceId}`;
     const fonts = [
         { value: 'Arial', label: 'Arial' },
@@ -72,9 +68,11 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
     };
 
     return (
-        <BaseControl label={label} id={id} help={help} className={className}>
+        <>
             {fontExists ? (
-                <Select2
+                <ZoloReactSelect
+                    label={label}
+                    isClearable={false}
                     name="zb-select-font"
                     classNamePrefix="zolo"
                     value={{
@@ -84,10 +82,12 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                     onChange={onChangeValue}
                     options={allFonts}
                 />
-            ): (
+            ) : (
                 <Tooltip text={__('The selected font is not available in the theme. Please add it from the theme settings.', 'zoloblocks')}>
                     <span className="zolo-tooltip-icon zolo-font-missing">
-                        <Select2
+                        <ZoloReactSelect
+                            label={label}
+                            isClearable={false}
                             name="zb-select-font"
                             classNamePrefix="zolo"
                             value={{
@@ -100,7 +100,7 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                     </span>
                 </Tooltip>
             )}
-        </BaseControl>
+        </>
     );
 };
 

@@ -1,12 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, Button, PanelBody, BaseControl } from '@wordpress/components';
+import { SelectControl, Button, PanelBody } from '@wordpress/components';
 
-const { SortableControl, SortableItem } = window.zoloModule;
 import { cloneDeep } from 'lodash';
 import { TAGS_LIST, HEADING_TAGS } from './constants';
-import Select2 from 'react-select';
 
 const Sortable = ({ styleTags, setAttributes }) => {
+    const { SortableControl, SortableItem, ZoloReactSelect } = window.zoloModule;
     const deepCloneStyleTags = cloneDeep(styleTags);
 
     return (
@@ -65,24 +64,22 @@ const Sortable = ({ styleTags, setAttributes }) => {
                                         />
 
                                         {tag?.type === 'heading' && (
-                                            <BaseControl label={__('Heading Tag', 'zoloblocks')} className="zolo-flex-col-control">
-                                                <Select2
-                                                    classNamePrefix="zolo-select"
-                                                    options={HEADING_TAGS}
-                                                    value={tag?.hTags || []}
-                                                    onChange={(v) => {
-                                                        const newItems = [...deepCloneStyleTags];
-                                                        newItems[index].hTags = v;
-                                                        const headingTags = v?.map((item) => item.value);
-                                                        setAttributes({
-                                                            styleTags: newItems,
-                                                            headingTags,
-                                                        });
-                                                    }}
-                                                    isMulti={true}
-                                                    closeMenuOnSelect={true}
-                                                />
-                                            </BaseControl>
+                                            <ZoloReactSelect
+                                                label={__('Heading Tag', 'zoloblocks')}
+                                                options={HEADING_TAGS}
+                                                value={tag?.hTags || []}
+                                                onChange={(v) => {
+                                                    const newItems = [...deepCloneStyleTags];
+                                                    newItems[index].hTags = v;
+                                                    const headingTags = v?.map((item) => item.value);
+                                                    setAttributes({
+                                                        styleTags: newItems,
+                                                        headingTags,
+                                                    });
+                                                }}
+                                                isMulti={true}
+                                                closeMenuOnSelect={true}
+                                            />
                                         )}
 
                                         <p>
