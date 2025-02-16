@@ -680,7 +680,7 @@ export const variations = [
 ];
 
 export const VariationPicker = (props) => {
-    const { clientId, setAttributes, defaultVariation } = props;
+    const { clientId, setAttributes, defaultVariation, onRemove } = props;
     const { replaceInnerBlocks } = useDispatch('core/block-editor');
 
     const blockVariationPickerOnSelect = (nextVariation = defaultVariation) => {
@@ -718,7 +718,7 @@ export const VariationPicker = (props) => {
                 }}
             />
 
-            <button type="button" className="zolo-close-icon" aria-label="Close">
+            <button type="button" className="zolo-close-icon" aria-label="Close" onClick={() => onRemove()}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
