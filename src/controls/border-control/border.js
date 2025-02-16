@@ -1,8 +1,10 @@
+import { RangeControl } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
-import { __ } from '@wordpress/i18n';
-import { RangeControl } from '@wordpress/components';
+
+const sides = ['top', 'right', 'bottom', 'left'];
 
 const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) => {
     const { label, setAttributes, controlName, isLinked } = neededProps;
@@ -66,25 +68,12 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
                     )}
                     {!isLinked && (
                         <>
-                            <div className="input-wrap">
-                                <input type="number" name="top" value={borders.top} onChange={onInputChange} />
-                                <label className="input-label">{__('Top', 'zoloblocks')}</label>
-                            </div>
-
-                            <div className="input-wrap">
-                                <input type="number" name="right" value={borders.right} onChange={onInputChange} />
-                                <label className="input-label">{__('Right', 'zoloblocks')}</label>
-                            </div>
-
-                            <div className="input-wrap">
-                                <input type="number" name="bottom" value={borders.bottom} onChange={onInputChange} />
-                                <label className="input-label">{__('Bottom', 'zoloblocks')}</label>
-                            </div>
-
-                            <div className="input-wrap">
-                                <input type="number" name="left" value={borders.left} onChange={onInputChange} />
-                                <label className="input-label">{__('Left', 'zoloblocks')}</label>
-                            </div>
+                            {sides.map((side) => (
+                                <div className="input-wrap" key={side}>
+                                    <input type="number" name={side} value={borders[side]} onChange={onInputChange} />
+                                    <label className="input-label">{__(side.charAt(0).toUpperCase() + side.slice(1), 'zoloblocks')}</label>
+                                </div>
+                            ))}
                         </>
                     )}
                 </div>
