@@ -89,7 +89,7 @@ const ResRangeControl = ({
                                             }
                                         }}
                                         min={min || 0}
-                                        max={sizeUnit === '%' ? 100 : max || 100}
+                                        max={['%', 'vw', 'vh'].includes(sizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -153,7 +153,7 @@ const ResRangeControl = ({
                                             }
                                         }}
                                         min={min || 0}
-                                        max={TABsizeUnit === '%' ? 100 : max || 100}
+                                        max={['%', 'vw', 'vh'].includes(TABsizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -217,7 +217,7 @@ const ResRangeControl = ({
                                             }
                                         }}
                                         min={min || 0}
-                                        max={MOBsizeUnit === '%' ? 100 : max || 100}
+                                        max={['%', 'vw', 'vh'].includes(MOBsizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -292,7 +292,7 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: val ?? 0
+                                                        [`${prefix}${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
@@ -300,7 +300,7 @@ const ResRangeControl = ({
                                             }
                                         }}
                                         min={min || 0}
-                                        max={sizeUnit === '%' ? 100 : max || 100}
+                                        max={['%', 'vw', 'vh'].includes(sizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -312,7 +312,7 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: Number(val) ?? 0
+                                                        [`${prefix}${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
@@ -380,7 +380,7 @@ const ResRangeControl = ({
                                             }
                                         }}
                                         min={min || 0}
-                                        max={TABsizeUnit === '%' ? 100 : max || 100}
+                                        max={['%', 'vw', 'vh'].includes(TABsizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -444,26 +444,6 @@ const ResRangeControl = ({
                             </UnitsBtn>
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
-                                    <RangeControl
-                                        value={mobRange}
-                                        onChange={(val) => {
-                                            if (object) {
-                                                setAttributes({
-                                                    ...attributes,
-                                                    [objectName]: {
-                                                        ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: val ?? 0,
-                                                    },
-                                                });
-                                            } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val ?? 0 });
-                                            }
-                                        }}
-                                        min={min || 0}
-                                        max={MOBsizeUnit === '%' ? 100 : max || 100}
-                                        step={step || 1}
-                                        withInputField={false}
-                                    />
                                     <NumberControl
                                         value={mobRange}
                                         onChange={(val) => {
