@@ -680,7 +680,7 @@ export const variations = [
 ];
 
 export const VariationPicker = (props) => {
-    const { clientId, setAttributes, defaultVariation } = props;
+    const { clientId, setAttributes, defaultVariation,closeModal } = props;
     const { replaceInnerBlocks } = useDispatch('core/block-editor');
 
     const blockVariationPickerOnSelect = (nextVariation = defaultVariation) => {
@@ -690,6 +690,10 @@ export const VariationPicker = (props) => {
 
         if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
             replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
+        }
+        // Close the modal after selection
+        if (closeModal) {
+          closeModal();
         }
     };
 
