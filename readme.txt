@@ -62,7 +62,7 @@ https://youtu.be/CxzwPClaZm4
 
 Explore all the blocks listed categorically—
 
-## **Image Blocks**
+##** Image Blocks **
 
 [**Advanced Image**](https://zoloblocks.com/demo/advanced-image/) (Free)
 
@@ -97,7 +97,8 @@ Showcase customer reviews or testimonials in a rotating carousel for building tr
 [**Slider**](https://demo.zoloblocks.com/review-carousel) (Free)
 
 Highlight key content, products, or testimonials in a responsive slider.
-## ** Post Blocks **
+
+##** Post Blocks **
 
 [**Post Category**](https://demo.zoloblocks.com/post-category) (Free)
 
@@ -116,7 +117,7 @@ It allows you to organize posts into tabs for a compact and user friendly displa
 
 Showcase video posts in an advanced slider for multimedia content that engages your users on the site.
 
-## ** Review Blocks **
+##** Review Blocks **
 
 [**Review**](https://demo.zoloblocks.com/review) (Free)
 
@@ -131,19 +132,19 @@ Best for showcasing reviews in a grid layout for clean and organized display.
 
 Add star ratings to reviews or products for quick visual feedback.
 
-## ** Form and Interactive Blocks **
+##** Form and Interactive Blocks **
 
 [**Form**](https://demo.zoloblocks.com/form) (Free)
 
 Create customizable forms for inquiries, feedback, or lead generation by simplifying user interactions and data collection.
 
-## ** Popup Builder **
+##** Popup Builder **
 
 [**Popup Builder**](https://demo.zoloblocks.com/popup-builder) (Free)
 
 Crate popups for announcements, offer, or lead generation and grab attention without disrupting the user experience.
 
-##Design & Automation Block
+##** Design & Automation Block **
 
 [**Flipbox**](https://demo.zoloblocks.com/flipbox) (Free)
 
@@ -157,7 +158,7 @@ Create a visual effect where the background moves at a different speed than the 
 
 Add animated effects to text, like typing or fading effects that solves the issue of static text by adding dynamic elements to written  content.
 
-## ** Utility Blocks **
+##** Utility Blocks **
 
 [**Google Map**](https://demo.zoloblocks.com/google-map)  (Free)
 
@@ -171,7 +172,7 @@ Make easy navigation in long posts for your readers, improve experience and cont
 
 Reuse custom designs across your site, ensure design consistency without redundant design work.
 
-## Creative Blocks:
+##** Creative Blocks **
 
 [**Container**](https://zoloblocks.com) (Free)
 
@@ -304,7 +305,7 @@ Display tags in a cloud format for better content discovery, such as in blogs or
 
 Create text that follows custom paths for unique designs, such as curved headlines or creative layouts.
 
-##Loop Builder & Animations
+##** Loop Builder & Animations **
 
 [**Loop Builder**](https://zoloblocks.com/demo/loop-builder) (Pro)
 
@@ -318,7 +319,7 @@ Add lightweight and scalable Lottie animations for engaging visuals, such as loa
 
 Add interactive unfold animations for engaging content reveals, such as expanding sections or hidden details.
 
-## ** Grid & List **
+##** Grid & List **
 
 [**Fancy List**](https://demo.zoloblocks.com/fancy-list) (Free)
 
@@ -344,7 +345,7 @@ Showcase client logos, partners, or sponsors in a grid layout.
 
 Display client logos, partners, or sponsors in a dynamic carousel for a more engaging presentation.
 
-##Single Page Elements
+##** Single Page Elements **
 
 [**Post Comments Form**](https://demo.zoloblocks.com/post-comments-form) (Free)
 
@@ -370,7 +371,7 @@ Enhances user experience by allowing easy navigation through related content.
 
 Displays the title of the post. You can automatically  pull the post title,ensuring consistency.
 
-## Advanced Blocks
+##** Advanced Blocks **
 
 [**Dynamic Content**](https://zoloblocks.com/demo/dynamic-content) (Pro)
 
@@ -384,7 +385,7 @@ Add interactive elements like hover effects, click animations, or scroll trigger
 
 Control when and where certain elements appear based on user conditions (e.g., device type, location). This block solves the issues of irrelevant content.
 
-##Extensions
+##** Extensions **
 
 [**Export Pattern**]()  (Free)
 
