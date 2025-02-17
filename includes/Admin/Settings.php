@@ -239,21 +239,6 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
-
-            // register editor width
-            register_setting(
-                'zolo_blocks_settings_group',
-                'zolo_editor_width',
-                [
-                    'type'              => 'integer',
-                    'default'           => 1200,
-                    'show_in_rest'      => [
-                        'schema' => ['type' => 'integer'],
-                    ],
-                    'sanitize_callback' => NULL,
-                ]
-            );
-
             // register support svg
             register_setting(
                 'zolo_blocks_settings_group',

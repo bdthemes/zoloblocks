@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-28T06:40:30+00:00\n"
+"POT-Creation-Date: 2025-02-06T11:23:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: zoloblocks\n"
@@ -37,13 +37,14 @@ msgid "BdThemes"
 msgstr ""
 
 #: includes/Admin/Author.php:50
-#: includes/Blocks/Blocks.php:778
+#: includes/Blocks/Blocks.php:786
+#: includes/Form/Hooks.php:26
 #: src/blocks/newsletter/inspector.js:374
 #: src/blocks/newsletter/inspector.js:408
 #: src/blocks/profile-card/edit.js:189
-#: src/blocks/profile-card/inspector.js:212
-#: src/blocks/profile-card/inspector.js:375
-#: src/blocks/profile-card/inspector.js:689
+#: src/blocks/profile-card/inspector.js:211
+#: src/blocks/profile-card/inspector.js:374
+#: src/blocks/profile-card/inspector.js:688
 #: src/blocks/social-share/constants/index.js:38
 msgid "Email"
 msgstr ""
@@ -79,46 +80,46 @@ msgstr ""
 msgid "Dribbble"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:65
 #: includes/Admin/Dashboard.php:66
+#: includes/Admin/Dashboard.php:67
 #: includes/Classes/Registration.php:92
 msgid "Zolo Blocks"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:76
 #: includes/Admin/Dashboard.php:77
+#: includes/Admin/Dashboard.php:78
 #: src/admin/dashboard/index.js:122
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:84
 #: includes/Admin/Dashboard.php:85
+#: includes/Admin/Dashboard.php:86
 #: src/admin/constants/index.js:11
 msgid "Blocks"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:95
 #: includes/Admin/Dashboard.php:96
+#: includes/Admin/Dashboard.php:97
 #: src/admin/constants/index.js:16
 #: src/admin/dashboard/Welcome/index.js:81
 msgid "Extensions"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:105
 #: includes/Admin/Dashboard.php:106
+#: includes/Admin/Dashboard.php:107
 #: src/admin/constants/index.js:21
 msgid "API Settings"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:115
 #: includes/Admin/Dashboard.php:116
+#: includes/Admin/Dashboard.php:117
 #: src/admin/constants/index.js:26
 #: src/blocks/google-map/inspector.js:244
 msgid "Settings"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:126
 #: includes/Admin/Dashboard.php:127
+#: includes/Admin/Dashboard.php:128
 #: includes/Blocks/Blocks.php:240
 #: includes/Popup/PopupBuilder.php:48
 #: includes/Popup/PopupBuilder.php:49
@@ -127,8 +128,13 @@ msgstr ""
 msgid "Popup Builder"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:134
 #: includes/Admin/Dashboard.php:135
+#: includes/Admin/Dashboard.php:136
+msgid "Form Entries"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:336
+#: includes/Admin/Dashboard.php:337
 #: src/extensions/AI/popup/components/header/index.js:50
 msgid "Upgrade"
 msgstr ""
@@ -256,7 +262,7 @@ msgid "You are not allowed to access this route."
 msgstr ""
 
 #: includes/Blocks/Blocks.php:8
-#: src/blocks/brand-child/inspector.js:257
+#: src/blocks/brand-child/inspector.js:230
 #: src/blocks/brand-grid/inspector.js:217
 #: src/blocks/counter/inspector.js:385
 #: src/blocks/navigation-submenu/inspector.js:62
@@ -366,6 +372,8 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:343
 #: src/blocks/advanced-button/inspector.js:146
 #: src/blocks/advanced-button/inspector.js:324
+#: src/blocks/advanced-heading/inspector.js:313
+#: src/blocks/advanced-heading/inspector.js:327
 #: src/blocks/advanced-icon-box/inspector.js:203
 #: src/blocks/advanced-icon-box/inspector.js:344
 #: src/blocks/advanced-icon-box/inspector.js:361
@@ -391,8 +399,8 @@ msgstr ""
 #: src/blocks/flipbox/constants/index.js:20
 #: src/blocks/flipbox/inspector.js:184
 #: src/blocks/flipbox/inspector.js:211
-#: src/blocks/form/inspector.js:486
-#: src/blocks/icon/inspector.js:126
+#: src/blocks/form/inspector.js:498
+#: src/blocks/icon/inspector.js:157
 #: src/blocks/lightbox/inspector.js:213
 #: src/blocks/list/inspector.js:181
 #: src/blocks/list/inspector.js:408
@@ -492,8 +500,8 @@ msgid "Progress Pie"
 msgstr ""
 
 #: includes/Blocks/Blocks.php:314
-#: src/blocks/qrcode/inspector.js:91
-#: src/blocks/qrcode/inspector.js:189
+#: src/blocks/qrcode/inspector.js:93
+#: src/blocks/qrcode/inspector.js:180
 msgid "QR Code"
 msgstr ""
 
@@ -648,49 +656,49 @@ msgstr ""
 msgid "Post Meta"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:648
-msgid "Post Query"
+#: includes/Blocks/Blocks.php:656
+msgid "Loop Builder"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:658
+#: includes/Blocks/Blocks.php:666
 msgid "Loop"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:668
-msgid "Query Pagination"
+#: includes/Blocks/Blocks.php:676
+msgid "Loop Pagination"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:679
+#: includes/Blocks/Blocks.php:687
 #: src/blocks/post-content/edit.js:22
 msgid "Post Content"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:714
+#: includes/Blocks/Blocks.php:722
 #: src/admin/dashboard/Blocks/categories.js:120
 msgid "Form"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:722
+#: includes/Blocks/Blocks.php:730
 msgid "Number Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:736
+#: includes/Blocks/Blocks.php:744
 msgid "Checkbox Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:757
+#: includes/Blocks/Blocks.php:765
 msgid "Select Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:764
+#: includes/Blocks/Blocks.php:772
 msgid "Textarea"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:771
+#: includes/Blocks/Blocks.php:779
 msgid "Radio Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:785
+#: includes/Blocks/Blocks.php:793
 msgid "Text Field"
 msgstr ""
 
@@ -744,9 +752,9 @@ msgstr[1] ""
 #: src/blocks/post-category/inspector.js:349
 #: src/blocks/post-grid/inspector.js:956
 #: src/blocks/profile-card/edit.js:161
-#: src/blocks/profile-card/inspector.js:194
-#: src/blocks/profile-card/inspector.js:345
-#: src/blocks/profile-card/inspector.js:636
+#: src/blocks/profile-card/inspector.js:193
+#: src/blocks/profile-card/inspector.js:344
+#: src/blocks/profile-card/inspector.js:635
 #: src/blocks/review-carousel/inspector.js:192
 #: src/blocks/review-carousel/inspector.js:520
 #: src/blocks/review-child/inspector.js:211
@@ -918,6 +926,156 @@ msgstr ""
 msgid "Highlighter"
 msgstr ""
 
+#: includes/Form/Form.php:44
+msgid "Form data is empty"
+msgstr ""
+
+#: includes/Form/Form.php:52
+msgid "Nonce verification failed"
+msgstr ""
+
+#: includes/Form/Form.php:57
+msgid "Recaptcha validation failed"
+msgstr ""
+
+#: includes/Form/Form.php:366
+#: includes/Form/FormEntries.php:143
+msgid "Subject"
+msgstr ""
+
+#: includes/Form/FormEntries.php:69
+msgid "View"
+msgstr ""
+
+#: includes/Form/FormEntries.php:86
+msgid "Entry Data"
+msgstr ""
+
+#: includes/Form/Hooks.php:25
+#: src/blocks/checkbox-field/inspector.js:249
+msgid "Checkbox"
+msgstr ""
+
+#: includes/Form/Hooks.php:27
+#: src/blocks/countdown/inspector.js:466
+#: src/blocks/counter/inspector.js:245
+#: src/blocks/counter/inspector.js:248
+#: src/blocks/counter/inspector.js:462
+#: src/blocks/profile-card/edit.js:225
+#: src/blocks/profile-card/edit.js:304
+#: src/blocks/profile-card/inspector.js:414
+msgid "Number"
+msgstr ""
+
+#: includes/Form/Hooks.php:28
+#: src/blocks/radio-field/inspector.js:246
+msgid "Radio"
+msgstr ""
+
+#: includes/Form/Hooks.php:29
+#: src/blocks/cta/inspector.js:241
+#: src/blocks/navigation-item/inspector.js:106
+#: src/blocks/navigation/inspector.js:160
+#: src/blocks/navigation/inspector.js:219
+#: src/blocks/profile-card/inspector.js:277
+#: src/blocks/review-child/inspector.js:136
+#: src/blocks/text-path/inspector.js:203
+msgid "Select"
+msgstr ""
+
+#: includes/Form/Hooks.php:30
+#: src/blocks/advanced-button/inspector.js:138
+#: src/blocks/advanced-heading/inspector.js:237
+#: src/blocks/advanced-heading/inspector.js:262
+#: src/blocks/advanced-heading/inspector.js:360
+#: src/blocks/advanced-icon-box/inspector.js:448
+#: src/blocks/advanced-icon-box/inspector.js:468
+#: src/blocks/advanced-icon-box/inspector.js:512
+#: src/blocks/advanced-image/inspector.js:252
+#: src/blocks/advanced-image/inspector.js:269
+#: src/blocks/advanced-image/inspector.js:304
+#: src/blocks/advanced-paragraph/inspector.js:122
+#: src/blocks/advanced-search/constants/index.js:14
+#: src/blocks/advanced-search/inspector.js:160
+#: src/blocks/advanced-search/inspector.js:174
+#: src/blocks/advanced-search/inspector.js:188
+#: src/blocks/brand-child/inspector.js:174
+#: src/blocks/brand-child/inspector.js:199
+#: src/blocks/breadcrumbs/constants/index.js:63
+#: src/blocks/breadcrumbs/inspector.js:160
+#: src/blocks/charts/inspector.js:493
+#: src/blocks/charts/inspector.js:525
+#: src/blocks/counter/inspector.js:273
+#: src/blocks/cta/inspector.js:181
+#: src/blocks/cta/inspector.js:201
+#: src/blocks/fancy-list/inspector.js:230
+#: src/blocks/flipbox/inspector.js:387
+#: src/blocks/flipbox/inspector.js:398
+#: src/blocks/flipbox/inspector.js:512
+#: src/blocks/flipbox/inspector.js:524
+#: src/blocks/flipbox/inspector.js:535
+#: src/blocks/newsletter/constants/index.js:26
+#: src/blocks/notice/inspector.js:332
+#: src/blocks/notice/inspector.js:349
+#: src/blocks/post-carousel/inspector.js:373
+#: src/blocks/post-carousel/inspector.js:385
+#: src/blocks/post-category/inspector.js:155
+#: src/blocks/post-comments/inspector.js:134
+#: src/blocks/post-comments/inspector.js:308
+#: src/blocks/post-grid/inspector.js:353
+#: src/blocks/post-grid/inspector.js:365
+#: src/blocks/post-navigation/inspector.js:133
+#: src/blocks/post-navigation/inspector.js:144
+#: src/blocks/pricing-table/inspector.js:265
+#: src/blocks/pricing-table/inspector.js:315
+#: src/blocks/pricing-table/inspector.js:336
+#: src/blocks/pricing-table/inspector.js:392
+#: src/blocks/pricing-table/inspector.js:435
+#: src/blocks/pricing-table/inspector.js:449
+#: src/blocks/pricing-table/sortable.js:59
+#: src/blocks/profile-card/inspector.js:263
+#: src/blocks/profile-card/inspector.js:346
+#: src/blocks/profile-card/inspector.js:361
+#: src/blocks/profile-card/inspector.js:376
+#: src/blocks/profile-card/inspector.js:392
+#: src/blocks/profile-card/inspector.js:449
+#: src/blocks/progress-pie/inspector.js:182
+#: src/blocks/review-child/inspector.js:213
+#: src/blocks/review-child/inspector.js:228
+#: src/blocks/review-child/inspector.js:244
+#: src/blocks/star-rating/inspector.js:136
+#: src/blocks/tab/inspector.js:68
+#: src/blocks/text-path/inspector.js:96
+msgid "Text"
+msgstr ""
+
+#: includes/Form/Hooks.php:31
+#: src/blocks/form/constants/index.js:51
+#: src/blocks/form/inspector.js:622
+#: src/blocks/newsletter/inspector.js:415
+#: src/blocks/newsletter/inspector.js:833
+#: src/blocks/post-comments-form/inspector.js:308
+#: src/blocks/review-carousel/inspector.js:210
+#: src/blocks/review-carousel/inspector.js:619
+#: src/blocks/review-child/inspector.js:241
+#: src/blocks/review-child/inspector.js:477
+#: src/blocks/review-grid/inspector.js:222
+#: src/blocks/review-grid/inspector.js:500
+msgid "Message"
+msgstr ""
+
+#: includes/Form/Hooks.php:32
+msgid "Country"
+msgstr ""
+
+#: includes/Form/Hooks.php:33
+msgid "Date/Time"
+msgstr ""
+
+#: includes/Form/Hooks.php:34
+msgid "Phone Number"
+msgstr ""
+
 #: includes/Mailchimp/Mailchimp.php:48
 msgid "Settings data missing!"
 msgstr ""
@@ -988,9 +1146,9 @@ msgid "Trigger"
 msgstr ""
 
 #: includes/Popup/PopupBuilder.php:175
-#: src/blocks/profile-card/inspector.js:230
-#: src/blocks/profile-card/inspector.js:406
-#: src/blocks/profile-card/inspector.js:743
+#: src/blocks/profile-card/inspector.js:229
+#: src/blocks/profile-card/inspector.js:405
+#: src/blocks/profile-card/inspector.js:742
 msgid "Status"
 msgstr ""
 
@@ -1084,7 +1242,7 @@ msgid "API Key"
 msgstr ""
 
 #: src/admin/dashboard/API-Settings/index.js:203
-#: src/blocks/form/inspector.js:395
+#: src/blocks/form/inspector.js:407
 msgid "Google reCaptcha"
 msgstr ""
 
@@ -1124,6 +1282,8 @@ msgstr ""
 #: src/admin/dashboard/API-Settings/index.js:252
 #: src/blocks/advanced-search/inspector.js:172
 #: src/blocks/advanced-search/inspector.js:201
+#: src/blocks/brand-child/inspector.js:197
+#: src/blocks/brand-child/inspector.js:429
 #: src/blocks/brand-grid/constants/index.js:24
 #: src/blocks/checkbox-field/edit.js:89
 #: src/blocks/checkbox-field/inspector.js:86
@@ -1134,15 +1294,15 @@ msgstr ""
 #: src/blocks/cta/inspector.js:272
 #: src/blocks/email/edit.js:84
 #: src/blocks/email/inspector.js:184
-#: src/blocks/form/inspector.js:349
-#: src/blocks/form/inspector.js:425
+#: src/blocks/form/inspector.js:361
+#: src/blocks/form/inspector.js:437
 #: src/blocks/newsletter/inspector.js:447
 #: src/blocks/number-field/edit.js:98
 #: src/blocks/number-field/inspector.js:90
 #: src/blocks/number-field/inspector.js:186
 #: src/blocks/profile-card/edit.js:239
 #: src/blocks/profile-card/edit.js:318
-#: src/blocks/profile-card/inspector.js:427
+#: src/blocks/profile-card/inspector.js:426
 #: src/blocks/progress-pie/inspector.js:73
 #: src/blocks/progress-pie/inspector.js:180
 #: src/blocks/radio-field/edit.js:89
@@ -1172,7 +1332,10 @@ msgid "Add"
 msgstr ""
 
 #: src/admin/dashboard/API-Settings/index.js:309
-msgid "ZoloAI"
+#: src/extensions/AI/features/toolbar/edit.js:44
+#: src/extensions/AI/features/toolbar/settings.js:4
+#: src/extensions/AI/popup/components/header/index.js:44
+msgid "Zolo AI"
 msgstr ""
 
 #: src/admin/dashboard/API-Settings/index.js:327
@@ -1392,11 +1555,11 @@ msgid "Automatically recover any erroneous blocks on your web pages, saving you 
 msgstr ""
 
 #: src/admin/dashboard/Settings/index.js:328
-msgid "Editor Sidebar Open"
+msgid "Block Selector"
 msgstr ""
 
 #: src/admin/dashboard/Settings/index.js:329
-msgid "Enable this option to provide users easy access to the Gutenberg editor sidebar settings."
+msgid "Enable this option to allow users to easily access and select blocks within the Gutenberg editor."
 msgstr ""
 
 #: src/admin/dashboard/Settings/index.js:342
@@ -1612,7 +1775,7 @@ msgstr ""
 #: src/blocks/accordion-child/inspector.js:85
 #: src/blocks/accordion/inspector.js:109
 #: src/blocks/advanced-button/inspector.js:120
-#: src/blocks/advanced-heading/inspector.js:169
+#: src/blocks/advanced-heading/inspector.js:194
 #: src/blocks/advanced-icon-box/inspector.js:162
 #: src/blocks/advanced-image/inspector.js:141
 #: src/blocks/advanced-paragraph/inspector.js:80
@@ -1629,9 +1792,9 @@ msgstr ""
 #: src/blocks/cta/inspector.js:112
 #: src/blocks/email/inspector.js:78
 #: src/blocks/flipbox/inspector.js:156
-#: src/blocks/form/inspector.js:163
+#: src/blocks/form/inspector.js:175
 #: src/blocks/google-map/inspector.js:71
-#: src/blocks/icon/inspector.js:83
+#: src/blocks/icon/inspector.js:84
 #: src/blocks/image-compare/inspector.js:75
 #: src/blocks/image-gallery/inspector.js:113
 #: src/blocks/list/inspector.js:163
@@ -1656,7 +1819,7 @@ msgstr ""
 #: src/blocks/post-timeline/inspector.js:150
 #: src/blocks/post-title/inspector.js:59
 #: src/blocks/pricing-table/inspector.js:194
-#: src/blocks/profile-card/inspector.js:161
+#: src/blocks/profile-card/inspector.js:160
 #: src/blocks/progress-bar/inspector.js:69
 #: src/blocks/progress-pie/inspector.js:70
 #: src/blocks/radio-field/inspector.js:81
@@ -1690,9 +1853,8 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:234
 #: src/blocks/advanced-icon-box/inspector.js:434
 #: src/blocks/advanced-icon-box/inspector.js:877
-#: src/blocks/brand-child/constants/index.js:15
-#: src/blocks/brand-child/inspector.js:212
-#: src/blocks/brand-child/inspector.js:410
+#: src/blocks/brand-child/inspector.js:171
+#: src/blocks/brand-child/inspector.js:368
 #: src/blocks/brand-grid/constants/index.js:28
 #: src/blocks/brand-grid/inspector.js:119
 #: src/blocks/brand-grid/inspector.js:348
@@ -1761,8 +1923,6 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:189
 #: src/blocks/advanced-icon-box/inspector.js:612
 #: src/blocks/author/inspector.js:219
-#: src/blocks/brand-child/constants/index.js:11
-#: src/blocks/brand-child/constants/index.js:26
 #: src/blocks/business-hour/inspector.js:99
 #: src/blocks/countdown/inspector.js:405
 #: src/blocks/fancy-list-child/inspector.js:237
@@ -1791,9 +1951,11 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:446
 #: src/blocks/advanced-button/inspector.js:247
 #: src/blocks/advanced-button/inspector.js:371
-#: src/blocks/advanced-heading/inspector.js:463
-#: src/blocks/advanced-heading/inspector.js:526
-#: src/blocks/advanced-heading/inspector.js:632
+#: src/blocks/advanced-heading/inspector.js:542
+#: src/blocks/advanced-heading/inspector.js:605
+#: src/blocks/advanced-heading/inspector.js:653
+#: src/blocks/advanced-heading/inspector.js:700
+#: src/blocks/advanced-heading/inspector.js:804
 #: src/blocks/advanced-icon-box/inspector.js:618
 #: src/blocks/advanced-icon-box/inspector.js:685
 #: src/blocks/advanced-icon-box/inspector.js:801
@@ -1809,9 +1971,9 @@ msgstr ""
 #: src/blocks/author/inspector.js:281
 #: src/blocks/author/inspector.js:428
 #: src/blocks/author/inspector.js:478
-#: src/blocks/brand-child/inspector.js:263
-#: src/blocks/brand-child/inspector.js:331
-#: src/blocks/brand-child/inspector.js:352
+#: src/blocks/brand-child/inspector.js:236
+#: src/blocks/brand-child/inspector.js:289
+#: src/blocks/brand-child/inspector.js:310
 #: src/blocks/brand-grid/inspector.js:223
 #: src/blocks/brand-grid/inspector.js:269
 #: src/blocks/brand-grid/inspector.js:290
@@ -1844,12 +2006,12 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:770
 #: src/blocks/flipbox/inspector.js:814
 #: src/blocks/flipbox/inspector.js:1029
-#: src/blocks/form/inspector.js:447
-#: src/blocks/form/inspector.js:526
-#: src/blocks/form/inspector.js:573
-#: src/blocks/form/inspector.js:631
-#: src/blocks/form/inspector.js:665
-#: src/blocks/icon/inspector.js:151
+#: src/blocks/form/inspector.js:459
+#: src/blocks/form/inspector.js:538
+#: src/blocks/form/inspector.js:585
+#: src/blocks/form/inspector.js:643
+#: src/blocks/form/inspector.js:677
+#: src/blocks/icon/inspector.js:172
 #: src/blocks/image-compare/inspector.js:354
 #: src/blocks/image-gallery/inspector.js:273
 #: src/blocks/image-gallery/inspector.js:334
@@ -1925,15 +2087,15 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:983
 #: src/blocks/pricing-table/inspector.js:1035
 #: src/blocks/pricing-table/inspector.js:1120
-#: src/blocks/profile-card/inspector.js:484
-#: src/blocks/profile-card/inspector.js:519
-#: src/blocks/profile-card/inspector.js:556
-#: src/blocks/profile-card/inspector.js:581
-#: src/blocks/profile-card/inspector.js:812
-#: src/blocks/profile-card/inspector.js:901
-#: src/blocks/qrcode/inspector.js:169
-#: src/blocks/qrcode/inspector.js:258
-#: src/blocks/qrcode/inspector.js:320
+#: src/blocks/profile-card/inspector.js:483
+#: src/blocks/profile-card/inspector.js:518
+#: src/blocks/profile-card/inspector.js:555
+#: src/blocks/profile-card/inspector.js:580
+#: src/blocks/profile-card/inspector.js:811
+#: src/blocks/profile-card/inspector.js:900
+#: src/blocks/qrcode/inspector.js:160
+#: src/blocks/qrcode/inspector.js:249
+#: src/blocks/qrcode/inspector.js:311
 #: src/blocks/radio-field/inspector.js:212
 #: src/blocks/radio-field/inspector.js:253
 #: src/blocks/review-carousel/inspector.js:438
@@ -1953,7 +2115,7 @@ msgstr ""
 #: src/blocks/review/inspector.js:364
 #: src/blocks/review/inspector.js:392
 #: src/blocks/review/inspector.js:490
-#: src/blocks/review/inspector.js:715
+#: src/blocks/review/inspector.js:694
 #: src/blocks/select-field/inspector.js:225
 #: src/blocks/select-field/inspector.js:263
 #: src/blocks/slide/inspector.js:42
@@ -2004,9 +2166,11 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:206
 #: src/blocks/accordion/inspector.js:266
 #: src/blocks/accordion/inspector.js:452
-#: src/blocks/advanced-heading/inspector.js:468
-#: src/blocks/advanced-heading/inspector.js:532
-#: src/blocks/advanced-heading/inspector.js:637
+#: src/blocks/advanced-heading/inspector.js:547
+#: src/blocks/advanced-heading/inspector.js:611
+#: src/blocks/advanced-heading/inspector.js:658
+#: src/blocks/advanced-heading/inspector.js:705
+#: src/blocks/advanced-heading/inspector.js:809
 #: src/blocks/advanced-icon-box/inspector.js:623
 #: src/blocks/advanced-icon-box/inspector.js:691
 #: src/blocks/advanced-icon-box/inspector.js:870
@@ -2022,10 +2186,10 @@ msgstr ""
 #: src/blocks/advanced-paragraph/inspector.js:251
 #: src/blocks/author/inspector.js:286
 #: src/blocks/author/inspector.js:433
-#: src/blocks/brand-child/inspector.js:271
-#: src/blocks/brand-child/inspector.js:360
-#: src/blocks/brand-child/inspector.js:434
-#: src/blocks/brand-child/inspector.js:497
+#: src/blocks/brand-child/inspector.js:244
+#: src/blocks/brand-child/inspector.js:318
+#: src/blocks/brand-child/inspector.js:392
+#: src/blocks/brand-child/inspector.js:455
 #: src/blocks/brand-grid/inspector.js:298
 #: src/blocks/brand-grid/inspector.js:372
 #: src/blocks/brand-grid/inspector.js:434
@@ -2045,9 +2209,9 @@ msgstr ""
 #: src/blocks/fancy-list/inspector.js:258
 #: src/blocks/flipbox/inspector.js:881
 #: src/blocks/flipbox/inspector.js:907
-#: src/blocks/form/inspector.js:455
-#: src/blocks/form/inspector.js:579
-#: src/blocks/icon/inspector.js:156
+#: src/blocks/form/inspector.js:467
+#: src/blocks/form/inspector.js:591
+#: src/blocks/icon/inspector.js:177
 #: src/blocks/image-compare/inspector.js:360
 #: src/blocks/image-gallery/inspector.js:340
 #: src/blocks/image-gallery/inspector.js:400
@@ -2118,20 +2282,20 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:1004
 #: src/blocks/pricing-table/inspector.js:1042
 #: src/blocks/pricing-table/inspector.js:1127
-#: src/blocks/profile-card/inspector.js:527
-#: src/blocks/profile-card/inspector.js:563
-#: src/blocks/profile-card/inspector.js:653
-#: src/blocks/profile-card/inspector.js:680
-#: src/blocks/profile-card/inspector.js:707
-#: src/blocks/profile-card/inspector.js:734
-#: src/blocks/profile-card/inspector.js:780
-#: src/blocks/profile-card/inspector.js:818
-#: src/blocks/profile-card/inspector.js:906
+#: src/blocks/profile-card/inspector.js:526
+#: src/blocks/profile-card/inspector.js:562
+#: src/blocks/profile-card/inspector.js:652
+#: src/blocks/profile-card/inspector.js:679
+#: src/blocks/profile-card/inspector.js:706
+#: src/blocks/profile-card/inspector.js:733
+#: src/blocks/profile-card/inspector.js:779
+#: src/blocks/profile-card/inspector.js:817
+#: src/blocks/profile-card/inspector.js:905
 #: src/blocks/progress-bar-child/inspector.js:115
 #: src/blocks/progress-bar-child/inspector.js:150
 #: src/blocks/progress-bar/inspector.js:160
 #: src/blocks/progress-bar/inspector.js:197
-#: src/blocks/qrcode/inspector.js:299
+#: src/blocks/qrcode/inspector.js:290
 #: src/blocks/radio-field/inspector.js:220
 #: src/blocks/review-carousel/inspector.js:493
 #: src/blocks/review-carousel/inspector.js:537
@@ -2151,7 +2315,7 @@ msgstr ""
 #: src/blocks/review/inspector.js:555
 #: src/blocks/review/inspector.js:596
 #: src/blocks/review/inspector.js:621
-#: src/blocks/review/inspector.js:720
+#: src/blocks/review/inspector.js:699
 #: src/blocks/select-field/inspector.js:233
 #: src/blocks/slider/inspector.js:785
 #: src/blocks/slider/inspector.js:894
@@ -2200,9 +2364,11 @@ msgstr ""
 #: src/blocks/advanced-button/inspector.js:519
 #: src/blocks/advanced-button/inspector.js:560
 #: src/blocks/advanced-button/inspector.js:578
-#: src/blocks/advanced-heading/inspector.js:473
-#: src/blocks/advanced-heading/inspector.js:539
-#: src/blocks/advanced-heading/inspector.js:642
+#: src/blocks/advanced-heading/inspector.js:552
+#: src/blocks/advanced-heading/inspector.js:618
+#: src/blocks/advanced-heading/inspector.js:664
+#: src/blocks/advanced-heading/inspector.js:711
+#: src/blocks/advanced-heading/inspector.js:814
 #: src/blocks/advanced-icon-box/inspector.js:629
 #: src/blocks/advanced-icon-box/inspector.js:698
 #: src/blocks/advanced-icon-box/inspector.js:742
@@ -2219,8 +2385,8 @@ msgstr ""
 #: src/blocks/author/inspector.js:292
 #: src/blocks/author/inspector.js:439
 #: src/blocks/author/inspector.js:484
-#: src/blocks/brand-child/inspector.js:278
-#: src/blocks/brand-child/inspector.js:367
+#: src/blocks/brand-child/inspector.js:251
+#: src/blocks/brand-child/inspector.js:325
 #: src/blocks/brand-grid/inspector.js:232
 #: src/blocks/brand-grid/inspector.js:305
 #: src/blocks/breadcrumbs/inspector.js:247
@@ -2249,12 +2415,12 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:776
 #: src/blocks/flipbox/inspector.js:820
 #: src/blocks/flipbox/inspector.js:1035
-#: src/blocks/form/inspector.js:465
-#: src/blocks/form/inspector.js:532
-#: src/blocks/form/inspector.js:586
-#: src/blocks/form/inspector.js:638
-#: src/blocks/form/inspector.js:672
-#: src/blocks/icon/inspector.js:162
+#: src/blocks/form/inspector.js:477
+#: src/blocks/form/inspector.js:544
+#: src/blocks/form/inspector.js:598
+#: src/blocks/form/inspector.js:650
+#: src/blocks/form/inspector.js:684
+#: src/blocks/icon/inspector.js:183
 #: src/blocks/image-compare/inspector.js:368
 #: src/blocks/image-compare/inspector.js:398
 #: src/blocks/image-compare/inspector.js:479
@@ -2337,11 +2503,11 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:680
 #: src/blocks/pricing-table/inspector.js:1050
 #: src/blocks/pricing-table/inspector.js:1135
-#: src/blocks/profile-card/inspector.js:535
-#: src/blocks/profile-card/inspector.js:569
-#: src/blocks/profile-card/inspector.js:595
-#: src/blocks/profile-card/inspector.js:825
-#: src/blocks/profile-card/inspector.js:912
+#: src/blocks/profile-card/inspector.js:534
+#: src/blocks/profile-card/inspector.js:568
+#: src/blocks/profile-card/inspector.js:594
+#: src/blocks/profile-card/inspector.js:824
+#: src/blocks/profile-card/inspector.js:911
 #: src/blocks/radio-field/inspector.js:201
 #: src/blocks/radio-field/inspector.js:260
 #: src/blocks/review-carousel/inspector.js:445
@@ -2361,7 +2527,7 @@ msgstr ""
 #: src/blocks/review/inspector.js:378
 #: src/blocks/review/inspector.js:405
 #: src/blocks/review/inspector.js:503
-#: src/blocks/review/inspector.js:726
+#: src/blocks/review/inspector.js:705
 #: src/blocks/select-field/inspector.js:214
 #: src/blocks/select-field/inspector.js:269
 #: src/blocks/slide/inspector.js:48
@@ -2419,9 +2585,11 @@ msgstr ""
 #: src/blocks/advanced-button/inspector.js:524
 #: src/blocks/advanced-button/inspector.js:565
 #: src/blocks/advanced-button/inspector.js:583
-#: src/blocks/advanced-heading/inspector.js:476
-#: src/blocks/advanced-heading/inspector.js:545
-#: src/blocks/advanced-heading/inspector.js:645
+#: src/blocks/advanced-heading/inspector.js:555
+#: src/blocks/advanced-heading/inspector.js:624
+#: src/blocks/advanced-heading/inspector.js:669
+#: src/blocks/advanced-heading/inspector.js:716
+#: src/blocks/advanced-heading/inspector.js:817
 #: src/blocks/advanced-icon-box/inspector.js:646
 #: src/blocks/advanced-icon-box/inspector.js:703
 #: src/blocks/advanced-icon-box/inspector.js:747
@@ -2438,8 +2606,8 @@ msgstr ""
 #: src/blocks/author/inspector.js:445
 #: src/blocks/author/inspector.js:494
 #: src/blocks/author/inspector.js:530
-#: src/blocks/brand-child/inspector.js:288
-#: src/blocks/brand-child/inspector.js:373
+#: src/blocks/brand-child/inspector.js:261
+#: src/blocks/brand-child/inspector.js:331
 #: src/blocks/brand-grid/inspector.js:242
 #: src/blocks/brand-grid/inspector.js:311
 #: src/blocks/breadcrumbs/inspector.js:257
@@ -2469,13 +2637,13 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:781
 #: src/blocks/flipbox/inspector.js:825
 #: src/blocks/flipbox/inspector.js:1040
-#: src/blocks/form/inspector.js:470
-#: src/blocks/form/inspector.js:534
-#: src/blocks/form/inspector.js:591
-#: src/blocks/form/inspector.js:643
-#: src/blocks/form/inspector.js:677
+#: src/blocks/form/inspector.js:482
+#: src/blocks/form/inspector.js:546
+#: src/blocks/form/inspector.js:603
+#: src/blocks/form/inspector.js:655
+#: src/blocks/form/inspector.js:689
 #: src/blocks/google-map/inspector.js:297
-#: src/blocks/icon/inspector.js:172
+#: src/blocks/icon/inspector.js:193
 #: src/blocks/image-gallery/inspector.js:301
 #: src/blocks/image-gallery/inspector.js:357
 #: src/blocks/image-gallery/inspector.js:418
@@ -2556,19 +2724,19 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:685
 #: src/blocks/pricing-table/inspector.js:1067
 #: src/blocks/pricing-table/inspector.js:1152
-#: src/blocks/profile-card/inspector.js:491
-#: src/blocks/profile-card/inspector.js:540
-#: src/blocks/profile-card/inspector.js:571
-#: src/blocks/profile-card/inspector.js:600
-#: src/blocks/profile-card/inspector.js:835
-#: src/blocks/profile-card/inspector.js:917
+#: src/blocks/profile-card/inspector.js:490
+#: src/blocks/profile-card/inspector.js:539
+#: src/blocks/profile-card/inspector.js:570
+#: src/blocks/profile-card/inspector.js:599
+#: src/blocks/profile-card/inspector.js:834
+#: src/blocks/profile-card/inspector.js:916
 #: src/blocks/progress-bar-child/inspector.js:96
 #: src/blocks/progress-bar-child/inspector.js:131
 #: src/blocks/progress-bar/inspector.js:130
 #: src/blocks/progress-bar/inspector.js:177
-#: src/blocks/qrcode/inspector.js:163
-#: src/blocks/qrcode/inspector.js:250
-#: src/blocks/qrcode/inspector.js:314
+#: src/blocks/qrcode/inspector.js:154
+#: src/blocks/qrcode/inspector.js:241
+#: src/blocks/qrcode/inspector.js:305
 #: src/blocks/radio-field/inspector.js:206
 #: src/blocks/radio-field/inspector.js:265
 #: src/blocks/review-carousel/inspector.js:451
@@ -2588,7 +2756,7 @@ msgstr ""
 #: src/blocks/review/inspector.js:381
 #: src/blocks/review/inspector.js:411
 #: src/blocks/review/inspector.js:513
-#: src/blocks/review/inspector.js:731
+#: src/blocks/review/inspector.js:710
 #: src/blocks/select-field/inspector.js:219
 #: src/blocks/select-field/inspector.js:271
 #: src/blocks/slide/inspector.js:50
@@ -2649,10 +2817,12 @@ msgstr ""
 #: src/blocks/advanced-button/inspector.js:272
 #: src/blocks/advanced-button/inspector.js:329
 #: src/blocks/advanced-button/inspector.js:410
-#: src/blocks/advanced-heading/inspector.js:377
-#: src/blocks/advanced-heading/inspector.js:487
-#: src/blocks/advanced-heading/inspector.js:556
-#: src/blocks/advanced-heading/inspector.js:596
+#: src/blocks/advanced-heading/inspector.js:456
+#: src/blocks/advanced-heading/inspector.js:566
+#: src/blocks/advanced-heading/inspector.js:636
+#: src/blocks/advanced-heading/inspector.js:682
+#: src/blocks/advanced-heading/inspector.js:728
+#: src/blocks/advanced-heading/inspector.js:768
 #: src/blocks/advanced-icon-box/inspector.js:668
 #: src/blocks/advanced-icon-box/inspector.js:760
 #: src/blocks/advanced-icon-box/inspector.js:839
@@ -2685,12 +2855,12 @@ msgstr ""
 #: src/blocks/author/inspector.js:412
 #: src/blocks/author/inspector.js:459
 #: src/blocks/author/inspector.js:520
-#: src/blocks/brand-child/inspector.js:413
-#: src/blocks/brand-child/inspector.js:443
-#: src/blocks/brand-child/inspector.js:456
-#: src/blocks/brand-child/inspector.js:474
-#: src/blocks/brand-child/inspector.js:506
-#: src/blocks/brand-child/inspector.js:519
+#: src/blocks/brand-child/inspector.js:371
+#: src/blocks/brand-child/inspector.js:401
+#: src/blocks/brand-child/inspector.js:414
+#: src/blocks/brand-child/inspector.js:432
+#: src/blocks/brand-child/inspector.js:464
+#: src/blocks/brand-child/inspector.js:477
 #: src/blocks/brand-grid/inspector.js:351
 #: src/blocks/brand-grid/inspector.js:381
 #: src/blocks/brand-grid/inspector.js:394
@@ -2736,18 +2906,18 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:966
 #: src/blocks/flipbox/inspector.js:1008
 #: src/blocks/flipbox/inspector.js:1049
-#: src/blocks/form/inspector.js:427
-#: src/blocks/form/inspector.js:481
-#: src/blocks/form/inspector.js:506
-#: src/blocks/form/inspector.js:542
-#: src/blocks/form/inspector.js:561
-#: src/blocks/form/inspector.js:601
-#: src/blocks/form/inspector.js:619
-#: src/blocks/form/inspector.js:653
-#: src/blocks/form/inspector.js:687
+#: src/blocks/form/inspector.js:439
+#: src/blocks/form/inspector.js:493
+#: src/blocks/form/inspector.js:518
+#: src/blocks/form/inspector.js:554
+#: src/blocks/form/inspector.js:573
+#: src/blocks/form/inspector.js:613
+#: src/blocks/form/inspector.js:631
+#: src/blocks/form/inspector.js:665
+#: src/blocks/form/inspector.js:699
 #: src/blocks/google-map/inspector.js:323
-#: src/blocks/icon/inspector.js:131
-#: src/blocks/icon/inspector.js:182
+#: src/blocks/icon/inspector.js:162
+#: src/blocks/icon/inspector.js:203
 #: src/blocks/image-compare/inspector.js:332
 #: src/blocks/image-compare/inspector.js:383
 #: src/blocks/image-compare/inspector.js:446
@@ -2918,17 +3088,17 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:1077
 #: src/blocks/pricing-table/inspector.js:1099
 #: src/blocks/pricing-table/inspector.js:1162
-#: src/blocks/profile-card/inspector.js:502
-#: src/blocks/profile-card/inspector.js:638
-#: src/blocks/profile-card/inspector.js:664
-#: src/blocks/profile-card/inspector.js:691
-#: src/blocks/profile-card/inspector.js:718
-#: src/blocks/profile-card/inspector.js:748
-#: src/blocks/profile-card/inspector.js:764
-#: src/blocks/profile-card/inspector.js:795
-#: src/blocks/profile-card/inspector.js:845
-#: src/blocks/profile-card/inspector.js:885
-#: src/blocks/profile-card/inspector.js:932
+#: src/blocks/profile-card/inspector.js:501
+#: src/blocks/profile-card/inspector.js:637
+#: src/blocks/profile-card/inspector.js:663
+#: src/blocks/profile-card/inspector.js:690
+#: src/blocks/profile-card/inspector.js:717
+#: src/blocks/profile-card/inspector.js:747
+#: src/blocks/profile-card/inspector.js:763
+#: src/blocks/profile-card/inspector.js:794
+#: src/blocks/profile-card/inspector.js:844
+#: src/blocks/profile-card/inspector.js:884
+#: src/blocks/profile-card/inspector.js:931
 #: src/blocks/progress-bar-child/inspector.js:104
 #: src/blocks/progress-bar-child/inspector.js:139
 #: src/blocks/progress-bar/inspector.js:149
@@ -2936,8 +3106,8 @@ msgstr ""
 #: src/blocks/progress-pie/inspector.js:251
 #: src/blocks/progress-pie/inspector.js:310
 #: src/blocks/progress-pie/multicolor.js:25
-#: src/blocks/qrcode/inspector.js:194
-#: src/blocks/qrcode/inspector.js:282
+#: src/blocks/qrcode/inspector.js:185
+#: src/blocks/qrcode/inspector.js:273
 #: src/blocks/radio-field/inspector.js:183
 #: src/blocks/radio-field/inspector.js:289
 #: src/blocks/review-carousel/inspector.js:522
@@ -3040,10 +3210,10 @@ msgstr ""
 #: src/blocks/text-path/inspector.js:292
 #: src/blocks/text-path/inspector.js:366
 #: src/blocks/textarea/inspector.js:262
-#: src/controls/color-control-alt/index.js:29
-#: src/controls/color-control/index.js:29
+#: src/controls/color-control-alt/index.js:28
+#: src/controls/color-control/index.js:28
 #: src/controls/text-gradient-control/index.js:1058
-#: src/extensions/particles/inspector.js:335
+#: src/extensions/particles/inspector.js:356
 #: src/extensions/particles/multicolor.js:32
 #: src/extensions/shape-divider/inspector.js:130
 #: src/extensions/shape-divider/inspector.js:234
@@ -3054,7 +3224,7 @@ msgstr ""
 #: src/blocks/accordion-child/inspector.js:142
 #: src/blocks/accordion/inspector.js:253
 #: src/blocks/advanced-button/inspector.js:239
-#: src/blocks/advanced-heading/inspector.js:398
+#: src/blocks/advanced-heading/inspector.js:477
 #: src/blocks/advanced-icon-box/inspector.js:891
 #: src/blocks/advanced-icon-box/inspector.js:946
 #: src/blocks/advanced-icon-box/inspector.js:991
@@ -3071,8 +3241,8 @@ msgstr ""
 #: src/blocks/author/inspector.js:365
 #: src/blocks/author/inspector.js:393
 #: src/blocks/author/inspector.js:421
-#: src/blocks/brand-child/inspector.js:423
-#: src/blocks/brand-child/inspector.js:484
+#: src/blocks/brand-child/inspector.js:381
+#: src/blocks/brand-child/inspector.js:442
 #: src/blocks/brand-grid/inspector.js:361
 #: src/blocks/brand-grid/inspector.js:422
 #: src/blocks/breadcrumbs/inspector.js:233
@@ -3103,11 +3273,11 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:943
 #: src/blocks/flipbox/inspector.js:961
 #: src/blocks/flipbox/inspector.js:1017
-#: src/blocks/form/inspector.js:437
-#: src/blocks/form/inspector.js:519
-#: src/blocks/form/inspector.js:566
-#: src/blocks/form/inspector.js:624
-#: src/blocks/form/inspector.js:658
+#: src/blocks/form/inspector.js:449
+#: src/blocks/form/inspector.js:531
+#: src/blocks/form/inspector.js:578
+#: src/blocks/form/inspector.js:636
+#: src/blocks/form/inspector.js:670
 #: src/blocks/google-map/inspector.js:328
 #: src/blocks/image-compare/inspector.js:341
 #: src/blocks/image-gallery/inspector.js:380
@@ -3184,14 +3354,14 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:559
 #: src/blocks/pricing-table/inspector.js:1027
 #: src/blocks/pricing-table/inspector.js:1108
-#: src/blocks/profile-card/inspector.js:511
-#: src/blocks/profile-card/inspector.js:647
-#: src/blocks/profile-card/inspector.js:673
-#: src/blocks/profile-card/inspector.js:700
-#: src/blocks/profile-card/inspector.js:727
-#: src/blocks/profile-card/inspector.js:757
-#: src/blocks/profile-card/inspector.js:773
-#: src/blocks/profile-card/inspector.js:804
+#: src/blocks/profile-card/inspector.js:510
+#: src/blocks/profile-card/inspector.js:646
+#: src/blocks/profile-card/inspector.js:672
+#: src/blocks/profile-card/inspector.js:699
+#: src/blocks/profile-card/inspector.js:726
+#: src/blocks/profile-card/inspector.js:756
+#: src/blocks/profile-card/inspector.js:772
+#: src/blocks/profile-card/inspector.js:803
 #: src/blocks/progress-pie/inspector.js:260
 #: src/blocks/progress-pie/inspector.js:319
 #: src/blocks/radio-field/inspector.js:193
@@ -3261,6 +3431,7 @@ msgstr ""
 #: src/blocks/accordion-child/inspector.js:232
 #: src/blocks/accordion/inspector.js:362
 #: src/blocks/advanced-button/inspector.js:340
+#: src/blocks/advanced-heading/inspector.js:691
 #: src/blocks/advanced-icon-box/inspector.js:720
 #: src/blocks/advanced-icon-box/inspector.js:769
 #: src/blocks/advanced-icon-box/inspector.js:1074
@@ -3268,7 +3439,7 @@ msgstr ""
 #: src/blocks/advanced-search/inspector.js:402
 #: src/blocks/advanced-search/inspector.js:465
 #: src/blocks/author/inspector.js:468
-#: src/blocks/brand-child/inspector.js:343
+#: src/blocks/brand-child/inspector.js:301
 #: src/blocks/brand-grid/inspector.js:281
 #: src/blocks/breadcrumbs/inspector.js:363
 #: src/blocks/breadcrumbs/inspector.js:479
@@ -3276,7 +3447,8 @@ msgstr ""
 #: src/blocks/counter/inspector.js:431
 #: src/blocks/flipbox/inspector.js:758
 #: src/blocks/flipbox/inspector.js:803
-#: src/blocks/icon/inspector.js:141
+#: src/blocks/icon/inspector.js:117
+#: src/blocks/icon/inspector.js:136
 #: src/blocks/image-compare/inspector.js:438
 #: src/blocks/image-gallery/inspector.js:481
 #: src/blocks/list/inspector.js:569
@@ -3302,10 +3474,9 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:725
 #: src/blocks/pricing-table/inspector.js:745
 #: src/blocks/pricing-table/inspector.js:965
-#: src/blocks/profile-card/inspector.js:592
-#: src/blocks/profile-card/inspector.js:894
+#: src/blocks/profile-card/inspector.js:591
+#: src/blocks/profile-card/inspector.js:893
 #: src/blocks/progress-pie/inspector.js:217
-#: src/blocks/qrcode/inspector.js:108
 #: src/blocks/review-carousel/inspector.js:645
 #: src/blocks/review-carousel/inspector.js:702
 #: src/blocks/review-child/inspector.js:503
@@ -3351,7 +3522,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:1926
 #: src/controls/typography-control/index.js:178
 #: src/controls/typography-control/index.js:217
-#: src/extensions/particles/inspector.js:306
+#: src/extensions/particles/inspector.js:327
 msgid "Size"
 msgstr ""
 
@@ -3362,8 +3533,8 @@ msgstr ""
 #: src/blocks/advanced-image/inspector.js:519
 #: src/blocks/advanced-search/inspector.js:142
 #: src/blocks/author/inspector.js:220
-#: src/blocks/brand-child/inspector.js:208
-#: src/blocks/brand-child/inspector.js:328
+#: src/blocks/brand-child/inspector.js:167
+#: src/blocks/brand-child/inspector.js:286
 #: src/blocks/brand-grid/inspector.js:266
 #: src/blocks/checkbox-field/inspector.js:121
 #: src/blocks/counter/inspector.js:241
@@ -3386,11 +3557,11 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:420
 #: src/blocks/post-navigation/inspector.js:128
 #: src/blocks/post-timeline/inspector.js:251
-#: src/blocks/profile-card/inspector.js:257
+#: src/blocks/profile-card/inspector.js:256
 #: src/blocks/progress-bar-child/inspector.js:57
 #: src/blocks/progress-bar/inspector.js:88
 #: src/blocks/progress-pie/inspector.js:235
-#: src/blocks/qrcode/inspector.js:95
+#: src/blocks/qrcode/inspector.js:97
 #: src/blocks/radio-field/inspector.js:120
 #: src/blocks/review/inspector.js:221
 #: src/blocks/review/inspector.js:389
@@ -3453,7 +3624,7 @@ msgstr ""
 #: src/blocks/counter/inspector.js:147
 #: src/blocks/image-gallery/inspector.js:115
 #: src/blocks/pricing-table/inspector.js:196
-#: src/blocks/profile-card/inspector.js:163
+#: src/blocks/profile-card/inspector.js:162
 msgid "Preset"
 msgstr ""
 
@@ -3476,12 +3647,12 @@ msgid "Allow multiple open at a time"
 msgstr ""
 
 #: src/blocks/accordion/inspector.js:154
-#: src/blocks/advanced-heading/inspector.js:216
-#: src/blocks/advanced-heading/inspector.js:241
-#: src/blocks/advanced-heading/inspector.js:295
+#: src/blocks/advanced-heading/inspector.js:242
+#: src/blocks/advanced-heading/inspector.js:267
+#: src/blocks/advanced-heading/inspector.js:374
 #: src/blocks/advanced-icon-box/inspector.js:437
 #: src/blocks/advanced-image/inspector.js:279
-#: src/blocks/brand-child/inspector.js:225
+#: src/blocks/brand-child/inspector.js:184
 #: src/blocks/counter/inspector.js:278
 #: src/blocks/cta/inspector.js:187
 #: src/blocks/notice/inspector.js:321
@@ -3514,7 +3685,7 @@ msgstr ""
 #: src/blocks/advanced-image/constants/index.js:10
 #: src/blocks/advanced-search/inspector.js:205
 #: src/blocks/advanced-search/inspector.js:304
-#: src/blocks/brand-child/inspector.js:392
+#: src/blocks/brand-child/inspector.js:350
 #: src/blocks/brand-grid/inspector.js:330
 #: src/blocks/counter/inspector.js:526
 #: src/blocks/google-map/inspector.js:308
@@ -3586,7 +3757,7 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:238
 #: src/blocks/accordion/inspector.js:347
 #: src/blocks/advanced-image/constants/index.js:69
-#: src/blocks/brand-child/inspector.js:396
+#: src/blocks/brand-child/inspector.js:354
 #: src/blocks/brand-grid/inspector.js:334
 #: src/blocks/flipbox/constants/index.js:57
 #: src/blocks/google-map/inspector.js:312
@@ -3636,7 +3807,6 @@ msgstr ""
 #: src/blocks/advanced-paragraph/inspector.js:215
 #: src/blocks/advanced-search/inspector.js:251
 #: src/blocks/advanced-search/inspector.js:439
-#: src/blocks/brand-child/inspector.js:309
 #: src/blocks/breadcrumbs/inspector.js:286
 #: src/blocks/breadcrumbs/inspector.js:394
 #: src/blocks/breadcrumbs/inspector.js:531
@@ -3672,8 +3842,8 @@ msgstr ""
 #: src/blocks/post-timeline/inspector.js:378
 #: src/blocks/pricing-table/inspector.js:1055
 #: src/blocks/pricing-table/inspector.js:1140
-#: src/blocks/profile-card/inspector.js:865
-#: src/blocks/profile-card/inspector.js:947
+#: src/blocks/profile-card/inspector.js:864
+#: src/blocks/profile-card/inspector.js:946
 #: src/blocks/review-carousel/inspector.js:772
 #: src/blocks/slider/inspector.js:798
 #: src/blocks/social-count-child/inspector.js:134
@@ -3822,10 +3992,10 @@ msgstr ""
 #: src/blocks/newsletter/inspector.js:314
 #: src/blocks/post-category/inspector.js:200
 #: src/blocks/post-comments-form/inspector.js:167
-#: src/blocks/pricing-table/edit.js:153
-#: src/blocks/pricing-table/edit.js:163
-#: src/blocks/pricing-table/edit.js:220
-#: src/blocks/pricing-table/edit.js:231
+#: src/blocks/pricing-table/edit.js:156
+#: src/blocks/pricing-table/edit.js:166
+#: src/blocks/pricing-table/edit.js:223
+#: src/blocks/pricing-table/edit.js:234
 msgid "Button Text"
 msgstr ""
 
@@ -3839,7 +4009,7 @@ msgid "Styles"
 msgstr ""
 
 #: src/blocks/advanced-button/inspector.js:129
-#: src/blocks/advanced-heading/inspector.js:203
+#: src/blocks/advanced-heading/inspector.js:229
 #: src/blocks/advanced-icon-box/inspector.js:729
 #: src/blocks/advanced-icon-box/inspector.js:779
 #: src/blocks/advanced-image/inspector.js:155
@@ -3855,8 +4025,8 @@ msgstr ""
 #: src/blocks/cta/inspector.js:147
 #: src/blocks/flipbox/inspector.js:673
 #: src/blocks/flipbox/inspector.js:703
-#: src/blocks/form/inspector.js:355
-#: src/blocks/icon/inspector.js:116
+#: src/blocks/form/inspector.js:367
+#: src/blocks/icon/inspector.js:147
 #: src/blocks/lightbox/inspector.js:297
 #: src/blocks/navigation/inspector.js:142
 #: src/blocks/newsletter/inspector.js:280
@@ -3870,7 +4040,7 @@ msgstr ""
 #: src/blocks/post-timeline/inspector.js:695
 #: src/blocks/post-title/inspector.js:99
 #: src/blocks/pricing-table/inspector.js:227
-#: src/blocks/qrcode/inspector.js:140
+#: src/blocks/qrcode/inspector.js:131
 #: src/blocks/review-child/inspector.js:126
 #: src/blocks/review-grid/inspector.js:272
 #: src/blocks/review/inspector.js:418
@@ -3884,73 +4054,8 @@ msgstr ""
 msgid "Alignment"
 msgstr ""
 
-#: src/blocks/advanced-button/inspector.js:138
-#: src/blocks/advanced-heading/inspector.js:211
-#: src/blocks/advanced-heading/inspector.js:236
-#: src/blocks/advanced-heading/inspector.js:281
-#: src/blocks/advanced-icon-box/inspector.js:448
-#: src/blocks/advanced-icon-box/inspector.js:468
-#: src/blocks/advanced-icon-box/inspector.js:512
-#: src/blocks/advanced-image/inspector.js:252
-#: src/blocks/advanced-image/inspector.js:269
-#: src/blocks/advanced-image/inspector.js:304
-#: src/blocks/advanced-paragraph/inspector.js:122
-#: src/blocks/advanced-search/constants/index.js:14
-#: src/blocks/advanced-search/inspector.js:160
-#: src/blocks/advanced-search/inspector.js:174
-#: src/blocks/advanced-search/inspector.js:188
-#: src/blocks/brand-child/inspector.js:215
-#: src/blocks/brand-child/inspector.js:240
-#: src/blocks/breadcrumbs/constants/index.js:63
-#: src/blocks/breadcrumbs/inspector.js:160
-#: src/blocks/charts/inspector.js:493
-#: src/blocks/charts/inspector.js:525
-#: src/blocks/counter/inspector.js:273
-#: src/blocks/cta/inspector.js:181
-#: src/blocks/cta/inspector.js:201
-#: src/blocks/fancy-list/inspector.js:230
-#: src/blocks/flipbox/inspector.js:387
-#: src/blocks/flipbox/inspector.js:398
-#: src/blocks/flipbox/inspector.js:512
-#: src/blocks/flipbox/inspector.js:524
-#: src/blocks/flipbox/inspector.js:535
-#: src/blocks/newsletter/constants/index.js:26
-#: src/blocks/notice/inspector.js:332
-#: src/blocks/notice/inspector.js:349
-#: src/blocks/post-carousel/inspector.js:373
-#: src/blocks/post-carousel/inspector.js:385
-#: src/blocks/post-category/inspector.js:155
-#: src/blocks/post-comments/inspector.js:134
-#: src/blocks/post-comments/inspector.js:308
-#: src/blocks/post-grid/inspector.js:353
-#: src/blocks/post-grid/inspector.js:365
-#: src/blocks/post-navigation/inspector.js:133
-#: src/blocks/post-navigation/inspector.js:144
-#: src/blocks/pricing-table/inspector.js:265
-#: src/blocks/pricing-table/inspector.js:315
-#: src/blocks/pricing-table/inspector.js:336
-#: src/blocks/pricing-table/inspector.js:392
-#: src/blocks/pricing-table/inspector.js:435
-#: src/blocks/pricing-table/inspector.js:449
-#: src/blocks/pricing-table/sortable.js:59
-#: src/blocks/profile-card/inspector.js:264
-#: src/blocks/profile-card/inspector.js:347
-#: src/blocks/profile-card/inspector.js:362
-#: src/blocks/profile-card/inspector.js:377
-#: src/blocks/profile-card/inspector.js:393
-#: src/blocks/profile-card/inspector.js:450
-#: src/blocks/progress-pie/inspector.js:182
-#: src/blocks/review-child/inspector.js:213
-#: src/blocks/review-child/inspector.js:228
-#: src/blocks/review-child/inspector.js:244
-#: src/blocks/star-rating/inspector.js:136
-#: src/blocks/tab/inspector.js:68
-#: src/blocks/text-path/inspector.js:96
-msgid "Text"
-msgstr ""
-
 #: src/blocks/advanced-button/inspector.js:141
-#: src/blocks/brand-child/inspector.js:247
+#: src/blocks/brand-child/inspector.js:206
 #: src/blocks/cta/inspector.js:217
 #: src/blocks/cta/inspector.js:275
 msgid "label.."
@@ -3958,14 +4063,15 @@ msgstr ""
 
 #: src/blocks/advanced-button/inspector.js:157
 #: src/blocks/advanced-icon-box/inspector.js:499
-#: src/blocks/brand-child/inspector.js:195
+#: src/blocks/brand-child/inspector.js:154
+#: src/blocks/brand-child/inspector.js:214
 #: src/blocks/container/inspector.js:190
 #: src/blocks/cta/inspector.js:221
 #: src/blocks/cta/inspector.js:279
 #: src/blocks/flipbox/inspector.js:547
 #: src/blocks/pricing-table/inspector.js:440
 #: src/blocks/pricing-table/inspector.js:454
-#: src/blocks/profile-card/inspector.js:460
+#: src/blocks/profile-card/inspector.js:459
 #: src/blocks/review-child/inspector.js:278
 #: src/blocks/text-path/inspector.js:190
 msgid "URL"
@@ -3975,7 +4081,7 @@ msgstr ""
 #: src/blocks/counter/inspector.js:307
 #: src/blocks/cta/inspector.js:300
 #: src/blocks/email/inspector.js:147
-#: src/blocks/form/inspector.js:372
+#: src/blocks/form/inspector.js:384
 #: src/blocks/list/sortable.js:67
 #: src/blocks/newsletter/inspector.js:347
 #: src/blocks/number-field/inspector.js:145
@@ -4019,9 +4125,9 @@ msgstr ""
 #: src/blocks/advanced-button/inspector.js:293
 #: src/blocks/advanced-button/inspector.js:362
 #: src/blocks/advanced-button/inspector.js:420
-#: src/blocks/advanced-heading/inspector.js:408
-#: src/blocks/advanced-heading/inspector.js:517
-#: src/blocks/advanced-heading/inspector.js:622
+#: src/blocks/advanced-heading/inspector.js:487
+#: src/blocks/advanced-heading/inspector.js:596
+#: src/blocks/advanced-heading/inspector.js:794
 #: src/blocks/advanced-icon-box/inspector.js:792
 #: src/blocks/advanced-icon-box/inspector.js:848
 #: src/blocks/advanced-paragraph/inspector.js:209
@@ -4123,7 +4229,7 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:871
 #: src/blocks/post-timeline/inspector.js:456
 #: src/blocks/pricing-table/inspector.js:990
-#: src/blocks/profile-card/inspector.js:785
+#: src/blocks/profile-card/inspector.js:784
 #: src/blocks/progress-bar-child/inspector.js:160
 #: src/blocks/progress-bar/inspector.js:137
 #: src/blocks/progress-bar/inspector.js:207
@@ -4212,18 +4318,35 @@ msgstr ""
 msgid "Preset 2"
 msgstr ""
 
-#: src/blocks/advanced-heading/edit.js:50
+#: src/blocks/advanced-heading/constants/index.js:11
+#: src/blocks/advanced-image/constants/index.js:16
+#: src/blocks/advanced-image/constants/index.js:76
+#: src/blocks/container/constants/index.js:38
+#: src/blocks/post-meta/constants/index.js:20
+#: src/controls/typography-control/constant.js:24
+#: src/controls/typography-control/constant.js:64
+#: src/global/constants.js:717
+#: src/global/constants.js:1072
+#: src/global/constants.js:1081
+msgid "None"
+msgstr ""
+
+#: src/blocks/advanced-heading/constants/index.js:12
+msgid "Style 1 (Pro)"
+msgstr ""
+
+#: src/blocks/advanced-heading/edit.js:57
 #: src/blocks/megamenu/edit.js:33
 #: src/blocks/navigation-item/edit.js:115
 #: src/blocks/navigation/edit.js:109
 msgid "Heading Preview"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:171
+#: src/blocks/advanced-heading/inspector.js:196
 #: src/blocks/advanced-search/inspector.js:101
 #: src/blocks/countdown/inspector.js:132
 #: src/blocks/cta/inspector.js:114
-#: src/blocks/form/inspector.js:165
+#: src/blocks/form/inspector.js:177
 #: src/blocks/list/inspector.js:165
 #: src/blocks/newsletter/inspector.js:216
 #: src/blocks/post-list/inspector.js:195
@@ -4237,7 +4360,7 @@ msgstr ""
 msgid "Presets"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:177
+#: src/blocks/advanced-heading/inspector.js:202
 #: src/blocks/author/inspector.js:125
 #: src/blocks/charts/inspector.js:375
 #: src/blocks/charts/inspector.js:635
@@ -4245,7 +4368,7 @@ msgstr ""
 #: src/blocks/checkbox-field/inspector.js:84
 #: src/blocks/countdown/inspector.js:146
 #: src/blocks/flipbox/inspector.js:180
-#: src/blocks/form/inspector.js:173
+#: src/blocks/form/inspector.js:185
 #: src/blocks/newsletter/inspector.js:289
 #: src/blocks/notice/inspector.js:181
 #: src/blocks/number-field/inspector.js:88
@@ -4265,19 +4388,19 @@ msgstr ""
 msgid "show/hide elements"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:180
+#: src/blocks/advanced-heading/inspector.js:205
 msgid "Enable Heading Link"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:186
-#: src/blocks/advanced-heading/inspector.js:234
-#: src/blocks/advanced-heading/inspector.js:485
+#: src/blocks/advanced-heading/inspector.js:211
+#: src/blocks/advanced-heading/inspector.js:260
+#: src/blocks/advanced-heading/inspector.js:564
 msgid "Sub Heading"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:192
-#: src/blocks/advanced-heading/inspector.js:263
-#: src/blocks/advanced-heading/inspector.js:554
+#: src/blocks/advanced-heading/inspector.js:217
+#: src/blocks/advanced-heading/inspector.js:342
+#: src/blocks/advanced-heading/inspector.js:726
 #: src/blocks/advanced-image/inspector.js:327
 #: src/blocks/advanced-image/inspector.js:587
 #: src/blocks/breadcrumbs/inspector.js:190
@@ -4299,14 +4422,14 @@ msgstr ""
 msgid "Separator"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:197
-#: src/blocks/advanced-heading/inspector.js:279
-#: src/blocks/advanced-heading/inspector.js:594
+#: src/blocks/advanced-heading/inspector.js:222
+#: src/blocks/advanced-heading/inspector.js:358
+#: src/blocks/advanced-heading/inspector.js:766
 msgid "Transparent Heading"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:209
-#: src/blocks/advanced-heading/inspector.js:360
+#: src/blocks/advanced-heading/inspector.js:235
+#: src/blocks/advanced-heading/inspector.js:439
 #: src/blocks/advanced-icon-box/inspector.js:212
 #: src/blocks/advanced-image/inspector.js:267
 #: src/blocks/advanced-image/inspector.js:538
@@ -4315,9 +4438,11 @@ msgstr ""
 msgid "Heading"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:225
+#: src/blocks/advanced-heading/inspector.js:251
 #: src/blocks/advanced-image/inspector.js:236
 #: src/blocks/advanced-paragraph/inspector.js:161
+#: src/blocks/brand-child/inspector.js:152
+#: src/blocks/brand-child/inspector.js:212
 #: src/blocks/icon/inspector.js:105
 #: src/blocks/list/sortable.js:74
 #: src/blocks/navigation-item/edit.js:129
@@ -4332,12 +4457,12 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:228
+#: src/blocks/advanced-heading/inspector.js:254
 msgid "http://your-link.com"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:249
-#: src/blocks/advanced-heading/inspector.js:266
+#: src/blocks/advanced-heading/inspector.js:275
+#: src/blocks/advanced-heading/inspector.js:345
 #: src/blocks/advanced-icon-box/inspector.js:313
 #: src/blocks/advanced-icon-box/inspector.js:326
 #: src/blocks/advanced-icon-box/inspector.js:518
@@ -4347,7 +4472,7 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:497
 #: src/blocks/cta/inspector.js:253
 #: src/blocks/cta/inspector.js:312
-#: src/blocks/form/inspector.js:382
+#: src/blocks/form/inspector.js:394
 #: src/blocks/image-compare/inspector.js:279
 #: src/blocks/image-compare/inspector.js:295
 #: src/blocks/popup-builder/inspector.js:132
@@ -4374,19 +4499,57 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:288
+#: src/blocks/advanced-heading/inspector.js:285
+#: src/blocks/advanced-heading/inspector.js:308
+#: src/blocks/profile-card/inspector.js:175
+#: src/blocks/profile-card/inspector.js:260
+#: src/blocks/qrcode/inspector.js:271
+msgid "Badge"
+msgstr ""
+
+#: src/blocks/advanced-heading/inspector.js:287
+msgid "Badge Style"
+msgstr ""
+
+#: src/blocks/advanced-heading/inspector.js:296
+#: src/blocks/advanced-icon-box/inspector.js:184
+#: src/blocks/container/inspector.js:154
+#: src/blocks/counter/inspector.js:157
+#: src/blocks/counter/inspector.js:191
+#: src/blocks/counter/inspector.js:206
+#: src/blocks/fancy-list/inspector.js:159
+#: src/blocks/image-compare/inspector.js:235
+#: src/blocks/list/inspector.js:203
+#: src/blocks/notice/inspector.js:169
+#: src/blocks/post-list/inspector.js:252
+#: src/blocks/pricing-table/inspector.js:249
+#: src/blocks/pricing-table/inspector.js:272
+#: src/blocks/review-grid/inspector.js:254
+#: src/blocks/review/inspector.js:157
+#: src/blocks/slider/inspector.js:714
+#: src/blocks/tabs/inspector.js:186
+#: src/blocks/text-path/inspector.js:132
+#: src/extensions/particles/inspector.js:226
+msgid "Direction"
+msgstr ""
+
+#: src/blocks/advanced-heading/inspector.js:319
+msgid "Badge Text"
+msgstr ""
+
+#: src/blocks/advanced-heading/inspector.js:367
 msgid "This heading will show as style as background and you can move and style many way."
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:304
+#: src/blocks/advanced-heading/inspector.js:383
 msgid "X Offset"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:313
+#: src/blocks/advanced-heading/inspector.js:392
 msgid "Y Offset"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:322
+#: src/blocks/advanced-heading/inspector.js:401
 #: src/blocks/advanced-icon-box/inspector.js:566
 #: src/blocks/post-carousel/inspector.js:449
 #: src/blocks/pricing-table/inspector.js:300
@@ -4400,15 +4563,15 @@ msgstr ""
 msgid "Rotate"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:331
+#: src/blocks/advanced-heading/inspector.js:410
 msgid "Rotate Origin"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:344
+#: src/blocks/advanced-heading/inspector.js:423
 msgid "Hide Device"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:388
+#: src/blocks/advanced-heading/inspector.js:467
 #: src/blocks/post-carousel/inspector.js:797
 #: src/blocks/post-comments/inspector.js:263
 #: src/blocks/post-grid/inspector.js:683
@@ -4419,21 +4582,29 @@ msgstr ""
 msgid "Hover Color"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:418
+#: src/blocks/advanced-heading/inspector.js:497
 msgid "Background Image"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:454
+#: src/blocks/advanced-heading/inspector.js:533
 msgid " Upload"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:566
+#: src/blocks/advanced-heading/inspector.js:634
+msgid "Sub Heading Badge"
+msgstr ""
+
+#: src/blocks/advanced-heading/inspector.js:680
+msgid "Sub Heading Icon"
+msgstr ""
+
+#: src/blocks/advanced-heading/inspector.js:738
 #: src/blocks/advanced-image/inspector.js:370
 #: src/blocks/advanced-image/inspector.js:400
 #: src/blocks/advanced-image/inspector.js:599
 #: src/blocks/advanced-search/inspector.js:367
 #: src/blocks/author/inspector.js:264
-#: src/blocks/form/inspector.js:548
+#: src/blocks/form/inspector.js:560
 #: src/blocks/image-compare/inspector.js:462
 #: src/blocks/lightbox/inspector.js:736
 #: src/blocks/list/inspector.js:220
@@ -4484,12 +4655,12 @@ msgstr ""
 msgid "Width"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:574
+#: src/blocks/advanced-heading/inspector.js:746
 #: src/blocks/advanced-image/inspector.js:376
 #: src/blocks/advanced-image/inspector.js:406
 #: src/blocks/advanced-image/inspector.js:605
 #: src/blocks/author/inspector.js:272
-#: src/blocks/brand-child/inspector.js:296
+#: src/blocks/brand-child/inspector.js:269
 #: src/blocks/brand-grid/inspector.js:249
 #: src/blocks/charts/inspector.js:356
 #: src/blocks/flipbox/inspector.js:615
@@ -4529,7 +4700,7 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:583
+#: src/blocks/advanced-heading/inspector.js:755
 #: src/blocks/advanced-search/inspector.js:239
 #: src/blocks/advanced-search/inspector.js:426
 #: src/blocks/author/inspector.js:371
@@ -4538,7 +4709,7 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:559
 #: src/blocks/cta/inspector.js:426
 #: src/blocks/cta/inspector.js:529
-#: src/blocks/form/inspector.js:495
+#: src/blocks/form/inspector.js:507
 #: src/blocks/newsletter/inspector.js:516
 #: src/blocks/newsletter/inspector.js:637
 #: src/blocks/newsletter/inspector.js:790
@@ -4549,7 +4720,7 @@ msgstr ""
 #: src/blocks/post-timeline/inspector.js:500
 #: src/blocks/post-timeline/inspector.js:543
 #: src/blocks/post-timeline/inspector.js:580
-#: src/blocks/profile-card/inspector.js:923
+#: src/blocks/profile-card/inspector.js:922
 #: src/blocks/progress-pie/inspector.js:297
 #: src/blocks/review-child/inspector.js:547
 #: src/blocks/review-grid/inspector.js:570
@@ -4565,7 +4736,7 @@ msgstr ""
 msgid "Spacing"
 msgstr ""
 
-#: src/blocks/advanced-heading/inspector.js:613
+#: src/blocks/advanced-heading/inspector.js:785
 #: src/blocks/advanced-image/inspector.js:496
 #: src/blocks/advanced-image/inspector.js:508
 #: src/blocks/post-category/inspector.js:321
@@ -4721,12 +4892,12 @@ msgid "Right"
 msgstr ""
 
 #: src/blocks/advanced-icon-box/edit.js:72
-#: src/blocks/icon/edit.js:39
+#: src/blocks/icon/edit.js:41
 msgid "Icon Box Preview"
 msgstr ""
 
 #: src/blocks/advanced-icon-box/edit.js:95
-#: src/blocks/brand-child/edit.js:114
+#: src/blocks/brand-child/edit.js:79
 #: src/blocks/counter/edit.js:80
 #: src/blocks/image-gallery/edit.js:60
 #: src/blocks/navigation/edit.js:136
@@ -4769,27 +4940,6 @@ msgstr ""
 #: src/blocks/advanced-icon-box/inspector.js:164
 #: src/blocks/notice/inspector.js:147
 msgid "Layouts"
-msgstr ""
-
-#: src/blocks/advanced-icon-box/inspector.js:184
-#: src/blocks/container/inspector.js:154
-#: src/blocks/counter/inspector.js:157
-#: src/blocks/counter/inspector.js:191
-#: src/blocks/counter/inspector.js:206
-#: src/blocks/fancy-list/inspector.js:159
-#: src/blocks/image-compare/inspector.js:235
-#: src/blocks/list/inspector.js:203
-#: src/blocks/notice/inspector.js:169
-#: src/blocks/post-list/inspector.js:252
-#: src/blocks/pricing-table/inspector.js:249
-#: src/blocks/pricing-table/inspector.js:272
-#: src/blocks/review-grid/inspector.js:254
-#: src/blocks/review/inspector.js:157
-#: src/blocks/slider/inspector.js:714
-#: src/blocks/tabs/inspector.js:186
-#: src/blocks/text-path/inspector.js:132
-#: src/extensions/particles/inspector.js:226
-msgid "Direction"
 msgstr ""
 
 #: src/blocks/advanced-icon-box/inspector.js:196
@@ -4894,7 +5044,7 @@ msgstr ""
 
 #: src/blocks/advanced-icon-box/inspector.js:410
 #: src/blocks/advanced-image/inspector.js:214
-#: src/blocks/brand-child/inspector.js:140
+#: src/blocks/brand-child/inspector.js:135
 #: src/blocks/counter/inspector.js:361
 #: src/blocks/fancy-list-child/inspector.js:211
 #: src/blocks/flipbox/inspector.js:355
@@ -4902,7 +5052,7 @@ msgstr ""
 #: src/blocks/image-compare/inspector.js:115
 #: src/blocks/image-compare/inspector.js:157
 #: src/blocks/notice/inspector.js:299
-#: src/blocks/profile-card/inspector.js:326
+#: src/blocks/profile-card/inspector.js:325
 #: src/blocks/review-child/inspector.js:184
 #: src/blocks/review/inspector.js:272
 #: src/blocks/star-rating/inspector.js:222
@@ -4914,7 +5064,7 @@ msgstr ""
 #: src/blocks/advanced-icon-box/inspector.js:417
 #: src/blocks/advanced-image/inspector.js:221
 #: src/blocks/author/inspector.js:134
-#: src/blocks/brand-child/inspector.js:147
+#: src/blocks/brand-child/inspector.js:142
 #: src/blocks/counter/inspector.js:368
 #: src/blocks/flipbox/inspector.js:362
 #: src/blocks/flipbox/inspector.js:488
@@ -4929,7 +5079,7 @@ msgstr ""
 #: src/blocks/post-grid/inspector.js:520
 #: src/blocks/post-list/inspector.js:456
 #: src/blocks/post-timeline/inspector.js:476
-#: src/blocks/profile-card/inspector.js:333
+#: src/blocks/profile-card/inspector.js:332
 #: src/blocks/review-child/inspector.js:191
 #: src/blocks/review/inspector.js:279
 #: src/blocks/star-rating/inspector.js:229
@@ -4989,7 +5139,7 @@ msgstr ""
 #: src/blocks/navigation-submenu/inspector.js:78
 #: src/blocks/navigation/inspector.js:232
 #: src/blocks/navigation/inspector.js:369
-#: src/blocks/qrcode/inspector.js:152
+#: src/blocks/qrcode/inspector.js:143
 #: src/global/components/advancedOptions.js:136
 msgid "Wrapper"
 msgstr ""
@@ -5002,18 +5152,6 @@ msgstr ""
 #: src/blocks/team-grid/inspector.js:290
 #: src/blocks/team-grid/inspector.js:363
 msgid "Overlay"
-msgstr ""
-
-#: src/blocks/advanced-image/constants/index.js:16
-#: src/blocks/advanced-image/constants/index.js:76
-#: src/blocks/container/constants/index.js:38
-#: src/blocks/post-meta/constants/index.js:20
-#: src/controls/typography-control/constant.js:24
-#: src/controls/typography-control/constant.js:64
-#: src/global/constants.js:717
-#: src/global/constants.js:1072
-#: src/global/constants.js:1081
-msgid "None"
 msgstr ""
 
 #: src/blocks/advanced-image/constants/index.js:18
@@ -5116,7 +5254,7 @@ msgstr ""
 
 #: src/blocks/advanced-image/inspector.js:144
 #: src/blocks/author/inspector.js:188
-#: src/blocks/brand-child/inspector.js:103
+#: src/blocks/brand-child/inspector.js:98
 #: src/blocks/countdown/inspector.js:220
 #: src/blocks/list/inspector.js:198
 #: src/blocks/review-grid/inspector.js:279
@@ -5132,12 +5270,12 @@ msgid "Content Position"
 msgstr ""
 
 #: src/blocks/advanced-image/inspector.js:171
-#: src/blocks/brand-child/inspector.js:341
+#: src/blocks/brand-child/inspector.js:299
 #: src/blocks/brand-grid/inspector.js:279
 #: src/blocks/counter/inspector.js:319
-#: src/blocks/profile-card/inspector.js:185
-#: src/blocks/profile-card/inspector.js:277
-#: src/blocks/profile-card/inspector.js:591
+#: src/blocks/profile-card/inspector.js:184
+#: src/blocks/profile-card/inspector.js:276
+#: src/blocks/profile-card/inspector.js:590
 #: src/blocks/review-carousel/inspector.js:183
 #: src/blocks/review-carousel/inspector.js:468
 #: src/blocks/review-child/inspector.js:135
@@ -5434,37 +5572,18 @@ msgstr ""
 msgid "Sort Order"
 msgstr ""
 
-#: src/blocks/brand-child/constants/index.js:19
-#: src/blocks/brand-child/inspector.js:238
-#: src/blocks/brand-child/inspector.js:471
-#: src/blocks/brand-grid/inspector.js:124
-#: src/blocks/brand-grid/inspector.js:409
-#: src/blocks/charts/inspector.js:523
-#: src/blocks/charts/inspector.js:859
-#: src/blocks/image-gallery/inspector.js:137
-#: src/blocks/image-gallery/inspector.js:438
-#: src/blocks/lightbox/inspector.js:239
-#: src/blocks/lightbox/inspector.js:272
-#: src/blocks/lightbox/inspector.js:564
-msgid "Sub Title"
-msgstr ""
-
-#: src/blocks/brand-child/edit.js:160
-#: src/blocks/brand-child/edit.js:215
+#: src/blocks/brand-child/edit.js:125
+#: src/blocks/brand-child/edit.js:180
 #: src/blocks/navigation/edit.js:318
 #: src/blocks/text-path/edit.js:159
 msgid "Brand Photo"
 msgstr ""
 
-#: src/blocks/brand-child/inspector.js:104
+#: src/blocks/brand-child/inspector.js:99
 msgid "Brand Logo"
 msgstr ""
 
-#: src/blocks/brand-child/inspector.js:156
-msgid "Enable Logo Link"
-msgstr ""
-
-#: src/blocks/brand-child/inspector.js:222
+#: src/blocks/brand-child/inspector.js:181
 msgid "Title.."
 msgstr ""
 
@@ -5501,6 +5620,18 @@ msgstr ""
 msgid "Hover Animation"
 msgstr ""
 
+#: src/blocks/brand-grid/inspector.js:124
+#: src/blocks/brand-grid/inspector.js:409
+#: src/blocks/charts/inspector.js:523
+#: src/blocks/charts/inspector.js:859
+#: src/blocks/image-gallery/inspector.js:137
+#: src/blocks/image-gallery/inspector.js:438
+#: src/blocks/lightbox/inspector.js:239
+#: src/blocks/lightbox/inspector.js:272
+#: src/blocks/lightbox/inspector.js:564
+msgid "Sub Title"
+msgstr ""
+
 #: src/blocks/brand-grid/inspector.js:194
 #: src/blocks/post-carousel/inspector.js:405
 #: src/blocks/review-carousel/inspector.js:261
@@ -5528,6 +5659,7 @@ msgstr ""
 #: src/blocks/breadcrumbs/inspector.js:148
 #: src/blocks/flipbox/constants/index.js:53
 #: src/blocks/google-map/inspector.js:208
+#: src/blocks/icon/inspector.js:128
 #: src/blocks/megamenu/inspector.js:64
 #: src/blocks/social-links/constants/index.js:42
 #: src/blocks/social-share/constants/index.js:196
@@ -5931,7 +6063,7 @@ msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:127
 #: src/blocks/email/inspector.js:110
-#: src/blocks/form/inspector.js:352
+#: src/blocks/form/inspector.js:364
 #: src/blocks/number-field/inspector.js:121
 #: src/blocks/radio-field/inspector.js:126
 #: src/blocks/select-field/inspector.js:116
@@ -6024,7 +6156,7 @@ msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:191
 #: src/blocks/email/inspector.js:191
-#: src/blocks/form/inspector.js:432
+#: src/blocks/form/inspector.js:444
 #: src/blocks/number-field/inspector.js:193
 #: src/blocks/radio-field/inspector.js:188
 #: src/blocks/select-field/inspector.js:201
@@ -6037,10 +6169,6 @@ msgstr ""
 #: src/blocks/pricing-table/inspector.js:946
 #: src/blocks/radio-field/inspector.js:238
 msgid "Item Gap"
-msgstr ""
-
-#: src/blocks/checkbox-field/inspector.js:249
-msgid "Checkbox"
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:282
@@ -6056,8 +6184,8 @@ msgstr ""
 #: src/blocks/lightbox/inspector.js:705
 #: src/blocks/post-list/inspector.js:997
 #: src/blocks/post-list/inspector.js:1032
-#: src/blocks/qrcode/inspector.js:175
-#: src/blocks/qrcode/inspector.js:337
+#: src/blocks/qrcode/inspector.js:166
+#: src/blocks/qrcode/inspector.js:328
 #: src/blocks/radio-field/inspector.js:280
 #: src/controls/background-control/bg-control.js:162
 #: src/controls/background-control/bg-control.js:1312
@@ -6211,16 +6339,6 @@ msgstr ""
 msgid "Box Size"
 msgstr ""
 
-#: src/blocks/countdown/inspector.js:466
-#: src/blocks/counter/inspector.js:245
-#: src/blocks/counter/inspector.js:248
-#: src/blocks/counter/inspector.js:462
-#: src/blocks/profile-card/edit.js:225
-#: src/blocks/profile-card/edit.js:304
-#: src/blocks/profile-card/inspector.js:415
-msgid "Number"
-msgstr ""
-
 #: src/blocks/countdown/inspector.js:561
 msgid " Horizontal"
 msgstr ""
@@ -6315,16 +6433,6 @@ msgstr ""
 msgid "Primary Button"
 msgstr ""
 
-#: src/blocks/cta/inspector.js:241
-#: src/blocks/navigation-item/inspector.js:106
-#: src/blocks/navigation/inspector.js:160
-#: src/blocks/navigation/inspector.js:219
-#: src/blocks/profile-card/inspector.js:278
-#: src/blocks/review-child/inspector.js:136
-#: src/blocks/text-path/inspector.js:203
-msgid "Select"
-msgstr ""
-
 #: src/blocks/cta/inspector.js:269
 #: src/blocks/cta/inspector.js:496
 #: src/blocks/pricing-table/inspector.js:221
@@ -6337,7 +6445,8 @@ msgstr ""
 #: src/blocks/cta/inspector.js:521
 #: src/blocks/lightbox/inspector.js:650
 #: src/blocks/popup-builder/inspector.js:257
-#: src/blocks/qrcode/inspector.js:328
+#: src/blocks/qrcode/inspector.js:109
+#: src/blocks/qrcode/inspector.js:319
 #: src/blocks/social-links/inspector.js:235
 #: src/blocks/social-links/inspector.js:245
 #: src/blocks/social-share/inspector.js:235
@@ -6397,7 +6506,7 @@ msgid "Label Color"
 msgstr ""
 
 #: src/blocks/email/inspector.js:246
-#: src/blocks/form/inspector.js:512
+#: src/blocks/form/inspector.js:524
 #: src/blocks/newsletter/inspector.js:586
 #: src/blocks/number-field/inspector.js:249
 #: src/blocks/text-field/inspector.js:240
@@ -6570,20 +6679,6 @@ msgstr ""
 msgid "Save Response & Send Mail (Pro)"
 msgstr ""
 
-#: src/blocks/form/constants/index.js:51
-#: src/blocks/form/inspector.js:610
-#: src/blocks/newsletter/inspector.js:415
-#: src/blocks/newsletter/inspector.js:833
-#: src/blocks/post-comments-form/inspector.js:308
-#: src/blocks/review-carousel/inspector.js:210
-#: src/blocks/review-carousel/inspector.js:619
-#: src/blocks/review-child/inspector.js:241
-#: src/blocks/review-child/inspector.js:477
-#: src/blocks/review-grid/inspector.js:222
-#: src/blocks/review-grid/inspector.js:500
-msgid "Message"
-msgstr ""
-
 #: src/blocks/form/constants/index.js:52
 msgid "Redirect (Pro)"
 msgstr ""
@@ -6597,8 +6692,8 @@ msgid "Form Bottom"
 msgstr ""
 
 #: src/blocks/form/deprecated/versions/v1.js:80
-#: src/blocks/form/edit.js:103
-#: src/blocks/form/save.js:74
+#: src/blocks/form/edit.js:104
+#: src/blocks/form/save.js:75
 msgid "Submit Now"
 msgstr ""
 
@@ -6606,146 +6701,146 @@ msgstr ""
 msgid "Form Preview"
 msgstr ""
 
-#: src/blocks/form/inspector.js:175
+#: src/blocks/form/inspector.js:187
 msgid "Fields Icon"
 msgstr ""
 
-#: src/blocks/form/inspector.js:186
+#: src/blocks/form/inspector.js:198
 msgid "Form Settings"
 msgstr ""
 
-#: src/blocks/form/inspector.js:188
+#: src/blocks/form/inspector.js:200
 #: src/blocks/post-comments-form/inspector.js:147
 msgid "Form Title"
 msgstr ""
 
-#: src/blocks/form/inspector.js:198
+#: src/blocks/form/inspector.js:210
 msgid "Enter title.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:201
+#: src/blocks/form/inspector.js:213
 msgid "Notification"
 msgstr ""
 
-#: src/blocks/form/inspector.js:214
+#: src/blocks/form/inspector.js:226
 msgid "Email To"
 msgstr ""
 
-#: src/blocks/form/inspector.js:224
-#: src/blocks/form/inspector.js:238
-#: src/blocks/form/inspector.js:252
+#: src/blocks/form/inspector.js:236
+#: src/blocks/form/inspector.js:250
+#: src/blocks/form/inspector.js:264
 msgid "Enter email.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:225
-#: src/blocks/form/inspector.js:239
-#: src/blocks/form/inspector.js:253
+#: src/blocks/form/inspector.js:237
+#: src/blocks/form/inspector.js:251
+#: src/blocks/form/inspector.js:265
 msgid "This email will receive the form submission."
 msgstr ""
 
-#: src/blocks/form/inspector.js:228
+#: src/blocks/form/inspector.js:240
 msgid "Email CC (optional)"
 msgstr ""
 
-#: src/blocks/form/inspector.js:242
+#: src/blocks/form/inspector.js:254
 msgid "Email BCC (optional)"
 msgstr ""
 
-#: src/blocks/form/inspector.js:256
+#: src/blocks/form/inspector.js:268
 msgid "Email Subject"
 msgstr ""
 
-#: src/blocks/form/inspector.js:257
+#: src/blocks/form/inspector.js:269
 msgid "This will be the subject of the email."
 msgstr ""
 
-#: src/blocks/form/inspector.js:269
+#: src/blocks/form/inspector.js:281
 msgid "Form Submission"
 msgstr ""
 
-#: src/blocks/form/inspector.js:271
+#: src/blocks/form/inspector.js:283
 msgid "Success Type"
 msgstr ""
 
-#: src/blocks/form/inspector.js:285
+#: src/blocks/form/inspector.js:297
 msgid "Message Position"
 msgstr ""
 
-#: src/blocks/form/inspector.js:296
+#: src/blocks/form/inspector.js:308
 msgid "Success Message"
 msgstr ""
 
-#: src/blocks/form/inspector.js:298
+#: src/blocks/form/inspector.js:310
 msgid "This message will be shown when the form is submitted successfully."
 msgstr ""
 
-#: src/blocks/form/inspector.js:307
-#: src/blocks/form/inspector.js:325
-#: src/blocks/form/inspector.js:342
+#: src/blocks/form/inspector.js:319
+#: src/blocks/form/inspector.js:337
+#: src/blocks/form/inspector.js:354
 msgid "Enter message.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:314
+#: src/blocks/form/inspector.js:326
 msgid "Fail Message"
 msgstr ""
 
-#: src/blocks/form/inspector.js:316
+#: src/blocks/form/inspector.js:328
 msgid "This message will be shown when the form submission fails."
 msgstr ""
 
-#: src/blocks/form/inspector.js:331
+#: src/blocks/form/inspector.js:343
 msgid "Validation Message"
 msgstr ""
 
-#: src/blocks/form/inspector.js:333
+#: src/blocks/form/inspector.js:345
 msgid "This message will be shown when the form validation fails."
 msgstr ""
 
-#: src/blocks/form/inspector.js:347
-#: src/blocks/form/inspector.js:556
+#: src/blocks/form/inspector.js:359
+#: src/blocks/form/inspector.js:568
 #: src/blocks/post-comments-form/inspector.js:612
 msgid "Submit Button"
 msgstr ""
 
-#: src/blocks/form/inspector.js:361
+#: src/blocks/form/inspector.js:373
 msgid "Show Icon"
 msgstr ""
 
-#: src/blocks/form/inspector.js:397
+#: src/blocks/form/inspector.js:409
 msgid "Enable Google reCaptcha"
 msgstr ""
 
-#: src/blocks/form/inspector.js:409
+#: src/blocks/form/inspector.js:421
 msgid "Please make sure to enter the site key and secret key in the ZoloBlocks settings."
 msgstr ""
 
-#: src/blocks/form/inspector.js:415
+#: src/blocks/form/inspector.js:427
 msgid "Click here to go to settings."
 msgstr ""
 
-#: src/blocks/form/inspector.js:479
+#: src/blocks/form/inspector.js:491
 msgid "Field Icons"
 msgstr ""
 
-#: src/blocks/form/inspector.js:504
+#: src/blocks/form/inspector.js:516
 msgid "Input Fields"
 msgstr ""
 
-#: src/blocks/form/inspector.js:540
+#: src/blocks/form/inspector.js:552
 msgid "Field Focus"
 msgstr ""
 
-#: src/blocks/form/inspector.js:613
+#: src/blocks/form/inspector.js:625
 #: src/blocks/newsletter/inspector.js:885
 msgid "Success"
 msgstr ""
 
-#: src/blocks/form/inspector.js:614
+#: src/blocks/form/inspector.js:626
 #: src/blocks/newsletter/inspector.js:893
 msgid "Error"
 msgstr ""
 
-#: src/blocks/form/inspector.js:685
+#: src/blocks/form/inspector.js:697
 #: src/blocks/notice/inspector.js:701
 #: src/blocks/popup-builder/inspector.js:182
 #: src/blocks/popup-builder/inspector.js:255
@@ -7280,12 +7375,24 @@ msgstr ""
 msgid "Marker Description"
 msgstr ""
 
-#: src/blocks/icon/inspector.js:85
+#: src/blocks/icon/inspector.js:86
 msgid "Selected Icon"
 msgstr ""
 
 #: src/blocks/icon/inspector.js:95
 msgid "Linkable"
+msgstr ""
+
+#: src/blocks/icon/inspector.js:125
+msgid "S"
+msgstr ""
+
+#: src/blocks/icon/inspector.js:126
+msgid "M"
+msgstr ""
+
+#: src/blocks/icon/inspector.js:127
+msgid "L"
 msgstr ""
 
 #: src/blocks/image-compare/edit.js:34
@@ -8204,6 +8311,7 @@ msgstr ""
 #: src/blocks/post-carousel/inspector.js:434
 #: src/blocks/review-carousel/inspector.js:279
 #: src/blocks/slider/inspector.js:155
+#: src/extensions/particles/inspector.js:284
 msgid "Speed"
 msgstr ""
 
@@ -8361,9 +8469,9 @@ msgid "Offset Horizontal"
 msgstr ""
 
 #: src/blocks/post-carousel/inspector.js:1278
-#: src/blocks/profile-card/inspector.js:609
+#: src/blocks/profile-card/inspector.js:608
 #: src/blocks/review-carousel/inspector.js:838
-#: src/blocks/review/inspector.js:701
+#: src/blocks/review/inspector.js:728
 msgid "Vertical Offset"
 msgstr ""
 
@@ -8844,15 +8952,19 @@ msgstr ""
 msgid "Add service name"
 msgstr ""
 
-#: src/blocks/pricing-table/edit.js:139
+#: src/blocks/pricing-table/edit.js:103
+msgid "Ribbon Title"
+msgstr ""
+
+#: src/blocks/pricing-table/edit.js:142
 msgid "Add description"
 msgstr ""
 
-#: src/blocks/pricing-table/edit.js:180
+#: src/blocks/pricing-table/edit.js:183
 msgid "Add feature title"
 msgstr ""
 
-#: src/blocks/pricing-table/edit.js:190
+#: src/blocks/pricing-table/edit.js:193
 msgid "Add feature description"
 msgstr ""
 
@@ -8943,17 +9055,17 @@ msgid "Upload Photo"
 msgstr ""
 
 #: src/blocks/profile-card/edit.js:175
-#: src/blocks/profile-card/inspector.js:203
-#: src/blocks/profile-card/inspector.js:360
-#: src/blocks/profile-card/inspector.js:662
+#: src/blocks/profile-card/inspector.js:202
+#: src/blocks/profile-card/inspector.js:359
+#: src/blocks/profile-card/inspector.js:661
 msgid "Username"
 msgstr ""
 
 #: src/blocks/profile-card/edit.js:203
 #: src/blocks/profile-card/edit.js:331
-#: src/blocks/profile-card/inspector.js:221
-#: src/blocks/profile-card/inspector.js:390
-#: src/blocks/profile-card/inspector.js:716
+#: src/blocks/profile-card/inspector.js:220
+#: src/blocks/profile-card/inspector.js:389
+#: src/blocks/profile-card/inspector.js:715
 msgid "Bio"
 msgstr ""
 
@@ -8962,25 +9074,19 @@ msgstr ""
 msgid "Follow"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:173
+#: src/blocks/profile-card/inspector.js:172
 msgid "Show/Hide elements"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:176
-#: src/blocks/profile-card/inspector.js:261
-#: src/blocks/qrcode/inspector.js:280
-msgid "Badge"
-msgstr ""
-
-#: src/blocks/profile-card/inspector.js:239
-#: src/blocks/profile-card/inspector.js:446
-#: src/blocks/profile-card/inspector.js:790
+#: src/blocks/profile-card/inspector.js:238
+#: src/blocks/profile-card/inspector.js:445
+#: src/blocks/profile-card/inspector.js:789
 msgid "Follow Button"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:248
-#: src/blocks/profile-card/inspector.js:472
-#: src/blocks/profile-card/inspector.js:880
+#: src/blocks/profile-card/inspector.js:247
+#: src/blocks/profile-card/inspector.js:471
+#: src/blocks/profile-card/inspector.js:879
 #: src/blocks/social-links/inspector.js:193
 #: src/blocks/team-child/inspector.js:244
 #: src/blocks/team-child/inspector.js:495
@@ -8989,58 +9095,58 @@ msgstr ""
 msgid "Social Profiles"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:271
+#: src/blocks/profile-card/inspector.js:270
 msgid "Enter Badge Text"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:354
+#: src/blocks/profile-card/inspector.js:353
 #: src/blocks/review-child/inspector.js:220
 #: src/blocks/review/inspector.js:296
 #: src/blocks/team-child/inspector.js:204
 msgid "Name.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:369
+#: src/blocks/profile-card/inspector.js:368
 msgid "Username.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:384
+#: src/blocks/profile-card/inspector.js:383
 msgid "Email.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:400
+#: src/blocks/profile-card/inspector.js:399
 msgid "Bio.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:424
+#: src/blocks/profile-card/inspector.js:423
 msgid "Counter Number.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:436
+#: src/blocks/profile-card/inspector.js:435
 msgid "Counter Label.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:457
+#: src/blocks/profile-card/inspector.js:456
 msgid "text.."
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:481
+#: src/blocks/profile-card/inspector.js:480
 msgid "Header Area"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:500
+#: src/blocks/profile-card/inspector.js:499
 msgid "Header Badge"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:550
+#: src/blocks/profile-card/inspector.js:549
 msgid "Item Wrapper"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:550
+#: src/blocks/profile-card/inspector.js:549
 msgid "Content Area"
 msgstr ""
 
-#: src/blocks/profile-card/inspector.js:623
+#: src/blocks/profile-card/inspector.js:622
 msgid " Margin"
 msgstr ""
 
@@ -9183,25 +9289,25 @@ msgstr ""
 msgid "QR Code Preview"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:126
+#: src/blocks/qrcode/inspector.js:117
 msgid "Error Level"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:158
-#: src/blocks/qrcode/inspector.js:244
-#: src/blocks/qrcode/inspector.js:308
+#: src/blocks/qrcode/inspector.js:149
+#: src/blocks/qrcode/inspector.js:235
+#: src/blocks/qrcode/inspector.js:299
 msgid "Border Type"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:204
+#: src/blocks/qrcode/inspector.js:195
 msgid "Eye Color"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:215
+#: src/blocks/qrcode/inspector.js:206
 msgid "Eye Radius"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:234
+#: src/blocks/qrcode/inspector.js:225
 #: src/controls/background-control/bg-control.js:128
 #: src/controls/background-control/bg-control.js:1291
 #: src/controls/background-control/overlay-control.js:135
@@ -9210,19 +9316,15 @@ msgstr ""
 msgid "Background Type"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:292
+#: src/blocks/qrcode/inspector.js:283
 msgid "Title Typography"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:346
+#: src/blocks/qrcode/inspector.js:337
 #: src/blocks/review-carousel/inspector.js:586
 #: src/blocks/review-child/inspector.js:449
 #: src/blocks/review-grid/inspector.js:472
 msgid "Arrow Color"
-msgstr ""
-
-#: src/blocks/radio-field/inspector.js:246
-msgid "Radio"
 msgstr ""
 
 #: src/blocks/review-carousel/edit.js:222
@@ -9394,7 +9496,7 @@ msgstr ""
 msgid "Vertical Space"
 msgstr ""
 
-#: src/blocks/review/inspector.js:693
+#: src/blocks/review/inspector.js:720
 msgid "Horizontal Offset"
 msgstr ""
 
@@ -10318,14 +10420,14 @@ msgid "Spread"
 msgstr ""
 
 #: src/controls/color-btn/index.js:39
-#: src/controls/color-control-alt/index.js:68
-#: src/controls/color-control/index.js:72
+#: src/controls/color-control-alt/index.js:67
+#: src/controls/color-control/index.js:71
 msgid "Theme Colors"
 msgstr ""
 
 #: src/controls/color-btn/index.js:81
-#: src/controls/color-control-alt/index.js:106
-#: src/controls/color-control/index.js:112
+#: src/controls/color-control-alt/index.js:105
+#: src/controls/color-control/index.js:111
 msgid "Default Colors"
 msgstr ""
 
@@ -10623,12 +10725,6 @@ msgstr ""
 msgid "pro"
 msgstr ""
 
-#: src/extensions/AI/features/toolbar/edit.js:44
-#: src/extensions/AI/features/toolbar/settings.js:4
-#: src/extensions/AI/popup/components/header/index.js:44
-msgid "Zolo AI"
-msgstr ""
-
 #: src/extensions/AI/popup/components/content/index.js:50
 msgid "Simplify the language"
 msgstr ""
@@ -10712,7 +10808,7 @@ msgid "Sync Pattern"
 msgstr ""
 
 #: src/extensions/export-pattern/index.js:94
-#: src/extensions/page-export/index.js:41
+#: src/extensions/page-export/index.js:40
 msgid "Great! The pattern is exported successfully."
 msgstr ""
 
@@ -10724,7 +10820,7 @@ msgstr ""
 msgid "Great! The pattern is imported successfully."
 msgstr ""
 
-#: src/extensions/page-export/index.js:56
+#: src/extensions/page-export/index.js:55
 msgid "Export as Pattern"
 msgstr ""
 
@@ -10760,6 +10856,10 @@ msgstr ""
 msgid "Particles"
 msgstr ""
 
+#: src/extensions/particles/inspector.js:253
+msgid "Choose Shape"
+msgstr ""
+
 #: src/extensions/particles/inspector.js:261
 msgid "Triangle"
 msgstr ""
@@ -10772,19 +10872,19 @@ msgstr ""
 msgid "Polygon"
 msgstr ""
 
-#: src/extensions/particles/inspector.js:284
+#: src/extensions/particles/inspector.js:305
 msgid "Z Index"
 msgstr ""
 
-#: src/extensions/particles/inspector.js:304
+#: src/extensions/particles/inspector.js:325
 msgid "Shape"
 msgstr ""
 
-#: src/extensions/particles/inspector.js:340
+#: src/extensions/particles/inspector.js:361
 msgid "Custom Options"
 msgstr ""
 
-#: src/extensions/particles/inspector.js:356
+#: src/extensions/particles/inspector.js:377
 msgid "Generate particle"
 msgstr ""
 

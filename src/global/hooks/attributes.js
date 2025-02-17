@@ -294,11 +294,9 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         const { attributes, setAttributes, name, clientId } = props;
 
-        const blockType = select('core/blocks').getBlockType(name);
-
-        if (blockType.category != 'zoloblocks') {
-            return <BlockEdit {...props} />;
-        }
+         if (!name.includes('zolo/')) {
+             return <BlockEdit {...props} />;
+         }
 
         const { uniqueId, parentClasses } = attributes;
         const localStoreKey = uniqueId + 'loaded';
