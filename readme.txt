@@ -64,358 +64,395 @@ Explore all the blocks listed categorically—
 
 ## **Image Blocks**
 
-**Advanced Image (Free)**
+[**Advanced Image**](https://zoloblocks.com/demo/advanced-image/) (Free)
 
-Perfect for adding images with advanced control like alignment, spacing and hover effects. [**checkout live demo**](https://zoloblocks.com/demo/advanced-image/) | [**video tutorial**](https://www.youtube.com/watch?v=Oze-RM3Ke1U&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Perfect for adding images with advanced control like alignment, spacing and hover effects. [**checkout live demo**]
 
-**Image Compare (Free)**
+[**Image Compare**](https://demo.zoloblocks.com/image-compare) (Free)
 
-Ideal for showcasing before-and-after comparisons, such as design changes or product transformations.[**checkout live demo**](https://demo.zoloblocks.com/image-compare) | [**video tutorial**](https://www.youtube.com/watch?v=odSQekALYb4&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Ideal for showcasing before-and-after comparisons, such as design changes or product transformations.
 
-**Image Gallery (Free)**
+[**Image Gallery**](https://demo.zoloblocks.com/image-gallery) (Free)
 
-Display multiple images in a grid or masonry layout, perfect for portfolios, product showcases, or event galleries.[**checkout live demo**](https://demo.zoloblocks.com/image-gallery) | [**video tutorial**](https://www.youtube.com/watch?v=xa8BLNyM9TQ&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Display multiple images in a grid or masonry layout, perfect for portfolios, product showcases, or event galleries.
 
-**Lightbox (Free)**
+[**Lightbox**](https://demo.zoloblocks.com/lightbox)  (Free)
 
-Showcase images or videos in a pop-up lightbox for a focused viewing experience and keep users on the page. [**checkout live demo**](https://demo.zoloblocks.com/lightbox) | [**video tutorial**](https://youtu.be/FFQ9I3fNWKw?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Showcase images or videos in a pop-up lightbox for a focused viewing experience and keep users on the page.
 
-**Image Hotspot (Pro)**
+[**Image Hotspot**](https://demo.zoloblocks.com/image-hotspot)  (Pro)
 
-Add interactive hotspots to images for detailed information, such as product features or step-by-step guides.[**checkout live demo**](https://demo.zoloblocks.com/image-hotspot) | [**video tutorial**](https://youtu.be/Vp6K0_l-t20)
+Add interactive hotspots to images for detailed information, such as product features or step-by-step guides.
 
-**Marquee (Pro)**
+[**Marquee**](https://demo.zoloblocks.com/marquee) (Pro)
 
-Create scrolling text or image marquees for announcements, promotions, or highlights and grabs attention with dynamic, eye-catching content.  [**checkout live demo**](https://demo.zoloblocks.com/marquee) | [**video tutorial**](https://youtu.be/u_ObTjHo5HU)
-
+Create scrolling text or image marquees for announcements, promotions, or highlights and grabs attention with dynamic, eye-catching content.
 
 ##** Slider and Carousel Blocks **
 
-**Review Carousel (Free)**
+[**Review Carousel**](https://demo.zoloblocks.com/review-carousel) (Free)
 
-Showcase customer reviews or testimonials in a rotating carousel for building trust and credibility.  [**checkout live demo**](https://demo.zoloblocks.com/review-carousel) | [**video tutorial**](https://www.youtube.com/watch?v=bbldiWYdCkk&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Showcase customer reviews or testimonials in a rotating carousel for building trust and credibility.
 
-**Slider (Free)**
+[**Slider**](https://demo.zoloblocks.com/review-carousel) (Free)
 
-Highlight key content, products, or testimonials in a responsive slider.[**checkout live demo**](https://demo.zoloblocks.com/review-carousel) | [**video tutorial**](https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT)
-
+Highlight key content, products, or testimonials in a responsive slider.
 ## ** Post Blocks **
 
-**Post Category (Free)**
+[**Post Category**](https://demo.zoloblocks.com/post-category) (Free)
 
-Organize and display posts by category for better navigation with it and help users find relevant content quickly. [**checkout live demo**](https://demo.zoloblocks.com/post-category) | [**video tutorial**](https://youtu.be/vx3sRLIMVWk?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Organize and display posts by category for better navigation with it and help users find relevant content quickly.
+Present posts in a clean grid layout, ideal for blogs, news, or portfolios.
 
-**Post Grid (Free)**
-Present posts in a clean grid layout, ideal for blogs, news, or portfolios. [**checkout live demo**](https://demo.zoloblocks.com/post-grid) | [**video tutorial**](https://www.youtube.com/watch?v=nqmxNOMQ4tY&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**Post List**](https://demo.zoloblocks.com/post-list) (Free)
 
-**Post List (Free)**
+For displaying posts in a list format and for easy readability. You can simplify content consumption for users.
 
-For displaying posts in a list format and for easy readability. You can simplify content consumption for users. [**checkout live demo**](https://demo.zoloblocks.com/post-list) | [**video tutorial**](https://www.youtube.com/watch?v=-bP3D2FCGJw&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**Post Tab**](https://demo.zoloblocks.com/post-tab) (Pro)
 
-**Post Tab (Pro)**
+It allows you to organize posts into tabs for a compact and user friendly display, saving you space while improving navigation.
 
-It allows you to organize posts into tabs for a compact and user friendly display, saving you space while improving navigation. [**checkout live demo**](https://demo.zoloblocks.com/post-tab) | [**video tutorial**]()
+[**Post Video Slider**](https://zoloblocks.com/demo/post-video-slider) (Pro)
 
-
-**Post Video Slider (Pro)**
-
-Showcase video posts in an advanced slider for multimedia content that engages your users on the site. [**checkout live demo**](https://zoloblocks.com/demo/post-video-slider) | [**video tutorial**]()
-
+Showcase video posts in an advanced slider for multimedia content that engages your users on the site.
 
 ## ** Review Blocks **
 
-**Review (Free)**
+[**Review**](https://demo.zoloblocks.com/review) (Free)
 
-Add customer reviews to build trust and showcase satisfaction, in addition to boosting conversions. [**checkout live demo**](https://demo.zoloblocks.com/review) | [**video tutorial**](https://www.youtube.com/watch?v=6bBTDdo3PaE&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Add customer reviews to build trust and showcase satisfaction, in addition to boosting conversions.
 
-**Review Grid (Free)**
+[**Review Grid**](https://demo.zoloblocks.com/review-grid) (Free)
 
-Best for showcasing reviews in a grid layout for clean and organized display. [**checkout live demo**](https://demo.zoloblocks.com/review-grid) | [**video tutorial**](https://www.youtube.com/watch?v=Vt04o7SKgUQ&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Best for showcasing reviews in a grid layout for clean and organized display.
 
 
-**Star Rating (Free)**
+[**Star Rating**](https://demo.zoloblocks.com/star-rating) (Free)
 
-Add star ratings to reviews or products for quick visual feedback.[**checkout live demo**](https://demo.zoloblocks.com/star-rating) | [**video tutorial**](https://www.youtube.com/watch?v=fZZxJUSRLbI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Add star ratings to reviews or products for quick visual feedback.
 
 ## ** Form and Interactive Blocks **
 
-**Form (Free)**
+[**Form**](https://demo.zoloblocks.com/form) (Free)
 
-Create customizable forms for inquiries, feedback, or lead generation by simplifying user interactions and data collection. [**checkout live demo**](https://demo.zoloblocks.com/form) | [**video tutorial**](https://www.youtube.com/watch?v=fYpbDbMdlF0&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Create customizable forms for inquiries, feedback, or lead generation by simplifying user interactions and data collection.
 
-## ** Popup Builder (Free) **
+## ** Popup Builder **
 
-Crate popups for announcements, offer, or lead generation and grab attention without disrupting the user experience. [**checkout live demo**](https://demo.zoloblocks.com/popup-builder) | [**video tutorial**]()
+[**Popup Builder**](https://demo.zoloblocks.com/popup-builder) (Free)
+
+Crate popups for announcements, offer, or lead generation and grab attention without disrupting the user experience.
 
 ##Design & Automation Block
 
-**Flipbox (Free)**
+[**Flipbox**](https://demo.zoloblocks.com/flipbox) (Free)
 
-With it you can add interactive elements to your design and engage your audience with content. [**checkout live demo**](https://demo.zoloblocks.com/flipbox) | [**video tutorial**](https://www.youtube.com/watch?v=aymqumvFaX8&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+With it you can add interactive elements to your design and engage your audience with content.
 
-**Parallax Effect (Pro)**
+[**Parallax Effect**](https://zoloblocks.com/demo/scroll-parallax-animation)  (Pro)
 
-Create a visual effect where the background moves at a different speed than the foreground when scrolling.  [**checkout live demo**](https://zoloblocks.com/demo/scroll-parallax-animation) | [**video tutorial**]()
+Create a visual effect where the background moves at a different speed than the foreground when scrolling.
 
-**Text Animation (Pro)**
+[**Text Animation**](https://zoloblocks.com/demo/text-animation) (Pro)
 
-Add animated effects to text, like typing or fading effects that solves the issue of static text by adding dynamic elements to written  content. [**checkout live demo**](https://zoloblocks.com/demo/text-animation) | [**video tutorial**](https://www.youtube.com/watch?v=gX_mALFBdIE)
+Add animated effects to text, like typing or fading effects that solves the issue of static text by adding dynamic elements to written  content.
 
 ## ** Utility Blocks **
 
-**Google Map (Free)**
+[**Google Map**](https://demo.zoloblocks.com/google-map)  (Free)
 
-Embed Google Map to display locations or directions and improve user navigation and accessibility. [**checkout live demo**](https://demo.zoloblocks.com/google-map) | [**video tutorial**](https://www.youtube.com/watch?v=GBkIpWiIY7E&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Embed Google Map to display locations or directions and improve user navigation and accessibility.
 
-**Table of Content (Free)**
+[**Table of Content**](https://demo.zoloblocks.com/table-of-content) (Free)
 
-Make easy navigation in long posts for your readers, improve experience and content accessibility. [**checkout live demo**](https://demo.zoloblocks.com/table-of-content) | [**video tutorial**](https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Make easy navigation in long posts for your readers, improve experience and content accessibility.
 
-**Export/Import Pattern (Free)**
+[**Export/Import Pattern**](https://zoloblocks.com/demo/library/#patterns) (Free)
 
-Reuse custom designs across your site, ensure design consistency without redundant design work.  [**checkout live demo**](https://zoloblocks.com/demo/library/#patterns) | [**video tutorial**](https://www.youtube.com/watch?v=t_ezZV4t0Ww)
-
+Reuse custom designs across your site, ensure design consistency without redundant design work.
 
 ## Creative Blocks:
 
-**Container (Free)**
+[**Container**](https://zoloblocks.com) (Free)
 
-Allows you to organize content sections: text, images, or buttons, within a structured layout and provides better control over spacing, alignment, and responsiveness.  [**checkout live demo**](https://zoloblocks.com) | [**video tutorial**]()
+Allows you to organize content sections: text, images, or buttons, within a structured layout and provides better control over spacing, alignment, and responsiveness.
 
-**Accordion (Free)**
+[**Accordion**](https://demo.zoloblocks.com/accordion) (Free)
 
-This block element helps you organize content into collapsible sections for FAQs or guides.  [**checkout live demo**](https://demo.zoloblocks.com/accordion) | [**video tutorial**](https://www.youtube.com/watch?v=LQO2oZ7Sg14&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+This block element helps you organize content into collapsible sections for FAQs or guides.
 
-**Advanced Button (Free)**
+[**Advanced Button**](https://demo.zoloblocks.com/advanced-button) (Free)
 
-Create customizable buttons for CTAs, links, or actions with advanced styling options like hover effects, gradients, and icons.[**checkout live demo**](https://demo.zoloblocks.com/advanced-button) | [**video tutorial**](https://www.youtube.com/watch?v=KFKnRqxOKEo&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Create customizable buttons for CTAs, links, or actions with advanced styling options like hover effects, gradients, and icons.
 
-**Advanced Heading (Free)**
+[**Advanced Heading**](https://demo.zoloblocks.com/advanced-heading) (Free)
 
-Design stylish and dynamic headings for pages, sections, or posts with advanced typography and animation options. [**checkout live demo**](https://demo.zoloblocks.com/advanced-heading) | [**video tutorial**](https://www.youtube.com/watch?v=7Kz7g_hQvgI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Design stylish and dynamic headings for pages, sections, or posts with advanced typography and animation options.
 
-**Advanced Icon Box (Free)**
+[**Advanced Icon Box**](https://demo.zoloblocks.com/advanced-icon-box) (Free)
 
-Combine icons with text to create visually appealing information displays, such as feature lists, service highlights, or statistics. [**checkout live demo**](https://demo.zoloblocks.com/advanced-icon-box) | [**video tutorial**](https://www.youtube.com/watch?v=i2GqI1LeL34&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Combine icons with text to create visually appealing information displays, such as feature lists, service highlights, or statistics.
 
-**Advanced Paragraph (Free)**
+[**Advanced Paragraph**](https://demo.zoloblocks.com/advanced-paragraph) (Free)
 
-Customize paragraphs without breaking user experience with advanced styling options like typography, spacing, and background effects. [**checkout live demo**](https://demo.zoloblocks.com/advanced-paragraph) | [**video tutorial**]()
+Customize paragraphs without breaking user experience with advanced styling options like typography, spacing, and background effects.
 
-**Advanced Search (Free)**
+[**Advanced Search**](https://demo.zoloblocks.com/advanced-search) (Free)
 
-Add a powerful search bar to help users find content quickly and easily and enhance user experience by making content discovery  effortless.  [**checkout live demo**](https://demo.zoloblocks.com/advanced-search) | [**video tutorial**](https://www.youtube.com/watch?v=2qikAspGriQ&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Add a powerful search bar to help users find content quickly and easily and enhance user experience by making content discovery  effortless.
 
-**Authors (Free)**
-Display author information, such as name, bio, and avatar, to personalize blog posts or articles.[**checkout live demo**](https://demo.zoloblocks.com/author) | [**video tutorial**](https://youtu.be/WxLi-c7lhpI?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+[**Authors**](https://demo.zoloblocks.com/author) (Free)
+Display author information, such as name, bio, and avatar, to personalize blog posts or articles.
 
-**Breadcrumbs (Free)**
+[**Breadcrumbs**](https://demo.zoloblocks.com/breadcrumbs) (Free)
 
-Add a navigation trail to show users their location within your website’s hierarchy without confusing your users about their location on the site. [**checkout live demo**](https://demo.zoloblocks.com/breadcrumbs) | [**video tutorial**](https://youtu.be/ixtp0Ko9abs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Add a navigation trail to show users their location within your website’s hierarchy without confusing your users about their location on the site.
 
-**Business Hour (Free)**
+[**Business Hour**](https://demo.zoloblocks.com/business-hour) (Free)
 
-Display business operating hours clearly on your website. [**checkout live demo**](https://demo.zoloblocks.com/business-hour) | [**video tutorial**](https://www.youtube.com/watch?v=cSShbKq8L9A&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Display business operating hours clearly on your website.
 
-**Charts (Free)**
+[**Charts**](https://demo.zoloblocks.com/charts) (Free)
 
-Visualize data with interactive charts, such as bar graphs, pie charts, or line graphs. [**checkout live demo**](https://demo.zoloblocks.com/charts) | [**video tutorial**](https://www.youtube.com/watch?v=wr__apvp-xA&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Visualize data with interactive charts, such as bar graphs, pie charts, or line graphs.
 
-**Countdown (Free)**
+[**Countdown**](https://demo.zoloblocks.com/countdown) (Free)
 
-Create countdown timers for events, sales, or promotions to build urgency.[**checkout live demo**](https://demo.zoloblocks.com/countdown) | [**video tutorial**](https://youtu.be/LQSibSWjLJ4?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Create countdown timers for events, sales, or promotions to build urgency.
 
-**Counter (Free)**
+[**Counter**](https://demo.zoloblocks.com/counter) (Free)
 
-Display animated counters for statistics, milestones, or achievements and make your statistics remarkable. [**checkout live demo**](https://demo.zoloblocks.com/counter) | [**video tutorial**](https://www.youtube.com/watch?v=2ApEaa1cDjo&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Display animated counters for statistics, milestones, or achievements and make your statistics remarkable.
 
-**CTA / Call to Action (Free)**
+[**CTA / Call to Action**](https://demo.zoloblocks.com/call-to-action) (Free)
 
-Design compelling call-to-action sections to drive user engagement, such as signing up, purchasing. [**checkout live demo**](https://demo.zoloblocks.com/call-to-action) | [**video tutorial**](https://www.youtube.com/watch?v=ACXtP0tGT2U&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Design compelling call-to-action sections to drive user engagement, such as signing up, purchasing.
 
-**Data Table (Pro)**
+[**Data Table**](https://demo.zoloblocks.com/data-table) (Pro)
 
-Display complex data in an organized and responsive table format, such as pricing comparisons. [**checkout live demo**](https://demo.zoloblocks.com/data-table) | [**video tutorial**](https://youtu.be/3ea3t7Pvoo4)
+Display complex data in an organized and responsive table format, such as pricing comparisons.
 
-**Icon (Free)**
+[**Icon**](https://demo.zoloblocks.com/icon) (Free)
 
-Add customizable icons to enhance visual appeal and communication, such as in feature lists,navigation menus.[**checkout live demo**](https://demo.zoloblocks.com/icon) | [**video tutorial**](https://www.youtube.com/watch?v=ZFwOQr2l5nc&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Add customizable icons to enhance visual appeal and communication, such as in feature lists,navigation menus.
 
-**Navigation (Free)**
+[**Navigation**](https://demo.zoloblocks.com/navigation) (Free)
 
-Create intuitive navigation menus for seamless user experience across your website with no frustration of users.  [**checkout live demo**](https://demo.zoloblocks.com/navigation) | [**video tutorial**]()
+Create intuitive navigation menus for seamless user experience across your website with no frustration of users.
 
-**Newsletter (Free)**
+[**Newsletter**](https://demo.zoloblocks.com/newsletter) (Free)
 
-Add newsletter signup forms to grow your email list and keep users informed about updates or promotions. [**checkout live demo**](https://demo.zoloblocks.com/newsletter) | [**video tutorial**](https://www.youtube.com/watch?v=l57d8W8UTlk&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Add newsletter signup forms to grow your email list and keep users informed about updates or promotions.
 
-**Notice (Free)**
+[**Notice**](https://demo.zoloblocks.com/notice) (Free)
 
-Display important notices or alerts, such as maintenance updates, promotions, or policy changes. [**checkout live demo**](https://demo.zoloblocks.com/notice) | [**video tutorial**](https://youtu.be/Tuh1-BeSy2o?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Display important notices or alerts, such as maintenance updates, promotions, or policy changes.
 
+[**Post Carousel**](https://demo.zoloblocks.com/post-carousel) (Free)
 
-**Post Carousel (Free)**
+Showcase posts in a dynamic carousel for engaging content displays, such as blog highlights or featured articles.
 
-Showcase posts in a dynamic carousel for engaging content displays, such as blog highlights or featured articles. [**checkout live demo**](https://demo.zoloblocks.com/post-carousel) | [**video tutorial**](https://www.youtube.com/watch?v=gOzgkbarICM&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**Post Comments**](https://demo.zoloblocks.com/post-comments) (Free)
 
-**Post Comments (Free)**
+Allows you to build a  sense of community and  encourages user interaction - with engagement or feedback on blog or articles.
 
-Allows you to build a  sense of community and  encourages user interaction - with engagement or feedback on blog or articles. [**checkout live demo**](https://demo.zoloblocks.com/post-comments) | [**video tutorial**](https://www.youtube.com/watch?v=MamMiQE2gzg)
+[**Pricing Table**](https://demo.zoloblocks.com/pricing-table) (Free)
 
-**Pricing Table (Free)**
+Present pricing plans clearly with customizable tables, ideal for SaaS products, services, or memberships.
 
-Present pricing plans clearly with customizable tables, ideal for SaaS products, services, or memberships.  [**checkout live demo**](https://demo.zoloblocks.com/pricing-table) | [**video tutorial**](https://www.youtube.com/watch?v=LUzMgxWdyMk&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
-
-**Profile Card (Free)**
+[**Profile Card**](https://demo.zoloblocks.com/profile-card) (Free)
 
 Display team or user profiles with stylish cards, including names, photos, roles, and social links. [**checkout live demo**](https://demo.zoloblocks.com/profile-card) | [**video tutorial**](https://youtu.be/OOb3uTcnyZg?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
 
-**Progress Bar (Free)**
+[**Progress Bar**](https://demo.zoloblocks.com/progress-bar) (Free)
 
-Visualize progress or goals with customizable progress bars, such as fundraising campaigns, skill levels. [**checkout live demo**](https://demo.zoloblocks.com/progress-bar) | [**video tutorial**](https://www.youtube.com/watch?v=vJheNbZr5AA&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Visualize progress or goals with customizable progress bars, such as fundraising campaigns, skill levels.
 
-**Progress Pie (Free)**
+[**Progress Pie**](https://demo.zoloblocks.com/progress-pie) (Free)
 
-Showcase progress or stats with interactive pie charts, such as completion rates or survey results.[**checkout live demo**](https://demo.zoloblocks.com/progress-pie) | [**video tutorial**](https://www.youtube.com/watch?v=0ccfvIoaGts&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Showcase progress or stats with interactive pie charts, such as completion rates or survey results.
 
-**QR Code (Free)**
-Generate QR codes for quick access to links, contact information, or promotions that simplify user interactions. [**checkout live demo**](https://demo.zoloblocks.com/qr-code) | [**video tutorial**](https://youtu.be/wcUouKDj5Hk?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+[**QR Code**](https://demo.zoloblocks.com/qr-code) (Free)
 
-**Social Count (Free)**
-Display social media follower counts to build credibility and showcase popularity. [**checkout live demo**](https://demo.zoloblocks.com/social-count) | [**video tutorial**](https://youtu.be/nUCWsk776qM?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Generate QR codes for quick access to links, contact information, or promotions that simplify user interactions.
 
- **Social Links (Free)**
-Add social media links for better connectivity and engagement, such as in headers, footers, or profile card. [**checkout live demo**](https://demo.zoloblocks.com/social-links) | [**video tutorial**](https://www.youtube.com/watch?v=37RHK27M5QE&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**Social Count**](https://demo.zoloblocks.com/social-count) (Free)
 
- **Social Share (Free)**
-Enable social sharing buttons to increase content reach and engagement.[**checkout live demo**](https://demo.zoloblocks.com/social-share) | [**video tutorial**](https://www.youtube.com/watch?v=28QZIV6UXxk&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Display social media follower counts to build credibility and showcase popularity.
 
-**Spline Viewer (Free)**
-Embed 3D Spline designs for interactive and modern visuals, such as product showcases or animations. [**checkout live demo**]() | [**video tutorial**](https://www.youtube.com/watch?v=VzvBorWtHgo)
+[**Social Links**](https://demo.zoloblocks.com/social-links) (Free)
 
-**Tabs (Free)**
-Organize content into tabs for a compact and user-friendly layout, such as FAQs, product details, or feature comparisons. [**checkout live demo**](https://demo.zoloblocks.com/tabs) | [**video tutorial**](https://youtu.be/o8S5EiBxM2M?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Add social media links for better connectivity and engagement, such as in headers, footers, or profile card.
 
-**Tag Cloud (Free)**
-Display tags in a cloud format for better content discovery, such as in blogs or portfolios. [**checkout live demo**](https://demo.zoloblocks.com/tag-cloud) | [**video tutorial**](https://youtu.be/w1RKAO30GaI?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+ [**Social Share**](https://demo.zoloblocks.com/social-share) (Free)
 
-**Text Path (Free)**
-Create text that follows custom paths for unique designs, such as curved headlines or creative layouts. [**checkout live demo**](https://demo.zoloblocks.com/text-path) | [**video tutorial**](https://youtu.be/k-ThzRoErVo?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Enable social sharing buttons to increase content reach and engagement.
+
+[**Spline Viewer**](https://zoloblocks.com/demo/spline-viewer) (Free)
+
+Embed 3D Spline designs for interactive and modern visuals, such as product showcases or animations.
+
+[**Tabs**](https://demo.zoloblocks.com/tabs) (Free)
+
+Organize content into tabs for a compact and user-friendly layout, such as FAQs, product details, or feature comparisons.
+
+[**Tag Cloud**](https://demo.zoloblocks.com/tag-cloud) (Free)
+
+Display tags in a cloud format for better content discovery, such as in blogs or portfolios.
+
+[**Text Path**](https://demo.zoloblocks.com/text-path) (Free)
+
+Create text that follows custom paths for unique designs, such as curved headlines or creative layouts.
 
 ##Loop Builder & Animations
 
-**Loop Builder (Pro)**
-Create dynamic content loops for advanced layouts, such as displaying related posts, products, or testimonials. [**checkout live demo**]() | [**video tutorial**]()
+[**Loop Builder**](https://zoloblocks.com/demo/loop-builder) (Pro)
 
-**Lottie Image (Pro)**
-Add lightweight and scalable Lottie animations for engaging visuals, such as loading animations, illustrations, or interactive elements.[**checkout live demo**]() | [**video tutorial**]()
+Create dynamic content loops for advanced layouts, such as displaying related posts, products, or testimonials.
 
-**Unfold (Pro)**
-Add interactive unfold animations for engaging content reveals, such as expanding sections or hidden details. [**checkout live demo**](https://zoloblocks.com/demo/unfold/) | [**video tutorial**](https://youtu.be/PlJpChsfFvM?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+[**Lottie Image**](https://zoloblocks.com/demo/lottie-image) (Pro)
 
-##Grid & List
+Add lightweight and scalable Lottie animations for engaging visuals, such as loading animations, illustrations, or interactive elements.
 
-**Fancy List (Free)**
-Create visually appealing lists with icons, images, or custom styling, ideal for feature lists, checklists, or step-by-step guides. [**checkout live demo**](https://demo.zoloblocks.com/fancy-list) | [**video tutorial**](https://www.youtube.com/watch?v=kp4NtYcYSgY&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**Unfold**](https://zoloblocks.com/demo/unfold/) (Pro)
 
-**List (Free)**
-Display simple, organized lists for content like FAQs, instructions, or bullet points. [**checkout live demo**](https://demo.zoloblocks.com/list) | [**video tutorial**](https://www.youtube.com/watch?v=iyP9SQ-oIJE&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Add interactive unfold animations for engaging content reveals, such as expanding sections or hidden details.
 
-**Post Timeline (Free)**
-Showcase posts or events in a chronological timeline layout, perfect for history pages, project updates, or milestones. [**checkout live demo**](https://demo.zoloblocks.com/post-timeline) | [**video tutorial**](https://youtu.be/PNVBQz5GwvM?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+## ** Grid & List **
 
-**Team Grid (Free)**
-Display team members in a grid layout, including names, photos, roles, and social links. [**checkout live demo**](https://demo.zoloblocks.com/team-grid) | [**video tutorial**](https://www.youtube.com/watch?v=JK-lNriWs4Q&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**Fancy List**](https://demo.zoloblocks.com/fancy-list) (Free)
 
-**Brand Grid (Free)**
-Showcase client logos, partners, or sponsors in a grid layout. [**checkout live demo**](https://demo.zoloblocks.com/brand-grid) | [**video tutorial**](https://www.youtube.com/watch?v=zhip0e6rqsE&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+Create visually appealing lists with icons, images, or custom styling, ideal for feature lists, checklists, or step-by-step guides.
 
-**Brand Carousel (Pro)**
-Display client logos, partners, or sponsors in a dynamic carousel for a more engaging presentation. [**checkout live demo**](https://demo.zoloblocks.com/brand-carousel) | [**video tutorial**](https://www.youtube.com/watch?v=zhip0e6rqsE&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
+[**List**](https://demo.zoloblocks.com/list) (Free)
+
+Display simple, organized lists for content like FAQs, instructions, or bullet points.
+
+[**Post Timeline**](https://demo.zoloblocks.com/post-timeline) (Free)
+
+Showcase posts or events in a chronological timeline layout, perfect for history pages, project updates, or milestones.
+
+[**Team Grid**](https://demo.zoloblocks.com/team-grid) (Free)
+
+Display team members in a grid layout, including names, photos, roles, and social links.
+
+[**Brand Grid**](https://demo.zoloblocks.com/brand-grid) (Free)
+
+Showcase client logos, partners, or sponsors in a grid layout.
+
+[**Brand Carousel**](https://demo.zoloblocks.com/brand-carousel) (Pro)
+
+Display client logos, partners, or sponsors in a dynamic carousel for a more engaging presentation.
 
 ##Single Page Elements
 
-**Post Comments Form (Free)**
-Enables visitors to interact with content by leaving comments, fostering community engagement, and feedback. [**checkout live demo**](https://demo.zoloblocks.com/post-comments-form) | [**video tutorial**]()
+[**Post Comments Form**](https://demo.zoloblocks.com/post-comments-form) (Free)
 
-**Post Content (Free)**
-This block displays the main content of a post or page. [**checkout live demo**]() | [**video tutorial**]()
+Enables visitors to interact with content by leaving comments, fostering community engagement, and feedback.
 
-**Post Featured Image (Free)**
-Displays the featured image associated with a post or page. [**checkout live demo**](https://zoloblocks.com/demo/post-featured-image/) | [**video tutorial**]()
+[**Post Content**](https://zoloblocks.com/demo/post-content) (Free)
 
-**Post Meta (Free)**
-Adds metadata like author, publish date, categories, and tags to a post or page. [**checkout live demo**](https://demo.zoloblocks.com/post-meta) | [**video tutorial**]()
+This block displays the main content of a post or page.
 
-**Post Navigation (Free)**
-Enhances user experience by allowing easy navigation through related content. [**checkout live demo**](https://zoloblocks.com/demo/post-navigation) | [**video tutorial**]()
+[**Post Featured Image**](https://zoloblocks.com/demo/post-featured-image) (Free)
 
-**Post Title (Free)**
-Displays the title of the post. You can automatically  pull the post title,ensuring consistency. [**checkout live demo**](https://zoloblocks.com/demo/post-title) | [**video tutorial**]()
+Displays the featured image associated with a post or page.
+
+[**Post Meta**](https://demo.zoloblocks.com/post-meta) (Free)
+
+Adds metadata like author, publish date, categories, and tags to a post or page.
+
+[**Post Navigation**](https://zoloblocks.com/demo/post-navigation)  (Free)
+
+Enhances user experience by allowing easy navigation through related content.
+
+[**Post Title**](https://zoloblocks.com/demo/post-title) (Free)
+
+Displays the title of the post. You can automatically  pull the post title,ensuring consistency.
 
 ## Advanced Blocks
 
-**Dynamic Content (Pro)**
-Display content that changes dynamically based on conditions or user behavior. [**checkout live demo**]() | [**video tutorial**]()
+[**Dynamic Content**](https://zoloblocks.com/demo/dynamic-content) (Pro)
 
-**Interactions (Pro)**
-Add interactive elements like hover effects, click animations, or scroll triggers. [**checkout live demo**]() | [**video tutorial**]()
+Display content that changes dynamically based on conditions or user behavior.
 
-**Display Conditions (Pro)**
-Control when and where certain elements appear based on user conditions (e.g., device type, location). This block solves the issues of irrelevant content. [**checkout live demo**]() | [**video tutorial**]()
+[**Interactions**](https://zoloblocks.com/demo/interactions) (Pro)
+
+Add interactive elements like hover effects, click animations, or scroll triggers.
+
+[**Display Conditions**](https://zoloblocks.com/demo/display-conditions) (Pro)
+
+Control when and where certain elements appear based on user conditions (e.g., device type, location). This block solves the issues of irrelevant content.
 
 ##Extensions
 
-**Export Pattern (Free)**
-Allow users to export custom patterns created in the ZoloBlocks editor. [**checkout live demo**]() | [**video tutorial**]()
+[**Export Pattern**]()  (Free)
 
-**Import Pattern (Free)**
-Allows users to import previously created patterns that streamline your design process. [**checkout live demo**]() | [**video tutorial**]()
+Allow users to export custom patterns created in the ZoloBlocks editor.
 
-**Shape Divider (Free)**
-Add a stylish way to separate content sections with custom divider shapes visually and dynamically. [**checkout live demo**](https://zoloblocks.com/demo/shape-divider) | [**video tutorial**](https://www.youtube.com/watch?v=OD3sI03RMDc)
+[**Import Pattern**]()  (Free)
 
-**AI (Free)**
-Integrate AI-driven content generation or suggestions and enhance content creation such as Text, Title, and more. [**checkout live demo**](https://zoloblocks.com/demo/zolo%20ai/) | [**video tutorial**]()
+Allows users to import previously created patterns that streamline your design process
 
- **Particles Animation (Free)**
-Add particle animations in the background. [**checkout live demo**](https://zoloblocks.com/demo/particles) | [**video tutorial**](https://www.youtube.com/watch?v=QqI0ln4dyBA)
+[**Shape Divider**](https://zoloblocks.com/demo/shape-divider) (Free)
 
- **Cursors Animation (Pro)**
-Add animated effects to the cursor when it hovers over elements. [**checkout live demo**](https://zoloblocks.com/demo/cursor-effects) | [**video tutorial**](https://www.youtube.com/watch?v=pTDoHVq4kHk)
+Add a stylish way to separate content sections with custom divider shapes visually and dynamically.
 
-**Floating Animation (Pro)**
-Apply floating animation to elements like text, images, or buttons. [**checkout live demo**](https://zoloblocks.com/demo/floating-animation) | [**video tutorial**](https://www.youtube.com/watch?v=c2qO5acU2yw)
+[**AI**](https://zoloblocks.com/demo/zolo%20ai/) (Free)
 
-**Entrance Animation (Pro)**
-This block helps you capture attention as the element comes into view. [**checkout live demo**](https://zoloblocks.com/demo/entrance-animation) | [**video tutorial**]()
+Integrate AI-driven content generation or suggestions and enhance content creation such as Text, Title, and more.
 
-**Sticky Position (Pro)**
-Solve the problem of losing sight of important elements as the page scrolls, improving UX. [**checkout live demo**](https://zoloblocks.com/demo/sticky-position) | [**video tutorial**]()
+ [**Particles Animation**](https://zoloblocks.com/demo/particles) (Free)
 
-**Mouse Tilt (Pro)**
-Allow elements to tilt in response to mouse movement for an interactive effect. [**checkout live demo**](https://zoloblocks.com/demo/tilt-effects/) | [**video tutorial**](https://www.youtube.com/watch?v=w0VSIOJ4iw0)
+Add particle animations in the background.
 
-**Smooth Scroller (Pro)**
-Add smooth scrolling between sections and improve user experience by making navigation feel more fluid and  intuitive. [**checkout live demo**]() | [**video tutorial**]()
+[**Cursors Animation**](https://zoloblocks.com/demo/cursor-effects) (Pro)
 
-**CSS Filters (Pro)**
-Apply CSS filters like blur, brightness, contrast, etc., to elements, making complex visual effects without custom CSS code. [**checkout live demo**]() | [**video tutorial**](https://www.youtube.com/watch?v=FlwqbmhGyjs)
+Add animated effects to the cursor when it hovers over elements.
 
-**Backdrop Filters (Pro)**
-Apply visual effects like blur or color manipulation to the area behind an element. [**checkout live demo**](https://zoloblocks.com/demo/backdrop-filters) | [**video tutorial**](https://www.youtube.com/watch?v=8_oI0P3bj6w)
+[**Floating Animation**](https://zoloblocks.com/demo/floating-animation) (Pro)
 
-**Background Parallax (Pro)**
-Create a parallax scrolling effect for backgrounds. [**checkout live demo**]() | [**video tutorial**](https://www.youtube.com/watch?v=8_oI0P3bj6w)
+Apply floating animation to elements like text, images, or buttons.
 
-**Interactions (Pro)**
-It allows you to add interactive elements like hover effects, clicks, and other actions. [**checkout live demo**]() | [**video tutorial**]()
+[**Entrance Animation**](https://zoloblocks.com/demo/entrance-animation) (Pro)
 
-**Tooltip (Pro)**
-Add hover-over text explanations for elements to provide additional information in a non-intrusive way. [**checkout live demo**]() | [**video tutorial**]()
+This block helps you capture attention as the element comes into view.
 
-**Highlighter (Pro)**
-Add a highlight effect to text or elements when users hover over them for better emphasis. [**checkout live demo**]() | [**video tutorial**]()
+[**Sticky Position**](https://zoloblocks.com/demo/sticky-position) (Pro)
+
+Solve the problem of losing sight of important elements as the page scrolls, improving UX.
+
+[**Mouse Tilt**](https://zoloblocks.com/demo/tilt-effects) (Pro)
+
+Allow elements to tilt in response to mouse movement for an interactive effect.
+
+[**Smooth Scroller**](https://zoloblocks.com/demo/smooth-scroller) (Pro)
+
+Add smooth scrolling between sections and improve user experience by making navigation feel more fluid and  intuitive.
+
+[**CSS Filters**](https://zoloblocks.com/demo/css-filters) (Pro)
+
+Apply CSS filters like blur, brightness, contrast, etc., to elements, making complex visual effects without custom CSS code.
+
+[**Backdrop Filters**](https://zoloblocks.com/demo/backdrop-filters) (Pro)
+
+Apply visual effects like blur or color manipulation to the area behind an element.
+
+[**Background Parallax**](https://zoloblocks.com/demo/background-parallax) (Pro)
+
+Create a parallax scrolling effect for backgrounds.
+
+[**Interactions**](https://zoloblocks.com/demo/interactions) (Pro)
+
+It allows you to add interactive elements like hover effects, clicks, and other actions.
+
+[**Tooltip**](https://zoloblocks.com/demo/tooltip) (Pro)
+
+Add hover-over text explanations for elements to provide additional information in a non-intrusive way.
+
+[**Text Highlighter**](https://zoloblocks.com/demo/text-highlight) (Pro)
+
+Add a highlight effect to text or elements when users hover over them for better emphasis.
 
 ## Who is ZoloBlocks For?
 
