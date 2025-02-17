@@ -39,7 +39,7 @@ const Style = ({ props }) => {
         mobRangeStyle: containerMobWidth,
     } = generateResRangeStyle({
         controlName: CONTAINER_WIDTH,
-        property: 'width',
+        property: 'max-width',
         attributes,
     });
 
@@ -129,9 +129,9 @@ const Style = ({ props }) => {
         ${
             'custom_width' === containerWidthType
                 ? `
-        #block-${clientId}.block-editor-block-list__block{
-            ${containerDeskWidth}
-        }`
+                    #block-${clientId}.block-editor-block-list__block{
+                        ${containerDeskWidth}
+                    }`
                 : ''
         }
 
