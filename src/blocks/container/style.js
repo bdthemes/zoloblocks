@@ -44,6 +44,16 @@ const Style = ({ props }) => {
     });
 
     const {
+        desktopRangeStyle: innerContainerDeskWidth,
+        tabRangeStyle: innerContainerTabWidth,
+        mobRangeStyle: innerContainerMobWidth,
+    } = generateResRangeStyle({
+        controlName: CONTAINER_WIDTH,
+        property: 'flex-basis',
+        attributes,
+    });
+
+    const {
         desktopRangeStyle: containerDeskMinHeight,
         tabRangeStyle: containerTabMinHeight,
         mobRangeStyle: containerMobMinHeight,
@@ -134,11 +144,14 @@ const Style = ({ props }) => {
                     }`
                 : ''
         }
+        .wp-block-zolo-container.zolo-root-container.frontend.custom_width.${uniqueId} {
+            ${containerDeskWidth}
+        }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
             ${containerDeskWidth}
-
+            ${innerContainerDeskWidth}
         }
 
         .${uniqueId} {
@@ -164,16 +177,20 @@ const Style = ({ props }) => {
         ${
             'custom_width' === containerWidthType
                 ? `
-        #block-${clientId}.block-editor-block-list__block{
-            ${containerTabWidth}
-        }`
+                    #block-${clientId}.block-editor-block-list__block{
+                        ${containerTabWidth}
+                    }`
                 : ''
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+        .wp-block-zolo-container.zolo-root-container.frontend.custom_width.${uniqueId} {
             ${containerTabWidth}
+        }
 
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+            ${containerTabWidth}
+            ${innerContainerTabWidth}
         }
 
         .${uniqueId} {
@@ -199,18 +216,22 @@ const Style = ({ props }) => {
         ${
             'custom_width' === containerWidthType
                 ? `
-        #block-${clientId}.block-editor-block-list__block{
-            ${containerMobWidth}
-        }`
+                    #block-${clientId}.block-editor-block-list__block{
+                        ${containerMobWidth}
+                    }`
                 : ''
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+        .wp-block-zolo-container.zolo-root-container.frontend.custom_width.${uniqueId} {
             ${containerMobWidth}
-
         }
 
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+            ${containerMobWidth}
+            ${innerContainerMobWidth}
+        }
+            
         .${uniqueId} {
             ${containerMobMinHeight}
         }
