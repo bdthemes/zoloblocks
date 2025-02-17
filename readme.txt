@@ -66,7 +66,7 @@ Explore all the blocks listed categorically—
 
 [**Advanced Image**](https://zoloblocks.com/demo/advanced-image/) (Free)
 
-Perfect for adding images with advanced control like alignment, spacing and hover effects. [**checkout live demo**]
+Perfect for adding images with advanced control like alignment, spacing and hover effects.
 
 [**Image Compare**](https://demo.zoloblocks.com/image-compare) (Free)
 
@@ -263,7 +263,7 @@ Present pricing plans clearly with customizable tables, ideal for SaaS products,
 
 [**Profile Card**](https://demo.zoloblocks.com/profile-card) (Free)
 
-Display team or user profiles with stylish cards, including names, photos, roles, and social links. [**checkout live demo**](https://demo.zoloblocks.com/profile-card) | [**video tutorial**](https://youtu.be/OOb3uTcnyZg?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8)
+Display team or user profiles with stylish cards, including names, photos, roles, and social links.
 
 [**Progress Bar**](https://demo.zoloblocks.com/progress-bar) (Free)
 
