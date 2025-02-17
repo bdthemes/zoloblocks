@@ -30,42 +30,6 @@ export default function RenderView({ attributes, clientId, className, setAttribu
 
     return (
         <>
-            <BlockControls>
-                <ToolbarGroup>
-                    <Dropdown
-                        className="my-container-class-name"
-                        contentClassName="my-popover-content-classname"
-                        placement="bottom right"
-                        renderToggle={({ isOpen, onToggle }) => (
-                            <ToolbarButton onClick={onToggle} aria-expanded={isOpen} icon={CWT_ICONS[containerWidth]} />
-                        )}
-                        renderContent={() => (
-                            <div className="zolo-container-width-type">
-                                {CW_TYPES &&
-                                    CW_TYPES.map((type, index) => {
-                                        return (
-                                            <Button
-                                                className="zolo-container-btn"
-                                                key={index}
-                                                onClick={() => {
-                                                    setAttributes({
-                                                        containerWidth: type?.value,
-                                                    });
-                                                }}
-                                            >
-                                                <div className="c-icon">{type?.icon}</div>
-                                                <div className="c-icon-labels">
-                                                    <span className="c-icon-label">{type?.label}</span>
-                                                    <span className="c-icon-info">{type?.info}</span>
-                                                </div>
-                                            </Button>
-                                        );
-                                    })}
-                            </div>
-                        )}
-                    />
-                </ToolbarGroup>
-            </BlockControls>
             <DynamicTag
                 tagName={tagName}
                 {...blockProps}

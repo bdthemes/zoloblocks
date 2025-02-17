@@ -63,7 +63,7 @@ const attributes = {
     },
     contentWidthType: {
         type: 'string',
-        default: 'alignwide',
+        default: 'alignfull',
     },
     tagName: {
         type: 'string',
