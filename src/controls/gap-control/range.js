@@ -13,13 +13,6 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
         });
     }, [isLinked]);
 
-    // useEffect(() => {
-    //   setAttributes({
-    //     [rowGapAttr]: gap,
-    //     [colGapAttr]: gap,
-    //   });
-    // },[]);
-
     return (
         <div className="zb-dimension-container zolo-gap-control">
             <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
