@@ -94,7 +94,7 @@
         cursor: pointer;
         svg {
             display: block;
-            color: #8e8e9a;
+            color: #bcbcbe;
             width: 24px;
             height: 24px;
             transition: color 0.3s ease;
@@ -151,10 +151,16 @@
     .block-editor-block-list__layout {
         .block-list-appender.wp-block {
             button {
-                color: #a0a7ac;
+                color: #9c9d9f;
                 font-size: 62px;
                 border: none;
                 box-shadow: none;
+                transition: color 0.3s ease;
+            }
+            &:hover {
+                button {
+                    color: #2f2f37;
+                }
             }
         }
     }
@@ -199,6 +205,11 @@
 }
 
 .zolo-root-container {
+    &.is-selected > .block-list-appender,
+    .block-editor-inner-blocks .wp-block-zolo-container.is-selected .block-list-appender {
+        pointer-events: auto;
+    }
+
     .wp-block-navigation__container {
         flex-grow: inherit;
         flex-wrap: nowrap;
@@ -208,9 +219,16 @@
         white-space: nowrap !important;
     }
 
-    .block-list-appender .block-editor-default-block-appender {
-        position: absolute !important;
-        bottom: 0 !important;
-        right: 0 !important;
+    .block-list-appender {
+        width: auto !important;
+        pointer-events: none;
+        .block-editor-default-block-appender {
+            position: absolute !important;
+            bottom: 0 !important;
+            right: 0 !important;
+        }
+    }
+    .block-editor-inner-blocks .wp-block-zolo-container .block-list-appender {
+        pointer-events: none;
     }
 }
