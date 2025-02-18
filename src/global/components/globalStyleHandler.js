@@ -1,10 +1,9 @@
 /**
  * WordPress dependencies
  */
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 
-import { softMinifyCssStrings, customCssZoloToBlockId, addPrefixToSelector } from '../../helpers/helper';
-import { generateNormalBGControlStyles } from '../../helpers/normal-bg-helpers';
+import { softMinifyCssStrings } from '../../helpers/helper';
 import { generateBackgroundControlStyles } from '../../helpers/backgroundHelpers';
 import { generateDimensionStyle } from '../../helpers/dimension-helper';
 import { generateBorderStyle } from '../../helpers/border-helper';
@@ -20,9 +19,8 @@ export const GlobalStyleHanlder = (props) => {
         console.error('GlobalStyleHanlder: Invalid props.');
         return null;
     }
-
-    const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {} } = props;
-    // const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
+    
+    const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props;
 
     const {
         uniqueId,
@@ -41,21 +39,10 @@ export const GlobalStyleHanlder = (props) => {
         transformFlipVerticalHover,
         transformFlipVertical,
     } = attributes;
+    
     if (!uniqueId) {
         return;
     }
-
-    //Generate Global Styles
-
-    // generate Border
-    // const {
-    //     borderStylesDesktop: desktopBorderStyles,
-    //     borderStylesTab: tabBorderStyles,
-    //     borderStylesMobile: mobileBorderStyles,
-    // } = generateBorderStyle({
-    //     controlName: globalConfig?.border?.prefix || 'mainBorder',
-    //     attributes,
-    // });
 
     const {
         desktopBorderStyle: desktopBorderStyles,
@@ -506,14 +493,14 @@ export const GlobalStyleHanlder = (props) => {
         property: 'bottom',
         attributes,
     });
-
+    
     const positionDesktop = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
         ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
         ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
-        ${position.value == 'fixed' || position.value === 'absolute' ? `width: auto !important` : ''}
+        ${position.value == 'fixed' || position.value === 'absolute' ? `width: ${blockName == 'zolo/container' ? '100% !important;' : 'auto;'}` : ''}
  `;
     const positionTab = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}

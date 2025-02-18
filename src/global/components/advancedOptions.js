@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, TextControl, SelectControl, FormTokenField } from '@wordpress/components';
+import { ToggleControl, TextControl, SelectControl } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -326,19 +326,18 @@ export const AdvancedOptions = (props) => {
                             setAttributes({ zoloId: id });
                         }}
                         value={zoloId}
-                        help={__('Add an ID to the block wrapper.', 'zoloblocks')}
+                        help={__('Add custom ID to the block WITHOUT the Pound key. e.g: my-id', 'zoloblocks')}
                     />
-                    <FormTokenField
+
+                    <TextControl
+                        label={__('CSS Classes', 'zoloblocks')}
                         className="zolo-css-class"
-                        label={__('CSS Class', 'zoloblocks')}
-                        value={customClasses}
-                        onChange={(tokens) => {
-                            // replace spaces with dashes
-                            const updatedTokens = tokens.map((token) => token.replace(/\s/g, '-'));
-                            setAttributes({ customClasses: updatedTokens });
-                            handleCustomClasses(updatedTokens);
+                        onChange={(value) => {
+                            setAttributes({ customClasses: value });
+                            handleCustomClasses(value.split(' '));
                         }}
-                        help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zoloblocks')}
+                        value={customClasses}
+                        help={__('Add custom class(es) to the block WITHOUT the dot. e.g: my-class. Separate multiple classes with a space.','zoloblocks')}
                     />
                 </div>
             </ZoloPanelBody>
