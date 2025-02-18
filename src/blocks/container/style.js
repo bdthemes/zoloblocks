@@ -253,6 +253,7 @@ const Style = ({ props }) => {
                 desktopAllStyle={applyFilters('zolo.container.desktopAllStyle', desktopAllStyle, props)}
                 tabAllStyle={applyFilters('zolo.container.tabletAllStyle', tabletAllStyle, props)}
                 mobileAllStyle={applyFilters('zolo.container.mobileAllStyle', mobileAllStyle, props)}
+                blockName={props?.name}
             />
         </>
     );
