@@ -205,11 +205,6 @@
 }
 
 .zolo-root-container {
-    &.is-selected > .block-list-appender,
-    .block-editor-inner-blocks .wp-block-zolo-container.is-selected .block-list-appender {
-        pointer-events: auto;
-    }
-
     .wp-block-navigation__container {
         flex-grow: inherit;
         flex-wrap: nowrap;
@@ -221,14 +216,10 @@
 
     .block-list-appender {
         width: auto !important;
-        pointer-events: none;
         .block-editor-default-block-appender {
             position: absolute !important;
             bottom: 0 !important;
             right: 0 !important;
         }
-    }
-    .block-editor-inner-blocks .wp-block-zolo-container .block-list-appender {
-        pointer-events: none;
     }
 }
