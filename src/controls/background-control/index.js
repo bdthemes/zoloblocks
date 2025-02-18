@@ -4,6 +4,7 @@ import { applyFilters } from '@wordpress/hooks';
 
 import BGControl from './bg-control';
 import OverflowControl from './overlay-control';
+import { CardDivider } from '@wordpress/components';
 
 const BackgroundControl = ({
     requiredProps,
@@ -23,10 +24,16 @@ const BackgroundControl = ({
 
     return (
         <>
-            <BGControl controlName={controlName} requiredProps={requiredProps} noMainBGImg={noMainBGImg} noTransition={noTransition} video={video} />
-        {
-            mainBgbackgroundType !== 'video' && advBtnBgbackgroundType !== 'video' && (
+            <BGControl
+                controlName={controlName}
+                requiredProps={requiredProps}
+                noMainBGImg={noMainBGImg}
+                noTransition={noTransition}
+                video={video}
+            />
+            {mainBgbackgroundType !== 'video' && advBtnBgbackgroundType !== 'video' && (
                 <>
+                    <CardDivider />
                     <ToggleControl
                         label={__('Enable Overlay', 'zoloblocks')}
                         checked={isBgOverlay}
@@ -49,10 +56,7 @@ const BackgroundControl = ({
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                     {splineViewer && splineViewer.length > 0 && splineViewer}
                 </>
-
-            )
-        }
-
+            )}
         </>
     );
 };
