@@ -1,9 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { Button, __experimentalToggleGroupControl as ToggleGroupControl } from '@wordpress/components';
-
-const IconicBtnGroup = ({ label = '', value, onChange, options }) => {
+import {
+    __experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+} from '@wordpress/components';
+const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }) => {
     return (
         <div className="zolo-iconic-btn-group">
             {label && (
@@ -14,15 +16,22 @@ const IconicBtnGroup = ({ label = '', value, onChange, options }) => {
             <ToggleGroupControl className="zb-iconic-btn-group">
                 {options &&
                     options.map((option, index) => {
+                        const isActive = value == option.value;
                         return (
-                            <Button
-                                onClick={() => onChange(value === option.value ? '' : option.value)}
-                                className={`iconic-btn ${value === option.value ? 'active' : ''}`}
+                            <ToggleGroupControlOption
+                                onClick={() => {
+                                    if (toggle) {
+                                        onChange(isActive ? null : option.value);
+                                    } else {
+                                        onChange(option.value);
+                                    }
+                                }}
+                                className={`iconic-btn ${isActive ? 'active' : ''}`}
                                 key={index}
-                                title={option.label}
+                                label={option.label}
                             >
                                 {option.icon && option.icon !== '' ? option.icon : option.label}
-                            </Button>
+                            </ToggleGroupControlOption>
                         );
                     })}
             </ToggleGroupControl>
