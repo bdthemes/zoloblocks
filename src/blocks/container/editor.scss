@@ -207,4 +207,10 @@
     .wp-block-navigation-item__label {
         white-space: nowrap !important;
     }
+
+    .block-list-appender .block-editor-default-block-appender {
+        position: absolute !important;
+        bottom: 0 !important;
+        right: 0 !important;
+    }
 }
