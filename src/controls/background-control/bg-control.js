@@ -29,14 +29,11 @@ const BGControl = (props) => {
     const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
     const backgroundVideo = applyFilters('zolo.extensions.controls.backgroundVideo', [], requiredProps);
     const {
-        [`${controlName}bg_hoverType`]: bg_hoverType,
 
-        //attributes for background type normal start
         [`${controlName}backgroundType`]: backgroundType,
         [`${controlName}backgroundColor`]: backgroundColor,
         [`${controlName}gradientColor`]: gradientColor,
         [`${controlName}customGradient`]: customGradient,
-
         [`${controlName}bgImageURL`]: bgImageURL,
         [`${controlName}bgImageID`]: bgImageID,
         [`${controlName}bgImgAttachment`]: bgImgAttachment,
@@ -74,6 +71,7 @@ const BGControl = (props) => {
         [`hov_${controlName}backgroundType`]: hov_backgroundType,
         [`hov_${controlName}backgroundColor`]: hov_backgroundColor,
         [`hov_${controlName}gradientColor`]: hov_gradientColor,
+        [`hov_${controlName}customGradient`]: hov_customGradient,
         [`hov_${controlName}bgImageURL`]: hov_bgImageURL,
         [`hov_${controlName}bgImageID`]: hov_bgImageID,
         [`hov_${controlName}bgImgAttachment`]: hov_bgImgAttachment,
@@ -1293,10 +1291,10 @@ const BGControl = (props) => {
                                             {BACKGROUND_TYPES.map(({ value, label }) => (
                                                 <Button
                                                     key={value}
-                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
+                                                    variant={hov_backgroundType === value ? 'primary' : 'secondary'}
                                                     onClick={() =>
                                                         setAttributes({
-                                                            [`${controlName}backgroundType`]: value,
+                                                            [`hov_${controlName}backgroundType`]: value,
                                                         })
                                                     }
                                                 >
@@ -2302,15 +2300,52 @@ const BGControl = (props) => {
                                     )}
 
                                     {hov_backgroundType === 'gradient' && (
-                                        <GradientControl
-                                            label={__('Gradient Color', 'zoloblocks')}
-                                            value={hov_gradientColor}
-                                            onChange={(newVal) =>
-                                                setAttributes({
-                                                    [`hov_${controlName}gradientColor`]: newVal,
-                                                })
-                                            }
-                                        />
+                                         <>
+                                            <ToggleControl
+                                                label={__('Add Custom Gradient', 'zoloblocks')}
+                                                checked={hov_customGradient}
+                                                onChange={() =>
+                                                    setAttributes({
+                                                        [`hov_${controlName}customGradient`]: !hov_customGradient,
+                                                        [`hov_${controlName}gradientColor`]: '',
+                                                    })
+                                                }
+                                            />
+                                            {hov_customGradient && (
+                                                <TextareaControl
+                                                    help={
+                                                        <>
+                                                            {__('Add your gradient color here. Get Sample', 'zoloblocks')}
+                                                            <a
+                                                                href="https://csspro.com/css-gradients/"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            >
+                                                                {__('CSS Gradients', 'zoloblocks')}
+                                                            </a>
+                                                        </>
+                                                    }
+                                                    label={__('Custom Gradient', 'zoloblocks')}
+                                                    onChange={(v) =>
+                                                        setAttributes({
+                                                            [`hov_${controlName}gradientColor`]: v,
+                                                        })
+                                                    }
+                                                    value= {hov_gradientColor}
+                                                />
+                                            )}
+                                            {!hov_customGradient && (
+                                                <GradientControl
+                                                    label={__('Gradient Color', 'zoloblocks')}
+                                                    value={hov_gradientColor}
+                                                    onChange={(newVal) =>
+                                                        setAttributes({
+                                                            [`hov_${controlName}gradientColor`]: newVal,
+                                                        })
+                                                    }
+                                                />
+                                            )}
+                                        </>
                                     )}
                                 </>
                             );
