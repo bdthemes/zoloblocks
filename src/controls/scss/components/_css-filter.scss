@@ -3,21 +3,12 @@
         .components-range-control__slider + span {
             background-repeat: no-repeat !important;
             margin-top: 10px;
+            height: 6px !important;
             box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.2);
         }
 
         .components-range-control__track {
             background: none !important;
-        }
-
-        span {
-            height: 6px !important;
-        }
-
-        .components-range-control__thumb-wrapper {
-            height: 16px !important;
-            top: -3px;
-            width: 16px !important;
         }
 
         .zb-res-range-control-wrapper {
