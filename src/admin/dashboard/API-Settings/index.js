@@ -321,9 +321,9 @@ useEffect(() => {
                     </Button>
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Zolo AI', 'zoloblocks')}
+                    title={__('AI Assistant', 'zoloblocks')}
                     description={__(
-                        'Zolo AI enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of Zolo AI.'
+                        'ZoloBlocks AI Assistant enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of Zolo AI.'
                     )}
                     docLink="https://account.bdthemes.com"
                     icon="zoloai"
