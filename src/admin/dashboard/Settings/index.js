@@ -7,7 +7,6 @@ import SettingBox from './setting-box';
 const { zoloBlocks } = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);
-    const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
     const [maintenanceMode, setMaintenanceMode] = useState(false);
     const [comingSoonMode, setComingSoonMode] = useState(false);
@@ -42,7 +41,6 @@ const Settings = () => {
     const fetchSettings = useCallback(async (data) => {
         try {
             const response = await apiFetch(data);
-            setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
@@ -68,7 +66,6 @@ const Settings = () => {
     const updateSettings = useCallback(async (data) => {
         try {
             const response = await apiFetch(data);
-            setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
             setMaintenanceMode(response.zolo_maintenance_mode);
             setMaintenanceModeTemplate(response.zolo_maintenance_mode_template);
@@ -84,14 +81,6 @@ const Settings = () => {
         }
     }, []);
 
-    const updateEditorWidth = (value) => {
-        updateSettings({
-            path: '/wp/v2/settings',
-            method: 'POST',
-            data: { zolo_editor_width: value },
-        });
-    };
-
     const updateSVG = (value) => {
         updateSettings({
             path: '/wp/v2/settings',
@@ -101,7 +90,7 @@ const Settings = () => {
     };
 
     const updateMaintenanceMode = (value) => {
-        const comingSoonValue = value ? false : undefined; // If maintenance mode is true, set coming soon to false.
+        const comingSoonValue = value ? false : undefined;
 
         updateSettings({
             path: '/wp/v2/settings',
@@ -114,7 +103,7 @@ const Settings = () => {
     };
 
     const updateComingSoonMode = (value) => {
-        const maintenanceValue = value ? false : undefined; // If coming soon mode is true, set maintenance mode to false.
+        const maintenanceValue = value ? false : undefined;
 
         updateSettings({
             path: '/wp/v2/settings',
@@ -241,29 +230,6 @@ const Settings = () => {
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
                                     <SettingBox
-                                        title={__('Default Container Width', 'zoloblocks')}
-                                        description={__(
-                                            "This setting will apply to Container Block's default Width in the Editor.",
-                                            'zoloblocks'
-                                        )}
-                                        released={true}
-                                    >
-                                        <div className="zolo-width-number">
-                                            <input
-                                                type="number"
-                                                placeholder="1200"
-                                                onChange={(e) => {
-                                                    updateEditorWidth(parseInt(e.target.value));
-                                                    setNotice(true);
-                                                }}
-                                                value={editorWidth}
-                                                min={1}
-                                            />
-                                            <span>{__('px', 'zoloblocks')}</span>
-                                        </div>
-                                    </SettingBox>
-
-                                    <SettingBox
                                         title={__('SVG Upload', 'zoloblocks')}
                                         description={__(
                                             'Enable the SVG Upload option to upload SVG files in the Media Library and use them in your Blocks.',
@@ -377,20 +343,6 @@ const Settings = () => {
                                 </div>
                             </div>
                         )}
-                        {/* {activeTab === 'performance' && (
-                            <div className="zolo-tab-content-item zolo-tab-content-active">
-                                <div className="zolo-settings-option-wrap">
-                                    <SettingBox
-                                        title={__('Preload Local Fonts', 'zoloblocks')}
-                                        released={false}
-                                        description={__(
-                                            'This option loads font files immediately on page load. Preloading local fonts can further speed up your website.',
-                                            'zoloblocks'
-                                        )}
-                                    ></SettingBox>
-                                </div>
-                            </div>
-                        )} */}
                         {activeTab === 'site-visibility' && (
                             <div className="zolo-tab-content-item zolo-tab-content-active">
                                 <div className="zolo-settings-option-wrap">
@@ -481,7 +433,6 @@ const Settings = () => {
                     shouldCloseOnEsc={true}
                     isOpen={modalNewPage}
                     isDismissible={false}
-                    // title={__('Create New Page', 'zoloblocks')}
                     style={{
                         width: '100%',
                         height: '100%',

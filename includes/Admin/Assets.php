@@ -26,29 +26,11 @@ if (! class_exists('Assets')) {
          */
         public function __construct() {
             add_action('admin_enqueue_scripts', [$this, 'zolo_admin_enqueue_scripts']);
-            add_action('admin_head', [$this, 'zolo_block_editor_assets']);
 
             // blocks icons
             add_action('enqueue_block_editor_assets', [$this, 'zolo_blocks_icons'], 2);
             add_action('admin_enqueue_scripts', [$this, 'zolo_blocks_icons'], 2);
         }
-
-        /**
-         * Enqueue block editor assets
-         *
-         * @return void
-         */
-        public function zolo_block_editor_assets() {
-            $zoloEditorWidth = get_option('zolo_editor_width', 1200);
-?>
-            <style>
-                .editor-styles-wrapper .block-editor-block-list__layout.is-root-container> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-                    max-width: <?php echo esc_attr($zoloEditorWidth); ?>px !important;
-                }
-            </style>
-<?php
-        }
-
         /**
          * Enqueues scripts and styles for the Zoloblocks admin area.
          *
