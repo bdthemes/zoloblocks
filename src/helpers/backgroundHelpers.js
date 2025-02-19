@@ -1147,6 +1147,7 @@ export const generateBackgroundControlStyles = ({
             right: 0;
             left: 0;
             z-index: -1 !important;
+            transition: all .3s ease; 
             ${
                 (BGnoOverlayBgi === false && overlayType === 'classic' && ovl_bgImageURL) || (overlayType === 'gradient' && overlayGradient)
                     ? `
