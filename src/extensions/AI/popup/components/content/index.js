@@ -1,10 +1,16 @@
 import { Button, SelectControl } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { useRef, useEffect } from '@wordpress/element';
+import { useRef, useEffect, useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
 const Content = () => {
     const ref = useRef();
+    const [language, setLanguage] = useState('');
+    const [tone, setTone] = useState('');
+    const [isSimplify, setIsSimplify] = useState(false);
+    const [isLonger, setIsLonger] = useState(false);
+    const [isShorter, setIsShorter] = useState(false);
+    const [isGrammar, setIsGrammar] = useState(false);
     const { reset, setPrompt, setContext, setScreen, requestAI } = useDispatch('zoloai/popup');
     const { loading, response, content, screen, prompt } = useSelect((select) => {
         const { isOpen: checkIsOpen, isLoading, getPrompt, getResponse, getContent, getContext, getScreen } = select('zoloai/popup');
@@ -48,7 +54,9 @@ const Content = () => {
                                 variant="primary"
                                 onClick={() => {
                                     openModal(__(`Simplify the language`, 'zoloblocks'));
+                                    setIsSimplify(true);
                                 }}
+                                className={`simplify ${isSimplify ? 'active' : ''}`}
                             >
                                 {__('Simplify Language', 'zoloblocks')}
                                 <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,10 +69,11 @@ const Content = () => {
                                 </svg>
                             </Button>
                             <Button
-                                className="longer"
+                                className={`longer ${isLonger ? 'active' : ''}`}
                                 variant="primary"
                                 onClick={() => {
                                     openModal(__(`Make it longer`, 'zoloblocks'));
+                                    setIsLonger(true);
                                 }}
                             >
                                 {__('Make it longer', 'zoloblocks')}
@@ -78,10 +87,11 @@ const Content = () => {
                                 </svg>
                             </Button>
                             <Button
-                                className="shorter"
+                                className={`shorter ${isShorter ? 'active' : ''}`}
                                 variant="primary"
                                 onClick={() => {
                                     openModal(__(`Make it shorter`, 'zoloblocks'));
+                                    setIsShorter(true);
                                 }}
                             >
                                 {__('Make it shorter', 'zoloblocks')}
@@ -94,9 +104,11 @@ const Content = () => {
                                 </svg>
                             </Button>
                             <Button
+                                className={`grammar ${isGrammar ? 'active' : ''}`}
                                 variant="primary"
                                 onClick={() => {
                                     openModal(__(`Fix spelling and grammar`, 'zoloblocks'));
+                                    setIsGrammar(true);
                                 }}
                             >
                                 {__('Fix spelling & grammar', 'zoloblocks')}
@@ -113,7 +125,7 @@ const Content = () => {
                         <div className="zolo-popup-response-lang">
                             <SelectControl
                                 label={__('Change Language', 'zoloblocks')}
-                                value={''}
+                                value= {language}
                                 options={[
                                     { label: 'Translate to', value: '' },
                                     { label: 'Arabic', value: 'arabic' },
@@ -161,12 +173,13 @@ const Content = () => {
                                 onChange={(value) => {
                                     if (value !== '') {
                                         openModal(__(sprintf(`Translate to %s`, value), 'zoloblocks'));
+                                        setLanguage(value);
                                     }
                                 }}
                             ></SelectControl>
                             <SelectControl
                                 label={__('Change tone', 'zoloblocks')}
-                                value={''}
+                                value= {tone}
                                 options={[
                                     { label: 'Casual', value: 'casual' },
                                     { label: 'Confidence', value: 'confidence' },
@@ -183,6 +196,7 @@ const Content = () => {
                                 ]}
                                 onChange={(value) => {
                                     openModal(__(sprintf(`Change tone to %s`, value), 'zoloblocks'));
+                                    setTone(value);
                                 }}
                             ></SelectControl>
                         </div>

@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useState, RawHTML } from '@wordpress/element';
 import { Modal } from '@wordpress/components';
 
-const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, released = true }) => {
+const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, released = true, note }) => {
     const [settingsPanel, setSettingsPanel] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -22,7 +22,9 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
 
     return (
         <div className={`zolo-single-setting${released ? '' : ' upcoming'}`}>
-            {!released && <div className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</div>}
+            {!released && <div className={`zolo-badge-upcoming ${note ? 'warning' : ''}`}>
+                {note ? __(note, 'zoloblocks') : __('Coming Soon', 'zoloblocks')}
+                </div>}
             {icon && (
                 <div className="zolo-setting-icon">
                     <img src={zoloBlocks[icon]} alt={title} />
@@ -102,7 +104,7 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                             </button>
                         ) : (
                             <button className="settings-save-btn" onClick={handleSaveChanges} disabled={true}>
-                                {__('Coming Soon', 'zoloblocks')}
+                                {note ? __(note, 'zoloblocks') : __('Coming Soon', 'zoloblocks')}
                             </button>
                         )}
                     </div>

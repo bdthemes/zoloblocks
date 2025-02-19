@@ -48,6 +48,12 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
 
     const onButtonClick = () => {
         setIsLinked(!isLinked);
+        if(isLinked){
+          setAttributes({
+            [`${prefix}${controlName}RowGap`]: desktopGap,
+            [`${prefix}${controlName}ColGap`]: desktopGap,
+          })
+        }
     };
 
     return (

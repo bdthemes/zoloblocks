@@ -111,7 +111,7 @@ return apply_filters('zolo_extensions', [
     ],
     'AI'          => [
         'name'   => 'AI',
-        'title'  => __('AI', 'zoloblocks'),
+        'title'  => __('AI Assistant', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/ai',
         'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
