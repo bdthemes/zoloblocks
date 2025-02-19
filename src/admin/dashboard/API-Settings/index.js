@@ -306,9 +306,9 @@ const ApiSettings = () => {
                     </Button>
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Zolo AI', 'zoloblocks')}
+                    title={__('AI Assistant', 'zoloblocks')}
                     description={__(
-                        'Zolo AI enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of Zolo AI.'
+                        'ZoloBlocks AI Assistant enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of Zolo AI.'
                     )}
                     docLink="https://account.bdthemes.com"
                     icon="zoloai"
@@ -320,7 +320,7 @@ const ApiSettings = () => {
                         label={__('API Key', 'zoloblocks')}
                         onChange={(value) => setZoloaiAPIKey(value)}
                         value={zoloaiAPIKey}
-                        placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+                        placeholder="AbcdeF1GhIJkLMNOpQrSTUvWXyZU2VjdXJlL0FjY2Vzcy9Ub2tlbi9Gb3IvU2FmZVBsYXRmbJtL1Byb2plY3RX"
                     />
                 </SettingPanel>
                 <SettingPanel
