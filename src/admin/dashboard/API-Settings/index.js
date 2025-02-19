@@ -6,6 +6,7 @@ import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 const ApiSettings = () => {
+    const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
     const [googleAPIKey, setGoogleAPIKey] = useState('');
     const [zoloaiAPIKey, setZoloaiAPIKey] = useState('');
     const [siteKey, setSiteKey] = useState('');
@@ -58,6 +59,20 @@ const ApiSettings = () => {
             }
         );
     }, []);
+
+useEffect(() => {
+    fetchSettings({
+        path: '/zolo/v1/extensions',
+        method: 'GET',
+    }).then((response) => {
+        const zoloAI = response.find((ext) => ext.name === 'AI');
+
+        if (zoloAI) {
+            setisAIExtensionActive(zoloAI.status);
+        }
+    });
+}, []);
+
 
     // update api key
     const updateAPIKey = (value) => {
@@ -315,6 +330,8 @@ const ApiSettings = () => {
                     onSave={() => {
                         onChangeZoloAiKey(zoloaiAPIKey);
                     }}
+                    released={isAIExtensionActive}
+                    note={`please activate the AI extension to use this feature`}
                 >
                     <TextControl
                         label={__('API Key', 'zoloblocks')}
