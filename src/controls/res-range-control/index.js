@@ -20,17 +20,10 @@ const ResRangeControl = ({
     objectName = '',
 }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
-    // const {
-    //     [`${prefix}${controlName}Range`]: desktopRange,
-    //     [`${prefix}TAB${controlName}Range`]: tabRange,
-    //     [`${prefix}MOB${controlName}Range`]: mobRange,
-    // } = attributes;
 
     const desktopRange = object ? attributes?.[objectName][`${prefix}${controlName}Range`] : attributes?.[`${prefix}${controlName}Range`];
     const tabRange = object ? attributes?.[objectName][`${prefix}TAB${controlName}Range`] : attributes?.[`${prefix}TAB${controlName}Range`];
     const mobRange = object ? attributes?.[objectName][`${prefix}MOB${controlName}Range`] : attributes?.[`${prefix}MOB${controlName}Range`];
-
-    // const { testObject } = attributes;
 
     let sizeUnit;
     let TABsizeUnit;
@@ -38,9 +31,6 @@ const ResRangeControl = ({
     let defaultUnits;
 
     if (!noUnits) {
-        // sizeUnit = attributes[`${prefix}${controlName}Unit`];
-        // TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
-        // MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
 
         sizeUnit = object ? attributes?.[objectName][`${prefix}${controlName}Unit`] : attributes?.[`${prefix}${controlName}Unit`];
         TABsizeUnit = object ? attributes?.[objectName][`${prefix}TAB${controlName}Unit`] : attributes?.[`${prefix}TAB${controlName}Unit`];
@@ -91,11 +81,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: val,
+                                                        [`${prefix}${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
@@ -111,11 +101,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -155,11 +145,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: val,
+                                                        [`${prefix}TAB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
@@ -175,11 +165,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -219,11 +209,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: val,
+                                                        [`${prefix}MOB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
@@ -239,11 +229,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -302,11 +292,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: val,
+                                                        [`${prefix}${controlName}Range`]: val ?? 0
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
@@ -322,11 +312,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}${controlName}Range`]: Number(val) ?? 0
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -382,11 +372,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: val,
+                                                        [`${prefix}TAB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
@@ -402,11 +392,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -462,11 +452,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: val,
+                                                        [`${prefix}MOB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
@@ -482,11 +472,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
