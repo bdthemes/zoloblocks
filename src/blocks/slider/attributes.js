@@ -65,6 +65,10 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    contentPosition: {
+        type: 'string',
+        default: '',
+    },
     uniqueId: {
         type: 'string',
     },
