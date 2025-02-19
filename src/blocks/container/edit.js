@@ -106,7 +106,7 @@ export default function Edit(props) {
               onRequestClose={closeModal}
               isFullScreen
             >
-              <VariationPicker {...{ ...props, variations, defaultVariation,closeModal }} />
+              <VariationPicker {...{ ...props, variations, defaultVariation, closeModal, isReplace: true }} />
             </Modal>
           )}
         </>
