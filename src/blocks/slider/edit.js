@@ -53,7 +53,8 @@ import { add } from '@dnd-kit/utilities';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, addNewSlideBlock, customNavIcon, prevNavIcon, nextNavIcon, sliderOptions } = attributes;
+    const { uniqueId, parentClasses, addNewSlideBlock, customNavIcon, prevNavIcon, nextNavIcon, sliderOptions, contentPosition } =
+        attributes;
 
     const {
         speed = 800,
@@ -160,7 +161,7 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <Swiper
-                    className={`${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
+                    className={`${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''} ${contentPosition}`}
                     key={`${addNewSlideBlock}${paginationType}${navPosition}${pagiPosition}${progressDirection}${JSON.stringify(sliderOptions)}`}
                     ref={swiperRef}
                     modules={[

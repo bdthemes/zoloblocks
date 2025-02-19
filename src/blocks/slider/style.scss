@@ -9,7 +9,7 @@
     --zolo-pagination-size: 8px;
     --zolo-pagination-border-width: 1px;
     --zolo-pagination-border-style: solid;
-    --zolo-navigation-size: clamp(2.188rem, 6vw, 3.125rem);
+    --zolo-navigation-size: 1em;
     --zolo-navigation-color: #000;
     --zolo-navigation-fill-color: #000;
     --zolo-navigation-border-radius: 50%;
@@ -23,15 +23,96 @@
     }
 
     .swiper-content-outer {
-        height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         box-sizing: border-box;
         max-width: var(--zolo-content-max-width);
+        padding: clamp(1.25rem, 6vw, 3.125rem) clamp(1.25rem, 6vw, 3.125rem);
+        width: 100%;
     }
+
+    // content position styles start
+
+    // center left
+    .content-center-left {
+        .swiper-content-outer {
+            left: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    // center right
+    .content-center-right {
+        .swiper-content-outer {
+            right: 0;
+            left: unset;
+            transform: translateY(-50%);
+        }
+    }
+
+    // bottom left
+    .content-bottom-left {
+        .swiper-content-outer {
+            left: 0;
+            top: unset;
+            bottom: 0;
+            transform: unset;
+        }
+    }
+
+    // bottom right
+    .content-bottom-right {
+        .swiper-content-outer {
+            right: 0;
+            left: unset;
+            top: unset;
+            bottom: 0;
+            transform: unset;
+        }
+    }
+
+    // bottom center
+    .content-bottom-center {
+        .swiper-content-outer {
+            left: 50%;
+            transform: translateX(-50%);
+            top: unset;
+            bottom: 0;
+        }
+    }
+
+    // top left
+    .content-top-left {
+        .swiper-content-outer {
+            left: 0;
+            top: 0;
+            bottom: unset;
+            transform: unset;
+        }
+    }
+
+    // top right
+    .content-top-right {
+        .swiper-content-outer {
+            right: 0;
+            left: unset;
+            top: 0;
+            transform: unset;
+        }
+    }
+
+    // top center
+    .content-top-center {
+        .swiper-content-outer {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+    }
+
+    // content position styles end
 
     .swiper-pagination-bullet {
         margin: 0 !important;
@@ -92,13 +173,15 @@
         background-color: #c4c4d2;
         border-radius: var(--zolo-navigation-border-radius);
         transition: all 0.3s ease;
+        font-size: clamp(0.625rem, 1.5vw, 0.875rem);
         &:hover {
             fill: var(--zoloblocks-brand-button-color);
             color: var(--zoloblocks-brand-button-color);
             background-color: var(--zoloblocks-brand-color);
         }
         &:after {
-            font-size: clamp(0.625rem, 1.5vw, 0.875rem);
+            font-size: inherit;
+            color: currentColor;
         }
         &.swiper-zolo-next {
             right: 0;
