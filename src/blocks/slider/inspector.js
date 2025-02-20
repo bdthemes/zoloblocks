@@ -4,6 +4,7 @@
 const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { RangeControl, ToggleControl, SelectControl, CardDivider } = wp.components;
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
@@ -58,6 +59,7 @@ import {
     NAV_POSITIONS,
     PAGI_POSITIONS,
     PROGRESS_DIRECTIONS,
+    CONTENT_POSITIONS,
 } from './constants';
 
 import { PAGI_FRACTIONS_TYPO } from './constants/typoPrefixConstants';
@@ -75,6 +77,7 @@ const Inspector = (props) => {
         pagiFractionColor,
         pagiFractionCurrentColor,
         sliderOptions,
+        contentPosition,
     } = attributes;
 
     const {
@@ -733,6 +736,16 @@ const Inspector = (props) => {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <SelectControl
+                                label={__('Position', 'zoloblocks')}
+                                value={contentPosition}
+                                options={CONTENT_POSITIONS}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        contentPosition: value,
+                                    })
+                                }
+                            />
                             <ResRangeControl
                                 label={__('Max Width', 'zoloblocks')}
                                 controlName={CONTENT_WIDTH}

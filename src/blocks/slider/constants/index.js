@@ -9,6 +9,19 @@ export const CONTENT_WIDTH = 'contentWidth';
 export const CONTENT_PADDING = 'contentPadding';
 export const SLIDER_HEIGHT = 'sliderHeight';
 
+// Content Position
+export const CONTENT_POSITIONS = [
+    { label: __('Center Center', 'zoloblocks'), value: '' },
+    { label: __('Center Left', 'zoloblocks'), value: 'content-center-left' },
+    { label: __('Center Right', 'zoloblocks'), value: 'content-center-right' },
+    { label: __('Bottom Left', 'zoloblocks'), value: 'content-bottom-left' },
+    { label: __('Bottom Right', 'zoloblocks'), value: 'content-bottom-right' },
+    { label: __('Bottom Center', 'zoloblocks'), value: 'content-bottom-center' },
+    { label: __('Top Left', 'zoloblocks'), value: 'content-top-left' },
+    { label: __('Top Right', 'zoloblocks'), value: 'content-top-right' },
+    { label: __('Top Center', 'zoloblocks'), value: 'content-top-center' },
+];
+
 // Pagination Types
 export const PAGINATION_TYPES = [
     { label: __('Bullets', 'zoloblocks'), value: 'bullets' },
