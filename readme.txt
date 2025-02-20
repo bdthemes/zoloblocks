@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -603,6 +603,33 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.2.2 [February 20, 2025]
+
+**New Features:**
+- Introduced a container variation replace option in the toolbar.
+- Added content alignment control for sliders.
+- Implemented a skip button for the container variation picker.
+- Implement transform to, from and ungroup option in container.
+
+**Fixes:**
+- Resolved the slider alignment issue.
+- Fixed the default container content width not being full-width.
+- Addressed the issue where zero could not be set in the range control and dimensions control.
+- Fixed issues with the gap control.
+- Resolved the container custom width not applying correctly on the frontend.
+- Fixed the missing hover gradient control in the background settings.
+- Fixed post meta icon visibility issue in frontend.
+
+
+**Improvements:**
+- Enhanced the display conditions extensions for better flexibility.
+- Improved the editing experience for a more seamless workflow.
+- Refined the CSS class control UI for better usability.
+- Upgraded AI assistant extensions for improved functionality.
+- Enhanced overlay features and control UI for a better visual experience.
+- Improved the CSS filter UI for more intuitive adjustments.
+- Improved loop builder item design
 
 ### 2.2.1 [February 06, 2025]
 
