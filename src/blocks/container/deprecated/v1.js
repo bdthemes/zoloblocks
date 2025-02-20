@@ -2675,7 +2675,7 @@ const v1 = {
     migrate: (attributes) => {
         return {
             ...attributes,
-            contentWidthType: attributes?.containerWidthType,
+            contentWidthType: 'alignwide',
         };
     },
     save: ({ attributes }) => {
