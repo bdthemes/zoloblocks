@@ -59,11 +59,11 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                         <div className="zolo-input-range-wrapper">
                             <RangeControl
                                 value={
-                                    parseInt(dimensions.top) ||
-                                    parseInt(dimensions.right) ||
-                                    parseInt(dimensions.bottom) ||
-                                    parseInt(dimensions.left) ||
-                                    null
+                                    parseInt(dimensions.top) ??
+                                    parseInt(dimensions.right) ??
+                                    parseInt(dimensions.bottom) ??
+                                    parseInt(dimensions.left) ??
+                                    0
                                 }
                                 onChange={(value) => setLinkedDimensions(value.toString())}
                                 max={max || 100}
@@ -71,11 +71,11 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                             />
                             <NumberControl
                                 value={
-                                    parseInt(dimensions.top) ||
-                                    parseInt(dimensions.right) ||
-                                    parseInt(dimensions.bottom) ||
-                                    parseInt(dimensions.left) ||
-                                    null
+                                    parseInt(dimensions.top) ??
+                                    parseInt(dimensions.right) ??
+                                    parseInt(dimensions.bottom) ??
+                                    parseInt(dimensions.left) ??
+                                    0
                                 }
                                 onChange={(value) => setLinkedDimensions(value.toString())}
                             />

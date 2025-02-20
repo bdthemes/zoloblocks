@@ -1,8 +1,5 @@
 .zolo-container-variation-picker {
-    // border: 2px dashed #e0e0e0;
-    // box-shadow: none !important;
-    // padding: 20px;
-
+    position: relative;
     .components-placeholder {
         box-shadow: none !important;
         padding: 40px;
@@ -85,6 +82,29 @@
         font-size: 14px;
         color: #6f6f79;
     }
+
+    .zolo-close-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        margin: 20px;
+        background: unset;
+        border: 0;
+        cursor: pointer;
+        svg {
+            display: block;
+            color: #bcbcbe;
+            width: 24px;
+            height: 24px;
+            transition: color 0.3s ease;
+        }
+        &:hover {
+            svg {
+                color: #2f2f37;
+            }
+        }
+    }
 }
 
 // block editor style
@@ -103,7 +123,6 @@
     }
 
     .block-list-appender.wp-block {
-        // width: 80px;
         height: 80px;
         margin: 0 auto;
         display: flex;
@@ -114,7 +133,6 @@
     &.alignfull.zolo-root-container {
         .zolo-container-inner-blocks-wrap {
             display: flex;
-            // position: relative;
             box-sizing: border-box;
             margin-left: auto !important;
             margin-right: auto !important;
@@ -133,10 +151,16 @@
     .block-editor-block-list__layout {
         .block-list-appender.wp-block {
             button {
-                color: #a0a7ac;
+                color: #9c9d9f;
                 font-size: 62px;
                 border: none;
                 box-shadow: none;
+                transition: color 0.3s ease;
+            }
+            &:hover {
+                button {
+                    color: #2f2f37;
+                }
             }
         }
     }
@@ -180,14 +204,6 @@
     }
 }
 
-// .zolo-editor {
-// .wp-block {
-//     &.zolo-block {
-//         width: 100%;
-//     }
-// }
-// }
-
 .zolo-root-container {
     .wp-block-navigation__container {
         flex-grow: inherit;
@@ -196,5 +212,14 @@
 
     .wp-block-navigation-item__label {
         white-space: nowrap !important;
+    }
+
+    .block-list-appender {
+        width: auto !important;
+        .block-editor-default-block-appender {
+            position: absolute !important;
+            bottom: 0 !important;
+            right: 0 !important;
+        }
     }
 }

@@ -155,6 +155,7 @@ const Inspector = ({ panelProps }) => {
 
     return (
         <>
+            <CardDivider />
             <PopoverControl
                 label={__('Particles', 'zoloblocks')}
                 icon={

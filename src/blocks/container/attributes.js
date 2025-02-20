@@ -63,18 +63,18 @@ const attributes = {
     },
     contentWidthType: {
         type: 'string',
-        default: 'alignwide',
+        default: 'alignfull',
     },
-    tagName:{
-        type:'string',
-        default:'div'
+    tagName: {
+        type: 'string',
+        default: 'div',
     },
     link: {
-      type: 'object',
-      default: {
-        url: '#',
-        openInNewTab: false,
-      },
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
     },
     // container gap
     ...generateGapAttributes(CONTAINER_GAP, {
