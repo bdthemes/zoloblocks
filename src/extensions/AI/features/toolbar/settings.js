@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import Edit from './edit';
 const name = 'zoloblocks/zoloai';
-const title = __('Zolo AI', 'zoloblocks');
+const title = __('AI Assistant', 'zoloblocks');
 
 const settings = {
     name,

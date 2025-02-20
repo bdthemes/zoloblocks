@@ -48,6 +48,12 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
 
     const onButtonClick = () => {
         setIsLinked(!isLinked);
+        if(isLinked){
+          setAttributes({
+            [`${prefix}${controlName}RowGap`]: desktopGap,
+            [`${prefix}${controlName}ColGap`]: desktopGap,
+          })
+        }
     };
 
     return (
@@ -68,7 +74,7 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        {(desktopGap || desktopRowGap || desktopColGap) && (
+                        {(desktopGap || desktopRowGap || desktopColGap) ? (
                             <ResetBtn
                                 customClass="zb-reset-has-value"
                                 onReset={() => {
@@ -79,7 +85,7 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                                     });
                                 }}
                             />
-                        )}
+                        ) : null}
                     </UnitsBtn>
 
                     <ResRange
@@ -112,7 +118,7 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        {(tabGap || tabRowGap || tabColGap) && (
+                        {(tabGap || tabRowGap || tabColGap) ? (
                             <ResetBtn
                                 onReset={() => {
                                     setAttributes({
@@ -122,7 +128,7 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                                     });
                                 }}
                             />
-                        )}
+                        ) : null}
                     </UnitsBtn>
 
                     <ResRange
@@ -155,7 +161,7 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        {(mobGap || mobRowGap || mobColGap) && (
+                        {(mobGap || mobRowGap || mobColGap) ? (
                             <ResetBtn
                                 onReset={() => {
                                     setAttributes({
@@ -165,7 +171,7 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                                     });
                                 }}
                             />
-                        )}
+                        ) : null}
                     </UnitsBtn>
 
                     <ResRange

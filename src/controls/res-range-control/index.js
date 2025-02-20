@@ -20,28 +20,18 @@ const ResRangeControl = ({
     objectName = '',
 }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
-    // const {
-    //     [`${prefix}${controlName}Range`]: desktopRange,
-    //     [`${prefix}TAB${controlName}Range`]: tabRange,
-    //     [`${prefix}MOB${controlName}Range`]: mobRange,
-    // } = attributes;
 
     const desktopRange = object ? attributes?.[objectName][`${prefix}${controlName}Range`] : attributes?.[`${prefix}${controlName}Range`];
     const tabRange = object ? attributes?.[objectName][`${prefix}TAB${controlName}Range`] : attributes?.[`${prefix}TAB${controlName}Range`];
     const mobRange = object ? attributes?.[objectName][`${prefix}MOB${controlName}Range`] : attributes?.[`${prefix}MOB${controlName}Range`];
 
-    // const { testObject } = attributes;
-
     let sizeUnit;
     let TABsizeUnit;
     let MOBsizeUnit;
     let defaultUnits;
+    const filterUnits = ['%', 'vw', 'vh', 'em'];
 
     if (!noUnits) {
-        // sizeUnit = attributes[`${prefix}${controlName}Unit`];
-        // TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
-        // MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
-
         sizeUnit = object ? attributes?.[objectName][`${prefix}${controlName}Unit`] : attributes?.[`${prefix}${controlName}Unit`];
         TABsizeUnit = object ? attributes?.[objectName][`${prefix}TAB${controlName}Unit`] : attributes?.[`${prefix}TAB${controlName}Unit`];
         MOBsizeUnit = object ? attributes?.[objectName][`${prefix}MOB${controlName}Unit`] : attributes?.[`${prefix}MOB${controlName}Unit`];
@@ -91,15 +81,15 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: val,
+                                                        [`${prefix}${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
-                                        max={sizeUnit === '%' ? 100 : max || 100}
+                                        max={max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -111,11 +101,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -155,15 +145,15 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: val,
+                                                        [`${prefix}TAB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
-                                        max={TABsizeUnit === '%' ? 100 : max || 100}
+                                        max={max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -175,11 +165,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -219,15 +209,15 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: val,
+                                                        [`${prefix}MOB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
-                                        max={MOBsizeUnit === '%' ? 100 : max || 100}
+                                        max={max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -239,11 +229,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -259,18 +249,31 @@ const ResRangeControl = ({
                             <UnitsBtn
                                 selectedUnit={sizeUnit}
                                 unitTypes={units || defaultUnits}
-                                onClick={(sizeUnit) => {
+                                onClick={(newUnit) => {
+                                    let newAttributes = {};
                                     if (object) {
-                                        setAttributes({
+                                        newAttributes = {
                                             ...attributes,
                                             [objectName]: {
                                                 ...attributes[objectName],
-                                                [`${prefix}${controlName}Unit`]: sizeUnit,
+                                                [`${prefix}${controlName}Unit`]: newUnit,
                                             },
-                                        });
+                                        };
+
+                                        if (
+                                            filterUnits.includes(newUnit) &&
+                                            attributes[objectName]?.[`${prefix}${controlName}Range`] > 100
+                                        ) {
+                                            newAttributes[objectName][`${prefix}${controlName}Range`] = 100;
+                                        }
                                     } else {
-                                        setAttributes({ [`${prefix}${controlName}Unit`]: sizeUnit });
+                                        newAttributes = { [`${prefix}${controlName}Unit`]: newUnit };
+
+                                        if (filterUnits.includes(newUnit) && attributes[`${prefix}${controlName}Range`] > 100) {
+                                            newAttributes[`${prefix}${controlName}Range`] = 100;
+                                        }
                                     }
+                                    setAttributes(newAttributes);
                                 }}
                             >
                                 {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
@@ -302,15 +305,15 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: val,
+                                                        [`${prefix}${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
-                                        max={sizeUnit === '%' ? 100 : max || 100}
+                                        max={filterUnits.includes(sizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -322,11 +325,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -340,18 +343,32 @@ const ResRangeControl = ({
                             <UnitsBtn
                                 selectedUnit={TABsizeUnit}
                                 unitTypes={units || defaultUnits}
-                                onClick={(TABsizeUnit) => {
+                                onClick={(newUnit) => {
+                                    let newAttributes = {};
+
                                     if (object) {
-                                        setAttributes({
+                                        newAttributes = {
                                             ...attributes,
                                             [objectName]: {
                                                 ...attributes[objectName],
-                                                [`${prefix}TAB${controlName}Unit`]: TABsizeUnit,
+                                                [`${prefix}TAB${controlName}Unit`]: newUnit,
                                             },
-                                        });
+                                        };
+
+                                        if (
+                                            filterUnits.includes(newUnit) &&
+                                            attributes[objectName]?.[`${prefix}TAB${controlName}Range`] > 100
+                                        ) {
+                                            newAttributes[objectName][`${prefix}TAB${controlName}Range`] = 100;
+                                        }
                                     } else {
-                                        setAttributes({ [`${prefix}TAB${controlName}Unit`]: TABsizeUnit });
+                                        newAttributes = { [`${prefix}TAB${controlName}Unit`]: newUnit };
+
+                                        if (filterUnits.includes(newUnit) && attributes[`${prefix}TAB${controlName}Range`] > 100) {
+                                            newAttributes[`${prefix}TAB${controlName}Range`] = 100;
+                                        }
                                     }
+                                    setAttributes(newAttributes);
                                 }}
                             >
                                 {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
@@ -382,15 +399,15 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: val,
+                                                        [`${prefix}TAB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
-                                        max={TABsizeUnit === '%' ? 100 : max || 100}
+                                        max={filterUnits.includes(TABsizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -402,11 +419,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}TAB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}TAB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />
@@ -420,18 +437,32 @@ const ResRangeControl = ({
                             <UnitsBtn
                                 selectedUnit={MOBsizeUnit}
                                 unitTypes={units || defaultUnits}
-                                onClick={(MOBsizeUnit) => {
+                                onClick={(newUnit) => {
+                                    let newAttributes = {};
+
                                     if (object) {
-                                        setAttributes({
+                                        newAttributes = {
                                             ...attributes,
                                             [objectName]: {
                                                 ...attributes[objectName],
-                                                [`${prefix}MOB${controlName}Unit`]: MOBsizeUnit,
+                                                [`${prefix}MOB${controlName}Unit`]: newUnit,
                                             },
-                                        });
+                                        };
+
+                                        if (
+                                            filterUnits.includes(newUnit) &&
+                                            attributes[objectName]?.[`${prefix}MOB${controlName}Range`] > 100
+                                        ) {
+                                            newAttributes[objectName][`${prefix}MOB${controlName}Range`] = 100;
+                                        }
                                     } else {
-                                        setAttributes({ [`${prefix}MOB${controlName}Unit`]: MOBsizeUnit });
+                                        newAttributes = { [`${prefix}MOB${controlName}Unit`]: newUnit };
+
+                                        if (filterUnits.includes(newUnit) && attributes[`${prefix}MOB${controlName}Range`] > 100) {
+                                            newAttributes[`${prefix}MOB${controlName}Range`] = 100;
+                                        }
                                     }
+                                    setAttributes(newAttributes);
                                 }}
                             >
                                 {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
@@ -462,15 +493,15 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: val,
+                                                        [`${prefix}MOB${controlName}Range`]: val ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: val ?? 0 });
                                             }
                                         }}
                                         min={min || 0}
-                                        max={MOBsizeUnit === '%' ? 100 : max || 100}
+                                        max={filterUnits.includes(MOBsizeUnit) ? 100 : max || 100}
                                         step={step || 1}
                                         withInputField={false}
                                     />
@@ -482,11 +513,11 @@ const ResRangeControl = ({
                                                     ...attributes,
                                                     [objectName]: {
                                                         ...attributes[objectName],
-                                                        [`${prefix}MOB${controlName}Range`]: Number(val) || undefined,
+                                                        [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0,
                                                     },
                                                 });
                                             } else {
-                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) || undefined });
+                                                setAttributes({ [`${prefix}MOB${controlName}Range`]: Number(val) ?? 0 });
                                             }
                                         }}
                                     />

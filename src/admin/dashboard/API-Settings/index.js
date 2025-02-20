@@ -6,6 +6,7 @@ import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 const ApiSettings = () => {
+    const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
     const [googleAPIKey, setGoogleAPIKey] = useState('');
     const [zoloaiAPIKey, setZoloaiAPIKey] = useState('');
     const [siteKey, setSiteKey] = useState('');
@@ -58,6 +59,19 @@ const ApiSettings = () => {
             }
         );
     }, []);
+
+useEffect(() => {
+    fetchSettings({
+        path: '/zolo/v1/extensions',
+        method: 'GET',
+    }).then((response) => {
+        const zoloAI = response.find((ext) => ext.name === 'ai-assistant');
+        if (zoloAI) {
+            setisAIExtensionActive(zoloAI.status);
+        }
+    });
+}, []);
+
 
     // update api key
     const updateAPIKey = (value) => {
@@ -306,21 +320,23 @@ const ApiSettings = () => {
                     </Button>
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Zolo AI', 'zoloblocks')}
+                    title={__('AI Assistant', 'zoloblocks')}
                     description={__(
-                        'Zolo AI enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of Zolo AI.'
+                        'ZoloBlocks AI Assistant enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of AI Assistant.'
                     )}
                     docLink="https://account.bdthemes.com"
                     icon="zoloai"
                     onSave={() => {
                         onChangeZoloAiKey(zoloaiAPIKey);
                     }}
+                    released={isAIExtensionActive}
+                    note={`please activate the AI extension to use this feature`}
                 >
                     <TextControl
                         label={__('API Key', 'zoloblocks')}
                         onChange={(value) => setZoloaiAPIKey(value)}
                         value={zoloaiAPIKey}
-                        placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+                        placeholder="AbcdeF1GhIJkLMNOpQrSTUvWXyZU2VjdXJlL0FjY2Vzcy9Ub2tlbi9Gb3IvU2FmZVBsYXRmbJtL1Byb2plY3RX"
                     />
                 </SettingPanel>
                 <SettingPanel

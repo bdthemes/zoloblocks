@@ -161,17 +161,7 @@ const Style = ({ props }) => {
         mobRangeStyle: cnavMobSize,
     } = generateResRangeStyle({
         controlName: NAV_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: cnavDeskHSize,
-        tabRangeStyle: cnavTabHSize,
-        mobRangeStyle: cnavMobHSize,
-    } = generateResRangeStyle({
-        controlName: NAV_ICON_SIZE,
-        property: 'height',
+        property: 'font-size',
         attributes,
     });
 
@@ -365,7 +355,7 @@ const Style = ({ props }) => {
             ${navHoverBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev{
             color: ${navColor};
             ${navDeskSize}
         }
@@ -373,10 +363,12 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev svg {
             fill: ${navColor};
             ${cnavDeskSize}
-            ${cnavDeskHSize}
         }
 
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover i, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover i {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, 
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover, 
+        .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover i, 
+        .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover i {
             color: ${navHoverColor};
         }
 
@@ -469,12 +461,11 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleTab}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev{
             ${navTabSize}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev svg {
             ${cnavTabSize}
-            ${cnavTabHSize}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
             ${pagBottomSpacingTab}
@@ -553,12 +544,11 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleMob}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev{
             ${navMobSize}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev svg {
             ${cnavMobSize}
-            ${cnavMobHSize}
         }
 
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination {

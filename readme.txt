@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -225,6 +225,7 @@ Create countdown timers for events, sales, or promotions to build urgency.
 
 Display animated counters for statistics, milestones, or achievements and make your statistics remarkable.
 
+
 [**CTA / Call to Action**](https://demo.zoloblocks.com/call-to-action) (Free)
 
 Design compelling call-to-action sections to drive user engagement, such as signing up, purchasing.
@@ -240,6 +241,7 @@ Add customizable icons to enhance visual appeal and communication, such as in fe
 [**Navigation**](https://demo.zoloblocks.com/navigation) (Free)
 
 Create intuitive navigation menus for seamless user experience across your website with no frustration of users.
+
 
 [**Newsletter**](https://demo.zoloblocks.com/newsletter) (Free)
 
@@ -527,9 +529,9 @@ Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builde
 
 = Installation via Zip file: =
 
-1. Download Zolo Blocks block **plugin zip** file from WordPress
+1. Download ZoloBlocks block **plugin zip** file from WordPress
 2. Go to site **Dashboard** > **Plugins** > **Add New** > **Upload Plugins**
-3. Select the Zolo Blocks zip file and proceed to install
+3. Select the ZoloBlocks zip file and proceed to install
 4. Activate ZoloBlocks.
 
 
@@ -549,7 +551,7 @@ There are no requirement for upgrade notice. Just click the update button and up
 ZoloBlocks offers a range of features designed to enhance your web design experience. These includes customizable blocks, layouts, patterns,  drag-and-drop interface, advanced styling options, flexibility, responsiveness and more.
 
 = Does ZoloBlocks work with all WordPress themes? =
-Most certainly all WordPress themes are compatible with the Zolo Blocks framework as the plugin is built for maximum compatibility with WordPress itself.
+Most certainly all WordPress themes are compatible with the ZoloBlocks framework as the plugin is built for maximum compatibility with WordPress itself.
 
 = What if I update to the Premium version? =
 If you upgrade to the pro plugin version, you will unlock more unique features and customizations. Additionally, you will be able to receive personalized support from team BdThemes.
@@ -579,7 +581,7 @@ Of course. Please expect new features within the frequent plugin updates. Also, 
 The plugin has been developed to be used by all WordPress users, regardless of their freelancer-client relationship. And there are paid tiers of the plugin designed especially for giving out client-based web services.
 
 = Does the plugin require WordPress mastery? =
-No. In fact, it might be your first day at WordPress and you are using Zolo Blocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
+No. In fact, it might be your first day at WordPress and you are using ZoloBlocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
 
 = Will my site load slower if I install the plugin? =
 Absolutely no chance of slowing down your website. ZoloBlocks boosts a lightweight framework with only fresh green codes. Best thing can happen is that your site will get faster and more beautiful.
@@ -601,6 +603,33 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.2.2 [February 20, 2025]
+
+**New Features:**
+- Introduced a container variation replace option in the toolbar.
+- Added content alignment control for sliders.
+- Implemented a skip button for the container variation picker.
+- Implement transform to, from and ungroup option in container.
+
+**Fixes:**
+- Resolved the slider alignment issue.
+- Fixed the default container content width not being full-width.
+- Addressed the issue where zero could not be set in the range control and dimensions control.
+- Fixed issues with the gap control.
+- Resolved the container custom width not applying correctly on the frontend.
+- Fixed the missing hover gradient control in the background settings.
+- Fixed post meta icon visibility issue in frontend.
+
+
+**Improvements:**
+- Enhanced the display conditions extensions for better flexibility.
+- Improved the editing experience for a more seamless workflow.
+- Refined the CSS class control UI for better usability.
+- Upgraded AI assistant extensions for improved functionality.
+- Enhanced overlay features and control UI for a better visual experience.
+- Improved the CSS filter UI for more intuitive adjustments.
+- Improved loop builder item design
 
 ### 2.2.1 [February 06, 2025]
 

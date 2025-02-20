@@ -13,7 +13,7 @@ import { applyFilters } from '@wordpress/hooks';
 
 export default function save(props) {
     const { attributes } = props;
-    const { uniqueId, parentClasses, sliderOptions, customNavIcon, prevNavIcon, nextNavIcon, zoloId } = attributes;
+    const { uniqueId, parentClasses, sliderOptions, customNavIcon, prevNavIcon, nextNavIcon, zoloId, contentPosition } = attributes;
 
     const {
         pagination = true,
@@ -44,7 +44,7 @@ export default function save(props) {
         >
             {renderHookBefore && renderHookBefore}
             <div
-                className={`swiper ${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
+                className={`swiper ${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''} ${contentPosition}`}
             >
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />

@@ -114,7 +114,7 @@ export default function Edit(props) {
                                 memberName: 'John Doe',
                                 memberDesignation: 'Web Designer',
                                 testimonialMessage:
-                                    '"Simple Yet Powerful": Zolo Blocks is a game-changer for WordPress users. With its intuitive interface and comprehensive block library, creating stunning layouts has never been easier.',
+                                    '"Simple Yet Powerful": ZoloBlocks is a game-changer for WordPress users. With its intuitive interface and comprehensive block library, creating stunning layouts has never been easier.',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },
@@ -126,7 +126,7 @@ export default function Edit(props) {
                                 memberName: 'Joanna T. Logan',
                                 memberDesignation: 'Frontend Developer',
                                 testimonialMessage:
-                                    '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted flexibility.',
+                                    '"Efficiency Redefined": ZoloBlocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted flexibility.',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },
@@ -138,7 +138,7 @@ export default function Edit(props) {
                                 memberName: 'Ruben S. McLain',
                                 memberDesignation: 'UX Designer',
                                 testimonialMessage:
-                                    '"Versatile and Responsive": Zolo Blocks offers a wide range of blocks that adapt seamlessly to any screen size. Whether you are designing for desktop or mobile, this plugin ensures',
+                                    '"Versatile and Responsive": ZoloBlocks offers a wide range of blocks that adapt seamlessly to any screen size. Whether you are designing for desktop or mobile, this plugin ensures',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },
