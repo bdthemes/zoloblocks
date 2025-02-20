@@ -330,8 +330,7 @@ class ZoloHelpers {
      *
      * @return array
      */
-    public static function wp_kses_allowed_svg()
-    {
+    public static function wp_kses_allowed_svg() {
         $defaults = wp_kses_allowed_html('post');
         $svg_args = [
 
@@ -846,7 +845,7 @@ class ZoloHelpers {
     }
 
     /**
-     * Get Zolo Blocks
+     * Get ZoloBlocks
      */
     public static function get_zolo_blocks() {
         $blocks_path = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
@@ -948,7 +947,7 @@ class ZoloHelpers {
     }
 
     /**
-     * Zolo Blocks and Extensions
+     * ZoloBlocks and Extensions
      */
     public static function zolo_blocks_extensions_count() {
         // Get blocks and extensions settings

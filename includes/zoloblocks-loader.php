@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zolo Blocks Loader.
+ * ZoloBlocks Loader.
  *
  * @package Zolo
  */

@@ -145,21 +145,21 @@ Create customizable forms for inquiries, feedback, or lead generation by simplif
 
 ## ** Popup Builder (Free) **
 
-Crate popups for announcements, offer, or lead generation and grab attention without disrupting the user experience. [**checkout live demo**](https://demo.zoloblocks.com/popup-builder) | [**video tutorial**]() 
+Crate popups for announcements, offer, or lead generation and grab attention without disrupting the user experience. [**checkout live demo**](https://demo.zoloblocks.com/popup-builder) | [**video tutorial**]()
 
 ##Design & Automation Block
 
 **Flipbox (Free)**
 
-With it you can add interactive elements to your design and engage your audience with content. [**checkout live demo**](https://demo.zoloblocks.com/flipbox) | [**video tutorial**](https://www.youtube.com/watch?v=aymqumvFaX8&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX) 
+With it you can add interactive elements to your design and engage your audience with content. [**checkout live demo**](https://demo.zoloblocks.com/flipbox) | [**video tutorial**](https://www.youtube.com/watch?v=aymqumvFaX8&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX)
 
 **Parallax Effect (Pro)**
 
-Create a visual effect where the background moves at a different speed than the foreground when scrolling.  [**checkout live demo**](https://zoloblocks.com/demo/scroll-parallax-animation) | [**video tutorial**]() 
+Create a visual effect where the background moves at a different speed than the foreground when scrolling.  [**checkout live demo**](https://zoloblocks.com/demo/scroll-parallax-animation) | [**video tutorial**]()
 
 **Text Animation (Pro)**
 
-Add animated effects to text, like typing or fading effects that solves the issue of static text by adding dynamic elements to written  content. [**checkout live demo**](https://zoloblocks.com/demo/text-animation) | [**video tutorial**](https://www.youtube.com/watch?v=gX_mALFBdIE) 
+Add animated effects to text, like typing or fading effects that solves the issue of static text by adding dynamic elements to written  content. [**checkout live demo**](https://zoloblocks.com/demo/text-animation) | [**video tutorial**](https://www.youtube.com/watch?v=gX_mALFBdIE)
 
 ## ** Utility Blocks **
 
@@ -489,9 +489,9 @@ Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builde
 
 = Installation via Zip file: =
 
-1. Download Zolo Blocks block **plugin zip** file from WordPress
+1. Download ZoloBlocks block **plugin zip** file from WordPress
 2. Go to site **Dashboard** > **Plugins** > **Add New** > **Upload Plugins**
-3. Select the Zolo Blocks zip file and proceed to install
+3. Select the ZoloBlocks zip file and proceed to install
 4. Activate ZoloBlocks.
 
 
@@ -511,7 +511,7 @@ There are no requirement for upgrade notice. Just click the update button and up
 ZoloBlocks offers a range of features designed to enhance your web design experience. These includes customizable blocks, layouts, patterns,  drag-and-drop interface, advanced styling options, flexibility, responsiveness and more.
 
 = Does ZoloBlocks work with all WordPress themes? =
-Most certainly all WordPress themes are compatible with the Zolo Blocks framework as the plugin is built for maximum compatibility with WordPress itself.
+Most certainly all WordPress themes are compatible with the ZoloBlocks framework as the plugin is built for maximum compatibility with WordPress itself.
 
 = What if I update to the Premium version? =
 If you upgrade to the pro plugin version, you will unlock more unique features and customizations. Additionally, you will be able to receive personalized support from team BdThemes.
@@ -541,7 +541,7 @@ Of course. Please expect new features within the frequent plugin updates. Also, 
 The plugin has been developed to be used by all WordPress users, regardless of their freelancer-client relationship. And there are paid tiers of the plugin designed especially for giving out client-based web services.
 
 = Does the plugin require WordPress mastery? =
-No. In fact, it might be your first day at WordPress and you are using Zolo Blocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
+No. In fact, it might be your first day at WordPress and you are using ZoloBlocks for the first time. Still, you will be able to grasp all the features and functionality of the plugin shortly. We also have documentation, feature videos, and Live Chat support to further guide you.
 
 = Will my site load slower if I install the plugin? =
 Absolutely no chance of slowing down your website. ZoloBlocks boosts a lightweight framework with only fresh green codes. Best thing can happen is that your site will get faster and more beautiful.

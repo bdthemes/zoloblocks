@@ -40,7 +40,7 @@ class Registration {
                 $block_file = $block_path . '/build/blocks/' . $block['name'];
 
                 if (file_exists($block_file)) {
-                    if (isset($block['status']) && $block['status'] !== false ) {
+                    if (isset($block['status']) && $block['status'] !== false) {
                         $render_callback = null;
                         if (isset($block['class']) && class_exists($block['class'])) {
                             $class = new $block['class'];
@@ -88,12 +88,12 @@ class Registration {
      */
     public function register_block_category($categories, $post) {
         $zb_category = [
-             'slug'  => 'zoloblocks',
-             'title' => __('Zolo Blocks', 'zoloblocks')
+            'slug'  => 'zoloblocks',
+            'title' => __('ZoloBlocks', 'zoloblocks')
         ];
-        $zb_cat_single=[
-            'slug'  =>'zoloblocks-single',
-            'title'=>'Zolo Blocks Single',
+        $zb_cat_single = [
+            'slug'  => 'zoloblocks-single',
+            'title' => 'ZoloBlocks Single',
         ];
         array_unshift($categories, $zb_cat_single, $zb_category);
         return $categories;

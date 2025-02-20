@@ -103,7 +103,7 @@ const FooterWrapper = () => {
                         </svg>
                     </a>
                 </div>
-                <img src={zoloBlocks.idea} alt="Zolo Blocks Idea" />
+                <img src={zoloBlocks.idea} alt="ZoloBlocks Idea" />
             </div>
         </div>
     );

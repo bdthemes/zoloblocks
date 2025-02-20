@@ -65,8 +65,7 @@ useEffect(() => {
         path: '/zolo/v1/extensions',
         method: 'GET',
     }).then((response) => {
-        const zoloAI = response.find((ext) => ext.name === 'AI');
-
+        const zoloAI = response.find((ext) => ext.name === 'ai-assistant');
         if (zoloAI) {
             setisAIExtensionActive(zoloAI.status);
         }
@@ -323,7 +322,7 @@ useEffect(() => {
                 <SettingPanel
                     title={__('AI Assistant', 'zoloblocks')}
                     description={__(
-                        'ZoloBlocks AI Assistant enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of Zolo AI.'
+                        'ZoloBlocks AI Assistant enables you to seamlessly integrate text generation features into your pages. To get started, simply retrieve your API key to unlock the full potential of AI Assistant.'
                     )}
                     docLink="https://account.bdthemes.com"
                     icon="zoloai"
