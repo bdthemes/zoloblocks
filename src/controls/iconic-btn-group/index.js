@@ -3,7 +3,7 @@
  */
 import {
     __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+    Button,
 } from '@wordpress/components';
 const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }) => {
     return (
@@ -16,9 +16,10 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }
             <ToggleGroupControl className="zb-iconic-btn-group">
                 {options &&
                     options.map((option, index) => {
+                        console.log(option);
                         const isActive = value == option.value;
                         return (
-                            <ToggleGroupControlOption
+                            <Button
                                 onClick={() => {
                                     if (toggle) {
                                         onChange(isActive ? null : option.value);
@@ -31,7 +32,7 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }
                                 label={option.label}
                             >
                                 {option.icon && option.icon !== '' ? option.icon : option.label}
-                            </ToggleGroupControlOption>
+                            </Button>
                         );
                     })}
             </ToggleGroupControl>
