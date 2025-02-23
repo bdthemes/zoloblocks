@@ -125,7 +125,8 @@ const Inspector = ({ panelProps }) => {
     const handleTogglePreview = () => {
         setIsPreview(!isPreview);
         if (!isPreview) {
-            useParticlesInit(panelProps);
+            const editorWindow = window.frames['editor-canvas'] || window;
+            useParticlesInit(panelProps, editorWindow);
         } else {
             // eslint-disable-next-line no-undef
             const element = document.getElementById(`zolo-particles-${uniqueId}`);
@@ -136,11 +137,11 @@ const Inspector = ({ panelProps }) => {
     };
 
     //update the particles
-    useEffect(() => {
-        if (isPreview) {
-            useParticlesInit(panelProps);
-        }
-    }, [zoloParticles]);
+    // useEffect(() => {
+    //     if (isPreview) {
+    //         useParticlesInit(panelProps);
+    //     }
+    // }, [zoloParticles]);
 
     // zolo.presets.particles;
     const presets = [

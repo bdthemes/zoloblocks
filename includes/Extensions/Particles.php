@@ -22,6 +22,7 @@ class Particles
         if (ZoloHelpers::is_extension_enabled('particles')) {
             add_action("init", [$this, "register_particles_assets"]);
             add_action("enqueue_block_editor_assets", [$this, "enqueue_particles_editor_assets"]);
+            add_filter("block_type_metadata", [$this, "block_type_metadata"], 10);
             if (!is_admin()) {
                 add_filter("render_block_data", [$this, "modify_render_block_data"]);
             }
@@ -57,7 +58,7 @@ class Particles
 
     public function enqueue_particles_editor_assets()
     {
-        wp_enqueue_script('particles-js');
+        // wp_enqueue_script('particles-js');
         wp_enqueue_script('zolo-particles-editor-script');
     }
 
@@ -68,5 +69,13 @@ class Particles
             wp_enqueue_script('zolo-particles-frontend');
         }
         return $parsed_block;
+    }
+
+    public function block_type_metadata($metadata)
+    {
+        if (isset($metadata['name']) && str_contains($metadata['name'], 'zolo/container')) {
+            $metadata['script'] = array('particles-js');
+        }
+        return $metadata;
     }
 }

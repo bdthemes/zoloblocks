@@ -8,7 +8,9 @@ export default function Render({ panelProps }) {
     const { uniqueId } = attributes;
     return (
         <>
-            <div id={`zolo-particles-${uniqueId}`} className='zolo-particles'></div>
+            <div id={`zolo-particles-${uniqueId}`} className='zolo-particles'>
+                <canvas className="particles-js-canvas-el"></canvas>
+            </div>
         </>
     );
 }

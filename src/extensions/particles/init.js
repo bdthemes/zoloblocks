@@ -1,6 +1,6 @@
 import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
 
-const useParticlesInit = (panelProps) => {
+const useParticlesInit = (panelProps, editorWindow) => {
     const { attributes, setAttributes } = panelProps;
     const { uniqueId } = attributes;
     // Validate inputs
@@ -56,6 +56,7 @@ const useParticlesInit = (panelProps) => {
 
         // dust_wind
         ...(preset === 'dust_wind' && {
+            ...optionTwo,
             particles: {
                 ...optionTwo?.particles,
                 color: {
@@ -75,7 +76,7 @@ const useParticlesInit = (panelProps) => {
                 },
             },
             //interactivity
-            ...(preset === 'dust_wind' && { interactivity: optionTwo?.interactivity }),
+            // ...(preset === 'dust_wind' && { interactivity: optionTwo?.interactivity }),
         }),
         //Flying Bubble
         ...(preset === 'flying_bubble' && {
@@ -190,6 +191,7 @@ const useParticlesInit = (panelProps) => {
     const optionData = preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
 
     try {
+        const { particlesJS } = editorWindow;
         particlesJS(`zolo-particles-${uniqueId}`, optionData);
 
         // Optionally, add more code to handle cursors initialization logic
