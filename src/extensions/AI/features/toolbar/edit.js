@@ -44,7 +44,7 @@ const Edit = (props) => {
                                         </defs>
                                     </svg>
                                 }
-                                title={__('Zolo AI', 'zoloblocks')}
+                                title={__('AI Assistant', 'zoloblocks')}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     toggle();

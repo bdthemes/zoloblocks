@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zolo Blocks Pro Enqueues.
+ * ZoloBlocks Pro Enqueues.
  */
 
 namespace Zolo\Extensions;

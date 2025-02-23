@@ -83,7 +83,7 @@ msgstr ""
 #: includes/Admin/Dashboard.php:66
 #: includes/Admin/Dashboard.php:67
 #: includes/Classes/Registration.php:92
-msgid "Zolo Blocks"
+msgid "ZoloBlocks"
 msgstr ""
 
 #: includes/Admin/Dashboard.php:77

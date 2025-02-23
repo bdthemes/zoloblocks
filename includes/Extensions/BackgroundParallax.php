@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zolo Blocks Pro Enqueues.
+ * ZoloBlocks Pro Enqueues.
  */
 
 namespace Zolo\Extensions;
@@ -12,13 +12,11 @@ use Zolo\Traits\SingletonTrait;
 // Exit if accessed directly.
 if (!defined('ABSPATH')) exit;
 
-class BackgroundParallax
-{
+class BackgroundParallax {
 
     use SingletonTrait;
 
-    public function __construct()
-    {
+    public function __construct() {
         if (ZoloHelpers::is_extension_enabled('background-parallax')) {
             add_action("init", [$this, "register_background_parallax_assets"]);
             add_action("enqueue_block_editor_assets", [$this, "enqueue_background_parallax_editor_assets"]);
@@ -28,8 +26,7 @@ class BackgroundParallax
         }
     }
 
-    public function register_background_parallax_assets()
-    {
+    public function register_background_parallax_assets() {
         $editor_asset = trailingslashit(ZOLO_DIR_PATH) . "build/extensions/background-parallax/index.asset.php";
         $frontend_asset = trailingslashit(ZOLO_DIR_PATH) . "build/extensions/background-parallax/frontend.asset.php";
         if (file_exists($editor_asset)) {
@@ -55,14 +52,11 @@ class BackgroundParallax
         }
     }
 
-    public function enqueue_background_parallax_editor_assets()
-    {
-        
+    public function enqueue_background_parallax_editor_assets() {
     }
 
-    public function modify_render_block_data($parsed_block)
-    {
-        if(isset($parsed_block['blockName']) && str_contains($parsed_block['blockName'], 'zolo/container') && !empty($parsed_block['attrs']['zoloParticles']['active'])) {
+    public function modify_render_block_data($parsed_block) {
+        if (isset($parsed_block['blockName']) && str_contains($parsed_block['blockName'], 'zolo/container') && !empty($parsed_block['attrs']['zoloParticles']['active'])) {
             // wp_enqueue_script('particles-js');
         }
         return $parsed_block;
