@@ -16,7 +16,6 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }
             <ToggleGroupControl className="zb-iconic-btn-group">
                 {options &&
                     options.map((option, index) => {
-                        console.log(option);
                         const isActive = value == option.value;
                         return (
                             <Button
