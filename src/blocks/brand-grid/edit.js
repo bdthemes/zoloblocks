@@ -72,7 +72,7 @@ export default function Edit(props) {
                         [
                             'zolo/brand-child',
                             {
-                                brandTitle: 'Zolo Blocks',
+                                brandTitle: 'ZoloBlocks',
                                 brandLabel: 'www.zoloblocks.com',
                                 brandPhoto: {
                                     url: zoloPlaceholders.zbBrand,

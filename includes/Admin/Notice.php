@@ -15,7 +15,7 @@ class Notice {
      */
     public static function zolo_check_php_version() {
         $message = sprintf(
-            'Zolo Blocks requires minimum PHP version %s where your current PHP version is %2s. Please update your PHP version to enable Zolo Blocks features.',
+            'ZoloBlocks requires minimum PHP version %s where your current PHP version is %2s. Please update your PHP version to enable ZoloBlocks features.',
             '5.6',
             ZOLO_PHP_VERSION
         );
@@ -28,7 +28,7 @@ class Notice {
      */
     public static function zolo_check_wp_version() {
         $message = sprintf(
-            'Zolo Blocks requires minimum WordPress version %s where your current WordPress version is %2s. Please update your WordPress version to enable Zolo Blocks features.',
+            'ZoloBlocks requires minimum WordPress version %s where your current WordPress version is %2s. Please update your WordPress version to enable ZoloBlocks features.',
             '5.8',
             ZOLO_WP_VERSION
         );
