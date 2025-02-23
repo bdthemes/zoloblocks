@@ -37,10 +37,10 @@ const Sortable = ({ metaData, setAttributes }) => {
                     </svg>
                 </Button>
             </div>
-                {deepCloneMetaData &&
-                    deepCloneMetaData.map((meta, index) => {
-                        return (
-                            <SortableControl defaultItems={metaData} attributeName="metaData" setAttributes={setAttributes}>
+            {deepCloneMetaData &&
+                deepCloneMetaData.map((meta, index) => {
+                    return (
+                        <SortableControl defaultItems={metaData} attributeName="metaData" setAttributes={setAttributes}>
                             <div className="dnd-container" key={index}>
                                 <Button
                                     className="dnd-trash"
@@ -52,7 +52,10 @@ const Sortable = ({ metaData, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={meta.id} id={meta.id}>
-                                    <PanelBody title={meta?.type ? meta.type.charAt(0).toUpperCase() + meta.type.slice(1) : 'Title'} initialOpen={false}>
+                                    <PanelBody
+                                        title={meta?.type ? meta.type.charAt(0).toUpperCase() + meta.type.slice(1) : 'Title'}
+                                        initialOpen={false}
+                                    >
                                         <SelectControl
                                             label={__('Type', 'zoloblocks')}
                                             value={meta?.type}
@@ -111,13 +114,12 @@ const Sortable = ({ metaData, setAttributes }) => {
                                                 }}
                                             />
                                         )}
-
                                     </PanelBody>
                                 </SortableItem>
                             </div>
-                             </SortableControl>
-                        );
-                    })}
+                        </SortableControl>
+                    );
+                })}
         </div>
     );
 };

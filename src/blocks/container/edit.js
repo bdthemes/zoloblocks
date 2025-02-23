@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import {select, useSelect} from '@wordpress/data';
+import { useSelect } from '@wordpress/data';
 import { useEffect,useState } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup,Modal} from '@wordpress/components';
 import { BlockControls } from '@wordpress/block-editor';

@@ -103,6 +103,7 @@ function Inspector(props) {
                                                 containerWidthType: value,
                                             })
                                         }
+                                        toggle={true}
                                         options={WIDTH_TYPES}
                                     />
                                     {containerWidthType === 'alignfull' && (
