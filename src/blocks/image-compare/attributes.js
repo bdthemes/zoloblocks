@@ -92,7 +92,7 @@ const attributes = {
             handleDraggable: false,
             initialPosition: 50,
             slidePositon: 'horizontal_direction',
-            slideOnHover: false,
+            slideOnHover: true,
             beforeLabel: 'before',
             afterLabel: 'after',
             labelPositons: 'v_center',
