@@ -24,7 +24,8 @@
             height: auto !important;
         }
 
-        &.zolo-css-filters-blur-range {
+        &.zolo-css-filters-blur-range,
+        &.zolo-css-filters-contrast-range {
             .components-range-control__slider + span {
                 background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%),
                     linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%);
@@ -61,8 +62,10 @@
 
         &.zolo-css-filters-contrast-range {
             .components-range-control__slider + span {
-                background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAABCAMAAAARtjpUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1ZjE5MDAzYS1kY2M5LTRlYWItOGFiZS1jNGJmOWU2ZjUwOTAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUE5NDMwNkE5OEFDMTFFODg5NDE5QTQyQjE1RjBFRUUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUE5NDMwNjk5OEFDMTFFODg5NDE5QTQyQjE1RjBFRUUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5YmY3ZTIxMS01ZmM3LTQ1Y2EtYmEzNy00NWViMzYwNDMxOWEiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDowMzQyYTBlNC1lMDZjLTExN2ItYmUyNy05ZGQ5NmI1ODBhNjAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4wVwHKAAAAYFBMVEXr6+uLi4t7e3vh4eG+vr5nZ2lZWlzz8/Ourq7BwcGioqJGSU3Nzc2ysrIQFyCenp4lKTAsMTfR0dE6PkJPUlQZICc+QUXe3t4wNTshJy5ub2/6+vp1dXX29vZwcHB2dnYUkNJZAAAAZklEQVR42oTL2RJAMBQDUK1934rW1v//S4Mx9Co5yWPizB/0YcU0Rh6jxbHjmt998THGGRJAoqSSMiEEFlH5HkOKeRaxqX9qzxCZTWOQH2pZX4aT+6MiVKUoB+uwMFyQApuwTYABAEO/Mn2CxrQkAAAAAElFTkSuQmCC);
-                background-size: 100% 100%;
+                &::before {
+                    background: linear-gradient(to right, rgba(16, 16, 64, 0.74) 0%, rgba(9, 9, 121, 0) 100%);
+                    backdrop-filter: unset;
+                }
             }
         }
 
