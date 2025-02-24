@@ -95,7 +95,7 @@ class Registration {
             'slug'  =>'zoloblocks-single',
             'title'=>'Zolo Blocks Single',
         ];
-        array_unshift($categories, $zb_cat_single, $zb_category);
+        array_unshift($categories, $zb_category, $zb_cat_single);
         return $categories;
     }
 }

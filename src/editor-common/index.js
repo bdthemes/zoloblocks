@@ -10,4 +10,6 @@ import './settings';
 
 import './video-link';
 
+import './block-category';
+
 
