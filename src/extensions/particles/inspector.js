@@ -6,7 +6,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
-import useParticlesInit from './init';
+import particlesInit from './init';
 import MultiColor from './multicolor';
 
 const { PopoverControl, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } = window.zoloModule;
@@ -107,6 +107,17 @@ const Inspector = ({ panelProps }) => {
         }
     };
 
+    const destroyParticleJS = (editorWindow) => {
+        if (editorWindow){
+            const { pJSDom } = editorWindow;
+            if (pJSDom && pJSDom.length > 0) {
+                pJSDom.forEach((instance) => {
+                    instance?.pJS?.fn?.vendors?.destroypJS();
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         setAttributes({
             zoloParticles: {
@@ -123,10 +134,11 @@ const Inspector = ({ panelProps }) => {
 
     //new code starts here
     const handleTogglePreview = () => {
+        const editorWindow = window?.frames['editor-canvas'] || window;
+        destroyParticleJS(editorWindow);
         setIsPreview(!isPreview);
         if (!isPreview) {
-            const editorWindow = window.frames['editor-canvas'] || window;
-            useParticlesInit(panelProps, editorWindow);
+            particlesInit(panelProps, editorWindow);
         } else {
             // eslint-disable-next-line no-undef
             const element = document.getElementById(`zolo-particles-${uniqueId}`);
@@ -135,13 +147,6 @@ const Inspector = ({ panelProps }) => {
             }
         }
     };
-
-    //update the particles
-    // useEffect(() => {
-    //     if (isPreview) {
-    //         useParticlesInit(panelProps);
-    //     }
-    // }, [zoloParticles]);
 
     // zolo.presets.particles;
     const presets = [
@@ -199,18 +204,6 @@ const Inspector = ({ panelProps }) => {
                             active: true,
                         },
                     });
-
-                    // if (!active) {
-                    //     setAttributes({
-                    //         parentClasses: [...parentClasses, 'zolo-particles'],
-                    //     });
-                    // } else {
-                    //     setAttributes({
-                    //         parentClasses: parentClasses.filter(function (e) {
-                    //             return e !== 'zolo-particles';
-                    //         }),
-                    //     });
-                    // }
                 }}
             >
                 <div className="zolo-flex-row-control">
