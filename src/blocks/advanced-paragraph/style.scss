@@ -8,7 +8,7 @@
 
     // text gradient style
     &.zolo-text-gradient-color {
-        display: inline-block;
+        display: block;
         background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -16,4 +16,8 @@
         background-position: center;
         background-size: contain;
     }
+}
+
+.zolo-root-container:has(.wp-block-zolo-advanced-paragraph) .wp-block-zolo-advanced-paragraph {
+    margin: 0;
 }
