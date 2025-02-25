@@ -6,37 +6,37 @@ return apply_filters('zolo_extensions', [
         'status' => false,
         'demo'   => 'https://zoloblocks.com',
         'is_pro' => true,
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'video'  => 'https://www.youtube.com/watch?v=pTDoHVq4kHk',
     ],
     'floating'          => [
         'name'   => 'floating',
         'title'  => __('Floating Animation', 'zoloblocks'),
         'status' => true,
-        'demo'   => 'https://zoloblocks.com',
+        'demo'   => 'https://demo.zoloblocks.com/floating-animation',
         'is_pro' => true,
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'video'  => 'https://www.youtube.com/watch?v=c2qO5acU2yw&t',
     ],
     'entrance'          => [
         'name'   => 'entrance',
         'title'  => __('Entrance Animation', 'zoloblocks'),
         'status' => true,
-        'demo'   => 'https://zoloblocks.com',
+        'demo'   => 'https://demo.zoloblocks.com/entrance-animation',
         'is_pro' => true,
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'video'  => 'https://www.youtube.com/watch?v=3zPdiQ9SSHE&t',
     ],
     'sticky'          => [
         'name'   => 'sticky',
         'title'  => __('Sticky Position', 'zoloblocks'),
         'status' => true,
-        'demo'   => 'https://zoloblocks.com',
+        'demo'   => 'https://demo.zoloblocks.com/sticky-position',
         'is_pro' => true,
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'video'  => 'https://www.youtube.com/watch?v=2VlVmMDQ-lM&t',
     ],
     'parallax'          => [
         'name'   => 'parallax',
         'title'  => __('Parallax Effect', 'zoloblocks'),
         'status' => true,
-        'demo'   => 'https://zoloblocks.com',
+        'demo'   => 'https://demo.zoloblocks.com/scroll-parallax-animation',
         'is_pro' => true,
         'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
@@ -52,7 +52,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Mouse Tilt', 'zoloblocks'),
         'status' => false,
         'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/tilt',
+        'demo'   => 'https://demo.zoloblocks.com/tilt-effects',
         'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'smooth-scroller'          => [
@@ -61,7 +61,7 @@ return apply_filters('zolo_extensions', [
         'status' => false,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/smooth-scroller',
-        'video'  => 'https://youtu.be/v7zs3NxFnxc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://www.youtube.com/watch?v=6SlgnGtThNU',
     ],
     'css-filters'          => [
         'name'   => 'css-filters',
@@ -69,7 +69,7 @@ return apply_filters('zolo_extensions', [
         'status' => false,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/css-filters',
-        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://www.youtube.com/watch?v=FlwqbmhGyjs',
     ],
     'backdrop-filters'          => [
         'name'   => 'backdrop-filters',
@@ -77,9 +77,8 @@ return apply_filters('zolo_extensions', [
         'status' => false,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/backdrop-filters',
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'video'  => 'https://www.youtube.com/watch?v=8_oI0P3bj6w&t',
     ],
-
     'background-parallax'          => [
         'name'   => 'background-parallax',
         'title'  => __('Background Parallax', 'zoloblocks'),
@@ -107,14 +106,14 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Shape Divider', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/shape-divider',
-        'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://www.youtube.com/watch?v=OD3sI03RMDc&t',
     ],
     'ai-assistant'          => [
         'name'   => 'ai-assistant',
         'title'  => __('AI Assistant', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/ai-assistant',
-        'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://www.youtube.com/watch?v=-RAtIns09V8',
     ],
     'dynamic-content'          => [
         'name'     => 'dynamic-content',
@@ -122,7 +121,7 @@ return apply_filters('zolo_extensions', [
         'status'   => false,
         'is_pro'   => true,
         'demo'     => 'https://demo.zoloblocks.com/dynamic-content',
-        'video'    => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+        'video'    => 'https://www.youtube.com/watch?v=oCFZ121wWlA',
     ],
     'interactions'          => [
         'name'   => 'interactions',
@@ -130,7 +129,7 @@ return apply_filters('zolo_extensions', [
         'status' => false,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/interactions',
-        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'text-animation'          => [
         'name'   => 'text-animation',
@@ -138,7 +137,7 @@ return apply_filters('zolo_extensions', [
         'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/interactions',
-        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://www.youtube.com/watch?v=gX_mALFBdIE&t',
     ],
     'display-condition'          => [
         'name'   => 'display-condition',
@@ -146,7 +145,7 @@ return apply_filters('zolo_extensions', [
         'status' => true,
         'is_pro' => true,
         'demo'   => 'https://demo.zoloblocks.com/display-condition',
-        'video'  => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'tooltip' => [
         'name' => 'tooltip',
@@ -154,7 +153,7 @@ return apply_filters('zolo_extensions', [
         'status' => true,
         'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/tooltip',
-        'video' => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'highlight' => [
         'name' => 'highlight',
@@ -162,6 +161,6 @@ return apply_filters('zolo_extensions', [
         'status' => true,
         'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/highlight',
-        'video' => 'https://youtu.be/FlwqbmhGyjs?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
+        'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
     ]
 ]);
