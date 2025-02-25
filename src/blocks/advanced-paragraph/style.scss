@@ -1,4 +1,5 @@
 .wp-block-zolo-advanced-paragraph {
+    margin: 0;
     a {
         color: #2667ff;
         &:hover {
@@ -16,8 +17,4 @@
         background-position: center;
         background-size: contain;
     }
-}
-
-.zolo-root-container:has(.wp-block-zolo-advanced-paragraph) .wp-block-zolo-advanced-paragraph {
-    margin: 0;
 }
