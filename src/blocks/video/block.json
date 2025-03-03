@@ -3,10 +3,7 @@
     "title": "Video",
     "name": "zolo/video",
     "category": "zoloblocks",
-    "keywords": [
-        "video",
-        "video"
-    ],
+    "keywords": ["video", "video"],
     "description": "Video Block",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
@@ -19,11 +16,9 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": [
-            "wide",
-            "full"
-        ]
+        "align": ["wide", "full"]
     },
     "editorScript": "file:./index.js",
-    "style": "file:./style-index.css"
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
 }
