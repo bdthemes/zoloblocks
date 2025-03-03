@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["Slide", "Slider", "Carousel", "Image", "Content"],
     "description": "Customize individual slides within the Slider block.",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/slider"],
     "supports": {

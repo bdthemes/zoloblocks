@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["menu", "navigation", "navigation", "megamenu", "dropdown", "submenu", "subnav"],
     "description": "Mega menu block for gutenberg.",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/navigation-item"],
     "example": {
