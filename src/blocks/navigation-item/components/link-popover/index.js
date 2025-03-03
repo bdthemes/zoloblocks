@@ -3,16 +3,10 @@ import { __experimentalLinkControl as LinkControl } from '@wordpress/block-edito
 import { getSuggestionsQuery } from './get-suggestion-query';
 import { decodeEntities } from '@wordpress/html-entities';
 import { useDispatch } from '@wordpress/data';
-import {
-    store as coreStore,
-    useResourcePermissions,
-} from '@wordpress/core-data';
+import { __ } from '@wordpress/i18n';
+import { store as coreStore, useResourcePermissions } from '@wordpress/core-data';
 
-import {
-    createInterpolateElement,
-    useMemo,
-    forwardRef
-} from '@wordpress/element';
+import { createInterpolateElement, useMemo, forwardRef } from '@wordpress/element';
 import { __unstableStripHTML as stripHTML } from '@wordpress/dom';
 
 const LinkPopover = (props, ref) => {
@@ -48,16 +42,9 @@ const LinkPopover = (props, ref) => {
         }),
         [label, opensInNewTab, url]
     );
-    
 
     return (
-        <Popover
-            ref={ref}
-            placement="bottom"
-            onClose={props?.onClose}
-            anchor={props?.anchor}
-            shift
-        >
+        <Popover ref={ref} placement="bottom" onClose={props?.onClose} anchor={props?.anchor} shift>
             <LinkControl
                 hasTextControl
                 hasRichPreviews
@@ -71,22 +58,15 @@ const LinkPopover = (props, ref) => {
                     let format;
                     if (type === 'post') {
                         /* translators: %s: search term. */
-                        format = __(
-                            'Create draft post: <mark>%s</mark>'
-                        );
+                        format = __('Create draft post: <mark>%s</mark>');
                     } else {
                         /* translators: %s: search term. */
-                        format = __(
-                            'Create draft page: <mark>%s</mark>'
-                        );
+                        format = __('Create draft page: <mark>%s</mark>');
                     }
 
-                    return createInterpolateElement(
-                        sprintf(format, searchTerm),
-                        {
-                            mark: <mark />,
-                        }
-                    );
+                    return createInterpolateElement(sprintf(format, searchTerm), {
+                        mark: <mark />,
+                    });
                 }}
                 noDirectEntry={!!type}
                 noURLSuggestion={!!type}
@@ -95,6 +75,6 @@ const LinkPopover = (props, ref) => {
             />
         </Popover>
     );
-}
+};
 
 export default forwardRef(LinkPopover);

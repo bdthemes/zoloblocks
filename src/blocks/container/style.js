@@ -49,7 +49,7 @@ const Style = ({ props }) => {
         mobRangeStyle: innerContainerMobWidth,
     } = generateResRangeStyle({
         controlName: CONTAINER_WIDTH,
-        property: 'flex-basis',
+        property: 'width',
         attributes,
     });
 
