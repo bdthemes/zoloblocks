@@ -36,6 +36,19 @@ export default function Edit(props) {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
+    // link
+
+    const iconLinkProps = {
+        tagName: isLinkable ? 'a' : 'div',
+        className: 'zolo-icon-wrap',
+        ...(iconLink?.url && {
+            href: iconLink.url,
+            target: iconLink.openInNewTab ? '_blank' : undefined,
+            rel: iconLink.openInNewTab ? 'noopener noreferrer' : undefined,
+        }),
+        onClick: (e) => e.preventDefault(),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.icon} alt={__('Icon Box Preview', 'zoloblocks')} />;
@@ -46,15 +59,7 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
-                <DynamicTag
-                    tagName={isLinkable === true ? 'a' : 'div'}
-                    className="zolo-icon-wrap"
-                    {...(iconLink !== '' && {
-                        href: iconLink && iconLink.url,
-                        target: iconLink && iconLink.openInNewTab ? '_blank' : undefined,
-                        rel: iconLink && iconLink.openInNewTab ? 'noopener noreferrer' : undefined,
-                    })}
-                >
+                <DynamicTag {...iconLinkProps}>
                     <DisplayZoloIcon icon={mainIcon} />
                 </DynamicTag>
                 {renderHookAfter && renderHookAfter}

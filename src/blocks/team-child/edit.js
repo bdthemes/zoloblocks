@@ -44,6 +44,14 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
     });
 
+    const teamLinkButtonProps = {
+        className: 'zolo-external-link',
+        href: memberDetailPageLink?.url,
+        rel: memberDetailPageLink?.openInNewTab ? 'noopener noreferrer' : undefined,
+        target: memberDetailPageLink?.openInNewTab ? '_blank' : undefined,
+        onClick: (e) => e.preventDefault(),
+    };
+
     /**
      * context
      */
@@ -216,6 +224,7 @@ export default function Edit(props) {
                                                     rel={profile.link && profile.link.openInNewTab ? 'noreferer noopener' : undefined}
                                                     target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                                     title={profile.title}
+                                                    onClick={(e) => e.preventDefault()}
                                                 >
                                                     <DisplayZoloIcon icon={profile.icon} />
                                                 </a>
@@ -225,12 +234,7 @@ export default function Edit(props) {
                             )}
                             {addDetailPageLink && preset !== 'style-4' && preset !== 'style-5' && preset !== 'default' && (
                                 <div className="zolo-link-btn">
-                                    <a
-                                        className="zolo-external-link"
-                                        href={memberDetailPageLink && memberDetailPageLink.url}
-                                        rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer' : undefined}
-                                        target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
-                                    >
+                                    <a {...teamLinkButtonProps}>
                                         <DisplayZoloIcon icon={detailIcon} />
                                     </a>
                                 </div>
