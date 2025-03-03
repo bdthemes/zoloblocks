@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["menu", "navigation", "navigation", "dropdown", "submenu", "subnav", "megamenu", "mega"],
     "description": "Build your own navigation menu.",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/navigation-item"],
     "example": {
