@@ -31,7 +31,7 @@ if (! class_exists('Settings')) {
         }
 
         /**
-         * Zolo Blocks Settings Endpoint
+         * ZoloBlocks Settings Endpoint
          */
         public function zolo_blocks_settings_init() {
 

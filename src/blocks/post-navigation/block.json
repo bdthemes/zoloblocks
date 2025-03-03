@@ -5,7 +5,7 @@
     "category": "zoloblocks-single",
     "keywords": ["post", "navigation", "next", "previous", "dynamic", "content", "pagination", "single", "nav"],
     "description": "Customizable dynamic post navigation block for your website single page",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "usesContext": ["postId", "postType"],
     "example": {

@@ -63,8 +63,8 @@ if (! class_exists('Dashboard')) {
          */
         public function zolo_admin_menu() {
             add_menu_page(
-                __('Zolo Blocks', 'zoloblocks'),
-                __('Zolo Blocks', 'zoloblocks'),
+                __('ZoloBlocks', 'zoloblocks'),
+                __('ZoloBlocks', 'zoloblocks'),
                 'manage_options',
                 'zoloblocks',
                 [$this, 'zolo_blocks_page'],
@@ -137,9 +137,9 @@ if (! class_exists('Dashboard')) {
                 'manage_options',
                 'edit.php?post_type=zolo_form_entries',
                 function () {
-                    $admin_url = admin_url( 'edit.php' );
+                    $admin_url = admin_url('edit.php');
                     $form_entries_image_url = ZOLO_ADMIN_URL . 'includes/Admin/images/form-data.png';
-                    $post_type_url = add_query_arg('post_type', 'zolo_form_entries', $admin_url );
+                    $post_type_url = add_query_arg('post_type', 'zolo_form_entries', $admin_url);
                     $check_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>';
                     if (!class_exists('Zolo_Blocks_Pro')) {
                         $content = <<<EOF
@@ -268,48 +268,48 @@ if (! class_exists('Dashboard')) {
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
                                             <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                                             </svg>
-                                           <span>Upgrade to Zolo Blocks Pro to view all form entries</span>
+                                           <span>Upgrade to ZoloBlocks Pro to view all form entries</span>
                                         </div>
                                         <div class="zolo-form-body-content">
                                         <h2>View and Manage Your Form Entries inside WordPress</h2>
-                                        <p>Upgrade to Zolo Blocks Pro to view all form entries and manage them inside WordPress. You can also export form entries to CSV and Excel files.</p>
+                                        <p>Upgrade to ZoloBlocks Pro to view all form entries and manage them inside WordPress. You can also export form entries to CSV and Excel files.</p>
 
-                                        
+
 
                                         <div class="zolo-forms-features">
                                             <ul class="left">
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                             </ul>
                                              <ul class="right">
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                                 <li>
-                                                    {$check_icon} 
+                                                    {$check_icon}
                                                      View Entries in Dashboard
                                                 </li>
                                             </ul>
@@ -317,14 +317,14 @@ if (! class_exists('Dashboard')) {
                                         </div>
                                         <div class="zolo-form-upgrade-btns">
                                          <a href="https://zoloblocks.com/pricing/" class="zolo-form-upgrade-btn" target="_blank" rel="noopener noreferrer">
-                                            Upgrade to Zolo Blocks Pro
+                                            Upgrade to ZoloBlocks Pro
                                         </a>
                                         </div>
                                     </div>
-                              </div> 
+                              </div>
                         EOF;
                         echo wp_kses($content, ZoloHelpers::wp_kses_allowed_svg($content));
-                    }else{
+                    } else {
                         echo '<script>document.location.href = "' . $post_type_url . '";</script>';
                     }
                 }
@@ -345,9 +345,9 @@ if (! class_exists('Dashboard')) {
         }
 
         /**
-         * Renders the Zolo Blocks page.
+         * Renders the ZoloBlocks page.
          *
-         * This method is responsible for rendering the Zolo Blocks page in the WordPress dashboard.
+         * This method is responsible for rendering the ZoloBlocks page in the WordPress dashboard.
          * It is called when the `zolo_blocks_page` action is triggered.
          *
          * @since 1.0.0

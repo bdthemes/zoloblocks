@@ -41,7 +41,7 @@ const Header = () => {
                         </clipPath>
                     </defs>
                 </svg>
-                <h2 className="zolo-ai-logo-text">{__('Zolo AI', 'zoloblocks')}</h2>
+                <h2 className="zolo-ai-logo-text">{__('AI Assistant', 'zoloblocks')}</h2>
                 <span className="zolo-ai-badge">{__('Beta', 'zoloblocks')}</span>
             </div>
 
