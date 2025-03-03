@@ -1,0 +1,18 @@
+.wp-block-zolo-tabs {
+    .block-editor-button-block-appender {
+        height: auto;
+        box-shadow: none;
+        box-sizing: border-box;
+    }
+    .tab__content {
+        .block-editor-inner-blocks {
+            z-index: 11;
+            position: relative;
+        }
+    }
+    .block-list-appender {
+        width: 100%;
+        height: auto !important;
+        display: inline-block !important;
+    }
+}
