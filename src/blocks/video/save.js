@@ -11,7 +11,7 @@ const { classArrayToStr } = window.zoloModule;
 export default function Save(props) {
     const { attributes } = props;
 
-    const { uniqueId, parentClasses, video, autoPlay, playerControl, loop, mute, posterImage, startTime, endTime } = attributes;
+    const { uniqueId, parentClasses, video, autoPlay, playerControl, loop, mute, posterImage, startTime, endTime, hoverPlayPause } = attributes;
 
     const options = {
         controls: playerControl,
@@ -20,6 +20,7 @@ export default function Save(props) {
         poster: posterImage,
         startTime: startTime,
         endTime: endTime,
+        hoverPlayPause: hoverPlayPause,
     };
 
     const blocksProps = useBlockProps.save({
