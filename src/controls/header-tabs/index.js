@@ -5,39 +5,48 @@
 import { __ } from '@wordpress/i18n';
 import { Button, ButtonGroup } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
+import { useEffect } from '@wordpress/element';
 import ProNotice from '../pro-notice';
 
 const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttributes, block = '' }) => {
     const panelProps = { attributes, setAttributes };
     const { selectedTab } = attributes;
 
+    useEffect(() => {
+        if ( !generalTab && selectedTab === 'basic') {
+            setAttributes({ selectedTab: 'style' });
+        }
+    }, [generalTab]);
+
     return (
         <>
             <div className="zolo-panel-control">
                 <ButtonGroup className="zolo-tab-group">
-                    <Button
-                        className={`zolo-tab ${selectedTab === 'basic' ? 'active__tab' : ''}${selectedTab === 'style' ? 'prev__tab' : ''}`}
-                        onClick={() => setAttributes({ selectedTab: 'basic' })}
-                        key="basic"
-                    >
-                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                            <path
-                                d="M45.07,75.33H25.34a4.1,4.1,0,0,1-4.08-4.08v-46a4.1,4.1,0,0,1,4.08-4.08h46a4.1,4.1,0,0,1,4.08,4.08V45a2.5,2.5,0,0,0,5,0V25.22a9.08,9.08,0,0,0-9.08-9.08h-46a9.08,9.08,0,0,0-9.08,9.08v46a9.08,9.08,0,0,0,9.08,9.08H45.07a2.5,2.5,0,1,0,0-5ZM82.16,59.06,49.28,45.91A2.51,2.51,0,0,0,46,49.16L59.19,82a2.5,2.5,0,0,0,2.32,1.57h0A2.49,2.49,0,0,0,63.83,82L69,68.9l13.13-5.19a2.5,2.5,0,0,0,0-4.65Zm-16,5.59a2.54,2.54,0,0,0-1.41,1.41l-3.28,8.29L52.84,52.72l21.63,8.65Z"
-                                style={{
-                                    fill: '#39394d',
-                                }}
-                            />
-                            <rect
-                                width="100"
-                                height="100"
-                                style={{
-                                    fill: 'none',
-                                }}
-                            />
-                        </svg>
+                    {generalTab && (
+                        <Button
+                            className={`zolo-tab ${selectedTab === 'basic' ? 'active__tab' : ''}${selectedTab === 'style' ? 'prev__tab' : ''}`}
+                            onClick={() => setAttributes({ selectedTab: 'basic' })}
+                            key="basic"
+                        >
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                <path
+                                    d="M45.07,75.33H25.34a4.1,4.1,0,0,1-4.08-4.08v-46a4.1,4.1,0,0,1,4.08-4.08h46a4.1,4.1,0,0,1,4.08,4.08V45a2.5,2.5,0,0,0,5,0V25.22a9.08,9.08,0,0,0-9.08-9.08h-46a9.08,9.08,0,0,0-9.08,9.08v46a9.08,9.08,0,0,0,9.08,9.08H45.07a2.5,2.5,0,1,0,0-5ZM82.16,59.06,49.28,45.91A2.51,2.51,0,0,0,46,49.16L59.19,82a2.5,2.5,0,0,0,2.32,1.57h0A2.49,2.49,0,0,0,63.83,82L69,68.9l13.13-5.19a2.5,2.5,0,0,0,0-4.65Zm-16,5.59a2.54,2.54,0,0,0-1.41,1.41l-3.28,8.29L52.84,52.72l21.63,8.65Z"
+                                    style={{
+                                        fill: '#39394d',
+                                    }}
+                                />
+                                <rect
+                                    width="100"
+                                    height="100"
+                                    style={{
+                                        fill: 'none',
+                                    }}
+                                />
+                            </svg>
 
-                        <h5 className="zolo-tab-label">{__('Basic', 'zoloblocks')}</h5>
-                    </Button>
+                            <h5 className="zolo-tab-label">{__('Basic', 'zoloblocks')}</h5>
+                        </Button>
+                    )}
                     {styleTab && (
                         <Button
                             className={`zolo-tab ${selectedTab === 'style' ? 'active__tab' : ''}${selectedTab === 'basic' ? 'next__tab' : ''}${
@@ -90,9 +99,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                     </Button>
                 </ButtonGroup>
                 <div className="zolo-tab-controls">
-                    {selectedTab === 'basic' && (
-                        <>{applyFilters('zolo.blocks.generalTab', generalTab, block, panelProps)}</>
-                    )}
+                    {selectedTab === 'basic' && <>{applyFilters('zolo.blocks.generalTab', generalTab, block, panelProps)}</>}
                     {selectedTab === 'style' && <>{applyFilters('zolo.blocks.styleTab', styleTab, block, panelProps)}</>}
                     {selectedTab === 'extra' && <>{advancedTab}</>}
                 </div>
