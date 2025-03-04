@@ -20,5 +20,5 @@
     },
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",
-    "viewScript": ["zolo-fslightbox-popup", "file:./frontend.js"]
+    "viewScript": ["fslightbox", "file:./frontend.js"]
 }
