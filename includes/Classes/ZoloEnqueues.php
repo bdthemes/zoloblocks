@@ -218,8 +218,8 @@ if (! class_exists('ZoloEnqueues')) {
 
 
             //enqueue 3rd party scripts and styles
-            wp_enqueue_style('swiper');
-            wp_enqueue_script('swiper');
+            // wp_enqueue_style('swiper');
+            // wp_enqueue_script('swiper');
         }
         /**
          * Load Block Editor Assets

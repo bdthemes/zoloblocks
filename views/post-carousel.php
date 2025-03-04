@@ -6,7 +6,7 @@ $topclass = 'zolo-post-carousel wp-block-zolo-post-carousel';
 if (!empty($settings['preset'])) {
     $topclass .= ' zolo-post-' . $settings['preset'];
 }
-if ( ! empty( $settings['postTitleAnimation'] ) ) {
+if (! empty($settings['postTitleAnimation'])) {
     $topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
 }
 

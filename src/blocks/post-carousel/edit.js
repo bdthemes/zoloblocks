@@ -19,6 +19,8 @@ export default function Edit(props) {
     // Slider Ref
     const postCarouselRef = useRef(null);
 
+    const { Swiper } = window.frames['editor-canvas'] || window;
+
     const {
         uniqueId,
         parentClasses,
@@ -44,6 +46,7 @@ export default function Edit(props) {
         prevNavIcon,
         nextNavIcon,
         coverFlowEffect,
+        sliderOptions,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -78,26 +81,6 @@ export default function Edit(props) {
         noUnits: true,
     });
 
-    useEffect(() => {
-        if (typeof postQuery === 'undefined') {
-            setAttributes({
-                postQuery: {
-                    postType: 'post',
-                    postInclude: '',
-                    postExclude: '',
-                    postAuthors: [],
-                    postTaxonomies: {},
-                    postPerPage: 7,
-                    postOffset: 0,
-                    postOrderby: 'date',
-                    postOrder: 'desc',
-                    postThumbnail: '',
-                    // showPagination: false,
-                },
-            });
-        }
-    }, []);
-
     // slider options init
     const zoloSliderInit = function (sliderE, options) {
         if (sliderE.swiper) {
@@ -105,81 +88,66 @@ export default function Edit(props) {
         }
         new Swiper(sliderE, options);
     };
+    // let breakpoints = {};
+    // breakpoints = {
+    //     1024: {
+    //         slidesPerView: deskCol || 2,
+    //         spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
+    //     },
+    //     768: {
+    //         slidesPerView: tabCol || 2,
+    //         spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
+    //     },
+    //     640: {
+    //         slidesPerView: mobCol || 1,
+    //         spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
+    //     },
+    // };
+
+    let options = {
+        slidesPerView: resMode === 'Desktop' ? deskCol || 2 : resMode === 'Tablet' ? tabCol || 2 : mobCol || 1,
+        spaceBetween: resMode === 'Desktop' ? parseInt(deskColGap.slice(0, -1)) || 30 : resMode === 'Tablet' ? parseInt(tabColGap.slice(0, -1)) || 30 : parseInt(mobColGap.slice(0, -1)) || 0,
+        loop: infiniteLoop,
+        speed: speed * 100,
+        effect: carouselEffect,
+        ...(carouselEffect === 'coverflow' && {
+            coverflowEffect: coverFlowEffect,
+        }),
+        autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
+        navigation: showNavigation
+            ? {
+                  nextEl: customNavIcon
+                      ? postCarouselRef.current
+                          ? postCarouselRef.current.querySelector('.swiper-zolo-next')
+                          : '.swiper-zolo-next'
+                      : '.swiper-button-next',
+                  prevEl: customNavIcon
+                      ? postCarouselRef.current
+                          ? postCarouselRef.current.querySelector('.swiper-zolo-prev')
+                          : '.swiper-zolo-prev'
+                      : '.swiper-button-prev',
+              }
+            : false,
+        pagination: showPagination
+            ? {
+                  el: postCarouselRef.current ? postCarouselRef.current.querySelector('.swiper-pagination') : '.swiper-pagination',
+                  clickable: true,
+                  type: paginationType,
+                  dynamicBullets: dynamicBullets,
+              }
+            : false,
+        // breakpoints: breakpoints,
+    };
 
     //slider initialize
+
     useEffect(() => {
-        let breakpoints = {};
-        breakpoints = {
-            1024: {
-                slidesPerView: deskCol || 2,
-                spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
-            },
-            768: {
-                slidesPerView: tabCol || 2,
-                spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
-            },
-            640: {
-                slidesPerView: mobCol || 1,
-                spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
-            },
-        };
+                // setAttributes({ sliderOptions: options });
 
-        let options = {
-            loop: infiniteLoop,
-            speed: speed * 100,
-            effect: carouselEffect,
-            ...(carouselEffect === 'coverflow' && {
-                coverflowEffect: coverFlowEffect,
-            }),
-            autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
-            navigation: showNavigation
-                ? {
-                    nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
-                    prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
-                }
-                : false,
-            pagination: showPagination
-                ? {
-                    el: `.${uniqueId} .swiper-pagination`,
-                    clickable: true,
-                    type: paginationType,
-                    dynamicBullets: dynamicBullets,
-                }
-                : false,
-            breakpoints: breakpoints,
-        };
-
-        setAttributes({ sliderOptions: options });
         if (postCarouselRef.current) {
             zoloSliderInit(postCarouselRef.current, options);
         }
-    }, [
-        postCarouselRef.current,
-        sliderType,
-        deskCol,
-        tabCol,
-        mobCol,
-        deskColGap,
-        tabColGap,
-        mobColGap,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
-        infiniteLoop,
-        showNavigation,
-        showPagination,
-        paginationType,
-        dynamicBullets,
-        speed,
-        carouselEffect,
-        slideItems,
-        customNavIcon,
-        prevNavIcon,
-        nextNavIcon,
-        addNewSlideBlock,
-        resMode,
-        coverFlowEffect,
-    ]);
+    }, [postCarouselRef.current, resMode]);
 
     const [postResults, setPostResults] = useState([]);
     const [dataSuccess, setDataSuccess] = useState(true);
@@ -215,17 +183,15 @@ export default function Edit(props) {
     } else if (Array.isArray(postResults) && postResults.length === 0) {
         content = (
             <>
-                {
-                    dataSuccess ? (
-                        <div className="zolo-spinner">
-                            <Spinner />
-                        </div>
-                    ) : (
-                        <p>{__('No posts found.', 'zoloblocks')}</p>
-                    )
-                }
+                {dataSuccess ? (
+                    <div className="zolo-spinner">
+                        <Spinner />
+                    </div>
+                ) : (
+                    <p>{__('No posts found.', 'zoloblocks')}</p>
+                )}
             </>
-        )
+        );
     } else {
         content = (
             <>
@@ -235,42 +201,40 @@ export default function Edit(props) {
                         <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
                     </div>
                 </div>
-                {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
-                {showNavigation && (
-                    <>
-                        <div
-                            className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
-                        >
-                            {customNavIcon && (
-                                <>
-                                    <div className="swiper-nav-button swiper-zolo-prev">
-                                        <DisplayZoloIcon icon={prevNavIcon} />
-                                    </div>
-                                    <div className="swiper-nav-button swiper-zolo-next">
-                                        <DisplayZoloIcon icon={nextNavIcon} />
-                                    </div>
-                                </>
-                            )}
-                            {!customNavIcon && (
-                                <>
-                                    <div className="swiper-nav-button swiper-button-prev"></div>
-                                    <div className="swiper-nav-button swiper-button-next"></div>
-                                </>
-                            )}
-                        </div>
-                    </>
-                )}
+                    {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
+                    {showNavigation && (
+                        <>
+                            <div
+                                className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
+                            >
+                                {customNavIcon && (
+                                    <>
+                                        <div className="swiper-nav-button swiper-zolo-prev">
+                                            <DisplayZoloIcon icon={prevNavIcon} />
+                                        </div>
+                                        <div className="swiper-nav-button swiper-zolo-next">
+                                            <DisplayZoloIcon icon={nextNavIcon} />
+                                        </div>
+                                    </>
+                                )}
+                                {!customNavIcon && (
+                                    <>
+                                        <div className="swiper-nav-button swiper-button-prev"></div>
+                                        <div className="swiper-nav-button swiper-button-next"></div>
+                                    </>
+                                )}
+                            </div>
+                        </>
+                    )}
             </>
-        )
+        );
     }
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <div {...blockProps}>
-                {content}
-            </div>
+            <div {...blockProps}>{content}</div>
         </>
     );
 }

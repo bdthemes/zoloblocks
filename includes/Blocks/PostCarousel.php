@@ -26,11 +26,21 @@ class PostCarousel extends PostBlock {
 
     public function render($attributes) {
 
-        // var_dump($attributes);
-
         $attributes = wp_parse_args($attributes, $this->get_default_attributes());
 
-        $postQuery = $attributes['postQuery'] ?? [];
+        $postQuery = !empty($attributes['postQuery']) ? $attributes['postQuery'] : [
+            'postType'       => 'post',
+            'postInclude'    => '',
+            'postExclude'    => '',
+            'postAuthors'    => [],
+            'postTaxonomies' => [],
+            'postPerPage'    => 7,
+            'postOffset'     => 0,
+            'postOrderby'    => 'date',
+            'postOrder'      => 'desc',
+            'postThumbnail'  => '',
+        ];
+
 
         $post_results = apply_filters('zolo_post_carousel_results', GetPostsV1::zolo_posts_query($postQuery));
 
