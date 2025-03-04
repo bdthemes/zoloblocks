@@ -71,6 +71,16 @@ export default function Edit(props) {
         }
     }, [startTime, endTime, hoverPlayPause, video]);
 
+    const togglePlayPause = () => {
+        const videoElement = videoRef.current;
+
+        if (videoElement.paused) {
+            videoElement.play();
+        } else {
+            videoElement.pause();
+        }
+    };
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -78,29 +88,40 @@ export default function Edit(props) {
             <div {...blocksProps}>
                 <div className="zolo-video-player">
                     {video ? (
-                        <video
-                            ref={videoRef}
-                            width={640}
-                            height={360}
-                            src={video}
-                            autoPlay={autoPlay}
-                            controls={playerControl}
-                            loop={loop}
-                            muted={mute}
-                            poster={posterImage?.url || ''}
-                            onLoadedMetadata={(e) => {
-                                if (startTime && startTime > 0 && startTime < e.target.duration) {
-                                    e.target.currentTime = startTime;
-                                }
-                                if (endTime && endTime > 0 && endTime < e.target.duration) {
-                                    e.target.ontimeupdate = function () {
-                                        if (e.target.currentTime > endTime) {
-                                            e.target.pause();
-                                        }
-                                    };
-                                }
-                            }}
-                        />
+                        <>
+                            <video
+                                ref={videoRef}
+                                width={640}
+                                height={360}
+                                src={video}
+                                autoPlay={autoPlay}
+                                controls={playerControl}
+                                loop={loop}
+                                muted={mute}
+                                poster={posterImage?.url || ''}
+                                onLoadedMetadata={(e) => {
+                                    if (startTime && startTime > 0 && startTime < e.target.duration) {
+                                        e.target.currentTime = startTime;
+                                    }
+                                    if (endTime && endTime > 0 && endTime < e.target.duration) {
+                                        e.target.ontimeupdate = function () {
+                                            if (e.target.currentTime > endTime) {
+                                                e.target.pause();
+                                            }
+                                        };
+                                    }
+                                }}
+                            />
+                            {playerControl ? (
+                                false
+                            ) : (
+                                <button className="zolo-video-play" onClick={togglePlayPause}>
+                                    {/* {isPlaying ? 'play' : 'pause'}
+                                     */}
+                                     Play
+                                </button>
+                            )}
+                        </>
                     ) : (
                         <MediaPlaceholder
                             onSelect={(file) => setAttributes({ video: file.url })}

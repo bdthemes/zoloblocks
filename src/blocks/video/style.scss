@@ -5,3 +5,32 @@
 .zolo-video-player:hover video {
     pointer-events: auto;
 }
+
+.zolo-video-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.zolo-video-player {
+    width: 100%;
+    height: auto;
+}
+
+.zolo-video-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.zolo-video-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
