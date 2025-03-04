@@ -1,10 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-    __experimentalToggleGroupControl as ToggleGroupControl,
-    Button,
-} from '@wordpress/components';
+import { __experimentalToggleGroupControl as ToggleGroupControl, Button } from '@wordpress/components';
 const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }) => {
     return (
         <div className="zolo-iconic-btn-group">
@@ -16,7 +13,6 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }
             <ToggleGroupControl className="zb-iconic-btn-group">
                 {options &&
                     options.map((option, index) => {
-                        console.log(option);
                         const isActive = value == option.value;
                         return (
                             <Button

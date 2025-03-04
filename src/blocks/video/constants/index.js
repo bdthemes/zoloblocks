@@ -11,4 +11,4 @@ export const STYLES = [
     { label: __('Preset 2', 'zoloblocks'), value: 'style-1' },
 ];
 
-
+export const VIDEO_ALIGN = 'videoAlign';

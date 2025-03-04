@@ -17,38 +17,7 @@ const {
     GlobalStyleHanlder,
 } = window.zoloModule;
 
-import {
-    // PLAYER_WIDTH,
-    // PLAYER_ALIGNMENT,
-    // DEFAULT_VOLUME,
-    // CONTROL_PADDING,
-    // CONTROL_BG_COLOR,
-    // NORMAL_PLAY_BUTTON_BG,
-    // NORMAL_PLAY_BORDER,
-    // NORMAL_PLAY_BORDER_RADIUS,
-    // NORMAL_PLAY_BOX_SHADOW,
-    // NORMAL_PLAY_ICON_SIZE,
-    // HOVER_PLAY_BUTTON_BG,
-    // HOVER_PLAY_BOX_SHADOW,
-    // SEEK_BAR_HEIGHT,
-    // SEEK_BAR_BORDER_RADIUS,
-    // NORMAL_VOLUME_BG,
-    // NORMAL_VOLUME_BORDER,
-    // NORMAL_VOLUME_BORDER_RADIUS,
-    // NORMAL_VOLUME_BOX_SHADOW,
-    // NORMAL_VOLUME_ICON_SIZE,
-    // HOVER_VOLUME_BG,
-    // HOVER_VOLUME_BOX_SHADOW,
-    // BAR_HEIGHT,
-    // VOLUME_BAR_BORDER_RADIUS,
-    // NORMAL_FULL_BUTTON_BG,
-    // NORMAL_FULL_BORDER,
-    // NORMAL_FULL_BORDER_RADIUS,
-    // NORMAL_FULL_BOX_SHADOW,
-    // NORMAL_FULL_ICON_SIZE,
-    // HOVER_FULL_BUTTON_BG,
-    // HOVER_FULL_BOX_SHADOW,
-} from './constants';
+import { VIDEO_ALIGN } from './constants';
 
 // import {  } from './constants/typoPrefixConstants';
 
@@ -61,7 +30,7 @@ export default function Style({ props }) {
     } = attributes;
 
     // style
-    
+
     // const {
     //     desktopRangeStyle: playerWidthDesk,
     //     tabRangeStyle: playerWidthTab,
@@ -72,15 +41,15 @@ export default function Style({ props }) {
     //     attributes,
     // });
 
-    // const {
-    //     desktopAlignStyle: playerAlignDesk,
-    //     tabAlignStyle: playerAlignTab,
-    //     mobAlignStyle: playerAlignMob,
-    // } = generateResAlignmentStyle({
-    //     controlName: PLAYER_ALIGNMENT,
-    //     property: 'align-items',
-    //     attributes,
-    // });
+    const {
+        desktopAlignStyle: videoAlignDesk,
+        tabAlignStyle: videoAlignTab,
+        mobAlignStyle: videoAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: VIDEO_ALIGN,
+        property: 'text-align',
+        attributes,
+    });
 
     // const {
     //     desktopRangeStyle: defaultVolumeDesk,
@@ -328,7 +297,11 @@ export default function Style({ props }) {
     //     attributes,
     // });
 
-    const desktopAllStyle = ``;
+    const desktopAllStyle = `
+        .${uniqueId} .zolo-video-player {
+            ${videoAlignDesk}
+    `;
+
     const tabletAllStyle = ``;
     const mobileAllStyle = ``;
 

@@ -13,26 +13,35 @@ export default function Save(props) {
 
     const { uniqueId, parentClasses, video, autoPlay, playerControl, loop, mute, posterImage, startTime, endTime } = attributes;
 
+    const options = {
+        controls: playerControl,
+        loop: loop,
+        muted: mute,
+        poster: posterImage,
+        startTime: startTime,
+        endTime: endTime,
+    };
+
     const blocksProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        'data-settings': JSON.stringify(options),
     });
+
+    const isMute = autoPlay ? true : mute;
 
     return (
         <>
             <div {...blocksProps}>
-                <div className="zolo-video-wrapper">
+                <div className="zolo-video-player">
                     <video
-                        className="video-player"
                         width={640}
                         height={360}
                         src={video}
                         autoPlay={autoPlay}
                         controls={playerControl}
                         loop={loop}
-                        muted={mute}
-                        poster={posterImage}
-                        data-start-time={startTime}
-                        data-end-time={endTime}
+                        muted={isMute}
+                        poster={posterImage?.url || ''}
                     />
                 </div>
             </div>

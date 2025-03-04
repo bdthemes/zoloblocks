@@ -39,7 +39,7 @@ const {
     BorderControl,
 } = window.zoloModule;
 
-import { STYLES } from './constants';
+import { STYLES, VIDEO_ALIGN } from './constants';
 
 import { TIME_TYPO } from './constants/typoPrefixConstants';
 
@@ -55,11 +55,14 @@ export default function Edit(props) {
         loop,
         mute,
         playerControl,
+        hoverPlayPause,
         video,
         videoLink,
         posterImage,
+        imageRes,
         startTime,
         endTime,
+        startEnd,
     } = attributes;
 
     const requiredProps = {
@@ -132,6 +135,32 @@ export default function Edit(props) {
                                     }
                                 />
 
+                                <ToggleControl
+                                    label={__('Start & End Time', 'zoloblocks')}
+                                    checked={startEnd}
+                                    onChange={() =>
+                                        setAttributes({
+                                            startEnd: !startEnd,
+                                        })
+                                    }
+                                />
+
+                                <ToggleControl
+                                    label={__('Hover Play/pause', 'zoloblocks')}
+                                    checked={hoverPlayPause}
+                                    onChange={() =>
+                                        setAttributes({
+                                            hoverPlayPause: !hoverPlayPause,
+                                        })
+                                    }
+                                />
+
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zoloblocks')}
+                                    controlName={VIDEO_ALIGN}
+                                    requiredProps={requiredProps}
+                                />
+
                                 <CardDivider />
                                 <BaseControl label={__('Choose Video', 'zoloblocks')} className="zolo-flex-col-control">
                                     {video && (
@@ -185,9 +214,6 @@ export default function Edit(props) {
                                                     posterImage: {
                                                         id: media.id,
                                                         url: media.url,
-                                                        sizes: media.sizes,
-                                                        alt: media.alt,
-                                                        caption: media.caption,
                                                     },
                                                 });
                                             }}
@@ -211,6 +237,16 @@ export default function Edit(props) {
                                     )}
                                 </BaseControl>
 
+                                <ImageSizes
+                                    label={__('Resolution', 'zoloblocks')}
+                                    value={imageRes}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            imageRes: value,
+                                        })
+                                    }
+                                />
+
                                 <LinkControl
                                     label={__('Link', 'zoloblocks')}
                                     value={videoLink}
@@ -221,27 +257,33 @@ export default function Edit(props) {
                                     }
                                 />
 
-                                <NumberControl
-                                    label={__('Start Time', 'zoloblocks')}
-                                    value={startTime}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            startTime: Number(value),
-                                        })
-                                    }
-                                    min={0}
-                                />
+                                {startEnd && (
+                                    <>
+                                        <NumberControl
+                                            style={{ display: 'contents' }}
+                                            label={__('Start Time', 'zoloblocks')}
+                                            value={startTime}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    startTime: Number(value),
+                                                })
+                                            }
+                                            min={0}
+                                        />
 
-                                <NumberControl
-                                    label={__('End Time', 'zoloblocks')}
-                                    value={endTime}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            endTime: Number(value),
-                                        })
-                                    }
-                                    min={0}
-                                />
+                                        <NumberControl
+                                            style={{ display: 'contents' }}
+                                            label={__('End Time', 'zoloblocks')}
+                                            value={endTime}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    endTime: Number(value),
+                                                })
+                                            }
+                                            min={0}
+                                        />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         </>
                     }

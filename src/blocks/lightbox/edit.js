@@ -34,6 +34,7 @@ export default function Edit(props) {
         showPosterIcon,
         contentCaption,
     } = attributes;
+    
     const [toggler, setToggler] = useState(false);
 
     const blocksProps = useBlockProps({

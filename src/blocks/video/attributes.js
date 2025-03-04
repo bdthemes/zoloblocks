@@ -11,7 +11,8 @@ const {
     generateTypographyAttributes,
 } = window.zoloModule;
 
-import {} from './constants';
+import { bool } from 'prop-types';
+import { VIDEO_ALIGN } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
 
@@ -60,11 +61,15 @@ const attributes = {
     },
     mute: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     playerControl: {
         type: 'boolean',
         default: true,
+    },
+    hoverPlayPause: {
+        type: 'boolean',
+        default: false,
     },
     videoLink: {
         type: 'object',
@@ -73,12 +78,17 @@ const attributes = {
             openInNewTab: false,
         },
     },
-    imagePoster: {
-        type: 'object',
-        default: {
-            id: '',
-            url: '#',
-        },
+    posterImage: {
+        type: 'string',
+        default: '',
+    },
+    ImageSizes: {
+        type: 'string',
+        default: 'full',
+    },
+    startEnd: {
+        type: 'boolean',
+        default: false,
     },
     startTime: {
         type: 'number',
@@ -88,6 +98,8 @@ const attributes = {
         type: 'number',
         default: 0,
     },
+
+    ...generateResAlignmentAttributies(VIDEO_ALIGN),
 };
 
 export default attributes;

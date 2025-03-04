@@ -18,9 +18,6 @@ const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
 
-    console.log('attributes', attributes);
-    console.log('startTime', attributes.startTime);
-
     const {
         uniqueId,
         parentClasses,
@@ -30,6 +27,7 @@ export default function Edit(props) {
         mute,
         loop,
         playerControl,
+        hoverPlayPause,
         video,
         posterImage,
         startTime,
@@ -43,17 +41,35 @@ export default function Edit(props) {
     const videoRef = useRef(null);
 
     useEffect(() => {
-        if (videoRef.current && startTime && startTime > 0) {
-            videoRef.current.currentTime = startTime;
+        const videoElement = videoRef.current;
+
+        if (videoElement) {
+            if (startTime && startTime > 0) {
+                videoElement.currentTime = startTime;
+            }
+
+            if (endTime && endTime > 0) {
+                videoElement.ontimeupdate = () => {
+                    if (videoElement.currentTime > endTime) {
+                        videoElement.pause();
+                    }
+                };
+            }
+
+            if (hoverPlayPause) {
+                const handleMouseEnter = () => videoElement.play();
+                const handleMouseLeave = () => videoElement.pause();
+
+                videoElement.addEventListener('mouseenter', handleMouseEnter);
+                videoElement.addEventListener('mouseleave', handleMouseLeave);
+
+                return () => {
+                    videoElement.removeEventListener('mouseenter', handleMouseEnter);
+                    videoElement.removeEventListener('mouseleave', handleMouseLeave);
+                };
+            }
         }
-        if (videoRef.current && endTime && endTime > 0) {
-            videoRef.current.ontimeupdate = function () {
-                if (videoRef.current.currentTime > endTime) {
-                    videoRef.current.pause();
-                }
-            };
-        }
-    }, [startTime, endTime, video]);
+    }, [startTime, endTime, hoverPlayPause, video]);
 
     return (
         <>
@@ -64,7 +80,6 @@ export default function Edit(props) {
                     {video ? (
                         <video
                             ref={videoRef}
-                            className="video-player"
                             width={640}
                             height={360}
                             src={video}
@@ -72,7 +87,7 @@ export default function Edit(props) {
                             controls={playerControl}
                             loop={loop}
                             muted={mute}
-                            poster={posterImage}
+                            poster={posterImage?.url || ''}
                             onLoadedMetadata={(e) => {
                                 if (startTime && startTime > 0 && startTime < e.target.duration) {
                                     e.target.currentTime = startTime;

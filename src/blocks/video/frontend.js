@@ -1,19 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const videos = document.querySelectorAll('.zolo-video-player');
+    const videos = document.querySelectorAll('.wp-block-zolo-video');
 
-    videos.forEach((video) => {
-        const startTime = parseFloat(video.getAttribute('data-start-time')) || 0;
-        const endTime = parseFloat(video.getAttribute('data-end-time')) || 0;
+    videos.forEach((element) => {
+        const video = element.querySelector ? element.querySelector('video') : element.getElementsByTagName('video')[0];
+        const settings = JSON.parse(element?.getAttribute('data-settings'));
+        const startTime = settings?.startTime;
+        const endTime = settings?.endTime;
 
-        video.onloadedmetadata = function () {
-            if (startTime > 0 && startTime < video.duration) {
-                video.currentTime = startTime;
-            }
-        };
-        video.ontimeupdate = function () {
-            if (endTime > 0 && video.currentTime >= endTime) {
-                video.pause();
-            }
-        };
+        if (startTime && startTime > 0) {
+            video.currentTime = startTime;
+        }
+        if (endTime && endTime > 0) {
+            video.ontimeupdate = function () {
+                if (video.currentTime > endTime) {
+                    video.pause();
+                }
+            };
+        }
     });
 });
