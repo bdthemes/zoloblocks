@@ -1,8 +1,4 @@
 /**
- * include unregister block type
- */
-
-/**
  * Import Style
  */
 import './style.scss';

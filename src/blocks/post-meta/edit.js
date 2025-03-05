@@ -42,11 +42,6 @@ export default function Edit(props) {
         }
     }, [metaData, setAttributes]);
 
-    // Preview image rendering
-    if (preview) {
-        return <img src={zoloParams.blocksPreview?.postMeta} alt={__('Post Meta', 'zoloblocks')} />;
-    }
-
     const post = useSelect((select) => select('core').getEditedEntityRecord('postType', postType, postId), [postType, postId]);
 
     return (
