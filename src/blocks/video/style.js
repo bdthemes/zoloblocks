@@ -31,16 +31,6 @@ export default function Style({ props }) {
 
     // style
 
-    // const {
-    //     desktopRangeStyle: playerWidthDesk,
-    //     tabRangeStyle: playerWidthTab,
-    //     mobRangeStyle: playerWidthMob,
-    // } = generateResRangeStyle({
-    //     controlName: PLAYER_WIDTH,
-    //     property: 'width',
-    //     attributes,
-    // });
-
     const {
         desktopAlignStyle: videoAlignDesk,
         tabAlignStyle: videoAlignTab,
@@ -52,17 +42,17 @@ export default function Style({ props }) {
     });
 
     const desktopAllStyle = `
-        .${uniqueId} .wp-block-zolo-video {
+        .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .wp-block-zolo-video {
+        .${uniqueId}.wp-block-zolo-video {
             ${videoAlignTab}
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} .wp-block-zolo-video {
+        .${uniqueId}.wp-block-zolo-video {
             ${videoAlignMob}
     `;
 
