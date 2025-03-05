@@ -26,6 +26,9 @@ import {
     FEATURE_DESC_MARGIN,
     FEATURE_ICON_GAP,
     FEATURE_ICON_SIZE,
+    FEATURE_ICON_BORDER,
+    FEATURE_ICON_RADIUS,
+    FEATURE_ICON_SHADOW,
     FEATURE_ITEM_GAP,
     FEATURE_MARGIN,
     FEATURE_PADDING,
@@ -402,6 +405,30 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: FEATURE_ICON_GAP,
         property: 'gap',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: featureIconBorderDesktop,
+        tabBorderStyle: featureIconBorderTab,
+        mobBorderStyle: featureIconBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: FEATURE_ICON_BORDER,
+    });
+
+    const { boxShadowStyle: featureIconShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: FEATURE_ICON_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: featureIconDeskRadius,
+        dimensionStylesTab: featureIconTabRadius,
+        dimensionStylesMobile: featureIconMobRadius,
+    } = generateDimensionStyle({
+        controlName: FEATURE_ICON_RADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
 
@@ -912,6 +939,9 @@ const Style = ({ props }) => {
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconBgColor ? `background-color: ${featureIconBgColor};` : ''}
       ${featureIconDeskPadding}
+      ${featureIconBorderDesktop}
+      ${featureIconDeskRadius}
+      ${featureIconShadow}
     }
 
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
@@ -946,8 +976,9 @@ const Style = ({ props }) => {
       ${featureMarginTab}
     }
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
-
       ${featureIconTabPadding}
+      ${featureIconBorderTab}
+      ${featureIconTabRadius}
     }
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
       ${featureIconSizeTab}
@@ -979,6 +1010,8 @@ const Style = ({ props }) => {
     }
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconMobPadding}
+      ${featureIconBorderMob}
+      ${featureIconMobRadius}
     }
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
       ${featureIconSizeMob}
