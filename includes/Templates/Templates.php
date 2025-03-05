@@ -55,10 +55,12 @@ if (! class_exists('Templates')) {
             $json_file_url = sanitize_text_field($_POST['json_file_url']);
 
             // Fetch the JSON data from the external URL
-            $response = wp_remote_get($json_file_url);
+            $response = wp_remote_get($json_file_url, [
+                'timeout' => 30,
+            ]);
 
             if (is_wp_error($response)) {
-                wp_send_json_error('Failed to fetch JSON data');
+                wp_send_json_error('Failed to fetch JSON data' . $response->get_error_message());
                 return;
             }
 

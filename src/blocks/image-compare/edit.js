@@ -5,6 +5,9 @@
 import { useBlockProps, MediaUpload, MediaPlaceholder, BlockControls } from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect, useRef } from '@wordpress/element';
+import { useMergeRefs } from '@wordpress/compose';
+import { dispatch } from '@wordpress/data';
 
 /**
  * Internal depencencies
@@ -24,16 +27,41 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, parentClasses, beforeImage, afterImage, comparisonOptions } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    const blockProps = useBlockProps({
-        className: classnames(className, uniqueId, classArrayToStr(parentClasses), comparisonOptions?.slidePositon),
-    });
-
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.imageComparison} alt={__('Image Comparison Preview', 'zoloblocks')} />;
     }
 
+    const sliderRef = useRef(null);
+    useEffect(() => {
+        const handleClick = (event) => {
+            const childBlock = event?.target?.closest('.wp-block');
+            if (!childBlock) {
+                return;
+            }
+            const childBlockID = childBlock?.dataset?.block;
+            if (childBlockID) {
+                dispatch('core/block-editor').selectBlock(childBlockID);
+            }
+        };
+
+        const sliderElement = sliderRef.current;
+
+        if (sliderElement) {
+            sliderElement.addEventListener('click', handleClick);
+        }
+
+        return () => {
+            if (sliderElement) {
+                sliderElement.removeEventListener('click', handleClick);
+            }
+        };
+    }, [clientId, dispatch]);
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    const blockProps = useBlockProps({
+        ref: useMergeRefs([sliderRef]),
+        className: classnames(className, uniqueId, classArrayToStr(parentClasses), comparisonOptions?.slidePositon),
+    });
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -123,11 +151,15 @@ export default function Edit(props) {
 
                 {beforeImage && afterImage && (
                     <ReactCompareSlider
-                        changePositionOnHover={comparisonOptions?.slideOnHover}
-                        portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
                         disabled={comparisonOptions?.disableslide}
+                        {...(!comparisonOptions?.disableslide && {
+                            changePositionOnHover: comparisonOptions?.slideOnHover,
+                        })}
+                        portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
                         position={comparisonOptions?.initialPosition}
-                        onlyHandleDraggable={comparisonOptions?.handleDraggable}
+                        {...(!comparisonOptions?.disableslide && {
+                            onlyHandleDraggable: comparisonOptions?.handleDraggable,
+                        })}
                         itemOne={
                             <div className="image-item-One">
                                 {comparisonOptions?.showLabels && comparisonOptions?.beforeLabel && (
