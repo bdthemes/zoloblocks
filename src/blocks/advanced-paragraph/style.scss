@@ -1,4 +1,5 @@
 .wp-block-zolo-advanced-paragraph {
+    margin: 0;
     a {
         color: #2667ff;
         &:hover {
@@ -8,7 +9,7 @@
 
     // text gradient style
     &.zolo-text-gradient-color {
-        display: inline-block;
+        display: block;
         background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

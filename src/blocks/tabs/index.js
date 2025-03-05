@@ -4,6 +4,7 @@ import metadata from './block.json';
 import deprecated from './deprecated';
 import Edit from './edit';
 import Save from './save';
+import './editor.scss';
 import './style.scss';
 
 const { BlockIcons } = window.zoloIcons;

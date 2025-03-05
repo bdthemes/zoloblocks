@@ -1,3 +1,9 @@
+### 2.2.3 [February 25, 2025]
+
+**Fixes:**
+- Container Block editor blank spacing issue fixed
+- Paragraph block margin issue fixed
+
 ### 2.2.2 [February 20, 2025]
 
 **New Features:**
