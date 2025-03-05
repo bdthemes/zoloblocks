@@ -34,6 +34,9 @@ import {
     FEATURE_DESC_MARGIN,
     FEATURE_ICON_GAP,
     FEATURE_ICON_SIZE,
+    FEATURE_ICON_BORDER,
+    FEATURE_ICON_RADIUS,
+    FEATURE_ICON_SHADOW,
     FEATURE_ITEM_GAP,
     FEATURE_MARGIN,
     FEATURE_PADDING,
@@ -379,6 +382,9 @@ const attributes = {
     ...generateResRangeAttributies(FEATURE_ICON_GAP),
     ...generateResRangeAttributies(FEATURE_ICON_SIZE),
     ...generateDimensionAttributes(FEATURE_ICON_PADDING),
+    ...generateBorderAttributies(FEATURE_ICON_BORDER),
+    ...generateDimensionAttributes(FEATURE_ICON_RADIUS),
+    ...generateBoxShadowAttributies(FEATURE_ICON_SHADOW),
 
     //button
     ...generateDimensionAttributes(BTNS_MARGIN),
