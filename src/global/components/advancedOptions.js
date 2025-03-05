@@ -22,6 +22,8 @@ import ResAlignmentControl from '../../controls/res-alignment-control';
 import IconicBtnGroup from '../../controls/iconic-btn-group';
 import ResSelectControl from '../../controls/res-select-control';
 import { applyFilters } from '@wordpress/hooks';
+import CreatableSelect from 'react-select/creatable';
+
 import {
     DEFAULT_ALIGNS,
     DEFAULT_ALIGNS_VERTICAL,
@@ -129,7 +131,6 @@ export const AdvancedOptions = (props) => {
     const particles = applyFilters('zolo.extensions.controls.particles', [], block, panelProps);
     const tilt = applyFilters('zolo.extensions.controls.tilt', [], block, panelProps);
     const interactions = applyFilters('zolo.extensions.controls.interactions', [], block, panelProps);
-
 
     return (
         <>
@@ -329,17 +330,57 @@ export const AdvancedOptions = (props) => {
                         value={zoloId}
                         help={__('Add custom ID to the block WITHOUT the Pound key. e.g: my-id', 'zoloblocks')}
                     />
-
-                    <TextControl
-                        label={__('CSS Classes', 'zoloblocks')}
-                        className="zolo-css-class"
-                        onChange={(value) => {
-                            setAttributes({ customClasses: value });
-                            handleCustomClasses(value.split(' '));
-                        }}
-                        value={customClasses}
-                        help={__('Add custom class(es) to the block WITHOUT the dot. e.g: my-class. Separate multiple classes with a space.','zoloblocks')}
-                    />
+                    <div div className="zolo-flex-row-contdwdrol">
+                        <h3 className="zolo-control-label">{__('CSS Classes', 'zoloblocks')}</h3>
+                        <CreatableSelect
+                            className="zolo-css-class"
+                            isMulti
+                            onChange={(value) => {
+                                setAttributes({ customClasses: value });
+                                handleCustomClasses(value.map((v) => v.value));
+                            }}
+                            value={customClasses}
+                            options={[]}
+                            help={__(
+                                'Add custom class(es) to the block WITHOUT the dot. e.g: my-class. Separate multiple classes with a space.',
+                                'zoloblocks'
+                            )}
+                            noOptionsMessage={() => __('Type to add a new class', 'zoloblocks')}
+                            placeholder={() => __('Type and press enter to add a new class', 'zoloblocks')}
+                            styles={{
+                                container: (provided, state) => ({
+                                    ...provided,
+                                    width: '100%',
+                                }),
+                                control: (provided, state) => ({
+                                    ...provided,
+                                    minHeight: '35px',
+                                }),
+                                indicatorSeparator: (provided, state) => ({
+                                    ...provided,
+                                    display: 'none',
+                                }),
+                                dropdownIndicator: (provided, state) => ({
+                                    ...provided,
+                                    display: 'none',
+                                }),
+                                clearIndicator: (provided, state) => ({
+                                    ...provided,
+                                    display: 'none',
+                                }),
+                                multiValue: (provided, state) => ({
+                                    ...provided,
+                                    backgroundColor: '#f5f5f5',
+                                }),
+                            }}
+                        />
+                        {/* <span className="components-base-control__help">
+                            {__(
+                                'Add custom class(es) to the block WITHOUT the dot. e.g: my-class. Separate multiple classes with a space.',
+                                'zoloblocks'
+                            )}
+                        </span> */}
+                    </div>
                 </div>
             </ZoloPanelBody>
             {globalConfig?.background && (
