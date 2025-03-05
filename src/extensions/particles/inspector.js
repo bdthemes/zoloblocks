@@ -9,11 +9,11 @@ import Select2 from 'react-select';
 import particlesInit from './init';
 import MultiColor from './multicolor';
 
-const { PopoverControl, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } = window.zoloModule;
+const { PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-    const { zoloParticles, uniqueId, parentClasses } = attributes;
+    const { zoloParticles, uniqueId } = attributes;
 
     const { active, preset, particleOptions } = zoloParticles;
     const { direction } = particleOptions;
@@ -132,21 +132,16 @@ const Inspector = ({ panelProps }) => {
         setAttributes,
     };
 
-    //new code starts here
-    const handleTogglePreview = () => {
+    useEffect(() => {
         const editorWindow = window?.frames['editor-canvas'] || window;
-        destroyParticleJS(editorWindow);
-        setIsPreview(!isPreview);
-        if (!isPreview) {
+        if (isPreview) {
             particlesInit(panelProps, editorWindow);
-        } else {
-            // eslint-disable-next-line no-undef
-            const element = document.getElementById(`zolo-particles-${uniqueId}`);
-            if (element) {
-                element.innerHTML = '';
-            }
         }
-    };
+
+        return () => {
+            destroyParticleJS(editorWindow);
+        };
+    }, [isPreview, zoloParticles, panelProps]);
 
     // zolo.presets.particles;
     const presets = [
@@ -376,7 +371,13 @@ const Inspector = ({ panelProps }) => {
                     />
                 )}
 
-                <Button className="zolo-action-button" variant="primary" onClick={handleTogglePreview}>
+                <Button 
+                    className="zolo-action-button" 
+                    variant="primary" 
+                    onClick={() => {
+                        setIsPreview( prev => !prev )
+                    }}
+                >
                     {isPreview ? __('Stop Preview', 'zoloblocks-pro') : __('Preview', 'zoloblocks-pro')}
                 </Button>
             </PopoverControl>
