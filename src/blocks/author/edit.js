@@ -1,6 +1,6 @@
 import {__} from '@wordpress/i18n';
 import {useBlockProps} from '@wordpress/block-editor';
-import {useEffect, useState} from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
