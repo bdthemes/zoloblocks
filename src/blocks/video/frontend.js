@@ -4,10 +4,22 @@ document.addEventListener('DOMContentLoaded', function () {
     videos.forEach((element) => {
         const video = element.querySelector ? element.querySelector('video') : element.getElementsByTagName('video')[0];
         const settings = JSON.parse(element?.getAttribute('data-settings'));
+        const playButton = element.querySelector('.zolo-video-play');
         const startTime = settings?.startTime;
         const endTime = settings?.endTime;
         const hoverPlayPause = settings?.hoverPlayPause;
+        const autoPlay = settings?.autoPlay;
 
+        if (!video) return;
+
+        // play video
+        if (autoPlay) {
+            video.play().catch((error) => {
+                console.error('Error Playing video:', error);
+            });
+        }
+
+        // set start and end time
         if (startTime && startTime > 0) {
             video.currentTime = startTime;
         }
@@ -19,8 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             };
         }
-        
-        if(hoverPlayPause) {
+
+        //hover play pause
+        if (hoverPlayPause) {
             const handleMouseEnter = () => video.play();
             const handleMouseLeave = () => video.pause();
 
@@ -30,7 +43,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return () => {
                 video.removeEventListener('mouseenter', handleMouseEnter);
                 video.removeEventListener('mouseleave', handleMouseLeave);
-            }
+            };
+        }
+
+        //small play pause button
+        if (playButton) {
+            playButton.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playButton.textContent = 'Pause';
+                } else {
+                    video.pause();
+                    playButton.textContent = 'Play';
+                }
+            });
         }
     });
 });

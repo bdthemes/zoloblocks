@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, MediaPlaceholder, MediaUploadCheck, MediaUpload, BlockControls } from '@wordpress/block-editor';
-import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { useBlockProps, MediaPlaceholder } from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -13,7 +13,7 @@ import Style from './style';
 import './style.scss';
 import { useRef, useEffect } from '@wordpress/element';
 
-const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr } = window.zoloModule;
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
@@ -27,11 +27,13 @@ export default function Edit(props) {
         mute,
         loop,
         playerControl,
+        smallButton,
         hoverPlayPause,
         video,
         posterImage,
         startTime,
         endTime,
+        isPlaying,
     } = attributes;
 
     const blocksProps = useBlockProps({
@@ -43,6 +45,14 @@ export default function Edit(props) {
     useEffect(() => {
         const videoElement = videoRef.current;
 
+        // play video
+        if (autoPlay) {
+            videoElement.play().catch((error) => {
+                console.error('Error Playing video:', error);
+            });
+        }
+
+        // set start and end time
         if (videoElement) {
             if (startTime && startTime > 0) {
                 videoElement.currentTime = startTime;
@@ -56,6 +66,7 @@ export default function Edit(props) {
                 };
             }
 
+            //hover play pause
             if (hoverPlayPause) {
                 const handleMouseEnter = () => videoElement.play();
                 const handleMouseLeave = () => videoElement.pause();
@@ -69,15 +80,20 @@ export default function Edit(props) {
                 };
             }
         }
-    }, [startTime, endTime, hoverPlayPause, video]);
+    }, [autoPlay, startTime, endTime, hoverPlayPause, video]);
 
-    const togglePlayPause = () => {
+    //small play pause button
+    const playButton = () => {
         const videoElement = videoRef.current;
 
-        if (videoElement.paused) {
-            videoElement.play();
-        } else {
+        if (!videoElement) return;
+
+        if (isPlaying) {
             videoElement.pause();
+            setAttributes({ isPlaying: false });
+        } else {
+            videoElement.play();
+            setAttributes({ isPlaying: true });
         }
     };
 
@@ -86,7 +102,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blocksProps}>
-                <div className="zolo-video-player">
+                <div>
                     {video ? (
                         <>
                             <video
@@ -97,8 +113,8 @@ export default function Edit(props) {
                                 autoPlay={autoPlay}
                                 controls={playerControl}
                                 loop={loop}
-                                muted={mute}
-                                poster={posterImage?.url || ''}
+                                muted={autoPlay ? true : mute}
+                                poster={posterImage.sizes && posterImage.sizes[imageRes] ? posterImage.sizes[imageRes].url : posterImage.url}
                                 onLoadedMetadata={(e) => {
                                     if (startTime && startTime > 0 && startTime < e.target.duration) {
                                         e.target.currentTime = startTime;
@@ -112,14 +128,13 @@ export default function Edit(props) {
                                     }
                                 }}
                             />
-                            {playerControl ? (
-                                false
-                            ) : (
-                                <button className="zolo-video-play" onClick={togglePlayPause}>
-                                    {/* {isPlaying ? 'play' : 'pause'}
-                                     */}
-                                     Play
-                                </button>
+
+                            {!playerControl && smallButton && (
+                                <>
+                                    <button className="zolo-video-play" onClick={playButton}>
+                                        {isPlaying ? 'Pause' : 'Play'}
+                                    </button>
+                                </>
                             )}
                         </>
                     ) : (

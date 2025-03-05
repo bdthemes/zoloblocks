@@ -1,7 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { useRef, useEffect } from '@wordpress/element';
 
 /**
  * Internal Dependencies
@@ -11,7 +10,22 @@ const { classArrayToStr } = window.zoloModule;
 export default function Save(props) {
     const { attributes } = props;
 
-    const { uniqueId, parentClasses, video, autoPlay, playerControl, loop, mute, posterImage, startTime, endTime, hoverPlayPause } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        video,
+        autoPlay,
+        playerControl,
+        smallButton,
+        loop,
+        mute,
+        posterImage,
+        startTime,
+        endTime,
+        hoverPlayPause,
+        isPlaying,
+        smallPlayPause,
+    } = attributes;
 
     const options = {
         controls: playerControl,
@@ -28,12 +42,10 @@ export default function Save(props) {
         'data-settings': JSON.stringify(options),
     });
 
-    const isMute = autoPlay ? true : mute;
-
     return (
         <>
             <div {...blocksProps}>
-                <div className="zolo-video-player">
+                <div>
                     <video
                         width={640}
                         height={360}
@@ -41,9 +53,11 @@ export default function Save(props) {
                         autoPlay={autoPlay}
                         controls={playerControl}
                         loop={loop}
-                        muted={isMute}
-                        poster={posterImage?.url || ''}
+                        muted={autoPlay ? true : mute}
+                        poster={posterImage.sizes && posterImage.sizes[imageRes] ? posterImage.sizes[imageRes].url : posterImage.url}
                     />
+
+                    {!playerControl && smallButton && <button className="zolo-video-play"></button>}
                 </div>
             </div>
         </>

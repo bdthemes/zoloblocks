@@ -65,7 +65,11 @@ const attributes = {
     },
     playerControl: {
         type: 'boolean',
-        default: true,
+        default: false,
+    },
+    smallButton: {
+        type: 'boolean',
+        default: false,
     },
     hoverPlayPause: {
         type: 'boolean',
@@ -97,6 +101,10 @@ const attributes = {
     endTime: {
         type: 'number',
         default: 0,
+    },
+    isPlaying: {
+        type: 'boolean',
+        default: false,
     },
 
     ...generateResAlignmentAttributies(VIDEO_ALIGN),

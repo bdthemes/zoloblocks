@@ -41,8 +41,6 @@ const {
 
 import { STYLES, VIDEO_ALIGN } from './constants';
 
-import { TIME_TYPO } from './constants/typoPrefixConstants';
-
 export default function Edit(props) {
     const { attributes, setAttributes, block } = props;
 
@@ -55,6 +53,7 @@ export default function Edit(props) {
         loop,
         mute,
         playerControl,
+        smallButton,
         hoverPlayPause,
         video,
         videoLink,
@@ -101,6 +100,7 @@ export default function Edit(props) {
                                     onChange={() =>
                                         setAttributes({
                                             autoPlay: !autoPlay,
+                                            mute: !autoPlay ? true : mute,
                                         })
                                     }
                                 />
@@ -135,15 +135,29 @@ export default function Edit(props) {
                                     }
                                 />
 
-                                <ToggleControl
-                                    label={__('Start & End Time', 'zoloblocks')}
-                                    checked={startEnd}
-                                    onChange={() =>
-                                        setAttributes({
-                                            startEnd: !startEnd,
-                                        })
-                                    }
-                                />
+                                {playerControl === false && (
+                                    <ToggleControl
+                                        label={__('Small Play Button', 'zoloblocks')}
+                                        checked={smallButton}
+                                        onChange={() =>
+                                            setAttributes({
+                                                smallButton: !smallButton,
+                                            })
+                                        }
+                                    />
+                                )}
+
+                                {loop === false && (
+                                    <ToggleControl
+                                        label={__('Start/End Time', 'zoloblocks')}
+                                        checked={startEnd}
+                                        onChange={() =>
+                                            setAttributes({
+                                                startEnd: !startEnd,
+                                            })
+                                        }
+                                    />
+                                )}
 
                                 <ToggleControl
                                     label={__('Hover Play/pause', 'zoloblocks')}
@@ -214,6 +228,8 @@ export default function Edit(props) {
                                                     posterImage: {
                                                         id: media.id,
                                                         url: media.url,
+                                                        alt: media.alt,
+                                                        sizes: media.sizes,
                                                     },
                                                 });
                                             }}
@@ -257,31 +273,37 @@ export default function Edit(props) {
                                     }
                                 />
 
-                                {startEnd && (
+                                {loop ? (
+                                    true
+                                ) : (
                                     <>
-                                        <NumberControl
-                                            style={{ display: 'contents' }}
-                                            label={__('Start Time', 'zoloblocks')}
-                                            value={startTime}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    startTime: Number(value),
-                                                })
-                                            }
-                                            min={0}
-                                        />
+                                        {startEnd && (
+                                            <>
+                                                <NumberControl
+                                                    style={{ display: 'contents' }}
+                                                    label={__('Start Time', 'zoloblocks')}
+                                                    value={startTime}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            startTime: Number(value),
+                                                        })
+                                                    }
+                                                    min={0}
+                                                />
 
-                                        <NumberControl
-                                            style={{ display: 'contents' }}
-                                            label={__('End Time', 'zoloblocks')}
-                                            value={endTime}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    endTime: Number(value),
-                                                })
-                                            }
-                                            min={0}
-                                        />
+                                                <NumberControl
+                                                    style={{ display: 'contents' }}
+                                                    label={__('End Time', 'zoloblocks')}
+                                                    value={endTime}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            endTime: Number(value),
+                                                        })
+                                                    }
+                                                    min={0}
+                                                />
+                                            </>
+                                        )}
                                     </>
                                 )}
                             </ZoloPanelBody>
