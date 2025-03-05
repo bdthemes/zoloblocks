@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { CardDivider, SelectControl, TextControl } from '@wordpress/components';
+import { CardDivider, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT, ICON_SIZE, TEXT_INDENT } from './constants';
@@ -7,6 +7,7 @@ import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import Sortable from './sortable';
+// import { ToggleControl } from '@wordpress/components/build-types/toggle-control';
 
 const {
     HeaderTabs,
@@ -21,7 +22,7 @@ const {
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, metaData, separatorStyle, customSeparator, separatorColor, hoverColor, textColor } = attributes;
+    const { resMode, metaData, separatorStyle, customSeparator, separatorColor, hoverColor, textColor, showIcon } = attributes;
 
     const requiredProps = {
         resMode,
@@ -39,6 +40,15 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <div className="zolo-custom-heading" style={{ paddingTop: 0, border: 0 }}>
+                                {__('Show/hide elements', 'zoloblocks')}
+                            </div>
+                            <ToggleControl
+                                label={__('Meta Icon', 'zoloblocks')}
+                                checked={showIcon}
+                                onChange={(showIcon) => setAttributes({ showIcon })}
+                            />
+                            <CardDivider />
                             <Sortable metaData={metaData} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
