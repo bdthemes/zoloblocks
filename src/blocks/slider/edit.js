@@ -2,13 +2,14 @@
  * WordPress dependencies
  */
 import { useBlockProps, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
-import { useRef } from 'react';
-import { useSelect, useDispatch } from '@wordpress/data';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
+import { useEffect, useRef } from '@wordpress/element';
+import { useMergeRefs } from '@wordpress/compose';
+import { useSelect, useDispatch } from '@wordpress/data';
 
 // Import Swiper core and required modules
 import {
@@ -53,7 +54,8 @@ import { add } from '@dnd-kit/utilities';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, addNewSlideBlock, customNavIcon, prevNavIcon, nextNavIcon, sliderOptions } = attributes;
+    const { uniqueId, parentClasses, addNewSlideBlock, customNavIcon, prevNavIcon, nextNavIcon, sliderOptions, contentPosition } =
+        attributes;
 
     const {
         speed = 800,
@@ -103,7 +105,10 @@ export default function Edit(props) {
         progressDirection = 'top',
     } = sliderOptions || {};
 
+    const sliderRef = useRef(null);
+
     const blockProps = useBlockProps({
+        ref: useMergeRefs([sliderRef]),
         className: classnames(className, uniqueId, parentClasses),
     });
 
@@ -117,6 +122,31 @@ export default function Edit(props) {
     };
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const handleClick = (event) => {
+            const childBlock = event?.target?.closest('.wp-block');
+            if (!childBlock) {
+                return;
+            }
+            const childBlockID = childBlock?.dataset?.block;
+            if (childBlockID) {
+                dispatch('core/block-editor').selectBlock(childBlockID);
+            }
+        };
+
+        const sliderElement = sliderRef.current;
+
+        if (sliderElement) {
+            sliderElement.addEventListener('click', handleClick);
+        }
+
+        return () => {
+            if (sliderElement) {
+                sliderElement.removeEventListener('click', handleClick);
+            }
+        };
+    }, [clientId, dispatch]);
 
     const deviceType = useSelect((select) => select('core/editor').getDeviceType());
     const swiperRef = useRef(null);
@@ -160,7 +190,7 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <Swiper
-                    className={`${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''}`}
+                    className={`${pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''} ${contentPosition}`}
                     key={`${addNewSlideBlock}${paginationType}${navPosition}${pagiPosition}${progressDirection}${JSON.stringify(sliderOptions)}`}
                     ref={swiperRef}
                     modules={[

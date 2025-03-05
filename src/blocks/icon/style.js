@@ -148,7 +148,7 @@ export default function Style({ props }) {
             ${iconBgDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-icon.zolo-icon-custom .zolo__display-icon svg{
+        .${uniqueId}.wp-block-zolo-icon.zolo-icon-custom .zolo__display-icon svg {
             ${iconHeightSizeDesk}
         }
 
@@ -171,12 +171,15 @@ export default function Style({ props }) {
             ${iconTabTextAlign}
         }
         .${uniqueId} .zolo__display-icon {
-            ${iconHeightSizeTab}
             ${iconBorderTab}
             ${iconBorderRadiusTab}
             ${iconMarginTab}
             ${iconPaddingTab}
             ${iconBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-icon.zolo-icon-custom .zolo__display-icon svg {
+           ${iconHeightSizeTab}
         }
     `;
 
@@ -186,11 +189,14 @@ export default function Style({ props }) {
             ${iconMobTextAlign}
         }
         .${uniqueId} .zolo__display-icon {
-            ${iconHeightSizeMob}
             ${iconBorderMob}
             ${iconBorderRadiusMob}
             ${iconMarginMob}
             ${iconPaddingMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-icon.zolo-icon-custom .zolo__display-icon svg {
+           ${iconHeightSizeMob}
         }
     `;
 

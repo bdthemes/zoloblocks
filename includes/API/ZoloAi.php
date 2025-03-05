@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zolo AI API Class
+ * Zolo AI ASISTANT API Class
  */
 
 namespace Zolo\API;
@@ -119,6 +119,6 @@ class ZoloAi extends WP_REST_Controller {
         // if (defined('SIGMATIVE_AI_URL')) {
         //     return SIGMATIVE_AI_URL;
         // }
-        return 'https://devai.sigmative.com/api/prompt/v1/generation/chat/completions';
+        return 'https://ai.sigmative.com/api/prompt/v1/generation/chat/completions';
     }
 }

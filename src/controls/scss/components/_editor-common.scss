@@ -566,7 +566,7 @@ textarea[readonly] {
     }
     .components-range-control__thumb-wrapper {
         background: #230aed;
-        margin-top: 8px !important;
+        margin-top: 7px !important;
         span {
             background: #230aed;
         }
@@ -611,26 +611,6 @@ textarea[readonly] {
             0 0 0 var(--wp-admin-border-width-focus) var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
     }
 }
-
-// .zolo-css-id {
-//     .components-base-control__field {
-//         display: flex;
-//         justify-content: space-between;
-//         gap: 10px;
-//         align-items: center;
-
-//         input {
-//             width: 60%;
-//         }
-
-//         label {
-//             margin: 0;
-//         }
-//     }
-//     .components-base-control__help {
-//         text-align: right;
-//     }
-// }
 
 .zolo-inline-control-wrapper {
     .zolo-css-class input:focus{

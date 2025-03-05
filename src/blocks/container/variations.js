@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useDispatch } from '@wordpress/data';
 import { __experimentalBlockVariationPicker as BlockVariationPicker } from '@wordpress/block-editor';
-import { createBlocksFromInnerBlocksTemplate } from '@wordpress/blocks';
+import { createBlocksFromInnerBlocksTemplate, createBlock } from '@wordpress/blocks';
 
 export const variations = [
     {
@@ -35,6 +35,8 @@ export const variations = [
         ),
         scope: ['block'],
         attributes: {
+            FlexDirectionZRPAlign: 'row',
+            FlexWrapZRPAlign: 'nowrap',
             variationStatus: true,
         },
         innerBlocks: [
@@ -74,6 +76,8 @@ export const variations = [
         ),
         scope: ['block'],
         attributes: {
+            FlexDirectionZRPAlign: 'row',
+            FlexWrapZRPAlign: 'nowrap',
             variationStatus: true,
         },
         innerBlocks: [
@@ -123,6 +127,8 @@ export const variations = [
         ),
         scope: ['block'],
         attributes: {
+            FlexDirectionZRPAlign: 'row',
+            FlexWrapZRPAlign: 'nowrap',
             variationStatus: true,
         },
         innerBlocks: [
@@ -680,8 +686,8 @@ export const variations = [
 ];
 
 export const VariationPicker = (props) => {
-    const { clientId, setAttributes, defaultVariation } = props;
-    const { replaceInnerBlocks } = useDispatch('core/block-editor');
+    const { clientId, setAttributes, defaultVariation, closeModal, onRemove, isReplace = false } = props;
+    const { replaceInnerBlocks, replaceBlock } = useDispatch('core/block-editor');
 
     const blockVariationPickerOnSelect = (nextVariation = defaultVariation) => {
         if (nextVariation.attributes) {
@@ -690,6 +696,15 @@ export const VariationPicker = (props) => {
 
         if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
             replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
+        }
+
+        if (isReplace && 'one-column' == nextVariation.name) {
+            replaceBlock(clientId, createBlock('zolo/container', nextVariation.attributes, []));
+        }
+
+        // Close the modal after selection
+        if (closeModal) {
+          closeModal();
         }
     };
 
@@ -717,6 +732,31 @@ export const VariationPicker = (props) => {
                     blockVariationPickerOnSelect(nextVariation);
                 }}
             />
+
+            {
+                !isReplace && (
+                    <button type="button" className="zolo-close-icon" aria-label="Close" onClick={() => onRemove()}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="icon icon-tabler icons-tabler-outline icon-tabler-x"
+                            role="img"
+                            aria-hidden="true"
+                        >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M18 6l-12 12" />
+                            <path d="M6 6l12 12" />
+                        </svg>
+                    </button>
+                )
+            }
         </div>
     );
 };

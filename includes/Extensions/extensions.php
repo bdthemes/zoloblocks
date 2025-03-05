@@ -109,11 +109,11 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/shape-divider',
         'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
     ],
-    'AI'          => [
-        'name'   => 'AI',
-        'title'  => __('AI', 'zoloblocks'),
+    'ai-assistant'          => [
+        'name'   => 'ai-assistant',
+        'title'  => __('AI Assistant', 'zoloblocks'),
         'status' => false,
-        'demo'   => 'https://demo.zoloblocks.com/ai',
+        'demo'   => 'https://demo.zoloblocks.com/ai-assistant',
         'video'  => 'https://youtu.be/OD3sI03RMDc?list=PLFnvpmjcONzI5eoNTbMmjbpYQGdy_zsj8',
     ],
     'dynamic-content'          => [

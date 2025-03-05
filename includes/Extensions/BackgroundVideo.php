@@ -1,22 +1,21 @@
 <?php
 
 /**
- * Zolo Blocks Pro Enqueues.
+ * ZoloBlocks Pro Enqueues.
  */
 
 namespace Zolo\Extensions;
+
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) exit;
 
-class BackgroundVideo
-{
+class BackgroundVideo {
 
     use SingletonTrait;
 
-    public function __construct()
-    {
+    public function __construct() {
         add_action("enqueue_block_editor_assets", [$this, "enqueue_background_video_editor_assets"]);
     }
 

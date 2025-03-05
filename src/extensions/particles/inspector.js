@@ -6,14 +6,14 @@ import { useEffect, useState } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
-import useParticlesInit from './init';
+import particlesInit from './init';
 import MultiColor from './multicolor';
 
-const { PopoverControl, SimpleRangeControl, popoverHasAttrVal, RangeResetControl } = window.zoloModule;
+const { PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
-    const { zoloParticles, uniqueId, parentClasses } = attributes;
+    const { zoloParticles, uniqueId } = attributes;
 
     const { active, preset, particleOptions } = zoloParticles;
     const { direction } = particleOptions;
@@ -107,6 +107,17 @@ const Inspector = ({ panelProps }) => {
         }
     };
 
+    const destroyParticleJS = (editorWindow) => {
+        if (editorWindow){
+            const { pJSDom } = editorWindow;
+            if (pJSDom && pJSDom.length > 0) {
+                pJSDom.forEach((instance) => {
+                    instance?.pJS?.fn?.vendors?.destroypJS();
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         setAttributes({
             zoloParticles: {
@@ -121,26 +132,16 @@ const Inspector = ({ panelProps }) => {
         setAttributes,
     };
 
-    //new code starts here
-    const handleTogglePreview = () => {
-        setIsPreview(!isPreview);
-        if (!isPreview) {
-            useParticlesInit(panelProps);
-        } else {
-            // eslint-disable-next-line no-undef
-            const element = document.getElementById(`zolo-particles-${uniqueId}`);
-            if (element) {
-                element.innerHTML = '';
-            }
-        }
-    };
-
-    //update the particles
     useEffect(() => {
+        const editorWindow = window?.frames['editor-canvas'] || window;
         if (isPreview) {
-            useParticlesInit(panelProps);
+            particlesInit(panelProps, editorWindow);
         }
-    }, [zoloParticles]);
+
+        return () => {
+            destroyParticleJS(editorWindow);
+        };
+    }, [isPreview, zoloParticles, panelProps]);
 
     // zolo.presets.particles;
     const presets = [
@@ -155,6 +156,7 @@ const Inspector = ({ panelProps }) => {
 
     return (
         <>
+            <CardDivider />
             <PopoverControl
                 label={__('Particles', 'zoloblocks')}
                 icon={
@@ -197,18 +199,6 @@ const Inspector = ({ panelProps }) => {
                             active: true,
                         },
                     });
-
-                    // if (!active) {
-                    //     setAttributes({
-                    //         parentClasses: [...parentClasses, 'zolo-particles'],
-                    //     });
-                    // } else {
-                    //     setAttributes({
-                    //         parentClasses: parentClasses.filter(function (e) {
-                    //             return e !== 'zolo-particles';
-                    //         }),
-                    //     });
-                    // }
                 }}
             >
                 <div className="zolo-flex-row-control">
@@ -381,7 +371,13 @@ const Inspector = ({ panelProps }) => {
                     />
                 )}
 
-                <Button className="zolo-action-button" variant="primary" onClick={handleTogglePreview}>
+                <Button 
+                    className="zolo-action-button" 
+                    variant="primary" 
+                    onClick={() => {
+                        setIsPreview( prev => !prev )
+                    }}
+                >
                     {isPreview ? __('Stop Preview', 'zoloblocks-pro') : __('Preview', 'zoloblocks-pro')}
                 </Button>
             </PopoverControl>
