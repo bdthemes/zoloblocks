@@ -772,6 +772,25 @@ function ZoloBlocksTemplateLibraryButton() {
                     if (data) {
                         const { content } = data;
                         const blocks = wp.blocks.parse(content);
+                        
+                        const getBlockRecursively = (block) => {
+                            if (block.innerBlocks.length > 0) {
+                                block.innerBlocks.forEach((innerBlock) => {
+                                    getBlockRecursively(innerBlock);
+                                });
+                            } else {
+                                if (block.name === 'zolo/advanced-paragraph') {
+                                    let content = block.attributes.content;
+                                    content = content.replace(/<p>/g, '').replace(/<\/p>/g, '');
+                                    block.attributes.content = content;
+                                }
+                            }
+                        };
+
+                        blocks.forEach((block) => {
+                            getBlockRecursively(block);
+                        });
+                        
                         const selectedBlock = wp.data.select('core/block-editor').getSelectedBlock();
                         if (selectedBlock && selectedBlock.name === 'core/paragraph') {
                             wp.data.dispatch('core/block-editor').replaceBlocks(selectedBlock.clientId, blocks);

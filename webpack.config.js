@@ -74,5 +74,6 @@ module.exports = {
                 type: 'window',
             },
         },
+        'libs/particles': ['./src/libs/particles.js'],
     },
 };
