@@ -53,12 +53,6 @@ const attributes = {
     textColor: {
         type: 'string',
     },
-
-    showIcon: {
-        type: 'boolean',
-        default: true,
-    },
-
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateGapAttributes(META_GAP, {
         defaultUnit: 'px',

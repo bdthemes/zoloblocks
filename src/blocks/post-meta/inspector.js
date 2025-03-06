@@ -22,7 +22,7 @@ const {
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, metaData, separatorStyle, customSeparator, separatorColor, hoverColor, textColor, showIcon } = attributes;
+    const { resMode, metaData, separatorStyle, customSeparator, separatorColor, hoverColor, textColor } = attributes;
 
     const requiredProps = {
         resMode,
@@ -40,15 +40,6 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <div className="zolo-custom-heading" style={{ paddingTop: 0, border: 0 }}>
-                                {__('Show/hide elements', 'zoloblocks')}
-                            </div>
-                            <ToggleControl
-                                label={__('Meta Icon', 'zoloblocks')}
-                                checked={showIcon}
-                                onChange={(showIcon) => setAttributes({ showIcon })}
-                            />
-                            <CardDivider />
                             <Sortable metaData={metaData} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
