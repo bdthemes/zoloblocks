@@ -1,11 +1,13 @@
-import { fetchDemos } from './actions';
-import axios from 'axios';
+import { fetchDemos } from "./actions";
+import { getDemoData } from "../utils/axios";
 
 export function getDemos() {
     return async ({ dispatch }) => {
-        const demos = await axios.get('https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo/demos');
-        dispatch(fetchDemos(demos.data));
-
+        try {
+            const data = await getDemoData();
+            dispatch(fetchDemos(data));
+        } catch (error) {
+            console.error(error);
+        }
     };
 }
-// export function getDemos() {
