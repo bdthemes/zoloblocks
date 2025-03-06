@@ -81,7 +81,7 @@
 }
 
 // Responsive show/hide css for Editor
-.zolo-editor .zolo-hide-desktop {
+.zolo-hide-desktop {
     opacity: 0.5;
     background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
     border: 1px solid rgba(0, 0, 0, 0.02);
@@ -230,10 +230,6 @@ span.zolo-pro-badge {
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
-
-// .zolo-editor .zolo-block:not(.zolo-entrance-animation) {
-//     transition: transform 0.3s ease-out;
-// }
 
 .block-editor-block-breadcrumb li {
     align-items: center;
@@ -518,26 +514,24 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     color: rgb(117, 117, 117);
 }
 
-.zolo-editor {
-    .zolo-navigation-variation-picker {
-        position: relative;
-        width: 100%;
-        box-sizing: border-box;
+.zolo-navigation-variation-picker {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
 
-        .zolo-navigation-variation-picker-back {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-        }
+    .zolo-navigation-variation-picker-back {
+        position: absolute;
+        right: 20px;
+        top: 20px;
     }
+}
 
-    .zolo-navigation-placeholder {
-        position: relative;
-        .zolo-navigation-placeholder-skip-button {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-        }
+.zolo-navigation-placeholder {
+    position: relative;
+    .zolo-navigation-placeholder-skip-button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
     }
 }
 .zolo-frontend {
@@ -549,10 +543,8 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 
-.zolo-editor {
-    .editor-styles-wrapper .is-root-container a {
-        text-decoration: unset;
-    }
+.editor-styles-wrapper .is-root-container a {
+    text-decoration: unset;
 }
 
 // post title animation type css start here

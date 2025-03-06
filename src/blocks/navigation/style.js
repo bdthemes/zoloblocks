@@ -839,7 +839,6 @@ export default function Style({ props }) {
             ${humburgerMenuBorderRadiusTab}
             ${humburgerMenuPaddingTab}
             ${humburgerMenuMarginTab}
-            ${humburgerMenuBoxShadowStyle}
         }
 
         .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper.is-menu-active .zolo-navigation-sidebar-top .zolo-navigation-sidebar-close{
@@ -908,12 +907,11 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-hamburger{
             ${humburgerMenuIconSizeMob}
-            ${humburgerMenuBGDesk}
-            ${humburgerMenuBorderDesk}
-            ${humburgerMenuBorderRadiusDesk}
-            ${humburgerMenuPaddingDesk}
-            ${humburgerMenuMarginDesk}
-            ${humburgerMenuBoxShadowStyle}
+            ${humburgerMenuBGMob}
+            ${humburgerMenuBorderMob}
+            ${humburgerMenuBorderRadiusMob}
+            ${humburgerMenuPaddingMob}
+            ${humburgerMenuMarginMob}
         }
 
         .${uniqueId}.wp-block-zolo-navigation .zolo-navigation-wrapper.is-menu-active .zolo-navigation-sidebar-top .zolo-navigation-sidebar-close{
