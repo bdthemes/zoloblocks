@@ -20,5 +20,6 @@
     },
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",
-    "viewScript": ["fslightbox", "file:./frontend.js"]
+    "viewScript": "file:./frontend.js",
+    "script": ["fslightbox"]
 }
