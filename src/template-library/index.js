@@ -8,6 +8,7 @@ import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
 import domReady from '@wordpress/dom-ready';
 import axios from 'axios';
+import './store';
 /**
  * Template Library Style
  */
