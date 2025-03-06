@@ -4,8 +4,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import FsLightbox from 'fslightbox-react';
-import { useState } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -34,7 +32,6 @@ export default function Edit(props) {
         showPosterIcon,
         contentCaption,
     } = attributes;
-    const [toggler, setToggler] = useState(false);
 
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
