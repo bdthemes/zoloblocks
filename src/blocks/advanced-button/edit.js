@@ -26,6 +26,23 @@ export default function Edit(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    const buttonLinkProps = {
+        className: classnames(
+            'zolo-button',
+            iconAnimation === '' ||
+                iconAnimation === null ||
+                iconAnimation === undefined ||
+                (iconAnimation !== '' && (preset === 'button-1' || preset === 'button-3'))
+                ? iconPosition
+                : ''
+        ),
+        href: link?.url || '#',
+        rel: link?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: link?.openInNewTab ? '_blank' : undefined,
+        title: label,
+        onClick: (e) => e.preventDefault(),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zoloblocks')} />;
@@ -47,23 +64,7 @@ export default function Edit(props) {
                         `${iconAnimation !== '' && iconAnimation !== undefined && iconAnimation !== 'undefined' && preset !== 'button-1' && preset !== 'button-3' ? iconAnimation : ''}`
                     )}
                 >
-                    <a
-                        className={classnames(
-                            'zolo-button',
-                            `${
-                                iconAnimation === '' ||
-                                iconAnimation === null ||
-                                iconAnimation === undefined ||
-                                (iconAnimation !== '' && (preset === 'button-1' || preset === 'button-3'))
-                                    ? iconPosition
-                                    : ''
-                            }`
-                        )}
-                        href={link?.url ? link.url : '#'}
-                        {...(link?.openInNewTab && { rel: 'noreferrer noopener' })}
-                        {...(link?.openInNewTab && { target: '_blank' })}
-                        title={label}
-                    >
+                    <a {...buttonLinkProps}>
                         {iconType !== 'iconOnly' && (
                             <RichText
                                 tagName="span"

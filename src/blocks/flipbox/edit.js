@@ -53,6 +53,24 @@ export default function Edit(props) {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
+    // link
+
+    const flipBoxTitleLink = {
+        href: link?.url || '#',
+        target: link?.openInNewTab ? '_blank' : undefined,
+        rel: link?.openInNewTab ? 'noopener noreferrer' : undefined,
+        className: 'title-link',
+        onClick: (e) => e.preventDefault(),
+    };
+
+    const flipBoxButtonLink = {
+        href: link?.url || '#',
+        target: link?.openInNewTab ? '_blank' : undefined,
+        rel: link?.openInNewTab ? 'noopener noreferrer' : undefined,
+        className: 'zolo-flip-box_link-btn',
+        onClick: (e) => e.preventDefault(),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.flipbox} alt={__('Flip Box Preview', 'zoloblocks')} />;
@@ -185,12 +203,7 @@ export default function Edit(props) {
                                             <div>
                                                 {showBackTitle &&
                                                     (link ? (
-                                                        <a
-                                                            href={link && link?.url}
-                                                            target={link && link?.openInNewTab ? '_blank' : undefined}
-                                                            rel={link && link?.openInNewTab ? 'noopener noreferrer' : undefined}
-                                                            className="title-link"
-                                                        >
+                                                        <a {...flipBoxTitleLink}>
                                                             <h3 className="zolo-flip-box_title">{backTitle}</h3>
                                                         </a>
                                                     ) : (
@@ -202,12 +215,7 @@ export default function Edit(props) {
                                     )}
                                     {showBackLinkBtn && (
                                         <div className="zolo-flip-box_link-button-wrap">
-                                            <a
-                                                href={link && link?.url}
-                                                target={link && link?.openInNewTab ? '_blank' : undefined}
-                                                rel={link && link?.openInNewTab ? 'noopener noreferrer' : undefined}
-                                                className="zolo-flip-box_link-btn"
-                                            >
+                                            <a {...flipBoxButtonLink}>
                                                 <span>{buttonText}</span>
                                                 {buttonIcon && showBackLinkBtnIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                             </a>

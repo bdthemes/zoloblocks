@@ -81,6 +81,15 @@ export default function Edit(props) {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
+    const reviewerLinkProps = {
+        href: reviewerWebsiteLink && reviewerWebsiteLink.url,
+        rel: reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined,
+        className: 'zolo-name has-link',
+        title: memberName,
+        onClick: (e) => e.preventDefault(),
+    };
+
     /**
      * context
      */
@@ -178,13 +187,7 @@ export default function Edit(props) {
                         <div className="zolo-review-meta-content">
                             {showName &&
                                 (addReviewerWebsiteLink ? (
-                                    <a
-                                        href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferer noopener' : undefined}
-                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined}
-                                        className="zolo-name has-link"
-                                        title={memberName}
-                                    >
+                                    <a {...reviewerLinkProps}>
                                         <RichText
                                             value={memberName}
                                             onChange={(content) =>

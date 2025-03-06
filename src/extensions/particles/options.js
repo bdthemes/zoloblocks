@@ -1,4 +1,32 @@
-export const optionOne = {
+import defaultOptions from './default-options';
+
+const deepMerge = (target, source) => {
+    const output = Object.assign({}, target);
+    if (isObject(target) && isObject(source)) {
+        Object.keys(source).forEach(key => {
+            if (isObject(source[key])) {
+                if (!(key in target)) {
+                    Object.assign(output, { [key]: source[key] });
+                } else {
+                    output[key] = deepMerge(target[key], source[key]);
+                }
+            } else {
+                Object.assign(output, { [key]: source[key] });
+            }
+        });
+    }
+    return output;
+};
+
+const isObject = (item) => {
+    return (item && typeof item === 'object' && !Array.isArray(item));
+};
+
+export const mergeWithDefault = (options) => {
+    return deepMerge(defaultOptions, options);
+};
+
+export const optionOne = mergeWithDefault({
     particles: {
         number: {
             value: 15,
@@ -21,7 +49,7 @@ export const optionOne = {
             },
         },
         opacity: {
-            value: 0,
+            value: 1,
             random: false,
             anim: {
                 enable: false,
@@ -30,7 +58,6 @@ export const optionOne = {
                 sync: false,
             },
         },
-
         size: {
             value: 4.008530152163807,
             random: true,
@@ -64,7 +91,7 @@ export const optionOne = {
         },
     },
     interactivity: {
-        detect_on: 'window',
+        detect_on: 'canvas',
         events: {
             onhover: {
                 enable: true,
@@ -103,9 +130,9 @@ export const optionOne = {
         },
     },
     retina_detect: true,
-};
+});
 
-export const optionTwo = {
+export const optionTwo = mergeWithDefault({
     particles: {
         number: { value: 14, density: 1 },
         color: { value: ['#e9ecef', '#dee2e6', '#ced4da', '#adb5bd', '#6c757d', '#495057', '#343a40'] },
@@ -119,14 +146,13 @@ export const optionTwo = {
         },
         move: { enable: true, direction: 'right', out_mode: 'out', speed: 2 },
     },
-        interactivity: {
+    interactivity: {
         detect_on: 'canvas',
         events: {
             onhover: {
                 enable: true,
                 mode: 'grab',
             },
-
             resize: true,
         },
         modes: {
@@ -139,9 +165,9 @@ export const optionTwo = {
         },
     },
     retina_detect: true,
-};
+});
 
-export const optionThree = {
+export const optionThree = mergeWithDefault({
     particles: {
         number: {
             value: 15,
@@ -161,7 +187,6 @@ export const optionThree = {
         size: { value: 40, random: true, anim: { enable: false, speed: 40, size_min: 20, sync: true } },
         move: { enable: true, speed: 4, direction: 'top-right', random: true, straight: true, out_mode: 'out', bounce: false },
     },
-
     interactivity: {
         detect_on: 'canvas',
         events: { onhover: { enable: true, mode: 'bubble' }, onclick: { enable: true, mode: 'repulse' }, resize: true },
@@ -174,9 +199,9 @@ export const optionThree = {
         },
     },
     retina_detect: false,
-};
+});
 
-export const optionFour = {
+export const optionFour = mergeWithDefault({
     particles: {
         number: {
             value: 66,
@@ -208,7 +233,6 @@ export const optionFour = {
                 sync: false,
             },
         },
-
         size: {
             value: 5,
             random: true,
@@ -281,9 +305,9 @@ export const optionFour = {
         },
     },
     retina_detect: true,
-};
+});
 
-export const optionFive = {
+export const optionFive = mergeWithDefault({
     particles: {
         line_linked: {
             enable: false,
@@ -316,7 +340,6 @@ export const optionFive = {
             random: true,
             anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false },
         },
-
         size: { value: 50, random: true },
         move: {
             enable: true,
@@ -337,7 +360,6 @@ export const optionFive = {
                 enable: true,
                 mode: 'grab',
             },
-
             resize: true,
         },
         modes: {
@@ -349,9 +371,9 @@ export const optionFive = {
             },
         },
     },
-};
+});
 
-export const optionSix = {
+export const optionSix = mergeWithDefault({
     particles: {
         number: {
             value: 5,
@@ -381,7 +403,6 @@ export const optionSix = {
             random: true,
             anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false },
         },
-
         size: { value: 6, random: true },
         move: {
             enable: true,
@@ -392,4 +413,4 @@ export const optionSix = {
             out_mode: 'out',
         },
     },
-};
+});

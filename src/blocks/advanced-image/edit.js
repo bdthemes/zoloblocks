@@ -75,6 +75,24 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
+    const advancedImageLink = {
+        tagName: link?.url ? 'a' : 'div',
+        className: classnames(
+            'zolo-image-block-wrap',
+            photoMaskImage ? 'zolo-image-mask' : 'no-mask',
+            layout === 'overlay' ? 'zolo-adi-overlay' : '',
+            hoverEffect
+        ),
+        ...(link?.url && {
+            href: link.url,
+        }),
+        ...(link?.openInNewTab && {
+            target: '_blank',
+            rel: 'noopener noreferrer',
+        }),
+        onClick: (e) => e.preventDefault(),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.image} alt={__('Advanced Image Preview', 'zoloblocks')} />;
@@ -117,24 +135,7 @@ export default function Edit(props) {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 {photo ? (
-                    <DynamicTag
-                        tagName={link && link.url ? 'a' : 'div'}
-                        className={classnames(
-                            'zolo-image-block-wrap',
-                            `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`,
-                            `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
-                            hoverEffect
-                        )}
-                        {...(link &&
-                            link.url && {
-                                href: link.url,
-                            })}
-                        {...(link &&
-                            link.openInNewTab && {
-                                target: '_blank',
-                                rel: 'noopener noreferrer',
-                            })}
-                    >
+                    <DynamicTag {...advancedImageLink}>
                         <div className="zolo-image-block-inner">
                             <div className="zolo-img-wrap">
                                 <img

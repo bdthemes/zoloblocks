@@ -49,6 +49,24 @@ export default function Edit(props) {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
+    const ctaPrimaryLinkButton = {
+        className: `zolo-button primary ${iconPosition}`,
+        href: link?.url || '#',
+        rel: link?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: link?.openInNewTab ? '_blank' : undefined,
+        title: label,
+        onClick: (e) => e.preventDefault(),
+    };
+
+    const ctaSecondaryLinkButton = {
+        className: `zolo-button secondary ${SiconPosition}`,
+        href: Slink?.url || '#',
+        rel: Slink?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: Slink?.openInNewTab ? '_blank' : undefined,
+        title: Slabel,
+        onClick: (e) => e.preventDefault(),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zoloblocks')} />;
@@ -88,13 +106,7 @@ export default function Edit(props) {
                             <div className="zolo-call-out-btns-group">
                                 {showBtn && (
                                     <div className={`zolo-call-out__button zolo-call-out__icon-${iconPosition}`}>
-                                        <a
-                                            className={`zolo-button primary ${iconPosition}`}
-                                            href={link && link.url}
-                                            rel={link && link.openInNewTab ? 'noreferrer noopener' : undefined}
-                                            target={link && link.openInNewTab ? '_blank' : undefined}
-                                            title={label}
-                                        >
+                                        <a {...ctaPrimaryLinkButton}>
                                             {iconType !== 'iconOnly' && (
                                                 <RichText
                                                     tagName="span"
@@ -115,13 +127,7 @@ export default function Edit(props) {
                                 )}
                                 {showSecondaryBtn && (
                                     <div className={`zolo-call-out__button zolo-call-out__secondary zolo-call-out__icon-${SiconPosition}`}>
-                                        <a
-                                            className={`zolo-button secondary ${SiconPosition}`}
-                                            href={Slink && Slink.url}
-                                            rel={Slink && Slink.openInNewTab ? 'noreferrer noopener' : undefined}
-                                            target={Slink && Slink.openInNewTab ? '_blank' : undefined}
-                                            title={Slabel}
-                                        >
+                                        <a {...ctaSecondaryLinkButton}>
                                             {SiconType !== 'iconOnly' && (
                                                 <RichText
                                                     tagName="span"
