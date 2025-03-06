@@ -8,7 +8,6 @@
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "usesContext": ["postId", "postType"],
-    "ancestor": ["zolo/loop"],
     "example": {
         "attributes": {
             "preview": true

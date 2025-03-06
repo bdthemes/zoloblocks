@@ -26,11 +26,6 @@ export default function Edit(props) {
     className: classnames(className, `${uniqueId} `, classArrayToStr(parentClasses)),
   });
 
-  // preview image
-  if (preview) {
-    return <img src={zoloParams.blocksPreview?.postTitle} alt={__('Post Title', 'zoloblocks')}/>;
-  }
-
   const isPostAvailable = postType && postId;
   const TagName = titleTag;
   const [postTitle] = useEntityProp('postType', postType, 'title', postId);
