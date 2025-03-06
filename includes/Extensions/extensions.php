@@ -79,14 +79,6 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/backdrop-filters',
         'video'  => 'https://www.youtube.com/watch?v=8_oI0P3bj6w&t',
     ],
-    'background-parallax'          => [
-        'name'   => 'background-parallax',
-        'title'  => __('Background Parallax', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/background-parallax',
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ],
     'export-pattern'          => [
         'name'   => 'export-pattern',
         'title'  => __('Export Pattern', 'zoloblocks'),

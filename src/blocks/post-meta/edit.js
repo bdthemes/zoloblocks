@@ -21,7 +21,7 @@ export default function Edit(props) {
         context: { postType, postId },
     } = props;
 
-    const { preview, uniqueId, parentClasses, metaData, separatorStyle, customSeparator } = attributes;
+    const { uniqueId, parentClasses, metaData, separatorStyle, customSeparator } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} ${separatorStyle}`, classArrayToStr(parentClasses)),
@@ -33,20 +33,12 @@ export default function Edit(props) {
                 metaData: [
                     { id: 1, type: 'author', link: true, showIcon: 'icon', icon: MetaIcon.author },
                     { id: 2, type: 'date', link: true, showIcon: 'icon', icon: MetaIcon.date },
-                    // { id: 3, type: 'time', link: false, showIcon: 'icon', icon: MetaIcon.time },
-                    // { id: 5, type: 'terms', link: true, showIcon: 'icon', icon: MetaIcon.terms },
-                    // { id: 4, type: 'comments', link: true, showIcon: 'icon', icon: MetaIcon.comments },
-                    // { id: 6, type: 'readingTime', link: true, showIcon: 'icon', icon: MetaIcon.readingTime },
                 ],
             });
         }
     }, [metaData, setAttributes]);
-
-    // Preview image rendering
-    if (preview) {
-        return <img src={zoloParams.blocksPreview?.postMeta} alt={__('Post Meta', 'zoloblocks')} />;
-    }
-
+    console.log(metaData);
+    
     const post = useSelect((select) => select('core').getEditedEntityRecord('postType', postType, postId), [postType, postId]);
 
     return (

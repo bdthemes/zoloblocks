@@ -2,7 +2,6 @@ import { addFilter } from '@wordpress/hooks';
 import Inspector from './inspector.js';
 import Render from './render';
 import Style from './style.js';
-import './attributes';
 
 addFilter('zolo.extensions.controls.particles', 'zolo/extensions/particles', (panels, block, panelProps) => {
     if (block !== 'zolo/container') return panels;

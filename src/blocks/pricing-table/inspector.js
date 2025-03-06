@@ -60,6 +60,9 @@ import {
     FEATURE_MARGIN,
     FEATURE_PADDING,
     FEATURE_ICON_PADDING,
+    FEATURE_ICON_BORDER,
+    FEATURE_ICON_RADIUS,
+    FEATURE_ICON_SHADOW,
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
@@ -986,8 +989,21 @@ const Inspector = (props) => {
                                             forBorderRadius={false}
                                         />
                                         <CardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={FEATURE_ICON_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl controlName={FEATURE_ICON_SHADOW} requiredProps={requiredProps} />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={FEATURE_ICON_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <CardDivider />
                                         <ResRangeControl
-                                            label={__('Gap', 'zoloblocks')}
+                                            label={__('Space Between', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             controlName={FEATURE_ICON_GAP}
                                             min={0}

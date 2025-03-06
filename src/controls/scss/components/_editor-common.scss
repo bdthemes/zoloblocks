@@ -613,6 +613,10 @@ textarea[readonly] {
 }
 
 .zolo-inline-control-wrapper {
+    .zolo-css-class input:focus{
+        border: none !important;
+        box-shadow: none !important;
+    }
     .components-form-token-field,
     .components-base-control__field {
         display: flex;
