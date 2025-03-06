@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, RangeControl, TextareaControl, BaseControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl,  BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import Select2 from 'react-select';

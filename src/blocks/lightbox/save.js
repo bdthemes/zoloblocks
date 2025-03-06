@@ -53,7 +53,6 @@ export default function Save(props) {
                     />
                 </div>
             )}
-            {/* </a> */}
             <div id={`${uniqueId}`} className="zolo-lightbox-content">
                 <LightboxContent {...props} />
             </div>

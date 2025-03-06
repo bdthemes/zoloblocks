@@ -3,7 +3,6 @@
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload } from '@wordpress/block-editor';
 
-
 import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { cloneDeep } from 'lodash';
@@ -269,6 +268,7 @@ export default function Edit(props) {
                                                             rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
                                                             target={profile.link.openInNewTab ? '_blank' : undefined}
                                                             title={profile.title}
+                                                            onClick={(e) => e.preventDefault()}
                                                         >
                                                             <DisplayZoloIcon icon={profile.icon} />
                                                         </a>
@@ -357,6 +357,7 @@ export default function Edit(props) {
                                                                 rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
                                                                 target={profile.link.openInNewTab ? '_blank' : undefined}
                                                                 title={profile.title}
+                                                                onClick={(e) => e.preventDefault()}
                                                             >
                                                                 <DisplayZoloIcon icon={profile.icon} />
                                                             </a>
