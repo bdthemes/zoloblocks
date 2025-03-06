@@ -135,26 +135,24 @@ const categoryTypes = ['demos_category', 'templates_category', 'pages_category',
 
                 <div className="category-list">
                     {categories &&
-                        categories?.length > 0 && activeTab !== 'favorites' &&
-                        categories?.map((category) => (
-                            <button
-                                key={category?.value}
-                                className={classNames('single-category', {
-                                    active: activeCat === category?.value,
-                                })}
-                                onClick={() => setActiveCat(category?.value)}
-                            >
-                                <span className="single-category-text">{category?.label}</span>
-                                <span className="single-category-count">
-                                    {allItems &&
-                                        (category?.value === 'all'
-                                            ? allItems?.length
-                                            : allItems?.filter((template) =>
-                                                  categoryTypes.some((type) => template[type]?.includes(category.label))
-                                              )?.length)}
-                                </span>
-                            </button>
-                        ))}
+                        categories.length > 0 &&
+                        activeTab !== 'favorites' &&
+                        categories
+                            ?.sort((a, b) => b?.count - a?.count)
+                            ?.map((category) => (
+                                <button
+                                    key={category?.slug}
+                                    className={classNames('single-category', {
+                                        active: activeCat === category?.slug,
+                                    })}
+                                    onClick={() => setActiveCat(category?.slug)}
+                                >
+                                    <span className="single-category-text">
+                                        {category?.slug === 'demos' ? 'All' : category?.label}
+                                    </span>
+                                    <span className="single-category-count">{category?.count}</span>
+                                </button>
+                            ))}
                 </div>
             </div>
             <div className="demos-container">
@@ -338,11 +336,13 @@ const categoryTypes = ['demos_category', 'templates_category', 'pages_category',
                         </button>
                     </div>
                 )}
-                {items?.length === 0 && !loading && (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites Items') && (
-                    <div className="no-found-item">
-                        <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
-                    </div>
-                )}
+                {items?.length === 0 &&
+                    !loading &&
+                    (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites Items') && (
+                        <div className="no-found-item">
+                            <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
+                        </div>
+                    )}
 
                 {items?.length === 0 && !loading && (itemText === 'Demos' || itemText === 'Patterns') && attemptComplete && (
                     <div className="no-found-item">

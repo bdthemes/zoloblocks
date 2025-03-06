@@ -1,12 +1,13 @@
 import apiFetch from '@wordpress/api-fetch';
 import { Button, Modal } from '@wordpress/components';
 import { subscribe, useSelect } from '@wordpress/data';
-import { getTextContent } from '@wordpress/rich-text'; 
+import { getTextContent } from '@wordpress/rich-text';
 import { useEffect, useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
 import domReady from '@wordpress/dom-ready';
+import axios from 'axios';
 /**
  * Template Library Style
  */
@@ -25,6 +26,10 @@ import TemplatesLoader from './template-loader';
  */
 const TABS = [
     {
+        label: __('Demos', 'zoloblocks'),
+        value: 'demos',
+    },
+    {
         label: __('Patterns', 'zoloblocks'),
         value: 'patterns',
     },
@@ -37,10 +42,6 @@ const TABS = [
         value: 'pages',
     },
     {
-        label: __('Demos', 'zoloblocks'),
-        value: 'demos',
-    },
-    {
         label: __('Favorites', 'zoloblocks'),
         value: 'favorites',
     },
@@ -50,10 +51,10 @@ const TABS = [
  * ZoloBlocks Template Library Button
  */
 function ZoloBlocksTemplateLibraryButton() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [allTemplates, setAllTemplates] = useState([]);
     const [pullDemos, setPullDemos] = useState(false);
-    const [activeTab, setActiveTab] = useState('patterns');
+    const [activeTab, setActiveTab] = useState('demos');
     const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(false);
     const [number, setNumber] = useState(20);
@@ -299,7 +300,7 @@ function ZoloBlocksTemplateLibraryButton() {
     const [demos, setDemos] = useState([]);
     const [demosType, setDemosType] = useState('');
     const [demoCategories, setDemoCategories] = useState([]);
-    const [activeDemoCat, setActiveDemoCat] = useState('all');
+    const [activeDemoCat, setActiveDemoCat] = useState(false);
     const [demoTags, setDemoTags] = useState([]);
     const [activeDemoTag, setActiveDemoTag] = useState('');
     const [demoSortBy, setDemoSortBy] = useState('newest');
@@ -320,18 +321,18 @@ function ZoloBlocksTemplateLibraryButton() {
     }, [demosType]); // eslint-disable-line
 
     // Filter by Category
-    useEffect(() => {
-        // filter patterns based on category
-        const filteredDemos = allDemos?.filter((template) => {
-            if (activeDemoCat === 'all') {
-                return true;
-            } else {
-                return template.demos_category.includes(activeDemoCat);
-            }
-        });
-        setDemos(filteredDemos.slice(0, number));
-        setTotal(filteredDemos.length);
-    }, [activeDemoCat]); // eslint-disable-line
+    // useEffect(() => {
+    //     // filter patterns based on category
+    //     const filteredDemos = allDemos?.filter((template) => {
+    //         if (activeDemoCat === 'all') {
+    //             return true;
+    //         } else {
+    //             return template.demos_category.includes(activeDemoCat);
+    //         }
+    //     });
+    //     setDemos(filteredDemos.slice(0, number));
+    //     setTotal(filteredDemos.length);
+    // }, [activeDemoCat]); // eslint-disable-line
 
     useEffect(() => {
         domReady(() => {
@@ -373,209 +374,55 @@ function ZoloBlocksTemplateLibraryButton() {
         setDemos([...sortedDemos]); // update the state
     };
 
-    // Favorite Templates
-    const [favIds, setFavIds] = useState([]);
-    const [allFavItems, setAllFavItems] = useState([]);
-    const [favItems, setFavItems] = useState([]);
-    const [favType, setFavType] = useState('');
-    const [favCategories, setFavCategories] = useState([]);
-    const [activeFavCat, setActiveFavCat] = useState('all');
-    const [favTags, setFavTags] = useState([]);
-    const [activeFavTag, setActiveFavTag] = useState('');
-    const [favSortBy, setFavSortBy] = useState('newest');
-    const [favStatus, setFavStatus] = useState(false);
 
-    // fetch settings
-    const fetchSettings = async (options) => {
-        try {
-            const response = await apiFetch(options);
-            return response;
-        } catch (error) {
-            console.error('API Fetch Error:', error);
-            throw error;
-        }
-    };
-
-    // favorite templates
-    useEffect(() => {
-        apiFetch({
-            path: '/zolo/v1/favorites',
-            method: 'GET',
-        }).then((response) => {
-            if (!response) {
-                return;
-            }
-            const favIds = Object.values(response); // get the values
-            setFavIds(favIds);
-        });
-    }, []);
-
-    // save favorite templates to database
-    const handleFavTemplate = (templateID) => {
-        // setLoading(true);
-        apiFetch({
-            path: '/zolo/v1/favorites',
-            method: 'POST',
-            data: { fav_id: templateID, zolo_nonce: zoloParams?.zolo_nonce },
-        }).then((response) => {
-            if (!response) {
-                return;
-            }
-            const favIds = Object.values(response); // get the values
-            setFavIds(favIds);
-            setFavStatus(!favStatus);
-        });
-    };
 
     // Filter by Demos Type
-    useEffect(() => {
-        const filteredFav = allFavItems?.filter((template) => {
-            if (favType === 'free') {
-                return template?.status === 'free';
-            } else if (favType === 'pro') {
-                return template?.status === 'pro';
-            } else {
-                return true;
-            }
-        });
-        setFavItems(filteredFav?.slice(0, number));
-        setTotal(filteredFav?.length);
-    }, [favType]); // eslint-disable-line
-
-    // Filter by Category
-    useEffect(() => {
-        // filter patterns based on category
-        const filteredFavs = allFavItems?.filter((template) => {
-            if (activeFavCat === 'all') {
-                return true;
-            } else {
-                return template.categories.includes(activeFavCat);
-            }
-        });
-        setFavItems(filteredFavs?.slice(0, number));
-        setTotal(filteredFavs?.length);
-    }, [activeFavCat]); // eslint-disable-line
-
-    // Filter by Tags
-    const sortFavByTag = (tag) => {
-        setActiveFavTag(tag);
-        const filteredFavs = allFavItems?.filter((template) => template.tags.includes(tag));
-        setFavItems(filteredFavs);
-    };
-
-    // Sorting Demos
-    const handleFavSortBy = (value) => {
-        setFavSortBy(value);
-        const sortedFavs = allFavItems?.sort((a, b) => {
-            if (value === 'newest') {
-                return new Date(b.created) - new Date(a.created);
-            } else if (value === 'oldest') {
-                return new Date(a.created) - new Date(b.created);
-            }
-        });
-        setFavItems([...sortedFavs]); // update the state
-    };
-
-    useEffect(() => {
-        if (favIds?.length > 0) {
-            const allFavItemsData = allTemplates?.filter((template) => favIds?.includes(template.id));
-
-            setAllFavItems(allFavItemsData);
-            setFavItems(allFavItemsData);
-
-            // set favorite categories
-            const favCategories = allFavItemsData?.map((template) => template.categories);
-            const uniqueFavCategories = [...new Set(favCategories?.flat())];
-            const sortedFavCategories = uniqueFavCategories.sort((a, b) => a.localeCompare(b));
-            const favCategoriesArray = sortedFavCategories.map((category) => ({ label: category, value: category }));
-            const index = favCategoriesArray.findIndex((category) => category.value === 'Demos');
-            if (index > -1) {
-                favCategoriesArray.splice(index, 1);
-            }
-            favCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setFavCategories(favCategoriesArray);
-
-            // favorite tags
-            const allFavTags = allFavItemsData?.map((template) => template.tags);
-            // find top 5 tags based on frequency
-            const favTags = allFavTags?.flat().reduce((acc, tag) => {
-                acc[tag] = (acc[tag] || 0) + 1;
-                return acc;
-            }, {});
-
-            const sortedFavTags = Object.keys(favTags)
-                .sort((a, b) => favTags[b] - favTags[a])
-                .slice(0, 10);
-            setFavTags(sortedFavTags);
-        } else {
-            setAllFavItems([]);
-            setFavItems([]);
-            setFavCategories([]);
-            setFavTags([]);
-        }
-    }, [favIds, allTemplates, favStatus]);
-    let count = useRef(0);
-    // fetch templates
-    const fetchTemplates = async () => {
-        setLoading(true);
-        apiFetch({
-            path: '/zolo/v1/templates',
-            method: 'GET',
-        }).then((response) => {
-            const { data } = response;
-            if (!data && count.current >= 2) {
-                setAttemptComplete(true);
-                setLoading(false);
-                return;
-            }
-
-            if (!data) {
-                count.current += 1;
-                pullNewDemos();
-                return;
-            }
-
-            setAllTemplates(data);
-
-            // set all pages
-            const pages = data?.filter((template) => template.template_type === 'pages');
-            setAllPages(pages);
-            setPages(pages);
-
-            // set page categories
-            const pageCategories = pages
-                ?.filter((template) => template.template_type === 'pages')
-                .map((template) => template.pages_category);
-            const uniquePageCategories = [...new Set(pageCategories?.flat())];
-            const sortedPageCategories = uniquePageCategories.sort((a, b) => a.localeCompare(b));
-            const pageCategoriesArray = sortedPageCategories.map((category) => ({ label: category, value: category }));
-            pageCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setPageCategories(pageCategoriesArray);
-
-            // page tags
-            const allPageTags = pages?.map((template) => template.tags);
-            // find top 5 tags based on frequency
-            const pageTags = allPageTags?.flat().reduce((acc, tag) => {
-                acc[tag] = (acc[tag] || 0) + 1;
-                return acc;
-            }, {});
-
-            const sortedPageTags = Object.keys(pageTags)
-                .sort((a, b) => pageTags[b] - pageTags[a])
-                .slice(0, 10);
-            setPageTags(sortedPageTags);
-
-            // stop loading
-            setLoading(false);
-        });
-    };
 
     // fetch demo templates
-    const fetchDemoTemplates = async () => {
+const fetchDemos = async () => {
+    setLoading(true);
+    try {
+        const response = await axios({
+            method: 'get',
+            url: 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo/demos/',
+            params: {
+                per_page: 20, // Limit the number of results
+                orderby: 'date', // Order by date
+                order: 'desc', // Order descending
+               ...activeDemoCat &&  activeDemoCat !== 'demos' && {
+                    categories: activeDemoCat,
+                },
+                tags: activeDemoTag,
+                search: searchText,
+            },
+        });
+
+
+        const { data } = response;
+        // console.log('data', data);
+
+        if (!data) {
+            console.log('No data found');
+            setDemos([]);
+            setAllDemos([]);
+        } else {
+            setDemos(data);
+            setAllDemos(data);
+        }
+    } catch (error) {
+        console.error('Error fetching demos:', error);
+    } finally {
+        setLoading(false);
+    }
+};
+
+
+    const fetchDemoCategories = async () => {
         setLoading(true);
-        apiFetch({
-            path: '/zolo/v1/demos',
-            method: 'GET',
+       const response = await axios({
+            method: 'get',
+            url: 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo/demos/categories/',
+
         }).then((response) => {
             const { data } = response;
             if (!data) {
@@ -583,232 +430,24 @@ function ZoloBlocksTemplateLibraryButton() {
                 setLoading(false);
                 return;
             }
-
-            // add demos to all templates
-            setAllTemplates((prev) => [...prev, ...data]);
-
-            // set all patterns
-            const patterns = data?.filter((template) => template.template_type === 'patterns');
-            setAllPatterns(patterns);
-            setPatterns(patterns);
-
-            // set pattern categories
-            const patternCategories = patterns
-                ?.filter((template) => template.template_type === 'patterns')
-                .map((template) => template.patterns_category);
-            const uniquePatternCategories = [...new Set(patternCategories?.flat())];
-            const sortedPatternCategories = uniquePatternCategories.sort((a, b) => a.localeCompare(b));
-            const patternCategoriesArray = sortedPatternCategories.map((category) => ({ label: category, value: category }));
-            patternCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setPatternCategories(patternCategoriesArray);
-
-            // patterns tags
-            const allPatternTags = patterns?.map((template) => template.tags);
-            // find top 5 tags based on frequency
-            const patternTags = allPatternTags?.flat().reduce((acc, tag) => {
-                acc[tag] = (acc[tag] || 0) + 1;
-                return acc;
-            }, {});
-
-            const sortedPatternTags = Object.keys(patternTags)
-                .sort((a, b) => patternTags[b] - patternTags[a])
-                .slice(0, 10);
-            setPatternTags(sortedPatternTags);
-
-            // set all demos
-            const demos = data?.filter((template) => template.template_type === 'demos');
-            setAllDemos(demos);
-            setDemos(demos);
-
-            // set demo categories
-            const demoCategories = demos
-                ?.filter((template) => template.template_type === 'demos')
-                .map((template) => template.demos_category);
-            const uniqueDemoCategories = [...new Set(demoCategories?.flat())];
-            const sortedDemoCategories = uniqueDemoCategories.sort((a, b) => a.localeCompare(b));
-            const demoCategoriesArray = sortedDemoCategories.map((category) => ({ label: category, value: category }));
-            demoCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setDemoCategories(demoCategoriesArray);
-
-            // demo tags
-            const allDemoTags = demos?.map((template) => template.tags);
-            // find top 5 tags based on frequency
-            const demoTags = allDemoTags?.flat().reduce((acc, tag) => {
-                acc[tag] = (acc[tag] || 0) + 1;
-                return acc;
-            }, {});
-
-            const sortedDemoTags = Object.keys(demoTags)
-                .sort((a, b) => demoTags[b] - demoTags[a])
-                .slice(0, 10);
-            setDemoTags(sortedDemoTags);
-            // stop loading
+            setDemoCategories(data);
             setLoading(false);
         });
-    };
+    }
 
-    // pull new demos
-    const pullNewDemos = () => {
-        setTimeout(() => {
-            setLoading(true);
-            jQuery.ajax({
-                url: zoloParams?.ajaxurl,
-                type: 'POST',
-                nonce: zoloParams?.nonce,
-                data: {
-                    action: 'zolo_demo_pull',
-                },
-                success: function (response) {
-                    if (response.success) {
-                        fetchTemplates();
-                    } else {
-                        console.log('Error:', response.data);
-                    }
-                },
-                error: function (error) {
-                    console.log('Error:', error);
-                },
-            });
-
-            jQuery.ajax({
-                url: zoloParams?.ajaxurl,
-                type: 'POST',
-                nonce: zoloParams?.nonce,
-                data: {
-                    action: 'zolo_demo_template_pull',
-                },
-                success: function (response) {
-                    if (response.success) {
-                        fetchDemoTemplates();
-                    } else {
-                        console.log('Error:', response.data);
-                    }
-                },
-                error: function (error) {
-                    console.log('Error:', error);
-                },
-            });
-        }, 1500);
-    };
 
     /**
      * Fetch Templates
      */
     useEffect(() => {
         // fetch templates
-        fetchTemplates();
 
         // fetch demo templates
-        fetchDemoTemplates();
-    }, [pullDemos]);
+        fetchDemos();
+        fetchDemoCategories();
+    }, [pullDemos, activeDemoCat, activeDemoTag, searchText]); // eslint-disable-line
 
-    // filter templates based on search text
-    useEffect(() => {
-        if (searchText !== '' && activeTab === 'patterns') {
-            const filteredPatterns = allPatterns?.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
-            setPatterns(filteredPatterns);
-        } else {
-            setPatterns(allPatterns); // Reset to all patterns if no search text
-        }
 
-        if (searchText !== '' && activeTab === 'pages') {
-            const filteredPages = allPages?.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
-            setPages(filteredPages);
-        } else {
-            setPages(allPages); // Reset to all pages if no search text
-        }
-
-        if (searchText !== '' && activeTab === 'demos') {
-            const filteredDemos = allDemos?.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
-            setDemos(filteredDemos);
-        } else {
-            setDemos(allDemos); // Reset to all demos if no search text
-        }
-
-        if (searchText !== '' && activeTab === 'favorites') {
-            const filteredFavs = allFavItems?.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
-            setFavItems(filteredFavs);
-        } else {
-            setFavItems(allFavItems); // Reset to all favorites if no search text
-        }
-
-        if (searchText !== '' && activeTab === 'templates') {
-            const filteredPageTemplates = allPageTemplates?.filter((template) => {
-                return template.title.toLowerCase().includes(searchText.toLowerCase());
-            });
-            setPageTemplates(filteredPageTemplates);
-        } else {
-            setPageTemplates(allPageTemplates); // Reset to all page templates if no search text
-        }
-    }, [searchText, activeTab, allPatterns, number, allDemos]); // eslint-disable-line
-
-    /**
-     * Handle Import Template
-     * @param {string} jsonFile
-     */
-    const handleImportTemplate = (jsonFile) => {
-        setLoading(true);
-
-        jQuery.ajax({
-            url: zoloParams?.ajaxurl,
-            type: 'POST',
-            nonce: zoloParams?.nonce,
-            data: {
-                action: 'zolo_demo_import',
-                security: zoloParams?.zolo_nonce,
-                json_file_url: jsonFile,
-            },
-            success: function (response) {
-                if (response.success) {
-                    const { data } = response;
-                    if (data) {
-                        const { content } = data;
-                        const blocks = wp.blocks.parse(content);
-                        
-                        const getBlockRecursively = (block) => {
-                            if (block.innerBlocks.length > 0) {
-                                block.innerBlocks.forEach((innerBlock) => {
-                                    getBlockRecursively(innerBlock);
-                                });
-                            } else {
-                                if (block.name === 'zolo/advanced-paragraph') {
-                                    let content = block.attributes.content;
-                                    content = content.replace(/<p>/g, '').replace(/<\/p>/g, '');
-                                    block.attributes.content = content;
-                                }
-                            }
-                        };
-
-                        blocks.forEach((block) => {
-                            getBlockRecursively(block);
-                        });
-                        
-                        const selectedBlock = wp.data.select('core/block-editor').getSelectedBlock();
-                        if (selectedBlock && selectedBlock.name === 'core/paragraph') {
-                            wp.data.dispatch('core/block-editor').replaceBlocks(selectedBlock.clientId, blocks);
-                        } else {
-                            wp.data.dispatch('core/block-editor').insertBlocks(blocks, 0);
-                        }
-                        setLoading(false);
-                        setIsOpen(false);
-                    }
-                } else {
-                    console.log('Error:', response.data);
-                }
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            },
-        });
-    };
 
     const LibraryButton = () => (
         <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
@@ -844,44 +483,7 @@ function ZoloBlocksTemplateLibraryButton() {
                     isDismissible={false}
                 >
                     <div className="zolo-dm-body">
-                        {
-                            // Patterns
-                            activeTab === 'patterns' && (
-                                <TemplatesLoader
-                                    TABS={TABS}
-                                    activeTab={activeTab}
-                                    setActiveTab={setActiveTab}
-                                    searchText={searchText}
-                                    setSearchText={setSearchText}
-                                    pullDemos={pullDemos}
-                                    setPullDemos={setPullDemos}
-                                    pullNewDemos={pullNewDemos}
-                                    setIsOpen={setIsOpen}
-                                    number={number}
-                                    setNumber={setNumber}
-                                    loading={loading}
-                                    handleImportTemplate={handleImportTemplate}
-                                    type={patternsType}
-                                    setType={setPatternsType}
-                                    categories={patternCategories}
-                                    activeCat={activePatternCat}
-                                    setActiveCat={setActivePatternCat}
-                                    allItems={allPatterns}
-                                    items={patterns}
-                                    setItems={setPatterns}
-                                    tags={patternTags}
-                                    activeTag={activePatternTag}
-                                    setActiveTag={setActivePatternTag}
-                                    sortItemsByTag={sortPatternsByTag}
-                                    handleItemSortBy={handlePatternSortBy}
-                                    itemSortBy={patternSortBy}
-                                    // fav templates
-                                    favIds={favIds}
-                                    handleFavTemplate={handleFavTemplate}
-                                    attemptComplete={attemptComplete}
-                                />
-                            )
-                        }
+
                         {
                             // Demos
                             activeTab === 'demos' && (
@@ -892,13 +494,12 @@ function ZoloBlocksTemplateLibraryButton() {
                                     searchText={searchText}
                                     setSearchText={setSearchText}
                                     pullDemos={pullDemos}
-                                    setPullDemos={setPullDemos}
-                                    pullNewDemos={pullNewDemos}
+                                    // setPullDemos={setPullDemos}
+                                    // pullNewDemos={pullNewDemos}
                                     setIsOpen={setIsOpen}
                                     number={number}
                                     setNumber={setNumber}
                                     loading={loading}
-                                    handleImportTemplate={handleImportTemplate}
                                     type={demosType}
                                     setType={setDemosType}
                                     categories={demoCategories}
@@ -913,109 +514,8 @@ function ZoloBlocksTemplateLibraryButton() {
                                     sortItemsByTag={sortDemosByTag}
                                     handleItemSortBy={handleDemoSortBy}
                                     itemSortBy={demoSortBy}
-                                    // fav templates
-                                    favIds={favIds}
-                                    handleFavTemplate={handleFavTemplate}
+
                                     attemptComplete={attemptComplete}
-                                />
-                            )
-                        }
-                        {activeTab === 'templates' && (
-                            <PageTemplateLoader
-                                TABS={TABS}
-                                activeTab={activeTab}
-                                setActiveTab={setActiveTab}
-                                searchText={searchText}
-                                setSearchText={setSearchText}
-                                pullDemos={pullDemos}
-                                setPullDemos={setPullDemos}
-                                pullNewDemos={pullNewDemos}
-                                setIsOpen={setIsOpen}
-                                number={number}
-                                setNumber={setNumber}
-                                loading={loading}
-                                handleImportTemplate={handleImportTemplate}
-                                type={pageTemplatesType}
-                                setType={setPageTemplatesType}
-                                categories={pageTemplateCategories}
-                                activeCat={activePageTemplateCat}
-                                setActiveCat={setActivePageTemplateCat}
-                                allItems={allPageTemplates}
-                                items={pageTemplates}
-                                setItems={setPageTemplates}
-                                // fav templates
-                                favIds={favIds}
-                                handleFavTemplate={handleFavTemplate}
-                            />
-                        )}
-                        {activeTab === 'pages' && (
-                            <TemplatesLoader
-                                TABS={TABS}
-                                activeTab={activeTab}
-                                setActiveTab={setActiveTab}
-                                searchText={searchText}
-                                setSearchText={setSearchText}
-                                pullDemos={pullDemos}
-                                setPullDemos={setPullDemos}
-                                pullNewDemos={pullNewDemos}
-                                setIsOpen={setIsOpen}
-                                number={number}
-                                setNumber={setNumber}
-                                loading={loading}
-                                handleImportTemplate={handleImportTemplate}
-                                type={pagesType}
-                                setType={setPagesType}
-                                categories={pageCategories}
-                                activeCat={activePageCat}
-                                setActiveCat={setActivePageCat}
-                                allItems={allPages}
-                                items={pages}
-                                setItems={setPages}
-                                tags={pageTags}
-                                activeTag={activePageTag}
-                                setActiveTag={setActivePageTag}
-                                sortItemsByTag={sortPagesByTag}
-                                handleItemSortBy={handlePageSortBy}
-                                itemSortBy={pageSortBy}
-                                // fav templates
-                                favIds={favIds}
-                                handleFavTemplate={handleFavTemplate}
-                            />
-                        )}
-                        {
-                            // favorites
-                            activeTab === 'favorites' && (
-                                <TemplatesLoader
-                                    TABS={TABS}
-                                    activeTab={activeTab}
-                                    setActiveTab={setActiveTab}
-                                    searchText={searchText}
-                                    setSearchText={setSearchText}
-                                    pullDemos={pullDemos}
-                                    setPullDemos={setPullDemos}
-                                    pullNewDemos={pullNewDemos}
-                                    setIsOpen={setIsOpen}
-                                    number={number}
-                                    setNumber={setNumber}
-                                    loading={loading}
-                                    handleImportTemplate={handleImportTemplate}
-                                    type={favType}
-                                    setType={setFavType}
-                                    categories={favCategories}
-                                    activeCat={activeFavCat}
-                                    setActiveCat={setActiveFavCat}
-                                    allItems={allFavItems}
-                                    items={favItems}
-                                    setItems={setFavItems}
-                                    tags={favTags}
-                                    activeTag={activeFavTag}
-                                    setActiveTag={setActiveFavTag}
-                                    sortItemsByTag={sortFavByTag}
-                                    handleItemSortBy={handleFavSortBy}
-                                    itemSortBy={favSortBy}
-                                    // fav templates
-                                    favIds={favIds}
-                                    handleFavTemplate={handleFavTemplate}
                                 />
                             )
                         }
