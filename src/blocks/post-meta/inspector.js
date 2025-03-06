@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { CardDivider, SelectControl, TextControl } from '@wordpress/components';
+import { CardDivider, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT, ICON_SIZE, TEXT_INDENT } from './constants';
@@ -7,6 +7,7 @@ import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import Sortable from './sortable';
+// import { ToggleControl } from '@wordpress/components/build-types/toggle-control';
 
 const {
     HeaderTabs,

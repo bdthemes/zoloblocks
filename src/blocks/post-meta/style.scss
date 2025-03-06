@@ -10,13 +10,20 @@
         align-items: center;
         gap: 6px;
         font-size: 16px;
-        color: #3b3a41;
+        color: #7c7b7f;
         font-weight: 400;
         text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .zolo-meta-info a:hover {
+        color: #45454c;
     }
 
     .zolo-meta-info.terms .zolo-text {
-        display: inline;
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
     }
 
     .zolo-icon {
