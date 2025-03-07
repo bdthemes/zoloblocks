@@ -21,6 +21,7 @@ import './page-templates.scss';
 import PageTemplateLoader from './page-templates';
 import PreLoader from './preloader';
 import TemplatesLoader from './template-loader';
+import Content from './components/content';
 
 /**
  * Constants
@@ -484,7 +485,7 @@ const fetchDemos = async () => {
                     isDismissible={false}
                 >
                     <div className="zolo-dm-body">
-
+                      {/* <Content /> */}
                         {
                             // Demos
                             activeTab === 'demos' && (
