@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
   import { subscribe, useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import InnerTemplate from '../../inner-template';
-import { getDemosActiveCat } from '../../store/selectors';
+import { getDemosActiveCat, getActiveTab } from '../../store/selectors';
 const Content = ({props}) => {
   const {
       number,
@@ -25,16 +25,24 @@ const Content = ({props}) => {
       attemptComplete,
   } = props;
 
-  const { items } = useSelect(
-      (select) => {
-          const { getDemos, getDemosActiveCat } = select('zolo/templates/library');
-          return {
-              items: getDemos({ tag: activeTag, categories: getDemosActiveCat() })
-          };
-      },
-      [getDemosActiveCat]
-  );
+    const { items, activeTab } = useSelect(
+        (select) => {
+            const { getDemos, getDemosActiveCat, getActiveTab, getPatterns } = select('zolo/templates/library');
+            const activeTab = getActiveTab(); // একবারই কল করা হলো
 
+            return {
+                items: activeTab === 'demos'
+                    ? getDemos({ tag: activeTag, categories: getDemosActiveCat() })
+                    : activeTab === 'patterns'
+                        ? getPatterns()
+                        : [],
+                activeTab,
+            };
+        },
+        [activeTab, getDemosActiveCat] // dependencies ঠিক করা হলো
+    );
+
+  console.log(items, activeTab);
 
   return (
       <>

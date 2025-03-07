@@ -485,12 +485,7 @@ const fetchDemos = async () => {
                     isDismissible={false}
                 >
                     <div className="zolo-dm-body">
-                      {/* <Content /> */}
-                        {
-                            // Demos
-                            activeTab === 'demos' && (
                                 <TemplatesLoader
-                                    TABS={TABS}
                                     activeTab={activeTab}
                                     setActiveTab={setActiveTab}
                                     searchText={searchText}
@@ -519,8 +514,6 @@ const fetchDemos = async () => {
 
                                     attemptComplete={attemptComplete}
                                 />
-                            )
-                        }
                         {loading && <PreLoader />}
                     </div>
                 </Modal>

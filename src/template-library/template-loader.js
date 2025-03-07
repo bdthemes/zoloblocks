@@ -8,7 +8,6 @@ import Header from './components/header/index';
 import Content from './components/content';
 
 const TemplatesLoader = ({
-    TABS,
     activeTab,
     setActiveTab,
     searchText,
@@ -61,7 +60,6 @@ const TemplatesLoader = ({
             break;
     }
 
-    const categoryTypes = ['demos_category', 'templates_category', 'pages_category', 'patterns_category'];
     const sidebarProps = {
         categories,
         activeTab,
@@ -80,7 +78,6 @@ const TemplatesLoader = ({
         searchText,
         setSearchText,
         setIsOpen,
-        TABS,
     };
 
     const contentProps = {

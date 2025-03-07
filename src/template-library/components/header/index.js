@@ -2,10 +2,12 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
+import { useDispatch, useSelect } from '@wordpress/data';
+import { getActiveTab } from '../../store/selectors';
 
 
 const Header = ({props}) => {
-    const { activeTab, setActiveTab, pullDemos, setPullDemos, pullNewDemos, searchText, setSearchText, setIsOpen } = props;
+    const { pullDemos, setPullDemos, pullNewDemos, searchText, setSearchText, setIsOpen } = props;
     const TABS = [
         { label: __('Demos', 'zoloblocks'), value: 'demos' },
         { label: __('Templates', 'zoloblocks'), value: 'templates' },
@@ -14,6 +16,18 @@ const Header = ({props}) => {
         { label: __('Favorites', 'zoloblocks'), value: 'favorites' },
 
     ];
+    const dispatch = useDispatch('zolo/templates/library');
+
+
+      const { activeTab } = useSelect(
+          (select) => {
+              const {  getActiveTab } = select('zolo/templates/library');
+              return {
+                  activeTab: getActiveTab(),
+              };
+          },
+          [getActiveTab]
+      );
 
     return (
         <div className="zolo-dm-head">
@@ -34,7 +48,10 @@ const Header = ({props}) => {
                         <button
                             key={tab.value}
                             className={classNames('single-tab', { active: activeTab === tab.value }, { fav: tab.value === 'favorites' })}
-                            onClick={() => setActiveTab(tab.value)}
+                            onClick={() => {
+                                dispatch.setActiveTab(tab.value);
+                            }
+                            }
                         >
                             {tab.label}
                         </button>

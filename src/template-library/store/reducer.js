@@ -1,7 +1,8 @@
-import {FETCH_DEMOS, FETCH_DEMOS_CATEGORIES, FETCH_DEMOS_TAGS , SET_ACTIVE_TAG, SET_ACTIVE_CAT, SET_ACTIVE_TAB} from './types';
+import {FETCH_DEMOS, FETCH_DEMOS_CATEGORIES, FETCH_DEMOS_TAGS , SET_ACTIVE_TAG, SET_ACTIVE_CAT, SET_ACTIVE_TAB, FETCH_PATTERNS} from './types';
 
 const DEFAULT_STATE = {
     demos: [],
+    patterns: [],
     categories: [],
     tags: [],
     activeTag: '',
@@ -24,6 +25,8 @@ const reducer = (state = DEFAULT_STATE, action) => {
         case SET_ACTIVE_TAB:
             return { ...state, activeTab: action.activeTab
         };
+        case FETCH_PATTERNS:
+            return { ...state, patterns: action.patterns };
         default:
             return state;
     }

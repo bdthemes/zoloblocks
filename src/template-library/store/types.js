@@ -4,3 +4,4 @@ export const FETCH_DEMOS_TAGS = 'FETCH_DEMOS_TAGS';
 export const SET_ACTIVE_TAG = 'SET_ACTIVE_TAG';
 export const SET_ACTIVE_CAT = 'SET_ACTIVE_CAT';
 export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+export const FETCH_PATTERNS = 'FETCH_PATTERNS';
