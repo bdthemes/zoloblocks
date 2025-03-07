@@ -28,18 +28,17 @@ const Content = ({props}) => {
     const { items, activeTab } = useSelect(
         (select) => {
             const { getDemos, getDemosActiveCat, getActiveTab, getPatterns } = select('zolo/templates/library');
-            const activeTab = getActiveTab(); // একবারই কল করা হলো
-
+            const activeTab = getActiveTab();
             return {
                 items: activeTab === 'demos'
-                    ? getDemos({ tag: activeTag, categories: getDemosActiveCat() })
+                    ? getDemos({categories: getDemosActiveCat() })
                     : activeTab === 'patterns'
-                        ? getPatterns()
+                        ? getPatterns({categories: getDemosActiveCat() })
                         : [],
                 activeTab,
             };
         },
-        [activeTab, getDemosActiveCat] // dependencies ঠিক করা হলো
+        [activeTab, getDemosActiveCat]
     );
 
   console.log(items, activeTab);
