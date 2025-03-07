@@ -2,10 +2,11 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { BaseControl, SelectControl, Tooltip } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 const Sidebar = ({props}) => {
-    const {activeTab, activeCat, setActiveCat, setType, type } = props;
 
+  const dispatch = useDispatch('zolo/templates/library');
+    const {activeTab, activeCat, setType, type } = props;
       const { getDemosCategories } = useSelect((select) => {
           const { getDemosCategories } = select('zolo/templates/library');
           return {
@@ -98,7 +99,7 @@ const Sidebar = ({props}) => {
                                 className={classNames('single-category', {
                                     active: activeCat === category?.slug,
                                 })}
-                                onClick={() => setActiveCat(category?.slug)}
+                                onClick={() => dispatch.setActiveCat(category?.slug)}
                             >
                                 <span className="single-category-text">{category?.slug === 'demos' ? 'All' : category?.label}</span>
                                 <span className="single-category-count">{category?.count}</span>
