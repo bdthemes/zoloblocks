@@ -38,7 +38,7 @@ const Content = ({props}) => {
                 activeTab,
             };
         },
-        [activeTab, getDemosActiveCat]
+        [getActiveTab, getDemosActiveCat]
     );
 
   console.log(items, activeTab);

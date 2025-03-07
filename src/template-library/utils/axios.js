@@ -34,7 +34,7 @@ export const getPatternsData = async (props) => {
 }
 
 
-export const getPatternsCategoriesData = async () => {
+export const getDemoCategoriesData = async () => {
     try {
         const response = await instance.get("/patterns/categories");
         return response.data;
