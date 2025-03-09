@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { getActiveTab } from '../../store/selectors';
+import { getActiveTab, getPackageType } from '../../store/selectors';
 
 
 const Header = ({props}) => {
@@ -27,7 +27,7 @@ const Header = ({props}) => {
                   reset: getReset(),
               };
           },
-          [getActiveTab]
+          [getActiveTab, getPackageType]
       );
 
     return (

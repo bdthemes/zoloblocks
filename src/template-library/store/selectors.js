@@ -30,5 +30,5 @@ export const getReset = (state) => {
 }
 
 export const getPackageType = (state) => {
-    return state.packageType;
+    return state.packageType || '';
 };

@@ -54,6 +54,7 @@ const Sidebar = () => {
                                 className="demo-pro-free-reset"
                                 onClick={() => {
                                     dispatch.setPackageType('');
+                                    // dispatch.setReset(true);
                                 }}
                             >
                                 <svg
@@ -78,6 +79,7 @@ const Sidebar = () => {
                     <button
                         className="demo-free-btn"
                         onClick={() => {
+                            // dispatch.setReset(false);
                             dispatch.setPackageType('free');
                         }}
                     >
@@ -86,6 +88,7 @@ const Sidebar = () => {
                     <button
                         className="demo-pro-btn"
                         onClick={() => {
+                            // dispatch.setReset(false);
                             dispatch.setPackageType('pro');
                         }}
                     >
