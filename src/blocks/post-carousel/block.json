@@ -18,9 +18,8 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": ["zolo-swiper-style", "file:./style-index.css"],
+    "editorScript": ["file:./index.js"],
+    "style": ["swiper", "file:./style-index.css"],
     "viewScript": "file:./frontend.js",
-    "script": ["zolo-swiper-script"]
+    "script": ["swiper"]
 }
