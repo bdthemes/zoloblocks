@@ -384,7 +384,7 @@ export const AdvancedOptions = (props) => {
             )}
             {globalConfig?.responsiveControls && (
                 <>
-                    <ZoloPanelBody title={__('Visibility Control', 'zoloblocks')} panelProps={props} extraPanel={true}>
+                    <ZoloPanelBody title={__('Display Condition', 'zoloblocks')} panelProps={props} extraPanel={true}>
                         <ToggleControl
                             label={__('Hide on Desktop', 'zoloblocks')}
                             checked={responsiveness?.hideDesktop || false}

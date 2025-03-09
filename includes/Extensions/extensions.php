@@ -150,7 +150,7 @@ return apply_filters('zolo_extensions', [
     ],
     'tooltip' => [
         'name' => 'tooltip',
-        'title' => __('Tooltip', 'zoloblocks'),
+        'title' => __('Zolo Tooltip', 'zoloblocks'),
         'status' => true,
         'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/tooltip',
@@ -158,7 +158,7 @@ return apply_filters('zolo_extensions', [
     ],
     'highlight' => [
         'name' => 'highlight',
-        'title' => __('Highlighter', 'zoloblocks'),
+        'title' => __('Zolo Highlight', 'zoloblocks'),
         'status' => true,
         'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/highlight',
