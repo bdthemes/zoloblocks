@@ -296,14 +296,17 @@ const Style = ({ props }) => {
     ${
         dropcap
             ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            font-size: 2em;
-            font-weight: bold;
-            float: left;
-            margin-right: 0.1em;
-            line-height: 1;
-        }
-    `
+                .${uniqueId}.wp-block-zolo-advanced-paragraph {
+                    text-align: left;
+                }
+                .${uniqueId}.wp-block-zolo-advanced-paragraph::first-letter {
+                    font-size: 2em;
+                    font-weight: bold;
+                    float: left;
+                    margin-right: 0.1em;
+                    line-height: 1;
+                }
+             `
             : ''
     }
 
