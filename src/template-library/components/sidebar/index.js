@@ -3,18 +3,24 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { BaseControl, SelectControl, Tooltip } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
+import { getDemosActiveCat, getActiveTab } from '../../store/selectors';
+
 const Sidebar = ({props}) => {
 
   const dispatch = useDispatch('zolo/templates/library');
     const {activeTab, activeCat, setType, type } = props;
-      const { getDemosCategories } = useSelect((select) => {
-          const { getDemosCategories } = select('zolo/templates/library');
-          return {
-              getDemosCategories,
-          };
-      });
 
-      const categories = getDemosCategories();
+      const { categories } = useSelect(
+          (select) => {
+              const { getDemosCategories, getPatternsCategories, getActiveTab } = select('zolo/templates/library');
+              const activeTab = getActiveTab();
+              return {
+                  categories: activeTab === 'demos' ? getDemosCategories() : getPatternsCategories(),
+              };
+          },
+          [getActiveTab, getDemosActiveCat]
+      );
+
     return (
         <div className="categories">
             <div className="demo-made-button">

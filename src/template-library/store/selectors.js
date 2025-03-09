@@ -7,6 +7,9 @@ export const getPatterns = (state) => {
 export const getDemosCategories = (state) => {
     return state.categories;
 };
+export const getPatternsCategories = (state) => {
+    return state.patternsCategories;
+};
 export const getDemosTags = (state) => {
     return state.tags;
 };

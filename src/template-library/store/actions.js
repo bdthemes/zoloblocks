@@ -1,4 +1,13 @@
-import { FETCH_DEMOS, FETCH_DEMOS_CATEGORIES, FETCH_DEMOS_TAGS, SET_ACTIVE_TAG, SET_ACTIVE_CAT, SET_ACTIVE_TAB, FETCH_PATTERNS } from './types';
+import {
+    FETCH_DEMOS,
+    FETCH_DEMOS_CATEGORIES,
+    FETCH_DEMOS_TAGS,
+    SET_ACTIVE_TAG,
+    SET_ACTIVE_CAT,
+    SET_ACTIVE_TAB,
+    FETCH_PATTERNS,
+    FETCH_PATTERNS_CATEGORIES,
+} from './types';
 
 export const fetchDemos = (demos) => {
     return {
@@ -19,6 +28,12 @@ export const fetchDemosCategories = (categories) => {
         categories,
     };
 }
+export const fetchPatternsCategories = (patternsCategories) => {
+    return {
+        type: FETCH_PATTERNS_CATEGORIES,
+        patternsCategories,
+    };
+};
 
 export const fetchDemosTags = (tags) => {
     return {

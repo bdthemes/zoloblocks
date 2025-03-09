@@ -7,7 +7,6 @@ import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
 import domReady from '@wordpress/dom-ready';
-import axios from 'axios';
 import './store';
 /**
  * Template Library Style
@@ -301,8 +300,7 @@ function ZoloBlocksTemplateLibraryButton() {
     const [allDemos, setAllDemos] = useState([]);
     const [demos, setDemos] = useState([]);
     const [demosType, setDemosType] = useState('');
-    const [demoCategories, setDemoCategories] = useState([]);
-    const [activeDemoCat, setActiveDemoCat] = useState(false);
+
     const [demoTags, setDemoTags] = useState([]);
     const [activeDemoTag, setActiveDemoTag] = useState('');
     const [demoSortBy, setDemoSortBy] = useState('newest');
@@ -378,76 +376,6 @@ function ZoloBlocksTemplateLibraryButton() {
 
 
 
-    // Filter by Demos Type
-
-    // fetch demo templates
-const fetchDemos = async () => {
-    setLoading(true);
-    try {
-        const response = await axios({
-            method: 'get',
-            url: 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo/demos/',
-            params: {
-                per_page: 20, // Limit the number of results
-                orderby: 'date', // Order by date
-                order: 'desc', // Order descending
-               ...activeDemoCat &&  activeDemoCat !== 'demos' && {
-                    categories: activeDemoCat,
-                },
-                tags: activeDemoTag,
-                search: searchText,
-            },
-        });
-
-
-        const { data } = response;
-        // console.log('data', data);
-
-        if (!data) {
-            console.log('No data found');
-            setDemos([]);
-            setAllDemos([]);
-        } else {
-            setDemos(data);
-            setAllDemos(data);
-        }
-    } catch (error) {
-        console.error('Error fetching demos:', error);
-    } finally {
-        setLoading(false);
-    }
-};
-
-
-    const fetchDemoCategories = async () => {
-        setLoading(true);
-       const response = await axios({
-            method: 'get',
-            url: 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo/demos/categories/',
-
-        }).then((response) => {
-            const { data } = response;
-            if (!data) {
-                console.log('No data found');
-                setLoading(false);
-                return;
-            }
-            setDemoCategories(data);
-            setLoading(false);
-        });
-    }
-
-
-    /**
-     * Fetch Templates
-     */
-    useEffect(() => {
-        // fetch templates
-
-        // fetch demo templates
-        fetchDemos();
-        fetchDemoCategories();
-    }, [pullDemos, activeDemoCat, activeDemoTag, searchText]); // eslint-disable-line
 
 
 
@@ -486,8 +414,6 @@ const fetchDemos = async () => {
                 >
                     <div className="zolo-dm-body">
                                 <TemplatesLoader
-                                    activeTab={activeTab}
-                                    setActiveTab={setActiveTab}
                                     searchText={searchText}
                                     setSearchText={setSearchText}
                                     pullDemos={pullDemos}
@@ -499,9 +425,6 @@ const fetchDemos = async () => {
                                     loading={loading}
                                     type={demosType}
                                     setType={setDemosType}
-                                    categories={demoCategories}
-                                    activeCat={activeDemoCat}
-                                    setActiveCat={setActiveDemoCat}
                                     allItems={allDemos}
                                     items={demos}
                                     setItems={setDemos}
