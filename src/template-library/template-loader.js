@@ -60,15 +60,6 @@ const TemplatesLoader = ({
             break;
     }
 
-    const sidebarProps = {
-        categories,
-        activeTab,
-        activeCat,
-        setActiveCat,
-        setType,
-        type,
-    };
-
     const headerProps = {
         activeTab,
         setActiveTab,
@@ -103,7 +94,7 @@ const TemplatesLoader = ({
     // const al
     return (
         <>
-            <Sidebar props={sidebarProps} />
+            <Sidebar />
             <div className="demos-container">
                 <Header props={headerProps} />
                 <Content props={contentProps} />

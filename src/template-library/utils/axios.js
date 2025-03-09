@@ -6,27 +6,24 @@ const instance = axios.create({
 });
 
 export const getDemoData = async (props) => {
-  const { categories } = props;
-//   console.log('props', props);
+    const { categories, reset } = props;
     try {
-        const response = await instance.get("/demos", {
-            params: {
-               ...categories && { categories: categories },
-            },
-        });
+        const params = reset === false ? { ...(categories && { categories }) } : null;
+
+        const response = await instance.get('/demos', params ? { params } : {});
+
         return response.data;
     } catch (error) {
         console.error(error);
     }
-}
+};
+
 export const getPatternsData = async (props) => {
-    const { categories } = props;
+    const { categories, reset = false } = props;
     try {
-        const response = await instance.get("/patterns", {
-            params: {
-                ...categories && { categories: categories },
-            },
-        });
+        const params = reset === false ? { ...(categories && { categories }) } : null;
+
+        const response = await instance.get("/patterns", params ? { params } : {});
         return response.data;
     } catch (error) {
         console.error(error);

@@ -7,6 +7,8 @@ import {
     SET_ACTIVE_TAB,
     FETCH_PATTERNS,
     FETCH_PATTERNS_CATEGORIES,
+    RESET_ALL,
+    SET_PACKAGE_TYPE
 } from './types';
 
 export const fetchDemos = (demos) => {
@@ -27,7 +29,7 @@ export const fetchDemosCategories = (categories) => {
         type: FETCH_DEMOS_CATEGORIES,
         categories,
     };
-}
+};
 export const fetchPatternsCategories = (patternsCategories) => {
     return {
         type: FETCH_PATTERNS_CATEGORIES,
@@ -40,26 +42,39 @@ export const fetchDemosTags = (tags) => {
         type: FETCH_DEMOS_TAGS,
         tags,
     };
-}
+};
 
 export const setActiveTag = (activeTag) => {
     return {
         type: SET_ACTIVE_TAG,
         activeTag,
     };
-}
+};
 
 export const setActiveCat = (activeCat) => {
     return {
         type: SET_ACTIVE_CAT,
         activeCat,
     };
-}
+};
 
 export const setActiveTab = (activeTab) => {
     return {
         type: SET_ACTIVE_TAB,
         activeTab,
     };
-}
+};
 
+export const setReset = (reset) => {
+    return {
+        type: RESET_ALL,
+        reset,
+    };
+};
+
+export const setPackageType = (packageType) => {
+    return {
+        type: SET_PACKAGE_TYPE,
+        packageType,
+    };
+};

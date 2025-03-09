@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
   import { subscribe, useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import InnerTemplate from '../../inner-template';
-import { getDemosActiveCat, getActiveTab } from '../../store/selectors';
+import { getDemosActiveCat, getActiveTab, getReset } from '../../store/selectors';
 const Content = ({props}) => {
   const {
       number,
@@ -25,23 +25,26 @@ const Content = ({props}) => {
       attemptComplete,
   } = props;
 
-    const { items, activeTab } = useSelect(
+    const { items, activeTab, reset } = useSelect(
         (select) => {
-            const { getDemos, getDemosActiveCat, getActiveTab, getPatterns } = select('zolo/templates/library');
+            const { getDemos, getDemosActiveCat, getActiveTab, getPatterns, getReset } = select('zolo/templates/library');
             const activeTab = getActiveTab();
             return {
-                items: activeTab === 'demos'
-                    ? getDemos({categories: getDemosActiveCat() })
-                    : activeTab === 'patterns'
-                        ? getPatterns({categories: getDemosActiveCat() })
-                        : [],
+                items:
+                    activeTab === 'demos'
+                        ? getDemos({
+                            categories: getDemosActiveCat(),
+                            reset: getReset(),
+                        })
+                        : activeTab === 'patterns'
+                          ? getPatterns({ categories: getDemosActiveCat(),
+                            reset: getReset(),  })
+                          : [],
                 activeTab,
             };
         },
         [getActiveTab, getDemosActiveCat]
     );
-
-  console.log(items, activeTab);
 
   return (
       <>

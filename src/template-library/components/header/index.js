@@ -19,11 +19,12 @@ const Header = ({props}) => {
     const dispatch = useDispatch('zolo/templates/library');
 
 
-      const { activeTab } = useSelect(
+      const { activeTab, reset } = useSelect(
           (select) => {
-              const {  getActiveTab } = select('zolo/templates/library');
+              const { getActiveTab, getReset } = select('zolo/templates/library');
               return {
                   activeTab: getActiveTab(),
+                  reset: getReset(),
               };
           },
           [getActiveTab]
@@ -49,6 +50,7 @@ const Header = ({props}) => {
                             key={tab.value}
                             className={classNames('single-tab', { active: activeTab === tab.value }, { fav: tab.value === 'favorites' })}
                             onClick={() => {
+                                dispatch.setReset(true);
                                 dispatch.setActiveTab(tab.value);
                             }
                             }

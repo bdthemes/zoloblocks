@@ -7,6 +7,8 @@ import {
     SET_ACTIVE_TAB,
     FETCH_PATTERNS,
     FETCH_PATTERNS_CATEGORIES,
+    RESET_ALL,
+    SET_PACKAGE_TYPE
 } from './types';
 
 const DEFAULT_STATE = {
@@ -18,6 +20,8 @@ const DEFAULT_STATE = {
     activeTag: '',
     activeCat: '',
     activeTab: 'demos',
+    reset: false,
+    packageType: '',
 };
 
 const reducer = (state = DEFAULT_STATE, action) => {
@@ -35,10 +39,14 @@ const reducer = (state = DEFAULT_STATE, action) => {
         case SET_ACTIVE_TAG:
             return { ...state, activeTag: action.activeTag };
         case SET_ACTIVE_TAB:
-            return { ...state, activeTab: action.activeTab
-        };
+            return { ...state, activeTab: action.activeTab };
         case FETCH_PATTERNS:
             return { ...state, patterns: action.patterns };
+        case RESET_ALL:
+            return { ...state, reset: action.reset };
+        case SET_PACKAGE_TYPE:
+            return { ...state, packageType: action.packageType };
+
         default:
             return state;
     }

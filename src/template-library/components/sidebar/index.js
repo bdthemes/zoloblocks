@@ -1,25 +1,26 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import { BaseControl, SelectControl, Tooltip } from '@wordpress/components';
+import { Tooltip } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { getDemosActiveCat, getActiveTab } from '../../store/selectors';
 
-const Sidebar = ({props}) => {
-
-  const dispatch = useDispatch('zolo/templates/library');
-    const {activeTab, activeCat, setType, type } = props;
-
-      const { categories } = useSelect(
-          (select) => {
-              const { getDemosCategories, getPatternsCategories, getActiveTab } = select('zolo/templates/library');
-              const activeTab = getActiveTab();
-              return {
-                  categories: activeTab === 'demos' ? getDemosCategories() : getPatternsCategories(),
-              };
-          },
-          [getActiveTab, getDemosActiveCat]
-      );
+const Sidebar = () => {
+    const dispatch = useDispatch('zolo/templates/library');
+    const { categories, activeTab, activeCat, packageType } = useSelect(
+        (select) => {
+            const { getDemosCategories, getDemosActiveCat, getPatternsCategories, getActiveTab, getPackageType } =
+                select('zolo/templates/library');
+            const activeTab = getActiveTab();
+            return {
+                categories: activeTab === 'demos' ? getDemosCategories() : getPatternsCategories(),
+                activeTab: activeTab,
+                activeCat: getDemosActiveCat(),
+                packageType: getPackageType(),
+            };
+        },
+        [getActiveTab, getDemosActiveCat]
+    );
 
     return (
         <div className="categories">
@@ -47,12 +48,12 @@ const Sidebar = ({props}) => {
             <div className="demo-title-proFree-wrap">
                 <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                 <div className="demo-proFree-btn">
-                    {type !== '' && (
+                    {packageType !== '' && (
                         <Tooltip>
                             <button
                                 className="demo-pro-free-reset"
                                 onClick={() => {
-                                    setType('');
+                                    dispatch.setPackageType('');
                                 }}
                             >
                                 <svg
@@ -77,7 +78,7 @@ const Sidebar = ({props}) => {
                     <button
                         className="demo-free-btn"
                         onClick={() => {
-                            setType('free');
+                            dispatch.setPackageType('free');
                         }}
                     >
                         {__('free', 'zoloblocks')}
@@ -85,7 +86,7 @@ const Sidebar = ({props}) => {
                     <button
                         className="demo-pro-btn"
                         onClick={() => {
-                            setType('pro');
+                            dispatch.setPackageType('pro');
                         }}
                     >
                         {__('pro', 'zoloblocks')}
@@ -105,7 +106,10 @@ const Sidebar = ({props}) => {
                                 className={classNames('single-category', {
                                     active: activeCat === category?.slug,
                                 })}
-                                onClick={() => dispatch.setActiveCat(category?.slug)}
+                                onClick={() => {
+                                    dispatch.setReset(false);
+                                    dispatch.setActiveCat(category?.slug);
+                                }}
                             >
                                 <span className="single-category-text">{category?.slug === 'demos' ? 'All' : category?.label}</span>
                                 <span className="single-category-count">{category?.count}</span>

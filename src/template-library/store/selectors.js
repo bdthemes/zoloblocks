@@ -25,3 +25,10 @@ export const getActiveTab = (state) => {
 export const getDemosNumber = (state) => {
     return state.number;
 };
+export const getReset = (state) => {
+    return state.reset;
+}
+
+export const getPackageType = (state) => {
+    return state.packageType;
+};
