@@ -138,7 +138,7 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             wp_register_script(
-                'zolo-fslightbox-popup',
+                'fslightbox',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
                 [],
                 ZOLO_VERSION,

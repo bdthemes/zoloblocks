@@ -152,7 +152,11 @@ function RenderView({ attributes, setAttributes }) {
                             post.categories.length > 0 ? (
                                 <ul className="zolo-post-category">
                                     {post.categories.map((item, index) => (
-                                        <li key={`${uniqueKey}-category-${index}`}  dangerouslySetInnerHTML={{ __html: item }} />
+                                        <li
+                                            key={`${uniqueKey}-category-${index}`}
+                                            dangerouslySetInnerHTML={{ __html: item }}
+                                            onClick={(e) => e.preventDefault()}
+                                        />
                                     ))}
                                 </ul>
                             ) : (
@@ -163,7 +167,12 @@ function RenderView({ attributes, setAttributes }) {
                         const author = (
                             <div className="zolo-post-author-name">
                                 <span>{authorPrefix || defaultAuthorPrefix}</span>
-                                <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
+                                <a
+                                    href="#"
+                                    className="zolo-post-author-link"
+                                    dangerouslySetInnerHTML={{ __html: post.author }}
+                                    onClick={(e) => e.preventDefault()}
+                                ></a>
                             </div>
                         );
                         const date = <div className="zolo-post-date">{post.date}</div>;
@@ -197,10 +206,14 @@ function RenderView({ attributes, setAttributes }) {
                                     {showThumbnail && preset !== 'style-5' && (
                                         <>
                                             {post.thumbnail && (
-                                                <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>
+                                                <a
+                                                    href={post.permalink}
+                                                    dangerouslySetInnerHTML={{ __html: post.thumbnail }}
+                                                    onClick={(e) => e.preventDefault()}
+                                                ></a>
                                             )}
                                             {!post.thumbnail && (
-                                                <a href={post.permalink}>
+                                                <a href={post.permalink} onClick={(e) => e.preventDefault()}>
                                                     <img
                                                         src={zoloPlaceholders.placeholder}
                                                         alt={__('Thumbnail Placeholder', 'zoloblocks')}
@@ -215,10 +228,14 @@ function RenderView({ attributes, setAttributes }) {
                                             {showThumbnail && (
                                                 <>
                                                     {post.thumbnail && (
-                                                        <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>
+                                                        <a
+                                                            href={post.permalink}
+                                                            dangerouslySetInnerHTML={{ __html: post.thumbnail }}
+                                                            onClick={(e) => e.preventDefault()}
+                                                        ></a>
                                                     )}
                                                     {!post.thumbnail && (
-                                                        <a href={post.permalink}>
+                                                        <a href={post.permalink} onClick={(e) => e.preventDefault()}>
                                                             <img
                                                                 src={zoloPlaceholders.placeholder}
                                                                 alt={__('Thumbnail Placeholder', 'zoloblocks')}
@@ -248,7 +265,7 @@ function RenderView({ attributes, setAttributes }) {
                                         {showCategory && preset !== 'style-5' && categoriesHtml}
                                         {showTitle && (
                                             <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                                <a href={post.permalink}>
+                                                <a href={post.permalink} onClick={(e) => e.preventDefault()}>
                                                     <RawHTML>{titleLimitWords}</RawHTML>
                                                 </a>
                                             </DynamicTag>
@@ -265,7 +282,7 @@ function RenderView({ attributes, setAttributes }) {
                                     </div>
                                     {showReadMore && (
                                         <div className="zolo-post-link-btn">
-                                            <a href={post.permalink}>
+                                            <a href={post.permalink} onClick={(e) => e.preventDefault()}>
                                                 {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
                                                 {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                             </a>
