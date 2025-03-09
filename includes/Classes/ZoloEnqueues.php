@@ -215,11 +215,6 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 true
             );
-
-
-            //enqueue 3rd party scripts and styles
-            // wp_enqueue_style('swiper');
-            // wp_enqueue_script('swiper');
         }
         /**
          * Load Block Editor Assets
