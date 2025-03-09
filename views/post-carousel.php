@@ -14,16 +14,16 @@ $wrapper_class = ZoloHelpers::get_wrapper_class($settings, $topclass);
 $uniqueId      = $settings['uniqueId'];
 $breakpoints = array(
     1024 => array(
-        'slidesPerView' => $settings['zolo_sliderColumnsRange'] ?? 2,
-        'spaceBetween'  => $settings['zolo_columnsGapRange'] ?? 30,
+        'slidesPerView' => isset($settings['zolo_sliderColumnsRange']) ? $settings['zolo_sliderColumnsRange'] : 2,
+        'spaceBetween'  => isset($settings['zolo_columnsGapRange']) ? $settings['zolo_columnsGapRange'] : 30,
     ),
     768 => array(
-        'slidesPerView' => $settings['zolo_TABsliderColumnsRange'] ?? 2,
-        'spaceBetween'  => $settings['zolo_TABcolumnsGapRange'] ?? 30,
+        'slidesPerView' => isset($settings['zolo_TABsliderColumnsRange']) ? $settings['zolo_TABsliderColumnsRange'] : 2,
+        'spaceBetween'  => isset($settings['zolo_TABcolumnsGapRange']) ? $settings['zolo_TABcolumnsGapRange'] : 30,
     ),
     640 => array(
-        'slidesPerView' => $settings['zolo_MOBsliderColumnsRange'] ?? 1,
-        'spaceBetween'  => $settings['zolo_MOBcolumnsGapRange'] ?? 0,
+        'slidesPerView' => isset($settings['zolo_MOBsliderColumnsRange']) ? $settings['zolo_MOBsliderColumnsRange'] : 1,
+        'spaceBetween'  => isset($settings['zolo_MOBcolumnsGapRange']) ? $settings['zolo_MOBcolumnsGapRange'] : 0,
     ),
 );
 $show_navigation = $settings['showNavigation'] ?? false;

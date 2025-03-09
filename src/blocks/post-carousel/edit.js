@@ -88,16 +88,16 @@ export default function Edit(props) {
         navigation: showNavigation
             ? {
                 nextEl: customNavIcon
-                    ? '.swiper-zolo-next'
-                    : '.swiper-button-next',
+                    ? `.${uniqueId} .swiper-zolo-next`
+                    : `.${uniqueId} .swiper-button-next`,
                 prevEl: customNavIcon
-                    ? '.swiper-zolo-prev'
-                    : '.swiper-button-prev',
+                    ? `.${uniqueId} .swiper-zolo-prev`
+                    : `.${uniqueId} .swiper-button-prev`,
             }
             : false,
         pagination: showPagination
             ? {
-                el: '.swiper-pagination',
+                el: `.${uniqueId} .swiper-pagination`,
                 clickable: true,
                 type: paginationType,
                 dynamicBullets: dynamicBullets,
