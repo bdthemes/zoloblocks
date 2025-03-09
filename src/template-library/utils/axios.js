@@ -5,7 +5,7 @@ const instance = axios.create({
 });
 
 export const getDemoData = async (props) => {
-    const { categories, reset, packageType } = props;
+    const { categories, reset, packageType, tags } = props;
     try {
         const params =
             reset === false
@@ -14,6 +14,7 @@ export const getDemoData = async (props) => {
                       ...(packageType  && {
                               status: packageType,
                           }),
+                        ...(tags && { tags }),
                   }
                 : null;
 
@@ -26,7 +27,7 @@ export const getDemoData = async (props) => {
 };
 
 export const getPatternsData = async (props) => {
-    const { categories, reset, packageType } = props;
+    const { categories, reset, packageType, tags } = props;
     try {
      const params =
          reset === false
@@ -36,6 +37,7 @@ export const getPatternsData = async (props) => {
                        packageType !== '' && {
                            status: packageType,
                        }),
+                     ...(tags && { tags }),
                }
              : null;
 
@@ -58,6 +60,15 @@ export const getDemoCategoriesData = async () => {
 export const getPatternsCategoriesData = async () => {
     try {
         const response = await instance.get('/patterns/categories');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const getDemosTagsData = async () => {
+    try {
+        const response = await instance.get('/demos/tags');
         return response.data;
     } catch (error) {
         console.error(error);

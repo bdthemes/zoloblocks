@@ -1,55 +1,29 @@
-import React from 'react';
 import { BaseControl, SelectControl, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { subscribe, useSelect } from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import InnerTemplate from '../../inner-template';
-import { getDemosActiveCat, getActiveTab, getReset, getPackageType } from '../../store/selectors';
 const Content = ({ props }) => {
-    const {
-        number,
-        setNumber,
-        handleImportTemplate,
-        favIds,
-        handleFavTemplate,
-        tags,
-        activeTag,
-        setActiveTag,
-        setItems,
-        allItems,
-        itemSortBy,
-        handleItemSortBy,
-        sortItemsByTag,
-        loading,
-        itemText,
-        attemptComplete,
-    } = props;
-
-    const { items, activeTab, packageType } = useSelect(
+    const { number, setNumber, handleImportTemplate, favIds, handleFavTemplate, itemSortBy, handleItemSortBy, loading, itemText } = props;
+    const dispatch = useDispatch('zolo/templates/library');
+    const { items, tags, activeTag } = useSelect(
         (select) => {
-            const { getDemos, getDemosActiveCat, getActiveTab, getPatterns, getReset, getPackageType } = select('zolo/templates/library');
+            const { getDemos, getDemosActiveCat, getActiveTab, getPatterns, getReset, getPackageType, getDemosTags, getDemosActiveTag } =
+                select('zolo/templates/library');
             const activeTab = getActiveTab();
-            const packageType = getPackageType();
-            const reset = getReset();
-            const activeCat = getDemosActiveCat();
-            console.log('packageType', packageType);
+            const queryParams = {
+                categories: getDemosActiveCat(),
+                reset: getReset(),
+                packageType: getPackageType(),
+                tags: getDemosActiveTag(),
+            };
             return {
-                items:
-                    activeTab === 'demos'
-                        ? getDemos({
-                              categories: activeCat,
-                              reset,
-                              packageType,
-                          })
-                        : activeTab === 'patterns'
-                          ? getPatterns({ categories: activeCat, reset, packageType })
-                          : [],
-                activeTab,
-                reset,
-                packageType,
+                items: activeTab === 'demos' ? getDemos(queryParams) : activeTab === 'patterns' ? getPatterns(queryParams) : [],
+                tags: getDemosTags(),
+                activeTag: getDemosActiveTag(),
             };
         },
-        [getActiveTab, getDemosActiveCat, getReset, getPackageType]
+        [dispatch]
     );
 
     return (
@@ -79,25 +53,24 @@ const Content = ({ props }) => {
                                             tags.length > 0 &&
                                             tags.map((tag) => (
                                                 <button
-                                                    key={tag}
-                                                    className={classNames('single-tag', `${activeTag === tag ? 'active' : ''}`)}
-                                                    onClick={() => sortItemsByTag(tag)}
+                                                    key={tag.slug}
+                                                    className={classNames('single-tag', `${activeTag === tag.slug ? 'active' : ''}`)}
+                                                    onClick={() => {
+                                                        dispatch.setReset(false);
+                                                        dispatch.setActiveCat('');
+                                                        dispatch.setActiveTag(tag.slug);
+                                                    }}
                                                 >
-                                                    {
-                                                        //make the first letter uppercase of each word in the tag
-                                                        tag
-                                                            .split(' ')
-                                                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                                                            .join(' ')
-                                                    }
+                                                    {tag.label}
                                                 </button>
                                             ))}
                                     </div>
                                     <button
                                         className={classNames('clear-tag', `${activeTag !== '' ? 'active' : ''}`)}
                                         onClick={() => {
-                                            setActiveTag('');
-                                            setItems(allItems);
+                                            dispatch.setReset(true);
+                                            dispatch.setActiveTag('');
+                                            dispatch.getDemos();
                                         }}
                                     >
                                         <svg
@@ -154,12 +127,6 @@ const Content = ({ props }) => {
                 </div>
             )}
             {items?.length === 0 && !loading && (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites Items') && (
-                <div className="no-found-item">
-                    <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
-                </div>
-            )}
-
-            {items?.length === 0 && !loading && (itemText === 'Demos' || itemText === 'Patterns') && attemptComplete && (
                 <div className="no-found-item">
                     <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
                 </div>

@@ -1,5 +1,5 @@
-import { fetchDemos, fetchDemosCategories, fetchPatterns, fetchPatternsCategories } from './actions';
-import { getDemoData, getDemoCategoriesData, getPatternsData, getPatternsCategoriesData } from '../utils/axios';
+import { fetchDemos, fetchDemosCategories, fetchPatterns, fetchPatternsCategories, fetchDemosTags } from './actions';
+import { getDemoData, getDemoCategoriesData, getPatternsData, getPatternsCategoriesData, getDemosTagsData } from '../utils/axios';
 
 export function getDemos(props) {
     return async ({ dispatch }) => {
@@ -24,6 +24,17 @@ export function getDemosCategories(state) {
     }
 }
 
+export function getDemosTags(state) {
+    return async ({ dispatch }) => {
+        try {
+            const data = await getDemosTagsData();
+            dispatch(fetchDemosTags(data));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+}
+
 export function getPatterns(props) {
     return async ({ dispatch }) => {
         try {
@@ -45,4 +56,3 @@ export function getPatternsCategories(state) {
         }
     };
 }
-

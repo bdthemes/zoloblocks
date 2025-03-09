@@ -111,6 +111,7 @@ const Sidebar = () => {
                                 })}
                                 onClick={() => {
                                     dispatch.setReset(false);
+                                    dispatch.setActiveTag('');
                                     dispatch.setActiveCat(category?.slug);
                                 }}
                             >

@@ -46,7 +46,6 @@ const reducer = (state = DEFAULT_STATE, action) => {
             return { ...state, reset: action.reset };
         case SET_PACKAGE_TYPE:
             return { ...state, packageType: action.packageType };
-
         default:
             return state;
     }
