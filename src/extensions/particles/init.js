@@ -1,6 +1,6 @@
-import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
+import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix, mergeWithDefault } from './options';
 
-const useParticlesInit = (panelProps) => {
+const particlesInit = (panelProps, editorWindow) => {
     const { attributes, setAttributes } = panelProps;
     const { uniqueId } = attributes;
     // Validate inputs
@@ -22,7 +22,7 @@ const useParticlesInit = (panelProps) => {
         }
         try {
             let obj = JSON.parse(customOptions);
-            return obj;
+            return mergeWithDefault(obj);
         } catch (error) {
             return false;
         }
@@ -41,6 +41,7 @@ const useParticlesInit = (panelProps) => {
                 },
 
                 shape: {
+                    ...optionOne?.particles?.shape,
                     type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                 },
                 ...(preset === 'hover_bubble' && {
@@ -56,6 +57,7 @@ const useParticlesInit = (panelProps) => {
 
         // dust_wind
         ...(preset === 'dust_wind' && {
+            ...optionTwo,
             particles: {
                 ...optionTwo?.particles,
                 color: {
@@ -66,6 +68,7 @@ const useParticlesInit = (panelProps) => {
                     value: shapeSize ? shapeSize : optionTwo?.particles.size?.value,
                 },
                 shape: {
+                    ...optionTwo?.particles?.shape,
                     type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                 },
                 move: {
@@ -74,8 +77,6 @@ const useParticlesInit = (panelProps) => {
                     speed: speed || optionTwo?.particles?.move?.speed,
                 },
             },
-            //interactivity
-            ...(preset === 'dust_wind' && { interactivity: optionTwo?.interactivity }),
         }),
         //Flying Bubble
         ...(preset === 'flying_bubble' && {
@@ -89,6 +90,7 @@ const useParticlesInit = (panelProps) => {
                     value: shapeSize ? shapeSize : optionThree?.particles.size?.value,
                 },
                 shape: {
+                    ...optionThree?.particles?.shape,
                     type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                 },
 
@@ -113,6 +115,7 @@ const useParticlesInit = (panelProps) => {
                     value: shapeSize ? shapeSize : optionFour?.particles.size?.value,
                 },
                 shape: {
+                    ...optionFour?.particles?.shape,
                     type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
                 },
                 move: {
@@ -133,10 +136,11 @@ const useParticlesInit = (panelProps) => {
                     value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
                 },
                 size: {
-                    ...optionFive?.particles?.shapeSize,
+                    ...optionFive?.particles?.size,
                     value: shapeSize ? shapeSize : optionFive?.particles.size?.value,
                 },
                 shape: {
+                    ...optionFive?.particles?.shape,
                     type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
                 },
                 move: {
@@ -145,6 +149,7 @@ const useParticlesInit = (panelProps) => {
                     speed: speed || optionFive?.particles?.move?.speed,
                 },
                 line_linked: {
+                    ...optionFive?.particles?.line_linked,
                     enable: false,
                 },
             },
@@ -164,6 +169,7 @@ const useParticlesInit = (panelProps) => {
                 },
 
                 shape: {
+                    ...optionSix?.particles?.shape,
                     type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionSix?.particles.shape?.type,
                 },
                 ...optionSix?.particles?.opacity,
@@ -187,15 +193,15 @@ const useParticlesInit = (panelProps) => {
             },
         });
     }
+    
     const optionData = preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
-
+    
     try {
+        const { particlesJS } = editorWindow;
         particlesJS(`zolo-particles-${uniqueId}`, optionData);
-
-        // Optionally, add more code to handle cursors initialization logic
     } catch (error) {
         console.error('Error initializing particles effects:', error);
     }
 };
 
-export default useParticlesInit;
+export default particlesInit;

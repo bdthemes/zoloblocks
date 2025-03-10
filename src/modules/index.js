@@ -54,6 +54,7 @@ export { default as TabDynamicControl } from '../controls/tabdynamic-control';
 export { default as ToggleGroup } from '../controls/toggle-group';
 export { default as ZoloRepeater } from '../controls/repeater';
 export {default as OrderSortControl} from '../controls/ordersort-control'
+export {default as Skeleton} from '../controls/skeleton';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -71,9 +72,11 @@ export { generateTextShadowAttributies, generateTextShadowStyles } from '../help
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from '../helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from '../helpers/typoHelpers';
 export { generateResSelectAttributies, generateResSelectStyle } from '../helpers/res-select-helper';
-export {manageSingleBlock} from '../helpers/manage-single-block';
 export { generateTextGradientsStyles } from '../helpers/text-gradient-helper';
 export { default as LottiePreview } from '../helpers/lottiePreview';
+export { default as usePanelProps } from '../helpers/use-panel-props';
+export { defaultDeviceList } from '../helpers/default-device-list';
+export { default as useDeviceType } from '../helpers/use-device-type';
 
 export {
     DynamicTag,

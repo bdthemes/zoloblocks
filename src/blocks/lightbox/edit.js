@@ -4,8 +4,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import FsLightbox from 'fslightbox-react';
-import { useState } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -15,9 +13,9 @@ import LightboxContent from './content';
 import Style from './style';
 import './style.scss';
 
-const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
 
 export default function Edit(props) {
+    const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
     const { attributes, setAttributes, isSelected } = props;
 
     const {
@@ -34,57 +32,39 @@ export default function Edit(props) {
         showPosterIcon,
         contentCaption,
     } = attributes;
-    
-    const [toggler, setToggler] = useState(false);
 
     const blocksProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
     });
 
     return (
-        <>
-            <div {...blocksProps}>
-                {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-                <Style props={props} />
-                <div className="zolo-lightbox-btn">
-                    <button
-                        className="zolo-play-btn zolo-lightbox-btn-1"
-                        onClick={() => {
-                            setToggler(!toggler);
-                        }}
-                    >
-                        {lightboxType !== 'poster' && (
-                            <span className="zolo-btn-text">
-                                <small>{enableSubHeading && buttonHeadingText}</small>
-                                {enableHeading && buttonText}
-                            </span>
-                        )}
-                        {showPosterIcon && (
-                            <span className="zolo-btn-icon">
-                                <DisplayZoloIcon icon={posterIcon} />
-                            </span>
-                        )}
-                    </button>
-                </div>
-                {lightboxType === 'poster' && imagePoster && (
-                    <div className="zolo-poster-img">
-                        <img
-                            src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
-                            alt={imagePoster.alt}
-                        />
-                    </div>
+        <div {...blocksProps}>
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <Style props={props} />
+            <a href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1" data-fslightbox={uniqueId} data-caption={contentCaption}>
+                {lightboxType !== 'poster' && (
+                    <span className="zolo-btn-text">
+                        <small>{enableSubHeading && buttonHeadingText}</small>
+                        {enableHeading && buttonText}
+                    </span>
                 )}
-
-                <FsLightbox
-                    toggler={toggler}
-                    sources={[
-                        <div id={`${uniqueId}`} className="zolo-lightbox-content-editor">
-                            {LightboxContent(props)}
-                        </div>,
-                    ]}
-                    captions={[contentCaption]}
-                />
+                {showPosterIcon && (
+                    <span className="zolo-btn-icon">
+                        <DisplayZoloIcon icon={posterIcon} />
+                    </span>
+                )}
+            </a>
+            {lightboxType === 'poster' && imagePoster && (
+                <div className="zolo-poster-img">
+                    <img
+                        src={imagePoster.sizes && imagePoster.sizes[imageSize] ? imagePoster.sizes[imageSize].url : imagePoster.url}
+                        alt={imagePoster.alt}
+                    />
+                </div>
+            )}
+            <div id={`${uniqueId}`} className="zolo-lightbox-content">
+                <LightboxContent {...props} />
             </div>
-        </>
+        </div>
     );
 }

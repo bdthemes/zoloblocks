@@ -81,7 +81,7 @@
 }
 
 // Responsive show/hide css for Editor
-.zolo-editor .zolo-hide-desktop {
+.zolo-hide-desktop {
     opacity: 0.5;
     background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
     border: 1px solid rgba(0, 0, 0, 0.02);
@@ -230,10 +230,6 @@ span.zolo-pro-badge {
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
-
-// .zolo-editor .zolo-block:not(.zolo-entrance-animation) {
-//     transition: transform 0.3s ease-out;
-// }
 
 .block-editor-block-breadcrumb li {
     align-items: center;
@@ -434,9 +430,9 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     box-shadow: 0 0 0 1px #837e7e;
 }
 
-.zolo-editor {
-    .zolo_cd_show,
-    .zolo_cd_hide {
+.block-editor-block-list__block {
+    &.zolo_cd_show,
+    &.zolo_cd_hide {
         position: relative;
         &:before {
             position: absolute;
@@ -459,12 +455,12 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
             }
         }
     }
-    .zolo_cd_show {
+    &.zolo_cd_show {
         &:before {
             content: url('data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M21%2012c0%201.2-4.03%206-9%206s-9-4.8-9-6c0-1.2%204.03-6%209-6s9%204.8%209%206Z%22%2F%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeWidth%3D%221.5%22%20d%3D%22M15%2012a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E');
         }
     }
-    .zolo_cd_hide {
+    &.zolo_cd_hide {
         &:before {
             content: url('data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20display%3D%22block%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20color%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22currentColor%22%20strokeLinecap%3D%22round%22%20strokeLinejoin%3D%22round%22%20strokeWidth%3D%221.5%22%20d%3D%22M3.933%2013.909A4.357%204.357%200%200%201%203%2012c0-1%204-6%209-6m7.6%203.8A5.068%205.068%200%200%201%2021%2012c0%201-3%206-9%206-.314%200-.62-.014-.918-.04M5%2019%2019%205m-4%207a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%2F%3E%3C%2Fsvg%3E');
         }
@@ -518,26 +514,24 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     color: rgb(117, 117, 117);
 }
 
-.zolo-editor {
-    .zolo-navigation-variation-picker {
-        position: relative;
-        width: 100%;
-        box-sizing: border-box;
+.zolo-navigation-variation-picker {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
 
-        .zolo-navigation-variation-picker-back {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-        }
+    .zolo-navigation-variation-picker-back {
+        position: absolute;
+        right: 20px;
+        top: 20px;
     }
+}
 
-    .zolo-navigation-placeholder {
-        position: relative;
-        .zolo-navigation-placeholder-skip-button {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-        }
+.zolo-navigation-placeholder {
+    position: relative;
+    .zolo-navigation-placeholder-skip-button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
     }
 }
 .zolo-frontend {
@@ -549,10 +543,8 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
     }
 }
 
-.zolo-editor {
-    .editor-styles-wrapper .is-root-container a {
-        text-decoration: unset;
-    }
+.editor-styles-wrapper .is-root-container a {
+    text-decoration: unset;
 }
 
 // post title animation type css start here

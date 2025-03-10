@@ -39,12 +39,14 @@ class PostMeta {
 
 		$output    = '<div ' . wp_kses_data($wrapper_attributes) . ' >';
 		if (isset($settings['metaData']) && is_array($settings['metaData']) && count($settings['metaData']) > 0) {
-			$totalItem = count($settings['metaData'] ?? []);
-			foreach ($settings['metaData'] as $index => $meta) {
-				$output .= $this->render_item($meta);
-				if ($index < $totalItem - 1) {
-					$customSeparator = ! empty($settings['separatorStyle']) && 'separator-custom' == $settings['separatorStyle'] ? ($settings['customSeparator'] ?? '') : '';
-					$output         .= '<span class="zolo-separator">' . $customSeparator . '</span>';
+			$renderedItems = array_filter(array_map([$this, 'render_item'], $settings['metaData']));
+			foreach ($renderedItems as $index => $renderedItem) {
+				$output .= $renderedItem;
+				if ($index < count($renderedItems) - 1) {
+					$customSeparator = !empty($settings['separatorStyle']) && 'separator-custom' == $settings['separatorStyle']
+						? ($settings['customSeparator'] ?? '')
+						: '';
+					$output .= '<span class="zolo-separator">' . $customSeparator . '</span>';
 				}
 			}
 		}
