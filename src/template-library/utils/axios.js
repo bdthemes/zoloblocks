@@ -3,6 +3,9 @@ import axios from 'axios';
 const instance = axios.create({
     baseURL: 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo',
 });
+const pagesInstance = axios.create({
+    baseURL: 'https://templates.zoloblocks.com/wp-json/template-manager/v2/zolo',
+});
 
 export const getDemoData = async (props) => {
     const { categories, reset, packageType, tags } = props;

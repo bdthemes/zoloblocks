@@ -3,32 +3,29 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { getActiveTab, getPackageType } from '../../store/selectors';
 
-
-const Header = ({props}) => {
-    const { pullDemos, setPullDemos, pullNewDemos, searchText, setSearchText, setIsOpen } = props;
+const Header = ({ props }) => {
+    const { pullDemos, setPullDemos, pullNewDemos, setIsOpen } = props;
     const TABS = [
         { label: __('Demos', 'zoloblocks'), value: 'demos' },
         { label: __('Templates', 'zoloblocks'), value: 'templates' },
         { label: __('Pages', 'zoloblocks'), value: 'pages' },
         { label: __('Patterns', 'zoloblocks'), value: 'patterns' },
         { label: __('Favorites', 'zoloblocks'), value: 'favorites' },
-
     ];
     const dispatch = useDispatch('zolo/templates/library');
 
-
-      const { activeTab, reset } = useSelect(
-          (select) => {
-              const { getActiveTab, getReset } = select('zolo/templates/library');
-              return {
-                  activeTab: getActiveTab(),
-                  reset: getReset(),
-              };
-          },
-          [getActiveTab, getPackageType]
-      );
+    const { activeTab, searchText } = useSelect(
+        (select) => {
+            const { getActiveTab, getReset, getSearchQuery } = select('zolo/templates/library');
+            return {
+                activeTab: getActiveTab(),
+                reset: getReset(),
+                searchText: getSearchQuery(),
+            };
+        },
+        [dispatch]
+    );
 
     return (
         <div className="zolo-dm-head">
@@ -52,8 +49,7 @@ const Header = ({props}) => {
                             onClick={() => {
                                 dispatch.setReset(true);
                                 dispatch.setActiveTab(tab.value);
-                            }
-                            }
+                            }}
                         >
                             {tab.label}
                         </button>
@@ -65,7 +61,9 @@ const Header = ({props}) => {
                         type="search"
                         placeholder={__('Search', 'zoloblocks')}
                         value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
+                        onChange={(e) => {
+                            dispatch.setSearchQuery(e.target.value);
+                        }}
                     />
                 </div>
                 <div className="sync-btn">
@@ -75,7 +73,8 @@ const Header = ({props}) => {
                             onClick={() => {
                                 setPullDemos(!pullDemos);
                                 pullNewDemos();
-                                setSearchText('');
+                                dispatch.setReset(true);
+                                dispatch.setSearchQuery('');
                             }}
                         >
                             <svg
@@ -116,4 +115,3 @@ const Header = ({props}) => {
 };
 
 export default Header;
-// Compare

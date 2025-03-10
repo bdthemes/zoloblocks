@@ -8,7 +8,8 @@ import {
     FETCH_PATTERNS,
     FETCH_PATTERNS_CATEGORIES,
     RESET_ALL,
-    SET_PACKAGE_TYPE
+    SET_PACKAGE_TYPE,
+    SET_SEARCH_QUERY,
 } from './types';
 
 export const fetchDemos = (demos) => {
@@ -78,3 +79,10 @@ export const setPackageType = (packageType) => {
         packageType,
     };
 };
+
+export const setSearchQuery = (search) => {
+    return {
+        type: SET_SEARCH_QUERY,
+        search,
+    };
+}

@@ -27,8 +27,20 @@ export const getDemosNumber = (state) => {
 };
 export const getReset = (state) => {
     return state.reset;
-}
+};
 
 export const getPackageType = (state) => {
     return state.packageType || '';
+};
+
+export const getSearchQuery = (state) => {
+    return state.search;
+};
+
+export const getLoading = (state) => {
+    return state.loading;
+};
+
+export const getError = (state) => {
+    return state.error;
 };

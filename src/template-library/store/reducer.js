@@ -8,7 +8,8 @@ import {
     FETCH_PATTERNS,
     FETCH_PATTERNS_CATEGORIES,
     RESET_ALL,
-    SET_PACKAGE_TYPE
+    SET_PACKAGE_TYPE,
+    SET_SEARCH_QUERY,
 } from './types';
 
 const DEFAULT_STATE = {
@@ -22,6 +23,9 @@ const DEFAULT_STATE = {
     activeTab: 'demos',
     reset: false,
     packageType: '',
+    search: '',
+    loading: false,
+    error: null,
 };
 
 const reducer = (state = DEFAULT_STATE, action) => {
@@ -46,6 +50,8 @@ const reducer = (state = DEFAULT_STATE, action) => {
             return { ...state, reset: action.reset };
         case SET_PACKAGE_TYPE:
             return { ...state, packageType: action.packageType };
+        case SET_SEARCH_QUERY:
+            return { ...state, search: action.search };
         default:
             return state;
     }

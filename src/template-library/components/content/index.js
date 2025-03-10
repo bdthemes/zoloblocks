@@ -3,13 +3,25 @@ import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelect } from '@wordpress/data';
 import classNames from 'classnames';
 import InnerTemplate from '../../inner-template';
+import PreLoader from '../../preloader';
 const Content = ({ props }) => {
-    const { number, setNumber, handleImportTemplate, favIds, handleFavTemplate, itemSortBy, handleItemSortBy, loading, itemText } = props;
+    const { number, setNumber, handleImportTemplate, favIds, handleFavTemplate, itemSortBy, handleItemSortBy, itemText } = props;
+
     const dispatch = useDispatch('zolo/templates/library');
-    const { items, tags, activeTag } = useSelect(
+
+    const { items, tags, activeTag, loading } = useSelect(
         (select) => {
-            const { getDemos, getDemosActiveCat, getActiveTab, getPatterns, getReset, getPackageType, getDemosTags, getDemosActiveTag } =
-                select('zolo/templates/library');
+            const {
+                getDemos,
+                getDemosActiveCat,
+                getActiveTab,
+                getPatterns,
+                getReset,
+                getPackageType,
+                getDemosTags,
+                getDemosActiveTag,
+                getLoading,
+            } = select('zolo/templates/library');
             const activeTab = getActiveTab();
             const queryParams = {
                 categories: getDemosActiveCat(),
@@ -17,14 +29,34 @@ const Content = ({ props }) => {
                 packageType: getPackageType(),
                 tags: getDemosActiveTag(),
             };
+
+            // get items based on active tab
             return {
                 items: activeTab === 'demos' ? getDemos(queryParams) : activeTab === 'patterns' ? getPatterns(queryParams) : [],
                 tags: getDemosTags(),
                 activeTag: getDemosActiveTag(),
+                loading: getLoading(),
             };
         },
         [dispatch]
     );
+
+    console.log(dispatch);
+
+        // const { items } = useSelect(
+        //     (select) => {
+        //         const {
+        //             getDemos,
+        //         } = select('zolo/templates/library');
+        //         const activeTab = getActiveTab();
+
+        //         // get items based on active tab
+        //         return {
+        //             items: activeTab === 'demos' ? getDemos() : activeTab === 'patterns' ? getPatterns() : [],
+        //         };
+        //     },
+        //     [dispatch]
+        // );
 
     return (
         <>
@@ -131,6 +163,8 @@ const Content = ({ props }) => {
                     <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
                 </div>
             )}
+
+            {loading && <PreLoader />}
         </>
     );
 };
