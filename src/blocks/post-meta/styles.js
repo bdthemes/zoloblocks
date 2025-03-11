@@ -133,7 +133,8 @@ function Style({ props }) {
       }
 
       
-      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info a:hover {
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info a:hover,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info.terms:hover {
         ${hoverColor ? `color:${hoverColor};` : ''}
       }
 
