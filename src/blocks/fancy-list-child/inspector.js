@@ -121,7 +121,7 @@ function Inspector(props) {
                                         label={__('Text', 'zolo-block')}
                                         value={fancyTitle}
                                         onChange={(v) => setAttributes({ fancyTitle: v })}
-                                        placeholder="title.."
+                                        placeholder="Title.."
                                     />
                                 </>
                             )}
@@ -133,7 +133,7 @@ function Inspector(props) {
                                             label={__('Text', 'zolo-block')}
                                             value={fancyListText}
                                             onChange={(v) => setAttributes({ fancyListText: v })}
-                                            placeholder="description text.."
+                                            placeholder="Description text.."
                                         />
                                     </div>
                                 </>

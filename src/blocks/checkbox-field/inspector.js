@@ -124,7 +124,7 @@ function Inspector(props) {
                                     label={__('Field Label', 'zoloblocks')}
                                     value={label}
                                     onChange={(v) => setAttributes({ label: v })}
-                                    placeholder={__('Enter label..', 'zoloblocks')}
+                                    placeholder={__('Enter Label..', 'zoloblocks')}
                                     help={__('This will be used as the label for the field', 'zoloblocks')}
                                 />
                             )}

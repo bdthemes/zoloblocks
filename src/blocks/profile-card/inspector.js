@@ -453,7 +453,7 @@ function Inspector(props) {
                                             })
                                         }
                                         value={followButtonText}
-                                        placeholder={__('text..', 'zoloblocks')}
+                                        placeholder={__('Text..', 'zoloblocks')}
                                     />
                                     <LinkControl
                                         label={__('URL', 'zoloblocks')}

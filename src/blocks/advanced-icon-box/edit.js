@@ -175,7 +175,7 @@ export default function Edit(props) {
                                         iconBoxDescription: text,
                                     })
                                 }
-                                placeholder={__('The Description Goes Here..', 'zoloblocks')}
+                                placeholder={__('The Description Goes Here', 'zoloblocks')}
                             />
                         )}
                         {showButton && (

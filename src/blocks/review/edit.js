@@ -155,7 +155,7 @@ export default function Edit(props) {
                                                 testimonialMessage: content,
                                             })
                                         }
-                                        placeholder={__('message..', 'zoloblocks')}
+                                        placeholder={__('Message..', 'zoloblocks')}
                                     />
                                 </div>
                             </div>
@@ -214,7 +214,7 @@ export default function Edit(props) {
                                                 testimonialMessage: content,
                                             })
                                         }
-                                        placeholder={__('message..', 'zoloblocks')}
+                                        placeholder={__('Message..', 'zoloblocks')}
                                     />
                                 </div>
                             )}
@@ -229,7 +229,7 @@ export default function Edit(props) {
                                                     memberName: content,
                                                 })
                                             }
-                                            placeholder={__('name..', 'zoloblocks')}
+                                            placeholder={__('Name..', 'zoloblocks')}
                                         />
                                     </div>
                                 )}
@@ -242,7 +242,7 @@ export default function Edit(props) {
                                                     memberDesignation: content,
                                                 })
                                             }
-                                            placeholder={__('designation..', 'zoloblocks')}
+                                            placeholder={__('Designation..', 'zoloblocks')}
                                         />
                                     </div>
                                 )}

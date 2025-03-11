@@ -203,7 +203,7 @@ function Inspector(props) {
                                                 })
                                             }
                                             value={brandLabel}
-                                            placeholder={__('label..', 'zoloblocks')}
+                                            placeholder={__('Label..', 'zoloblocks')}
                                         />
                                     </>
                                 )}

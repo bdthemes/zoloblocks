@@ -452,7 +452,7 @@ function Inspector(props) {
                                             })
                                         }
                                         value={iconBoxTitle}
-                                        placeholder={__('Title Goes Here..', 'zoloblocks')}
+                                        placeholder={__('Title Goes Here', 'zoloblocks')}
                                     />
                                     <CardDivider />
                                 </>
@@ -472,7 +472,7 @@ function Inspector(props) {
                                                     iconBoxDescription: desc,
                                                 })
                                             }
-                                            placeholder={__('Description goes here..', 'zoloblocks')}
+                                            placeholder={__('Description Goes Here', 'zoloblocks')}
                                         />
                                     </div>
 
