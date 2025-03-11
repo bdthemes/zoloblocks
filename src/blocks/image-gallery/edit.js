@@ -31,6 +31,11 @@ export default function Edit(props) {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
+    const lightboxButtonProps = {
+        href: '#',
+        className: 'zolo-icon-wrap',
+        onClick: (e) => e.preventDefault(),
+    };
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.imageGallery} alt={__('Gallery Preview', 'zoloblocks')} />;
@@ -83,7 +88,7 @@ export default function Edit(props) {
                                         />
                                     </div>
                                     {showLightbox && preset !== 'style-2' && (
-                                        <a href="#" className="zolo-icon-wrap">
+                                        <a {...lightboxButtonProps}>
                                             <span className="zolo-icon">
                                                 <DisplayZoloIcon icon={lightboxIcon} />
                                             </span>
@@ -102,7 +107,7 @@ export default function Edit(props) {
                                                 {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
                                             </div>
                                             {showLightbox && (
-                                                <a href="#" className="zolo-icon-wrap">
+                                                <a {...lightboxButtonProps}>
                                                     <span className="zolo-icon">
                                                         <DisplayZoloIcon icon={lightboxIcon} />
                                                     </span>

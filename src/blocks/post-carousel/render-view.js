@@ -85,9 +85,9 @@ function RenderView({ attributes, postResults }) {
                             <div className="zolo-post-image">
                                 {showThumbnail && preset !== 'style-4' && (
                                     <>
-                                        {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
+                                        {post.thumbnail && <a href={'#'} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                         {!post.thumbnail && (
-                                            <a href={post.permalink}>
+                                            <a href={'#'}>
                                                 <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
                                             </a>
                                         )}
@@ -98,9 +98,9 @@ function RenderView({ attributes, postResults }) {
                                     <div className="zolo-post-img-category">
                                         {showThumbnail && (
                                             <>
-                                                {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
+                                                {post.thumbnail && <a href={'#'} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                                 {!post.thumbnail && (
-                                                    <a href={post.permalink}>
+                                                    <a href={'#'}>
                                                         <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
                                                     </a>
                                                 )}
@@ -126,7 +126,7 @@ function RenderView({ attributes, postResults }) {
                                     {showCategory && preset !== 'style-4' && categoriesHtml}
                                     {showTitle && (
                                         <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                            <a href={post.permalink}>
+                                            <a href={'#'}>
                                                 <RawHTML>{titleLimitWords}</RawHTML>
                                             </a>
                                         </DynamicTag>
@@ -143,7 +143,7 @@ function RenderView({ attributes, postResults }) {
                                 </div>
                                 {showReadMore && (
                                     <div className="zolo-post-link-btn">
-                                        <a href={post.permalink}>
+                                        <a href={'#'}>
                                             {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
                                             {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                         </a>

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 const ZoloPanelBody = ({
     children,
-    panelProps,
     title,
     stylePanel = false,
     extraPanel = false,
@@ -12,7 +11,8 @@ const ZoloPanelBody = ({
     isNew = false,
     isDisabled = false,
 }) => {
-    const { attributes, setAttributes } = panelProps;
+    const { usePanelProps } = window.zoloModule;
+    const { attributes, setAttributes } = usePanelProps();
     const { selectedPanel, selectedStylePanel, selectedExtraPanel } = attributes;
     const panelAttribute = stylePanel ? 'selectedStylePanel' : extraPanel ? 'selectedExtraPanel' : 'selectedPanel';
     const panelName =
@@ -31,7 +31,7 @@ const ZoloPanelBody = ({
     };
 
     const isOpened = panelName === title.replace(' ', '_').toLowerCase() || (firstOpen && panelName === 'first');
-
+    
     return (
         <PanelBody
             title={title}

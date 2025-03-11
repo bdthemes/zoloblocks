@@ -56,6 +56,7 @@ export default function Edit(props) {
                                 target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                 rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
                                 className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
+                                onClick={(e) => e.preventDefault()}
                             >
                                 {socialText !== 'none' && (
                                     <span className="zolo-social-icon">

@@ -210,14 +210,18 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 imageId={ovl_bgImageID}
                                                                 onDeleteImage={() =>
                                                                     setAttributes({
-                                                                        [`${controlName}ovl_bgImageURL`]: null,
+                                                                        [`${controlName}ovl_bgImageURL`]: '',
+                                                                        [`${controlName}ovl_bgImageID`]: '',
                                                                     })
                                                                 }
-                                                                onEditImage={(url, id) =>
-                                                                    setAttributes({
-                                                                        [`${controlName}ovl_bgImageURL`]: url,
-                                                                        [`${controlName}ovl_bgImageID`]: id,
-                                                                    })
+                                                                onEditImage={({url, id}) =>
+                                                                   {
+
+                                                                     setAttributes({
+                                                                         [`${controlName}ovl_bgImageURL`]: url,
+                                                                         [`${controlName}ovl_bgImageID`]: id,
+                                                                     });
+                                                                   }
                                                                 }
                                                             />
 
@@ -1391,7 +1395,14 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 imageUrl={hov_ovl_bgImageURL}
                                                                 onDeleteImage={() =>
                                                                     setAttributes({
-                                                                        [`hov_${controlName}ovl_bgImageURL`]: null,
+                                                                        [`hov_${controlName}ovl_bgImageURL`]: '',
+                                                                        [`hov_${controlName}ovl_bgImageID`]: '',
+                                                                    })
+                                                                }
+                                                                onEditImage={({url, id}) =>
+                                                                    setAttributes({
+                                                                        [`hov_${controlName}ovl_bgImageURL`]: url,
+                                                                        [`hov_${controlName}ovl_bgImageID`]: id,
                                                                     })
                                                                 }
                                                             />
