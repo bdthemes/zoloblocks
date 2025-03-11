@@ -441,7 +441,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         {showIcon && (
-                            <ZoloPanelBody title={__('Icon', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <>
                                     <TabPanelControl
                                         options={TAB_STATES}
@@ -666,7 +666,7 @@ function Inspector(props) {
                         )}
 
                         {showIndicator && (
-                            <ZoloPanelBody title={__('Active Indicator', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Active Indicator', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <>
                                     <ColorControl
                                         label={__('Color', 'zoloblocks')}

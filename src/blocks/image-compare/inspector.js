@@ -160,7 +160,7 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
-                            <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Labels', 'zoloblocks')}
                                 checked={comparisonOptions?.showLabels}

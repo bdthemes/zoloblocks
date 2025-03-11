@@ -120,7 +120,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
 
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}

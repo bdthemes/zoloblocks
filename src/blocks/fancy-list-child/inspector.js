@@ -111,14 +111,14 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             {titleToggle && (
                                 <>
                                     <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                        {__('Title', 'zolo-block')}
+                                        {__('Title', 'zoloblocks')}
                                     </div>
                                     <TextControl
-                                        label={__('Text', 'zolo-block')}
+                                        label={__('Text', 'zoloblocks')}
                                         value={fancyTitle}
                                         onChange={(v) => setAttributes({ fancyTitle: v })}
                                         placeholder="Title.."
@@ -127,10 +127,10 @@ function Inspector(props) {
                             )}
                             {textToggle && (
                                 <>
-                                    <div className="zolo-custom-heading">{__('Description', 'zolo-block')}</div>
+                                    <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
                                     <div className="zolo-flex-col-control">
                                         <TextareaControl
-                                            label={__('Text', 'zolo-block')}
+                                            label={__('Text', 'zoloblocks')}
                                             value={fancyListText}
                                             onChange={(v) => setAttributes({ fancyListText: v })}
                                             placeholder="Description text.."
@@ -140,13 +140,13 @@ function Inspector(props) {
                             )}
                             <CardDivider />
                             <ToggleControl
-                                label={__('Add item link', 'zolo-block')}
+                                label={__('Add item link', 'zoloblocks')}
                                 checked={fancyLinkToggle}
                                 onChange={() => setAttributes({ fancyLinkToggle: !fancyLinkToggle })}
                             />
                             {fancyLinkToggle && (
                                 <LinkControl
-                                    label={__('link', 'zolo-block')}
+                                    label={__('link', 'zoloblocks')}
                                     value={fancyLink}
                                     onChange={(v) => setAttributes({ fancyLink: v })}
                                 />
@@ -154,10 +154,10 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         {iconToggle && (
-                            <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
+                            <ZoloPanelBody title={__('Icon', 'zoloblocks')} panelProps={props}>
                                 {iconToggle && (
                                     <ZoloIconPicker
-                                        label={__('Select', 'zolo-block')}
+                                        label={__('Select', 'zoloblocks')}
                                         value={fancyIcon}
                                         onChange={(v) => setAttributes({ fancyIcon: v })}
                                     />
@@ -165,7 +165,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {imageToggle && (
-                            <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
+                            <ZoloPanelBody title={__('Media', 'zoloblocks')} panelProps={props}>
                                 {mediaType === 'image' &&
                                     (image ? (
                                         <ImageAvatar
@@ -215,14 +215,14 @@ function Inspector(props) {
                                     ))}
                                 {mediaType === 'image' && (
                                     <ImageSizes
-                                        label={__('Resolution', 'zolo-block')}
+                                        label={__('Resolution', 'zoloblocks')}
                                         value={imageRes}
                                         onChange={(v) => setAttributes({ imageRes: v })}
                                     />
                                 )}
                                 {mediaType === 'text' && (
                                     <TextControl
-                                        label={__('Text', 'zolo-block')}
+                                        label={__('Text', 'zoloblocks')}
                                         value={mediaText}
                                         onChange={(v) => setAttributes({ mediaText: v })}
                                         placeholder="1"
@@ -274,7 +274,7 @@ function Inspector(props) {
                                     <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG_HOVER} noMainBGImg={false} />
                                         <ColorControl
-                                            label={__('Border Color', 'zolo-block')}
+                                            label={__('Border Color', 'zoloblocks')}
                                             color={itemBorderHoverColor}
                                             onChange={(v) => setAttributes({ itemBorderHoverColor: v })}
                                         />
@@ -288,12 +288,12 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         {titleToggle && (
-                            <ZoloPanelBody title={__('Title', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-block')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={titleColor}
                                                 onChange={(v) =>
                                                     setAttributes({
@@ -302,7 +302,7 @@ function Inspector(props) {
                                                 }
                                             />
                                             <TypographyDropdown
-                                                label={__('Typography', 'zolo-block')}
+                                                label={__('Typography', 'zoloblocks')}
                                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
@@ -310,13 +310,13 @@ function Inspector(props) {
                                             <CardDivider />
 
                                             <ResDimensionsControl
-                                                label={__('Margin', 'zolo-block')}
+                                                label={__('Margin', 'zoloblocks')}
                                                 controlName={TITLE_SPACING}
                                                 requiredProps={requiredProps}
                                             />
                                             <CardDivider />
                                             <SelectControl
-                                                label={__('Tag', 'zolo-block')}
+                                                label={__('Tag', 'zoloblocks')}
                                                 options={HEADING}
                                                 onChange={(v) =>
                                                     setAttributes({
@@ -329,7 +329,7 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <ColorControl
-                                            label={__('Color', 'zolo-block')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={titleHColor}
                                             onChange={(v) =>
                                                 setAttributes({
@@ -342,12 +342,12 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {textToggle && (
-                            <ZoloPanelBody title={__('Description', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-block')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={dscColor}
                                                 onChange={(v) =>
                                                     setAttributes({
@@ -356,14 +356,14 @@ function Inspector(props) {
                                                 }
                                             />
                                             <TypographyDropdown
-                                                label={__('Typography', 'zolo-block')}
+                                                label={__('Typography', 'zoloblocks')}
                                                 typoPrefixConstant={TEXT_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                                 max={36}
                                             />
                                             <CardDivider />
                                             <ResDimensionsControl
-                                                label={__('Margin', 'zolo-block')}
+                                                label={__('Margin', 'zoloblocks')}
                                                 controlName={DESC_SPACING}
                                                 requiredProps={requiredProps}
                                                 max={100}
@@ -372,7 +372,7 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <ColorControl
-                                            label={__('Color', 'zolo-block')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={desHcolor}
                                             onChange={(v) =>
                                                 setAttributes({
@@ -385,24 +385,24 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {iconToggle && (
-                            <ZoloPanelBody title={__('Icon', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-block')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={iconColor}
                                                 onChange={(v) => setAttributes({ iconColor: v })}
                                             />
                                             <ResRangeControl
-                                                label={__('Size', 'zolo-block')}
+                                                label={__('Size', 'zoloblocks')}
                                                 controlName={ICON_WIDTH}
                                                 requiredProps={requiredProps}
                                             />
                                             <CardDivider />
                                             <NormalBGControl requiredProps={requiredProps} controlName={ICON_BG} noMainBGImg={true} />
                                             <ResDimensionsControl
-                                                label={__('Padding', 'zolo-block')}
+                                                label={__('Padding', 'zoloblocks')}
                                                 controlName={ICON_PADDING}
                                                 requiredProps={requiredProps}
                                             />
@@ -414,7 +414,7 @@ function Inspector(props) {
                                                 enableTransition={false}
                                             />
                                             <ResDimensionsControl
-                                                label={__('Border Radius', 'zolo-block')}
+                                                label={__('Border Radius', 'zoloblocks')}
                                                 controlName={ICON_RADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
@@ -424,13 +424,13 @@ function Inspector(props) {
                                     hoverComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-block')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={iconHColor}
                                                 onChange={(v) => setAttributes({ iconHColor: v })}
                                             />
                                             <NormalBGControl requiredProps={requiredProps} controlName={ICON_HBG} noMainBGImg={true} />
                                             <ColorControl
-                                                label={__('Border Color', 'zolo-block')}
+                                                label={__('Border Color', 'zoloblocks')}
                                                 color={iconHBColor}
                                                 onChange={(v) => setAttributes({ iconHBColor: v })}
                                             />
@@ -446,7 +446,7 @@ function Inspector(props) {
                         )}
                         {imageToggle && (
                             <ZoloPanelBody
-                                title={mediaType === 'image' ? __('Media Image', 'zolo-block') : __('Media Text', 'zolo-block')}
+                                title={mediaType === 'image' ? __('Media Image', 'zoloblocks') : __('Media Text', 'zoloblocks')}
                                 stylePanel={true}
                                 panelProps={props}
                             >
@@ -456,7 +456,7 @@ function Inspector(props) {
                                             {mediaType === 'text' && (
                                                 <>
                                                     <ColorControl
-                                                        label={__('Color', 'zolo-block')}
+                                                        label={__('Color', 'zoloblocks')}
                                                         color={mediaTextColor}
                                                         onChange={(v) => setAttributes({ mediaTextColor: v })}
                                                     />
@@ -468,12 +468,12 @@ function Inspector(props) {
                                                     />
                                                     <CardDivider />
                                                     <ColorControl
-                                                        label={__('Background Color', 'zolo-block')}
+                                                        label={__('Background Color', 'zoloblocks')}
                                                         color={mediaTextBgColor}
                                                         onChange={(v) => setAttributes({ mediaTextBgColor: v })}
                                                     />
                                                     <ResDimensionsControl
-                                                        label={__('Padding', 'zolo-block')}
+                                                        label={__('Padding', 'zoloblocks')}
                                                         controlName={IMAGE_PADDING}
                                                         requiredProps={requiredProps}
                                                     />
@@ -482,13 +482,13 @@ function Inspector(props) {
                                             {mediaType === 'image' && (
                                                 <>
                                                     <ResRangeControl
-                                                        label={__('Width', 'zolo-block')}
+                                                        label={__('Width', 'zoloblocks')}
                                                         controlName={IMAGE_WIDTH}
                                                         requiredProps={requiredProps}
                                                         max={500}
                                                     />
                                                     <ResRangeControl
-                                                        label={__('Height', 'zolo-block')}
+                                                        label={__('Height', 'zoloblocks')}
                                                         controlName={IMAGE_HEIGHT}
                                                         requiredProps={requiredProps}
                                                         max={500}
@@ -497,7 +497,7 @@ function Inspector(props) {
                                             )}
                                             <CardDivider />
                                             <BorderControl
-                                                label={__('Border', 'zolo-block')}
+                                                label={__('Border', 'zoloblocks')}
                                                 controlName={IMAGE_BORDER}
                                                 requiredProps={requiredProps}
                                             />
@@ -507,7 +507,7 @@ function Inspector(props) {
                                                 enableTransition={false}
                                             />
                                             <ResDimensionsControl
-                                                label={__('Border Radius', 'zolo-block')}
+                                                label={__('Border Radius', 'zoloblocks')}
                                                 controlName={IMAGE_BORDERRADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
@@ -515,7 +515,7 @@ function Inspector(props) {
 
                                             <CardDivider />
                                             <ResRangeControl
-                                                label={__('Gap', 'zolo-block')}
+                                                label={__('Gap', 'zoloblocks')}
                                                 controlName={GAP}
                                                 requiredProps={requiredProps}
                                             />
@@ -526,13 +526,13 @@ function Inspector(props) {
                                             {mediaType === 'text' && (
                                                 <>
                                                     <ColorControl
-                                                        label={__('Color', 'zolo-block')}
+                                                        label={__('Color', 'zoloblocks')}
                                                         color={mediaTextHoverColor}
                                                         onChange={(v) => setAttributes({ mediaTextHoverColor: v })}
                                                     />
 
                                                     <ColorControl
-                                                        label={__('Background Color', 'zolo-block')}
+                                                        label={__('Background Color', 'zoloblocks')}
                                                         color={mediaTextBgHoverColor}
                                                         onChange={(v) => setAttributes({ mediaTextBgHoverColor: v })}
                                                     />
@@ -541,7 +541,7 @@ function Inspector(props) {
                                             )}
 
                                             <ColorControl
-                                                label={__('Border Color', 'zolo-block')}
+                                                label={__('Border Color', 'zoloblocks')}
                                                 color={mediaBorderHoverColor}
                                                 onChange={(v) => setAttributes({ mediaBorderHoverColor: v })}
                                             />
