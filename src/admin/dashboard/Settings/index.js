@@ -431,11 +431,7 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div>
-                                                                <TextControl
-                                                                    value={privateLink}
-                                                                    disabled={true}
-                                                                    onChange={() => {}}
-                                                                />
+                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"
@@ -484,6 +480,32 @@ const Settings = () => {
                                                         onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
                                                         __nextHasNoMarginBottom
                                                     />
+                                                    <ToggleControl
+                                                        label={__('Share your site with a private link', 'zoloblocks')}
+                                                        help={__(
+                                                            'Allow your site to be visible to only those with the private link. This is useful when you want to share your site with a select group of people or clients before it goes live.',
+                                                            'zoloblocks'
+                                                        )}
+                                                        checked={!!comingSoonPrivateLink}
+                                                        onChange={() => {
+                                                            updateComingSoonPrivateLink(!comingSoonPrivateLink);
+                                                            // setNotice(true);
+                                                        }}
+                                                    />
+                                                    {comingSoonPrivateLink && (
+                                                        <>
+                                                            <div>
+                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <Button
+                                                                    className="zolo-create-new-page-btn"
+                                                                    variant="primary"
+                                                                    onClick={handleCopyClick}
+                                                                >
+                                                                    {copyButtonText || 'Copy'}
+                                                                </Button>
+                                                            </div>
+                                                        </>
+                                                    )}
                                                     <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
                                                         {__('Create New Page', 'zoloblocks')}
                                                     </Button>
