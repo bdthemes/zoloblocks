@@ -20,11 +20,16 @@ class Maintenance {
         if ((!empty($maintenance_mode) || !empty($coming_soon_mode)) && !empty($maintenance_page_id)) {
             add_action('template_redirect', [$this, 'redirect_to_maintenance_page'], 99);
         }
+
+        // Add maintenance mode settings.
+        add_action('admin_init', [$this, 'add_maintenance_mode_settings']);
     }
 
-
+    public function add_maintenance_mode_settings() {
+        add_option('zolo_site_visibility_secret_key', wp_generate_password(32, false));
+    }
     public function redirect_to_maintenance_page() {
-        add_option('zolo_coming_soon_secret_key', wp_generate_password(32, false));
+
 
         $maintenance_mode = get_option('zolo_maintenance_mode');
         $maintenance_page_id = get_option('zolo_maintenance_mode_template');
@@ -33,14 +38,14 @@ class Maintenance {
             return;
         }
 
-        if (get_option('zolo_coming_soon_private_link') === '1') {
+        if (get_option('zolo_site_visibility_private_link') === '1') {
             // Exclude users with a private link.
-            if (isset($_GET['zolo_private_link']) && get_option('zolo_coming_soon_secret_key') === $_GET['zolo_private_link']) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            if (isset($_GET['site_private_link']) && get_option('zolo_site_visibility_secret_key') === $_GET['site_private_link']) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 // Persist the share link with a cookie for 90 days.
-                setcookie('zolo_private_link', sanitize_text_field(wp_unslash($_GET['zolo_private_link'])), time() + 60 * 60 * 24 * 90, '/'); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                setcookie('site_private_link', sanitize_text_field(wp_unslash($_GET['site_private_link'])), time() + 60 * 60 * 24 * 90, '/'); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 return false;
             }
-            if (isset($_COOKIE['zolo_private_link']) && get_option('zolo_coming_soon_secret_key') === $_COOKIE['zolo_private_link']) {
+            if (isset($_COOKIE['site_private_link']) && get_option('zolo_site_visibility_secret_key') === $_COOKIE['site_private_link']) {
                 return false;
             }
         }

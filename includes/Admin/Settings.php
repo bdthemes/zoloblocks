@@ -300,7 +300,7 @@ if (! class_exists('Settings')) {
 
             register_setting(
                 'zolo_blocks_settings_group',
-                'zolo_coming_soon_private_link',
+                'zolo_site_visibility_private_link',
                 [
                     'type'             => 'boolean',
                     'default'          => '',
@@ -314,7 +314,7 @@ if (! class_exists('Settings')) {
             );
             register_setting(
                 'zolo_blocks_settings_group',
-                'zolo_coming_soon_secret_key',
+                'zolo_site_visibility_secret_key',
                 [
                     'type'             => 'string',
                     'default'          => '',

@@ -11,7 +11,7 @@ const Settings = () => {
     const [maintenanceMode, setMaintenanceMode] = useState(false);
     const [comingSoonMode, setComingSoonMode] = useState(false);
     const [comingSoonPrivateLink, setComingSoonPrivateLink] = useState(false);
-    const [comingSoonPrivateLinkPassword, setComingSoonPrivateLinkPassword] = useState();
+    const [comingSoonPrivateLinkPassword, setSiteVisibilitySecretKey] = useState();
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
@@ -21,10 +21,38 @@ const Settings = () => {
     const [modalNewPage, setModalNewPage] = useState(false);
     const [editorVideoLink, setEditorVideoLink] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const privateLink = `${zoloBlocks?.site_url}/?zolo_private_link=${comingSoonPrivateLinkPassword}`;
+    const privateLink = `${zoloBlocks?.site_url}/?site_private_link=${comingSoonPrivateLinkPassword}`;
+    const [copyButtonText, setCopyButtonText] = useState('Copy');
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
+    };
+
+    const handleCopyClick = () => {
+        if (!privateLink) return;
+
+        if (navigator?.clipboard && navigator?.clipboard?.writeText) {
+            navigator.clipboard.writeText(privateLink).then(
+                () => {
+                    // Update button text to 'Copied' and then back to 'Copy' after 2 seconds
+                    setCopyButtonText(__('Copied', 'zoloblocks'));
+                    setTimeout(() => setCopyButtonText(__('Copy', 'zoloblocks')), 2000);
+                },
+                (err) => {
+                    console.error('Failed to copy text: ', err);
+                }
+            );
+        } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = privateLink;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            setCopyButtonText(__('Copied', 'zoloblocks'));
+            setTimeout(() => setCopyButtonText(__('Copy', 'zoloblocks')), 2000);
+        }
     };
 
     const fetchTemplates = useCallback(async (data) => {
@@ -53,8 +81,8 @@ const Settings = () => {
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setSidebarOpen(response.zolo_sidebar_opener);
-            setComingSoonPrivateLink(response.zolo_coming_soon_private_link);
-            setComingSoonPrivateLinkPassword(response.zolo_coming_soon_secret_key);
+            setComingSoonPrivateLink(response.zolo_site_visibility_private_link);
+            setSiteVisibilitySecretKey(response.zolo_site_visibility_secret_key);
         } catch (error) {
             handleFetchError(error);
         }
@@ -80,7 +108,7 @@ const Settings = () => {
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setSidebarOpen(response.zolo_sidebar_opener);
-            setComingSoonPrivateLink(response.zolo_coming_soon_private_link);
+            setComingSoonPrivateLink(response.zolo_site_visibility_private_link);
             // setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -124,14 +152,14 @@ const Settings = () => {
         updateSettings({
             path: '/wp/v2/settings',
             method: 'POST',
-            data: { zolo_coming_soon_private_link: value },
+            data: { zolo_site_visibility_private_link: value },
         });
     };
     const updateComingSoonPrivateLinkPassword = (value) => {
         updateSettings({
             path: '/wp/v2/settings',
             method: 'POST',
-            data: { zolo_coming_soon_secret_key: value },
+            data: { zolo_site_visibility_secret_key: value },
         });
     };
 
@@ -195,7 +223,6 @@ const Settings = () => {
         setModalNewPage(true);
     };
 
-    console.log(updateComingSoonPrivateLinkPassword());
     return (
         <>
             {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
@@ -404,32 +431,17 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div>
-                                                                <input readOnly type="text" value={privateLink || ''} />
+                                                                <TextControl
+                                                                    value={privateLink}
+                                                                    disabled={true}
+                                                                    onChange={() => {}}
+                                                                />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"
-                                                                    onClick={() => {
-                                                                        if (!privateLink) return;
-
-                                                                        if (navigator?.clipboard && navigator?.clipboard?.writeText) {
-                                                                            navigator.clipboard.writeText(privateLink).then(
-                                                                                () => {
-                                                                                    setNotice(true);
-                                                                                }
-
-                                                                            );
-                                                                        } else {
-                                                                            // Fallback for older browsers
-                                                                            const textArea = document.createElement('textarea');
-                                                                            textArea.value = privateLink;
-                                                                            document.body.appendChild(textArea);
-                                                                            textArea.select();
-                                                                            document.execCommand('copy');
-                                                                            document.body.removeChild(textArea);
-                                                                        }
-                                                                    }}
+                                                                    onClick={handleCopyClick}
                                                                 >
-                                                                    {__('Copy', 'zoloblocks')}
+                                                                    {copyButtonText || 'Copy'}
                                                                 </Button>
                                                             </div>
                                                         </>
