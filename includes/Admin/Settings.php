@@ -298,6 +298,35 @@ if (! class_exists('Settings')) {
                 ]
             );
 
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_coming_soon_private_link',
+                [
+                    'type'             => 'boolean',
+                    'default'          => '',
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'boolean',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_coming_soon_secret_key',
+                [
+                    'type'             => 'string',
+                    'default'          => '',
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             // Enable google recaptcha
             register_setting(
                 'zolo_blocks_settings_group',

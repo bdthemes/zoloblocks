@@ -1,5 +1,5 @@
 import apiFetch from '@wordpress/api-fetch';
-import { Button, Modal, SelectControl, ToggleControl } from '@wordpress/components';
+import { Button, Modal, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Notice from '../notice';
@@ -10,6 +10,8 @@ const Settings = () => {
     const [supportSVG, setSupportSVG] = useState(false);
     const [maintenanceMode, setMaintenanceMode] = useState(false);
     const [comingSoonMode, setComingSoonMode] = useState(false);
+    const [comingSoonPrivateLink, setComingSoonPrivateLink] = useState(false);
+    const [comingSoonPrivateLinkPassword, setComingSoonPrivateLinkPassword] = useState();
     const [maintenanceModeTemplate, setMaintenanceModeTemplate] = useState('');
     const [templates, setTemplates] = useState([]);
     const [blockLibrary, setBlockLibrary] = useState(true);
@@ -19,6 +21,7 @@ const Settings = () => {
     const [modalNewPage, setModalNewPage] = useState(false);
     const [editorVideoLink, setEditorVideoLink] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const privateLink = `${zoloBlocks?.site_url}/?zolo_private_link=${comingSoonPrivateLinkPassword}`;
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
@@ -50,6 +53,8 @@ const Settings = () => {
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setSidebarOpen(response.zolo_sidebar_opener);
+            setComingSoonPrivateLink(response.zolo_coming_soon_private_link);
+            setComingSoonPrivateLinkPassword(response.zolo_coming_soon_secret_key);
         } catch (error) {
             handleFetchError(error);
         }
@@ -75,7 +80,8 @@ const Settings = () => {
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setSidebarOpen(response.zolo_sidebar_opener);
-            setNotice(true);
+            setComingSoonPrivateLink(response.zolo_coming_soon_private_link);
+            // setNotice(true);
         } catch (error) {
             handleFetchError(error);
         }
@@ -112,6 +118,20 @@ const Settings = () => {
                 zolo_coming_soon_mode: value,
                 ...(maintenanceValue !== undefined && { zolo_maintenance_mode: maintenanceValue }),
             },
+        });
+    };
+    const updateComingSoonPrivateLink = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_coming_soon_private_link: value },
+        });
+    };
+    const updateComingSoonPrivateLinkPassword = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_coming_soon_secret_key: value },
         });
     };
 
@@ -175,6 +195,7 @@ const Settings = () => {
         setModalNewPage(true);
     };
 
+    console.log(updateComingSoonPrivateLinkPassword());
     return (
         <>
             {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
@@ -368,6 +389,52 @@ const Settings = () => {
                                                         onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
                                                         __nextHasNoMarginBottom
                                                     />
+                                                    <ToggleControl
+                                                        label={__('Share your site with a private link', 'zoloblocks')}
+                                                        help={__(
+                                                            'Allow your site to be visible to only those with the private link. This is useful when you want to share your site with a select group of people or clients before it goes live.',
+                                                            'zoloblocks'
+                                                        )}
+                                                        checked={!!comingSoonPrivateLink}
+                                                        onChange={() => {
+                                                            updateComingSoonPrivateLink(!comingSoonPrivateLink);
+                                                            // setNotice(true);
+                                                        }}
+                                                    />
+                                                    {comingSoonPrivateLink && (
+                                                        <>
+                                                            <div>
+                                                                <input readOnly type="text" value={privateLink || ''} />
+                                                                <Button
+                                                                    className="zolo-create-new-page-btn"
+                                                                    variant="primary"
+                                                                    onClick={() => {
+                                                                        if (!privateLink) return;
+
+                                                                        if (navigator?.clipboard && navigator?.clipboard?.writeText) {
+                                                                            navigator.clipboard.writeText(privateLink).then(
+                                                                                () => {
+                                                                                    setNotice(true);
+                                                                                }
+
+                                                                            );
+                                                                        } else {
+                                                                            // Fallback for older browsers
+                                                                            const textArea = document.createElement('textarea');
+                                                                            textArea.value = privateLink;
+                                                                            document.body.appendChild(textArea);
+                                                                            textArea.select();
+                                                                            document.execCommand('copy');
+                                                                            document.body.removeChild(textArea);
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    {__('Copy', 'zoloblocks')}
+                                                                </Button>
+                                                            </div>
+                                                        </>
+                                                    )}
+
                                                     <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
                                                         {__('Create New Page', 'zoloblocks')}
                                                     </Button>
