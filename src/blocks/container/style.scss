@@ -22,7 +22,7 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     box-sizing: border-box;
     figure {
         margin: 0;
-    } 
+    }
     .block-editor-block-list__layout {
         position: unset;
     }
@@ -116,6 +116,24 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
                     margin-left: calc(-50vw + 50%) !important;
                     margin-right: calc(-50vw + 50%) !important;
                 }
+            }
+        }
+    }
+
+    // theme issue fix
+
+    // kednce theme
+    &.oceanwp-theme,
+    &.ehbiz-default,
+    .kt-clear,
+    .neve-main,
+    .envo-content,
+    .futurio-page-wrap,
+    .bloghash-container {
+        .zolo-root-container {
+            &.custom_width {
+                margin-left: auto;
+                margin-right: auto;
             }
         }
     }
