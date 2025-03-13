@@ -1,16 +1,42 @@
-#adminmenu #toplevel_page_zoloblocks a[href="admin.php?page=zolo-pro"] {
+#adminmenu #toplevel_page_zoloblocks a[href='admin.php?page=zolo-pro'] {
     background-color: #3f8efc;
     border-radius: 3px;
     display: block;
     font-weight: 600;
     margin: 3px 10px 0;
     text-align: center;
-    transition: all .3s;
+    transition: all 0.3s;
     color: #fff;
 }
 
-#adminmenu #toplevel_page_zoloblocks a[href="admin.php?page=zolo-pro"]:hover {
-    background-color:#2667ff;
+#adminmenu #toplevel_page_zoloblocks a[href='admin.php?page=zolo-pro']:hover {
+    background-color: #2667ff;
     outline: none;
-    box-shadow: none
+    box-shadow: none;
+}
+
+#private-link-field {
+    input {
+        background-color: #ffffff;
+    }
+}
+.zolo-private-link-copy-btn {
+    min-height: 38px;
+    padding: 6px 15px;
+    border: 0;
+    background: #3858e9;
+    border-radius: 3px;
+    color: #fff;
+    transition: all 0.3s ease;
+    border: 1px solid #3858e9;
+    &:hover {
+        background: #3356f3;
+        border-color: #3356f3;
+    }
+    &:focus {
+        border-color: #3858e9;
+        box-shadow:
+            0 0 0 1px #fff,
+            0 0 0 3px #3858e9;
+    }
 }
