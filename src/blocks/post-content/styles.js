@@ -27,6 +27,10 @@ import {
     HEADING_TEXT_STROKE,
     HEADING_TEXT_SHADOW,
     HEADING_MARGIN,
+    //heading TWO
+    HEADING_TWO_TEXT_STROKE,
+    HEADING_TWO_TEXT_SHADOW,
+    HEADING_TWO_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -38,7 +42,7 @@ import {
     LINK_HOVER_SHADOW,
 } from './constants';
 
-import { CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, HEADING_TWO_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
     generateTextShadowStyles,
@@ -64,6 +68,7 @@ function Style({ props }) {
         contentHoverColor,
         thumbnailBorderHColor,
         headingColor,
+        headingTwoColor,
         headingHoverColor,
         linkColor,
         linkHoverColor,
@@ -306,6 +311,40 @@ function Style({ props }) {
         attributes,
     });
 
+    //heading TWO
+    const {
+        typoStylesDesktop: headingTwoTypoDesk,
+        typoStylesTab: headingTwoTypoTab,
+        typoStylesMobile: headingTwoTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: HEADING_TWO_TYPOGRAPHY,
+        attributes,
+    });
+
+    const { textShadowStyle: headingTwoTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: HEADING_TWO_TEXT_SHADOW,
+    });
+
+    const {
+        desktopTextStrokeStyle: headingTwoTextStrokeDesk,
+        tabTextStrokeStyle: headingTwoTextStrokeTab,
+        mobTextStrokeStyle: headingTwoTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: HEADING_TWO_TEXT_STROKE,
+    });
+
+    const {
+        dimensionStylesDesktop: headingTwoMarginDesk,
+        dimensionStylesTab: headingTwoMarginTab,
+        dimensionStylesMobile: headingTwoMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_TWO_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     //link
     const {
         typoStylesDesktop: linkTypoDesk,
@@ -474,31 +513,27 @@ function Style({ props }) {
         `
                 : ''
         }
+        
 
-        ${
-            styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0
-                ? `
-            ${headingTags
-                .map(
-                    (tag) => `
-            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag},
-             .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
-              ${headingTypoDesk}
-              ${headingTextShadowStyle}
-              ${headingTextStrokeDesk}
-              ${headingMarginDesk}
-              ${headingColor ? `color:${headingColor};` : ''}
-            }
-            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag}:hover,
-            .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading:hover{
-              ${headingHoverColor ? `color:${headingHoverColor};` : ''}
-            }
-            `
-                )
-                .join('')}
-        `
-                : ''
-        }
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h1 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading {
+            ${headingTypoDesk}
+            ${headingTextShadowStyle}
+            ${headingTextStrokeDesk}
+            ${headingMarginDesk}
+            ${headingColor ? `color:${headingColor};` : ''}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h2 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading {
+            ${headingTwoTypoDesk}
+            ${headingTwoTextShadowStyle}
+            ${headingTwoTextStrokeDesk}
+            ${headingTwoMarginDesk}
+            ${headingTwoColor ? `color:${headingTwoColor};` : ''}
+         }
 
         ${
             styleTags?.some((item) => item.type === 'link')

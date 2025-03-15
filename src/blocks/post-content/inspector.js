@@ -30,6 +30,10 @@ import {
     HEADING_TEXT_SHADOW,
     HEADING_TEXT_STROKE,
     HEADING_MARGIN,
+    // heading two
+    HEADING_TWO_TEXT_SHADOW,
+    HEADING_TWO_TEXT_STROKE,
+    HEADING_TWO_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -41,7 +45,7 @@ import {
     LINK_HOVER_SHADOW,
 } from './constants';
 
-import { CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, HEADING_TWO_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
 import { applyFilters } from '@wordpress/hooks';
@@ -74,6 +78,7 @@ function Inspector(props) {
         contentHoverColor,
         thumbnailBorderHColor,
         headingColor,
+        headingTwoColor,
         headingHoverColor,
         linkColor,
         linkHoverColor,
@@ -297,6 +302,32 @@ function Inspector(props) {
                         {styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0 && (
                             <ZoloPanelBody title={__('Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('H1', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('H2', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'active',
+                                            label: __('H3', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'extraOne',
+                                            label: __('H4', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'extraTwo',
+                                            label: __('H5', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'extraThree',
+                                            label: __('H6', 'zoloblocks'),
+                                        },
+                                    ]}
                                     normalComponents={
                                         <>
                                             <ColorControl
@@ -336,6 +367,80 @@ function Inspector(props) {
                                         <>
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
+                                                color={headingTwoColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        headingTwoColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={HEADING_TWO_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                                max={200}
+                                            />
+                                            <TextShadowControl
+                                                controlName={HEADING_TWO_TEXT_SHADOW}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
+                                            <TextStrokeControl
+                                                controlName={HEADING_TWO_TEXT_STROKE}
+                                                requiredProps={requiredProps}
+                                                enableTransition={false}
+                                            />
+                                            <CardDivider />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={HEADING_TWO_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    }
+                                    activeComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={headingHoverColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        headingHoverColor: val,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    extraOneComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color 4', 'zoloblocks')}
+                                                color={headingHoverColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        headingHoverColor: val,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    extraTwoComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color 5', 'zoloblocks')}
+                                                color={headingHoverColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        headingHoverColor: val,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    extraThreeComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color 6', 'zoloblocks')}
                                                 color={headingHoverColor}
                                                 onChange={(val) =>
                                                     setAttributes({

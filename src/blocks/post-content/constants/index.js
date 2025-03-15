@@ -41,6 +41,10 @@ export const THUMBNAIL_HOVER_SHADOW = 'thumbHShadow';
 export const HEADING_TEXT_SHADOW = 'headingShadow';
 export const HEADING_TEXT_STROKE = 'headingStroke';
 export const HEADING_MARGIN = 'headingMargin';
+//heading TWO
+export const HEADING_TWO_TEXT_SHADOW = 'headingTwoShadow';
+export const HEADING_TWO_TEXT_STROKE = 'headingTwoStroke';
+export const HEADING_TWO_MARGIN = 'headingTwoMargin';
 
 //link
 export const LINK_BG = 'linkBg';

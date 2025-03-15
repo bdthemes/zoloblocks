@@ -43,6 +43,10 @@ import {
     HEADING_TEXT_SHADOW,
     HEADING_TEXT_STROKE,
     HEADING_MARGIN,
+    //heading two
+    HEADING_TWO_TEXT_SHADOW,
+    HEADING_TWO_TEXT_STROKE,
+    HEADING_TWO_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -125,6 +129,9 @@ const attributes = {
     headingColor: {
         type: 'string',
     },
+    headingTwoColor: {
+        type: 'string',
+    },
     linkHoverColor: {
         type: 'string',
     },
@@ -165,6 +172,10 @@ const attributes = {
     ...generateTextShadowAttributies(HEADING_TEXT_SHADOW),
     ...generateTextStrokeAttributies(HEADING_TEXT_STROKE),
     ...generateDimensionAttributes(HEADING_MARGIN),
+    //heading two
+    ...generateTextShadowAttributies(HEADING_TWO_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_TWO_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_TWO_MARGIN),
     //link
     ...generateNormalBGAttributes(LINK_BG),
     ...generateDimensionAttributes(LINK_PADDING),
