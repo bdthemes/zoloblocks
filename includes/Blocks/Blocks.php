@@ -789,4 +789,12 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         // 'is_child' => true,
     ],
+    'video' => [
+        'name' => 'video',
+        'title' => __('Video', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'demo' => 'https://demo.zoloblocks.com/video',
+        'video' => 'https://www.youtube.com/watch?v=8kBMIL-4PZI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
 ]);
