@@ -1,58 +1,40 @@
-import { fetchDemos, fetchDemosCategories, fetchPatterns, fetchPatternsCategories, fetchDemosTags } from './actions';
-import { getDemoData, getDemoCategoriesData, getPatternsData, getPatternsCategoriesData, getDemosTagsData } from '../utils/axios';
+import { setCategories, setRecords, setTags } from './actions';
+import { fetchCategories, fetchRecords, fetchTags } from '../utils';
 
-export function getDemos(props) {
-    return async ({ dispatch }) => {
-
-        try {
-            const data = await getDemoData(props);
-            dispatch(fetchDemos(data));
-        } catch (error) {
-            console.error(error);
-        }
-    };
-}
-
-export function getDemosCategories(state) {
+export function getRecords(query, type) {
     return async ({dispatch}) => {
         try {
-            const data = await getDemoCategoriesData();
-            dispatch(fetchDemosCategories(data));
+            console.log({query, type});
+            
+            const data = await fetchRecords(query, type);
+            dispatch(setRecords(data, query, type));
         } catch (error) {
             console.error(error);
+            dispatch(setRecords([], query, type));
         }
     }
 }
 
-export function getDemosTags(state) {
-    return async ({ dispatch }) => {
+export function getCategories(type) {
+    return async ({dispatch}) => {
         try {
-            const data = await getDemosTagsData();
-            dispatch(fetchDemosTags(data));
+            const data = await fetchCategories(type);
+            dispatch(setCategories(data, type));
         } catch (error) {
             console.error(error);
+            dispatch(setCategories([], type));
         }
-    };
+    }
 }
 
-export function getPatterns(props) {
-    return async ({ dispatch }) => {
+export function getTags(type) {
+    return async ({dispatch}) => {
         try {
-            const data = await getPatternsData(props);
-            dispatch(fetchPatterns(data));
+            const data = await fetchTags(type);
+            dispatch(setTags(data, type));
         } catch (error) {
             console.error(error);
+            dispatch(setTags([], type));
         }
-    };
-}
-
-export function getPatternsCategories(state) {
-    return async ({ dispatch }) => {
-        try {
-            const data = await getPatternsCategoriesData();
-            dispatch(fetchPatternsCategories(data));
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    }
 }

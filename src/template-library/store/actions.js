@@ -1,88 +1,41 @@
-import {
-    FETCH_DEMOS,
-    FETCH_DEMOS_CATEGORIES,
-    FETCH_DEMOS_TAGS,
-    SET_ACTIVE_TAG,
-    SET_ACTIVE_CAT,
-    SET_ACTIVE_TAB,
-    FETCH_PATTERNS,
-    FETCH_PATTERNS_CATEGORIES,
-    RESET_ALL,
-    SET_PACKAGE_TYPE,
-    SET_SEARCH_QUERY,
-} from './types';
+import { SET_ACTIVE_TAB, SET_CATEGORIES, SET_FILTERS, SET_RECORDS, SET_TAGS } from "./types";
 
-export const fetchDemos = (demos) => {
-    return {
-        type: FETCH_DEMOS,
-        demos,
-    };
-};
-export const fetchPatterns = (patterns) => {
-    return {
-        type: FETCH_PATTERNS,
-        patterns,
-    };
-};
-
-export const fetchDemosCategories = (categories) => {
-    return {
-        type: FETCH_DEMOS_CATEGORIES,
-        categories,
-    };
-};
-export const fetchPatternsCategories = (patternsCategories) => {
-    return {
-        type: FETCH_PATTERNS_CATEGORIES,
-        patternsCategories,
-    };
-};
-
-export const fetchDemosTags = (tags) => {
-    return {
-        type: FETCH_DEMOS_TAGS,
-        tags,
-    };
-};
-
-export const setActiveTag = (activeTag) => {
-    return {
-        type: SET_ACTIVE_TAG,
-        activeTag,
-    };
-};
-
-export const setActiveCat = (activeCat) => {
-    return {
-        type: SET_ACTIVE_CAT,
-        activeCat,
-    };
-};
 
 export const setActiveTab = (activeTab) => {
     return {
         type: SET_ACTIVE_TAB,
-        activeTab,
+        activeTab
     };
-};
+}
 
-export const setReset = (reset) => {
+export const setFilters = (filters) => {
     return {
-        type: RESET_ALL,
-        reset,
+        type: SET_FILTERS,
+        filters
     };
-};
+}
 
-export const setPackageType = (packageType) => {
+export const setCategories = (categories, paramKey) => {
     return {
-        type: SET_PACKAGE_TYPE,
-        packageType,
+        type: SET_CATEGORIES,
+        categories,
+        paramKey
     };
-};
+}
 
-export const setSearchQuery = (search) => {
+export const setTags = (tags, paramKey) => {
     return {
-        type: SET_SEARCH_QUERY,
-        search,
+        type: SET_TAGS,
+        tags,
+        paramKey
+    };
+}
+
+export const setRecords = (records, params, filterType) => {
+    return {
+        type: SET_RECORDS,
+        records,
+        params,
+        filterType
     };
 }

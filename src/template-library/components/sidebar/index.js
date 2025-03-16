@@ -3,25 +3,22 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
-import { getDemosActiveCat, getActiveTab } from '../../store/selectors';
+import { STORE_NAME } from '../../store';
+import { useCategories } from '../../utils';
 
 const Sidebar = () => {
-    const dispatch = useDispatch('zolo/templates/library');
-    const { categories, activeTab, activeCat, packageType } = useSelect(
-        (select) => {
-            const { getDemosCategories, getDemosActiveCat, getPatternsCategories, getActiveTab, getPackageType } =
-                select('zolo/templates/library');
-            const activeTab = getActiveTab();
-            return {
-                categories: activeTab === 'demos' ? getDemosCategories() : getPatternsCategories(),
-                activeTab: activeTab,
-                activeCat: getDemosActiveCat(),
-                packageType: getPackageType(),
-            };
-        },
-        [getActiveTab, getDemosActiveCat]
-    );
-
+    const { Skeleton } = window.zoloModule;
+    const { setFilters } = useDispatch(STORE_NAME);
+    const { activeTab, filters } = useSelect((select) => {
+        const { getActiveTab, getFilters } = select(STORE_NAME)
+        return {
+            activeTab: getActiveTab(),
+            filters: getFilters()
+        }
+    });
+    const { categories, isResolving, hasResolved } = useCategories([activeTab]);
+    
+    
     return (
         <div className="categories">
             <div className="demo-made-button">
@@ -48,13 +45,12 @@ const Sidebar = () => {
             <div className="demo-title-proFree-wrap">
                 <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                 <div className="demo-proFree-btn">
-                    {packageType !== '' && (
+                    {true && (
                         <Tooltip>
                             <button
                                 className="demo-pro-free-reset"
                                 onClick={() => {
-                                    dispatch.setPackageType('');
-                                    // dispatch.setReset(true);
+                                    setFilters({});
                                 }}
                             >
                                 <svg
@@ -79,8 +75,9 @@ const Sidebar = () => {
                     <button
                         className="demo-free-btn"
                         onClick={() => {
-                            // dispatch.setReset(false);
-                            dispatch.setPackageType('free');
+                            setFilters({
+                                packageType: 'free'
+                            });
                         }}
                     >
                         {__('free', 'zoloblocks')}
@@ -88,8 +85,9 @@ const Sidebar = () => {
                     <button
                         className="demo-pro-btn"
                         onClick={() => {
-                            // dispatch.setReset(false);
-                            dispatch.setPackageType('pro');
+                            setFilters({
+                                packageType: 'pro'
+                            });
                         }}
                     >
                         {__('pro', 'zoloblocks')}
@@ -98,7 +96,12 @@ const Sidebar = () => {
             </div>
 
             <div className="category-list">
-                {categories &&
+                {
+                    !hasResolved && isResolving && (
+                        <Skeleton count={25} />
+                    )
+                }
+                {hasResolved && categories &&
                     categories.length > 0 &&
                     activeTab !== 'favorites' &&
                     categories
@@ -107,18 +110,19 @@ const Sidebar = () => {
                             <button
                                 key={category?.slug}
                                 className={classNames('single-category', {
-                                    active: activeCat === category?.slug,
+                                    active: filters?.categories === category?.slug,
                                 })}
                                 onClick={() => {
-                                    dispatch.setReset(false);
-                                    dispatch.setActiveTag('');
-                                    dispatch.setActiveCat(category?.slug);
+                                    setFilters({
+                                        categories: category?.slug
+                                    });
                                 }}
                             >
                                 <span className="single-category-text">{category?.slug === 'demos' ? 'All' : category?.label}</span>
                                 <span className="single-category-count">{category?.count}</span>
                             </button>
-                        ))}
+                        ))
+                }
             </div>
         </div>
     );

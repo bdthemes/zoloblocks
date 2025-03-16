@@ -3,29 +3,36 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
+import { useState, useEffect } from '@wordpress/element';
+import { TABS } from '../../utils';
+import { STORE_NAME } from '../../store';
 
 const Header = ({ props }) => {
     const { pullDemos, setPullDemos, pullNewDemos, setIsOpen } = props;
-    const TABS = [
-        { label: __('Demos', 'zoloblocks'), value: 'demos' },
-        { label: __('Templates', 'zoloblocks'), value: 'templates' },
-        { label: __('Pages', 'zoloblocks'), value: 'pages' },
-        { label: __('Patterns', 'zoloblocks'), value: 'patterns' },
-        { label: __('Favorites', 'zoloblocks'), value: 'favorites' },
-    ];
-    const dispatch = useDispatch('zolo/templates/library');
+    const { setActiveTab, setFilters } = useDispatch(STORE_NAME);
+    const [searchInput, setSearchInput] = useState('');
 
-    const { activeTab, searchText } = useSelect(
+    const { activeTab, filters } = useSelect(
         (select) => {
-            const { getActiveTab, getReset, getSearchQuery } = select('zolo/templates/library');
+            const { getActiveTab, getFilters } = select(STORE_NAME);
             return {
                 activeTab: getActiveTab(),
-                reset: getReset(),
-                searchText: getSearchQuery(),
+                filters: getFilters(),
             };
         },
-        [dispatch]
+        []
     );
+
+    let timer;
+
+    useEffect(() => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            setFilters({
+                search: searchInput
+            })
+        }, 1000);
+    }, [searchInput]);
 
     return (
         <div className="zolo-dm-head">
@@ -47,8 +54,8 @@ const Header = ({ props }) => {
                             key={tab.value}
                             className={classNames('single-tab', { active: activeTab === tab.value }, { fav: tab.value === 'favorites' })}
                             onClick={() => {
-                                dispatch.setReset(true);
-                                dispatch.setActiveTab(tab.value);
+                               setActiveTab(tab.value);
+                               setFilters({});
                             }}
                         >
                             {tab.label}
@@ -60,9 +67,9 @@ const Header = ({ props }) => {
                     <input
                         type="search"
                         placeholder={__('Search', 'zoloblocks')}
-                        value={searchText}
+                        value={searchInput}
                         onChange={(e) => {
-                            dispatch.setSearchQuery(e.target.value);
+                            setSearchInput(e.target.value);
                         }}
                     />
                 </div>
@@ -73,8 +80,6 @@ const Header = ({ props }) => {
                             onClick={() => {
                                 setPullDemos(!pullDemos);
                                 pullNewDemos();
-                                dispatch.setReset(true);
-                                dispatch.setSearchQuery('');
                             }}
                         >
                             <svg

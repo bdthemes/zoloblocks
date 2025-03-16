@@ -1,66 +1,36 @@
-import { BaseControl, SelectControl, Tooltip } from '@wordpress/components';
+import { BaseControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelect } from '@wordpress/data';
+import { useDebounce } from '@wordpress/compose';
 import classNames from 'classnames';
 import InnerTemplate from '../../inner-template';
 import PreLoader from '../../preloader';
+import { STORE_NAME } from '../../store';
+import { useRecords, useTags } from '../../utils';
 const Content = ({ props }) => {
-    const { number, setNumber, handleImportTemplate, favIds, handleFavTemplate, itemSortBy, handleItemSortBy, itemText } = props;
-
-    const dispatch = useDispatch('zolo/templates/library');
-
-    const { items, tags, activeTag, loading } = useSelect(
-        (select) => {
-            const {
-                getDemos,
-                getDemosActiveCat,
-                getActiveTab,
-                getPatterns,
-                getReset,
-                getPackageType,
-                getDemosTags,
-                getDemosActiveTag,
-                getLoading,
-            } = select('zolo/templates/library');
-            const activeTab = getActiveTab();
-            const queryParams = {
-                categories: getDemosActiveCat(),
-                reset: getReset(),
-                packageType: getPackageType(),
-                tags: getDemosActiveTag(),
-            };
-
-            // get items based on active tab
-            return {
-                items: activeTab === 'demos' ? getDemos(queryParams) : activeTab === 'patterns' ? getPatterns(queryParams) : [],
-                tags: getDemosTags(),
-                activeTag: getDemosActiveTag(),
-                loading: getLoading(),
-            };
-        },
-        [dispatch]
-    );
-
-    console.log(dispatch);
-
-        // const { items } = useSelect(
-        //     (select) => {
-        //         const {
-        //             getDemos,
-        //         } = select('zolo/templates/library');
-        //         const activeTab = getActiveTab();
-
-        //         // get items based on active tab
-        //         return {
-        //             items: activeTab === 'demos' ? getDemos() : activeTab === 'patterns' ? getPatterns() : [],
-        //         };
-        //     },
-        //     [dispatch]
-        // );
-
+    const { number, setNumber, handleImportTemplate, favIds, handleFavTemplate, recordsortBy, handlerecordsortBy, itemText } = props;
+    const { setFilters } = useDispatch(STORE_NAME);
+    const { activeTab, filters } = useSelect((select) => {
+        return {
+            activeTab: select(STORE_NAME).getActiveTab(),
+            filters: select(STORE_NAME).getFilters(),
+        }
+    },[]);
+    const { tags, isResolving, hasResolved, startResolution } = useTags([activeTab])
+    
+    const { 
+        records, 
+        isResolving: isResolvingRecords, 
+        hasResolved: hasResolvedRecords, 
+        startResolution: startResolutionRecords 
+    } = useRecords([
+        filters,
+        activeTab
+    ]);
+    
     return (
         <>
-            {items && items.length > 0 && (
+            {records && records.length > 0 && (
                 <div className="zolo-secondary-head">
                     <div className="secondary-header-item">
                         <div className="secondary-item">
@@ -71,9 +41,9 @@ const Content = ({ props }) => {
                                     { label: __('Oldest', 'zoloblocks'), value: 'oldest' },
                                 ]}
                                 onChange={(v) => {
-                                    handleItemSortBy(v);
+                                    handlerecordsortBy(v);
                                 }}
-                                value={itemSortBy}
+                                value={recordsortBy}
                             />
                         </div>
 
@@ -86,23 +56,23 @@ const Content = ({ props }) => {
                                             tags.map((tag) => (
                                                 <button
                                                     key={tag.slug}
-                                                    className={classNames('single-tag', `${activeTag === tag.slug ? 'active' : ''}`)}
+                                                    className={classNames('single-tag', `${ filters?.tags === tag?.slug ? 'active' : ''}`)}
                                                     onClick={() => {
-                                                        dispatch.setReset(false);
-                                                        dispatch.setActiveCat('');
-                                                        dispatch.setActiveTag(tag.slug);
+                                                        setFilters({
+                                                            tags: tag?.slug
+                                                        })
                                                     }}
                                                 >
-                                                    {tag.label}
+                                                    {tag?.label}
                                                 </button>
                                             ))}
                                     </div>
                                     <button
-                                        className={classNames('clear-tag', `${activeTag !== '' ? 'active' : ''}`)}
+                                        className={classNames('clear-tag', `${filters?.tags !== '' ? 'active' : ''}`)}
                                         onClick={() => {
-                                            dispatch.setReset(true);
-                                            dispatch.setActiveTag('');
-                                            dispatch.getDemos();
+                                            setFilters({
+                                                tags: ''
+                                            })
                                         }}
                                     >
                                         <svg
@@ -137,16 +107,16 @@ const Content = ({ props }) => {
                 </div>
             )}
 
-            {items && items.length > 0 && (
+            {records && records.length > 0 && (
                 <InnerTemplate
-                    templates={items.length > number ? items.slice(0, number) : items}
+                    templates={records.length > number ? records.slice(0, number) : records}
                     handleImportTemplate={handleImportTemplate}
                     favIds={favIds}
                     handleFavTemplate={handleFavTemplate}
                 />
             )}
 
-            {items && items?.length > number && (
+            {records && records?.length > number && (
                 <div className="load-more-btn-wrapper">
                     <button
                         className="load-more-btn"
@@ -158,13 +128,13 @@ const Content = ({ props }) => {
                     </button>
                 </div>
             )}
-            {items?.length === 0 && !loading && (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites Items') && (
+            {records?.length === 0 && !isResolvingRecords && (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites records') && (
                 <div className="no-found-item">
                     <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
                 </div>
             )}
 
-            {loading && <PreLoader />}
+            {isResolvingRecords && <PreLoader />}
         </>
     );
 };

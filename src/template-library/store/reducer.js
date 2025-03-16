@@ -1,57 +1,40 @@
-import {
-    FETCH_DEMOS,
-    FETCH_DEMOS_CATEGORIES,
-    FETCH_DEMOS_TAGS,
-    SET_ACTIVE_TAG,
-    SET_ACTIVE_CAT,
-    SET_ACTIVE_TAB,
-    FETCH_PATTERNS,
-    FETCH_PATTERNS_CATEGORIES,
-    RESET_ALL,
-    SET_PACKAGE_TYPE,
-    SET_SEARCH_QUERY,
-} from './types';
+import { SET_CATEGORIES, SET_RECORDS, SET_TAGS, SET_FILTERS, SET_ACTIVE_TAB } from "./types";
+
 
 const DEFAULT_STATE = {
-    demos: [],
-    patterns: [],
-    categories: [],
-    patternsCategories: [],
-    tags: [],
-    activeTag: '',
-    activeCat: '',
     activeTab: 'demos',
-    reset: false,
-    packageType: '',
-    search: '',
-    loading: false,
-    error: null,
+    filter: {},
+    categories: {},
+    tags: [],
+    records: [],
 };
 
 const reducer = (state = DEFAULT_STATE, action) => {
     switch (action.type) {
-        case FETCH_DEMOS:
-            return { ...state, demos: action.demos };
-        case FETCH_DEMOS_CATEGORIES:
-            return { ...state, categories: action.categories };
-        case FETCH_PATTERNS_CATEGORIES:
-            return { ...state, patternsCategories: action.patternsCategories };
-        case FETCH_DEMOS_TAGS:
-            return { ...state, tags: action.tags };
-        case SET_ACTIVE_CAT:
-            return { ...state, activeCat: action.activeCat };
-        case SET_ACTIVE_TAG:
-            return { ...state, activeTag: action.activeTag };
         case SET_ACTIVE_TAB:
             return { ...state, activeTab: action.activeTab };
-        case FETCH_PATTERNS:
-            return { ...state, patterns: action.patterns };
-        case RESET_ALL:
-            return { ...state, reset: action.reset };
-        case SET_PACKAGE_TYPE:
-            return { ...state, packageType: action.packageType };
-        case SET_SEARCH_QUERY:
-            return { ...state, search: action.search };
+        case SET_FILTERS:
+            return { ...state, filters: action.filters };
+        case SET_CATEGORIES:
+            return { ...state, categories: {
+                ...state.categories,
+                [action.paramKey]: action.categories
+            } };
+        case SET_TAGS:
+            return { ...state, tags: {
+                ...state.tags,
+                [action.paramKey]: action.tags
+            }};
+        case SET_RECORDS:
+            let params = {
+                [action.filterType]: action?.params
+            }
+            let hash = JSON.stringify(params);
+            
+            return { ...state, records: {
+                ...state.records,
+                [hash]: action.records
+            }};
         default:
             return state;
     }
