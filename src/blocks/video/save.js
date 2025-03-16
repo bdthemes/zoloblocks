@@ -20,6 +20,7 @@ export default function Save(props) {
         loop,
         mute,
         posterImage,
+        imageRes,
         startTime,
         endTime,
         hoverPlayPause,

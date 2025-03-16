@@ -31,6 +31,7 @@ export default function Edit(props) {
         hoverPlayPause,
         video,
         posterImage,
+        imageRes,
         startTime,
         endTime,
         isPlaying,
