@@ -31,6 +31,10 @@ import {
     HEADING_TWO_TEXT_STROKE,
     HEADING_TWO_TEXT_SHADOW,
     HEADING_TWO_MARGIN,
+    //heading THREE
+    HEADING_THREE_TEXT_STROKE,
+    HEADING_THREE_TEXT_SHADOW,
+    HEADING_THREE_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -42,7 +46,13 @@ import {
     LINK_HOVER_SHADOW,
 } from './constants';
 
-import { CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, HEADING_TWO_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import {
+    CONTENT_TYPOGRAPHY,
+    HEADING_TYPOGRAPHY,
+    HEADING_TWO_TYPOGRAPHY,
+    HEADING_THREE_TYPOGRAPHY,
+    LINK_TYPOGRAPHY,
+} from './constants/typoPrefixConstant';
 
 const {
     generateTextShadowStyles,
@@ -69,6 +79,7 @@ function Style({ props }) {
         thumbnailBorderHColor,
         headingColor,
         headingTwoColor,
+        headingThreeColor,
         headingHoverColor,
         linkColor,
         linkHoverColor,
@@ -345,6 +356,40 @@ function Style({ props }) {
         attributes,
     });
 
+    //heading three
+    const {
+        typoStylesDesktop: headingThreeTypoDesk,
+        typoStylesTab: headingThreeTypoTab,
+        typoStylesMobile: headingThreeTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: HEADING_THREE_TYPOGRAPHY,
+        attributes,
+    });
+
+    const { textShadowStyle: headingThreeTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: HEADING_THREE_TEXT_SHADOW,
+    });
+
+    const {
+        desktopTextStrokeStyle: headingThreeTextStrokeDesk,
+        tabTextStrokeStyle: headingThreeTextStrokeTab,
+        mobTextStrokeStyle: headingThreeTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: HEADING_THREE_TEXT_STROKE,
+    });
+
+    const {
+        dimensionStylesDesktop: headingThreeMarginDesk,
+        dimensionStylesTab: headingThreeMarginTab,
+        dimensionStylesMobile: headingThreeMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_THREE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     //link
     const {
         typoStylesDesktop: linkTypoDesk,
@@ -463,10 +508,8 @@ function Style({ props }) {
             ${contentHoverBoxShadow}
             ${contentHoverColor ? `color:${contentHoverColor};` : ''}
         }
-        ${
-            styleTags?.some((item) => item.type === 'image')
-                ? `
-          .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
+ 
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthDesk}
             ${thumbHeightDesk}
             ${thumbPaddingDesk}
@@ -475,49 +518,45 @@ function Style({ props }) {
             ${thumbBorderDesk}
             ${thumbBRadiusDesk}
             ${thumbBoxShadow}
-          }
-          .${uniqueId}.wp-block-zolo-post-content.zolo-block img:hover{
-           ${thumbHoverBoxShadow}
-           ${thumbnailBorderHColor ? `border-color: ${thumbnailBorderHColor};` : ''}
-          }
-           ${
-               active
-                   ? `
-               .${uniqueId}.wp-block-zolo-post-content.zolo-block img {
-                  filter:
-                      blur(${blur}px)
-                      brightness(${brightness}%)
-                      contrast(${contrast}%)
-                      saturate(${saturate}%)
-                      hue-rotate(${hueRotate}deg)
-                }
-            `
-                   : ''
-           }
-
-             ${
-                 activeHover
-                     ? `
-                .${uniqueId}.wp-block-zolo-post-content.zolo-block img:hover {
-                    filter:
-                        blur(${blurHover}px)
-                        brightness(${brightnessHover}%)
-                        contrast(${contrastHover}%)
-                        saturate(${saturateHover}%)
-                        hue-rotate(${hueRotateHover}deg)
-                }
-            `
-                     : ''
-             }
-
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block img:hover{
+            ${thumbHoverBoxShadow}
+            ${thumbnailBorderHColor ? `border-color: ${thumbnailBorderHColor};` : ''}
+        }
+        ${
+            active
+                ? `
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block img {
+                filter:
+                    blur(${blur}px)
+                    brightness(${brightness}%)
+                    contrast(${contrast}%)
+                    saturate(${saturate}%)
+                    hue-rotate(${hueRotate}deg)
+            }
         `
                 : ''
         }
-        
 
+        ${
+            activeHover
+                ? `
+            .${uniqueId}.wp-block-zolo-post-content.zolo-block img:hover {
+                filter:
+                    blur(${blurHover}px)
+                    brightness(${brightnessHover}%)
+                    contrast(${contrastHover}%)
+                    saturate(${saturateHover}%)
+                    hue-rotate(${hueRotateHover}deg)
+            }
+        `
+                : ''
+        }
+
+        
          .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
          .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h1 .zolo-ah-main-title,
-         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading {
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.zolo-heading {
             ${headingTypoDesk}
             ${headingTextShadowStyle}
             ${headingTextStrokeDesk}
@@ -527,7 +566,7 @@ function Style({ props }) {
 
          .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.wp-block-heading,
          .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h2 .zolo-ah-main-title,
-         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading {
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.zolo-heading {
             ${headingTwoTypoDesk}
             ${headingTwoTextShadowStyle}
             ${headingTwoTextStrokeDesk}
@@ -535,27 +574,34 @@ function Style({ props }) {
             ${headingTwoColor ? `color:${headingTwoColor};` : ''}
          }
 
-        ${
-            styleTags?.some((item) => item.type === 'link')
-                ? `
-          .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-            ${linkTypoDesk}
-            ${linkColor ? `color:${linkColor};` : ''}
-            ${linkBGDesk}
-            ${linkPaddingDesk}
-            ${linkMarginDesk}
-            ${linkBorderDesk}
-            ${linkBRadiusDesk}
-            ${linkBoxShadow}
-          }
-          .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-            ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
-            ${linkHoverBGDesk}
-            ${linkHoverBoxShadow}
-            ${linkHoverBorderColor ? `border-color: ${linkHoverBorderColor};` : ''}
-          }
-        `
-                : ''
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h3.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h3 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h3.zolo-heading {
+            ${headingThreeTypoDesk}
+            ${headingThreeTextShadowStyle}
+            ${headingThreeTextStrokeDesk}
+            ${headingThreeMarginDesk}
+            ${headingThreeColor ? `color:${headingThreeColor};` : ''}
+         }
+ 
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+        ${linkTypoDesk}
+        ${linkColor ? `color:${linkColor};` : ''}
+        ${linkBGDesk}
+        ${linkPaddingDesk}
+        ${linkMarginDesk}
+        ${linkBorderDesk}
+        ${linkBRadiusDesk}
+        ${linkBoxShadow}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
+        ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
+        ${linkHoverBGDesk}
+        ${linkHoverBoxShadow}
+        ${linkHoverBorderColor ? `border-color: ${linkHoverBorderColor};` : ''}
+        }
+        
+                
         }
     `;
 

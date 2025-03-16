@@ -1,18 +1,18 @@
 import { __ } from '@wordpress/i18n';
 
-export const TAGS_LIST = [
-    { label: __('Image', 'zoloblocks'), value: 'image' },
-    { label: __('Heading', 'zoloblocks'), value: 'heading' },
-    { label: __('Link', 'zoloblocks'), value: 'link' },
-];
-export const HEADING_TAGS = [
-    { label: __('H1', 'zoloblocks'), value: 'h1' },
-    { label: __('H2', 'zoloblocks'), value: 'h2' },
-    { label: __('H3', 'zoloblocks'), value: 'h3' },
-    { label: __('H4', 'zoloblocks'), value: 'h4' },
-    { label: __('H5', 'zoloblocks'), value: 'h5' },
-    { label: __('H6', 'zoloblocks'), value: 'h6' },
-];
+// export const TAGS_LIST = [
+//     { label: __('Image', 'zoloblocks'), value: 'image' },
+//     { label: __('Heading', 'zoloblocks'), value: 'heading' },
+//     { label: __('Link', 'zoloblocks'), value: 'link' },
+// ];
+// export const HEADING_TAGS = [
+//     { label: __('H1', 'zoloblocks'), value: 'h1' },
+//     { label: __('H2', 'zoloblocks'), value: 'h2' },
+//     { label: __('H3', 'zoloblocks'), value: 'h3' },
+//     { label: __('H4', 'zoloblocks'), value: 'h4' },
+//     { label: __('H5', 'zoloblocks'), value: 'h5' },
+//     { label: __('H6', 'zoloblocks'), value: 'h6' },
+// ];
 export const CONTENT_ALIGN = 'contentAlign';
 export const CONTENT_PADDING = 'contentPadding';
 export const CONTENT_MARGIN = 'contentMargin';
@@ -45,6 +45,11 @@ export const HEADING_MARGIN = 'headingMargin';
 export const HEADING_TWO_TEXT_SHADOW = 'headingTwoShadow';
 export const HEADING_TWO_TEXT_STROKE = 'headingTwoStroke';
 export const HEADING_TWO_MARGIN = 'headingTwoMargin';
+
+//heading THREE
+export const HEADING_THREE_TEXT_SHADOW = 'headingTwoShadow';
+export const HEADING_THREE_TEXT_STROKE = 'headingTwoStroke';
+export const HEADING_THREE_MARGIN = 'headingTwoMargin';
 
 //link
 export const LINK_BG = 'linkBg';

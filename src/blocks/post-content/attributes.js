@@ -47,6 +47,10 @@ import {
     HEADING_TWO_TEXT_SHADOW,
     HEADING_TWO_TEXT_STROKE,
     HEADING_TWO_MARGIN,
+    //heading THREE
+    HEADING_THREE_TEXT_SHADOW,
+    HEADING_THREE_TEXT_STROKE,
+    HEADING_THREE_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -88,31 +92,43 @@ const attributes = {
         },
     },
     // block attributes
-    styleTags: {
-        type: 'array',
-        default: [
-            // { id: 1, type: 'image' },
-            {
-                id: 2,
-                type: 'heading',
-                hTags: [
-                    { label: __('H1', 'zoloblocks'), value: 'h1' },
-                    { label: __('H2', 'zoloblocks'), value: 'h2' },
-                    { label: __('H3', 'zoloblocks'), value: 'h3' },
-                    { label: __('H4', 'zoloblocks'), value: 'h4' },
-                    { label: __('H5', 'zoloblocks'), value: 'h5' },
-                    { label: __('H6', 'zoloblocks'), value: 'h6' },
-                ],
-            },
-        ],
-    },
+    // styleTags: {
+    //     type: 'array',
+    //     default: [
+    //         // { id: 1, type: 'image' },
+    //         {
+    //             id: 2,
+    //             type: 'heading',
+    //             hTags: [
+    //                 { label: __('H1', 'zoloblocks'), value: 'h1' },
+    //                 { label: __('H2', 'zoloblocks'), value: 'h2' },
+    //                 { label: __('H3', 'zoloblocks'), value: 'h3' },
+    //                 { label: __('H4', 'zoloblocks'), value: 'h4' },
+    //                 { label: __('H5', 'zoloblocks'), value: 'h5' },
+    //                 { label: __('H6', 'zoloblocks'), value: 'h6' },
+    //             ],
+    //         },
+    //     ],
+    // },
     inheritThemeLayout: {
         type: 'boolean',
         default: false,
     },
-    headingTags: {
-        type: 'array',
-        default: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    // headingTags: {
+    //     type: 'array',
+    //     default: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    // },
+    heading: {
+        type: 'boolean',
+        default: true,
+    },
+    showImage: {
+        type: 'boolean',
+        default: false,
+    },
+    showLink: {
+        type: 'boolean',
+        default: false,
     },
     contentColor: {
         type: 'string',
@@ -132,6 +148,9 @@ const attributes = {
     headingTwoColor: {
         type: 'string',
     },
+    headingThreeColor: {
+        type: 'string',
+    },
     linkHoverColor: {
         type: 'string',
     },
@@ -141,6 +160,11 @@ const attributes = {
 
     linkHoverBorderColor: {
         type: 'string',
+    },
+
+    titleTagName: {
+        type: 'string',
+        default: 'h2',
     },
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -176,6 +200,10 @@ const attributes = {
     ...generateTextShadowAttributies(HEADING_TWO_TEXT_SHADOW),
     ...generateTextStrokeAttributies(HEADING_TWO_TEXT_STROKE),
     ...generateDimensionAttributes(HEADING_TWO_MARGIN),
+    //heading Three
+    ...generateTextShadowAttributies(HEADING_THREE_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_THREE_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_THREE_MARGIN),
     //link
     ...generateNormalBGAttributes(LINK_BG),
     ...generateDimensionAttributes(LINK_PADDING),

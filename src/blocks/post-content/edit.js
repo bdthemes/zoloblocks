@@ -11,11 +11,13 @@ import { useEffect } from '@wordpress/element';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
-    const { preview, uniqueId, parentClasses, styleTags, headingTags } = attributes;
+    const { preview, uniqueId, parentClasses, styleTags, headingTags, titleTagName, heading, showImage, showLink } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} `, classArrayToStr(parentClasses)),
     });
+
+    const TagName = titleTagName || 'h2';
 
     return (
         <>
@@ -23,7 +25,8 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
-                {styleTags?.some((item) => item?.type === 'image') && (
+                {/* {styleTags?.some((item) => item?.type === 'image') && ( */}
+                {showImage && (
                     <>
                         {/* <p>
                             {' '}
@@ -37,7 +40,9 @@ export default function Edit(props) {
                         </figure>
                     </>
                 )}
-                {styleTags?.some((item) => item?.type === 'heading' && headingTags.length > 0) && (
+                {/* )} */}
+                {/* {styleTags?.some((item) => item?.type === 'heading' && headingTags.length > 0) && ( */}
+                {heading && (
                     <>
                         <p>
                             {' '}
@@ -46,22 +51,25 @@ export default function Edit(props) {
                                 'zoloblocks'
                             )}
                         </p>
-                        <h2 className="zolo-heading">{__('Post Global Heading Content', 'zoloblocks')}</h2>
+                        <TagName className="zolo-heading">{__('Post Global Heading Content', 'zoloblocks')}</TagName>
                     </>
                 )}
+                {/* // )} */}
                 <p>
                     {__(
                         'Change your blog post’s style with our dynamic single post template. You can change all of your existing blog posts’ style at once from a single place. ',
                         'zoloblocks'
                     )}
                 </p>
-                {styleTags?.some((item) => item?.type === 'link') && (
+                {/* {styleTags?.some((item) => item?.type === 'link') && ( */}
+                {showLink && (
                     <div>
                         <a onClick={(event) => event.preventDefault()} href="#">
                             {__('Link Text', 'zoloblocks')}
                         </a>
                     </div>
                 )}
+                {/* )} */}
             </div>
         </>
     );
