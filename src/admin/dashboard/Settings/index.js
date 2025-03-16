@@ -21,7 +21,7 @@ const Settings = () => {
     const [modalNewPage, setModalNewPage] = useState(false);
     const [editorVideoLink, setEditorVideoLink] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const privateLink = `${zoloBlocks?.site_url}/?site_private_link=${comingSoonPrivateLinkPassword}`;
+    const privateLink = `${zoloBlocks?.site_url}/?private_link=${comingSoonPrivateLinkPassword}`;
     const [copyButtonText, setCopyButtonText] = useState('Copy');
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);

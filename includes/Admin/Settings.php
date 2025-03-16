@@ -53,16 +53,18 @@ if (! class_exists('Settings')) {
             register_setting('reading', 'zolo_maintenance_mode');
             register_setting('reading', 'zolo_coming_soon_mode');
             register_setting('reading', 'zolo_maintenance_mode_template');
+            register_setting('reading', 'zolo_site_visibility_private_link');
+            // register_setting('reading', 'zolo_site_visibility_secret_key');
         }
 
-        
+
 
         public function zolo_site_visibility_section() {
             echo '<p>' . __('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>';
         }
         public function zolo_site_visibility_field() {
 
-      
+
 
             $zolo_maintenance_mode = get_option('zolo_maintenance_mode', false);
             $zolo_coming_soon_mode = get_option('zolo_coming_soon_mode', false);
@@ -71,7 +73,7 @@ if (! class_exists('Settings')) {
             $site_url = get_site_url();
             $visibility_secrect_key = get_option('zolo_site_visibility_secret_key', '');
             $visibility_private_link = get_option('zolo_site_visibility_private_link', false);
-            $private_url = $visibility_private_link ? $site_url . '/?site_private_link=' . $visibility_secrect_key : $site_url;
+            $private_url = $site_url . '/?private_link=' . $visibility_secrect_key;
 ?>
             <fieldset>
                 <legend class="screen-reader-text"><span><?php _e('Site Visibility', 'zoloblocks'); ?></span></legend>

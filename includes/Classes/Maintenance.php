@@ -40,12 +40,12 @@ class Maintenance {
 
         if (get_option('zolo_site_visibility_private_link') === '1') {
             // Exclude users with a private link.
-            if (isset($_GET['site_private_link']) && get_option('zolo_site_visibility_secret_key') === $_GET['site_private_link']) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            if (isset($_GET['private_link']) && get_option('zolo_site_visibility_secret_key') === $_GET['private_link']) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 // Persist the share link with a cookie for 90 days.
-                setcookie('site_private_link', sanitize_text_field(wp_unslash($_GET['site_private_link'])), time() + 60 * 60 * 24 * 90, '/'); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                setcookie('private_link', sanitize_text_field(wp_unslash($_GET['private_link'])), time() + 60 * 60 * 24 * 90, '/'); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 return false;
             }
-            if (isset($_COOKIE['site_private_link']) && get_option('zolo_site_visibility_secret_key') === $_COOKIE['site_private_link']) {
+            if (isset($_COOKIE['private_link']) && get_option('zolo_site_visibility_secret_key') === $_COOKIE['private_link']) {
                 return false;
             }
         }
