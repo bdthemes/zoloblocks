@@ -4,4 +4,29 @@
 
 .wp-block-zolo-video {
     pointer-events: auto;
+    .zolo-video-player {
+        display: flex;
+    }
+    video {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .zolo-video-play {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 20px;
+        background: transparent;
+        border: 0;
+        outline: none;
+        padding: 0;
+        display: flex;
+        color: #36363a;
+        svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+    }
 }

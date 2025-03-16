@@ -39,7 +39,7 @@ const {
     BorderControl,
 } = window.zoloModule;
 
-import { STYLES, VIDEO_ALIGN } from './constants';
+import { VIDEO_SOURCE, VIDEO_ALIGN } from './constants';
 
 export default function Edit(props) {
     const { attributes, setAttributes, block } = props;
@@ -48,7 +48,7 @@ export default function Edit(props) {
         resMode,
 
         // settings
-        styles,
+        videoSource,
         autoPlay,
         loop,
         mute,
@@ -62,6 +62,7 @@ export default function Edit(props) {
         startTime,
         endTime,
         startEnd,
+        youtubeUrl,
     } = attributes;
 
     const requiredProps = {
@@ -84,15 +85,26 @@ export default function Edit(props) {
                         <>
                             <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                 <SelectControl
-                                    label={__('Presets', 'zoloblocks')}
-                                    value={styles}
-                                    options={STYLES}
+                                    label={__('Video Source', 'zoloblocks')}
+                                    value={videoSource}
+                                    options={VIDEO_SOURCE}
                                     onChange={(value) =>
                                         setAttributes({
-                                            styles: value,
+                                            videoSource: value,
                                         })
                                     }
                                 />
+                                {videoSource === 'youtube' && (
+                                    <LinkControl
+                                        label={__('URL', 'zoloblocks')}
+                                        value={youtubeUrl}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                youtubeUrl: value,
+                                            })
+                                        }
+                                    />
+                                )}
                                 <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                                 <ToggleControl
                                     label={__('Autoplay', 'zoloblocks')}
@@ -104,7 +116,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 <ToggleControl
                                     label={__('Loop', 'zoloblocks')}
                                     checked={loop}
@@ -114,7 +125,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 <ToggleControl
                                     label={__('Mute', 'zoloblocks')}
                                     checked={mute}
@@ -124,7 +134,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 <ToggleControl
                                     label={__('Player Control', 'zoloblocks')}
                                     checked={playerControl}
@@ -134,7 +143,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 {playerControl === false && (
                                     <ToggleControl
                                         label={__('Small Play Button', 'zoloblocks')}
@@ -146,7 +154,6 @@ export default function Edit(props) {
                                         }
                                     />
                                 )}
-
                                 {loop === false && (
                                     <ToggleControl
                                         label={__('Start/End Time', 'zoloblocks')}
@@ -158,7 +165,6 @@ export default function Edit(props) {
                                         }
                                     />
                                 )}
-
                                 <ToggleControl
                                     label={__('Hover Play/pause', 'zoloblocks')}
                                     checked={hoverPlayPause}
@@ -168,13 +174,11 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={VIDEO_ALIGN}
                                     requiredProps={requiredProps}
                                 />
-
                                 <CardDivider />
                                 <BaseControl label={__('Choose Video', 'zoloblocks')} className="zolo-flex-col-control">
                                     {video && (
@@ -204,7 +208,6 @@ export default function Edit(props) {
                                         />
                                     )}
                                 </BaseControl>
-
                                 <BaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
                                     {posterImage ? (
                                         <ImageAvatar
@@ -252,7 +255,6 @@ export default function Edit(props) {
                                         />
                                     )}
                                 </BaseControl>
-
                                 <ImageSizes
                                     label={__('Resolution', 'zoloblocks')}
                                     value={imageRes}
@@ -262,7 +264,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 <LinkControl
                                     label={__('Link', 'zoloblocks')}
                                     value={videoLink}
@@ -272,7 +273,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-
                                 {loop ? (
                                     true
                                 ) : (

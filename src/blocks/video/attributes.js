@@ -43,9 +43,9 @@ const attributes = {
         },
     },
 
-    styles: {
+    videoSource: {
         type: 'string',
-        default: 'style-0',
+        default: 'custom',
     },
     video: {
         type: 'string',
@@ -105,6 +105,14 @@ const attributes = {
     isPlaying: {
         type: 'boolean',
         default: false,
+    },
+
+    youtubeUrl: {
+        type: 'object',
+        default: {
+            url: 'https://www.youtube.com/embed/XR8ARbgBDg0?si=DZBX-iB2vsLtEBty',
+            openInNewTab: false,
+        },
     },
 
     ...generateResAlignmentAttributies(VIDEO_ALIGN),

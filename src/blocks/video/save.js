@@ -20,6 +20,7 @@ export default function Save(props) {
         loop,
         mute,
         posterImage,
+        imageRes,
         startTime,
         endTime,
         hoverPlayPause,
@@ -45,7 +46,7 @@ export default function Save(props) {
     return (
         <>
             <div {...blocksProps}>
-                <div>
+                <div className="zolo-video-player">
                     <video
                         width={640}
                         height={360}
