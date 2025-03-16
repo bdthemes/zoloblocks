@@ -458,7 +458,7 @@ const Settings = () => {
                                         />
                                     </div>
 
-                                    <div className="zolo-settings-option-item">
+                                    <div className="zolo-settings-option-item zolo-main-tenance-mode">
                                         <div className="zolo-settins-content">
                                             <h2 className="zolo-settings-title">{__('Maintenance Mode', 'zoloblocks')}</h2>
                                             <p className="zolo-settings-text">
@@ -494,7 +494,7 @@ const Settings = () => {
                                                     />
                                                     {comingSoonPrivateLink && (
                                                         <>
-                                                            <div>
+                                                            <div className="zolo-private-link-wrap">
                                                                 <TextControl value={privateLink} disabled={true} onChange={() => {}} />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"

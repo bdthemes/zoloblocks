@@ -55,10 +55,15 @@ if (! class_exists('Settings')) {
             register_setting('reading', 'zolo_maintenance_mode_template');
         }
 
+        
+
         public function zolo_site_visibility_section() {
             echo '<p>' . __('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>';
         }
         public function zolo_site_visibility_field() {
+
+      
+
             $zolo_maintenance_mode = get_option('zolo_maintenance_mode', false);
             $zolo_coming_soon_mode = get_option('zolo_coming_soon_mode', false);
             $selected_page = get_option('zolo_maintenance_mode_template', '');
@@ -158,6 +163,7 @@ if (! class_exists('Settings')) {
                     comingSoonCheckbox.addEventListener('change', ensureExclusiveMode);
                     privateLinkCheckbox.addEventListener('change', toggleVisibility);
                 });
+
 
                 function copyToClipboard(event) {
                     event.preventDefault(); // Prevents the default button behavior
