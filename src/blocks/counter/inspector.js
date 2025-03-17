@@ -248,7 +248,7 @@ function Inspector(props) {
                                         label={__('Number', 'zoloblocks')}
                                         value={counterNumber}
                                         onChange={(counterNumber) => setAttributes({ counterNumber })}
-                                        placeholder={__("1000", 'zoloblocks')}
+                                        placeholder={__('1000', 'zoloblocks')}
                                     />
                                     {hideSuffix && (
                                         <TextControl

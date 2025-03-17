@@ -56,7 +56,7 @@ const v1={
               type="email"
               name="email"
               required={isRequired}
-              placeholder={placeholder}
+              placeholder={__(placeholder, 'zoloblocks')}
               {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
               data-pristine-email-message={emailValidationMsg}
             />

@@ -21,8 +21,7 @@ function RenderView({ attributes, postResults }) {
     const defaultAuthorPrefix = __('Posted By', 'zoloblocks');
     return (
         <>
-            {
-                postResults.length > 0 &&
+            {postResults.length > 0 &&
                 postResults.map((post, index) => {
                     const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
                     const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
@@ -40,11 +39,7 @@ function RenderView({ attributes, postResults }) {
 
                     const author = (
                         <div className="zolo-post-author-name">
-                            <span>
-                                {
-                                    authorPrefix || defaultAuthorPrefix
-                                }
-                            </span>
+                            <span>{authorPrefix || defaultAuthorPrefix}</span>
                             <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
                         </div>
                     );
@@ -65,7 +60,7 @@ function RenderView({ attributes, postResults }) {
                                     {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                     {!post.thumbnail && (
                                         <a href={post.permalink}>
-                                            <img src={zoloPlaceholders.placeholder} alt="Thumbnail Placeholder" />
+                                            <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
                                         </a>
                                     )}
                                 </>
@@ -108,10 +103,9 @@ function RenderView({ attributes, postResults }) {
                             </div>
                         </div>
                     );
-                })
-            }
+                })}
         </>
-    )
+    );
 }
 
 export default RenderView;
