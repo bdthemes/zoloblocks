@@ -121,15 +121,16 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     }
 
     // theme issue fix
-
-    // kednce theme
-    &.oceanwp-theme,
-    &.ehbiz-default,
-    .kt-clear,
-    .neve-main,
-    .envo-content,
-    .futurio-page-wrap,
-    .bloghash-container {
+    &.oceanwp,
+    &.hello-biz,
+    &.royal-elementor-kit,
+    &.hello-elementor,
+    &.generatepress,
+    &.kadence,
+    &.neve,
+    &.envo-one,
+    &.futurio,
+    &.bloghash {
         .zolo-root-container {
             &.custom_width {
                 margin-left: auto;
