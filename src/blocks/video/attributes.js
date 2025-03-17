@@ -75,7 +75,7 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
-    videoLink: {
+    customVideoLink: {
         type: 'object',
         default: {
             url: '#',
@@ -113,6 +113,24 @@ const attributes = {
             url: 'https://www.youtube.com/embed/XR8ARbgBDg0?si=DZBX-iB2vsLtEBty',
             openInNewTab: false,
         },
+    },
+
+    vimeoUrl: {
+        type: 'object',
+        default: {
+            url: 'https://vimeo.com/235215203',
+            openInNewTab: false,
+        },
+    },
+
+    customExternal: {
+        type: 'boolean',
+        default: false,
+    },
+
+    videoType: {
+        type: 'string',
+        default: 'zolo-video-inline',
     },
 
     ...generateResAlignmentAttributies(VIDEO_ALIGN),

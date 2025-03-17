@@ -37,6 +37,7 @@ const {
     SimpleRangeControl,
     ResRangeControl,
     BorderControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import { VIDEO_SOURCE, VIDEO_ALIGN } from './constants';
@@ -56,13 +57,16 @@ export default function Edit(props) {
         smallButton,
         hoverPlayPause,
         video,
-        videoLink,
+        customVideoLink,
         posterImage,
         imageRes,
         startTime,
         endTime,
         startEnd,
         youtubeUrl,
+        vimeoUrl,
+        customExternal,
+        videoType,
     } = attributes;
 
     const requiredProps = {
@@ -105,6 +109,93 @@ export default function Edit(props) {
                                         }
                                     />
                                 )}
+                                {videoSource === 'vimeo' && (
+                                    <LinkControl
+                                        label={__('URL', 'zoloblocks')}
+                                        value={vimeoUrl}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                vimeoUrl: value,
+                                            })
+                                        }
+                                    />
+                                )}
+                                {videoSource === 'custom' && (
+                                    <>
+                                        <ToggleControl
+                                            label={__('External URL', 'zoloblocks')}
+                                            checked={customExternal}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    customExternal: !customExternal,
+                                                })
+                                            }
+                                        />
+                                        {customExternal && (
+                                            <LinkControl
+                                                label={__('Link', 'zoloblocks')}
+                                                value={customVideoLink}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        customVideoLink: value,
+                                                    })
+                                                }
+                                            />
+                                        )}
+
+                                        {!customExternal && (
+                                            <BaseControl label={__('Choose Video', 'zoloblocks')} className="zolo-flex-col-control">
+                                                {video && (
+                                                    <MediaUpload
+                                                        onSelect={(file) => setAttributes({ video: file.url })}
+                                                        type="file"
+                                                        value={video}
+                                                        render={({ open }) => (
+                                                            <Button
+                                                                style={{ marginBottom: '10px' }}
+                                                                className="zolo-action-button"
+                                                                variant="primary"
+                                                                onClick={open}
+                                                            >
+                                                                {video
+                                                                    ? __('Change Video File', 'zoloblocks')
+                                                                    : __('Choose Video File', 'zoloblocks')}
+                                                            </Button>
+                                                        )}
+                                                        allowedTypes={['video']}
+                                                        accept="video/*"
+                                                        onSelectURL={(url) => {
+                                                            setAttributes({
+                                                                video: {
+                                                                    url,
+                                                                },
+                                                            });
+                                                        }}
+                                                    />
+                                                )}
+                                            </BaseControl>
+                                        )}
+                                    </>
+                                )}
+
+                                <CardDivider />
+
+                                <div className="zolo-flex-col-control-tab">
+                                    <IconicBtnGroup
+                                        label={__('Video Type', 'zoloblocks')}
+                                        value={videoType}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                videoType: value,
+                                            })
+                                        }
+                                        options={[
+                                            { label: 'Inline', value: 'zolo-video-inline' },
+                                            { label: 'Popup', value: 'zolo-video-popup' },
+                                        ]}
+                                    />
+                                </div>
+
                                 <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
                                 <ToggleControl
                                     label={__('Autoplay', 'zoloblocks')}
@@ -165,6 +256,41 @@ export default function Edit(props) {
                                         }
                                     />
                                 )}
+
+                                {loop ? (
+                                    true
+                                ) : (
+                                    <>
+                                        {startEnd && (
+                                            <>
+                                                <NumberControl
+                                                    style={{ display: 'contents' }}
+                                                    label={__('Start Time', 'zoloblocks')}
+                                                    value={startTime}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            startTime: Number(value),
+                                                        })
+                                                    }
+                                                    min={0}
+                                                />
+
+                                                <NumberControl
+                                                    style={{ display: 'contents' }}
+                                                    label={__('End Time', 'zoloblocks')}
+                                                    value={endTime}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            endTime: Number(value),
+                                                        })
+                                                    }
+                                                    min={0}
+                                                />
+                                                <CardDivider />
+                                            </>
+                                        )}
+                                    </>
+                                )}
                                 <ToggleControl
                                     label={__('Hover Play/pause', 'zoloblocks')}
                                     checked={hoverPlayPause}
@@ -174,40 +300,8 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-                                <ResAlignmentControl
-                                    label={__('Alignment', 'zoloblocks')}
-                                    controlName={VIDEO_ALIGN}
-                                    requiredProps={requiredProps}
-                                />
                                 <CardDivider />
-                                <BaseControl label={__('Choose Video', 'zoloblocks')} className="zolo-flex-col-control">
-                                    {video && (
-                                        <MediaUpload
-                                            onSelect={(file) => setAttributes({ video: file.url })}
-                                            type="file"
-                                            value={video}
-                                            render={({ open }) => (
-                                                <Button
-                                                    style={{ marginBottom: '10px' }}
-                                                    className="zolo-action-button"
-                                                    variant="primary"
-                                                    onClick={open}
-                                                >
-                                                    {video ? __('Change Video File', 'zoloblocks') : __('Choose Video File', 'zoloblocks')}
-                                                </Button>
-                                            )}
-                                            allowedTypes={['video']}
-                                            accept="video/*"
-                                            onSelectURL={(url) => {
-                                                setAttributes({
-                                                    video: {
-                                                        url,
-                                                    },
-                                                });
-                                            }}
-                                        />
-                                    )}
-                                </BaseControl>
+
                                 <BaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
                                     {posterImage ? (
                                         <ImageAvatar
@@ -264,48 +358,6 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-                                <LinkControl
-                                    label={__('Link', 'zoloblocks')}
-                                    value={videoLink}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            videoLink: value,
-                                        })
-                                    }
-                                />
-                                {loop ? (
-                                    true
-                                ) : (
-                                    <>
-                                        {startEnd && (
-                                            <>
-                                                <NumberControl
-                                                    style={{ display: 'contents' }}
-                                                    label={__('Start Time', 'zoloblocks')}
-                                                    value={startTime}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            startTime: Number(value),
-                                                        })
-                                                    }
-                                                    min={0}
-                                                />
-
-                                                <NumberControl
-                                                    style={{ display: 'contents' }}
-                                                    label={__('End Time', 'zoloblocks')}
-                                                    value={endTime}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            endTime: Number(value),
-                                                        })
-                                                    }
-                                                    min={0}
-                                                />
-                                            </>
-                                        )}
-                                    </>
-                                )}
                             </ZoloPanelBody>
                         </>
                     }

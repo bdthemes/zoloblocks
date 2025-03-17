@@ -37,10 +37,11 @@ export default function Edit(props) {
         isPlaying,
         youtubeUrl,
         vimeoUrl,
+        videoType,
     } = attributes;
 
     const blocksProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), videoSource),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), videoSource, videoType),
     });
 
     const videoRef = useRef(null);
@@ -236,7 +237,7 @@ export default function Edit(props) {
                         <iframe
                             width="640"
                             height="360"
-                            src={`https://player.vimeo.com/video/${video}`}
+                            src={vimeoUrl.url}
                             title="Vimeo video player"
                             frameBorder="0"
                             allow="autoplay; fullscreen; picture-in-picture"
