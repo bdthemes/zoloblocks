@@ -299,12 +299,13 @@ const Style = ({ props }) => {
                 .${uniqueId}.wp-block-zolo-advanced-paragraph {
                     text-align: left;
                 }
+                
                 .${uniqueId}.wp-block-zolo-advanced-paragraph::first-letter {
-                    font-size: 2em;
-                    font-weight: bold;
-                    float: left;
-                    margin-right: 0.1em;
-                    line-height: 1;
+                     font-size: 2em;
+                     font-weight: bold;
+                     float: left;
+                     margin-right: 0.1em;
+                     line-height: 1;
                 }
              `
             : ''
@@ -359,21 +360,6 @@ const Style = ({ props }) => {
         ${textAlignTab}
     }
 
-    ${
-        dropcap
-            ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            font-size: 2em;
-            font-weight: bold;
-            float: left;
-            margin-right: 0.1em;
-            line-height: 1;
-        }
-    `
-            : ''
-    }
-
-
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoTab}
         ${linkColor ? `color: ${linkColor};` : ''}
@@ -418,20 +404,6 @@ const Style = ({ props }) => {
         ${textTypoMob}
         ${textAlignMob}
 
-    }
-
-    ${
-        dropcap
-            ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            font-size: 2em;
-            font-weight: bold;
-            float: left;
-            margin-right: 0.1em;
-            line-height: 1;
-        }
-    `
-            : ''
     }
 
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{

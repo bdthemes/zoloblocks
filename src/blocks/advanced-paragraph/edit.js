@@ -34,6 +34,7 @@ export default function Edit(props) {
         // text Gradient
         textGradientType,
         textGradientColorbackgroundType,
+        // dropcap,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -41,6 +42,7 @@ export default function Edit(props) {
             uniqueId,
             classArrayToStr(parentClasses),
             textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
+            // dropcap ? 'has-dropcap' : ''
         ),
     });
 
@@ -48,16 +50,16 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-                <RichText
-                    {...blockProps}
-                    identifier="content"
-                    tagName="p"
-                    onChange={(content) => {
-                        setAttributes({ content });
-                    }}
-                    value={content}
-                    placeholder="Enter text..."
-                />
+            <RichText
+                {...blockProps}
+                identifier="content"
+                tagName="p"
+                onChange={(content) => {
+                    setAttributes({ content });
+                }}
+                value={content}
+                placeholder="Enter text..."
+            />
         </>
     );
 }

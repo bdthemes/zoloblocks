@@ -17,4 +17,14 @@
         background-position: center;
         background-size: contain;
     }
+    &.has-dropcap {
+        text-align: left;
+        &::first-letter {
+            font-size: 2em;
+            font-weight: bold;
+            float: left;
+            margin-right: 0.1em;
+            line-height: 1;
+        }
+    }
 }

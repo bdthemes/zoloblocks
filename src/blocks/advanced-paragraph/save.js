@@ -12,6 +12,7 @@ const Save = (props) => {
         // text Gradient
         textGradientType,
         textGradientColorbackgroundType,
+        // dropcap,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -19,6 +20,7 @@ const Save = (props) => {
             uniqueId,
             classArrayToStr(parentClasses),
             textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
+            // dropcap ? 'has-dropcap' : ''
         ),
     });
 
