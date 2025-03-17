@@ -203,14 +203,6 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/google-map',
         'video' => 'https://www.youtube.com/watch?v=N3UoMpV9ZUI',
     ],
-    'grid-builder' => [
-        'name' => 'grid-builder',
-        'title' => __('Grid Builder', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'demo' => 'https://demo.zoloblocks.com/grid-builder',
-        'video' => 'https://www.youtube.com/watch?v=8kBMIL-4PZI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX&index=2',
-    ],
     'icon' => [
         'name' => 'icon',
         'title' => __('Icon', 'zoloblocks'),
