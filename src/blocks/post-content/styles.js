@@ -35,6 +35,19 @@ import {
     HEADING_THREE_TEXT_STROKE,
     HEADING_THREE_TEXT_SHADOW,
     HEADING_THREE_MARGIN,
+    //heading four
+    HEADING_FOUR_TEXT_STROKE,
+    HEADING_FOUR_TEXT_SHADOW,
+    HEADING_FOUR_MARGIN,
+    //heading FIVE
+    HEADING_FIVE_TEXT_STROKE,
+    HEADING_FIVE_TEXT_SHADOW,
+    HEADING_FIVE_MARGIN,
+
+    //heading SIX
+    HEADING_SIX_TEXT_STROKE,
+    HEADING_SIX_TEXT_SHADOW,
+    HEADING_SIX_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -51,6 +64,9 @@ import {
     HEADING_TYPOGRAPHY,
     HEADING_TWO_TYPOGRAPHY,
     HEADING_THREE_TYPOGRAPHY,
+    HEADING_FOUR_TYPOGRAPHY,
+    HEADING_FIVE_TYPOGRAPHY,
+    HEADING_SIX_TYPOGRAPHY,
     LINK_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
@@ -80,6 +96,9 @@ function Style({ props }) {
         headingColor,
         headingTwoColor,
         headingThreeColor,
+        headingFourColor,
+        headingFiveColor,
+        headingSixColor,
         headingHoverColor,
         linkColor,
         linkHoverColor,
@@ -390,6 +409,108 @@ function Style({ props }) {
         attributes,
     });
 
+    //heading four
+    const {
+        typoStylesDesktop: headingFourTypoDesk,
+        typoStylesTab: headingFourTypoTab,
+        typoStylesMobile: headingFourTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: HEADING_FOUR_TYPOGRAPHY,
+        attributes,
+    });
+
+    const { textShadowStyle: headingFourTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: HEADING_FOUR_TEXT_SHADOW,
+    });
+
+    const {
+        desktopTextStrokeStyle: headingFourTextStrokeDesk,
+        tabTextStrokeStyle: headingFourTextStrokeTab,
+        mobTextStrokeStyle: headingFourTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: HEADING_FOUR_TEXT_STROKE,
+    });
+
+    const {
+        dimensionStylesDesktop: headingFourMarginDesk,
+        dimensionStylesTab: headingFourMarginTab,
+        dimensionStylesMobile: headingFourMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_FOUR_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    //heading FIVE
+    const {
+        typoStylesDesktop: headingFiveTypoDesk,
+        typoStylesTab: headingFiveTypoTab,
+        typoStylesMobile: headingFiveTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: HEADING_FIVE_TYPOGRAPHY,
+        attributes,
+    });
+
+    const { textShadowStyle: headingFiveTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: HEADING_FIVE_TEXT_SHADOW,
+    });
+
+    const {
+        desktopTextStrokeStyle: headingFiveTextStrokeDesk,
+        tabTextStrokeStyle: headingFiveTextStrokeTab,
+        mobTextStrokeStyle: headingFiveTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: HEADING_FIVE_TEXT_STROKE,
+    });
+
+    const {
+        dimensionStylesDesktop: headingFiveMarginDesk,
+        dimensionStylesTab: headingFiveMarginTab,
+        dimensionStylesMobile: headingFiveMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_FIVE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    //heading SIX
+    const {
+        typoStylesDesktop: headingSixTypoDesk,
+        typoStylesTab: headingSixTypoTab,
+        typoStylesMobile: headingSixTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: HEADING_SIX_TYPOGRAPHY,
+        attributes,
+    });
+
+    const { textShadowStyle: headingSixTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: HEADING_SIX_TEXT_SHADOW,
+    });
+
+    const {
+        desktopTextStrokeStyle: headingSixTextStrokeDesk,
+        tabTextStrokeStyle: headingSixTextStrokeTab,
+        mobTextStrokeStyle: headingSixTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: HEADING_SIX_TEXT_STROKE,
+    });
+
+    const {
+        dimensionStylesDesktop: headingSixMarginDesk,
+        dimensionStylesTab: headingSixMarginTab,
+        dimensionStylesMobile: headingSixMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_SIX_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     //link
     const {
         typoStylesDesktop: linkTypoDesk,
@@ -552,7 +673,6 @@ function Style({ props }) {
         `
                 : ''
         }
-
         
          .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
          .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h1 .zolo-ah-main-title,
@@ -583,22 +703,52 @@ function Style({ props }) {
             ${headingThreeMarginDesk}
             ${headingThreeColor ? `color:${headingThreeColor};` : ''}
          }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h4.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h4 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h4.zolo-heading {
+            ${headingFourTypoDesk}
+            ${headingFourTextShadowStyle}
+            ${headingFourTextStrokeDesk}
+            ${headingFourMarginDesk}
+            ${headingFourColor ? `color:${headingFourColor};` : ''}
+         }
+        
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h5.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h5 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h5.zolo-heading {
+            ${headingFiveTypoDesk}
+            ${headingFiveTextShadowStyle}
+            ${headingFiveTextStrokeDesk}
+            ${headingFiveMarginDesk}
+            ${headingFiveColor ? `color:${headingFiveColor};` : ''}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h6.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h6 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h6.zolo-heading {
+            ${headingSixTypoDesk}
+            ${headingSixTextShadowStyle}
+            ${headingSixTextStrokeDesk}
+            ${headingSixMarginDesk}
+            ${headingSixColor ? `color:${headingSixColor};` : ''}
+         }
  
         .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-        ${linkTypoDesk}
-        ${linkColor ? `color:${linkColor};` : ''}
-        ${linkBGDesk}
-        ${linkPaddingDesk}
-        ${linkMarginDesk}
-        ${linkBorderDesk}
-        ${linkBRadiusDesk}
-        ${linkBoxShadow}
+            ${linkTypoDesk}
+            ${linkColor ? `color:${linkColor};` : ''}
+            ${linkBGDesk}
+            ${linkPaddingDesk}
+            ${linkMarginDesk}
+            ${linkBorderDesk}
+            ${linkBRadiusDesk}
+            ${linkBoxShadow}
         }
         .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-        ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
-        ${linkHoverBGDesk}
-        ${linkHoverBoxShadow}
-        ${linkHoverBorderColor ? `border-color: ${linkHoverBorderColor};` : ''}
+            ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
+            ${linkHoverBGDesk}
+            ${linkHoverBoxShadow}
+            ${linkHoverBorderColor ? `border-color: ${linkHoverBorderColor};` : ''}
         }
         
                 
@@ -609,6 +759,7 @@ function Style({ props }) {
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
           ${contentAlignTab}
         }
+
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
             ${contentPaddingTab}
             ${contentMarginTab}
@@ -623,10 +774,8 @@ function Style({ props }) {
             ${contentHoverBorderTab}
             ${contentHoverBRadiusTab}
         }
-        ${
-            styleTags?.some((item) => item.type === 'image')
-                ? `
-          .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
+ 
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthTab}
             ${thumbHeightTab}
             ${thumbPaddingTab}
@@ -634,51 +783,74 @@ function Style({ props }) {
             ${thumbBGTab}
             ${thumbBorderTab}
             ${thumbBRadiusTab}
-          }
-        `
-                : ''
         }
-         ${
-             styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0
-                 ? `
-            ${headingTags
-                .map(
-                    (tag) => `
-            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag},
-             .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
-              ${headingTypoTab}
-              ${headingTextStrokeTab}
-              ${headingMarginTab}
-            }
-            `
-                )
-                .join('')}
-        `
-                 : ''
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h1 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.zolo-heading {
+            ${headingTypoTab}
+            ${headingTextStrokeTab}
+            ${headingMarginTab}
          }
-         ${
-             styleTags?.some((item) => item.type === 'link')
-                 ? `
-                  .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-                    ${linkTypoTab}
-                    ${linkBGTab}
-                    ${linkPaddingTab}
-                    ${linkMarginTab}
-                    ${linkBorderTab}
-                    ${linkBRadiusTab}
-                  }
-                  .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-                    ${linkHoverBGTab}
-                  }
-        `
-                 : ''
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h2 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.zolo-heading {
+            ${headingTwoTypoTab}
+            ${headingTwoTextStrokeTab}
+            ${headingTwoMarginTab}
          }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h3.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h3 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h3.zolo-heading {
+            ${headingThreeTypoTab}
+            ${headingThreeTextStrokeTab}
+            ${headingThreeMarginTab}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h4.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h4 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h4.zolo-heading {
+            ${headingFourTypoTab}
+            ${headingFourTextStrokeTab}
+            ${headingFourMarginTab}
+         }
+        
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h5.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h5 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h5.zolo-heading {
+            ${headingFiveTypoTab}
+            ${headingFiveTextStrokeTab}
+            ${headingFiveMarginTab}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h6.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h6 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h6.zolo-heading {
+            ${headingSixTypoTab}
+            ${headingSixTextStrokeTab}
+            ${headingSixMarginTab}
+         }
+ 
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoTab}
+            ${linkBGTab}
+            ${linkPaddingTab}
+            ${linkMarginTab}
+            ${linkBorderTab}
+            ${linkBRadiusTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
+            ${linkHoverBGTab}
+        }
     `;
 
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
           ${contentAlignMob}
         }
+
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
             ${contentPaddingMob}
             ${contentMarginMob}
@@ -693,10 +865,8 @@ function Style({ props }) {
             ${contentHoverBorderMob}
             ${contentHoverBRadiusMob}
         }
-        ${
-            styleTags?.some((item) => item.type === 'image')
-                ? `
-          .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
+ 
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthMob}
             ${thumbHeightMob}
             ${thumbPaddingMob}
@@ -704,45 +874,66 @@ function Style({ props }) {
             ${thumbBGMob}
             ${thumbBorderMob}
             ${thumbBRadiusMob}
-          }
-        `
-                : ''
         }
-        ${
-            styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0
-                ? `
-            ${headingTags
-                .map(
-                    (tag) => `
-            .${uniqueId}.wp-block-zolo-post-content.zolo-block ${tag},
-             .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-heading{
-              ${headingTypoMob}
-              ${headingTextStrokeMob}
-              ${headingMarginMob}
-            }
-            `
-                )
-                .join('')}
-        `
-                : ''
-        }
-        ${
-            styleTags?.some((item) => item.type === 'link')
-                ? `
-                  .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-                    ${linkTypoMob}
-                    ${linkBGDesk}
-                    ${linkPaddingMob}
-                    ${linkMarginMob}
-                    ${linkBorderMob}
-                    ${linkBRadiusMob}
-                  }
 
-                  .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-                    ${linkHoverBGDesk}
-                  }
-        `
-                : ''
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h1 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.zolo-heading {
+            ${headingTypoMob}
+            ${headingTextStrokeMob}
+            ${headingMarginMob}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h2 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h2.zolo-heading {
+            ${headingTwoTypoMob}
+            ${headingTwoTextStrokeMob}
+            ${headingTwoMarginMob}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h3.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h3 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h3.zolo-heading {
+            ${headingThreeTypoMob}
+            ${headingThreeTextStrokeMob}
+            ${headingThreeMarginMob}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h4.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h4 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h4.zolo-heading {
+            ${headingFourTypoMob}
+            ${headingFourTextStrokeMob}
+            ${headingFourMarginMob}
+         }
+        
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h5.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h5 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h5.zolo-heading {
+            ${headingFiveTypoMob}
+            ${headingFiveTextStrokeMob}
+            ${headingFiveMarginMob}
+         }
+
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h6.wp-block-heading,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block .zolo-advanced-heading h6 .zolo-ah-main-title,
+         .${uniqueId}.wp-block-zolo-post-content.zolo-block h6.zolo-heading {
+            ${headingSixTypoMob}
+            ${headingSixTextStrokeMob}
+            ${headingSixMarginMob}
+         }
+ 
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoMob}
+            ${linkBGMob}
+            ${linkPaddingMob}
+            ${linkMarginMob}
+            ${linkBorderMob}
+            ${linkBRadiusMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
+            ${linkHoverBGMob}
         }
   `;
 
