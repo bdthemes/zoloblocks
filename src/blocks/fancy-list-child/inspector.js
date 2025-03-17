@@ -5,7 +5,6 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, TextControl, TextareaControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-
 /**
  * Internal depencencies
  */
@@ -121,7 +120,7 @@ function Inspector(props) {
                                         label={__('Text', 'zoloblocks')}
                                         value={fancyTitle}
                                         onChange={(v) => setAttributes({ fancyTitle: v })}
-                                        placeholder="Title.."
+                                        placeholder={__('Title..', 'zoloblocks')}
                                     />
                                 </>
                             )}
@@ -133,7 +132,7 @@ function Inspector(props) {
                                             label={__('Text', 'zoloblocks')}
                                             value={fancyListText}
                                             onChange={(v) => setAttributes({ fancyListText: v })}
-                                            placeholder="Description text.."
+                                            placeholder={__('Description text..', 'zoloblocks')}
                                         />
                                     </div>
                                 </>
@@ -225,7 +224,7 @@ function Inspector(props) {
                                         label={__('Text', 'zoloblocks')}
                                         value={mediaText}
                                         onChange={(v) => setAttributes({ mediaText: v })}
-                                        placeholder="1"
+                                        placeholder={__('1', 'zoloblocks')}
                                     />
                                 )}
                             </ZoloPanelBody>

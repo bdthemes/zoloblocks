@@ -48,16 +48,16 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-                <RichText
-                    {...blockProps}
-                    identifier="content"
-                    tagName="p"
-                    onChange={(content) => {
-                        setAttributes({ content });
-                    }}
-                    value={content}
-                    placeholder="Enter Text..."
-                />
+            <RichText
+                {...blockProps}
+                identifier="content"
+                tagName="p"
+                onChange={(content) => {
+                    setAttributes({ content });
+                }}
+                value={content}
+                placeholder={__('Enter Text...', 'zolo-blocks')}
+            />
         </>
     );
 }

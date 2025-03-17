@@ -145,7 +145,7 @@ function Inspector(props) {
                                 max={tabChildCount || 99}
                                 labelPosition="edge"
                                 __unstableInputWidth="64px"
-                                placeholder="1"
+                                placeholder={__('1', 'zoloblocks')}
                             />
                             <div className="zolo-flex-row-control-tab">
                                 <IconicBtnGroup
