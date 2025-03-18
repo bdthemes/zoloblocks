@@ -15,7 +15,6 @@ import {
     CONTENT_TEXT_STROKE,
     //image
     THUMBNAIL_WIDTH,
-    THUMBNAIL_HEIGHT,
     THUMBNAIL_BG,
     THUMBNAIL_PADDING,
     THUMBNAIL_MARGIN,
@@ -68,6 +67,7 @@ import {
     HEADING_FIVE_TYPOGRAPHY,
     HEADING_SIX_TYPOGRAPHY,
     LINK_TYPOGRAPHY,
+    IMAGE_CAPTION_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
@@ -88,8 +88,6 @@ function Style({ props }) {
     const {
         uniqueId,
         inheritThemeLayout,
-        styleTags,
-        headingTags,
         contentColor,
         contentHoverColor,
         thumbnailBorderHColor,
@@ -103,6 +101,8 @@ function Style({ props }) {
         linkColor,
         linkHoverColor,
         linkHoverBorderColor,
+        showLink,
+        imageCaptionColor,
     } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
@@ -242,15 +242,6 @@ function Style({ props }) {
         property: 'width',
         attributes,
     });
-    const {
-        desktopRangeStyle: thumbHeightDesk,
-        tabRangeStyle: thumbHeightTab,
-        mobRangeStyle: thumbHeightMob,
-    } = generateResRangeStyle({
-        controlName: THUMBNAIL_HEIGHT,
-        property: 'height',
-        attributes,
-    });
 
     const {
         dimensionStylesDesktop: thumbPaddingDesk,
@@ -307,6 +298,17 @@ function Style({ props }) {
         attributes,
         controlName: THUMBNAIL_HOVER_SHADOW,
     });
+
+    // caption
+    const {
+        typoStylesDesktop: imageCaptionTypoDesk,
+        typoStylesTab: imageCaptionTypoTab,
+        typoStylesMobile: imageCaptionTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: IMAGE_CAPTION_TYPOGRAPHY,
+        attributes,
+    });
+
     //heading
     const {
         typoStylesDesktop: headingTypoDesk,
@@ -593,6 +595,30 @@ function Style({ props }) {
     /**
      * All Style Combination
      */
+
+    let linkStylesDesk = '';
+
+    if (showLink) {
+        linkStylesDesk = `
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoDesk}
+            ${linkColor ? `color:${linkColor};` : ''}
+            ${linkBGDesk}
+            ${linkPaddingDesk}
+            ${linkMarginDesk}
+            ${linkBorderDesk}
+            ${linkBRadiusDesk}
+            ${linkBoxShadow}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
+            ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
+            ${linkHoverBGDesk}
+            ${linkHoverBoxShadow}
+            ${linkHoverBorderColor ? `border-color: ${linkHoverBorderColor};` : ''}
+        }
+    `;
+    }
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
           ${contentAlignDesk}
@@ -610,7 +636,7 @@ function Style({ props }) {
                 : ''
         }
 
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block p {
             ${contentPaddingDesk}
             ${contentMarginDesk}
             ${contentBGDesk}
@@ -622,7 +648,7 @@ function Style({ props }) {
             ${contentTextShadowStyle}
             ${contentTextStrokeDesk}
         }
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover p{
             ${contentHoverBGDesk}
             ${contentHoverBorderDesk}
             ${contentHoverBRadiusDesk}
@@ -632,7 +658,6 @@ function Style({ props }) {
  
         .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthDesk}
-            ${thumbHeightDesk}
             ${thumbPaddingDesk}
             ${thumbMarginDesk}
             ${thumbBGDesk}
@@ -672,6 +697,11 @@ function Style({ props }) {
             }
         `
                 : ''
+        }
+
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block figcaption.wp-element-caption{
+            ${imageCaptionTypoDesk}
+            ${imageCaptionColor ? `color:${imageCaptionColor};` : ''}
         }
         
          .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
@@ -734,33 +764,37 @@ function Style({ props }) {
             ${headingSixColor ? `color:${headingSixColor};` : ''}
          }
  
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-            ${linkTypoDesk}
-            ${linkColor ? `color:${linkColor};` : ''}
-            ${linkBGDesk}
-            ${linkPaddingDesk}
-            ${linkMarginDesk}
-            ${linkBorderDesk}
-            ${linkBRadiusDesk}
-            ${linkBoxShadow}
-        }
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-            ${linkHoverColor ? `color: ${linkHoverColor};` : ''}
-            ${linkHoverBGDesk}
-            ${linkHoverBoxShadow}
-            ${linkHoverBorderColor ? `border-color: ${linkHoverBorderColor};` : ''}
-        }
+
+
+        ${linkStylesDesk}
         
                 
         }
     `;
 
+    let linkStylesTab = '';
+
+    if (showLink) {
+        linkStylesTab = `
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
+            ${linkTypoTab}
+            ${linkBGTab}
+            ${linkPaddingTab}
+            ${linkMarginTab}
+            ${linkBorderTab}
+            ${linkBRadiusTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
+            ${linkHoverBGTab}
+        }
+    `;
+    }
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
           ${contentAlignTab}
         }
 
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block p {
             ${contentPaddingTab}
             ${contentMarginTab}
             ${contentBGTab}
@@ -769,7 +803,7 @@ function Style({ props }) {
             ${contentTypoTab}
             ${contentTextStrokeTab}
         }
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover p {
             ${contentHoverBGTab}
             ${contentHoverBorderTab}
             ${contentHoverBRadiusTab}
@@ -777,12 +811,15 @@ function Style({ props }) {
  
         .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthTab}
-            ${thumbHeightTab}
             ${thumbPaddingTab}
             ${thumbMarginTab}
             ${thumbBGTab}
             ${thumbBorderTab}
             ${thumbBRadiusTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block figcaption.wp-element-caption{
+            ${imageCaptionTypoTab}
         }
 
          .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
@@ -832,26 +869,34 @@ function Style({ props }) {
             ${headingSixTextStrokeTab}
             ${headingSixMarginTab}
          }
- 
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-            ${linkTypoTab}
-            ${linkBGTab}
-            ${linkPaddingTab}
-            ${linkMarginTab}
-            ${linkBorderTab}
-            ${linkBRadiusTab}
+
+         ${linkStylesTab}
+    `;
+
+    let linkStylesMob = '';
+
+    if (showLink) {
+        linkStylesMob = `
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a {
+            ${linkTypoMob}
+            ${linkBGMob}
+            ${linkPaddingMob}
+            ${linkMarginMob}
+            ${linkBorderMob}
+            ${linkBRadiusMob}
         }
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-            ${linkHoverBGTab}
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover {
+            ${linkHoverBGMob}
         }
     `;
+    }
 
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
           ${contentAlignMob}
         }
 
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block > * {
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block p {
             ${contentPaddingMob}
             ${contentMarginMob}
             ${contentBGMob}
@@ -860,7 +905,7 @@ function Style({ props }) {
             ${contentTypoMob}
             ${contentTextStrokeMob}
         }
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover > *{
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block:hover p{
             ${contentHoverBGMob}
             ${contentHoverBorderMob}
             ${contentHoverBRadiusMob}
@@ -868,12 +913,15 @@ function Style({ props }) {
  
         .${uniqueId}.wp-block-zolo-post-content.zolo-block img{
             ${thumbWidthMob}
-            ${thumbHeightMob}
             ${thumbPaddingMob}
             ${thumbMarginMob}
             ${thumbBGMob}
             ${thumbBorderMob}
             ${thumbBRadiusMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-post-content.zolo-block figcaption.wp-element-caption{
+            ${imageCaptionTypoMob}
         }
 
          .${uniqueId}.wp-block-zolo-post-content.zolo-block h1.wp-block-heading,
@@ -924,18 +972,9 @@ function Style({ props }) {
             ${headingSixMarginMob}
          }
  
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block a{
-            ${linkTypoMob}
-            ${linkBGMob}
-            ${linkPaddingMob}
-            ${linkMarginMob}
-            ${linkBorderMob}
-            ${linkBRadiusMob}
-        }
-        .${uniqueId}.wp-block-zolo-post-content.zolo-block a:hover{
-            ${linkHoverBGMob}
-        }
-  `;
+         ${linkStylesMob}
+
+   `;
 
     return (
         <>

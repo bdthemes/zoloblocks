@@ -16,7 +16,6 @@ export const CONTENT_TEXT_STROKE = 'contentTextStroke';
 
 //image
 export const THUMBNAIL_WIDTH = 'thumbWidth';
-export const THUMBNAIL_HEIGHT = 'thumbHeight';
 export const THUMBNAIL_PADDING = 'thumbPadding';
 export const THUMBNAIL_MARGIN = 'thumbMargin';
 export const THUMBNAIL_BG = 'thumbBg';

@@ -31,7 +31,6 @@ import {
     CONTENT_TEXT_STROKE,
     //image
     THUMBNAIL_WIDTH,
-    THUMBNAIL_HEIGHT,
     THUMBNAIL_BG,
     THUMBNAIL_PADDING,
     THUMBNAIL_MARGIN,
@@ -163,9 +162,8 @@ const attributes = {
         type: 'string',
     },
 
-    titleTagName: {
+    imageCaptionColor: {
         type: 'string',
-        default: 'h2',
     },
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -184,8 +182,11 @@ const attributes = {
     ...generateTextShadowAttributies(CONTENT_TEXT_SHADOW),
     ...generateTextStrokeAttributies(CONTENT_TEXT_STROKE),
     //image
-    ...generateResRangeAttributies(THUMBNAIL_WIDTH),
-    ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
+    ...generateResRangeAttributies(THUMBNAIL_WIDTH, {
+        default: {
+            unit: '%',
+        },
+    }),
     ...generateNormalBGAttributes(THUMBNAIL_BG),
     ...generateDimensionAttributes(THUMBNAIL_PADDING),
     ...generateDimensionAttributes(THUMBNAIL_MARGIN),
