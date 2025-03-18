@@ -115,8 +115,8 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
                         direction: 'left',
                         speed: 0,
                         viewport: {
-                            minValue: 0,
-                            maxValue: 100,
+                            minValue: 20,
+                            maxValue: 80,
                             unit: '%',
                         },
                     },
@@ -133,8 +133,8 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
                         direction: 'scale-up',
                         speed: 0,
                         viewport: {
-                            minValue: 0,
-                            maxValue: 100,
+                            minValue: 20,
+                            maxValue: 80,
                             unit: '%',
                         },
                     },
@@ -151,8 +151,8 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
                         direction: 'fade-in',
                         speed: 0,
                         viewport: {
-                            minValue: 0,
-                            maxValue: 100,
+                            minValue: 20,
+                            maxValue: 80,
                             unit: '%',
                         },
                     }
