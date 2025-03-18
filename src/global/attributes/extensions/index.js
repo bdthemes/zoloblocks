@@ -103,7 +103,7 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
                 type: 'object',
                 default: {
                     vertical: {
-                        direction: 'up',
+                        direction: 'top',
                         speed: 100,
                         viewport: {
                             minValue: 0,
