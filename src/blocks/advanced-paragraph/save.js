@@ -12,15 +12,15 @@ const Save = (props) => {
         // text Gradient
         textGradientType,
         textGradientColorbackgroundType,
-        // dropcap,
+        dropcap,
     } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(
             uniqueId,
             classArrayToStr(parentClasses),
-            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
-            // dropcap ? 'has-dropcap' : ''
+            textGradientColorbackgroundType !== 'classic' ? textGradientType : '',
+            dropcap ? 'has-dropcap' : ''
         ),
     });
 
