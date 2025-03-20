@@ -130,7 +130,7 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
                         },
                     },
                     scale: {
-                        direction: 'scale-up',
+                        direction: 'fade-in',
                         speed: 0,
                         viewport: {
                             minValue: 20,
