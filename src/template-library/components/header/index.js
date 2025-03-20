@@ -1,4 +1,3 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
@@ -73,12 +72,12 @@ const Header = ({ props }) => {
                         }}
                     />
                 </div>
-                <div className="sync-btn">
+                {/* <div className="sync-btn">
                     <Tooltip text={__('Sync Demos', 'zoloblocks')} placement="top">
                         <button
                             className="sync-button"
                             onClick={() => {
-                                // dispatch(STORE_NAME).syncDemos(activeTab);
+                                syncDemos(activeTab);
                             }}
                         >
                             <svg
@@ -99,7 +98,7 @@ const Header = ({ props }) => {
                             </svg>
                         </button>
                     </Tooltip>
-                </div>
+                </div> */}
                 <div className="close-btn">
                     <button onClick={() => setIsOpen(false)}>
                         <svg viewBox="0 0 24 24" width={24} height={24} color={'#000000'} fill={'none'}>

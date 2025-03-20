@@ -4,5 +4,4 @@ export const SET_FILTERS = 'SET_FILTERS';
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_TAGS = 'SET_TAGS';
 export const SET_RECORDS = 'SET_RECORDS';
-export const SYNC_DEMOS = 'SYNC_DEMOS';
 

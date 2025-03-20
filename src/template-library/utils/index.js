@@ -1,5 +1,5 @@
 const rootURL = 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo';
-const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2/zolo/';
+const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2/zolo';
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
@@ -8,7 +8,7 @@ import { STORE_NAME } from '../store';
 export const fetchRecords = async (query, type) => {
     try {
         const path = addQueryArgs(`/${type}`, query);
-        const response = await fetch(`${rootURL}${path}`);
+        const response = await fetch(`${getRootURL(type)}${path}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -18,7 +18,7 @@ export const fetchRecords = async (query, type) => {
 
 export const fetchCategories = async (type) => {
     try {
-        const response = await fetch(`${rootURL}/${type}/categories`);
+        const response = await fetch(`${getRootURL(type)}/${type}/categories`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -28,7 +28,7 @@ export const fetchCategories = async (type) => {
 
 export const fetchTags = async (type) => {
     try {
-        const response = await fetch(`${rootURL}/${type}/tags`);
+        const response = await fetch(`${getRootURL(type)}/${type}/tags`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -106,6 +106,13 @@ export const useRecords = (args = []) => {
         },
         [args]
     );
-
     return result;
+}
+
+export const getRootURL = (type) => {
+    let url = rootURL;
+    if (type === 'templates' || type === 'pages') {
+        url = templaesRootURL;
+    }
+    return url;
 }

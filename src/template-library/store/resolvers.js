@@ -1,4 +1,4 @@
-import { setCategories, setRecords, setTags, syncDemos } from './actions';
+import { setCategories, setRecords, setTags } from './actions';
 import { fetchCategories, fetchRecords, fetchTags } from '../utils';
 
 export function getRecords(query, type) {
@@ -35,17 +35,4 @@ export function getTags(type) {
             dispatch(setTags([], type));
         }
     }
-}
-
-export function syncDemos(type) {
-     return async ({ dispatch }) => {
-         try {
-             const data = await fetchRecords({}, type);
-             dispatch(syncDemos(data, type));
-             dispatch(syncDemos(data, type));
-         } catch (error) {
-             console.error(error);
-             dispatch(syncDemos([], type));
-         }
-     };
 }
