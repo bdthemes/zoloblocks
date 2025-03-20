@@ -4,8 +4,6 @@ import { fetchCategories, fetchRecords, fetchTags } from '../utils';
 export function getRecords(query, type) {
     return async ({dispatch}) => {
         try {
-            console.log({query, type});
-            
             const data = await fetchRecords(query, type);
             dispatch(setRecords(data, query, type));
         } catch (error) {

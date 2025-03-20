@@ -17,8 +17,8 @@ const Sidebar = () => {
         }
     });
     const { categories, isResolving, hasResolved } = useCategories([activeTab]);
-    
-    
+
+
     return (
         <div className="categories">
             <div className="demo-made-button">
@@ -76,7 +76,7 @@ const Sidebar = () => {
                         className="demo-free-btn"
                         onClick={() => {
                             setFilters({
-                                packageType: 'free'
+                                status: 'free'
                             });
                         }}
                     >
@@ -86,7 +86,7 @@ const Sidebar = () => {
                         className="demo-pro-btn"
                         onClick={() => {
                             setFilters({
-                                packageType: 'pro'
+                                status: 'pro'
                             });
                         }}
                     >

@@ -23,32 +23,6 @@ import TemplatesLoader from './template-loader';
 import Content from './components/content';
 
 /**
- * Constants
- */
-const TABS = [
-    {
-        label: __('Demos', 'zoloblocks'),
-        value: 'demos',
-    },
-    {
-        label: __('Patterns', 'zoloblocks'),
-        value: 'patterns',
-    },
-    {
-        label: __('Templates', 'zoloblocks'),
-        value: 'templates',
-    },
-    {
-        label: __('Pages', 'zoloblocks'),
-        value: 'pages',
-    },
-    {
-        label: __('Favorites', 'zoloblocks'),
-        value: 'favorites',
-    },
-];
-
-/**
  * ZoloBlocks Template Library Button
  */
 function ZoloBlocksTemplateLibraryButton() {
@@ -93,41 +67,6 @@ function ZoloBlocksTemplateLibraryButton() {
         return { isPageEmpty };
     }, []);
 
-    useEffect(() => {
-        apiFetch({
-            path: '/zolo/v1/page-templates',
-            method: 'GET',
-        }).then((response) => {
-            if (!response) {
-                return;
-            }
-            const { data } = response;
-
-            if (!data) {
-                return;
-            }
-
-            // convert object to array
-            const allAvailablePagesTemplates = Object.entries(data).map(([key, value]) => {
-                return {
-                    title: key,
-                    pages: value,
-                };
-            });
-
-            setAllPageTemplates(allAvailablePagesTemplates);
-
-            // set page template categories
-            const pageTemplateCategories = allAvailablePagesTemplates.map((template) => template.title);
-            const sortedPageTemplateCategories = pageTemplateCategories.sort((a, b) => a.localeCompare(b));
-            const pageTemplateCategoriesArray = sortedPageTemplateCategories.map((category) => ({ label: category, value: category }));
-            pageTemplateCategoriesArray.unshift({ label: __('All', 'zoloblocks'), value: 'all' });
-            setPageTemplateCategories(pageTemplateCategoriesArray);
-
-            // set page templates
-            setPageTemplates(allAvailablePagesTemplates);
-        });
-    }, []);
 
     // filter page templates based on category
     useEffect(() => {
@@ -320,20 +259,6 @@ function ZoloBlocksTemplateLibraryButton() {
         setTotal(filteredDemos.length);
     }, [demosType]); // eslint-disable-line
 
-    // Filter by Category
-    // useEffect(() => {
-    //     // filter patterns based on category
-    //     const filteredDemos = allDemos?.filter((template) => {
-    //         if (activeDemoCat === 'all') {
-    //             return true;
-    //         } else {
-    //             return template.demos_category.includes(activeDemoCat);
-    //         }
-    //     });
-    //     setDemos(filteredDemos.slice(0, number));
-    //     setTotal(filteredDemos.length);
-    // }, [activeDemoCat]); // eslint-disable-line
-
     useEffect(() => {
         domReady(() => {
             const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
@@ -413,30 +338,10 @@ function ZoloBlocksTemplateLibraryButton() {
                     isDismissible={false}
                 >
                     <div className="zolo-dm-body">
-                                <TemplatesLoader
-                                    searchText={searchText}
-                                    setSearchText={setSearchText}
-                                    pullDemos={pullDemos}
-                                    // setPullDemos={setPullDemos}
-                                    // pullNewDemos={pullNewDemos}
-                                    setIsOpen={setIsOpen}
-                                    number={number}
-                                    setNumber={setNumber}
-                                    loading={loading}
-                                    type={demosType}
-                                    setType={setDemosType}
-                                    allItems={allDemos}
-                                    items={demos}
-                                    setItems={setDemos}
-                                    tags={demoTags}
-                                    activeTag={activeDemoTag}
-                                    setActiveTag={setActiveDemoTag}
-                                    sortItemsByTag={sortDemosByTag}
-                                    handleItemSortBy={handleDemoSortBy}
-                                    itemSortBy={demoSortBy}
-
-                                    attemptComplete={attemptComplete}
-                                />
+                        <TemplatesLoader
+                            pullDemos={pullDemos}
+                            setIsOpen={setIsOpen}
+                        />
                         {loading && <PreLoader />}
                     </div>
                 </Modal>

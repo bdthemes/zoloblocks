@@ -8,7 +8,7 @@ import { TABS } from '../../utils';
 import { STORE_NAME } from '../../store';
 
 const Header = ({ props }) => {
-    const { pullDemos, setPullDemos, pullNewDemos, setIsOpen } = props;
+    const { setIsOpen } = props;
     const { setActiveTab, setFilters } = useDispatch(STORE_NAME);
     const [searchInput, setSearchInput] = useState('');
 
@@ -78,8 +78,7 @@ const Header = ({ props }) => {
                         <button
                             className="sync-button"
                             onClick={() => {
-                                setPullDemos(!pullDemos);
-                                pullNewDemos();
+                                // console.log('Sync Demos');
                             }}
                         >
                             <svg

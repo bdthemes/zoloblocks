@@ -8,7 +8,7 @@ import PreLoader from '../../preloader';
 import { STORE_NAME } from '../../store';
 import { useRecords, useTags } from '../../utils';
 const Content = ({ props }) => {
-    const { number, setNumber, handleImportTemplate, favIds, handleFavTemplate, recordsortBy, handlerecordsortBy, itemText } = props;
+    const { handleImportTemplate, favIds, handleFavTemplate, } = props;
     const { setFilters } = useDispatch(STORE_NAME);
     const { activeTab, filters } = useSelect((select) => {
         return {
@@ -17,17 +17,19 @@ const Content = ({ props }) => {
         }
     },[]);
     const { tags, isResolving, hasResolved, startResolution } = useTags([activeTab])
-    
-    const { 
-        records, 
-        isResolving: isResolvingRecords, 
-        hasResolved: hasResolvedRecords, 
-        startResolution: startResolutionRecords 
+
+    const {
+        records,
+        isResolving: isResolvingRecords,
+        hasResolved: hasResolvedRecords,
+        startResolution: startResolutionRecords
     } = useRecords([
         filters,
         activeTab
     ]);
-    
+
+
+
     return (
         <>
             {records && records.length > 0 && (
@@ -37,13 +39,15 @@ const Content = ({ props }) => {
                             <SelectControl
                                 label={__('Sort By :', 'zoloblocks')}
                                 options={[
-                                    { label: __('Newest', 'zoloblocks'), value: 'newest' },
-                                    { label: __('Oldest', 'zoloblocks'), value: 'oldest' },
+                                    { label: __('Newest', 'zoloblocks'), value: 'DESC' },
+                                    { label: __('Oldest', 'zoloblocks'), value: 'ASC' },
                                 ]}
                                 onChange={(v) => {
-                                    handlerecordsortBy(v);
+                                    setFilters({
+                                        order: v,
+                                    });
                                 }}
-                                value={recordsortBy}
+                                value={filters?.order || 'DESC'}
                             />
                         </div>
 
@@ -56,11 +60,11 @@ const Content = ({ props }) => {
                                             tags.map((tag) => (
                                                 <button
                                                     key={tag.slug}
-                                                    className={classNames('single-tag', `${ filters?.tags === tag?.slug ? 'active' : ''}`)}
+                                                    className={classNames('single-tag', `${filters?.tags === tag?.slug ? 'active' : ''}`)}
                                                     onClick={() => {
                                                         setFilters({
-                                                            tags: tag?.slug
-                                                        })
+                                                            tags: tag?.slug,
+                                                        });
                                                     }}
                                                 >
                                                     {tag?.label}
@@ -71,8 +75,8 @@ const Content = ({ props }) => {
                                         className={classNames('clear-tag', `${filters?.tags !== '' ? 'active' : ''}`)}
                                         onClick={() => {
                                             setFilters({
-                                                tags: ''
-                                            })
+                                                tags: '',
+                                            });
                                         }}
                                     >
                                         <svg
@@ -109,28 +113,33 @@ const Content = ({ props }) => {
 
             {records && records.length > 0 && (
                 <InnerTemplate
-                    templates={records.length > number ? records.slice(0, number) : records}
+                    templates={records.length > 20 ? records.slice(0, 20) : records}
                     handleImportTemplate={handleImportTemplate}
                     favIds={favIds}
                     handleFavTemplate={handleFavTemplate}
                 />
             )}
 
-            {records && records?.length > number && (
+            {records && records?.length >= 20 && (
                 <div className="load-more-btn-wrapper">
                     <button
                         className="load-more-btn"
                         onClick={() => {
-                            setNumber(number + 20);
+                            setFilters({
+                                ...filters,
+                                per_page: filters.per_page ?? 20,
+                                page: (filters.page ?? 1) + 1,
+                            });
                         }}
                     >
                         {__('Load More', 'zoloblocks')}
                     </button>
                 </div>
             )}
-            {records?.length === 0 && !isResolvingRecords && (itemText === 'Pages' || itemText === 'Templates' || itemText === 'Favorites records') && (
+
+            {records && records?.length === undefined && (
                 <div className="no-found-item">
-                    <h2>{__(`No ${itemText} found`, 'zoloblocks')}</h2>
+                    <h2>{__(`${records?.message}`, 'zoloblocks')}</h2>
                 </div>
             )}
 

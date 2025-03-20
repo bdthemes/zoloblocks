@@ -7,7 +7,6 @@ import { STORE_NAME } from '../store';
 export const fetchRecords = async (query, type) => {
     try {
         const path = addQueryArgs(`/${type}`, query);
-        console.log(`${rootURL}${path}`);
         const response = await fetch(`${rootURL}${path}`);
         const data = await response.json();
         return data;
@@ -41,7 +40,7 @@ export const TABS = [
     { label: __('Templates', 'zoloblocks'), value: 'templates' },
     { label: __('Pages', 'zoloblocks'), value: 'pages' },
     { label: __('Patterns', 'zoloblocks'), value: 'patterns' },
-    { label: __('Favorites', 'zoloblocks'), value: 'favorites' },
+    // { label: __('Favorites', 'zoloblocks'), value: 'favorites' },
 ];
 
 export const useCategories = (args = []) => {
