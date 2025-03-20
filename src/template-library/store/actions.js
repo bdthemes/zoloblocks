@@ -1,4 +1,4 @@
-import { SET_ACTIVE_TAB, SET_CATEGORIES, SET_FILTERS, SET_RECORDS, SET_TAGS } from "./types";
+import { SET_ACTIVE_TAB, SET_CATEGORIES, SET_FILTERS, SET_RECORDS, SET_TAGS, SYNC_DEMOS } from "./types";
 
 
 export const setActiveTab = (activeTab) => {
@@ -39,3 +39,7 @@ export const setRecords = (records, params, filterType) => {
         filterType
     };
 }
+
+export const syncDemos = (records, filterType) => {
+    
+};

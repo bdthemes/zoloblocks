@@ -2,7 +2,7 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Tooltip } from '@wordpress/components';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { dispatch, useDispatch, useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import { TABS } from '../../utils';
 import { STORE_NAME } from '../../store';
@@ -78,7 +78,7 @@ const Header = ({ props }) => {
                         <button
                             className="sync-button"
                             onClick={() => {
-                                // console.log('Sync Demos');
+                                // dispatch(STORE_NAME).syncDemos(activeTab);
                             }}
                         >
                             <svg

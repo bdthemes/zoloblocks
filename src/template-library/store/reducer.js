@@ -1,4 +1,4 @@
-import { SET_CATEGORIES, SET_RECORDS, SET_TAGS, SET_FILTERS, SET_ACTIVE_TAB } from "./types";
+import { SET_CATEGORIES, SET_RECORDS, SET_TAGS, SET_FILTERS, SET_ACTIVE_TAB, SYNC_DEMOS } from "./types";
 
 
 const DEFAULT_STATE = {
@@ -30,10 +30,19 @@ const reducer = (state = DEFAULT_STATE, action) => {
                 [action.filterType]: action?.params
             }
             let hash = JSON.stringify(params);
-            
+
             return { ...state, records: {
                 ...state.records,
                 [hash]: action.records
+            }};
+        case SYNC_DEMOS:
+            let syncParams = {
+                [action.filterType]: action?.params
+            }
+            let syncHash = JSON.stringify(syncParams);
+
+            return { ...state, records: {
+                [syncHash]: action.records
             }};
         default:
             return state;
