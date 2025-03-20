@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import { Tooltip } from '@wordpress/components';
-import { dispatch, useDispatch, useSelect } from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import { TABS } from '../../utils';
 import { STORE_NAME } from '../../store';
