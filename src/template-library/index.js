@@ -17,36 +17,16 @@ import './page-templates.scss';
 /**
  * Internal dependencies
  */
-import PageTemplateLoader from './page-templates';
 import PreLoader from './preloader';
 import TemplatesLoader from './template-loader';
-import Content from './components/content';
 
 /**
  * ZoloBlocks Template Library Button
  */
 function ZoloBlocksTemplateLibraryButton() {
     const [isOpen, setIsOpen] = useState(true);
-    const [allTemplates, setAllTemplates] = useState([]);
-    const [pullDemos, setPullDemos] = useState(false);
-    const [activeTab, setActiveTab] = useState('demos');
-    const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(false);
-    const [number, setNumber] = useState(20);
-    const [total, setTotal] = useState(0);
-    const [attemptComplete, setAttemptComplete] = useState(false);
     const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
-
-    /**
-     * =====
-     * Page Templates: Templates (Pro, Free)
-     * =====
-     */
-    const [allPageTemplates, setAllPageTemplates] = useState([]);
-    const [pageTemplates, setPageTemplates] = useState([]);
-    const [pageTemplatesType, setPageTemplatesType] = useState('');
-    const [pageTemplateCategories, setPageTemplateCategories] = useState([]);
-    const [activePageTemplateCat, setActivePageTemplateCat] = useState('all');
 
     const { isPageEmpty } = useSelect((select) => {
         const { getBlocks } = select('core/block-editor');
@@ -67,198 +47,6 @@ function ZoloBlocksTemplateLibraryButton() {
         return { isPageEmpty };
     }, []);
 
-
-    // filter page templates based on category
-    useEffect(() => {
-        const filteredPageTemplates = allPageTemplates?.filter((template) => {
-            if (activePageTemplateCat === 'all') {
-                return true;
-            } else {
-                return template.title === activePageTemplateCat;
-            }
-        });
-        setPageTemplates(filteredPageTemplates);
-    }, [activePageTemplateCat]); // eslint-disable
-
-    // filter page templates based on page template type
-    useEffect(() => {
-        const filteredPageTemplates = allPageTemplates?.filter((template) => {
-            const pages = template?.pages;
-
-            if (pageTemplatesType === 'free') {
-                return pages && pages.length > 0 && pages.some((page) => page?.status === 'free');
-            } else if (pageTemplatesType === 'pro') {
-                return pages && pages.length > 0 && pages.some((page) => page?.status === 'pro');
-            } else {
-                return true;
-            }
-        });
-        setPageTemplates(filteredPageTemplates);
-    }, [pageTemplatesType]); // eslint-disable
-
-    /**
-     * =====
-     * Patterns Type: Patterns (Pro, Free)
-     *
-     * 1. Fetch all patterns
-     * 2. Filter by Patterns Type
-     * 3. Filter by Category
-     */
-    const [allPatterns, setAllPatterns] = useState([]);
-    const [patterns, setPatterns] = useState([]);
-    const [patternsType, setPatternsType] = useState('');
-    const [patternCategories, setPatternCategories] = useState([]);
-    const [activePatternCat, setActivePatternCat] = useState('all');
-    const [patternTags, setPatternTags] = useState([]);
-    const [activePatternTag, setActivePatternTag] = useState('');
-    const [patternSortBy, setPatternSortBy] = useState('newest');
-
-    // Filter by Patterns Type
-    useEffect(() => {
-        const filteredPatterns = allPatterns?.filter((template) => {
-            if (patternsType === 'free') {
-                return template?.status === 'free';
-            } else if (patternsType === 'pro') {
-                return template?.status === 'pro';
-            } else {
-                return true;
-            }
-        });
-        setPatterns(filteredPatterns);
-    }, [patternsType]); // eslint-disable-line
-
-    // Filter by Pattern Category
-    useEffect(() => {
-        // filter patterns based on category
-        const filteredPatterns = allPatterns?.filter((template) => {
-            if (activePatternCat === 'all') {
-                return true;
-            } else {
-                return template.patterns_category.includes(activePatternCat);
-            }
-        });
-        setPatterns(filteredPatterns);
-    }, [activePatternCat]); // eslint-disable-line
-
-    // Filter by Pattern Tags
-    const sortPatternsByTag = (tag) => {
-        setActivePatternTag(tag);
-        const filteredPatterns = allPatterns?.filter((template) => template.tags.includes(tag));
-        setPatterns(filteredPatterns);
-    };
-
-    // Sorting Patterns
-    const handlePatternSortBy = (value) => {
-        setPatternSortBy(value);
-        const sortedPatterns = allPatterns?.sort((a, b) => {
-            if (value === 'newest') {
-                return new Date(b.created) - new Date(a.created);
-            } else if (value === 'oldest') {
-                return new Date(a.created) - new Date(b.created);
-            }
-        });
-        setPatterns([...sortedPatterns]); // update the state
-    };
-
-    /**
-     * =====
-     * Templates Type: Pages (Pro, Free)
-     *
-     * 1. Fetch all pages
-     * 2. Filter by Pages Type
-     * 3. Filter by Category
-     * =====
-     */
-    const [allPages, setAllPages] = useState([]);
-    const [pages, setPages] = useState([]);
-    const [pagesType, setPagesType] = useState('');
-    const [pageCategories, setPageCategories] = useState([]);
-    const [activePageCat, setActivePageCat] = useState('all');
-    const [pageTags, setPageTags] = useState([]);
-    const [activePageTag, setActivePageTag] = useState('');
-    const [pageSortBy, setPageSortBy] = useState('newest');
-
-    // Filter by Pages Type
-    useEffect(() => {
-        const filteredPages = allPages?.filter((template) => {
-            if (pagesType === 'free') {
-                return template?.status === 'free';
-            } else if (pagesType === 'pro') {
-                return template?.status === 'pro';
-            } else {
-                return true;
-            }
-        });
-        setPages(filteredPages.slice(0, number));
-        setTotal(filteredPages.length);
-    }, [pagesType]); // eslint-disable-line
-
-    // Filter by Category
-    useEffect(() => {
-        // filter patterns based on category
-        const filteredPages = allPages?.filter((template) => {
-            if (activePageCat === 'all') {
-                return true;
-            } else {
-                return template.pages_category.includes(activePageCat);
-            }
-        });
-        setPages(filteredPages.slice(0, number));
-        setTotal(filteredPages.length);
-    }, [activePageCat]); // eslint-disable-line
-
-    // Filter by Tags
-    const sortPagesByTag = (tag) => {
-        setActivePageTag(tag);
-        const filteredPages = allPages?.filter((template) => template.tags.includes(tag));
-        setPages(filteredPages);
-    };
-
-    // Sorting Pages
-    const handlePageSortBy = (value) => {
-        setPageSortBy(value);
-        const sortedPages = allPages?.sort((a, b) => {
-            if (value === 'newest') {
-                return new Date(b.created) - new Date(a.created);
-            } else if (value === 'oldest') {
-                return new Date(a.created) - new Date(b.created);
-            }
-        });
-        setPages([...sortedPages]); // update the state
-    };
-
-    /**
-     * =====
-     * Templates Type: Demos (Pro, Free)
-     *
-     * 1. Fetch all demos
-     * 2. Filter by Demos Type
-     * 3. Filter by Category
-     * =====
-     */
-    const [allDemos, setAllDemos] = useState([]);
-    const [demos, setDemos] = useState([]);
-    const [demosType, setDemosType] = useState('');
-
-    const [demoTags, setDemoTags] = useState([]);
-    const [activeDemoTag, setActiveDemoTag] = useState('');
-    const [demoSortBy, setDemoSortBy] = useState('newest');
-
-    // Filter by Demos Type
-    useEffect(() => {
-        const filteredDemos = allDemos?.filter((template) => {
-            if (demosType === 'free') {
-                return template?.status === 'free';
-            } else if (demosType === 'pro') {
-                return template?.status === 'pro';
-            } else {
-                return true;
-            }
-        });
-        setDemos(filteredDemos.slice(0, number));
-        setTotal(filteredDemos.length);
-    }, [demosType]); // eslint-disable-line
-
     useEffect(() => {
         domReady(() => {
             const toolbar = document.querySelector('.editor-header__toolbar, .edit-post-header__toolbar');
@@ -278,31 +66,6 @@ function ZoloBlocksTemplateLibraryButton() {
             }
         });
     }, [currentPostType, isPageEmpty]);
-
-    // Filter by Tags
-    const sortDemosByTag = (tag) => {
-        setActiveDemoTag(tag);
-        const filteredDemos = allDemos?.filter((template) => template.tags.includes(tag));
-        setDemos(filteredDemos);
-    };
-
-    // Sorting Demos
-    const handleDemoSortBy = (value) => {
-        setDemoSortBy(value);
-        const sortedDemos = allDemos?.sort((a, b) => {
-            if (value === 'newest') {
-                return new Date(b.created) - new Date(a.created);
-            } else if (value === 'oldest') {
-                return new Date(a.created) - new Date(b.created);
-            }
-        });
-        setDemos([...sortedDemos]); // update the state
-    };
-
-
-
-
-
 
     const LibraryButton = () => (
         <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
@@ -326,6 +89,65 @@ function ZoloBlocksTemplateLibraryButton() {
         createRoot(libraryButton).render(<LibraryButton />);
     };
 
+    /**
+     * Handle Import Template
+     * @param {string} jsonFile
+     */
+    const handleImportTemplate = (jsonFile) => {
+        setLoading(true);
+
+        jQuery.ajax({
+            url: zoloParams?.ajaxurl,
+            type: 'POST',
+            nonce: zoloParams?.nonce,
+            data: {
+                action: 'zolo_demo_import',
+                security: zoloParams?.zolo_nonce,
+                json_file_url: jsonFile,
+            },
+            success: function (response) {
+                if (response.success) {
+                    const { data } = response;
+                    if (data) {
+                        const { content } = data;
+                        const blocks = wp.blocks.parse(content);
+
+                        const getBlockRecursively = (block) => {
+                            if (block.innerBlocks.length > 0) {
+                                block.innerBlocks.forEach((innerBlock) => {
+                                    getBlockRecursively(innerBlock);
+                                });
+                            } else {
+                                if (block.name === 'zolo/advanced-paragraph') {
+                                    let content = block.attributes.content;
+                                    content = content.replace(/<p>/g, '').replace(/<\/p>/g, '');
+                                    block.attributes.content = content;
+                                }
+                            }
+                        };
+
+                        blocks.forEach((block) => {
+                            getBlockRecursively(block);
+                        });
+
+                        const selectedBlock = wp.data.select('core/block-editor').getSelectedBlock();
+                        if (selectedBlock && selectedBlock.name === 'core/paragraph') {
+                            wp.data.dispatch('core/block-editor').replaceBlocks(selectedBlock.clientId, blocks);
+                        } else {
+                            wp.data.dispatch('core/block-editor').insertBlocks(blocks, 0);
+                        }
+                        setLoading(false);
+                        setIsOpen(false);
+                    }
+                } else {
+                    console.log('Error:', response.data);
+                }
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            },
+        });
+    };
     return (
         <div className="zolo-demos-modal-wrapper">
             {isOpen && (
@@ -338,10 +160,7 @@ function ZoloBlocksTemplateLibraryButton() {
                     isDismissible={false}
                 >
                     <div className="zolo-dm-body">
-                        <TemplatesLoader
-                            pullDemos={pullDemos}
-                            setIsOpen={setIsOpen}
-                        />
+                        <TemplatesLoader handleImportTemplate={handleImportTemplate} setIsOpen={setIsOpen} />
                         {loading && <PreLoader />}
                     </div>
                 </Modal>
