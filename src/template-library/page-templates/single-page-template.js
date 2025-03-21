@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import PagesPreview from './pages-preview';
 
 const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate, isPro }) => {
-    const pages = template?.pages;
+    const pages = template?.data;
     const [pagesPanel, setPagesPanel] = useState(false);
 
     return (
@@ -26,7 +26,7 @@ const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavT
                 </div>
                 <div className="demo-footer">
                     <div className="footer-left">
-                        <h2 className="demo-title">{template.title}</h2>
+                        <h2 className="demo-title" dangerouslySetInnerHTML={{ __html: template.title }}></h2>
                     </div>
                     <div className="footer-right">
                         <span className="total-pages">

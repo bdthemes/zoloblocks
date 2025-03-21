@@ -30,7 +30,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                             </svg>
                             {__('Back', 'zoloblocks')}
                         </button>
-                        <h2>{templateName ? templateName : __('Pages Preview', 'zoloblocks')}</h2>
+                        <h2 dangerouslySetInnerHTML={{ __html: templateName || __('Pages Preview', 'zoloblocks') }}></h2>
                     </div>
                     <div className="zolo-demos-wrapper">
                         {templates &&

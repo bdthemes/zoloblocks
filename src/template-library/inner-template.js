@@ -110,7 +110,8 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                                             </button>
                                                         </Tooltip>
                                                     </>
-                                                )}
+                                                )
+                                            }
                                         </>
                                     ) : (
                                         <>
@@ -179,7 +180,8 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                             </div>
                             <div className="demo-footer">
                                 <div className="footer-left">
-                                    <h2 className="demo-title">{template.title}</h2>
+                                    <h2 className="demo-title" dangerouslySetInnerHTML={{ __html: template.title }}></h2>
+
                                     <button
                                         onClick={() => handleFavTemplate(template.id)}
                                         className={Array.isArray(favIds) && favIds.includes(template.id) ? 'fav-btn active' : 'fav-btn'}

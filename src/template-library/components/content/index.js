@@ -4,6 +4,7 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import { useDebounce } from '@wordpress/compose';
 import classNames from 'classnames';
 import InnerTemplate from '../../inner-template';
+import InnerPageTemplate from '../../page-templates/inner-page-template';
 import PreLoader from '../../preloader';
 import { STORE_NAME } from '../../store';
 import { useRecords, useTags } from '../../utils';
@@ -111,8 +112,16 @@ const Content = ({ props }) => {
                 </div>
             )}
 
-            {records && records.length > 0 && (
+            {records && records.length > 0 && activeTab !== 'templates' && (
                 <InnerTemplate
+                    templates={records.length > 20 ? records.slice(0, 20) : records}
+                    handleImportTemplate={handleImportTemplate}
+                    favIds={favIds}
+                    handleFavTemplate={handleFavTemplate}
+                />
+            )}
+            {records && records.length > 0 && activeTab === 'templates' && (
+                <InnerPageTemplate
                     templates={records.length > 20 ? records.slice(0, 20) : records}
                     handleImportTemplate={handleImportTemplate}
                     favIds={favIds}

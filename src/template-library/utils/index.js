@@ -1,5 +1,6 @@
 const rootURL = 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo';
-const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2/zolo';
+const templaesRootURL = 'http://localhost:10003/wp-json/template-manager/v2/zolo';
+// const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2/zolo';
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
