@@ -44,7 +44,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                             )}
                                             {/*
                                             <>
-                                                {template?.status === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
+                                                {template?.package_type === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
                                                     <div className="demo-actions-btn-wrap">
                                                         {template?.demo_link && (
                                                             <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
@@ -78,7 +78,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                             </> */}
 
                                             <div className="demo-actions-btn-wrap">
-                                                {template?.status === 'pro' ? (
+                                                {template?.package_type === 'pro' ? (
                                                     <>
                                                         {
                                                             // check if the user has ZoloBlocks Pro

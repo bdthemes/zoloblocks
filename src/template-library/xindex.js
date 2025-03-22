@@ -147,9 +147,9 @@ function ZoloBlocksTemplateLibraryButton() {
             const pages = template?.pages;
 
             if (pageTemplatesType === 'free') {
-                return pages && pages.length > 0 && pages.some((page) => page?.status === 'free');
+                return pages && pages.length > 0 && pages.some((page) => page?.package_type === 'free');
             } else if (pageTemplatesType === 'pro') {
-                return pages && pages.length > 0 && pages.some((page) => page?.status === 'pro');
+                return pages && pages.length > 0 && pages.some((page) => page?.package_type === 'pro');
             } else {
                 return true;
             }
@@ -178,9 +178,9 @@ function ZoloBlocksTemplateLibraryButton() {
     useEffect(() => {
         const filteredPatterns = allPatterns?.filter((template) => {
             if (patternsType === 'free') {
-                return template?.status === 'free';
+                return template?.package_type === 'free';
             } else if (patternsType === 'pro') {
-                return template?.status === 'pro';
+                return template?.package_type === 'pro';
             } else {
                 return true;
             }
@@ -243,9 +243,9 @@ function ZoloBlocksTemplateLibraryButton() {
     useEffect(() => {
         const filteredPages = allPages?.filter((template) => {
             if (pagesType === 'free') {
-                return template?.status === 'free';
+                return template?.package_type === 'free';
             } else if (pagesType === 'pro') {
-                return template?.status === 'pro';
+                return template?.package_type === 'pro';
             } else {
                 return true;
             }
@@ -310,9 +310,9 @@ function ZoloBlocksTemplateLibraryButton() {
     useEffect(() => {
         const filteredDemos = allDemos?.filter((template) => {
             if (demosType === 'free') {
-                return template?.status === 'free';
+                return template?.package_type === 'free';
             } else if (demosType === 'pro') {
-                return template?.status === 'pro';
+                return template?.package_type === 'pro';
             } else {
                 return true;
             }

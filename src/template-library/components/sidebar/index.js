@@ -76,7 +76,7 @@ const Sidebar = () => {
                         className="demo-free-btn"
                         onClick={() => {
                             setFilters({
-                                status: 'free'
+                                package_type: 'free',
                             });
                         }}
                     >
@@ -86,7 +86,7 @@ const Sidebar = () => {
                         className="demo-pro-btn"
                         onClick={() => {
                             setFilters({
-                                status: 'pro'
+                                package_type: 'pro',
                             });
                         }}
                     >

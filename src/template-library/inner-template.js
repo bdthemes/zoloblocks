@@ -18,7 +18,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                 )}
 
                                 <>
-                                    {template?.status === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
+                                    {template?.package_type === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
                                         <div className="demo-actions-btn-wrap">
                                             {template?.demo_link && (
                                                 <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
@@ -52,7 +52,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                 </>
 
                                 <div className="demo-actions-btn-wrap">
-                                    {template?.status === 'pro' ? (
+                                    {template?.package_type === 'pro' ? (
                                         <>
                                             {
                                                 // check if the user has ZoloBlocks Pro
@@ -195,8 +195,8 @@ const InnerTemplate = ({ templates, handleImportTemplate, favIds, handleFavTempl
                                     </button>
                                 </div>
                             </div>
-                            <span className={classNames('demo-badge', `${template?.status === 'pro' ? 'pro' : 'free'}-badge`)}>
-                                {template?.status === 'pro' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
+                            <span className={classNames('demo-badge', `${template?.package_type === 'pro' ? 'pro' : 'free'}-badge`)}>
+                                {template?.package_type === 'pro' ? __('Pro', 'zoloblocks') : __('Free', 'zoloblocks')}
                             </span>
                         </div>
                     );

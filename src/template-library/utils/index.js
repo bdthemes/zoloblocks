@@ -1,6 +1,5 @@
-const rootURL = 'https://zoloblocks.com/demo/wp-json/template-manager/v2/zolo';
-const templaesRootURL = 'http://localhost:10003/wp-json/template-manager/v2/zolo';
-// const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2/zolo';
+const rootURL = 'https://zoloblocks.com/demo/wp-json/template-manager/v2';
+const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2';
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
@@ -18,6 +17,7 @@ export const fetchRecords = async (query, type) => {
 }
 
 export const fetchCategories = async (type) => {
+  console.log('fetchCategories', type);
     try {
         const response = await fetch(`${getRootURL(type)}/${type}/categories`);
         const data = await response.json();
