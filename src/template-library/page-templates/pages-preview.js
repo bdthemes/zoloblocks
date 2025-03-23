@@ -1,10 +1,8 @@
 import { Tooltip } from '@wordpress/components';
-import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ProPopup from '../pro-popup';
 
 const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTemplate, favIds, handleFavTemplate, templateName }) => {
-    const [activePage, setActivePage] = useState(0);
     return (
         <>
             {pagesPanel && (

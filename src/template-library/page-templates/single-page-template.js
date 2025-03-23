@@ -6,7 +6,6 @@ import PagesPreview from './pages-preview';
 const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate, isPro }) => {
     const pages = template?.pages;
     const categoryImage = template?.image;
-    console.log('SinglePageTemplate', template);
     const [pagesPanel, setPagesPanel] = useState(false);
 
     return (

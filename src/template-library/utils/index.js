@@ -17,7 +17,6 @@ export const fetchRecords = async (query, type) => {
 }
 
 export const fetchCategories = async (type) => {
-  console.log('fetchCategories', type);
     try {
         const response = await fetch(`${getRootURL(type)}/${type}/categories`);
         const data = await response.json();
@@ -117,3 +116,9 @@ export const getRootURL = (type) => {
     }
     return url;
 }
+
+export const getNormalizedParams = (params = {}) => {
+    const { page, ...rest } = params;
+    return rest;
+};
+

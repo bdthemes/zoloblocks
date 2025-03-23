@@ -1,3 +1,5 @@
+import { getNormalizedParams } from "../utils";
+
 export const getActiveTab = (state) => {
     return state?.activeTab;
 }
@@ -15,7 +17,7 @@ export const getTags = (state, paramKey) => {
 
 export const getRecords = (state, params, type) => {
     let hashParams = {
-        [type]: params
+        [type]: getNormalizedParams(params)
     }
     let hash = JSON.stringify(hashParams);
     return state?.records?.[hash];

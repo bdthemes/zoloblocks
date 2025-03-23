@@ -7,7 +7,7 @@ import { STORE_NAME } from '../../store';
 
 const Header = ({ setIsOpen }) => {
     const { setActiveTab, setFilters } = useDispatch(STORE_NAME);
-    const [searchInput, setSearchInput] = useState('');
+    const [searchInput, setSearchInput] = useState();
 
     const { activeTab, filters } = useSelect(
         (select) => {
@@ -25,9 +25,11 @@ const Header = ({ setIsOpen }) => {
     useEffect(() => {
         clearTimeout(timer);
         timer = setTimeout(() => {
-            setFilters({
-                search: searchInput
-            })
+            if(searchInput !== undefined) {
+                setFilters({
+                    search: searchInput,
+                });
+            }            
         }, 1000);
     }, [searchInput]);
 
@@ -64,9 +66,9 @@ const Header = ({ setIsOpen }) => {
                     <input
                         type="search"
                         placeholder={__('Search', 'zoloblocks')}
-                        value={searchInput}
+                        value={searchInput || ''}
                         onChange={(e) => {
-                            setSearchInput(e.target.value);
+                            setSearchInput(e.target.value || '');
                         }}
                     />
                 </div>

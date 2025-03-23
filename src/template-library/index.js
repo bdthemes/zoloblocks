@@ -1,6 +1,5 @@
-import apiFetch from '@wordpress/api-fetch';
 import { Button, Modal } from '@wordpress/components';
-import { subscribe, useSelect } from '@wordpress/data';
+import { useSelect } from '@wordpress/data';
 import { getTextContent } from '@wordpress/rich-text';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -13,11 +12,6 @@ import './store';
  */
 import './library.scss';
 import './page-templates.scss';
-
-/**
- * Internal dependencies
- */
-import PreLoader from './preloader';
 import Sidebar from './components/sidebar/index';
 import Header from './components/header/index';
 import Content from './components/content';

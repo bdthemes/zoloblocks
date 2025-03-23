@@ -23,12 +23,13 @@ const Content = ({ handleImportTemplate, isLoading }) => {
         hasResolved: hasResolvedRecords,
         startResolution: startResolutionRecords
     } = useRecords([
-        filters,
+        {
+            ...filters,
+            per_page: filters?.per_page || 20,
+        },
         activeTab
     ]);
-
-
-
+    
     return (
         <div className="zolo-template-library-content">
             {records && records.length > 0 && (
@@ -112,7 +113,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
 
             {records && records.length > 0 && activeTab !== 'templates' && (
                 <InnerTemplate
-                    templates={records.length > 20 ? records.slice(0, 20) : records}
+                    templates={records}
                     handleImportTemplate={handleImportTemplate}
                     // favIds={favIds}
                     // handleFavTemplate={handleFavTemplate}
@@ -120,7 +121,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
             )}
             {records && records.length > 0 && activeTab === 'templates' && (
                 <InnerPageTemplate
-                    templates={records.length > 20 ? records.slice(0, 20) : records}
+                    templates={records}
                     handleImportTemplate={handleImportTemplate}
                     // favIds={favIds}
                     // handleFavTemplate={handleFavTemplate}
@@ -134,8 +135,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                         onClick={() => {
                             setFilters({
                                 ...filters,
-                                per_page: filters.per_page ?? 20,
-                                page: (filters.page ?? 1) + 1,
+                                page: (filters?.page ?? 1) + 1,
                             });
                         }}
                     >
