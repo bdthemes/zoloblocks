@@ -811,9 +811,29 @@
             }
         }
     }
+
+    /*
+		* Button Style: 13
+	*/
+    &.button-12 {
+        .zolo-button {
+            overflow: hidden;
+            &:hover {
+                .zolo-button-content {
+                    animation:
+                        MoveUpInitial 0.2s forwards,
+                        MoveUpEnd 0.2s forwards 0.2s;
+                }
+            }
+            .zolo-button-content {
+                overflow: hidden;
+            }
+        }
+    }
 }
 
 // Animation
+
 @keyframes glitch {
     0% {
         clip-path: var(--slice-1);
