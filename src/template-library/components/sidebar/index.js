@@ -96,15 +96,13 @@ const Sidebar = () => {
             </div>
 
             <div className="category-list">
-                {
-                    !hasResolved && isResolving && (
-                        <Skeleton count={25} />
-                    )
-                }
-                {hasResolved && categories &&
+                {!hasResolved && isResolving && <Skeleton count={25} />}
+                {hasResolved &&
+                    categories &&
                     categories.length > 0 &&
                     activeTab !== 'favorites' &&
                     categories
+                        ?.filter((category) => category?.slug !== 'demos')
                         ?.sort((a, b) => b?.count - a?.count)
                         ?.map((category) => (
                             <button
@@ -114,15 +112,14 @@ const Sidebar = () => {
                                 })}
                                 onClick={() => {
                                     setFilters({
-                                        categories: category?.slug
+                                        categories: category?.slug,
                                     });
                                 }}
                             >
-                                <span className="single-category-text">{category?.slug === 'demos' ? 'All' : category?.label}</span>
+                                <span className="single-category-text">{category?.label}</span>
                                 <span className="single-category-count">{category?.count}</span>
                             </button>
-                        ))
-                }
+                        ))}
             </div>
         </div>
     );

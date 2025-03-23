@@ -29,7 +29,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
         },
         activeTab
     ]);
-    
+
     return (
         <div className="zolo-template-library-content">
             {records && records.length > 0 && (
