@@ -170,7 +170,7 @@ const Inspector = (props) => {
                                 max={3000}
                                 help={__('Default Speed:', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
                                 checked={loop}

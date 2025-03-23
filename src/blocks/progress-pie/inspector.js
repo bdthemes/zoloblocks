@@ -68,7 +68,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <div className="zolo-custom-heading">{__('show/hide elementts', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elementts', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Label', 'zoloblocks')}
                                 checked={toggleLabel === undefined ? true : toggleLabel}

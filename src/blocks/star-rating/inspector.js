@@ -164,7 +164,7 @@ function Inspector(props) {
                                 </div>
                                 {iconType === 'icon' && (
                                     <ZoloIconPicker
-                                        label={__('Icon', 'zolo-block')}
+                                        label={__('Icon', 'zoloblocks')}
                                         value={icon}
                                         onChange={(v) => setAttributes({ icon: v })}
                                     />

@@ -52,7 +52,7 @@ const Save = ({attributes}) => {
             type="number"
             name={generateUniqueName(uniqueId,customNameAttribute,'number')}
             value={defaultValue}
-            placeholder={placeholder}
+            placeholder={__(placeholder, 'zoloblocks')}
             required={isRequired}
             {...(isRequired && {'data-pristine-required-message': requiredMsg})}
           />
