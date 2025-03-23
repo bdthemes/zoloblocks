@@ -9,10 +9,27 @@ const Save = (props) => {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
-    const { uniqueId, parentClasses, initialOpen, allowInitialOpen, allowMultiple, zoloId, preset } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        initialOpen,
+        allowInitialOpen,
+        allowMultiple,
+        zoloId,
+        preset,
+        // text Gradient
+        textGradientType,
+        textGradientColorbackgroundType,
+    } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, preset, 'zolo-accordion-wrap accordion-container', classArrayToStr(parentClasses)),
+        className: classnames(
+            uniqueId,
+            preset,
+            'zolo-accordion-wrap accordion-container',
+            classArrayToStr(parentClasses),
+            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
+        ),
     });
 
     return (

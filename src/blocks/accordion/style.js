@@ -14,6 +14,7 @@ const {
     generateNormalBGControlStyles,
     generateTypographyStyles,
     GlobalStyleHanlder,
+    generateTextGradientsStyles,
 } = window.zoloModule;
 
 import {
@@ -44,6 +45,10 @@ import {
     AAC_BODY_BG,
     AICONTAINER_BG,
     ANIMATED_BORDER_SIZE,
+    // TEXT GRADIENT COLOR
+    TEXT_GRADIENT_COLOR,
+    TEXT_GRADIENT_COLOR_HOVER,
+    TEXT_GRADIENT_COLOR_ACTIVE,
 } from './constants';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
@@ -346,6 +351,38 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // TEXT GRADIENT COLOR
+
+    const {
+        backgroundStylesDesktop: textGradientDesktop,
+        backgroundStylesTab: textGradientTab,
+        backgroundStylesMobile: textGradientMobile,
+    } = generateTextGradientsStyles({
+        controlName: TEXT_GRADIENT_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: textGradientHoverDesktop,
+        backgroundStylesTab: textGradientHoverTab,
+        backgroundStylesMobile: textGradientHoverMobile,
+    } = generateTextGradientsStyles({
+        controlName: TEXT_GRADIENT_COLOR_HOVER,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: textGradientActiveDesktop,
+        backgroundStylesTab: textGradientActiveTab,
+        backgroundStylesMobile: textGradientActiveMobile,
+    } = generateTextGradientsStyles({
+        controlName: TEXT_GRADIENT_COLOR_ACTIVE,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * All Style Combination
      */
@@ -412,12 +449,24 @@ const Style = ({ props }) => {
             ${titleColor ? `color: ${titleColor};` : ''}
         }
 
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item .zolo-accordion-head-title {
+           ${textGradientDesktop}
+        }
+
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-head-title{
             ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
+        }
+            
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-head-title{
+            ${textGradientHoverDesktop}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-head-title{
             ${atitleColor ? `color: ${atitleColor};` : ''}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-head-title{
+            ${textGradientActiveDesktop}
         }
 
         ${
