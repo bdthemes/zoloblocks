@@ -100,7 +100,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                {__('show/hide elements', 'zoloblocks')}
+                                {__('Show/hide elements', 'zoloblocks')}
                             </div>
                             <ToggleControl
                                 label={__('Inherit Theme Layout', 'zoloblocks')}

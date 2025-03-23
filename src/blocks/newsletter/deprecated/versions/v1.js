@@ -70,7 +70,7 @@ const v1 = {
                                 id="zolo-newsletter-name-field"
                                 type="name"
                                 name="name"
-                                placeholder={namePlaceholder}
+                                placeholder={__(namePlaceholder, 'zoloblocks')}
                                 className="zolo-form-input"
                             />
                         )}
@@ -82,7 +82,7 @@ const v1 = {
                                         id="zolo-newsletter-name-field"
                                         type="name"
                                         name="name"
-                                        placeholder={namePlaceholder}
+                                        placeholder={__(namePlaceholder, 'zoloblocks')}
                                         className="zolo-form-input"
                                     />
                                     <span class="zolo-focus-border">
@@ -125,7 +125,7 @@ const v1 = {
                             id="zolo-newsletter-email-field"
                             type="email"
                             name="email"
-                            placeholder={placeholder}
+                            placeholder={__(placeholder, 'zoloblocks')}
                             className="zolo-form-input"
                         />
                     )}
@@ -137,7 +137,7 @@ const v1 = {
                                     id="zolo-newsletter-email-field"
                                     type="email"
                                     name="email"
-                                    placeholder={placeholder}
+                                    placeholder={__(placeholder, 'zoloblocks')}
                                     className="zolo-form-input"
                                 />
                                 <span class="zolo-focus-border">

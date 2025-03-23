@@ -53,7 +53,7 @@ const Save = ({ attributes }) => {
                         value={defaultValue || ''}
                         name={generateUniqueName(uniqueId,customNameAttribute,"email")}
                         required={isRequired}
-                        placeholder={placeholder}
+                        placeholder={__(placeholder,'zoloblocks')}
                         {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
                         data-pristine-email-message={emailValidationMsg}
                     />

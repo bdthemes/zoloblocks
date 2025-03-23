@@ -138,7 +138,7 @@ function Inspector(props) {
                                     label={__('Text', 'zoloblocks')}
                                     onChange={(value) => setAttributes({ label: value })}
                                     value={label}
-                                    placeholder={__('label..', 'zoloblocks')}
+                                    placeholder={__('Label', 'zoloblocks')}
                                 />
                             )}
                             <div className="zolo-flex-row-control-tab">
