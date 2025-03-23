@@ -2,7 +2,7 @@ import apiFetch from '@wordpress/api-fetch';
 import { Button, Modal } from '@wordpress/components';
 import { subscribe, useSelect } from '@wordpress/data';
 import { getTextContent } from '@wordpress/rich-text';
-import { useEffect, useState, useRef } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
@@ -18,13 +18,15 @@ import './page-templates.scss';
  * Internal dependencies
  */
 import PreLoader from './preloader';
-import TemplatesLoader from './template-loader';
+import Sidebar from './components/sidebar/index';
+import Header from './components/header/index';
+import Content from './components/content';
 
 /**
  * ZoloBlocks Template Library Button
  */
 function ZoloBlocksTemplateLibraryButton() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
 
@@ -148,6 +150,7 @@ function ZoloBlocksTemplateLibraryButton() {
             },
         });
     };
+
     return (
         <div className="zolo-demos-modal-wrapper">
             {isOpen && (
@@ -160,8 +163,12 @@ function ZoloBlocksTemplateLibraryButton() {
                     isDismissible={false}
                 >
                     <div className="zolo-dm-body">
-                        <TemplatesLoader handleImportTemplate={handleImportTemplate} setIsOpen={setIsOpen} />
-                        {loading && <PreLoader />}
+                        <Sidebar />
+                            <div className="demos-container">
+                                <Header setIsOpen={setIsOpen} />
+                                <Content handleImportTemplate={handleImportTemplate} isLoading={loading} />
+                            </div>
+                        {/* {loading && <PreLoader />} */}
                     </div>
                 </Modal>
             )}

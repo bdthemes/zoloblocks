@@ -5,8 +5,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { TABS } from '../../utils';
 import { STORE_NAME } from '../../store';
 
-const Header = ({ props }) => {
-    const { setIsOpen } = props;
+const Header = ({ setIsOpen }) => {
     const { setActiveTab, setFilters } = useDispatch(STORE_NAME);
     const [searchInput, setSearchInput] = useState('');
 
