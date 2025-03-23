@@ -34,13 +34,15 @@ export default function Edit(props) {
         // text Gradient
         textGradientType,
         textGradientColorbackgroundType,
+        dropcap,
     } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(
             uniqueId,
             classArrayToStr(parentClasses),
-            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
+            textGradientColorbackgroundType !== 'classic' ? textGradientType : '',
+            dropcap ? 'has-dropcap' : ''
         ),
     });
 
