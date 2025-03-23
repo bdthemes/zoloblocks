@@ -98,7 +98,7 @@ Option 3`,
     },
     placeholder: {
         type: 'string',
-        default: 'Enter your text',
+        default: 'Enter Your Text',
     },
     placeholderColor: {
         type: 'string',

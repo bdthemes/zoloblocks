@@ -269,7 +269,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                             <div className="search__input">
                                 <input
                                     type="text"
-                                    placeholder="Search Icon"
+                                    placeholder={__('Search Icon', 'zoloblocks')}
                                     onChange={(e) => setSearchText(e.target.value)}
                                     value={searchText}
                                 />

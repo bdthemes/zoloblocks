@@ -178,7 +178,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.reviewGrid.presets', PRESETS)}
                                 onChange={(selected) => onPresetChange(selected)}
                             />
-                            <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Reviewer Website Link', 'zoloblocks')}
                                 checked={addReviewerWebsiteLink}
