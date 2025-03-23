@@ -145,7 +145,7 @@ function Inspector(props) {
                                 max={tabChildCount || 99}
                                 labelPosition="edge"
                                 __unstableInputWidth="64px"
-                                placeholder="1"
+                                placeholder={__('1', 'zoloblocks')}
                             />
                             <div className="zolo-flex-row-control-tab">
                                 <IconicBtnGroup
@@ -441,7 +441,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         {showIcon && (
-                            <ZoloPanelBody title={__('Icon', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <>
                                     <TabPanelControl
                                         options={TAB_STATES}
@@ -666,7 +666,7 @@ function Inspector(props) {
                         )}
 
                         {showIndicator && (
-                            <ZoloPanelBody title={__('Active Indicator', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Active Indicator', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <>
                                     <ColorControl
                                         label={__('Color', 'zoloblocks')}

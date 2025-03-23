@@ -58,7 +58,7 @@ export default function Edit(props) {
                     setAttributes({ content });
                 }}
                 value={content}
-                placeholder="Enter text..."
+                placeholder={__('Enter Text...', 'zolo-blocks')}
             />
         </>
     );

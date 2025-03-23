@@ -69,7 +69,7 @@ const Save = (props) => {
                                 id="zolo-newsletter-name-field"
                                 type="name"
                                 name="name"
-                                placeholder={namePlaceholder}
+                                placeholder={__(namePlaceholder, 'zoloblocks')}
                                 className="zolo-form-input"
                             />
                         )}
@@ -81,7 +81,7 @@ const Save = (props) => {
                                         id="zolo-newsletter-name-field"
                                         type="name"
                                         name="name"
-                                        placeholder={namePlaceholder}
+                                        placeholder={__(namePlaceholder, 'zoloblocks')}
                                         className="zolo-form-input"
                                     />
                                     <span class="zolo-focus-border">
@@ -124,7 +124,7 @@ const Save = (props) => {
                             id="zolo-newsletter-email-field"
                             type="email"
                             name="email"
-                            placeholder={placeholder}
+                            placeholder={__(placeholder, 'zoloblocks')}
                             className="zolo-form-input"
                         />
                     )}
@@ -136,7 +136,7 @@ const Save = (props) => {
                                     id="zolo-newsletter-email-field"
                                     type="email"
                                     name="email"
-                                    placeholder={placeholder}
+                                    placeholder={__(placeholder, 'zoloblocks')}
                                     className="zolo-form-input"
                                 />
                                 <span class="zolo-focus-border">

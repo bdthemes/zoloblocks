@@ -41,7 +41,7 @@ const v1={
               id="textarea"
               name="message"
               rows={4}
-              placeholder={placeholder}
+              placeholder={__(placeholder, 'zoloblocks')}
               required={isRequired}
               {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
             />
