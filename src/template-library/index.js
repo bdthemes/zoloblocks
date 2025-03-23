@@ -158,10 +158,10 @@ function ZoloBlocksTemplateLibraryButton() {
                 >
                     <div className="zolo-dm-body">
                         <Sidebar />
-                            <div className="demos-container">
-                                <Header setIsOpen={setIsOpen} />
-                                <Content handleImportTemplate={handleImportTemplate} isLoading={loading} />
-                            </div>
+                        <div className="demos-container">
+                            <Header setIsOpen={setIsOpen} />
+                            <Content handleImportTemplate={handleImportTemplate} isLoading={loading} />
+                        </div>
                         {/* {loading && <PreLoader />} */}
                     </div>
                 </Modal>

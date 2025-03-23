@@ -15,12 +15,6 @@ export default function Edit(props) {
     className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
   });
 
-
-  // preview image
-  if (preview) {
-    return <img src={zoloParams?.blocksPreview?.postCommentsForm} alt={__('Post Comments Form Preview', 'zoloblocks')}/>;
-  }
-
   return (
     <>
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes}/>}

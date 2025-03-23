@@ -13,21 +13,21 @@ const Content = ({ handleImportTemplate, isLoading }) => {
         return {
             activeTab: select(STORE_NAME).getActiveTab(),
             filters: select(STORE_NAME).getFilters(),
-        }
-    },[]);
-    const { tags, isResolving, hasResolved, startResolution } = useTags([activeTab])
+        };
+    }, []);
+    const { tags, isResolving, hasResolved, startResolution } = useTags([activeTab]);
 
     const {
         records,
         isResolving: isResolvingRecords,
         hasResolved: hasResolvedRecords,
-        startResolution: startResolutionRecords
+        startResolution: startResolutionRecords,
     } = useRecords([
         {
             ...filters,
             per_page: filters?.per_page || 20,
         },
-        activeTab
+        activeTab,
     ]);
 
     return (
@@ -150,7 +150,6 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                 </div>
             )}
             {(isResolvingRecords || isLoading) && <PreLoader />}
-
         </div>
     );
 };

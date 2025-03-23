@@ -60,6 +60,15 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
+    const textPathLinkProps = {
+        className: 'zolo-textpath',
+        href: pathlink?.url,
+        rel: pathlink?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: pathlink?.openInNewTab ? '_blank' : undefined,
+        title: textpathContent,
+        onClick: (e) => e.preventDefault(),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.textPath} alt={__('Text Path Preview', 'zoloblocks')} />;
@@ -73,13 +82,7 @@ export default function Edit(props) {
                     textLength={textpathLength ? textpathLength : 0}
                     startOffset={textPathSpoint ? 100 - textPathSpoint + '%' : 0 + '%'}
                 >
-                    <a
-                        className="zolo-textpath"
-                        href={pathlink && pathlink.url}
-                        rel={pathlink && pathlink.openInNewTab ? 'noreferrer noopener' : undefined}
-                        target={pathlink && pathlink.openInNewTab ? '_blank' : undefined}
-                        title={textpathContent}
-                    >
+                    <a {...textPathLinkProps}>
                         <tspan>{textpathContent && textpathContent}</tspan>
                     </a>
                 </textPath>

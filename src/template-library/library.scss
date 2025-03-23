@@ -4,10 +4,8 @@
 }
 
 .zolo-editor {
-
     .editor-header__toolbar,
     .edit-post-header__toolbar {
-
         .edit-post-header__center,
         .editor-header__center {
             order: 2 !important;
@@ -54,7 +52,7 @@
 }
 
 .zolo-preloader-wrapper {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -66,6 +64,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    margin-left: 0;
 }
 
 .zolo-library-open-button {
@@ -141,7 +140,7 @@
         box-sizing: border-box;
         position: sticky;
         top: 0;
-        z-index: 99;
+        z-index: 9999;
         background-color: #fff;
     }
 
@@ -296,7 +295,7 @@
         position: absolute;
         min-height: 100vh;
         background-color: #fff;
-        z-index: 11;
+        z-index: 9999;
     }
 
     .demo-made-button {
@@ -1150,6 +1149,9 @@
                     min-width: 200px;
                 }
             }
+            .zolo-preloader-wrapper {
+                margin-left: calc(var(--zolo-template-library-sidebar-width) / 2);
+            }
         }
     }
 }
@@ -1174,7 +1176,6 @@
             }
 
             .secondary-header-item {
-
                 // align-items: center;
                 // flex-direction: row;
                 .secondary-item .zolo-tags .components-base-control__field {
@@ -1183,7 +1184,6 @@
                 }
 
                 .secondary-item {
-
                     .components-base-control__label,
                     .components-input-control__label {
                         display: block;
