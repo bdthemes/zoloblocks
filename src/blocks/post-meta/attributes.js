@@ -53,7 +53,6 @@ const attributes = {
     textColor: {
         type: 'string',
     },
-
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateGapAttributes(META_GAP, {
         defaultUnit: 'px',

@@ -115,7 +115,7 @@ if (! class_exists('ZoloEnqueues')) {
             // Register 3rd party scripts and styles
             wp_register_script(
                 'particles-js',
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/libs/particles.js',
                 [],
                 ZOLO_VERSION,
                 true
@@ -138,7 +138,7 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             wp_register_script(
-                'zolo-fslightbox-popup',
+                'fslightbox',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
                 [],
                 ZOLO_VERSION,
@@ -146,14 +146,14 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             wp_register_style(
-                'zolo-swiper-style',
+                'swiper',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
                 [],
                 ZOLO_VERSION
             );
 
             wp_register_script(
-                'zolo-swiper-script',
+                'swiper',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
                 [],
                 ZOLO_VERSION,

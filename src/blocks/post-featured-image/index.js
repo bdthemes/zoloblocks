@@ -4,7 +4,7 @@ import {registerBlockType} from '@wordpress/blocks';
 import Edit from './edit';
 import './style.scss';
 
-const {BlockIcons} = window.zoloIcons;
+const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata.name, {
   icon: BlockIcons['post-featured-image'],

@@ -20,11 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const root = createRoot(item);
             root.render(
                 <ReactCompareSlider
-                    changePositionOnHover={comparisonOptions?.slideOnHover}
-                    portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
                     disabled={comparisonOptions?.disableslide}
+                    {...!comparisonOptions?.disableslide && {
+                        changePositionOnHover: comparisonOptions?.slideOnHover,
+                    }}
+                    portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
                     position={comparisonOptions?.initialPosition}
-                    onlyHandleDraggable={comparisonOptions?.handleDraggable}
+                    {...!comparisonOptions?.disableslide && {
+                        onlyHandleDraggable: comparisonOptions?.handleDraggable,
+                    }}
                     itemOne={
                         <div className="image-item-One">
                             {comparisonOptions?.showLabels && comparisonOptions?.beforeLabel && (

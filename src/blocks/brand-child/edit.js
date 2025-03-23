@@ -39,6 +39,32 @@ export default function Edit(props) {
         className: classnames(className, `zb-brand-item ${uniqueId} ${brandPhoto ? 'has-photo' : ''}`, classArrayToStr(parentClasses)),
     });
 
+    const brandGlobalLink = {
+        className: 'zb-brand-global-link',
+        href: logoLink?.url || '#',
+        rel: logoLink?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: logoLink?.openInNewTab ? '_blank' : undefined,
+        title: brandLabel,
+        onClick: (e) => e.preventDefault(),
+    };
+
+    const brandTitleLink = {
+        href: logoLink?.url || '#',
+        rel: logoLink?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: logoLink?.openInNewTab ? '_blank' : undefined,
+        title: brandTitle,
+        onClick: (e) => e.preventDefault(),
+    };
+
+    const brandLabelLink = {
+        href: logoLink?.url || '#',
+        rel: logoLink?.openInNewTab ? 'noreferrer noopener' : undefined,
+        target: logoLink?.openInNewTab ? '_blank' : undefined,
+        className: 'zb-brand-title-link has-link',
+        title: brandLabel,
+        onClick: (e) => e.preventDefault(),
+    };
+
     /**
      * context
      */
@@ -89,13 +115,7 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 {enableLogoLink && logoLinkType === 'logo__global' ? (
-                    <a
-                        className="zb-brand-global-link"
-                        href={logoLink && logoLink.url}
-                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                        target={logoLink && logoLink.openInNewTab && '_blank'}
-                        title={brandLabel}
-                    >
+                    <a {...brandGlobalLink}>
                         <div className="zb-brand-image">
                             {brandPhoto ? (
                                 <>
@@ -200,12 +220,7 @@ export default function Edit(props) {
                                         {brandNameVisible && (
                                             <>
                                                 {enableLogoLink && logoLinkType === 'logo__title' ? (
-                                                    <a
-                                                        href={logoLink && logoLink.url}
-                                                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                                        target={logoLink && logoLink.openInNewTab && '_blank'}
-                                                        title={brandTitle}
-                                                    >
+                                                    <a {...brandTitleLink}>
                                                         <RichText.Content
                                                             tagName={brandNameTag}
                                                             className="zb-brand-title has-link"
@@ -224,13 +239,7 @@ export default function Edit(props) {
                                         {brandLabelVisible && (
                                             <>
                                                 {enableLogoLink && logoLinkType === 'logo__label' ? (
-                                                    <a
-                                                        href={logoLink && logoLink.url}
-                                                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
-                                                        target={logoLink && logoLink.openInNewTab && '_blank'}
-                                                        className="zb-brand-title-link has-link"
-                                                        title={brandLabel}
-                                                    >
+                                                    <a {...brandLabelLink}>
                                                         <RichText.Content tagName="span" value={brandLabel} />
                                                     </a>
                                                 ) : (

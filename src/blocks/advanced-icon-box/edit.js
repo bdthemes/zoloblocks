@@ -67,6 +67,18 @@ export default function Edit(props) {
         ),
     });
 
+    const iconBoxLink = {
+        tagName: globalLink === true ? 'div' : 'a',
+        className: 'zolo-box-button',
+        ...(globalLink !== true && {
+            href: buttonLink?.url || '#',
+            target: buttonLink?.openInNewTab ? '_blank' : undefined,
+            rel: buttonLink?.openInNewTab ? 'noopener noreferrer' : undefined,
+            title: buttonText,
+            onClick: (e) => e.preventDefault(),
+        }),
+    };
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.iconBox} alt={__('Icon Box Preview', 'zoloblocks')} />;
@@ -180,16 +192,7 @@ export default function Edit(props) {
                         )}
                         {showButton && (
                             <div className={`zolo-block-link-btn`}>
-                                <DynamicTag
-                                    tagName={globalLink === true ? 'div' : 'a'}
-                                    className="zolo-box-button"
-                                    {...(globalLink !== true && {
-                                        href: buttonLink && buttonLink.url,
-                                        target: buttonLink && buttonLink.openInNewTab ? '_blank' : undefined,
-                                        rel: buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined,
-                                        title: buttonText,
-                                    })}
-                                >
+                                <DynamicTag {...iconBoxLink}>
                                     {showButtonText && (
                                         <RichText
                                             value={buttonText}

@@ -5,6 +5,7 @@ import Edit from './edit';
 import Save from './save';
 const { BlockIcons } = window.zoloIcons;
 
+import './editor.scss';
 import './style.scss';
 
 registerBlockType(metadata, {

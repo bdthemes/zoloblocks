@@ -56,6 +56,10 @@ export const PRICE_BRADIUS = 'priceBradius';
 //features style
 export const FEATURE_DESC_MARGIN = 'featureDescMargin';
 export const FEATURE_ICON_GAP = 'featureIconGap';
+
+export const FEATURE_ICON_BORDER = 'featureIconBorder';
+export const FEATURE_ICON_RADIUS = 'featureIconRadius';
+export const FEATURE_ICON_SHADOW = 'featureIconShadow';
 export const FEATURE_ICON_SIZE = 'featureIconSize';
 export const FEATURE_MARGIN = 'featureMargin';
 export const FEATURE_PADDING = 'featurePadding';
