@@ -133,7 +133,9 @@ const PageTemplateLoader = ({
                                 className={classNames('single-category', {
                                     active: activeCat === category?.value,
                                 })}
-                                onClick={() => setActiveCat(category?.value)}
+                                onClick={() => {
+                                    setActiveCat(category?.value)
+                                }}
                             >
                                 <span className="single-category-text">{category?.label}</span>
                                 {category?.value === 'all' && <span className="single-category-count">{allItems && allItems?.length}</span>}
