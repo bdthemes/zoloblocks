@@ -211,7 +211,7 @@
             top: 0;
             left: 50%;
             right: 0;
-            width: 100vw !important;
+            width: calc(100vw - 20px); /* Adjust the value as needed */
             transform: translateX(-50%);
             .zolo-megamenu-content {
                 display: flex;
