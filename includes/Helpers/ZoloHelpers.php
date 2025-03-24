@@ -42,10 +42,11 @@ class ZoloHelpers {
         return $classes;
     }
     public function zoloblocks_frontend_body_class(array $classes) {
-        $new_class = 'zolo-frontend';
-        if ($new_class) {
-            $classes[] = $new_class;
-        }
+        $theme = wp_get_theme();
+        $theme_type = wp_is_block_theme() ? 'block-theme' : 'classic-theme';
+        $theme_name = $theme->get('TextDomain');
+        $new_classes = ['zolo-frontend', $theme_type, $theme_name];
+        $classes = array_merge($classes, $new_classes);
         return $classes;
     }
     /**
