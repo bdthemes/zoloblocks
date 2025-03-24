@@ -5,28 +5,30 @@ import PagesPreview from './pages-preview';
 
 const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate, isPro }) => {
     const pages = template?.pages;
+    const categoryImage = template?.image;
     const [pagesPanel, setPagesPanel] = useState(false);
 
     return (
         <>
             <div className="single-demo" onClick={() => setPagesPanel(!pagesPanel)}>
                 <div className="demo-preview photos-group">
-                    {pages && pages.length > 0 && (
-                        <>
-                            {pages &&
-                                pages.map((page, index) => {
-                                    return (
-                                        <div className="single-page-photo" key={index}>
-                                            <img src={page?.demo_preview} alt={page?.title} loading="lazy" decoding="async" />
-                                        </div>
-                                    );
-                                })}
-                        </>
+                    {categoryImage && categoryImage !== '' ? (
+                        <div className="single-page-photo">
+                            <img src={categoryImage} alt={template?.title} loading="lazy" decoding="async" />
+                        </div>
+                    ) : (
+                        pages &&
+                        pages.length > 0 &&
+                        pages.map((page, index) => (
+                            <div className="single-page-photo" key={index}>
+                                <img src={page?.demo_preview} alt={page?.title} loading="lazy" decoding="async" />
+                            </div>
+                        ))
                     )}
                 </div>
                 <div className="demo-footer">
                     <div className="footer-left">
-                        <h2 className="demo-title">{template.title}</h2>
+                        <h2 className="demo-title" dangerouslySetInnerHTML={{ __html: template.title }}></h2>
                     </div>
                     <div className="footer-right">
                         <span className="total-pages">

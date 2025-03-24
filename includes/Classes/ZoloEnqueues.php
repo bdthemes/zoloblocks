@@ -282,10 +282,10 @@ if (! class_exists('ZoloEnqueues')) {
                         'zolo-template-library-editor-script',
                         trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/index.js',
                         $script_dependecy['dependencies'],
-                        ZOLO_VERSION,
+                        $script_dependecy['version'],
                         true
                     );
-                    wp_register_style('zolo-template-library-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/index.css', [], ZOLO_VERSION);
+                    wp_register_style('zolo-template-library-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/index.css', [], $script_dependecy['version'], 'all');
                     wp_enqueue_script('zolo-template-library-editor-script');
                     wp_enqueue_style('zolo-template-library-editor-style');
                 }
