@@ -60,8 +60,9 @@ if (! class_exists('Settings')) {
 
 
         public function zolo_site_visibility_section() {
-            echo '<p>' . __('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>';
+            echo '<p>' . esc_html__('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>';
         }
+
         public function zolo_site_visibility_field() {
 
 
@@ -81,10 +82,10 @@ if (! class_exists('Settings')) {
                 <!-- Coming Soon Mode Toggle -->
                 <label for="zolo_coming_soon_mode">
                     <input type="checkbox" name="zolo_coming_soon_mode" id="zolo_coming_soon_mode" value="1" <?php checked($zolo_coming_soon_mode, true); ?>>
-                    <?php _e('Enable Coming Soon Mode', 'zoloblocks'); ?>
+                    <?php echo esc_html__('Enable Coming Soon Mode', 'zoloblocks'); ?>
                 </label>
                 <p class="zolo-settings-text">
-                    <?php _e("If your website is under construction, the 'Coming Soon' page will return an HTTP 200 status code.", 'zoloblocks'); ?>
+                    <?php echo esc_html__("If your website is under construction, the 'Coming Soon' page will return an HTTP 200 status code.", 'zoloblocks'); ?>
                 </p>
 
                 <br>
@@ -92,36 +93,36 @@ if (! class_exists('Settings')) {
                 <!-- Maintenance Mode Toggle -->
                 <label for="zolo_maintenance_mode">
                     <input type="checkbox" name="zolo_maintenance_mode" id="zolo_maintenance_mode" value="1" <?php checked($zolo_maintenance_mode, true); ?>>
-                    <?php _e('Enable Maintenance Mode', 'zoloblocks'); ?>
+                    <?php echo esc_html__('Enable Maintenance Mode', 'zoloblocks'); ?>
                 </label>
                 <p class="zolo-settings-text">
-                    <?php _e("Maintenance Mode returns an HTTP 503 status code, signaling search engines to revisit the site shortly.", 'zoloblocks'); ?>
+                    <?php echo esc_html__("Maintenance Mode returns an HTTP 503 status code, signaling search engines to revisit the site shortly.", 'zoloblocks'); ?>
                 </p>
 
                 <br>
 
                 <!-- Template Selection -->
-                <div id="template-selection-wrapper" style="display: <?php echo ($zolo_maintenance_mode || $zolo_coming_soon_mode) ? 'block' : 'none'; ?>;">
+                <div id="template-selection-wrapper" style="display: <?php echo esc_attr(($zolo_maintenance_mode || $zolo_coming_soon_mode) ? 'block' : 'none'); ?>;">
 
                     <!-- Enable Private Link Checkbox -->
                     <label for="zolo_site_visibility_private_link">
                         <input type="checkbox" name="zolo_site_visibility_private_link" id="zolo_site_visibility_private_link" value="1" <?php checked($visibility_private_link, true); ?>>
-                        <?php _e('Enable Private Link', 'zoloblocks'); ?>
+                        <?php echo esc_html__('Enable Private Link', 'zoloblocks'); ?>
                     </label>
                     <p class="zolo-settings-text">
-                        <?php _e("When enabled, only users with the secret key can access the site. Useful for sharing previews with clients.", 'zoloblocks'); ?>
+                        <?php echo esc_html__("When enabled, only users with the secret key can access the site. Useful for sharing previews with clients.", 'zoloblocks'); ?>
                     </p>
                     <br>
                     <!-- Private Link Field (Initially Hidden) -->
-                    <div id="private-link-field" style="display: <?php echo ($visibility_private_link) ? 'block' : 'none'; ?>;">
+                    <div id="private-link-field" style="display: <?php echo esc_attr($visibility_private_link ? 'block' : 'none'); ?>;">
                         <input readonly type="text" name="zolo_site_visibility_secret_key" id="zolo_site_visibility_secret_key" class="regular-text" value="<?php echo esc_attr($private_url); ?>" placeholder="<?php _e('Enter Secret Key', 'zoloblocks'); ?>">
                         <button class="zolo-private-link-copy-btn" onclick="copyToClipboard(event)">Copy</button>
                     </div>
                     <br>
-                    <h4><?php _e('Select a Template', 'zoloblocks'); ?></h4>
+                    <h4><?php echo esc_html__('Select a Template', 'zoloblocks'); ?></h4>
                     <label for="zolo_maintenance_mode_template">
                         <select name="zolo_maintenance_mode_template" id="zolo_maintenance_mode_template">
-                            <option value="" <?php selected($selected_page, ''); ?>><?php _e('Select Template', 'zoloblocks'); ?></option>
+                            <option value="" <?php selected($selected_page, ''); ?>><?php echo esc_html__('Select Template', 'zoloblocks'); ?></option>
                             <?php foreach ($pages as $page) : ?>
                                 <option value="<?php echo esc_attr($page->ID); ?>" <?php selected($selected_page, $page->ID); ?>><?php echo esc_html($page->post_title); ?></option>
                             <?php endforeach; ?>
