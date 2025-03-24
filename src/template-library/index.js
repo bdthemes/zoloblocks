@@ -131,15 +131,17 @@ function ZoloBlocksTemplateLibraryButton() {
     
             // Handle insertion or replacement of blocks
             if (selectedBlock && selectedBlock.name === 'core/paragraph') {
-                replaceBlocks(selectedBlock.clientId, blocks);
+                await replaceBlocks(selectedBlock.clientId, blocks);
             } else {
-                insertBlocks(blocks, 0);
+                await insertBlocks(blocks, 0);
             }
         } catch (error) {
             console.error('Error during API fetch import:', error);
         } finally {
-            setLoading(false);
-            setIsOpen(false);
+            setTimeout(() => {
+                setLoading(false);
+                setIsOpen(false);
+            }, 2000);
         }
     };
     
