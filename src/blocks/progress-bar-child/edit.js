@@ -80,7 +80,7 @@ export default function Edit(props) {
                             className="zolo-progress-bar__title"
                             value={progressText}
                             onChange={(content) => setAttributes({ progressText: content })}
-                            placeholder={__('bar title..', 'zoloblocks')}
+                            placeholder={__('Bar title..', 'zoloblocks')}
                         />
                     )}
                     

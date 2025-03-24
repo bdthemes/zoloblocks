@@ -67,7 +67,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                         />
                                         <CardDivider />
                                         <ToggleControl
-                                            label={__('Working Day', 'zolo-block')}
+                                            label={__('Working Day', 'zoloblocks')}
                                             checked={profile.toggleworkday}
                                             onChange={() => {
                                                 const newProfile = { ...profile };

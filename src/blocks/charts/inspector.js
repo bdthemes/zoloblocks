@@ -372,7 +372,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} firstOpen={false} panelProps={props}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                {__('show/hide elements', 'zoloblocks')}
+                                {__('Show/hide elements', 'zoloblocks')}
                             </div>
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}
@@ -632,7 +632,7 @@ function Inspector(props) {
                         {showTooltip && (
                             <ZoloPanelBody title={__('Tooltip', 'zoloblocks')} firstOpen={false} panelProps={props}>
                                 <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                    {__('show/hide elements', 'zoloblocks')}
+                                    {__('Show/hide elements', 'zoloblocks')}
                                 </div>
                                 <ToggleControl
                                     label={__('Enabled', 'zoloblocks')}
@@ -716,7 +716,7 @@ function Inspector(props) {
                         {showGrid && (
                             <ZoloPanelBody title={__('Grid', 'zoloblocks')} firstOpen={false} panelProps={props}>
                                 <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                    {__('show/hide elements', 'zoloblocks')}
+                                    {__('Show/hide elements', 'zoloblocks')}
                                 </div>
                                 <ToggleControl
                                     label={__('Grid X', 'zoloblocks')}
@@ -909,7 +909,7 @@ function Inspector(props) {
                             <>
                                 <ZoloPanelBody title={__('Legend Color', 'zoloblocks')} firstOpen={false} panelProps={props}>
                                     <ToggleControl
-                                        label={__('useSeriesColors', 'zoloblocks')}
+                                        label={__('Use series colors', 'zoloblocks')}
                                         checked={legendObject.labels.useSeriesColors}
                                         onChange={() =>
                                             setAttributes({

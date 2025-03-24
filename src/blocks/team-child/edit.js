@@ -205,7 +205,7 @@ export default function Edit(props) {
                                             memberShortBio: bio,
                                         })
                                     }
-                                    placeholder={__('short bio...', 'zoloblocks')}
+                                    placeholder={__('Short bio...', 'zoloblocks')}
                                     allowedFormats={['core/bold', 'core/italic', 'zolo/dynamic-content']}
                                 />
                             )}

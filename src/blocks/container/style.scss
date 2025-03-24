@@ -22,7 +22,7 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     box-sizing: border-box;
     figure {
         margin: 0;
-    } 
+    }
     .block-editor-block-list__layout {
         position: unset;
     }
@@ -116,6 +116,25 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
                     margin-left: calc(-50vw + 50%) !important;
                     margin-right: calc(-50vw + 50%) !important;
                 }
+            }
+        }
+    }
+
+    // theme issue fix
+    &.oceanwp,
+    &.hello-biz,
+    &.royal-elementor-kit,
+    &.hello-elementor,
+    &.generatepress,
+    &.kadence,
+    &.neve,
+    &.envo-one,
+    &.futurio,
+    &.bloghash {
+        .zolo-root-container {
+            &.custom_width {
+                margin-left: auto;
+                margin-right: auto;
             }
         }
     }

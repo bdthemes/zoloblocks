@@ -18,7 +18,6 @@ import {
     CONTENT_HOVER_SHADOW,
     //image
     THUMBNAIL_WIDTH,
-    THUMBNAIL_HEIGHT,
     THUMBNAIL_BG,
     THUMBNAIL_PADDING,
     THUMBNAIL_MARGIN,
@@ -30,6 +29,30 @@ import {
     HEADING_TEXT_SHADOW,
     HEADING_TEXT_STROKE,
     HEADING_MARGIN,
+    // heading two
+    HEADING_TWO_TEXT_SHADOW,
+    HEADING_TWO_TEXT_STROKE,
+    HEADING_TWO_MARGIN,
+
+    // heading three
+    HEADING_THREE_TEXT_SHADOW,
+    HEADING_THREE_TEXT_STROKE,
+    HEADING_THREE_MARGIN,
+
+    // heading four
+    HEADING_FOUR_TEXT_SHADOW,
+    HEADING_FOUR_TEXT_STROKE,
+    HEADING_FOUR_MARGIN,
+
+    // heading FIVE
+    HEADING_FIVE_TEXT_SHADOW,
+    HEADING_FIVE_TEXT_STROKE,
+    HEADING_FIVE_MARGIN,
+
+    // heading SIX
+    HEADING_SIX_TEXT_SHADOW,
+    HEADING_SIX_TEXT_STROKE,
+    HEADING_SIX_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -41,9 +64,19 @@ import {
     LINK_HOVER_SHADOW,
 } from './constants';
 
-import { CONTENT_TYPOGRAPHY, HEADING_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import {
+    CONTENT_TYPOGRAPHY,
+    HEADING_TYPOGRAPHY,
+    HEADING_TWO_TYPOGRAPHY,
+    HEADING_THREE_TYPOGRAPHY,
+    HEADING_FOUR_TYPOGRAPHY,
+    HEADING_FIVE_TYPOGRAPHY,
+    HEADING_SIX_TYPOGRAPHY,
+    LINK_TYPOGRAPHY,
+    IMAGE_CAPTION_TYPOGRAPHY,
+} from './constants/typoPrefixConstant';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
-import Sortable from './sortable';
+// import Sortable from './sortable';
 import { applyFilters } from '@wordpress/hooks';
 
 const {
@@ -68,16 +101,23 @@ function Inspector(props) {
     const {
         resMode,
         inheritThemeLayout,
-        styleTags,
-        headingTags,
         contentColor,
         contentHoverColor,
         thumbnailBorderHColor,
         headingColor,
+        headingTwoColor,
+        headingThreeColor,
+        headingFourColor,
+        headingFiveColor,
+        headingSixColor,
         headingHoverColor,
         linkColor,
         linkHoverColor,
         linkHoverBorderColor,
+        heading,
+        showImage,
+        showLink,
+        imageCaptionColor,
     } = attributes;
 
     const requiredProps = {
@@ -100,12 +140,29 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
-                                {__('show/hide elements', 'zoloblocks')}
+                                {__('Show/hide elements', 'zoloblocks')}
                             </div>
                             <ToggleControl
                                 label={__('Inherit Theme Layout', 'zoloblocks')}
                                 checked={inheritThemeLayout}
                                 onChange={(inheritThemeLayout) => setAttributes({ inheritThemeLayout })}
+                            />
+                            <CardDivider />
+
+                            <ToggleControl
+                                label={__('Image', 'zoloblocks')}
+                                checked={showImage}
+                                onChange={(showImage) => setAttributes({ showImage })}
+                            />
+                            <ToggleControl
+                                label={__('Heading', 'zoloblocks')}
+                                checked={heading}
+                                onChange={(heading) => setAttributes({ heading })}
+                            />
+                            <ToggleControl
+                                label={__('Link', 'zoloblocks')}
+                                checked={showLink}
+                                onChange={(showLink) => setAttributes({ showLink })}
                             />
                             <CardDivider />
                             <ResAlignmentControl
@@ -114,9 +171,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Style Tag', 'zoloblocks')} panelProps={props}>
-                            <Sortable styleTags={styleTags} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }
@@ -216,25 +270,18 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        {styleTags?.some((item) => item.type === 'image') && (
+
+                        {showImage && (
                             <ZoloPanelBody title={__('Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
                                         <>
                                             <ResRangeControl
-                                                label={__('Width', 'zoloblocks')}
+                                                label={__('Size', 'zoloblocks')}
                                                 controlName={THUMBNAIL_WIDTH}
                                                 requiredProps={requiredProps}
                                                 min={0}
                                                 max={2000}
-                                                step={1}
-                                            />
-                                            <ResRangeControl
-                                                label={__('Height', 'zoloblocks')}
-                                                controlName={THUMBNAIL_HEIGHT}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={1000}
                                                 step={1}
                                             />
                                             <CardDivider />
@@ -291,65 +338,272 @@ function Inspector(props) {
                                         </>
                                     }
                                 />
-                            </ZoloPanelBody>
-                        )}
 
-                        {styleTags?.some((item) => item.type === 'heading') && headingTags.length > 0 && (
-                            <ZoloPanelBody title={__('Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zoloblocks')}
-                                                color={headingColor}
-                                                onChange={(val) =>
-                                                    setAttributes({
-                                                        headingColor: val,
-                                                    })
-                                                }
-                                            />
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zoloblocks')}
-                                                typoPrefixConstant={HEADING_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                                max={200}
-                                            />
-                                            <TextShadowControl
-                                                controlName={HEADING_TEXT_SHADOW}
-                                                requiredProps={requiredProps}
-                                                enableTransition={false}
-                                            />
-                                            <TextStrokeControl
-                                                controlName={HEADING_TEXT_STROKE}
-                                                requiredProps={requiredProps}
-                                                enableTransition={false}
-                                            />
-                                            <CardDivider />
-                                            <ResDimensionsControl
-                                                label={__('Margin', 'zoloblocks')}
-                                                controlName={HEADING_MARGIN}
-                                                requiredProps={requiredProps}
-                                            />
-                                        </>
+                                <div className="zolo-custom-heading">{__('Image Caption', 'zoloblocks')}</div>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={imageCaptionColor}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            imageCaptionColor: val,
+                                        })
                                     }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zoloblocks')}
-                                                color={headingHoverColor}
-                                                onChange={(val) =>
-                                                    setAttributes({
-                                                        headingHoverColor: val,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
+                                />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={IMAGE_CAPTION_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                    max={200}
                                 />
                             </ZoloPanelBody>
                         )}
 
-                        {styleTags?.some((item) => item.type === 'link') && headingTags.length > 0 && (
+                        {heading && (
+                            <ZoloPanelBody title={__('Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <div className="zolo-tab-panel-post-content-block">
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                value: 'normal',
+                                                label: __('H1', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'hover',
+                                                label: __('H2', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'active',
+                                                label: __('H3', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'extraOne',
+                                                label: __('H4', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'extraTwo',
+                                                label: __('H5', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'extraThree',
+                                                label: __('H6', 'zoloblocks'),
+                                            },
+                                        ]}
+                                        normalComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={headingColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            headingColor: val,
+                                                        })
+                                                    }
+                                                />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={HEADING_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+                                                <TextShadowControl
+                                                    controlName={HEADING_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={HEADING_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={HEADING_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        }
+                                        hoverComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={headingTwoColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            headingTwoColor: val,
+                                                        })
+                                                    }
+                                                />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={HEADING_TWO_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+                                                <TextShadowControl
+                                                    controlName={HEADING_TWO_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={HEADING_TWO_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={HEADING_TWO_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        }
+                                        activeComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={headingThreeColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            headingThreeColor: val,
+                                                        })
+                                                    }
+                                                />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={HEADING_THREE_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+                                                <TextShadowControl
+                                                    controlName={HEADING_THREE_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={HEADING_THREE_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={HEADING_THREE_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        }
+                                        extraOneComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={headingFourColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            headingFourColor: val,
+                                                        })
+                                                    }
+                                                />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={HEADING_FOUR_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+                                                <TextShadowControl
+                                                    controlName={HEADING_FOUR_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={HEADING_FOUR_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={HEADING_FOUR_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        }
+                                        extraTwoComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={headingFiveColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            headingFiveColor: val,
+                                                        })
+                                                    }
+                                                />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={HEADING_FIVE_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+                                                <TextShadowControl
+                                                    controlName={HEADING_FIVE_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={HEADING_FIVE_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={HEADING_FIVE_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        }
+                                        extraThreeComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={headingSixColor}
+                                                    onChange={(val) =>
+                                                        setAttributes({
+                                                            headingSixColor: val,
+                                                        })
+                                                    }
+                                                />
+                                                <TypographyDropdown
+                                                    label={__('Typography', 'zoloblocks')}
+                                                    typoPrefixConstant={HEADING_SIX_TYPOGRAPHY}
+                                                    requiredProps={requiredProps}
+                                                    max={200}
+                                                />
+                                                <TextShadowControl
+                                                    controlName={HEADING_SIX_TEXT_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <TextStrokeControl
+                                                    controlName={HEADING_SIX_TEXT_STROKE}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                                <CardDivider />
+                                                <ResDimensionsControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    controlName={HEADING_SIX_MARGIN}
+                                                    requiredProps={requiredProps}
+                                                />
+                                            </>
+                                        }
+                                    />
+                                </div>
+                            </ZoloPanelBody>
+                        )}
+
+                        {showLink && (
                             <ZoloPanelBody title={__('Link', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
