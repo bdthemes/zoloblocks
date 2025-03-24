@@ -122,7 +122,7 @@ export default function Inspector(props) {
                                 options={applyFilters('zolo.author.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Avatar', 'zoloblocks')}
                                 checked={showAvatar}

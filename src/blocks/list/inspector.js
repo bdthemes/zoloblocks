@@ -176,7 +176,7 @@ function Inspector(props) {
 
                             {preset !== 'zolo-list-style-1' && (
                                 <>
-                                    <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
+                                    <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
                                     <ToggleControl
                                         label={__('Icon', 'zoloblocks')}
                                         checked={iconToggle}

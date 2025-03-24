@@ -1,15 +1,15 @@
-import { RichText, useBlockProps } from "@wordpress/block-editor";
-import classnames from "classnames";
+import { RichText, useBlockProps } from '@wordpress/block-editor';
+import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 /**
  * Internal Dependencies
  */
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const formPreventDefault = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 };
 const Save = (props) => {
     const { attributes } = props;
@@ -51,7 +51,7 @@ const Save = (props) => {
                 method="get"
             >
                 <div className="zolo-advanced-search-control zolo-form-search-input" role="tablist">
-                    <input type="search" name="s" placeholder={placeholder} className="zolo-form-input" />
+                    <input type="search" name="s" placeholder={__(placeholder, 'zoloblocks')} className="zolo-form-input" />
                     {preset == 'zolo-search-2' && (
                         <label htmlFor={uniqueId} className="zolo-form-label">
                             {labelText}

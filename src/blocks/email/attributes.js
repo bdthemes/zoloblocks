@@ -80,7 +80,7 @@ const attributes = {
     },
     placeholder: {
         type: 'string',
-        default: 'Enter your email',
+        default: 'example@email.com',
     },
     placeholderColor: {
         type: 'string',

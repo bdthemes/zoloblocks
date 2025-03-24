@@ -248,7 +248,7 @@ function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                                 __nextHasNoMarginBottom={true}
                             />
-                            <div className="zolo-custom-heading">{__('show hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={showTitle}

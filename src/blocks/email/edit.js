@@ -94,7 +94,7 @@ export default function Edit(props) {
                             </div>
                         )}
 
-                        <input type="email" value={defaultValue || ''} name={generateUniqueName(uniqueId,customNameAttribute,"email")} required={isRequired} placeholder={placeholder} onChange={()=>null} />
+                        <input type="email" value={defaultValue || ''} name={generateUniqueName(uniqueId,customNameAttribute,"email")} required={isRequired} placeholder={__(placeholder, 'zoloblocks')} onChange={()=>null} />
                     </div>
                 </div>
             </div>
