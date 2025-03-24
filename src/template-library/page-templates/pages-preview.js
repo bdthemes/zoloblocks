@@ -116,7 +116,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                                                     <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                                         <button
                                                                             className="demo-btn import-btn"
-                                                                            onClick={() => handleImportTemplate(template?.json_file)}
+                                                                            onClick={() => handleImportTemplate(template?.content)}
                                                                         >
                                                                             {__('Import', 'zoloblocks')}
                                                                             <svg
@@ -207,7 +207,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                                         <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                             <button
                                                                 className="demo-btn import-btn"
-                                                                onClick={() => handleImportTemplate(template?.json_file)}
+                                                                onClick={() => handleImportTemplate(template?.content)}
                                                             >
                                                                 {__('Import', 'zoloblocks')}
                                                                 <svg

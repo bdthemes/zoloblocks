@@ -1,7 +1,8 @@
 import { Button, Modal } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { getTextContent } from '@wordpress/rich-text';
 import { useEffect, useState } from '@wordpress/element';
+import { parse } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { createRoot } from 'react-dom/client'; // ?? todo: remove if @wordpress/element is updated
@@ -22,7 +23,16 @@ import Content from './components/content';
 function ZoloBlocksTemplateLibraryButton() {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [currentPostType, setCurrentPostType] = useState(wp.data.select('core/editor').getCurrentPostType());
+    const { selectedBlock, currentPostType } = useSelect((select) => {
+        const { getSelectedBlock } = select('core/block-editor');
+        const { getCurrentPostType } = select('core/editor');
+        return {
+            selectedBlock: getSelectedBlock(),
+            currentPostType: getCurrentPostType(),
+        };
+    }, []);
+
+    const { replaceBlocks, insertBlocks } = useDispatch('core/block-editor');
 
     const { isPageEmpty } = useSelect((select) => {
         const { getBlocks } = select('core/block-editor');
@@ -89,60 +99,56 @@ function ZoloBlocksTemplateLibraryButton() {
      * Handle Import Template
      * @param {string} jsonFile
      */
-    const handleImportTemplate = (jsonFile) => {
-        setLoading(true);
-
-        jQuery.ajax({
-            url: zoloParams?.ajaxurl,
-            type: 'POST',
-            nonce: zoloParams?.nonce,
-            data: {
-                action: 'zolo_demo_import',
-                security: zoloParams?.zolo_nonce,
-                json_file_url: jsonFile,
-            },
-            success: function (response) {
-                if (response.success) {
-                    const { data } = response;
-                    if (data) {
-                        const { content } = data;
-                        const blocks = wp.blocks.parse(content);
-
-                        const getBlockRecursively = (block) => {
-                            if (block.innerBlocks.length > 0) {
-                                block.innerBlocks.forEach((innerBlock) => {
-                                    getBlockRecursively(innerBlock);
-                                });
-                            } else {
-                                if (block.name === 'zolo/advanced-paragraph') {
-                                    let content = block.attributes.content;
-                                    content = content.replace(/<p>/g, '').replace(/<\/p>/g, '');
-                                    block.attributes.content = content;
-                                }
-                            }
-                        };
-
-                        blocks.forEach((block) => {
-                            getBlockRecursively(block);
-                        });
-
-                        const selectedBlock = wp.data.select('core/block-editor').getSelectedBlock();
-                        if (selectedBlock && selectedBlock.name === 'core/paragraph') {
-                            wp.data.dispatch('core/block-editor').replaceBlocks(selectedBlock.clientId, blocks);
-                        } else {
-                            wp.data.dispatch('core/block-editor').insertBlocks(blocks, 0);
-                        }
-                        setLoading(false);
-                        setIsOpen(false);
-                    }
-                } else {
-                    console.log('Error:', response.data);
+    const handleImportTemplate = async (content) => {
+        try {
+            setLoading(true);
+    
+            // Early return if no content is provided
+            if (!content) {
+                console.error('No content found in API response data.');
+                return;
+            }
+    
+            const blocks = parse(content);
+    
+            // Early return if no blocks are parsed
+            if (!blocks.length) {
+                console.warn('No blocks were parsed. Check your content format.');
+                return;
+            }
+    
+            // Function to recursively process blocks
+            const processBlockContent = (block) => {
+                if (block.innerBlocks?.length > 0) {
+                    block.innerBlocks.forEach(processBlockContent);
+                } else if (block.name === 'zolo/advanced-paragraph') {
+                    block.attributes.content = processAdvancedParagraphContent(block.attributes.content);
                 }
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            },
-        });
+            };
+    
+            // Process each block
+            blocks.forEach(processBlockContent);
+    
+            // Handle insertion or replacement of blocks
+            if (selectedBlock && selectedBlock.name === 'core/paragraph') {
+                replaceBlocks(selectedBlock.clientId, blocks);
+            } else {
+                insertBlocks(blocks, 0);
+            }
+        } catch (error) {
+            console.error('Error during API fetch import:', error);
+        } finally {
+            setLoading(false);
+            setIsOpen(false);
+        }
+    };
+    
+    // Function to clean up the content for 'zolo/advanced-paragraph' block
+    const processAdvancedParagraphContent = (content) => {
+        if (typeof content === 'string') {
+            return content.replace(/<p>/g, '').replace(/<\/p>/g, '');
+        }
+        return content;
     };
 
     return (
