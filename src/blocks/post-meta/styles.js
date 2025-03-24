@@ -132,11 +132,7 @@ function Style({ props }) {
         ${textColor ? `color:${textColor};` : ''}
       }
 
-      
-      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info a:hover,
-      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info.terms:hover {
-        ${hoverColor ? `color:${hoverColor};` : ''}
-      }
+      ${hoverColor ? `.${uniqueId}.wp-block-zolo-post-meta.zolo-block :is(.zolo-meta-info a:hover, .zolo-meta-info.terms:hover){color:${hoverColor};}` : ''}
 
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info,
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
