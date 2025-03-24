@@ -20,15 +20,34 @@ class Maintenance {
         if ((!empty($maintenance_mode) || !empty($coming_soon_mode)) && !empty($maintenance_page_id)) {
             add_action('template_redirect', [$this, 'redirect_to_maintenance_page'], 99);
         }
+
+        // Add maintenance mode settings.
+        add_action('admin_init', [$this, 'add_maintenance_mode_settings']);
     }
 
-
+    public function add_maintenance_mode_settings() {
+        add_option('zolo_site_visibility_secret_key', wp_generate_password(32, false));
+    }
     public function redirect_to_maintenance_page() {
+
+
         $maintenance_mode = get_option('zolo_maintenance_mode');
         $maintenance_page_id = get_option('zolo_maintenance_mode_template');
         $current_page_id = get_the_ID();
         if ($maintenance_page_id == $current_page_id) {
             return;
+        }
+
+        if (get_option('zolo_site_visibility_private_link') === '1') {
+            // Exclude users with a private link.
+            if (isset($_GET['private_link']) && get_option('zolo_site_visibility_secret_key') === $_GET['private_link']) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                // Persist the share link with a cookie for 90 days.
+                setcookie('private_link', sanitize_text_field(wp_unslash($_GET['private_link'])), time() + 60 * 60 * 24 * 90, '/'); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                return false;
+            }
+            if (isset($_COOKIE['private_link']) && get_option('zolo_site_visibility_secret_key') === $_COOKIE['private_link']) {
+                return false;
+            }
         }
 
         if (!is_user_logged_in() && $maintenance_page_id !== $current_page_id) {

@@ -204,6 +204,48 @@ span.block-separator {
         &:nth-last-child(1) {
             margin-bottom: 0;
         }
+        &.zolo-main-tenance-mode {
+            .components-toggle-control__label {
+                font-size: 15px;
+                font-weight: 500;
+                margin-left: 10px;
+            }
+            .components-toggle-control__help,
+            .components-base-control__help {
+                font-style: italic;
+                font-size: 13px;
+                color: #706f77;
+                max-width: 700px;
+                margin-left: 0;
+            }
+
+            .zolo-private-link-wrap {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .components-base-control {
+                    width: 100%;
+                    margin: 0 !important;
+                    .components-base-control__field {
+                        margin: 0 !important;
+                    }
+                    .components-text-control__input {
+                        height: 42px;
+                        min-height: 42px;
+                        border-radius: 6px;
+                        border: 1px solid #e5e5e5;
+                        color: #51515a;
+                    }
+                }
+                .components-button {
+                    margin: 0;
+                    padding: 16px 15px;
+                    height: 40px !important;
+                    min-height: 40px !important;
+                }
+            }
+        }
     }
 
     .zolo-settings-title {
