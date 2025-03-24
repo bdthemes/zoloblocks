@@ -9,7 +9,7 @@ export default function RenderView({ attributes }) {
             <a onClick={(event) => event.preventDefault()} href="#" className="zolo-item zolo-post-prev">
                 {showImage && (
                     <div className="zolo-image-wrap">
-                        <img src={zoloPlaceholders.placeholder} alt={__('image Placeholder', 'zoloblocks')} />
+                        <img src={zoloPlaceholders.placeholder} alt={__('Image Placeholder', 'zoloblocks')} />
                     </div>
                 )}
                 <div className="zolo-content-wrap">
@@ -28,7 +28,7 @@ export default function RenderView({ attributes }) {
             <a href="#" className="zolo-item zolo-post-next">
                 {showImage && (
                     <div className="zolo-image-wrap">
-                        <img src={zoloPlaceholders.placeholder} alt={__('image Placeholder', 'zoloblocks')} />
+                        <img src={zoloPlaceholders.placeholder} alt={__('Image Placeholder', 'zoloblocks')} />
                     </div>
                 )}
                 <div className="zolo-content-wrap">

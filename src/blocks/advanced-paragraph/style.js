@@ -293,21 +293,6 @@ const Style = ({ props }) => {
 
     }
 
-    ${
-        dropcap
-            ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            font-size: 2em;
-            font-weight: bold;
-            float: left;
-            margin-right: 0.1em;
-            line-height: 1;
-        }
-    `
-            : ''
-    }
-
-
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoDesk}
         ${linkColor ? `color: ${linkColor};` : ''}
@@ -329,7 +314,7 @@ const Style = ({ props }) => {
     ${
         dropcap
             ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
+        .${uniqueId}.wp-block-zolo-advanced-paragraph.has-dropcap:first-letter {
             ${dropcapColor ? `color: ${dropcapColor};` : ''}
             ${dropCapTypoDesk}
             ${dropCapShadowStyle}
@@ -356,21 +341,6 @@ const Style = ({ props }) => {
         ${textAlignTab}
     }
 
-    ${
-        dropcap
-            ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            font-size: 2em;
-            font-weight: bold;
-            float: left;
-            margin-right: 0.1em;
-            line-height: 1;
-        }
-    `
-            : ''
-    }
-
-
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoTab}
         ${linkColor ? `color: ${linkColor};` : ''}
@@ -389,10 +359,8 @@ const Style = ({ props }) => {
     ${
         dropcap
             ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            ${dropcapColor ? `color: ${dropcapColor};` : ''}
+        .${uniqueId}.wp-block-zolo-advanced-paragraph.has-dropcap:first-letter {
             ${dropCapTypoTab}
-            ${dropCapShadowStyle}
             ${dropCapBgColorTab}
             ${dropCapBorderTab}
             ${dropCapRadiusTab}
@@ -417,20 +385,6 @@ const Style = ({ props }) => {
 
     }
 
-    ${
-        dropcap
-            ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            font-size: 2em;
-            font-weight: bold;
-            float: left;
-            margin-right: 0.1em;
-            line-height: 1;
-        }
-    `
-            : ''
-    }
-
     .${uniqueId}.wp-block-zolo-advanced-paragraph a{
         ${linkTypoMob}
         ${linkColor ? `color: ${linkColor};` : ''}
@@ -449,10 +403,8 @@ const Style = ({ props }) => {
     ${
         dropcap
             ? `
-        .${uniqueId}.wp-block-zolo-advanced-paragraph:first-letter {
-            ${dropcapColor ? `color: ${dropcapColor};` : ''}
+        .${uniqueId}.wp-block-zolo-advanced-paragraph.has-dropcap:first-letter {
             ${dropCapTypoMob}
-            ${dropCapShadowStyle}
             ${dropCapBgColorMob}
             ${dropCapBorderMob}
             ${dropCapRadiusMob}

@@ -18,8 +18,6 @@ const Prompt = (props) => {
         };
     });
 
-
-
     useEffect(() => {
         if (response?.content) {
             setBlockContent(response.content);
@@ -48,19 +46,17 @@ const Prompt = (props) => {
         setPrompt(newContent);
     };
 
-
     return (
         <>
-                <textarea
-                    className="zolo-ai-prompt"
-                    ref={ref}
-                    value={blockContent || ''}
-                    onChange={handleContentChange}
-                    placeholder="Type your content here..."
-                    rows={1}
-                    style={{ width: '100%' }}
-                />
-
+            <textarea
+                className="zolo-ai-prompt"
+                ref={ref}
+                value={blockContent || ''}
+                onChange={handleContentChange}
+                placeholder={__('Type your content here...', 'zoloblocks')}
+                rows={1}
+                style={{ width: '100%' }}
+            />
         </>
     );
 };

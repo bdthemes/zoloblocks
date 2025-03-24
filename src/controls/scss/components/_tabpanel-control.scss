@@ -43,3 +43,14 @@
         box-shadow: none;
     }
 }
+
+.zolo-tab-panel-post-content-block {
+    .zolo-tab-panel {
+        .components-tab-panel__tabs {
+            gap: 5px;
+            .zolo-tab {
+                padding: 3px 9px;
+            }
+        }
+    }
+}
