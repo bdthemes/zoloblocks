@@ -169,7 +169,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.reviewCarousel.presets', PRESETS)}
                                 onChange={(selected) => setAttributes({ preset: selected })}
                             />
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Add Reviewer Website Link', 'zoloblocks')}
                                 checked={addReviewerWebsiteLink}
@@ -327,7 +327,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
                                 checked={infiniteLoop}

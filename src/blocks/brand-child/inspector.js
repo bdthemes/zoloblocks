@@ -180,6 +180,7 @@ function Inspector(props) {
                                             value={brandTitle}
                                             placeholder={__('Title..', 'zoloblocks')}
                                         />
+                                        
                                         <SelectControl
                                             label={__('Tag', 'zoloblocks')}
                                             value={brandNameTag}
@@ -203,7 +204,7 @@ function Inspector(props) {
                                                 })
                                             }
                                             value={brandLabel}
-                                            placeholder={__('label..', 'zoloblocks')}
+                                            placeholder={__('Label..', 'zoloblocks')}
                                         />
                                     </>
                                 )}

@@ -71,7 +71,7 @@ export default function Edit(props) {
                                     id="zolo-newsletter-name-field"
                                     type="name"
                                     name="name"
-                                    placeholder={namePlaceholder}
+                                    placeholder={__(namePlaceholder, 'zoloblocks')}
                                     className="zolo-form-input"
                                 />
                             )}
@@ -83,7 +83,7 @@ export default function Edit(props) {
                                             id="zolo-newsletter-name-field"
                                             type="name"
                                             name="name"
-                                            placeholder={namePlaceholder}
+                                            placeholder={__(namePlaceholder, 'zoloblocks')}
                                             className="zolo-form-input"
                                         />
                                         <span class="zolo-focus-border">
@@ -126,7 +126,7 @@ export default function Edit(props) {
                                 id="zolo-newsletter-email-field"
                                 type="email"
                                 name="email"
-                                placeholder={placeholder}
+                                placeholder={__(placeholder, 'zoloblocks')}
                                 className="zolo-form-input"
                             />
                         )}
@@ -138,7 +138,7 @@ export default function Edit(props) {
                                         id="zolo-newsletter-email-field"
                                         type="email"
                                         name="email"
-                                        placeholder={placeholder}
+                                        placeholder={__(placeholder, 'zoloblocks')}
                                         className="zolo-form-input"
                                     />
                                     <span class="zolo-focus-border">

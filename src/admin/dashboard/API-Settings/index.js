@@ -60,18 +60,17 @@ const ApiSettings = () => {
         );
     }, []);
 
-useEffect(() => {
-    fetchSettings({
-        path: '/zolo/v1/extensions',
-        method: 'GET',
-    }).then((response) => {
-        const zoloAI = response.find((ext) => ext.name === 'ai-assistant');
-        if (zoloAI) {
-            setisAIExtensionActive(zoloAI.status);
-        }
-    });
-}, []);
-
+    useEffect(() => {
+        fetchSettings({
+            path: '/zolo/v1/extensions',
+            method: 'GET',
+        }).then((response) => {
+            const zoloAI = response.find((ext) => ext.name === 'ai-assistant');
+            if (zoloAI) {
+                setisAIExtensionActive(zoloAI.status);
+            }
+        });
+    }, []);
 
     // update api key
     const updateAPIKey = (value) => {
@@ -336,7 +335,10 @@ useEffect(() => {
                         label={__('API Key', 'zoloblocks')}
                         onChange={(value) => setZoloaiAPIKey(value)}
                         value={zoloaiAPIKey}
-                        placeholder="AbcdeF1GhIJkLMNOpQrSTUvWXyZU2VjdXJlL0FjY2Vzcy9Ub2tlbi9Gb3IvU2FmZVBsYXRmbJtL1Byb2plY3RX"
+                        placeholder={__(
+                            'AbcdeF1GhIJkLMNOpQrSTUvWXyZU2VjdXJlL0FjY2Vzcy9Ub2tlbi9Gb3IvU2FmZVBsYXRmbJtL1Byb2plY3RX',
+                            'zoloblocks'
+                        )}
                     />
                 </SettingPanel>
                 <SettingPanel
