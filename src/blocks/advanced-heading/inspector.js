@@ -675,7 +675,7 @@ const Inspector = (props) => {
                             </>
                         )}
 
-                        {showSubTitleBadgeText && subTitleStyles === 'badge-style-1' && (
+                        {showSubTitleBadgeIcon && subTitleStyles === 'badge-style-1' && (
                             <>
                                 <ZoloPanelBody title={__('Sub Heading Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                     <ColorControl
