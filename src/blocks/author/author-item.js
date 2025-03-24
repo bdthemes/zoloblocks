@@ -184,14 +184,14 @@ function AuthorItem({ author, attributes }) {
         <div className="zolo-item">
             {showAvatar && (
                 <div className="zolo-image">
-                    <a href={author.link} dangerouslySetInnerHTML={{ __html: author.avatar }}></a>
+                    <a href={author.link} dangerouslySetInnerHTML={{ __html: author.avatar }} onClick={(e) => e.preventDefault()}></a>
                 </div>
             )}
 
             <div className="zolo-content">
                 {showName && (
                     <div className="zolo-name">
-                        <a href={author.link}>{author.name}</a>
+                        <a href={author.link} onClick={(e) => e.preventDefault()}>{author.name}</a>
                     </div>
                 )}
 
@@ -221,7 +221,7 @@ function AuthorItem({ author, attributes }) {
 
                             if (!isEmpty(link)) {
                                 return (
-                                    <a href={link}>
+                                    <a href={link} onClick={(e) => e.preventDefault()}>
                                         <SocialIcon value={value} />
                                     </a>
                                 );

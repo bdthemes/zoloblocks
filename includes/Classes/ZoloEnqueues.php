@@ -146,14 +146,14 @@ if (! class_exists('ZoloEnqueues')) {
             );
 
             wp_register_style(
-                'zolo-swiper-style',
+                'swiper',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
                 [],
                 ZOLO_VERSION
             );
 
             wp_register_script(
-                'zolo-swiper-script',
+                'swiper',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
                 [],
                 ZOLO_VERSION,

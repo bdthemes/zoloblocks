@@ -4,7 +4,6 @@ import { Spinner } from '@wordpress/components';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import './editor.scss';
 import Inspector from './inspector';
 import RenderView from './render-view';
 
@@ -27,8 +26,6 @@ export default function Edit(props) {
         postTitleAnimation,
         preview,
         resMode,
-        slideItems,
-        sliderType,
         autoplay,
         autoplayDelay,
         pauseOnMouseEnter,
@@ -39,12 +36,12 @@ export default function Edit(props) {
         dynamicBullets,
         speed,
         carouselEffect,
-        addNewSlideBlock,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
         coverFlowEffect,
     } = attributes;
+
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(
@@ -78,108 +75,55 @@ export default function Edit(props) {
         noUnits: true,
     });
 
-    useEffect(() => {
-        if (typeof postQuery === 'undefined') {
-            setAttributes({
-                postQuery: {
-                    postType: 'post',
-                    postInclude: '',
-                    postExclude: '',
-                    postAuthors: [],
-                    postTaxonomies: {},
-                    postPerPage: 7,
-                    postOffset: 0,
-                    postOrderby: 'date',
-                    postOrder: 'desc',
-                    postThumbnail: '',
-                    // showPagination: false,
-                },
-            });
-        }
-    }, []);
+    let options = {
+        slidesPerView: resMode === 'Desktop' ? deskCol || 2 : resMode === 'Tablet' ? tabCol || 2 : mobCol || 1,
+        spaceBetween: resMode === 'Desktop' ? parseInt(deskColGap.slice(0, -1)) || 30 : resMode === 'Tablet' ? parseInt(tabColGap.slice(0, -1)) || 30 : parseInt(mobColGap.slice(0, -1)) || 0,
+        loop: infiniteLoop,
+        speed: speed * 100,
+        effect: carouselEffect,
+        ...(carouselEffect === 'coverflow' && {
+            coverflowEffect: coverFlowEffect,
+        }),
+        autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
+        navigation: showNavigation
+            ? {
+                nextEl: customNavIcon
+                    ? `.${uniqueId} .swiper-zolo-next`
+                    : `.${uniqueId} .swiper-button-next`,
+                prevEl: customNavIcon
+                    ? `.${uniqueId} .swiper-zolo-prev`
+                    : `.${uniqueId} .swiper-button-prev`,
+            }
+            : false,
+        pagination: showPagination
+            ? {
+                el: `.${uniqueId} .swiper-pagination`,
+                clickable: true,
+                type: paginationType,
+                dynamicBullets: dynamicBullets,
+            }
+            : false,
 
-    // slider options init
-    const zoloSliderInit = function (sliderE, options) {
-        if (sliderE.swiper) {
-            sliderE.swiper.destroy();
-        }
-        new Swiper(sliderE, options);
     };
 
     //slider initialize
+
     useEffect(() => {
-        let breakpoints = {};
-        breakpoints = {
-            1024: {
-                slidesPerView: deskCol || 2,
-                spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
-            },
-            768: {
-                slidesPerView: tabCol || 2,
-                spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
-            },
-            640: {
-                slidesPerView: mobCol || 1,
-                spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
-            },
-        };
-
-        let options = {
-            loop: infiniteLoop,
-            speed: speed * 100,
-            effect: carouselEffect,
-            ...(carouselEffect === 'coverflow' && {
-                coverflowEffect: coverFlowEffect,
-            }),
-            autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
-            navigation: showNavigation
-                ? {
-                    nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
-                    prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
+        if (postCarouselRef?.current) {
+            const { ownerDocument } = postCarouselRef.current;
+            const editorWindow = ownerDocument.defaultView || window;
+            const { Swiper } = editorWindow;
+            let swiper = null;
+            if (Swiper) {
+                swiper = new Swiper(postCarouselRef.current, options);
+            }
+            return () => {
+                if (swiper) {
+                    swiper.destroy();
                 }
-                : false,
-            pagination: showPagination
-                ? {
-                    el: `.${uniqueId} .swiper-pagination`,
-                    clickable: true,
-                    type: paginationType,
-                    dynamicBullets: dynamicBullets,
-                }
-                : false,
-            breakpoints: breakpoints,
-        };
-
-        setAttributes({ sliderOptions: options });
-        if (postCarouselRef.current) {
-            zoloSliderInit(postCarouselRef.current, options);
+            };
         }
-    }, [
-        postCarouselRef.current,
-        sliderType,
-        deskCol,
-        tabCol,
-        mobCol,
-        deskColGap,
-        tabColGap,
-        mobColGap,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
-        infiniteLoop,
-        showNavigation,
-        showPagination,
-        paginationType,
-        dynamicBullets,
-        speed,
-        carouselEffect,
-        slideItems,
-        customNavIcon,
-        prevNavIcon,
-        nextNavIcon,
-        addNewSlideBlock,
-        resMode,
-        coverFlowEffect,
-    ]);
+    }, [postCarouselRef.current, resMode, options]);
 
     const [postResults, setPostResults] = useState([]);
     const [dataSuccess, setDataSuccess] = useState(true);
@@ -215,17 +159,15 @@ export default function Edit(props) {
     } else if (Array.isArray(postResults) && postResults.length === 0) {
         content = (
             <>
-                {
-                    dataSuccess ? (
-                        <div className="zolo-spinner">
-                            <Spinner />
-                        </div>
-                    ) : (
-                        <p>{__('No posts found.', 'zoloblocks')}</p>
-                    )
-                }
+                {dataSuccess ? (
+                    <div className="zolo-spinner">
+                        <Spinner />
+                    </div>
+                ) : (
+                    <p>{__('No posts found.', 'zoloblocks')}</p>
+                )}
             </>
-        )
+        );
     } else {
         content = (
             <>
@@ -261,16 +203,14 @@ export default function Edit(props) {
                     </>
                 )}
             </>
-        )
+        );
     }
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <div {...blockProps}>
-                {content}
-            </div>
+            <div {...blockProps}>{content}</div>
         </>
     );
 }

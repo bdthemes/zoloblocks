@@ -107,13 +107,17 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                            <CardDivider />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={TEXT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={TEXT_ALIGN_OPTIONS}
-                            />
+                            {!dropcap && (
+                                <>
+                                    <CardDivider />
+                                    <ResAlignmentControl
+                                        label={__('Alignment', 'zoloblocks')}
+                                        controlName={TEXT_ALIGNMENT}
+                                        requiredProps={requiredProps}
+                                        alignOptions={TEXT_ALIGN_OPTIONS}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }

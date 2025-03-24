@@ -20,7 +20,7 @@ export const NAV_MENU_ITEM_PADDING = 'navItemPadding';
 export const NAV_MENU_ITEM_BOX_SHADOW = 'navItemBoxShadow';
 
 export const NAV_MENU_ITEM_HOVER_BG = 'navItemHoverBg';
-export const NAV_MENU_ITEM_ACTIVE_BG = 'navItemHoverBg';
+export const NAV_MENU_ITEM_ACTIVE_BG = 'navItemActiverBg';
 export const NAV_MENU_ITEM_GAP = 'navItemGap';
 
 export const MOBILE_MENU_WIDTH = 'mobileMenuWidth';

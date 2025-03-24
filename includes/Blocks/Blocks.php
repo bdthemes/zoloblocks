@@ -726,13 +726,13 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         // 'is_child' => true,
     ],
-    'datetime-field' => [
-        'name' => 'datetime-field',
-        'title' => __('Date Time Field', 'zoloblocks-pro'),
-        'categories' => ['form'],
-        'status' => true,
-        'is_pro' => true,
-    ],
+    // 'datetime-field' => [
+    //     'name' => 'datetime-field',
+    //     'title' => __('Date Time Field', 'zoloblocks-pro'),
+    //     'categories' => ['form'],
+    //     'status' => true,
+    //     'is_pro' => true,
+    // ],
     'checkbox-field' => [
         'name' => 'checkbox-field',
         'title' => __('Checkbox Field', 'zoloblocks'),

@@ -120,7 +120,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
 
                             <ToggleControl
                                 label={__('Title', 'zoloblocks')}
@@ -181,7 +181,7 @@ function Inspector(props) {
                                         label={__('Text', 'zoloblocks')}
                                         onChange={(value) => setAttributes({ title: value })}
                                         value={title}
-                                        placeholder={__('title..', 'zoloblocks')}
+                                        placeholder={__('Title..', 'zoloblocks')}
                                     />
                                     <SelectControl
                                         label={__('Tag', 'zoloblocks')}
@@ -201,7 +201,7 @@ function Inspector(props) {
                                             label={__('Text', 'zoloblocks')}
                                             value={description}
                                             onChange={(value) => setAttributes({ description: value })}
-                                            placeholder={__('description..', 'zoloblocks')}
+                                            placeholder={__('Description..', 'zoloblocks')}
                                         />
                                     </div>
                                 </>
@@ -214,7 +214,7 @@ function Inspector(props) {
                                         label={__('Label', 'zoloblocks')}
                                         onChange={(value) => setAttributes({ label: value })}
                                         value={label}
-                                        placeholder={__('label..', 'zoloblocks')}
+                                        placeholder={__('Label..', 'zoloblocks')}
                                     />
                                 )}
                                 <LinkControl
@@ -272,7 +272,7 @@ function Inspector(props) {
                                         label={__('Label', 'zoloblocks')}
                                         onChange={(value) => setAttributes({ Slabel: value })}
                                         value={Slabel}
-                                        placeholder={__('label..', 'zoloblocks')}
+                                        placeholder={__('Label..', 'zoloblocks')}
                                     />
                                 )}
                                 <LinkControl
