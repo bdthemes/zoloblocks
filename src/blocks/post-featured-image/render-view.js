@@ -66,7 +66,7 @@ export default function RenderView({props}) {
       <img
         className="zolo-placeholder-img"
         src={zoloPlaceholders.placeholder}
-        alt={__('image Placeholder', 'zoloblocks')}
+        alt={__('Image Placeholder', 'zoloblocks')}
       />
     );
   } else {

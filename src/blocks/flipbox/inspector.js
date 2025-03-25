@@ -177,7 +177,7 @@ function Inspector(props) {
                                     ))}
                                 </ButtonGroup>
                             </BaseControl>
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             {side === 'front' && (
                                 <>
                                     <ToggleControl
@@ -254,7 +254,7 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props}>
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
@@ -297,7 +297,7 @@ function Inspector(props) {
                                             </div>
                                             {frontIconType === 'icon' && (
                                                 <ZoloIconPicker
-                                                    label={__('Select Icon', 'zolo-block')}
+                                                    label={__('Select Icon', 'zoloblocks')}
                                                     value={frontIcon}
                                                     onChange={(v) => setAttributes({ frontIcon: v })}
                                                 />
@@ -423,7 +423,7 @@ function Inspector(props) {
                                             </div>
                                             {backIconType === 'icon' && (
                                                 <ZoloIconPicker
-                                                    label={__('Select Icon', 'zolo-block')}
+                                                    label={__('Select Icon', 'zoloblocks')}
                                                     value={backIcon}
                                                     onChange={(v) => setAttributes({ backIcon: v })}
                                                 />
@@ -538,7 +538,7 @@ function Inspector(props) {
                                             />
                                             {showBackLinkBtnIcon && (
                                                 <ZoloIconPicker
-                                                    label={__('Icon', 'zolo-block')}
+                                                    label={__('Icon', 'zoloblocks')}
                                                     value={buttonIcon}
                                                     onChange={(v) => setAttributes({ buttonIcon: v })}
                                                 />
@@ -607,7 +607,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Items', 'zolo-block')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Items', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('common', 'zoloblocks')}
                             </div>
@@ -717,7 +717,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         {(showFrontIcon || showBackIcon) && (
-                            <ZoloPanelBody title={__('Icon/Image', 'zolo-block')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Icon/Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                     <ButtonGroup className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (

@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ Empowering Gutenberg block editor to help you create WordPress websites with 55+
 - **5 out of 5 ratings** on WordPress Repository
 - Premium support with **4.8 customer satisfaction** on [**Trustpilot**](https://www.trustpilot.com/review/bdthemes.com)
 
-[**Free Demo**](https://zoloblocks.com/demo/) | [**ZoloBlocks Pro**](https://www.zoloblocks.com/pricing) | [**Documentation**](https://bdthemes.com/knowledge-base-zoloblocks/)
+[**Free Demo**](https://zoloblocks.com/demo/) | [**ZoloBlocks Pro**](https://zoloblocks.com/pricing) | [**Documentation**](https://bdthemes.com/knowledge-base-zoloblocks/)
 
 == ZoloBlocks - A WordPress Block Editor Plugin for Creating Websites within 15 Minutes!
 
@@ -603,6 +603,32 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.2.5 [March 24, 2025]
+- **New Features:**
+- Private link feature for accessing the maintenance mode site.
+
+- **Fixes:**
+- Panel Body: Panel body toggle issue when opened.
+- Block Styles: Device-specific CSS not generating correctly in the editor.
+- Unfold Block: Collapse functionality and text display issues fixed.
+- Classic Theme: Layout breaking issue resolved.
+- Mega Menu Block: Full-width feature now responsive.
+- Advanced Heading Block: Subheading icon style controls reappear as expected.
+- List Block: Description control inside repeater fixed.
+- Slider Block: Navigation icon border display corrected.
+- Advanced Paragraph Block: Drop cap alignment issue fixed.
+- Navigation Item: Border display issue resolved.
+- Template Library: Empty appearance issue.
+- Table of Content: merge marker controls with list controls.
+- Post Meta: hover color and comment icon issue.
+
+- **Improvements:**
+- All translatable strings updated to Title Case.
+- Standardized extension naming conventions.
+- Improved editing experience for the Post Content Block.
+- Template library performance optimization.
+
 
 ### 2.2.4 [March 11, 2025]
 

@@ -31,7 +31,6 @@ import {
     CONTENT_TEXT_STROKE,
     //image
     THUMBNAIL_WIDTH,
-    THUMBNAIL_HEIGHT,
     THUMBNAIL_BG,
     THUMBNAIL_PADDING,
     THUMBNAIL_MARGIN,
@@ -43,6 +42,27 @@ import {
     HEADING_TEXT_SHADOW,
     HEADING_TEXT_STROKE,
     HEADING_MARGIN,
+    //heading two
+    HEADING_TWO_TEXT_SHADOW,
+    HEADING_TWO_TEXT_STROKE,
+    HEADING_TWO_MARGIN,
+    //heading THREE
+    HEADING_THREE_TEXT_SHADOW,
+    HEADING_THREE_TEXT_STROKE,
+    HEADING_THREE_MARGIN,
+    //heading four
+    HEADING_FOUR_TEXT_SHADOW,
+    HEADING_FOUR_TEXT_STROKE,
+    HEADING_FOUR_MARGIN,
+    //heading FIVE
+    HEADING_FIVE_TEXT_SHADOW,
+    HEADING_FIVE_TEXT_STROKE,
+    HEADING_FIVE_MARGIN,
+
+    //heading SIX
+    HEADING_SIX_TEXT_SHADOW,
+    HEADING_SIX_TEXT_STROKE,
+    HEADING_SIX_MARGIN,
     //link
     LINK_BG,
     LINK_PADDING,
@@ -84,31 +104,22 @@ const attributes = {
         },
     },
     // block attributes
-    styleTags: {
-        type: 'array',
-        default: [
-            // { id: 1, type: 'image' },
-            {
-                id: 2,
-                type: 'heading',
-                hTags: [
-                    { label: __('H1', 'zoloblocks'), value: 'h1' },
-                    { label: __('H2', 'zoloblocks'), value: 'h2' },
-                    { label: __('H3', 'zoloblocks'), value: 'h3' },
-                    { label: __('H4', 'zoloblocks'), value: 'h4' },
-                    { label: __('H5', 'zoloblocks'), value: 'h5' },
-                    { label: __('H6', 'zoloblocks'), value: 'h6' },
-                ],
-            },
-        ],
-    },
+
     inheritThemeLayout: {
         type: 'boolean',
         default: false,
     },
-    headingTags: {
-        type: 'array',
-        default: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    heading: {
+        type: 'boolean',
+        default: true,
+    },
+    showImage: {
+        type: 'boolean',
+        default: false,
+    },
+    showLink: {
+        type: 'boolean',
+        default: false,
     },
     contentColor: {
         type: 'string',
@@ -125,6 +136,21 @@ const attributes = {
     headingColor: {
         type: 'string',
     },
+    headingTwoColor: {
+        type: 'string',
+    },
+    headingThreeColor: {
+        type: 'string',
+    },
+    headingFourColor: {
+        type: 'string',
+    },
+    headingFiveColor: {
+        type: 'string',
+    },
+    headingSixColor: {
+        type: 'string',
+    },
     linkHoverColor: {
         type: 'string',
     },
@@ -133,6 +159,10 @@ const attributes = {
     },
 
     linkHoverBorderColor: {
+        type: 'string',
+    },
+
+    imageCaptionColor: {
         type: 'string',
     },
 
@@ -152,8 +182,11 @@ const attributes = {
     ...generateTextShadowAttributies(CONTENT_TEXT_SHADOW),
     ...generateTextStrokeAttributies(CONTENT_TEXT_STROKE),
     //image
-    ...generateResRangeAttributies(THUMBNAIL_WIDTH),
-    ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
+    ...generateResRangeAttributies(THUMBNAIL_WIDTH, {
+        default: {
+            unit: '%',
+        },
+    }),
     ...generateNormalBGAttributes(THUMBNAIL_BG),
     ...generateDimensionAttributes(THUMBNAIL_PADDING),
     ...generateDimensionAttributes(THUMBNAIL_MARGIN),
@@ -165,6 +198,30 @@ const attributes = {
     ...generateTextShadowAttributies(HEADING_TEXT_SHADOW),
     ...generateTextStrokeAttributies(HEADING_TEXT_STROKE),
     ...generateDimensionAttributes(HEADING_MARGIN),
+    //heading two
+    ...generateTextShadowAttributies(HEADING_TWO_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_TWO_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_TWO_MARGIN),
+    //heading Three
+    ...generateTextShadowAttributies(HEADING_THREE_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_THREE_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_THREE_MARGIN),
+
+    //heading FOUR
+    ...generateTextShadowAttributies(HEADING_FOUR_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_FOUR_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_FOUR_MARGIN),
+
+    //heading FIVE
+    ...generateTextShadowAttributies(HEADING_FIVE_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_FIVE_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_FIVE_MARGIN),
+
+    //heading SIX
+    ...generateTextShadowAttributies(HEADING_SIX_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_SIX_TEXT_STROKE),
+    ...generateDimensionAttributes(HEADING_SIX_MARGIN),
+
     //link
     ...generateNormalBGAttributes(LINK_BG),
     ...generateDimensionAttributes(LINK_PADDING),

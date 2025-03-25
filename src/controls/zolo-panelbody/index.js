@@ -27,11 +27,15 @@ const ZoloPanelBody = ({
             setAttributes({
                 [panelAttribute]: title.replace(' ', '_').toLowerCase(),
             });
+        } else {
+            setAttributes({
+                [panelAttribute]: '',
+            });
         }
     };
 
     const isOpened = panelName === title.replace(' ', '_').toLowerCase() || (firstOpen && panelName === 'first');
-    
+
     return (
         <PanelBody
             title={title}

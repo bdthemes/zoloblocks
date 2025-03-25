@@ -119,8 +119,8 @@ export default function Edit(props) {
                     <div className="zolo-post-start-end-wrap">
                         {showStartEnd && (
                             <>
-                                <div className="zolo-se-text zolo-top-start">{__('start', 'zoloblocks')}</div>
-                                <div className="zolo-se-text zolo-bottom-end">{__('end', 'zoloblocks')}</div>
+                                <div className="zolo-se-text zolo-top-start">{__('Start', 'zoloblocks')}</div>
+                                <div className="zolo-se-text zolo-bottom-end">{__('End', 'zoloblocks')}</div>
                             </>
                         )}
                         <div className="zolo-post-timeline-grid">

@@ -49,7 +49,7 @@ function RenderView({ attributes, postResults }) {
                                 className="zolo-post-author-link"
                                 dangerouslySetInnerHTML={{ __html: post.author }}
                                 onClick={(e) => e.preventDefault()}
-                            ></a>
+                            />
                         </div>
                     );
                     const date = <div className="zolo-post-date">{post.date}</div>;
@@ -75,7 +75,7 @@ function RenderView({ attributes, postResults }) {
                                     )}
                                     {!post.thumbnail && (
                                         <a href={post.permalink} onClick={(e) => e.preventDefault()}>
-                                            <img src={zoloPlaceholders.placeholder} alt="Thumbnail Placeholder" />
+                                            <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
                                         </a>
                                     )}
                                 </>

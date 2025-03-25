@@ -50,34 +50,13 @@
     }
 
     .zolo-toc-content {
+        --zolo-toc-list-space: 20px;
         padding: 20px 30px;
         .zolo-toc-list {
-            a {
-                text-decoration: none;
-                font-size: 18px;
-                color: #45444d;
-                font-weight: 500;
-                &:hover {
-                    color: var(--zoloblocks-brand-color);
-                }
-
-                &:focus {
-                    outline: none;
-                    box-shadow: none;
-                }
-            }
-
-            li.active > {
-                a {
-                    color: var(--zoloblocks-brand-color);
-                }
-            }
-        }
-
-        ul {
-            padding: 0;
-            margin: 0 0 0 20px;
             li {
+                font-size: 18px;
+                color: #f00;
+                font-weight: 500;
                 margin-bottom: 13px;
                 &:nth-last-child(1) {
                     margin-bottom: 0;
@@ -85,7 +64,24 @@
                 .child-list {
                     margin-top: 5px;
                 }
+                a {
+                    text-decoration: none;
+                    color: currentColor;
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+                &:hover,
+                &.active {
+                    color: var(--zoloblocks-brand-color);
+                }
             }
+        }
+
+        ul {
+            padding: 0;
+            margin: 0 0 0 var(--zolo-toc-list-space);
         }
 
         ol {
@@ -93,12 +89,9 @@
             list-style: none;
             margin: 0;
             padding: 0;
-
             li {
                 position: relative;
-                padding-left: 1em;
-                margin: 12px 0;
-
+                padding-left: var(--zolo-toc-list-space);
                 &::before {
                     position: absolute;
                     left: 0;
@@ -106,10 +99,6 @@
                     content: counters(listitem, '.') '.';
                     background: none !important;
                 }
-            }
-
-            ol li {
-                padding-left: 1.5em;
             }
         }
     }
