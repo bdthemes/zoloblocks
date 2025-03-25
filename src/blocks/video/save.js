@@ -1,6 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import EmbedPlayer from './embed-player';
 
 /**
  * Internal Dependencies
@@ -9,58 +10,53 @@ const { classArrayToStr } = window.zoloModule;
 
 export default function Save(props) {
     const { attributes } = props;
-
-    const {
-        uniqueId,
-        parentClasses,
-        video,
-        autoPlay,
-        playerControl,
-        smallButton,
-        loop,
-        mute,
-        posterImage,
-        imageRes,
-        startTime,
-        endTime,
-        hoverPlayPause,
-        isPlaying,
-        smallPlayPause,
-    } = attributes;
-
-    const options = {
-        controls: playerControl,
-        loop: loop,
-        muted: mute,
-        poster: posterImage,
-        startTime: startTime,
-        endTime: endTime,
-        hoverPlayPause: hoverPlayPause,
-    };
-
     const blocksProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
-        'data-settings': JSON.stringify(options),
+        className: classnames(attributes?.uniqueId, classArrayToStr(attributes?.parentClasses)),
     });
 
-    return (
-        <>
-            <div {...blocksProps}>
-                <div className="zolo-video-player">
-                    <video
-                        width={640}
-                        height={360}
-                        src={video}
-                        autoPlay={autoPlay}
-                        controls={playerControl}
-                        loop={loop}
-                        muted={autoPlay ? true : mute}
-                        poster={posterImage.sizes && posterImage.sizes[imageRes] ? posterImage.sizes[imageRes].url : posterImage.url}
-                    />
+    let markup = null;
 
-                    {!playerControl && smallButton && <button className="zolo-video-play"></button>}
+    if (attributes?.videoLayoutType === 'popup') {
+        markup = (
+            <>
+                <div className="video-player-popoup">
+                    <div className="video-player-popup-inline-content">
+                        <a
+                            href={`#video-player-popup-${attributes?.uniqueId}`}
+                            className="popup-trigger-button"
+                            data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
+                        >
+                            <>
+                                {attributes?.popupType === 'button' && attributes?.popupButtonLabel}
+                                {
+                                    attributes?.popupType === 'image' && (
+                                        <img
+                                            data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
+                                            className="popup-trigger-image"
+                                            src={attributes?.popoupImage}
+                                            alt={attributes?.popupButtonLabel}
+                                            sizes={attributes?.popupImageSizes}
+                                        />
+                                    )
+                                }
+                            </>
+                        </a>
+                        <div className="video-player-popup-content" id={`video-player-popup-${attributes?.uniqueId}`}>
+                            <EmbedPlayer attributes={attributes} anchor={null} />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </>
+            </>
+        );
+    }
+
+    if (attributes?.videoLayoutType === 'inline') {
+        markup = <EmbedPlayer attributes={attributes} anchor={null} />;
+    }
+
+    return (
+        <div {...blocksProps}>
+            {markup}
+        </div>
     );
 }

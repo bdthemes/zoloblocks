@@ -45,11 +45,64 @@ const attributes = {
 
     videoSource: {
         type: 'string',
-        default: 'custom',
+        default: 'youtube',
     },
-    video: {
+    youtubeUrl: {
+        type: 'object',
+        default: {
+            url: 'https://www.youtube.com/watch?v=D8IzMT-sLH0',
+            openInNewTab: false,
+        },
+    },
+    vimeoUrl: {
+        type: 'object',
+        default: {
+            url: 'https://vimeo.com/235215203',
+            openInNewTab: false,
+        },
+    },
+    isExternalCustomUrl: {
+        type: 'boolean',
+        default: true,
+    },
+    externalCustomVideoUrl: {
+        type: 'object',
+        default: {
+            url: 'https://zoloblocks.com/demo/wp-content/uploads/2025/03/Get-Zoloblocks-Now-For-Gutenberg-Page-Builder.mp4',
+            openInNewTab: false,
+        },
+    },
+    customVideo: {
         type: 'string',
         default: '',
+    },
+    customPlayerSkin: {
+        type: 'string',
+        default: 'default',
+    },
+    videoLayoutType: {
+        type: 'string',
+        default: 'inline',
+    },
+    popupType: {
+        type: 'string',
+        default: 'button',
+    },
+    popupButtonLabel: {
+        type: 'string',
+        default: 'Play Video',
+    },
+    popupButtonIcon: {
+        type: 'string',
+        default: '',
+    },
+    popoupImage: {
+        type: 'string',
+        default: '',
+    },
+    popupImageSizes: {
+        type: 'string',
+        default: 'full',
     },
     autoPlay: {
         type: 'boolean',
@@ -61,78 +114,68 @@ const attributes = {
     },
     mute: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     playerControl: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
-    smallButton: {
+    isPrivacyMode: {
         type: 'boolean',
         default: false,
     },
-    hoverPlayPause: {
+    isLazyLoad: {
         type: 'boolean',
         default: false,
     },
-    customVideoLink: {
-        type: 'object',
-        default: {
-            url: '#',
-            openInNewTab: false,
-        },
+    showCaption: {
+        type: 'boolean',
+        default: false,
+    },
+    showDownloadButton: {
+        type: 'boolean',
+        default: false,
+    },
+    preload: {
+        type: 'string',
+        default: 'metadata',
     },
     posterImage: {
-        type: 'string',
-        default: '',
+        type: 'object',
     },
-    ImageSizes: {
+    imageRes: {
         type: 'string',
         default: 'full',
     },
-    startEnd: {
+    youtubeModestBranding: {
         type: 'boolean',
         default: false,
+    },
+    youtubeSuggestedvideoType: {
+        type: 'string',
+        default: '0',
     },
     startTime: {
-        type: 'number',
-        default: 0,
+        type: 'number'
     },
     endTime: {
-        type: 'number',
-        default: 0,
+        type: 'number'
     },
-    isPlaying: {
+    introTitle: {
         type: 'boolean',
         default: false,
     },
-
-    youtubeUrl: {
-        type: 'object',
-        default: {
-            url: 'https://www.youtube.com/embed/XR8ARbgBDg0?si=DZBX-iB2vsLtEBty',
-            openInNewTab: false,
-        },
-    },
-
-    vimeoUrl: {
-        type: 'object',
-        default: {
-            url: 'https://vimeo.com/235215203',
-            openInNewTab: false,
-        },
-    },
-
-    customExternal: {
+    introPotrait: {
         type: 'boolean',
         default: false,
     },
-
-    videoType: {
+    introByline: {
+        type: 'boolean',
+        default: false,
+    },
+    vimeoControlsColor: {
         type: 'string',
-        default: 'zolo-video-inline',
     },
-
     ...generateResAlignmentAttributies(VIDEO_ALIGN),
 };
 

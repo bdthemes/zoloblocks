@@ -5,7 +5,7 @@
     "category": "zoloblocks",
     "keywords": ["video", "video"],
     "description": "Video Block",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {
@@ -20,5 +20,6 @@
     },
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",
-    "viewScript": "file:./frontend.js"
+    "viewScript": "file:./frontend.js",
+    "script": ["fslightbox"]
 }
