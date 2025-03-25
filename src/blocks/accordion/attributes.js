@@ -40,6 +40,10 @@ import {
     AAC_HEADER_BG,
     AAC_BODY_BG,
     AICONTAINER_BG,
+    // TEXT GRADIENT COLOR
+    TEXT_GRADIENT_COLOR,
+    TEXT_GRADIENT_COLOR_HOVER,
+    TEXT_GRADIENT_COLOR_ACTIVE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -140,6 +144,12 @@ const attributes = {
     iconBorderActiveColor: {
         type: 'string',
     },
+
+    textGradientType: {
+        type: 'string',
+        default: 'zolo-text-gradient-color',
+    },
+
     // Generators
     ...generateBorderAttributies(AC_CONTAINER_BORDER),
     ...generateDimensionAttributes(AC_CONTAINER_BORDER_RADIUS),
@@ -177,6 +187,10 @@ const attributes = {
 
     // animated border size
     ...generateResRangeAttributies(ANIMATED_BORDER_SIZE),
+
+    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR),
+    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR_HOVER),
+    ...generateNormalBGAttributes(TEXT_GRADIENT_COLOR_ACTIVE),
 };
 
 export default attributes;

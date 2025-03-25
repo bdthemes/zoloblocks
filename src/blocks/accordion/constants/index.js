@@ -54,3 +54,8 @@ export const AICONTAINER_BG = 'aiContainerBg';
 
 // animated border size
 export const ANIMATED_BORDER_SIZE = 'animatedBorderSize';
+
+//text gradient color
+export const TEXT_GRADIENT_COLOR = 'textGradientColor';
+export const TEXT_GRADIENT_COLOR_HOVER = 'textGradientColorHover';
+export const TEXT_GRADIENT_COLOR_ACTIVE = 'textGradientColorActive';

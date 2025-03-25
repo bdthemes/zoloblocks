@@ -42,7 +42,8 @@ import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, preset, iconColor, iconHoverColor, titleColor, titleHoverColor, animatedBorderColor, animatedBorderActiveColor } = attributes;
+    const { uniqueId, preset, iconColor, iconHoverColor, titleColor, titleHoverColor, animatedBorderColor, animatedBorderActiveColor } =
+        attributes;
 
     // accordion container
     const {

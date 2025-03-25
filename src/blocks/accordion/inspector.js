@@ -28,7 +28,10 @@ const {
     BoxShadowControl,
     TypographyDropdown,
     ZoloPanelBody,
+    TextGradientControl,
 } = window.zoloModule;
+
+const { zolo_pro_status } = window.zoloParams;
 
 import objAttributes from './attributes';
 
@@ -63,6 +66,9 @@ import {
     AICONTAINER_BG,
     PRESETS,
     ANIMATED_BORDER_SIZE,
+    TEXT_GRADIENT_COLOR,
+    TEXT_GRADIENT_COLOR_HOVER,
+    TEXT_GRADIENT_COLOR_ACTIVE,
 } from './constants';
 
 import { HEADING } from '../../../src/global/constants';
@@ -138,7 +144,7 @@ function Inspector(props) {
                                     max={99}
                                     labelPosition="edge"
                                     __unstableInputWidth="64px"
-                                    placeholder={__("1", 'zoloblocks')}
+                                    placeholder={__('1', 'zoloblocks')}
                                 />
                             )}
 
@@ -240,15 +246,31 @@ function Inspector(props) {
                                 ]}
                                 normalComponents={
                                     <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={titleColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    titleColor: value,
-                                                })
-                                            }
-                                        />
+                                        {zolo_pro_status === 'active' ? (
+                                            <>
+                                                <TextGradientControl
+                                                    noMainBGImg={true}
+                                                    controlName={TEXT_GRADIENT_COLOR}
+                                                    requiredProps={requiredProps}
+                                                    defaultColor={titleColor}
+                                                    onChangeDefault={(val) => {
+                                                        setAttributes({
+                                                            titleColor: val,
+                                                        });
+                                                    }}
+                                                />
+                                            </>
+                                        ) : (
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={titleColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        titleColor: val,
+                                                    })
+                                                }
+                                            />
+                                        )}
                                         <TypographyDropdown
                                             label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={TITLE_TYPO}
@@ -313,21 +335,75 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={titleHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    titleHoverColor: value,
-                                                })
-                                            }
-                                        />
+                                        {zolo_pro_status === 'active' ? (
+                                            <>
+                                                <p className="zolo-help-text">
+                                                    {__(
+                                                        "The color set in the normal tab must be consistent in both the hover and active states, or it won't work as expected.",
+                                                        'zoloblocks'
+                                                    )}
+                                                </p>
+
+                                                <TextGradientControl
+                                                    noMainBGImg={true}
+                                                    controlName={TEXT_GRADIENT_COLOR_HOVER}
+                                                    requiredProps={requiredProps}
+                                                    defaultColor={titleHoverColor}
+                                                    onChangeDefault={(val) => {
+                                                        setAttributes({
+                                                            titleHoverColor: val,
+                                                        });
+                                                    }}
+                                                />
+                                            </>
+                                        ) : (
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={titleHoverColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        titleHoverColor: val,
+                                                    })
+                                                }
+                                            />
+                                        )}
                                         <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
                                     </>
                                 }
                                 activeComponents={
                                     <>
-                                        <ColorControl
+                                        {zolo_pro_status === 'active' ? (
+                                            <>
+                                                <p className="zolo-help-text">
+                                                    {__(
+                                                        "The color set in the normal tab must be consistent in both the hover and active states, or it won't work as expected.",
+                                                        'zoloblocks'
+                                                    )}
+                                                </p>
+                                                <TextGradientControl
+                                                    noMainBGImg={true}
+                                                    controlName={TEXT_GRADIENT_COLOR_ACTIVE}
+                                                    requiredProps={requiredProps}
+                                                    defaultColor={atitleColor}
+                                                    onChangeDefault={(val) => {
+                                                        setAttributes({
+                                                            atitleColor: val,
+                                                        });
+                                                    }}
+                                                />
+                                            </>
+                                        ) : (
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={atitleColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        atitleColor: val,
+                                                    })
+                                                }
+                                            />
+                                        )}
+                                        {/* <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={atitleColor}
                                             onChange={(value) =>
@@ -335,7 +411,7 @@ function Inspector(props) {
                                                     atitleColor: value,
                                                 })
                                             }
-                                        />
+                                        /> */}
                                     </>
                                 }
                             />

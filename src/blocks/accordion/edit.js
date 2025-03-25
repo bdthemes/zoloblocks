@@ -28,7 +28,15 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, preset } = attributes;
+    const {
+        preview,
+        uniqueId,
+        parentClasses,
+        preset,
+        // text Gradient
+        textGradientType,
+        textGradientColorbackgroundType,
+    } = attributes;
 
     // preview image
     if (preview) {
@@ -115,7 +123,14 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, uniqueId, preset, 'zolo-accordion-wrap', classArrayToStr(parentClasses)),
+        className: classnames(
+            className,
+            uniqueId,
+            preset,
+            'zolo-accordion-wrap',
+            classArrayToStr(parentClasses),
+            textGradientColorbackgroundType !== 'classic' ? textGradientType : ''
+        ),
     });
 
     return (
