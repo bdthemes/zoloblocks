@@ -106,7 +106,7 @@ function Inspector(props) {
                                 onChange={(color) => setAttributes({ titleColor: color })}
                             />
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-block')}
+                                label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TITLE_TYPO}
                                 requiredProps={requiredProps}
                             />
@@ -141,7 +141,7 @@ function Inspector(props) {
                                 onChange={(color) => setAttributes({ progressVColor: color })}
                             />
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-block')}
+                                label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={PROGRESS_VALUE}
                                 requiredProps={requiredProps}
                             />

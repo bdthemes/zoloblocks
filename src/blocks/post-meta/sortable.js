@@ -103,7 +103,7 @@ const Sortable = ({ metaData, setAttributes }) => {
 
                                         {meta?.type !== 'time' && meta?.type !== 'readingTime' && (
                                             <ToggleControl
-                                                label={__('link', 'zoloblocks')}
+                                                label={__('Link', 'zoloblocks')}
                                                 checked={meta?.link || false}
                                                 onChange={(v) => {
                                                     const newItems = [...deepCloneMetaData];

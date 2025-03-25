@@ -63,6 +63,9 @@ import {
     OPEN_BTN_BORDER_RADIUS,
     OPEN_BTN_H_BG,
     OPEN_BTN_H_SHADOW,
+
+    // LIST
+    LIST_SPACE_BETWEEN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -202,6 +205,9 @@ const attributes = {
     ...generateDimensionAttributes(OPEN_BTN_BORDER_RADIUS),
     ...generateNormalBGAttributes(OPEN_BTN_H_BG),
     ...generateBoxShadowAttributies(OPEN_BTN_H_SHADOW),
+
+    // LIST
+    ...generateResRangeAttributies(LIST_SPACE_BETWEEN),
 
     boxBgColor: {
         type: 'string',

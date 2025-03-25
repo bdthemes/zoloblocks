@@ -62,7 +62,7 @@ export default function RenderView({attributes}) {
           <form action="#" method="post" id="commentform" className="zolo-comment-form">
             <p className="logged-in-as">
               {loginAsText}
-              <a onClick={event => event.preventDefault()} href="#">{__(' admin.', 'zoloblocks')}</a>
+              <a onClick={event => event.preventDefault()} href="#">{__('Admin.', 'zoloblocks')}</a>
               <a onClick={event => event.preventDefault()} href="#">{logoutText}</a>
             </p>
 

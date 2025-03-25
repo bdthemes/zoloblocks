@@ -165,7 +165,7 @@ const Blocks = () => {
                             <input
                                 type="text"
                                 className="zoloblocks-search"
-                                placeholder={__('search block...', 'zoloblocks')}
+                                placeholder={__('Search block', 'zoloblocks')}
                                 onChange={(event) => setSearch(event.target.value)}
                                 value={search}
                             />

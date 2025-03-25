@@ -218,7 +218,7 @@ function Inspector(props) {
                                     help={__('Enter your map ID', 'zoloblocks')}
                                     value={mapId}
                                     onChange={(mapId) => setAttributes({ mapId })}
-                                    placeholder="31bf003fdd5e1eb2"
+                                    placeholder={__('31bf003fdd5e1eb2', 'zoloblocks')}
                                 />
                             )}
                             {mapStyleType === 'custom' && (
