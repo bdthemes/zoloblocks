@@ -27,6 +27,9 @@ const CustomPlayer = ({ src, attributes, anchor, isEdit = false }) => {
 
     if (isEdit) {
         videoProps.ref = anchor;
+        videoProps.loading = 'lazy';
+    }else {
+        videoProps.loading = attributes?.isLazyLoad ? 'lazy' : 'eager';
     }
 
 
