@@ -9,6 +9,7 @@ import {
     BaseControl,
     Button,
     __experimentalNumberControl as NumberControl,
+    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
@@ -18,17 +19,11 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import objAttributes from './attributes';
 
-const {
-    HeaderTabs,
-    LinkControl,
-    ImageAvatar,
-    AdvancedOptions,
-    ZoloPanelBody,
-    ImageSizes,
-    IconicBtnGroup,
-} = window.zoloModule;
+const { HeaderTabs, LinkControl, ImageAvatar, AdvancedOptions, ZoloPanelBody, ImageSizes, IconicBtnGroup, ResAlignmentControl } =
+    window.zoloModule;
 
-import { VIDEO_SOURCE, VIDEO_ALIGN } from './constants';
+import { VIDEO_SOURCE, VIDEO_ALIGN, POPUP_BUTTON_ALIGNMENT } from './constants';
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 export default function Edit(props) {
     const { attributes, setAttributes, block } = props;
@@ -179,27 +174,68 @@ export default function Edit(props) {
                                     />
                                 </div>
 
-                                {
-                                    videoLayoutType === 'popup' && (
-                                        <>
-                                            <div className="zolo-flex-col-control-tab">
-                                                <IconicBtnGroup
-                                                    label={__('Popup Type', 'zoloblocks')}
-                                                    value={attributes?.popupType}
-                                                    onChange={(value) =>
+                                {videoLayoutType === 'popup' && (
+                                    <>
+                                        <div className="zolo-flex-col-control-tab">
+                                            <IconicBtnGroup
+                                                label={__('Popup Type', 'zoloblocks')}
+                                                value={attributes?.popupType}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        popupType: value,
+                                                    })
+                                                }
+                                                options={[
+                                                    { label: 'Button', value: 'button' },
+                                                    { label: 'Image', value: 'image' },
+                                                ]}
+                                            />
+                                        </div>
+
+                                        {attributes?.popupType === 'button' && (
+                                            <>
+                                                <ToggleControl
+                                                    label={__('Label', 'zoloblocks')}
+                                                    checked={attributes?.popupButtonLebelWrap}
+                                                    onChange={() =>
                                                         setAttributes({
-                                                            popupType: value,
+                                                            popupButtonLebelWrap: !attributes?.popupButtonLebelWrap,
                                                         })
                                                     }
-                                                    options={[
-                                                        { label: 'Button', value: 'button' },
-                                                        { label: 'Image', value: 'image' },
-                                                    ]}
                                                 />
-                                            </div>
-                                        </>
-                                    )
-                                }
+
+                                                {attributes?.popupButtonLebelWrap && (
+                                                    <>
+                                                        <TextControl
+                                                            label={__('Sub Label', 'zoloblocks')}
+                                                            value={attributes?.popupButtonSubLabel}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    popupButtonSubLabel: value,
+                                                                })
+                                                            }
+                                                        />
+                                                        <TextControl
+                                                            label={__('Label', 'zoloblocks')}
+                                                            value={attributes?.popupButtonLabel}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    popupButtonLabel: value,
+                                                                })
+                                                            }
+                                                        />
+                                                        <ResAlignmentControl
+                                                            label={__('Alignment', 'zoloblocks')}
+                                                            controlName={POPUP_BUTTON_ALIGNMENT}
+                                                            requiredProps={requiredProps}
+                                                            alignOptions={TEXT_ALIGN_OPTIONS}
+                                                        />
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
+                                    </>
+                                )}
 
                                 <CardDivider />
                                 <NumberControl
@@ -214,21 +250,19 @@ export default function Edit(props) {
                                     min={0}
                                 />
 
-                                {
-                                    videoSource !== 'vimeo' && (
-                                        <NumberControl
-                                            style={{ display: 'contents' }}
-                                            label={__('End Time (in seconds)', 'zoloblocks')}
-                                            value={endTime}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    endTime: Number(value),
-                                                })
-                                            }
-                                            min={0}
-                                        />
-                                    )
-                                }
+                                {videoSource !== 'vimeo' && (
+                                    <NumberControl
+                                        style={{ display: 'contents' }}
+                                        label={__('End Time (in seconds)', 'zoloblocks')}
+                                        value={endTime}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                endTime: Number(value),
+                                            })
+                                        }
+                                        min={0}
+                                    />
+                                )}
 
                                 <div className="zolo-custom-heading">{__('Video Options', 'zoloblocks')}</div>
                                 <ToggleControl
@@ -241,7 +275,15 @@ export default function Edit(props) {
                                     }
                                 />
                                 <p className="components-base-control zolo-inspector-notice">
-                                    Note: Autoplay is affected by <a href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes" target="_blank" rel="noopener noreferrer">Google's autoplay policy</a> on Chrome browsers.
+                                    Note: Autoplay is affected by{' '}
+                                    <a
+                                        href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Google's autoplay policy
+                                    </a>{' '}
+                                    on Chrome browsers.
                                 </p>
 
                                 <ToggleControl
@@ -262,110 +304,109 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-                                {
-                                    videoSource !== 'vimeo' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Player Control', 'zoloblocks')}
-                                                checked={playerControl}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        playerControl: !playerControl,
-                                                    })
-                                                }
-                                            />
-                                            <ToggleControl
-                                                label={__('Lazy Load', 'zoloblocks')}
-                                                checked={isLazyLoad}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        isLazyLoad: !isLazyLoad,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    )
-                                }
-                                {
-                                    videoSource == 'custom' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Download Button', 'zoloblocks')}
-                                                checked={attributes?.showDownloadButton}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        showDownloadButton: !attributes?.showDownloadButton,
-                                                    })
-                                                }
-                                            />
-                                            <SelectControl
-                                                label={__('Preload', 'zoloblocks')}
-                                                value={attributes?.preload}
-                                                onChange={(value) => setAttributes({ preload: value })}
-                                                options={[
-                                                    { label: __('None', 'zoloblocks'), value: 'none' },
-                                                    { label: __('Metadata', 'zoloblocks'), value: 'metadata' },
-                                                    { label: __('Auto', 'zoloblocks'), value: 'auto' },
-                                                ]}
-                                            />
-                                            <p className="components-base-control zolo-inspector-notice">
-                                                Preload attribute lets you specify how the video should be loaded when the page loads. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-preload" target="_blank" rel="noopener noreferrer">Learn more</a>
-                                            </p>
-                                        </>
-                                    )
-                                }
-                                {
-                                    videoSource == 'youtube' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Captions', 'zoloblocks')}
-                                                checked={showCaption}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        showCaption: !showCaption,
-                                                    })
-                                                }
-                                            />
-                                            <ToggleControl
-                                                label={__('Modest Branding', 'zoloblocks')}
-                                                checked={youtubeModestBranding}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        youtubeModestBranding: !youtubeModestBranding,
-                                                    })
-                                                }
-                                            />
-                                            <SelectControl
-                                                label={__('Suggested Videos', 'zoloblocks')}
-                                                value={attributes?.youtubeSuggestedvideoType}
-                                                options={[
-                                                    { label: __('Current video channel', 'zoloblocks'), value: '0' },
-                                                    { label: __('Any video', 'zoloblocks'), value: '1' },
-                                                ]}
-                                                onChange={value => setAttributes({ youtubeSuggestedvideoType: value })}
-                                            />
-                                        </>
-                                    )
-                                }
-                                {
-                                    videoSource !== 'custom' && (
-                                        <>
-                                            <ToggleControl
-                                                label={__('Privacy Mode', 'zoloblocks')}
-                                                checked={isPrivacyMode}
-                                                onChange={() =>
-                                                    setAttributes({
-                                                        isPrivacyMode: !isPrivacyMode,
-                                                    })
-                                                }
-                                            />
-                                            <p className="components-base-control zolo-inspector-notice">
-                                                When you turn on privacy mode, YouTube/Vimeo won't store information about visitors on your website unless they play the video.
-                                            </p>
-                                        </>
-                                    )
-                                }
-
+                                {videoSource !== 'vimeo' && (
+                                    <>
+                                        <ToggleControl
+                                            label={__('Player Control', 'zoloblocks')}
+                                            checked={playerControl}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    playerControl: !playerControl,
+                                                })
+                                            }
+                                        />
+                                        <ToggleControl
+                                            label={__('Lazy Load', 'zoloblocks')}
+                                            checked={isLazyLoad}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    isLazyLoad: !isLazyLoad,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                )}
+                                {videoSource == 'custom' && (
+                                    <>
+                                        <ToggleControl
+                                            label={__('Download Button', 'zoloblocks')}
+                                            checked={attributes?.showDownloadButton}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    showDownloadButton: !attributes?.showDownloadButton,
+                                                })
+                                            }
+                                        />
+                                        <SelectControl
+                                            label={__('Preload', 'zoloblocks')}
+                                            value={attributes?.preload}
+                                            onChange={(value) => setAttributes({ preload: value })}
+                                            options={[
+                                                { label: __('None', 'zoloblocks'), value: 'none' },
+                                                { label: __('Metadata', 'zoloblocks'), value: 'metadata' },
+                                                { label: __('Auto', 'zoloblocks'), value: 'auto' },
+                                            ]}
+                                        />
+                                        <p className="components-base-control zolo-inspector-notice">
+                                            Preload attribute lets you specify how the video should be loaded when the page loads.{' '}
+                                            <a
+                                                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-preload"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Learn more
+                                            </a>
+                                        </p>
+                                    </>
+                                )}
+                                {videoSource == 'youtube' && (
+                                    <>
+                                        <ToggleControl
+                                            label={__('Captions', 'zoloblocks')}
+                                            checked={showCaption}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    showCaption: !showCaption,
+                                                })
+                                            }
+                                        />
+                                        <ToggleControl
+                                            label={__('Modest Branding', 'zoloblocks')}
+                                            checked={youtubeModestBranding}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    youtubeModestBranding: !youtubeModestBranding,
+                                                })
+                                            }
+                                        />
+                                        <SelectControl
+                                            label={__('Suggested Videos', 'zoloblocks')}
+                                            value={attributes?.youtubeSuggestedvideoType}
+                                            options={[
+                                                { label: __('Current video channel', 'zoloblocks'), value: '0' },
+                                                { label: __('Any video', 'zoloblocks'), value: '1' },
+                                            ]}
+                                            onChange={(value) => setAttributes({ youtubeSuggestedvideoType: value })}
+                                        />
+                                    </>
+                                )}
+                                {videoSource !== 'custom' && (
+                                    <>
+                                        <ToggleControl
+                                            label={__('Privacy Mode', 'zoloblocks')}
+                                            checked={isPrivacyMode}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    isPrivacyMode: !isPrivacyMode,
+                                                })
+                                            }
+                                        />
+                                        <p className="components-base-control zolo-inspector-notice">
+                                            When you turn on privacy mode, YouTube/Vimeo won't store information about visitors on your
+                                            website unless they play the video.
+                                        </p>
+                                    </>
+                                )}
                             </ZoloPanelBody>
                             <ZoloPanelBody title={__('Poster', 'zoloblocks')} panelProps={props} stylePanel={true}>
                                 <BaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">

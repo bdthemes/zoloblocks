@@ -27,18 +27,26 @@ export default function Save(props) {
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                         >
                             <>
-                                {attributes?.popupType === 'button' && attributes?.popupButtonLabel}
-                                {
-                                    attributes?.popupType === 'image' && (
-                                        <img
-                                            data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
-                                            className="popup-trigger-image"
-                                            src={attributes?.popoupImage}
-                                            alt={attributes?.popupButtonLabel}
-                                            sizes={attributes?.popupImageSizes}
-                                        />
-                                    )
-                                }
+                                {attributes?.popupType === 'button' && (
+                                    <>
+                                        <span className="popup-button-icon">{attributes?.popupButtonIcon}</span>
+                                        {attributes?.popupButtonLebelWrap && (
+                                            <span className="popup-button-label-wrap">
+                                                <span className="popup-button-sub-label">{attributes?.popupButtonSubLabel}</span>
+                                                <span className="popup-button-label">{attributes?.popupButtonLabel}</span>
+                                            </span>
+                                        )}
+                                    </>
+                                )}
+                                {attributes?.popupType === 'image' && (
+                                    <img
+                                        data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
+                                        className="popup-trigger-image"
+                                        src={attributes?.popoupImage}
+                                        alt={attributes?.popupButtonLabel}
+                                        sizes={attributes?.popupImageSizes}
+                                    />
+                                )}
                             </>
                         </a>
                         <div className="video-player-popup-content" id={`video-player-popup-${attributes?.uniqueId}`}>
@@ -54,9 +62,5 @@ export default function Save(props) {
         markup = <EmbedPlayer attributes={attributes} anchor={null} />;
     }
 
-    return (
-        <div {...blocksProps}>
-            {markup}
-        </div>
-    );
+    return <div {...blocksProps}>{markup}</div>;
 }

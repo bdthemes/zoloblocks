@@ -17,7 +17,7 @@ const {
     GlobalStyleHanlder,
 } = window.zoloModule;
 
-import { VIDEO_ALIGN } from './constants';
+import { VIDEO_ALIGN, POPUP_BUTTON_ALIGNMENT } from './constants';
 
 // import {  } from './constants/typoPrefixConstants';
 
@@ -41,19 +41,36 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopAlignStyle: popupButtonAlignDesk,
+        tabAlignStyle: popupButtonAlignTab,
+        mobAlignStyle: popupButtonAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: POPUP_BUTTON_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
+        }
+        
+        .${uniqueId}.wp-block-zolo-video {
+            ${popupButtonAlignDesk}
+        }
     `;
 
     const tabletAllStyle = `
-        .${uniqueId}.wp-block-zolo-video {
+        .${uniqueId}.wp-block-zolo-video .video-player-popup-inline-content{
             ${videoAlignTab}
+        }
     `;
 
-    const mobileAllStyle = `
+    const mobileAllStyle = ` 
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignMob}
+        }
     `;
 
     return (

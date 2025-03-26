@@ -13,3 +13,4 @@ export const VIDEO_SOURCE = [
 ];
 
 export const VIDEO_ALIGN = 'videoAlign';
+export const POPUP_BUTTON_ALIGNMENT = 'popupButtonAlignment';
