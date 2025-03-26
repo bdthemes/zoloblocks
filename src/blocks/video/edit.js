@@ -10,10 +10,25 @@ import { useEffect, useRef, useState } from '@wordpress/element';
 export default function Edit(props) {
     const { classArrayToStr } = window.zoloModule;
     const { attributes, setAttributes, isSelected } = props;
+    const [openPopup, setOpenPopup] = useState(false);
     const blocksProps = useBlockProps({
         className: classnames(attributes?.uniqueId, classArrayToStr(attributes?.parentClasses)),
     });
     const customVideoRef = useRef(null);
+    const popupRef = useRef(null);
+    const lightboxRef = useRef(null);
+
+
+    const {
+        autoPlay,
+        loop,
+        mute,
+        playerControl,
+        showDownloadButton,
+        preload,
+        posterImage,
+        imageRes,
+    } = attributes;
 
     const handleEndTime = () => {
         if (customVideoRef.current.currentTime >= attributes?.endTime) {
@@ -43,7 +58,33 @@ export default function Edit(props) {
                 customVideoRef.current = null;
             }
         };
-    }, [customVideoRef?.current, attributes]); // Reinitialize if the source changes
+    }, [customVideoRef?.current, autoPlay, loop, mute, playerControl, showDownloadButton, preload, posterImage, imageRes]); // Reinitialize if the source changes
+
+    useEffect(() => {
+        if (!popupRef.current || attributes?.videoLayoutType !== 'popup') return;
+        
+        const ownerWindow = popupRef.current.ownerDocument.defaultView;
+        const { FsLightbox } = ownerWindow;
+        if (!FsLightbox) return;
+
+        if (!lightboxRef.current) {
+            lightboxRef.current = new FsLightbox();
+            lightboxRef.current.props.sources = [popupRef?.current];
+            lightboxRef.current.onClose = () => {
+                setOpenPopup(false);
+            }
+        }
+        
+        if (openPopup && lightboxRef.current) {
+            lightboxRef.current.open();
+        }
+
+        return () => {
+            if (lightboxRef.current) {
+                lightboxRef.current = null;
+            }
+        };
+    }, [attributes, openPopup]);
 
     let markup = null;
 
@@ -53,6 +94,7 @@ export default function Edit(props) {
                 <div className="video-player-popoup">
                     <div className="video-player-popup-inline-content">
                         <a
+                            onClick={() => setOpenPopup(!openPopup)}
                             href={`#video-player-popup-${attributes?.uniqueId}`}
                             className="popup-trigger-button"
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
@@ -81,7 +123,7 @@ export default function Edit(props) {
                             </>
                         </a>
 
-                        <div className="video-player-popup-content" id={`video-player-popup-${attributes?.uniqueId}`}>
+                        <div ref={popupRef} className="video-player-popup-content" id={`video-player-popup-${attributes?.uniqueId}`}>
                             <EmbedPlayer attributes={attributes} anchor={customVideoRef} isEdit={true} />
                         </div>
                     </div>
