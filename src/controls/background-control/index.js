@@ -15,6 +15,7 @@ const BackgroundControl = ({
     noTransition = false,
     particles = false,
     video = false,
+    backgroundParallax = false,
 }) => {
     const { setAttributes, attributes } = requiredProps;
 
@@ -53,6 +54,7 @@ const BackgroundControl = ({
                         />
                     )}
                     {particles && particles}
+                    {backgroundParallax && backgroundParallax.length > 0 && backgroundParallax}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                     {splineViewer && splineViewer.length > 0 && splineViewer}
                 </>
