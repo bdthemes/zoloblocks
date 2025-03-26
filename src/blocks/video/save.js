@@ -20,31 +20,32 @@ export default function Save(props) {
         markup = (
             <>
                 <div className="video-player-popoup">
-                    <div className="video-player-popup-inline-content">
+                    <div className={`video-player-popup-inline-content ${attributes?.popupType || ''}`}>
                         <a
                             href={`#video-player-popup-${attributes?.uniqueId}`}
                             className="popup-trigger-button"
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                         >
                             <>
-                                {attributes?.popupType === 'button' && (
-                                    <>
-                                        <span className="popup-button-icon">{attributes?.popupButtonIcon}</span>
-                                        {attributes?.popupButtonLebelWrap && (
-                                            <span className="popup-button-label-wrap">
-                                                <span className="popup-button-sub-label">{attributes?.popupButtonSubLabel}</span>
-                                                <span className="popup-button-label">{attributes?.popupButtonLabel}</span>
-                                            </span>
-                                        )}
-                                    </>
-                                )}
-                                {attributes?.popupType === 'image' && (
+                                <span className="popup-button-wrap">
+                                    <span className="popup-button-icon">{attributes?.popupButtonIcon}</span>
+                                    {attributes?.popupButtonLebelWrap && (
+                                        <span className="popup-button-label-wrap">
+                                            <span className="popup-button-sub-label">{attributes?.popupButtonSubLabel}</span>
+                                            <span className="popup-button-label">{attributes?.popupButtonLabel}</span>
+                                        </span>
+                                    )}
+                                </span>
+                                {attributes?.popupType === 'image' && attributes?.popoupImage && (
                                     <img
                                         data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                                         className="popup-trigger-image"
-                                        src={attributes?.popoupImage}
-                                        alt={attributes?.popupButtonLabel}
-                                        sizes={attributes?.popupImageSizes}
+                                        src={
+                                            attributes?.popoupImage?.sizes && attributes?.popoupImage?.sizes[attributes?.popupImageSizes]
+                                                ? attributes?.popoupImage?.sizes[attributes?.popupImageSizes]?.url
+                                                : attributes?.popoupImage?.url
+                                        }
+                                        alt={attributes?.popupButtonLabel ?? 'Popup Image'}
                                     />
                                 )}
                             </>

@@ -3,11 +3,6 @@
         display: none;
     }
 
-    iframe {
-        pointer-events: none;
-        display: block;
-    }
-
     &.is-selected {
         iframe {
             pointer-events: all;
@@ -127,15 +122,39 @@
         }
     }
 
+    // popup css
+
+    .video-player-popup-inline-content {
+        &.image {
+            position: relative;
+            .popup-button-wrap {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    .popup-trigger-image {
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+    }
+
     // play button
 
     .popup-trigger-button {
+        outline: none;
+        text-decoration: none;
+    }
+
+    .popup-button-wrap {
         --popup-button-icon-size: 65px;
         display: inline-flex;
         align-items: center;
         gap: 20px;
-        outline: none;
-        text-decoration: none;
+
         .popup-button-icon {
             $pulse-duration: 1100ms;
             position: relative;
@@ -217,6 +236,24 @@
         100% {
             transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
             opacity: 0;
+        }
+    }
+}
+
+.fslightbox-container {
+    .fslightboxtt {
+        width: 100%;
+        margin: 30px;
+    }
+    .video-player-popup-content {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 900px;
+
+        .zolo-custom-player-wrapper {
+            video {
+                width: 100%;
+            }
         }
     }
 }

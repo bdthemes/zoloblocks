@@ -119,8 +119,12 @@ const attributes = {
         ),
     },
     popoupImage: {
-        type: 'string',
-        default: '',
+        type: 'object',
+        default: {
+            url: zoloPlaceholders.placeholder,
+            id: 0,
+            sizes: {},
+        },
     },
     popupImageSizes: {
         type: 'string',
