@@ -53,8 +53,8 @@ const BackgroundControl = ({
                             noTransition={noTransition}
                         />
                     )}
-                    {particles && particles}
                     {backgroundParallax && backgroundParallax.length > 0 && backgroundParallax}
+                    {particles && particles}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
                     {splineViewer && splineViewer.length > 0 && splineViewer}
                 </>
