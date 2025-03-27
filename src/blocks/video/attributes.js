@@ -12,7 +12,19 @@ const {
 } = window.zoloModule;
 
 import { bool } from 'prop-types';
-import { VIDEO_ALIGN, POPUP_BUTTON_ALIGNMENT } from './constants';
+import {
+    VIDEO_ALIGN,
+    POPUP_BUTTON_ALIGNMENT,
+    POPUP_BTN_ICON_SIZE,
+    POPUP_BTN_BG_COLOR,
+    POPUP_BTN_PADDING,
+    POPUP_BTN_MARGIN,
+    POPUP_BTN_BORDER_RADIUS,
+    POPUP_BTN_BORDER,
+    POPUP_BTN_BOX_SHADOW,
+    POPUP_BTN_H_BG_COLOR,
+    POPUP_BTN_H_BOX_SHADOW,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
 
@@ -202,8 +214,29 @@ const attributes = {
     vimeoControlsColor: {
         type: 'string',
     },
+
+    popupIconColor: {
+        type: 'string',
+    },
+    popupIconHColor: {
+        type: 'string',
+    },
+    popupBtnBorderHColor: {
+        type: 'string',
+    },
+
     ...generateResAlignmentAttributies(VIDEO_ALIGN),
     ...generateResAlignmentAttributies(POPUP_BUTTON_ALIGNMENT),
+
+    ...generateResRangeAttributies(POPUP_BTN_ICON_SIZE),
+    ...generateNormalBGAttributes(POPUP_BTN_BG_COLOR),
+    ...generateDimensionAttributes(POPUP_BTN_PADDING),
+    ...generateDimensionAttributes(POPUP_BTN_MARGIN),
+    ...generateDimensionAttributes(POPUP_BTN_BORDER_RADIUS),
+    ...generateBorderAttributies(POPUP_BTN_BORDER),
+    ...generateBoxShadowAttributies(POPUP_BTN_BOX_SHADOW),
+    ...generateNormalBGAttributes(POPUP_BTN_H_BG_COLOR),
+    ...generateBoxShadowAttributies(POPUP_BTN_H_BOX_SHADOW),
 };
 
 export default attributes;

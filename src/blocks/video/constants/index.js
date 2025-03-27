@@ -14,3 +14,13 @@ export const VIDEO_SOURCE = [
 
 export const VIDEO_ALIGN = 'videoAlign';
 export const POPUP_BUTTON_ALIGNMENT = 'popupButtonAlignment';
+
+export const POPUP_BTN_ICON_SIZE = 'popupBtnIconSize';
+export const POPUP_BTN_BG_COLOR = 'popupBtnBgColor';
+export const POPUP_BTN_PADDING = 'popupBtnPadding';
+export const POPUP_BTN_MARGIN = 'popupBtnMargin';
+export const POPUP_BTN_BORDER_RADIUS = 'popupBtnBorderRadius';
+export const POPUP_BTN_BORDER = 'popupBtnBorder';
+export const POPUP_BTN_BOX_SHADOW = 'popupBtnBoxShadow';
+export const POPUP_BTN_H_BG_COLOR = 'popupBtnHBgColor';
+export const POPUP_BTN_H_BOX_SHADOW = 'popupBtnHBoxShadow';

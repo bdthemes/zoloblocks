@@ -19,10 +19,39 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import objAttributes from './attributes';
 
-const { HeaderTabs, LinkControl, ImageAvatar, AdvancedOptions, ZoloPanelBody, ImageSizes, IconicBtnGroup, ResAlignmentControl } =
-    window.zoloModule;
+const {
+    HeaderTabs,
+    LinkControl,
+    ImageAvatar,
+    AdvancedOptions,
+    ZoloPanelBody,
+    ImageSizes,
+    IconicBtnGroup,
+    ResAlignmentControl,
+    TabPanelControl,
+    ColorControl,
+    BoxShadowControl,
+    BorderControl,
+    ResDimensionsControl,
+    TypographyDropdown,
+    ResRangeControl,
+    NormalBGControl,
+} = window.zoloModule;
 
-import { VIDEO_SOURCE, VIDEO_ALIGN, POPUP_BUTTON_ALIGNMENT } from './constants';
+import {
+    VIDEO_SOURCE,
+    VIDEO_ALIGN,
+    POPUP_BUTTON_ALIGNMENT,
+    POPUP_BTN_ICON_SIZE,
+    POPUP_BTN_BG_COLOR,
+    POPUP_BTN_PADDING,
+    POPUP_BTN_MARGIN,
+    POPUP_BTN_BORDER_RADIUS,
+    POPUP_BTN_BORDER,
+    POPUP_BTN_BOX_SHADOW,
+    POPUP_BTN_H_BG_COLOR,
+    POPUP_BTN_H_BOX_SHADOW,
+} from './constants';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 export default function Edit(props) {
@@ -51,6 +80,9 @@ export default function Edit(props) {
         showCaption,
         popoupImage,
         popupImageSizes,
+        popupIconColor,
+        popupIconHColor,
+        popupBtnBorderHColor,
     } = attributes;
 
     const requiredProps = {
@@ -189,7 +221,7 @@ export default function Edit(props) {
                                                 }
                                                 options={[
                                                     { label: 'Button', value: 'button' },
-                                                    { label: 'Image/Button', value: 'image' },
+                                                    { label: 'Image & Btn', value: 'image' },
                                                 ]}
                                             />
                                         </div>
@@ -531,7 +563,109 @@ export default function Edit(props) {
                             </ZoloPanelBody>
                         </>
                     }
-                    styleTab={<></>}
+                    styleTab={
+                        <>
+                            {videoLayoutType === 'popup' && (
+                                <>
+                                    <ZoloPanelBody title={__('Popup Button', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={popupIconColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupIconColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <ResRangeControl
+                                                        label={__('Icon Size', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_ICON_SIZE}
+                                                        requiredProps={requiredProps}
+                                                        min={0}
+                                                        max={100}
+                                                    />
+                                                    <CardDivider />
+                                                    <NormalBGControl
+                                                        label={__('Background Color', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_BG_COLOR}
+                                                        requiredProps={requiredProps}
+                                                        noMainBGIMG={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Padding', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_PADDING}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Margin', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_MARGIN}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <CardDivider />
+                                                    <BorderControl
+                                                        label={__('Border', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_BORDER}
+                                                        requiredProps={requiredProps}
+                                                    />
+
+                                                    <BoxShadowControl
+                                                        controlName={POPUP_BTN_BOX_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    />
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_BORDER_RADIUS}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={true}
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={popupIconHColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupIconHColor: value,
+                                                            })
+                                                        }
+                                                    />
+
+                                                    <NormalBGControl
+                                                        label={__('Background Color', 'zoloblocks')}
+                                                        controlName={POPUP_BTN_H_BG_COLOR}
+                                                        requiredProps={requiredProps}
+                                                        noMainBGIMG={false}
+                                                    />
+                                                    <CardDivider />
+                                                    <ColorControl
+                                                        label={__('Border Color', 'zoloblocks')}
+                                                        color={popupBtnBorderHColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupBtnBorderHColor: value,
+                                                            })
+                                                        }
+                                                    />
+
+                                                    <BoxShadowControl
+                                                        controlName={POPUP_BTN_H_BOX_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    />
+                                                </>
+                                            }
+                                        />
+                                    </ZoloPanelBody>
+                                </>
+                            )}
+                        </>
+                    }
                     advancedTab={
                         <>
                             <AdvancedOptions

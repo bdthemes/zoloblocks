@@ -17,7 +17,19 @@ const {
     GlobalStyleHanlder,
 } = window.zoloModule;
 
-import { VIDEO_ALIGN, POPUP_BUTTON_ALIGNMENT } from './constants';
+import {
+    VIDEO_ALIGN,
+    POPUP_BUTTON_ALIGNMENT,
+    POPUP_BTN_ICON_SIZE,
+    POPUP_BTN_BG_COLOR,
+    POPUP_BTN_PADDING,
+    POPUP_BTN_MARGIN,
+    POPUP_BTN_BORDER_RADIUS,
+    POPUP_BTN_BORDER,
+    POPUP_BTN_BOX_SHADOW,
+    POPUP_BTN_H_BG_COLOR,
+    POPUP_BTN_H_BOX_SHADOW,
+} from './constants';
 
 // import {  } from './constants/typoPrefixConstants';
 
@@ -25,7 +37,9 @@ export default function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-
+        popupIconColor,
+        popupIconHColor,
+        popupBtnBorderHColor,
         // setting
     } = attributes;
 
@@ -51,6 +65,87 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // popup button
+
+    const {
+        backgroundStylesDesktop: popupBtnBgColorDesk,
+        backgroundStylesTab: popupBtnBgColorTab,
+        backgroundStylesMob: popupBtnBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: POPUP_BTN_BG_COLOR,
+        noMainBGIMG: false,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: popupBtnBgHColorDesk,
+        backgroundStylesTab: popupBtnBgHColorTab,
+        backgroundStylesMob: popupBtnBgHColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: POPUP_BTN_H_BG_COLOR,
+        noMainBGIMG: false,
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: popupBtnIconSizeDesk,
+        tabRangeStyle: popupBtnIconSizeTab,
+        mobRangeStyle: popupBtnIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: POPUP_BTN_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: popupBtnPaddingDesk,
+        dimensionStylesTab: popupBtnPaddingTab,
+        dimensionStylesMob: popupBtnPaddingMob,
+    } = generateDimensionStyle({
+        controlName: POPUP_BTN_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: popupBtnMarginDesk,
+        dimensionStylesTab: popupBtnMarginTab,
+        dimensionStylesMob: popupBtnMarginMob,
+    } = generateDimensionStyle({
+        controlName: POPUP_BTN_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: popupBtnBorderDesk,
+        tabBorderStyle: popupBtnBorderTab,
+        mobBorderStyle: popupBtnBorderMob,
+    } = generateBorderStyle({
+        controlName: POPUP_BTN_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: popupBtnBorderRadiusDesk,
+        dimensionStylesTab: popupBtnBorderRadiusTab,
+        dimensionStylesMob: popupBtnBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: POPUP_BTN_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: popupBtnBoxShadow } = generateBoxShadowStyles({
+        controlName: POPUP_BTN_BOX_SHADOW,
+        attributes,
+    });
+
+    const { boxShadowStyle: popupBtnHBoxShadow } = generateBoxShadowStyles({
+        controlName: POPUP_BTN_H_BOX_SHADOW,
+        attributes,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
@@ -58,6 +153,23 @@ export default function Style({ props }) {
         
         .${uniqueId}.wp-block-zolo-video {
             ${popupButtonAlignDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon {
+            ${popupIconColor ? `color: ${popupIconColor};` : ''}
+            ${popupBtnBgColorDesk}
+            ${popupBtnPaddingDesk}
+            ${popupBtnMarginDesk}
+            ${popupBtnBorderDesk}
+            ${popupBtnBorderRadiusDesk}
+            ${popupBtnBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-icon {
+            ${popupIconHColor ? `color: ${popupIconHColor};` : ''}
+            ${popupBtnBgHColorDesk}
+            ${popupBtnBorderHColor ? `border-color: ${popupBtnBorderHColor};` : ''}
+            ${popupBtnHBoxShadow}
         }
     `;
 
