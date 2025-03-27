@@ -150,29 +150,31 @@
     }
 
     .popup-button-wrap {
-        --popup-button-icon-size: 65px;
         display: inline-flex;
         align-items: center;
         gap: 20px;
 
         .popup-button-icon {
             $pulse-duration: 1100ms;
+            --popup-play-button-icon-size: 24px;
             position: relative;
-            width: var(--popup-button-icon-size);
-            height: var(--popup-button-icon-size);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             background: var(--zoloblocks-brand-color);
+            padding: 25px;
             transition:
                 background 200ms,
                 background-color 200ms,
+                border-color 200ms,
+                box-shadow 200ms,
+                color 200ms,
                 transform 200ms;
             svg {
-                width: 24px;
-                height: 24px;
+                width: var(--popup-play-button-icon-size);
+                height: var(--popup-play-button-icon-size);
                 display: block;
                 z-index: 11;
                 position: relative;
@@ -211,11 +213,13 @@
         .popup-button-sub-label {
             font-size: 14px;
             color: #3d3f46;
+            transition: color 3s ease;
         }
         .popup-button-label {
             font-weight: 600;
             color: #373642;
             font-size: 20px;
+            transition: color 3s ease;
         }
         &:hover {
             .popup-button-icon {

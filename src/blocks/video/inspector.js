@@ -54,6 +54,8 @@ import {
 } from './constants';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
+import { POPUP_BTN_LABEL_TYPOGRAPHY, POPUP_BTN_SUB_LABEL_TYPOGRAPHY } from './constants/typoPrefixConstants';
+
 export default function Edit(props) {
     const { attributes, setAttributes, block } = props;
 
@@ -83,6 +85,10 @@ export default function Edit(props) {
         popupIconColor,
         popupIconHColor,
         popupBtnBorderHColor,
+        popupLabelColor,
+        popupLabelHColor,
+        popupSubLabelColor,
+        popupSubLabelHColor,
     } = attributes;
 
     const requiredProps = {
@@ -657,6 +663,78 @@ export default function Edit(props) {
                                                         controlName={POPUP_BTN_H_BOX_SHADOW}
                                                         requiredProps={requiredProps}
                                                         enableTransition={false}
+                                                    />
+                                                </>
+                                            }
+                                        />
+                                    </ZoloPanelBody>
+
+                                    <ZoloPanelBody title={__('Popup Button Label', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                                        <TabPanelControl
+                                            options={[
+                                                {
+                                                    value: 'normal',
+                                                    label: __('Label', 'zoloblocks'),
+                                                },
+                                                {
+                                                    value: 'hover',
+                                                    label: __('Sub Label', 'zoloblocks'),
+                                                },
+                                            ]}
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={popupLabelColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupLabelColor: value,
+                                                            })
+                                                        }
+                                                    />
+
+                                                    <TypographyDropdown
+                                                        label={__('Typography', 'zoloblocks')}
+                                                        typoPrefixConstant={POPUP_BTN_LABEL_TYPOGRAPHY}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={popupLabelHColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupLabelHColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={popupSubLabelColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupSubLabelColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <TypographyDropdown
+                                                        label={__('Typography', 'zoloblocks')}
+                                                        typoPrefixConstant={POPUP_BTN_SUB_LABEL_TYPOGRAPHY}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                    <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                                    <ColorControl
+                                                        label={__('Color', 'zoloblocks')}
+                                                        color={popupSubLabelHColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                popupSubLabelHColor: value,
+                                                            })
+                                                        }
                                                     />
                                                 </>
                                             }

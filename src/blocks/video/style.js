@@ -15,6 +15,7 @@ const {
     generateBoxShadowStyles,
     generateDimensionStyle,
     GlobalStyleHanlder,
+    generateTypographyStyles,
 } = window.zoloModule;
 
 import {
@@ -31,7 +32,7 @@ import {
     POPUP_BTN_H_BOX_SHADOW,
 } from './constants';
 
-// import {  } from './constants/typoPrefixConstants';
+import { POPUP_BTN_LABEL_TYPOGRAPHY, POPUP_BTN_SUB_LABEL_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -40,6 +41,10 @@ export default function Style({ props }) {
         popupIconColor,
         popupIconHColor,
         popupBtnBorderHColor,
+        popupLabelColor,
+        popupLabelHColor,
+        popupSubLabelColor,
+        popupSubLabelHColor,
         // setting
     } = attributes;
 
@@ -93,7 +98,7 @@ export default function Style({ props }) {
         mobRangeStyle: popupBtnIconSizeMob,
     } = generateResRangeStyle({
         controlName: POPUP_BTN_ICON_SIZE,
-        property: 'width',
+        property: '--popup-play-button-icon-size',
         attributes,
     });
 
@@ -146,6 +151,26 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // popup label typography
+
+    const {
+        typoStylesDesktop: popupLabelTypoDesk,
+        typoStylesTab: popupLabelTypoTab,
+        typoStylesMobile: popupLabelTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: POPUP_BTN_LABEL_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: popupSubLabelTypoDesk,
+        typoStylesTab: popupSubLabelTypoTab,
+        typoStylesMobile: popupSubLabelTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: POPUP_BTN_SUB_LABEL_TYPOGRAPHY,
+        attributes,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
@@ -165,11 +190,33 @@ export default function Style({ props }) {
             ${popupBtnBoxShadow}
         }
 
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon svg{
+            ${popupBtnIconSizeDesk}
+        }
+
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-icon {
             ${popupIconHColor ? `color: ${popupIconHColor};` : ''}
             ${popupBtnBgHColorDesk}
             ${popupBtnBorderHColor ? `border-color: ${popupBtnBorderHColor};` : ''}
             ${popupBtnHBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-label {
+            ${popupLabelColor ? `color: ${popupLabelColor};` : ''}
+            ${popupLabelTypoDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-label {
+            ${popupLabelHColor ? `color: ${popupLabelHColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-sub-label {
+            ${popupSubLabelColor ? `color: ${popupSubLabelColor};` : ''}
+            ${popupSubLabelTypoDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-sub-label {
+            ${popupSubLabelHColor ? `color: ${popupSubLabelHColor};` : ''}
         }
     `;
 

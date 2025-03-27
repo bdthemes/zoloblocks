@@ -225,6 +225,19 @@ const attributes = {
         type: 'string',
     },
 
+    popupLabelColor: {
+        type: 'string',
+    },
+    popupLabelHColor: {
+        type: 'string',
+    },
+    popupSubLabelColor: {
+        type: 'string',
+    },
+    popupSubLabelHColor: {
+        type: 'string',
+    },
+
     ...generateResAlignmentAttributies(VIDEO_ALIGN),
     ...generateResAlignmentAttributies(POPUP_BUTTON_ALIGNMENT),
 
@@ -237,6 +250,8 @@ const attributes = {
     ...generateBoxShadowAttributies(POPUP_BTN_BOX_SHADOW),
     ...generateNormalBGAttributes(POPUP_BTN_H_BG_COLOR),
     ...generateBoxShadowAttributies(POPUP_BTN_H_BOX_SHADOW),
+
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 };
 
 export default attributes;
