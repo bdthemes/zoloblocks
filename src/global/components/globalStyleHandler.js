@@ -21,7 +21,7 @@ export const GlobalStyleHanlder = (props) => {
     }
 
     const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props;
-
+    
     const {
         uniqueId,
         zIndex,
@@ -724,16 +724,44 @@ export const GlobalStyleHanlder = (props) => {
     const filteredTabAllStyle = applyFilters('zolo_tab_all_style', tabAllStyle, props);
     const filteredMobileAllStyle = applyFilters('zolo_mobile_all_style', mobileAllStyle, props);
 
-    const allStyle = `
-		${softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles)}
-        ${blockWriteCss}
-		@media all and (max-width: 1024px) {
-			${softMinifyCssStrings(filteredTabAllStyle + tabGlobalStyles)}
-		}
-		@media all and (max-width: 767px) {
-			${softMinifyCssStrings(filteredMobileAllStyle + mobileGlobalStyles)}
-		}
-	`;
+    const styles = [];
+    let desktopStyles = filteredDesktopAllStyle + desktopGlobalStyles + blockWriteCss;
+    let tabletStyles = filteredTabAllStyle + tabGlobalStyles;
+    let mobileStyles = filteredMobileAllStyle + mobileGlobalStyles;
+
+    // Add Desktop styles if resMode is Desktop, Tablet, or Mobile
+    if (
+        (attributes?.resMode === 'Desktop' || attributes?.resMode === 'Tablet' || attributes?.resMode === 'Mobile') &&
+        (desktopStyles?.includes(':') && desktopStyles?.includes(';'))
+    ) {
+        styles.push(softMinifyCssStrings(desktopStyles));
+    }
+
+    // Add Tablet styles if resMode is Tablet or Mobile
+    if (
+        (attributes?.resMode === 'Tablet' || attributes?.resMode === 'Mobile') &&
+        (tabletStyles?.includes(':') && tabletStyles?.includes(';'))
+    ) {
+        styles.push(`
+        @media all and (max-width: 1024px) {
+            ${softMinifyCssStrings(tabletStyles)}
+        }
+    `);
+    }
+
+    // Add Mobile styles if resMode is Mobile
+    if (
+        attributes?.resMode === 'Mobile' &&
+        (mobileStyles?.includes(':') && mobileStyles?.includes(';'))
+    ) {
+        styles.push(`
+        @media all and (max-width: 767px) {
+            ${softMinifyCssStrings(mobileStyles)}
+        }
+    `);
+    }
+
+    const allStyle = styles.join('');
 
     const softMinifyDeskStrings = softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles);
     const softMinifyTabStrings = softMinifyCssStrings(filteredTabAllStyle + tabGlobalStyles);

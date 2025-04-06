@@ -271,7 +271,7 @@ function Inspector(props) {
                                             })
                                         }
                                         value={heading}
-                                        placeholder={__('heading text..', 'zoloblocks')}
+                                        placeholder={__('Heading Text..', 'zoloblocks')}
                                     />
                                     <SelectControl
                                         label={__('Tag', 'zoloblocks')}
@@ -306,7 +306,7 @@ function Inspector(props) {
                                                 })
                                             }
                                             value={description}
-                                            placeholder={__('description text..', 'zoloblocks')}
+                                            placeholder={__('Description Text..', 'zoloblocks')}
                                         />
                                     </div>
                                     <div className="zolo-flex-row-control-tab">

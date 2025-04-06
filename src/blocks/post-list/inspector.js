@@ -197,7 +197,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.postList.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Feature Post', 'zoloblocks')}
                                 checked={showfeatureimg}

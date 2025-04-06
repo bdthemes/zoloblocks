@@ -103,7 +103,7 @@ function Inspector(props) {
                                 options={applyFilters('zolo.presets.TextPath', PATH_OPTION)}
                                 onChange={(v) => setAttributes({ textPathType: v })}
                             />
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             {textPathType === 'circle' && (
                                 <ToggleControl
                                     label={__('Image', 'zoloblocks')}

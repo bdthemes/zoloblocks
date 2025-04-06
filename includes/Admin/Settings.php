@@ -53,17 +53,25 @@ if (! class_exists('Settings')) {
             register_setting('reading', 'zolo_maintenance_mode');
             register_setting('reading', 'zolo_coming_soon_mode');
             register_setting('reading', 'zolo_maintenance_mode_template');
+            register_setting('reading', 'zolo_site_visibility_private_link');
+            // register_setting('reading', 'zolo_site_visibility_secret_key');
         }
 
+
+
         public function zolo_site_visibility_section() {
-            echo '<p>' . __('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>';
+            echo wp_kses_post('<p>' . __('Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site.', 'zoloblocks') . '</p>');
         }
+
         public function zolo_site_visibility_field() {
             $zolo_maintenance_mode = get_option('zolo_maintenance_mode', false);
             $zolo_coming_soon_mode = get_option('zolo_coming_soon_mode', false);
             $selected_page = get_option('zolo_maintenance_mode_template', '');
             $pages = get_pages(); // Fetch all available pages
-
+            $site_url = get_site_url();
+            $visibility_secrect_key = get_option('zolo_site_visibility_secret_key', '');
+            $visibility_private_link = get_option('zolo_site_visibility_private_link', false);
+            $private_url = $site_url . '/?private_link=' . $visibility_secrect_key;
 ?>
             <fieldset>
                 <legend class="screen-reader-text"><span><?php _e('Site Visibility', 'zoloblocks'); ?></span></legend>
@@ -71,35 +79,47 @@ if (! class_exists('Settings')) {
                 <!-- Coming Soon Mode Toggle -->
                 <label for="zolo_coming_soon_mode">
                     <input type="checkbox" name="zolo_coming_soon_mode" id="zolo_coming_soon_mode" value="1" <?php checked($zolo_coming_soon_mode, true); ?>>
-                    <?php _e('Enable Coming Soon Mode', 'zoloblocks'); ?>
+                    <?php echo esc_html__('Enable Coming Soon Mode', 'zoloblocks'); ?>
                 </label>
-                <p className="zolo-settings-text">
-                    <?php _e(
-                        "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.",
-                        'zoloblocks'
-                    ); ?>
+                <p class="zolo-settings-text">
+                    <?php echo esc_html__("If your website is under construction, the 'Coming Soon' page will return an HTTP 200 status code.", 'zoloblocks'); ?>
                 </p>
+
                 <br>
 
                 <!-- Maintenance Mode Toggle -->
                 <label for="zolo_maintenance_mode">
                     <input type="checkbox" name="zolo_maintenance_mode" id="zolo_maintenance_mode" value="1" <?php checked($zolo_maintenance_mode, true); ?>>
-                    <?php _e('Enable Maintenance Mode', 'zoloblocks'); ?>
+                    <?php echo esc_html__('Enable Maintenance Mode', 'zoloblocks'); ?>
                 </label>
-                <p className="zolo-settings-text">
-                    <?php _e(
-                        "Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.",
-                        'zoloblocks'
-                    ); ?>
+                <p class="zolo-settings-text">
+                    <?php echo esc_html__("Maintenance Mode returns an HTTP 503 status code, signaling search engines to revisit the site shortly.", 'zoloblocks'); ?>
                 </p>
+
                 <br>
 
                 <!-- Template Selection -->
-                <div id="template-selection-wrapper" style="display: <?php echo ($zolo_maintenance_mode || $zolo_coming_soon_mode) ? 'block' : 'none'; ?>;">
-                    <h4><?php _e('Select a Template', 'zoloblocks'); ?></h4>
+                <div id="template-selection-wrapper" style="display: <?php echo esc_attr(($zolo_maintenance_mode || $zolo_coming_soon_mode) ? 'block' : 'none'); ?>;">
+
+                    <!-- Enable Private Link Checkbox -->
+                    <label for="zolo_site_visibility_private_link">
+                        <input type="checkbox" name="zolo_site_visibility_private_link" id="zolo_site_visibility_private_link" value="1" <?php checked($visibility_private_link, true); ?>>
+                        <?php echo esc_html__('Enable Private Link', 'zoloblocks'); ?>
+                    </label>
+                    <p class="zolo-settings-text">
+                        <?php echo esc_html__("When enabled, only users with the secret key can access the site. Useful for sharing previews with clients.", 'zoloblocks'); ?>
+                    </p>
+                    <br>
+                    <!-- Private Link Field (Initially Hidden) -->
+                    <div id="private-link-field" style="display: <?php echo esc_attr($visibility_private_link ? 'block' : 'none'); ?>;">
+                        <input readonly type="text" name="zolo_site_visibility_secret_key" id="zolo_site_visibility_secret_key" class="regular-text" value="<?php echo esc_attr($private_url); ?>" placeholder="<?php _e('Enter Secret Key', 'zoloblocks'); ?>">
+                        <button class="zolo-private-link-copy-btn" onclick="copyToClipboard(event)">Copy</button>
+                    </div>
+                    <br>
+                    <h4><?php echo esc_html__('Select a Template', 'zoloblocks'); ?></h4>
                     <label for="zolo_maintenance_mode_template">
                         <select name="zolo_maintenance_mode_template" id="zolo_maintenance_mode_template">
-                            <option value="" <?php selected($selected_page, ''); ?>><?php _e('Select Template', 'zoloblocks'); ?></option>
+                            <option value="" <?php selected($selected_page, ''); ?>><?php echo esc_html__('Select Template', 'zoloblocks'); ?></option>
                             <?php foreach ($pages as $page) : ?>
                                 <option value="<?php echo esc_attr($page->ID); ?>" <?php selected($selected_page, $page->ID); ?>><?php echo esc_html($page->post_title); ?></option>
                             <?php endforeach; ?>
@@ -113,30 +133,53 @@ if (! class_exists('Settings')) {
                     const maintenanceCheckbox = document.getElementById('zolo_maintenance_mode');
                     const comingSoonCheckbox = document.getElementById('zolo_coming_soon_mode');
                     const templateWrapper = document.getElementById('template-selection-wrapper');
+                    const privateLinkCheckbox = document.getElementById('zolo_site_visibility_private_link');
+                    const privateLinkField = document.getElementById('private-link-field');
 
-                    function toggleTemplateVisibility() {
-                        if (maintenanceCheckbox.checked || comingSoonCheckbox.checked) {
-                            templateWrapper.style.display = 'block';
-                        } else {
-                            templateWrapper.style.display = 'none';
-                        }
+                    function toggleVisibility() {
+                        // Toggle template visibility based on mode
+                        templateWrapper.style.display = (maintenanceCheckbox.checked || comingSoonCheckbox.checked) ? 'block' : 'none';
+                        // Toggle private link visibility based on checkbox
+                        privateLinkField.style.display = privateLinkCheckbox.checked ? 'block' : 'none';
                     }
 
                     function ensureExclusiveMode() {
+                        // Ensure only one mode is enabled
                         if (this.id === 'zolo_maintenance_mode' && this.checked) {
                             comingSoonCheckbox.checked = false;
                         } else if (this.id === 'zolo_coming_soon_mode' && this.checked) {
                             maintenanceCheckbox.checked = false;
                         }
-                        toggleTemplateVisibility();
+                        toggleVisibility();
                     }
 
-                    // Initial toggle based on saved settings
-                    toggleTemplateVisibility();
 
+
+                    // Initial toggle based on saved settings
+                    toggleVisibility();
+
+                    // Event listeners for checkbox changes
                     maintenanceCheckbox.addEventListener('change', ensureExclusiveMode);
                     comingSoonCheckbox.addEventListener('change', ensureExclusiveMode);
+                    privateLinkCheckbox.addEventListener('change', toggleVisibility);
                 });
+
+
+                function copyToClipboard(event) {
+                    event.preventDefault(); // Prevents the default button behavior
+                    var copyText = document.getElementById("zolo_site_visibility_secret_key");
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+                    document.execCommand("copy");
+
+                    // Change button text immediately
+                    document.querySelector('.zolo-private-link-copy-btn').textContent = 'Copied';
+
+                    // Reset the button text after 2 seconds
+                    setTimeout(() => {
+                        document.querySelector('.zolo-private-link-copy-btn').textContent = 'Copy';
+                    }, 2000);
+                }
             </script>
 <?php
         }
@@ -289,6 +332,35 @@ if (! class_exists('Settings')) {
                 [
                     'type'             => 'string',
                     'default'          => false,
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_site_visibility_private_link',
+                [
+                    'type'             => 'boolean',
+                    'default'          => '',
+                    'show_in_rest'     => [
+                        'schema' => [
+                            'type' => 'boolean',
+                        ],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_site_visibility_secret_key',
+                [
+                    'type'             => 'string',
+                    'default'          => '',
                     'show_in_rest'     => [
                         'schema' => [
                             'type' => 'string',

@@ -143,7 +143,7 @@ export default function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                             />
 
-                            <div className="zolo-custom-heading">{__('Show/Hide Elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
 
                             <ToggleControl
                                 label={__('Count', 'zoloblocks')}

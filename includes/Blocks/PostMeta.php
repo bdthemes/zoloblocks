@@ -169,6 +169,8 @@ class PostMeta {
 					$item_data['text'] = sprintf(_n($default_strings['string_one_comment'], $default_strings['string_comments'], $num_comments, 'zoloblocks'), $num_comments);
 				}
 
+				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
+
 				if (! empty($meta['link'])) {
 					$item_data['url'] = get_comments_link();
 				}

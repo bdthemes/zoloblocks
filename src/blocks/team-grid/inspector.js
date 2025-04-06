@@ -188,7 +188,7 @@ function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                             />
 
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             {preset !== 'style-4' && preset !== 'style-5' && (
                                 <ToggleControl
                                     label={__('Add Detail Page Link', 'zoloblocks')}
