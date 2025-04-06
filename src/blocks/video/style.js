@@ -30,6 +30,12 @@ import {
     POPUP_BTN_BOX_SHADOW,
     POPUP_BTN_H_BG_COLOR,
     POPUP_BTN_H_BOX_SHADOW,
+    POPUP_IMAGE_BORDER,
+    POPUP_IMAGE_BORDER_RADIUS,
+    POPUP_IMAGE_PADDING,
+    POPUP_IMAGE_BG_COLOR,
+    INLINE_VIDEO_CONTANER_WIDTH,
+    INLINE_VIDEO_CONTANER_HEIGHT,
 } from './constants';
 
 import { POPUP_BTN_LABEL_TYPOGRAPHY, POPUP_BTN_SUB_LABEL_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -45,6 +51,7 @@ export default function Style({ props }) {
         popupLabelHColor,
         popupSubLabelColor,
         popupSubLabelHColor,
+        popupImageOpacity,
         // setting
     } = attributes;
 
@@ -171,9 +178,74 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // popup image
+
+    const {
+        desktopBorderStyle: popupImageBorderDesk,
+        tabBorderStyle: popupImageBorderTab,
+        mobBorderStyle: popupImageBorderMob,
+    } = generateBorderStyle({
+        controlName: POPUP_IMAGE_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: popupImageBorderRadiusDesk,
+        dimensionStylesTab: popupImageBorderRadiusTab,
+        dimensionStylesMob: popupImageBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: POPUP_IMAGE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: popupImagePaddingDesk,
+        dimensionStylesTab: popupImagePaddingTab,
+        dimensionStylesMob: popupImagePaddingMob,
+    } = generateDimensionStyle({
+        controlName: POPUP_IMAGE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: popupImageBgColorDesk,
+        backgroundStylesTab: popupImageBgColorTab,
+        backgroundStylesMob: popupImageBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: POPUP_IMAGE_BG_COLOR,
+        noMainBGIMG: false,
+        attributes,
+    });
+
+    // inline video
+    const {
+        desktopRangeStyle: inlineVideoContainerWidthDesk,
+        tabRangeStyle: inlineVideoContainerWidthTab,
+        mobRangeStyle: inlineVideoContainerWidthMob,
+    } = generateResRangeStyle({
+        controlName: INLINE_VIDEO_CONTANER_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: inlineVideoContainerHeightDesk,
+        tabRangeStyle: inlineVideoContainerHeightTab,
+        mobRangeStyle: inlineVideoContainerHeightMob,
+    } = generateResRangeStyle({
+        controlName: INLINE_VIDEO_CONTANER_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-video-container{
+            ${inlineVideoContainerWidthDesk}
+            ${inlineVideoContainerHeightDesk}
         }
         
         .${uniqueId}.wp-block-zolo-video {
@@ -218,17 +290,117 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-sub-label {
             ${popupSubLabelHColor ? `color: ${popupSubLabelHColor};` : ''}
         }
+
+        .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button {
+            ${popupImageBorderDesk}
+            ${popupImagePaddingDesk}
+            ${popupImageBorderRadiusDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button:before {
+             ${popupImageBgColorDesk}
+             ${popupImageOpacity ? `opacity: ${popupImageOpacity};` : ''}
+        }
     `;
 
     const tabletAllStyle = `
-        .${uniqueId}.wp-block-zolo-video .video-player-popup-inline-content{
+        .${uniqueId}.wp-block-zolo-video {
             ${videoAlignTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-video-container{
+            ${inlineVideoContainerWidthTab}
+            ${inlineVideoContainerHeightTab}
+        }
+        
+        .${uniqueId}.wp-block-zolo-video {
+            ${popupButtonAlignTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon {
+            ${popupIconColor ? `color: ${popupIconColor};` : ''}
+            ${popupBtnBgColorTab}
+            ${popupBtnPaddingTab}
+            ${popupBtnMarginTab}
+            ${popupBtnBorderTab}
+            ${popupBtnBorderRadiusTab}
+            ${popupBtnBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon svg{
+            ${popupBtnIconSizeTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-icon {
+            ${popupBtnBgHColorTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-label {
+            ${popupLabelTypoTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-sub-label {
+            ${popupSubLabelTypoTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button {
+            ${popupImageBorderTab}
+            ${popupImagePaddingTab}
+            ${popupImageBorderRadiusTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button:before {
+             ${popupImageBgColorTab}
         }
     `;
 
     const mobileAllStyle = ` 
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-video-container{
+            ${inlineVideoContainerWidthMob}
+            ${inlineVideoContainerHeightMob}
+        }
+        
+        .${uniqueId}.wp-block-zolo-video {
+            ${popupButtonAlignMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon {
+            ${popupIconColor ? `color: ${popupIconColor};` : ''}
+            ${popupBtnBgColorMob}
+            ${popupBtnPaddingMob}
+            ${popupBtnMarginMob}
+            ${popupBtnBorderMob}
+            ${popupBtnBorderRadiusMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon svg{
+            ${popupBtnIconSizeMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-icon {
+            ${popupBtnBgHColorMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-label {
+            ${popupLabelTypoMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-sub-label {
+            ${popupSubLabelTypoMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button {
+            ${popupImageBorderMob}
+            ${popupImagePaddingMob}
+            ${popupImageBorderRadiusMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button:before {
+             ${popupImageBgColorMob}
         }
     `;
 

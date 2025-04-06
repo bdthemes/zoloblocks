@@ -24,6 +24,12 @@ import {
     POPUP_BTN_BOX_SHADOW,
     POPUP_BTN_H_BG_COLOR,
     POPUP_BTN_H_BOX_SHADOW,
+    POPUP_IMAGE_BORDER,
+    POPUP_IMAGE_BORDER_RADIUS,
+    POPUP_IMAGE_PADDING,
+    POPUP_IMAGE_BG_COLOR,
+    INLINE_VIDEO_CONTANER_WIDTH,
+    INLINE_VIDEO_CONTANER_HEIGHT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -73,6 +79,12 @@ const attributes = {
             openInNewTab: false,
         },
     },
+
+    customVideoType: {
+        type: 'string',
+        default: 'url',
+    },
+
     isExternalCustomUrl: {
         type: 'boolean',
         default: true,
@@ -238,6 +250,10 @@ const attributes = {
         type: 'string',
     },
 
+    popupImageOpacity: {
+        type: 'number',
+    },
+
     ...generateResAlignmentAttributies(VIDEO_ALIGN),
     ...generateResAlignmentAttributies(POPUP_BUTTON_ALIGNMENT),
 
@@ -250,6 +266,14 @@ const attributes = {
     ...generateBoxShadowAttributies(POPUP_BTN_BOX_SHADOW),
     ...generateNormalBGAttributes(POPUP_BTN_H_BG_COLOR),
     ...generateBoxShadowAttributies(POPUP_BTN_H_BOX_SHADOW),
+
+    ...generateBorderAttributies(POPUP_IMAGE_BORDER),
+    ...generateDimensionAttributes(POPUP_IMAGE_BORDER_RADIUS),
+    ...generateDimensionAttributes(POPUP_IMAGE_PADDING),
+    ...generateNormalBGAttributes(POPUP_IMAGE_BG_COLOR),
+
+    ...generateResRangeAttributies(INLINE_VIDEO_CONTANER_WIDTH),
+    ...generateResRangeAttributies(INLINE_VIDEO_CONTANER_HEIGHT),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 };

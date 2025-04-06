@@ -24,3 +24,10 @@ export const POPUP_BTN_BORDER = 'popupBtnBorder';
 export const POPUP_BTN_BOX_SHADOW = 'popupBtnBoxShadow';
 export const POPUP_BTN_H_BG_COLOR = 'popupBtnHBgColor';
 export const POPUP_BTN_H_BOX_SHADOW = 'popupBtnHBoxShadow';
+
+export const POPUP_IMAGE_BORDER = 'popupImageBorder';
+export const POPUP_IMAGE_BORDER_RADIUS = 'popupImageBorderRadius';
+export const POPUP_IMAGE_PADDING = 'popupImagePadding';
+export const POPUP_IMAGE_BG_COLOR = 'popupImageBgColor';
+export const INLINE_VIDEO_CONTANER_WIDTH = 'inlineVideoContainerWidth';
+export const INLINE_VIDEO_CONTANER_HEIGHT = 'inlineVideoContainerHeight';
