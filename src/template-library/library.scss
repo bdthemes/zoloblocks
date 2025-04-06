@@ -2,6 +2,7 @@
     --zolo-badge-pro-color: #ffa826;
     --zolo-badge-pro-alpha-color: rgba(255, 168, 38, 0.2);
 }
+
 .zolo-editor {
     .editor-header__toolbar,
     .edit-post-header__toolbar {
@@ -9,20 +10,24 @@
         .editor-header__center {
             order: 2 !important;
         }
+
         .zoloblocks-template-library-button {
             order: 1 !important;
+
             &.empty-page {
                 transition:
                     transform 0.3s ease-in-out,
                     opacity 0.3s ease-in-out;
-                animation: shake 0.5s ease-in-out infinite; /* Apply shaking animation */
+                animation: shake 0.5s ease-in-out infinite;
+                /* Apply shaking animation */
             }
 
             &:hover {
                 animation: none;
                 transition:
                     transform 0.3s ease-in-out,
-                    opacity 0.3s ease-in-out; /* Smooth transition on hover */
+                    opacity 0.3s ease-in-out;
+                /* Smooth transition on hover */
             }
         }
     }
@@ -33,19 +38,21 @@
         transition:
             transform 0.3s ease-in-out,
             opacity 0.3s ease-in-out;
-        animation: shake 0.5s ease-in-out infinite; /* Apply shaking animation */
+        animation: shake 0.5s ease-in-out infinite;
+        /* Apply shaking animation */
     }
 
     &:hover {
         animation: none;
         transition:
             transform 0.3s ease-in-out,
-            opacity 0.3s ease-in-out; /* Smooth transition on hover */
+            opacity 0.3s ease-in-out;
+        /* Smooth transition on hover */
     }
 }
 
 .zolo-preloader-wrapper {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -57,6 +64,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    margin-left: 0;
 }
 
 .zolo-library-open-button {
@@ -70,20 +78,25 @@
     transition: 0.3s;
     outline: none;
     flex-wrap: nowrap;
+
     .zolo-template-label {
         white-space: nowrap;
     }
+
     svg {
         width: 20px;
         height: 20px;
+
         path {
             fill: #2667ff;
         }
     }
+
     &:hover {
         color: #2667ff;
         background-color: #cdd8f8;
     }
+
     &:focus {
         color: #2667ff;
         background-color: #cdd8f8;
@@ -127,7 +140,7 @@
         box-sizing: border-box;
         position: sticky;
         top: 0;
-        z-index: 99;
+        z-index: 9999;
         background-color: #fff;
     }
 
@@ -168,6 +181,7 @@
             min-width: auto;
             border-radius: 6px;
             font-size: 14px;
+
             &:focus {
                 border-color: #2667ff;
                 box-shadow: none;
@@ -185,6 +199,7 @@
             border: 0;
             display: block;
             cursor: pointer;
+
             svg {
                 width: 20px;
                 height: 20px;
@@ -192,6 +207,7 @@
                 color: #7a7a84;
                 transition: color 0.3s;
             }
+
             &:hover svg {
                 color: #f00;
             }
@@ -248,6 +264,7 @@
 
         &.active {
             color: #2667ff;
+
             &:after {
                 width: 100%;
             }
@@ -256,6 +273,7 @@
         &:hover {
             color: #2667ff;
             background-color: rgba(38, 103, 255, 0.078);
+
             &:after {
                 width: 100%;
             }
@@ -277,12 +295,13 @@
         position: absolute;
         min-height: 100vh;
         background-color: #fff;
-        z-index: 11;
+        z-index: 9999;
     }
 
     .demo-made-button {
         display: flex;
         align-items: center;
+
         .demo-made-btn {
             font-size: 15px;
             padding: 24px 16px;
@@ -298,11 +317,13 @@
             gap: 6px;
             border-top-width: 2px;
             border-top-style: solid;
+
             &.made-zoloblocks-btn {
                 color: #2567ff;
                 background-color: #fff;
                 border-top-color: #2567ff;
             }
+
             &.made-ai-btn {
                 color: #333;
                 background-color: #edf0f4;
@@ -312,6 +333,7 @@
                 border-top: 0;
                 border-bottom-left-radius: 10px;
                 text-transform: uppercase;
+
                 span {
                     position: absolute;
                     top: 6px;
@@ -323,6 +345,7 @@
                     border-radius: 3px;
                     border: 1px solid #2c67ff;
                 }
+
                 svg {
                     width: 20px;
                     height: 20px;
@@ -331,6 +354,7 @@
             }
         }
     }
+
     .demo-title-proFree-wrap {
         padding: 20px;
         border-bottom: 1px solid #f4f4f4;
@@ -338,14 +362,17 @@
         align-items: center;
         gap: 15px;
         justify-content: space-between;
+
         .category-title {
             margin: 0;
             font-size: 16px;
         }
+
         .demo-proFree-btn {
             display: flex;
             align-items: center;
             gap: 7px;
+
             button {
                 border: 0;
                 padding: 8px 14px;
@@ -355,17 +382,21 @@
                 font-weight: 600;
                 border-radius: 6px;
             }
+
             .demo-pro-btn {
                 color: var(--zolo-badge-pro-color);
                 background-color: var(--zolo-badge-pro-alpha-color);
+
                 &:focus {
                     outline: 2px solid var(--zolo-badge-pro-alpha-color);
                     box-shadow: none;
                 }
             }
+
             .demo-free-btn {
                 color: #2567ff;
                 background-color: rgba(37, 103, 255, 0.12);
+
                 &:focus {
                     outline: 2px solid rgba(37, 103, 255, 0.561);
                 }
@@ -378,6 +409,7 @@
         overflow-y: auto;
         padding-bottom: 30px;
         mask-image: linear-gradient(#000 92%, transparent);
+
         &::-webkit-scrollbar {
             width: 5px;
         }
@@ -412,6 +444,7 @@
         color: #333;
         transition: 0.3s;
         position: relative;
+
         &::before {
             content: '';
             position: absolute;
@@ -421,20 +454,25 @@
             width: 4px;
             background-color: transparent;
         }
+
         &.active {
             color: #2567ff;
             background-color: #edf0f4;
+
             .single-category-count {
                 background-color: #2567ff;
                 color: #fff;
             }
+
             &::before {
                 background-color: #2567ff;
             }
         }
+
         &:hover {
             color: #2567ff;
         }
+
         &:nth-last-child(1) {
             border-bottom: none;
         }
@@ -464,6 +502,14 @@
         position: relative;
         overflow-x: hidden;
 
+        .zolo-template-library-content {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
         .zolo-templates {
             display: flex;
             flex-direction: column;
@@ -471,10 +517,12 @@
             align-items: center;
             justify-content: center;
             height: 100%;
+
             h2 {
                 margin: 0;
                 font-size: 40px;
             }
+
             p {
                 margin: 0;
                 font-size: 16px;
@@ -503,20 +551,24 @@
         border: 1px solid #f4f4f4;
         overflow: hidden;
         position: relative;
+
         &:hover {
             .demo-preview {
                 &::before {
                     opacity: 1;
                     height: 100%;
                 }
+
                 // img {
                 //     transform: scale(1.03);
                 // }
             }
+
             .demo-btn {
                 transform: translateY(0);
                 opacity: 1;
             }
+
             .demo-title {
                 color: #000;
             }
@@ -529,6 +581,7 @@
             padding: 0 !important;
             overflow: visible !important;
             text-align: center;
+
             h2 {
                 margin: 0;
                 font-size: 22px;
@@ -544,6 +597,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
         &::before {
             content: '';
             position: absolute;
@@ -558,6 +612,7 @@
                 height 0.3s;
             z-index: 1;
         }
+
         img {
             width: 100%;
             height: 100%;
@@ -566,6 +621,7 @@
             transition: transform 0.3s;
             // mask-image: linear-gradient(to top, #ffffff00 0%, #000000 40%);
         }
+
         .image-overlay-content {
             position: absolute;
             top: 0;
@@ -581,6 +637,7 @@
             align-items: center;
             opacity: 0;
             transition: 0.3s;
+
             p {
                 font-size: 18px;
                 color: #fff;
@@ -624,9 +681,11 @@
             z-index: 1;
             position: relative;
             text-decoration: none;
+
             &:hover {
                 background-color: #084cec;
             }
+
             svg {
                 width: 20px;
                 height: 20px;
@@ -637,10 +696,12 @@
         .import-btn {
             transition-delay: 0.2s;
         }
+
         .view-btn {
             color: #000;
             background-color: #f1f1f1;
             transition-delay: 0.1s;
+
             &:hover {
                 background-color: #fff;
             }
@@ -649,6 +710,7 @@
 
     .demo-footer {
         padding: 20px;
+
         // position: absolute;
         // bottom: 0;
         // left: 0;
@@ -684,9 +746,11 @@
         top: 20px;
         z-index: 1;
         font-weight: 600;
+
         &.pro-badge {
             background-color: var(--zolo-badge-pro-color);
         }
+
         &.free-badge {
             background-color: #2c67ff;
         }
@@ -695,6 +759,7 @@
     .load-more-btn-wrapper {
         padding: 50px;
         text-align: center;
+
         .load-more-btn {
             background: #2c67ff;
             color: #fff;
@@ -718,6 +783,7 @@
         cursor: pointer;
         border-radius: 6px;
         position: relative;
+
         svg {
             width: 16px;
             height: auto;
@@ -729,6 +795,7 @@
             transform: translate(-50%, -50%);
             transition: 0.3s;
         }
+
         .not-fav {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
@@ -739,12 +806,15 @@
             fill: #f00;
             transform: translate(-50%, -50%) scale(0);
         }
+
         &.active {
             background: #feefee;
+
             .fav {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);
             }
+
             .not-fav {
                 opacity: 0;
                 transform: translate(-50%, -50%) scale(0);
@@ -772,33 +842,40 @@
                 max-width: 400px;
                 mask-image: linear-gradient(to right, #000 80%, rgba(0, 0, 0, 0.078) 100%);
             }
+
             .components-base-control__field {
                 margin: 0;
             }
+
             .components-input-base {
                 align-items: center;
                 flex-direction: row;
                 --select-x-padding: 12px;
+
                 select {
                     height: 40px !important;
                     border-radius: 6px;
                     outline: none;
                     border: 1px solid #eae7f2;
                     padding: 0 var(--select-x-padding) !important;
+
                     &:focus {
                         border-color: #2667ff;
                         outline: 1px solid #2667ff;
                     }
                 }
+
                 .components-input-control-suffix-wrapper {
                     padding-right: calc(var(--select-x-padding));
                 }
+
                 .components-input-control__backdrop {
                     border-radius: 6px;
                     box-shadow: none;
                     border-color: transparent !important;
                 }
             }
+
             .components-base-control__label,
             .components-input-control__label {
                 margin: 0;
@@ -808,6 +885,7 @@
                 color: #000;
                 display: none;
             }
+
             .zolo-tags {
                 .components-base-control__field {
                     flex-direction: column;
@@ -824,6 +902,7 @@
             width: 100%;
             box-sizing: border-box;
             justify-content: space-between;
+
             .tags-btn-wrap {
                 display: flex;
                 align-items: center;
@@ -833,6 +912,7 @@
                 max-width: 700px;
                 overflow: hidden;
             }
+
             .single-tag {
                 background: transparent;
                 cursor: pointer;
@@ -842,12 +922,14 @@
                 text-decoration: underline;
                 font-weight: 500;
                 white-space: nowrap;
+
                 &.active,
                 &:hover {
                     color: #2b67ff;
                 }
             }
         }
+
         .clear-tag {
             border: none;
             cursor: pointer;
@@ -866,16 +948,20 @@
                 transform: scale(0);
                 transition: 0.3s;
             }
+
             &.active {
                 background: #fff;
+
                 svg {
                     transform: scale(1);
                 }
+
                 g {
                     stroke: #2b67ff;
                 }
             }
         }
+
         .components-select-control__input {
             width: 220px !important;
             height: 36px !important;
@@ -910,11 +996,13 @@
             border-radius: 5px;
             transition: 0.3s;
             color: #001feb;
+
             &:hover {
                 background: #5669eb;
                 color: #fff;
             }
         }
+
         p {
             margin: 0;
             font-size: 18px !important;
@@ -924,6 +1012,7 @@
     button.demo-pro-free-reset {
         background: none !important;
         padding: 0 !important;
+
         svg {
             width: 15px !important;
         }
@@ -941,6 +1030,7 @@
         margin: 0;
         text-align: center;
     }
+
     .components-modal__header {
         position: absolute;
         top: 0;
@@ -950,6 +1040,7 @@
         margin: 0;
         width: auto;
         height: auto;
+
         .components-button {
             padding: 20px !important;
             min-width: unset !important;
@@ -957,12 +1048,14 @@
             left: 0;
             width: unset !important;
             height: unset;
+
             svg {
                 color: #a3a7b1;
                 width: 20px;
                 height: 20px;
                 display: block;
             }
+
             &:hover {
                 svg {
                     color: #f00;
@@ -970,6 +1063,7 @@
             }
         }
     }
+
     .zolo-pro-modal-desc {
         margin: 10px 0 30px;
         font-size: 18px;
@@ -995,14 +1089,17 @@
         display: inline-flex;
         align-items: center;
         gap: 5px;
+
         svg {
             width: 20px;
             height: 20px;
             display: block;
         }
+
         &:focus {
             outline: 2px solid var(--zolo-badge-pro-alpha-color) !important;
         }
+
         &:hover {
             background-color: var(--zolo-badge-pro-color);
             color: #fff;
@@ -1016,12 +1113,15 @@
             .zolo-demos-wrapper {
                 column-count: 2;
             }
+
             .zolo-dm-head {
                 padding: 0 20px;
             }
+
             .tabs-area {
                 display: flex;
             }
+
             .secondary-header-item {
                 display: flex;
             }
@@ -1035,16 +1135,22 @@
             .zolo-demos-wrapper {
                 column-count: 2;
             }
+
             .categories {
                 display: block;
             }
+
             .demos-container {
                 margin-left: var(--zolo-template-library-sidebar-width);
             }
+
             .search {
                 input {
                     min-width: 200px;
                 }
+            }
+            .zolo-preloader-wrapper {
+                margin-left: calc(var(--zolo-template-library-sidebar-width) / 2);
             }
         }
     }
@@ -1054,17 +1160,21 @@
     .components-modal__frame {
         &.zolo-demos-modal {
             --zolo-template-library-sidebar-width: 320px;
+
             .zolo-demos-wrapper {
                 column-count: 4;
             }
+
             .logo-text {
                 display: block;
             }
+
             .search {
                 input {
                     min-width: 320px;
                 }
             }
+
             .secondary-header-item {
                 // align-items: center;
                 // flex-direction: row;
@@ -1072,17 +1182,21 @@
                     flex-direction: row;
                     align-items: center;
                 }
+
                 .secondary-item {
                     .components-base-control__label,
                     .components-input-control__label {
                         display: block;
                     }
+
                     .components-base-control__label {
                         min-width: max-content;
                     }
                 }
+
                 .tags-wrap {
                     width: 100%;
+
                     .tags-btn-wrap {
                         max-width: 100%;
                     }
@@ -1090,6 +1204,7 @@
             }
         }
     }
+
     .components-modal__frame.zolo-demos-modal .secondary-header-item .secondary-item.zolo-tp-tags-item {
         max-width: 650px;
     }
@@ -1110,19 +1225,24 @@
         }
     }
 }
+
 @keyframes shake {
     0% {
         transform: translateX(0);
     }
+
     25% {
         transform: translateX(-5px);
     }
+
     50% {
         transform: translateX(5px);
     }
+
     75% {
         transform: translateX(-5px);
     }
+
     100% {
         transform: translateX(0);
     }

@@ -138,7 +138,7 @@ function Inspector(props) {
                                     max={99}
                                     labelPosition="edge"
                                     __unstableInputWidth="64px"
-                                    placeholder="1"
+                                    placeholder={__("1", 'zoloblocks')}
                                 />
                             )}
 

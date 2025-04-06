@@ -113,7 +113,7 @@ export default function Edit(props) {
                                                     className={`zolo-text`}
                                                     value={label}
                                                     onChange={(text) => setAttributes({ label: text })}
-                                                    placeholder={__('button text', 'zoloblocks')}
+                                                    placeholder={__('Button Text', 'zoloblocks')}
                                                     allowedFormats={['zolo/dynamic-content']}
                                                 />
                                             )}
@@ -134,7 +134,7 @@ export default function Edit(props) {
                                                     className={`zolo-text`}
                                                     value={Slabel}
                                                     onChange={(text) => setAttributes({ Slabel: text })}
-                                                    placeholder={__('Secondary text', 'zoloblocks')}
+                                                    placeholder={__('Secondary Text', 'zoloblocks')}
                                                     allowedFormats={['zolo/dynamic-content']}
                                                 />
                                             )}

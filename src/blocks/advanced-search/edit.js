@@ -61,7 +61,7 @@ export default function Edit(props) {
                     method="get"
                 >
                     <div className="zolo-advanced-search-control zolo-form-search-input" role="tablist">
-                        <input type="search" name="s" placeholder={placeholder} className="zolo-form-input" />
+                        <input type="search" name="s" placeholder={__(placeholder, 'zoloblocks')} className="zolo-form-input" />
                         {preset == 'zolo-search-2' && (
                             <label htmlFor={uniqueId} className="zolo-form-label">
                                 {labelText}

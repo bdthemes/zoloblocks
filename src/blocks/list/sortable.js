@@ -8,7 +8,7 @@ const { __ } = wp.i18n;
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const { DscToggle, preset, isLinkable } = attributes;
-    
+
     // add a new profile
     const addProfile = () => {
         const newProfile = {
@@ -20,7 +20,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
         };
         setAttributes({ listProfiles: [...listProfiles, newProfile] });
     };
-    
+
     // update the profile list
     const updateProfiles = (index, key, value) => {
         const updatedProfiles = cloneDeep(listProfiles);
@@ -57,6 +57,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                 />
                                 {DscToggle && preset !== 'zolo-list-style-1' && (
                                     <TextareaControl
+                                        className="zolo-flex-col-control"
                                         label={__('Description', 'zoloblocks')}
                                         value={profile.desc}
                                         onChange={(value) => updateProfiles(index, 'desc', value)}

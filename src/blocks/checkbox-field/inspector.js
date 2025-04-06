@@ -81,7 +81,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <div className="zolo-custom-heading">{__('show/hide elements', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ToggleControl
                                 label={__('Label', 'zoloblocks')}
                                 checked={showLabel}
@@ -124,7 +124,7 @@ function Inspector(props) {
                                     label={__('Field Label', 'zoloblocks')}
                                     value={label}
                                     onChange={(v) => setAttributes({ label: v })}
-                                    placeholder={__('Enter label..', 'zoloblocks')}
+                                    placeholder={__('Enter Label..', 'zoloblocks')}
                                     help={__('This will be used as the label for the field', 'zoloblocks')}
                                 />
                             )}

@@ -1,3 +1,30 @@
+### 2.2.5 [March 24, 2025]
+
+- **New Features:**
+- Private link feature for accessing the maintenance mode site.
+
+- **Fixes:**
+- Panel Body: Panel body toggle issue when opened.
+- Block Styles: Device-specific CSS not generating correctly in the editor.
+- Unfold Block: Collapse functionality and text display issues fixed.
+- Classic Theme: Layout breaking issue resolved.
+- Mega Menu Block: Full-width feature now responsive.
+- Advanced Heading Block: Subheading icon style controls reappear as expected.
+- List Block: Description control inside repeater fixed.
+- Slider Block: Navigation icon border display corrected.
+- Advanced Paragraph Block: Drop cap alignment issue fixed.
+- Navigation Item: Border display issue resolved.
+- Template Library: Empty appearance issue.
+- Table of Content: merge marker controls with list controls.
+- Post Meta: hover color and comment icon issue.
+
+- **Improvements:**
+- All translatable strings updated to Title Case.
+- Standardized extension naming conventions.
+- Improved editing experience for the Post Content Block.
+- Template library performance optimization.
+
+
 ### 2.2.4 [March 11, 2025]
 
 - **New Features:**

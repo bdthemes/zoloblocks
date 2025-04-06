@@ -32,7 +32,7 @@ import {
     TOGGLE_ICON_H_SHADOW,
 
     //list
-    LIST_MARKER_SIZE,
+    LIST_SPACE_BETWEEN,
 
     // close
     CLOSE_ICON_SIZE,
@@ -88,7 +88,7 @@ function Style({ props }) {
         listColor,
         listHoverColor,
         listActiveColor,
-        listMarkerColor,
+        // listMarkerColor,
         // close
         closeIconColor,
         closeIconHoverColor,
@@ -323,12 +323,12 @@ function Style({ props }) {
         attributes,
     });
     const {
-        desktopRangeStyle: listMarkerSizeDesk,
-        tabRangeStyle: listMarkerSizeTab,
-        mobRangeStyle: listMarkerSizeMob,
+        desktopRangeStyle: listSpaceBetweenDesk,
+        tabRangeStyle: listSpaceBetweenTab,
+        mobRangeStyle: listSpaceBetweeneMob,
     } = generateResRangeStyle({
-        controlName: LIST_MARKER_SIZE,
-        property: 'font-size',
+        controlName: LIST_SPACE_BETWEEN,
+        property: 'margin-bottom',
         attributes,
     });
 
@@ -568,23 +568,20 @@ function Style({ props }) {
       ${toggleHoverIconColor ? `fill:${toggleHoverIconColor};` : ''}
     }
 
-    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list a{
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li{
      ${listTypoDesk}
      ${listColor ? `color:${listColor};` : ''}
     }
-    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list a:hover{
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li:hover{
       ${listHoverColor ? `color:${listHoverColor};` : ''}
     }
-    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li.active> a{
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li.active {
      ${listActiveColor ? `color:${listActiveColor};` : ''}
     }
-   .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
-     ${listMarkerColor ? `color:${listMarkerColor};` : ''}
-     ${listMarkerSizeDesk}
-   }
-   .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ul li{
-     ${listMarkerColor ? `color:${listMarkerColor};` : ''}
-   }
+
+    .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content li{
+          ${listSpaceBetweenDesk}
+        }
 
     .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{
         ${closeIconBgDesk}
@@ -669,13 +666,10 @@ function Style({ props }) {
           ${toggleIconHoverBgTab}
         }
 
-        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list a{
+        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li{
           ${listTypoTab}
         }
-        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
-          ${listMarkerSizeTab}
-        }
-        
+
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{
             ${closeIconBgTab}
             ${closeIconPaddingTab}
@@ -704,6 +698,10 @@ function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open:hover{
             ${openBtnHoverBgTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content li{
+          ${listSpaceBetweenTab}
         }
 
     `;
@@ -748,11 +746,11 @@ function Style({ props }) {
           ${toggleIconHoverBgMob}
         }
 
-        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list a{
+        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content .zolo-toc-list li{
           ${listTypoMob}
         }
-        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content ol li::before{
-          ${listMarkerSizeMob}
+        .${uniqueId}.wp-block-zolo-table-of-content.zolo-block .zolo-toc-content li{
+          ${listSpaceBetweeneMob}
         }
 
          .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-close{

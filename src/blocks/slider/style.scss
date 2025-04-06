@@ -147,6 +147,7 @@
             border-color: var(--zoloblocks-brand-color);
             transition: all 0.3s ease;
             opacity: 1;
+            outline: none;
 
             &.swiper-pagination-bullet-active {
                 width: 12px;
@@ -174,6 +175,7 @@
         border-radius: var(--zolo-navigation-border-radius);
         transition: all 0.3s ease;
         font-size: clamp(0.625rem, 1.5vw, 0.875rem);
+        outline: none;
         &:hover {
             fill: var(--zoloblocks-brand-button-color);
             color: var(--zoloblocks-brand-button-color);

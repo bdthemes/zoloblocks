@@ -48,7 +48,7 @@ export const TOGGLE_ICON_H_BG = 'toggleIconHoverBg';
 export const TOGGLE_ICON_H_SHADOW = 'toggleIconHoverShadow';
 
 //list
-export const LIST_MARKER_SIZE = 'headerIconSize';
+export const LIST_SPACE_BETWEEN = 'listSpaceBetween';
 
 // close
 export const CLOSE_ICON_SIZE = 'closeIconSize';
