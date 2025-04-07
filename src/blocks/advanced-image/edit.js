@@ -28,7 +28,7 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, clientId, isSelected, name } = props;
     const {
         preview,
         uniqueId,
@@ -100,7 +100,7 @@ export default function Edit(props) {
 
     return (
         <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} block={name}  />}
             <Style props={props} />
             {photo && (
                 <BlockControls>

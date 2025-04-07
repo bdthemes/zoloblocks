@@ -11,6 +11,7 @@ const {
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
+import { delay } from 'motion';
 
 /**
  * Attributes for the visibility extension.
@@ -541,6 +542,34 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/cursors', (settings) => {
             ...generateBorderAttributies('imageBorder'),
             ...generateDimensionAttributes('cursorImageBorderRadius'),
             ...generateNormalBGAttributes('textBgColor'),
+        };
+    }
+
+    return settings;
+});
+
+/**
+* Attributes for the background parallax.
+*/
+/**
+ * Attributes for the parallax animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/image-parallax', (settings) => {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            imageParallax: {
+                type: 'object',
+                default: {
+                    active: false,
+                    orientation: 'up',
+                    scale: 1.4,
+                    delay: 0.4,
+
+                },
+            },
         };
     }
 
