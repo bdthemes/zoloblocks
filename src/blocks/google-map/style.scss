@@ -2,6 +2,7 @@
     --zolo-map-height: clamp(18.75rem, 50vw, 43.75rem);
     --zolo-marker-info-margin: 10px 0 0;
     --zolo-gm-style-padding: 15px;
+    width: 100%;
     .zolo-gmap-wrapper {
         height: var(--zolo-map-height);
         overflow: hidden;

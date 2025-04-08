@@ -97,10 +97,10 @@ const attributes = {
         defaultAlign: 'row',
     }),
     ...generateResAlignmentAttributies(FLEX_ALIGN, {
-        defaultAlign: 'center',
+        // defaultAlign: 'center',
     }),
     ...generateResAlignmentAttributies(FLEX_JUSTIFY, {
-        defaultAlign: 'center',
+        // defaultAlign: 'center',
     }),
     ...generateResAlignmentAttributies(FLEX_WRAP, {
         defaultAlign: 'nowrap',
