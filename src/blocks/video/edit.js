@@ -83,6 +83,7 @@ export default function Edit(props) {
         return () => {
             if (lightboxRef.current) {
                 lightboxRef.current = null;
+                setOpenPopup(false);
             }
         };
     }, [attributes, openPopup]);
