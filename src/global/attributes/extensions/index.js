@@ -26,7 +26,6 @@ addFilter('blocks.registerBlockType', 'zolo/zoloBlocksPro/addVisibilityAttribute
             },
             visibilityType: {
                 type: 'string',
-                default: 'cd_show',
             },
             displayConditions: {
                 type: 'array',
