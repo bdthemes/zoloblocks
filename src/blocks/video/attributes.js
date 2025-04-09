@@ -30,6 +30,8 @@ import {
     POPUP_IMAGE_BG_COLOR,
     INLINE_VIDEO_CONTANER_WIDTH,
     INLINE_VIDEO_CONTANER_HEIGHT,
+    VIDEO_OVERLAY,
+    VIDEO_OVERLAY_SIZE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -254,6 +256,11 @@ const attributes = {
         type: 'number',
     },
 
+    videoOverlay: {
+        type: 'boolean',
+        default: false,
+    },
+
     ...generateResAlignmentAttributies(VIDEO_ALIGN),
     ...generateResAlignmentAttributies(POPUP_BUTTON_ALIGNMENT),
 
@@ -274,6 +281,12 @@ const attributes = {
 
     ...generateResRangeAttributies(INLINE_VIDEO_CONTANER_WIDTH),
     ...generateResRangeAttributies(INLINE_VIDEO_CONTANER_HEIGHT),
+
+    ...generateNormalBGAttributes(VIDEO_OVERLAY),
+
+    ...generateResRangeAttributies(VIDEO_OVERLAY_SIZE, {
+        defaultUnit: '%',
+    }),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 };

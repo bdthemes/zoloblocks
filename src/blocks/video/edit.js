@@ -13,23 +13,18 @@ export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
     const [openPopup, setOpenPopup] = useState(false);
     const blocksProps = useBlockProps({
-        className: classnames(attributes?.uniqueId, classArrayToStr(attributes?.parentClasses)),
+        className: classnames(
+            attributes?.uniqueId,
+            classArrayToStr(attributes?.parentClasses),
+            attributes?.videoOverlay ? 'has-overlay' : ''
+        ),
     });
+
     const customVideoRef = useRef(null);
     const popupRef = useRef(null);
     const lightboxRef = useRef(null);
 
-
-    const {
-        autoPlay,
-        loop,
-        mute,
-        playerControl,
-        showDownloadButton,
-        preload,
-        posterImage,
-        imageRes,
-    } = attributes;
+    const { autoPlay, loop, mute, playerControl, showDownloadButton, preload, posterImage, imageRes } = attributes;
 
     const handleEndTime = () => {
         if (customVideoRef.current.currentTime >= attributes?.endTime) {
@@ -63,7 +58,7 @@ export default function Edit(props) {
 
     useEffect(() => {
         if (!popupRef.current || attributes?.videoLayoutType !== 'popup') return;
-        
+
         const ownerWindow = popupRef.current.ownerDocument.defaultView;
         const { FsLightbox } = ownerWindow;
         if (!FsLightbox) return;
@@ -73,9 +68,9 @@ export default function Edit(props) {
             lightboxRef.current.props.sources = [popupRef?.current];
             lightboxRef.current.onClose = () => {
                 setOpenPopup(false);
-            }
+            };
         }
-        
+
         if (openPopup && lightboxRef.current) {
             lightboxRef.current.open();
         }
@@ -126,7 +121,13 @@ export default function Edit(props) {
                             </>
                         </a>
 
-                        <div ref={popupRef} className="video-player-popup-content" id={`video-player-popup-${attributes?.uniqueId}`}>
+                        <div
+                            ref={popupRef}
+                            className={classnames('video-player-popup-content', attributes?.uniqueId, {
+                                'has-overlay': attributes?.videoOverlay,
+                            })}
+                            id={`video-player-popup-${attributes?.uniqueId}`}
+                        >
                             <EmbedPlayer attributes={attributes} anchor={customVideoRef} isEdit={true} />
                         </div>
                     </div>

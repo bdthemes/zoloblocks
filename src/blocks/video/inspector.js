@@ -58,6 +58,8 @@ import {
     POPUP_IMAGE_BG_COLOR,
     INLINE_VIDEO_CONTANER_WIDTH,
     INLINE_VIDEO_CONTANER_HEIGHT,
+    VIDEO_OVERLAY_SIZE,
+    VIDEO_OVERLAY,
 } from './constants';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
@@ -499,6 +501,7 @@ export default function Edit(props) {
                                         />
                                     </>
                                 )}
+
                                 {videoSource !== 'custom' && (
                                     <>
                                         <ToggleControl
@@ -514,6 +517,34 @@ export default function Edit(props) {
                                             When you turn on privacy mode, YouTube/Vimeo won't store information about visitors on your
                                             website unless they play the video.
                                         </p>
+                                    </>
+                                )}
+                                <CardDivider />
+                                <ToggleControl
+                                    label={__('Overlay', 'zoloblocks')}
+                                    checked={attributes?.videoOverlay}
+                                    onChange={() =>
+                                        setAttributes({
+                                            videoOverlay: !attributes?.videoOverlay,
+                                        })
+                                    }
+                                />
+
+                                {attributes?.videoOverlay && (
+                                    <>
+                                        <NormalBGControl
+                                            label={__('Background', 'zoloblocks')}
+                                            controlName={VIDEO_OVERLAY}
+                                            requiredProps={requiredProps}
+                                            noMainBGIMG={false}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={VIDEO_OVERLAY_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                        />
                                     </>
                                 )}
                             </ZoloPanelBody>

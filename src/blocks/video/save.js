@@ -11,7 +11,11 @@ const { classArrayToStr } = window.zoloModule;
 export default function Save(props) {
     const { attributes } = props;
     const blocksProps = useBlockProps.save({
-        className: classnames(attributes?.uniqueId, classArrayToStr(attributes?.parentClasses)),
+        className: classnames(
+            attributes?.uniqueId,
+            classArrayToStr(attributes?.parentClasses),
+            attributes?.videoOverlay ? 'has-overlay' : ''
+        ),
     });
 
     let markup = null;
@@ -50,7 +54,12 @@ export default function Save(props) {
                                 )}
                             </>
                         </a>
-                        <div className="video-player-popup-content" id={`video-player-popup-${attributes?.uniqueId}`}>
+                        <div
+                            className={classnames('video-player-popup-content', attributes?.uniqueId, {
+                                'has-overlay': attributes?.videoOverlay,
+                            })}
+                            id={`video-player-popup-${attributes?.uniqueId}`}
+                        >
                             <EmbedPlayer attributes={attributes} anchor={null} />
                         </div>
                     </div>

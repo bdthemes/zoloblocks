@@ -36,6 +36,8 @@ import {
     POPUP_IMAGE_BG_COLOR,
     INLINE_VIDEO_CONTANER_WIDTH,
     INLINE_VIDEO_CONTANER_HEIGHT,
+    VIDEO_OVERLAY,
+    VIDEO_OVERLAY_SIZE,
 } from './constants';
 
 import { POPUP_BTN_LABEL_TYPOGRAPHY, POPUP_BTN_SUB_LABEL_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -238,6 +240,28 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // video overlay
+
+    const {
+        backgroundStylesDesktop: videoOverlayDesk,
+        backgroundStylesTab: videoOverlayTab,
+        backgroundStylesMob: videoOverlayMob,
+    } = generateNormalBGControlStyles({
+        controlName: VIDEO_OVERLAY,
+        noMainBGIMG: false,
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: videoOverlaySizeDesk,
+        tabRangeStyle: videoOverlaySizeTab,
+        mobRangeStyle: videoOverlaySizeMob,
+    } = generateResRangeStyle({
+        controlName: VIDEO_OVERLAY_SIZE,
+        property: '--overlay-size',
+        attributes,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
@@ -301,6 +325,12 @@ export default function Style({ props }) {
              ${popupImageBgColorDesk}
              ${popupImageOpacity ? `opacity: ${popupImageOpacity};` : ''}
         }
+
+        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-container:before,
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay:before {
+            ${videoOverlayDesk}
+            ${videoOverlaySizeDesk}
+        }
     `;
 
     const tabletAllStyle = `
@@ -352,6 +382,12 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button:before {
              ${popupImageBgColorTab}
         }
+        
+        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-container:before,
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay:before {
+            ${videoOverlayTab}
+            ${videoOverlaySizeTab}
+        }
     `;
 
     const mobileAllStyle = ` 
@@ -401,6 +437,12 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-video .image .popup-trigger-button:before {
              ${popupImageBgColorMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-container:before,
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay:before {
+            ${videoOverlayMob}
+            ${videoOverlaySizeMob}
         }
     `;
 

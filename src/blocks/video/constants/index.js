@@ -31,3 +31,5 @@ export const POPUP_IMAGE_PADDING = 'popupImagePadding';
 export const POPUP_IMAGE_BG_COLOR = 'popupImageBgColor';
 export const INLINE_VIDEO_CONTANER_WIDTH = 'inlineVideoContainerWidth';
 export const INLINE_VIDEO_CONTANER_HEIGHT = 'inlineVideoContainerHeight';
+export const VIDEO_OVERLAY = 'videoOverlay';
+export const VIDEO_OVERLAY_SIZE = 'videoOverlaySize';

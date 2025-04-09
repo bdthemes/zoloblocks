@@ -1,4 +1,20 @@
 .wp-block-zolo-video {
+    // &.has-overlay {
+    //     .zolo-video-container {
+    //         position: relative;
+    //         --overlay-size: 100%;
+    //         &:before {
+    //             position: absolute;
+    //             content: '';
+    //             top: 50%;
+    //             left: 50%;
+    //             transform: translate(-50%, -50%);
+    //             width: var(--overlay-size);
+    //             height: var(--overlay-size);
+    //         }
+    //     }
+    // }
+
     .video-player-popup-content {
         display: none;
     }
@@ -276,5 +292,24 @@
                 width: 100%;
             }
         }
+    }
+    iframe {
+        vertical-align: middle;
+    }
+}
+
+.wp-block-zolo-video.has-overlay .zolo-video-container,
+.fslightbox-container .video-player-popup-content.has-overlay {
+    position: relative;
+    --overlay-size: 100%;
+    &:before {
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: var(--overlay-size);
+        height: var(--overlay-size);
+        z-index: 99;
     }
 }
