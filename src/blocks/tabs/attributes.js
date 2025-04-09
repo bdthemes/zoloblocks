@@ -248,7 +248,8 @@ const attributes = {
     //tabs wrap
     ...generateNormalBGAttributes(TAB_WRAP_BGCOLOR),
     ...generateBorderAttributies(TAB_WRAP_BORDER),
-    ...generateBorderAttributies(TAB_WRAP_RADIUS),
+    // ...generateBorderAttributies(TAB_WRAP_RADIUS),
+    ...generateDimensionAttributes(TAB_WRAP_RADIUS),
     ...generateDimensionAttributes(TAB_WRAP_PADDING),
     ...generateBoxShadowAttributies(TAB_WRAP_BSHADOW),
     //tabs wrap
