@@ -14,6 +14,9 @@
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge,*/
+    label.zolo-control-label {
+        margin-bottom: 8px;
+    }
 }
 
 .top-label {
@@ -70,7 +73,7 @@
 .zolo-multi-rangle-control .thumb::before {
     z-index: 111;
     cursor: pointer;
-    content: "";
+    content: '';
     position: absolute;
     top: -4px;
     height: 10px;
@@ -81,7 +84,7 @@
 }
 
 .zolo-multi-rangle-control .thumb::after {
-    content: "";
+    content: '';
     position: absolute;
     top: -6px;
     height: 14px;
@@ -103,7 +106,6 @@
 .zolo-multi-rangle-control .thumb-right::after {
     right: -14px;
 }
-
 
 // .zolo-multi-rangle-control .input-type-range:focus + .thumb::after {
 //     content: '';
@@ -130,7 +132,6 @@
     color: white;
     font-weight: 700;
 }
-
 
 .zolo-multi-rangle-control .thumb-left * {
     right: -10px;
@@ -178,7 +179,7 @@
 }
 
 .zolo-multi-rangle-control .thumb *::before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 100%;
     left: 50%;
@@ -186,7 +187,6 @@
     border-width: 4px;
     border-style: solid;
     border-color: transparent transparent black transparent;
-
 }
 
 // .zolo-multi-rangle-control .thumb.active:before,

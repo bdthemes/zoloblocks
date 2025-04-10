@@ -158,6 +158,7 @@ const Style = ({ props }) => {
             ${containerDeskMinHeight}
         }
 
+
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
             ${containerDeskGap}
@@ -166,6 +167,14 @@ const Style = ({ props }) => {
             ${flexJustifyDesk}
             ${flexAlignDesk}
         }
+
+   .zolo-background-parallax-image {
+        background-image: ${
+            attributes?.advBtnBgbgImageURL
+                ? `url("${attributes?.advBtnBgbgImageURL}")`
+                : 'none'
+        };
+    }
     `;
 
     const tabletAllStyle = `
@@ -231,7 +240,7 @@ const Style = ({ props }) => {
             ${containerMobWidth}
             ${innerContainerMobWidth}
         }
-            
+
         .${uniqueId} {
             ${containerMobMinHeight}
         }
