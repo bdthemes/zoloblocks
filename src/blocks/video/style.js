@@ -326,8 +326,8 @@ export default function Style({ props }) {
              ${popupImageOpacity ? `opacity: ${popupImageOpacity};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-container:before,
-        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay:before {
+        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-overlay,
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay{
             ${videoOverlayDesk}
             ${videoOverlaySizeDesk}
         }
@@ -383,8 +383,8 @@ export default function Style({ props }) {
              ${popupImageBgColorTab}
         }
         
-        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-container:before,
-        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay:before {
+        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-overlay,
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay{
             ${videoOverlayTab}
             ${videoOverlaySizeTab}
         }
@@ -439,8 +439,8 @@ export default function Style({ props }) {
              ${popupImageBgColorMob}
         }
 
-        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-container:before,
-        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay:before {
+        .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-overlay,
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay{
             ${videoOverlayMob}
             ${videoOverlaySizeMob}
         }

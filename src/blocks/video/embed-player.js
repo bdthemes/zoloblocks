@@ -13,7 +13,7 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
                 console.warn('Invalid YouTube URL:', attributes?.youtubeUrl?.url);
                 break;
             }
-            
+
             const queryParams = {
                 enablejsapi: 1,
                 mute: attributes?.mute ? 1 : 0,
@@ -83,23 +83,17 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
         }
 
         case 'custom': {
-            const customVideoUrl = attributes?.isExternalCustomUrl && attributes?.externalCustomVideoUrl?.url
-                ? attributes?.externalCustomVideoUrl?.url
-                : attributes?.customVideo || null;
+            const customVideoUrl =
+                attributes?.isExternalCustomUrl && attributes?.externalCustomVideoUrl?.url
+                    ? attributes?.externalCustomVideoUrl?.url
+                    : attributes?.customVideo || null;
 
             if (!customVideoUrl) {
                 console.warn('Custom video URL is missing');
                 break;
             }
 
-            iframeMarkup = (
-                <CustomPlayer
-                    src={customVideoUrl}
-                    attributes={attributes}
-                    anchor={anchor}
-                    isEdit={isEdit}
-                />
-            );
+            iframeMarkup = <CustomPlayer src={customVideoUrl} attributes={attributes} anchor={anchor} isEdit={isEdit} />;
             break;
         }
 
@@ -109,6 +103,7 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
 
     return (
         <div className="zolo-video-container">
+            {attributes?.videoOverlay && <div className="zolo-video-overlay"></div>}
             {iframeMarkup || <p>{__('No video available.', 'zoloblocks')}</p>}
         </div>
     );

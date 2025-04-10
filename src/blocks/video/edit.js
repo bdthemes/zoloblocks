@@ -128,6 +128,7 @@ export default function Edit(props) {
                             })}
                             id={`video-player-popup-${attributes?.uniqueId}`}
                         >
+                            {attributes?.videoOverlay && <div className="zolo-video-overlay"></div>}
                             <EmbedPlayer attributes={attributes} anchor={customVideoRef} isEdit={true} />
                         </div>
                     </div>
