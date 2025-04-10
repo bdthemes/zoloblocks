@@ -162,5 +162,13 @@ return apply_filters('zolo_extensions', [
         'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/highlight',
         'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
+    ],
+    'image-parallax' => [
+        'name' => 'image-parallax',
+        'title' => __('Image Parallax', 'zoloblocks'),
+        'status' => false,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/image-parallax',
+        'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
     ]
 ]);
