@@ -79,6 +79,14 @@ return apply_filters('zolo_extensions', [
         'demo'   => 'https://demo.zoloblocks.com/backdrop-filters',
         'video'  => 'https://www.youtube.com/watch?v=8_oI0P3bj6w&t',
     ],
+    'background-parallax'          => [
+        'name'   => 'background-parallax',
+        'title'  => __('Background Parallax', 'zoloblocks'),
+        'status' => false,
+        'is_pro' => true,
+        'demo'   => 'https://demo.zoloblocks.com/background-parallax',
+        'video'  => 'https://www.youtube.com/watch?v=8_oI0P3bj6w&t',
+    ],
     'export-pattern'          => [
         'name'   => 'export-pattern',
         'title'  => __('Export Pattern', 'zoloblocks'),
@@ -153,6 +161,14 @@ return apply_filters('zolo_extensions', [
         'status' => true,
         'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/highlight',
+        'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
+    ],
+    'image-parallax' => [
+        'name' => 'image-parallax',
+        'title' => __('Image Parallax', 'zoloblocks'),
+        'status' => false,
+        'is_pro' => true,
+        'demo' => 'https://demo.zoloblocks.com/image-parallax',
         'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
     ]
 ]);

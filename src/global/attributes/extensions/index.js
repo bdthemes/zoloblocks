@@ -11,6 +11,7 @@ const {
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
+import { delay } from 'motion';
 
 /**
  * Attributes for the visibility extension.
@@ -102,6 +103,81 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
             parallaxAnimation: {
                 type: 'object',
                 default: {
+                    vertical: {
+                        direction: 'top',
+                        speed: 100,
+                        viewport: {
+                            minValue: 0,
+                            maxValue: 100,
+                            unit: '%',
+                        },
+                    },
+                    horizontal: {
+                        direction: 'left',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    },
+                    rotate: {
+                        speed: 0,
+                        direction: 'left',
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    },
+                    scale: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    },
+                    blur: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 0,
+                            maxValue: 100,
+                            unit: '%',
+                        },
+                    },
+                    opacity: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    }
+                },
+            },
+        };
+    }
+
+    return settings;
+});
+
+/**
+ * Attributes for the parallax animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/background-parallax', (settings) => {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            backgroundParallax: {
+                type: 'object',
+                default: {
+                    active: false,
                     vertical: {
                         direction: 'top',
                         speed: 100,
@@ -547,6 +623,34 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/cursors', (settings) => {
             ...generateBorderAttributies('imageBorder'),
             ...generateDimensionAttributes('cursorImageBorderRadius'),
             ...generateNormalBGAttributes('textBgColor'),
+        };
+    }
+
+    return settings;
+});
+
+/**
+* Attributes for the background parallax.
+*/
+/**
+ * Attributes for the parallax animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/image-parallax', (settings) => {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            imageParallax: {
+                type: 'object',
+                default: {
+                    active: false,
+                    orientation: 'up',
+                    scale: 1.4,
+                    delay: 0.4,
+
+                },
+            },
         };
     }
 
