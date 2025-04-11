@@ -447,6 +447,61 @@
     &.zolo-post-style-4 .zolo-post-meta-box {
         padding: clamp(0.938rem, 2vw, 1.875rem);
     }
+    &.zolo-post-style-6 {
+        .zolo-post-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: #ebe2e2 0px 0px 20px 0px;
+        }
+        .zolo-post-content {
+            padding: 20px;
+        }
+        .zolo-post-inner-content {
+            background: #050505;
+            margin-top: -50px;
+            z-index: 1;
+            position: relative;
+            padding: 20px;
+            border-radius: 6px;
+        }
+        .zolo-post-title a {
+            color: #fff;
+        }
+
+        .zolo-post-title a:hover {
+            color: var(--zoloblocks-brand-color);
+        }
+        .zolo-post-image {
+            border-radius: 0;
+        }
+
+        .zolo-post-category a {
+            color: #e5e6f4;
+            border: 1px solid #75747a;
+            border-radius: 30px;
+        }
+        .zolo-post-bottom-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .zolo-post-dateTime {
+            margin-top: 0;
+        }
+
+        .zolo-post-link-btn {
+            margin: 0;
+            line-height: 1;
+            a {
+                padding: 0;
+                font-weight: 500;
+                svg {
+                    fill: currentColor;
+                }
+            }
+        }
+    }
 }
 
 // pagination css  start

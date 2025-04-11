@@ -248,9 +248,9 @@ function RenderView({ attributes, setAttributes }) {
                                         </div>
                                     )}
 
-                                    {showMeta && preset !== 'style-5' && dateRTimeHtml}
+                                    {showMeta && preset !== 'style-5' && preset !== 'style-6' && dateRTimeHtml}
 
-                                    {showAuthor && preset !== 'style-5' && authorInfoHtml}
+                                    {showAuthor && preset !== 'style-5' && preset !== 'style-6' && authorInfoHtml}
 
                                     {preset === 'style-5' && (
                                         <div className="zolo-post-meta-wrap">
@@ -278,14 +278,28 @@ function RenderView({ attributes, setAttributes }) {
                                                 </p>
                                             </div>
                                         )}
-                                        {showMeta && preset != 'style-5' && dateRTimeHtml}
+                                        {showMeta && preset !== 'style-5' && preset !== 'style-6' && dateRTimeHtml}
                                     </div>
-                                    {showReadMore && (
+
+                                    {showReadMore && preset !== 'style-6' && (
                                         <div className="zolo-post-link-btn">
                                             <a href={post.permalink} onClick={(e) => e.preventDefault()}>
                                                 {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
                                                 {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                             </a>
+                                        </div>
+                                    )}
+                                    {preset === 'style-6' && (
+                                        <div className="zolo-post-bottom-content">
+                                            {showMeta && dateRTimeHtml}
+                                            {showReadMore && (
+                                                <div className="zolo-post-link-btn">
+                                                    <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                                        {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
+                                                        {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
+                                                    </a>
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>

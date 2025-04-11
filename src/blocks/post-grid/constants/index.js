@@ -10,6 +10,7 @@ export const PRESETS = [
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
     { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
     { label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-5', disabled: true },
+    { label: __('Style 6 (Pro)', 'zoloblocks'), value: 'style-6', disabled: false },
 ];
 
 export const POST_TITLE_ANIMATION = [

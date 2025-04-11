@@ -206,6 +206,14 @@ function Inspector(props) {
                     zolo_gridColumnsRange: 3,
                 });
                 break;
+            case 'style-6':
+                setAttributes({
+                    showExcerpt: false,
+                    showReadMore: true,
+                    showThumbnail: true,
+                    zolo_gridColumnsRange: 3,
+                });
+                break;
             default:
                 break;
         }
