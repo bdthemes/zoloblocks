@@ -168,7 +168,7 @@ const Style = ({ props }) => {
             ${flexAlignDesk}
         }
 
-   .zolo-background-parallax-image {
+     .${uniqueId} .zolo-background-parallax-image {
         background-image: ${attributes?.advBtnBgbgImageURL ? `url("${attributes?.advBtnBgbgImageURL}")` : 'none'};
     }
     `;
