@@ -10,7 +10,7 @@ const { Button, PanelBody, TextControl, FormTokenField } = wp.components;
 import { socialMediaInfo } from './constants';
 
 // uppercase first letter of string
-const Sortable = ({ socialMedia, setAttributes }) => {
+const Sortable = ({ attributes, socialMedia, setAttributes }) => {
     const SocialMediaOptions = socialMediaInfo.map((item) => {
         return {
             label: item.label,
@@ -94,17 +94,20 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                                 })
                                             }
                                         />
-                                        <LinkControl
-                                            label={__('Link', 'zoloblocks')}
-                                            value={profile.link}
-                                            onChange={(value) => {
-                                                const newItems = [...socialMedia];
-                                                newItems[index].link = value;
-                                                setAttributes({
-                                                    socialMedia: newItems,
-                                                });
-                                            }}
-                                        />
+                                        {!attributes?.dynamicLink && (
+                                            <LinkControl
+                                                label={__('Link', 'zoloblocks')}
+                                                value={profile.link}
+                                                onChange={(value) => {
+                                                    const newItems = [...socialMedia];
+                                                    newItems[index].link = value;
+                                                    setAttributes({
+                                                        socialMedia: newItems,
+                                                    });
+                                                }}
+                                            />
+                                        )}
+
                                         <FormTokenField
                                             label="Has Tags"
                                             value={profile.tags}
