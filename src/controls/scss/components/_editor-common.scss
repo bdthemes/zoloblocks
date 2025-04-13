@@ -613,7 +613,7 @@ textarea[readonly] {
 }
 
 .zolo-inline-control-wrapper {
-    .zolo-css-class input:focus{
+    .zolo-css-class input:focus {
         border: none !important;
         box-shadow: none !important;
     }
@@ -992,5 +992,34 @@ textarea[readonly] {
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+}
+
+.zolo-css-class-control {
+    .zolo-css-class {
+        [class*='control'] {
+            border: 1px solid #e9e9e9;
+            border-radius: 6px;
+
+            & > div {
+                padding: 0 8px;
+            }
+        }
+    }
+}
+.zolo-multiselect-wrap {
+    [class*='control'] {
+        border: 1px solid #e9e9e9;
+        border-radius: 6px;
+
+        & > div {
+            padding: 0 8px;
+        }
+        [class*='indicatorSeparator'] {
+            display: none;
+        }
+        [class*='indicatorContainer'] {
+            padding: 0;
+        }
     }
 }

@@ -149,7 +149,7 @@ const Style = ({ props }) => {
         }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerDeskWidth}
             ${innerContainerDeskWidth}
         }
@@ -157,6 +157,7 @@ const Style = ({ props }) => {
         .${uniqueId} {
             ${containerDeskMinHeight}
         }
+
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
@@ -166,6 +167,10 @@ const Style = ({ props }) => {
             ${flexJustifyDesk}
             ${flexAlignDesk}
         }
+
+     .${uniqueId} .zolo-background-parallax-image {
+        background-image: ${attributes?.advBtnBgbgImageURL ? `url("${attributes?.advBtnBgbgImageURL}")` : 'none'};
+    }
     `;
 
     const tabletAllStyle = `
@@ -188,7 +193,7 @@ const Style = ({ props }) => {
         }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerTabWidth}
             ${innerContainerTabWidth}
         }
@@ -227,11 +232,11 @@ const Style = ({ props }) => {
         }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerMobWidth}
             ${innerContainerMobWidth}
         }
-            
+
         .${uniqueId} {
             ${containerMobMinHeight}
         }

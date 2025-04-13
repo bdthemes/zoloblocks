@@ -26,7 +26,6 @@ import { CardDivider } from '@wordpress/components';
 const BGControl = (props) => {
     const { controlName, requiredProps, noMainBGImg, video } = props;
     const { setAttributes, attributes, resMode } = requiredProps;
-    const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
     const backgroundVideo = applyFilters('zolo.extensions.controls.backgroundVideo', [], requiredProps);
     const {
         [`${controlName}backgroundType`]: backgroundType,
