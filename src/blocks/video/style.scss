@@ -230,13 +230,13 @@
         .popup-button-sub-label {
             font-size: 14px;
             color: #3d3f46;
-            transition: color 3s ease;
+            transition: color 0.3s ease;
         }
         .popup-button-label {
             font-weight: 600;
             color: #373642;
             font-size: 20px;
-            transition: color 3s ease;
+            transition: color 0.3s ease;
         }
         &:hover {
             .popup-button-icon {

@@ -7,8 +7,14 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
 
     switch (attributes?.videoSource) {
         case 'youtube': {
-            const youtubeVideoId = new URL(attributes?.youtubeUrl?.url).searchParams.get('v');
+            // Check if the YouTube URL is valid
+            if (!attributes?.youtubeUrl?.url) {
+                console.warn('Invalid YouTube URL:', attributes?.youtubeUrl?.url);
+                break;
+            }
 
+            const youtubeVideoId = new URL(attributes?.youtubeUrl?.url).searchParams.get('v');
+            
             if (!youtubeVideoId) {
                 console.warn('Invalid YouTube URL:', attributes?.youtubeUrl?.url);
                 break;
