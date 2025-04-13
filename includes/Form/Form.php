@@ -226,7 +226,7 @@ if (!class_exists('Form')) {
                 'emailBCC' => '',
                 'emailSubject' => 'New Form Submission',
             ]);
-            
+
             // TODO: Need to move the code below to Zolo_Blocks_Pro and change the notificationType with a filter
             if (!class_exists('Zolo_Blocks_Pro')) {
                 $form_settings['notificationType'] = 'send_mail';
@@ -263,7 +263,7 @@ if (!class_exists('Form')) {
         {
             $form_settings = $data['form_settings'];
             $form_data = $data['form_data'];
-    
+
             $subject = $form_settings['emailSubject'];
             $message = $this->build_email_message($form_settings, $form_data);
 
@@ -291,7 +291,7 @@ if (!class_exists('Form')) {
 
             if ($mail_sent) {
                 return true;
-            } 
+            }
 
             return false;
         }

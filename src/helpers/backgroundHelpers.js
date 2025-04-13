@@ -896,18 +896,22 @@ export const generateBackgroundControlStyles = ({
         //  attributes for ovl_hoverType hover end ⬇
 
         // background overlay attributes end
+        backgroundParallax
     } = attributes;
 
     const backgroundStylesDesktop = `
   ${
-      (BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL) || (backgroundType === 'gradient' && gradientColor)
+      !backgroundParallax?.active &&
+      ((BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL) || (backgroundType === 'gradient' && gradientColor))
           ? `
-          ${
-              customGradient
-                  ? gradientColor
-                  : `background-image: ${backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'};`
-          }
-    `
+        ${
+            customGradient
+                ? gradientColor
+                : `background-image: ${
+                      backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'
+                  };`
+        }
+      `
           : ' '
   }
 
@@ -1147,7 +1151,7 @@ export const generateBackgroundControlStyles = ({
             right: 0;
             left: 0;
             z-index: -1 !important;
-            transition: all .3s ease; 
+            transition: all .3s ease;
             ${
                 (BGnoOverlayBgi === false && overlayType === 'classic' && ovl_bgImageURL) || (overlayType === 'gradient' && overlayGradient)
                     ? `

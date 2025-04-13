@@ -131,6 +131,7 @@ export const AdvancedOptions = (props) => {
     const particles = applyFilters('zolo.extensions.controls.particles', [], block, panelProps);
     const tilt = applyFilters('zolo.extensions.controls.tilt', [], block, panelProps);
     const interactions = applyFilters('zolo.extensions.controls.interactions', [], block, panelProps);
+    const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], block, panelProps);
 
     return (
         <>
@@ -330,7 +331,7 @@ export const AdvancedOptions = (props) => {
                         value={zoloId}
                         help={__('Add custom ID to the block WITHOUT the Pound key. e.g: my-id', 'zoloblocks')}
                     />
-                    <div div className="zolo-flex-row-contdwdrol">
+                    <div div className="zolo-css-class-control">
                         <h3 className="zolo-control-label">{__('CSS Classes', 'zoloblocks')}</h3>
                         <CreatableSelect
                             className="zolo-css-class"
@@ -391,6 +392,7 @@ export const AdvancedOptions = (props) => {
                             requiredProps={requiredProps}
                             particles={particles}
                             video={block === 'zolo/container' || block === 'zolo/slide' ? true : false}
+                            backgroundParallax={backgroundParallax}
                         />
                     </div>
                 </ZoloPanelBody>

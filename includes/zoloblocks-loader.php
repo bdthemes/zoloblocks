@@ -29,6 +29,7 @@ use Zolo\Form\Form;
 use Zolo\Form\Recaptcha;
 use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
+use Zolo\Blocks\SocialShareBlock;
 use Zolo\Extensions\ExtensionsLoader;
 
 // Exit if accessed directly.
@@ -89,6 +90,7 @@ class ZoloBlocks_Loader {
 
         // notice block
         NoticeBlock::getInstance();
+        SocialShareBlock::getInstance();
 
         // popup
         PopupBuilder::getInstance();

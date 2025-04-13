@@ -1,0 +1,303 @@
+.wp-block-zolo-video {
+    .video-player-popup-content {
+        display: none;
+    }
+
+    &.is-selected {
+        iframe {
+            pointer-events: all;
+        }
+    }
+
+    .zolo-custom-video-player {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .zolo-custom-player-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        &:hover {
+            .custom-player-progress-container {
+                transform: translateY(0);
+                .custom-player-tooltip.visible {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .custom-player-progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            // transform: translateY(100px);
+            transition: transform 0.3s ease;
+            z-index: 9999999;
+
+            .custom-player-buffered-bar {
+                position: absolute;
+                height: 100%;
+                width: 0%; // dynamic
+                background-color: rgba(255, 255, 255, 0.4);
+                z-index: 1;
+            }
+
+            .custom-player-progress-bar {
+                position: absolute;
+                height: 100%;
+                width: 0%; // dynamic
+                background-color: #ff4c4c;
+                z-index: 2;
+            }
+
+            .custom-player-scrubber-thumb {
+                position: absolute;
+                top: 50%;
+                left: 0%; // dynamic
+                width: 14px;
+                height: 14px;
+                background-color: #ffffff;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 3;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: #ff4c4c;
+                }
+            }
+
+            .custom-player-tooltip {
+                position: absolute;
+                bottom: 16px;
+                left: 0; // dynamic
+                transform: translateX(-50%);
+                color: #ffffff;
+                padding: 4px 8px;
+                border-radius: 4px;
+                white-space: nowrap;
+                font-size: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 5;
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+        }
+
+        .custom-player-controls {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            z-index: 9999999;
+
+            .custom-player-play-pause {
+                cursor: pointer;
+                svg {
+                    width: 24px;
+                    height: 24px;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    display: none;
+
+                    &.active {
+                        opacity: 1;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    // popup css
+
+    .video-player-popup-inline-content {
+        &.image {
+            position: relative;
+            .popup-button-wrap {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .popup-trigger-button {
+                display: block;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    box-sizing: border-box;
+                    border-radius: inherit;
+                }
+            }
+            .popup-trigger-image {
+                border-radius: inherit;
+            }
+        }
+    }
+
+    .popup-trigger-image {
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    // play button
+
+    .popup-trigger-button {
+        outline: none;
+        text-decoration: none;
+    }
+
+    .popup-button-wrap {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+
+        .popup-button-icon {
+            $pulse-duration: 1100ms;
+            --popup-play-button-icon-size: 24px;
+            position: relative;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background: var(--zoloblocks-brand-color);
+            padding: 25px;
+            transition:
+                background 200ms,
+                background-color 200ms,
+                border-color 200ms,
+                box-shadow 200ms,
+                color 200ms,
+                transform 200ms;
+            svg {
+                width: var(--popup-play-button-icon-size);
+                height: var(--popup-play-button-icon-size);
+                display: block;
+                z-index: 11;
+                position: relative;
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: block;
+                border-radius: inherit;
+                width: 100%;
+                height: 100%;
+                background: inherit;
+            }
+
+            &:before {
+                z-index: 0;
+                animation: pulse-border $pulse-duration ease-out infinite;
+            }
+
+            &:after {
+                z-index: 1;
+                transition: all 200ms;
+            }
+        }
+        .popup-button-label-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: flex-start;
+        }
+        .popup-button-sub-label {
+            font-size: 14px;
+            color: #3d3f46;
+            transition: color 0.3s ease;
+        }
+        .popup-button-label {
+            font-weight: 600;
+            color: #373642;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        &:hover {
+            .popup-button-icon {
+                transform: scale(1.1);
+                background: #396eea;
+            }
+            .popup-button-label {
+                color: #000;
+            }
+        }
+    }
+
+    @keyframes pulse-border {
+        0% {
+            transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+            opacity: 0;
+        }
+    }
+}
+
+.fslightbox-container {
+    .fslightboxtt {
+        width: 100%;
+        margin: 30px;
+    }
+    .video-player-popup-content {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 900px;
+
+        .zolo-custom-player-wrapper {
+            video {
+                width: 100%;
+            }
+        }
+    }
+    iframe {
+        vertical-align: middle;
+    }
+}
+
+.wp-block-zolo-video.has-overlay .zolo-video-overlay,
+.fslightbox-container .video-player-popup-content.has-overlay .zolo-video-overlay {
+    position: relative;
+    --overlay-size: 100%;
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--overlay-size);
+    height: var(--overlay-size);
+    z-index: 99;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    &.overlay-hidden {
+        display: none;
+    }
+}

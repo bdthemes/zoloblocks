@@ -1,3 +1,17 @@
+### 2.2.6 [April 13, 2025]
+
+- **New Features:**
+- Video Block: Introduced a new block for an enhanced video viewing experience.
+
+- **Fixes:**
+- Tab Block border radius now works correctly in responsive mode.
+- Tab Block additional border display issue resolved.
+
+- **Improvements:**
+- Refined Background Controls UI for better usability.
+- Enhanced Social Share Block with more customization options.
+- Ensured compatibility with WordPress 6.8 for smooth performance.
+
 ### 2.2.5 [March 24, 2025]
 
 - **New Features:**

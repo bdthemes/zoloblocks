@@ -11,6 +11,7 @@ const {
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
+import { delay } from 'motion';
 
 /**
  * Attributes for the visibility extension.
@@ -102,55 +103,136 @@ addFilter('blocks.registerBlockType', 'zolo/extension/parallax', (settings) => {
                 type: 'object',
                 default: {
                     vertical: {
-                        triggerPosition: 'top',
-                        viewportPosition: 'center',
-                        endTriggerPosition: 'bottom',
-                        endViewportPosition: 'top',
-                        isStartAdvanced: false,
-                        isEndAdvanced: false,
-                        start: undefined,
-                        end: undefined,
-                        speed: -100,
-                        scrub: 2,
+                        direction: 'top',
+                        speed: 100,
+                        viewport: {
+                            minValue: 0,
+                            maxValue: 100,
+                            unit: '%',
+                        },
                     },
                     horizontal: {
-                        triggerPosition: 'top',
-                        viewportPosition: 'center',
-                        endTriggerPosition: 'bottom',
-                        endViewportPosition: 'top',
-                        isStartAdvanced: false,
-                        isEndAdvanced: false,
-                        start: undefined,
-                        end: undefined,
+                        direction: 'left',
                         speed: 0,
-                        scrub: 2,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
                     },
                     rotate: {
-                        triggerPosition: 'top',
-                        viewportPosition: 'center',
-                        endTriggerPosition: 'bottom',
-                        endViewportPosition: 'top',
-                        isStartAdvanced: false,
-                        isEndAdvanced: false,
-                        start: undefined,
-                        end: undefined,
                         speed: 0,
-                        scrub: 2,
+                        direction: 'left',
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
                     },
                     scale: {
-                        triggerPosition: 'top',
-                        viewportPosition: 'center',
-                        endTriggerPosition: 'bottom',
-                        endViewportPosition: 'top',
-                        isStartAdvanced: false,
-                        isEndAdvanced: false,
-                        start: undefined,
-                        end: undefined,
-                        speed: 1,
-                        scrub: 2,
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
                     },
+                    blur: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 0,
+                            maxValue: 100,
+                            unit: '%',
+                        },
+                    },
+                    opacity: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    }
                 },
-            }
+            },
+        };
+    }
+
+    return settings;
+});
+
+/**
+ * Attributes for the parallax animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/background-parallax', (settings) => {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            backgroundParallax: {
+                type: 'object',
+                default: {
+                    active: false,
+                    vertical: {
+                        direction: 'top',
+                        speed: 100,
+                        viewport: {
+                            minValue: 0,
+                            maxValue: 100,
+                            unit: '%',
+                        },
+                    },
+                    horizontal: {
+                        direction: 'left',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    },
+                    rotate: {
+                        speed: 0,
+                        direction: 'left',
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    },
+                    scale: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    },
+                    blur: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 0,
+                            maxValue: 100,
+                            unit: '%',
+                        },
+                    },
+                    opacity: {
+                        direction: 'fade-in',
+                        speed: 0,
+                        viewport: {
+                            minValue: 20,
+                            maxValue: 80,
+                            unit: '%',
+                        },
+                    }
+                },
+            },
         };
     }
 
@@ -540,6 +622,34 @@ addFilter('blocks.registerBlockType', 'zolo/attributes/cursors', (settings) => {
             ...generateBorderAttributies('imageBorder'),
             ...generateDimensionAttributes('cursorImageBorderRadius'),
             ...generateNormalBGAttributes('textBgColor'),
+        };
+    }
+
+    return settings;
+});
+
+/**
+* Attributes for the background parallax.
+*/
+/**
+ * Attributes for the parallax animation.
+ *
+ */
+addFilter('blocks.registerBlockType', 'zolo/extension/image-parallax', (settings) => {
+    if (settings.category && (settings.category == 'zoloblocks' || settings.category == 'zoloblocks-single')) {
+        // Add new attribute
+        settings.attributes = {
+            ...settings.attributes,
+            imageParallax: {
+                type: 'object',
+                default: {
+                    active: false,
+                    orientation: 'up',
+                    scale: 1.4,
+                    delay: 0.4,
+
+                },
+            },
         };
     }
 

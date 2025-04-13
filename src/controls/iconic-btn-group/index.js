@@ -1,10 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-    __experimentalToggleGroupControl as ToggleGroupControl,
-    Button,
-} from '@wordpress/components';
+import { __experimentalToggleGroupControl as ToggleGroupControl, Button } from '@wordpress/components';
 const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }) => {
     return (
         <div className="zolo-iconic-btn-group">
