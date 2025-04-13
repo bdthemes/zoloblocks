@@ -135,16 +135,6 @@ function Inspector(props) {
                                     options={ICON_STATUS}
                                 />
                             </div>
-
-                            <ToggleControl
-                                label={__('Dynamic Link', 'zoloblocks')}
-                                checked={dynamicLink}
-                                onChange={(value) => {
-                                    setAttributes({
-                                        dynamicLink: value,
-                                    });
-                                }}
-                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-flex-row-control-tab">
@@ -202,7 +192,16 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Social Media', 'zoloblocks')} panelProps={props}>
-                            <Sortable socialMedia={socialMedia} setAttributes={setAttributes} />
+                            <ToggleControl
+                                label={__('Current Page URL', 'zoloblocks')}
+                                checked={dynamicLink}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        dynamicLink: value,
+                                    });
+                                }}
+                            />
+                            <Sortable attributes={attributes} socialMedia={socialMedia} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }

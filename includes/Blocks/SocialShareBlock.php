@@ -39,14 +39,13 @@ if (! class_exists('SocialShareBlock')) {
 		 * @return string
 		 */
 		public function render_social_share_block($block_content, $block) {
-			$dynamicLink = isset($block['attrs']['dynamicLink']) ? $block['attrs']['dynamicLink'] : false;
+			$attrs = $block['attrs'] ?? [];
 
-			if (!empty($dynamicLink)) {
+			if (! empty($attrs['dynamicLink'])) {
 				$tags = new \WP_HTML_Tag_Processor($block_content);
 
 				while ($tags->next_tag()) {
-					$data_url = $tags->get_attribute('data-url');
-					if ($data_url) {
+					if ($tags->get_attribute('data-url') !== null) {
 						$tags->set_attribute('data-url', esc_url(get_the_permalink()));
 					}
 				}
