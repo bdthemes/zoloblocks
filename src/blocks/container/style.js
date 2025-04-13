@@ -149,7 +149,7 @@ const Style = ({ props }) => {
         }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerDeskWidth}
             ${innerContainerDeskWidth}
         }
@@ -169,11 +169,7 @@ const Style = ({ props }) => {
         }
 
    .zolo-background-parallax-image {
-        background-image: ${
-            attributes?.advBtnBgbgImageURL
-                ? `url("${attributes?.advBtnBgbgImageURL}")`
-                : 'none'
-        };
+        background-image: ${attributes?.advBtnBgbgImageURL ? `url("${attributes?.advBtnBgbgImageURL}")` : 'none'};
     }
     `;
 
@@ -197,7 +193,7 @@ const Style = ({ props }) => {
         }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerTabWidth}
             ${innerContainerTabWidth}
         }
@@ -236,7 +232,7 @@ const Style = ({ props }) => {
         }
 
         .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
-        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId} {
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerMobWidth}
             ${innerContainerMobWidth}
         }
