@@ -519,7 +519,7 @@ export default function Edit(props) {
                                         </p>
                                     </>
                                 )}
-                                <CardDivider />
+                                {/* <CardDivider />
                                 <ToggleControl
                                     label={__('Overlay', 'zoloblocks')}
                                     checked={attributes?.videoOverlay}
@@ -546,7 +546,7 @@ export default function Edit(props) {
                                             max={1000}
                                         />
                                     </>
-                                )}
+                                )} */}
                             </ZoloPanelBody>
                             {videoSource === 'custom' && (
                                 <ZoloPanelBody title={__('Poster', 'zoloblocks')} panelProps={props} stylePanel={true}>

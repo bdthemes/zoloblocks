@@ -60,7 +60,6 @@ export default function Save(props) {
                             })}
                             id={`video-player-popup-${attributes?.uniqueId}`}
                         >
-                            {attributes?.videoOverlay && <div className="zolo-video-overlay"></div>}
                             <EmbedPlayer attributes={attributes} anchor={null} />
                         </div>
                     </div>

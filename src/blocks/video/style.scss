@@ -1,20 +1,4 @@
 .wp-block-zolo-video {
-    // &.has-overlay {
-    //     .zolo-video-container {
-    //         position: relative;
-    //         --overlay-size: 100%;
-    //         &:before {
-    //             position: absolute;
-    //             content: '';
-    //             top: 50%;
-    //             left: 50%;
-    //             transform: translate(-50%, -50%);
-    //             width: var(--overlay-size);
-    //             height: var(--overlay-size);
-    //         }
-    //     }
-    // }
-
     .video-player-popup-content {
         display: none;
     }
@@ -312,4 +296,8 @@
     z-index: 99;
     background-position: center center;
     background-repeat: no-repeat;
+
+    &.overlay-hidden {
+        display: none;
+    }
 }
