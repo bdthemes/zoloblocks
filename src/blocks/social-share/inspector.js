@@ -24,7 +24,7 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -69,6 +69,7 @@ function Inspector(props) {
         iconHoverColor,
         iconBgColor,
         iconBgHoverColor,
+        dynamicLink
     } = attributes;
 
     const requiredProps = {
@@ -134,6 +135,16 @@ function Inspector(props) {
                                     options={ICON_STATUS}
                                 />
                             </div>
+
+                            <ToggleControl
+                                label={__('Dynamic Link', 'zoloblocks')}
+                                checked={dynamicLink}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        dynamicLink: value,
+                                    });
+                                }}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-flex-row-control-tab">
