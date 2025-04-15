@@ -19,7 +19,7 @@ export const GlobalStyleHanlder = (props) => {
         console.error('GlobalStyleHanlder: Invalid props.');
         return null;
     }
-    
+
     const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props;
     
     const {
@@ -39,7 +39,7 @@ export const GlobalStyleHanlder = (props) => {
         transformFlipVerticalHover,
         transformFlipVertical,
     } = attributes;
-    
+
     if (!uniqueId) {
         return;
     }
@@ -466,7 +466,7 @@ export const GlobalStyleHanlder = (props) => {
         property: 'bottom',
         attributes,
     });
-    
+
     const positionDesktop = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}
         ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}

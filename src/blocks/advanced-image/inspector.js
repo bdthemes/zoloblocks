@@ -78,7 +78,6 @@ import {
 import { DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
 
 import { CAPTION_TYPO, HEADING_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
-import { css } from '@codemirror/lang-css';
 
 function Inspector(props) {
     const { attributes, setAttributes, block } = props;
@@ -128,7 +127,7 @@ function Inspector(props) {
     const [duotone, setDuotone] = useState(['#000000', '#ffffff']);
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
     const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
-    const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], block, props);
+    const imageParallax = applyFilters('zolo.extensions.controls.imageParallax', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -244,7 +243,7 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ showCaption: !showCaption })}
                                 />
                             )}
-                            {backgroundParallax && backgroundParallax}
+                            {imageParallax && imageParallax}
                         </ZoloPanelBody>
                         {layout === 'normal' && showCaption && (
                             <ZoloPanelBody title={__('Caption', 'zoloblocks')} panelProps={props}>

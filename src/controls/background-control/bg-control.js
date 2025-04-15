@@ -26,10 +26,8 @@ import { CardDivider } from '@wordpress/components';
 const BGControl = (props) => {
     const { controlName, requiredProps, noMainBGImg, video } = props;
     const { setAttributes, attributes, resMode } = requiredProps;
-    const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], controlName, requiredProps);
     const backgroundVideo = applyFilters('zolo.extensions.controls.backgroundVideo', [], requiredProps);
     const {
-
         [`${controlName}backgroundType`]: backgroundType,
         [`${controlName}backgroundColor`]: backgroundColor,
         [`${controlName}gradientColor`]: gradientColor,
@@ -2419,7 +2417,7 @@ const BGControl = (props) => {
                                     )}
 
                                     {hov_backgroundType === 'gradient' && (
-                                         <>
+                                        <>
                                             <ToggleControl
                                                 label={__('Add Custom Gradient', 'zoloblocks')}
                                                 checked={hov_customGradient}
@@ -2450,7 +2448,7 @@ const BGControl = (props) => {
                                                             [`hov_${controlName}gradientColor`]: v,
                                                         })
                                                     }
-                                                    value= {hov_gradientColor}
+                                                    value={hov_gradientColor}
                                                 />
                                             )}
                                             {!hov_customGradient && (

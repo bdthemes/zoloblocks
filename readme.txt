@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, golam523
 Donate link: http://zoloblocks.com/
 Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
-Tested up to: 6.7.2
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.2.5
+Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -603,6 +603,20 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.2.6 [April 15, 2025]
+
+- **New Features:**
+- Video Block: Introduced a new block for an enhanced video viewing experience.
+
+- **Fixes:**
+- Tab Block border radius now works correctly in responsive mode.
+- Tab Block additional border display issue resolved.
+
+- **Improvements:**
+- Refined Background Controls UI for better usability.
+- Enhanced Social Share Block with more customization options.
+- Ensured compatibility with WordPress 6.8 for smooth performance.
 
 ### 2.2.5 [March 24, 2025]
 - **New Features:**

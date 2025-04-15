@@ -49,3 +49,35 @@
         background: unset;
     }
 }
+
+.zolo-background-control-popover {
+    .zolo-popup-flex-row-control {
+        .zolo-iconic-btn-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            .iconic-btn-label {
+                margin: 0;
+                width: var(--zolo-flex-row-control-label-width);
+            }
+            .components-base-control__field {
+                margin: 0;
+                .zb-iconic-btn-group {
+                    gap: 3px;
+                }
+            }
+            .iconic-btn {
+                box-shadow: none;
+                height: 32px;
+                svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+    .zb-units-wrapper {
+        top: -6px;
+    }
+}

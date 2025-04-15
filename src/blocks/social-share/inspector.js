@@ -24,7 +24,7 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -69,6 +69,7 @@ function Inspector(props) {
         iconHoverColor,
         iconBgColor,
         iconBgHoverColor,
+        dynamicLink
     } = attributes;
 
     const requiredProps = {
@@ -191,7 +192,16 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Social Media', 'zoloblocks')} panelProps={props}>
-                            <Sortable socialMedia={socialMedia} setAttributes={setAttributes} />
+                            <ToggleControl
+                                label={__('Current Page URL', 'zoloblocks')}
+                                checked={dynamicLink}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        dynamicLink: value,
+                                    });
+                                }}
+                            />
+                            <Sortable attributes={attributes} socialMedia={socialMedia} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }

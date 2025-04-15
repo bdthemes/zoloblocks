@@ -169,6 +169,10 @@ const attributes = {
     iconBgHoverColor: {
         type: 'string',
     },
+    dynamicLink: {
+        type: 'boolean',
+        default: false,
+    },
 };
 
 export default attributes;

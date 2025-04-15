@@ -278,7 +278,7 @@ function addAttributes(settings) {
             generateDimensionAttributes(settings.attributes.globalConfig.default.padding?.prefix || 'mainPadding')),
 
         ...(settings.attributes.globalConfig?.default?.background &&
-            generateBackgroundAttributes(settings.attributes.globalConfig.default.background?.prefix || 'mainBg')),
+            generateBackgroundAttributes(settings.attributes.globalConfig.default.background?.prefix || 'mainBg', settings?.attributes?.backgroundParallax)),
 
         ...(settings.attributes.globalConfig?.default?.border &&
             generateBorderAttributies(settings.attributes.globalConfig.default.border?.prefix || 'mainBorder')),
