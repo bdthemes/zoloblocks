@@ -604,7 +604,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-### 2.2.6 [April 13, 2025]
+### 2.2.6 [April 15, 2025]
 
 - **New Features:**
 - Video Block: Introduced a new block for an enhanced video viewing experience.

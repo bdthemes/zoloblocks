@@ -1,4 +1,4 @@
-### 2.2.6 [April 13, 2025]
+### 2.2.6 [April 15, 2025]
 
 - **New Features:**
 - Video Block: Introduced a new block for an enhanced video viewing experience.
