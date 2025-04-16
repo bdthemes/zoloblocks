@@ -60,9 +60,12 @@ if (! class_exists('ZoloEnqueues')) {
                 true
             );
 
+            $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? true : false;
+
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
                 'ajaxurl'                 => admin_url('admin-ajax.php'),
+                'zolo_pro_status'         => $zolo_pro_status,
                 'home_url'                => home_url(),
                 'zolo_nonce'              => wp_create_nonce('zolo-nonce'),
                 'theme_fonts'             => ZoloHelpers::zolo_get_theme_fonts(),
@@ -303,6 +306,7 @@ if (! class_exists('ZoloEnqueues')) {
 
             // get pro status
             $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
+            
 
             //this file use for js
             wp_localize_script('zoloblocks-modules-script', 'zoloParams', [

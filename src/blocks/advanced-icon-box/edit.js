@@ -44,6 +44,7 @@ export default function Edit(props) {
         ribbonTitle,
         ribbonPosition,
         iconBoxDirection,
+        iconBoxPresetThreeDirection,
 
         // animation
         animationType,
@@ -63,6 +64,7 @@ export default function Edit(props) {
             'zolo-block-advanced-icon-box',
             preset,
             `${preset === 'style-2' ? iconBoxDirection : ''}`,
+            `${preset === 'style-3' && iconType === 'image' ? iconBoxPresetThreeDirection : ''}`,
             `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
         ),
     });
