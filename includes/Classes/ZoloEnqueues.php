@@ -60,7 +60,8 @@ if (! class_exists('ZoloEnqueues')) {
                 true
             );
 
-            $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? true : false;
+            // Check if Zoloblocks Pro is activated
+            $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
 
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
@@ -306,7 +307,7 @@ if (! class_exists('ZoloEnqueues')) {
 
             // get pro status
             $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
-            
+
 
             //this file use for js
             wp_localize_script('zoloblocks-modules-script', 'zoloParams', [
