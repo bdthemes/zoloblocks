@@ -16,7 +16,7 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, 
                     options.map((option, index) => {
                         const isActive = value == option.value;
                         const isProOption = option.isPro;
-                        const isProDeactivated = isPro && isProOption && !window.zoloSettings?.zolo_pro_status;
+                        const isProDeactivated = isPro && isProOption && window.zoloSettings?.zolo_pro_status !== 'active';
 
                         return (
                             <Button
