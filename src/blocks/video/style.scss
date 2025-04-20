@@ -1,15 +1,14 @@
 .wp-block-zolo-video {
-    iframe {
-        border-radius: inherit;
-    }
     .video-player-popup-content {
         display: none;
     }
 
     .zolo-video-container {
         overflow: hidden;
+        box-sizing: border-box;
         iframe {
             vertical-align: middle;
+            box-sizing: border-box;
         }
     }
 

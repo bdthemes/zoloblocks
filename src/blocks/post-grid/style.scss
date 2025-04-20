@@ -82,7 +82,7 @@
 
     .zolo-post-item {
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
     }
 
     .zolo-post-image {
@@ -192,6 +192,7 @@
         display: inline-flex;
         align-items: center;
         gap: var(--zolo-category-wrap-gap);
+        flex-wrap: wrap;
     }
 
     .zolo-post-category a {
