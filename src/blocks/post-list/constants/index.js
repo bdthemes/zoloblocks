@@ -93,3 +93,6 @@ export const PAG_ALIGN = 'pagAlign';
 
 // meta space
 export const META_SPACE = 'metaSpace';
+
+// Grid
+export const GRID_COLUMNS = 'gridColumns';
