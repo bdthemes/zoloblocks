@@ -1,4 +1,7 @@
 .wp-block-zolo-video {
+    iframe {
+        border-radius: inherit;
+    }
     .video-player-popup-content {
         display: none;
     }

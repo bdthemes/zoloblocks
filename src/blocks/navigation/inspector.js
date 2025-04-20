@@ -214,7 +214,7 @@ const Inspector = (props) => {
                                     })
                                 }
                             />
-                            <div className="zolo-custom-heading">{__('Humberger Icon', 'zoloblocks')}</div>
+                            <div className="zolo-custom-heading">{__('Hamburger Icon', 'zoloblocks')}</div>
                             <ZoloIconPicker
                                 label={__('Select', 'zoloblocks')}
                                 value={humbergerIcon}

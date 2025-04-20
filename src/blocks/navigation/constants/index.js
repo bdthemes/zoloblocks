@@ -87,7 +87,7 @@ export const TAB_MOBILE = [
     },
     {
         value: 'hover',
-        label: __('Humburger', 'zoloblocks'),
+        label: __('Hamburger', 'zoloblocks'),
     },
     {
         value: 'active',
