@@ -619,16 +619,8 @@ export default function Edit(props) {
                             {videoLayoutType === 'inline' && (
                                 <ZoloPanelBody title={__('Player', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                     <ResRangeControl
-                                        label={__('Width', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={INLINE_VIDEO_CONTANER_WIDTH}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={1000}
-                                    />
-
-                                    <ResRangeControl
-                                        label={__('Height', 'zoloblocks')}
-                                        controlName={INLINE_VIDEO_CONTANER_HEIGHT}
                                         requiredProps={requiredProps}
                                         min={0}
                                         max={1000}
@@ -834,6 +826,12 @@ export default function Edit(props) {
                                     )}
                                     {attributes?.popupType === 'image' && (
                                         <ZoloPanelBody title={__('Popup Image', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={POPUP_IMAGE_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={POPUP_IMAGE_BORDER}
@@ -844,11 +842,6 @@ export default function Edit(props) {
                                                 controlName={POPUP_IMAGE_BORDER_RADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Padding', 'zoloblocks')}
-                                                controlName={POPUP_IMAGE_PADDING}
-                                                requiredProps={requiredProps}
                                             />
                                             <div className="zolo-custom-heading">{__('Overlay', 'zoloblocks')}</div>
                                             <NormalBGControl

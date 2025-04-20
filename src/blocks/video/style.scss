@@ -6,6 +6,13 @@
         display: none;
     }
 
+    .zolo-video-container {
+        overflow: hidden;
+        iframe {
+            vertical-align: middle;
+        }
+    }
+
     &.is-selected {
         iframe {
             pointer-events: all;
@@ -139,6 +146,7 @@
 
             .popup-trigger-button {
                 display: block;
+                overflow: hidden;
                 &::before {
                     content: '';
                     position: absolute;
@@ -149,9 +157,6 @@
                     box-sizing: border-box;
                     border-radius: inherit;
                 }
-            }
-            .popup-trigger-image {
-                border-radius: inherit;
             }
         }
     }
