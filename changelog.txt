@@ -1,3 +1,14 @@
+### 2.2.6 [April 20, 2025]
+
+- **New Features:**
+  - Border, Border Radius and Shadow Contorl added to the Video Block.
+  - Popup size option added to the Video Block.
+
+- **Fixes:**
+- Tabs Block width auto responsive issue resolved.
+
+- **Improvements:**
+
 ### 2.2.6 [April 15, 2025]
 
 - **New Features:**
