@@ -48,6 +48,10 @@
     [role='presentation'] {
         background: unset;
     }
+
+    .zolo-control-item-disabled {
+        opacity: 0.4;
+    }
 }
 
 .zolo-background-control-popover {

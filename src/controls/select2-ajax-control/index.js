@@ -2,6 +2,7 @@ import { BaseControl } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import AsyncSelect from 'react-select/async';
 import apiFetch from '@wordpress/api-fetch';
+import { __ } from '@wordpress/i18n';
 export default function Select2AjaxControl(props) {
     const { label, value, onChange, sourceName, sourceType, placeholder, isMulti } = props;
     const [defaultData, setDefaultData] = useState([]);
