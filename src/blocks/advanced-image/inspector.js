@@ -243,7 +243,7 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ showCaption: !showCaption })}
                                 />
                             )}
-                            {imageParallax && imageParallax}
+                            {photo && (imageParallax && imageParallax)}
                         </ZoloPanelBody>
                         {layout === 'normal' && showCaption && (
                             <ZoloPanelBody title={__('Caption', 'zoloblocks')} panelProps={props}>

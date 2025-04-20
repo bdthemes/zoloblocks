@@ -167,10 +167,6 @@ const Style = ({ props }) => {
             ${flexJustifyDesk}
             ${flexAlignDesk}
         }
-
-     .${uniqueId} > .zolo-background-parallax-image {
-        background-image: ${attributes?.advBtnBgbgImageURL ? `url("${attributes?.advBtnBgbgImageURL}")` : 'none'};
-    }
     `;
 
     const tabletAllStyle = `
