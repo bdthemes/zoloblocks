@@ -312,7 +312,6 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-video .zolo-video-container{
             ${inlineVideoContainerWidthDesk}
-            ${inlineVideoContainerHeightDesk}
             ${inlineVideoBorderDesk}
             ${inlineVideoBorderRadiusDesk}
             ${inlineVideoBoxShadow}
@@ -390,7 +389,6 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-video .zolo-video-container{
             ${inlineVideoContainerWidthTab}
-            ${inlineVideoContainerHeightTab}
             ${inlineVideoBorderTab}
             ${inlineVideoBorderRadiusTab}
         }
@@ -453,7 +451,6 @@ export default function Style({ props }) {
             
         .${uniqueId}.wp-block-zolo-video .zolo-video-container{
             ${inlineVideoContainerWidthMob}
-            ${inlineVideoContainerHeightMob}
             ${inlineVideoBorderMob}
             ${inlineVideoBorderRadiusMob}
         }
