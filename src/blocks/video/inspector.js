@@ -58,8 +58,12 @@ import {
     POPUP_IMAGE_BG_COLOR,
     INLINE_VIDEO_CONTANER_WIDTH,
     INLINE_VIDEO_CONTANER_HEIGHT,
+    INLINE_VIDEO_BORDER,
+    INLINE_VIDEO_BORDER_RADIUS,
+    INLINE_VIDEO_BOX_SHADOW,
     VIDEO_OVERLAY_SIZE,
     VIDEO_OVERLAY,
+    POPUP_VIDEO_CONTANER_WIDTH,
 } from './constants';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
@@ -629,11 +633,38 @@ export default function Edit(props) {
                                         min={0}
                                         max={1000}
                                     />
+
+                                    <CardDivider />
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={INLINE_VIDEO_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+
+                                    <BoxShadowControl
+                                        label={__('Box Shadow', 'zoloblocks')}
+                                        controlName={INLINE_VIDEO_BOX_SHADOW}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={INLINE_VIDEO_BORDER_RADIUS}
+                                        requiredProps={requiredProps}
+                                    />
                                 </ZoloPanelBody>
                             )}
                             {videoLayoutType === 'popup' && (
                                 <>
-                                    <ZoloPanelBody title={__('Popup Button', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                    <ZoloPanelBody title={__('Popup Player', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={POPUP_VIDEO_CONTANER_WIDTH}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                        />
+                                    </ZoloPanelBody>
+                                    <ZoloPanelBody title={__('Popup Button', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                         <TabPanelControl
                                             normalComponents={
                                                 <>

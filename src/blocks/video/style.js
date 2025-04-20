@@ -38,6 +38,10 @@ import {
     INLINE_VIDEO_CONTANER_HEIGHT,
     VIDEO_OVERLAY,
     VIDEO_OVERLAY_SIZE,
+    INLINE_VIDEO_BORDER,
+    INLINE_VIDEO_BORDER_RADIUS,
+    INLINE_VIDEO_BOX_SHADOW,
+    POPUP_VIDEO_CONTANER_WIDTH,
 } from './constants';
 
 import { POPUP_BTN_LABEL_TYPOGRAPHY, POPUP_BTN_SUB_LABEL_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -240,6 +244,30 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopBorderStyle: inlineVideoBorderDesk,
+        tabBorderStyle: inlineVideoBorderTab,
+        mobBorderStyle: inlineVideoBorderMob,
+    } = generateBorderStyle({
+        controlName: INLINE_VIDEO_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: inlineVideoBorderRadiusDesk,
+        dimensionStylesTab: inlineVideoBorderRadiusTab,
+        dimensionStylesMob: inlineVideoBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: INLINE_VIDEO_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: inlineVideoBoxShadow } = generateBoxShadowStyles({
+        controlName: INLINE_VIDEO_BOX_SHADOW,
+        attributes,
+    });
+
     // video overlay
 
     const {
@@ -262,14 +290,32 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // POPUP VIDEO SIZE
+    const {
+        desktopRangeStyle: popupVideoSizeDesk,
+        tabRangeStyle: popupVideoSizeTab,
+        mobRangeStyle: popupVideoSizeMob,
+    } = generateResRangeStyle({
+        controlName: POPUP_VIDEO_CONTANER_WIDTH,
+        property: 'max-width',
+        attributes,
+    });
+
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-video {
             ${videoAlignDesk}
         }
 
+        .fslightbox-container .${uniqueId}.video-player-popup-content {
+            ${popupVideoSizeDesk}
+        }
+
         .${uniqueId}.wp-block-zolo-video .zolo-video-container{
             ${inlineVideoContainerWidthDesk}
             ${inlineVideoContainerHeightDesk}
+            ${inlineVideoBorderDesk}
+            ${inlineVideoBorderRadiusDesk}
+            ${inlineVideoBoxShadow}
         }
         
         .${uniqueId}.wp-block-zolo-video {
@@ -338,9 +384,15 @@ export default function Style({ props }) {
             ${videoAlignTab}
         }
 
+        .fslightbox-container .${uniqueId}.video-player-popup-content {
+            ${popupVideoSizeTab}
+        }
+
         .${uniqueId}.wp-block-zolo-video .zolo-video-container{
             ${inlineVideoContainerWidthTab}
             ${inlineVideoContainerHeightTab}
+            ${inlineVideoBorderTab}
+            ${inlineVideoBorderRadiusTab}
         }
         
         .${uniqueId}.wp-block-zolo-video {
@@ -395,9 +447,15 @@ export default function Style({ props }) {
             ${videoAlignMob}
         }
 
+        .fslightbox-container .${uniqueId}.video-player-popup-content {
+            ${popupVideoSizeMob}
+        }
+            
         .${uniqueId}.wp-block-zolo-video .zolo-video-container{
             ${inlineVideoContainerWidthMob}
             ${inlineVideoContainerHeightMob}
+            ${inlineVideoBorderMob}
+            ${inlineVideoBorderRadiusMob}
         }
         
         .${uniqueId}.wp-block-zolo-video {
