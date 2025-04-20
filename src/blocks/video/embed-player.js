@@ -2,44 +2,69 @@ import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
 import CustomPlayer from './custom-player';
 
-const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
+const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
     let iframeMarkup = null;
 
-    switch (attributes?.videoSource) {
+    const {
+        videoSource,
+        youtubeUrl,
+        vimeoUrl,
+        customVideo,
+        externalCustomVideoUrl,
+        isExternalCustomUrl,
+        mute,
+        loop,
+        autoPlay,
+        playerControl,
+        youtubeSuggestedvideoType,
+        youtubeModestBranding,
+        isPrivacyMode,
+        isLazyLoad,
+        showCaption,
+        startTime,
+        endTime,
+        videoOverlay,
+    } = attributes;
+
+    switch (videoSource) {
         case 'youtube': {
-            // Check if the YouTube URL is valid
-            if (!attributes?.youtubeUrl?.url) {
-                console.warn('Invalid YouTube URL:', attributes?.youtubeUrl?.url);
+            const rawUrl = youtubeUrl?.url;
+
+            if (!rawUrl) {
+                console.warn('Missing YouTube URL');
                 break;
             }
 
-            const youtubeVideoId = new URL(attributes?.youtubeUrl?.url).searchParams.get('v');
-            
+            let youtubeVideoId;
+            try {
+                const parsedUrl = new URL(rawUrl);
+                youtubeVideoId = parsedUrl.searchParams.get('v');
+            } catch (err) {
+                console.warn('Invalid YouTube URL format:', rawUrl);
+                break;
+            }
+
             if (!youtubeVideoId) {
-                console.warn('Invalid YouTube URL:', attributes?.youtubeUrl?.url);
+                console.warn('Could not extract video ID from YouTube URL:', rawUrl);
                 break;
             }
 
             const queryParams = {
                 enablejsapi: 1,
-                mute: attributes?.mute ? 1 : 0,
-                controls: attributes?.playerControl ? 1 : 0,
+                mute: mute ? 1 : 0,
+                controls: playerControl ? 1 : 0,
                 playsinline: 1,
-                rel: attributes?.youtubeSuggestedvideoType || '0',
-                loop: attributes?.loop ? 1 : 0,
-                playlist: attributes?.loop ? youtubeVideoId : undefined, // Required for looping
-                modestbranding: attributes?.youtubeModestBranding ? 1 : 0,
-                autoplay: attributes?.autoPlay ? 1 : 0,
-                start: attributes?.startTime || 0, // Add start time (in seconds)
-                end: attributes?.endTime || 0, // Add end time (in seconds, optional)
-                loading: attributes?.isLazyLoad ? 'lazy' : undefined,
-                cc_load_policy: attributes?.showCaption ? '1' : '0',
+                rel: youtubeSuggestedvideoType || '0',
+                loop: loop ? 1 : 0,
+                playlist: loop ? youtubeVideoId : undefined,
+                modestbranding: youtubeModestBranding ? 1 : 0,
+                autoplay: autoPlay ? 1 : 0,
+                start: startTime || 0,
+                end: endTime || undefined,
+                cc_load_policy: showCaption ? '1' : '0',
             };
 
-            const src = addQueryArgs(
-                `https://www.youtube${attributes?.isPrivacyMode ? '-nocookie' : ''}.com/embed/${youtubeVideoId}`,
-                queryParams
-            );
+            const src = addQueryArgs(`https://www.youtube${isPrivacyMode ? '-nocookie' : ''}.com/embed/${youtubeVideoId}`, queryParams);
 
             iframeMarkup = (
                 <iframe
@@ -50,26 +75,27 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
                     allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
+                    loading={isLazyLoad ? 'lazy' : 'auto'}
                 />
             );
             break;
         }
 
         case 'vimeo': {
-            const vimeoUrl = attributes?.vimeoUrl?.url;
-            const vimeoIdMatch = vimeoUrl?.match(/vimeo\.com\/(\d+)/);
-            const vimeoVideoId = vimeoIdMatch ? vimeoIdMatch[1] : null;
+            const rawUrl = vimeoUrl?.url;
+            const vimeoIdMatch = rawUrl?.match(/vimeo\.com\/(\d+)/);
+            const vimeoVideoId = vimeoIdMatch?.[1];
 
             if (!vimeoVideoId) {
-                console.warn('Invalid Vimeo URL:', vimeoUrl);
+                console.warn('Invalid Vimeo URL:', rawUrl);
                 break;
             }
 
             const queryParams = {
-                autoplay: attributes?.autoPlay ? 1 : 0,
-                muted: attributes?.mute ? 1 : 0,
-                loop: attributes?.loop ? 1 : 0,
-                controls: attributes?.playerControl ? 1 : 0,
+                autoplay: autoPlay ? 1 : 0,
+                muted: mute ? 1 : 0,
+                loop: loop ? 1 : 0,
+                controls: playerControl ? 1 : 0,
             };
 
             const src = addQueryArgs(`https://player.vimeo.com/video/${vimeoVideoId}`, queryParams);
@@ -83,19 +109,17 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
                     allow="autoplay; fullscreen; picture-in-picture"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
+                    loading={isLazyLoad ? 'lazy' : 'auto'}
                 />
             );
             break;
         }
 
         case 'custom': {
-            const customVideoUrl =
-                attributes?.isExternalCustomUrl && attributes?.externalCustomVideoUrl?.url
-                    ? attributes?.externalCustomVideoUrl?.url
-                    : attributes?.customVideo || null;
+            const customVideoUrl = isExternalCustomUrl ? externalCustomVideoUrl?.url : customVideo;
 
             if (!customVideoUrl) {
-                console.warn('Custom video URL is missing');
+                console.warn('Missing custom video URL');
                 break;
             }
 
@@ -103,14 +127,18 @@ const EmbedPlayer = ({ attributes, anchor, isEdit }) => {
             break;
         }
 
-        default:
+        default: {
             iframeMarkup = <p>{__('Unsupported video source.', 'zoloblocks')}</p>;
+        }
     }
 
     return (
         <div className="zolo-video-container">
-            {attributes?.videoOverlay && <div className="zolo-video-overlay"></div>}
+            {videoOverlay && <div className="zolo-video-overlay"></div>}
+            <div className="default-video-message">
             {iframeMarkup || <p>{__('No video available.', 'zoloblocks')}</p>}
+            </div>
+
         </div>
     );
 };
