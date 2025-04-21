@@ -58,6 +58,10 @@ Explore how  ZoloBlocks works in Gutenberg Blocks Editor to let you create a web
 
 https://youtu.be/CxzwPClaZm4
 
+https://youtu.be/vkRW_A2KT4k
+
+https://youtu.be/IjAYJZ2guuM
+
 # Available Blocks in ZoloBlocks to enhance your Gutenberg experience
 
 Explore all the blocks listed categorically—

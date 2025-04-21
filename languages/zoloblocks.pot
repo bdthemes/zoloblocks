@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-20T11:19:38+00:00\n"
+"POT-Creation-Date: 2025-04-21T09:29:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: zoloblocks\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: zoloblocks.php
 #: includes/Admin/Dashboard.php:66
 #: includes/Admin/Dashboard.php:67
-#: includes/Classes/Registration.php:92
+#: includes/Classes/Registration.php:96
 #: src/controls/zolo-icon-picker/index.js:246
 msgid "ZoloBlocks"
 msgstr ""
@@ -10409,19 +10409,19 @@ msgstr ""
 msgid "Sorry, your browser doesn’t support embedded videos."
 msgstr ""
 
-#: src/blocks/video/embed-player.js:49
+#: src/blocks/video/embed-player.js:74
 msgid "YouTube video player"
 msgstr ""
 
-#: src/blocks/video/embed-player.js:82
+#: src/blocks/video/embed-player.js:108
 msgid "Vimeo video player"
 msgstr ""
 
-#: src/blocks/video/embed-player.js:107
+#: src/blocks/video/embed-player.js:131
 msgid "Unsupported video source."
 msgstr ""
 
-#: src/blocks/video/embed-player.js:113
+#: src/blocks/video/embed-player.js:139
 msgid "No video available."
 msgstr ""
 
