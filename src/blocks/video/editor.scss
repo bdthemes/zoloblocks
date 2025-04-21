@@ -3,4 +3,16 @@
         pointer-events: none;
         display: block;
     }
+
+    .video-player-popup-inline-content {
+        &.button {
+            background: 0;
+            border: 0;
+            line-height: unset;
+            &:hover {
+                background: 0;
+                border: 0;
+            }
+        }
+    }
 }

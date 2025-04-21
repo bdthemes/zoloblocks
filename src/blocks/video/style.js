@@ -118,7 +118,7 @@ export default function Style({ props }) {
     const {
         dimensionStylesDesktop: popupBtnPaddingDesk,
         dimensionStylesTab: popupBtnPaddingTab,
-        dimensionStylesMob: popupBtnPaddingMob,
+        dimensionStylesMobile: popupBtnPaddingMob,
     } = generateDimensionStyle({
         controlName: POPUP_BTN_PADDING,
         styleFor: 'padding',
@@ -128,12 +128,14 @@ export default function Style({ props }) {
     const {
         dimensionStylesDesktop: popupBtnMarginDesk,
         dimensionStylesTab: popupBtnMarginTab,
-        dimensionStylesMob: popupBtnMarginMob,
+        dimensionStylesMobile: popupBtnMarginMob,
     } = generateDimensionStyle({
         controlName: POPUP_BTN_MARGIN,
         styleFor: 'margin',
         attributes,
     });
+
+    console.log('popupBtnMarginMob', popupBtnMarginMob);
 
     const {
         desktopBorderStyle: popupBtnBorderDesk,
@@ -147,7 +149,7 @@ export default function Style({ props }) {
     const {
         dimensionStylesDesktop: popupBtnBorderRadiusDesk,
         dimensionStylesTab: popupBtnBorderRadiusTab,
-        dimensionStylesMob: popupBtnBorderRadiusMob,
+        dimensionStylesMobile: popupBtnBorderRadiusMob,
     } = generateDimensionStyle({
         controlName: POPUP_BTN_BORDER_RADIUS,
         styleFor: 'border-radius',
@@ -198,7 +200,7 @@ export default function Style({ props }) {
     const {
         dimensionStylesDesktop: popupImageBorderRadiusDesk,
         dimensionStylesTab: popupImageBorderRadiusTab,
-        dimensionStylesMob: popupImageBorderRadiusMob,
+        dimensionStylesMobile: popupImageBorderRadiusMob,
     } = generateDimensionStyle({
         controlName: POPUP_IMAGE_BORDER_RADIUS,
         styleFor: 'border-radius',
@@ -207,7 +209,7 @@ export default function Style({ props }) {
     const {
         dimensionStylesDesktop: popupImagePaddingDesk,
         dimensionStylesTab: popupImagePaddingTab,
-        dimensionStylesMob: popupImagePaddingMob,
+        dimensionStylesMobile: popupImagePaddingMob,
     } = generateDimensionStyle({
         controlName: POPUP_IMAGE_PADDING,
         styleFor: 'padding',
@@ -256,7 +258,7 @@ export default function Style({ props }) {
     const {
         dimensionStylesDesktop: inlineVideoBorderRadiusDesk,
         dimensionStylesTab: inlineVideoBorderRadiusTab,
-        dimensionStylesMob: inlineVideoBorderRadiusMob,
+        dimensionStylesMobile: inlineVideoBorderRadiusMob,
     } = generateDimensionStyle({
         controlName: INLINE_VIDEO_BORDER_RADIUS,
         styleFor: 'border-radius',
@@ -398,13 +400,11 @@ export default function Style({ props }) {
         }
 
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon {
-            ${popupIconColor ? `color: ${popupIconColor};` : ''}
-            ${popupBtnBgColorTab}
-            ${popupBtnPaddingTab}
-            ${popupBtnMarginTab}
-            ${popupBtnBorderTab}
-            ${popupBtnBorderRadiusTab}
-            ${popupBtnBoxShadow}
+            ${popupBtnBgColorTab || ''}
+            ${popupBtnPaddingTab || ''}
+            ${popupBtnMarginTab || ''}
+            ${popupBtnBorderTab || ''}
+            ${popupBtnBorderRadiusTab || ''}
         }
 
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon svg{
@@ -434,7 +434,7 @@ export default function Style({ props }) {
         }
         
         .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-overlay,
-        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay{
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay {
             ${videoOverlayTab}
             ${videoOverlaySizeTab}
         }
@@ -449,7 +449,7 @@ export default function Style({ props }) {
             ${popupVideoSizeMob}
         }
             
-        .${uniqueId}.wp-block-zolo-video .zolo-video-container{
+        .${uniqueId}.wp-block-zolo-video .zolo-video-container {
             ${inlineVideoContainerWidthMob}
             ${inlineVideoBorderMob}
             ${inlineVideoBorderRadiusMob}
@@ -460,15 +460,14 @@ export default function Style({ props }) {
         }
 
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon {
-            ${popupIconColor ? `color: ${popupIconColor};` : ''}
-            ${popupBtnBgColorMob}
-            ${popupBtnPaddingMob}
-            ${popupBtnMarginMob}
-            ${popupBtnBorderMob}
-            ${popupBtnBorderRadiusMob}
+            ${popupBtnBgColorMob || ''}
+            ${popupBtnPaddingMob || ''}
+            ${popupBtnMarginMob || ''}
+            ${popupBtnBorderMob || ''}
+            ${popupBtnBorderRadiusMob || ''}
         }
 
-        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon svg{
+        .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-icon svg {
             ${popupBtnIconSizeMob}
         }
 
@@ -495,7 +494,7 @@ export default function Style({ props }) {
         }
 
         .${uniqueId}.wp-block-zolo-video.has-overlay .zolo-video-overlay,
-        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay{
+        .fslightbox-container .${uniqueId}.video-player-popup-content.has-overlay .zolo-video-overlay {
             ${videoOverlayMob}
             ${videoOverlaySizeMob}
         }

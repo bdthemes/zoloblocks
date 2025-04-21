@@ -138,9 +138,11 @@
             position: relative;
             .popup-button-wrap {
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                justify-content: center;
             }
 
             .popup-trigger-button {
@@ -176,11 +178,11 @@
     .popup-button-wrap {
         display: inline-flex;
         align-items: center;
-        gap: 20px;
+        gap: clamp(12px, 2vw, 20px);
 
         .popup-button-icon {
             $pulse-duration: 1100ms;
-            --popup-play-button-icon-size: 24px;
+            --popup-play-button-icon-size: clamp(20px, 2vw, 24px);
             position: relative;
             border-radius: 50%;
             display: inline-flex;
@@ -188,7 +190,7 @@
             justify-content: center;
             color: #fff;
             background: var(--zoloblocks-brand-color);
-            padding: 25px;
+            padding: clamp(16px, 2.5vw, 25px);
             transition:
                 background 200ms,
                 background-color 200ms,
@@ -235,14 +237,14 @@
             align-items: flex-start;
         }
         .popup-button-sub-label {
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 14px);
             color: #3d3f46;
             transition: color 0.3s ease;
         }
         .popup-button-label {
             font-weight: 600;
             color: #373642;
-            font-size: 20px;
+            font-size: clamp(16px, 2vw, 20px);
             transition: color 0.3s ease;
         }
         &:hover {
@@ -268,16 +270,15 @@
     }
 
     .default-video-message {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-}
-
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
 }
 
 .fslightbox-container {
