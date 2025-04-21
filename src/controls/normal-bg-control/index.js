@@ -169,7 +169,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     [`${controlName}bgImageURL`]: null,
                                                                 })
                                                             }
-                                                            onEditImage={(url, id) =>
+                                                            onEditImage={({url, id}) =>
                                                                 setAttributes({
                                                                     [`${controlName}bgImageURL`]: url,
                                                                     [`${controlName}bgImageID`]: id,
