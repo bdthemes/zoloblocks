@@ -13,6 +13,122 @@ export const PRESETS = [
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
 ];
 
+export const ICON_BOX_PRESET_THREE_DIRECTION = [
+    {
+        label: 'Image Top',
+        value: '',
+        icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5.46997 15.3799H19.03" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5.46997 18.95H19.03" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5.46997 22.52H19.03" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M10.4399 5.27C10.7199 5.27 10.9499 5.04 10.9499 4.76C10.9499 4.48 10.7199 4.25 10.4399 4.25C10.1599 4.25 9.92993 4.48 9.92993 4.76C9.92993 5.04 10.1599 5.27 10.4399 5.27Z"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M8.82007 11.1901L14.1001 5.92007C14.3301 5.70007 14.6301 5.57007 14.9501 5.57007C15.2701 5.57007 15.5701 5.70007 15.8001 5.92007L19.3401 9.43007"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M18.69 2H5.81C5.36265 2 5 2.36265 5 2.81V10.63C5 11.0774 5.36265 11.44 5.81 11.44H18.69C19.1374 11.44 19.5 11.0774 19.5 10.63V2.81C19.5 2.36265 19.1374 2 18.69 2Z"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        ),
+    },
+
+    {
+        label: 'Image Bottom (Pro)',
+        value: 'zolo-directions-column-reverse',
+        isPro: true,
+        icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5.46997 2H19.03" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5.46997 5.57007H19.03" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5.46997 9.12988H19.03" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M10.4399 16.3401C10.7199 16.3401 10.9499 16.1101 10.9499 15.8301C10.9499 15.5501 10.7199 15.3201 10.4399 15.3201C10.1599 15.3201 9.92993 15.5501 9.92993 15.8301C9.92993 16.1101 10.1599 16.3401 10.4399 16.3401Z"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M8.82007 22.2599L14.1001 16.9899C14.3301 16.7699 14.6301 16.6399 14.9501 16.6399C15.2701 16.6399 15.5701 16.7699 15.8001 16.9899L19.3401 20.4999"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M18.69 13.0701H5.81C5.36265 13.0701 5 13.4327 5 13.8801V21.7001C5 22.1474 5.36265 22.5101 5.81 22.5101H18.69C19.1374 22.5101 19.5 22.1474 19.5 21.7001V13.8801C19.5 13.4327 19.1374 13.0701 18.69 13.0701Z"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        ),
+    },
+    {
+        label: 'Image Left (Pro)',
+        value: 'zolo-directions-row',
+        isPro: true,
+        icon: (
+            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.73 8.32h6.22M15.73 12.41h6.22M15.73 16.5h6.22M6.53 10.75a.58.58 0 1 0 0-1.16.58.58 0 0 0 0 1.16zM12.05 13.7l-.84-.84c-.29-.29-.68-.45-1.09-.45-.41 0-.8.16-1.09.45l-4.71 4.71"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M11.23 7H3.99a.99.99 0 0 0-.99.99v8.84c0 .547.443.99.99.99h7.24a.99.99 0 0 0 .99-.99V7.99a.99.99 0 0 0-.99-.99z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+        ),
+    },
+
+    {
+        label: 'Image Right (Pro)',
+        value: 'zolo-directions-row-reverse',
+        isPro: true,
+        icon: (
+            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3 8.32h6.22M3 12.41h6.22M3 16.5h6.22M16.26 10.75a.58.58 0 1 0 0-1.16.58.58 0 0 0 0 1.16zM21.78 13.7l-.84-.84c-.29-.29-.68-.45-1.09-.45-.41 0-.8.16-1.09.45l-4.71 4.71"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M20.96 7h-7.24a.99.99 0 0 0-.99.99v8.84c0 .547.443.99.99.99h7.24a.99.99 0 0 0 .99-.99V7.99a.99.99 0 0 0-.99-.99z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+        ),
+    },
+];
+
 // animation types
 export const ANIMATION_TYPES = [
     {

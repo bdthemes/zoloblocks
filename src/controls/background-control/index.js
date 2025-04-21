@@ -19,7 +19,7 @@ const BackgroundControl = ({
 }) => {
     const { setAttributes, attributes } = requiredProps;
 
-    const { [`${controlName}isBgOverlay`]: isBgOverlay, mainBgbackgroundType, advBtnBgbackgroundType } = attributes;
+    const { [`${controlName}isBgOverlay`]: isBgOverlay, [`${controlName}bgImageURL`]: bgImageURL, mainBgbackgroundType, advBtnBgbackgroundType } = attributes;
     const backdropFilters = applyFilters('zolo.extensions.controls.backdropFilters', [], requiredProps);
     const splineViewer = applyFilters('zolo.extensions.controls.splineViewer', [], requiredProps);
 
@@ -55,7 +55,7 @@ const BackgroundControl = ({
                     )}
                     {particles && particles}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
-                    {backgroundParallax && backgroundParallax.length > 0 && backgroundParallax}
+                    {bgImageURL && backgroundParallax && backgroundParallax.length > 0 && backgroundParallax}
                     {splineViewer && splineViewer.length > 0 && splineViewer}
                 </>
             )}

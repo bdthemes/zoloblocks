@@ -157,9 +157,12 @@
             --zolo-item-padding: 0;
             padding: var(--zolo-desc-text-color);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .zolo-block-icon-wrap {
             --zolo-icon-margin: 0;
+            --zoloblocks-brand-color: #fff;
             background-color: var(--zoloblocks-brand-color);
             width: stretch;
             margin: var(--zolo-icon-margin);
@@ -175,13 +178,35 @@
                 margin: auto;
                 padding: 100px;
                 svg {
-                    fill: #fff;
+                    fill: var(--zoloblocks-brand-color);
                 }
             }
         }
         .zolo-block-body-content {
             --zolo-content-padding: 30px;
             padding: var(--zolo-content-padding);
+        }
+        &.zolo-directions-column-reverse {
+            .zolo-block-item {
+                flex-direction: column-reverse;
+            }
+        }
+        &.zolo-directions-row,
+        &.zolo-directions-row-reverse {
+            .zolo-block-item {
+                flex-direction: row;
+            }
+            .zolo-block-icon-wrap {
+                background: transparent;
+                img {
+                    height: 100% !important;
+                }
+            }
+        }
+        &.zolo-directions-row-reverse {
+            .zolo-block-item {
+                flex-direction: row-reverse;
+            }
         }
     }
 

@@ -21,6 +21,7 @@ class PostList extends PostBlock {
 		'showReadingTime'  => false,
 		'loadMoreText'     => 'Load More',
 		'paginationType'   => 'normal',
+		'authorPrefix'     => 'By',
 	];
 
 	public function get_default_attributes() {

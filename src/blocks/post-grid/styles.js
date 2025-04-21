@@ -46,6 +46,13 @@ import {
     FILTER_PADDING,
     FILTER_ALIGN,
     FILTER_GAP,
+    INNER_CONTENT_PADDING,
+    INNER_CONTENT_MARGIN,
+    INNER_CONTENT_BG,
+    INNER_CONTENT_BORDER,
+    INNER_CONTENT_BORDER_RADIUS,
+    INNER_CONTENT_SHADOW,
+    BOTTOM_CONTENT_SPACING,
 } from './constants';
 
 import {
@@ -631,6 +638,72 @@ function Style({ props }) {
         styleFor: 'margin',
         attributes,
     });
+
+    // Add inner content style generation
+    const {
+        dimensionStylesDesktop: innerContentPaddingDesk,
+        dimensionStylesTab: innerContentPaddingTab,
+        dimensionStylesMobile: innerContentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: INNER_CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: innerContentMarginDesk,
+        dimensionStylesTab: innerContentMarginTab,
+        dimensionStylesMobile: innerContentMarginMob,
+    } = generateDimensionStyle({
+        controlName: INNER_CONTENT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: innerContentBgDesk,
+        backgroundStylesTab: innerContentBgTab,
+        backgroundStylesMobile: innerContentBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: INNER_CONTENT_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopBorderStyle: innerContentBorderDesk,
+        tabBorderStyle: innerContentBorderTab,
+        mobBorderStyle: innerContentBorderMob,
+    } = generateBorderStyle({
+        controlName: INNER_CONTENT_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: innerContentBorderRadiusDesk,
+        dimensionStylesTab: innerContentBorderRadiusTab,
+        dimensionStylesMobile: innerContentBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: INNER_CONTENT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: innerContentBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: INNER_CONTENT_SHADOW,
+    });
+
+    const {
+        desktopRangeStyle: bottomContentSpacingDesk,
+        tabRangeStyle: bottomContentSpacingTab,
+        mobRangeStyle: bottomContentSpacingMob,
+    } = generateResRangeStyle({
+        controlName: BOTTOM_CONTENT_SPACING,
+        property: 'margin-top',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -921,6 +994,20 @@ function Style({ props }) {
                `
               : ''
       }
+
+      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-inner-content{
+        ${innerContentPaddingDesk}
+        ${innerContentMarginDesk}
+        ${innerContentBgDesk}
+        ${innerContentBorderDesk}
+        ${innerContentBorderRadiusDesk}
+        ${innerContentBoxShadow}
+    }
+
+    .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-bottom-content{
+        ${bottomContentSpacingDesk}
+    }
+
     `;
 
     const tabletAllStyle = `
@@ -1028,6 +1115,7 @@ function Style({ props }) {
       ${avatarHeightTab}
       ${avatarBorderTab}
       ${avatarBorderRadiusTab}
+    }
 
     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-author-name{
       ${nameTypoTab}
@@ -1061,6 +1149,18 @@ function Style({ props }) {
 
     .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-dateTime, .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-secount-dateTime {
       ${metaSpaceTab}
+    }
+
+    .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-inner-content{
+        ${innerContentPaddingTab}
+        ${innerContentMarginTab}
+        ${innerContentBgTab}
+        ${innerContentBorderTab}
+        ${innerContentBorderRadiusTab}
+    }
+
+    .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-bottom-content{
+        ${bottomContentSpacingTab}
     }
   `;
 
@@ -1169,6 +1269,7 @@ function Style({ props }) {
         ${avatarHeightMob}
         ${avatarBorderMob}
         ${avatarBorderRadiusMob}
+      }
 
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-author-name{
         ${nameTypoMob}
@@ -1202,6 +1303,18 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-dateTime, .${uniqueId}.zolo-block.zolo-post-grid-wrap .zolo-post-secount-dateTime {
         ${metaSpaceMob}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-inner-content{
+        ${innerContentPaddingMob}
+        ${innerContentMarginMob}
+        ${innerContentBgMob}
+        ${innerContentBorderMob}
+        ${innerContentBorderRadiusMob}
+     }
+
+      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-bottom-content{
+          ${bottomContentSpacingMob}
       }
     `;
 

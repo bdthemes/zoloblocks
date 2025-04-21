@@ -89,6 +89,9 @@ import {
     // Ribbon
     RIBBON_X_POSITION,
     RIBBON_Y_POSITION,
+
+    // Preset Three
+    ICON_BOX_PRESET_THREE_DIRECTION,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS, HEADING, ICON_BOX_OPTIONS, POSITIONS } from '../../../src/global/constants';
@@ -143,6 +146,9 @@ function Inspector(props) {
         animationType,
         animationPositionOne,
         animationPositionTwo,
+
+        //preset three
+        iconBoxPresetThreeDirection,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -176,6 +182,15 @@ function Inspector(props) {
                                     }
                                 }}
                             />
+                            {preset === 'style-3' && iconType === 'image' && (
+                                <IconicBtnGroup
+                                    label={__('Direction', 'zoloblocks')}
+                                    value={iconBoxPresetThreeDirection}
+                                    onChange={(value) => setAttributes({ iconBoxPresetThreeDirection: value })}
+                                    options={ICON_BOX_PRESET_THREE_DIRECTION}
+                                    isPro={true}
+                                />
+                            )}
                             {
                                 // If preset is not selected, show alignment control
                                 preset === 'style-2' && (
@@ -720,8 +735,8 @@ function Inspector(props) {
                                             label={__('Size', 'zoloblocks')}
                                             controlName={ICON_IMAGE_SIZE}
                                             requiredProps={requiredProps}
-                                            min={0}
-                                            max={500}
+                                            min={200}
+                                            max={1000}
                                         />
                                         {preset == 'style-2' && (
                                             <div className="zolo-flex-row-control-tab">

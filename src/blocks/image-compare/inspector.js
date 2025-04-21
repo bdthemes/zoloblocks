@@ -26,6 +26,8 @@ import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
 
+import { applyFilters } from '@wordpress/hooks';
+
 import {
     BEFORE_LABEL_BG,
     BEFORE_BORDER,
@@ -55,7 +57,7 @@ import {
 import { BEFORE_TYPO } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, block } = props;
     const { resMode, beforeImage, afterImage, comparisonOptions, beforeColor, afterColor, arrowbtnColor } = attributes;
 
     const requiredProps = {
@@ -64,6 +66,9 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
+    const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
+    const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
     return (
         <InspectorControls key="controls">
@@ -321,6 +326,23 @@ function Inspector(props) {
                                 max={1000}
                                 step={1}
                             />
+
+                            {cssFilters && cssFilters.length > 0 && (
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            label: __('Before', 'zoloblocks'),
+                                            value: 'normal',
+                                        },
+                                        {
+                                            label: __('After', 'zoloblocks'),
+                                            value: 'hover',
+                                        },
+                                    ]}
+                                    normalComponents={<>{cssFilters && cssFilters.length > 0 && cssFilters}</>}
+                                    hoverComponents={<>{cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}</>}
+                                />
+                            )}
                         </ZoloPanelBody>
                         {comparisonOptions?.showLabels && (
                             <ZoloPanelBody title={__('Labels', 'zoloblocks')} firstOpen={false} stylePanel={true} panelProps={props}>

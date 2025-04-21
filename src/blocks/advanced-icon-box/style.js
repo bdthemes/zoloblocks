@@ -517,6 +517,16 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: iconImageHDesk,
+        tabRangeStyle: iconImageHTab,
+        mobRangeStyle: iconImageHMob,
+    } = generateResRangeStyle({
+        controlName: ICON_IMAGE_SIZE,
+        property: 'height',
+        attributes,
+    });
+
     // generate image border
     const {
         desktopBorderStyle: iconImageBorderDesk,
@@ -685,11 +695,19 @@ export default function Style({ props }) {
             --zoloblocks-brand-color: ${iconColor ? iconColor : ''};
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
-			${iconImageSizeDesk}
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
 			${iconImageBorderDesk}
 			${iconImageBorderRadiusDesk}
 		}
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
+            ${iconImageSizeDesk}
+        }
+            
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
+            ${iconImageHDesk}
+        }
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
 			${buttonBGDeskStyle}
@@ -817,11 +835,19 @@ export default function Style({ props }) {
 			${iconPaddingTab}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
-			${iconImageSizeTab}
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
+            ${iconImageSizeTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
+            ${iconImageHTab}
+        }
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
             ${buttonBGTabStyle}
@@ -852,8 +878,6 @@ export default function Style({ props }) {
             ${ribbonBorderTab}
             ${ribbonTabRadius}
         }
-
-      
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-item:before{
          ${animationBgTabStyle}
@@ -920,11 +944,19 @@ export default function Style({ props }) {
             ${iconSizeMob}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
-			${iconImageSizeMob}
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
+            ${iconImageSizeMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
+            ${iconImageHMob}
+        }
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
             ${buttonBGMobStyle}
