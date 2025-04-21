@@ -604,6 +604,16 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+### 2.2.7 April 21, 2025
+
+**New:**
+- Border, border radius, and shadow options added to the Video Block.
+- Popup size option added to the Video Block.
+
+**Fixed:**
+- Tabs Block width now adjusts better on different screen sizes.
+- Background image replacement issue fixed.
+
 ### 2.2.6 [April 15, 2025]
 
 - **New Features:**
