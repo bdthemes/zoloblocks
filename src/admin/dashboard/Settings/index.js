@@ -1,11 +1,11 @@
 import apiFetch from '@wordpress/api-fetch';
-import { Button, Modal, SelectControl, ToggleControl } from '@wordpress/components';
+import { Button, Modal, ToggleControl } from '@wordpress/components';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Notice from '../notice';
 import SettingBox from './setting-box';
 
-import { TextControl } from '../../../components/Core';
+import { TextControl, SelectControl } from '../../../components/Core';
 
 const { zoloBlocks } = window;
 const Settings = () => {

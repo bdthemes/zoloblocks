@@ -1,5 +1,6 @@
-import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+import { SelectControl } from '../../components/Core';
 
 const ImageSizes = ({ label = '', value, onChange }) => {
     const Dimensions = wp.data.select('core/editor').getEditorSettings().imageDimensions || {

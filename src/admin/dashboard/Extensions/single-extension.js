@@ -1,4 +1,5 @@
-import { Modal, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '../../../components/Core';
+import { Modal } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';

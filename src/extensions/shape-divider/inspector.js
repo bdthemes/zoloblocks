@@ -3,7 +3,7 @@ import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_W
 
 import { __ } from '@wordpress/i18n';
 
-import { CardDivider, SelectControl, ToggleControl } from '@wordpress/components';
+import { CardDivider, ToggleControl } from '@wordpress/components';
 import objAttributes from './attributes';
 
 const Inspector = ({ panelProps }) => {

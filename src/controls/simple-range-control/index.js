@@ -1,8 +1,6 @@
-import {BaseControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { BaseControl, NumberControl } from '../../components/Core';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
-
-import { RangeControl } from '../../components/Core';
 
 const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onReset, units, min, max, step, noUnits }) => {
     let defaultUnits = [];
