@@ -1,17 +1,12 @@
 import {
-    BaseControl,
-    Button,
-    ButtonGroup,
-    Dropdown,
-    RangeControl,
-    ToggleControl,
-    ColorPicker,
-    __experimentalNumberControl as NumberControl,
+
     Popover,
-    ColorIndicator,
+    __experimentalNumberControl as NumberControl,
+    __experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import {  useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -119,24 +114,21 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                 noResetBtn={true}
                                 noResponsive={true}
                             >
-                                <ButtonGroup className="shadow-style-btn-group">
-                                    {BOX_SHADOW_TYPES &&
-                                        BOX_SHADOW_TYPES.map((type, index) => {
-                                            return (
-                                                <Button
-                                                    key={index}
-                                                    className={`shadow-style-btn ${shadowType === type.value ? 'active' : ''}`}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}shadowType`]: type.value,
-                                                        })
-                                                    }
-                                                >
-                                                    {type.label}
-                                                </Button>
-                                            );
-                                        })}
-                                </ButtonGroup>
+                                <ToggleGroupControl
+                                    value={shadowType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            [`${controlName}shadowType`]: value,
+                                        })
+                                    }
+                                    isBlock
+                                    __nextHasNoMarginBottom
+                                    __next40pxDefaultSize
+                                >
+                                    {BOX_SHADOW_TYPES.map(({ value, label }) => (
+                                        <ToggleGroupControlOption key={value} value={value} label={label} showTooltip={true} />
+                                    ))}
+                                </ToggleGroupControl>
                                 <div className="zolo-box-shadow-options">
                                     <div className="single-shadow-input">
                                         <NumberControl

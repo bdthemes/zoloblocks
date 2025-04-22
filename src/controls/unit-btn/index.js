@@ -1,20 +1,23 @@
-import { Button, ButtonGroup } from '@wordpress/components';
-import classNames from 'classnames';
+import {
+    __experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+} from '@wordpress/components';
 
 const UnitBtn = ({ selectedUnit, unitTypes, onClick }) => {
     return (
-        <ButtonGroup className="zb-unit-control-btn-group">
+        <ToggleGroupControl
+            // label="Units"
+            value={selectedUnit}
+            onChange={(value) => onClick(value)}
+            className="zb-unit-control-btn-group"
+            isBlock
+            __nextHasNoMarginBottom
+            __next40pxDefaultSize
+        >
             {unitTypes.map((unit) => (
-                <Button
-                    className={classNames('zb-unit-control-btn', `${unit.value === selectedUnit && 'zb-unit-active'}`)}
-                    isSmall
-                    variant={unit.value === selectedUnit ? 'primary' : 'secondary'}
-                    onClick={() => onClick(unit.value)}
-                >
-                    {unit.label}
-                </Button>
+                <ToggleGroupControlOption showTooltip={true} key={unit.value} value={unit.value} label={unit.label} className="zb-unit-control-btn" />
             ))}
-        </ButtonGroup>
+        </ToggleGroupControl>
     );
 };
 
