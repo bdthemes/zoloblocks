@@ -1,9 +1,7 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import {
-    BaseControl,
     Button,
     ButtonGroup,
-    SelectControl,
     TabPanel,
     TextareaControl,
     ToggleControl,
@@ -20,7 +18,7 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
 
-import { RangeControl } from '../../components/Core';
+import { RangeControl, SelectControl, BaseControl } from '../../components/Core';
 
 // const { PopoverControl } = window.zoloModule;
 

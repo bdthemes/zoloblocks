@@ -1,6 +1,7 @@
-import { BaseControl, TabPanel } from '@wordpress/components';
+import { TabPanel } from '@wordpress/components';
 import { NORMAL_HOVER } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
+import { BaseControl } from '../../components/Core';
 
 const TabPanelControl = ({
     normalComponents,

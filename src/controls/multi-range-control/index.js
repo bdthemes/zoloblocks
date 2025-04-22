@@ -1,5 +1,6 @@
-import { BaseControl } from '@wordpress/components';
 import { useState, useEffect, useRef } from '@wordpress/element';
+
+import { BaseControl } from '../../components/Core';
 
 const MultiRangeControl = (props) => {
     const min = parseFloat(props.min || 0);

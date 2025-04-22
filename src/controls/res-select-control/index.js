@@ -3,7 +3,9 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import { DEFAULT_ALIGNS } from '../../global/constants';
 import classNames from 'classnames';
 import ResetBtn from '../reset-btn';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl } from '../../components/Core';
+
+
 
 const ResSelectControl = ({ label, controlName, requiredProps, alignOptions, customClass = '' }) => {
     const { attributes, setAttributes, resMode } = requiredProps;

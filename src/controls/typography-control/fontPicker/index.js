@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { BaseControl, Tooltip } from '@wordpress/components';
+import { Tooltip } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import WebFont from 'webfontloader';
@@ -15,6 +15,7 @@ import Select2 from 'react-select';
  * Internal dependencies
  */
 import { googleFonts } from './googleFonts';
+import { BaseControl } from '../../../components/Core';
 
 const zoloThemeFonts = zoloSettings?.theme_fonts;
 const zoloAvailableFonts = [];

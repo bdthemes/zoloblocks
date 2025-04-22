@@ -1,7 +1,7 @@
 import UnitsBtn from '../units-btn';
 import Borders from './border';
 import { prefix } from '../../global/constants';
-import { ButtonGroup, Button, SelectControl, Popover } from '@wordpress/components';
+import { ButtonGroup, Button, Popover } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 
 import ColorBtn from '../color-btn';
 import LinkUnlink from '../link-unlink';
-
+import { SelectControl } from '../../components/Core';
 const BorderControl = ({ label, controlName, requiredProps, units, hoverControl = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const [displayPanel, setDisplayPanel] = useState(false);

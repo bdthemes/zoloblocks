@@ -1,9 +1,7 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import {
-    BaseControl,
     Button,
     ButtonGroup,
-    SelectControl,
     Dropdown,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -15,7 +13,7 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import ResetBtn from '../reset-btn';
 import PopoverControl from '../popover-control';
 
-import { RangeControl } from '../../components/Core';
+import { RangeControl, SelectControl, BaseControl } from '../../components/Core';
 
 const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg = false }) => {
     const { setAttributes, attributes, resMode } = requiredProps;

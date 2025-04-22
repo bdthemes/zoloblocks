@@ -1,13 +1,15 @@
 /**
  * WordPress dependencies
  */
-import { Button, SelectControl, TextareaControl, CardDivider, BaseControl } from '@wordpress/components';
+import { Button, TextareaControl, CardDivider } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
 import particlesInit from './init';
 import MultiColor from './multicolor';
+
+import { SelectControl, BaseControl } from '../../components/Core';
 
 const { PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
 
@@ -371,9 +373,9 @@ const Inspector = ({ panelProps }) => {
                     />
                 )}
 
-                <Button 
-                    className="zolo-action-button" 
-                    variant="primary" 
+                <Button
+                    className="zolo-action-button"
+                    variant="primary"
                     onClick={() => {
                         setIsPreview( prev => !prev )
                     }}
