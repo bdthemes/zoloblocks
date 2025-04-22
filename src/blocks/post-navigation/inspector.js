@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, CardDivider, SelectControl } from '@wordpress/components';
+import { ToggleControl, CardDivider, SelectControl } from '@wordpress/components';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
+import { TextControl } from '../../components/Core';
 
 import { TITLE_TYPOGRAPHY, BTN_TYPOGRAPHY } from './constants/typoPrefixConstant';
 

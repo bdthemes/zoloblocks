@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useRef } from '@wordpress/element';
-import { TextControl } from '@wordpress/components';
 
 const Prompt = (props) => {
     const { reset, setBlockContent, setPrompt, setScreen } = useDispatch('zoloai/popup');

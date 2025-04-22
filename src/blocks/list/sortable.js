@@ -2,9 +2,10 @@
  * Internal dependencies
  */
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
-const { Button, PanelBody, TextControl, TextareaControl } = wp.components;
+import { Button, PanelBody, TextareaControl } from '@wordpress/components';
 import { cloneDeep } from 'lodash';
-const { __ } = wp.i18n;
+import { __ } from '@wordpress/i18n';
+import { TextControl } from '../../components/Core';
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const { DscToggle, preset, isLinkable } = attributes;
@@ -54,6 +55,8 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                     label={__('Title', 'zoloblocks')}
                                     value={profile.text}
                                     onChange={(value) => updateProfiles(index, 'text', value)}
+                                    __nextHasNoMarginBottom={true}
+                                    __next40pxDefaultSize={true}
                                 />
                                 {DscToggle && preset !== 'zolo-list-style-1' && (
                                     <TextareaControl
@@ -61,6 +64,8 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         label={__('Description', 'zoloblocks')}
                                         value={profile.desc}
                                         onChange={(value) => updateProfiles(index, 'desc', value)}
+                                        __nextHasNoMarginBottom={true}
+                                        __next40pxDefaultSize={true}
                                     />
                                 )}
                                 {preset !== 'zolo-list-style-1' && (

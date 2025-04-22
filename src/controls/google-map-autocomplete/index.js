@@ -21,14 +21,15 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
     return (
         <div className="zolo-google-map-autocomplete">
             <TextControl
-                label={label || __('Location', 'zoloblocks')}
-                placeholder={__('Enter location', 'zoloblocks')}
+                label={__('Search Location', 'zoloblocks')}
                 value={value}
                 onChange={(v) => {
                     onChange(v);
                     getPlacePredictions({ input: v });
                 }}
                 onFocus={() => setPredictionPanel(true)}
+                __nextHasNoMarginBottom={true}
+                __next40pxDefaultSize={true}
             />
             {predictionPanel && (
                 <>

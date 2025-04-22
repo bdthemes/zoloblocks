@@ -1,9 +1,10 @@
 import {registerPlugin} from "@wordpress/plugins";
 import {useSelect, useDispatch} from "@wordpress/data";
 import {PluginDocumentSettingPanel} from "@wordpress/edit-post";
-import {TextControl} from "@wordpress/components";
 import {useState, useEffect, useCallback} from "@wordpress/element";
 import apiFetch from "@wordpress/api-fetch";
+import {__} from "@wordpress/i18n";
+import { TextControl } from '../components/Core';
 
 const ZoloBlockPostVideoLink = () => {
   const [isVideoLinkEnabled, setIsVideoLinkEnabled] = useState(false);
@@ -36,7 +37,7 @@ const ZoloBlockPostVideoLink = () => {
   return (
     <PluginDocumentSettingPanel title="ZoloBlocks Additional" initialOpen={true}>
       <TextControl
-        label="Video Link"
+        label={__('Video URL', 'zoloblocks')}
         value={videoLink || ""}
         onChange={(value) =>
           editPost({

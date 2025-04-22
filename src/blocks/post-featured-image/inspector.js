@@ -40,6 +40,7 @@ export default function Inspector(props) {
         //thumbnail
         thumbnailSize,
         borderHoverColor,
+        customClass,
     } = attributes;
     const requiredProps = {
         resMode,
@@ -102,6 +103,13 @@ export default function Inspector(props) {
                                 controlName={THUMBNAIL_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
+                            />
+                            <TextControl
+                                label={__('Custom Class', 'zoloblocks')}
+                                value={customClass}
+                                onChange={(value) => setAttributes({ customClass: value })}
+                                __nextHasNoMarginBottom={true}
+                                __next40pxDefaultSize={true}
                             />
                         </ZoloPanelBody>
                     </>
