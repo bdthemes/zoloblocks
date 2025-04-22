@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
@@ -20,6 +20,7 @@ import {
     ITEM_HOVER_BG,
     ITEM_HOVER_SHADOW,
 } from './constants';
+import { RangeControl } from '../../components/Core';
 
 const {
     ResDimensionsControl,

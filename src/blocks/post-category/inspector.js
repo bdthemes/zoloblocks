@@ -2,7 +2,6 @@ import { InspectorControls } from '@wordpress/block-editor';
 import {
     SelectControl,
     ToggleControl,
-    RangeControl,
     __experimentalInputControl as InputControl,
     CardDivider,
 } from '@wordpress/components';
@@ -12,7 +11,7 @@ import objAttributes from './attributes';
 import { NAME_TYPOGRAPHY, TEXT_TYPOGRAPHY, COUNT_TYPOGRAPHY, VIEW_BTN_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { THUMBNAIL_SIZE } from '../../../src/global/constants';
 import QuerySettings from './query-settings';
-import { TextControl } from '../../components/Core';
+import { TextControl, RangeControl } from '../../components/Core';
 
 import {
     PRESETS,

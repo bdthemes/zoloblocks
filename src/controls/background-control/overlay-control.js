@@ -8,7 +8,8 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
-import { CardDivider } from '@wordpress/components';
+
+import { RangeControl } from '../../components/Core';
 
 const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
     const { setAttributes, attributes, resMode } = requiredProps;

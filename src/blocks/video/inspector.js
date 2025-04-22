@@ -9,9 +9,8 @@ import {
     BaseControl,
     Button,
     __experimentalNumberControl as NumberControl,
-    RangeControl,
 } from '@wordpress/components';
-import { TextControl } from '../../components/Core';
+import { TextControl, RangeControl   } from '../../components/Core';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 

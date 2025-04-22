@@ -1,10 +1,10 @@
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
-const { InspectorControls } = wp.blockEditor;
-const { RangeControl, ToggleControl, SelectControl, CardDivider } = wp.components;
-import { applyFilters } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
+import { InspectorControls } from '@wordpress/block-editor';
+import { ToggleControl, SelectControl, CardDivider } from '@wordpress/components';
+import { RangeControl } from '../../components/Core';
 /**
  * Internal dependencies
  */

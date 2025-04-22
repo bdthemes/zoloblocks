@@ -4,7 +4,6 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
     ToggleControl,
-    RangeControl,
     SelectControl,
     Button,
     TextareaControl,
@@ -23,7 +22,7 @@ import axios from 'axios';
  * Internal depencencies
  */
 
-import { TextControl } from '../../components/Core';
+import { TextControl, RangeControl } from '../../components/Core';
 
 const {
     SimpleRangeControl,
@@ -951,12 +950,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions
+                        {/* <AdvancedOptions
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
                             block="zolo/charts"
-                        />
+                        /> */}
                     </>
                 }
             />

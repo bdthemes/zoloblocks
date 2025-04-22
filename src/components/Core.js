@@ -1,7 +1,17 @@
-import { TextControl as WPTextControl } from '@wordpress/components';
+import { TextControl as WPTextControl, RangeControl as WPRangeControl } from '@wordpress/components';
 
 const TextControl = (props) => {
     return <WPTextControl __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} {...props} />;
 };
 
-export { TextControl };
+const RangeControl = (props) => {
+    return (
+        <WPRangeControl
+            __nextHasNoMarginBottom={true}
+            __next40pxDefaultSize={true}
+            {...props}
+        />
+    );
+};
+
+export { TextControl, RangeControl };

@@ -21,10 +21,10 @@ const {
  * WordPress depencencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { ToggleControl, Button, BaseControl, RangeControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, Button, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { TextControl } from '../../components/Core';
+import { TextControl, RangeControl } from '../../components/Core';
 
 import objAttributes from './attributes';
 

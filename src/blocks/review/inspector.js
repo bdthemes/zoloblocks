@@ -9,7 +9,6 @@ import {
     ToggleControl,
     BaseControl,
     Button,
-    RangeControl,
     CardDivider,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -17,7 +16,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-import { TextControl } from '../../components/Core';
+import { TextControl, RangeControl } from '../../components/Core';
 
 const {
     ResAlignmentControl,

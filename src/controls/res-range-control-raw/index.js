@@ -1,9 +1,10 @@
-import { RangeControl, Button } from '@wordpress/components';
 import { select } from '@wordpress/data';
 
 import WithResDeviceBtnRaw from '../with-res-device-btn-raw';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
+
+import { RangeControl } from '../../components/Core';
 
 const ResRangeControlRaw = ({
     label,

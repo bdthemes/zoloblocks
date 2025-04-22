@@ -1,17 +1,14 @@
-import { MediaUpload } from '@wordpress/block-editor';
-import { Button, RangeControl, SelectControl, ToggleControl, TextareaControl, CardDivider } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+
+import { Button, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { TEXT_GRADIENT_TYPES } from '../../global/constants';
-import ColorControl from '../color-control';
-import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
-import ResetBtn from '../reset-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
-import { ColorPalette } from '@wordpress/block-editor';
+
+import { RangeControl } from '../../components/Core';
 
 const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGImg = false, defaultColor="",onChangeDefault= null }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
