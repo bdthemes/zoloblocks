@@ -56,6 +56,13 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
         setIsLinked(!isLinked);
     };
 
+    // Helper function to ensure valid numeric values
+    const parseNumericValue = (value) => {
+        if (value === '' || value === undefined || value === null) return '';
+        const parsed = parseFloat(value);
+        return isNaN(parsed) ? '' : parsed.toString(); // Convert to string to avoid NaN
+    };
+
     return (
         <div className="zolo-dimensions-control-wraper">
             {resMode == 'Desktop' && (
@@ -98,10 +105,10 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
                         neededProps={neededProps}
                         onChange={({ top, right, bottom, left }) => {
                             setAttributes({
-                                [`${prefix}${controlName}Top`]: top,
-                                [`${prefix}${controlName}Right`]: right,
-                                [`${prefix}${controlName}Bottom`]: bottom,
-                                [`${prefix}${controlName}Left`]: left,
+                                [`${prefix}${controlName}Top`]: parseNumericValue(top),
+                                [`${prefix}${controlName}Right`]: parseNumericValue(right),
+                                [`${prefix}${controlName}Bottom`]: parseNumericValue(bottom),
+                                [`${prefix}${controlName}Left`]: parseNumericValue(left),
                             });
                         }}
                     />
@@ -145,14 +152,14 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
                         bottom={TABdimensionBottom}
                         left={TABdimensionLeft}
                         neededProps={neededProps}
-                        onChange={({ top, right, bottom, left }) =>
+                        onChange={({ top, right, bottom, left }) => {
                             setAttributes({
-                                [`${prefix}TAB${controlName}Top`]: top,
-                                [`${prefix}TAB${controlName}Right`]: right,
-                                [`${prefix}TAB${controlName}Bottom`]: bottom,
-                                [`${prefix}TAB${controlName}Left`]: left,
-                            })
-                        }
+                                [`${prefix}TAB${controlName}Top`]: parseNumericValue(top),
+                                [`${prefix}TAB${controlName}Right`]: parseNumericValue(right),
+                                [`${prefix}TAB${controlName}Bottom`]: parseNumericValue(bottom),
+                                [`${prefix}TAB${controlName}Left`]: parseNumericValue(left),
+                            });
+                        }}
                     />
                 </>
             )}
@@ -194,14 +201,14 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
                         bottom={MOBdimensionBottom}
                         left={MOBdimensionLeft}
                         neededProps={neededProps}
-                        onChange={({ top, right, bottom, left }) =>
+                        onChange={({ top, right, bottom, left }) => {
                             setAttributes({
-                                [`${prefix}MOB${controlName}Top`]: top,
-                                [`${prefix}MOB${controlName}Right`]: right,
-                                [`${prefix}MOB${controlName}Bottom`]: bottom,
-                                [`${prefix}MOB${controlName}Left`]: left,
-                            })
-                        }
+                                [`${prefix}MOB${controlName}Top`]: parseNumericValue(top),
+                                [`${prefix}MOB${controlName}Right`]: parseNumericValue(right),
+                                [`${prefix}MOB${controlName}Bottom`]: parseNumericValue(bottom),
+                                [`${prefix}MOB${controlName}Left`]: parseNumericValue(left),
+                            });
+                        }}
                     />
                 </>
             )}

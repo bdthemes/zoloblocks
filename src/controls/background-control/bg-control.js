@@ -2,7 +2,9 @@ import { MediaUpload } from '@wordpress/block-editor';
 import {
     BaseControl,
     Button,
-    ButtonGroup,
+    __experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+    RangeControl,
     SelectControl,
     TabPanel,
     TextareaControl,
@@ -123,34 +125,24 @@ const BGControl = (props) => {
                             return (
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    key={value}
-                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
-                                            {video && (
-                                                <Button
-                                                    key="video"
-                                                    variant={backgroundType === 'video' ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: 'video',
-                                                        })
-                                                    }
-                                                >
-                                                    {__('Video', 'zoloblocks')}
-                                                </Button>
-                                            )}
-                                        </ButtonGroup>
+                                        <ToggleGroupControl className="background-type-group">
+                                            <ToggleGroupControlOption
+                                                value="none"
+                                                label={__('None', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="color"
+                                                label={__('Color', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="gradient"
+                                                label={__('Gradient', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="image"
+                                                label={__('Image', 'zoloblocks')}
+                                            />
+                                        </ToggleGroupControl>
                                     </BaseControl>
 
                                     {backgroundType === 'classic' && (
@@ -1397,21 +1389,24 @@ const BGControl = (props) => {
                             return (
                                 <>
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    key={value}
-                                                    variant={hov_backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`hov_${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
-                                        </ButtonGroup>
+                                        <ToggleGroupControl className="background-type-group">
+                                            <ToggleGroupControlOption
+                                                value="none"
+                                                label={__('None', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="color"
+                                                label={__('Color', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="gradient"
+                                                label={__('Gradient', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="image"
+                                                label={__('Image', 'zoloblocks')}
+                                            />
+                                        </ToggleGroupControl>
                                     </BaseControl>
 
                                     {hov_backgroundType === 'classic' && (
