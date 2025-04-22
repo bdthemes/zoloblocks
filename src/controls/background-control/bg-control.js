@@ -3,11 +3,8 @@ import {
     Button,
     __experimentalToggleGroupControl as ToggleGroupControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption,
-    RangeControl,
-    SelectControl,
     TabPanel,
     TextareaControl,
-    ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -21,7 +18,7 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
 
-import { RangeControl, SelectControl, BaseControl } from '../../components/Core';
+import { RangeControl, SelectControl, BaseControl, ToggleControl } from '../../components/Core';
 
 // const { PopoverControl } = window.zoloModule;
 

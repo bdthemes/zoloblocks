@@ -1,7 +1,7 @@
 import UnitsBtn from '../units-btn';
 import Borders from './border';
 import { prefix } from '../../global/constants';
-import { __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, Button, SelectControl, Popover } from '@wordpress/components';
+import { __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, Button, Popover } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';

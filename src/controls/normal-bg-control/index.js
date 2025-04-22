@@ -1,8 +1,6 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import {
     Button,
-    RangeControl,
-    SelectControl,
     Dropdown,
     TextareaControl,
     __experimentalToggleGroupControl as ToggleGroupControl,

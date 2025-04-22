@@ -1,5 +1,5 @@
 import { MediaUpload } from '@wordpress/block-editor';
-import { BaseControl, Button, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, RangeControl, SelectControl, TabPanel } from '@wordpress/components';
+import { Button, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption,TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
