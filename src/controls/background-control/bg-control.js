@@ -339,6 +339,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={bgImgcustomPosX}
                                                                                                         min={-2000}
                                                                                                         max={2000}
@@ -382,6 +383,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={bgImgcustomPosY}
                                                                                                         min={-2000}
                                                                                                         max={2000}
@@ -553,6 +555,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -704,6 +707,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={TABbgImgcustomPosX}
                                                                                                         min={0}
                                                                                                         max={
@@ -751,6 +755,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={TABbgImgcustomPosY}
                                                                                                         min={0}
                                                                                                         max={
@@ -929,6 +934,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={TABbgImgCustomSize}
                                                                                                         min={0}
                                                                                                         max={
@@ -1081,6 +1087,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={MOBbgImgcustomPosX}
                                                                                                         min={0}
                                                                                                         max={
@@ -1128,6 +1135,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={MOBbgImgcustomPosY}
                                                                                                         min={0}
                                                                                                         max={
@@ -1305,6 +1313,7 @@ const BGControl = (props) => {
                                                                                                     noResetBtn={true}
                                                                                                 >
                                                                                                     <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                         value={MOBbgImgCustomSize}
                                                                                                         min={0}
                                                                                                         max={
@@ -1575,6 +1584,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={hov_bgImgcustomPosX}
                                                                                                     min={-2000}
                                                                                                     max={2000}
@@ -1618,6 +1628,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={hov_bgImgcustomPosY}
                                                                                                     min={-2000}
                                                                                                     max={2000}
@@ -1785,6 +1796,7 @@ const BGControl = (props) => {
                                                                                             noResetBtn={true}
                                                                                         >
                                                                                             <RangeControl
+                                                                                            className="zolo-range-control-tooltip"
                                                                                                 value={hov_bgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -1921,6 +1933,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={hov_TABbgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1968,6 +1981,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={hov_TABbgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -2139,6 +2153,7 @@ const BGControl = (props) => {
                                                                                             noResetBtn={true}
                                                                                         >
                                                                                             <RangeControl
+                                                                                            className="zolo-range-control-tooltip"
                                                                                                 value={hov_TABbgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -2275,6 +2290,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={hov_MOBbgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -2322,6 +2338,7 @@ const BGControl = (props) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={hov_MOBbgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -2493,6 +2510,7 @@ const BGControl = (props) => {
                                                                                             noResetBtn={true}
                                                                                         >
                                                                                             <RangeControl
+                                                                                            className="zolo-range-control-tooltip"
                                                                                                 value={hov_MOBbgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={

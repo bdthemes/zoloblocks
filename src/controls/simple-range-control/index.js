@@ -23,6 +23,7 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                         <BaseControl label={label}>
                             <div className="zolo-input-range-wrapper">
                                 <RangeControl
+                                    className="zolo-range-control-tooltip"
                                     value={value}
                                     onChange={(val) => onChange(val)}
                                     min={min || 0}
@@ -44,6 +45,7 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                         <BaseControl label={label}>
                             <div className="zolo-input-range-wrapper">
                                 <RangeControl
+                                    className="zolo-range-control-tooltip"
                                     value={value}
                                     onChange={(val) => onChange(val)}
                                     min={min || 0}

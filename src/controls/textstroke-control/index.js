@@ -68,6 +68,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                         <div className="zolo-box-shadow-options">
                             <div className="single-shadow-input">
                                 <RangeControl
+                                    className="zolo-range-control-tooltip"
                                     value={strokeWidthVal}
                                     onChange={(val) =>
                                         setAttributes({

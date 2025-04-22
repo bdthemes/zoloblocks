@@ -74,6 +74,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -138,6 +139,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -202,6 +204,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         value={mobRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -298,6 +301,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -392,6 +396,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -486,6 +491,7 @@ const ResRangeControl = ({
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <div className="zolo-input-range-wrapper">
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         value={mobRange}
                                         onChange={(val) => {
                                             if (object) {

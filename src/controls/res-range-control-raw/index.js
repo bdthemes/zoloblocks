@@ -42,6 +42,7 @@ const ResRangeControlRaw = ({
 
                     <WithResDeviceBtnRaw label={label}>
                         <RangeControl
+                            className="zolo-range-control-tooltip"
                             value={deskVal}
                             onChange={(val) => onDeskChange(val)}
                             min={50}
@@ -59,6 +60,7 @@ const ResRangeControlRaw = ({
                     </UnitsBtn>
                     <WithResDeviceBtnRaw label={label}>
                         <RangeControl
+                            className="zolo-range-control-tooltip"
                             value={tabVal}
                             onChange={(val) => onTabChange(val)}
                             min={50}
@@ -76,6 +78,7 @@ const ResRangeControlRaw = ({
                     </UnitsBtn>
                     <WithResDeviceBtnRaw label={label}>
                         <RangeControl
+                            className="zolo-range-control-tooltip"
                             value={mobVal}
                             onChange={(val) => onMobChange(val)}
                             min={50}

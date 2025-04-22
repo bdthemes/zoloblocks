@@ -1023,3 +1023,32 @@ textarea[readonly] {
         }
     }
 }
+
+.zolo-range-control-tooltip {
+    .components-range-control__tooltip {
+        top: -15px !important;
+        bottom: auto !important;
+        background: blue;
+        color: white;
+        padding: 3px;
+        font-size: 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+    .components-range-control__tooltip::after {
+        position: absolute;
+        top: 98% !important;
+        bottom: auto !important;
+        left: 50% !important;
+        border-top-color: blue !important;
+        border-bottom-color: transparent !important;
+        content: '';
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid blue; 
+    }
+}

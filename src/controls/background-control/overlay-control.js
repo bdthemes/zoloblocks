@@ -134,6 +134,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                             return (
                                 <>
                                     <RangeControl
+                                    className="zolo-range-control-tooltip"
                                         label={__('Overlay Opacity', 'zoloblocks')}
                                         value={ovl_opacity}
                                         onChange={(v) => setAttributes({ [`${controlName}ovl_opacity`]: v })}
@@ -333,6 +334,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={ovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -381,6 +383,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={ovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -552,6 +555,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                             noResetBtn={true}
                                                                                         >
                                                                                             <RangeControl
+                                                                                            className="zolo-range-control-tooltip"
                                                                                                 value={ovl_bgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -688,6 +692,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={TABovl_bgImgcustomPosX}
                                                                                                     min={-2000}
                                                                                                     max={
@@ -736,6 +741,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={TABovl_bgImgcustomPosY}
                                                                                                     min={-2000}
                                                                                                     max={
@@ -909,6 +915,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={TABovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -1046,6 +1053,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={MOBovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1093,6 +1101,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={MOBovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -1264,6 +1273,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                     value={MOBovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -1316,6 +1326,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                             return (
                                 <>
                                     <RangeControl
+                                        className="zolo-range-control-tooltip"
                                         label={__('Overlay Opacity', 'zoloblocks')}
                                         value={hov_ovl_opacity}
                                         onChange={(v) =>
@@ -1515,6 +1526,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_ovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1562,6 +1574,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_ovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -1733,6 +1746,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                             noResetBtn={true}
                                                                                         >
                                                                                             <RangeControl
+                                                                                                className="zolo-range-control-tooltip"
                                                                                                 value={hov_ovl_bgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -1869,6 +1883,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_TABovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1919,6 +1934,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_TABovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -2094,6 +2110,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 noResetBtn={true}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_TABovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -2233,6 +2250,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_MOBovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -2282,6 +2300,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_MOBovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -2454,6 +2473,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Width', 'zoloblocks')}
                                                                                             >
                                                                                                 <RangeControl
+                                                                                                    className="zolo-range-control-tooltip"
                                                                                                     value={hov_MOBovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={

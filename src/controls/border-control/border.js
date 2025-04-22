@@ -58,6 +58,7 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
                 <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
                         <RangeControl
+                            className="zolo-range-control-tooltip"
                             value={parseInt(borders.top) || parseInt(borders.right) || parseInt(borders.bottom) || parseInt(borders.left)}
                             onChange={(value) => setLinkedBorders(value.toString())}
                             min={0}

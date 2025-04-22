@@ -58,6 +58,7 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                     {isLinked && (
                         <div className="zolo-input-range-wrapper">
                             <RangeControl
+                                className="zolo-range-control-tooltip"
                                 value={
                                     parseInt(dimensions.top) ??
                                     parseInt(dimensions.right) ??
