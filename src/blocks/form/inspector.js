@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, TextareaControl, RangeControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextareaControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -10,6 +10,8 @@ import { useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
 import objAttributes from './attributes';
+
+import { TextControl } from '../../components/Core';
 
 import {
     PRESETS,
@@ -113,7 +115,7 @@ function Inspector(props) {
             zolo_recaptcha_site_key: settings.zolo_recaptcha_site_key,
         };
     }, []);
-    
+
 
     const onPresetChange = (selected) => {
         setAttributes({

@@ -4,7 +4,6 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
     ToggleControl,
-    TextControl,
     RangeControl,
     SelectControl,
     Button,
@@ -23,6 +22,9 @@ import axios from 'axios';
 /**
  * Internal depencencies
  */
+
+import { TextControl } from '../../components/Core';
+
 const {
     SimpleRangeControl,
     ColorControl,

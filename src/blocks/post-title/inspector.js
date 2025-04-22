@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import {
@@ -20,6 +20,8 @@ import {
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
+
+import { TextControl } from '../../components/Core';
 
 const {
     TextShadowControl,

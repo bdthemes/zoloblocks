@@ -2,11 +2,13 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, TextControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, SelectControl } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
+
+import { TextControl } from '../../components/Core';
 import BackgroundControl from '../../controls/background-control';
 import ResDimensionsControl from '../../controls/dimensions-control';
 import BorderControl from '../../controls/border-control';

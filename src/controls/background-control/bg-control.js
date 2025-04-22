@@ -8,7 +8,6 @@ import {
     TabPanel,
     TextareaControl,
     ToggleControl,
-    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
@@ -19,7 +18,8 @@ import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
-import { CardDivider } from '@wordpress/components';
+
+import { TextControl } from '../../components/Core';
 
 // const { PopoverControl } = window.zoloModule;
 

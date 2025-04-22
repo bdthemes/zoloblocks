@@ -3,9 +3,9 @@
  */
 
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, CardDivider } from '@wordpress/components';
-
+import { ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { TextControl } from '../../components/Core';
 
 /**
  * Internal depencencies

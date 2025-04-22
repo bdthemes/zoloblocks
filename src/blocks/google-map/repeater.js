@@ -71,8 +71,20 @@ const Repeater = ({ markers, setAttributes }) => {
                                         });
                                     }}
                                 />
-                                <TextControl label={__('Latitude', 'zoloblocks')} value={marker?.position.lat} readOnly={true} />
-                                <TextControl label={__('Longitude', 'zoloblocks')} value={marker?.position.lng} readOnly={true} />
+                                <TextControl
+                                    label={__('Latitude', 'zoloblocks')}
+                                    value={marker?.position.lat}
+                                    readOnly={true}
+                                    __nextHasNoMarginBottom={true}
+                                    __next40pxDefaultSize={true}
+                                />
+                                <TextControl
+                                    label={__('Longitude', 'zoloblocks')}
+                                    value={marker?.position.lng}
+                                    readOnly={true}
+                                    __nextHasNoMarginBottom={true}
+                                    __next40pxDefaultSize={true}
+                                />
 
                                 <div className='zolo-flex-col-control'>
                                     <TextareaControl

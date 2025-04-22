@@ -6,7 +6,7 @@ import { CAT_ORDER_BY } from './constants';
 const { Select2AjaxControl } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
-    const { catQuery } = attributes;
+    const { catQuery, customClass } = attributes;
     const allTaxonomyList = zoloParams.get_taxonomies;
     let tpgAllTaxonomies = new Set();
     tpgAllTaxonomies.add({
@@ -84,6 +84,14 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                     setAttributes({ catQuery: { ...catQuery, catOrder } });
                 }}
                 options={SORT_ORDER}
+            />
+
+            <TextControl
+                label={__('Custom Class', 'zoloblocks')}
+                value={customClass}
+                onChange={(value) => setAttributes({ customClass: value })}
+                __nextHasNoMarginBottom={true}
+                __next40pxDefaultSize={true}
             />
         </>
     );

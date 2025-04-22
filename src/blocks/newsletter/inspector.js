@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import { useState, useEffect } from '@wordpress/element';
@@ -28,6 +28,8 @@ const {
     ZoloPanelBody,
     ResAlignmentControl,
 } = window.zoloModule;
+
+import { TextControl } from '../../components/Core';
 
 import objAttributes from './attributes';
 import {

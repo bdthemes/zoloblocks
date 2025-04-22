@@ -1,8 +1,10 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
+import { SelectControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import Select2 from 'react-select';
+
+import { TextControl } from '../../components/Core';
 
 import {
     HEADING_TAGS,
