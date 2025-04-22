@@ -30,10 +30,6 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
     const { preview, uniqueId, parentClasses, preset } = attributes;
 
-    // preview image
-    if (preview) {
-        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zoloblocks')} />;
-    }
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
@@ -62,6 +58,11 @@ export default function Edit(props) {
             }
         };
     }, [delayedInit]);
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zoloblocks')} />;
+    }
 
     const innerBlocksProps = useInnerBlocksProps(
         {

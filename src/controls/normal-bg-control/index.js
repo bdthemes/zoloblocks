@@ -1,8 +1,12 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import {
     Button,
-    ButtonGroup,
+    RangeControl,
+    SelectControl,
     Dropdown,
+    TextareaControl,
+    __experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES } from '../../global/constants';
@@ -97,26 +101,28 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                         />
                                     </svg>
                                 </button>
+
                             </div>
                         )}
                         renderContent={() => (
                             <>
-                                <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                    <ButtonGroup>
-                                        {BACKGROUND_TYPES.map(({ value, label }) => (
-                                            <Button
-                                                variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                onClick={() =>
-                                                    setAttributes({
-                                                        [`${controlName}backgroundType`]: value,
-                                                    })
-                                                }
-                                            >
-                                                {label}
-                                            </Button>
-                                        ))}
-                                    </ButtonGroup>
-                                </BaseControl>
+                                <ToggleGroupControl
+                                    label={__('Background Type', 'zoloblocks')}
+                                    value={backgroundType}
+                                    isBlock={false}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            [`${controlName}backgroundType`]: value,
+                                        })
+                                    }
+                                    __nextHasNoMarginBottom
+                                    __next40pxDefaultSize
+
+                                >
+                                    {BACKGROUND_TYPES.map(({ value, label }) => (
+                                        <ToggleGroupControlOption key={value} value={value} label={label} showTooltip={true} />
+                                    ))}
+                                </ToggleGroupControl>
 
                                 {backgroundType === 'classic' && (
                                     <>
@@ -164,7 +170,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     [`${controlName}bgImageURL`]: null,
                                                                 })
                                                             }
-                                                            onEditImage={({url, id}) =>
+                                                            onEditImage={({ url, id }) =>
                                                                 setAttributes({
                                                                     [`${controlName}bgImageURL`]: url,
                                                                     [`${controlName}bgImageID`]: id,
