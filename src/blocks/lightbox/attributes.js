@@ -93,7 +93,11 @@ const attributes = {
     },
     imageRes: {
         type: 'string',
-        default: 'full',
+        default: 'thumbnail',
+    },
+    imageSizeLightbox: {
+        type: 'string',
+        default: 'thumbnail',
     },
     buttonText: {
         type: 'string',
