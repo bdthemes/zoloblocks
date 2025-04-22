@@ -1,5 +1,5 @@
 import { MediaUpload } from '@wordpress/block-editor';
-import { BaseControl, Button, ButtonGroup, RangeControl, SelectControl, TabPanel } from '@wordpress/components';
+import { BaseControl, Button, ButtonGroup, SelectControl, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
@@ -8,7 +8,8 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
-import { CardDivider } from '@wordpress/components';
+
+import { RangeControl } from '../../components/Core';
 
 const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
     const { setAttributes, attributes, resMode } = requiredProps;

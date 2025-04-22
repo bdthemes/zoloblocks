@@ -2,13 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { RangeControl, CardDivider } from '@wordpress/components';
+import { CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-import { TextControl } from '../../components/Core';
+import { TextControl, RangeControl   } from '../../components/Core';
 
 const {
     NormalBGControl,

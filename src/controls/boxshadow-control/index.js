@@ -1,17 +1,11 @@
 import {
-    BaseControl,
     Button,
     ButtonGroup,
-    Dropdown,
-    RangeControl,
-    ToggleControl,
-    ColorPicker,
     __experimentalNumberControl as NumberControl,
     Popover,
-    ColorIndicator,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal dependencies

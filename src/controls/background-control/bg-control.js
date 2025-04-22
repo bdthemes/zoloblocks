@@ -3,13 +3,14 @@ import {
     BaseControl,
     Button,
     ButtonGroup,
-    RangeControl,
     SelectControl,
     TabPanel,
     TextareaControl,
     ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
 import GradientControl from '../gradient-control';
@@ -19,7 +20,7 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
 
-import { TextControl } from '../../components/Core';
+import { RangeControl } from '../../components/Core';
 
 // const { PopoverControl } = window.zoloModule;
 
