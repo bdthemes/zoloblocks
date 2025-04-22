@@ -1,4 +1,4 @@
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { NumberControl } from '../../components/Core';
 // import WithResDeviceBtn from './res-device-btn';
 
 import { prefix } from '../../global/constants';

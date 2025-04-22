@@ -1,4 +1,4 @@
-import { RangeControl } from '@wordpress/components';
+import { RangeControl } from '../../components/Core';
 import { __ } from '@wordpress/i18n';
 
 /**
