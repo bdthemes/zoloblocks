@@ -19,6 +19,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                 <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
                         <RangeControl
+                            className="zolo-range-control-tooltip"
                             value={gap}
                             onChange={(value) =>
                                 setAttributes({
@@ -34,7 +35,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                         <>
                             <div className="input-wrap">
                                 <RangeControl
-                                  className="zolo-flex-col-control"
+                                  className="zolo-flex-col-control zolo-range-control-tooltip"
                                   label={__('Column', 'zoloblocks')}
                                   value={colGap}
                                   onChange={(v) =>
@@ -47,7 +48,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                                   max={max || 100}
                                 />
                                 <RangeControl
-                                    className="zolo-flex-col-control"
+                                    className="zolo-flex-col-control zolo-range-control-tooltip"
                                     label={__('Row', 'zoloblocks')}
                                     value={rowGap}
                                     onChange={(v) =>

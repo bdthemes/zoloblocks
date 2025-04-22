@@ -22,6 +22,7 @@ const RangeResetControl = ({ label, controlName, min, max, step, help, requiredP
             )}
             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true} noResponsive={true}>
                 <RangeControl
+                    className="zolo-range-control-tooltip"
                     value={controlVal}
                     onChange={(val) => setAttributes({ [controlName]: val })}
                     {...dataAttributes}

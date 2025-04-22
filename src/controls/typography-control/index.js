@@ -177,6 +177,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
 
                                         <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={fontSize}
                                                 onChange={(FontSize) =>
                                                     setAttributes({
@@ -216,6 +217,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
 
                                         <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={TABfontSize}
                                                 onChange={(FontSize) =>
                                                     setAttributes({
@@ -255,6 +257,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
 
                                         <WithResDeviceBtn label={__(' Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={MOBfontSize}
                                                 onChange={(FontSize) =>
                                                     setAttributes({
@@ -300,6 +303,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             noResetBtn={true}
                                         >
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={letterSpacing}
                                                 onChange={(LetterSpacing) =>
                                                     setAttributes({
@@ -344,6 +348,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             noResetBtn={true}
                                         >
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={TABletterSpacing}
                                                 onChange={(LetterSpacing) =>
                                                     setAttributes({
@@ -388,6 +393,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             noResetBtn={true}
                                         >
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={MOBletterSpacing}
                                                 onChange={(LetterSpacing) =>
                                                     setAttributes({
@@ -433,6 +439,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             noResetBtn={true}
                                         >
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={lineHeight}
                                                 onChange={(LineHeight) =>
                                                     setAttributes({
@@ -476,6 +483,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             noResetBtn={true}
                                         >
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={TABlineHeight}
                                                 onChange={(LineHeight) =>
                                                     setAttributes({
@@ -519,6 +527,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             noResetBtn={true}
                                         >
                                             <RangeControl
+                                                className="zolo-range-control-tooltip"
                                                 value={MOBlineHeight}
                                                 onChange={(LineHeight) =>
                                                     setAttributes({
