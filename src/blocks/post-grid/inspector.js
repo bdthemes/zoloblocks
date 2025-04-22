@@ -51,6 +51,13 @@ import {
     FILTER_PADDING,
     FILTER_ALIGN,
     FILTER_GAP,
+    INNER_CONTENT_PADDING,
+    INNER_CONTENT_MARGIN,
+    INNER_CONTENT_BG,
+    INNER_CONTENT_BORDER,
+    INNER_CONTENT_BORDER_RADIUS,
+    INNER_CONTENT_SHADOW,
+    BOTTOM_CONTENT_SPACING,
 } from './constants';
 
 import {
@@ -206,6 +213,14 @@ function Inspector(props) {
                     zolo_gridColumnsRange: 3,
                 });
                 break;
+            case 'style-6':
+                setAttributes({
+                    showExcerpt: false,
+                    showReadMore: true,
+                    showThumbnail: true,
+                    zolo_gridColumnsRange: 3,
+                });
+                break;
             default:
                 break;
         }
@@ -263,13 +278,15 @@ function Inspector(props) {
                                 checked={showCategory}
                                 onChange={() => setAttributes({ showCategory: !showCategory })}
                             />
+                            {preset !== 'style-6' && (
+                                <ToggleControl
+                                    label={__('Author', 'zoloblocks')}
+                                    checked={showAuthor}
+                                    onChange={() => setAttributes({ showAuthor: !showAuthor })}
+                                />
+                            )}
                             <ToggleControl
-                                label={__('Author', 'zoloblocks')}
-                                checked={showAuthor}
-                                onChange={() => setAttributes({ showAuthor: !showAuthor })}
-                            />
-                            <ToggleControl
-                                label={__('Meta', 'zoloblocks')}
+                                label={preset === 'style-6' ? __('Date', 'zoloblocks') : __('Meta', 'zoloblocks')}
                                 checked={showMeta}
                                 onChange={() => setAttributes({ showMeta: !showMeta })}
                             />
@@ -330,20 +347,24 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            <div className="zolo-custom-heading">{__('Meta', 'zoloblocks')}</div>
-                            {showMeta && showReadingTime && (
-                                <TextControl
-                                    label={__('Separator', 'zoloblocks')}
-                                    value={metaSeparator}
-                                    onChange={(value) => setAttributes({ metaSeparator: value })}
-                                />
-                            )}
-                            {showAuthor && (
-                                <TextControl
-                                    label={__('Author Prefix', 'zoloblocks')}
-                                    value={authorPrefix}
-                                    onChange={(authorPrefix) => setAttributes({ authorPrefix })}
-                                />
+                            {preset !== 'style-6' && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Meta', 'zoloblocks')}</div>
+                                    {showMeta && showReadingTime && (
+                                        <TextControl
+                                            label={__('Separator', 'zoloblocks')}
+                                            value={metaSeparator}
+                                            onChange={(value) => setAttributes({ metaSeparator: value })}
+                                        />
+                                    )}
+                                    {showAuthor && (
+                                        <TextControl
+                                            label={__('Author Prefix', 'zoloblocks')}
+                                            value={authorPrefix}
+                                            onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                        />
+                                    )}
+                                </>
                             )}
                         </ZoloPanelBody>
 
@@ -498,11 +519,78 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                            />
+                            {preset !== 'style-6' && (
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={CONTENT_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                            )}
+
+                            {preset === 'style-6' && (
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Content', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Inner Cnt', 'zoloblocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={CONTENT_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={INNER_CONTENT_BG}
+                                                noMainBGImg={true}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <CardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={INNER_CONTENT_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <div className="zolo-custom-heading">{__('Bottom Content Spacing', 'zoloblocks')}</div>
+                                            <ResRangeControl
+                                                label={__('Spacing', 'zoloblocks')}
+                                                controlName={BOTTOM_CONTENT_SPACING}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                            />
+                                        </>
+                                    }
+                                />
+                            )}
                         </ZoloPanelBody>
 
                         {showThumbnail && (
@@ -672,7 +760,11 @@ function Inspector(props) {
                         )}
 
                         {showMeta && (
-                            <ZoloPanelBody title={__('Meta', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody
+                                title={preset === 'style-6' ? __('Date', 'zoloblocks') : __('Meta', 'zoloblocks')}
+                                stylePanel={true}
+                                panelProps={props}
+                            >
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={metaColor}
@@ -929,7 +1021,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        {showAuthor && (
+                        {showAuthor && preset !== 'style-6' && (
                             <ZoloPanelBody title={__('Author', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Gap', 'zoloblocks')}

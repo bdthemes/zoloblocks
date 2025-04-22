@@ -6,6 +6,9 @@ $topclass = 'zolo-post-featured-list-wrap';
 if ( ! empty( $settings['preset'] ) ) {
 	$topclass .= ' zolo-post-' . $settings['preset'];
 }
+if ( isset( $settings['showfeatureimg'] ) ) {
+	$topclass .= $settings['showfeatureimg'] ? '' : ' list-grid';
+}
 $wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $topclass );
 
 // get parent classes.
@@ -64,7 +67,7 @@ $data_settings   = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( 
 
 			$html .= require __DIR__ . '/post-partials/meta/categories.php';
 			$html .= require __DIR__ . '/post-partials/title.php';
-
+			$html .= require __DIR__ . '/post-partials/content.php';
 			if ( ! empty( $settings['showMeta'] ) ) {
 				$html .= '<div class="zolo-post-meta">';
 				$html .= require __DIR__ . '/post-partials/meta/author.php';
@@ -77,7 +80,7 @@ $data_settings   = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( 
 				$html .= '</div>';
 			}
 
-			$html .= require __DIR__ . '/post-partials/content.php';
+			
 
 			$html .= '</div>';
 			$html .= '</div>';

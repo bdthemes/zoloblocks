@@ -2,7 +2,8 @@
  * WordPress dependencies
  */
 import { __experimentalToggleGroupControl as ToggleGroupControl, Button } from '@wordpress/components';
-const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }) => {
+
+const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, isPro = false }) => {
     return (
         <div className="zolo-iconic-btn-group">
             {label && (
@@ -14,16 +15,23 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }
                 {options &&
                     options.map((option, index) => {
                         const isActive = value == option.value;
+                        const isProOption = option.isPro;
+                        const isProDeactivated = isPro && isProOption && window.zoloSettings?.zolo_pro_status !== 'active';
+
                         return (
                             <Button
                                 onClick={() => {
-                                    if (toggle) {
-                                        onChange(isActive ? null : option.value);
-                                    } else {
-                                        onChange(option.value);
+                                    if (!isProDeactivated) {
+                                        if (toggle) {
+                                            onChange(isActive ? null : option.value);
+                                        } else {
+                                            onChange(option.value);
+                                        }
                                     }
                                 }}
-                                className={`iconic-btn ${isActive ? 'active' : ''}`}
+                                disabled={isProDeactivated}
+                                title={isProDeactivated ? 'Available in Pro' : ''}
+                                className={`iconic-btn ${isActive ? 'active' : ''} ${isProDeactivated ? 'zolo-control-item-disabled' : ''}`}
                                 key={index}
                                 label={option.label}
                             >

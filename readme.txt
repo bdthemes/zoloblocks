@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ Unlock a better page-building experience in Gutenberg editor. You don’t need o
 Explore how  ZoloBlocks works in Gutenberg Blocks Editor to let you create a website effortlessly.
 
 https://youtu.be/CxzwPClaZm4
+
+https://youtu.be/vkRW_A2KT4k
+
+https://youtu.be/IjAYJZ2guuM
 
 # Available Blocks in ZoloBlocks to enhance your Gutenberg experience
 
@@ -603,6 +607,16 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.2.7 April 21, 2025
+
+**New:**
+- Border, border radius, and shadow options added to the Video Block.
+- Popup size option added to the Video Block.
+
+**Fixed:**
+- Tabs Block width now adjusts better on different screen sizes.
+- Background image replacement issue fixed.
 
 ### 2.2.6 [April 15, 2025]
 

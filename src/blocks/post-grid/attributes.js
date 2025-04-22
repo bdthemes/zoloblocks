@@ -59,6 +59,13 @@ import {
     FILTER_ALIGN,
     FILTER_PADDING,
     FILTER_GAP,
+    INNER_CONTENT_PADDING,
+    INNER_CONTENT_MARGIN,
+    INNER_CONTENT_BG,
+    INNER_CONTENT_BORDER,
+    INNER_CONTENT_BORDER_RADIUS,
+    INNER_CONTENT_SHADOW,
+    BOTTOM_CONTENT_SPACING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -386,6 +393,15 @@ const attributes = {
 
     // content
     ...generateDimensionAttributes(CONTENT_PADDING),
+
+    // inner content
+    ...generateDimensionAttributes(INNER_CONTENT_PADDING),
+    ...generateDimensionAttributes(INNER_CONTENT_MARGIN),
+    ...generateNormalBGAttributes(INNER_CONTENT_BG),
+    ...generateBorderAttributies(INNER_CONTENT_BORDER),
+    ...generateDimensionAttributes(INNER_CONTENT_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(INNER_CONTENT_SHADOW),
+    ...generateResRangeAttributies(BOTTOM_CONTENT_SPACING),
 
     // post meta arrow space
     ...generateResRangeAttributies(META_ARROW_SPACE),

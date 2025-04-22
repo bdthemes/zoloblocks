@@ -45,6 +45,7 @@ import {
     FCONTAINER_SHADOW,
     META_SPACE,
     CONTENT_DIRECTIONS,
+    GRID_COLUMNS,
 } from './constants';
 
 import {
@@ -79,6 +80,7 @@ const {
     ResAlignmentControl,
     ZoloPanelBody,
     IconicBtnGroup,
+    ResCounterControl,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -269,6 +271,34 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
+                        {!showfeatureimg && (
+                            <>
+                                {applyFilters(
+                                    'zolo.postList.gridLayout',
+                                    <ZoloPanelBody
+                                        title={__('Column', 'zoloblocks')}
+                                        panelProps={props}
+                                        firstOpen={false}
+                                        isPro={true}
+                                        isDisabled={true}
+                                    >
+                                        <ResCounterControl
+                                            label={__('Column', 'zoloblocks')}
+                                            controlName={GRID_COLUMNS}
+                                            requiredProps={requiredProps}
+                                            min={1}
+                                            max={6}
+                                            defaults={{
+                                                deskRange: 1,
+                                                tabRange: 1,
+                                                mobRange: 1,
+                                            }}
+                                        />
+                                    </ZoloPanelBody>
+                                )}
+                            </>
+                        )}
+
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Title', 'zoloblocks')}
@@ -444,7 +474,7 @@ function Inspector(props) {
                                     <>
                                         {preset === 'style-1' && (
                                             <ResRangeControl
-                                                label={__('Height', 'zoloblocks')}
+                                                label={__('Size', 'zoloblocks')}
                                                 controlName={THUMBNAIL_HEIGHT}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -507,7 +537,7 @@ function Inspector(props) {
                                                     controlName={FTHUMB_HEIGHT}
                                                     requiredProps={requiredProps}
                                                     min={0}
-                                                    max={600}
+                                                    max={1000}
                                                     step={1}
                                                 />
                                                 <CardDivider />

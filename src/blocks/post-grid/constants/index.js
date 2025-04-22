@@ -10,6 +10,7 @@ export const PRESETS = [
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
     { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
     { label: __('Style 5 (Pro)', 'zoloblocks'), value: 'style-5', disabled: true },
+    { label: __('Style 6 (Pro)', 'zoloblocks'), value: 'style-6', disabled: true },
 ];
 
 export const POST_TITLE_ANIMATION = [
@@ -83,6 +84,15 @@ export const META_ARROW_SPACE = 'metaArrowSpace';
 
 // content wrapper
 export const CONTENT_PADDING = 'contentPadding';
+
+// inner content
+export const INNER_CONTENT_PADDING = 'innerContentPadding';
+export const INNER_CONTENT_MARGIN = 'innerContentMargin';
+export const INNER_CONTENT_BG = 'innerContentBg';
+export const INNER_CONTENT_BORDER = 'innerContentBorder';
+export const INNER_CONTENT_BORDER_RADIUS = 'innerContentBRadius';
+export const INNER_CONTENT_SHADOW = 'innerContentShadow';
+export const BOTTOM_CONTENT_SPACING = 'bottomContentSpacing';
 
 export const createPreloader = () => {
     const preloader = document.createElement('div');
