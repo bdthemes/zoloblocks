@@ -1,10 +1,8 @@
 import {__} from '@wordpress/i18n';
-import {Button, PanelBody} from '@wordpress/components';
-
-import { TextControl } from '../../components/Core';
+import { Button, PanelBody, TextControl } from '@wordpress/components';
+import {cloneDeep} from 'lodash';
 
 const {SortableControl, SortableItem} = window.zoloModule;
-import {cloneDeep} from 'lodash';
 
 const Sortable = ({optionData, setAttributes}) => {
   const deepCloneMetaData = cloneDeep(optionData);

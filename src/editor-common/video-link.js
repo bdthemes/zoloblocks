@@ -4,7 +4,7 @@ import {PluginDocumentSettingPanel} from "@wordpress/edit-post";
 import {useState, useEffect, useCallback} from "@wordpress/element";
 import apiFetch from "@wordpress/api-fetch";
 import {__} from "@wordpress/i18n";
-import { TextControl } from '../components/Core';
+import { TextControl } from '@wordpress/components';
 
 const ZoloBlockPostVideoLink = () => {
   const [isVideoLinkEnabled, setIsVideoLinkEnabled] = useState(false);

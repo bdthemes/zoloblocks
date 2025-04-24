@@ -1,5 +1,5 @@
 
-import { Button, SelectControl } from '@wordpress/components';
+import { Button, SelectControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { TEXT_GRADIENT_TYPES } from '../../global/constants';
 import ImageAvatar from '../image-avatar';
@@ -8,7 +8,6 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
 
-import { RangeControl } from '../../components/Core';
 
 const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGImg = false, defaultColor="",onChangeDefault= null }) => {
     const { setAttributes, attributes, resMode } = requiredProps;

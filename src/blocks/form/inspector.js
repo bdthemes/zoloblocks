@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextareaControl, CardDivider, TextControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -11,7 +11,6 @@ import { useSelect } from '@wordpress/data';
 
 import objAttributes from './attributes';
 
-import { TextControl, RangeControl } from '../../components/Core';
 
 import {
     PRESETS,

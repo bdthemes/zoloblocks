@@ -2,14 +2,12 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { DateTimePicker, BaseControl, ToggleControl, SelectControl } from '@wordpress/components';
+import { DateTimePicker, BaseControl, ToggleControl, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-
-import { TextControl } from '../../components/Core';
 
 const {
     ResAlignmentControl,

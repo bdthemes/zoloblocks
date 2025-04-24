@@ -2,8 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
-import { RangeControl } from '../../components/Core';
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { RangeControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min = null, max = null }) => {
     const { label, setAttributes, forBorderRadius, controlName, isLinked } = neededProps;

@@ -1,5 +1,5 @@
 //wordpress dependencies
-import { BaseControl, Button, Dropdown, SelectControl } from '@wordpress/components';
+import { BaseControl, Button, Dropdown, SelectControl, RangeControl } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -11,8 +11,6 @@ import FontPicker from './fontPicker';
 import IconicBtnGroup from '../iconic-btn-group';
 
 import { prefix } from '../../global/constants';
-
-import { RangeControl } from '../../components/Core';
 
 //block constant
 import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions } from './constant';

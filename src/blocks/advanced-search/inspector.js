@@ -2,15 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, CardDivider, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
-
-import { TextControl } from '../../components/Core';
 
 const {
     HeaderTabs,

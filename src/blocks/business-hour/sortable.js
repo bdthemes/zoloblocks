@@ -1,14 +1,13 @@
+import { __ } from '@wordpress/i18n';
+import { Button, PanelBody, ToggleControl, CardDivider, TextControl } from '@wordpress/components';
+import { cloneDeep } from 'lodash';
+
+
 /**
  * Internal depencencies
  */
 const { SortableControl, SortableItem, ColorControl } = window.zoloModule;
 
-const { __ } = wp.i18n;
-const { Button, PanelBody, ToggleControl, TextareaControl } = wp.components;
-import { cloneDeep } from 'lodash';
-import { CardDivider } from '@wordpress/components';
-
-import { TextControl } from '../../components/Core';
 
 const Sortable = ({ businessList, setAttributes }) => {
     const deepCloneProfiles = cloneDeep(businessList);

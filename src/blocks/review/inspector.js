@@ -10,13 +10,14 @@ import {
     BaseControl,
     Button,
     CardDivider,
+    TextControl,
+    RangeControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-import { TextControl, RangeControl } from '../../components/Core';
 
 const {
     ResAlignmentControl,

@@ -2,10 +2,8 @@ import { PluginBlockSettingsMenuItem } from '@wordpress/editor';
 import { registerPlugin } from '@wordpress/plugins';
 import { select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, Modal } from '@wordpress/components';
+import { ToggleControl, Modal, TextControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-
-import { TextControl } from '../../components/Core';
 
 // page export
 import '../page-export';

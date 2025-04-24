@@ -10,7 +10,7 @@ import {
     Button,
     __experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
-import { TextControl, RangeControl   } from '../../components/Core';
+import { TextControl, RangeControl   } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 

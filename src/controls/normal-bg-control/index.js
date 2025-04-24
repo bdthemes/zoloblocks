@@ -1,12 +1,11 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import {
     Button,
-    RangeControl,
     SelectControl,
     Dropdown,
-    TextareaControl,
     __experimentalToggleGroupControl as ToggleGroupControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+    RangeControl
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES } from '../../global/constants';
@@ -17,7 +16,6 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import ResetBtn from '../reset-btn';
 import PopoverControl from '../popover-control';
 
-import { RangeControl } from '../../components/Core';
 
 const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg = false }) => {
     const { setAttributes, attributes, resMode } = requiredProps;

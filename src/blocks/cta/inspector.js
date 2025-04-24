@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, TextareaControl, ToggleControl, CardDivider } from '@wordpress/components';
+import { SelectControl, TextareaControl, ToggleControl, CardDivider, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { applyFilters } from '@wordpress/hooks';
@@ -10,8 +10,6 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-
-import { TextControl } from '../../components/Core';
 
 const {
     HeaderTabs,

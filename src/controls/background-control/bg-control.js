@@ -22,8 +22,6 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
 
-import { RangeControl } from '../../components/Core';
-
 // const { PopoverControl } = window.zoloModule;
 
 const BGControl = (props) => {

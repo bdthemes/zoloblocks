@@ -1,8 +1,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { CardDivider, SelectControl, ToggleControl } from '@wordpress/components';
+import { CardDivider, SelectControl, ToggleControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
-import { TextControl } from '../../components/Core';
 
 import objAttributes from './attributes';
 import {

@@ -2,10 +2,9 @@
  * Internal dependencies
  */
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
-import { Button, PanelBody, TextareaControl } from '@wordpress/components';
+import { Button, PanelBody, TextareaControl, TextControl } from '@wordpress/components';
 import { cloneDeep } from 'lodash';
 import { __ } from '@wordpress/i18n';
-import { TextControl } from '../../components/Core';
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const { DscToggle, preset, isLinkable } = attributes;

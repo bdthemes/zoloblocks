@@ -2,9 +2,8 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, CardDivider, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { RangeControl } from '../../components/Core';
 import objAttributes from './attributes';
 import {
     PRESETS,

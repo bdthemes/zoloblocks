@@ -6,9 +6,8 @@ import { SelectControl } from '@wordpress/components';
 const { SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, FormTokenField } from '@wordpress/components';
+import { Button, PanelBody, FormTokenField, TextControl } from '@wordpress/components';
 import { socialMediaInfo } from './constants';
-import { TextControl } from '../../components/Core';
 
 // uppercase first letter of string
 const Sortable = ({ attributes, socialMedia, setAttributes }) => {

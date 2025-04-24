@@ -7,13 +7,13 @@ import {
     TextareaControl,
     CardDivider,
     __experimentalNumberControl as NumberControl,
+    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-import { TextControl } from '../../components/Core';
 
 const {
     ResRangeControl,

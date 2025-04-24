@@ -2,14 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, TextareaControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, TextareaControl, TextControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
 * Internal depencencies
 */
-import { TextControl, RangeControl } from '../../components/Core';
 
 const {
     TabPanelControl,

@@ -4,7 +4,7 @@ import WithResDeviceBtnRaw from '../with-res-device-btn-raw';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 
-import { RangeControl } from '../../components/Core';
+import { RangeControl } from '@wordpress/components';
 
 const ResRangeControlRaw = ({
     label,

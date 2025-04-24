@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, TextControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -21,8 +21,6 @@ const {
 } = window.zoloModule;
 
 import objAttributes from './attributes';
-
-import { TextControl, RangeControl } from '../../components/Core';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';

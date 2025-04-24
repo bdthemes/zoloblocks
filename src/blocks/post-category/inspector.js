@@ -4,6 +4,8 @@ import {
     ToggleControl,
     __experimentalInputControl as InputControl,
     CardDivider,
+    TextControl,
+    RangeControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
@@ -11,7 +13,7 @@ import objAttributes from './attributes';
 import { NAME_TYPOGRAPHY, TEXT_TYPOGRAPHY, COUNT_TYPOGRAPHY, VIEW_BTN_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { THUMBNAIL_SIZE } from '../../../src/global/constants';
 import QuerySettings from './query-settings';
-import { TextControl, RangeControl } from '../../components/Core';
+
 
 import {
     PRESETS,

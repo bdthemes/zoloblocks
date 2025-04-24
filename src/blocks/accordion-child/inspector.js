@@ -53,8 +53,6 @@ import {
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 import { CardDivider } from '@wordpress/components';
 
-import { TextControl } from '../../components/Core';
-
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {

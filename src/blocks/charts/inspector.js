@@ -9,6 +9,8 @@ import {
     TextareaControl,
     CardDivider,
     Spinner,
+    TextControl,
+    RangeControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
@@ -22,7 +24,6 @@ import axios from 'axios';
  * Internal depencencies
  */
 
-import { TextControl, RangeControl } from '../../components/Core';
 
 const {
     SimpleRangeControl,

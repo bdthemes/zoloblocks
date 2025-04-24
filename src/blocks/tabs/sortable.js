@@ -7,13 +7,13 @@ const { ZoloIconPicker, SortableControl, SortableItem } = window.zoloModule;
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, TextareaControl } from '@wordpress/components';
+import { Button, PanelBody, TextareaControl, TextControl } from '@wordpress/components';
 import { select, dispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 import { cloneDeep } from 'lodash';
-import { TextControl } from '../../components/Core';
+
 const Sortable = ({
-    tabTitles,
+    tabTitles,  
     setAttributes,
     clientId,
     uniqueId,

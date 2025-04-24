@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import Select2 from 'react-select';
 
-import { TextControl } from '../../components/Core';
+import { TextControl } from '@wordpress/components';
 
 import {
     HEADING_TAGS,

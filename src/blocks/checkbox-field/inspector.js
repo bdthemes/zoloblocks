@@ -2,15 +2,12 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextareaControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, TextareaControl, CardDivider, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-
-import { TextControl } from '../../components/Core';
-
 const {
     ResRangeControl,
     ResGapControl,

@@ -11,6 +11,7 @@ import {
     __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
     TextareaControl,
     CardDivider,
+    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
@@ -19,7 +20,6 @@ import { applyFilters } from '@wordpress/hooks';
  * Internal depencencies
  */
 
-import { TextControl } from '../../components/Core';
 
 const {
     ResAlignmentControl,

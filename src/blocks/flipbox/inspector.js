@@ -10,8 +10,6 @@ import { useState } from '@wordpress/element';
  * Internal depencencies
  */
 
-import { TextControl } from '../../components/Core';
-
 const {
     ResRangeControl,
     ColorControl,
