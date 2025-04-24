@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import Notice from '../notice';
 import SettingBox from './setting-box';
 
-import { TextControl } from '../../../components/Core';
+import { ZoloTextControl } from '../../../controls/core-controls';
 
 const { zoloBlocks } = window;
 const Settings = () => {
@@ -434,7 +434,7 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div>
-                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"
@@ -498,7 +498,7 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div className="zolo-private-link-wrap">
-                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"

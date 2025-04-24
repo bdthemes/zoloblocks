@@ -19,6 +19,7 @@ const {
     AdvancedOptions,
     TypographyDropdown,
     ZoloPanelBody,
+    ZoloTextControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -84,7 +85,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Title', 'zoloblocks')}
                                 onChange={(text) =>
                                     setAttributes({
