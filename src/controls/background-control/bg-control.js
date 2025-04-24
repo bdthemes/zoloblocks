@@ -8,7 +8,6 @@ import {
     TabPanel,
     TextareaControl,
     ToggleControl,
-    TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';

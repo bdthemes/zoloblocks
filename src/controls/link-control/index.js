@@ -1,9 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { BaseControl, Button, TextControl, ToggleControl, Popover, Dropdown } from '@wordpress/components';
+import { BaseControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
+
+import { ZoloTextControl } from '../core-controls';
 
 const LinkControl = ({ label, value, onChange }) => {
     const [isExternal, setIsExternal] = useState(false);
@@ -11,7 +13,7 @@ const LinkControl = ({ label, value, onChange }) => {
         <div className="zb-link-control-wrapper">
             <BaseControl label={label}>
                 <div className="zb-link-flex">
-                    <TextControl
+                    <ZoloTextControl
                         value={value && value.url}
                         onChange={(newUrl) => {
                             onChange({

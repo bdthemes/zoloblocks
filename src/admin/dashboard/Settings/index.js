@@ -1,9 +1,10 @@
 import apiFetch from '@wordpress/api-fetch';
-import { Button, Modal, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { Button, Modal, SelectControl, ToggleControl } from '@wordpress/components';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Notice from '../notice';
 import SettingBox from './setting-box';
+import { ZoloTextControl } from '../../../controls/core-controls';
 const { zoloBlocks } = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);
@@ -431,7 +432,7 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div>
-                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"
@@ -495,7 +496,7 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div className="zolo-private-link-wrap">
-                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
                                                                 <Button
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"

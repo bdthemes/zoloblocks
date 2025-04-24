@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,6 +19,7 @@ const {
     AdvancedOptions,
     TypographyDropdown,
     ZoloPanelBody,
+    ZoloTextControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -83,7 +83,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Title', 'zoloblocks')}
                                 onChange={(text) =>
                                     setAttributes({
