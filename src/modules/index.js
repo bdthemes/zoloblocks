@@ -93,5 +93,8 @@ export {
 } from '../helpers/helper';
 
 
+export { ZoloTextControl, ZoloRangeControl, ZoloNumberControl, ZoloSelectControl, ZoloToggleControl, ZoloBaseControl } from '../controls/core-controls';
+
+
 export { default as ZoloAnimations } from '../controls/animations';
 
