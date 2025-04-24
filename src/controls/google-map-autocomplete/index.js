@@ -30,6 +30,8 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
                     getPlacePredictions({ input: v });
                 }}
                 onFocus={() => setPredictionPanel(true)}
+                __nextHasNoMarginBottom={true}
+                __next40pxDefaultSize={true}
             />
             {predictionPanel && (
                 <>

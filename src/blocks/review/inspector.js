@@ -5,12 +5,10 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
     PanelBody,
     SelectControl,
-    TextControl,
     TextareaControl,
     ToggleControl,
     BaseControl,
     Button,
-    RangeControl,
     CardDivider,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -18,6 +16,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
+import { TextControl, RangeControl } from '../../components/Core';
+
 const {
     ResAlignmentControl,
     ResRangeControl,

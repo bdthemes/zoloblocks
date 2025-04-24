@@ -2,9 +2,10 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, BaseControl, Button, RangeControl, CardDivider } from '@wordpress/components';
+import { TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
+import { TextControl, RangeControl } from '../../components/Core';
 
 /**
  * Internal depencencies

@@ -3,11 +3,12 @@ import { SelectControl } from '@wordpress/components';
 /**
  * Internal depencencies
  */
-const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
+const { SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
-const { __ } = wp.i18n;
-const { Button, PanelBody, TextControl, FormTokenField } = wp.components;
+import { __ } from '@wordpress/i18n';
+import { Button, PanelBody, FormTokenField } from '@wordpress/components';
 import { socialMediaInfo } from './constants';
+import { TextControl } from '../../components/Core';
 
 // uppercase first letter of string
 const Sortable = ({ attributes, socialMedia, setAttributes }) => {

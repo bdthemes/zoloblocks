@@ -1,11 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import {ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 

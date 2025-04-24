@@ -7,7 +7,6 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { ZoloTextControl } from '../../../controls/core-controls';
 
-
 const ApiSettings = () => {
     const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
     const [googleAPIKey, setGoogleAPIKey] = useState('');

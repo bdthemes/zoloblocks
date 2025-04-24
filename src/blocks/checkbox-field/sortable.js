@@ -1,5 +1,7 @@
 import {__} from '@wordpress/i18n';
-import {Button, PanelBody, TextControl} from '@wordpress/components';
+import {Button, PanelBody} from '@wordpress/components';
+
+import { TextControl } from '../../components/Core';
 
 const {SortableControl, SortableItem} = window.zoloModule;
 import {cloneDeep} from 'lodash';
@@ -51,7 +53,7 @@ const Sortable = ({optionData, setAttributes}) => {
                   <PanelBody title={meta?.name ? meta.name.charAt(0).toUpperCase() + meta.name.slice(1) : 'Title'}
                              initialOpen={false}>
                     <TextControl
-                      label={__('Value', 'zoloblocks')}
+                      label={__('Option', 'zoloblocks')}
                       value={meta?.name}
                       onChange={(v) => {
                         const newItems = [...deepCloneMetaData];

@@ -2,12 +2,15 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, TextControl, TextareaControl, Button, ToggleControl } from '@wordpress/components';
+import { SelectControl, TextareaControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
+
+import { TextControl } from '../../components/Core';
+
 const {
     HeaderTabs,
     ColorControl,

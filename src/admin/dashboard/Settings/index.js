@@ -4,7 +4,9 @@ import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Notice from '../notice';
 import SettingBox from './setting-box';
+
 import { ZoloTextControl } from '../../../controls/core-controls';
+
 const { zoloBlocks } = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);

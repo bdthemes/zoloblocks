@@ -1,17 +1,17 @@
 /**
  * Internal depencencies
  */
-const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
+const { ZoloIconPicker, SortableControl, SortableItem } = window.zoloModule;
 
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
-const { Button, PanelBody, TextControl, ToggleControl, TextareaControl } = wp.components;
-const { select, dispatch } = wp.data;
-const { createBlock } = wp.blocks;
+import { __ } from '@wordpress/i18n';
+import { Button, PanelBody, TextareaControl } from '@wordpress/components';
+import { select, dispatch } from '@wordpress/data';
+import { createBlock } from '@wordpress/blocks';
 import { cloneDeep } from 'lodash';
-
+import { TextControl } from '../../components/Core';
 const Sortable = ({
     tabTitles,
     setAttributes,

@@ -2,12 +2,15 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl, Button, BaseControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, SelectControl, Button, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
+
+import { TextControl, RangeControl } from '../../components/Core';
+
 const {
     ResAlignmentControl,
     ResRangeControl,
